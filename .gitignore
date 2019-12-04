@@ -8,6 +8,10 @@
 # testing
 /coverage
 
+# generated files
+.docusaurus
+.cache-loader
+
 # production
 /build
 
