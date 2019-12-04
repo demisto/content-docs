@@ -1,0 +1,42 @@
+backend:
+  name: git-gateway
+publish_mode: editorial_workflow
+media_folder: "docs/assets"
+public_folder: "/img"
+collections:
+  - name: "docs" # Used in routes, e.g., /admin/collections/blog
+    label: "Docs" # Used in the UI
+    folder: "docs" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    identifier_field: id
+    fields: # The fields for each document, usually in front matter
+      - {label: "id", name: "id", widget: "string"} 
+      - {label: "title", name: "title", widget: "string"}
+      - {label: "sidebar_label", name: "sidebar_label", widget: "string", required: false}
+      - {label: "Hide Title", name: "hide_title", widget: "boolean", required: false, default: false}
+      - {label: "Description", name: "description", widget: "string"}
+      - {label: "Keywords", name: "keywords", widget: "list"}
+      - {label: "Content", name: "body", widget: "markdown"}
+  - name: "sidebars"
+    label: "Sidebars"
+    identifier_field: sidebar
+    files:
+      - label: "Sidebars"
+        name: "sidebars"
+        file: "docs/sidebars.yml"
+        fields:
+          - label: SIDEBARS 
+            name: SIDEBARS
+            widget: list
+            fields:
+              - {label: Sidebar, name: sidebar, widget: string, hint: "Sidebar label"}
+              - label: Categories
+                name: categories
+                widget: list
+                fields:
+                  - {label: Category, name: category, widget: string, hint: "Category label"}
+                  - label: IDs 
+                    name: ids
+                    hint: Comma-separted list of document IDs 
+                    widget: list                  
+    

@@ -1,0 +1,287 @@
+/**
+ * Copyright (c) 2017-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+ .heroBanner {
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+  border-bottom-right-radius: 10% 20%;
+}
+
+@media screen and (max-width: 966px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: float;
+  bottom: 0;
+}
+
+.quickstart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1em 1em 1em 1em;
+}
+
+.panos {
+  background-color: #9476e7;
+  border-color: #9476e7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1em 1em 1em 1em;
+  padding-bottom: 5px;
+}
+
+.demisto {
+  background-color: #93d50a;
+  border-color: #93d50a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1em 1em 1em 1em;
+  padding-bottom: 5px;
+}
+
+.cortex {
+  background-color: #16c2b8;
+  border-color: #16c2b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1em 1em 1em 1em;
+}
+
+.prisma {
+  background-color: #f3713c;
+  border-color: #f3713c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1em 1em 1em 1em;
+}
+
+.github {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 1em 1em 0;
+}
+
+.buttons-tools-github {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 1em 1em 0 !important;
+}
+
+.features {
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+  display: flex;
+}
+
+.video {
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+  display: flex;
+  color: white;
+  text-align: center;
+  justify-content: center;
+  background-color: #333333;
+}
+
+.tools {
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+  display: flex;
+  color: white;
+  text-align: center;
+  justify-content: center;
+  background-color: #333333;
+}
+
+.toolsslant {
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+  display: flex;
+  color: white;
+  text-align: center;
+  justify-content: center;
+  background-color: #333333;
+ 
+}
+
+.headerImage {
+  height: 300px;
+  width: 200px;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  padding: 1rem 0;
+}
+
+.featureImage {
+  height: 150px;
+  width: 100px;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  padding: 1rem 0;
+}
+
+.toolImage {
+  height: 100px;
+  width: 75px;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  padding: 1rem 0;
+}
+
+.hero__title {
+  z-index: 1 !important;
+}
+
+.headerLogo {
+  z-index: 5 !important;
+  width: 10%;
+}
+
+.toolHead {
+  position: "center";
+  font-size: 24000px;
+}
+
+.showcaseBlog {
+  height: 100%;
+}
+
+/* Hero */
+
+.heroInner {
+  margin: 0 auto;
+  max-width: 1100px;
+  padding: 0 20px;
+}
+
+.heroProjectTagline {
+  color: #fff;
+  font-size: 4rem;
+  margin: 0;
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.heroProjectKeywords {
+  color: var(--ifm-color-black);
+}
+
+.heroLogo {
+  animation-duration: 2s;
+  animation-name: jackInTheBox;
+  float: right;
+  height: 20rem;
+  margin-top: 1px;
+  padding: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+  .hero {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .heroInner {
+    padding: 0;
+  }
+
+  .heroProjectTagline {
+    font-size: 36px;
+    text-align: center;
+  }
+
+  .heroLogo {
+    display: block;
+    float: none;
+    margin: 0 auto;
+  }
+
+  .indexCtas {
+    text-align: center;
+  }
+
+  .indexCtasGitHubButton {
+    display: none;
+  }
+}
+
+/* Animation */
+@keyframes jackInTheBox {
+  from {
+    opacity: 0;
+    transform: scale(0.1) rotate(30deg);
+    transform-origin: center bottom;
+  }
+
+  50% {
+    transform: rotate(-10deg);
+  }
+
+  70% {
+    transform: rotate(3deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.indexCtas {
+  margin-top: 1em;
+}
+
+.indexCtasGetStartedButton {
+  border: 1px solid var(--ifm-color-secondary);
+  display: inline-block;
+  line-height: 1.2em;
+  text-decoration: none !important;
+  transition: background 0.3s, color 0.3s;
+  border-radius: 8px;
+  border-width: 2px;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 24px;
+  padding: 18px 36px;
+  z-index: 10;
+}
+
+.indexCtasGitHubButton {
+  vertical-align: sub;
+}
+
+.hero__subtitle {
+  z-index: 1 !important;
+  color: #a4a9ad !important;
+}
