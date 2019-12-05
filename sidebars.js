@@ -5,26 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const yaml = require("js-yaml");
-const fs = require("fs");
-
-const sidebars = yaml.safeLoad(fs.readFileSync("docs/sidebars.yml", "utf8"))[
-  "SIDEBARS"
-];
-
-var sidebarsExport = {};
-sidebars.map(sidebar => {
-  var categoryObjects = [];
-  sidebar.categories.map(category => {
-    categoryObject = {};
-    categoryObject["type"] = "category";
-    categoryObject["label"] = category.category;
-    categoryObject["items"] = category.ids;
-    categoryObjects.push(categoryObject);
-  });
-  sidebarsExport[sidebar.sidebar] = categoryObjects;
-});
-
-console.log(sidebarsExport);
-
-module.exports = sidebarsExport;
+module.exports = {
+  docs: [
+    {
+      type: "category",
+      label: "Develop",
+      items: ["dev-guide", "why-demisto", "dev-architecture"]
+    }
+  ]
+};

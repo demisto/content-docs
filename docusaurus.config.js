@@ -10,10 +10,15 @@ module.exports = {
   tagline: "Developers - Palo Alto Networks",
   url: "https://demisto.pan.dev",
   baseUrl: "/",
-  favicon: "img/demistofavicon.png",//square version
+  favicon: "img/demistofavicon.png", //square version
   organizationName: "Demisto", // Usually your GitHub org/user name.
   projectName: "content-docs", // Usually your repo name.
   themeConfig: {
+    algolia: {
+      apiKey: process.env.ALGOLIA_APIKEY,
+      appId: process.env.ALGOLIA_APPID,
+      indexName: process.env.ALGOLIA_INDEX
+    },
     sidebarCollapsible: true,
     navbar: {
       title: "",
@@ -28,15 +33,15 @@ module.exports = {
           label: "Why Demisto",
           position: "left"
         },
-        { 
-          to: "docs/get-started", 
-          label: "Get Started", 
-          position: "left" 
+        {
+          to: "docs/get-started",
+          label: "Get Started",
+          position: "left"
         },
-        { 
-          to: "docs/dev-guide", 
-          label: "Develop", 
-          position: "left" 
+        {
+          to: "docs/dev-guide",
+          label: "Develop",
+          position: "left"
         },
         {
           href: "https://blog.demisto.com/topic/use-cases",
@@ -57,7 +62,7 @@ module.exports = {
           href: "https://medium.com/palo-alto-networks-developer-blog",
           label: "Blog",
           position: "right"
-        },
+        }
       ]
     },
     footer: {
@@ -83,21 +88,20 @@ module.exports = {
       ],
       logo: {
         alt: "Palo Alto Networks for Developers",
-        src: "img/pandev.png",
-        href: "https://pan.dev"
+        src: "img/pandev.png"
+        // href: "https://pan.dev"
       },
       copyright: `Copyright © ${new Date().getFullYear()} Palo Alto Networks, Inc.`
     }
   },
-  themes: ['@docusaurus/theme-live-codeblock'],
+  themes: ["@docusaurus/theme-live-codeblock"],
   presets: [
     [
       "@docusaurus/preset-classic",
       {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          editUrl:
-            "https://github.com/demisto/content-docs/tree/master",
+          editUrl: "https://github.com/demisto/content-docs/tree/master",
           routeBasePath: "docs",
           include: ["**/*.md", "**/*.mdx"], // Extensions to include.
           docLayoutComponent: "@theme/DocPage",
