@@ -849,7 +849,7 @@
     stringify-object "^3.3.0"
     unist-util-visit "^2.0.1"
 
-"@docusaurus/plugin-content-blog@^2.0.0-alpha.32", "@docusaurus/plugin-content-blog@^2.0.0-alpha.37":
+"@docusaurus/plugin-content-blog@^2.0.0-alpha.37":
   version "2.0.0-alpha.37"
   resolved "https://registry.yarnpkg.com/@docusaurus/plugin-content-blog/-/plugin-content-blog-2.0.0-alpha.37.tgz#ff3ee93cf43726c2e07bbb1bc54185d35c6e4fcd"
   integrity sha512-FSQ4yKoZ7KTkYxNDkGWLPXqyToT4OXZBsvG3UhnDhli/eWwoOgF+DlcEjGFBKnIGqcNAl+py/5SvXZlndcgd7w==
@@ -862,7 +862,7 @@
     loader-utils "^1.2.3"
     lodash "^4.17.15"
 
-"@docusaurus/plugin-content-docs@^2.0.0-alpha.32", "@docusaurus/plugin-content-docs@^2.0.0-alpha.37":
+"@docusaurus/plugin-content-docs@^2.0.0-alpha.37":
   version "2.0.0-alpha.37"
   resolved "https://registry.yarnpkg.com/@docusaurus/plugin-content-docs/-/plugin-content-docs-2.0.0-alpha.37.tgz#b09cb36210a7d4faaa7099413f1c164f7c5bdc56"
   integrity sha512-bFAbTRWFjbX4/IDhTsHbJCZRNKWZD+0UhTacyguRR36hMAuwzRnkuAa0mlwBwMRlBRcUh0532Erq/mDtjpEl0A==
@@ -904,7 +904,7 @@
     "@docusaurus/types" "^2.0.0-alpha.37"
     sitemap "^3.2.2"
 
-"@docusaurus/preset-classic@^2.0.0-alpha.36":
+"@docusaurus/preset-classic@^2.0.0-alpha.37":
   version "2.0.0-alpha.37"
   resolved "https://registry.yarnpkg.com/@docusaurus/preset-classic/-/preset-classic-2.0.0-alpha.37.tgz#2503c4f60fd3854794fec57551660ef41b1e2a7d"
   integrity sha512-KrzPS4MO2/jL34gxEG7upq0fXBe3dTwcSU1UJs6qtcin5lpjz3K1aAYexgaM0Gsug2hhcYDqroc0HDoZJgU0Ug==
@@ -932,7 +932,7 @@
     prism-react-renderer "^1.0.2"
     react-toggle "^4.1.1"
 
-"@docusaurus/theme-live-codeblock@^2.0.0-alpha.33":
+"@docusaurus/theme-live-codeblock@^2.0.0-alpha.37":
   version "2.0.0-alpha.37"
   resolved "https://registry.yarnpkg.com/@docusaurus/theme-live-codeblock/-/theme-live-codeblock-2.0.0-alpha.37.tgz#0d705eaaebe9e4321fdf42d5333c476f18868d9e"
   integrity sha512-087nBKv4i5aYl/2Um6ammhEhshcm8h63ieBEKEEF1OK0Pq14j+y2kYTklLkv6qeeKw6mnSD1MEnDA0hLPe+8fg==
