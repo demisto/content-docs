@@ -10,9 +10,9 @@ module.exports = {
   tagline: "Developers - Palo Alto Networks",
   url: "https://demisto.pan.dev",
   baseUrl: "/",
-  favicon: "img/demistopeelable.png",
+  favicon: "img/demistofavicon.png",//square version
   organizationName: "Demisto", // Usually your GitHub org/user name.
-  projectName: "demisto.pan.dev", // Usually your repo name.
+  projectName: "content-docs", // Usually your repo name.
   themeConfig: {
     sidebarCollapsible: true,
     navbar: {
@@ -82,13 +82,14 @@ module.exports = {
         }
       ],
       logo: {
-        alt: "Demisto for developers",
-        src: "img/Demisto_Logo.png"
+        alt: "PAN-OS® for Developers",
+        src: "img/pandev.png",
+        href: "https://pan.dev"
       },
       copyright: `Copyright © ${new Date().getFullYear()} Palo Alto Networks, Inc.`
     }
   },
-  themes: ["@docusaurus/theme-live-codeblock"],
+  themes: ['@docusaurus/theme-live-codeblock'],
   presets: [
     [
       "@docusaurus/preset-classic",

@@ -3,6 +3,7 @@ id: dev-architecture
 title: Architecture Basics 
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 *Intended Audience: Technical Staff, Developers, Content and Integration Authors*
 
@@ -13,7 +14,7 @@ title: Architecture Basics
 
 - Architecture Diagram
 
-![alt text](assets/Architecture-infographics.png "Architecture")  
+<img alt="Architecture" src={useBaseUrl('docs/assets/Architecture-infographics.png')} />
 
 - General Architecture Components
   - Installer is a self contained binary executable that runs on most linux operating systems
@@ -31,4 +32,3 @@ title: Architecture Basics
     - Docker Containers - Integrations and Automations run inside docker containers. 
 	- Engines - Can be deployed and distributed to run either integrations or automations and act as either a proxy to different corporate or cloud environments, or as load balancers and for a variety of segmentation purposes. 
     - D2 Agents - These are tied specifically to specific incidents within the platform and are used in situations to connect to an endpoint and run specific commands. 
----

@@ -1,7 +1,7 @@
 backend:
   name: github
   branch: master
-  repo: PaloAltoNetworks/demisto.pan.dev
+  repo: demisto/content-docs
   open_authoring: true
   squash_merges: true
 publish_mode: editorial_workflow

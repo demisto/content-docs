@@ -10,9 +10,12 @@
     "deploy": "docusaurus deploy"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-alpha.33",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.33",
-    "@docusaurus/theme-live-codeblock": "^2.0.0-alpha.31",
+    "@docusaurus/core": "^2.0.0-alpha.37",
+    "@docusaurus/plugin-content-blog": "^2.0.0-alpha.32",
+    "@docusaurus/plugin-content-docs": "^2.0.0-alpha.32",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.36",
+    "@docusaurus/theme-live-codeblock": "^2.0.0-alpha.33",
+    "browser-window": "^0.4.0",
     "classnames": "^2.2.6",
     "js-yaml": "^3.13.1",
     "netlify-cms-app": "^2.9.8-beta.4",
