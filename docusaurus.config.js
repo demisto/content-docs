@@ -11,8 +11,8 @@ module.exports = {
   url: "https://demisto.pan.dev",
   baseUrl: "/",
   favicon: "img/demistopeelable.png",
-  organizationName: "Demisto", // Usually your GitHub org/user name.
-  projectName: "demisto.pan.dev", // Usually your repo name.
+  organizationName: "demisto", // Usually your GitHub org/user name.
+  projectName: "content-docs", // Usually your repo name.
   themeConfig: {
     sidebarCollapsible: true,
     navbar: {
@@ -28,15 +28,15 @@ module.exports = {
           label: "Why Demisto",
           position: "left"
         },
-        { 
-          to: "docs/get-started", 
-          label: "Get Started", 
-          position: "left" 
+        {
+          to: "docs/get-started",
+          label: "Get Started",
+          position: "left"
         },
-        { 
-          to: "docs/dev-guide", 
-          label: "Develop", 
-          position: "left" 
+        {
+          to: "docs/dev-guide",
+          label: "Develop",
+          position: "left"
         },
         {
           href: "https://blog.demisto.com/topic/use-cases",
@@ -49,7 +49,7 @@ module.exports = {
           position: "right"
         },
         {
-          href: "http://github.com/demisto/content/",
+          href: "http://github.com/demisto/content-docs/",
           label: "GitHub",
           position: "right"
         },
@@ -57,7 +57,7 @@ module.exports = {
           href: "https://medium.com/palo-alto-networks-developer-blog",
           label: "Blog",
           position: "right"
-        },
+        }
       ]
     },
     footer: {
@@ -95,8 +95,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          // editUrl:
-          //   "https://github.com/PaloAltoNetworks/panos.pan.dev/tree/master/docs",
+          editUrl: "https://github.com/demisto/content-docs/tree/master",
           routeBasePath: "docs",
           include: ["**/*.md", "**/*.mdx"], // Extensions to include.
           docLayoutComponent: "@theme/DocPage",
