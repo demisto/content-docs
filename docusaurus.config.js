@@ -82,7 +82,7 @@ module.exports = {
         }
       ],
       logo: {
-        alt: "PAN-OS® for Developers",
+        alt: "Palo Alto Networks for Developers",
         src: "img/pandev.png",
         href: "https://pan.dev"
       },
@@ -96,8 +96,8 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          // editUrl:
-          //   "https://github.com/PaloAltoNetworks/panos.pan.dev/tree/master/docs",
+          editUrl:
+            "https://github.com/demisto/content-docs/tree/master",
           routeBasePath: "docs",
           include: ["**/*.md", "**/*.mdx"], // Extensions to include.
           docLayoutComponent: "@theme/DocPage",

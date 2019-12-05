@@ -14,7 +14,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 - Architecture Diagram
 
-<img alt="Architecture" src={useBaseUrl('docs/assets/Architecture-infographics.png')} />
+<img alt="Architecture" src={useBaseUrl('/assets/Architecture-infographics.png')} />
 
 - General Architecture Components
   - Installer is a self contained binary executable that runs on most linux operating systems
