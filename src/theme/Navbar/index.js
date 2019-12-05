@@ -9,30 +9,31 @@ import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import useTheme from "@theme/hooks/useTheme";
 import SearchBar from "@theme/SearchBar";
+import Toggle from "@theme/Toggle";
 import classnames from "classnames";
-import React, { useCallback, useEffect, useState } from "react";
-import Toggle from "react-toggle";
+import React, { useCallback, useState } from "react";
 import styles from "./styles.module.css";
 
-function NavLink(props) {
-  const toUrl = useBaseUrl(props.to);
+function NavLink({ to, href, label, position, ...props }) {
+  const toUrl = useBaseUrl(to);
   return (
     <Link
       className="navbar__item navbar__link"
-      {...props}
-      {...(props.href
+      {...(href
         ? {
             target: "_blank",
             rel: "noopener noreferrer",
-            href: props.href
+            href
           }
         : {
             activeClassName: "navbar__link--active",
             to: toUrl
           })}
+      {...props}
     >
-      {props.label}
+      {label}
     </Link>
   );
 }
@@ -52,22 +53,15 @@ function NavMenu(props) {
   );
 }
 
-const Moon = () => <span className={classnames(styles.toggle, styles.moon)} />;
-const Sun = () => <span className={classnames(styles.toggle, styles.sun)} />;
-
 function Navbar() {
   const context = useDocusaurusContext();
   const [sidebarShown, setSidebarShown] = useState(false);
   const [menuShown, setMenuShown] = useState({});
   const [isSearchBarExpanded, setIsSearchBarExpanded] = useState(false);
-  const currentTheme =
-    typeof document !== "undefined"
-      ? document.querySelector("html").getAttribute("data-theme")
-      : "";
-  const [theme, setTheme] = useState(currentTheme);
+  const [theme, setTheme] = useTheme();
   const { siteConfig = {} } = context;
   const { baseUrl, themeConfig = {} } = siteConfig;
-  const { algolia, navbar = {} } = themeConfig;
+  const { navbar = {}, disableDarkMode = false } = themeConfig;
   const { title, logo = {}, links = [], menus = [] } = navbar;
 
   const showSidebar = useCallback(() => {
@@ -83,28 +77,14 @@ function Navbar() {
     });
   };
 
-  useEffect(() => {
-    try {
-      const localStorageTheme = localStorage.getItem("theme");
-      setTheme(localStorageTheme);
-    } catch (err) {
-      console.error(err);
-    }
-  }, []);
-
-  const onToggleChange = e => {
-    const nextTheme = e.target.checked ? "dark" : "";
-    setTheme(nextTheme);
-    try {
-      localStorage.setItem("theme", nextTheme);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const onToggleChange = useCallback(
+    e => setTheme(e.target.checked ? "dark" : ""),
+    [setTheme]
+  );
 
   const logoUrl = useBaseUrl(logo.src);
   return (
-    <React.Fragment>
+    <>
       <Head>
         {/* TODO: Do not assume that it is in english language */}
         <html lang="en" data-theme={theme} />
@@ -167,7 +147,7 @@ function Navbar() {
           </div>
           <div className="navbar__items navbar__items--right">
             {menus
-              .filter(menuItem => menuItem.position === "right")
+              .filter(menuItem => menuItem.position !== "right")
               .map((menuItem, i) => (
                 <NavMenu {...menuItem} key={i} />
               ))}
@@ -176,24 +156,18 @@ function Navbar() {
               .map((linkItem, i) => (
                 <NavLink {...linkItem} key={i} />
               ))}
-            <Toggle
-              className={styles.displayOnlyInLargeViewport}
-              aria-label="Dark mode toggle"
-              checked={theme === "dark"}
-              onChange={onToggleChange}
-              icons={{
-                checked: <Moon />,
-                unchecked: <Sun />
-              }}
-            />
-            {algolia && (
-              <div className="navbar__search" key="search-box">
-                <SearchBar
-                  handleSearchBarToggle={setIsSearchBarExpanded}
-                  isSearchBarExpanded={isSearchBarExpanded}
-                />
-              </div>
+            {!disableDarkMode && (
+              <Toggle
+                className={styles.displayOnlyInLargeViewport}
+                aria-label="Dark mode toggle"
+                checked={theme === "dark"}
+                onChange={onToggleChange}
+              />
             )}
+            <SearchBar
+              handleSearchBarToggle={setIsSearchBarExpanded}
+              isSearchBarExpanded={isSearchBarExpanded}
+            />
           </div>
         </div>
         <div
@@ -211,15 +185,11 @@ function Navbar() {
               )}
               {title != null && <strong>{title}</strong>}
             </Link>
-            {sidebarShown && (
+            {!disableDarkMode && sidebarShown && (
               <Toggle
                 aria-label="Dark mode toggle in sidebar"
                 checked={theme === "dark"}
                 onChange={onToggleChange}
-                icons={{
-                  checked: <Moon />,
-                  unchecked: <Sun />
-                }}
               />
             )}
           </div>
@@ -267,7 +237,7 @@ function Navbar() {
           </div>
         </div>
       </nav>
-    </React.Fragment>
+    </>
   );
 }
 

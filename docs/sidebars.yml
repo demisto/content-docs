@@ -1,8 +1,0 @@
-SIDEBARS:
-  - categories:
-      - category: Develop
-        ids:
-          - dev-guide
-          - why-demisto
-          - dev-architecture
-          - dev-demistoide
