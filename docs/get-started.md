@@ -11,11 +11,14 @@ The following guide explains the process that you need to go through in order to
 ## 1. Sign up as a content development partner
 
 <a href="https://go.demisto.com/become-a-technology-partner" target="_blank">Submit your application now!</a> After your application is approved you’ll receive an email with resources to help you get started. Once you receive it, we recommend you review the resources including the docs here, our GitHub repository, and Support Portal to assist you in content development.
-<a class="button" href="https://go.demisto.com/become-a-technology-partner" target="_blank">Sign Up Now</a>
+<br /><br />
+<a class="button button--outline button--primary button--lg" href="https://go.demisto.com/become-a-technology-partner" target="_blank">Sign Up Now</a>
 
 ## 2. Complete the technical partnership agreement
 
-Prior to acceptance into the program, all partners must complete and sign our Technology Partner Program Agreement (TPA). You must identify in the TPA which of your product(s) you wish to have integrated with Demisto. We'll reach out to arrange for signatures. <a href="/NextWaveTechnologyPartnerProgramAgreement.pdf" target="_blank" class="button">Download the partnership agreement here</a>
+Prior to acceptance into the program, all partners must complete and sign our Technology Partner Program Agreement (TPA). You must identify in the TPA which of your product(s) you wish to have integrated with Demisto. We'll reach out to arrange for signatures.
+<br />
+<a href="/NextWaveTechnologyPartnerProgramAgreement.pdf" target="_blank" class="button button--outline button--primary button--lg">Download the partnership agreement here</a>
 
 ## 3. Identify technical resources
 
