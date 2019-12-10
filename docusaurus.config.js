@@ -49,7 +49,7 @@ module.exports = {
           position: "left"
         },
         {
-          href: "https://go.demisto.com/become-a-technology-partner",
+          href: "https://start.paloaltonetworks.com/become-a-technology-partner",
           label: "Sign Up Now",
           position: "right"
         },

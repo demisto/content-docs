@@ -168,7 +168,7 @@ function Home() {
                     "button button--outline button--secondary button--lg",
                     styles.indexCtasGetStartedButton
                   )}
-                  href="https://go.demisto.com/become-a-technology-partner"
+                  href="https://start.paloaltonetworks.com/become-a-technology-partner"
                 >
                   Sign Up Now!
                 </Link>
