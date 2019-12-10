@@ -18,7 +18,7 @@ The following guide explains the process that you need to go through in order to
 
 Prior to acceptance into the program, all partners must complete and sign our Technology Partner Program Agreement (TPA). You must identify in the TPA which of your product(s) you wish to have integrated with Demisto. We'll reach out to arrange for signatures.
 <br />
-<a href="/NextWaveTechnologyPartnerProgramAgreement.pdf" target="_blank" class="button button--outline button--primary button--lg">Download the partnership agreement here</a>
+<a href="/assets/NextWaveTechnologyPartnerProgramAgreement.pdf" target="_blank" class="button button--outline button--primary button--lg">Download the partnership agreement here</a>
 
 ## 3. Identify technical resources
 
