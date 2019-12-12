@@ -14,6 +14,7 @@ module.exports = {
         "linting",
         "unit-testing",
         "code-conventions",
+        "yaml-file",
       ]
     }
   ]
