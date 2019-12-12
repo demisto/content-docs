@@ -9,6 +9,7 @@ module.exports = {
         "dev-architecture",
         "dev-setup",
         "docker",
+        "linting",
       ]
     }
   ]
