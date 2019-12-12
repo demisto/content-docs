@@ -10,6 +10,7 @@ module.exports = {
         "tutorial",
         "dev-setup",
         "docker",
+        "package-dir",
         "linting",
         "unit-testing",
       ]
