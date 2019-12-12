@@ -10,6 +10,7 @@ module.exports = {
         "dev-setup",
         "docker",
         "linting",
+        "unit-testing",
       ]
     }
   ]

@@ -3,7 +3,7 @@ id: linting
 title: Linting
 ---
 
-As part of the build process we run a few linters to catch common programming errors, stylistic errors and possible security issues. Linters are run only when working with the [package directory structure](package-dir.md).
+As part of the build process we run a few linters to catch common programming errors, stylistic errors and possible security issues. Linters are run only when working with the [package (directory) structure](package-dir.md).
 
 All linters are run via the following script:
 ```
@@ -35,7 +35,7 @@ optional arguments:
                         0)
 ```
 
-**Note**: this script is also used to run pytest. See: [Unit Testing](../tests/unit-testing/README.md#run-with-docker)
+**Note**: this script is also used to run pytest. See: [Unit Testing](unit-testing.md)
 
 ## Flake8
 This is a basic linter. It can be run without having all the dependencies available and will catch common errors. We also use this linter to enforce the standard python pep8 formatting style. On rare occasions you may encounter a need to disable an error/warning returned from this linter. Do this by adding an inline comment of the sort on the line you want to disable the error:
