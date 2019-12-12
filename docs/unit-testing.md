@@ -4,10 +4,10 @@ title: Unit Testing
 ---
 
 Unit testing should be used to test small units of code in an isolated and deterministic fashion. Unit tests should avoid performing communication with external APIs and should prefer to use mocking. Testing actual interaction with external APIs should be performed via Test Playbooks. Unit testing is currently only supported for Python (no JS).
-# Environment Setup
+## Environment Setup
 In order to work with unit testing the integration or automation script need to be developed in [package (directory) structure](package-dir.md), where the yml file is separated from the python file and resides in its own directory.
 
-## Setup Pipenv 
+### Setup Pipenv 
 To run locally the unit tests we want to setup a virtual environment with all required dependencies (both runtime and development). To achieve this we use [Pipenv](https://pipenv.readthedocs.io/en/latest/). Setup:
 
 * **Install pipenv**: Follow the [instructions](https://pipenv.readthedocs.io/en/latest/install/#installing-pipenv).
@@ -18,7 +18,7 @@ To run locally the unit tests we want to setup a virtual environment with all re
 
 You should now have a managed virtual environment to run unit tests locally.
 
-## Setup PyCharm 
+### Setup PyCharm 
 We recommend using PyCharm with the Demisto Plugin. This is optional and you can also run/debug unit tests with other ides (such as VS Code), but only PyCharm currently has a dedicated plugin, which can manage the yml file via the UI and also provide remote execution. See: https://plugins.jetbrains.com/plugin/12093-demisto-add-on-for-pycharm. Setup: 
 
 * **Install the Demisto Plugin**: Install with-in PyCharm by navigating to `Preferences.. -> Plugins`. Or download and install from [here](https://plugins.jetbrains.com/plugin/12093-demisto-add-on-for-pycharm/versions)
@@ -26,7 +26,7 @@ We recommend using PyCharm with the Demisto Plugin. This is optional and you can
 * **Choose Interpreter**: Choose the Pipenv interpreter (with all dependencies we setup in the previous step). See: https://www.jetbrains.com/help/pycharm/configuring-python-interpreter.html
 * **Enable PyTest**: We run our unit tests with `pytest`. See the following on how to enable PyTest: https://www.jetbrains.com/help/pycharm/pytest.html
 
-# Use `main` in Integration/Automation 
+## Use `main` in Integration/Automation 
 When writing unit tests you will import the Integration/Automation file in order to test specific files. Thus, there is need to make sure that the file is written in such a way that when importing it will not execute. This can be done with a simple `main` function which is called depening on how the file was executed. When the Integration/Automation script is called by Demisto it will have the property `__name__` set to either `__builtin__` or `builtins` depending upon the python version. Additiong the following code will ensure the script is not run when imported by the unit tests:
 
 ```python
@@ -35,14 +35,14 @@ if __name__ == "__builtin__" or __name__ == "builtins":
     main()
 ``` 
 
-# Write Your Unit Tests
+## Write Your Unit Tests
 Unit test should be written in a separate Python file named: `<you_choice>_test.py`. Within the unit test file, each unit test function should be named: `test_<your name>`. More information on writing unit tests and their format is available at the [PyTest Docs](https://docs.pytest.org/en/latest/contents.html). Good place to see example unit tests: [Proofpoint TAP v2 integration](https://github.com/demisto/content/blob/master/Integrations/ProofpointTAP_v2/ProofpointTAP_v2_test.py) 
 
-## Mocking
+### Mocking
 We use [pytest-mock](https://github.com/pytest-dev/pytest-mock/) for mocking. `pytest-mock` is enabled by default and installed in the base environment mentioned above. To use a `mocker` object simply pass it as a parameter to your test function. The `mocker` can then be used to mock both the demisto object and also external APIs. For an example of using a `mocker` object see: https://github.com/demisto/content/blob/master/Scripts/ParseEmailFiles/parse_email_files_test.py#L29 .
 
-# Running Your Unit Tests
-## Command Line
+## Running Your Unit Tests
+### Command Line
 To run your unit tests from the command line simply run from within the virtual env:
 ```
 pytest -v
@@ -55,14 +55,14 @@ It is also possible to run from outside the virtual env by running:
 pipenv run pytest -v
 ```
 
-## Run with PyCharm
+### Run with PyCharm
 Open the unit test file within PyCharm. You will see a green arrow next to each unit test function. When pressing the arrow you will get a prompt to either Debug or Run the unit test. Set breakpoints as needed and Debug the test. 
 
 Sample clip of debugging in PyCharm:
 
 ![](doc_imgs/Unit-Testing-Debug.gif)
 
-## Run With Docker
+### Run With Docker
 CircleCI build will run the unit tests within the docker image the Integration/Automation will run with. To test and run locally the same way CircleCI runs the tests, use the following script from the root of the `content` project: [Tests/scripts/pkg_dev_test_tasks.py](https://github.com/demisto/content/blob/master/Tests/scripts/pkg_dev_test_tasks.py). **Note**: this script by default will also run pylint (as is done in the build process). 
 
 Run the script with `-h` to see command line options:
@@ -97,7 +97,7 @@ Sample output:
 
 ![](doc_imgs/unit-test-sample-output.png)
 
-**Troubleshooting Tips:**
+## Troubleshooting Tips
 * The `pkg_dev_test_tasks.py` by default prints out minimal output. If for some reason it is failing and not clear, run the script with `-v` for verbose output.
 
 * When running mypy against python 2 code and the file contains non-ascii characters it may fail with an error of the sort: 

@@ -5,10 +5,10 @@ title: Using Docker
 
 ![](doc_imgs/docker-for-beginners.png)
 
-# What is Docker?
+## What is Docker?
 Docker is a tool used by developers to package together dependencies into a single container (or image). What this means for *you* is that in order to use your integration, you are not required to "pip install" all of the packages required. They are part of a container that "docks" to the server and contains all of the libraries you need. To learn more about docker, [visit their site here](https://docs.docker.com/)
 
-# Why Use Docker?
+## Why Use Docker?
 Primarily we use docker to run python scripts and integrations in a controlled environment. They run isolated from the server to prevent someone from accidentally damaging the server. By packaging libraries and dependencies together, we can prevent unknown issues from occurring since the environment is all the same.
 
 ## Script/Integration Configuration
