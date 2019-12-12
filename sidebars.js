@@ -13,6 +13,7 @@ module.exports = {
         "package-dir",
         "linting",
         "unit-testing",
+        "code-conventions",
       ]
     }
   ]
