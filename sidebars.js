@@ -7,6 +7,7 @@ module.exports = {
         "dev-guide",
         "why-demisto",
         "dev-architecture",
+        "dev-setup",
         "docker",
       ]
     }
