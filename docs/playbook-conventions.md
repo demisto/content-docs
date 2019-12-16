@@ -78,7 +78,7 @@ Notice how the W in "Word" is capitalized because it's a name of a program
 
 -   Set defaults for playbook inputs when needed
 
-<img src="https://user-images.githubusercontent.com/50324325/67758301-18aa9d00-fa46-11e9-84e9-cba48d639766.png" width="300" height="100">
+<img src="https://user-images.githubusercontent.com/50324325/67758301-18aa9d00-fa46-11e9-84e9-cba48d639766.png" width="300" height="100"></img>
 
 ![image](https://user-images.githubusercontent.com/50324325/67759434-121d2500-fa48-11e9-871b-dac447da1b8e.png)
 
