@@ -62,11 +62,11 @@ In this example, we are pushing three different dictionaries into the context. `
 
 In the Integration settings, we see:
 
-![screen shot 2019-01-09 at 14 54 40](https://user-images.githubusercontent.com/42912128/50900672-90a7c800-141e-11e9-946d-8d5352e279ec.png)
+![screen shot 2019-01-09 at 14 54 40](doc_imgs/50900672-90a7c800-141e-11e9-946d-8d5352e279ec.png)
 
 These paths can be seen in the context found in the war room, here:
 
-![screen shot 2019-01-09 at 14 57 17](https://user-images.githubusercontent.com/42912128/50900776-e3817f80-141e-11e9-8263-d75cf6cf2dc0.png)
+![screen shot 2019-01-09 at 14 57 17](doc_imgs/50900776-e3817f80-141e-11e9-8263-d75cf6cf2dc0.png)
 
 
 **Please Note:** When improving or replacing an existing integration, verify that the context outputs are backwards compatible. Otherwise, changes can break playbooks and prevent them from running.
@@ -96,11 +96,11 @@ In the above example, we observe the entry context using ```(val.Address==obj.Ad
 ## Adding Context to an Integration
 When adding context to an integration, we must explicitly define what the context paths are so they will be accessible. See below to understand how context should be defined in the Integration Settings.
 
-<img src="https://user-images.githubusercontent.com/42912128/50211819-42089000-0382-11e9-8a7f-421a92a89620.png" width="700" align="middle"></img>
+<img src="doc_imgs/50211819-42089000-0382-11e9-8a7f-421a92a89620.png" width="700" align="middle"></img>
 
 When fully configured, the example above will produce the results shown below:
 
-<img src="https://user-images.githubusercontent.com/42912128/50211940-8431d180-0382-11e9-8e0c-a57672b4fcc1.png" width="250" align="middle"></img>
+<img src="doc_imgs/50211940-8431d180-0382-11e9-8e0c-a57672b4fcc1.png" width="250" align="middle"></img>
 
 ## Context Code Conventions
 Demisto uses a standardised format for it's context paths and should match the following:
