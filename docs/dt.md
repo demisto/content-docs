@@ -136,10 +136,10 @@ The following are a few examples of selector methods:
 | Example | Result | Description |
 | --- | --- | --- |
 | ```${DBotScore.Vendor(val == 'urlscan.io')} ``` | `urlscan.io` | will return only Vendors that exactly match the Acrobat description. |
-| ```${URLScan.Certificates.SubjectName(val.indexOf('www') == 0)}``` | `[www.google.com, www.google.de]` | will return any SubjectName that starts with "www" |
-| ```${URLScan.Certificates.SubjectName(val.indexOf('doubleclick') >= 0)}``` | `*.g.doubleclick.net` | will return any SubjectName that contains doubleclick. |
-| ```${URLScan.Country(val.toUpperCase().indexOf('IE') >= 0)}``` | `IE` | will return any Country that contains IE or ie or any mixed case. |
-| ```${URLScan.Certificates(val.SubjectName.indexOf('de')==val.length-2).ValidTo}``` | `2019-03-13 08:16:00` | will return all ValidTo for certificates that have SubjectName ending with de. Please notice that we tested a relative path to “SubjectName” (“de”) and returned a different path (“ValidTo”). |
+| ```${URLScan.Certificates.SubjectName( val.indexOf('www') == 0)}``` | `[www.google.com, www.google.de]` | will return any SubjectName that starts with "www" |
+| ```${URLScan.Certificates.SubjectName( val.indexOf('doubleclick') >= 0)}``` | `*.g.doubleclick.net` | will return any SubjectName that contains doubleclick. |
+| ```${URLScan.Country( val.toUpperCase().indexOf('IE') >= 0)}``` | `IE` | will return any Country that contains IE or ie or any mixed case. |
+| ```${URLScan.Certificates(val.SubjectName.indexOf('de') == val.length-2).ValidTo}``` | `2019-03-13 08:16:00` | will return all ValidTo for certificates that have SubjectName ending with de. Please notice that we tested a relative path to “SubjectName” (“de”) and returned a different path (“ValidTo”). |
 | ```${URLScan.Certificates(val.ValidFrom == val1---URLScan.Certificates.[0].ValidFrom).SubjectName} ``` | `["www.google.com", "www.google.de", "*.apis.google.com"]`| will return all SubjectNames for Certificates that have the same ValidTo time as the first Certificate in the array. Please notice that the bind value (val1) does not start with ‘.’ and will DT the context from the top context. |
 
 Selectors are great for avoiding duplicate entries and can be used to add context to existing entries.
