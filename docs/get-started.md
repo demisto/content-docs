@@ -92,7 +92,7 @@ Why create a test playbook? [See examples](https://github.com/demisto/content/tr
 
 ## 9. Document your content or integration
 
-Documentation for the integration can be generated automatically by using this script located in [GitHub](integration-docs.md), then fill in the blanks such as overview. The documentation will appear in Support articles.
+Documentation for the integration can be generated automatically by following the [Integration Documentation Guide](integration-docs), then fill in the blanks such as overview. The documentation will appear in Support articles.
 
 ## 10. Joint review
 
