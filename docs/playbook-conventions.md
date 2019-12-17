@@ -91,7 +91,7 @@ Notice how the W in "Word" is capitalized because it's a name of a program
 ![image](doc_imgs/62229766-1f832e80-b3c9-11e9-8ac3-6cb48a132c1f.png)
 ![image](doc_imgs/62229771-21e58880-b3c9-11e9-8d85-c82c0c895252.png)
 
--   Avoid using [DT](https://github.com/demisto/content/tree/master/docs) wherever things can be done without it. Use our user friendly selectors and transformers, both because it looks better, and because you can add filters / operations to it.
+-   Avoid using [DT](dt) wherever things can be done without it. Use our user friendly selectors and transformers, both because it looks better, and because you can add filters / operations to it.
 
 ![image](doc_imgs/67759623-76d87f80-fa48-11e9-9dc7-3f8d5ef4341c.png)
 ![image](doc_imgs/67759719-a5565a80-fa48-11e9-9a91-b5ce555197d4.png)

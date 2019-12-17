@@ -110,4 +110,4 @@ Arguments are variables for a command that are dynamic and can be changed each t
 * **List Options** - Add options separated by a comma to include a dropdown list of options for the argument.
 
 ### Outputs
-Please [read here](https://github.com/demisto/content/blob/master/docs/context_and_ouputs) to learn more about Outputs and Context.
+Please [read here](context-and-outputs) to learn more about Outputs and Context.
