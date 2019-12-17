@@ -19,21 +19,17 @@ Just list the requirements for integrating with Demisto. You can include links t
 
 ## To set up the integration on Demisto:
 For example:
+
 1. Go to ‘Settings > Integrations > Servers & Services’
 2. Locate [integration name] by searching for it using the search box on the top of the page.
 3. Click ‘Add instance’ to create and configure a new integration. You should configure the following settings:  
 
-   **Name**: A textual name for the integration instance.
-
-   **Appliance IP/Hostname**: The hostname or IP address of the appliance being used.
-
-   **Appliance Port**: The appliance port being used.
-
-   **Username and Password**: The username and password, or toggle to Credentials.
-
-   **Fetch incidents**: Select whether to automatically create Demisto incidents from this integration instance. 
-
-   **Test** What is tested and what to do if the test fails
+    * **Name**: A textual name for the integration instance.
+    * **Appliance IP/Hostname**: The hostname or IP address of the appliance being used.
+    * **Appliance Port**: The appliance port being used.
+    * **Username and Password**: The username and password, or toggle to Credentials.
+    * **Fetch incidents**: Select whether to automatically create Demisto incidents from this integration instance. 
+    * **Test** What is tested and what to do if the test fails
 
 
 ## Fetched Incidents Data
@@ -52,6 +48,7 @@ Followed by use case.
 
 ## Commands
 When listing commands with inputs and outputs use the following structure:
+
 1. command1
 2. command2
 3. command3
@@ -69,29 +66,29 @@ When listing commands with inputs and outputs use the following structure:
 | ---- | ---- | ---- |
 |Integration.Output | string | The indicator score. |
  
-   #### Context Output (JSON)
+#### Context Output (JSON)
+```
+{
 
-    `{`
+  ...
 
-     `...`
+}
+```
 
-    `}`
+#### Human Readable Output (War Room)
+```
+{
+
+  ...
+
+}
+```
 
 
-   #### Human Readable Output (War Room)
+Or state: This Integration does not have commands ....
 
-   ` {`
-
-     `...`
-
-    `}`
-
-
-or state
-This Integration does not have commands but....
-
-## Additional info:
-such as command examples, usage examples, etc.
+## Additional Info
+Such as command examples, usage examples, etc.
 
 ## Known Limitations
 ## Troubleshooting 

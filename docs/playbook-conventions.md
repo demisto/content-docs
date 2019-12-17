@@ -6,12 +6,12 @@ title: Playbook Conventions
 To keep playbook consistency, usability and readability, we've created some conventions and standards for our playbooks. We will also cover some common mistakes. Please make sure your playbooks meet these standards.
 
 ## Wording
-### playbooks
+### Playbooks
  - Names are **T**itle **C**ase.
  - Before specifying whether the playbook is generic or of a certain integration, add a dash (-).
  - Before adding "Test", add a (dash), but add it only at the very end of the name
  
- ![image](doc_imgs/62224827-f8742f00-b3bf-11e9-857e-5f216297aee1.png)
+![image](doc_imgs/62224827-f8742f00-b3bf-11e9-857e-5f216297aee1.png)
 ![image](doc_imgs/62224883-0f1a8600-b3c0-11e9-910e-03a86c7456d7.png)
 
 -   When there is a second version (v2) playbook and you want to create a test for it, make sure the " - Test" is at the end, since you're testing a second version, and not creating a second version of a test for the older playbook
