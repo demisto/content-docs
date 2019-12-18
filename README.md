@@ -1,7 +1,7 @@
 ![Content logo](demisto_content_logo.png)
 
 # Demisto Content Developer Docs
-This repo host's Demisto's Content Developer Docs. The Content Developer Docs provide information on how to develop Content for the Demisto platform. The actual content is hosted at the following repo: https://github.com/demisto/content. 
+This repo holds Demisto's Content Developer Docs. The Content Developer Docs provide information on how to develop Content for the Demisto platform. The actual content is hosted at the following repo: https://github.com/demisto/content. 
 
 This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
 
