@@ -258,7 +258,7 @@ def test_module(client):
 
 ## fetch-incidents
 These are the best practices for defining fetch-incidents.
-- The [fetch-incidents](https://github.com/demisto/content/blob/master/docs/fetching_incidents) function will be executed when the `Fetch incidents` checkbox is selected in the integration settings. This function will be executed periodically.
+- The [fetch-incidents](fetching-incidents) function will be executed when the `Fetch incidents` checkbox is selected in the integration settings. This function will be executed periodically.
 - The fetch-incidents function must be unit testable.
 - Should receive the `last_run` param instead of executing the `demisto.getLastRun()` function.
 - Should return `next_run` back to main, instead of executing `demisto.setLastRun()` inside the `fetch_incidents` function.
@@ -416,9 +416,9 @@ When naming outputs for context use the following convention.
 For example:
 ```IPInfo.IP.ASN```
 
-Make sure you read and understand [Context and Outputs](https://github.com/demisto/content/blob/master/docs/context_and_ouputs).
+Make sure you read and understand [Context and Outputs](context-and-outputs).
 
-Make sure you follow our [context standards](https://github.com/demisto/content/tree/master/docs/context_standards) when naming indicator outputs.
+Make sure you follow our [context standards](context-standards) when naming indicator outputs.
 
 #### Linking Context
 Wherever possible, we try to link context together. This will prevent a command from overwriting existing data, or from creating duplicate entries in the context. To do this, observe the following:
@@ -433,7 +433,7 @@ ec = ({
 ```
 
 In this instance, the ```val.URL && val.URL == obj.URL``` links together the results retrieved from this integration with results already in the context where the value of the URL is the same.
-For more information about the syntax of linking and Demisto Transform Language in general have a look [here](https://github.com/demisto/content/blob/master/docs/context_and_ouputs) 
+For more information about the syntax of linking and Demisto Transform Language in general have a look [here](dt) 
 
 ## Logging
 In some cases, it may be necessary to pass information to the logs to assist future debugging. 
@@ -515,7 +515,7 @@ The above will create the table seen below:
 | third  | baz  |
 
 In the War Room, this is how a table will appear:
-<img width="788" src="https://user-images.githubusercontent.com/42912128/50571324-46846e00-0db0-11e9-9888-ddd9dc275541.png"></img>
+<img width="788" src="doc_imgs/50571324-46846e00-0db0-11e9-9888-ddd9dc275541.png"></img>
 
 You may also use ```headerTransform``` to convert the existing keys into formatted headers.
 
@@ -545,11 +545,11 @@ You may also use ```headerTransform``` to convert the existing keys into formatt
 ```
  The argument above can be seen in the integration settings as shown below:
  
- <img width="644" src="https://user-images.githubusercontent.com/42912128/50575189-ac4d1600-0e01-11e9-83fc-7a8f6f8ce55a.png"></img>
+ <img width="644" src="doc_imgs/50575189-ac4d1600-0e01-11e9-83fc-7a8f6f8ce55a.png"></img>
  
  After the command is executed, the arguments are displayed in the War Room as part of the command, for example:
  
- <img width="758" src="https://user-images.githubusercontent.com/42912128/50575199-fd5d0a00-0e01-11e9-9d54-944eb7c6f287.png"></img>
+ <img width="758" src="doc_imgs/50575199-fd5d0a00-0e01-11e9-9d54-944eb7c6f287.png"></img>
 
 
 ### return_outputs
@@ -585,7 +585,7 @@ return_error(message="error has occured: API Key is incorrect", error=ex)
 
 Will produce an error in the War Room, for example:
 
-<img width="907" src="https://user-images.githubusercontent.com/42912128/50571503-ed6b0900-0db4-11e9-8e9e-dc23f5ff403c.png"></img>
+<img width="907" src="doc_imgs/50571503-ed6b0900-0db4-11e9-8e9e-dc23f5ff403c.png"></img>
 
 
 ### AutoExtract

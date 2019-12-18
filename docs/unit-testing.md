@@ -3,7 +3,7 @@ id: unit-testing
 title: Unit Testing
 ---
 
-Unit testing should be used to test small units of code in an isolated and deterministic fashion. Unit tests should avoid performing communication with external APIs and should prefer to use mocking. Testing actual interaction with external APIs should be performed via Test Playbooks. Unit testing is currently only supported for Python (no JS).
+Unit testing should be used to test small units of code in an isolated and deterministic fashion. Unit tests should avoid performing communication with external APIs and should prefer to use mocking. Testing actual interaction with external APIs should be performed via [Test Playbooks](testing.md). Unit testing is currently only supported for Python (no JS).
 ## Environment Setup
 In order to work with unit testing the integration or automation script need to be developed in [package (directory) structure](package-dir.md), where the yml file is separated from the python file and resides in its own directory.
 
