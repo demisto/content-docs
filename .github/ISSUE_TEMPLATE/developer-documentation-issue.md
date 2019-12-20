@@ -1,27 +1,27 @@
 ---
-name: Developer Documentation Issue
-about: Report an issue with developer documentation
-title: "[DOCUMENTATION]"
+name: Documentation Issue
+about: Report an issue with the generated documentation
+title: ""
 labels: ""
 assignees: ""
 ---
 
----
-
-name: Developer Documentation Issue
-about: A typo, inaccuracy, or improvement in the documentation
-title: ''
-labels: documentation
-assignees: ''
-
----
-
-Thank you for taking the time to help us improve our documentation! Please describe the problem and a suggested fix below and we'll get back to you as soon as we can. --DevRel
+<!-- 
+Thank you for taking the time to help us improve our documentation! Please describe the problem and a suggested fix below and we'll get back to you as soon as we can.
+-->
 
 ## Describe the problem
 
 <!--- Is this a typo, stale information, request for improvement, inaccuracy? -->
 <!--- Clearly and concisely describe the problem with the documentation -->
+
+## Screenshots
+<!-- If applicable, add screenshots to help explain your problem. -->
+
+## Environment
+ - OS: [e.g. Windows]
+ - Browser: [e.g. chrome, safari, firefox..]
+ - Browser Version:
 
 ## Suggested fix
 
