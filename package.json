@@ -5,7 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "docusaurus build && copyfiles -E -V docs/doc_imgs/* build/.",
+    "build": "copyfiles -E -V -f docs/doc_imgs/* static/doc_imgs/. && replace 'doc_imgs' '/doc_imgs' docs/* --include='*.md*' && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy"
   },
@@ -27,7 +27,8 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-particles-js": "^2.7.0",
-    "react-scroll-up-button": "^1.6.4"
+    "react-scroll-up-button": "^1.6.4",
+    "replace": "^1.1.1"
   },
   "browserslist": {
     "production": [
