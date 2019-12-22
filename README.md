@@ -5,7 +5,7 @@ This repo holds Demisto's Content Developer Docs. The Content Developer Docs pro
 
 This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
 
-You can access the generated website at: https://demisto-content-docs.netlify.com/ (this is currently a pre-release url).
+You can access the generated website at: https://demisto.pan.dev/ 
 
 ## Running the site locally
 ### Node Setup
