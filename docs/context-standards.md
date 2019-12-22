@@ -227,13 +227,21 @@ The following is the format for an Account entity.
     "Type": "STRING, The account type. The most common value is "AD", but can be "LocalOS", "Google", "AppleID", ... ",
     "ID": "STRING, The unique ID for the account (integration specific). For AD accounts this is the Distinguished Name (DN).",
     "Username": "STRING, The username in the relevant system.",
-    "DisplayName": "STRING, The display name",
+    "DisplayName": "STRING, The display name.",
     "Groups": "STRING, Groups to which the account belongs (integration specific). For example, for AD these are groups of which the account is memberOf.",
     "Domain": "STRING, The domain of the account.",
     "OrganizationUnit": "STRING, The Organization Unit (OU) of the account.",
     "Email": {
         "Address": "STRING, The email address of the account."
     }
+    "TelephoneNumber": "STRING, The phone number associated with the account.",
+    "Office": "STRING, The office where the person associated with the account works.",
+    "JobTitle": "STRING, The job title of the account.",
+    "Department": "STRING, The department of the account.",
+    "State": "STRING, The state where the account works.",
+    "City": "STRING, The city associated with the account.",
+    "Street": "STRING, The street associated with the account.",
+    "IsEnabled": "BOOL, Whether the account is enabled or disabled. "True" means the account is enabled."
 }
 ```
 
