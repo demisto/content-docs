@@ -35,7 +35,7 @@ module.exports = {
         },
         {
           to: "docs/dev-guide",
-          label: "Develop",
+          label: "Development Guide",
           position: "left"
         },
         {
