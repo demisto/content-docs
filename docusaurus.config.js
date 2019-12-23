@@ -68,7 +68,7 @@ module.exports = {
           items: [
             { to: "docs/why-demisto", label: "Why Demisto" },
             { to: "docs/get-started", label: "Get Started" },
-            { to: "docs/dev-guide", label: "Develop" }
+            { to: "docs/dev-guide", label: "Development Guide" }
           ]
         },
         {
