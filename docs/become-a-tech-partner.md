@@ -91,7 +91,7 @@ The platform has many different features and functionality components so we reco
 
 ## 5. Build your integration
 
-Build away! Please reach out on Slack if you need any technical assistance or guidance. Follow the [Dev Guide](dev-guide) to understand all the requirements and components.
+Build away! Please reach out on Slack if you need any technical assistance or guidance. Follow the [Getting Started Guide](getting-started-guide) to understand all the requirements and components.
 
 At a minimum, an integration consists in:
 - The Python code that connects to your product(s)
@@ -103,7 +103,7 @@ At a minimum, an integration consists in:
 - Ability to test the integration, build test playbooks, and use the integration from the CLI
 - A couple of example playbooks to showcase how your your integration could be used
 
-All these requirements are documented in the [Dev Guide](dev-guide).
+All these requirements are documented in the [Getting Started Guide](getting-started-guide).
 
 ## 6. Provide our team with product access
 

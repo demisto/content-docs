@@ -14,12 +14,10 @@ module.exports = {
         },
         {
           type: "category",
-          label: "Getting Started",
+          label: "Basics",
           items: [
-            "dev-guide",
-            "why-demisto",
+            "getting-started-guide",
             "tutorial",
-            "package-dir"
           ]
         },
         {
@@ -27,17 +25,18 @@ module.exports = {
           label: "Writing an integration",
           items: [
             "dev-setup",
-            "docker",
-            "code-conventions",   
+            "package-dir",
+            "yaml-file",
             "parameter-types",
+            "code-conventions",   
             "fetching-incidents",
             "fetching-credentials",
             "long-running", 
-            "context-and-outputs",
             "dbot",
-            "dt",
+            "context-and-outputs",
             "context-standards",
-            "yaml-file"                        
+            "dt",
+            "docker"
           ]
         },
         {
@@ -64,9 +63,9 @@ module.exports = {
           type: "category",
           label: "Documentation",
           items: [
-            "changelog",
             "integration-docs",
-            "doc-structure"
+            "doc-structure",
+            "changelog"
           ]
         }
       ]
