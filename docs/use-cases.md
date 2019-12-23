@@ -8,7 +8,7 @@ This section includes common Use Cases for the different categories of Demisto i
 ## Analytics and SIEM
 Please Note: Will normally include the Fetch Incidents possibility for the instance. Can also include list-incidents or get-incident as integration commands. Important information for an Event/Incident
 
-**Top Use-Cases:**
+**Top Use Cases:**
 - Fetch Incidents with relevant filters
 - Create, close and delete incidents/events/cases
 - Update Incidents - Update status, assignees, Severity, SLA, etc.
@@ -19,7 +19,7 @@ Analytics & SIEM Integration Example: [ArcSight ESM](https://support.demisto.com
 
 ## Authentication
 
-**Top Use-Cases:**
+**Top Use Cases:**
 - Use credentials from authentication vault in order to configure instances in Demisto (Save credentials in: Settings -> Integrations -> Credentials)
 The integration should include the isFetchCredentials Parameter, and other integrations that will use credentials from the vault, should have the ‘Switch to credentials’ option.
 - Lock/Delete Account – Give option to lock account (credentials), and unlock/undelete.
@@ -31,7 +31,7 @@ Authentication Integration Example: [CyberArk AIM](https://support.demisto.com/h
 
 ## Case Management
 
-**Top Use-Cases:**
+**Top Use Cases:**
 - Create, get, edit, close a ticket/issue, add + view comments.
 - Assign a ticket/issue to a specified user.
 - List all tickets, filter by name, date, assignee.
@@ -40,7 +40,7 @@ Authentication Integration Example: [CyberArk AIM](https://support.demisto.com/h
 - Case Management/Ticketing Integration Example – ServiceNow
 - Data Enrichment & Threat Intelligence
 - Important information for an indicator:
-- Top Use-Cases: Enriching information about different IOC types:
+- Top Use Cases: Enriching information about different IOC types:
  - upload object for scan and get the scan results. (If there’s a possibility to upload private/public, default should be set to private).
  - search for former scan results about an object (This way you can get information about a sample without uploading it yourself).
  - enrich information and scoring for the object.
@@ -52,7 +52,7 @@ Data Enrichment & Threat Intelligence Integration Example: [VirusTotal](https://
 
 ## Email Gateway
 
-**Top Use-Cases:**
+**Top Use Cases:**
 - Get message – Download the email itself, retrieve metadata, body.
 - Download attachments for a given message.
 - Manage senders – Block/ Allow specified mail senders.
@@ -64,7 +64,7 @@ Email Gateway Integration Example: [MimeCast](https://support.demisto.com/hc/en-
 
 ## Endpoint
 
-**Top Use-Cases:**
+**Top Use Cases:**
 - Fetch Incidents & Events
 - Get event details (from specified incident)
 - Quarantine File
@@ -81,7 +81,7 @@ Endpoint Integration Examples: [Cortex XDR](https://support.demisto.com/hc/en-us
 
 ## Forensics and Malware Analysis
 
-**Top Use-Cases:**
+**Top Use Cases:**
 - Submit a file and get a report (detonation)
 - Submit a URL and get a report (detonation)
 - Search for past analysis (input being a hash/url).
@@ -91,7 +91,7 @@ Endpoint Integration Examples: [Cortex XDR](https://support.demisto.com/hc/en-us
 
 ## Network Security (Firewall)
 
-**Top Use-Cases:**
+**Top Use Cases:**
 - Create block/accept policies (Source, Destination, Port), for IP addresses and domains.
 - Add addresses and ports (services) to predefined groups, create groups, etc.
 - Support custom url categories.
@@ -104,7 +104,7 @@ Network Security Firewall Integration Example: [Palo Alto Networks PAN-OS](https
 
 ## Network Security (IDS/IPS)
 
-**Top Use-Cases:**
+**Top Use Cases:**
 - Get/Fetch alerts.
 - Get PCAP file, packet.
 - Get network logs filtered by time range, ip addresses, ports, etc.
@@ -116,7 +116,7 @@ Network Security (IPS/IDS) Integration Example: [Protectwise](https://support.de
 
 ## Vulnerability Management
 
-**Top Use-Cases:**
+**Top Use Cases:**
 - Enrich asset – get vulnerability information for an asset (or a group of assets) in the organization.
 - Generate/Trigger a scan on specified assets.
 - Get a scan report including vulnerability information for a specified scan and export it.
