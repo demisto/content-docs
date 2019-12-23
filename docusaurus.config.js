@@ -54,7 +54,7 @@ module.exports = {
           position: "right"
         },
         {
-          href: "https://medium.com/palo-alto-networks-developer-blog",
+          href: "https://blog.demisto.com/",
           label: "Blog",
           position: "right"
         }
@@ -76,7 +76,7 @@ module.exports = {
           items: [
             {
               label: "Blog",
-              href: "https://medium.com/palo-alto-networks-developer-blog"
+              href: "https://blog.demisto.com/"
             }
           ]
         }
