@@ -39,7 +39,7 @@ module.exports = {
           position: "left"
         },
         {
-          href: "https://blog.demisto.com/topic/use-cases",
+          to: "docs/use-cases",
           label: "Use Cases",
           position: "left"
         },

@@ -4,6 +4,14 @@ module.exports = {
       type: "category",
       label: "Develop",
       items: [
+        {
+          type: "category",
+          label: "Design",
+          items: [
+            "use-cases",
+            'design-best-practices'
+          ]
+        },
         "dev-guide",
         "why-demisto",
         "dev-architecture",
