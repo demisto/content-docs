@@ -18,7 +18,6 @@ module.exports = {
           items: [
             "dev-guide",
             "why-demisto",
-            "dev-architecture",
             "tutorial",
             "package-dir"
           ]
