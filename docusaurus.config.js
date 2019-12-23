@@ -34,11 +34,6 @@ module.exports = {
           position: "left"
         },
         {
-          to: "docs/get-started",
-          label: "Get Started",
-          position: "left"
-        },
-        {
           to: "docs/dev-guide",
           label: "Develop",
           position: "left"
@@ -49,8 +44,8 @@ module.exports = {
           position: "left"
         },
         {
-          href: "https://start.paloaltonetworks.com/become-a-technology-partner",
-          label: "Sign Up Now",
+          to: "docs/become-a-tech-partner",
+          label: "Become a Technology Partner",
           position: "right"
         },
         {
