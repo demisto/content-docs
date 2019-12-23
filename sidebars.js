@@ -53,8 +53,8 @@ module.exports = {
           label: "Testing",
           items: [
             "linting",
+            "unit-testing",
             "testing",
-            "unit-testing",        
             "circleci",
             "debugging"
           ]
