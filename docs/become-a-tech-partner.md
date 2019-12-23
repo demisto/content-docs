@@ -10,7 +10,7 @@ Building Demisto integrations is easy and we welcome and encourage contributions
 
 # Requirements
 
-As we aim to provide a smooth and seamless partner onboarding experience, we encorage you to review the following requirements and reach out to us for any doubts of clarification requests.
+As we aim to provide a smooth and seamless partner onboarding experience, we encourage you to review the following requirements and reach out to us for any doubts of clarification requests.
 
 ## Business requirements
 
@@ -66,7 +66,7 @@ At the end of the call we will share a document template, already partially comp
 - Context output for commands
 - Raw output for commands
 
-We'll ask you to complete the document and submit back to us for review. We will be available for clarification and follow up converations.
+We'll ask you to complete the document and submit back to us for review. We will be available for clarification and follow up conversations.
 
 
 ## 4. Identify technical resources
@@ -91,7 +91,7 @@ The platform has many different features and functionality components so we reco
 
 ## 5. Build your integration
 
-Build away! Please reach out on Slack if you need any technical assistance or guidance. Follow the [Dev Guide](dev-guide) to understend all the requirements and components.
+Build away! Please reach out on Slack if you need any technical assistance or guidance. Follow the [Dev Guide](dev-guide) to understand all the requirements and components.
 
 At a minimum, an integration consists in:
 - The Python code that connects to your product(s)
@@ -109,7 +109,7 @@ All these requirements are documented in the [Dev Guide](dev-guide).
 
 As an automation platform, it shouldn’t surprise you that we’ve also automated our integration testing and deployment. We do nightly tests of each integration in order to confirm functionality and, in order to do this, we require access to your product and/or APIs. Preferably, the instance will have all data related to the integration use cases, so they can be tested. E.g. if one of the use cases is ingesting incidents to Demisto, the instance should have demo incidents. This access is not used for any other purpose.
 
-Before submitting the integraiton, please work with the Palo Alto Networks BD Team to share access
+Before submitting the integration, please work with the Palo Alto Networks BD Team to share access
 
 ## 7. Submit a GitHub pull request
 
