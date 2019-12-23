@@ -39,11 +39,6 @@ module.exports = {
           position: "left"
         },
         {
-          href: "https://www.demisto.com/integrations/",
-          label: "Existing Integrations",
-          position: "left"
-        },
-        {
           to: "docs/why-demisto",
           label: "Why become a Partner?",
           position: "right"
