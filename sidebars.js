@@ -17,6 +17,7 @@ module.exports = {
           label: "Getting Started",
           items: [
             "dev-guide",
+            "faq",
             "why-demisto",
             "tutorial",
             "package-dir"
