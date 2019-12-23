@@ -8,6 +8,8 @@ Technical Alliances, Business Development, and Product Management Teams
 
 Building Demisto integrations is easy and we welcome and encourage contributions from our customers and partners. If you are a Technology Partner and want to include your product among the Demisto supported integrations, there are a few requirements and steps that must be followed.
 
+Understand all the benefits of becoming a Demisto Technology Partner [here](why-demisto)
+
 # Requirements
 
 As we aim to provide a smooth and seamless partner onboarding experience, we encourage you to review the following requirements and reach out to us for any doubts of clarification requests.
@@ -41,7 +43,7 @@ The following steps explain the process that you need to go through in order to 
 
 ## 1. Sign up as a content development partner
 
-<a href="https://start.paloaltonetworks.com/become-a-technology-partner" target="_blank">Submit your application now!</a> After your application is approved you’ll receive an email with a few resources to help you get started, and we'll reach out for a follow up.
+[Submit your application now!](https://start.paloaltonetworks.com/become-a-technology-partner) After your application is approved you’ll receive an email with a few resources to help you get started, and we'll reach out for a follow up.
 <br /><br />
 <a class="button button--outline button--primary button--lg" href="https://start.paloaltonetworks.com/become-a-technology-partner" target="_blank">Sign Up Now</a>
 
@@ -53,7 +55,7 @@ Prior to acceptance into the program, all partners must complete and sign our Te
 
 ## 3. Identify the Use Cases
 
-Once you're accepted in the program, we'll provide you access to a few resources, including our <a href="https://support.demisto.com" target="_blank">Support Portal</a>. We'll also reach out to schedule a 60 minute technical call to identify the use cases. We expect a representative of your technical team to be in the call. 
+Once you're accepted in the program, we'll provide you access to a few resources, including our [Support Portal](https://support.demisto.com)Support Portal. We'll also reach out to schedule a 60 minute technical call to identify the use cases. We expect a representative of your technical team to be in the call. 
 Typically the flow of the call is:
 - General overview/demo of Demisto, its capabilities and integration requirements
 - General overview/demo of your product(s)
@@ -82,10 +84,7 @@ We recommend your technical team review the docs on this site, and the following
 - [Slack](https://www.demisto.com/community/) #demisto-integrations-help
 - [GitHub](https://github.com/demisto/content/#demisto-platform---content-repository)
 - [Demisto Concepts, and Terminology](https://support.demisto.com/hc/en-us/articles/360005126713-Demisto-Components-Concepts-and-Terminology)
-- Demisto Getting started tutorial:
-
-<iframe width="424" height="238" src="https://www.youtube.com/embed/bDntS6biazI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  
+- [Demisto Getting started video tutorial](https://www.youtube.com/bDntS6biazI)
 
 The platform has many different features and functionality components so we recommend reading about the different aspects of the terminology and concepts.
 
