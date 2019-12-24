@@ -4,13 +4,14 @@ title: Why become a Partner?
 ---
 
 Why develop your own content and integrations (BYOI) for the Demisto platform? As the fastest growing SOAR platform on the market, we already have hundreds of integrations so customers and prospects get the most out of their security investments. Another advantage? As we show our extensive integration list to prospects, you gain exposure and visibility for addressing use cases encountered in the SOC.
-
-Learn more about Security Orchestration [here](https://www.youtube.com/BzB10GGQ8ms)
+<a class="button button--outline button--primary button--lg" href="https://youtu.be/BzB10GGQ8ms" target="_blank">Learn more about Security Orchestration!</a>
 
 ## What are some benefits?
 
-Integrating with Demisto allows your customers to leverage your product(s), in tandem with the hundreds of products in the Demisto SOAR ecosystem, to automate and streamline their security operations. [Check out some of our integrations.](https://www.demisto.com/integrations/)
+Integrating with Demisto allows your customers to leverage your product(s), in tandem with the hundreds of products in the Demisto SOAR ecosystem, to automate and streamline their security operations. 
 
+<a class="button button--outline button--primary button--lg" href="https://www.demisto.com/integrations/" target="_blank">Check out some of our integrations!</a>
+<br/><br/>
 Here are a few of the benefits: 
 
 1. Gain visibility and new revenue opportunities for your products and services.
@@ -45,7 +46,7 @@ Here are a few simple examples that we've worked on jointly:
 
   - [Uptycs](https://www.uptycs.com/blog/demisto-uptycs-orchestrating-incident-response-activities)
 
-  - [Okta](https://www.okta.com/partners/palo-alto-networks/demisto/) and a joint [Solution Brief](https://go.demisto.com/hubfs/Resources/Solution_Briefs/Okta/Okta%20Solution%20Brief.pdf#new_tab)
+  - [Okta](https://www.okta.com/partners/palo-alto-networks/demisto/) and a joint [Solution Brief](https://go.demisto.com/hubfs/Resources/Solution_Briefs/Okta/Okta%20Solution%20Brief.pdf)
 
 ## Partner Enablement  
 

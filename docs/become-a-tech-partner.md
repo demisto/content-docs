@@ -41,21 +41,19 @@ _At minimum you will need the following capabilities:_
 
 The following steps explain the process that you need to go through in order to become a Palo Alto Networks Technology Partner with Demisto, and start developing content and integrations that can be certified and deployed to customers globally. Please review the following with your team and work with your Demisto Technical Alliances contacts to get started.
 
-## 1. Sign up as a content development partner
+## 1. Sign up as a Technology Partner
 
 [Submit your application now!](https://start.paloaltonetworks.com/become-a-technology-partner) After your application is approved you’ll receive an email with a few resources to help you get started, and we'll reach out for a follow up.
-<br /><br />
 <a class="button button--outline button--primary button--lg" href="https://start.paloaltonetworks.com/become-a-technology-partner" target="_blank">Sign Up Now</a>
 
 ## 2. Complete the technical partnership agreement
 
-Prior to acceptance into the program, all partners must complete and sign our Technology Partner Program Agreement (TPA). You must identify in the TPA which of your product(s) you wish to have integrated with Demisto. We'll reach out to arrange for signatures.
-<br />
+Prior to acceptance into the program, all partners must complete and sign our Technology Partner Program Agreement (TPA). You must identify in the TPA which of your product(s) you wish to have integrated with Demisto. Due to the large number of partners, we prefer to use our DocuSign to expedite the process. We'll reach out to arrange for signatures.
 <a href="/assets/NextWaveTechnologyPartnerProgramAgreement.pdf" target="_blank" class="button button--outline button--primary button--lg">Download the partnership agreement here</a>
 
 ## 3. Identify the Use Cases
 
-Once you're accepted in the program, we'll provide you access to a few resources, including our [Support Portal](https://support.demisto.com)Support Portal. We'll also reach out to schedule a 60 minute technical call to identify the use cases. We expect a representative of your technical team to be in the call. 
+Once you're accepted in the program, we'll provide you access to a few resources, including our [Support Portal](https://support.demisto.com). We'll also reach out to schedule a 60 minute technical call to identify the use cases. We expect a representative of your technical team to be in the call. 
 Typically the flow of the call is:
 - General overview/demo of Demisto, its capabilities and integration requirements
 - General overview/demo of your product(s)
@@ -71,7 +69,7 @@ At the end of the call we will share a document template, already partially comp
 We'll ask you to complete the document and submit back to us for review. We will be available for clarification and follow up conversations.
 
 
-## 4. Identify technical resources
+## 4. Build the Integration
 
 Once the use cases document is approved, we will provide you with the Demisto licenses. We encourage you to identify the technical team and provide us their contacts so we can create accounts on our Support Portal and invite them in our Slack workspace. We will create a private Slack channel and invite your team as well as representatives of our engineering team.
 
@@ -84,13 +82,9 @@ We recommend your technical team review the docs on this site, and the following
 - [Slack](https://www.demisto.com/community/) #demisto-integrations-help
 - [GitHub](https://github.com/demisto/content/#demisto-platform---content-repository)
 - [Demisto Concepts, and Terminology](https://support.demisto.com/hc/en-us/articles/360005126713-Demisto-Components-Concepts-and-Terminology)
-- [Demisto Getting started video tutorial](https://www.youtube.com/bDntS6biazI)
+- [Demisto Getting started video tutorial](https://youtu.be/bDntS6biazI)
 
-The platform has many different features and functionality components so we recommend reading about the different aspects of the terminology and concepts.
-
-## 5. Build your integration
-
-Build away! Please reach out on Slack if you need any technical assistance or guidance. Follow the [Getting Started Guide](getting-started-guide) to understand all the requirements and components.
+Please reach out on Slack if you need any technical assistance or guidance. Follow the [Getting Started Guide](getting-started-guide) to understand all the requirements and components.
 
 At a minimum, an integration consists in:
 - The Python code that connects to your product(s)
@@ -102,24 +96,22 @@ At a minimum, an integration consists in:
 - Ability to test the integration, build test playbooks, and use the integration from the CLI
 - A couple of example playbooks to showcase how your your integration could be used
 
-All these requirements are documented in the [Getting Started Guide](getting-started-guide).
-
-## 6. Provide our team with product access
+## 5. Provide our team with product access
 
 As an automation platform, it shouldn’t surprise you that we’ve also automated our integration testing and deployment. We do nightly tests of each integration in order to confirm functionality and, in order to do this, we require access to your product and/or APIs. Preferably, the instance will have all data related to the integration use cases, so they can be tested. E.g. if one of the use cases is ingesting incidents to Demisto, the instance should have demo incidents. This access is not used for any other purpose.
 
 Before submitting the integration, please work with the Palo Alto Networks BD Team to share access
 
-## 7. Submit a GitHub pull request
+## 6. Submit a GitHub pull request
 
 Once you have completed development of your content or integration, please submit a *Pull Request* on our GitHub Content Repo. The title of the Pull Request must contain the *Partner ID* we provided earlier.
 
 After the PR is submitted, it will require a review session with the development team. When the review of your integration is complete, check your code into our GitHub repository. Your build will added to be published to our global community. We release content updates every two weeks.
 
-## 8. Join TSANet
+## 7. Join TSANet
 
 To have their integrations approved and shipped with the Demisto Content, we require our partners to join the industry-standard support framework called TSANet in order to deliver outstanding support to our mutual customers. It’s free when you register under the Palo Alto Networks account, and it really streamlines the cross-company processes. [Sign Up For TSANet](https://paloaltonetworks.tsanet.org).
 
-## 9. Work with our Marketing
+## 8. Get the word out
 
-Now that the integration is complete, you'll get the visibility you deserve! Our BD team will connect you to our Marketing team to work together on content, such as Blog posts, YouTube videos, etc.
+Now that the integration is complete, you'll get the visibility you deserve! Our BD team will connect you to our Marketing team to work together on content, such as Solution Briefs, Blog posts, YouTube videos, etc.

@@ -6,14 +6,15 @@ title: Integration Use Cases
 This section includes common Use Cases for the different categories of Demisto integrations. While this list is not meant to be exhaustive, it's a good starting point for you to understand what use cases could be supported by your integration.
 
 ## Analytics and SIEM
-Please Note: Will normally include the Fetch Incidents possibility for the instance. Can also include list-incidents or get-incident as integration commands. Important information for an Event/Incident
 
 **Top Use Cases:**
 - Fetch Incidents with relevant filters
 - Create, close and delete incidents/events/cases
 - Update Incidents - Update status, assignees, Severity, SLA, etc.
-- Get events related to an incident/case.
+- Get events related to an incident/case for enrichment/investigation purposes.
 - Query SIEM (consider aggregating logs)
+
+*Please Note*: Will normally include the Fetch Incidents possibility for the instance. Can also include list-incidents or get-incident as integration commands. Important information for an Event/Incident
 
 Analytics & SIEM Integration Example: [ArcSight ESM](https://support.demisto.com/hc/en-us/articles/115003749113-ArcSight-ESM)
 
@@ -26,6 +27,7 @@ The integration should include the isFetchCredentials Parameter, and other integ
 - Reset Account - Perform a reset password command for an account.
 - List credential names – Do not post the actual credentials. (For example – Credential name: McAfee ePO, do not show actual username and password.)
 - Lock Vault – In case of an emergency (if the vault has been compromised), allow the option to lock + unlock the whole vault.
+- Step-Up authentication - Enforce Multi Factor Authentication for an account.
 
 Authentication Integration Example: [CyberArk AIM](https://support.demisto.com/hc/en-us/articles/360015595394-CyberArk-AIM)
 
@@ -37,13 +39,16 @@ Authentication Integration Example: [CyberArk AIM](https://support.demisto.com/h
 - List all tickets, filter by name, date, assignee.
 - Get details about a managed object, update, create, delete.
 - Add and manage users.
-- Case Management/Ticketing Integration Example – ServiceNow
-- Data Enrichment & Threat Intelligence
-- Important information for an indicator:
-- Top Use Cases: Enriching information about different IOC types:
- - upload object for scan and get the scan results. (If there’s a possibility to upload private/public, default should be set to private).
- - search for former scan results about an object (This way you can get information about a sample without uploading it yourself).
- - enrich information and scoring for the object.
+
+Case Management/Ticketing Integration Example: [ServiceNow](https://support.demisto.com/hc/en-us/articles/360012776373-ServiceNow)
+
+## Data Enrichment & Threat Intelligence
+
+**Top Use Cases:**
+- Enriching information about different IOC types:
+  - Upload object for scan and get the scan results. (If there’s a possibility to upload private/public, default should be set to private).
+  - Search for former scan results about an object (This way you can get information about a sample without uploading it yourself).
+  - Enrich information and scoring for the object.
 - Add/Search for indicators in the system.
 - Whitelist/ Blacklist indicators.
 - Calculate DBot Score for indicators.
@@ -77,6 +82,7 @@ Email Gateway Integration Example: [MimeCast](https://support.demisto.com/hc/en-
 - Update .DAT files for signatures and compare existing .DAT file to the newest one on the server
 - Get information for a specified host (OS, users, addresses, hostname)
 - Get policy information and assign policies to endpoints
+
 Endpoint Integration Examples: [Cortex XDR](https://support.demisto.com/hc/en-us/articles/360035216393-Palo-Alto-Networks-Cortex-XDR-Demisto-5-0-), [Tanium](https://support.demisto.com/hc/en-us/articles/360039455034-Tanium-v2) and [Carbon Black Protection](https://support.demisto.com/hc/en-us/articles/360022492334-Carbon-Black-Protection-v2)
 
 ## Forensics and Malware Analysis
@@ -87,7 +93,8 @@ Endpoint Integration Examples: [Cortex XDR](https://support.demisto.com/hc/en-us
 - Search for past analysis (input being a hash/url).
 - Retrieve a PCAP file
 - Retrieve screenshots taken during analysis.
-- Sandbox Integration Example: [Cuckoo Sandbox](https://support.demisto.com/hc/en-us/articles/360012792253-Cuckoo-Sandbox)
+
+Sandbox Integration Example: [Cuckoo Sandbox](https://support.demisto.com/hc/en-us/articles/360012792253-Cuckoo-Sandbox)
 
 ## Network Security (Firewall)
 
