@@ -140,3 +140,21 @@ blockquote {
 .customer-inner > a {
   color: #333333;
 }
+
+/* XXX probably not the cleanest way */
+/* this to avoid NavBar items to wrap */
+.navbar a.navbar__link {
+  white-space: nowrap;
+}
+
+/* the NavBar is too wide for 1024px screens */
+/* we need to override the default 996px media query */
+/* with a 1279px */
+@media (max-width: 1279px) {
+  .navbar .navbar__item {
+    display: none !important;
+  }
+  .navbar .navbar__toggle {
+    display: inherit !important;
+  }
+}
