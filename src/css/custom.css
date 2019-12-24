@@ -157,4 +157,7 @@ blockquote {
   .navbar .navbar__toggle {
     display: inherit !important;
   }
+  .navbar .navbar-sidebar {
+    display: block !important;
+  }
 }
