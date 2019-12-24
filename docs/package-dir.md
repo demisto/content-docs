@@ -5,7 +5,7 @@ title: Package Directory Structure
 
 Content code entities in Demisto are presented by YAML files.
 
-Automation scripts and integrations [YAML files](yaml-file-integration.md) include Javascript/Python code.
+Automation scripts and integrations [YAML files](yaml-file.md) include Javascript/Python code.
 
 Python scripts and integrations are stored in directories as packages.
 

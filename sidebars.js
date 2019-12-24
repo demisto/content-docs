@@ -21,11 +21,11 @@ module.exports = {
         label: "Writing an integration",
         items: [
           "dev-setup",
+          "code-conventions",
           "package-dir",
           "docker",          
           "yaml-file",
           "parameter-types",
-          "code-conventions",   
           "fetching-incidents",
           "fetching-credentials",
           "long-running", 
