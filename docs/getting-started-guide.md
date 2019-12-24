@@ -9,13 +9,14 @@ This guide will provide you with some pointers to jumpstart your development jou
 
 Please make sure you have completed the following before proceeding:
 
-  1. Python 3.x programming experience (intermediate level)
-  2. A copy of the Demisto Platform (if you are not a Partner, you can obtain the Community Edition [here](https://start.paloaltonetworks.com/sign-up-for-demisto-free-edition)
-  3. Access to our [Support Portal]("https://support.demisto.com/")
-  4. Access to the [Demisto DFIR Slack Community]("https://start.paloaltonetworks.com/join-our-slack-community") and join the *#demisto-integrations-help* channel
-  5. API or SDK access to your product or solution.  
+1. Python 3.x programming experience (intermediate level)
+2. A copy of the Demisto Platform (if you are not a Partner, you can obtain the Community Edition [here](https://start.paloaltonetworks.com/sign-up-for-demisto-free-edition)
+3. Access to our [Support Portal]("https://support.demisto.com/")
+4. Access to the [Demisto DFIR Slack Community]("https://start.paloaltonetworks.com/join-our-slack-community") and join the *#demisto-integrations-help* channel
+5. API or SDK access to your product or solution.  
 
 If you are a Technology Partner, make sure that you also:
+
 1. Read the [Become a Technology Partner](become-a-tech-partner) page and sign up
 2. Complete the Technical Partnership Agreement
 3. Work with your Business Development contacts to make sure your use cases has been validated
