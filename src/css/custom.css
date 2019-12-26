@@ -120,3 +120,44 @@ blockquote {
   margin: 0 auto;
   max-width: 868px;
 }
+
+.customer {
+  color: #fff;
+  background-color: #98C23D;
+  font-weight: bold;
+  font-size: 35px;
+  padding: 48px;
+  /* margin: 0 auto -40px; */
+  text-align: center;
+}
+
+.customer-inner {
+  margin: 0 auto;
+  color: white;
+  max-width: 868px;
+}
+
+.customer-inner > a {
+  color: #333333;
+}
+
+/* XXX probably not the cleanest way */
+/* this to avoid NavBar items to wrap */
+.navbar a.navbar__link {
+  white-space: nowrap;
+}
+
+/* the NavBar is too wide for 1024px screens */
+/* we need to override the default 996px media query */
+/* with a 1279px */
+@media (max-width: 1279px) {
+  .navbar .navbar__item {
+    display: none !important;
+  }
+  .navbar .navbar__toggle {
+    display: inherit !important;
+  }
+  .navbar .navbar-sidebar {
+    display: block !important;
+  }
+}

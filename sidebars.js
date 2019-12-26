@@ -1,38 +1,68 @@
 module.exports = {
   docs: [
-    {
-      type: "category",
-      label: "Develop",
-      items: [
-        "dev-guide",
-        "why-demisto",
-        "dev-architecture",
-        "tutorial",
-        "dev-setup",
-        "docker",
-        "package-dir",
-        "context-and-outputs",
-        "dbot",
-        "dt",
-        "context-standards",
-        "playbooks",
-        "playbook-conventions",
-        "generic-polling",
-        "parameter-types",
-        "fetching-incidents",
-        "fetching-credentials",
-        "long-running",
-        "linting",
-        "testing",
-        "unit-testing",        
-        "circleci",
-        "debugging",
-        "code-conventions",
-        "changelog",
-        "integration-docs",
-        "doc-structure",
-        "yaml-file",
-      ]
-    }
-  ]
+      {
+        type: "category",
+        label: "Basics",
+        items: [
+          "getting-started-guide",
+          "tutorial",
+        ]
+      },
+      {
+        type: "category",
+        label: "Design",
+        items: [
+          "use-cases",
+          "design-best-practices"
+        ]
+      },      
+      {
+        type: "category",
+        label: "Writing an integration",
+        items: [
+          "dev-setup",
+          "code-conventions",
+          "package-dir",
+          "docker",          
+          "yaml-file",
+          "parameter-types",
+          "fetching-incidents",
+          "fetching-credentials",
+          "long-running", 
+          "dbot",
+          "context-and-outputs",
+          "context-standards",
+          "dt"
+        ]
+      },
+      {
+        type: "category",
+        label: "Writing Playbooks",
+        items: [
+          "playbooks",
+          "playbook-conventions",
+          "generic-polling"        
+        ]
+      },         
+      {
+        type: "category",
+        label: "Testing",
+        items: [
+          "linting",
+          "unit-testing",
+          "testing",
+          "circleci",
+          "debugging"
+        ]
+      }, 
+      {
+        type: "category",
+        label: "Documentation",
+        items: [
+          "integration-docs",
+          "doc-structure",
+          "changelog"
+        ]
+      }
+    ]
 };

@@ -29,28 +29,23 @@ module.exports = {
 
       links: [
         {
-          to: "docs/why-demisto",
-          label: "Why Demisto",
+          to: "docs/getting-started-guide",
+          label: "Development Guide",
           position: "left"
         },
         {
-          to: "docs/get-started",
-          label: "Get Started",
-          position: "left"
-        },
-        {
-          to: "docs/dev-guide",
-          label: "Develop",
-          position: "left"
-        },
-        {
-          href: "https://blog.demisto.com/topic/use-cases",
+          to: "docs/use-cases",
           label: "Use Cases",
           position: "left"
         },
         {
-          href: "https://start.paloaltonetworks.com/become-a-technology-partner",
-          label: "Sign Up Now",
+          to: "docs/why-demisto",
+          label: "Why become a Partner?",
+          position: "right"
+        },        
+        {
+          to: "docs/become-a-tech-partner",
+          label: "Become a Technology Partner",
           position: "right"
         },
         {
@@ -59,7 +54,7 @@ module.exports = {
           position: "right"
         },
         {
-          href: "https://medium.com/palo-alto-networks-developer-blog",
+          href: "https://blog.demisto.com/",
           label: "Blog",
           position: "right"
         }
@@ -71,9 +66,9 @@ module.exports = {
         {
           title: "Docs",
           items: [
-            { to: "docs/why-demisto", label: "Why Demisto" },
-            { to: "docs/get-started", label: "Get Started" },
-            { to: "docs/dev-guide", label: "Develop" }
+            { to: "docs/getting-started-guide", label: "Development Guide" },
+            { to: "docs/why-demisto", label: "Why become a Partner?" },
+            { to: "docs/become-a-tech-partner", label: "Become a Technology Partner" }
           ]
         },
         {
@@ -81,7 +76,7 @@ module.exports = {
           items: [
             {
               label: "Blog",
-              href: "https://medium.com/palo-alto-networks-developer-blog"
+              href: "https://blog.demisto.com/"
             }
           ]
         }

@@ -1,6 +1,6 @@
 ---
 id: testing
-title: Testing
+title: Test Playbooks
 ---
 
 We use Test Playbooks to test our integrations and automation scripts. The Test Playbooks provide full *End to End* testing. For testing small units of code, use [Unit Testing](unit-testing.md). 

@@ -3,10 +3,6 @@ id: tutorial
 title: Tutorial
 ---
 
-This article is meant to accompany the "Getting Started" video. Follow along with the video to gain deeper insights into getting started with Demisto.
-
-[![Getting Started](https://img.youtube.com/vi/bDntS6biazI/0.jpg)](https://youtu.be/bDntS6biazI)
-
 ## Welcome
 
 >*First and foremost, I want to welcome you to the Demisto team. We are excited to have you and we look forward to working with you. Please note that this tutorial assumes that you have a working instance of Demisto.*

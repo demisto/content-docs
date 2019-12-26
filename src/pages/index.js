@@ -44,13 +44,13 @@ const features = [
           )}
           href="https://www.youtube.com/channel/UCPZSycGbjGoIcTF6kudEilw"
         >
-          Watch Some Videos
+          Watch Videos
         </Link>
       </div>
     )
   },
   {
-    title: <>Why Develop on Demisto?</>,
+    title: <>Why Become a Partner?</>,
     imageUrl: "img/undraw_mind_map_cwng.svg",
     description: (
       <>
@@ -90,7 +90,7 @@ const features = [
             "button button--outline button--primary button--md",
             styles.getStarted
           )}
-          href="https://blog.demisto.com/topic/use-cases"
+          to="docs/use-cases"
         >
           Learn More
         </Link>
@@ -170,7 +170,7 @@ function Home() {
                   )}
                   href="https://start.paloaltonetworks.com/become-a-technology-partner"
                 >
-                  Sign Up Now!
+                  Become a Partner
                 </Link>
               </div>
             </div>
@@ -190,43 +190,16 @@ function Home() {
             </div>
           </section>
         )}
-        <section className={styles.tools} ref={toolsRef}>
-          <div className="announcement">
-            <div className="announcement-inner">
-              Partner with us to build a comprehensive SOAR ecosystem for the
-              SOC. <br /> Join{" "}
-              <a href="https://go.demisto.com/join-our-slack-community">
-                #demisto-integrations-help
-              </a>{" "}
-              on{" "}
-              <a href="https://go.demisto.com/join-our-slack-community">
-                our Slack community
-              </a>{" "}
-              today.
+        <section className={styles.hero}>
+          <div className="customer">
+            <div className="customer-inner">
+              Are you a Demisto Customer or an Independent Developer?
+              <Link to="docs/getting-started-guide"> Get Started Now!</Link>
+              <br /> 
+              Join <b>#demisto-integrations-help</b> on our <a href="https://go.demisto.com/join-our-slack-community">Slack community</a> today.
             </div>
           </div>
-        </section>
-        <section className={styles.features}>
-          <div className="container">
-            <div className="row">
-              <div className="col col--6">
-                <h1>Welcome Demisto Partners!</h1>
-                <h3>
-                  Hear Matt Chase, Director of Cortex Alliances discuss the
-                  changes to Demisto over the past several months and how
-                  Demisto is committed to an open ecosystem of neutral partners.
-                </h3>
-              </div>
-              <div className="col col--6">
-                <iframe
-                  src="https://www.youtube.com/embed/4JpOiC1f5HQ"
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        </section>     
         <section className={styles.tools}>
           <div className="container">
             <div className="row">
