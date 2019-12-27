@@ -275,7 +275,7 @@ Collecting pipenv
 Successfully installed certifi-2019.11.28 pipenv-2018.11.26 virtualenv-16.7.9 virtualenv-clone-0.5.3
 
 sb@dddd:~/demisto/content$ which pipenv
-/home/fvigo/.pyenv/shims/pipenv
+/home/sb/.pyenv/shims/pipenv
 ```
 
 OK, now you can run the `.hooks/bootstrap` script that will install the dependencies and create the `virtualenv`:
@@ -342,10 +342,10 @@ Now, run the `demisto-sdk lint` command on the folder `Integrations/HelloWorld` 
 Detected python version: [3.7] for docker image: demisto/python3:3.7.4.2245
 ========= Running flake8 ===============
 flake8 completed
-========= Running mypy on: /home/fvigo/demisto/content/Integrations/HelloWorld/HelloWorld.py ===============
+========= Running mypy on: /home/sb/demisto/content/Integrations/HelloWorld/HelloWorld.py ===============
 Success: no issues found in 1 source file
 mypy completed
-========= Running bandit on: /home/fvigo/demisto/content/Integrations/HelloWorld/HelloWorld.py ===============
+========= Running bandit on: /home/sb/demisto/content/Integrations/HelloWorld/HelloWorld.py ===============
 bandit completed
 2019-12-27 10:27:17.789503: Existing image: devtestdemisto/python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54 not found will obtain lock file or wait for image
 2019-12-27 10:27:17.791519: Obtained lock file: .lock-devtestdemisto-python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54    2019-12-27 10:27:17.791991: Trying to pull image: devtestdemisto/python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54        Pull succeeded with output: 3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54: Pulling from devtestdemisto/python3
@@ -443,14 +443,14 @@ If everything worked fine so far, now you can *push* to your branch with the com
 
 ```bash
 (venv) sb@dddd:~/demisto/content$ git push origin my_integration_name
-Username for 'https://github.com': fvigo
-Password for 'https://fvigo@github.com':
+Username for 'https://github.com': [omitted]
+Password for 'https://[omitted]@github.com':
 Total 0 (delta 0), reused 0 (delta 0)
 remote:
 remote: Create a pull request for 'my_integration_name' on GitHub by visiting:
-remote:      https://github.com/fvigo/content/pull/new/my_integration_name
+remote:      https://github.com/[omitted]/content/pull/new/my_integration_name
 remote:
-To https://github.com/fvigo/content
+To https://github.com/[omitted]/content
  * [new branch]          my_integration_name -> my_integration_name
 (venv) sb@dddd:~/demisto/content$
 ```
