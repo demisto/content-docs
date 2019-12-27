@@ -100,11 +100,11 @@ We are assuming that Demisto is already installed. For more information about in
 
 Check if your Demisto License is correctly installed by navigating to *Settings* -> *ABOUT* -> *License* and make sure that everything is green:
 
-![Check Demisto License](/doc_imgs/01-checkdemistolicense.gif)
+![Check Demisto License](doc_imgs/01-checkdemistolicense.gif)
 
 **PRO tip**: you can quickly navigate to different pages within Demisto by hitting *Ctrl-K* and then typing what you want. For the license page, for example, type */settings/license* or just *lic* and select the autocompleted option:
 
-![Jump to Page](/doc_imgs/02-jumptopage.png)
+![Jump to Page](doc_imgs/02-jumptopage.png)
 
 #### Operating System
 
@@ -166,7 +166,7 @@ And that's it! Again, if the installation fails, check out [this](https://github
 
 Not much to check here, just go to [GitHub](https://github.com) and make sure that you have an account or Sign Up for one:
 
-![GitHub](/doc_imgs/03-github.png)
+![GitHub](doc_imgs/03-github.png)
 
 #### Docker
 
@@ -207,11 +207,11 @@ Great, all the prerequisites are set! We can get started.
 
 Make sure you're logged on GitHub and navigate to the [Demisto Content Repo](https://github.com/demisto/content) and click on **Fork**:
 
-![Fork Repository](/doc_imgs/04-fork.png)
+![Fork Repository](doc_imgs/04-fork.png)
 
 Once the fork is complete, copy the your URL:
 
-![Copy GitHub URL](/doc_imgs/05-copygithuburl.png)
+![Copy GitHub URL](doc_imgs/05-copygithuburl.png)
 
 This is the fork where you will commit your code and, once ready, create the Pull Request to submit your contribution back to the Demisto Content repository.
 
@@ -457,7 +457,7 @@ To https://github.com/fvigo/content
 
 You can go back to GitHub and, under **your** work, you should be able to see that there is a new branch with the name you provided (`my_integration_name` in this example):
 
-![GitHub Branch](/doc_imgs/06-githubbranch.png)
+![GitHub Branch](doc_imgs/06-githubbranch.png)
 
 Congratulations! You completed the set up of the Development Environment for Demisto! Now you can start writing your code. Please have a look at the [Code Conventions](code-conventions).
 
