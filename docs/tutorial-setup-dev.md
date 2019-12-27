@@ -455,7 +455,7 @@ To https://github.com/fvigo/content
 (venv) sb@dddd:~/demisto/content$
 ```
 
-You can go back to GitHub and, under **your** work, you should be able to see that there is a new branch with the name you provided (`my_integration_name` in this example):
+You can go back to GitHub and, under **your** fork, you should be able to see that there is a new branch with the name you provided (`my_integration_name` in this example):
 
 ![GitHub Branch](doc_imgs/06-githubbranch.png)
 
