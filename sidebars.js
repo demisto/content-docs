@@ -6,6 +6,7 @@ module.exports = {
         items: [
           "getting-started-guide",
           "tutorial",
+          "tutorial-setup-dev"
         ]
       },
       {
