@@ -21,7 +21,7 @@ As a general rule of the thumb, we recommend that you use an external IDE and to
 
 Instead, you should use the Demisto UI when:
 - Creating the [Test Playbooks](testing)
-- Autogenerate the [integration documentation](integration-docs)
+- Auto-generate the [integration documentation](integration-docs)
 - Creating [example playbooks](playbooks)
 - Working on the properties of your integration (parameters, commands, arguments, outputs, etc.)
 - Testing the User Experience
@@ -36,7 +36,7 @@ We developed a free [plugin](https://plugins.jetbrains.com/plugin/12093-demisto-
 - Uploading/Downloading your integration code to/from Demisto
 - Running commands directly on Demisto
 
-However, if you want to a different IDE (Visual Studio Code, Sublime, vi, emacs, etc.) it's totally fine! It just means that some of those tasks must be performed manually. To automate it, we are working on a new [demisto-sdk](https://github.com/demisto/demisto-sdk) project, which is currently in beta stage and will be documented soon.
+However, if you want to a different IDE (Visual Studio Code, Sublime, vi, emacs, etc.) it's totally fine! It just means that some of those tasks must be performed manually. To automate them, you can use the  [demisto-sdk](https://github.com/demisto/demisto-sdk). In this tutorial, we will be using it for unit tests, but more features will come in the future.
 
 ## Requirements
 
@@ -84,10 +84,11 @@ Finally! The tutorial will guide you through the following steps:
 2. Fork the GitHub repo
 3. Clone the GitHub fork locally
 4. Run the bootstrap script
-5. Copy the HelloWorld integration
-6. Run the linter and unit tests
+5. Run the linter and unit tests
+6. Create a branch
+7. Commit
 
-Let's go!
+OK, let's begin.
 
 ### Step 1: Verify the requirements
 
@@ -101,9 +102,9 @@ Check if your Demisto License is correctly installed by navigating to *Settings*
 
 ![Check Demisto License](doc_imgs/01-checkdemistolicense.gif)
 
-**PRO tip**: you can quickly navigate to different pages within Demisto by hitting *Ctrl-K* and then typing what you want. For the license page, for example, type */settings/license* or just *lic* and select the autocomplete:
+**PRO tip**: you can quickly navigate to different pages within Demisto by hitting *Ctrl-K* and then typing what you want. For the license page, for example, type */settings/license* or just *lic* and select the autocompleted option:
 
-![Jump to Page](doc_imgs/02-jumptopage)
+![Jump to Page](doc_imgs/02-jumptopage.png)
 
 #### Operating System
 
@@ -159,11 +160,11 @@ sb@dddd:~/demisto$ pyenv versions
 sb@dddd:~/demisto$
 ```
 
-Awesome, let's move forward!
+And that's it! Again, if the installation fails, check out [this](https://github.com/pyenv/pyenv/wiki/Common-build-problems) page.
 
 #### GitHub
 
-Not much to check here, just go to [GitHub](https://github.com) and make sure that you have an account or Sign-Up:
+Not much to check here, just go to [GitHub](https://github.com) and make sure that you have an account or Sign Up for one:
 
 ![GitHub](doc_imgs/03-github.png)
 
@@ -198,9 +199,9 @@ For more examples and ideas, visit:
 sb@dddd:~/demisto$
 ```
 
-*Note:* if you're using Windows with WSL 1, you can still use Docker by following [this](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly) tutorial.
+*Note:* if you're using Windows with WSL 1, you can still use Docker Desktop from WSL. Follow [this](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly) tutorial for details.
 
-Great, everything is ready now.
+Great, all the prerequisites are set! We can get started.
 
 ### Step 2: Fork the GitHub repo
 
@@ -216,7 +217,7 @@ This is the fork where you will commit your code and, once ready, create the Pul
 
 ### Step 3: Clone the GitHub fork locally
 
-Back to the shell, create a folder (in the tutorial we'll use `~/demisto`) and clone your fork of the content repository using `git clone [your_fork_url]`, where `your_fork_url` is the URL you copied in the previous step:
+Back to the shell, create a folder (in the tutorial we'll use `~/demisto`) and clone your fork of the content repository using `git clone [your_fork_url]`, where `[your_fork_url]` is the URL you copied from GitHub in the previous step:
 
 ```bash
 sb@dddd:~$ mkdir demisto
@@ -233,7 +234,7 @@ Checking out files: 100% (4522/4522), done.
 sb@dddd:~/demisto$
 ```
 
-*Note:* you must clone **your fork** of the repository, as you will need to be able to write into it. Do not clone `demisto/content`.
+*Note:* you must clone **your fork** of the repository, as you will need to be able to write into it. Do **not** clone `demisto/content`, as you won't be able to commit.
 
 ### Step 4: Run the bootstrap script
 
@@ -254,7 +255,6 @@ sb@dddd:~/demisto/content$ pyenv local
 
 sb@dddd:~/demisto/content$ which python2
 /home/sb/.pyenv/shims/python2
-
 sb@dddd:~/demisto/content$ which python3
 /home/sb/.pyenv/shims/python3
 
@@ -317,17 +317,148 @@ Note the `(venv)` in front of the prompt. You can always leave the `virtualenv` 
 sb@dddd:~/demisto/content$
 ```
 
-### Step 5: Copy the HelloWorld integration
+### Step 5: Run the linter and unit tests
 
 Our content ships with an `HelloWorld` integration that provides basic functionality and is useful to understand how to create integrations.
 
-It's located in the `Integrations/HelloWorld` folder. We'll make a copy of it and run the unit testing in order to make sure that everything is fine.
+It's located in the `Integrations/HelloWorld` folder. We will use `demisto-sdk` to run the *linting* and *unit testing* in order to make sure that everything is fine with the dev environment (python, docker, etc.).
 
+First, make sure you are running inside the `virtualenv`:
 ```bash
-(venv) sb@dddd:~/demisto/content$ cp -a Integrations/HelloWorld Integrations/MyIntegration
+sb@dddd:~/demisto/content$ . ./venv/bin/activate
 (venv) sb@dddd:~/demisto/content$
 ```
 
+Then, make sure that `demisto-sdk` has been installed automatically by the bootstrap script as part of the preqreuisites:
+```bash
+(venv) sb@dddd:~/demisto/content$ demisto-sdk
+Use demisto-sdk -h to see the available commands.
+```
+
+Now, run the `demisto-sdk lint` command on the folder `Integrations/HelloWorld` using the `-d` option. It will run both the [linters](linting) and [pytest](unit-testing):
+
+```bash
+(venv) sb@dddd:~/demisto/content$ demisto-sdk lint -d Integrations/HelloWorld
+Detected python version: [3.7] for docker image: demisto/python3:3.7.4.2245
+========= Running flake8 ===============
+flake8 completed
+========= Running mypy on: /home/fvigo/demisto/content/Integrations/HelloWorld/HelloWorld.py ===============
+Success: no issues found in 1 source file
+mypy completed
+========= Running bandit on: /home/fvigo/demisto/content/Integrations/HelloWorld/HelloWorld.py ===============
+bandit completed
+2019-12-27 10:27:17.789503: Existing image: devtestdemisto/python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54 not found will obtain lock file or wait for image
+2019-12-27 10:27:17.791519: Obtained lock file: .lock-devtestdemisto-python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54    2019-12-27 10:27:17.791991: Trying to pull image: devtestdemisto/python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54        Pull succeeded with output: 3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54: Pulling from devtestdemisto/python3
+
+[... output omitted for brevity ...]
+
+1158abee0d53: Download complete
+1158abee0d53: Pull complete
+Digest: sha256:7132d0335cebd6c90d242b30e9fc67cf8edb12bb190b439924906deeba9a7941
+Status: Downloaded newer image for devtestdemisto/python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54
+docker.io/devtestdemisto/python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54
 
 
-### Step 6: Run the linter and unit tests
+
+======== Running pylint on files: HelloWorld.py ===========
+Pylint completed with status code: 0
+========= Running pytest ===============
+collecting tests...
+============================= test session starts ==============================
+platform linux -- Python 3.7.4, pytest-5.0.1, py-1.8.0, pluggy-0.13.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /devwork
+plugins: mock-1.11.1, asyncio-0.10.0, xdist-1.30.0, forked-1.1.1, requests-mock-1.7.0
+collecting ... collected 2 items
+
+HelloWorld_test.py::test_say_hello PASSED                                [ 50%]
+HelloWorld_test.py::test_say_hello_over_http PASSED                      [100%]
+
+=========================== 2 passed in 0.40 seconds ===========================
+Pytest completed with status code: 0
+
+(venv) sb@dddd:~/demisto/content$
+```
+
+Note that the tests run within a Docker container so, if everything worked well, it means that your development environment is up and running correctly!
+
+### Step 6: Create a branch and integration folder
+
+The [Git Flow](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests) requires to create a *branch* with your new code, that you will later use to submit a *Pull Request*. This tutorial doesn't mean to be an exhaustive guide on how to use `git`: its purpose is just to make sure that you have all the requirements and tools in place to successfully develop a Demisto Integration.
+
+In order to create a branch, use the  `git checkout -b [branch_name]` command, where the name of the branch corresponds to your integration:
+
+```bash
+(venv) sb@dddd:~/demisto/content$ git checkout -b my_integration_name
+Switched to a new branch 'my_integration_name'
+```
+
+Now, create a folder under `Integrations`, named after your integration where you will put all your integration files later, and add it to the staged changes in `git`. 
+
+Make sure you use **PascalCase** in the folder name (i.e. `MyIntegration`):
+
+```bash
+(venv) sb@dddd:~/demisto/content$ mkdir Integrations/MyIntegration
+(venv) sb@dddd:~/demisto/content$ git add Integrations/MyIntegration
+```
+
+### Step 7: Commit and Push
+
+The last step is to `commit` your changes and `push` them to the *origin* in order to make sure that the pre-commit checks work fine.
+
+First, run a `git commit -m '[some commit message]'`, which will automatically run the pre validation checks:
+
+
+```bash
+(venv) sb@dddd:~/demisto/content$ git commit -m 'Initial commit of MyIntegration'
+Validating files...
+Starting validating files structure
+Using git
+Running validation on branch my_integration_name
+Validates only committed files
+Starting validation against origin/master
+The files are valid
+Starting secrets detection
+Finished validating secrets, no secrets were found.
+
+Skipping running dev tasks (flake8, mypy, pylint, pytest). If you want to run this as part of the precommit hook
+set CONTENT_PRECOMMIT_RUN_DEV_TASKS=1. You can add the following line to ~/.zshrc:
+echo "export CONTENT_PRECOMMIT_RUN_DEV_TASKS=1" >> ~/.zshrc
+
+Or if you want to manually run dev tasks: ./Tests/scripts/pkg_dev_test_tasks.py -d <integration/script dir>
+Example: ./Tests/scripts/pkg_dev_test_tasks.py -d Scripts/ParseEmailFiles
+
+On branch my_integration_name
+Untracked files:
+        .python-version
+
+nothing added to commit but untracked files present
+```
+
+Don't worry about the `.python-version` file warning, that is generated by  `pyenv` and shouldn't be added to the repository.
+
+*Note*: since there are no files yet in the directory you have created (`Integrations/MyIntegration` in the example), it will not show up in your branch after the commit. Again, the purpose of this tutorial is just to make sure that all the components are in place.
+
+If everything worked fine so far, now you can *push* to your branch with the command `git push origin [branch_name]`. You will be prompted for your GitHub credentials:
+
+```bash
+(venv) sb@dddd:~/demisto/content$ git push origin my_integration_name
+Username for 'https://github.com': fvigo
+Password for 'https://fvigo@github.com':
+Total 0 (delta 0), reused 0 (delta 0)
+remote:
+remote: Create a pull request for 'my_integration_name' on GitHub by visiting:
+remote:      https://github.com/fvigo/content/pull/new/my_integration_name
+remote:
+To https://github.com/fvigo/content
+ * [new branch]          my_integration_name -> my_integration_name
+(venv) sb@dddd:~/demisto/content$
+```
+
+You can go back to GitHub and, under **your** work, you should be able to see that there is a new branch with the name you provided (`my_integration_name` in this example):
+
+![GitHub Branch](doc_imgs/06-githubbranch.png)
+
+Congratulations! You completed the set up of the Development Environment for Demisto! Now you can start writing your code. Please have a look at the [Code Conventions](code-conventions).
+
+Thank for your time, we hope you enjoyed this tutorial. Please report issues and suggestions using the link below!
