@@ -85,8 +85,8 @@ Finally! The tutorial will guide you through the following steps:
 3. Clone the GitHub fork locally
 4. Run the bootstrap script
 5. Run the linter and unit tests
-6. Create a branch
-7. Commit
+6. Create a branch and integration directory
+7. Commit and push
 
 OK, let's begin.
 
@@ -382,7 +382,7 @@ Pytest completed with status code: 0
 
 Note that the tests run within a Docker container so, if everything worked well, it means that your development environment is up and running correctly!
 
-### Step 6: Create a branch and integration folder
+### Step 6: Create a branch and integration directory
 
 The [Git Flow](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests) requires to create a *branch* with your new code, that you will later use to submit a *Pull Request*. This tutorial doesn't mean to be an exhaustive guide on how to use `git`: its purpose is just to make sure that you have all the requirements and tools in place to successfully develop a Demisto Integration.
 
@@ -393,16 +393,16 @@ In order to create a branch, use the  `git checkout -b [branch_name]` command, w
 Switched to a new branch 'my_integration_name'
 ```
 
-Now, create a folder under `Integrations`, named after your integration where you will put all your integration files later, and add it to the staged changes in `git`. 
+Now, create a directory under `Integrations`, named after your integration where you will put all your integration files later, and add it to the staged changes in `git`. 
 
-Make sure you use **PascalCase** in the folder name (i.e. `MyIntegration`):
+Make sure you use **PascalCase** in the directory name (i.e. `MyIntegration`):
 
 ```bash
 (venv) sb@dddd:~/demisto/content$ mkdir Integrations/MyIntegration
 (venv) sb@dddd:~/demisto/content$ git add Integrations/MyIntegration
 ```
 
-### Step 7: Commit and Push
+### Step 7: Commit and push
 
 The last step is to `commit` your changes and `push` them to the *origin* in order to make sure that the pre-commit checks work fine.
 
