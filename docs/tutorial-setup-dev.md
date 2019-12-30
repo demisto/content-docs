@@ -57,7 +57,7 @@ If you successfully manage to get this work on other platforms (native Windows, 
 
 ### Python
 
-You will need to build your integration using **Python** and, more specifically, Python 3.6+. While some content is built via Javascript and Python 2, we require Python 3.6+ for contributions.
+You will need to build your integration using **Python** and, more specifically, Python 3.7+. While some content is built via Javascript and Python 2, we require Python 3.7+ for contributions.
 
 **Note**: You don't need to be a a Python expert (I'm not!) to write a good integration, although some intermediate level knowledge is preferred.
 
@@ -73,7 +73,7 @@ And you will need a `git` client on your system (git, GitHub Desktop, SourceTree
 
 In order to be able to run linting and tests, you should have **Docker** installed on your machine. This way you can test your code using the same Python environment as the one that will run inside the Demisto instance.
 
-*Note* if you're using WSL 1, you cannot run Docker natively on WSL, but you can install Docker Desktop on Windows and configure WSL to communicate to it using [this](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly) tutorial.
+*Note* if you're using WSL, you cannot run Docker natively on WSL, but you can install Docker Desktop on Windows and configure WSL to communicate to it using [this](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly) tutorial.
 
 
 ## The Tutorial Starts Here
@@ -173,25 +173,12 @@ Not much to check here, just go to [GitHub](https://github.com) and make sure th
 Make sure that `docker` is installed on your system and is working correctly by running the `hello-world` container:
 
 ```bash
-sb@dddd:~/demisto$ docker run hello-world
+sb@dddd:~/demisto$ docker run --rm hello-world
 
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
 
-To generate this message, Docker took the following steps:
- 1. The Docker client contacted the Docker daemon.
- 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
-    (amd64)
- 3. The Docker daemon created a new container from that image which runs the
-    executable that produces the output you are currently reading.
- 4. The Docker daemon streamed that output to the Docker client, which sent it
-    to your terminal.
-
-To try something more ambitious, you can run an Ubuntu container with:
- $ docker run -it ubuntu bash
-
-Share images, automate workflows, and more with a free Docker ID:
- https://hub.docker.com/
+[... output omitted for brevity ...]
 
 For more examples and ideas, visit:
  https://docs.docker.com/get-started/
@@ -199,7 +186,7 @@ For more examples and ideas, visit:
 sb@dddd:~/demisto$
 ```
 
-*Note:* if you're using Windows with WSL 1, you can still use Docker Desktop from WSL. Follow [this](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly) tutorial for details.
+*Note:* if you're using Windows with WSL, you can still use Docker Desktop from WSL. Follow [this](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly) tutorial for details.
 
 Great, all the prerequisites are set! We can get started.
 
@@ -234,7 +221,7 @@ Checking out files: 100% (4522/4522), done.
 sb@dddd:~/demisto$
 ```
 
-*Note:* you must clone **your fork** of the repository, as you will need to be able to write into it. Do **not** clone `demisto/content`, as you won't be able to commit.
+*Note:* you must clone **your fork** of the repository, as you will need to be able to write into it. Do **not** clone `demisto/content`, as you won't be able to push commits.
 
 ### Step 4: Run the bootstrap script
 
@@ -460,5 +447,7 @@ You can go back to GitHub and, under **your** fork, you should be able to see th
 ![GitHub Branch](doc_imgs/06-githubbranch.png)
 
 Congratulations! You completed the set up of the Development Environment for Demisto! Now you can start writing your code. Please have a look at the [Code Conventions](code-conventions).
+
+Once you have written your integration, there are other useful commands you can use to make sure everything is in place before you open a Pull Request. One of them is `demisto-sdk validate -g`, that will check the files you're going to commit to make sure that everything is in place. We'll explore this further in other tutorials.
 
 Thank for your time, we hope you enjoyed this tutorial. Please report issues and suggestions using the link below!
