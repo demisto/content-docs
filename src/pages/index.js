@@ -44,7 +44,7 @@ const features = [
           )}
           href="https://www.youtube.com/channel/UCPZSycGbjGoIcTF6kudEilw"
         >
-          Watch Some Videos
+          Watch Videos
         </Link>
       </div>
     )
@@ -170,7 +170,7 @@ function Home() {
                   )}
                   href="https://start.paloaltonetworks.com/become-a-technology-partner"
                 >
-                  Become a Technology Partner
+                  Become a Partner
                 </Link>
               </div>
             </div>
@@ -194,28 +194,12 @@ function Home() {
           <div className="customer">
             <div className="customer-inner">
               Are you a Demisto Customer or an Independent Developer?
-              <Link to="docs/get-started"> Get Started Now!</Link>
+              <Link to="docs/getting-started-guide"> Get Started Now!</Link>
               <br /> 
               Join <b>#demisto-integrations-help</b> on our <a href="https://go.demisto.com/join-our-slack-community">Slack community</a> today.
             </div>
           </div>
         </section>     
-        <section className={styles.tools} ref={toolsRef}>
-          <div className="announcement">
-            <div className="announcement-inner">
-              Partner with us to build a comprehensive SOAR ecosystem for the
-              SOC. <br /> Join{" "}
-              <a href="https://go.demisto.com/join-our-slack-community">
-                #demisto-integrations-help
-              </a>{" "}
-              on{" "}
-              <a href="https://go.demisto.com/join-our-slack-community">
-                our Slack community
-              </a>{" "}
-              today.
-            </div>
-          </div>
-        </section>
         <section className={styles.tools}>
           <div className="container">
             <div className="row">

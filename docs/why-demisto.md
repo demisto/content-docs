@@ -1,17 +1,17 @@
 ---
 id: why-demisto 
-title: Why Demisto? 
+title: Why become a Partner? 
 ---
 
 Why develop your own content and integrations (BYOI) for the Demisto platform? As the fastest growing SOAR platform on the market, we already have hundreds of integrations so customers and prospects get the most out of their security investments. Another advantage? As we show our extensive integration list to prospects, you gain exposure and visibility for addressing use cases encountered in the SOC.
-
-<iframe width="424" height="238" src="https://www.youtube.com/embed/BzB10GGQ8ms" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+<a class="button button--outline button--primary button--lg" href="https://youtu.be/BzB10GGQ8ms" target="_blank">Learn more about Security Orchestration!</a>
 
 ## What are some benefits?
 
-Integrating with Demisto allows your customers to leverage your product(s), in tandem with the hundreds of products in the Demisto SOAR ecosystem, to automate and streamline their security operations. [Check out some of our integrations.](https://www.demisto.com/integrations/)
+Integrating with Demisto allows your customers to leverage your product(s), in tandem with the hundreds of products in the Demisto SOAR ecosystem, to automate and streamline their security operations. 
 
+<a class="button button--outline button--primary button--lg" href="https://www.demisto.com/integrations/" target="_blank">Check out some of our integrations!</a>
+<br/><br/>
 Here are a few of the benefits: 
 
 1. Gain visibility and new revenue opportunities for your products and services.
@@ -42,19 +42,19 @@ Connect your field and marketing reps with the Palo Alto Networks team to jointl
   - Integration blogs
   - Partner Spotlights!
 
-Here are a few simple examples that we've worked on jointly. 
+Here are a few simple examples that we've worked on jointly:
 
   - [Uptycs](https://www.uptycs.com/blog/demisto-uptycs-orchestrating-incident-response-activities)
 
-  - [Okta](https://www.okta.com/partners/palo-alto-networks/demisto/) and a joint [Solution Brief](https://go.demisto.com/hubfs/Resources/Solution_Briefs/Okta/Okta%20Solution%20Brief.pdf#new_tab)
+  - [Okta](https://www.okta.com/partners/palo-alto-networks/demisto/) and a joint [Solution Brief](https://go.demisto.com/hubfs/Resources/Solution_Briefs/Okta/Okta%20Solution%20Brief.pdf)
 
-## Partner enablement  
+## Partner Enablement  
 
-We will support you as you build. Here’s a few of the ways
+We will support you as you build. Here’s a few of the ways:
 
 - Slack - we have several thriving public and private channels for partners and customers. 
 - Portal - You’ll be granted a portal account with full help documentation.  
 - Live resources - And of course we have live technical resources to step in when the above is exhausted.
 
-<a class="button button--outline button--primary button--lg" href="/docs/become-a-tech-partner">Get Started Now!</a>
+<a class="button button--outline button--primary button--lg" href="/docs/become-a-tech-partner">Become a Partner Now!</a>
 

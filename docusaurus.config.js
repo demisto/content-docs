@@ -29,12 +29,7 @@ module.exports = {
 
       links: [
         {
-          to: "docs/why-demisto",
-          label: "Why Demisto",
-          position: "left"
-        },
-        {
-          to: "docs/dev-guide",
+          to: "docs/getting-started-guide",
           label: "Development Guide",
           position: "left"
         },
@@ -43,6 +38,11 @@ module.exports = {
           label: "Use Cases",
           position: "left"
         },
+        {
+          to: "docs/why-demisto",
+          label: "Why become a Partner?",
+          position: "right"
+        },        
         {
           to: "docs/become-a-tech-partner",
           label: "Become a Technology Partner",
@@ -66,9 +66,9 @@ module.exports = {
         {
           title: "Docs",
           items: [
-            { to: "docs/why-demisto", label: "Why Demisto" },
-            { to: "docs/get-started", label: "Get Started" },
-            { to: "docs/dev-guide", label: "Development Guide" }
+            { to: "docs/getting-started-guide", label: "Development Guide" },
+            { to: "docs/why-demisto", label: "Why become a Partner?" },
+            { to: "docs/become-a-tech-partner", label: "Become a Technology Partner" }
           ]
         },
         {
