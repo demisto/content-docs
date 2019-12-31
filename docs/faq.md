@@ -10,7 +10,7 @@ title: Frequently Asked Questions
 - Playbooks can only be developed in Demisto.
 
 ### Which Python version you support?
-Demisto supports both Python2 and Python3. For new contributions we require Python3
+Demisto supports both Python2 and Python3. For new contributions we require Python3.
 
 ### Can I develop in JavaScript?
 Demisto supports JavaScript integrations and scripts. Our preferred development language is Python, and all new integrations and scripts should be developed in Python, which also provides a wider set of capabilities compared to the available JavaScript support. Simple scripts may still be developed in JavaScript.
