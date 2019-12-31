@@ -1,13 +1,13 @@
 ---
 id: tutorial-setup-dev
-title: Tutorial - Setting Up Your Dev Environment for Demisto
+title: Tutorial - Set Up Your Dev Environment
 ---
 
 Thank you for showing interest in contributing to the Demisto content. We hope this experience will be easy and fun.
 
-This tutorial will guide you on how to set up your dev environment to quickly start developing on Demisto. While in Demisto you can write code directly in the UI, which is awesome, you'll also need to set up your development environment outside of Demisto. This is because, in order to build a full fledged integration, you'll need to *lint* your code, run *pytest* for unit testing, create some documentation, submit your changes via *git* and more.
+This tutorial will guide you on how to set up your dev environment to quickly start developing on Demisto. While in Demisto you can write code directly in the UI, which is awesome, you'll need a proper development environment external to Demisto to contribute a full integration.. This is because, in order to build a full fledged integration, you'll need to *lint* your code, run unit tests with *pytest*, create some documentation, submit your changes via *git* and more.
 
-For a quick reference, just jump to the [Development Setup](dev-setup) page, otherwise keep reading for more details.
+If you've been through this process already and just want a quick reference, you can jump to the [Development Setup](dev-setup) page, otherwise keep reading for more details.
 
 ## Which tools should I use?
 
@@ -22,7 +22,7 @@ As a general rule of the thumb, we recommend that you use an external IDE and to
 Instead, you should use the Demisto UI when:
 - Creating the [Test Playbooks](testing)
 - Auto-generate the [integration documentation](integration-docs)
-- Creating [example playbooks](playbooks)
+- Creating [example playbooks](playbooks) to demonstrate your integration
 - Working on the properties of your integration (parameters, commands, arguments, outputs, etc.)
 - Testing the User Experience
 
@@ -48,7 +48,7 @@ You need an instance of Demisto up and running. You can Sign Up for the [Demisto
 
 ### Operating System
 
-So far we've been using the following Operating Systems:
+So far we've been using the following Operating Systems as development environments for integrations:
 - MacOS
 - Linux
 - Windows (only with WSL - [Windows Subsystem For Linux](https://docs.microsoft.com/en-us/windows/wsl/about))
@@ -61,7 +61,7 @@ You will need to build your integration using **Python** and, more specifically,
 
 **Note**: You don't need to be a a Python expert (I'm not!) to write a good integration, although some intermediate level knowledge is preferred.
 
-It is also recommended to have both Python 2 and Python 3 installed on your system: for that purpose, please download and install **[pyenv](https://github.com/pyenv/pyenv)**. It allows to easily manage multiple versions of Python on your system and have them coexist. If you don't use `pyenv` you might have problems when creating a `virtualenv` that contains both Python 2 and Python 3 under MacOS.
+It is also recommended to have both Python 2 and Python 3 installed on your system: for that purpose, please download and install **[pyenv](https://github.com/pyenv/pyenv)**. It allows to easily manage multiple versions of Python on your system. Without `pyenv`, under MacOS, you might have problems when creating a `virtualenv` that contains both Python 2 and Python 3.
 
 ### GitHub
 
@@ -209,7 +209,7 @@ Back to the shell, create a folder (in the tutorial we'll use `~/demisto`) and c
 ```bash
 sb@dddd:~$ mkdir demisto
 sb@dddd:~$ cd demisto
-sb@dddd:~/demisto$ git clone https://github.com/[your_fork_url]/content.git
+sb@dddd:~/demisto$ git clone https://github.com/[omitted]/content.git
 Cloning into 'content'...
 remote: Enumerating objects: 108, done.
 remote: Counting objects: 100% (108/108), done.
@@ -236,6 +236,8 @@ pyenv: no local version configured for this directory
 
 You can tell `pyenv` to use the latest versions of Python 2 and Python 3 you previously installed and verify that everything is set correctly:
 ```
+sb@dddd:~/demisto/content$ pyenv local 3.7.5 2.7.17
+
 sb@dddd:~/demisto/content$ pyenv local
 3.7.5
 2.7.17
