@@ -17,7 +17,6 @@
     "@docusaurus/preset-classic": "^2.0.0-alpha.37",
     "@docusaurus/theme-live-codeblock": "^2.0.0-alpha.37",
     "@docusaurus/theme-search-algolia": "^2.0.0-alpha.37",
-    "browser-window": "^0.4.0",
     "classnames": "^2.2.6",
     "copyfiles": "^2.1.1",
     "js-yaml": "^3.13.1",

@@ -4,7 +4,8 @@ module.exports = {
         type: "category",
         label: "Basics",
         items: [
-          "getting-started-guide"
+          "getting-started-guide",
+          "faq"
         ]
       },
       {
