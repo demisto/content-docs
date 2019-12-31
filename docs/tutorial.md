@@ -1,6 +1,6 @@
 ---
 id: tutorial
-title: Tutorial
+title: Tutorial - Build an Integration
 ---
 
 ## Welcome
