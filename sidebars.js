@@ -5,7 +5,6 @@ module.exports = {
         label: "Basics",
         items: [
           "getting-started-guide",
-          "tutorial",
           "faq"
         ]
       },
@@ -16,7 +15,15 @@ module.exports = {
           "use-cases",
           "design-best-practices"
         ]
-      },      
+      }, 
+      {
+        type: "category",
+        label: "Tutorials",
+        items: [
+          "tutorial-setup-dev",
+          "tutorial"
+        ]
+      },           
       {
         type: "category",
         label: "Writing an integration",
