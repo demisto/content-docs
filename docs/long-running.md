@@ -55,6 +55,7 @@ Use `updateModuleHealth`, `info` and `error` to report errors and debug. It's al
 
 ## Best practices
 It's important to maintain a never ending process in the container. That means:
+
 1. Never use `sys.exit()` (`return_error` and friends).
 2. Always catch exceptions and log them.
 3. Run in a never ending loop.
