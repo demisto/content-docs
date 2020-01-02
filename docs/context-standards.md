@@ -238,6 +238,7 @@ The following is the format for an Account entity.
     "Office": "STRING, The office where the person associated with the account works.",
     "JobTitle": "STRING, The job title of the account.",
     "Department": "STRING, The department of the account.",
+    "Country": "STRING, The country associated with the account.",
     "State": "STRING, The state where the account works.",
     "City": "STRING, The city associated with the account.",
     "Street": "STRING, The street associated with the account.",
