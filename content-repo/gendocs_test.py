@@ -1,18 +1,21 @@
 from gendocs import INTEGRATION_DOCS_MATCH, findfiles, process_integration_doc, \
     verify_mdx, index_doc_infos, fix_mdx, DocInfo, gen_html_doc
+import os
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+SAMPLE_CONTENT = f'{BASE_DIR}/test_data/sample-content'
 
 def test_findfiles():
-    res = findfiles(INTEGRATION_DOCS_MATCH, "test_data/sample-content")
-    assert 'test_data/sample-content/Packs/CortexXDR/Integrations/PaloAltoNetworks_XDR/README.md' in res
-    assert 'test_data/sample-content/Integrations/SMIME_Messaging/readme.md' in res
-    assert 'test_data/sample-content/Integrations/PhishLabsIOC_DRP/README.md' in res
-    assert 'test_data/sample-content/Beta_Integrations/SymantecDLP/README.md' in res
+    res = findfiles(INTEGRATION_DOCS_MATCH, SAMPLE_CONTENT)
+    assert f'{SAMPLE_CONTENT}/Packs/CortexXDR/Integrations/PaloAltoNetworks_XDR/README.md' in res
+    assert f'{SAMPLE_CONTENT}/Integrations/SMIME_Messaging/readme.md' in res
+    assert f'{SAMPLE_CONTENT}/Integrations/PhishLabsIOC_DRP/README.md' in res
+    assert f'{SAMPLE_CONTENT}/Beta_Integrations/SymantecDLP/README.md' in res
 
 
 def test_verify_mdx():
     try:
-        verify_mdx('test_data/bad-mdx-readme.md')
+        verify_mdx(f'{BASE_DIR}/test_data/bad-mdx-readme.md')
         assert False, 'should fail verify'
     except Exception as ex:
         assert 'Expected corresponding JSX closing tag' in str(ex)
@@ -30,7 +33,7 @@ def test_fix_mdx():
 
 
 def test_process_integration_doc(tmp_path):
-    res = process_integration_doc('test_data/sample-content/Integrations/DomainTools_Iris/README.MD', str(tmp_path))
+    res = process_integration_doc(f'{SAMPLE_CONTENT}/Integrations/DomainTools_Iris/README.MD', str(tmp_path))
     assert res.id == 'domain-tools-iris'
     assert res.description
     assert res.name == 'DomainTools Iris'
@@ -38,12 +41,12 @@ def test_process_integration_doc(tmp_path):
         assert f.readline().startswith('---')
         assert f.readline().startswith(f'id: {res.id}')
     try:
-        process_integration_doc('test_data/empty-readme.md', str(tmp_path))
+        process_integration_doc(f'{BASE_DIR}/test_data/empty-readme.md', str(tmp_path))
         assert False, 'empty file should fail'
     except Exception as ex:
         assert 'empty' in str(ex)
-    process_integration_doc('test_data/sample-content/Integrations/SlashNextPhishingIncidentResponse/README.md', str(tmp_path))
-    process_integration_doc('test_data/sample-content/Integrations/Gmail/README.md', str(tmp_path))
+    process_integration_doc(f'{SAMPLE_CONTENT}/Integrations/SlashNextPhishingIncidentResponse/README.md', str(tmp_path))
+    process_integration_doc(f'{SAMPLE_CONTENT}/Integrations/Gmail/README.md', str(tmp_path))
 
 
 def test_table_doc_info():

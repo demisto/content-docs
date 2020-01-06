@@ -42,7 +42,7 @@ echo "Copying CommonServerPython.py and demistomock.py"
 cp ${CONTENT_GIT_DIR}/Scripts/CommonServerPython/CommonServerPython.py .
 cp ${CONTENT_GIT_DIR}/Tests/demistomock/demistomock.py .
 
+echo "Installing pipenv..."
+pipenv install
 echo "Generating docs..."
-# we write to a file and then cat it, otherwise pipenv output is awful in CI
-pipenv install > pipenv.out 2>&1 && cat pipenv.out
-pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}" > pipenv.out 2>&1 && cat pipenv.out
+pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"

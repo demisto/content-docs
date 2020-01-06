@@ -1,0 +1,67 @@
+Deleting dir: ../docs/reference
+Creating dir: ../docs/reference
+Processing: 29 integrations ...
+ERROR: failed processing: .content/Integrations/HelloWorld/README.md. Exception: .content/Integrations/HelloWorld/README.md: is empty.
+Traceback (most recent call last):
+  File "./gendocs.py", line 127, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 81, in process_integration_doc
+    raise ValueError(f'{readme_file}: is empty')
+ValueError: .content/Integrations/HelloWorld/README.md: is empty
+--------------------------
+.content/Integrations/AlienVault_OTX_v2/README.md: detect html file
+.content/Integrations/Akamai_SIEM/README.md: detect html file
+.content/Integrations/AzureSecurityCenter_v2/README.md: detect html file
+.content/Integrations/MicrosoftGraphGroups/README.md: detect html file
+.content/Integrations/Tanium_v2/README.md: detect html file
+.content/Integrations/Exabeam/README.md: detect html file
+.content/Integrations/AzureCompute_v2/README.md: detect html file
+.content/Integrations/JsonWhoIs/README.md: detect html file
+.content/Integrations/ExtraHop_v2/README.md: detect html file
+.content/Integrations/SecBI/README.md: detect html file
+.content/Integrations/SlashNextPhishingIncidentResponse/README.md: detect html file
+.content/Integrations/SMIME_Messaging/README.md: detect html file
+.content/Integrations/PaloAltoNetworksCortex/README.md: detect html file
+.content/Integrations/PaloAltoNetworks_PAN_OS_EDL_Management/README.md: detect html file
+.content/Integrations/Vectra_v2/README.md: detect html file
+.content/Integrations/PhishLabsIOC_EIR/README.md: detect html file
+.content/Integrations/MicrosoftGraphListener/README.md: detect html file
+.content/Integrations/Slack/README.md: detect html file
+.content/Integrations/PhishLabsIOC_DRP/README.md: detect html file
+.content/Integrations/ARIAPacketIntelligence/README.md: detect html file
+.content/Integrations/Gmail/README.md: detect html file
+.content/Integrations/ProofpointTAP_v2/readme.md: detect html file
+.content/Beta_Integrations/SymantecDLP/README.md: detect html file
+.content/Beta_Integrations/SymantecBlueCoatMalwareAnalysis/README.md: detect html file
+Success integration docs:
+.content/Beta_Integrations/SymantecBlueCoatMalwareAnalysis/README.md
+.content/Beta_Integrations/SymantecDLP/README.md
+.content/Integrations/ARIAPacketIntelligence/README.md
+.content/Integrations/Accessdata/README.md
+.content/Integrations/Akamai_SIEM/README.md
+.content/Integrations/AlienVault_OTX_v2/README.md
+.content/Integrations/AzureCompute_v2/README.md
+.content/Integrations/AzureSecurityCenter_v2/README.md
+.content/Integrations/DomainTools_Iris/README.md
+.content/Integrations/Exabeam/README.md
+.content/Integrations/ExtraHop_v2/README.md
+.content/Integrations/Flashpoint/README.md
+.content/Integrations/Gmail/README.md
+.content/Integrations/JsonWhoIs/README.md
+.content/Integrations/MicrosoftGraphGroups/README.md
+.content/Integrations/MicrosoftGraphListener/README.md
+.content/Integrations/PaloAltoNetworksCortex/README.md
+.content/Integrations/PaloAltoNetworks_PAN_OS_EDL_Management/README.md
+.content/Integrations/PhishLabsIOC_DRP/README.md
+.content/Integrations/PhishLabsIOC_EIR/README.md
+.content/Integrations/ProofpointTAP_v2/readme.md
+.content/Integrations/SMIME_Messaging/README.md
+.content/Integrations/SecBI/README.md
+.content/Integrations/SecurityAdvisor/README.md
+.content/Integrations/Slack/README.md
+.content/Integrations/SlashNextPhishingIncidentResponse/README.md
+.content/Integrations/Tanium_v2/README.md
+.content/Integrations/Vectra_v2/README.md
+
+Failed integration docs:
+.content/Integrations/HelloWorld/README.md

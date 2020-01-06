@@ -1,0 +1,1393 @@
+Deleting dir: ../docs/reference
+Creating dir: ../docs/reference
+Processing: 29 integrations ...
+ERROR: failed processing: .content/Integrations/HelloWorld/README.md. Exception: .content/Integrations/HelloWorld/README.md: is empty.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 79, in process_integration_doc
+    raise ValueError(f'{readme_file}: is empty')
+ValueError: .content/Integrations/HelloWorld/README.md: is empty
+--------------------------
+ERROR: failed processing: .content/Integrations/AlienVault_OTX_v2/README.md. Exception: Failed verfiying: .content/Integrations/AlienVault_OTX_v2/README.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <li> (30:4)
+
+  28 |    <li><strong>Trust any certificate (not secure)</strong></li>
+  29 |    <li><strong>Use system proxy settings</strong></li>
+> 30 |     </ul>
+     |     ^
+  31 |   </li>
+  32 |   <li>
+  33 |     Click&nbsp;<strong>Test</strong>&nbsp;to validate the new instance.
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+    at Object.parseMaybeUnary (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9193:21)
+    at Object.parseExprOps (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9059:23)
+    at Object.parseMaybeConditional (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9032:23)
+  pos: 1218,
+  loc: Position { line: 30, column: 4 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/AlienVault_OTX_v2/README.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <li> (30:4)
+
+  28 |    <li><strong>Trust any certificate (not secure)</strong></li>
+  29 |    <li><strong>Use system proxy settings</strong></li>
+> 30 |     </ul>
+     |     ^
+  31 |   </li>
+  32 |   <li>
+  33 |     Click&nbsp;<strong>Test</strong>&nbsp;to validate the new instance.
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+    at Object.parseMaybeUnary (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9193:21)
+    at Object.parseExprOps (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9059:23)
+    at Object.parseMaybeConditional (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9032:23)
+  pos: 1218,
+  loc: Position { line: 30, column: 4 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/Akamai_SIEM/README.md. Exception: Failed verfiying: .content/Integrations/Akamai_SIEM/README.md. Error: { SyntaxError: unknown: Unexpected token, expected "}" (71:14)
+
+  69 |     [
+  70 |       {
+> 71 |         "name": "Akamai SIEM: 50170",
+     |               ^
+  72 |         "occurred": "2019-12-10T18:28:27Z",
+  73 |         "rawJSON": {
+  74 |           "type": "akamai_siem",
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.expect (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8362:28)
+    at Object.jsxParseExpressionContainer (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3951:10)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4042:36)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+    at Object.parseMaybeUnary (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9193:21)
+  pos: 3354,
+  loc: Position { line: 71, column: 14 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/Akamai_SIEM/README.md. Error: { SyntaxError: unknown: Unexpected token, expected "}" (71:14)
+
+  69 |     [
+  70 |       {
+> 71 |         "name": "Akamai SIEM: 50170",
+     |               ^
+  72 |         "occurred": "2019-12-10T18:28:27Z",
+  73 |         "rawJSON": {
+  74 |           "type": "akamai_siem",
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.expect (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8362:28)
+    at Object.jsxParseExpressionContainer (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3951:10)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4042:36)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+    at Object.parseMaybeUnary (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9193:21)
+  pos: 3354,
+  loc: Position { line: 71, column: 14 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/AzureSecurityCenter_v2/README.md. Exception: Failed verfiying: .content/Integrations/AzureSecurityCenter_v2/README.md. Error: { SyntaxError: unknown: Unexpected token, expected "}" (187:31)
+
+  185 | <pre>
+  186 | {
+> 187 |     "AzureSecurityCenter.Alert": [
+      |                                ^
+  188 |         {
+  189 |             "ActionTaken": "Undefined",
+  190 |             "CompromisedEntity": "alerts",
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.expect (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8362:28)
+    at Object.jsxParseExpressionContainer (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3951:10)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4042:36)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+  pos: 6331,
+  loc: Position { line: 187, column: 31 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/AzureSecurityCenter_v2/README.md. Error: { SyntaxError: unknown: Unexpected token, expected "}" (187:31)
+
+  185 | <pre>
+  186 | {
+> 187 |     "AzureSecurityCenter.Alert": [
+      |                                ^
+  188 |         {
+  189 |             "ActionTaken": "Undefined",
+  190 |             "CompromisedEntity": "alerts",
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.expect (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8362:28)
+    at Object.jsxParseExpressionContainer (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3951:10)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4042:36)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+  pos: 6331,
+  loc: Position { line: 187, column: 31 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/MicrosoftGraphGroups/README.md. Exception: Failed verfiying: .content/Integrations/MicrosoftGraphGroups/README.md. Error: { SyntaxError: unknown: Unexpected token, expected "}" (229:19)
+
+  227 | <pre>
+  228 | {
+> 229 |     "MSGraphGroups": "https://graph.microsoft.com/v1.0/groups?$top=4&$skiptoken={skip_token}"
+      |                    ^
+  230 | }
+  231 | </pre>
+  232 | <h5>Human Readable Output</h5>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.expect (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8362:28)
+    at Object.jsxParseExpressionContainer (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3951:10)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4042:36)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+  pos: 8618,
+  loc: Position { line: 229, column: 19 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/MicrosoftGraphGroups/README.md. Error: { SyntaxError: unknown: Unexpected token, expected "}" (229:19)
+
+  227 | <pre>
+  228 | {
+> 229 |     "MSGraphGroups": "https://graph.microsoft.com/v1.0/groups?$top=4&$skiptoken={skip_token}"
+      |                    ^
+  230 | }
+  231 | </pre>
+  232 | <h5>Human Readable Output</h5>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.expect (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8362:28)
+    at Object.jsxParseExpressionContainer (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3951:10)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4042:36)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+  pos: 8618,
+  loc: Position { line: 229, column: 19 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/Tanium_v2/README.md. Exception: Failed verfiying: .content/Integrations/Tanium_v2/README.md. Error: { SyntaxError: unknown: Unexpected token, expected "}" (293:19)
+
+  291 | <pre>
+  292 | {
+> 293 |     "TaniumPackage": {
+      |                    ^
+  294 |         "Command": "cmd /c cscript ApplyWindowsQuarantine.vbs \"$1\" \"$2\" \"$3\" \"$4\" \"$5\" \"$6\" \"$7\" \"$8\" \"$9\"",
+  295 |         "CommandTimeout": 180,
+  296 |         "ContentSet": {
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.expect (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8362:28)
+    at Object.jsxParseExpressionContainer (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3951:10)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4042:36)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+  pos: 10701,
+  loc: Position { line: 293, column: 19 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/Tanium_v2/README.md. Error: { SyntaxError: unknown: Unexpected token, expected "}" (293:19)
+
+  291 | <pre>
+  292 | {
+> 293 |     "TaniumPackage": {
+      |                    ^
+  294 |         "Command": "cmd /c cscript ApplyWindowsQuarantine.vbs \"$1\" \"$2\" \"$3\" \"$4\" \"$5\" \"$6\" \"$7\" \"$8\" \"$9\"",
+  295 |         "CommandTimeout": 180,
+  296 |         "ContentSet": {
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.expect (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8362:28)
+    at Object.jsxParseExpressionContainer (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3951:10)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4042:36)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+  pos: 10701,
+  loc: Position { line: 293, column: 19 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/Exabeam/README.md. Exception: Failed verfiying: .content/Integrations/Exabeam/README.md. Error: { SyntaxError: unknown: Unexpected token, expected "}" (167:18)
+
+  165 | <pre>
+  166 | {
+> 167 |     "Exabeam.User": [
+      |                   ^
+  168 |         {
+  169 |             "Department": "IT",
+  170 |             "EmployeeType": "employee",
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.expect (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8362:28)
+    at Object.jsxParseExpressionContainer (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3951:10)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4042:36)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+  pos: 5207,
+  loc: Position { line: 167, column: 18 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/Exabeam/README.md. Error: { SyntaxError: unknown: Unexpected token, expected "}" (167:18)
+
+  165 | <pre>
+  166 | {
+> 167 |     "Exabeam.User": [
+      |                   ^
+  168 |         {
+  169 |             "Department": "IT",
+  170 |             "EmployeeType": "employee",
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.expect (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8362:28)
+    at Object.jsxParseExpressionContainer (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3951:10)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4042:36)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+  pos: 5207,
+  loc: Position { line: 167, column: 18 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/AzureCompute_v2/README.md. Exception: Failed verfiying: .content/Integrations/AzureCompute_v2/README.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <hr> (101:0)
+
+   99 | <div class="cl-preview-section">
+  100 |   <hr>
+> 101 | </div>
+      | ^
+  102 | <div class="cl-preview-section">
+  103 |   <p>List the VM instances in the specified Resource Group.</p>
+  104 | </div>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+    at Object.parseMaybeUnary (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9193:21)
+    at Object.parseExprOps (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9059:23)
+    at Object.parseMaybeConditional (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9032:23)
+  pos: 4316,
+  loc: Position { line: 101, column: 0 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/AzureCompute_v2/README.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <hr> (101:0)
+
+   99 | <div class="cl-preview-section">
+  100 |   <hr>
+> 101 | </div>
+      | ^
+  102 | <div class="cl-preview-section">
+  103 |   <p>List the VM instances in the specified Resource Group.</p>
+  104 | </div>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+    at Object.parseMaybeUnary (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9193:21)
+    at Object.parseExprOps (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9059:23)
+    at Object.parseMaybeConditional (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9032:23)
+  pos: 4316,
+  loc: Position { line: 101, column: 0 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/JsonWhoIs/README.md. Exception: Failed verfiying: .content/Integrations/JsonWhoIs/README.md. Error: { SyntaxError: unknown: Unexpected token (45:1)
+
+  43 | </ol>
+  44 | <h3>1. whois</h3>
+> 45 | <!-- <hr> -->
+     |  ^
+  46 | <p>Provides data enrichment for Domains, URLs, and IP addresses.</p>
+  47 | <h5>Base Command</h5>
+  48 | <p>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.jsxParseIdentifier (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3871:12)
+    at Object.jsxParseNamespacedName (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3881:23)
+    at Object.jsxParseElementName (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3892:21)
+    at Object.jsxParseOpeningElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3978:22)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4011:33)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+  pos: 1783,
+  loc: Position { line: 45, column: 1 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/JsonWhoIs/README.md. Error: { SyntaxError: unknown: Unexpected token (45:1)
+
+  43 | </ol>
+  44 | <h3>1. whois</h3>
+> 45 | <!-- <hr> -->
+     |  ^
+  46 | <p>Provides data enrichment for Domains, URLs, and IP addresses.</p>
+  47 | <h5>Base Command</h5>
+  48 | <p>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.jsxParseIdentifier (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3871:12)
+    at Object.jsxParseNamespacedName (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3881:23)
+    at Object.jsxParseElementName (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3892:21)
+    at Object.jsxParseOpeningElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3978:22)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4011:33)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+  pos: 1783,
+  loc: Position { line: 45, column: 1 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/ExtraHop_v2/README.md. Exception: Failed verfiying: .content/Integrations/ExtraHop_v2/README.md. Error: { SyntaxError: unknown: Unexpected token (68:1)
+
+  66 | </ol>
+  67 | <h3>1. Get all alert rules</h3>
+> 68 | <!-- <hr> -->
+     |  ^
+  69 | <p>Get all alert rules from ExtraHop.</p>
+  70 | <h5>Base Command</h5>
+  71 | <p>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.jsxParseIdentifier (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3871:12)
+    at Object.jsxParseNamespacedName (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3881:23)
+    at Object.jsxParseElementName (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3892:21)
+    at Object.jsxParseOpeningElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3978:22)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4011:33)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+  pos: 3587,
+  loc: Position { line: 68, column: 1 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/ExtraHop_v2/README.md. Error: { SyntaxError: unknown: Unexpected token (68:1)
+
+  66 | </ol>
+  67 | <h3>1. Get all alert rules</h3>
+> 68 | <!-- <hr> -->
+     |  ^
+  69 | <p>Get all alert rules from ExtraHop.</p>
+  70 | <h5>Base Command</h5>
+  71 | <p>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.jsxParseIdentifier (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3871:12)
+    at Object.jsxParseNamespacedName (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3881:23)
+    at Object.jsxParseElementName (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3892:21)
+    at Object.jsxParseOpeningElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3978:22)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4011:33)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+  pos: 3587,
+  loc: Position { line: 68, column: 1 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/SecBI/README.md. Exception: Failed verfiying: .content/Integrations/SecBI/README.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <br> (224:0)
+
+  222 | |---|---|---|---|---|---|---|
+  223 | | 2017-07-31 06:46:14 | pix.crp.education,<br>solutions.sante-corps-esprit.com,<br>tracking.notizie.it,<br>editions.biosante-editions.fr,<br>www.nikon.fr,<br>www.mailant.it,<br>static.biosante-editions.com,<br>static.pubfac.com,<br>moodle.ead-online.be,<br>img1.gtv.digimondo.net,<br>static.snieditions.com,<br>www.trgmedia.it,<br>ws.atomikad.com,<br>www.ead-online.be,<br>www.smooto.com,<br>www.cronacaeugubina.it,<br>www.elfri.be | 7899b0ff-810b-4df4-a0e3-806557aecc2e | joe@acme.com | 172.23.152.25,<br>172.23.152.26 | 2017-08-04 08:22:43 | 141.101.61.31,<br>37.187.151.239,<br>52.85.180.13,<br>52.85.180.203,<br>151.80.18.159,<br>94.23.64.3,<br>134.213.72.175,<br>46.37.22.52,<br>95.85.13.99,<br>46.37.22.123,<br>54.72.0.177,<br>23.253.140.198,<br>0.0.0.0,<br>176.62.160.38,<br>52.85.180.177 |
+> 224 | </p>
+      | ^
+  225 | <h3 id="secbi-get-incident-by-host">3. secbi-get-incident-by-host</h3>
+  226 | <hr>
+  227 | <p>Get a specific SecBI Incident by Host</p>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+  pos: 9100,
+  loc: Position { line: 224, column: 0 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/SecBI/README.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <br> (224:0)
+
+  222 | |---|---|---|---|---|---|---|
+  223 | | 2017-07-31 06:46:14 | pix.crp.education,<br>solutions.sante-corps-esprit.com,<br>tracking.notizie.it,<br>editions.biosante-editions.fr,<br>www.nikon.fr,<br>www.mailant.it,<br>static.biosante-editions.com,<br>static.pubfac.com,<br>moodle.ead-online.be,<br>img1.gtv.digimondo.net,<br>static.snieditions.com,<br>www.trgmedia.it,<br>ws.atomikad.com,<br>www.ead-online.be,<br>www.smooto.com,<br>www.cronacaeugubina.it,<br>www.elfri.be | 7899b0ff-810b-4df4-a0e3-806557aecc2e | joe@acme.com | 172.23.152.25,<br>172.23.152.26 | 2017-08-04 08:22:43 | 141.101.61.31,<br>37.187.151.239,<br>52.85.180.13,<br>52.85.180.203,<br>151.80.18.159,<br>94.23.64.3,<br>134.213.72.175,<br>46.37.22.52,<br>95.85.13.99,<br>46.37.22.123,<br>54.72.0.177,<br>23.253.140.198,<br>0.0.0.0,<br>176.62.160.38,<br>52.85.180.177 |
+> 224 | </p>
+      | ^
+  225 | <h3 id="secbi-get-incident-by-host">3. secbi-get-incident-by-host</h3>
+  226 | <hr>
+  227 | <p>Get a specific SecBI Incident by Host</p>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+  pos: 9100,
+  loc: Position { line: 224, column: 0 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/SlashNextPhishingIncidentResponse/README.md. Exception: Failed verfiying: .content/Integrations/SlashNextPhishingIncidentResponse/README.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <br> (19:0)
+
+  17 |   This integration was integrated and tested with version <b>v1.0</b> of SlashNext Phishing Incident Response.
+  18 |   <br>
+> 19 | </p>
+     | ^
+  20 | <h2>SlashNext Phishing Incident Response Playbook</h2>
+  21 | <p>SlashNext have developed two sample playbooks to demonstrate two of the major use cases.</p>
+  22 | <ul>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+  pos: 917,
+  loc: Position { line: 19, column: 0 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/SlashNextPhishingIncidentResponse/README.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <br> (19:0)
+
+  17 |   This integration was integrated and tested with version <b>v1.0</b> of SlashNext Phishing Incident Response.
+  18 |   <br>
+> 19 | </p>
+     | ^
+  20 | <h2>SlashNext Phishing Incident Response Playbook</h2>
+  21 | <p>SlashNext have developed two sample playbooks to demonstrate two of the major use cases.</p>
+  22 | <ul>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+  pos: 917,
+  loc: Position { line: 19, column: 0 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/Accessdata/README.md. Exception: Failed verfiying: .content/Integrations/Accessdata/README.md. Error: { SyntaxError: unknown: Unexpected token (244:1)
+
+  242 | `}</code></pre>
+  243 | <h5>{`Human Readable Output`}</h5>
+> 244 | <?xml version="1.0"?>
+      |  ^
+  245 | <root>
+  246 | <Process resultitemtype="15"><Name>addm.exe</Name><Path/><StartTi ... ress>0</baseAddress><ImageSize>0</ImageSize><ProcessName/><FromAgent/></DLL>
+  247 | </root>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.jsxParseIdentifier (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3871:12)
+    at Object.jsxParseNamespacedName (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3881:23)
+    at Object.jsxParseElementName (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3892:21)
+    at Object.jsxParseOpeningElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3978:22)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4011:33)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+  pos: 10511,
+  loc: Position { line: 244, column: 1 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/Accessdata/README.md. Error: { SyntaxError: unknown: Unexpected token (244:1)
+
+  242 | `}</code></pre>
+  243 | <h5>{`Human Readable Output`}</h5>
+> 244 | <?xml version="1.0"?>
+      |  ^
+  245 | <root>
+  246 | <Process resultitemtype="15"><Name>addm.exe</Name><Path/><StartTi ... ress>0</baseAddress><ImageSize>0</ImageSize><ProcessName/><FromAgent/></DLL>
+  247 | </root>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.jsxParseIdentifier (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3871:12)
+    at Object.jsxParseNamespacedName (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3881:23)
+    at Object.jsxParseElementName (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3892:21)
+    at Object.jsxParseOpeningElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3978:22)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4011:33)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+  pos: 10511,
+  loc: Position { line: 244, column: 1 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/SMIME_Messaging/README.md. Exception: Failed verfiying: .content/Integrations/SMIME_Messaging/README.md. Error: { SyntaxError: unknown: Unexpected token, expected "}" (123:18)
+
+  121 | <pre>
+  122 | {
+> 123 |     "SMIME.Signed": {
+      |                   ^
+  124 |         "Headers": "MIME-Version=1.0,Content-Type=multipart/signed; protocol=\"application/x-pkcs7-signature\"; micalg=\"sha1\"; boundary=\"----5DAD2A4AC7C108E6B3D263AADB9D2BDB\"",
+  125 |         "Message": "MIME-Version: 1.0\nContent-Type: multipart/signed; protocol=\"application/x-pkcs7-signature\"; micalg=\"sha1\"; boundary=\"----5DAD2A4AC7C108E6B3D263AADB9D2BDB\"\n\nThis is an S/MIME signed message\n\n------5DAD2A4AC7C108E6B3D263AADB9D2BDB\nContent-Type: text/plain\r\n\r\nHello World\n------5DAD2A4AC7C108E6B3D263AADB9D2BDB\nContent-Type: application/x-pkcs7-signature; name=\"smime.p7s\"\nContent-Transfer-Encoding: base64\nContent-Disposition: attachment; filename=\"smime.p7s\"\n\nMIIGEQYJKoZIhvcNAQcCoIIGAjCCBf4CAQExCzAJBgUrDgMCGgUAMAsGCSqGSIb3\nDQEHAaCCA1wwggNYMIICQAIJAO117pJfuoxMMA0GCSqGSIb3DQEBCwUAMG4xCzAJ\nBgNVBAYTAklMMQ8wDQYDVQQIDAZJc3JhZWwxGzAZBgNVBAoMElBhbG8gYWx0byBu\nZXR3b3JrczExMC8GCSqGSIb3DQEJARYiYXZpc2hhaUBkZW1pc3RvZGV2Lm9ubWlj\ncm9zb2Z0LmNvbTAeFw0xOTEwMTcxOTMxMThaFw0yMDEwMTYxOTMxMThaMG4xCzAJ\nBgNVBAYTAklMMQ8wDQYDVQQIDAZJc3JhZWwxGzAZBgNVBAoMElBhbG8gYWx0byBu\nZXR3b3JrczExMC8GCSqGSIb3DQEJARYiYXZpc2hhaUBkZW1pc3RvZGV2Lm9ubWlj\ncm9zb2Z0LmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKOg9k/f\noKdoYZpVwxy6vdFEy7Bo7DLBHUf5WSmyO88kjtv2HGTZKPwCDbuZfi4643nkEtFp\nbPWFwIBbfICsOxdL6P4Oj1IOcVnIN0ohT7DEsgb69R5cD/p9n98P6R7DSws8fX1G\naXMExRazoVYFYmvLGrZT8bCXoqPsyuRSPiluxaQ15UILA9R0/ss5/P2tNZRZdsAT\naetY4hlktw1QR3Hv2LlbC0Sibni+6ZaaB5LR8gWF2J71Vb1YznV988FZwUZBTx2u\n0+Y1loKtEVQ1pf6T7wtLlJjoka97LP/53/UcLs7bihrKCVMpcr2noS4/HRM1aDf8\nyCpxEiZFXU2L6DMCAwEAATANBgkqhkiG9w0BAQsFAAOCAQEAoUN9fLxDgwfHl+NF\nRsYuRU+vOT9zi6s82onsWbbyCzCpx0VH2casluOf/6591xVZjhhqOM/+/qYThp41\n79mq98Mu4jVuU/xumaP82KnBrORu8jTa3ZncUAQMiMeIY5lDcnpoF9QW4Lp55D3X\ncS8y+vlw9NB/4NG6C8+VOgvEaWzMlsRbrVQ5bb4/oz5TK2isLDQSK6p0bw54Lxwh\noZcUnORDd0c7kSlkzB3/E/u3h59WQ4nuPC0weOIQFdqRoqgqKLmwa4Ucw4FjU8eR\nMVhPj6DZc6qnPath2ynCJBwJlOXYh2Sy89eGGiKbFCveWYqV2f2XxXiCpvJOwQt8\nkgaddTGCAn0wggJ5AgEBMHswbjELMAkGA1UEBhMCSUwxDzANBgNVBAgMBklzcmFl\nbDEbMBkGA1UECgwSUGFsbyBhbHRvIG5ldHdvcmtzMTEwLwYJKoZIhvcNAQkBFiJh\ndmlzaGFpQGRlbWlzdG9kZXYub25taWNyb3NvZnQuY29tAgkA7XXukl+6jEwwCQYF\nKw4DAhoFAKCB2DAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ\nBTEPFw0xOTEwMjkwOTA0NTRaMCMGCSqGSIb3DQEJBDEWBBRTe/xmyOR/ymt0oatw\npHauxOm1STB5BgkqhkiG9w0BCQ8xbDBqMAsGCWCGSAFlAwQBKjALBglghkgBZQME\nARYwCwYJYIZIAWUDBAECMAoGCCqGSIb3DQMHMA4GCCqGSIb3DQMCAgIAgDANBggq\nhkiG9w0DAgIBQDAHBgUrDgMCBzANBggqhkiG9w0DAgIBKDANBgkqhkiG9w0BAQEF\nAASCAQCSXAiT+9rmR964OgTOWgebTU2KooxChBAoKUOWXJDi1/25uTjs8OJcrfDy\nN4OAGaP/mjfDEYbkEXMYC6lDcSErYdGGegACNURJlh+fIh3ZBrbdWnh8B672g9Zx\nFIDM7MxtDEdt9ScNAaqKiZCKsZlk4bcXGLK6oI8PUUsLupgUhdTiKHplKbrsUBC8\nJckJ+xSbRHP2dQTAYr0LW87lvVQgi05hmKecICuTDU3/qSqTZbh/ajQk7HHB9XtI\nPmizUK2s+F3OazeJx0IFpeEeK4YIVxV+tbYQkNrZTxwe7sKFkcyfiJ2QGcw8hzly\nfRciC1z2msLtmgPUH81DqLx+B+pY\n\n------5DAD2A4AC7C108E6B3D263AADB9D2BDB--\n\n"
+  126 |     }
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.expect (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8362:28)
+    at Object.jsxParseExpressionContainer (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3951:10)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4042:36)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+  pos: 3453,
+  loc: Position { line: 123, column: 18 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/SMIME_Messaging/README.md. Error: { SyntaxError: unknown: Unexpected token, expected "}" (123:18)
+
+  121 | <pre>
+  122 | {
+> 123 |     "SMIME.Signed": {
+      |                   ^
+  124 |         "Headers": "MIME-Version=1.0,Content-Type=multipart/signed; protocol=\"application/x-pkcs7-signature\"; micalg=\"sha1\"; boundary=\"----5DAD2A4AC7C108E6B3D263AADB9D2BDB\"",
+  125 |         "Message": "MIME-Version: 1.0\nContent-Type: multipart/signed; protocol=\"application/x-pkcs7-signature\"; micalg=\"sha1\"; boundary=\"----5DAD2A4AC7C108E6B3D263AADB9D2BDB\"\n\nThis is an S/MIME signed message\n\n------5DAD2A4AC7C108E6B3D263AADB9D2BDB\nContent-Type: text/plain\r\n\r\nHello World\n------5DAD2A4AC7C108E6B3D263AADB9D2BDB\nContent-Type: application/x-pkcs7-signature; name=\"smime.p7s\"\nContent-Transfer-Encoding: base64\nContent-Disposition: attachment; filename=\"smime.p7s\"\n\nMIIGEQYJKoZIhvcNAQcCoIIGAjCCBf4CAQExCzAJBgUrDgMCGgUAMAsGCSqGSIb3\nDQEHAaCCA1wwggNYMIICQAIJAO117pJfuoxMMA0GCSqGSIb3DQEBCwUAMG4xCzAJ\nBgNVBAYTAklMMQ8wDQYDVQQIDAZJc3JhZWwxGzAZBgNVBAoMElBhbG8gYWx0byBu\nZXR3b3JrczExMC8GCSqGSIb3DQEJARYiYXZpc2hhaUBkZW1pc3RvZGV2Lm9ubWlj\ncm9zb2Z0LmNvbTAeFw0xOTEwMTcxOTMxMThaFw0yMDEwMTYxOTMxMThaMG4xCzAJ\nBgNVBAYTAklMMQ8wDQYDVQQIDAZJc3JhZWwxGzAZBgNVBAoMElBhbG8gYWx0byBu\nZXR3b3JrczExMC8GCSqGSIb3DQEJARYiYXZpc2hhaUBkZW1pc3RvZGV2Lm9ubWlj\ncm9zb2Z0LmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKOg9k/f\noKdoYZpVwxy6vdFEy7Bo7DLBHUf5WSmyO88kjtv2HGTZKPwCDbuZfi4643nkEtFp\nbPWFwIBbfICsOxdL6P4Oj1IOcVnIN0ohT7DEsgb69R5cD/p9n98P6R7DSws8fX1G\naXMExRazoVYFYmvLGrZT8bCXoqPsyuRSPiluxaQ15UILA9R0/ss5/P2tNZRZdsAT\naetY4hlktw1QR3Hv2LlbC0Sibni+6ZaaB5LR8gWF2J71Vb1YznV988FZwUZBTx2u\n0+Y1loKtEVQ1pf6T7wtLlJjoka97LP/53/UcLs7bihrKCVMpcr2noS4/HRM1aDf8\nyCpxEiZFXU2L6DMCAwEAATANBgkqhkiG9w0BAQsFAAOCAQEAoUN9fLxDgwfHl+NF\nRsYuRU+vOT9zi6s82onsWbbyCzCpx0VH2casluOf/6591xVZjhhqOM/+/qYThp41\n79mq98Mu4jVuU/xumaP82KnBrORu8jTa3ZncUAQMiMeIY5lDcnpoF9QW4Lp55D3X\ncS8y+vlw9NB/4NG6C8+VOgvEaWzMlsRbrVQ5bb4/oz5TK2isLDQSK6p0bw54Lxwh\noZcUnORDd0c7kSlkzB3/E/u3h59WQ4nuPC0weOIQFdqRoqgqKLmwa4Ucw4FjU8eR\nMVhPj6DZc6qnPath2ynCJBwJlOXYh2Sy89eGGiKbFCveWYqV2f2XxXiCpvJOwQt8\nkgaddTGCAn0wggJ5AgEBMHswbjELMAkGA1UEBhMCSUwxDzANBgNVBAgMBklzcmFl\nbDEbMBkGA1UECgwSUGFsbyBhbHRvIG5ldHdvcmtzMTEwLwYJKoZIhvcNAQkBFiJh\ndmlzaGFpQGRlbWlzdG9kZXYub25taWNyb3NvZnQuY29tAgkA7XXukl+6jEwwCQYF\nKw4DAhoFAKCB2DAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ\nBTEPFw0xOTEwMjkwOTA0NTRaMCMGCSqGSIb3DQEJBDEWBBRTe/xmyOR/ymt0oatw\npHauxOm1STB5BgkqhkiG9w0BCQ8xbDBqMAsGCWCGSAFlAwQBKjALBglghkgBZQME\nARYwCwYJYIZIAWUDBAECMAoGCCqGSIb3DQMHMA4GCCqGSIb3DQMCAgIAgDANBggq\nhkiG9w0DAgIBQDAHBgUrDgMCBzANBggqhkiG9w0DAgIBKDANBgkqhkiG9w0BAQEF\nAASCAQCSXAiT+9rmR964OgTOWgebTU2KooxChBAoKUOWXJDi1/25uTjs8OJcrfDy\nN4OAGaP/mjfDEYbkEXMYC6lDcSErYdGGegACNURJlh+fIh3ZBrbdWnh8B672g9Zx\nFIDM7MxtDEdt9ScNAaqKiZCKsZlk4bcXGLK6oI8PUUsLupgUhdTiKHplKbrsUBC8\nJckJ+xSbRHP2dQTAYr0LW87lvVQgi05hmKecICuTDU3/qSqTZbh/ajQk7HHB9XtI\nPmizUK2s+F3OazeJx0IFpeEeK4YIVxV+tbYQkNrZTxwe7sKFkcyfiJ2QGcw8hzly\nfRciC1z2msLtmgPUH81DqLx+B+pY\n\n------5DAD2A4AC7C108E6B3D263AADB9D2BDB--\n\n"
+  126 |     }
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.expect (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8362:28)
+    at Object.jsxParseExpressionContainer (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3951:10)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4042:36)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+  pos: 3453,
+  loc: Position { line: 123, column: 18 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/PaloAltoNetworksCortex/README.md. Exception: Failed verfiying: .content/Integrations/PaloAltoNetworksCortex/README.md. Error: { SyntaxError: unknown: Unexpected token, expected "}" (324:28)
+
+  322 | <pre>
+  323 | {
+> 324 |     "Cortex.Logging.Traffic": [
+      |                             ^
+  325 |         {
+  326 |             "Action": "allow",
+  327 |             "App": "dns",
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.expect (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8362:28)
+    at Object.jsxParseExpressionContainer (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3951:10)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4042:36)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+  pos: 10321,
+  loc: Position { line: 324, column: 28 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/PaloAltoNetworksCortex/README.md. Error: { SyntaxError: unknown: Unexpected token, expected "}" (324:28)
+
+  322 | <pre>
+  323 | {
+> 324 |     "Cortex.Logging.Traffic": [
+      |                             ^
+  325 |         {
+  326 |             "Action": "allow",
+  327 |             "App": "dns",
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.expect (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8362:28)
+    at Object.jsxParseExpressionContainer (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3951:10)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4042:36)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+  pos: 10321,
+  loc: Position { line: 324, column: 28 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/PaloAltoNetworks_PAN_OS_EDL_Management/README.md. Exception: Failed verfiying: .content/Integrations/PaloAltoNetworks_PAN_OS_EDL_Management/README.md. Error: { SyntaxError: unknown: Unexpected token (190:3)
+
+  188 | <p>&nbsp;</p>
+  189 | <p>
+> 190 |   <!-- remove the following comments to manually add an image: -->
+      |    ^
+  191 |    
+  192 |   <!--
+  193 | <a href="insert URL to your image" target="_blank" rel="noopener noreferrer"><img src="insert URL to your image"
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.jsxParseIdentifier (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3871:12)
+    at Object.jsxParseNamespacedName (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3881:23)
+    at Object.jsxParseElementName (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3892:21)
+    at Object.jsxParseOpeningElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3978:22)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4011:33)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+  pos: 6027,
+  loc: Position { line: 190, column: 3 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/PaloAltoNetworks_PAN_OS_EDL_Management/README.md. Error: { SyntaxError: unknown: Unexpected token (190:3)
+
+  188 | <p>&nbsp;</p>
+  189 | <p>
+> 190 |   <!-- remove the following comments to manually add an image: -->
+      |    ^
+  191 |    
+  192 |   <!--
+  193 | <a href="insert URL to your image" target="_blank" rel="noopener noreferrer"><img src="insert URL to your image"
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.jsxParseIdentifier (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3871:12)
+    at Object.jsxParseNamespacedName (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3881:23)
+    at Object.jsxParseElementName (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3892:21)
+    at Object.jsxParseOpeningElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3978:22)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4011:33)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+  pos: 6027,
+  loc: Position { line: 190, column: 3 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/Vectra_v2/README.md. Exception: Failed verfiying: .content/Integrations/Vectra_v2/README.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <time> (28:86)
+
+  26 |    <li><strong>Server URL (e.g. https://192.168.0.1)</strong></li>
+  27 |    <li><strong>API Token</strong></li>
+> 28 |    <li><strong>First fetch time range (<number> <time unit>, e.g., 1 hour, 30 minutes)</strong></li>
+     |                                                                                       ^
+  29 |    <li><strong>Fetch only Detections with greater/equal Certainty score</strong></li>
+  30 |    <li><strong>Fetch only Detections with greater/equal Threat score</strong></li>
+  31 |    <li><strong>Fetch only Detections with matching State</strong></li>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+  pos: 1492,
+  loc: Position { line: 28, column: 86 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/Vectra_v2/README.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <time> (28:86)
+
+  26 |    <li><strong>Server URL (e.g. https://192.168.0.1)</strong></li>
+  27 |    <li><strong>API Token</strong></li>
+> 28 |    <li><strong>First fetch time range (<number> <time unit>, e.g., 1 hour, 30 minutes)</strong></li>
+     |                                                                                       ^
+  29 |    <li><strong>Fetch only Detections with greater/equal Certainty score</strong></li>
+  30 |    <li><strong>Fetch only Detections with greater/equal Threat score</strong></li>
+  31 |    <li><strong>Fetch only Detections with matching State</strong></li>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+  pos: 1492,
+  loc: Position { line: 28, column: 86 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/PhishLabsIOC_EIR/README.md. Exception: Failed verfiying: .content/Integrations/PhishLabsIOC_EIR/README.md. Error: { SyntaxError: unknown: Unexpected token, expected "}" (59:10)
+
+  57 | [
+  58 |   {
+> 59 |     "name": "PhishLabs IOC - EIR: INC0528925",
+     |           ^
+  60 |     "occurred": "2019-10-15T16:31:09Z",
+  61 |     "rawJSON": {
+  62 |             "id": "INC0528925",
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.expect (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8362:28)
+    at Object.jsxParseExpressionContainer (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3951:10)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4042:36)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+    at Object.parseMaybeUnary (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9193:21)
+  pos: 2233,
+  loc: Position { line: 59, column: 10 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/PhishLabsIOC_EIR/README.md. Error: { SyntaxError: unknown: Unexpected token, expected "}" (59:10)
+
+  57 | [
+  58 |   {
+> 59 |     "name": "PhishLabs IOC - EIR: INC0528925",
+     |           ^
+  60 |     "occurred": "2019-10-15T16:31:09Z",
+  61 |     "rawJSON": {
+  62 |             "id": "INC0528925",
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.expect (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8362:28)
+    at Object.jsxParseExpressionContainer (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3951:10)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4042:36)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+    at Object.parseMaybeUnary (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9193:21)
+  pos: 2233,
+  loc: Position { line: 59, column: 10 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/MicrosoftGraphListener/README.md. Exception: Failed verfiying: .content/Integrations/MicrosoftGraphListener/README.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <time> (49:83)
+
+  47 |    <li><strong>Email address from which to fetch incidents  (e.g. "example@demisto.com")</strong></li>
+  48 |    <li><strong>Name of the folder from which to fetch incidents (supports Folder ID and sub-folders e.g. Inbox/Phishing)</strong></li>
+> 49 |    <li><strong>First fetch timestamp (<number> <time unit>, e.g., 12 hours, 7 days)</strong></li>
+     |                                                                                    ^
+  50 |    <li><strong>Maximum number of emails to pull per fetch.</strong></li>
+  51 |    <li><strong>Trust any certificate (not secure)</strong></li>
+  52 |    <li><strong>Use system proxy settings</strong></li>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+  pos: 3500,
+  loc: Position { line: 49, column: 83 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/MicrosoftGraphListener/README.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <time> (49:83)
+
+  47 |    <li><strong>Email address from which to fetch incidents  (e.g. "example@demisto.com")</strong></li>
+  48 |    <li><strong>Name of the folder from which to fetch incidents (supports Folder ID and sub-folders e.g. Inbox/Phishing)</strong></li>
+> 49 |    <li><strong>First fetch timestamp (<number> <time unit>, e.g., 12 hours, 7 days)</strong></li>
+     |                                                                                    ^
+  50 |    <li><strong>Maximum number of emails to pull per fetch.</strong></li>
+  51 |    <li><strong>Trust any certificate (not secure)</strong></li>
+  52 |    <li><strong>Use system proxy settings</strong></li>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+  pos: 3500,
+  loc: Position { line: 49, column: 83 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/Slack/README.md. Exception: Failed verfiying: .content/Integrations/Slack/README.md. Error: { SyntaxError: unknown: Unexpected token (73:1)
+
+  71 | </ol>
+  72 | <h3>1. mirror-investigation</h3>
+> 73 | <!-- <hr> -->
+     |  ^
+  74 | <p>Mirrors the investigation between Slack and the Demisto War Room.</p>
+  75 | <h5>Base Command</h5>
+  76 | <p>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.jsxParseIdentifier (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3871:12)
+    at Object.jsxParseNamespacedName (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3881:23)
+    at Object.jsxParseElementName (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3892:21)
+    at Object.jsxParseOpeningElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3978:22)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4011:33)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+  pos: 3801,
+  loc: Position { line: 73, column: 1 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/Slack/README.md. Error: { SyntaxError: unknown: Unexpected token (73:1)
+
+  71 | </ol>
+  72 | <h3>1. mirror-investigation</h3>
+> 73 | <!-- <hr> -->
+     |  ^
+  74 | <p>Mirrors the investigation between Slack and the Demisto War Room.</p>
+  75 | <h5>Base Command</h5>
+  76 | <p>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.jsxParseIdentifier (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3871:12)
+    at Object.jsxParseNamespacedName (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3881:23)
+    at Object.jsxParseElementName (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3892:21)
+    at Object.jsxParseOpeningElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3978:22)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4011:33)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+  pos: 3801,
+  loc: Position { line: 73, column: 1 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/PhishLabsIOC_DRP/README.md. Exception: Failed verfiying: .content/Integrations/PhishLabsIOC_DRP/README.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <time> (44:12)
+
+  42 |                 <number>
+  43 |                     <time unit>, e.g., 12 hours, 7 days)
+> 44 |             </strong></li>
+     |             ^
+  45 |             <li><strong>Fetch by date field</strong></li>
+  46 |             <li><strong>Fetch limit (min 20)</strong></li>
+  47 |             <li><strong>Trust any certificate (not secure)</strong></li>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+  pos: 1698,
+  loc: Position { line: 44, column: 12 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/PhishLabsIOC_DRP/README.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <time> (44:12)
+
+  42 |                 <number>
+  43 |                     <time unit>, e.g., 12 hours, 7 days)
+> 44 |             </strong></li>
+     |             ^
+  45 |             <li><strong>Fetch by date field</strong></li>
+  46 |             <li><strong>Fetch limit (min 20)</strong></li>
+  47 |             <li><strong>Trust any certificate (not secure)</strong></li>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+  pos: 1698,
+  loc: Position { line: 44, column: 12 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/ARIAPacketIntelligence/README.md. Exception: Failed verfiying: .content/Integrations/ARIAPacketIntelligence/README.md. Error: { SyntaxError: unknown: Unexpected token, expected "}" (182:28)
+
+  180 | <pre>
+  181 | {
+> 182 |     "Aria.BlockConversation": {
+      |                             ^
+  183 |         "Endpoints": [
+  184 |             {
+  185 |                 "FQN": "<sds_cluster_0>.<sds_node_sia17>.<sds_component_PacketIntelligence>.<sds_uuid_b84af73d-03df-48d1-9624-61849abde4d2>",
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.expect (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8362:28)
+    at Object.jsxParseExpressionContainer (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3951:10)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4042:36)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+  pos: 7727,
+  loc: Position { line: 182, column: 28 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/ARIAPacketIntelligence/README.md. Error: { SyntaxError: unknown: Unexpected token, expected "}" (182:28)
+
+  180 | <pre>
+  181 | {
+> 182 |     "Aria.BlockConversation": {
+      |                             ^
+  183 |         "Endpoints": [
+  184 |             {
+  185 |                 "FQN": "<sds_cluster_0>.<sds_node_sia17>.<sds_component_PacketIntelligence>.<sds_uuid_b84af73d-03df-48d1-9624-61849abde4d2>",
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.unexpected (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8376:16)
+    at Object.expect (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8362:28)
+    at Object.jsxParseExpressionContainer (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:3951:10)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4042:36)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+  pos: 7727,
+  loc: Position { line: 182, column: 28 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/Gmail/README.md. Exception: Failed verfiying: .content/Integrations/Gmail/README.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <img> (87:12)
+
+  85 |             <p>
+  86 |               <img src="/hc/article_attachments/360047607593/mceclip1.png" alt="mceclip1.png">
+> 87 |             </p>
+     |             ^
+  88 |           </li>
+  89 |           <li>
+  90 |             Under the show domain wide delegation, select
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+  pos: 2908,
+  loc: Position { line: 87, column: 12 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/Gmail/README.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <img> (87:12)
+
+  85 |             <p>
+  86 |               <img src="/hc/article_attachments/360047607593/mceclip1.png" alt="mceclip1.png">
+> 87 |             </p>
+     |             ^
+  88 |           </li>
+  89 |           <li>
+  90 |             Under the show domain wide delegation, select
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4027:32)
+  pos: 2908,
+  loc: Position { line: 87, column: 12 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Integrations/ProofpointTAP_v2/readme.md. Exception: Failed verfiying: .content/Integrations/ProofpointTAP_v2/readme.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <MDXLayout> (11:0)
+
+   9 | <p>{`This integration was integrated and tested with version xx of Proofpoint TAP v2`}</p>
+  10 | </p>
+> 11 | </ul><h2>Detailed Description</h2>
+     | ^
+  12 | <ul>
+  13 | <li>## Configure an API account</li>
+  14 | <li>To configure an instance of the integration in Demisto, you need to supply your Service Principal and Service Secret. When you configure the integration instance, enter the Service Principal in the Service Principal field, and the Service Secret in the Password field.</li>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+    at Object.parseMaybeUnary (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9193:21)
+    at Object.parseExprOps (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9059:23)
+    at Object.parseMaybeConditional (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9032:23)
+    at Object.parseMaybeAssign (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8978:21)
+    at Object.parseParenAndDistinguishExpression (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9775:28)
+  pos: 411,
+  loc: Position { line: 11, column: 0 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Integrations/ProofpointTAP_v2/readme.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <MDXLayout> (11:0)
+
+   9 | <p>{`This integration was integrated and tested with version xx of Proofpoint TAP v2`}</p>
+  10 | </p>
+> 11 | </ul><h2>Detailed Description</h2>
+     | ^
+  12 | <ul>
+  13 | <li>## Configure an API account</li>
+  14 | <li>To configure an instance of the integration in Demisto, you need to supply your Service Principal and Service Secret. When you configure the integration instance, enter the Service Principal in the Service Principal field, and the Service Secret in the Password field.</li>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+    at Object.parseMaybeUnary (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9193:21)
+    at Object.parseExprOps (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9059:23)
+    at Object.parseMaybeConditional (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9032:23)
+    at Object.parseMaybeAssign (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8978:21)
+    at Object.parseParenAndDistinguishExpression (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9775:28)
+  pos: 411,
+  loc: Position { line: 11, column: 0 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Beta_Integrations/SymantecDLP/README.md. Exception: Failed verfiying: .content/Beta_Integrations/SymantecDLP/README.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <MDXLayout> (10:0)
+
+   8 | Symantec Data Loss Prevention let's you discover, monitor and protect your sensitive corporate information.
+   9 | </p>
+> 10 | </ul><h2>Detailed Description</h2>
+     | ^
+  11 | <p>Note: This is a beta Integration, which lets you implement and test pre-release software. Since the integration is beta, it might contain bugs. Updates to the integration during the beta phase might include non-backward compatible features. We appreciate your feedback on the quality and usability of the integration to help us identify issues, fix them, and continually improve.</p>
+  12 | <h2>Fetch Incidents</h2>
+  13 | <p>The Symantec Data Loss Prevention integration is configured to fetch incidents and integrate them into Demisto's incidents and has the fetch limit parameter.</p>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+    at Object.parseMaybeUnary (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9193:21)
+    at Object.parseExprOps (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9059:23)
+    at Object.parseMaybeConditional (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9032:23)
+    at Object.parseMaybeAssign (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8978:21)
+    at Object.parseParenAndDistinguishExpression (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9775:28)
+  pos: 262,
+  loc: Position { line: 10, column: 0 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Beta_Integrations/SymantecDLP/README.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <MDXLayout> (10:0)
+
+   8 | Symantec Data Loss Prevention let's you discover, monitor and protect your sensitive corporate information.
+   9 | </p>
+> 10 | </ul><h2>Detailed Description</h2>
+     | ^
+  11 | <p>Note: This is a beta Integration, which lets you implement and test pre-release software. Since the integration is beta, it might contain bugs. Updates to the integration during the beta phase might include non-backward compatible features. We appreciate your feedback on the quality and usability of the integration to help us identify issues, fix them, and continually improve.</p>
+  12 | <h2>Fetch Incidents</h2>
+  13 | <p>The Symantec Data Loss Prevention integration is configured to fetch incidents and integrate them into Demisto's incidents and has the fetch limit parameter.</p>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+    at Object.parseMaybeUnary (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9193:21)
+    at Object.parseExprOps (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9059:23)
+    at Object.parseMaybeConditional (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9032:23)
+    at Object.parseMaybeAssign (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8978:21)
+    at Object.parseParenAndDistinguishExpression (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9775:28)
+  pos: 262,
+  loc: Position { line: 10, column: 0 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+ERROR: failed processing: .content/Beta_Integrations/SymantecBlueCoatMalwareAnalysis/README.md. Exception: Failed verfiying: .content/Beta_Integrations/SymantecBlueCoatMalwareAnalysis/README.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <MDXLayout> (13:0)
+
+  11 | <p>Detonate File - Symantec Blue Coat Content and Malware Analysis Beta</p>
+  12 | <p>Detonate URL - Symantec Blue Coat Content and Malware Analysis Beta</p>
+> 13 | </ul><h2>Detailed Description</h2>
+     | ^
+  14 | <p>Note: This is a beta Integration, which lets you implement and test pre-release software. Since the integration is beta, it might contain bugs. Updates to the integration during the beta phase might include non-backward compatible features. We appreciate your feedback on the quality and usability of the integration to help us identify issues, fix them, and continually improve.</p>
+  15 | <h2>Fetch Incidents</h2>
+  16 | <p>Populate this section with Fetch incidents data</p>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+    at Object.parseMaybeUnary (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9193:21)
+    at Object.parseExprOps (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9059:23)
+    at Object.parseMaybeConditional (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9032:23)
+    at Object.parseMaybeAssign (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8978:21)
+    at Object.parseParenAndDistinguishExpression (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9775:28)
+  pos: 432,
+  loc: Position { line: 13, column: 0 },
+  code: 'BABEL_PARSE_ERROR' }
+.
+Traceback (most recent call last):
+  File "./gendocs.py", line 120, in create_integration_docs
+    doc_infos.append(process_integration_doc(r, integrations_dir))
+  File "./gendocs.py", line 66, in process_integration_doc
+    verify_mdx(readme_file)
+  File "./gendocs.py", line 56, in verify_mdx
+    raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
+ValueError: Failed verfiying: .content/Beta_Integrations/SymantecBlueCoatMalwareAnalysis/README.md. Error: { SyntaxError: unknown: Expected corresponding JSX closing tag for <MDXLayout> (13:0)
+
+  11 | <p>Detonate File - Symantec Blue Coat Content and Malware Analysis Beta</p>
+  12 | <p>Detonate URL - Symantec Blue Coat Content and Malware Analysis Beta</p>
+> 13 | </ul><h2>Detailed Description</h2>
+     | ^
+  14 | <p>Note: This is a beta Integration, which lets you implement and test pre-release software. Since the integration is beta, it might contain bugs. Updates to the integration during the beta phase might include non-backward compatible features. We appreciate your feedback on the quality and usability of the integration to help us identify issues, fix them, and continually improve.</p>
+  15 | <h2>Fetch Incidents</h2>
+  16 | <p>Populate this section with Fetch incidents data</p>
+    at Object.raise (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:6983:17)
+    at Object.jsxParseElementAt (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4059:16)
+    at Object.jsxParseElement (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4085:17)
+    at Object.parseExprAtom (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:4092:19)
+    at Object.parseExprSubscripts (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9213:23)
+    at Object.parseMaybeUnary (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9193:21)
+    at Object.parseExprOps (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9059:23)
+    at Object.parseMaybeConditional (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9032:23)
+    at Object.parseMaybeAssign (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:8978:21)
+    at Object.parseParenAndDistinguishExpression (/Users/glichtman/dev/demisto/content-docs/node_modules/@babel/parser/lib/index.js:9775:28)
+  pos: 432,
+  loc: Position { line: 13, column: 0 },
+  code: 'BABEL_PARSE_ERROR' }
+
+--------------------------
+Success integration docs:
+.content/Integrations/DomainTools_Iris/README.md
+.content/Integrations/Flashpoint/README.md
+.content/Integrations/SecurityAdvisor/README.md
+
+Failed integration docs:
+.content/Beta_Integrations/SymantecBlueCoatMalwareAnalysis/README.md
+.content/Beta_Integrations/SymantecDLP/README.md
+.content/Integrations/ARIAPacketIntelligence/README.md
+.content/Integrations/Accessdata/README.md
+.content/Integrations/Akamai_SIEM/README.md
+.content/Integrations/AlienVault_OTX_v2/README.md
+.content/Integrations/AzureCompute_v2/README.md
+.content/Integrations/AzureSecurityCenter_v2/README.md
+.content/Integrations/Exabeam/README.md
+.content/Integrations/ExtraHop_v2/README.md
+.content/Integrations/Gmail/README.md
+.content/Integrations/HelloWorld/README.md
+.content/Integrations/JsonWhoIs/README.md
+.content/Integrations/MicrosoftGraphGroups/README.md
+.content/Integrations/MicrosoftGraphListener/README.md
+.content/Integrations/PaloAltoNetworksCortex/README.md
+.content/Integrations/PaloAltoNetworks_PAN_OS_EDL_Management/README.md
+.content/Integrations/PhishLabsIOC_DRP/README.md
+.content/Integrations/PhishLabsIOC_EIR/README.md
+.content/Integrations/ProofpointTAP_v2/readme.md
+.content/Integrations/SMIME_Messaging/README.md
+.content/Integrations/SecBI/README.md
+.content/Integrations/Slack/README.md
+.content/Integrations/SlashNextPhishingIncidentResponse/README.md
+.content/Integrations/Tanium_v2/README.md
+.content/Integrations/Vectra_v2/README.md
