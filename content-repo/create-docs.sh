@@ -40,7 +40,7 @@ mkdir ${TARGET_DIR}
 
 echo "Copying CommonServerPython.py and demistomock.py"
 cp ${CONTENT_GIT_DIR}/Scripts/CommonServerPython/CommonServerPython.py .
-cp ${CONTENT_GIT_DIR}/Tests/demistomock/demistomock.py
+cp ${CONTENT_GIT_DIR}/Tests/demistomock/demistomock.py .
 
 echo "Generating docs..."
 pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
