@@ -39,6 +39,11 @@ module.exports = {
           position: "left"
         },
         {
+          to: "docs/reference/index",
+          label: "Reference",
+          position: "left"
+        },
+        {
           to: "docs/why-demisto",
           label: "Why become a Partner?",
           position: "right"

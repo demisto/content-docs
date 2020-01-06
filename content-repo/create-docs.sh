@@ -6,6 +6,10 @@ set -e
 # Script will check out the Demisto content repo and then generate documentation based upon the checkout
 
 SCRIPT_DIR=$(dirname ${BASH_SOURCE})
+CURRENT_DIR=`pwd`
+if [[ "${SCRIPT_DIR}" != /* ]]; then
+    SCRIPT_DIR="${CURRENT_DIR}/${SCRIPT_DIR}"
+fi
 CONTENT_GIT_DIR=${SCRIPT_DIR}/.content
 DOCS_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
@@ -30,9 +34,9 @@ git pull
 cd ${SCRIPT_DIR}
 
 TARGET_DIR=${SCRIPT_DIR}/../docs/reference
-echo "Deleting and creating dir: $TARGET_DIR"
-rm -rf $TARGET_DIR
+echo "Deleting and creating dir: ${TARGET_DIR}"
+rm -rf ${TARGET_DIR}
 mkdir ${TARGET_DIR}
 
 echo "Generating docs..."
-pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR"
+pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"

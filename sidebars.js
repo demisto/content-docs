@@ -1,4 +1,6 @@
-module.exports = {
+const fs = require('fs-extra');
+
+const sidebars =  {  
   docs: [
       {
         type: "category",
@@ -66,3 +68,10 @@ module.exports = {
       }
     ]
 };
+
+if (fs.existsSync("docs/reference/sidebar.json")) {
+  referenceSideBar = fs.readJSONSync("docs/reference/sidebar.json")
+  sidebars["reference"] = referenceSideBar
+}
+
+module.exports = sidebars;
