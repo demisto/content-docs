@@ -1,16 +1,21 @@
+---
+id: slash-next-phishing-incident-response
+title: SlashNext Phishing Incident Response
+---
+
 <p>
-  <br>
+  <br/>
   <b>SlashNext Phishing Incident Response</b> integration enables Demisto users to fully automate analysis of suspicious
   URLs. For example, IR teams responsible for abuse inbox management can extract links or domains out of suspicious
   emails and automatically analyze them with the SlashNext SEER™ threat detection cloud to get definitive, binary
   verdicts (malicious or benign) along with IOCs, screen shots, and more. Automating URL analysis can save IR teams
   hundreds of hours versus manually triaging these emails or checking URLs and domains against less accurate phishing
   databases and domain reputation services.
-  <br>
+  <br/>
 
-  <br>
+  <br/>
   This integration was integrated and tested with version <b>v1.0</b> of SlashNext Phishing Incident Response.
-  <br>
+  <br/>
 </p>
 <h2>SlashNext Phishing Incident Response Playbook</h2>
 <p>SlashNext have developed two sample playbooks to demonstrate two of the major use cases.</p>
@@ -73,7 +78,7 @@
   <li>slashnext-download-text</li>
 </ol>
 <h3>1. ip</h3>
-<hr>
+<hr/>
 <p>Lookup an IP address indicator in SlashNext Threat Intelligence database.</p>
 <h5>Base Command</h5>
 <p>
@@ -205,7 +210,7 @@
   <code>!ip ip=8.8.8.8</code>
 </p>
 <h5>Context Example</h5>
-<pre>
+<pre>{`
 {
     "DBotScore": {
         "Indicator": "8.8.8.8",
@@ -227,7 +232,7 @@
         "Verdict": "Benign"
     }
 }
-</pre>
+`}</pre>
 <h5>Human Readable Output</h5>
 <p>
 <h3>SlashNext Phishing Incident Response - IP Lookup</h3>
@@ -259,15 +264,15 @@
   </tbody>
 </table>
 
-<!-- remove the following comments to manually add an image: -->
-<!--
+{/* remove the following comments to manually add an image: */}
+{/*
 <a href="insert URL to your image" target="_blank" rel="noopener noreferrer"><img src="insert URL to your image"
  alt="image" width="749" height="412"></a>
- -->
+ */}
 </p>
 
 <h3>2. domain</h3>
-<hr>
+<hr/>
 <p>Lookup a FQDN indicator in SlashNext Threat Intelligence database.</p>
 <h5>Base Command</h5>
 <p>
@@ -399,7 +404,7 @@
   <code>!domain domain=www.google.com</code>
 </p>
 <h5>Context Example</h5>
-<pre>
+<pre>{`
 {
     "DBotScore": {
         "Indicator": "www.google.com",
@@ -421,7 +426,7 @@
         "Verdict": "Benign"
     }
 }
-</pre>
+`}</pre>
 <h5>Human Readable Output</h5>
 <p>
 <h3>SlashNext Phishing Incident Response - Domain Lookup</h3>
@@ -453,15 +458,15 @@
   </tbody>
 </table>
 
-<!-- remove the following comments to manually add an image: -->
-<!--
+{/* remove the following comments to manually add an image: */}
+{/*
 <a href="insert URL to your image" target="_blank" rel="noopener noreferrer"><img src="insert URL to your image"
  alt="image" width="749" height="412"></a>
- -->
+ */}
 </p>
 
 <h3>3. slashnext-host-reputation</h3>
-<hr>
+<hr/>
 <p>Search in SlashNext Cloud database and retrieve reputation of a host.</p>
 <h5>Base Command</h5>
 <p>
@@ -648,7 +653,7 @@
   <code>!slashnext-host-reputation host=www.google.com</code>
 </p>
 <h5>Context Example</h5>
-<pre>
+<pre>{`
 {
     "DBotScore": {
         "Indicator": "www.google.com",
@@ -670,7 +675,7 @@
         "Verdict": "Benign"
     }
 }
-</pre>
+`}</pre>
 <h5>Human Readable Output</h5>
 <p>
 <h3>SlashNext Phishing Incident Response - Host Reputation</h3>
@@ -702,15 +707,15 @@
   </tbody>
 </table>
 
-<!-- remove the following comments to manually add an image: -->
-<!--
+{/* remove the following comments to manually add an image: */}
+{/*
 <a href="insert URL to your image" target="_blank" rel="noopener noreferrer"><img src="insert URL to your image"
  alt="image" width="749" height="412"></a>
- -->
+ */}
 </p>
 
 <h3>4. slashnext-host-report</h3>
-<hr>
+<hr/>
 <p>Search in SlashNext Cloud database and retrieve a detailed report for a host and associated URL.</p>
 <h5>Base Command</h5>
 <p>
@@ -897,7 +902,7 @@
   <code>!slashnext-host-report host=www.google.com</code>
 </p>
 <h5>Context Example</h5>
-<pre>
+<pre>{`
 {
     "DBotScore": {
         "Indicator": "www.google.com",
@@ -944,7 +949,7 @@
         }
     ]
 }
-</pre>
+`}</pre>
 <h5>Human Readable Output</h5>
 <p>
 <h3>SlashNext Phishing Incident Response - Host Report</h3>
@@ -1008,19 +1013,19 @@
 </table>
 
 <p>
-Forensics: Webpage Screenshot for the Scanned URL = http://www.google.com/wasif<br>
-Forensics: Webpage HTML for the Scanned URL = http://www.google.com/wasif<br>
-Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/wasif<br>
+Forensics: Webpage Screenshot for the Scanned URL = http://www.google.com/wasif<br/>
+Forensics: Webpage HTML for the Scanned URL = http://www.google.com/wasif<br/>
+Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/wasif<br/>
 </p>
-<!-- remove the following comments to manually add an image: -->
-<!--
+{/* remove the following comments to manually add an image: */}
+{/*
 <a href="insert URL to your image" target="_blank" rel="noopener noreferrer"><img src="insert URL to your image"
  alt="image" width="749" height="412"></a>
- -->
+ */}
 </p>
 
 <h3>5. slashnext-host-urls</h3>
-<hr>
+<hr/>
 <p>Search in SlashNext Cloud database and retrieve list of all URLs associated with the specified host.</p>
 <h5>Base Command</h5>
 <p>
@@ -1222,7 +1227,7 @@ Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/was
   <code>!slashnext-host-urls host=www.google.com</code>
 </p>
 <h5>Context Example</h5>
-<pre>
+<pre>{`
 {
     "DBotScore": [
         {
@@ -1501,7 +1506,7 @@ Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/was
         }
     ]
 }
-</pre>
+`}</pre>
 <h5>Human Readable Output</h5>
 <p>
 <h3>SlashNext Phishing Incident Response - Host URLs</h3>
@@ -1588,7 +1593,7 @@ Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/was
       <td> 08-26-2019 19:41:19 UTC </td>
     </tr>
     <tr>
-      <td> --------> https://www.google.com/?gws_rd=ssl </td>
+      <td> ------*/} https://www.google.com/?gws_rd=ssl </td>
       <td> Final URL </td>
       <td> Benign </td>
       <td>  </td>
@@ -1610,7 +1615,7 @@ Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/was
       <td> 10-01-2019 12:50:47 UTC </td>
     </tr>
     <tr>
-      <td> --------> https://www.google.com/maps/place/2307 </td>
+      <td> ------*/} https://www.google.com/maps/place/2307 </td>
       <td> Final URL </td>
       <td> Benign </td>
       <td>  </td>
@@ -1632,7 +1637,7 @@ Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/was
       <td> 10-01-2019 12:50:26 UTC </td>
     </tr>
     <tr>
-      <td> --------> https://www.google.com/maps/place/2307+Watterson+Trail </td>
+      <td> ------*/} https://www.google.com/maps/place/2307+Watterson+Trail </td>
       <td> Final URL </td>
       <td> Benign </td>
       <td>  </td>
@@ -1654,7 +1659,7 @@ Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/was
       <td> 10-01-2019 12:50:24 UTC </td>
     </tr>
     <tr>
-      <td> --------> https://www.google.com/maps/place/2307&#43;Watterson&#43;Trail </td>
+      <td> ------*/} https://www.google.com/maps/place/2307&#43;Watterson&#43;Trail </td>
       <td> Final URL </td>
       <td> Benign </td>
       <td>  </td>
@@ -1676,7 +1681,7 @@ Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/was
       <td> 10-01-2019 12:49:58 UTC </td>
     </tr>
     <tr>
-      <td> --------> https://www.google.com/maps/place/2307&#43;Watterson&#43;Trail,&#43;Jeffersontown,&#43;KY&#43;40299/@38.2107207,-85.5607165,17z/data=!3m1!4b1!4m5!3m4!1s0x8869a1b57420f6d9:0xccc95b8f32dcfd4b!8m2!3d38.2107165!4d-85.5585225 </td>
+      <td> ------*/} https://www.google.com/maps/place/2307&#43;Watterson&#43;Trail,&#43;Jeffersontown,&#43;KY&#43;40299/@38.2107207,-85.5607165,17z/data=!3m1!4b1!4m5!3m4!1s0x8869a1b57420f6d9:0xccc95b8f32dcfd4b!8m2!3d38.2107165!4d-85.5585225 </td>
       <td> Final URL </td>
       <td> Benign </td>
       <td>  </td>
@@ -1689,15 +1694,15 @@ Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/was
   </tbody>
 </table>
 
-<!-- remove the following comments to manually add an image: -->
-<!--
+{/* remove the following comments to manually add an image: */}
+{/*
 <a href="insert URL to your image" target="_blank" rel="noopener noreferrer"><img src="insert URL to your image"
  alt="image" width="749" height="412"></a>
- -->
+ */}
 </p>
 
 <h3>6. slashnext-url-scan</h3>
-<hr>
+<hr/>
 <p>Perform a real-time URL reputation scan with SlashNext cloud-based SEER Engine. If the specified URL already exists in the cloud database, scan results will get returned immediately. If not, this command will submit a URL scan request and return with ‘check back later’ message along with a unique Scan ID. User can check results of this scan with ‘slashnext-scan-report’ command after 60 seconds or later using the retuned Scan ID</p>
 <h5>Base Command</h5>
 <p>
@@ -1899,7 +1904,7 @@ Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/was
   <code>!slashnext-url-scan url=www.google.com extednded_info=true</code>
 </p>
 <h5>Context Example</h5>
-<pre>
+<pre>{`
 {
     "DBotScore": [
         {
@@ -1940,7 +1945,7 @@ Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/was
         }
     ]
 }
-</pre>
+`}</pre>
 <h5>Human Readable Output</h5>
 <p>
 <h3>SlashNext Phishing Incident Response - URL Scan</h3>
@@ -1972,7 +1977,7 @@ Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/was
       <td> 08-26-2019 19:41:19 UTC </td>
     </tr>
     <tr>
-      <td> --------> https://www.google.com/?gws_rd=ssl </td>
+      <td> ------*/} https://www.google.com/?gws_rd=ssl </td>
       <td> Final URL </td>
       <td> Benign </td>
       <td>  </td>
@@ -1985,15 +1990,15 @@ Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/was
   </tbody>
 </table>
 
-<!-- remove the following comments to manually add an image: -->
-<!--
+{/* remove the following comments to manually add an image: */}
+{/*
 <a href="insert URL to your image" target="_blank" rel="noopener noreferrer"><img src="insert URL to your image"
  alt="image" width="749" height="412"></a>
- -->
+ */}
 </p>
 
 <h3>7. slashnext-url-scan-sync</h3>
-<hr>
+<hr/>
 <p>Perform a real-time URL scan with SlashNext cloud-based SEER Engine in a blocking mode. If the specified URL already exists in the cloud database, scan result will get returned immediately. If not, this command will submit a URL scan request and wait for the scan to finish. The scan may take up to 60 seconds to finish.</p>
 <h5>Base Command</h5>
 <p>
@@ -2200,7 +2205,7 @@ Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/was
   <code>!slashnext-url-scan-sync url=www.google.com extednded_info=true</code>
 </p>
 <h5>Context Example</h5>
-<pre>
+<pre>{`
 {
     "DBotScore": [
         {
@@ -2241,7 +2246,7 @@ Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/was
         }
     ]
 }
-</pre>
+`}</pre>
 <h5>Human Readable Output</h5>
 <p>
 <h3>SlashNext Phishing Incident Response - URL Scan Sync</h3>
@@ -2273,7 +2278,7 @@ Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/was
       <td> 08-26-2019 19:41:19 UTC </td>
     </tr>
     <tr>
-      <td> --------> https://www.google.com/?gws_rd=ssl </td>
+      <td> ------*/} https://www.google.com/?gws_rd=ssl </td>
       <td> Final URL </td>
       <td> Benign </td>
       <td>  </td>
@@ -2286,15 +2291,15 @@ Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/was
   </tbody>
 </table>
 
-<!-- remove the following comments to manually add an image: -->
-<!--
+{/* remove the following comments to manually add an image: */}
+{/*
 <a href="insert URL to your image" target="_blank" rel="noopener noreferrer"><img src="insert URL to your image"
  alt="image" width="749" height="412"></a>
- -->
+ */}
 </p>
 
 <h3>8. slashnext-scan-report</h3>
-<hr>
+<hr/>
 <p>Retrieve URL scan results against a previous Scan request. If the scan is finished, result will be retuned immediately; otherwise a ‘check back later’ message will be returned.</p>
 <h5>Base Command</h5>
 <p>
@@ -2496,7 +2501,7 @@ Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/was
   <code>!slashnext-scan-report scanid=48ae7b06-5915-4633-bc51-2cfaa0036742 extednded_info=true</code>
 </p>
 <h5>Context Example</h5>
-<pre>
+<pre>{`
 {
     "DBotScore": [
         {
@@ -2537,7 +2542,7 @@ Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/was
         }
     ]
 }
-</pre>
+`}</pre>
 <h5>Human Readable Output</h5>
 <p>
 <h3>SlashNext Phishing Incident Response - Scan Report</h3>
@@ -2569,7 +2574,7 @@ Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/was
       <td> 08-26-2019 19:41:19 UTC </td>
     </tr>
     <tr>
-      <td> --------> https://www.google.com/?gws_rd=ssl </td>
+      <td> ------*/} https://www.google.com/?gws_rd=ssl </td>
       <td> Final URL </td>
       <td> Benign </td>
       <td>  </td>
@@ -2582,15 +2587,15 @@ Forensics: Webpage Rendered Text for the Scanned URL = http://www.google.com/was
   </tbody>
 </table>
 
-<!-- remove the following comments to manually add an image: -->
-<!--
+{/* remove the following comments to manually add an image: */}
+{/*
 <a href="insert URL to your image" target="_blank" rel="noopener noreferrer"><img src="insert URL to your image"
  alt="image" width="749" height="412"></a>
- -->
+ */}
 </p>
 
 <h3>9. slashnext-download-screenshot</h3>
-<hr>
+<hr/>
 <p>Download webpage screenshot against a previous URL Scan request.</p>
 <h5>Base Command</h5>
 <p>
@@ -2640,15 +2645,15 @@ There are no context output for this command.
 <p>
 Forensics: Webpage Screenshot for URL Scan ID = 48ae7b06-5915-4633-bc51-2cfaa0036742
 </p>
-<!-- remove the following comments to manually add an image: -->
-<!--
+{/* remove the following comments to manually add an image: */}
+{/*
 <a href="insert URL to your image" target="_blank" rel="noopener noreferrer"><img src="insert URL to your image"
  alt="image" width="749" height="412"></a>
- -->
+ */}
 </p>
 
 <h3>10. slashnext-download-html</h3>
-<hr>
+<hr/>
 <p>Download webpage HTML against a previous URL Scan request.</p>
 <h5>Base Command</h5>
 <p>
@@ -2693,15 +2698,15 @@ There are no context output for this command.
 <p>
 Forensics: Webpage HTML for URL Scan ID = 48ae7b06-5915-4633-bc51-2cfaa0036742
 </p>
-<!-- remove the following comments to manually add an image: -->
-<!--
+{/* remove the following comments to manually add an image: */}
+{/*
 <a href="insert URL to your image" target="_blank" rel="noopener noreferrer"><img src="insert URL to your image"
  alt="image" width="749" height="412"></a>
- -->
+ */}
 </p>
 
 <h3>11. slashnext-download-text</h3>
-<hr>
+<hr/>
 <p>Download  webpage text against a previous URL Scan request.</p>
 <h5>Base Command</h5>
 <p>
@@ -2746,10 +2751,10 @@ There are no context output for this command.
 <p>
 Forensics: Webpage Rendered Text for URL Scan ID = 48ae7b06-5915-4633-bc51-2cfaa0036742
 </p>
-<!-- remove the following comments to manually add an image: -->
-<!--
+{/* remove the following comments to manually add an image: */}
+{/*
 <a href="insert URL to your image" target="_blank" rel="noopener noreferrer"><img src="insert URL to your image"
  alt="image" width="749" height="412"></a>
- -->
+ */}
 </p>
 <h2>Additional Information</h2><h2>Known Limitations</h2><h2>Troubleshooting</h2>
