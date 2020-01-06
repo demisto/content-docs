@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "reference-docs": "PIPENV_IGNORE_VIRTUALENVS=1 cd content-repo && ./create-docs.sh",
-    "test": "PIPENV_IGNORE_VIRTUALENVS=1 cd content-repo && pipenv install --dev && pipenv run pytest -v",
+    "reference-docs": "cd content-repo && PIPENV_IGNORE_VIRTUALENVS=1  ./create-docs.sh",
+    "test": "cd content-repo && PIPENV_IGNORE_VIRTUALENVS=1 pipenv install --dev && PIPENV_IGNORE_VIRTUALENVS=1 pipenv run pytest -v",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "npm test && npm run reference-docs && copyfiles -E -V -f docs/doc_imgs/* static/doc_imgs/. && replace 'doc_imgs' '/doc_imgs' docs/* --include='*.md*' && docusaurus build",
