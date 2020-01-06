@@ -29,3 +29,6 @@ yarn-error.log*
 **/.vscode/**
 content-repo/.content
 __pycache__
+static/doc_imgs
+.mypy_cache
+docs/reference
