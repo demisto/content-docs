@@ -3,9 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "reference-docs": "cd content-repo && ./create-docs.sh",
+    "test": "cd content-repo && pipenv install --dev && pipenv run pytest -v",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "copyfiles -E -V -f docs/doc_imgs/* static/doc_imgs/. && replace 'doc_imgs' '/doc_imgs' docs/* --include='*.md*' && docusaurus build",
+    "build": "npm test && npm run reference-docs && copyfiles -E -V -f docs/doc_imgs/* static/doc_imgs/. && replace 'doc_imgs' '/doc_imgs' docs/* --include='*.md*' && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy"
   },
