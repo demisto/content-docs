@@ -22,6 +22,14 @@ npm start
 ```
 Start writing docs...
 
+## Generating Reference Docs
+Reference docs are generated from the Demisto Content repository: https://github.com/demisto/content . When working locally you can generate the reference docs by running:
+```
+npm run reference-docs
+```
+This task will checkout the content repository and generate the docs. The generated docs are ignored by `.gitignore` and shouldn't be checked in as they are generated during the build.
+
+When generating the docs the `master` branch of the `content` repo will be used or if there is a matching branch with the same name as the current branch of `content-docs`, that branch will be used.
 
 ## Build
 
