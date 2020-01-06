@@ -42,7 +42,16 @@ echo "Copying CommonServerPython.py and demistomock.py"
 cp ${CONTENT_GIT_DIR}/Scripts/CommonServerPython/CommonServerPython.py .
 cp ${CONTENT_GIT_DIR}/Tests/demistomock/demistomock.py .
 
-echo "Installing pipenv..."
-pipenv install
-echo "Generating docs..."
-pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
+if [ -z "${NETLIFY}" ]; then
+    echo "Not running in netlify. Using pipenv"
+    echo "Installing pipenv..."
+    pipenv install
+    echo "Generating docs..."
+    pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
+else
+    echo "Generating docs..."
+    ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
+fi
+
+
+
