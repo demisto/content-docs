@@ -28,6 +28,11 @@ jobs:
         cd content-repo
         wget https://raw.githubusercontent.com/demisto/content/master/Scripts/CommonServerPython/CommonServerPython.py
         wget https://github.com/demisto/content/blob/master/Tests/demistomock/demistomock.py
+    - name: Lint
+      run: |
+        cd content-repo
+        pipenv run mypy gendocs.py
+        pipenv run flake8 *.py
     - name: Unit Testing
       run: |
         cd content-repo
