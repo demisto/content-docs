@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "reference-docs": "cd content-repo && ./create-docs.sh",
-    "test": "cd content-repo && pipenv install --dev && pipenv run pytest -v",
+    "test": "cd content-repo && pipenv install --dev && pipenv run flake8 *.py && pipenv run mypy gendocs.py && pipenv run pytest -v",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "npm run reference-docs && copyfiles -E -V -f docs/doc_imgs/* static/doc_imgs/. && replace 'doc_imgs' '/doc_imgs' docs/* --include='*.md*' && docusaurus build",

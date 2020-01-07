@@ -31,6 +31,17 @@ This task will checkout the content repository and generate the docs. The genera
 
 When generating the docs the `master` branch of the `content` repo will be used or if there is a matching branch with the same name as the current branch of `content-docs`, that branch will be used.
 
+### Generation Code
+Code used for generating content reference docs is written in Python and resides in the `content-repo` folder. To setup a development environment we use [pipenv](https://github.com/pypa/pipenv). Setup a proper Python env by running:
+```
+pipenv install --dev
+```
+To run linting and unit tests you can use npm:
+```
+npm run test
+```
+Linting and unit tests are run on each commit using Github Actions. They are required to pass in-order to merge PRs.
+
 ## Build
 
 ```
