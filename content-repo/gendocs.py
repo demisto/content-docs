@@ -63,7 +63,7 @@ def gen_html_doc(txt: str) -> str:
             '<div dangerouslySetInnerHTML={{__html: txt}} />\n')
 
 
-def process_integration_doc(readme_file: str, target_dir: str) -> DocInfo:
+def process_integration_doc(readme_file: str, target_dir: str, content_dir: str) -> DocInfo:
     base_dir = os.path.dirname(readme_file)
     ymlfiles = glob.glob(base_dir + '/*.yml')
     if not ymlfiles:
@@ -124,7 +124,7 @@ def create_integration_docs(content_dir: str, target_dir: str):
     fail = []
     for r in readme_files:
         try:
-            doc_infos.append(process_integration_doc(r, integrations_dir))
+            doc_infos.append(process_integration_doc(r, integrations_dir, content_dir))
             success.append(r)
         except Exception as ex:
             print(f'ERROR: failed processing: {r}. Exception: {ex}.\n{traceback.format_exc()}--------------------------')

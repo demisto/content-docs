@@ -11,7 +11,15 @@ if [[ "${SCRIPT_DIR}" != /* ]]; then
     SCRIPT_DIR="${CURRENT_DIR}/${SCRIPT_DIR}"
 fi
 CONTENT_GIT_DIR=${SCRIPT_DIR}/.content
-if [[ -z "${NETLIFY}" && -z "${BRANCH}" ]]; then
+if [[ -n "${NETLIFY}" ]]; then
+    echo "Netlify env data:"
+    echo "BRANCH=${BRANCH}"
+    echo "HEAD=${HEAD}"
+    echo "COMMIT_REF=${COMMIT_REF}"
+    echo "PULL_REQUEST=${PULL_REQUEST}"
+    echo "REVIEW_ID=${REVIEW_ID}"
+fi
+if [[ -n "${NETLIFY}" && -z "${BRANCH}" ]]; then
     DOCS_BRANCH="${BRANCH}"
 else
     DOCS_BRANCH=$(git rev-parse --abbrev-ref HEAD)
