@@ -11,9 +11,13 @@ if [[ "${SCRIPT_DIR}" != /* ]]; then
     SCRIPT_DIR="${CURRENT_DIR}/${SCRIPT_DIR}"
 fi
 CONTENT_GIT_DIR=${SCRIPT_DIR}/.content
-DOCS_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+if [ -z "${NETLIFY}" && -z "${BRANCH}" ]; then
+    DOCS_BRANCH="${BRANCH}"
+else
+    DOCS_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+fi
 
-echo "current branch: ${DOCS_BRANCH}"
+echo "==== current branch: ${DOCS_BRANCH} ===="
 
 # Do a shallow clone to speed things up
 
