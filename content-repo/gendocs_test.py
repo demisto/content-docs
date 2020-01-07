@@ -34,7 +34,7 @@ def test_fix_mdx():
 
 
 def test_process_integration_doc(tmp_path):
-    res = process_integration_doc(f'{SAMPLE_CONTENT}/Integrations/DomainTools_Iris/README.MD', str(tmp_path))
+    res = process_integration_doc(f'{SAMPLE_CONTENT}/Integrations/DomainTools_Iris/README.md', str(tmp_path))
     assert res.id == 'domain-tools-iris'
     assert res.description
     assert res.name == 'DomainTools Iris'
