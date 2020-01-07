@@ -17,12 +17,17 @@ jobs:
     - run: npm install
     - uses: actions/setup-python@v1
       with:
-        python-version: '3.x'
+        python-version: '3.7'
     - name: Setup pipenv
       run: |
         python -m pip install --upgrade pip
         pip install pipenv
         pipenv install --dev
+    - name: Fetch Dependent Files (content repo)
+      run: |
+        cd content-repo
+        wget https://raw.githubusercontent.com/demisto/content/master/Scripts/CommonServerPython/CommonServerPython.py
+        wget https://github.com/demisto/content/blob/master/Tests/demistomock/demistomock.py
     - name: Unit Testing
       run: |
         cd content-repo
