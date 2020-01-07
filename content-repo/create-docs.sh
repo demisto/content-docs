@@ -19,8 +19,8 @@ if [[ -n "${NETLIFY}" ]]; then
     echo "PULL_REQUEST=${PULL_REQUEST}"
     echo "REVIEW_ID=${REVIEW_ID}"
 fi
-if [[ -n "${NETLIFY}" && -z "${BRANCH}" ]]; then
-    DOCS_BRANCH="${BRANCH}"
+if [[ -n "${NETLIFY}" && -z "${HEAD}" ]]; then
+    DOCS_BRANCH="${HEAD}"
 else
     DOCS_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 fi
