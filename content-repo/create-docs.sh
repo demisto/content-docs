@@ -17,9 +17,10 @@ DOCS_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 if [ ! -d ${CONTENT_GIT_DIR} ]; then
     echo "Cloning content to dir: ${CONTENT_GIT_DIR} ..."
-    git clone --depth 100 --no-single-branch https://github.com/demisto/content.git ${CONTENT_GIT_DIR}
+    git clone https://github.com/demisto/content.git ${CONTENT_GIT_DIR}
 else
-    echo "Content dir: ${CONTENT_GIT_DIR} exists"    
+    echo "Content dir: ${CONTENT_GIT_DIR} exists. Doing pull..."
+    git pull
 fi
 cd ${CONTENT_GIT_DIR}
 if [ ${DOCS_BRANCH} != "master" ] && (git branch -a | grep "remotes/origin/${DOCS_BRANCH}$"); then
@@ -29,7 +30,6 @@ else
     echo "Using master to generate build"
     git checkout master
 fi
-git pull
 
 cd ${SCRIPT_DIR}
 
