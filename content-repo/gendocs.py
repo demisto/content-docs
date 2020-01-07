@@ -18,6 +18,7 @@ INTEGRATION_DOCS_MATCH = ["Integrations/[^/]+?/README.md", "Packs/[^/]+?/Integra
 INTEGRATIONS_PREFIX = 'integrations'
 NO_HTML = '<!-- NOT_HTML_DOC -->'
 YES_HTML = '<!-- HTML_DOC -->'
+BRANCH = os.getenv('HEAD', 'master')
 
 
 class DocInfo:
@@ -88,7 +89,11 @@ def process_integration_doc(readme_file: str, target_dir: str, content_dir: str)
     lines = content.splitlines(True)
     has_header = len(lines) >= 2 and lines[0].startswith('---') and lines[1].startswith('id:')
     if not has_header:
-        content = f'---\nid: {id}\ntitle: {doc_info.name}\n---\n\n' + content
+        readme_repo_path = readme_file
+        if readme_repo_path.startswith(content_dir):
+            readme_repo_path = readme_repo_path[len(content_dir):]
+        edit_url = f'https://github.com/demisto/content/blob/{BRANCH}/{readme_repo_path}'
+        content = f'---\nid: {id}\ntitle: {doc_info.name}\ncustom_edit_url: {edit_url}\n---\n\n' + content
     with tempfile.NamedTemporaryFile('w', encoding='utf-8') as f:  # type: ignore
         f.write(content)
         f.flush()
@@ -111,6 +116,7 @@ def index_doc_infos(doc_infos: List[DocInfo], link_prefix: str):
 
 
 def create_integration_docs(content_dir: str, target_dir: str):
+    print(f'Using BRANCH: {BRANCH}')
     # Search for integration readme files
     readme_files = findfiles(INTEGRATION_DOCS_MATCH, content_dir)
     print(f'Processing: {len(readme_files)} integrations ...')
