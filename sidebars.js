@@ -7,7 +7,7 @@ const sidebars =  {
         label: "Basics",
         items: [
           "getting-started-guide",
-          "tutorial",
+          "faq"
         ]
       },
       {
@@ -17,7 +17,15 @@ const sidebars =  {
           "use-cases",
           "design-best-practices"
         ]
-      },      
+      }, 
+      {
+        type: "category",
+        label: "Tutorials",
+        items: [
+          "tutorial-setup-dev",
+          "tutorial"
+        ]
+      },           
       {
         type: "category",
         label: "Writing an integration",

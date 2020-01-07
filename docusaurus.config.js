@@ -108,7 +108,7 @@ module.exports = {
           docItemComponent: "@theme/DocItem",
           remarkPlugins: [],
           rehypePlugins: [],
-          showLastUpdateAuthor: true,
+          showLastUpdateAuthor: false,
           showLastUpdateTime: true
         },
         theme: {

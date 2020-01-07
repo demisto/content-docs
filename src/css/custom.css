@@ -14,14 +14,13 @@
 /* You can override the default Infima variables here. */
 
 :root {
-  --ifm-color-primary: #98C23D;
-  --ifm-color-primary-dark: #A7CB5A;
-  --ifm-color-primary-darker: #B6D477;
-  --ifm-color-primary-dt: #C7DE95;
-  --ifm-color-primary-light: #D6E7B1;
-  --ifm-color-primary-lighter: #E5F0CE;
-  --ifm-color-primary-lightest: #F4F8EB;
-
+  --ifm-color-primary: #98c23d;
+  --ifm-color-primary-dark: #a7cb5a;
+  --ifm-color-primary-darker: #b6d477;
+  --ifm-color-primary-dt: #c7de95;
+  --ifm-color-primary-light: #d6e7b1;
+  --ifm-color-primary-lighter: #e5f0ce;
+  --ifm-color-primary-lightest: #f4f8eb;
 }
 
 /* Dark mode overrides */
@@ -48,13 +47,14 @@ html[data-theme="dark"] {
   /* Mardown color in dark mode */
   --ifm-color-gray-800: var(--ifm-color-gray-300);
 
-
+  /* Search input color in dark mode */
+  --ifm-navbar-search-input-color: var(--ifm-color-gray-900);
+  --ifm-navbar-search-input-background-color: #fff;
 }
 
 .footer.footer--dark {
   --ifm-footer-background-color: #333333;
 }
-
 
 /* Docs overrides */
 .markdown p {
@@ -123,7 +123,7 @@ blockquote {
 
 .customer {
   color: #fff;
-  background-color: #98C23D;
+  background-color: #98c23d;
   font-weight: bold;
   font-size: 35px;
   padding: 48px;
