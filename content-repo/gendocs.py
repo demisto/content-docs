@@ -58,7 +58,7 @@ def is_html_doc(txt: str) -> bool:
 
 def gen_html_doc(txt: str) -> str:
     # create a javascript string
-    txt = json.dumps(txt)    
+    txt = json.dumps(txt)
     return (f'export const txt = {txt};\n\n' +
             '<div dangerouslySetInnerHTML={{__html: txt}} />\n')
 
@@ -100,7 +100,7 @@ def process_integration_doc(readme_file: str, target_dir: str) -> DocInfo:
 def index_doc_infos(doc_infos: List[DocInfo], link_prefix: str):
     if not doc_infos:
         return ''
-    table_items = []    
+    table_items = []
     for d in doc_infos:
         table_items.append({
             'Name': f'[{d.name}]({link_prefix}/{d.id})',

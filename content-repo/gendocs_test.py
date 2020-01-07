@@ -5,6 +5,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SAMPLE_CONTENT = f'{BASE_DIR}/test_data/sample-content'
 
+
 def test_findfiles():
     res = findfiles(INTEGRATION_DOCS_MATCH, SAMPLE_CONTENT)
     assert f'{SAMPLE_CONTENT}/Packs/CortexXDR/Integrations/PaloAltoNetworks_XDR/README.md' in res
