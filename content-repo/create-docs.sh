@@ -13,6 +13,8 @@ fi
 CONTENT_GIT_DIR=${SCRIPT_DIR}/.content
 DOCS_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
+echo "current branch: ${DOCS_BRANCH}"
+
 # Do a shallow clone to speed things up
 
 if [ ! -d ${CONTENT_GIT_DIR} ]; then
