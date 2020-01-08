@@ -65,7 +65,7 @@ else
     fi
 fi
 cd ${CONTENT_GIT_DIR}
-if [ ${CONTENT_BRANCH} != "master" ] && (git branch -a | grep "remotes/origin/${CONTENT_BRANCH}$"); then
+if (git branch -a | grep "remotes/origin/${CONTENT_BRANCH}$"); then
     echo "found remote branch: '$CONTENT_BRANCH' will use it for generating docs"
     git checkout $CONTENT_BRANCH
 else
@@ -73,7 +73,7 @@ else
         echo "ERROR: couldn't find $CONTENT_BRANCH on remote. Aborting..."
         exit 2
     fi
-    echo "Using master to generate build"
+    echo "Couldn't find $CONTENT_BRANCH using master to generate build"
     git checkout master
 fi
 
