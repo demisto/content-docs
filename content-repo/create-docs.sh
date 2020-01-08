@@ -18,6 +18,8 @@ if [[ -n "${NETLIFY}" ]]; then
     echo "COMMIT_REF=${COMMIT_REF}"
     echo "PULL_REQUEST=${PULL_REQUEST}"
     echo "REVIEW_ID=${REVIEW_ID}"
+    echo "DEPLOY_PRIME_URL=${DEPLOY_PRIME_URL}"
+    echo "DEPLOY_URL=${DEPLOY_URL}"
 fi
 if [[ -n "${NETLIFY}" && -n "${HEAD}" ]]; then
     DOCS_BRANCH="${HEAD}"
