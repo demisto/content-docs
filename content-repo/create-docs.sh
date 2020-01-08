@@ -46,7 +46,13 @@ if [ -n "${INCOMING_HOOK_BODY}" ]; then
     fi    
 fi
 
+echo "==== content git url: ${CONTENT_GIT_URL} branch: ${CONTENT_BRANCH} ===="
+
 # Do a shallow clone to speed things up
+if [[ -d ${CONTENT_GIT_DIR} && $(cd ${CONTENT_GIT_DIR}; git remote get-url origin) != "${CONTENT_GIT_URL}" ]]; then
+    echo "Deleting dir: ${CONTENT_GIT_DIR} as remote url dooesn't match ${CONTENT_GIT_URL} ..."
+    rm -rf "${CONTENT_GIT_DIR}"
+fi
 
 if [ ! -d ${CONTENT_GIT_DIR} ]; then
     echo "Cloning content to dir: ${CONTENT_GIT_DIR} ..."
