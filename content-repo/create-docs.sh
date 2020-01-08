@@ -32,18 +32,18 @@ echo "==== current branch: ${CURRENT_BRANCH} ===="
 CONTENT_GIT_URL="https://github.com/demisto/content.git"
 CONTENT_BRANCH="${CURRENT_BRANCH}"
 REQUIRE_BRANCH=false
-
 if [ -n "${INCOMING_HOOK_BODY}" ]; then
     echo "INCOMING_HOOK_BODY=${INCOMING_HOOK_BODY}"
-    hook_url=$(echo "${INCOMING_HOOK_BODY}" | jq -r .giturl)
+    INCOMING_HOOK_JSON=$(echo "${INCOMING_HOOK_BODY}" | python3 -c "import sys, urllib.parse as p; print(p.unquote(sys.stdin.read()));")
+    hook_url=$(echo "${INCOMING_HOOK_JSON}" | jq -r .giturl)
     if [[ -n "${hook_url}" && "${hook_url}" != "null" ]]; then
         CONTENT_GIT_URL="${hook_url}"
     fi
-    hook_branch=$(echo "${INCOMING_HOOK_BODY}" | jq -r .branch)
+    hook_branch=$(echo "${INCOMING_HOOK_JSON}" | jq -r .branch)
     if [[ -n "${hook_branch}" && "${hook_branch}" != "null" ]]; then
         CONTENT_BRANCH="${hook_branch}"
         REQUIRE_BRANCH=true
-    fi
+    fi    
 fi
 
 # Do a shallow clone to speed things up
