@@ -3,6 +3,7 @@
 ## How to Implement a Feed Integration
 
 **Requirements**:  
+- Demisto Server Version >= 5.5.0
 - Having the field `feed: true` in the script part of their yaml.  
 - Implementing `fetch-indicators` command.  
 - The result should be returned using `demisto.createIndicators()` in batches of upto 2000 indicators (implemented via `batch()` as will be implemented in `CommonServerPython`.
