@@ -52,6 +52,11 @@ After completing, you can activate the newly created virtual env by running:
 
 Demisto offers two IDEs for developing: IntelliJ Plugin and built-in platform IDE.
 
+### demisto-sdk 
+This is our help tool that will make your lives easier during the contribution process, it will help you generate a 
+[Pack](###############). And will help you maintain your files and validate them before committing to the branch.
+For installing it please click [here](https://github.com/demisto/demisto-sdk)
+
 ## Demisto IntelliJ Plugin
 The Demisto Add-on for PyCharm simplifies third-party integration and script development by enabling users to author Python content for Demisto directly in PyCharm. Recommended for developing Python [unit tests](../tests/unit-testing).
 

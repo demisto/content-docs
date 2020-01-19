@@ -324,7 +324,10 @@ Then, make sure that `demisto-sdk` has been installed automatically by the boots
 Use demisto-sdk -h to see the available commands.
 ```
 
-Now, run the `demisto-sdk lint` command on the folder `Integrations/HelloWorld` using the `-d` option. It will run both the [linters](linting) and [pytest](unit-testing):
+Now, run the `demisto-sdk lint` command on the folder `Integrations/HelloWorld` using the `-d` option, or if you have
+ more then one change you can use the `demisto-sdk lint -g` option which will detect the changes you've made and will
+  run our linter based on the changed files in your cloned repo. It will run 
+both the [linters](linting) and [pytest](unit-testing):
 
 ```bash
 (venv) sb@dddd:~/demisto/content$ demisto-sdk lint -d Integrations/HelloWorld
@@ -394,6 +397,12 @@ Make sure you use **PascalCase** in the directory name (i.e. `MyIntegration`):
 ### Step 7: Commit and push
 
 The last step is to `commit` your changes and `push` them to the *origin* in order to make sure that the pre-commit checks work fine.
+But you can also run the hooks locally using the demisto-sdk, in order to do that you can run the commands:
+1. `demisto-sdk format` - this will auto correct couple of things in order for our validation to pass.
+2. `demisto-sdk valiadte -g` - this will validate the integrity of the yml files, and will make sure they follow 
+our pre-set of roles. You can see the [docs](https://github.com/demisto/demisto-sdk/blob/master/docs/validate_command.md)
+3. `demisto-sdk lint -g` - this will run lint and pytest on your changed python files. You can see the [docs]
+(https://github.com/demisto/demisto-sdk/blob/master/docs/lint_command.md)
 
 First, run a `git commit -m '[some commit message]'`, which will automatically run the pre validation checks:
 
@@ -450,6 +459,10 @@ You can go back to GitHub and, under **your** fork, you should be able to see th
 
 Congratulations! You completed the set up of the Development Environment for Demisto! Now you can start writing your code. Please have a look at the [Code Conventions](code-conventions).
 
-Once you have written your integration, there are other useful commands you can use to make sure everything is in place before you open a Pull Request. One of them is `demisto-sdk validate -g`, that will check the files you're going to commit to make sure that everything is in place. We'll explore this further in other tutorials.
+Once you have written your integration, there are other useful commands you can use to make sure everything is in 
+place before you open a Pull Request. One of them is `demisto-sdk validate -g`, that will check the files you're 
+going to commit to make sure that everything is in place. We'll explore this further in 
+other 
+tutorials.
 
 Thank for your time, we hope you enjoyed this tutorial. Please report issues and suggestions using the link below!

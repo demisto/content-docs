@@ -16,6 +16,10 @@ We use a standard naming convention for our playbook tests which follows the for
 
 ```Integration_Name-Test```
 
+There are two option to create a Test playbook:
+1. use the `emisto-sdk generate-test-playbook` command which can be found [here](https://github.com/demisto/demisto-sdk#generate-test-playbook)
+2. Follow the guide below for a more detailed and thorough testing playbook.
+
 ### Create a playbook
 1. Navigate to **Playbooks** and click **New Playbook**.
 2. Define a **Playbook name**.

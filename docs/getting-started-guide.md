@@ -54,12 +54,16 @@ The platform comes with a rich set of features and functionality that allow for 
 Please read the following guidelines. Following these guidelines will maximize the chances for a fast, easy and effective review process for everyone involved. If something is not clear, please don't hesitate to reach out to us via GitHub, [Slack](http://go.demisto.com/join-our-slack-community), or [email](mailto:info@demisto.com)
 
 * Setup a development environment by following the [Dev Setup Guide](dev-setup).
+* Use the [Pack format](#####################################)) to add your contribution. 
 * Use the [Package Directory Structure](package-dir) for all Python code. If working on existing code, beyond trivial changes, we require converting to this structure as it allows running linting, unit tests and provides a clearer review process.
 * Make sure to read and follow [code conventions](code-conventions).
 * Run and verify that the various linters we support pass as detailed [here](linting).
 * For Scripts/Integrations written in Python, make sure to create unit tests as documented [here](unit-testing)
 * Create a test playbook as documented [here](testing). **Note**: for simple Scripts that have unit tests, a test playbook is optional.
-* Validate that our validation hooks pass. If you used `.hooks/bootstrap` as documented in the [Dev Setup Guide](dev-setup) the validation hook will run automatically upon commit. You can also run the validation hooks manually by running `.hooks/pre-commit`.
+* Validate that our validation hooks pass. If you used `.hooks/bootstrap` as documented in the [Dev Setup Guide]
+(dev-setup) the validation hook will run automatically upon commit. You can also run the validation hooks manually by
+ running `.hooks/pre-commit`. If you want to validate specific files please use the demisto-sdk commands [validate](https://github.com/demisto/demisto-sdk/blob/master/docs/validate_command.md)
+  or [lint](https://github.com/demisto/demisto-sdk/blob/master/docs/lint_command.md) 
 * Document your integration as detailed [here](integration-docs).
 * Document your changes in the relevant changelog file as detailed [here](changelog)
 

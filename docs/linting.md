@@ -5,38 +5,33 @@ title: Linting
 
 As part of the build process we run a few linters to catch common programming errors, stylistic errors and possible security issues. Linters are run only when working with the [package (directory) structure](package-dir.md).
 
-All linters are run via the following script:
+All linters are run via the demisto-sdk:
 
 ```
-./Tests/scripts/pkg_dev_test_tasks.py -h
-usage: pkg_dev_test_tasks.py [-h] -d DIR [--no-pylint] [--no-mypy]
-                             [--no-flake8] [--no-test] [-k] [-v]
-                             [--cpu-num CPU_NUM]
+demisto-sdk lint -h
+Usage: demisto-sdk lint [OPTIONS]
 
-Run lintings (flake8, mypy, pylint), security checks (bandit) and pytest. pylint and pytest will run
-within the docker image of an integration/script. Meant to be used with
-integrations/scripts that use the folder (package) structure. Will lookup up
-what docker image to use and will setup the dev dependencies and file in the
-target folder.
+Options:
+  -h, --help                 Show this message and exit.
+  -d, --dir DIR             Specify directory of integration/script
+  --no-pylint                Do NOT run pylint linter
+  --no-mypy                  Do NOT run mypy static type checking
+  --no-flake8                Do NOT run flake8 linter
+  --no-bandit                Do NOT run bandit linter
+  --no-test                  Do NOT test (skip pytest)
+  -r, --root                 Run pytest container with root user
+  -k, --keep-container       Keep the test container
+  -v, --verbose              Verbose output - mainly for debugging purposes
+  --cpu-num INTEGER          Number of CPUs to run pytest on (can set to `auto` for automatic
+                             detection of the number of CPUs)
+  -p, --parallel             Run tests in parallel
+  -m, --max-workers INTEGER  How many threads to run in parallel
+  -g, --git                  Will run only on changed packages
+  -a, --run-all-tests        Run lint on all directories in content repo
 
-optional arguments:
-  -h, --help            show this help message and exit
-  -d DIR, --dir DIR     Specify directory of integration/script (default:
-                        None)
-  --no-pylint           Do NOT run pylint linter (default: False)
-  --no-mypy             Do NOT run mypy static type checking (default: False)
-  --no-flake8           Do NOT run flake8 linter (default: False)
-  --no-test             Do NOT test (skip pytest) (default: False)
-  --no-bandit           Do NOT run bandit security checks (default: False)
-  -r, --root            Run pytest container with root user (default: False)
-  -k, --keep-container  Keep the test container (default: False)
-  -v, --verbose         Verbose output (default: False)
-  --cpu-num CPU_NUM     Number of CPUs to run pytest on (can set to `auto` for
-                        automatic detection of the number of CPUs.) (default:
-                        0)
 ```
 
-**Note**: this script is also used to run pytest. See: [Unit Testing](unit-testing.md)
+**Note**: this is also used to run pytest. See: [Unit Testing](unit-testing.md)
 
 ## Flake8
 
