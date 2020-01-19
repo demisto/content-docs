@@ -54,7 +54,7 @@ The platform comes with a rich set of features and functionality that allow for 
 Please read the following guidelines. Following these guidelines will maximize the chances for a fast, easy and effective review process for everyone involved. If something is not clear, please don't hesitate to reach out to us via GitHub, [Slack](http://go.demisto.com/join-our-slack-community), or [email](mailto:info@demisto.com)
 
 * Setup a development environment by following the [Dev Setup Guide](dev-setup).
-* Use the [Pack format](#####################################)) to add your contribution. 
+* Use the [Pack format](packs_format)) to add your contribution. 
 * Use the [Package Directory Structure](package-dir) for all Python code. If working on existing code, beyond trivial changes, we require converting to this structure as it allows running linting, unit tests and provides a clearer review process.
 * Make sure to read and follow [code conventions](code-conventions).
 * Run and verify that the various linters we support pass as detailed [here](linting).
