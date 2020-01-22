@@ -26,26 +26,56 @@ module.exports = {
         alt: "Demisto for Developers",
         src: "img/demistopeelable.png"
       },
-
+      menus: [
+        {
+          label: "Concepts",
+          items: [
+            { to: "docs/getting-started-guide", label: "Overview" },
+            { to: "docs/restapi_qs", label: "Architecture" },
+            { to: "docs/pandevice_qs", label: "Integrations" },
+            { to: "docs/panpython_qs", label: "Scripts" },
+            { to: "docs/pango_qs", label: "Playbooks" },
+            { to: "docs/terraform_qs", label: "Context Data" },
+            { to: "docs/ansible_qs", label: "Classification & Mapping" },
+            { to: "docs/cloudtemplates_qs", label: "Demisto Transform Language" },
+            { to: "docs/cloudtemplates_qs", label: "Docker" },
+          ],
+          position: "left"
+        },
+        {
+          label: "Tasks",
+          items: [
+            { to: "docs/xmlapi_qs", label: "Build Playbooks" },
+            { to: "docs/restapi_qs", label: "Create and Configure Integrations" },
+            { to: "docs/pandevice_qs", label: "Create Documentation" },
+          ],
+          position: "left"
+        },
+        {
+          label: "Tutorials",
+          items: [
+            { to: "docs/xmlapi_qs", label: "Create an Integration" },
+            { to: "docs/restapi_qs", label: "Create a Scipt" },
+            { to: "docs/pandevice_qs", label: "Create a Phishing Playbook" },
+          ],
+          position: "left"
+        },
+        {
+          label: "Reference",
+          items: [
+            { to: "docs/xmlapi_qs", label: "Integrations" },
+            { to: "docs/restapi_qs", label: "Playbooks" },
+            { to: "docs/pandevice_qs", label: "Scripts" },
+            { to: "docs/restapi_qs", label: "REST API" },
+            { to: "docs/pandevice_qs", label: "Demisto SDK" },
+          ],
+          position: "left"
+        }
+      ],
       links: [
         {
-          to: "docs/getting-started-guide",
-          label: "Development Guide",
-          position: "left"
-        },
-        {
-          to: "docs/use-cases",
-          label: "Use Cases",
-          position: "left"
-        },
-        {
-          to: "docs/why-demisto",
-          label: "Why become a Partner?",
-          position: "right"
-        },        
-        {
-          to: "docs/become-a-tech-partner",
-          label: "Become a Technology Partner",
+          href: "docs/become-a-tech-partner",
+          label: "Partnerships",
           position: "right"
         },
         {

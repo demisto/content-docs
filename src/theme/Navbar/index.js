@@ -147,7 +147,7 @@ function Navbar() {
           </div>
           <div className="navbar__items navbar__items--right">
             {menus
-              .filter(menuItem => menuItem.position !== "right")
+              .filter(menuItem => menuItem.position === "right")
               .map((menuItem, i) => (
                 <NavMenu {...menuItem} key={i} />
               ))}
