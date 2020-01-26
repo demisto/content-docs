@@ -29,7 +29,7 @@ To keep playbook consistency, usability and readability, we've created some conv
 
 
 ### Tasks
--   In task names - first letter is capitalized. The rest of the name is according to grammar rules, so capitalize the first letter of every part of an integration's name for example.
+-   In task names - first letter is capitalized. The rest of the name is according to grammar rules, so capitalize the first letter of every part of an integration's name, for example.
 -   Verbs: use "Save" rather than "Saves" or "Saving", in the task names
 
 
