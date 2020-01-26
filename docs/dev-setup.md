@@ -47,7 +47,7 @@ After completing, you can activate the newly created virtual env by running:
 ### demisto-sdk 
 As part of the bootstrap script it will install the `demisto-sdk` inside the virtual env. This is our dev tool that will make your lives easier during the contribution process. `demisto-sdk` can be used to run validation rules, run linting and generate new content. Read more about the `demisto-sdk` at https://github.com/demisto/demisto-sdk.
 
-**Congratulations!** You now have a fully configured virtual env, where you can run our different validation and utility scripts. For example, to convert an exported yml integration to our [package (directory) format](../package_directory_structure), you can use the `split-yml` command of the `demisto-sdk` script. Try:
+**Congratulations!** You now have a fully configured virtual env, where you can run our different validation and utility scripts. For example, to convert an exported yml integration to our [package (directory) format](../package_directory_structure), you can use the `split-yml` command of the `demisto-sdk` utility. Try:
 ```
 demisto-sdk split-yml --help
 ```
