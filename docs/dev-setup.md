@@ -42,20 +42,20 @@ After completing, you can activate the newly created virtual env by running:
 ```
 . ./venv/bin/activate
 ```
-**Congratulations!** You now have a fully configured virtual env, where you can run our different validation and utility scripts. For example, to convert an exported yml integration to our [package (directory) format](../package_directory_structure), you can use the `package_extractor.py` script. Try:
-```
-./package_extractor.py --help
-```
 **Note:** The virtual env we build contains both Python 2 and 3. `python` and `python2` will point to Python 2 and `python3` to Python 3.
+
+### demisto-sdk 
+As part of the bootstrap script it will install the `demisto-sdk` inside the virtual env. This is our dev tool that will make your lives easier during the contribution process. `demisto-sdk` can be used to run validation rules, run linting and generate new content. Read more about the `demisto-sdk` at https://github.com/demisto/demisto-sdk.
+
+**Congratulations!** You now have a fully configured virtual env, where you can run our different validation and utility scripts. For example, to convert an exported yml integration to our [package (directory) format](../package_directory_structure), you can use the `split-yml` command of the `demisto-sdk` script. Try:
+```
+demisto-sdk split-yml --help
+```
+
 
 ## IDE
 
 Demisto offers two IDEs for developing: IntelliJ Plugin and built-in platform IDE.
-
-### demisto-sdk 
-This is our help tool that will make your lives easier during the contribution process, it will help you generate a 
-[Pack](###############). And will help you maintain your files and validate them before committing to the branch.
-For installing it please click [here](https://github.com/demisto/demisto-sdk)
 
 ## Demisto IntelliJ Plugin
 The Demisto Add-on for PyCharm simplifies third-party integration and script development by enabling users to author Python content for Demisto directly in PyCharm. Recommended for developing Python [unit tests](../tests/unit-testing).
