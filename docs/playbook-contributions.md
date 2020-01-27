@@ -14,7 +14,7 @@ What one needs to consider is that since sub-playbooks are used as part of a big
 - Your playbooks contain playbook and task descriptions by now and they should be able to run smoothly.  
 - In order to contribute your newly created playbooks, they have to be exported via the "Export" button in playbook view mode:  
 ![image](https://user-images.githubusercontent.com/43602124/69058801-07d5c180-0a1d-11ea-8bd0-9dfd874b51b5.png)  
- - The playbook will be exported as a YML file. Run the script `update_playbook.py` against the YML file. The script is located in `content\Utils\update_playbook.py`. The script will modify some fields in the file to normalize it with the rest of the playbooks in our content, and will output a file with the prefix `playbook-` in the filename. That is the file you have to use from now on.  
+ - The playbook will be exported as a YML file. Use Demisto-SDK's command `demisto-sdk format -t playbook -s <path to playbook yml>` against the YML file. The command will modify some fields in the file to normalize it with the rest of the playbooks in our content, and will output a file with the prefix `playbook-` in the filename. That is the file you have to use from now on.  
  - If your playbook has a test playbook, copy the name of the test playbook and declare it as the test playbook of your playbook, like so:  
 ![image](https://user-images.githubusercontent.com/43602124/70059047-b61a6300-15e8-11ea-93a7-448f463c6613.png)
 
