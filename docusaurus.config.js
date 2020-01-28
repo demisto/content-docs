@@ -45,9 +45,9 @@ module.exports = {
         {
           label: "Tasks",
           items: [
-            { to: "docs/xmlapi_qs", label: "Build Playbooks" },
-            { to: "docs/restapi_qs", label: "Create and Configure Integrations" },
-            { to: "docs/pandevice_qs", label: "Create Documentation" },
+            { to: "docs/test1", label: "Build Playbooks" },
+            { to: "docs/test2", label: "Create and Configure Integrations" },
+            { to: "docs/test3", label: "Create Documentation" },
           ],
           position: "left"
         },

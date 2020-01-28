@@ -72,5 +72,18 @@ module.exports = {
           "changelog"
         ]
       }
-    ]
+    ],
+  tasks: [
+    {
+      type: "category",
+      label: "Tasks",
+      items: [
+        "test1",
+        "test2",
+        "test3"
+      ]
+    }
+
+  ]
+
 };
