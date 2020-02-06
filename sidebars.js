@@ -1,8 +1,9 @@
 module.exports = {
-  docs: [
+  concepts: 
+  [
       {
         type: "category",
-        label: "Basics",
+        label: "Overview",
         items: [
           "getting-started-guide",
           "faq"
@@ -10,80 +11,204 @@ module.exports = {
       },
       {
         type: "category",
+        label: "Architecture",
+        items: [
+          "dev-setup",
+        ]
+      },
+      {
+        type: "category",
+        label: "Use Cases",
+        items: [
+          "use-cases"
+        ]
+      },
+      {
+        type: "category",
         label: "Design",
         items: [
-          "use-cases",
           "design-best-practices"
         ]
       }, 
       {
         type: "category",
-        label: "Tutorials",
-        items: [
-          "tutorial-setup-dev",
-          "tutorial"
-        ]
-      },           
-      {
-        type: "category",
-        label: "Writing an integration",
+        label: "Dev Environment & SDK",
         items: [
           "dev-setup",
-          "code-conventions",
-          "package-dir",
-          "docker",          
-          "yaml-file",
-          "parameter-types",
-          "fetching-incidents",
-          "fetching-credentials",
-          "long-running", 
-          "dbot",
-          "context-and-outputs",
-          "context-standards",
-          "dt"
-        ]
-      },
-      {
-        type: "category",
-        label: "Writing Playbooks",
-        items: [
-          "playbooks",
-          "playbook-conventions",
-          "generic-polling"        
-        ]
-      },         
-      {
-        type: "category",
-        label: "Testing",
-        items: [
-          "linting",
-          "unit-testing",
-          "testing",
-          "circleci",
-          "debugging"
         ]
       }, 
       {
         type: "category",
-        label: "Documentation",
+        label: "Best Practices",
         items: [
-          "integration-docs",
-          "doc-structure",
-          "changelog"
+          "design-best-practices",
+          "code-conventions",
         ]
       }
-    ],
-  tasks: [
+  ],
+  howtos: [
     {
       type: "category",
-      label: "Tasks",
+      label: "Integrations",
       items: [
-        "test1",
-        "test2",
-        "test3"
+        {
+          type: "category",
+          label: "Coding",
+          items: [
+            "code-conventions",
+            "package-dir",
+            "yaml-file",
+            "parameter-types",
+            "fetching-incidents",
+            "fetching-credentials",
+            "long-running", 
+            "dbot",
+            "context-and-outputs",
+            "context-standards",
+            "dt"
+          ]
+        },
+        {
+          type: "category",          
+          label: "Testing",
+          items: [
+            "package-dir",
+            "docker",          
+            "linting",
+            "unit-testing",
+            "testing",
+            "circleci",
+            "debugging"
+          ],
+        },
+        {
+          type: "category",          
+          label: "Documenting",
+          items: [
+            "integration-docs",
+            "doc-structure",
+            "changelog"     
+          ],
+        }
       ]
-    }
-
+    },
+    {
+      type: "category",
+      label: "Playbooks",
+      items: [
+        "playbooks",
+        "playbook-conventions",
+        "generic-polling"   
+      ]
+    },
+    {
+      type: "category",
+      label: "Scripts",
+      items: [
+        "code-conventions",
+      ]
+    },
+    {
+      type: "category",
+      label: "Incidents, Fields & Layouts",
+      items: [
+        "design-best-practices"
+      ]
+    },
+    {
+      type: "category",
+      label: "Dashboard and Widgets",
+      items: [
+        "design-best-practices"
+      ]
+    },
+    {
+      type: "category",
+      label: "Contribution Process",
+      items: [
+        "code-conventions",
+      ]
+    },
+  ],
+  tutorials: [
+    {
+      type: "category",
+      label: "Getting Started",
+      items: [
+        "tutorial-setup-dev",
+      ]
+    },
+    {
+      type: "category",
+      label: "Integrations",
+      items: [
+        "tutorial"
+      ]
+    },  
+    {
+      type: "category",
+      label: "Playbooks",
+      items: [
+        "tutorial"
+      ]
+    },
+    {
+      type: "category",
+      label: "Scripts",
+      items: [
+        "tutorial"
+      ]
+    },
+    {
+      type: "category",
+      label: "Incidents, Fields & Layouts",
+      items: [
+        "tutorial"      ]
+    },
+    {
+      type: "category",
+      label: "Dashboard and Widgets",
+      items: [
+        "tutorial"
+      ]
+    },
+  ],
+  references: 
+  [
+    {
+      type: "category",
+      label: "Integrations",
+      items: [
+        "use-cases",
+      ]
+    },
+    {
+      type: "category",
+      label: "Playbooks",
+      items: [
+        "use-cases",
+      ]
+    },
+    {
+      type: "category",
+      label: "Scripts",
+      items: [
+        "use-cases",
+      ]
+    },  
+    {
+      type: "category",
+      label: "Helper Functions",
+      items: [
+        "use-cases",
+      ]
+    },     
+    {
+      type: "category",
+      label: "Demisto SDK",
+      items: [
+        "use-cases",
+      ]
+    },     
   ]
-
 };

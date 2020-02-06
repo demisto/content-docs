@@ -31,43 +31,48 @@ module.exports = {
           label: "Concepts",
           items: [
             { to: "docs/getting-started-guide", label: "Overview" },
-            { to: "docs/restapi_qs", label: "Architecture" },
-            { to: "docs/pandevice_qs", label: "Integrations" },
-            { to: "docs/panpython_qs", label: "Scripts" },
-            { to: "docs/pango_qs", label: "Playbooks" },
-            { to: "docs/terraform_qs", label: "Context Data" },
-            { to: "docs/ansible_qs", label: "Classification & Mapping" },
-            { to: "docs/cloudtemplates_qs", label: "Demisto Transform Language" },
-            { to: "docs/cloudtemplates_qs", label: "Docker" },
+            { to: "docs/dev-setup", label: "Architecture" },
+            { to: "docs/use-cases", label: "Use Cases" },            
+            { to: "docs/design-best-practices", label: "Design" },
+            { to: "docs/dev-setup", label: "Dev Environment & SDK" },            
+            { to: "docs/design-best-practices", label: "Best Practices" },
           ],
           position: "left"
         },
         {
-          label: "Tasks",
+          label: "How-Tos",
           items: [
-            { to: "docs/test1", label: "Build Playbooks" },
-            { to: "docs/test2", label: "Create and Configure Integrations" },
-            { to: "docs/test3", label: "Create Documentation" },
+            { to: "docs/code-conventions", label: "Integrations" },
+            { to: "docs/playbooks", label: "Playbooks" },
+            { to: "docs/code-conventions", label: "Scripts" },
+            { to: "docs/design-best-practices", label: "Incidents, Fields and Layouts" },
+            { to: "docs/design-best-practices", label: "Dashboards and Widgets" },            
+            { to: "docs/code-conventions", label: "Contribution Process" },
           ],
           position: "left"
         },
         {
           label: "Tutorials",
           items: [
-            { to: "docs/xmlapi_qs", label: "Create an Integration" },
-            { to: "docs/restapi_qs", label: "Create a Scipt" },
-            { to: "docs/pandevice_qs", label: "Create a Phishing Playbook" },
+            { to: "docs/tutorial-setup-dev", label: "Getting Started" },            
+            { to: "docs/tutorial", label: "Design" },
+            { to: "docs/tutorial", label: "Integrations" },
+            { to: "docs/tutorial", label: "Playbooks" },
+            { to: "docs/tutorial", label: "Scripts" },
+            { to: "docs/tutorial", label: "Incidents, Fields and Layouts" },
+            { to: "docs/tutorial", label: "Dashboards and Widgets" }, 
           ],
           position: "left"
         },
         {
           label: "Reference",
           items: [
-            { to: "docs/xmlapi_qs", label: "Integrations" },
-            { to: "docs/restapi_qs", label: "Playbooks" },
-            { to: "docs/pandevice_qs", label: "Scripts" },
-            { to: "docs/restapi_qs", label: "REST API" },
-            { to: "docs/pandevice_qs", label: "Demisto SDK" },
+            { to: "docs/use-cases", label: "Integrations" },
+            { to: "docs/use-cases", label: "Playbooks" },
+            { to: "docs/use-cases", label: "Scripts" },
+            { to: "docs/use-cases", label: "REST API" },
+            { to: "docs/use-cases", label: "Helper Functions" },            
+            { to: "docs/use-cases", label: "Demisto SDK" },
           ],
           position: "left"
         }
