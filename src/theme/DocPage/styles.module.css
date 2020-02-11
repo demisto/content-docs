@@ -1,0 +1,34 @@
+/**
+ * Copyright (c) 2017-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.docPage {
+  display: flex;
+}
+
+.docSidebarContainer {
+  border-right: 1px solid var(--ifm-contents-border-color);
+  box-sizing: border-box;
+  width: 300px;
+}
+
+.docMainContainer {
+  flex-grow: 1;
+}
+
+.navbar__items .docBar {
+  @media screen and (max-width: 1279px) {
+    .navbar .navbar__item {
+      display: "flex" !important;
+    }
+  }
+}
+
+@media (max-width: 996px) {
+  .docPage {
+    display: inherit;
+  }
+}

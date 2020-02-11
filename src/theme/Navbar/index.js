@@ -61,8 +61,9 @@ function Navbar() {
   const [theme, setTheme] = useTheme();
   const { siteConfig = {} } = context;
   const { baseUrl, themeConfig = {} } = siteConfig;
-  const { navbar = {}, disableDarkMode = false } = themeConfig;
+  const { navbar = {}, docbar = {}, disableDarkMode = false } = themeConfig;
   const { title, logo = {}, links = [], menus = [] } = navbar;
+  const docbar_menus = docbar.menus;
 
   const showSidebar = useCallback(() => {
     setSidebarShown(true);
@@ -232,6 +233,35 @@ function Navbar() {
                     />
                   </li>
                 ))}
+                <hr></hr>
+                <p class="text text--primary">Docs</p>
+                {docbar_menus.map((menuItem, i) => {
+                  var className = menuShown[i]
+                    ? "menu__list-item"
+                    : "menu__list-item menu__list-item--collapsed";
+
+                  return (
+                    <li className={className} key={i}>
+                      <a
+                        className="menu__link menu__link--sublist"
+                        onClick={() => toggleMenu(i)}
+                      >
+                        {menuItem.label}
+                      </a>
+                      <ul className="menu__list">
+                        {menuItem.items.map((item, i) => (
+                          <li className="menu__list-item" key={i}>
+                            <NavLink
+                              className="menu__link"
+                              {...item}
+                              onClick={hideSidebar}
+                            />
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </div>
