@@ -56,9 +56,8 @@ function NavMenu(props) {
 function Navbar() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
-  const { baseUrl, themeConfig = {}, customFields = {} } = siteConfig;
+  const { baseUrl, themeConfig = {} } = siteConfig;
   const { navbar = {}, disableDarkMode = false } = themeConfig;
-  const { docbar = {} } = customFields;
   const {
     title,
     logo = {},
@@ -70,7 +69,6 @@ function Navbar() {
   const [menuShown, setMenuShown] = useState({});
   const [isSearchBarExpanded, setIsSearchBarExpanded] = useState(false);
   const [theme, setTheme] = useTheme();
-  const { options = [] } = docbar;
 
   const { navbarRef, isNavbarVisible } = useHideableNavbar(hideOnScroll);
 
@@ -240,35 +238,6 @@ function Navbar() {
                   />
                 </li>
               ))}
-              <hr></hr>
-              <p className="text text--primary">Docs</p>
-              {options.map((menuItem, i) => {
-                var className = menuShown[i]
-                  ? "menu__list-item"
-                  : "menu__list-item menu__list-item--collapsed";
-
-                return (
-                  <li className={className} key={i}>
-                    <a
-                      className="menu__link menu__link--sublist"
-                      onClick={() => toggleMenu(i)}
-                    >
-                      {menuItem.label}
-                    </a>
-                    <ul className="menu__list">
-                      {menuItem.items.map((item, i) => (
-                        <li className="menu__list-item" key={i}>
-                          <NavLink
-                            className="menu__link"
-                            {...item}
-                            onClick={hideSidebar}
-                          />
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                );
-              })}
             </ul>
           </div>
         </div>
