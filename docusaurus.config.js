@@ -60,65 +60,6 @@ module.exports = {
         }
       ]
     },
-    docbar: {
-      menus: [
-        {
-          label: "Concepts",
-          items: [
-            { to: "docs/getting-started-guide", label: "Overview" },
-            { to: "docs/dev-setup", label: "Architecture" },
-            { to: "docs/use-cases", label: "Use Cases" },
-            { to: "docs/design-best-practices", label: "Design" },
-            { to: "docs/dev-setup", label: "Dev Environment & SDK" },
-            { to: "docs/design-best-practices", label: "Best Practices" }
-          ],
-          position: "left"
-        },
-        {
-          label: "How-Tos",
-          items: [
-            { to: "docs/code-conventions", label: "Integrations" },
-            { to: "docs/playbooks", label: "Playbooks" },
-            { to: "docs/code-conventions", label: "Scripts" },
-            {
-              to: "docs/design-best-practices",
-              label: "Incidents, Fields and Layouts"
-            },
-            {
-              to: "docs/design-best-practices",
-              label: "Dashboards and Widgets"
-            },
-            { to: "docs/code-conventions", label: "Contribution Process" }
-          ],
-          position: "left"
-        },
-        {
-          label: "Tutorials",
-          items: [
-            { to: "docs/tutorial-setup-dev", label: "Getting Started" },
-            { to: "docs/tutorial", label: "Design" },
-            { to: "docs/tutorial", label: "Integrations" },
-            { to: "docs/tutorial", label: "Playbooks" },
-            { to: "docs/tutorial", label: "Scripts" },
-            { to: "docs/tutorial", label: "Incidents, Fields and Layouts" },
-            { to: "docs/tutorial", label: "Dashboards and Widgets" }
-          ],
-          position: "left"
-        },
-        {
-          label: "Reference",
-          items: [
-            { to: "docs/use-cases", label: "Integrations" },
-            { to: "docs/use-cases", label: "Playbooks" },
-            { to: "docs/use-cases", label: "Scripts" },
-            { to: "docs/use-cases", label: "REST API" },
-            { to: "docs/use-cases", label: "Helper Functions" },
-            { to: "docs/use-cases", label: "Demisto SDK" }
-          ],
-          position: "left"
-        }
-      ]
-    },
     footer: {
       style: "dark",
       links: [
@@ -181,5 +122,66 @@ module.exports = {
       changefreq: "weekly",
       priority: 0.5
     }
-  ]
+  ],
+  customFields: {
+    docbar: {
+      options: [
+        {
+          label: "Concepts",
+          items: [
+            { to: "docs/getting-started-guide", label: "Overview" },
+            { to: "docs/dev-setup", label: "Architecture" },
+            { to: "docs/use-cases", label: "Use Cases" },
+            { to: "docs/design-best-practices", label: "Design" },
+            { to: "docs/dev-setup", label: "Dev Environment & SDK" },
+            { to: "docs/design-best-practices", label: "Best Practices" }
+          ],
+          position: "left"
+        },
+        {
+          label: "How-Tos",
+          items: [
+            { to: "docs/code-conventions", label: "Integrations" },
+            { to: "docs/playbooks", label: "Playbooks" },
+            { to: "docs/code-conventions", label: "Scripts" },
+            {
+              to: "docs/design-best-practices",
+              label: "Incidents, Fields and Layouts"
+            },
+            {
+              to: "docs/design-best-practices",
+              label: "Dashboards and Widgets"
+            },
+            { to: "docs/code-conventions", label: "Contribution Process" }
+          ],
+          position: "left"
+        },
+        {
+          label: "Tutorials",
+          items: [
+            { to: "docs/tutorial-setup-dev", label: "Getting Started" },
+            { to: "docs/tutorial", label: "Design" },
+            { to: "docs/tutorial", label: "Integrations" },
+            { to: "docs/tutorial", label: "Playbooks" },
+            { to: "docs/tutorial", label: "Scripts" },
+            { to: "docs/tutorial", label: "Incidents, Fields and Layouts" },
+            { to: "docs/tutorial", label: "Dashboards and Widgets" }
+          ],
+          position: "left"
+        },
+        {
+          label: "Reference",
+          items: [
+            { to: "docs/use-cases", label: "Integrations" },
+            { to: "docs/use-cases", label: "Playbooks" },
+            { to: "docs/use-cases", label: "Scripts" },
+            { to: "docs/use-cases", label: "REST API" },
+            { to: "docs/use-cases", label: "Helper Functions" },
+            { to: "docs/use-cases", label: "Demisto SDK" }
+          ],
+          position: "left"
+        }
+      ]
+    }
+  }
 };

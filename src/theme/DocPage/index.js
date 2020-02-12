@@ -64,9 +64,13 @@ function DocPage(props) {
   const { route, docsMetadata, location } = props;
   const { permalinkToSidebar, docsSidebars, version } = docsMetadata;
   const sidebar = permalinkToSidebar[location.pathname.replace(/\/$/, "")];
-  const { siteConfig: { themeConfig = {} } = {} } = useDocusaurusContext();
-  const { sidebarCollapsible = true, docbar = {} } = themeConfig;
-  const { menus = [] } = docbar;
+  const {
+    siteConfig: { themeConfig = {} } = {},
+    siteConfig: { customFields = {} } = {}
+  } = useDocusaurusContext();
+  const { sidebarCollapsible = true } = themeConfig;
+  const { docbar = {} } = customFields;
+  const { options = [] } = docbar;
 
   if (!matchingRouteExist(route.routes, location.pathname)) {
     return <NotFound {...props} />;
@@ -77,10 +81,10 @@ function DocPage(props) {
       <nav id="doc-navbar" className={classnames("navbar", "navbar--light")}>
         <div className="navbar__inner">
           <div
-            className={classnames("navbar__items", "docbar")}
-            style={{ paddingLeft: "15%" }}
+            className={classnames("navbar__items")}
+            style={{ paddingLeft: "20%" }}
           >
-            {menus.map((menuItem, i) => (
+            {options.map((menuItem, i) => (
               <DocBar
                 {...menuItem}
                 key={i}
@@ -101,7 +105,6 @@ function DocPage(props) {
             />
           </div>
         )}
-
         <main className={styles.docMainContainer}>
           <MDXProvider components={MDXComponents}>
             {renderRoutes(route.routes)}

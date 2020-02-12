@@ -19,14 +19,6 @@
   flex-grow: 1;
 }
 
-.navbar__items .docBar {
-  @media screen and (max-width: 1279px) {
-    .navbar .navbar__item {
-      display: "flex" !important;
-    }
-  }
-}
-
 @media (max-width: 996px) {
   .docPage {
     display: inherit;
