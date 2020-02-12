@@ -155,10 +155,6 @@ blockquote {
     display: none !important;
   }
 
-  #doc-navbar {
-    display: none !important;
-  }
-
   .navbar .navbar__toggle {
     display: inherit !important;
   }
