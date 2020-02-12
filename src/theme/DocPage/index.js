@@ -5,60 +5,67 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import Link from "@docusaurus/Link";
 import renderRoutes from "@docusaurus/renderRoutes";
 import { matchPath } from "@docusaurus/router";
-import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { MDXProvider } from "@mdx-js/react";
 import DocSidebar from "@theme/DocSidebar";
 import Layout from "@theme/Layout";
 import MDXComponents from "@theme/MDXComponents";
 import NotFound from "@theme/NotFound";
-import classnames from "classnames";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
-
-function NavLink({ to, href, label, position, ...props }) {
-  const toUrl = useBaseUrl(to);
-  return (
-    <Link
-      className="navbar__item navbar__link"
-      {...(href
-        ? {
-            target: "_blank",
-            rel: "noopener noreferrer",
-            href
-          }
-        : {
-            activeClassName: "navbar__link--active",
-            to: toUrl
-          })}
-      {...props}
-    >
-      {label}
-    </Link>
-  );
-}
-
-function DocBar(props) {
-  return (
-    <div className="navbar__item dropdown dropdown--hoverable">
-      <a className="navbar__link">{props.label}</a>
-      <ul className="dropdown__menu">
-        {props.items.map((linkItem, i) => (
-          <li key={i}>
-            <NavLink {...linkItem} key={i} />
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
 
 function matchingRouteExist(routes, pathname) {
   return routes.some(route => matchPath(pathname, route));
 }
+
+function useLocalStorage(key, initialValue) {
+  const [storedValue, setStoredValue] = useState(() => {
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      console.log(error);
+      return initialValue;
+    }
+  });
+
+  const setValue = value => {
+    try {
+      const valueToStore =
+        value instanceof Function ? value(storedValue) : value;
+      setStoredValue(valueToStore);
+      window.localStorage.setItem(key, JSON.stringify(valueToStore));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return [storedValue, setValue];
+}
+
+const useResize = myRef => {
+  const [sidebarWidth, setSidebarWidth] = useState(0);
+  const handleResize = () => {
+    if (myRef.current.getBoundingClientRect().height > 0) {
+      setSidebarWidth(myRef.current.offsetWidth - 1);
+    } else {
+      setSidebarWidth(0);
+    }
+  };
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [myRef.current]);
+
+  return { sidebarWidth };
+};
 
 function DocPage(props) {
   const { route, docsMetadata, location } = props;
@@ -71,6 +78,9 @@ function DocPage(props) {
   const { sidebarCollapsible = true } = themeConfig;
   const { docbar = {} } = customFields;
   const { options = [] } = docbar;
+  const sidebarRef = useRef();
+  const { sidebarWidth } = useResize(sidebarRef);
+  const [activeTabIndex, setActiveTabIndex] = useLocalStorage(null);
 
   if (!matchingRouteExist(route.routes, location.pathname)) {
     return <NotFound {...props} />;
@@ -78,25 +88,37 @@ function DocPage(props) {
 
   return (
     <Layout version={version}>
-      <nav id="doc-navbar" className={classnames("navbar", "navbar--light")}>
-        <div className="navbar__inner">
-          <div
-            className={classnames("navbar__items")}
-            style={{ paddingLeft: "20%" }}
+      <div
+        className="row row--no-gutters"
+        style={{ paddingLeft: sidebarWidth }}
+      >
+        {options.map((menuItem, i) => (
+          <a
+            className={
+              "button button--outline button--secondary button--md " +
+              (activeTabIndex === i ? "button--active" : "")
+            }
+            style={{
+              borderRadius: "5px 5px 0 0",
+              borderColor: "var(--ifm-contents-border-color)",
+              borderWidth: "1px",
+              borderStyle: "solid",
+              borderBottom: "none",
+              padding:
+                "calc( var(--ifm-button-padding-vertical) * .70 ) calc( var(--ifm-button-padding-horizontal) * .70 )"
+            }}
+            href={menuItem.to}
+            onClick={() => setActiveTabIndex(i)}
+            key={i}
           >
-            {options.map((menuItem, i) => (
-              <DocBar
-                {...menuItem}
-                key={i}
-                style={{ display: "flex !important" }}
-              />
-            ))}
-          </div>
-        </div>
-      </nav>
+            {menuItem.label}
+          </a>
+        ))}
+      </div>
+
       <div className={styles.docPage}>
         {sidebar && (
-          <div className={styles.docSidebarContainer}>
+          <div className={styles.docSidebarContainer} ref={sidebarRef}>
             <DocSidebar
               docsSidebars={docsSidebars}
               location={location}
