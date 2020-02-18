@@ -32,7 +32,9 @@ function DocTOC({ headings }) {
 
 /* eslint-disable jsx-a11y/control-has-associated-label */
 function Headings({ headings, isChild }) {
-  if (!headings.length) return null;
+  if (!headings.length) {
+    return null;
+  }
   return (
     <ul className={isChild ? "" : "contents contents__left-border"}>
       {headings.map(heading => (
@@ -51,22 +53,23 @@ function Headings({ headings, isChild }) {
 
 function DocItem(props) {
   const { siteConfig = {} } = useDocusaurusContext();
-  const { url: siteUrl } = siteConfig;
-  const { metadata, content: DocContent } = props;
+  const { url: siteUrl, title: siteTitle } = siteConfig;
+  const { content: DocContent } = props;
+  const { metadata } = DocContent;
   const {
     description,
     title,
     permalink,
-    image: metaImage,
     editUrl,
     lastUpdatedAt,
     lastUpdatedBy,
-    keywords,
     version,
     source
   } = metadata;
   const {
     frontMatter: {
+      image: metaImage,
+      keywords,
       hide_title: hideTitle,
       hide_table_of_contents: hideTableOfContents
     }
@@ -79,7 +82,11 @@ function DocItem(props) {
   return (
     <>
       <Head>
-        {title && <title>{title}</title>}
+        {title && (
+          <title>
+            {title} | {siteTitle}
+          </title>
+        )}
         {description && <meta name="description" content={description} />}
         {description && (
           <meta property="og:description" content={description} />
@@ -97,7 +104,7 @@ function DocItem(props) {
       <div className="padding-vert--lg">
         <div className="container">
           <div className="row">
-            <div className="col">
+            <div className={classnames("col", styles.docItemCol)}>
               <div className={styles.docItemContainer}>
                 <article>
                   {version && (
@@ -110,7 +117,7 @@ function DocItem(props) {
                   )}
                   {!hideTitle && (
                     <header>
-                      <h1 className={styles.docTitle}>{metadata.title}</h1>
+                      <h1 className={styles.docTitle}>{title}</h1>
                     </header>
                   )}
 
