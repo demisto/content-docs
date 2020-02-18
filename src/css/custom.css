@@ -21,6 +21,7 @@
   --ifm-color-primary-light: #d6e7b1;
   --ifm-color-primary-lighter: #e5f0ce;
   --ifm-color-primary-lightest: #f4f8eb;
+  --ifm-heading-font-weight: 600;
 }
 
 /* Dark mode overrides */
