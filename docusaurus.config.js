@@ -42,7 +42,7 @@ module.exports = {
           to: "docs/why-demisto",
           label: "Why become a Partner?",
           position: "right"
-        },        
+        },
         {
           to: "docs/become-a-tech-partner",
           label: "Become a Technology Partner",
@@ -68,7 +68,10 @@ module.exports = {
           items: [
             { to: "docs/getting-started-guide", label: "Development Guide" },
             { to: "docs/why-demisto", label: "Why become a Partner?" },
-            { to: "docs/become-a-tech-partner", label: "Become a Technology Partner" }
+            {
+              to: "docs/become-a-tech-partner",
+              label: "Become a Technology Partner"
+            }
           ]
         },
         {
@@ -119,5 +122,27 @@ module.exports = {
       changefreq: "weekly",
       priority: 0.5
     }
-  ]
+  ],
+  customFields: {
+    docbar: {
+      options: [
+        {
+          label: "Concepts",
+          to: "docs/concepts"
+        },
+        {
+          label: "How-Tos",
+          to: "docs/howtos"
+        },
+        {
+          label: "Tutorials",
+          to: "docs/tutorials"
+        },
+        {
+          label: "Reference",
+          to: "docs/reference"
+        }
+      ]
+    }
+  }
 };
