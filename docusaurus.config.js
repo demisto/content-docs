@@ -27,26 +27,25 @@ module.exports = {
         src: "img/demistopeelable.png"
       },
 
+      menus: [
+        {
+          label: "Partners",
+          items: [
+            { to: "docs/partners/why-demisto", label: "Why Demisto?" },
+            {
+              to: "docs/partners/become-a-tech-partner",
+              label: "Become a Partner"
+            }
+          ],
+          position: "right"
+        }
+      ],
+
       links: [
         {
-          to: "docs/getting-started-guide",
-          label: "Development Guide",
+          to: "docs",
+          label: "Docs",
           position: "left"
-        },
-        {
-          to: "docs/use-cases",
-          label: "Use Cases",
-          position: "left"
-        },
-        {
-          to: "docs/why-demisto",
-          label: "Why become a Partner?",
-          position: "right"
-        },
-        {
-          to: "docs/become-a-tech-partner",
-          label: "Become a Technology Partner",
-          position: "right"
         },
         {
           href: "http://github.com/demisto/content/",
