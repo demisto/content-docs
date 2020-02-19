@@ -138,6 +138,11 @@ blockquote {
   max-width: 868px;
 }
 
+.card {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
 .customer-inner > a {
   color: #333333;
 }
