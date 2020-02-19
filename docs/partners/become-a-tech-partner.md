@@ -110,7 +110,7 @@ After the PR is submitted, it will require a review session with the development
 
 ## 7. Join TSANet
 
-To have their integrations approved and shipped with the Demisto Content, we require our partners to join the industry-standard support framework called TSANet in order to deliver outstanding support to our mutual customers. It’s free when you register under the Palo Alto Networks account, and it really streamlines the cross-company processes. [Sign Up For TSANet](https://paloaltonetworks-nextwave.connect.tsanet.org/).
+To have their integrations approved and shipped with the Demisto Content, we require our partners to join the industry-standard support framework called TSANet in order to deliver outstanding support to our mutual customers. It’s free when you register under the Palo Alto Networks account, and it really streamlines the cross-company processes. [Sign Up For TSANet](https://paloaltonetworks.tsanet.org).
 
 ## 8. Get the word out
 

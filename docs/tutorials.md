@@ -1,5 +1,5 @@
 ---
-id: tutorial
+id: tutorials
 title: Tutorial - Build an Integration
 ---
 
