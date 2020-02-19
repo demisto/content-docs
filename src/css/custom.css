@@ -21,6 +21,7 @@
   --ifm-color-primary-light: #d6e7b1;
   --ifm-color-primary-lighter: #e5f0ce;
   --ifm-color-primary-lightest: #f4f8eb;
+  --ifm-background-color: #fff;
 }
 
 /* Dark mode overrides */
@@ -160,4 +161,14 @@ blockquote {
   .navbar .navbar-sidebar {
     display: block !important;
   }
+}
+
+.button--active--tab {
+  background-color: var(--ifm-background-color) !important;
+  color: var(--ifm-color-primary) !important;
+  border-color: var(--ifm-color-primary) !important;
+  border-width: medium !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
 }
