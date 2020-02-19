@@ -127,6 +127,10 @@ module.exports = {
     docbar: {
       options: [
         {
+          label: "Home",
+          to: "docs"
+        },
+        {
           label: "Concepts",
           to: "docs/concepts"
         },
