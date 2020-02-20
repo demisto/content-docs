@@ -23,12 +23,11 @@ Reference docs on playbooks (*coming soon*)
 
 Reference docs on Demisto REST API (*coming soon*)
 
-
 ### Demisto SDK
 
 Reference docs on [demisto-sdk](https://github.com/demisto/demisto-sdk) (*coming soon*)
 
-### Helper Functions
+### Code
 
-Reference docs on Helper Functions for Demisto developers, such as the ones defined in CommonServerPython.py (*coming soon*)
+Reference docs for code conventions and helper functions for Demisto developers, such as the ones defined in CommonServerPython.py (*coming soon*)
 
