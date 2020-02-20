@@ -61,29 +61,34 @@ function DocPage(props) {
               backgroundColor: "var(--ifm-background-color)"
             }}
           >
-            {options.map((menuItem, i) => (
-              <Link
-                className={
-                  "button button--outline button--secondary button--md " +
-                  (typeof window !== "undefined" &&
-                  window.location.pathname.split("/")[2] ==
-                    useBaseUrl(menuItem.to).split("/")[2]
-                    ? "button--active--tab shadow--lw"
-                    : "")
-                }
-                style={{
-                  borderRadius: "0 0 0 0",
-                  borderColor: "var(--ifm-contents-border-color)",
-                  borderWidth: "0",
-                  padding:
-                    "calc( var(--ifm-button-padding-vertical) * 1.5  ) calc( var(--ifm-button-padding-horizontal) * .65 )"
-                }}
-                key={i}
-                to={useBaseUrl(menuItem.to)}
-              >
-                {menuItem.label}
-              </Link>
-            ))}
+            {typeof window !== "undefined" &&
+            window.location.pathname.split("/")[2] !== "partners" ? (
+              options.map((menuItem, i) => (
+                <Link
+                  className={
+                    "button button--outline button--secondary button--md " +
+                    (typeof window !== "undefined" &&
+                    window.location.pathname.split("/")[2] ==
+                      useBaseUrl(menuItem.to).split("/")[2]
+                      ? "button--active--tab shadow--lw"
+                      : "")
+                  }
+                  style={{
+                    borderRadius: "0 0 0 0",
+                    borderColor: "var(--ifm-contents-border-color)",
+                    borderWidth: "0",
+                    padding:
+                      "calc( var(--ifm-button-padding-vertical) * 1.5  ) calc( var(--ifm-button-padding-horizontal) * .65 )"
+                  }}
+                  key={i}
+                  to={useBaseUrl(menuItem.to)}
+                >
+                  {menuItem.label}
+                </Link>
+              ))
+            ) : (
+              <></>
+            )}
           </div>
           <MDXProvider components={MDXComponents}>
             {renderRoutes(route.routes)}
