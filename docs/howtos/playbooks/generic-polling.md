@@ -34,7 +34,7 @@ Follow these instructions to use the `GenericPolling` playbook.
 
 ## Example
 ### [Detonate File – JoeSecurity](https://github.com/demisto/content/blob/master/Playbooks/playbook-Detonate_File_-_JoeSecurity.yml)
-![image](doc_imgs/66270734-7ee53b00-e85f-11e9-8566-e0118774070e.png)
+![image](../../doc_imgs/howtos/playbooks/66270734-7ee53b00-e85f-11e9-8566-e0118774070e.png)
 
 * **Start command** - `joe-analysis-submit-sample` - Starts a new analysis of a file in Joe Security.
 * **Polling command** - `joe-analysis-info` - Returns the status of the analysis execution.
@@ -52,4 +52,4 @@ The polling is done only once the result is `finished`. The dt filter will retur
 * **Global context** is not supported.
 * Does not run from **playground**.
 * Polling command must support list argument.
-![image](doc_imgs/66293071-7d168880-e8ee-11e9-9d55-e8ae1e09fe0e.png)
+![image](../../doc_imgs/howtos/playbooks/66293071-7d168880-e8ee-11e9-9d55-e8ae1e09fe0e.png)

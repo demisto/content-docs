@@ -31,42 +31,45 @@ module.exports = {
       label: "Integrations",
       items: [
         {
+          "type": "doc",
+          "id": "howtos/how-integrations"
+        },
+        {
           type: "category",
-          label: "Coding",
+          label: "Code",
           items: [
-            "howtos/code-conventions",
-            "howtos/package-dir",
-            "howtos/yaml-file",
-            "howtos/parameter-types",
-            "howtos/fetching-incidents",
-            "howtos/fetching-credentials",
-            "howtos/long-running", 
-            "howtos/dbot",
-            "howtos/context-and-outputs",
-            "howtos/context-standards",
-            "howtos/dt"
+            "howtos/integrations/code-conventions",
+            "howtos/integrations/package-dir",
+            "howtos/integrations/yaml-file",
+            "howtos/integrations/parameter-types",
+            "howtos/integrations/fetching-incidents",
+            "howtos/integrations/fetching-credentials",
+            "howtos/integrations/long-running", 
+            "howtos/integrations/context-and-outputs",
+            "howtos/integrations/context-standards",
+            "howtos/integrations/dbot",
+            "howtos/integrations/dt"
           ]
         },
         {
           type: "category",          
           label: "Testing",
           items: [
-            "howtos/package-dir",
-            "howtos/docker",          
-            "howtos/linting",
-            "howtos/unit-testing",
-            "howtos/testing",
-            "howtos/circleci",
-            "howtos/debugging"
+            "howtos/integrations/package-dir",
+            "howtos/integrations/docker",          
+            "howtos/integrations/linting",
+            "howtos/integrations/unit-testing",
+            "howtos/integrations/test-playbooks",
+            "howtos/integrations/debugging"
           ],
         },
         {
           type: "category",          
           label: "Documenting",
           items: [
-            "howtos/integration-docs",
-            "howtos/doc-structure",
-            "howtos/changelog"     
+            "howtos/integrations/integration-docs",
+            "howtos/integrations/doc-structure",
+            "howtos/integrations/changelog"     
           ],
         }
       ]
@@ -75,37 +78,39 @@ module.exports = {
       type: "category",
       label: "Playbooks",
       items: [
-        "howtos/playbooks",
-        "howtos/playbook-conventions",
-        "howtos/generic-polling"   
+        "howtos/how-playbooks",
+        "howtos/playbooks/playbooks",
+        "howtos/playbooks/playbook-conventions",
+        "howtos/playbooks/generic-polling"   
       ]
     },
     {
       type: "category",
       label: "Scripts",
       items: [
-        "howtos/code-conventions",
+        "howtos/how-scripts",
       ]
     },
     {
       type: "category",
       label: "Incidents, Fields & Layouts",
       items: [
-        "howtos"
+        "howtos/how-incidents"
       ]
     },
     {
       type: "category",
-      label: "Dashboard and Widgets",
+      label: "Dashboards and Widgets",
       items: [
-        "howtos"
+        "howtos/how-dashboards"
       ]
     },
     {
       type: "category",
-      label: "Contribution Process",
+      label: "Contributing",
       items: [
-        "howtos",
+        "howtos/how-contributing",
+        "howtos/contributing/circleci",
       ]
     },
   ],
@@ -118,6 +123,7 @@ module.exports = {
       type: "category",
       label: "Getting Started",
       items: [
+        "tutorials/tut-getting-started",
         "tutorials/getting-started/tut-setup-dev",
       ]
     },
@@ -125,6 +131,7 @@ module.exports = {
       type: "category",
       label: "Integrations",
       items: [
+        "tutorials/tut-integrations",
         "tutorials/integrations/tut-integration-ui"
       ]
     },  
@@ -132,27 +139,28 @@ module.exports = {
       type: "category",
       label: "Playbooks",
       items: [
-        "tutorials/playbooks/tut-playbooks"
+        "tutorials/tut-playbooks"
       ]
     },
     {
       type: "category",
       label: "Scripts",
       items: [
-        "tutorials/scripts/tut-scripts"
+        "tutorials/tut-scripts"
       ]
     },
     {
       type: "category",
       label: "Incidents, Fields & Layouts",
       items: [
-        "tutorials/incidents/tut-incidents"      ]
+        "tutorials/tut-incidents"
+      ]
     },
     {
       type: "category",
       label: "Dashboard and Widgets",
       items: [
-        "tutorials/dashboards/tut-dashboards"
+        "tutorials/tut-dashboards"
       ]
     },
   ],
@@ -166,35 +174,35 @@ module.exports = {
       type: "category",
       label: "Integrations",
       items: [
-        "reference/integrations/ref-integrations",
+        "reference/ref-integrations",
       ]
     },
     {
       type: "category",
       label: "Playbooks",
       items: [
-        "reference/playbooks/ref-playbooks",
+        "reference/ref-playbooks",
       ]
     },
     {
       type: "category",
       label: "Scripts",
       items: [
-        "reference/scripts/ref-scripts",
+        "reference/ref-scripts",
       ]
     },  
     {
       type: "category",
       label: "Code",
       items: [
-        "reference/code/ref-code",
+        "reference/ref-code",
       ]
     },     
     {
       type: "category",
       label: "Demisto SDK",
       items: [
-        "reference/demisto-sdk/ref-demisto-sdk",
+        "reference/ref-demisto-sdk",
       ]
     },     
   ]

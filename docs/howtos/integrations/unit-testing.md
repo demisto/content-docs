@@ -48,7 +48,7 @@ To run your unit tests from the command line simply run from within the virtual 
 pytest -v
 ```
 Sample run:
-![](doc_imgs/unit-test-sample-run.png)
+![](../../doc_imgs/howtos/integrations/unit-test-sample-run.png)
 
 It is also possible to run from outside the virtual env by running:
 ```
@@ -60,7 +60,7 @@ Open the unit test file within PyCharm. You will see a green arrow next to each 
 
 Sample clip of debugging in PyCharm:
 
-![](doc_imgs/Unit-Testing-Debug.gif)
+![](../../doc_imgs/howtos/integrations/Unit-Testing-Debug.gif)
 
 ### Run With Docker
 CircleCI build will run the unit tests within the docker image the Integration/Automation will run with. To test and run locally the same way CircleCI runs the tests, use the following script from the root of the `content` project: [Tests/scripts/pkg_dev_test_tasks.py](https://github.com/demisto/content/blob/master/Tests/scripts/pkg_dev_test_tasks.py). **Note**: this script by default will also run pylint (as is done in the build process). 
@@ -95,7 +95,7 @@ optional arguments:
 
 Sample output:
 
-![](doc_imgs/unit-test-sample-output.png)
+![](../../doc_imgs/howtos/integrations/unit-test-sample-output.png)
 
 ## Troubleshooting Tips
 * The `pkg_dev_test_tasks.py` by default prints out minimal output. If for some reason it is failing and not clear, run the script with `-v` for verbose output.
