@@ -16,7 +16,7 @@ Specifying which docker image to use is done in the Demisto IDE (Open: Settings 
 
 **Note**: Starting in Demisto 5.0, you can specify in the Demisto IDE the Python version (2.7 or 3.x). Once you choose 3.x, the latest Demisto Python 3 Docker image will be selected automatically.
 
-The selected docker image is configured in the script/integration yaml file under the key: `dockerimage`. See: [Yaml File Overview](yaml-file.md).
+The selected docker image is configured in the script/integration yaml file under the key: `dockerimage`. See: [Yaml File Overview](yaml-file).
 
 ## Updating Docker Images
 Starting with Demisto 5.0, it is possible to update the docker image of a script/integration. Demisto 4.5 and below doesn't support updating the docker image without creating a new script/integration (v2). To update the docker image for Demisto 5.0 only and still generate a 4.5 version with the original 4.5 docker image, it is possible to add an additional configuration to the script/integration yaml file with the key: `dockerimage45`. This key should contain the docker image to use by Demisto 4.5 and below. When the key is present, the content creator script will generate two unified yaml files: one for Demisto 4.5 and below and one for 5.0 and above. For an example see: [Kafka V2 Integration](../../Integrations/Kafka_V2/Kafka_V2.yml).

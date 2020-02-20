@@ -84,7 +84,7 @@ We recommend your technical team review the docs on this site, and the following
 - [Demisto Concepts, and Terminology](https://support.demisto.com/hc/en-us/articles/360005126713-Demisto-Components-Concepts-and-Terminology)
 - [Demisto Getting started video tutorial](https://youtu.be/bDntS6biazI)
 
-Please reach out on Slack if you need any technical assistance or guidance. Follow the [Getting Started Guide](getting-started-guide) to understand all the requirements and components.
+Please reach out on Slack if you need any technical assistance or guidance. Follow the [Getting Started Guide](../howtos/integrations/getting-started-guide) to understand all the requirements and components.
 
 At a minimum, an integration consists in:
 - The Python code that connects to your product(s)

@@ -7,22 +7,22 @@ Thank you for showing interest in contributing to the Demisto content. We hope t
 
 This tutorial will guide you on how to set up your dev environment to quickly start developing on Demisto. While in Demisto you can write code directly in the UI, which is awesome, you'll need a proper development environment external to Demisto to contribute a full integration.. This is because, in order to build a full fledged integration, you'll need to *lint* your code, run unit tests with *pytest*, create some documentation, submit your changes via *git* and more.
 
-If you've been through this process already and just want a quick reference, you can jump to the [Development Setup](dev-setup) page, otherwise keep reading for more details.
+If you've been through this process already and just want a quick reference, you can jump to the [Development Setup](../../howtos/integrations/dev-setup) page, otherwise keep reading for more details.
 
 ## Which tools should I use?
 
 As mentioned, you'll need a combination of both the Demisto UI and other tools. 
 
 As a general rule of the thumb, we recommend that you use an external IDE and toolchain when:
-- Working on your [integration code](code-conventions) (YourIntegration.py)
-- Working on the [unit test script](unit-testing) (YourIntegration_test.py)
-- Working on the [CHANGELOG.md](changelog) and README.md documentation files
-- Running the [linting](linting) and testing
+- Working on your [integration code](../../howtos/integrations/code-conventions) (YourIntegration.py)
+- Working on the [unit test script](../../howtos/integrations/unit-testing) (YourIntegration_test.py)
+- Working on the [CHANGELOG.md](../../howtos/integrations/changelog) and README.md documentation files
+- Running the [linting](../../howtos/integrations/linting) and testing
 
 Instead, you should use the Demisto UI when:
-- Creating the [Test Playbooks](testing)
-- Auto-generate the [integration documentation](integration-docs)
-- Creating [example playbooks](playbooks) to demonstrate your integration
+- Creating the [Test Playbooks](../../howtos/integrations/test-playbooks)
+- Auto-generate the [integration documentation](../../howtos/integrations/integration-docs)
+- Creating [example playbooks](../../howtos/playbooks/playbooks) to demonstrate your integration
 - Working on the properties of your integration (parameters, commands, arguments, outputs, etc.)
 - Testing the User Experience
 
@@ -324,7 +324,7 @@ Then, make sure that `demisto-sdk` has been installed automatically by the boots
 Use demisto-sdk -h to see the available commands.
 ```
 
-Now, run the `demisto-sdk lint` command on the folder `Integrations/HelloWorld` using the `-d` option. It will run both the [linters](linting) and [pytest](unit-testing):
+Now, run the `demisto-sdk lint` command on the folder `Integrations/HelloWorld` using the `-d` option. It will run both the [linters](../../howtos/integrations/linting) and [pytest](../../howtos/integrations/unit-testing):
 
 ```bash
 (venv) sb@dddd:~/demisto/content$ demisto-sdk lint -d Integrations/HelloWorld
@@ -448,7 +448,7 @@ You can go back to GitHub and, under **your** fork, you should be able to see th
 
 ![GitHub Branch](../../doc_imgs/tutorials/getting-started/tut-setup-dev/06-githubbranch.png)
 
-Congratulations! You completed the set up of the Development Environment for Demisto! Now you can start writing your code. Please have a look at the [Code Conventions](code-conventions).
+Congratulations! You completed the set up of the Development Environment for Demisto! Now you can start writing your code. Please have a look at the [Code Conventions](../../howtos/integrations/code-conventions).
 
 Once you have written your integration, there are other useful commands you can use to make sure everything is in place before you open a Pull Request. One of them is `demisto-sdk validate -g`, that will check the files you're going to commit to make sure that everything is in place. We'll explore this further in other tutorials.
 

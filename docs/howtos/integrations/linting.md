@@ -3,7 +3,7 @@ id: linting
 title: Linting
 ---
 
-As part of the build process we run a few linters to catch common programming errors, stylistic errors and possible security issues. Linters are run only when working with the [package (directory) structure](package-dir.md).
+As part of the build process we run a few linters to catch common programming errors, stylistic errors and possible security issues. Linters are run only when working with the [package (directory) structure](package-dir).
 
 All linters are run via the following script:
 
@@ -36,7 +36,7 @@ optional arguments:
                         0)
 ```
 
-**Note**: this script is also used to run pytest. See: [Unit Testing](unit-testing.md)
+**Note**: this script is also used to run pytest. See: [Unit Testing](unit-testing)
 
 ## Flake8
 

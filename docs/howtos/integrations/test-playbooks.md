@@ -3,7 +3,7 @@ id: test-playbooks
 title: Test Playbooks
 ---
 
-We use Test Playbooks to test our integrations and automation scripts. The Test Playbooks provide full *End to End* testing. For testing small units of code, use [Unit Testing](unit-testing.md). 
+We use Test Playbooks to test our integrations and automation scripts. The Test Playbooks provide full *End to End* testing. For testing small units of code, use [Unit Testing](unit-testing). 
 
 Tests are run using our CI framework. They are run both as part of the build process and on a nightly basis. If you are a contributor, during the initial PR, Test Playbooks will not run but they will be used as part of the review process. Once the PR is merged into a `contrib/*` branch by one of the team members and credentials (if needed) are provided to Demisto, the test playbooks will be run as part of our CI framework. 
 

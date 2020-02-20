@@ -17,7 +17,7 @@ Please make sure you have completed the following before proceeding:
 
 If you are a Technology Partner, make sure that you also:
 
-1. Read the [Become a Technology Partner](become-a-tech-partner) page and sign up
+1. Read the [Become a Technology Partner](../../partners/become-a-tech-partner) page and sign up
 2. Complete the Technical Partnership Agreement
 3. Work with your Business Development contacts to make sure your use cases has been validated
 

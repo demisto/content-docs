@@ -56,5 +56,5 @@ We will support you as you build. Here’s a few of the ways:
 - Portal - You’ll be granted a portal account with full help documentation.  
 - Live resources - And of course we have live technical resources to step in when the above is exhausted.
 
-<a class="button button--outline button--primary button--lg" href="/docs/become-a-tech-partner">Become a Partner Now!</a>
+<a class="button button--outline button--primary button--lg" href="/docs/partners/become-a-tech-partner">Become a Partner Now!</a>
 

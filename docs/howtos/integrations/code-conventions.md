@@ -225,7 +225,7 @@ There are two implementation requirements for reputation commands (aka `!file`, 
 - The reputation command's argument of the same name must have `default` set to `True`.
 - The reputation command's argument of the same name must have `isArray` set to `True`.
 
-For more details on these two command argument properties look at the [yaml-file-integration/README.md](../../docs/yaml-file-integration/README.MD#commands) in our `docs` folder.
+For more details on these two command argument properties look at the [yaml-file-integration](yaml-file#commands) in our `docs` folder.
 
 
 ## test-module

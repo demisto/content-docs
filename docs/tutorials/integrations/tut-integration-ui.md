@@ -49,7 +49,7 @@ The description should include basic details about the integration, common troub
 
 >If you notice, we also have a checkbox for “Fetches Incidents”. This setting tells demisto that our integration has a command called “fetch-incidents” and will need to run periodically. This feature is what makes Demisto so incredibly useful for our customers since it ingests events and turns them into Incidents in Demisto.
 
-You can read about the fetching-incidents process [here](url). For simple APIs that return enrichment data, this may not be necessary, but for SEIMs, or other tools which report incidents, the fetch function is an absolute necessity.
+You can read about the fetching-incidents process [here](../../howtos/integrations/fetching-incidents). For simple APIs that return enrichment data, this may not be necessary, but for SEIMs, or other tools which report incidents, the fetch function is an absolute necessity.
 
 >Since we are just translating something today, we don’t need to use this, but we will cover this in depth in another video. The last part is the logo. When we create an integration that is open to the public, we need to use an image that looks good. We recommend an image no larger than 4kb and in the PNG format. I have one ready that we will use, so I will drag it into the box.
 

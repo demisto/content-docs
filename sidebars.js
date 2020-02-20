@@ -36,6 +36,14 @@ module.exports = {
         },
         {
           type: "category",
+          label: "Getting Started",
+          items: [
+            "howtos/integrations/getting-started-guide",
+            "howtos/integrations/dev-setup"
+          ]
+        },
+        {
+          type: "category",
           label: "Code",
           items: [
             "howtos/integrations/code-conventions",
