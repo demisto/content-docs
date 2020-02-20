@@ -201,6 +201,13 @@ module.exports = {
     },  
     {
       type: "category",
+      label: "REST API",
+      items: [
+        "reference/ref-restapi",
+      ]
+    },   
+    {
+      type: "category",
       label: "Code",
       items: [
         "reference/ref-code",
@@ -212,6 +219,25 @@ module.exports = {
       items: [
         "reference/ref-demisto-sdk",
       ]
-    },     
+    }     
+  ],
+  partners: 
+  [
+    {
+      type: "doc",
+      id: "partners/why-demisto"
+    },
+    {
+      type: "doc",
+      id: "partners/become-a-tech-partner"
+    },
+    {
+      type: "doc",
+      id: "partners/partner-owned-integration"
+    },
+    {
+      type: "doc",
+      id: "partners/development-partners"
+    },
   ]
 };

@@ -35,6 +35,14 @@ module.exports = {
             {
               to: "docs/partners/become-a-tech-partner",
               label: "Become a Partner"
+            },
+            {
+              to: "docs/partners/partner-owned-integration",
+              label: "Partner Owned Integration"
+            },
+            {
+              to: "docs/partners/development-partners",
+              label: "Development Partners"
             }
           ],
           position: "right"
@@ -65,10 +73,10 @@ module.exports = {
         {
           title: "Docs",
           items: [
-            { to: "docs/getting-started-guide", label: "Development Guide" },
-            { to: "docs/why-demisto", label: "Why become a Partner?" },
+            { to: "docs/howtos/integrations/getting-started-guide", label: "Development Guide" },
+            { to: "docs/partners/why-demisto", label: "Why become a Partner?" },
             {
-              to: "docs/become-a-tech-partner",
+              to: "docs/partners/become-a-tech-partner",
               label: "Become a Technology Partner"
             }
           ]
@@ -126,7 +134,7 @@ module.exports = {
     docbar: {
       options: [
         {
-          label: "Home",
+          label: "Docs Home",
           to: "docs"
         },
         {

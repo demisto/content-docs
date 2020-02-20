@@ -3,7 +3,7 @@ id: howtos
 title: How Tos
 ---
 
-# Concepts
+# How-Tos
 
 This section includes How-Tos to show you how to build things in Demisto.
 

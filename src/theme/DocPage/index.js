@@ -66,7 +66,7 @@ function DocPage(props) {
               options.map((menuItem, i) => (
                 <Link
                   className={
-                    "button button--outline button--secondary button--md " +
+                    "button button--outline button--secondary button--lg " +
                     (typeof window !== "undefined" &&
                     window.location.pathname.split("/")[2] ==
                       useBaseUrl(menuItem.to).split("/")[2]
