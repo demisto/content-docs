@@ -5,7 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "cp -RPv docs/doc_imgs/* static/doc_imgs/ && replace 'doc_imgs' '/doc_imgs' docs/* --include='*.md*' && docusaurus build",
+    "build": "cp -RPv docs/doc_imgs/* static/doc_imgs/ && replace '(\\.\\.\\/){0,2}doc_imgs' '/doc_imgs' docsb/* --include='*.md*' --recursive && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy"
   },
