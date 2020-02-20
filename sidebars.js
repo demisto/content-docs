@@ -6,47 +6,21 @@ module.exports = {
         id: "concepts"
       },
       {
-        type: "category",
-        label: "Overview",
-        items: [
-          "concepts/concept",
-        ]
+        type: "doc",
+        id: "concepts/overview",
       },
       {
-        type: "category",
-        label: "Architecture",
-        items: [
-          "concepts/concept",
-        ]
+        type: "doc",
+        id: "concepts/use-cases"
       },
       {
-        type: "category",
-        label: "Use Cases",
-        items: [
-          "concepts/use-cases"
-        ]
-      },
-      {
-        type: "category",
-        label: "Design",
-        items: [
-          "concepts/design-best-practices"
-        ]
+        type: "doc",
+        id: "concepts/design-best-practices"
       }, 
       {
-        type: "category",
-        label: "Dev Environment & SDK",
-        items: [
-          "concepts/concept",
-        ]
+        type: "doc",
+        id: "concepts/faq"
       }, 
-      {
-        type: "category",
-        label: "Best Practices",
-        items: [
-          "concepts/design-best-practices",
-        ]
-      }
   ],
   howtos: [
     {
@@ -144,41 +118,41 @@ module.exports = {
       type: "category",
       label: "Getting Started",
       items: [
-        "tutorials/tutorial-setup-dev",
+        "tutorials/getting-started/tut-setup-dev",
       ]
     },
     {
       type: "category",
       label: "Integrations",
       items: [
-        "tutorials/tutorial"
+        "tutorials/integrations/tut-integration-ui"
       ]
     },  
     {
       type: "category",
       label: "Playbooks",
       items: [
-        "tutorials/tutorial"
+        "tutorials/playbooks/tut-playbooks"
       ]
     },
     {
       type: "category",
       label: "Scripts",
       items: [
-        "tutorials/tutorial"
+        "tutorials/scripts/tut-scripts"
       ]
     },
     {
       type: "category",
       label: "Incidents, Fields & Layouts",
       items: [
-        "tutorials/tutorial"      ]
+        "tutorials/incidents/tut-incidents"      ]
     },
     {
       type: "category",
       label: "Dashboard and Widgets",
       items: [
-        "tutorials/tutorial"
+        "tutorials/dashboards/tut-dashboards"
       ]
     },
   ],

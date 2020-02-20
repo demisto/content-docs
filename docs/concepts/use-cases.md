@@ -1,6 +1,6 @@
 ---
 id: use-cases
-title: Integration Use Cases
+title: Use Cases
 ---
 
 This section includes common Use Cases for the different categories of Demisto integrations. While this list is not meant to be exhaustive, it's a good starting point for you to understand what use cases could be supported by your integration.
