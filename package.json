@@ -5,7 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "copyfiles -E -V -f docs/doc_imgs/* static/doc_imgs/. && replace 'doc_imgs' '/doc_imgs' docs/* --include='*.md*' && docusaurus build",
+    "build": "cp -RPv docs/doc_imgs/* static/doc_imgs/ && replace 'doc_imgs' '/doc_imgs' docs/* --include='*.md*' && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy"
   },
