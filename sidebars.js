@@ -192,35 +192,35 @@ module.exports = {
       type: "category",
       label: "Integrations",
       items: [
-        "reference/faq",
+        "reference/integrations/ref-integrations",
       ]
     },
     {
       type: "category",
       label: "Playbooks",
       items: [
-        "reference/faq",
+        "reference/playbooks/ref-playbooks",
       ]
     },
     {
       type: "category",
       label: "Scripts",
       items: [
-        "reference/faq",
+        "reference/scripts/ref-scripts",
       ]
     },  
     {
       type: "category",
-      label: "Helper Functions",
+      label: "Code",
       items: [
-        "reference/faq",
+        "reference/code/ref-code",
       ]
     },     
     {
       type: "category",
       label: "Demisto SDK",
       items: [
-        "reference/faq",
+        "reference/demisto-sdk/ref-demisto-sdk",
       ]
     },     
   ]
