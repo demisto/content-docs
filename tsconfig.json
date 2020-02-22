@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "target": "es6",
+        "module": "commonjs",
+        "allowJs": true,
+        "sourceMap": false,
+        "watch": false,
+        "skipLibCheck": true,
+    },
+    "exclude": [
+        "build",
+        "src",
+        "docusaurus.config.js",
+        "sidebars.js"
+    ]
+}
