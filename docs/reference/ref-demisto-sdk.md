@@ -1,6 +1,6 @@
 ---
 id: ref-demisto-sdk
-title: Demisto SDK Reference
+title: Demisto SDK Reference - Coming soon
 ---
 
 ## Coming soon!

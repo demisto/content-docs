@@ -1,6 +1,6 @@
 ---
 id: ref-code
-title: Code Reference
+title: Code Reference - Coming soon
 ---
 
 ## Coming soon!

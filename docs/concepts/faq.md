@@ -2,7 +2,6 @@
 id: faq
 title: Frequently Asked Questions
 ---
-# Demisto FAQ
 
 ### Which IDEs do you support?
 - We have [PyCharm plugin](https://plugins.jetbrains.com/plugin/12093-demisto-add-on-for-pycharm)

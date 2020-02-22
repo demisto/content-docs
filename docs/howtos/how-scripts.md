@@ -1,6 +1,6 @@
 ---
 id: how-scripts
-title: Scripts
+title: Scripts - Coming soon
 ---
 
 ## Coming soon!

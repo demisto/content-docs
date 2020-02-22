@@ -1,6 +1,6 @@
 ---
 id: ref-scripts
-title: Scripts Reference
+title: Scripts Reference - Coming soon
 ---
 
 ## Coming soon!

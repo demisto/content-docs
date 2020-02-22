@@ -1,6 +1,6 @@
 ---
 id: ref-restapi
-title: Rest API Reference
+title: Rest API Reference - Coming soon
 ---
 
 ## Coming soon!

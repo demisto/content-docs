@@ -1,6 +1,6 @@
 ---
 id: how-dashboards
-title: Dashboards
+title: Dashboards & Widgets - Coming Soon
 ---
 
 ## Coming soon!

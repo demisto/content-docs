@@ -7,10 +7,6 @@ module.exports = {
       },
       {
         type: "doc",
-        id: "concepts/overview",
-      },
-      {
-        type: "doc",
         id: "concepts/use-cases"
       },
       {
@@ -30,10 +26,6 @@ module.exports = {
       type: "category",
       label: "Integrations",
       items: [
-        {
-          "type": "doc",
-          "id": "howtos/how-integrations"
-        },
         {
           type: "category",
           label: "Getting Started",
@@ -86,7 +78,6 @@ module.exports = {
       type: "category",
       label: "Playbooks",
       items: [
-        "howtos/how-playbooks",
         "howtos/playbooks/playbooks",
         "howtos/playbooks/playbook-conventions",
         "howtos/playbooks/generic-polling"   
@@ -108,7 +99,7 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Dashboards and Widgets",
+      label: "Dashboards & Widgets",
       items: [
         "howtos/how-dashboards"
       ]
@@ -117,7 +108,6 @@ module.exports = {
       type: "category",
       label: "Contributing",
       items: [
-        "howtos/how-contributing",
         "howtos/contributing/circleci",
       ]
     },
@@ -131,15 +121,13 @@ module.exports = {
       type: "category",
       label: "Getting Started",
       items: [
-        "tutorials/tut-getting-started",
-        "tutorials/getting-started/tut-setup-dev",
+         "tutorials/getting-started/tut-setup-dev",
       ]
     },
     {
       type: "category",
       label: "Integrations",
       items: [
-        "tutorials/tut-integrations",
         "tutorials/integrations/tut-integration-ui"
       ]
     },  
@@ -166,13 +154,13 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Dashboard and Widgets",
+      label: "Dashboard & Widgets",
       items: [
         "tutorials/tut-dashboards"
       ]
     },
   ],
-  references: 
+  reference: 
   [
     {
       type: "doc",

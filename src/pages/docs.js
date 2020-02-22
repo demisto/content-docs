@@ -50,14 +50,12 @@ function Docs() {
                     </description>
                   </div>
                   <div class="card__body">
-                    <Link href={useBaseUrl("docs/concepts/overview")}>Overview</Link>
-                    <br/>
                     <Link href={useBaseUrl("docs/concepts/use-cases")}>Use Cases</Link>
                     <br/>
                     <Link href={useBaseUrl("docs/concepts/design-best-practices")}>Design</Link>
                     <br/>
                     <Link href={useBaseUrl("docs/concepts/faq")}>FAQ</Link>
-                    <br/><br/><br/>
+                    <br/><br/><br/><br/>
                   </div>
                   <div class="card__footer">
                     <Link
@@ -79,17 +77,17 @@ function Docs() {
                     <description>Dive into details and learn how to do stuff with Demisto</description>
                   </div>
                   <div class="card__body">
-                    <Link href={useBaseUrl("docs/howtos/how-integrations")}>Integrations</Link>
+                    <Link href={useBaseUrl("docs/howtos")}>Integrations</Link>
                     <br/>
-                    <Link href={useBaseUrl("docs/howtos/how-playbooks")}>Playbooks</Link>
+                    <Link href={useBaseUrl("docs/howtos")}>Playbooks</Link>
                     <br/>
-                    <Link href={useBaseUrl("docs/howtos/how-scripts")}>Scripts</Link> (<i>coming soon</i>)
+                    <Link href={useBaseUrl("docs/howtos")}>Scripts</Link> (<i>coming soon</i>)
                     <br/>
-                    <Link href={useBaseUrl("docs/howtos/how-incidents")}>Incidents, Fields  Layouts</Link> (<i>coming soon</i>)
+                    <Link href={useBaseUrl("docs/howtos")}>Incidents, Fields  Layouts</Link> (<i>coming soon</i>)
                     <br/>
-                    <Link href={useBaseUrl("docs/howtos/how-dashboards")}>Dashboards  Widgets</Link> (<i>coming soon</i>)
+                    <Link href={useBaseUrl("docs/howtos")}>Dashboards  Widgets</Link> (<i>coming soon</i>)
                     <br/>
-                    <Link href={useBaseUrl("docs/howtos/how-contributing")}>Contribution Process</Link>
+                    <Link href={useBaseUrl("docs/howtos")}>Contributing</Link>
                     <br/>
                   </div>
                   <div class="card__footer">
@@ -120,15 +118,15 @@ function Docs() {
                       Getting Started
                     </Link>
                     <br/>
-                    <Link href={useBaseUrl("docs/tutorials/tut-integrations")}>Integrations</Link>
+                    <Link href={useBaseUrl("docs/tutorials")}>Integrations</Link>
                     <br/>
-                    <Link href={useBaseUrl("docs/tutorials/tut-playbooks")}>Playbooks</Link> (<i>coming soon</i>)
+                    <Link href={useBaseUrl("docs/tutorials")}>Playbooks</Link> (<i>coming soon</i>)
                     <br/>
-                    <Link href={useBaseUrl("docs/tutorials/tut-scripts")}>Scripts</Link> (<i>coming soon</i>)
+                    <Link href={useBaseUrl("docs/tutorials")}>Scripts</Link> (<i>coming soon</i>)
                     <br/>
-                    <Link href={useBaseUrl("docs/tutorials/tut-incidents")}>Incidents, Fields  Layouts</Link> (<i>coming soon</i>)
+                    <Link href={useBaseUrl("docs/tutorials")}>Incidents, Fields  Layouts</Link> (<i>coming soon</i>)
                     <br/>
-                    <Link href={useBaseUrl("docs/tutorials/tut-dashboards")}>Dashboards  Widgets</Link> (<i>coming soon</i>)
+                    <Link href={useBaseUrl("docs/tutorials")}>Dashboards  Widgets</Link> (<i>coming soon</i>)
                     <br/>
                   </div>
                   <div class="card__footer">
@@ -149,17 +147,17 @@ function Docs() {
                     <description>Reference Guides</description>
                   </div>
                   <div class="card__body">
-                    <Link href={useBaseUrl("docs/reference/ref-integrations")}>Integrations</Link> (<i>coming soon</i>)
+                    <Link href={useBaseUrl("docs/reference")}>Integrations</Link> (<i>coming soon</i>)
                     <br/>
-                    <Link href={useBaseUrl("docs/reference/ref-playbooks")}>Playbooks</Link> (<i>coming soon</i>)
+                    <Link href={useBaseUrl("docs/reference")}>Playbooks</Link> (<i>coming soon</i>)
                     <br/>
-                    <Link href={useBaseUrl("docs/reference/ref-scripts")}>Scripts</Link> (<i>coming soon</i>)
+                    <Link href={useBaseUrl("docs/reference")}>Scripts</Link> (<i>coming soon</i>)
                     <br/>
-                    <Link href={useBaseUrl("docs/reference/ref-restapi")}>Rest API</Link> (<i>coming soon</i>)
+                    <Link href={useBaseUrl("docs/reference")}>Rest API</Link> (<i>coming soon</i>)
                     <br/>
-                    <Link href={useBaseUrl("docs/reference/ref-code")}>Helper Functions</Link> (<i>coming soon</i>)
+                    <Link href={useBaseUrl("docs/reference")}>Helper Functions</Link> (<i>coming soon</i>)
                     <br/>
-                    <Link href={useBaseUrl("docs/reference/ref-demisto-sdk")}>Demisto SDK</Link> (<i>coming soon</i>)
+                    <Link href={useBaseUrl("docs/reference")}>Demisto SDK</Link> (<i>coming soon</i>)
                   </div>
                   <div class="card__footer">
                     <Link

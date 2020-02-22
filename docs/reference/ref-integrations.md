@@ -1,6 +1,6 @@
 ---
 id: ref-integrations
-title: Integrations Reference
+title: Integrations Reference - Coming soon
 ---
 
 ## Coming soon!

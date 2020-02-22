@@ -1,6 +1,6 @@
 ---
 id: how-incidents
-title: Incidents, Fields & Layouts
+title: Incidents, Fields & Layouts - Coming soon
 ---
 
 ## Coming soon!

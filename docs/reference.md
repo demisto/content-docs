@@ -11,13 +11,13 @@ This section contains reference documentation on all Demisto content.
 
 Reference docs on integrations (*coming soon*)
 
-### Scripts
-
-Reference docs on automation scripts (*coming soon*) 
-
 ### Playbooks
 
 Reference docs on playbooks (*coming soon*)
+
+### Scripts
+
+Reference docs on automation scripts (*coming soon*) 
 
 ### Demisto REST API
 

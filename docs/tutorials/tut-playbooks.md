@@ -1,6 +1,6 @@
 ---
 id: tut-playbooks
-title: Playbook
+title: Playbooks - Coming soon
 ---
 
 ## Coming soon!

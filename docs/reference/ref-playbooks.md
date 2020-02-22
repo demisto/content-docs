@@ -1,6 +1,6 @@
 ---
 id: ref-playbooks
-title: Playbooks Reference
+title: Playbooks Reference - Coming soon
 ---
 
 ## Coming soon!

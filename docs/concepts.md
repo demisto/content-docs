@@ -1,11 +1,11 @@
 ---
 id: concepts
-title: Concept
+title: Concepts
 ---
 
-# Concepts
+This section includes documents that cover many relevant concepts that are useful to understand how Demisto works, what components are used for which tasks and how the contribution process works.
 
-This section has documents that cover many relevant concepts that Demisto contributors can use for development.
+Use this section as the starting point to your development journey in Demisto!
 
 Please use the sidebar on the left to navigate to the content you like.
 

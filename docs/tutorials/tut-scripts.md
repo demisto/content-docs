@@ -1,6 +1,6 @@
 ---
 id: tut-scripts
-title: Scripts
+title: Scripts - Coming soon
 ---
 
 ## Coming soon!

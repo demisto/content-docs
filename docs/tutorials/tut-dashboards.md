@@ -1,6 +1,6 @@
 ---
 id: tut-dashboards
-title: Dashboards & Widgets
+title: Dashboards & Widgets - Coming soon
 ---
 
 ## Coming soon!
