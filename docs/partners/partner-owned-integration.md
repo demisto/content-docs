@@ -10,10 +10,15 @@ The next major release of our platform will include a new capability to give our
 You are not required to give us access to your product if you don’t want to.
 
 We’ve made launching a POI seamless and easy:
+
 1. New partners apply at our registration page at demisto.pan.dev and follow the normal process to [become a technical partner](become-a-tech-partner). (Existing partners skip this step.) Be sure to sign up for [TSANet](https://paloaltonetworks-nextwave.connect.tsanet.org/); that’s how our support teams will find each other.
-2. When you create your integration, enter relevant support and contact information in the description field. 
+
+2. When you create your integration, enter relevant support and contact information in the description field.
+
 3. Whenever you do a Pull Request be sure to enter your partner ID (the unique ID we assigned to your company when you applied, or [contact us](mailto:soar.alliances@paloaltonetworks.com)) so we can associate your request with your product and company.
-4. Our Engineering team will do an expedited review of your integration code so that it can be certified as Partner-Owned. You’ll show us a Zoom demo but are not required to give us product access. 
+
+4. Our Engineering team will do an expedited review of your integration code so that it can be certified as Partner-Owned. You’ll show us a Zoom demo but are not required to give us product access.
+
 5. When we push your integration live to our global customers, we’ll add the “Partner” banner so all users can see it’s owned and managed by you! (For launch partners who created integrations in the past, we’ll update the listing to include the Partner banner automatically.)
 
 ![pcycys_partner](../doc_imgs/partners/pcysys_partner.png)
@@ -33,5 +38,7 @@ We updated our support infrastructure so that we can identify and guide customer
 ## Support References
 
 The main two documents that detail the support framework are:
+
 1. Palo Alto Networks Technology Partner Agreement (TPA) - specifies that the partner will support what the partner writes.
+
 2. TSANet Code of Conduct (with Addendum) - details how parties must respond across the various SLAs and severity levels. 

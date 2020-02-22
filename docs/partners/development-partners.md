@@ -9,10 +9,15 @@ To address this need, we’re pleased to have software development companies tha
 
 ## How It Works
 Having your integration built by a development partner and certified by us is easy:
+
 1. Contact one or more of the partners below - They’ve been pre-screened and trained by Demisto teams.
+
 2. Establish scoping and contracting - Define what you want to accomplish in your integration. We’re happy to join calls to define use cases and commands based on our experience -- just let us know! (Palo Alto Networks is not a party to your agreement.)
-3. Sign up as a Technical Partner - [register](https://start.paloaltonetworks.com/become-a-technology-partner) and complete our Technology Partner Agreement (TPA) so we can publish the integration under your company name. 
+
+3. Sign up as a Technical Partner - [register](https://start.paloaltonetworks.com/become-a-technology-partner) and complete our Technology Partner Agreement (TPA) so we can publish the integration under your company name.
+
 4. The development partner will keep us updated on timing and any issues. They’ll manage the GitHub pull request and certification with our Engineering teams.
+
 5. [Most common] When the Integration is complete and GA, the development partner will release the code to you as a [partner-owned integration](partner-owned-integration); you will support the integration for defects and enhancements going forward. Be sure to register for [TSANet](https://paloaltonetworks-nextwave.connect.tsanet.org/) for that.
 
 ## Our Partners
