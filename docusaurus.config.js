@@ -27,26 +27,33 @@ module.exports = {
         src: "img/demistopeelable.png"
       },
 
+      menus: [
+        {
+          label: "Partners",
+          items: [
+            { to: "docs/partners/why-demisto", label: "Why Demisto?" },
+            {
+              to: "docs/partners/become-a-tech-partner",
+              label: "Become a Partner"
+            },
+            {
+              to: "docs/partners/partner-owned-integration",
+              label: "Partner Owned Integration"
+            },
+            {
+              to: "docs/partners/development-partners",
+              label: "Development Partners"
+            }
+          ],
+          position: "right"
+        }
+      ],
+
       links: [
         {
-          to: "docs/getting-started-guide",
-          label: "Development Guide",
+          to: "docs",
+          label: "Docs",
           position: "left"
-        },
-        {
-          to: "docs/use-cases",
-          label: "Use Cases",
-          position: "left"
-        },
-        {
-          to: "docs/why-demisto",
-          label: "Why become a Partner?",
-          position: "right"
-        },        
-        {
-          to: "docs/become-a-tech-partner",
-          label: "Become a Technology Partner",
-          position: "right"
         },
         {
           href: "http://github.com/demisto/content/",
@@ -66,9 +73,12 @@ module.exports = {
         {
           title: "Docs",
           items: [
-            { to: "docs/getting-started-guide", label: "Development Guide" },
-            { to: "docs/why-demisto", label: "Why become a Partner?" },
-            { to: "docs/become-a-tech-partner", label: "Become a Technology Partner" }
+            { to: "docs/howtos/integrations/getting-started-guide", label: "Development Guide" },
+            { to: "docs/partners/why-demisto", label: "Why become a Partner?" },
+            {
+              to: "docs/partners/become-a-tech-partner",
+              label: "Become a Technology Partner"
+            }
           ]
         },
         {
@@ -119,5 +129,31 @@ module.exports = {
       changefreq: "weekly",
       priority: 0.5
     }
-  ]
+  ],
+  customFields: {
+    docbar: {
+      options: [
+        {
+          label: "Docs Home",
+          to: "docs"
+        },
+        {
+          label: "Concepts",
+          to: "docs/concepts"
+        },
+        {
+          label: "How-Tos",
+          to: "docs/howtos"
+        },
+        {
+          label: "Tutorials",
+          to: "docs/tutorials"
+        },
+        {
+          label: "Reference",
+          to: "docs/reference"
+        }
+      ]
+    }
+  }
 };
