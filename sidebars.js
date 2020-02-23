@@ -40,7 +40,8 @@ module.exports = {
           "dbot",
           "context-and-outputs",
           "context-standards",
-          "dt"
+          "dt",
+          "integration-context",
         ]
       },
       {
