@@ -11,6 +11,8 @@ A common use-case would be storing API tokens which have expiration time (i.e. J
 
 For that, Demisto introduces the cached object `integrationContext`.
 
+The object is stored in the database per integration instance.
+
 ## Implementation
 
 The `integrationContext` supports two methods: getter and setter.
