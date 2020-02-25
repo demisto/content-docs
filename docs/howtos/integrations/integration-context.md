@@ -1,5 +1,5 @@
 ---
-id: integration-context
+id: integration-cache
 title: Integration Cache
 ---
 
@@ -7,15 +7,21 @@ title: Integration Cache
 
 Occasionally, you might need to store data between integration commands runs.
 
-A common use-case would be storing API tokens which have expiration time (i.e. JWT).
+A common use-case would be storing API tokens which have expiration time (i.e. JWT). 
+
+Very often JWTs (a.k.a. JSON Web Tokens) are generated through an API call and have a validity of several minutes or hours: in order to avoid re-generating tokens every time a command is executed in Demisto, you can cache them using `integrationContext` and retrieve them until they expire.
 
 For that, Demisto introduces the cached object `integrationContext`.
 
 The object is stored in the database per integration instance.
 
+Note: the `integrationContext` object cannot be retrieved or set in the `test-module` command.
+
 ## Implementation
 
 The `integrationContext` supports two methods: getter and setter.
+
+Both methods are provided by the `demisto` class.
 
 If no object is stored, the method will return an empty dictionary.
 
@@ -35,17 +41,17 @@ Note that this method overrides the existing object which is stored, so in order
 ### General usage
 ```python
 integration_context: Dict = demisto.getIntegrationContext()
-print(integration_context)
+demisto.results(integration_context)
 >>> {}
 integration_context_to_set = {'token': 'TOKEN'}
 demisto.setIntegrationContext(integration_context_to_set)
 integration_context = demisto.getIntegrationContext()
-print(integration_context['token'])
+demisto.results(integration_context['token'])
 >>> "TOKEN"
 integration_context_to_set = {'token': 'NEW-TOKEN'}
 demisto.setIntegrationContext(integration_context_to_set)
 integration_context = demisto.getIntegrationContext()
-print(integration_context['token'])
+demisto.results(integration_context['token'])
 >>> "NEW-TOKEN"
 ```
 
@@ -69,5 +75,5 @@ demisto.setIntegrationContext(integration_context)
 ```
 
 ### For more examples, refer to following integrations:
- - [Microsoft Graph](https://github.com/demisto/content/tree/master/Packs/ApiModules/Scripts/MicrosoftApiModule)
+ - [Microsoft Graph](https://github.com/demisto/content/blob/master/Packs/ApiModules/Scripts/MicrosoftApiModule/MicrosoftApiModule.py)
  - [EWS v2](https://github.com/demisto/content/blob/master/Integrations/EWSv2/EWSv2.py) 

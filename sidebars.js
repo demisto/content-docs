@@ -49,7 +49,7 @@ module.exports = {
             "howtos/integrations/context-standards",
             "howtos/integrations/dbot",
             "howtos/integrations/dt",
-            "howtos/integrations/integration-context",
+            "howtos/integrations/integration-cache",
           ]
         },
         {
