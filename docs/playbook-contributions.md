@@ -3,11 +3,11 @@
 This guide is intended to guide you through the process of contributing playbooks to our content, after they were created through the user interface.   
   
 ## Guidelines
-* For general guidelines on **how to create playbooks**, visit our [Creating Playbooks](https://github.com/demisto/content-docs/blob/master/docs/playbooks.md) article.
+* For general guidelines on **how to create playbooks**, visit our [Creating Playbooks](https://demisto.pan.dev/docs/howtos/playbooks/playbooks) article.
 * Playbooks can be be divided into 2 categories depending on their usage. Technically, they are the same, but usage-wise, there are some differences. "Parent" playbooks are playbooks that run as the main playbook of an incident. The other type is "sub-playbooks", which are just playbooks that are being called by another playbook. 
 Examples of parent playbooks can be `Phishing Investigation - Generic v2`, or `Endpoint Malware Investigation - Generic` because an incident starts with them. 
 Examples of sub-playbooks are `IP Enrichment - Generic v2` or `Retrieve File From Endpoint - Generic`, because they are steps we take as part of the bigger investigation.
-What one needs to consider is that since sub-playbooks are used as part of a bigger investigation, **they should have inputs and outputs.** Make sure that data you want to get from a sub-playbook, is defined in the outputs of it, so it can be used outside of that playbook. Since sub-playbooks are building blocks that will preferably be usable in other playbooks and use-cases, you should define **generic inputs** for them as explained in our [context standards](https://github.com/demisto/content-docs/blob/master/docs/context-standards.md) article.
+What one needs to consider is that since sub-playbooks are used as part of a bigger investigation, **they should have inputs and outputs.** Make sure that data you want to get from a sub-playbook, is defined in the outputs of it, so it can be used outside of that playbook. Since sub-playbooks are building blocks that will preferably be usable in other playbooks and use-cases, you should define **generic inputs** for them as explained in our [context standards](https://demisto.pan.dev/docs/howtos/integrations/context-standards) article.
 * Test playbooks can be used for testing integration commands individually (checking that they work and return the right inputs/outputs), but in the sense of playbooks - test playbooks should test a **certain scenario** of the investigation. For example, the test of `Phishing Investigation - Generic v2` creates an incident and attaches and email, and then makes sure that the URL contained in the email was found malicious (as it should be).
 
 ## Exporting playbooks  
