@@ -179,6 +179,7 @@ module.exports = {
       label: "Playbooks",
       items: [
         "reference/ref-playbooks",
+        "reference/playbooks/access-investigation-generic-nist",
       ]
     },
     {
