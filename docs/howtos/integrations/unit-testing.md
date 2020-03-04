@@ -36,10 +36,131 @@ if __name__ == "__builtin__" or __name__ == "builtins":
 ``` 
 
 ## Write Your Unit Tests
-Unit test should be written in a separate Python file named: `<you_choice>_test.py`. Within the unit test file, each unit test function should be named: `test_<your name>`. More information on writing unit tests and their format is available at the [PyTest Docs](https://docs.pytest.org/en/latest/contents.html). Good place to see example unit tests: [Proofpoint TAP v2 integration](https://github.com/demisto/content/blob/master/Integrations/ProofpointTAP_v2/ProofpointTAP_v2_test.py) 
+Unit test should be written in a separate Python file named: `<your_choice>_test.py`. Within the unit test file, each unit test function should be named: `test_<your name>`. More information on writing unit tests and their format is available at the [PyTest Docs](https://docs.pytest.org/en/latest/contents.html). Good place to see example unit tests: [Proofpoint TAP v2 integration](https://github.com/demisto/content/blob/master/Integrations/ProofpointTAP_v2/ProofpointTAP_v2_test.py) 
 
 ### Mocking
 We use [pytest-mock](https://github.com/pytest-dev/pytest-mock/) for mocking. `pytest-mock` is enabled by default and installed in the base environment mentioned above. To use a `mocker` object simply pass it as a parameter to your test function. The `mocker` can then be used to mock both the demisto object and also external APIs. For an example of using a `mocker` object see: https://github.com/demisto/content/blob/master/Scripts/ParseEmailFiles/parse_email_files_test.py#L29 .
+
+
+## Common Unit Testing Use Cases Simplified by Pytest
+
+### Multi variables assertion
+Most functions we write have several edge cases. When writing a unit test for this type of function all edge cases needs to be tested.
+For example let's examine the following python function:
+```
+def convert_string_to_type(string: str) -> Union[str, bool, int]:
+    """
+    Converts the input string to it's object type
+    :param string: The input string
+    :return: The converted object
+    """
+    if string.isnumeric():
+        return int(string)
+    elif string in ['true', 'false', 'True', 'False']:
+        return bool(string)
+    return string
+```
+A naive unit test will be as follows:
+```
+def test_convert_string_to_type():
+    from File import convert_string_to_type
+    string = 'true'
+    assert convert_string_to_type(string) == True
+    
+    string = '432'
+    assert convert_string_to_type(string) == 432
+
+    string = 'str'
+    assert convert_string_to_type(string) == 'str'
+```
+The correct way to test this function is using the @pytest.mark.parametrize fixture:
+```
+@pytest.mark.parametrize('string, output', [('true', True), ('432', 432), ('str', 'str')])
+def test_convert_string_to_type(string, output):
+    assert convert_string_to_type(string) == output
+```
+We declare the inputs and outputs in the following format: 'input, output', [(case1_input, case1_output), (case2_input, case2_output), ...]
+(Note that more than two variables can be delivered)
+
+After declaring the variables and assigning their values, you need to assign the variables to the test function. In the example above we assign the variables 'string' and 'output' to the test function.
+
+To read more on parametrize fixture, visit: https://docs.pytest.org/en/latest/parametrize.html
+
+### Complex objects testing
+Sometimes we need to test functions that contain complex object with multiple attributes. Different edge cases may differ in different attributes values of the complex object.
+Initializing the object several times during the test can be slow and impact performance. 
+Let's examine the following object:
+```
+Class ComplexObject:
+    def __init__(self, b, c, d, e, f):
+        self.b = b
+        self.c = c
+        self.d = d
+        self.e = e
+        self.f = f
+    
+    def method_b(self):
+        if isinstance(self.b, list) and len(self.b):
+            return self.b[0]
+        elif isinstance(self.b, str) and self.b:
+            return self.b.lower()
+        else
+            return self.b
+    
+    def method_c(self):
+        pass
+
+    .
+    .
+    .
+```
+A naive approach to test method_b would be:
+```
+def test_method_b():
+    from File import ComplexObject
+    complex_object = ComplexObject([1], None, None, None, None)
+    assert complex_object.method_b() == 1
+
+    complex_object = ComplexObject('B', None, None, None, None)
+    assert complex_object.method_b() == 'b'
+
+    complex_object = ComplexObject({}, None, None, None, None)
+    assert not complex_object.method_b()
+```
+The correct way to test method_b is patching the ComplexObject object. First, in your test file import the patch method using the following line of code:
+```
+from mock import patch
+```
+Next we can mock the __init__ method of ComplexObject once and then test all cases with parametrize, as follows:
+```
+@pytest.mark.parametrize('b, output', [([1], 1), ('B', 'b'), ({}, True)])
+def test_method_b(b, output):
+    with patch.object(ComplexObject, '__init__', lambda a, b, c, d, e, f: None):
+        complex_object = ComplexObject(None, None, None, None, None)
+        complex.object.b = b
+        assert complex_object.method_b() == output
+```
+We are patching the init method of ComplexObject as a lambda function that receives 6 arguments (self & b-f) and returns None, then we assign the attribute "b" with it's value and assert the output of the function.
+
+## Testing exceptions raising
+If a function is raising an exception in some case we want to test the right exception is raised and that the error message is correct.
+We want to test the following function:
+```
+def function():
+    raise ValueError('this is an error msg')
+```
+To do this we first need to import the raises function from pytest using this line of code:
+```
+from pytest import raises
+```
+Then, we test the exception being raised.
+```
+def test_function():
+    from File import function
+    with raises(ValueError, match='this is an error msg'):
+        function()
+```
+If the function raises ValueError with this error message the test will pass.
 
 ## Running Your Unit Tests
 ### Command Line
