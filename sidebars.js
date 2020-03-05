@@ -7,10 +7,6 @@ module.exports = {
       },
       {
         type: "doc",
-        id: "concepts/con-cortex-xsoar-overview"
-      },
-      {
-        type: "doc",
         id: "concepts/use-cases"
       },
       {
@@ -100,6 +96,7 @@ module.exports = {
       label: "Incidents, Fields & Layouts",
       items: [
         "howtos/how-incidents",
+        "howtos/incidents/incidents-xsoar-incident-lifecycle",
         "howtos/incidents/howto-incident-fields"
       ]
     },
