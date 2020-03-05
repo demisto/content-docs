@@ -562,6 +562,7 @@ demisto.results(
         'ContentsFormat': formats['text'],
         'Content': res,
         'HumanReadable': 'Submitted file is being analyzed.',
+        'ReadableContentsFormat': formats['markdown'],
         'EntryContext': entry_context,
         'IndicatorTimeline': timeline
     }
@@ -572,6 +573,7 @@ The entry is composed of multiple components.
 * The `ContentsFormat` dictates how to format the value passed to the `Content` field, the available options can be seen below.
 * The `Content` usually takes the raw unformatted data - if an API call was made in a command, then typically the response from the request is passed here.
 * The `HumanReadable` is the textual information displayed in the warroom entry.
+* The `ReadableContentsFormat` dictates how to format the value passed to the `HumanReadable` field.
 * The `EntryContext` is the dictionary of context outputs for a given command. For more information see [Outputs](#outputs).
 * The `IndicatorTimeline` is an optional field. It is only applicable for commands that operate on indicators. It is a dictionary (or list of dictionaries) of the following format:
     ```python
