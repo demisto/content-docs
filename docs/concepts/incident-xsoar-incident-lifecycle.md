@@ -1,6 +1,6 @@
 ---
-id: con-cortex-xsoar-overview
-title: Cortex XSOAR Overiew
+id: incident-xsoar-incident-lifecycle
+title: Cortex XSOAR Incident Lifecycle
 ---
 Cortex xSOAR is an orchestration and automation system used to bring all of the various pieces of your security apparatus together. Using Cortex xSOAR, you can define integrations with your 3rd-party security and incident management vendors. You can then trigger events from these integrations that become incidents in Cortex xSOAR. Once the incidents are created, you can run playbooks on these incidents to enrich them with information from other products in your system, which helps you complete the picture. In most cases, you can use rules and automation to determine if an incident requires further investigation or can be closed based on the findings. This enables your analysts to focus on the minority of incidents that require further investigation. 
 
