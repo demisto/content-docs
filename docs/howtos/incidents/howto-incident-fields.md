@@ -98,6 +98,7 @@ The following SLA field can be used to trigger a notification when the status ef
 When trying to download a content update, you receive the following message:
 
 `Warning: content update has encountered some conflicts`
+
 This occurs when a content update has an incident field with the same name as a custom incident field that already exists in Demisto.
 
 **Solution**
