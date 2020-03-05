@@ -76,8 +76,7 @@ The following table lists the fields specific to Timer/SLA fields, and their des
 | ------ | ------ |
 | SLA | Determine the amount of time in which this item needs to be resolved. If no value is entered, the field serves as a counter. |
 | Risk Threshold | Determine the point in time at which an item is considered at risk of not meeting the SLA. By default, the threshold is 3 days, which is defined in the global system parameter. |
-| Run on SLA Breach | In the Run on SLA Breach field, select the script to run when the SLA time has passed. For example, email the supervisor or change the assignee.
- <br/> **Note**: Only scripts to which you have added the SLA tag appear in list of scripts that you can select. |
+| Run on SLA Breach | In the Run on SLA Breach field, select the script to run when the SLA time has passed. For example, email the supervisor or change the assignee. <br/> **Note**: Only scripts to which you have added the SLA tag appear in list of scripts that you can select. |
 
 ## Examples
 The following section shows several examples of common fields that are used in real-life incidents.
