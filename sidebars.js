@@ -99,7 +99,8 @@ module.exports = {
       type: "category",
       label: "Incidents, Fields & Layouts",
       items: [
-        "howtos/how-incidents"
+        "howtos/how-incidents",
+        "howtos/incidents/howto-incident-fields"
       ]
     },
     {
