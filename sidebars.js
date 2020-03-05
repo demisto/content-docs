@@ -96,7 +96,7 @@ module.exports = {
       label: "Incidents, Fields & Layouts",
       items: [
         "howtos/how-incidents",
-        "howtos/incidents/incidents-xsoar-incident-lifecycle",
+        "howtos/incidents/incident-xsoar-incident-lifecycle",
         "howtos/incidents/howto-incident-fields"
       ]
     },
