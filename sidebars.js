@@ -7,6 +7,10 @@ module.exports = {
       },
       {
         type: "doc",
+        id: "concepts/con-cortex-xsoar-overview"
+      },
+      {
+        type: "doc",
         id: "concepts/use-cases"
       },
       {
