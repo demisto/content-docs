@@ -6,14 +6,14 @@ Cortex XSOAR is an orchestration and automation system used to bring all of the 
 
 The following diagram and sections further explain the incident lifecycle in Cortex XSOAR.
 
-![Incident Lifecycle](../doc_imgs/concepts/Incident_Lifecycle.png "Incident Lifecycle")
+![Incident Lifecycle](../../doc_imgs/howtos/incidents/Incident_Lifecycle.png "Incident Lifecycle")
 
 ## Planning
 Before you begin configuring integrations and ingesting information from 3rd parties, you should plan ahead. 
 
 | Phase | Description | 
 | ------ | ------ |
-| Create fields | Used to display information from 3rd-party integrations and playbook tasks when an incident is created or processed. For more information, see [Working with Incident Fields](../../howtos/incidents/howto-incident-fields).|
+| Create fields | Used to display information from 3rd-party integrations and playbook tasks when an incident is created or processed. For more information, see [Working with Incident Fields](howto-incident-fields).|
 | Create incident types | Classify the different types of attacks with which your organization deals. For more information, see [INSERT LINK TO Incident Types doc] |
 | Create incident layouts | Customize your layouts for each incident type to make sure the most relevant information is show for each type. For more information, see [INSERT LINK TO Customizing Layouts doc] |
 
