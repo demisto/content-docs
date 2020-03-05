@@ -52,8 +52,8 @@ The following tables list the fields that are common to all Incident Fields. For
 | Add to incident types | Determine for which incident types this field is available. By default, fields are available to all incident types. To change this, clear the **Associate to all** checkbox and select the specific incident types to which the field is available.  |
 | Default display on | Determines at which point the field is available. For more information, see Examples, below. |
 | Edit Permissions | Determine whether only the owner of the incident can edit this field. |
-| Make data available for search | Determines if the values in these fields are available when searching. **Note**: In most cases, Cortex XSOAR recommends that you select this checkbox so values in the field are available for indexing and querying. However, in some cases, to avoid adverse affects on performance, you should clear this checkbox. For example, if you are ingesting an email to an email body field, we recommend that you not index the field.  |
-| Add as optional graph | Determine if you can create a graph based on the contents of this field. <br>This field does not appear for all field types. |
+| Make data available for search | Determines if the values in these fields are available when searching. <br/>**Note**: In most cases, Cortex XSOAR recommends that you select this checkbox so values in the field are available for indexing and querying. However, in some cases, to avoid adverse affects on performance, you should clear this checkbox. For example, if you are ingesting an email to an email body field, we recommend that you not index the field.  |
+| Add as optional graph | Determine if you can create a graph based on the contents of this field. <br/>This field does not appear for all field types. |
 
 ## Basic Settings
 The following table lists the fields that appear in the Basic Settings page, and their descriptions. The Basic Settings page is available for the following field types:
@@ -77,7 +77,7 @@ The following table lists the fields specific to Timer/SLA fields, and their des
 | SLA | Determine the amount of time in which this item needs to be resolved. If no value is entered, the field serves as a counter. |
 | Risk Threshold | Determine the point in time at which an item is considered at risk of not meeting the SLA. By default, the threshold is 3 days, which is defined in the global system parameter. |
 | Run on SLA Breach | In the Run on SLA Breach field, select the script to run when the SLA time has passed. For example, email the supervisor or change the assignee.
- <br> **Note**: Only scripts to which you have added the SLA tag appear in list of scripts that you can select. |
+ <br/> **Note**: Only scripts to which you have added the SLA tag appear in list of scripts that you can select. |
 
 ## Examples
 The following section shows several examples of common fields that are used in real-life incidents.
@@ -97,7 +97,7 @@ The following SLA field can be used to trigger a notification when the status ef
 
 When trying to download a content update, you receive the following message:
 
-Warning: content update has encountered some conflicts
+`Warning: content update has encountered some conflicts`
 This occurs when a content update has an incident field with the same name as a custom incident field that already exists in Demisto.
 
 **Solution**
