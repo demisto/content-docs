@@ -1,22 +1,17 @@
-import { readFileSync, createReadStream } from 'fs';
+import {  readdirSync, readFileSync, lstatSync } from 'fs';
 
 const DOCSPREFIX: string='docs'
-
-const sidebars = require('./sidebars');
-
-interface SideBarItem {
-	type: "category" | "doc",
-	label?: string,
-	id?: string,
-	items: Array<any>
-};
 
 class Document {
 	id: string;
 	title: string;
-	constructor(id?: string, title?: string) {
+    path: string;
+    section: string;
+	constructor(id?: string, title?: string, path?: string, section?: string) {
 		this.id = id? id : 'N/A';
 		this.title = title? title : 'N/A';
+        this.path = path? path : '/';
+        this.section = section? section: 'N/A'
 	}
 };
 
@@ -24,18 +19,21 @@ class TOC {
 	id: string;
 	documents: Array<Document>;
 	tocs: Array<TOC>;
-	constructor(id?: string) {
+	path: string;
+	constructor(id?: string, path?: string) {
 		this.id = id? id : 'N/A';
+		this.path = path? path : '/';
 		this.documents = new Array<Document>();
 		this.tocs = new Array<TOC>();
 	}
 }
 
-function TOCToMarkDown(toc: TOC, depth: number = 0): string {
-	let md: string = "";
+function TOCToJS(toc: TOC, depth: number = 0): string {
+	let js: string = "";
 	let hashes: string = '#'.repeat(depth+1);
+	let topic: string = toc.id.split('/').pop()
 	// title
-	md += hashes + ' ' + toc.id[0].toUpperCase() + toc.id.slice(1) + '\n\n';
+	js += hashes + ' ' + topic[0].toUpperCase() + topic.slice(1) + '\n\n';
 
 	// add  all documents first
 	for(let doc of toc.documents) {
@@ -54,7 +52,7 @@ function TOCToMarkDown(toc: TOC, depth: number = 0): string {
 
 function extractFileData(f): Document | undefined {
 	// console.log(s)
-	let fileName: string = DOCSPREFIX + '/' + f + '.md'
+	let fileName: string = f;
 	// console.log(fileName)
 	// console.log('opening file ' + fileName)
 	let data = readFileSync(fileName,{ encoding: 'utf-8' }).split('\n').filter(Boolean)
@@ -72,7 +70,7 @@ function extractFileData(f): Document | undefined {
 	return document;
 }
 
-function build_toc(label: string, items: Array<SideBarItem>): TOC {
+function build_toc(label: string, items: any): TOC {
 	let toc : TOC = new TOC(label);
 	toc.id = label;
 
@@ -102,15 +100,28 @@ function build_toc(label: string, items: Array<SideBarItem>): TOC {
 	return toc;
 }
 
-function parse_sidebars() {
-	// console.log(sidebars)
-	let toc: TOC = undefined;
-	for(let x in sidebars) {
-		toc = build_toc(x, sidebars[x])
-		// console.log('TOC for sidebar ' + x + ' is: ' + JSON.stringify(toc))
-		console.log(TOCToMarkDown(toc))
-	}
-}
+function generate_sidebar(path:string) {
+  	let toc : TOC = new TOC(path, path);
 
-parse_sidebars()
+    let entries = readdirSync(path);
+    
+    for(let entry of entries) {
+        let fullPath: string = path + '/' + entry;
+        let fileInfo = lstatSync(fullPath);
+        console.log(fullPath);
+        if(fileInfo.isDirectory()) {
+            toc.tocs.push(generate_sidebar(fullPath))
+        }
+        else if(entry.toLowerCase().endsWith('.md')) {
+            toc.documents.push(extractFileData(fullPath));
+        }
+        else {
+            console.log('skipping file: ' + fullPath)
+        }
+    }   
+    return toc;
 
+ }
+ 
+let toc: TOC = generate_sidebar(DOCSPREFIX + "/" + 'howtos');
+console.log(TOCToMarkDown(toc))
