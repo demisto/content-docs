@@ -575,7 +575,7 @@ The entry is composed of multiple components.
 * The `HumanReadable` is the textual information displayed in the warroom entry.
 * The `ReadableContentsFormat` dictates how to format the value passed to the `HumanReadable` field.
 * The `EntryContext` is the dictionary of context outputs for a given command. For more information see [Outputs](#outputs).
-* The `IndicatorTimeline` is an optional field. It is only applicable for commands that operate on indicators. It is a dictionary (or list of dictionaries) of the following format:
+* The `IndicatorTimeline` is an optional field (available from Server version 5.5.0 and up) . It is only applicable for commands that operate on indicators. It is a dictionary (or list of dictionaries) of the following format:
     ```python
     {
         'Value': indicator_value,  # for example, an IP address like '8.8.8.8'
