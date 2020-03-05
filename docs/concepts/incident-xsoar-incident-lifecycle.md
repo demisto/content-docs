@@ -13,7 +13,7 @@ Before you begin configuring integrations and ingesting information from 3rd par
 
 | Phase | Description | 
 | ------ | ------ |
-| Create fields | Used to display information from 3rd-party integrations and playbook tasks when an incident is created or processed. For more information, see [INSERT LINK TO Incident Fields doc]|
+| Create fields | Used to display information from 3rd-party integrations and playbook tasks when an incident is created or processed. For more information, see [Working with Incident Fields](../../howtos/incidents/howto-incident-fields)|
 | Create incident types | Classify the different types of attacks with which your organization deals. For more information, see [INSERT LINK TO Incident Types doc] |
 | Create incident layouts | Customize your layouts for each incident type to make sure the most relevant information is show for each type. For more information, see [INSERT LINK TO Customizing Layouts doc] |
 
