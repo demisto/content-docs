@@ -141,6 +141,8 @@ After declaring the variables and assigning their values, you need to assign the
 
 To read more on parametrize fixtures, visit: https://docs.pytest.org/en/latest/parametrize.html
 
+An example of a test using the paramertrize fixture is avialable [here](https://github.com/demisto/content/blob/master/Scripts/ExtractDomainFromUrlFormat/ExtractDomainFromUrlFormat_test.py#L7).
+
 ### Testing Exceptions
 If a function is raising an exception in some case we want to test the right exception is raised and that the error message is correct.
 For example, for testing the following function:
