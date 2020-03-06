@@ -515,7 +515,7 @@ The above will create the table seen below:
 | third  | baz  |
 
 In the War Room, this is how a table will appear:
-<img width="788" src="/doc_imgs/howtos/integrations/50571324-46846e00-0db0-11e9-9888-ddd9dc275541.png"></img>
+<img width="788" src="../../doc_imgs/howtos/integrations/50571324-46846e00-0db0-11e9-9888-ddd9dc275541.png"></img>
 
 You may also use ```headerTransform``` to convert the existing keys into formatted headers.
 
@@ -545,11 +545,11 @@ You may also use ```headerTransform``` to convert the existing keys into formatt
 ```
  The argument above can be seen in the integration settings as shown below:
  
- <img width="644" src="/doc_imgs/howtos/integrations/50575189-ac4d1600-0e01-11e9-83fc-7a8f6f8ce55a.png"></img>
+ <img width="644" src="../../doc_imgs/howtos/integrations/50575189-ac4d1600-0e01-11e9-83fc-7a8f6f8ce55a.png"></img>
  
  After the command is executed, the arguments are displayed in the War Room as part of the command, for example:
  
- <img width="758" src="/doc_imgs/howtos/integrations/50575199-fd5d0a00-0e01-11e9-9d54-944eb7c6f287.png"></img>
+ <img width="758" src="../../doc_imgs/howtos/integrations/50575199-fd5d0a00-0e01-11e9-9d54-944eb7c6f287.png"></img>
 
 
 ### return_outputs
@@ -585,7 +585,7 @@ return_error(message="error has occured: API Key is incorrect", error=ex)
 
 Will produce an error in the War Room, for example:
 
-<img width="907" src="/doc_imgs/howtos/integrations/50571503-ed6b0900-0db4-11e9-8e9e-dc23f5ff403c.png"></img>
+<img width="907" src="../../doc_imgs/howtos/integrations/50571503-ed6b0900-0db4-11e9-8e9e-dc23f5ff403c.png"></img>
 
 
 ### AutoExtract

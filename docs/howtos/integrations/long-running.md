@@ -14,14 +14,14 @@ The integration must be written in Python.
 
 ### First step
 To make an integration long running, you need to enable the `longRunning` property:
-![image](/doc_imgs/howtos/integrations/66122533-9b2b7280-e5e8-11e9-92de-f9fbe75b7250.png)
+![image](../../doc_imgs/howtos/integrations/66122533-9b2b7280-e5e8-11e9-92de-f9fbe75b7250.png)
 
 You will then have the `Long running instance` parameter:
-![image](/doc_imgs/howtos/integrations/66122634-e6458580-e5e8-11e9-9030-6514832c9422.png)
+![image](../../doc_imgs/howtos/integrations/66122634-e6458580-e5e8-11e9-9030-6514832c9422.png)
 
 If you check the checkbox, the server will launch a long running container each time an instance is enabled. When the checkbox is unchecked or the instance is disabled, the container will die.
 You can distinguish it from the rest of the containers by its name:
-![image](/doc_imgs/howtos/integrations/66122754-2d337b00-e5e9-11e9-8775-562e228e3fe6.png)
+![image](../../doc_imgs/howtos/integrations/66122754-2d337b00-e5e9-11e9-8775-562e228e3fe6.png)
 
 
 ## Implementation
@@ -37,7 +37,7 @@ For example - `{'name': 'incident', 'type': 'Phishing', 'customFields': {'field1
 * `findUser` - Find a Demisto user by a name or email. Useful for creating incidents.
 * `handleEntitlementForUser` - Adds an entry with entitlement to a provided investigation.
 * `updateModuleHealth` - Update the instance status. It's a way to reflect the container state to the user.
-![image](/doc_imgs/howtos/integrations/66123930-cb284500-e5eb-11e9-804d-6154423e6cee.png)
+![image](../../doc_imgs/howtos/integrations/66123930-cb284500-e5eb-11e9-804d-6154423e6cee.png)
 * `mirrorInvestigation` - For chat based integrations, mirror a provided Demisto investigation to the corresponding chat module.
 * `directMessage` - For chat based integrations, handle free text sent from a user to the chat module and process it in the server.
 

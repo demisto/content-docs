@@ -27,7 +27,7 @@ Our ecosystem of helpful partners is growing. If you are interested in becoming 
 
 ### Crest Data Systems ([www.crestdatasys.com](https://crestdatasys.com))
 
-![crest_dev_partner](/doc_imgs/partners/crest_dev_partner.png)
+![crest_dev_partner](../doc_imgs/partners/crest_dev_partner.png)
 
 Crest Data Systems is a leading provider of software integrations and custom solutions in the areas of Data Analytics, Cyber Security, and DevOps based in the San Francisco Bay Area. Crest has built 1,500+ integrations and provided 24x7 managed (CloudOps/SRE and SOC) services for 100+ customers ranging from Fortune 500 corporations to Silicon Valley Startups to help them outperform the competition and stay ahead of the innovation curve.
 
@@ -36,7 +36,7 @@ Crest Data Systems is a leading provider of software integrations and custom sol
 
 ### QMasters ([qmasters.co](https://qmasters.com))
 
-![qmasters_dev_partner](/doc_imgs/partners/qmasters_dev_partner.png)
+![qmasters_dev_partner](../doc_imgs/partners/qmasters_dev_partner.png)
 
 
 With decades of experience in consulting, project management, IT integration and working with a wide range of companies from many sectors, including the Israeli Government, QMasters addresses ever-growing security demands. QMasters has quickly established itself as a leading Information Security company, both in Israel and internationally, specializing in consulting, implementing and integrating of security products and solutions.

@@ -61,6 +61,6 @@ You can extract a package from a YAML file by using the following:
 
 # Integration logo standard
 
-![Integration Logo Standard](/doc_imgs/howtos/integrations/logo-standard.png)
+![Integration Logo Standard](../../doc_imgs/howtos/integrations/logo-standard.png)
 
 

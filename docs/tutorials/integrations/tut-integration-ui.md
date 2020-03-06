@@ -11,7 +11,7 @@ The code we will be writing will be available in segments as we go along, as wel
 
 ## Navigating to BYOI
 
-![byoi](/doc_imgs/tutorials/integrations/tut-integration-ui/navigate-byoi.png)
+![byoi](../../doc_imgs/tutorials/integrations/tut-integration-ui/navigate-byoi.png)
 
 >*This is the Settings dashboard and it is where we configure and create new integrations. To start, let’s click this blue button that says BYOI, or Bring Your Own Integration.*
 
@@ -25,7 +25,7 @@ While the Demisto IDE has many features, you may wish to pre-write your code in 
 
 ## Script Helper
 
-![scripthelper](/doc_imgs/tutorials/integrations/tut-integration-ui/script-helper-screen.png)
+![scripthelper](../../doc_imgs/tutorials/integrations/tut-integration-ui/script-helper-screen.png)
 
 >*One of the greatest tools you will have while creating your integration is the Script Helper. The script helper is a library of all of the different common server functions within Demisto. If you want to format a table, manipulate data, or post something to the war room; more often than not, there is a function for it here.*
 
@@ -39,13 +39,13 @@ This is meant to be a very simple integration that calls on an API much in the s
 
 We use the Yoda-Speak translate API available at [FunTranslations](https://funtranslations.com/api/yoda)
 
-![basic_settings](/doc_imgs/tutorials/integrations/tut-integration-ui/yoda-speak.png)
+![basic_settings](../../doc_imgs/tutorials/integrations/tut-integration-ui/yoda-speak.png)
 
 >In the basic section, we have the ability to name an integration, add a description of it, and tell customers what type of integration it is. I’m going to name ours “Yoda Speak” and for the description, let’s put “Creating an Integration, we are”. Now since this is a Utility, we will select “Utilities” as the type.
 
 The description should include basic details about the integration, common troubleshooting steps, and (if needed) how to set up the instance.
 
-![fetches_incidents](/doc_imgs/tutorials/integrations/tut-integration-ui/fetch-incidents.png)
+![fetches_incidents](../../doc_imgs/tutorials/integrations/tut-integration-ui/fetch-incidents.png)
 
 >If you notice, we also have a checkbox for “Fetches Incidents”. This setting tells demisto that our integration has a command called “fetch-incidents” and will need to run periodically. This feature is what makes Demisto so incredibly useful for our customers since it ingests events and turns them into Incidents in Demisto.
 
@@ -53,7 +53,7 @@ You can read about the fetching-incidents process [here](../../howtos/integratio
 
 >Since we are just translating something today, we don’t need to use this, but we will cover this in depth in another video. The last part is the logo. When we create an integration that is open to the public, we need to use an image that looks good. We recommend an image no larger than 4kb and in the PNG format. I have one ready that we will use, so I will drag it into the box.
 
-![drag logo](/doc_imgs/tutorials/integrations/tut-integration-ui/drag-logo.png)
+![drag logo](../../doc_imgs/tutorials/integrations/tut-integration-ui/drag-logo.png)
 
 You may also choose to navigate to the PNG file by clicking the box to open the file browser.
 
@@ -61,7 +61,7 @@ You may also choose to navigate to the PNG file by clicking the box to open the 
 
 >Next, we have the parameters section. This is where we add our global variables to the configuration for the integration.
 
-![screen shot 2019-01-08 at 13 35 55](/doc_imgs/tutorials/integrations/tut-integration-ui/parameters-screen.png)
+![screen shot 2019-01-08 at 13 35 55](../../doc_imgs/tutorials/integrations/tut-integration-ui/parameters-screen.png)
 
 Parameters are global variables which means that every command can/will use these configurable options in order to run. Some common parameters are API keys, Usernames, Endpoints, and Proxy options.
 
@@ -71,23 +71,23 @@ Parameters are global variables which means that every command can/will use thes
 
 The following is an example of the proxy settings filled out:
 
-![screen shot 2019-01-08 at 13 38 33](/doc_imgs/tutorials/integrations/tut-integration-ui/parameter-proxy.png)
+![screen shot 2019-01-08 at 13 38 33](../../doc_imgs/tutorials/integrations/tut-integration-ui/parameter-proxy.png)
 
 >Next we will add the insecure setting called “insecure”. This will also be a boolean. Set the initial value to “false” as well and we will write “Trust any cert”.
 
 When you are done, it should look like the following:
 
-![screen shot 2019-01-08 at 13 41 01](/doc_imgs/tutorials/integrations/tut-integration-ui/parameter-insecure.png)
+![screen shot 2019-01-08 at 13 41 01](../../doc_imgs/tutorials/integrations/tut-integration-ui/parameter-insecure.png)
 
 >We will also add “url”. This will be a “short text” and needs to be required. For the default value, let’s use the API endpoint and write “API url” for the description.
 
 This section should look like this:
 
-![screen shot 2019-01-08 at 13 41 34](/doc_imgs/tutorials/integrations/tut-integration-ui/parameter-url.png)
+![screen shot 2019-01-08 at 13 41 34](../../doc_imgs/tutorials/integrations/tut-integration-ui/parameter-url.png)
 
 >Lastly, we add “apikey”. This will be “encrypted” and have no default value.
 
-![screen shot 2019-01-08 at 13 42 57](/doc_imgs/tutorials/integrations/tut-integration-ui/parameter-url.png)
+![screen shot 2019-01-08 at 13 42 57](../../doc_imgs/tutorials/integrations/tut-integration-ui/parameter-url.png)
 
 We want to make sure that the Display Name is added to the parameter options since it is a chance to explain what the function will do.
 
@@ -97,17 +97,17 @@ We want to make sure that the Display Name is added to the parameter options sin
 
 Command names should follow the convention "brand-function". For example, Virus Total has a function to add a comment to a scan. That function looks like this: ```vt-comments-add```. There are some cases where a command name will be different than the code conventions. An example of this is where a integration may share the same command as other integrations as part of an enrichment command such as ```!ip ip=8.8.8.8```. This command can trigger many different integrations to fire which of course, we plan for.
 
-![screen shot 2019-01-08 at 13 45 00](/doc_imgs/tutorials/integrations/tut-integration-ui/command-yoda-speak.png)
+![screen shot 2019-01-08 at 13 45 00](../../doc_imgs/tutorials/integrations/tut-integration-ui/command-yoda-speak.png)
 
 >It will take the argument “Text”. Let’s also mark this as mandatory and for the description write “Text to translate”
 
-![screen shot 2019-01-08 at 13 48 43](/doc_imgs/tutorials/integrations/tut-integration-ui/command-args.png)
+![screen shot 2019-01-08 at 13 48 43](../../doc_imgs/tutorials/integrations/tut-integration-ui/command-args.png)
 
 Arguments are similar to Parameters in that they are configurable by a user, but unlike parameters, arguments are single use only and specific to only one command. **Arguments are not shared with other commands and must be present for each command.**
 
 >For outputs, lets make it so that we can see the translation in the context by adding “YodaSpeak.TheForce.Translation” to the context path. We name it this way to follow the Demisto Context Convention of “Brandname.Object.Property“. For description we will write “Translation, this is” with the type set as “string”
 
-![screen shot 2019-01-08 at 13 53 36](/doc_imgs/tutorials/integrations/tut-integration-ui/outputs-screen.png)
+![screen shot 2019-01-08 at 13 53 36](../../doc_imgs/tutorials/integrations/tut-integration-ui/outputs-screen.png)
 
 Context is incredibly important as it allows information to become part of the incident. When you have information stored in the context, you can begin to run playbooks and other integrations on the same incident.
 
@@ -146,7 +146,7 @@ if not demisto.params().get('proxy', False):
 
 These are the same Parameters we created earlier. See the connection between the settings and global variables here?
 
-![params](/doc_imgs/tutorials/integrations/tut-integration-ui/50829961-de54ff80-134e-11e9-8a85-d5b1bb24e246.png)
+![params](../../doc_imgs/tutorials/integrations/tut-integration-ui/50829961-de54ff80-134e-11e9-8a85-d5b1bb24e246.png)
 
 >Next, I put in our execution block. This part tells Demisto that when a command is called in the war room or a playbook, which specific function we need to run.
 
@@ -173,7 +173,7 @@ def translate_command():
 
 >Here in commands, we see the command name we put in earlier. This part of our code, glues together the configuration with the actual code.
 
-![commands](/doc_imgs/tutorials/integrations/tut-integration-ui/50830395-5cfe6c80-1350-11e9-9284-0e30836cf885.png)
+![commands](../../doc_imgs/tutorials/integrations/tut-integration-ui/50830395-5cfe6c80-1350-11e9-9284-0e30836cf885.png)
 
 The command name has to be the exact same as the name entered in the execution block. 
 
@@ -243,7 +243,7 @@ def http_request(method, URL_SUFFIX, json=None):
 
 This follows the Demisto Code Convention which states that we do not "Raise" errors. The reason behind this is that if the function were to fail, a user would only see the stack trace and not the error itself.
 
-![screen shot 2019-01-08 at 14 53 36](/doc_imgs/tutorials/integrations/tut-integration-ui/50831927-37c02d00-1355-11e9-89eb-f58507f46027.png)
+![screen shot 2019-01-08 at 14 53 36](../../doc_imgs/tutorials/integrations/tut-integration-ui/50831927-37c02d00-1355-11e9-89eb-f58507f46027.png)
 
 >I’ll also add in a function to make nested keys accessible here. This will help with formatting our data.
 
@@ -408,7 +408,7 @@ In some cases, if you had the integration open in two different tabs, you may ru
 
 >Now we will search for Yoda and click “add instance”. 
 
-![add instance](/doc_imgs/tutorials/integrations/tut-integration-ui/50833113-e74ace80-1358-11e9-8969-b82959356bd9.png)
+![add instance](../../doc_imgs/tutorials/integrations/tut-integration-ui/50833113-e74ace80-1358-11e9-8969-b82959356bd9.png)
 
 
 
@@ -419,11 +419,11 @@ In some cases, if you had the integration open in two different tabs, you may ru
 
 >Remember the test function we put into our integration? Lets hit “test” and see if it works. 
 
-![test](/doc_imgs/tutorials/integrations/tut-integration-ui/50833314-70620580-1359-11e9-99cd-704f59dc67d3.png)
+![test](../../doc_imgs/tutorials/integrations/tut-integration-ui/50833314-70620580-1359-11e9-99cd-704f59dc67d3.png)
 
 >Opps, looks like it failed since we entered the url incorrectly. Lets test it again. Perfect. Looks like it's working. 
 
-![screen shot 2019-01-08 at 17 26 40](/doc_imgs/tutorials/integrations/tut-integration-ui/50840340-efac0500-136a-11e9-9432-dc3457d7cfd1.png)
+![screen shot 2019-01-08 at 17 26 40](../../doc_imgs/tutorials/integrations/tut-integration-ui/50840340-efac0500-136a-11e9-9432-dc3457d7cfd1.png)
 
 >Click done and let’s head to the war room. Type ```!yoda-speak-translate``` and lets enter “Hello, My name is Andrew. We are learning about integrations”
 
@@ -437,7 +437,7 @@ In some cases, if you had the integration open in two different tabs, you may ru
 
 >Let’s also see the context. 
 
-![context](/doc_imgs/tutorials/integrations/tut-integration-ui/50840432-37cb2780-136b-11e9-8c2a-c56fa87a57b9.png)
+![context](../../doc_imgs/tutorials/integrations/tut-integration-ui/50840432-37cb2780-136b-11e9-8c2a-c56fa87a57b9.png)
 
 
 >Notice how “YodaSpeak” is the root for “The Force”? If the translation would change the next time we fire the command, it will update the translation field here.
@@ -446,7 +446,7 @@ In some cases, if you had the integration open in two different tabs, you may ru
 
 >But what is an integration without a playbook? Let’s make one real quick. Click “Playbooks” and click the blue button that says “New playbook”.
 
-![playbook_menu](/doc_imgs/tutorials/integrations/tut-integration-ui/50833581-5248d500-135a-11e9-941f-bd27964168d8.png)
+![playbook_menu](../../doc_imgs/tutorials/integrations/tut-integration-ui/50833581-5248d500-135a-11e9-941f-bd27964168d8.png)
 
 >We will call this one “Yoda Speak”. In the task library, search for “Yoda” and we should see our integration. Select it and click “Add” where it says “yoda-speak-translate”.
 
@@ -455,11 +455,11 @@ In some cases, if you had the integration open in two different tabs, you may ru
 
 >I want this playbook to translate the details field in an incident into yoda speak, so for “text” we will click the brackets right here. 
 
-![brackets](/doc_imgs/tutorials/integrations/tut-integration-ui/50833717-d69b5800-135a-11e9-85f5-81b6a1dd1e8c.png)
+![brackets](../../doc_imgs/tutorials/integrations/tut-integration-ui/50833717-d69b5800-135a-11e9-85f5-81b6a1dd1e8c.png)
 
 >Next select incident details and click on “Details”.
 
-![details](/doc_imgs/tutorials/integrations/tut-integration-ui/50833826-24b05b80-135b-11e9-8d18-3ee1d52301c1.png)
+![details](../../doc_imgs/tutorials/integrations/tut-integration-ui/50833826-24b05b80-135b-11e9-8d18-3ee1d52301c1.png)
 
 >Go ahead and click “Close” and “OK”.
 
@@ -467,11 +467,11 @@ This saves your changes. If you do not click close and okay, your changes will n
 
 >Now let’s have the playbook print the translation in the war room. In the task library search for “print” under “Utilities”.
 
-![print_add](/doc_imgs/tutorials/integrations/tut-integration-ui/50833982-8b357980-135b-11e9-9d0e-0d85834e3c65.png)
+![print_add](../../doc_imgs/tutorials/integrations/tut-integration-ui/50833982-8b357980-135b-11e9-9d0e-0d85834e3c65.png)
 
 >For the value click the brackets. Notice how we have an entry here for the yoda speak translation? If we click it, we can select the translation context that we specified in the integration settings.
 
-![print_settings](/doc_imgs/tutorials/integrations/tut-integration-ui/50834106-e1a2b800-135b-11e9-892f-a00c74b949f6.png)
+![print_settings](../../doc_imgs/tutorials/integrations/tut-integration-ui/50834106-e1a2b800-135b-11e9-892f-a00c74b949f6.png)
 
 >Click “Close” and “OK”. Lastly, hit the save button and click the “X”.
 
@@ -479,12 +479,12 @@ Again we must commit our changes to the playbook.
 
 We need to connect the two tasks together. Do so by dragging an arrow from the bottom of the translate task to the top of the print task.
 
-![connect](/doc_imgs/tutorials/integrations/tut-integration-ui/50840624-94c6dd80-136b-11e9-832e-0a745b2d754a.png)
+![connect](../../doc_imgs/tutorials/integrations/tut-integration-ui/50840624-94c6dd80-136b-11e9-832e-0a745b2d754a.png)
 
 
 >Let’s see it in action. Click “Incidents” and then press the blue button that says “New Incident”.
 
-![incidents](/doc_imgs/tutorials/integrations/tut-integration-ui/50834260-3cd4aa80-135c-11e9-80f7-39d80d55d7e9.png)
+![incidents](../../doc_imgs/tutorials/integrations/tut-integration-ui/50834260-3cd4aa80-135c-11e9-80f7-39d80d55d7e9.png)
 
 >I’m going to name this “That’s no moon… It’s a Space station!” and for the details, lets type “The prequel movies are more entertaining than the new Disney movies”. 
 
@@ -494,7 +494,7 @@ You also need to select which playbook to attach to the incident. In this case, 
 
 >Click “Create new Incident” and select the incident we just created. Navigate to “work plan” and we can see that our playbook worked!
 
-![screen shot 2019-01-08 at 16 09 53](/doc_imgs/tutorials/integrations/tut-integration-ui/50835627-e49fa780-135f-11e9-8c96-8c3e138d6a9b.png)
+![screen shot 2019-01-08 at 16 09 53](../../doc_imgs/tutorials/integrations/tut-integration-ui/50835627-e49fa780-135f-11e9-8c96-8c3e138d6a9b.png)
 
 ## Resources
 
