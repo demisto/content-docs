@@ -1,0 +1,50 @@
+# Redirect existing docs
+
+# Partner docs
+/docs/become-a-tech-partner	/docs/partners/become-a-tech-partner
+/docs/why-demisto	/docs/partners/why-demisto
+/docs/partner-owned-integration	/docs/partners/partner-owned-integration
+/docs/development-partners	/docs/partners/development-partners
+
+# Extra special page for RSA C
+/extra	/docs/partners/why-demisto
+
+# Concepts
+/docs/design-best-practices	/docs/concepts/design-best-practices
+/docs/use-cases	/docs/concepts/use-cases
+/docs/faq	/docs/concepts/faq
+
+# Howtos Integrations
+/docs/changelog	/docs/howtos/integrations/changelog
+/docs/code-conventions	/docs/howtos/integrations/code-conventions
+/docs/context-and-outputs	/docs/howtos/integrations/context-and-outputs
+/docs/context-standards	/docs/howtos/integrations/context-standards
+/docs/dbot	/docs/howtos/integrations/dbot
+/docs/debugging	/docs/howtos/integrations/debugging
+/docs/dev-setup	/docs/howtos/integrations/dev-setup
+/docs/doc-structure	/docs/howtos/integrations/doc-structure
+/docs/docker	/docs/howtos/integrations/docker
+/docs/dt	/docs/howtos/integrations/dt
+/docs/fetching-credentials	/docs/howtos/integrations/fetching-credentials
+/docs/fetching-incidents	/docs/howtos/integrations/fetching-incidents
+/docs/getting-started-guide	/docs/howtos/integrations/getting-started-guide
+/docs/integration-docs	/docs/howtos/integrations/integration-docs
+/docs/linting	/docs/howtos/integrations/linting
+/docs/long-running	/docs/howtos/integrations/long-running
+/docs/package-dir	/docs/howtos/integrations/package-dir
+/docs/parameter-types	/docs/howtos/integrations/parameter-types
+/docs/testing	/docs/howtos/integrations/test-playbooks
+/docs/unit-testing	/docs/howtos/integrations/unit-testing
+/docs/yaml-file	/docs/howtos/integrations/yaml-file
+
+# Howtos Contributing
+/docs/circleci	/docs/howtos/contributing/circleci
+
+# Howtos Playbooks
+/docs/playbook-conventions	/docs/howtos/playbooks/playbook-conventions
+/docs/playbooks	/docs/howtos/playbooks/playbooks
+/docs/generic-polling	/docs/howtos/playbooks/generic-polling
+
+# Tutorials
+/docs/tutorial-setup-dev	/docs/tutorials/getting-started/tut-setup-dev
+/docs/tutorial	/docs/tutorials/integrations/tut-integration-ui
