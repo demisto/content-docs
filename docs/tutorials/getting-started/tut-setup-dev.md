@@ -100,11 +100,11 @@ We are assuming that Demisto is already installed. For more information about in
 
 Check if your Demisto License is correctly installed by navigating to *Settings* -> *ABOUT* -> *License* and make sure that everything is green:
 
-![Check Demisto License](../../doc_imgs/tutorials/getting-started/tut-setup-dev/01-checkdemistolicense.gif)
+![Check Demisto License](/doc_imgs/tutorials/getting-started/tut-setup-dev/01-checkdemistolicense.gif)
 
 **PRO tip**: you can quickly navigate to different pages within Demisto by hitting *Ctrl-K* and then typing what you want. For the license page, for example, type */settings/license* or just *lic* and select the autocompleted option:
 
-![Jump to Page](../../doc_imgs/tutorials/getting-started/tut-setup-dev/02-jumptopage.png)
+![Jump to Page](/doc_imgs/tutorials/getting-started/tut-setup-dev/02-jumptopage.png)
 
 #### Operating System
 
@@ -166,7 +166,7 @@ And that's it! Again, if the installation fails, check out [this](https://github
 
 Not much to check here, just go to [GitHub](https://github.com) and make sure that you have an account or Sign Up for one:
 
-![GitHub](../../doc_imgs/tutorials/getting-started/tut-setup-dev/03-github.png)
+![GitHub](/doc_imgs/tutorials/getting-started/tut-setup-dev/03-github.png)
 
 #### Docker
 
@@ -194,11 +194,11 @@ Great, all the prerequisites are set! We can get started.
 
 Make sure you're logged on GitHub and navigate to the [Demisto Content Repo](https://github.com/demisto/content) and click on **Fork**:
 
-![Fork Repository](../../doc_imgs/tutorials/getting-started/tut-setup-dev/04-fork.png)
+![Fork Repository](/doc_imgs/tutorials/getting-started/tut-setup-dev/04-fork.png)
 
 Once the fork is complete, copy the your URL:
 
-![Copy GitHub URL](../../doc_imgs/tutorials/getting-started/tut-setup-dev/05-copygithuburl.png)
+![Copy GitHub URL](/doc_imgs/tutorials/getting-started/tut-setup-dev/05-copygithuburl.png)
 
 This is the fork where you will commit your code and, once ready, create the Pull Request to submit your contribution back to the Demisto Content repository.
 
@@ -324,8 +324,9 @@ Then, make sure that `demisto-sdk` has been installed automatically by the boots
 Use demisto-sdk -h to see the available commands.
 ```
 
-Now, run the `demisto-sdk lint` command on the folder `Integrations/HelloWorld` using the `-d` option. It will run both the [linters](../../howtos/integrations/linting) and [pytest](../../howtos/integrations/unit-testing):
-
+Now, run the `demisto-sdk lint` command on the folder `Packs/HelloWorld/Integrations/HelloWorld` using the `-d` option, or if you have
+multiple changes you can use the `demisto-sdk lint -g` option which will detect the changes you've made and will run our linter based on the changed files in your cloned repo.
+It will run both the [linters](linting) and [pytest](unit-testing):
 ```bash
 (venv) sb@dddd:~/demisto/content$ demisto-sdk lint -d Integrations/HelloWorld
 Detected python version: [3.7] for docker image: demisto/python3:3.7.4.2245
@@ -382,18 +383,79 @@ In order to create a branch, use the  `git checkout -b [branch_name]` command, w
 Switched to a new branch 'my_integration_name'
 ```
 
-Now, create a directory under `Integrations`, named after your integration where you will put all your integration files later, and add it to the staged changes in `git`. 
+Now, create a directory under `￿Packs/<Your pack name>`, named after your product where you will put all your content files later, and add it to the staged changes in `git`.  
+For more description regarding what exactly a pack is please click [here](packs-fromat). 
 
-Make sure you use **PascalCase** in the directory name (i.e. `MyIntegration`):
+Make sure you use **PascalCase** in the directory name (i.e. `MyIntegration`), you can create a Pack and an Integration directory using the `demisto-sdk init` command.
 
+An example of creating a pack called test, with an integration called test, and with the metadata file created automatically: 
 ```bash
-(venv) sb@dddd:~/demisto/content$ mkdir Integrations/MyIntegration
-(venv) sb@dddd:~/demisto/content$ git add Integrations/MyIntegration
+➜  content-docs2 git:(add-pack-and-sdk-docs) ✗ demisto-sdk init --pack 
+Please input the name of the initialized pack: test
+Successfully created the pack test in: test
+
+Do you want to fill pack's metadata file? Y/N y
+
+Display name of the pack: test
+
+Description of the pack: A demo pack
+
+Support type of the pack: 
+[1] demisto
+[2] partner
+[3] developer
+[4] community
+
+Enter option: 1
+
+Server min version: 1.0.0
+
+Author of the pack: Demisto dev 
+
+The url of support, should represent your GitHub account (optional): 
+
+The email in which you can be contacted in: 
+
+Pack category options: 
+[1] Analytics & SIEM
+[2] Utilities
+[3] Messaging
+[4] Endpoint
+[5] Network Security
+[6] Vulnerability Management
+[7] Case Management
+[8] Forensics & Malware Analysis
+[9] IT Services
+[10] Data Enrichment & Threat Intelligence
+[11] Authentication
+[12] Database
+[13] Deception
+[14] Email Gateway
+
+Enter option: 1
+
+Tags of the pack, comma separated values: 
+Created pack metadata at path : test/metadata.json
+
+Do you want to create an integration in the pack? Y/N y
+Please input the name of the initialized integration: test
+Do you want to use the directory name as an ID for the integration? Y/N y
+Finished creating integration: test/Integrations/test.
+
 ```
 
 ### Step 7: Commit and push
 
 The last step is to `commit` your changes and `push` them to the *origin* in order to make sure that the pre-commit checks work fine.
+
+But you can also run the hooks locally using the demisto-sdk, in order to do that you can run the commands:  
+1. `demisto-sdk format` - this will auto correct couple of things in order for our validation to pass.  
+2. `demisto-sdk validate -g` - this will validate the integrity of the yml files, and will make sure they follow 
+our pre-set of roles. You can see the [docs](https://github.com/demisto/demisto-sdk/blob/master/docs/validate_command.md)  
+3. `demisto-sdk lint -d <The path to your changed/newly added content entity>` - this will run lint and pytest on your 
+changed python files. You can see the [docs](https://github.com/demisto/demisto-sdk/blob/master/docs/lint_command.md)  
+
+
 
 First, run a `git commit -m '[some commit message]'`, which will automatically run the pre validation checks:
 
@@ -446,10 +508,8 @@ To https://github.com/[omitted]/content
 
 You can go back to GitHub and, under **your** fork, you should be able to see that there is a new branch with the name you provided (`my_integration_name` in this example):
 
-![GitHub Branch](../../doc_imgs/tutorials/getting-started/tut-setup-dev/06-githubbranch.png)
+![GitHub Branch](/doc_imgs/tutorials/getting-started/tut-setup-dev/06-githubbranch.png)
 
 Congratulations! You completed the set up of the Development Environment for Demisto! Now you can start writing your code. Please have a look at the [Code Conventions](../../howtos/integrations/code-conventions).
-
-Once you have written your integration, there are other useful commands you can use to make sure everything is in place before you open a Pull Request. One of them is `demisto-sdk validate -g`, that will check the files you're going to commit to make sure that everything is in place. We'll explore this further in other tutorials.
 
 Thank for your time, we hope you enjoyed this tutorial. Please report issues and suggestions using the link below!

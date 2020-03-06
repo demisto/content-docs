@@ -48,7 +48,7 @@ To run your unit tests from the command line simply run from within the virtual 
 pytest -v
 ```
 Sample run:
-![](../../doc_imgs/howtos/integrations/unit-test-sample-run.png)
+![](/doc_imgs/howtos/integrations/unit-test-sample-run.png)
 
 It is also possible to run from outside the virtual env by running:
 ```
@@ -60,7 +60,7 @@ Open the unit test file within PyCharm. You will see a green arrow next to each 
 
 Sample clip of debugging in PyCharm:
 
-![](../../doc_imgs/howtos/integrations/Unit-Testing-Debug.gif)
+![](/doc_imgs/howtos/integrations/Unit-Testing-Debug.gif)
 
 ### Run With Docker
 CircleCI build will run the unit tests within the docker image the Integration/Automation will run with. To test and 
@@ -93,7 +93,7 @@ Options:
 
 Sample output:
 
-![](../../doc_imgs/howtos/integrations/unit-test-sample-output.png)
+![](/doc_imgs/howtos/integrations/unit-test-sample-output.png)
 
 ## Troubleshooting Tips
 * The `demisto-sdk lint` by default prints out minimal output. If for some reason it is failing and not clear, run the 
@@ -112,3 +112,8 @@ script with `-v` for verbose output.
 docker run --rm -it devtestdemisto/python:1.3-alpine-1b9f5bee16a24c3f5463e324c1bb075e sh
 ```
 
+If you have faced the error `ValueError: unknown locale: UTF-8` when running `demisto-sdk lint`, add these lines to your ~/.bash_profile: 	
+```	
+export LC_ALL=en_US.UTF-8	
+export LANG=en_US.UTF-8
+```

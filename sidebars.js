@@ -38,8 +38,9 @@ module.exports = {
           type: "category",
           label: "Code",
           items: [
-            "howtos/integrations/code-conventions",
+            "howtos/integrations/packs-format",
             "howtos/integrations/package-dir",
+            "howtos/integrations/code-conventions",
             "howtos/integrations/yaml-file",
             "howtos/integrations/parameter-types",
             "howtos/integrations/fetching-incidents",

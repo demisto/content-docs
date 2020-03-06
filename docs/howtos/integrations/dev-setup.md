@@ -42,20 +42,21 @@ After completing, you can activate the newly created virtual env by running:
 ```
 . ./venv/bin/activate
 ```
-**Congratulations!** You now have a fully configured virtual env, where you can run our different validation and utility scripts. For example, to convert an exported yml integration to our [package (directory) format](package-dir), you can use the `package_extractor.py` script. Try:
-```
-./package_extractor.py --help
-```
 **Note:** The virtual env we build contains both Python 2 and 3. `python` and `python2` will point to Python 2 and `python3` to Python 3.
-
-## IDE
-
-Demisto offers two IDEs for developing: IntelliJ Plugin and built-in platform IDE.
 
 ### demisto-sdk 
 This is our help tool that will make your lives easier during the contribution process, it will help you generate a 
 [Pack](###############). And will help you maintain your files and validate them before committing to the branch.
 For installing it please click [here](https://github.com/demisto/demisto-sdk)
+
+**Congratulations!** You now have a fully configured virtual env, where you can run our different validation and utility scripts. For example, to convert an exported yml integration to our [package (directory) format](package-dir), you can use the `demisto-sdk` utility. Try:
+```
+./demisto-sdk split-yml --help
+```
+
+## IDE
+
+Demisto offers two IDEs for developing: IntelliJ Plugin and built-in platform IDE.
 
 ## Demisto IntelliJ Plugin
 The Demisto Add-on for PyCharm simplifies third-party integration and script development by enabling users to author Python content for Demisto directly in PyCharm. Recommended for developing Python [unit tests](unit-testing).
@@ -68,16 +69,16 @@ It is important to take a moment and familiarise yourself with the Demisto IDE a
 ### The Script Helper
 Demisto is equipped with a script helper which is accessible via the button below:
 
-![](../../doc_imgs/howtos/integrations/script-helper.png)
+![](/doc_imgs/howtos/integrations/script-helper.png)
 
 
 The script helper will open up a flyout menu which presents all of the functions that are part of the common server. If you are trying to accomplish something that may seem trivial, check the script helper as a function for it may already exist.
 
-![](../../doc_imgs/howtos/integrations/script-helper-flyout.png)
+![](/doc_imgs/howtos/integrations/script-helper-flyout.png)
 
 ## The Settings Menu
 The settings menu contains configurations for Basic Settings, Parameters, Detailed Instructions, Commands and Script settings. Clicking the **Settings** button will open a flyout menu as seen below:
-![](../../doc_imgs/howtos/integrations/settings-menu.png)
+![](/doc_imgs/howtos/integrations/settings-menu.png)
 
 ### Basic Settings
 In the basic settings menu, is where we give an integration the following:

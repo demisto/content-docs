@@ -1,22 +1,18 @@
 ---
-id: packs_format
-title: Packs Structure
+id: packs-format
+title: Content Packs Structure
 ---
 
-As part of the content contribution process we are using a new format, Packs.
-This new content artifact will behave like a mini content repo. we will have all the relevant content items relevant 
+As part of the content contribution process we are using a structure called `Content Packs`.  
+This content artifact will behave like a mini content repo. we will have all the relevant content items relevant 
 fot that pack located within it.
-<br/><br/>
-For instance a pack for CortexXDR will look as follows: 
-![](doc_imgs/67718809-342b8e80-f9d9-11e9-8a08-1b8ac87ffd77.png)
-
-This will help you see and work in your own small world without having to touch nor see any other scripts/integation 
-and get flustered among all of those files, we want you to be able to work in you micro universe.
+<br/>
+For instance a pack for CortexXDR will look as can be seen in the Content Repository: [Packs/CortexXDR](https://github.com/demisto/content/tree/master/Packs/CortexXDR)
 
 ### Directories  
-All the directories within the pack are the same as we had in the Content repository until this day.  
+All the directories within the pack are the representation of all the possible entities possible in Content. And the pack will be located in the Content repo under `Packs/<Pack Name>`
 ```angular2
-- Integrations
+- Integrations        
 - Scripts
 - Playbooks
 - Reports
@@ -28,10 +24,8 @@ All the directories within the pack are the same as we had in the Content reposi
 - Misc
 - IndicatorFields
 - Connections
+- TestPlaybooks
 ```
-
-while the way we work in those directories haven't changed, just updated their location for your convenience.
-
 
 ### Pack files
 The pack will have few files for its' configuration. And will give you a place to add your documentation for the 
@@ -42,17 +36,18 @@ will have to be filled by you. An explanation for each of them will be provided 
 #### .secrets-ignore
 This file will be used while running the `demisto-sdk secrets`([explanation](https://github.com/demisto/demisto-sdk/blob/master/docs/secrets.md)), we will determine the file and will
  use it as a  white list of approved words for your PR.
+##### Note: We check that you don't have secrets in the PR so you don't leak any potential secrets to a public repository.
  
-#### metadata.json
+#### pack_metadata.json
 This file will contain all the relevant metadata about the pack and will be maintained in the future using the demisto-sdk.
 Information that you can find there is: the author name(you), pack id, etc...  
-This file will generate some of its information based on your pack files, and some of the data will have to be filled
+This file will generate the structure of the file based on our need but the contents should be filled
  by you. This data will be fields like the support details, in order to contact you about the pack you've just wrote,
   or the pack name.
 
-#### changelog.json
+#### changelog.md
 This file will contain the version history for the pack. Each entry of the file will direct to the pack version and 
-release notes for that specific version. This file will be automatically generated and updated by the Content build.
+release notes for that specific version. This file will have to be filled by you when changing an integration, and it will specify the work that was done with that change.
 It helps us maintain the version history of your pack.
 
 #### README.md

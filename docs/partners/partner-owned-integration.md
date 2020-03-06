@@ -21,9 +21,9 @@ We’ve made launching a POI seamless and easy:
 
 5. When we push your integration live to our global customers, we’ll add the “Partner” banner so all users can see it’s owned and managed by you! (For launch partners who created integrations in the past, we’ll update the listing to include the Partner banner automatically.)
 
-![pcycys_partner](../doc_imgs/partners/pcysys_partner.png)
+![pcycys_partner](/doc_imgs/partners/pcysys_partner.png)
 
-![slashnext_partner](../doc_imgs/partners/slashnext_partner.png)
+![slashnext_partner](/doc_imgs/partners/slashnext_partner.png)
 
 
 
