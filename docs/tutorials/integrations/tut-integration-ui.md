@@ -414,7 +414,7 @@ In some cases, if you had the integration open in two different tabs, you may ru
 
 >We don’t need a proxy, or insecure, so we will leave them on their defaults. I do have an apikey, but since we marked the type as “Encrypted” it displays as stars here. Lastly, the url.
 
-<img width="393" alt="screen shot 2019-01-08 at 15 21 36" src="/doc_imgs/tutorials/integrations/tut-integration-ui/50833193-1eb97b00-1359-11e9-9d00-bf46fa52c37f.png"></img>
+<img width="393" alt="screen shot 2019-01-08 at 15 21 36" src="../../doc_imgs/tutorials/integrations/tut-integration-ui/50833193-1eb97b00-1359-11e9-9d00-bf46fa52c37f.png"></img>
 
 
 >Remember the test function we put into our integration? Lets hit “test” and see if it works. 
@@ -427,12 +427,12 @@ In some cases, if you had the integration open in two different tabs, you may ru
 
 >Click done and let’s head to the war room. Type ```!yoda-speak-translate``` and lets enter “Hello, My name is Andrew. We are learning about integrations”
 
-<img width="979" alt="screen shot 2019-01-08 at 15 25 26" src="/doc_imgs/tutorials/integrations/tut-integration-ui/50833385-a7381b80-1359-11e9-9c3a-3b376a993d2c.png"></img>
+<img width="979" alt="screen shot 2019-01-08 at 15 25 26" src="../../doc_imgs/tutorials/integrations/tut-integration-ui/50833385-a7381b80-1359-11e9-9c3a-3b376a993d2c.png"></img>
 
 
 >Perfect! Looks like it works. Here we see our table that we created.
 
-<img width="1339" alt="screen shot 2019-01-08 at 15 26 28" src="/doc_imgs/tutorials/integrations/tut-integration-ui/50833437-cfc01580-1359-11e9-9880-1a53562542dc.png"></img>
+<img width="1339" alt="screen shot 2019-01-08 at 15 26 28" src="../../doc_imgs/tutorials/integrations/tut-integration-ui/50833437-cfc01580-1359-11e9-9880-1a53562542dc.png"></img>
 
 
 >Let’s also see the context. 
@@ -442,7 +442,7 @@ In some cases, if you had the integration open in two different tabs, you may ru
 
 >Notice how “YodaSpeak” is the root for “The Force”? If the translation would change the next time we fire the command, it will update the translation field here.
 
-<img width="516" alt="screen shot 2019-01-08 at 15 27 24" src="/doc_imgs/tutorials/integrations/tut-integration-ui/50833475-ebc3b700-1359-11e9-96f5-2f45c3eff27e.png"></img>
+<img width="516" alt="screen shot 2019-01-08 at 15 27 24" src="../../doc_imgs/tutorials/integrations/tut-integration-ui/50833475-ebc3b700-1359-11e9-96f5-2f45c3eff27e.png"></img>
 
 >But what is an integration without a playbook? Let’s make one real quick. Click “Playbooks” and click the blue button that says “New playbook”.
 
@@ -450,7 +450,7 @@ In some cases, if you had the integration open in two different tabs, you may ru
 
 >We will call this one “Yoda Speak”. In the task library, search for “Yoda” and we should see our integration. Select it and click “Add” where it says “yoda-speak-translate”.
 
-<img width="537" alt="screen shot 2019-01-08 at 15 32 15" src="/doc_imgs/tutorials/integrations/tut-integration-ui/50833654-9b008e00-135a-11e9-9e08-f1d51f1dc52a.png"></img>
+<img width="537" alt="screen shot 2019-01-08 at 15 32 15" src="../../doc_imgs/tutorials/integrations/tut-integration-ui/50833654-9b008e00-135a-11e9-9e08-f1d51f1dc52a.png"></img>
 
 
 >I want this playbook to translate the details field in an incident into yoda speak, so for “text” we will click the brackets right here. 
@@ -490,7 +490,7 @@ We need to connect the two tasks together. Do so by dragging an arrow from the b
 
 You also need to select which playbook to attach to the incident. In this case, we would attach the "yodaspeak" playbook.
 
-<img width="1350" alt="screen shot 2019-01-08 at 15 46 39" src="/doc_imgs/tutorials/integrations/tut-integration-ui/50834429-a6ed4f80-135c-11e9-9029-40c130be7371.png"></img>
+<img width="1350" alt="screen shot 2019-01-08 at 15 46 39" src="../../doc_imgs/tutorials/integrations/tut-integration-ui/50834429-a6ed4f80-135c-11e9-9029-40c130be7371.png"></img>
 
 >Click “Create new Incident” and select the incident we just created. Navigate to “work plan” and we can see that our playbook worked!
 

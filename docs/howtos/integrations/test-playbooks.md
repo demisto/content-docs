@@ -33,7 +33,7 @@ When creating a Test Playbook, it is often recommended for the first step to be 
 3. From the dropdown menu in the **all** field, select **yes**.
 4. Click **OK** and connect the **Playbook Triggered** task to the **DeleteContext** task.
 
-<img src="/doc_imgs/howtos/integrations/50275566-51eaa780-0448-11e9-8089-b3631fff1274.png" width="250" align="middle"></img>
+<img src="../../doc_imgs/howtos/integrations/50275566-51eaa780-0448-11e9-8089-b3631fff1274.png" width="250" align="middle"></img>
 
 ## Testing a Command, Verifying the Results, and Closing an Investigation
 
