@@ -36,10 +36,10 @@ if __name__ == "__builtin__" or __name__ == "builtins":
 ``` 
 
 ## Write Your Unit Tests
-Unit test should be written in a separate Python file named: `<you_choice>_test.py`. Within the unit test file, each unit test function should be named: `test_<your name>`. More information on writing unit tests and their format is available at the [PyTest Docs](https://docs.pytest.org/en/latest/contents.html). Good place to see example unit tests: [Proofpoint TAP v2 integration](https://github.com/demisto/content/blob/master/Integrations/ProofpointTAP_v2/ProofpointTAP_v2_test.py) 
+Unit test should be written in a separate Python file named: `<your_choice>_test.py`. Within the unit test file, each unit test function should be named: `test_<your name>`. More information on writing unit tests and their format is available at the [PyTest Docs](https://docs.pytest.org/en/latest/contents.html). Good place to see example unit tests: [Proofpoint TAP v2 integration](https://github.com/demisto/content/blob/master/Integrations/ProofpointTAP_v2/ProofpointTAP_v2_test.py) 
 
 ### Mocking
-We use [pytest-mock](https://github.com/pytest-dev/pytest-mock/) for mocking. `pytest-mock` is enabled by default and installed in the base environment mentioned above. To use a `mocker` object simply pass it as a parameter to your test function. The `mocker` can then be used to mock both the demisto object and also external APIs. For an example of using a `mocker` object see: https://github.com/demisto/content/blob/master/Scripts/ParseEmailFiles/parse_email_files_test.py#L29 .
+We use [pytest-mock](https://github.com/pytest-dev/pytest-mock/) for mocking. `pytest-mock` is enabled by default and installed in the base environment mentioned above. To use a `mocker` object simply pass it as a parameter to your test function. The `mocker` can then be used to mock both the demisto object and also external APIs. An example of using a `mocker` object is available [here](https://github.com/demisto/content/blob/master/Scripts/ParseEmailFiles/parse_email_files_test.py).
 
 ## Running Your Unit Tests
 ### Command Line
@@ -96,6 +96,73 @@ optional arguments:
 Sample output:
 
 ![](../../doc_imgs/howtos/integrations/unit-test-sample-output.png)
+
+## Common Unit Testing Use Cases
+
+### Multi variables assertion
+Most functions we write have several edge cases. When writing a unit test for this type of function all edge cases need to be tested.
+For example let's examine the following python function:
+```
+def convert_string_to_type(string: str) -> Union[str, bool, int]:
+    """
+    Converts the input string to it's object type
+    :param string: The input string
+    :return: The converted object
+    """
+    if string.isnumeric():
+        return int(string)
+    elif string in ['true', 'false', 'True', 'False']:
+        return bool(string)
+    return string
+```
+A naive unit test will be as follows:
+```
+def test_convert_string_to_type():
+    from File import convert_string_to_type
+    string = 'true'
+    assert convert_string_to_type(string) == True
+    
+    string = '432'
+    assert convert_string_to_type(string) == 432
+
+    string = 'str'
+    assert convert_string_to_type(string) == 'str'
+```
+The correct way to test this function is using the @pytest.mark.parametrize fixture:
+```
+@pytest.mark.parametrize('string, output', [('true', True), ('432', 432), ('str', 'str')])
+def test_convert_string_to_type(string, output):
+    assert convert_string_to_type(string) == output
+```
+We declare the inputs and outputs in the following format: 'input, output', [(case1_input, case1_output), (case2_input, case2_output), ...]
+(Note that more than two variables can be delivered)
+
+After declaring the variables and assigning their values, you need to assign the variables to the test function. In the example above we assign the variables 'string' and 'output' to the test function.
+
+To read more on parametrize fixtures, visit: https://docs.pytest.org/en/latest/parametrize.html
+
+An example of a test using the paramertrize fixture is avialable [here](https://github.com/demisto/content/blob/master/Scripts/ExtractDomainFromUrlFormat/ExtractDomainFromUrlFormat_test.py#L7).
+
+### Testing Exceptions
+If a function is raising an exception in some case we want to test the right exception is raised and that the error message is correct.
+For example, for testing the following function:
+```
+def function():
+    raise ValueError('this is an error msg')
+```
+We first need to import the raises function from pytest using this line of code:
+```
+from pytest import raises
+```
+Then, we test the exception being raised.
+```
+def test_function():
+    from File import function
+    with raises(ValueError, match='this is an error msg'):
+        function()
+```
+If the function raises a ValueError with proper error message, the test will pass.
+
 
 ## Troubleshooting Tips
 * The `pkg_dev_test_tasks.py` by default prints out minimal output. If for some reason it is failing and not clear, run the script with `-v` for verbose output.
