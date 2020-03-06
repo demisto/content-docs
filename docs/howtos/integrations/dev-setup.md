@@ -22,7 +22,7 @@ Optionally, macOS users can install via [homebrew](https://docs.brew.sh/Homebrew
 
 
 ### Docker
-Docker is an optional, but highly recommended install. If you would like to write [unit tests](unit-testing) and run them, as we do in our CI process (within docker), we recommend installing docker. See: https://docs.docker.com/install/ for install options.
+Docker is an optional, but highly recommended install. If you would like to write [unit tests](../tests/unit-testing) and run them, as we do in our CI process (within docker), we recommend installing docker. See: https://docs.docker.com/install/ for install options.
 
 ## Setting Up a Development Environment
 Clone (Demisto users) or [Fork](https://guides.github.com/activities/forking/) (external contributors) the Demisto Content repository.
@@ -59,7 +59,7 @@ For installing it please click [here](https://github.com/demisto/demisto-sdk)
 Demisto offers two IDEs for developing: IntelliJ Plugin and built-in platform IDE.
 
 ## Demisto IntelliJ Plugin
-The Demisto Add-on for PyCharm simplifies third-party integration and script development by enabling users to author Python content for Demisto directly in PyCharm. Recommended for developing Python [unit tests](unit-testing).
+The Demisto Add-on for PyCharm simplifies third-party integration and script development by enabling users to author Python content for Demisto directly in PyCharm. Recommended for developing Python [unit tests](../tests/unit-testing).
 
 Read more [here](https://plugins.jetbrains.com/plugin/12093-demisto-add-on-for-pycharm)
 
