@@ -1,27 +1,149 @@
 # Feed Integrations
 
-## How to Implement a Feed Integration
-
-**Requirements**:  
-- Demisto Server Version >= 5.5.0
-- Having the field `feed: true` in the script part of their yaml.  
-- Implementing `fetch-indicators` command.  
-- The result should be returned using `demisto.createIndicators()` in batches of upto 2000 indicators (implemented via `batch()` as will be implemented in `CommonServerPython`.
-- `demisto.createIndicators()` should receive a list of JSONs containing at least the following fields:
+## Required Parameters
+Every Feed integration should have the following parameters in the integration YAML file:
 ```
-{
-    "value": <value of the indicator>,
-    "type": <type of the indicator>,
-    "rawJSON": {
-        "value": <value of the indicator>,
-        "type": <type of the indicator>,
-        <ANY OTHER RELEVANT FIELD FROM THE FEED>
+- display: Fetch indicators
+  name: feed
+  defaultvalue: true
+  type: 8
+  required: false
+- display: Indicator Reputation
+  name: feedReputation
+  defaultvalue: feedInstanceReputationNotSet
+  type: 18
+  required: false
+  options:
+  - None
+  - Good
+  - Suspicious
+  - Bad
+  additionalinfo: Indicators from this integration instance will be marked with this
+    reputation
+- display: Source Reliability
+  name: feedReliability
+  defaultvalue: F - Reliability cannot be judged
+  type: 15
+  required: true
+  options:
+  - A - Completely reliable
+  - B - Usually reliable
+  - C - Fairly reliable
+  - D - Not usually reliable
+  - E - Unreliable
+  - F - Reliability cannot be judged
+  additionalinfo: Reliability of the source providing the intelligence data
+- display: ""
+  name: feedExpirationPolicy
+  defaultvalue: indicatorType
+  type: 17
+  required: false
+  options:
+  - never
+  - interval
+  - indicatorType
+  - suddenDeath
+- display: ""
+  name: feedExpirationInterval
+  defaultvalue: "20160"
+  type: 1
+  required: false
+- display: Feed Fetch Interval
+  name: feedFetchInterval
+  defaultvalue: "240"
+  type: 19
+  required: false
+- display: Bypass exclusion list
+  name: feedBypassExclusionList
+  defaultvalue: ""
+  type: 8
+  required: false
+  additionalinfo: When selected, the exclusion list is ignored for indicators from
+    this feed. This means that if an indicator from this feed is on the exclusion
+    list, the indicator might still be added to the system.
+```
+The `defaultvalue` of the `feedReputation`, `feedReliability`, `feedExpirationPolicy`, and `feedFetchInterval` parameters should be set according to the qualities associated with the feed source for which you are developing a feed integration.
+
+## Commands
+Every Feed Integration will at minimum have three commands:
+- `test-module` - this is the command that is run when the `Test` button in the configuration panel of an integration is clicked.
+- `<product-prefix>-get-indicators` - where `<product-prefix>` is replaced by the name of the Product or Vendor source providing the feed. So for example, if you were developing a feed integration for Microsoft Intune this command might be called `msintune-get-indicators`. This command should fetch a limited number of indicators from the feed source and display them in the war room.
+- `fetch-indicators` - this command will initiate a request to the feed endpoint, format the data fetched from the endpoint to conform to Cortex XSOAR's expected input format and create new indicators. If the integration instance is configured to `Fetch indicators`, then this is the command that will be executed at the specified `Feed Fetch Interval`.
+
+## demisto.createIndicators()
+This function is used when the `fetch-indicators` command is executed. Let's look at an example `main()` from an existing Feed Integration.
+```python
+def main():
+    params = demisto.params()
+
+    client = Client(params.get('insecure'),
+                    params.get('proxy'))
+
+    command = demisto.command()
+    demisto.info(f'Command being called is {command}')
+    # Switch case
+    commands = {
+        'test-module': module_test_command,
+        'tor-get-indicators': get_indicators_command
     }
+    try:
+        if demisto.command() == 'fetch-indicators':
+            indicators = fetch_indicators_command(client)
+            # we submit the indicators in batches
+            for b in batch(indicators, batch_size=2000):
+                demisto.createIndicators(b)
+        else:
+            readable_output, outputs, raw_response = commands[command](client, demisto.args())
+            return_outputs(readable_output, outputs, raw_response)
+    except Exception as e:
+        raise Exception(f'Error in {SOURCE_NAME} Integration [{e}]')
+```
+The `batch` function is imported from `CommonServerPython`. We see that indicators are returned from calling `fetch_indicators_command` and are passed to `demisto.createIndicators` in batches.
+
+## Cortex XSOAR Indicator Objects
+Indicator objects passed to `demisto.createIndicators`. Let's look at an example,
+```python
+{
+    "value": value,
+    "type": raw_json['type'],
+    "rawJSON": raw_json,
+    "fields": {'recordedfutureevidencedetails': lower_case_evidence_details_keys},
+    "score": score
 }
 ```
---- 
-Feed integrations have OOTB fields (set via server when creating a new BYOI fetch-indicators integration), that should be included in all feed integrations, and shouldn't be edited:
-- `feedInstanceReliability` - Reliability score.
-- `expiration` - Used to expose all the other expiration fields.
-- `expirationPolicy` - Sets the expiration policy.
-- `feed` - Boolean param for toggling Fetch indicators.
+Let's review the object key and values.
+* `"value"` - _required_. The indicator value, e.g. `"8.8.8.8"`.
+* `"type"` - _required_. The indicator type (types as defined in Cortex XSOAR), e.g. `"IP"`. One can use the `FeedIndicatorType` class to populate this field. This class, which is imported from `CommonServerPython` has all of the indicator types that come out of the box with Cortex XSOAR. It appears as follows,
+    ```python
+    class FeedIndicatorType(object):
+        """Type of Indicator (Reputations), used in TIP integrations"""
+        Account = "Account"
+        CVE = "CVE"
+        Domain = "Domain"
+        DomainGlob = "DomainGlob"
+        Email = "Email"
+        File = "File"
+        FQDN = "Domain"
+        MD5 = "File MD5"
+        SHA1 = "File SHA-1"
+        SHA256 = "File SHA-256"
+        Host = "Host"
+        IP = "IP"
+        CIDR = "CIDR"
+        IPv6 = "IPv6"
+        IPv6CIDR = "IPv6CIDR"
+        Registry = "Registry Key"
+        SSDeep = "ssdeep"
+        URL = "URL"
+    ```
+* `"rawJSON"` - _required_. This dictionary should contain the `"value"` and `"type"` fields as well as any other unmodified data returned from the feed source about an indicator.
+* `"fields"` - _optional_. A dictionary that maps values to existing indicator fields defined in Cortex XSOAR where the key is the `cliname` of an indicator field.
+* `"score"` - _optional_. The reputation score to assign to the indicator object, scores range from 0 to 3 where 0 - None, 1 - Good, 2 - Suspicious, and 3 - Bad. Assign a value only if you wish to explicitly assign a score to an indicator in your code. Typically, indicator reputation is set at a Feed Integration configuration level by setting the `Indicator Reputation` parameter when configuring an instance.
+
+## Pack Structure & Naming
+New feed integrations should be inside the `Packs` directory in the `content` repository. Let's take an example to better understand the expected filenaming and pack structure. If I were developing a feed integration for `Microsoft Intune` then the pack structure would look as follows. Inside the `Packs` directory in the `content` repository, I would define a new pack `FeedMicrosoftIntune`. Inside this directory I would create an `Integrations` directory and a subdirectory within that named `FeedMicrosoftIntune` in which reside all the integration files. Note that while the filenames for the integration is `FeedMicrosoftIntune.py` and `FeedMicrosoftIntune.yml` for the code file and YAML file respectively that the value for the `id`, `name` and `display` fields in the YAML file would be `Microsoft Intune Feed`.  
+_Note_: The advised method of creating new packs is using the [demisto-sdk](https://github.com/demisto/demisto-sdk)'s `init` command.
+
+## Notes
+- The integration's YAML file _must_ have the following field `fromversion: 5.5.0` because Feed Integrations are only supported from server version 5.5.0 and onwards.
+- To look at examples of Feed Integrations, take a look at The Packs in the [content repository](https://github.com/demisto/content/tree/master/Packs) that start with `Feed`.
