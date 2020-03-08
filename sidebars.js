@@ -100,6 +100,7 @@ module.exports = {
         "howtos/incidents/incident-customize-incident-layout",
         "howtos/incidents/incident-xsoar-incident-lifecycle",
         "howtos/incidents/howto-incident-fields",
+        "howtos/incidents/incident-auto-extract",
       ]
     },
     {
