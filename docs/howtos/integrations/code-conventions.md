@@ -583,6 +583,11 @@ The entry is composed of multiple components.
         'Category': 'Integration Update'  # Any integration command that returns information about an indicator should use this Category value
     }
     ```
+    When `IndicatorTimeline` data is returned in an entry, the timeline section of the indicator whose value was noted in the timeline data will be updated (and is viewable in the indicator's view page in Cortex XSOAR as can be seen in the attached image).
+ 
+    <img width="758" src="../../doc_imgs/howtos/integrations/timeline_section.png"></img>
+
+
 The `entryTypes` and `formats` dictionaries are ease-of-use dictionaries imported from `CommonServerPython` and respectively appear as follows:
 ```python
 # entryTypes
