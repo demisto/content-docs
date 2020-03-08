@@ -101,6 +101,8 @@ module.exports = {
         "howtos/incidents/incident-xsoar-incident-lifecycle",
         "howtos/incidents/howto-incident-fields",
         "howtos/incidents/incident-auto-extract",
+        "howtos/incidents/incident-classification-mapping",
+        "howtos/incidents/incident-pre-processing",
       ]
     },
     {
