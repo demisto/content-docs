@@ -324,8 +324,8 @@ Then, make sure that `demisto-sdk` has been installed automatically by the boots
 Use demisto-sdk -h to see the available commands.
 ```
 
-Now, run the `demisto-sdk lint` command on the folder `Packs/HelloWorld/Integrations/HelloWorld` using the `-d` option, or if you have
-multiple changes you can use the `demisto-sdk lint -g` option which will detect the changes you've made and will run our linter based on the changed files in your cloned repo.
+Now, run the `demisto-sdk lint` command on the folder `Packs/HelloWorld/Integrations/HelloWorld` using the `-d` option,
+ or if you want to run  against all the committed files in your branch you can use `demisto-sdk lint -g`.
 It will run both the [linters](linting) and [pytest](unit-testing):
 ```bash
 (venv) sb@dddd:~/demisto/content$ demisto-sdk lint -d Integrations/HelloWorld
@@ -388,17 +388,17 @@ For more description regarding what exactly a pack is please click [here](packs-
 
 Make sure you use **PascalCase** in the directory name (i.e. `MyIntegration`), you can create a Pack and an Integration directory using the `demisto-sdk init` command.
 
-An example of creating a pack called test, with an integration called test, and with the metadata file created automatically: 
+An example of creating a pack called `MyNewPack`, with an integration called `MyIntegration`, and with the metadata file created automatically: 
 ```bash
 ➜  content-docs2 git:(add-pack-and-sdk-docs) ✗ demisto-sdk init --pack 
-Please input the name of the initialized pack: test
-Successfully created the pack test in: test
+Please input the name of the initialized pack: MyNewPack
+Successfully created the pack test in: MyIntegration
 
 Do you want to fill pack's metadata file? Y/N y
 
-Display name of the pack: test
+Display name of the pack: MyNewPack
 
-Description of the pack: A demo pack
+Description of the pack: A description for my newly created pack.
 
 Support type of the pack: 
 [1] demisto
@@ -406,15 +406,15 @@ Support type of the pack:
 [3] developer
 [4] community
 
-Enter option: 1
+Enter option: 2
 
-Server min version: 1.0.0
+Server min version: 5.0.0
 
-Author of the pack: Demisto dev 
+Author of the pack: Partner name 
 
-The url of support, should represent your GitHub account (optional): 
+The url of support, should represent your GitHub account (optional): https://github.com/<PartnerGitAccount>
 
-The email in which you can be contacted in: 
+The email in which you can be contacted in: partner@partner.com
 
 Pack category options: 
 [1] Analytics & SIEM
@@ -435,12 +435,12 @@ Pack category options:
 Enter option: 1
 
 Tags of the pack, comma separated values: 
-Created pack metadata at path : test/metadata.json
+Created pack metadata at path : MyNewPack/metadata.json
 
 Do you want to create an integration in the pack? Y/N y
 Please input the name of the initialized integration: test
 Do you want to use the directory name as an ID for the integration? Y/N y
-Finished creating integration: test/Integrations/test.
+Finished creating integration: MyNewPack/Integrations/test.
 
 ```
 
@@ -449,7 +449,8 @@ Finished creating integration: test/Integrations/test.
 The last step is to `commit` your changes and `push` them to the *origin* in order to make sure that the pre-commit checks work fine.
 
 But you can also run the hooks locally using the demisto-sdk, in order to do that you can run the commands:  
-1. `demisto-sdk format` - this will auto correct couple of things in order for our validation to pass.  
+1. `demisto-sdk format` - this will auto correct couple of things in order for our validation to pass. 
+You can see the [docs](https://github.com/demisto/demisto-sdk/blob/master/docs/format_command.md)  
 2. `demisto-sdk validate -g` - this will validate the integrity of the yml files, and will make sure they follow 
 our pre-set of roles. You can see the [docs](https://github.com/demisto/demisto-sdk/blob/master/docs/validate_command.md)  
 3. `demisto-sdk lint -d <The path to your changed/newly added content entity>` - this will run lint and pytest on your 

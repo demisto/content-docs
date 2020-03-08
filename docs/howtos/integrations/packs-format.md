@@ -4,10 +4,12 @@ title: Content Packs Structure
 ---
 
 As part of the content contribution process we are using a structure called `Content Packs`.  
-This content artifact will behave like a mini content repo. we will have all the relevant content items relevant 
+This content artifact will behave like a mini content repo. We will have all the relevant content items relevant 
 fot that pack located within it.
 <br/>
-For instance a pack for CortexXDR will look as can be seen in the Content Repository: [Packs/CortexXDR](https://github.com/demisto/content/tree/master/Packs/CortexXDR)
+
+For instance a pack for CortexXDR will look as can be seen in the Content Repository 
+[Packs/CortexXDR](https://github.com/demisto/content/tree/master/Packs/CortexXDR)
 
 ### Directories  
 All the directories within the pack are the representation of all the possible entities possible in Content. And the pack will be located in the Content repo under `Packs/<Pack Name>`
@@ -28,7 +30,7 @@ All the directories within the pack are the representation of all the possible e
 ```
 
 ### Pack files
-The pack will have few files for its' configuration. And will give you a place to add your documentation for the 
+The pack will have few files for it's configuration. And will give you a place to add your documentation for the 
 pack, and some metadata regarding the pack itself.
 Please note that all of the following files will be created using the `demisto-sdk init --pack`, and some of them 
 will have to be filled by you. An explanation for each of them will be provided below.

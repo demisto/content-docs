@@ -47,7 +47,7 @@ After completing, you can activate the newly created virtual env by running:
 ### demisto-sdk 
 This is our help tool that will make your lives easier during the contribution process, it will help you generate a 
 [Pack](packs-format). And will help you maintain your files and validate them before committing to the branch.
-For installing it please click [here](https://github.com/demisto/demisto-sdk)
+For installing it please click [here](https://github.com/demisto/demisto-sdk).
 
 **Congratulations!** You now have a fully configured virtual env, where you can run our different validation and utility scripts. For example, to convert an exported yml integration to our [package (directory) format](package-dir), you can use the `demisto-sdk` utility. Try:
 ```
