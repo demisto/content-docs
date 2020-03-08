@@ -107,6 +107,5 @@ The following scenario shows how Auto Extract is used in the *Process Email - Ge
    Under the Advanced tab, you can see that **Auto extract indicators** is set to None because the indicators have already been enriched and there is no need to do it again.
 
  ![Parse Email Files - Disabled](../../doc_imgs/howtos/incidents/Auto-Extract_ParseEmailFiles_Disabled.png)
-   [INSERT IMAGE Auto-Extract_ParseEmailFiles_Disabled.png]
 
 In the above example, had we set the reputation.calc.algorithm.tasks server configuration to 1, we would not have had to go into the **Advanced** tab of the **Set incident with the Email object data** task and manually tell the task not to extract the indicators. It would use the system default.
