@@ -1,5 +1,5 @@
 ---
-id: incidents-auto-extract
+id: incident-auto-extract
 title: Auto Extract
 ---
 The auto-extract feature extracts indicators and enriches their reputations using commands and scripts defined for the indicator type. You can automatically extract indicators in the following scenarios:
