@@ -621,7 +621,7 @@ formats = {
 
 
 ### return_outputs
-```return_outputs``` is a wrapper of `demisto.results()` used to return results to the War Room and which defaults to the most commonly used configuration for entries, only exposing the most functional parameters for the sake of simplicity. For example:
+`return_outputs()` is a convenience function - it is simply a wrapper of `demisto.results()` used to return results to the War Room and which defaults to the most commonly used configuration for entries, only exposing the most functional parameters for the sake of simplicity. For example:
 ```python
 def return_outputs(readable_output, outputs=None, raw_response=None, timeline=None):
     """
@@ -653,6 +653,7 @@ return_outputs(
     {'Value': 'some indicator', 'Message': 'Some message', 'Category': 'Integration Update'}
 )
 ```
+_Note_: Using `return_outputs()` is the preferred method of returning entries to the war room. `demisto.results()` should only be used if the user's use-case demands more specificity than the `return_outputs()` function permits.
 
 
 **Error**
