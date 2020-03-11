@@ -80,7 +80,7 @@ Now that we are starting to ingest incidents from QRadar, we need to classify th
 
 3. We select the *description* attribute as the key based on which we want to classify. 
 
-![Insert Field](../../doc_imgs/tutorials/incidents/C-M_SIEM_Set-Classification-Key.png "Insert Field")	
+![Set Classification Key](../../doc_imgs/tutorials/incidents/C-M_SIEM_Set-Classification-Key.png "Set Classification Key")	
 
    We see that this results in 6 unique unmapped values out of the 20 events that were pulled. 
 
@@ -98,45 +98,45 @@ Now that we are starting to ingest incidents from QRadar, we need to classify th
 
    On the left side of the screen we see all of the fields that are available in an Authentication incident type. On the right side of the screen, we see all of the attributes that are available from the events. 
 
-   a. Next to the Importance field, click **Choose data path**. 
+  a. Next to the Importance field, click **Choose data path**. 
 
-   b. From the QRadar attributes, click **magnitude**. 
+  b. From the QRadar attributes, click **magnitude**. 
 
-   c. Next to the details field, click **Choose data path**.
+  c. Next to the details field, click **Choose data path**.
 
-   	  i. From the QRadar attributes, click **description**. 
+   	i. From the QRadar attributes, click **description**. 
 
-   	  ii. Click the curly brackets.
+   	ii. Click the curly brackets.
 
-   	  iii. In the **Get** field, enter *description*.
+   	iii. In the **Get** field, enter *description*.
 
-   	  IV. Under **Apply transformers on the field**, click **Add transformer**.
+   	IV. Under **Apply transformers on the field**, click **Add transformer**.
 
-   	  V. Under **Transformer**, click **To upper case** and select the **To string (String)** transformer.
+   	V. Under **Transformer**, click **To upper case** and select the **To string (String)** transformer.
 
-   	  VI. In the **to** field, enter an empty space followed by the string Failure Audit. It should look like this ( Failure Audit).
+   	VI. In the **to** field, enter an empty space followed by the string Failure Audit. It should look like this ( Failure Audit).
 
-   	  VII. Click the checkmark icon followed by **OK**.
+   	VII. Click the checkmark icon followed by **OK**.
 
-   d. Next to the name field, click **Choose data path**.
+  d. Next to the name field, click **Choose data path**.
 
-   	  i. From the QRadar attributes, click **description**. 
+   	i. From the QRadar attributes, click **description**. 
 
-   	  ii. Click the curly brackets.
+   	ii. Click the curly brackets.
 
-   	  iii. In the **Get** field, enter *description*.
+   	iii. In the **Get** field, enter *description*.
 
-   	  IV. Under **Apply transformers on the field**, click **Add transformer**.
+   	IV. Under **Apply transformers on the field**, click **Add transformer**.
 
-   	  V. Under **Transformer**, click **To upper case** and select the **From string** transformer.
+   	V. Under **Transformer**, click **To upper case** and select the **From string** transformer.
 
-   	  VI. In the **from** field, enter a colon. It should look like this (from::).
+   	VI. In the **from** field, enter a colon. It should look like this (from::).
 
-   	  VII. Click the checkmark icon followed by **OK**.
+   	VII. Click the checkmark icon followed by **OK**.
 
    	![Set Mapping](../../doc_imgs/tutorials/incidents/C-M_SIEM_Mapping.png "Set Mapping")
     
-   	e. Click **Done**.
+  e. Click **Done**.
 
 7. Repeat this process for the Access incident type.
 
