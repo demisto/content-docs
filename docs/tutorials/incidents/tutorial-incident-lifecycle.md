@@ -80,7 +80,7 @@ Now that we are starting to ingest incidents from QRadar, we need to classify th
 
 3. We select the *description* attribute as the key based on which we want to classify. 
 
-![Set Classification Key](../../doc_imgs/tutorials/incidents/C-M_SIEM_Set-Classification-Key.png "Set Classification Key")	
+![Set Classification Key](../../doc_imgs/tutorials/incidents/C-M_SIEM_Set-Classification-Key.png "Set Classification Key")
 
    We see that this results in 6 unique unmapped values out of the 20 events that were pulled. 
 
