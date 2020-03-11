@@ -21,7 +21,7 @@ Cortex XSOAR comes with the Access and Authentication incident types configured 
     b. Select the **Run playbook automatically** checkbox.
     c. Under Auto extract incident indicators, select **Inline**.
 
-    ![Incident Type](../../doc_imgs/tutorials/incidents/Inidcator-Type_Default-QRadarpng.png "Incident Type")
+![Incident Type](../../doc_imgs/tutorials/incidents/Inidcator-Type_Default-QRadarpng.png "Incident Type")
 
 3. Click **Save**.
 
@@ -38,7 +38,7 @@ The next thing we need to do is ensure that we have the fields that we want for 
     c. Under **Attributes**, clear the **Associate to all** checkbox.
     d. In the **Add to incident types field**, select **Access** and **Authentication**.
 
-    ![New Field](../../doc_imgs/tutorials/incidents/New-Field_Importance.png "New Field")
+![New Field](../../doc_imgs/tutorials/incidents/New-Field_Importance.png "New Field")
 
 3. Click **Save**.
 
@@ -54,7 +54,7 @@ The next thing we need to do is ensure that we have the fields that we want for 
 
 5. Repeat this process for the Authentication incident type.
 
- ![Insert Field](../../doc_imgs/tutorials/incidents/Customize-Layout_Insert-Field.png "Insert Field")
+![Insert Field](../../doc_imgs/tutorials/incidents/Customize-Layout_Insert-Field.png "Insert Field")
 
 ## Define an Integration Instance
 
@@ -90,7 +90,7 @@ Now that we are starting to ingest incidents from QRadar, we need to classify th
 
    Ido port scan will go under Network and DJM will be left untouched. Since we didn't provide any incident time for DJM, it will default to the incident type configured in the instance.
 
-   ![Complete Classification](../../doc_imgs/tutorials/incidents/C-M_SIEM_Set-Classification.png "Complete Classification")
+![Complete Classification](../../doc_imgs/tutorials/incidents/C-M_SIEM_Set-Classification.png "Complete Classification")
 
 5. Save the classifier. Stopping here would mean that we have defined how events originating from QRadar are classified, but we still haven't mapped the event attributes to the fields in the incident types.
 
@@ -134,7 +134,7 @@ Now that we are starting to ingest incidents from QRadar, we need to classify th
 
    	VII. Click the checkmark icon followed by **OK**.
 
-   	![Set Mapping](../../doc_imgs/tutorials/incidents/C-M_SIEM_Mapping.png "Set Mapping")
+![Set Mapping](../../doc_imgs/tutorials/incidents/C-M_SIEM_Mapping.png "Set Mapping")
     
   e. Click **Done**.
 
