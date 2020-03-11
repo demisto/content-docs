@@ -587,6 +587,9 @@ The entry is composed of multiple components.
  
     <img width="758" src="../../doc_imgs/howtos/integrations/timeline_section.png"></img>
 
+    **So when should one include a timeline object in an entry returned to the war room?**  
+    The answer is any time that a command operates on an indicator. A good indicator (pun intended?) of when `timeline` data should be included in an entry is to look and see if the command returns a `DBotScore` or entities as described in our [context standards documentation](https://demisto.pan.dev/docs/howtos/integrations/context-standards) to the entry context. A common case is reputation commands, i.e. `!ip`, `!url`, `!file`, etc. When implementing these commands in integrations, `timeline` data should be included in the returned entry. To see an example of an integration that returns entries with `timeline` data, take a look at our [AbuseIPDB integration](https://github.com/demisto/content/blob/master/Integrations/AbuseDB/AbuseDB.py#L201).
+
 
 The `entryTypes` and `formats` dictionaries are ease-of-use dictionaries imported from `CommonServerPython` and respectively appear as follows:
 ```python
