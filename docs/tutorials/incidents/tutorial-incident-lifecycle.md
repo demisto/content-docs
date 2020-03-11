@@ -104,39 +104,39 @@ Now that we are starting to ingest incidents from QRadar, we need to classify th
 
     c. Next to the details field, click **Choose data path**.
 
-   	    i. From the QRadar attributes, click **description**. 
+      1. From the QRadar attributes, click **description**. 
 
-   	    ii. Click the curly brackets.
+   	  2. Click the curly brackets.
 
-   	    iii. In the **Get** field, enter *description*.
+   	  3. In the **Get** field, enter *description*.
 
-   	    IV. Under **Apply transformers on the field**, click **Add transformer**.
+   	  4. Under **Apply transformers on the field**, click **Add transformer**.
 
-   	    V. Under **Transformer**, click **To upper case** and select the **To string (String)** transformer.
+   	  5. Under **Transformer**, click **To upper case** and select the **To string (String)** transformer.
 
-   	    VI. In the **to** field, enter an empty space followed by the string Failure Audit. It should look like this ( Failure Audit).
+   	  6. In the **to** field, enter an empty space followed by the string Failure Audit. It should look like this ( Failure Audit).
 
-   	    VII. Click the checkmark icon followed by **OK**.
+   	  7. Click the checkmark icon followed by **OK**.
 
     d. Next to the name field, click **Choose data path**.
 
-   	    i. From the QRadar attributes, click **description**. 
+      1. From the QRadar attributes, click **description**. 
 
-   	    ii. Click the curly brackets.
+   	  2. Click the curly brackets.
 
-   	    iii. In the **Get** field, enter *description*.
+   	  3. In the **Get** field, enter *description*.
 
-   	    IV. Under **Apply transformers on the field**, click **Add transformer**.
+   	  4. Under **Apply transformers on the field**, click **Add transformer**.
 
-   	    V. Under **Transformer**, click **To upper case** and select the **From string** transformer.
+   	  5. Under **Transformer**, click **To upper case** and select the **From string** transformer.
 
-   	    VI. In the **from** field, enter a colon. It should look like this (from::).
+   	  6. In the **from** field, enter a colon. It should look like this (from::).
 
-   	    VII. Click the checkmark icon followed by **OK**.
+   	  7. Click the checkmark icon followed by **OK**.
+      
+      8. Click **Done**.
 
 ![Set Mapping](../../doc_imgs/tutorials/incidents/C-M_SIEM_Mapping.png "Set Mapping")
-    
-    e. Click **Done**.
 
 7. Repeat this process for the Access incident type.
 
