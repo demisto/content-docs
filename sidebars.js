@@ -157,7 +157,7 @@ module.exports = {
       type: "category",
       label: "Incidents, Fields & Layouts",
       items: [
-        "tutorials/tut-incidents"
+        "tutorials/incidents/tutorial-incident-lifecycle.md",
       ]
     },
     {
