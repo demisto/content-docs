@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 
 const DOCSPREFIX: string='docs'
 
-const sidebars = require('./sidebars');
+const sidebars = require('../sidebars');
 
 interface SideBarItem {
 	type: "category" | "doc",

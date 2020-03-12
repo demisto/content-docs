@@ -15,6 +15,17 @@ class Document {
 	}
 };
 
+interface SideBarDoc {
+	type: string,
+	id: string
+}
+
+interface SideBarElement {
+	type: 'category' | 'doc',
+	label: string,
+	items: Array<string | SideBarDoc | SideBarElement>
+}
+
 class TOC {
 	id: string;
 	documents: Array<Document>;
@@ -28,26 +39,34 @@ class TOC {
 	}
 }
 
-function TOCToJS(toc: TOC, depth: number = 0): string {
-	let js: string = "";
-	let hashes: string = '#'.repeat(depth+1);
-	let topic: string = toc.id.split('/').pop()
-	// title
-	js += hashes + ' ' + topic[0].toUpperCase() + topic.slice(1) + '\n\n';
+function TOCToSideBar(toc: TOC, depth: number = 0): SideBarElement {
+	let SideBar: SideBarElement = {
+		type: 'category',
+		label: toc.id,
+		items: new Array()
+	}
 
 	// add  all documents first
 	for(let doc of toc.documents) {
-		md+= '[' + doc.title + ']' + '(' + doc.id + ')\n';
+		let d: SideBarDoc | string = undefined;
+		if(depth == 0) {
+			d = {
+				type: "doc",
+				id: doc.id
+			}
+		}
+		else {
+			d= doc.id
+		}
+		SideBar.items.push(d)
 	}
-
-	md+= '\n';
 
 	// ad all TOCs later
 	for(let t of toc.tocs) {
-		md += TOCToMarkDown(t, depth+1);
+		SideBar.items.push(TOCToSideBar(t, depth+1))
 	}
 	
-	return md;
+	return SideBar;
 }
 
 function extractFileData(f): Document | undefined {
@@ -70,36 +89,6 @@ function extractFileData(f): Document | undefined {
 	return document;
 }
 
-function build_toc(label: string, items: any): TOC {
-	let toc : TOC = new TOC(label);
-	toc.id = label;
-
-	for(let i of items) {
-
-		// element is a category: add it as a new TOC
-		if(typeof(i) === 'object' && 'type' in i && i.type === "category") {
-			toc.tocs.push(build_toc(label + '/' + i.label, i.items));
-		}
-
-		// element is a document: add is as a new Document
-		else if(typeof(i) === 'object' && 'type' in i && i.type == "doc"){
-			toc.documents.push(extractFileData(i.id))
-		}
-
-		// element is a string: add it as a document
-		else if (typeof(i) === 'string') {
-			toc.documents.push(extractFileData(i))
-		}
-		// skip something unknown
-		else {
-			// console.log("Skipping object: " + JSON.stringify(i))
-			continue;
-		}
-	}
-	// console.log('Building TOC for label: ' + label + '\n' + JSON.stringify(toc.documents) + '\n\n');
-	return toc;
-}
-
 function generate_sidebar(path:string) {
   	let toc : TOC = new TOC(path, path);
 
@@ -108,7 +97,7 @@ function generate_sidebar(path:string) {
     for(let entry of entries) {
         let fullPath: string = path + '/' + entry;
         let fileInfo = lstatSync(fullPath);
-        console.log(fullPath);
+        // console.log(fullPath);
         if(fileInfo.isDirectory()) {
             toc.tocs.push(generate_sidebar(fullPath))
         }
@@ -116,12 +105,12 @@ function generate_sidebar(path:string) {
             toc.documents.push(extractFileData(fullPath));
         }
         else {
-            console.log('skipping file: ' + fullPath)
+            // console.log('skipping file: ' + fullPath)
         }
     }   
     return toc;
 
  }
  
-let toc: TOC = generate_sidebar(DOCSPREFIX + "/" + 'howtos');
-console.log(TOCToMarkDown(toc))
+let toc: TOC = generate_sidebar(DOCSPREFIX + "/" + 'reference');
+console.log(JSON.stringify(TOCToSideBar(toc)))
