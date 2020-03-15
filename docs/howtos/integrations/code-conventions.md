@@ -552,10 +552,84 @@ You may also use ```headerTransform``` to convert the existing keys into formatt
  <img width="758" src="../../doc_imgs/howtos/integrations/50575199-fd5d0a00-0e01-11e9-9d54-944eb7c6f287.png"></img>
 
 
-### return_outputs
-```return_outputs``` is used to return results to the War Room, for example:
+### demisto.results()
+```demisto.results()``` returns entries to the warroom from an integration command or an automation.
+A typical example of returning an entry from an integration command looks as follows:
 ```python
-def return_outputs(readable_output, outputs, raw_response=None):
+demisto.results(
+    {
+        'Type': entryTypes['note'],
+        'ContentsFormat': formats['text'],
+        'Content': res,
+        'HumanReadable': 'Submitted file is being analyzed.',
+        'ReadableContentsFormat': formats['markdown'],
+        'EntryContext': entry_context,
+        'IndicatorTimeline': timeline
+    }
+)
+```
+The entry is composed of multiple components.
+* The `Type` dictates what kind of entry is returned to the warroom. The available options as of today are shown in the dictionary keys of `entryTypes` below.
+* The `ContentsFormat` dictates how to format the value passed to the `Content` field, the available options can be seen below.
+* The `Content` usually takes the raw unformatted data - if an API call was made in a command, then typically the response from the request is passed here.
+* The `HumanReadable` is the textual information displayed in the warroom entry.
+* The `ReadableContentsFormat` dictates how to format the value passed to the `HumanReadable` field.
+* The `EntryContext` is the dictionary of context outputs for a given command. For more information see [Outputs](#outputs).
+* The `IndicatorTimeline` is an optional field (available from Server version 5.5.0 and up) . It is only applicable for commands that operate on indicators. It is a dictionary (or list of dictionaries) of the following format:
+    ```python
+    {
+        'Value': indicator_value,  # for example, an IP address like '8.8.8.8'
+        'Message': 'ExampleVendor marked the IP address 8.8.8.8 as "Good"',
+        'Category': 'Integration Update'
+    }
+    ```
+    When `IndicatorTimeline` data is returned in an entry, the timeline section of the indicator whose value was noted in the timeline data will be updated (and is viewable in the indicator's view page in Cortex XSOAR as can be seen in the attached image).
+ 
+    <img width="758" src="../../doc_imgs/howtos/integrations/timeline_section.png"></img>
+
+    **What value should be used for the `'Category'` field of a `timeline` data object?**  
+    Any Cortex XSOAR integration command that returns `timeline` data should include the `'Category'` value of `'Integration Update'`. When returning `timeline` data from a Cortex XSOAR automation, the value passed to the `'Category'` field should be `'Automation Update'`.
+
+    **So when should one include a timeline object in an entry returned to the war room?**  
+    The answer is any time that a command operates on an indicator. A good indicator (pun intended?) of when `timeline` data should be included in an entry is to look and see if the command returns a `DBotScore` or entities as described in our [context standards documentation](https://demisto.pan.dev/docs/howtos/integrations/context-standards) to the entry context. A common case is reputation commands, i.e. `!ip`, `!url`, `!file`, etc. When implementing these commands in integrations, `timeline` data should be included in the returned entry. To see an example of an integration that returns entries with `timeline` data, take a look at our [AbuseIPDB integration](https://github.com/demisto/content/blob/master/Integrations/AbuseDB/AbuseDB.py#L201).
+
+
+The `entryTypes` and `formats` dictionaries are ease-of-use dictionaries imported from `CommonServerPython` and respectively appear as follows:
+```python
+# entryTypes
+entryTypes = {
+    'note': 1,
+    'downloadAgent': 2,
+    'file': 3,
+    'error': 4,
+    'pinned': 5,
+    'userManagement': 6,
+    'image': 7,
+    'plagroundError': 8,
+    'playgroundError': 8,
+    'entryInfoFile': 9,
+    'warning': 11,
+    'map': 15,
+    'widget': 17
+}
+```
+```python
+# formats
+formats = {
+    'html': 'html',
+    'table': 'table',
+    'json': 'json',
+    'text': 'text',
+    'dbotResponse': 'dbotCommandResponse',
+    'markdown': 'markdown'
+}
+```
+
+
+### return_outputs
+`return_outputs()` is a convenience function - it is simply a wrapper of `demisto.results()` used to return results to the War Room and which defaults to the most commonly used configuration for entries, only exposing the most functional parameters for the sake of simplicity. For example:
+```python
+def return_outputs(readable_output, outputs=None, raw_response=None, timeline=None):
     """
     This function wraps the demisto.results(), makes the usage of returning results to the user more intuitively.
 
@@ -568,14 +642,24 @@ def return_outputs(readable_output, outputs, raw_response=None):
 
     :type raw_response: ``dict`` | ``list``
     :param raw_response: must be dictionary, if not provided then will be equal to outputs. usually must be the original
-    raw response from the 3rd party service (originally Contents)
+        raw response from the 3rd party service (originally Contents)
+
+    :type timeline: ``dict`` | ``list``
+    :param timeline: expects a list, if a dict is passed it will be put into a list. used by server to populate an 
+        indicator's timeline
 
     :return: None
     :rtype: ``None``
     """
     
-return_outputs("## Some h2 header", {"some": "json into context"}, {"some":"raw JSON/dict"})
+return_outputs(
+    "## Some h2 header",
+    {"some": "json into context"},
+    {"some": "raw JSON/dict"},
+    {'Value': 'some indicator', 'Message': 'Some message', 'Category': 'Integration Update'}
+)
 ```
+_Note_: Using `return_outputs()` is the preferred method of returning entries to the war room. `demisto.results()` should only be used if the user's use-case demands more specificity than the `return_outputs()` function permits.
 
 
 **Error**
