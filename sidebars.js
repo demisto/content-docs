@@ -31,6 +31,7 @@ module.exports = {
         "howtos/integrations/dev-setup",
         "howtos/integrations/packs-format",
         "howtos/integrations/package-dir",
+        "howtos/integrations/docker",
       ]
     },
     {
@@ -46,6 +47,7 @@ module.exports = {
             "howtos/integrations/integration-logo",
             "howtos/integrations/parameter-types",
             "howtos/integrations/fetching-incidents",
+            "howtos/integrations/feeds",
             "howtos/integrations/fetching-credentials",
             "howtos/integrations/long-running",
             "howtos/integrations/context-and-outputs",
@@ -59,7 +61,6 @@ module.exports = {
           type: "category",
           label: "Testing",
           items: [
-            "howtos/integrations/docker",
             "howtos/integrations/linting",
             "howtos/integrations/unit-testing",
             "howtos/integrations/test-playbooks",

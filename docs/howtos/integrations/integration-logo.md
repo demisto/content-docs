@@ -1,6 +1,6 @@
 ---
 id: integration-logo
-title: Integration Logo Standard
+title: Integration Logo Standards
 ---
 
 - Size up to 4KB.
