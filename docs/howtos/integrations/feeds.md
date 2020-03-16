@@ -1,8 +1,25 @@
-# Feed Integrations
+---
+id: feeds
+title: Feed Integrations
+---
+Server version 5.5.0 adds support for Feed Integrations. Feed Integrations allow fetching indicators from feeds, for example TAXII,
+AutoFocus, Office 365, and so on.
+
+An example Feed Integration can be seen [here](https://github.com/demisto/content/tree/master/Packs/FeedOffice365/Integrations/FeedOffice365).
+
+Feed Integrations are developed the same as other Integrations. They provide a few extra configuration parameters and APIs.
+
+
+## Naming Convention
+Feed Integration names (`id`, `name` and `display` fields) should end with the word **Feed**. This consistent naming convention ensures that users can easily understand what the Integration is used for.
+
+## Supported Server Version
+Feed Integration's YAML file _must_ have the following field `fromversion: 5.5.0`. This is because Feed Integrations are only supported from Server version 5.5.0 and onwards.
+
 
 ## Required Parameters
 Every Feed integration should have the following parameters in the integration YAML file:
-```
+```yml
 - display: Fetch indicators
   name: feed
   defaultvalue: true
@@ -70,8 +87,8 @@ Every Feed Integration will at minimum have three commands:
 - `<product-prefix>-get-indicators` - where `<product-prefix>` is replaced by the name of the Product or Vendor source providing the feed. So for example, if you were developing a feed integration for Microsoft Intune this command might be called `msintune-get-indicators`. This command should fetch a limited number of indicators from the feed source and display them in the war room.
 - `fetch-indicators` - this command will initiate a request to the feed endpoint, format the data fetched from the endpoint to conform to Cortex XSOAR's expected input format and create new indicators. If the integration instance is configured to `Fetch indicators`, then this is the command that will be executed at the specified `Feed Fetch Interval`.
 
-## demisto.createIndicators()
-This function is used when the `fetch-indicators` command is executed. Let's look at an example `main()` from an existing Feed Integration.
+## API Command: demisto.createIndicators()
+Use the `demisto.createIndicators()` function  when the `fetch-indicators` command is executed. Let's look at an example `main()` from an existing Feed Integration.
 ```python
 def main():
     params = demisto.params()
@@ -100,8 +117,8 @@ def main():
 ```
 The `batch` function is imported from `CommonServerPython`. We see that indicators are returned from calling `fetch_indicators_command` and are passed to `demisto.createIndicators` in batches.
 
-## Cortex XSOAR Indicator Objects
-Indicator objects passed to `demisto.createIndicators`. Let's look at an example,
+### Indicator Objects
+Indicator Objects passed to `demisto.createIndicators`. Let's look at an example,
 ```python
 {
     "value": value,
@@ -139,11 +156,3 @@ Let's review the object key and values.
 * `"rawJSON"` - _required_. This dictionary should contain the `"value"` and `"type"` fields as well as any other unmodified data returned from the feed source about an indicator.
 * `"fields"` - _optional_. A dictionary that maps values to existing indicator fields defined in Cortex XSOAR where the key is the `cliname` of an indicator field.
 * `"score"` - _optional_. The reputation score to assign to the indicator object, scores range from 0 to 3 where 0 - None, 1 - Good, 2 - Suspicious, and 3 - Bad. Assign a value only if you wish to explicitly assign a score to an indicator in your code. Typically, indicator reputation is set at a Feed Integration configuration level by setting the `Indicator Reputation` parameter when configuring an instance.
-
-## Pack Structure & Naming
-New feed integrations should be inside the `Packs` directory in the `content` repository. Let's take an example to better understand the expected filenaming and pack structure. If I were developing a feed integration for `Microsoft Intune` then the pack structure would look as follows. Inside the `Packs` directory in the `content` repository, I would define a new pack `FeedMicrosoftIntune`. Inside this directory I would create an `Integrations` directory and a subdirectory within that named `FeedMicrosoftIntune` in which reside all the integration files. Note that while the filenames for the integration is `FeedMicrosoftIntune.py` and `FeedMicrosoftIntune.yml` for the code file and YAML file respectively that the value for the `id`, `name` and `display` fields in the YAML file would be `Microsoft Intune Feed`.  
-_Note_: The advised method of creating new packs is using the [demisto-sdk](https://github.com/demisto/demisto-sdk)'s `init` command.
-
-## Notes
-- The integration's YAML file _must_ have the following field `fromversion: 5.5.0` because Feed Integrations are only supported from server version 5.5.0 and onwards.
-- To look at examples of Feed Integrations, take a look at The Packs in the [content repository](https://github.com/demisto/content/tree/master/Packs) that start with `Feed`.
