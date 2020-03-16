@@ -9,14 +9,16 @@ Tests are run using our CI framework. They are run both as part of the build pro
 
 **Note:** Test Playbooks are required as part of the PR acceptance review process. For simple Scripts that have unit tests, a test playbook is optional.
 
-## Create a Test Playbook
 A Test Playbook consists of several steps, including testing commands, verifying the results, and closing the investigation.
 
 We use a standard naming convention for our playbook tests which follows the format below:
 
 ```Integration_Name-Test```
 
-### Create a playbook
+## Auto-Generate a Test Playbook
+To auto generate a Test playbook based upon an integration or script use the following `demisto-sdk generate-test-playbook` command which can be found [here](https://github.com/demisto/demisto-sdk#generate-test-playbook). You can then import the playbook and modify it to your needs.
+
+## Manually Create a Test Playbook
 1. Navigate to **Playbooks** and click **New Playbook**.
 2. Define a **Playbook name**.
 

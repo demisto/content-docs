@@ -5,38 +5,87 @@ title: Linting
 
 As part of the build process we run a few linters to catch common programming errors, stylistic errors and possible security issues. Linters are run only when working with the [package (directory) structure](package-dir).
 
-All linters are run via the following script:
+All linters are run via the demisto-sdk:
 
 ```
-./Tests/scripts/pkg_dev_test_tasks.py -h
-usage: pkg_dev_test_tasks.py [-h] -d DIR [--no-pylint] [--no-mypy]
-                             [--no-flake8] [--no-test] [-k] [-v]
-                             [--cpu-num CPU_NUM]
+demisto-sdk lint -h
+Usage: demisto-sdk lint [OPTIONS]
 
-Run lintings (flake8, mypy, pylint), security checks (bandit) and pytest. pylint and pytest will run
-within the docker image of an integration/script. Meant to be used with
-integrations/scripts that use the folder (package) structure. Will lookup up
-what docker image to use and will setup the dev dependencies and file in the
-target folder.
+Options:
+  -h, --help                 Show this message and exit.
+  -d, --dir TEXT             Specify directory of integration/script
+  --no-pylint                Do NOT run pylint linter
+  --no-mypy                  Do NOT run mypy static type checking
+  --no-flake8                Do NOT run flake8 linter
+  --no-bandit                Do NOT run bandit linter
+  --no-test                  Do NOT test (skip pytest)
+  -r, --root                 Run pytest container with root user
+  -k, --keep-container       Keep the test container
+  -v, --verbose              Verbose output - mainly for debugging purposes
+  --cpu-num INTEGER          Number of CPUs to run pytest on (can set to
+                             `auto` for automatic detection of the number of
+                             CPUs)
+  -p, --parallel             Run tests in parallel
+  -m, --max-workers INTEGER  How many threads to run in parallel
+  -g, --git                  Will run only on changed packages
+  -a, --run-all-tests        Run lint on all directories in content repo
+  --outfile TEXT             Save failing packages to a file
 
-optional arguments:
-  -h, --help            show this help message and exit
-  -d DIR, --dir DIR     Specify directory of integration/script (default:
-                        None)
-  --no-pylint           Do NOT run pylint linter (default: False)
-  --no-mypy             Do NOT run mypy static type checking (default: False)
-  --no-flake8           Do NOT run flake8 linter (default: False)
-  --no-test             Do NOT test (skip pytest) (default: False)
-  --no-bandit           Do NOT run bandit security checks (default: False)
-  -r, --root            Run pytest container with root user (default: False)
-  -k, --keep-container  Keep the test container (default: False)
-  -v, --verbose         Verbose output (default: False)
-  --cpu-num CPU_NUM     Number of CPUs to run pytest on (can set to `auto` for
-                        automatic detection of the number of CPUs.) (default:
-                        0)
 ```
 
 **Note**: this script is also used to run pytest. See: [Unit Testing](unit-testing)
+
+An example of the result for running our lint checks on the HelloWorld package will look like: 
+```buildoutcfg
+➜  content git:(master) ✗ demisto-sdk lint -d Packs/HelloWorld/Integrations/HelloWorld
+Detected python version: [3.7] for docker image: demisto/python3:3.7.4.2245
+============ Starting process for: /Users/rkozakish/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/ ============
+
+
+========= Running flake8 on: /Users/rkozakish/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py===============
+flake8 completed for: /Users/rkozakish/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py
+
+========= Running mypy on: /Users/rkozakish/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py ===============
+Success: no issues found in 1 source file
+
+mypy completed for: /Users/rkozakish/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py
+
+========= Running bandit on: /Users/rkozakish/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py ===============
+bandit completed for: /Users/rkozakish/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py
+
+Detected python version: [3.7] for docker image: demisto/python3:3.7.4.2245
+2020-03-06 16:11:29.678067: Using already existing docker image: devtestdemisto/python3:3.7.4.2245-4bbcae9c522cbe0aaa1818e29a66aae0
+
+========== Running tests/pylint for: /Users/rkozakish/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/ =========
+a9fd500285f9bb96ada38e3bb71de4e2316eed51190269224895208f6fa963a2
+
+
+
+=============== Running pylint on files: HelloWorld.py ===============
+Pylint completed with status code: 0
+
+========= Running pytest ===============
+collecting tests...
+============================= test session starts ==============================
+platform linux -- Python 3.7.4, pytest-5.0.1, py-1.8.0, pluggy-0.13.1 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /devwork
+plugins: xdist-1.31.0, asyncio-0.10.0, requests-mock-1.7.0, datadir-ng-1.1.1, mock-1.13.0, forked-1.1.3
+collecting ... collected 2 items
+
+HelloWorld_test.py::test_say_hello PASSED                                [ 50%]
+HelloWorld_test.py::test_say_hello_over_http PASSED                      [100%]
+
+=========================== 2 passed in 0.23 seconds ===========================
+Pytest completed with status code: 0
+
+============ Finished process for: /Users/rkozakish/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/  with docker: demisto/python3:3.7.4.2245 ============
+
+
+******* SUCCESS PKGS: *******
+
+	Packs/HelloWorld/Integrations/HelloWorld
+```
 
 ## Flake8
 

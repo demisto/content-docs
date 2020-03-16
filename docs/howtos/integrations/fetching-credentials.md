@@ -17,7 +17,7 @@ in the format of a username and password (key:value).
   
 For this example we are going to look at the HasiCorp Vault integration. The first thing you need to do is add a boolean parameter with the name:
 `isFetchCredentials`(You can give it a different display name). When this parameter is set to true, Demisto will fetch credentials from the integration.
-It would look like something like this: ![image](../../doc_imgs/howtos/integrations/53886096-eae09600-4027-11e9-8c2d-a46078c3dcc4.png)
+It would look like something like this: ![image](../../doc_imgs/howtos/integrations/53886096-eae09600-4027-11e9-8c2d-a46078c3dcc4.png)  
 ![image](../../doc_imgs/howtos/integrations/53886311-69d5ce80-4028-11e9-9755-08585fecff34.png)
 
 ### fetch-credentials Command
