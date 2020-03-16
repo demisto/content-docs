@@ -6,6 +6,9 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "cp -RPv docs/doc_imgs/* static/doc_imgs/ && replace '(\\.\\.\\/){0,2}doc_imgs' '/doc_imgs' docs/* --include='*.md*' --recursive && docusaurus build",
+    "compile_scripts": "cd build_scripts && tsc",
+    "build_toc_howtos": "cd build_scripts && node generate_toc.js ../sidebars.js howtos ../docs '/docs/' ../docs/howtos.md",
+    "build_tocs": "npm run build_toc_howtos",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy"
   },

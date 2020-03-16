@@ -1,33 +1,103 @@
 ---
 id: howtos
-title: How-Tos
+title: Howtos
 ---
 
-This section includes How-Tos to show you how to build things in Demisto.
+## Integrations
 
-### Integrations
 
-How-To docs on building integrations
 
-### Playbooks
+### Getting Started
 
-How-To docs on creating and modifying playbooks
 
-### Scripts
+- [Getting Started Guide](/docs/howtos/integrations/getting-started-guide)
 
-How-To docs on automation scripts (*coming soon*) 
+- [Development Setup](/docs/howtos/integrations/dev-setup)
 
-### Incidents, Fields & Layouts
 
-How-To docs on how to create custom incident types with specific fields and layouts to optimize the User Experience (*coming soon*)
+### Code
 
-### Dashboards & Widgets
 
-How to build and modify dashboards and widgets for visualization and reporting in Demisto (*coming soon*)
+- [Code Conventions](/docs/howtos/integrations/code-conventions)
 
-### Contributing
+- [Package Directory Structure](/docs/howtos/integrations/package-dir)
 
-How-To docs on how to contribute to Demisto and understand how the Content repository is done and how to submit Pull Requests.
+- [YAML Files](/docs/howtos/integrations/yaml-file)
 
-Please use the sidebar on the left to navigate to the content you like.
+- [Integration Parameter Types](/docs/howtos/integrations/parameter-types)
+
+- [Fetching Incidents](/docs/howtos/integrations/fetching-incidents)
+
+- [Fetching Credentials](/docs/howtos/integrations/fetching-credentials)
+
+- [Long Running Containers](/docs/howtos/integrations/long-running)
+
+- [Context and Outputs](/docs/howtos/integrations/context-and-outputs)
+
+- [Context Standards](/docs/howtos/integrations/context-standards)
+
+- [DBot](/docs/howtos/integrations/dbot)
+
+- [Demisto Transform Language](/docs/howtos/integrations/dt)
+
+
+### Testing
+
+
+- [Package Directory Structure](/docs/howtos/integrations/package-dir)
+
+- [Using Docker](/docs/howtos/integrations/docker)
+
+- [Linting](/docs/howtos/integrations/linting)
+
+- [Unit Testing](/docs/howtos/integrations/unit-testing)
+
+- [Test Playbooks](/docs/howtos/integrations/test-playbooks)
+
+- [Debugging](/docs/howtos/integrations/debugging)
+
+
+### Documenting
+
+
+- [Integration Documentation](/docs/howtos/integrations/integration-docs)
+
+- [Integration Doc Format](/docs/howtos/integrations/doc-structure)
+
+- [Change Log](/docs/howtos/integrations/changelog)
+
+
+## Playbooks
+
+
+- [Create Playbooks](/docs/howtos/playbooks/playbooks)
+
+- [Playbook Conventions](/docs/howtos/playbooks/playbook-conventions)
+
+- [Generic Polling](/docs/howtos/playbooks/generic-polling)
+
+
+## Scripts
+
+
+- [Scripts - Coming soon](/docs/howtos/how-scripts)
+
+
+## Incidents, Fields & Layouts
+
+
+- [Incidents, Fields & Layouts - Coming soon](/docs/howtos/how-incidents)
+
+
+## Dashboards & Widgets
+
+
+- [Dashboards & Widgets - Coming Soon](/docs/howtos/how-dashboards)
+
+
+## Contributing
+
+
+- [CircleCI](/docs/howtos/contributing/circleci)
+
 
