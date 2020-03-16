@@ -3,7 +3,7 @@ id: packs-format
 title: Content Packs Structure
 ---
 
-For better seperation between Content artifacts from different use cases and Partners we use a directory structure called `Content Packs`. Each `Content Pack` behaves like a mini content repo. It will contain all relevant content items within it's directory.
+For better separation between Content artifacts from different use cases and Partners we use a directory structure called `Content Packs`. Each `Content Pack` behaves like a mini content repo. It contains all relevant content items within its directory.
 
 For instance a pack for CortexXDR will look as can be seen in the Content Repository 
 [Packs/CortexXDR](https://github.com/demisto/content/tree/master/Packs/CortexXDR).
@@ -43,7 +43,7 @@ This file will generate the structure of the file based on our need but the cont
  by you. This data will be fields like the support details, in order to contact you about the pack you've just wrote,
   or the pack name.
 
-#### README.md
+### README.md
 The file contains a general explanation for the pack and you are free to add any information relevant for the pack.
 
 ### .secrets-ignore
