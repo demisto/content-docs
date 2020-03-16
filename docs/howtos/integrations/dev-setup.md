@@ -55,7 +55,7 @@ demisto-sdk --version
 
 **Congratulations!** You now have a fully configured virtual env, where you can run our different validation and utility scripts. For example, to convert an exported yml integration to our [package (directory) format](package-dir), you can use the `demisto-sdk` utility. Try:
 ```
-./demisto-sdk split-yml --help
+demisto-sdk split-yml --help
 ```
 
 ## IDE
