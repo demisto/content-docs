@@ -42,12 +42,16 @@ After completing, you can activate the newly created virtual env by running:
 ```
 . ./venv/bin/activate
 ```
-**Note:** The virtual env we build contains both Python 2 and 3. `python` and `python2` will point to Python 2 and `python3` to Python 3.
+**Note:** To ease setup, by default for **forked** repositories we don't setup **Python 2** as part of the virtual env setup. If you require **Python 2** for your automations/integrations run the `.hooks/bootstrap` script with the environment variable set: `SETUP_PY2=yes`. When run with `SETUP_PY2=yes` set, the virtualenv built contains both Python 2 and 3. `python` and `python2` will point to Python 2 and `python3` to Python 3.
 
 ### demisto-sdk 
 This is our help tool that will make your lives easier during the contribution process, it will help you generate a 
-[Pack](packs-format). And will help you maintain your files and validate them before committing to the branch.
-For installing it please click [here](https://github.com/demisto/demisto-sdk).
+[Pack](packs-format). And will help you maintain your files and validate them before committing to the branch. It is installed via our `Boostrap` process. If for prefer to install the `demisto-sdk` manually see instructions [here](https://github.com/demisto/demisto-sdk).
+
+To check the you have the latest version of the sdk run:
+```
+demisto-sdk --version
+```
 
 **Congratulations!** You now have a fully configured virtual env, where you can run our different validation and utility scripts. For example, to convert an exported yml integration to our [package (directory) format](package-dir), you can use the `demisto-sdk` utility. Try:
 ```

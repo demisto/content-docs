@@ -1,5 +1,5 @@
 module.exports = {
-  concepts: 
+  concepts:
   [
       {
         type: "doc",
@@ -12,40 +12,42 @@ module.exports = {
       {
         type: "doc",
         id: "concepts/design-best-practices"
-      }, 
+      },
       {
         type: "doc",
         id: "concepts/faq"
-      }, 
+      },
   ],
   howtos: [
     {
       type: "doc",
       id: "howtos"
-    },{
+    },
+    {
+      type: "category",
+      label: "Getting Started",
+      items: [
+        "howtos/integrations/getting-started-guide",
+        "howtos/integrations/dev-setup",
+        "howtos/integrations/packs-format",
+        "howtos/integrations/package-dir",
+      ]
+    },
+    {
       type: "category",
       label: "Integrations",
       items: [
         {
           type: "category",
-          label: "Getting Started",
+          label: "Developing",
           items: [
-            "howtos/integrations/getting-started-guide",
-            "howtos/integrations/dev-setup"
-          ]
-        },
-        {
-          type: "category",
-          label: "Code",
-          items: [
-            "howtos/integrations/packs-format",
-            "howtos/integrations/package-dir",
             "howtos/integrations/code-conventions",
             "howtos/integrations/yaml-file",
+            "howtos/integrations/integration-logo",
             "howtos/integrations/parameter-types",
             "howtos/integrations/fetching-incidents",
             "howtos/integrations/fetching-credentials",
-            "howtos/integrations/long-running", 
+            "howtos/integrations/long-running",
             "howtos/integrations/context-and-outputs",
             "howtos/integrations/context-standards",
             "howtos/integrations/dbot",
@@ -54,11 +56,10 @@ module.exports = {
           ]
         },
         {
-          type: "category",          
+          type: "category",
           label: "Testing",
           items: [
-            "howtos/integrations/package-dir",
-            "howtos/integrations/docker",          
+            "howtos/integrations/docker",
             "howtos/integrations/linting",
             "howtos/integrations/unit-testing",
             "howtos/integrations/test-playbooks",
@@ -66,12 +67,12 @@ module.exports = {
           ],
         },
         {
-          type: "category",          
+          type: "category",
           label: "Documenting",
           items: [
             "howtos/integrations/integration-docs",
             "howtos/integrations/doc-structure",
-            "howtos/integrations/changelog"     
+            "howtos/integrations/changelog"
           ],
         }
       ]
@@ -82,7 +83,7 @@ module.exports = {
       items: [
         "howtos/playbooks/playbooks",
         "howtos/playbooks/playbook-conventions",
-        "howtos/playbooks/generic-polling"   
+        "howtos/playbooks/generic-polling"
       ]
     },
     {
@@ -132,7 +133,7 @@ module.exports = {
       items: [
         "tutorials/integrations/tut-integration-ui"
       ]
-    },  
+    },
     {
       type: "category",
       label: "Playbooks",
@@ -162,7 +163,7 @@ module.exports = {
       ]
     },
   ],
-  reference: 
+  reference:
   [
     {
       type: "doc",
@@ -188,30 +189,30 @@ module.exports = {
       items: [
         "reference/ref-scripts",
       ]
-    },  
+    },
     {
       type: "category",
       label: "REST API",
       items: [
         "reference/ref-restapi",
       ]
-    },   
+    },
     {
       type: "category",
       label: "Code",
       items: [
         "reference/ref-code",
       ]
-    },     
+    },
     {
       type: "category",
       label: "Demisto SDK",
       items: [
         "reference/ref-demisto-sdk",
       ]
-    }     
+    }
   ],
-  partners: 
+  partners:
   [
     {
       type: "doc",
