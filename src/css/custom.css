@@ -177,3 +177,14 @@ blockquote {
   border-left: none !important;
   border-right: none !important;
 }
+
+:target:before {
+  content: "";
+  display: block;
+  height: 48px;
+  margin: -48px 0 0 !important;
+}
+
+:target {
+  outline: none
+}
