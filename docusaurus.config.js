@@ -51,8 +51,13 @@ module.exports = {
 
       links: [
         {
-          to: "docs",
-          label: "Docs",
+          to: "docs/welcome",
+          label: "Documentation",
+          position: "left"
+        },
+        {
+          to: "docs/reference",
+          label: "Reference",
           position: "left"
         },
         {
