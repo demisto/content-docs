@@ -19,7 +19,7 @@ module.exports = {
       appId: process.env.ALGOLIA_APPID,
       indexName: process.env.ALGOLIA_INDEX
     },
-    sidebarCollapsible: true,
+    sidebarCollapsible: false,
     navbar: {
       title: "",
       logo: {
