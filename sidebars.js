@@ -11,10 +11,6 @@ module.exports = {
       items: [
           {
             type: "doc",
-            id: "concepts"
-          },
-          {
-            type: "doc",
             id: "concepts/use-cases"
           },
           {
@@ -31,10 +27,6 @@ module.exports = {
       type: "category",
       label: "How-Tos",
       items: [
-        {
-          type: "doc",
-          id: "howtos"
-        },
         {
           type: "category",
           label: "Getting Started",
@@ -133,10 +125,6 @@ module.exports = {
       type: "category",
       label: "Tutorials",
       items: [
-        {
-          type: "doc",
-          id: "tutorials"
-        },
         {
           type: "category",
           label: "Getting Started",

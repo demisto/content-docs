@@ -1,6 +1,6 @@
 ---
 id: welcome
-title: Welcome to Cortex XSOAR Developer Hub
+title: Welcome
 ---
 
 Welcome to the Cortex XSOAR Developer Hub. Here you will find a lot of information.
@@ -16,7 +16,7 @@ can begin create content and integrations.
 
 ### Concepts
 
-Learn the core fundamentals to get started developing with Cortex XSOAR.
+Learn the core fundamentals to get started developing with Cortex XSOAR. This section includes documents that cover many relevant concepts that are useful to understand how Cortex XSOAR works, what components are used for which tasks and how the contribution process works.
 
 ### How-Tos
 
