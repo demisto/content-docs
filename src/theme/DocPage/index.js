@@ -31,8 +31,8 @@ function DocPage(props) {
     siteConfig: { customFields = {} } = {}
   } = useDocusaurusContext();
   const { sidebarCollapsible = true } = themeConfig;
-  const { docbar = {} } = customFields;
-  const { options = [] } = docbar;
+  // const { docbar = {} } = customFields;
+  // const { options = [] } = docbar;
 
   if (!matchingRouteExist(route.routes, location.pathname)) {
     return <NotFound {...props} />;
@@ -51,7 +51,7 @@ function DocPage(props) {
             />
           </div>
         )}
-        <main className={styles.docMainContainer}>
+        {/* <main className={styles.docMainContainer}>
           <div
             className="row row--no-gutters"
             style={{
@@ -93,7 +93,7 @@ function DocPage(props) {
           <MDXProvider components={MDXComponents}>
             {renderRoutes(route.routes)}
           </MDXProvider>
-        </main>
+        </main> */}
       </div>
     </Layout>
   );

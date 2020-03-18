@@ -135,30 +135,30 @@ module.exports = {
       priority: 0.5
     }
   ],
-  customFields: {
-    docbar: {
-      options: [
-        {
-          label: "Docs Home",
-          to: "docs"
-        },
-        {
-          label: "Concepts",
-          to: "docs/concepts"
-        },
-        {
-          label: "How-Tos",
-          to: "docs/howtos"
-        },
-        {
-          label: "Tutorials",
-          to: "docs/tutorials"
-        },
-        {
-          label: "Reference",
-          to: "docs/reference"
-        }
-      ]
-    }
-  }
+  // customFields: {
+  //   docbar: {
+  //     options: [
+  //       {
+  //         label: "Docs Home",
+  //         to: "docs"
+  //       },
+  //       {
+  //         label: "Concepts",
+  //         to: "docs/concepts"
+  //       },
+  //       {
+  //         label: "How-Tos",
+  //         to: "docs/howtos"
+  //       },
+  //       {
+  //         label: "Tutorials",
+  //         to: "docs/tutorials"
+  //       },
+  //       {
+  //         label: "Reference",
+  //         to: "docs/reference"
+  //       }
+  //     ]
+  //   }
+  // }
 };
