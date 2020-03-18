@@ -87,27 +87,27 @@ module.exports = {
         "howtos/playbooks/generic-polling"
       ]
     },
-    {
-      type: "category",
-      label: "Scripts",
-      items: [
-        "howtos/how-scripts",
-      ]
-    },
-    {
-      type: "category",
-      label: "Incidents, Fields & Layouts",
-      items: [
-        "howtos/how-incidents"
-      ]
-    },
-    {
-      type: "category",
-      label: "Dashboards & Widgets",
-      items: [
-        "howtos/how-dashboards"
-      ]
-    },
+    // {
+    //   type: "category",
+    //   label: "Scripts",
+    //   items: [
+    //     "howtos/how-scripts",
+    //   ]
+    // },
+    // {
+    //   type: "category",
+    //   label: "Incidents, Fields & Layouts",
+    //   items: [
+    //     "howtos/how-incidents"
+    //   ]
+    // },
+    // {
+    //   type: "category",
+    //   label: "Dashboards & Widgets",
+    //   items: [
+    //     "howtos/how-dashboards"
+    //   ]
+    // },
     {
       type: "category",
       label: "Contributing",
@@ -135,34 +135,34 @@ module.exports = {
         "tutorials/integrations/tut-integration-ui"
       ]
     },
-    {
-      type: "category",
-      label: "Playbooks",
-      items: [
-        "tutorials/tut-playbooks"
-      ]
-    },
-    {
-      type: "category",
-      label: "Scripts",
-      items: [
-        "tutorials/tut-scripts"
-      ]
-    },
-    {
-      type: "category",
-      label: "Incidents, Fields & Layouts",
-      items: [
-        "tutorials/tut-incidents"
-      ]
-    },
-    {
-      type: "category",
-      label: "Dashboard & Widgets",
-      items: [
-        "tutorials/tut-dashboards"
-      ]
-    },
+    // {
+    //   type: "category",
+    //   label: "Playbooks",
+    //   items: [
+    //     "tutorials/tut-playbooks"
+    //   ]
+    // },
+    // {
+    //   type: "category",
+    //   label: "Scripts",
+    //   items: [
+    //     "tutorials/tut-scripts"
+    //   ]
+    // },
+    // {
+    //   type: "category",
+    //   label: "Incidents, Fields & Layouts",
+    //   items: [
+    //     "tutorials/tut-incidents"
+    //   ]
+    // },
+    // {
+    //   type: "category",
+    //   label: "Dashboard & Widgets",
+    //   items: [
+    //     "tutorials/tut-dashboards"
+    //   ]
+    // },
   ],
   reference:
   [
