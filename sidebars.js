@@ -1,168 +1,186 @@
 module.exports = {
-  concepts:
+  docs:
   [
-      {
-        type: "doc",
-        id: "concepts"
-      },
-      {
-        type: "doc",
-        id: "concepts/use-cases"
-      },
-      {
-        type: "doc",
-        id: "concepts/design-best-practices"
-      },
-      {
-        type: "doc",
-        id: "concepts/faq"
-      },
-  ],
-  howtos: [
     {
       type: "doc",
-      id: "howtos"
+      id: "welcome"
     },
     {
       type: "category",
-      label: "Getting Started",
+      label: "Concepts",
       items: [
-        "howtos/integrations/getting-started-guide",
-        "howtos/integrations/dev-setup",
-        "howtos/integrations/packs-format",
-        "howtos/integrations/package-dir",
-        "howtos/integrations/docker",
-      ]
+          {
+            type: "doc",
+            id: "concepts"
+          },
+          {
+            type: "doc",
+            id: "concepts/use-cases"
+          },
+          {
+            type: "doc",
+            id: "concepts/design-best-practices"
+          },
+          {
+            type: "doc",
+            id: "concepts/faq"
+          },
+      ],
     },
     {
       type: "category",
-      label: "Integrations",
+      label: "How-Tos",
       items: [
         {
+          type: "doc",
+          id: "howtos"
+        },
+        {
           type: "category",
-          label: "Developing",
+          label: "Getting Started",
           items: [
-            "howtos/integrations/code-conventions",
-            "howtos/integrations/yaml-file",
-            "howtos/integrations/integration-logo",
-            "howtos/integrations/parameter-types",
-            "howtos/integrations/fetching-incidents",
-            "howtos/integrations/feeds",
-            "howtos/integrations/fetching-credentials",
-            "howtos/integrations/long-running",
-            "howtos/integrations/context-and-outputs",
-            "howtos/integrations/context-standards",
-            "howtos/integrations/dbot",
-            "howtos/integrations/dt",
-            "howtos/integrations/integration-cache",
+            "howtos/integrations/getting-started-guide",
+            "howtos/integrations/dev-setup",
+            "howtos/integrations/packs-format",
+            "howtos/integrations/package-dir",
+            "howtos/integrations/docker",
           ]
         },
         {
           type: "category",
-          label: "Testing",
+          label: "Integrations",
           items: [
-            "howtos/integrations/linting",
-            "howtos/integrations/unit-testing",
-            "howtos/integrations/test-playbooks",
-            "howtos/integrations/debugging"
-          ],
+            {
+              type: "category",
+              label: "Developing",
+              items: [
+                "howtos/integrations/code-conventions",
+                "howtos/integrations/yaml-file",
+                "howtos/integrations/integration-logo",
+                "howtos/integrations/parameter-types",
+                "howtos/integrations/fetching-incidents",
+                "howtos/integrations/feeds",
+                "howtos/integrations/fetching-credentials",
+                "howtos/integrations/long-running",
+                "howtos/integrations/context-and-outputs",
+                "howtos/integrations/context-standards",
+                "howtos/integrations/dbot",
+                "howtos/integrations/dt",
+                "howtos/integrations/integration-cache",
+              ]
+            },
+            {
+              type: "category",
+              label: "Testing",
+              items: [
+                "howtos/integrations/linting",
+                "howtos/integrations/unit-testing",
+                "howtos/integrations/test-playbooks",
+                "howtos/integrations/debugging"
+              ],
+            },
+            {
+              type: "category",
+              label: "Documenting",
+              items: [
+                "howtos/integrations/integration-docs",
+                "howtos/integrations/doc-structure",
+                "howtos/integrations/changelog"
+              ],
+            }
+          ]
         },
         {
           type: "category",
-          label: "Documenting",
+          label: "Playbooks",
           items: [
-            "howtos/integrations/integration-docs",
-            "howtos/integrations/doc-structure",
-            "howtos/integrations/changelog"
-          ],
-        }
-      ]
+            "howtos/playbooks/playbooks",
+            "howtos/playbooks/playbook-conventions",
+            "howtos/playbooks/generic-polling"
+          ]
+        },
+        // {
+        //   type: "category",
+        //   label: "Scripts",
+        //   items: [
+        //     "howtos/how-scripts",
+        //   ]
+        // },
+        // {
+        //   type: "category",
+        //   label: "Incidents, Fields & Layouts",
+        //   items: [
+        //     "howtos/how-incidents"
+        //   ]
+        // },
+        // {
+        //   type: "category",
+        //   label: "Dashboards & Widgets",
+        //   items: [
+        //     "howtos/how-dashboards"
+        //   ]
+        // },
+        {
+          type: "category",
+          label: "Contributing",
+          items: [
+            "howtos/contributing/circleci",
+          ]
+        },
+      ],
     },
     {
       type: "category",
-      label: "Playbooks",
+      label: "Tutorials",
       items: [
-        "howtos/playbooks/playbooks",
-        "howtos/playbooks/playbook-conventions",
-        "howtos/playbooks/generic-polling"
-      ]
-    },
-    // {
-    //   type: "category",
-    //   label: "Scripts",
-    //   items: [
-    //     "howtos/how-scripts",
-    //   ]
-    // },
-    // {
-    //   type: "category",
-    //   label: "Incidents, Fields & Layouts",
-    //   items: [
-    //     "howtos/how-incidents"
-    //   ]
-    // },
-    // {
-    //   type: "category",
-    //   label: "Dashboards & Widgets",
-    //   items: [
-    //     "howtos/how-dashboards"
-    //   ]
-    // },
-    {
-      type: "category",
-      label: "Contributing",
-      items: [
-        "howtos/contributing/circleci",
-      ]
-    },
-  ],
-  tutorials: [
-    {
-      type: "doc",
-      id: "tutorials"
-    },
-    {
-      type: "category",
-      label: "Getting Started",
-      items: [
-         "tutorials/getting-started/tut-setup-dev",
-      ]
-    },
-    {
-      type: "category",
-      label: "Integrations",
-      items: [
-        "tutorials/integrations/tut-integration-ui"
-      ]
-    },
-    // {
-    //   type: "category",
-    //   label: "Playbooks",
-    //   items: [
-    //     "tutorials/tut-playbooks"
-    //   ]
-    // },
-    // {
-    //   type: "category",
-    //   label: "Scripts",
-    //   items: [
-    //     "tutorials/tut-scripts"
-    //   ]
-    // },
-    // {
-    //   type: "category",
-    //   label: "Incidents, Fields & Layouts",
-    //   items: [
-    //     "tutorials/tut-incidents"
-    //   ]
-    // },
-    // {
-    //   type: "category",
-    //   label: "Dashboard & Widgets",
-    //   items: [
-    //     "tutorials/tut-dashboards"
-    //   ]
-    // },
+        {
+          type: "doc",
+          id: "tutorials"
+        },
+        {
+          type: "category",
+          label: "Getting Started",
+          items: [
+            "tutorials/getting-started/tut-setup-dev",
+          ]
+        },
+        {
+          type: "category",
+          label: "Integrations",
+          items: [
+            "tutorials/integrations/tut-integration-ui"
+          ]
+        },
+        // {
+        //   type: "category",
+        //   label: "Playbooks",
+        //   items: [
+        //     "tutorials/tut-playbooks"
+        //   ]
+        // },
+        // {
+        //   type: "category",
+        //   label: "Scripts",
+        //   items: [
+        //     "tutorials/tut-scripts"
+        //   ]
+        // },
+        // {
+        //   type: "category",
+        //   label: "Incidents, Fields & Layouts",
+        //   items: [
+        //     "tutorials/tut-incidents"
+        //   ]
+        // },
+        // {
+        //   type: "category",
+        //   label: "Dashboard & Widgets",
+        //   items: [
+        //     "tutorials/tut-dashboards"
+        //   ]
+        // },
+      ],
+    }
   ],
   reference:
   [
