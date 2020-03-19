@@ -5,37 +5,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, {useState} from 'react';
-
-import Link from '@docusaurus/Link';
-import SVG from 'react-inlinesvg';
-
+import React, {useState, useCallback} from 'react';
 import classnames from 'classnames';
 
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-// import useLockBodyScroll from '@theme/hooks/useLockBodyScroll';
-import {useEffect} from 'react';
+import Link from '@docusaurus/Link';
 
 import styles from './styles.module.css';
 
 const MOBILE_TOGGLE_SIZE = 24;
 
-function isInternalUrl(url) {
-    return /^\/(?!\/)/.test(url);
-}
-
-function useLockBodyScroll(lock = true) {
-    useEffect(() => {
-      document.body.style.overflow = lock ? 'hidden' : 'visible';
-  
-      return () => {
-        document.body.style.overflow = 'visible';
-      };
-    }, [lock]);
-}
-
-function DocSidebarItem({item, level, onItemClick, collapsible}) {
+function DocSidebarItem({item, onItemClick, collapsible}) {
   const {items, href, label, type} = item;
   const [collapsed, setCollapsed] = useState(item.collapsed);
   const [prevCollapsedProp, setPreviousCollapsedProp] = useState(null);
@@ -47,101 +26,55 @@ function DocSidebarItem({item, level, onItemClick, collapsible}) {
     setPreviousCollapsedProp(item.collapsed);
     setCollapsed(item.collapsed);
   }
-  console.log('about to switch')
+
+  const handleItemClick = useCallback(e => {
+    e.preventDefault();
+    setCollapsed(state => !state);
+  });
+
   switch (type) {
     case 'category':
-      if (items.length == 0) {
-        return false;
-      }
-
-      if(level == 1) {
-        return (
-          <li className={classnames('menu__list-item')} key={label}>
-            <div className="title">
-              {label}
-            </div>
-            <ul className="menu__list">
-              {items.map(item => { console.log('yballmer', item); return(item);}).map(childItem => (
-                <DocSidebarItem
-                  key={childItem.label}
-                  item={childItem}
-                  level={level + 1}
-                  onItemClick={onItemClick}
-                  collapsible={collapsible}
-                />
-              ))}
-            </ul>
-          </li>
-        );
-      } else {
-        let categoryHref = items[0].href;
-
-        return (
+      return (
+        items.length > 0 && (
           <li
             className={classnames('menu__list-item', {
               'menu__list-item--collapsed': collapsed,
             })}
             key={label}>
-            <Link
-              activeClassName="menu__link--active"
+            <a
               className={classnames('menu__link', {
                 'menu__link--sublist': collapsible,
+                'menu__link--active': collapsible && !item.collapsed,
               })}
-              to={categoryHref + "/"}
-              onClick={
-                collapsible && categoryHref == '#!' ? () => setCollapsed(!collapsed) : undefined
-              }>
+              href="#!"
+              onClick={collapsible ? handleItemClick : undefined}>
               {label}
-            </Link>
+            </a>
             <ul className="menu__list">
-              {items.map(item => { console.log('zballmer', item); return(item);}).map(childItem => (
+              {items.map(childItem => (
                 <DocSidebarItem
                   key={childItem.label}
                   item={childItem}
-                  level={level + 1}
                   onItemClick={onItemClick}
                   collapsible={collapsible}
                 />
               ))}
             </ul>
           </li>
-        );
-      }
+        )
+      );
 
     case 'link':
     default:
-      let eventTypes = [];
-      let processedLabel = label;
-
-      if (label.includes('|')) {
-        let parts = label.split('|', 2);
-        processedLabel = parts[0];
-        eventTypes = JSON.parse(parts[1]);
-      }
-
-      let hidden = processedLabel == 'hidden';
-
       return (
-        <li className={classnames('menu__list-item', (hidden && 'menu__list-item-hidden'))} key={label}>
+        <li className="menu__list-item" key={label}>
           <Link
+            activeClassName="menu__link--active"
             className="menu__link"
-            to={href + "/"}
-            {...(isInternalUrl(href)
-              ? {
-                  activeClassName: 'menu__link--active',
-                  exact: true,
-                  onClick: onItemClick,
-                }
-              : {
-                  target: '_blank',
-                  rel: 'noreferrer noopener',
-                })}>
-            {processedLabel}
-            {eventTypes.length > 0 &&
-              <span className="badges">
-                {eventTypes.includes("log") && <span className="badge badge--secondary" title="This component works with log events.">L</span>}
-                {eventTypes.includes("metric") && <span className="badge badge--secondary" title="This component works with metric events.">M</span>}
-              </span>}
+            exact
+            to={href}
+            onClick={onItemClick}>
+            {label}
           </Link>
         </li>
       );
@@ -150,45 +83,34 @@ function DocSidebarItem({item, level, onItemClick, collapsible}) {
 
 // Calculate the category collapsing state when a page navigation occurs.
 // We want to automatically expand the categories which contains the current page.
-function mutateSidebarCollapsingState(item, path) {
+function mutateSidebarCollapsingState(item, location, level) {
   const {items, href, type} = item;
   switch (type) {
     case 'category': {
-       const anyChildItemsActive =
+      const anyChildItemsActive =
         items
-          .map(childItem => mutateSidebarCollapsingState(childItem, path))
-          .map(i => { console.log('Ballmer i', i); return(i); })
-          .filter(val => val);
-      console.log('Ballmer any:', anyChildItemsActive);
-      item.collapsed = !(anyChildItemsActive.length > 0);
-
+          .map(childItem => mutateSidebarCollapsingState(childItem, location, level+1))
+          .filter(val => val).length > 0;
+      // eslint-disable-next-line no-param-reassign
+      item.collapsed = !anyChildItemsActive && level > 0;
       return anyChildItemsActive;
     }
 
     case 'link':
     default:
-      console.log('Ballmer document', item)
-      return href === path;
+      return href === location.pathname.replace(/\/$/, '');
   }
 }
 
 function DocSidebar(props) {
-  console.log('Docsidebar called')
   const [showResponsiveSidebar, setShowResponsiveSidebar] = useState(false);
-  const {
-    siteConfig: {themeConfig: {navbar: {title, logo = {}} = {}}} = {},
-  } = useDocusaurusContext();
-  const logoUrl = useBaseUrl(logo.src);
-
 
   const {
     docsSidebars,
-    path,
+    location,
     sidebar: currentSidebar,
     sidebarCollapsible,
   } = props;
-
-  useLockBodyScroll(showResponsiveSidebar);
 
   if (!currentSidebar) {
     return null;
@@ -201,25 +123,17 @@ function DocSidebar(props) {
       `Cannot find the sidebar "${currentSidebar}" in the sidebar config!`,
     );
   }
-  else {
-      console.log('Current sidebar data is', sidebarData)
-  }
 
   if (sidebarCollapsible) {
-    // sidebarData.forEach(sidebarItem => { console.log('calling for ', sidebarItem); 
-    //   mutateSidebarCollapsingState(sidebarItem, path) },
-    // );
-    let asd = undefined;
+    sidebarData.forEach(sidebarItem =>
+      mutateSidebarCollapsingState(sidebarItem, location, 0),
+    );
   }
 
   return (
     <div className={styles.sidebar}>
-      <div className={classnames(styles.sidebarLogo, 'sidebar__logo')}>
-        {logo != null && <SVG src={logoUrl} alt={logo.alt} />}
-        {title != null && <strong>{title}</strong>}
-      </div>
       <div
-        className={classnames('menu', 'menu--responsive', styles.menu, {
+        className={classnames('menu', 'menu--responsive', {
           'menu--show': showResponsiveSidebar,
         })}>
         <button
@@ -258,20 +172,16 @@ function DocSidebar(props) {
           )}
         </button>
         <ul className="menu__list">
-          {sidebarData.map(item => { console.log('xballmer', item); return(item);}).map(
-            item =>
-              item.items && item.items.length > 0 && (
-                <DocSidebarItem
-                  key={item.label}
-                  item={item}
-                  level={1}
-                  onItemClick={() => {
-                    setShowResponsiveSidebar(false);
-                  }}
-                  collapsible={sidebarCollapsible}
-                />
-              ),
-          )}
+          {sidebarData.map(item => (
+            <DocSidebarItem
+              key={item.label}
+              item={item}
+              onItemClick={() => {
+                setShowResponsiveSidebar(false);
+              }}
+              collapsible={sidebarCollapsible}
+            />
+          ))}
         </ul>
       </div>
     </div>
