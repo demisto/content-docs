@@ -52,7 +52,7 @@ module.exports = {
       links: [
         {
           to: "docs/welcome",
-          label: "Documentation",
+          label: "Developer Docs",
           position: "left"
         },
         {
