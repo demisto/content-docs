@@ -16,8 +16,8 @@ module.exports = {
   themeConfig: {
     algolia: {
       apiKey: process.env.ALGOLIA_APIKEY,
-      appId: process.env.ALGOLIA_APPID,
-      indexName: process.env.ALGOLIA_INDEX
+      indexName: process.env.ALGOLIA_INDEX,
+      algoliaOptions: {} // Optional, if provided by Algolia
     },
     sidebarCollapsible: true,
     navbar: {
@@ -73,7 +73,10 @@ module.exports = {
         {
           title: "Docs",
           items: [
-            { to: "docs/howtos/integrations/getting-started-guide", label: "Development Guide" },
+            {
+              to: "docs/howtos/integrations/getting-started-guide",
+              label: "Development Guide"
+            },
             { to: "docs/partners/why-demisto", label: "Why become a Partner?" },
             {
               to: "docs/partners/become-a-tech-partner",
