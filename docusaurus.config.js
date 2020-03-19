@@ -56,6 +56,11 @@ module.exports = {
           position: "left"
         },
         {
+          to: "docs/tutorials/getting-started/tut-setup-dev",
+          label: "Tutorials",
+          position: "left"
+        },
+        {
           to: "docs/reference",
           label: "Reference",
           position: "left"
