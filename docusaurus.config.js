@@ -43,6 +43,10 @@ module.exports = {
             {
               to: "docs/partners/development-partners",
               label: "Development Partners"
+            },
+            {
+              to: "https://start.paloaltonetworks.com/become-a-technology-partner",
+              label: "Sign Up Now"
             }
           ],
           position: "right"
@@ -56,7 +60,7 @@ module.exports = {
           position: "left"
         },
         {
-          to: "docs/tutorials/getting-started/tut-setup-dev",
+          to: "docs/tutorials/tut-setup-dev",
           label: "Tutorials",
           position: "left"
         },
