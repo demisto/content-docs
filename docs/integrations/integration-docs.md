@@ -39,7 +39,7 @@ Example for commands file:
 !domain domain=demisto.com
 ```
 
-![ScreenRecording2019-09-22at16241](../../doc_imgs/howtos/integrations/65404184-313ced00-dde0-11e9-9257-e61e2943fd75.gif)
+![ScreenRecording2019-09-22at16241](../doc_imgs/integrations/65404184-313ced00-dde0-11e9-9257-e61e2943fd75.gif)
 
 
 ## Documentation Examples
@@ -48,8 +48,8 @@ Example for commands file:
 * [Slack v2](https://github.com/demisto/content/blob/master/Integrations/Slack/README.md): Shows an example of the troubleshooting section.
 
 Example Images: 
-![image](../../doc_imgs/howtos/integrations/40935346-7ca3b24a-6840-11e8-8540-b00677cd6657.png)
-![image](../../doc_imgs/howtos/integrations/40935354-8406dcc4-6840-11e8-9b0c-b0a9c4bd8a99.png)
+![image](../doc_imgs/integrations/40935346-7ca3b24a-6840-11e8-8540-b00677cd6657.png)
+![image](../doc_imgs/integrations/40935354-8406dcc4-6840-11e8-9b0c-b0a9c4bd8a99.png)
 
 
 ## Posting Documentation

@@ -7,22 +7,22 @@ Thank you for showing interest in contributing to the Demisto content. We hope t
 
 This tutorial will guide you on how to set up your dev environment to quickly start developing on Demisto. While in Demisto you can write code directly in the UI, which is awesome, you'll need a proper development environment external to Demisto to contribute a full integration.. This is because, in order to build a full fledged integration, you'll need to *lint* your code, run unit tests with *pytest*, create some documentation, submit your changes via *git* and more.
 
-If you've been through this process already and just want a quick reference, you can jump to the [Development Setup](../../howtos/integrations/dev-setup) page, otherwise keep reading for more details.
+If you've been through this process already and just want a quick reference, you can jump to the [Development Setup](../integrations/dev-setup) page, otherwise keep reading for more details.
 
 ## Which tools should I use?
 
 As mentioned, you'll need a combination of both the Demisto UI and other tools. 
 
 As a general rule of the thumb, we recommend that you use an external IDE and toolchain when:
-- Working on your [integration code](../../howtos/integrations/code-conventions) (YourIntegration.py)
-- Working on the [unit test script](../../howtos/integrations/unit-testing) (YourIntegration_test.py)
-- Working on the [CHANGELOG.md](../../howtos/integrations/changelog) and README.md documentation files
-- Running the [linting](../../howtos/integrations/linting) and testing
+- Working on your [integration code](../integrations/code-conventions) (YourIntegration.py)
+- Working on the [unit test script](../integrations/unit-testing) (YourIntegration_test.py)
+- Working on the [CHANGELOG.md](../integrations/changelog) and README.md documentation files
+- Running the [linting](../integrations/linting) and testing
 
 Instead, you should use the Demisto UI when:
-- Creating the [Test Playbooks](../../howtos/integrations/test-playbooks)
-- Auto-generate the [integration documentation](../../howtos/integrations/integration-docs)
-- Creating [example playbooks](../../howtos/playbooks/playbooks) to demonstrate your integration
+- Creating the [Test Playbooks](../integrations/test-playbooks)
+- Auto-generate the [integration documentation](../integrations/integration-docs)
+- Creating [example playbooks](../playbooks/playbooks) to demonstrate your integration
 - Working on the properties of your integration (parameters, commands, arguments, outputs, etc.)
 - Testing the User Experience
 
@@ -100,11 +100,11 @@ We are assuming that Demisto is already installed. For more information about in
 
 Check if your Demisto License is correctly installed by navigating to *Settings* -> *ABOUT* -> *License* and make sure that everything is green:
 
-![Check Demisto License](../../doc_imgs/tutorials/getting-started/tut-setup-dev/01-checkdemistolicense.gif)
+![Check Demisto License](../doc_imgs/tutorials/tut-setup-dev/01-checkdemistolicense.gif)
 
 **PRO tip**: you can quickly navigate to different pages within Demisto by hitting *Ctrl-K* and then typing what you want. For the license page, for example, type */settings/license* or just *lic* and select the autocompleted option:
 
-![Jump to Page](../../doc_imgs/tutorials/getting-started/tut-setup-dev/02-jumptopage.png)
+![Jump to Page](../doc_imgs/tutorials/tut-setup-dev/02-jumptopage.png)
 
 #### Operating System
 
@@ -166,7 +166,7 @@ And that's it! Again, if the installation fails, check out [this](https://github
 
 Not much to check here, just go to [GitHub](https://github.com) and make sure that you have an account or Sign Up for one:
 
-![GitHub](../../doc_imgs/tutorials/getting-started/tut-setup-dev/03-github.png)
+![GitHub](../doc_imgs/tutorials/tut-setup-dev/03-github.png)
 
 #### Docker
 
@@ -194,11 +194,11 @@ Great, all the prerequisites are set! We can get started.
 
 Make sure you're logged on GitHub and navigate to the [Demisto Content Repo](https://github.com/demisto/content) and click on **Fork**:
 
-![Fork Repository](../../doc_imgs/tutorials/getting-started/tut-setup-dev/04-fork.png)
+![Fork Repository](../doc_imgs/tutorials/tut-setup-dev/04-fork.png)
 
 Once the fork is complete, copy the your URL:
 
-![Copy GitHub URL](../../doc_imgs/tutorials/getting-started/tut-setup-dev/05-copygithuburl.png)
+![Copy GitHub URL](../doc_imgs/tutorials/tut-setup-dev/05-copygithuburl.png)
 
 This is the fork where you will commit your code and, once ready, create the Pull Request to submit your contribution back to the Demisto Content repository.
 
@@ -509,8 +509,8 @@ To https://github.com/[omitted]/content
 
 You can go back to GitHub and, under **your** fork, you should be able to see that there is a new branch with the name you provided (`my_integration_name` in this example):
 
-![GitHub Branch](../../doc_imgs/tutorials/getting-started/tut-setup-dev/06-githubbranch.png)
+![GitHub Branch](../doc_imgs/tutorials/tut-setup-dev/06-githubbranch.png)
 
-Congratulations! You completed the set up of the Development Environment for Demisto! Now you can start writing your code. Please have a look at the [Code Conventions](../../howtos/integrations/code-conventions).
+Congratulations! You completed the set up of the Development Environment for Demisto! Now you can start writing your code. Please have a look at the [Code Conventions](../integrations/code-conventions).
 
 Thank for your time, we hope you enjoyed this tutorial. Please report issues and suggestions using the link below!

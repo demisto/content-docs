@@ -31,7 +31,7 @@ When creating a Test Playbook, it is often recommended for the first step to be 
 3. From the dropdown menu in the **all** field, select **yes**.
 4. Click **OK** and connect the **Playbook Triggered** task to the **DeleteContext** task.
 
-<img src="../../doc_imgs/howtos/integrations/50275566-51eaa780-0448-11e9-8089-b3631fff1274.png" width="250" align="middle"></img>
+<img src="../doc_imgs/integrations/50275566-51eaa780-0448-11e9-8089-b3631fff1274.png" width="250" align="middle"></img>
 
 ## Testing a Command, Verifying the Results, and Closing an Investigation
 
@@ -46,7 +46,7 @@ It's important to test as many commands of the integration as possible as tasks,
 5. Click **OK** to save your changes.
 6. Finally, connect the starting **DeleteContext** task to the **ip** task.
 
-![connect delete and ip](../../doc_imgs/howtos/integrations/50736134-25fa5080-11c2-11e9-89c5-12844545b5ff.png)
+![connect delete and ip](../doc_imgs/integrations/50736134-25fa5080-11c2-11e9-89c5-12844545b5ff.png)
 
 ### Verify the Command Results
 After you build the command, verify that you have received the results that you expect:
@@ -85,7 +85,7 @@ Demisto uses a standard naming convention for playbook tests that follows this f
 
 1. Click **Save Version**.
 2. Exit the playbook editor.
-3. Export the playbook by clicking ![download button](../../doc_imgs/howtos/integrations/50277516-4d74bd80-044d-11e9-94b6-5195dd0db796.png).
+3. Export the playbook by clicking ![download button](../doc_imgs/integrations/50277516-4d74bd80-044d-11e9-94b6-5195dd0db796.png).
 
 ## Adding the Playbook to your Project
 1. In the YAML file that you created, edit the `id` so that it is identical to the `name` field.
@@ -122,4 +122,4 @@ The following table describes the fields:
 
 ## Resources
 * [Example of a Test Playbook](https://github.com/demisto/content/blob/master/TestPlaybooks/playbook-Carbon_Black_Response_Test.yml)
-* [Example of a Playbook Image](../../doc_imgs/howtos/integrations/41154872-459f93fe-6b24-11e8-848b-25ca71f59629.png)
+* [Example of a Playbook Image](../doc_imgs/integrations/41154872-459f93fe-6b24-11e8-848b-25ca71f59629.png)

@@ -13,7 +13,7 @@ Lets go over our steps to understand what each of them is doing:
     - Here we install our python packages, and give access to the scripts folder. The scripts folder contains all of the scripts we are using for the next steps in Circle.
 - Validate Files and Yaml
     - Validates the schema of the yml files you created, and checks to ensure that you haven’t made any changes that may effect backwards compatibility.
-    - [You can learn more about the YAML structure here](../../howtos/integrations/yaml-file)
+    - [You can learn more about the YAML structure here](../integrations/yaml-file)
 - Configure Test Filter
     - This step gathers all the relevant tests that Circle should run for the changes done in the given branch. When testing a single integration on a branch other than master, it is not necessary to test unrelated integrations or scripts.
     - A full test of every integration takes on average one hour and 15 minutes. Testing a specific integration, however, will take about 20 to 30 minutes.
