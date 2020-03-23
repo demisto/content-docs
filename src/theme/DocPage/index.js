@@ -31,8 +31,9 @@ function DocPage(props) {
     siteConfig: { customFields = {} } = {}
   } = useDocusaurusContext();
   const { sidebarCollapsible = true } = themeConfig;
-  const { docbar = {} } = customFields;
-  const { options = [] } = docbar;
+  //const { docbar = {} } = customFields;
+  //const { options = [] } = docbar;
+  const { options = [] } = {};
 
   if (!matchingRouteExist(route.routes, location.pathname)) {
     return <NotFound {...props} />;
@@ -61,34 +62,8 @@ function DocPage(props) {
               backgroundColor: "var(--ifm-background-color)"
             }}
           >
-            {typeof window !== "undefined" &&
-            window.location.pathname.split("/")[2] !== "partners" ? (
-              options.map((menuItem, i) => (
-                <Link
-                  className={
-                    "button button--outline button--secondary button--lg " +
-                    (typeof window !== "undefined" &&
-                    window.location.pathname.split("/")[2] ==
-                      useBaseUrl(menuItem.to).split("/")[2]
-                      ? "button--active--tab shadow--lw"
-                      : "")
-                  }
-                  style={{
-                    borderRadius: "0 0 0 0",
-                    borderColor: "var(--ifm-contents-border-color)",
-                    borderWidth: "0",
-                    padding:
-                      "calc( var(--ifm-button-padding-vertical) * 1.5  ) calc( var(--ifm-button-padding-horizontal) * .65 )"
-                  }}
-                  key={i}
-                  to={useBaseUrl(menuItem.to)}
-                >
-                  {menuItem.label}
-                </Link>
-              ))
-            ) : (
-              <></>
-            )}
+
+            <></>
           </div>
           <MDXProvider components={MDXComponents}>
             {renderRoutes(route.routes)}

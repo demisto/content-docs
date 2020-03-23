@@ -43,6 +43,10 @@ module.exports = {
             {
               to: "docs/partners/development-partners",
               label: "Development Partners"
+            },
+            {
+              to: "https://start.paloaltonetworks.com/become-a-technology-partner",
+              label: "Sign Up Now"
             }
           ],
           position: "right"
@@ -51,10 +55,20 @@ module.exports = {
 
       links: [
         {
-          to: "docs",
-          label: "Docs",
+          to: "docs/welcome",
+          label: "Developer Docs",
           position: "left"
         },
+        {
+          to: "docs/tutorials/tut-setup-dev",
+          label: "Tutorials",
+          position: "left"
+        },
+/*        {
+          to: "docs/reference",
+          label: "Reference",
+          position: "left"
+        },*/
         {
           href: "http://github.com/demisto/content/",
           label: "GitHub",
@@ -130,30 +144,5 @@ module.exports = {
       priority: 0.5
     }
   ],
-  customFields: {
-    docbar: {
-      options: [
-        {
-          label: "Docs Home",
-          to: "docs"
-        },
-        {
-          label: "Concepts",
-          to: "docs/concepts"
-        },
-        {
-          label: "How-Tos",
-          to: "docs/howtos"
-        },
-        {
-          label: "Tutorials",
-          to: "docs/tutorials"
-        },
-        {
-          label: "Reference",
-          to: "docs/reference"
-        }
-      ]
-    }
-  }
+  customFields: {}
 };
