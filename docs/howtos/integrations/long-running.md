@@ -8,11 +8,11 @@ You can use long running containers to run specific processes in an integration 
 ## Getting Started
 
 ### Prerequisites
-In order to implement and run long running integrations, you need a Demisto v5.0 and later.
+- Demisto v5.0 or later.
 
-The integration must be written in Python.
+- The integration must be written in Python.
 
-### First step
+### Enable the longRunning property
 To make an integration long running, you need to enable the `longRunning` property:
 ![image](../../doc_imgs/howtos/integrations/66122533-9b2b7280-e5e8-11e9-92de-f9fbe75b7250.png)
 
@@ -42,11 +42,11 @@ For example - `{'name': 'incident', 'type': 'Phishing', 'customFields': {'field1
 * `directMessage` - For chat based integrations, handle free text sent from a user to the chat module and process it in the server.
 
 ### Manage container states 
-One of the most important and useful things in the long running process is the integration context:
+One of the most important and useful aspects of the long running process is the integration context:
 `demisto.setIntegrationContext(context)`
 `demisto.getIntegrationContext()`
-Use it to store information and manage the state of the container per integration instance.
-This context is stored in a format of a dict of `{'key': 'value'} where value **must** be a string. To store complex objects as values, parse them to JSON.
+Use the integration context to store information and manage the state of the container per integration instance.
+This context is stored in a format of a dict of `{'key': 'value'}`, where value **must** be a string. To store complex objects as values, parse them to JSON.
 
 Use logging to notify and report different states inside the long running process - `demisto.info(str)` and `demisto.error(str)`. These will show up in the server log.
 
@@ -66,12 +66,12 @@ To run multiple processes in parallel, you can use async code. For an example yo
 
 **Supported Demisto Server version**: 5.5 and above
 
-Demisto supports setting up long running integrations which expose an http endpoint. Such integrations include:
+Demisto supports setting up long running integrations which expose an HTTP endpoint. Such integrations include:
 * Palo Alto Networks PAN-OS EDL Service
 * Export Indicators Service
 * Microsoft Teams
 
-When started up, these integrations listen on an incoming http port. The port is configured via the **Listen Port** setting of the integration. The http interface can be accessed directly over the port, for example by running curl locally on the Demisto Server machine (assuming the configured port is 7000 and http is being used):
+When you initiate these integrations, they listen on an incoming HTTP port. The port is configured via the **Listen Port** setting of the integration. The HTTP interface can be accessed directly over the port, for example by running curl locally on the Demisto Server machine (assuming the configured port is 7000 and HTTP is being used):
 ```
 curl http://localhost:7000
 ```
@@ -80,7 +80,7 @@ curl http://localhost:7000
 
 To access the integration over the listening port via the Demisto Server's DNS host, you would use (assuming the configured port is 7000 and http is being used) the url: `http://<demisto_dns>:7000`. This requires opening the port to external access. Usually this involves a firewall or security group modification. 
 
-Starting with Demisto Server 5.5 there is an option to route the http request via the Demisto Server's https endpoint. This is useful if you would like to avoid opening an additional port (the long running integration's port) on the Demisto Server's machine to outside access. 
+Starting with Demisto Server v5.5 there is an option to route the HTTP request via the Demisto Server's HTTPS endpoint. This is useful if you would like to avoid opening an additional port (the long running integration's port) on the Demisto Server's machine to outside access. 
 
 To configure a long running integration to be accessed via Demisto Server's https endpoint perform the following:
 * Configure the long running integration to listen on a unique port
