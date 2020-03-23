@@ -64,11 +64,11 @@ module.exports = {
           label: "Tutorials",
           position: "left"
         },
-        {
+/*        {
           to: "docs/reference",
           label: "Reference",
           position: "left"
-        },
+        },*/
         {
           href: "http://github.com/demisto/content/",
           label: "GitHub",
