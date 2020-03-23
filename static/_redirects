@@ -1,3 +1,6 @@
+# Redirect main docs page
+/docs	/docs/welcome
+
 # Redirect existing docs
 
 # Partner docs
