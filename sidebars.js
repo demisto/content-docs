@@ -1,4 +1,6 @@
-module.exports = {
+const fs = require('fs-extra');
+
+const sidebars = {
   docs:
   [
     {
@@ -88,27 +90,6 @@ module.exports = {
         "playbooks/generic-polling"
       ]
     },
-    // {
-    //   type: "category",
-    //   label: "Scripts",
-    //   items: [
-    //     "howtos/how-scripts",
-    //   ]
-    // },
-    // {
-    //   type: "category",
-    //   label: "Incidents, Fields & Layouts",
-    //   items: [
-    //     "howtos/how-incidents"
-    //   ]
-    // },
-    // {
-    //   type: "category",
-    //   label: "Dashboards & Widgets",
-    //   items: [
-    //     "howtos/how-dashboards"
-    //   ]
-    // },
     {
       type: "category",
       label: "Contributing",
@@ -123,55 +104,6 @@ module.exports = {
             "tutorials/tut-setup-dev",
             "tutorials/tut-integration-ui"
           ]
-    }
-  ],
-  reference:
-  [
-    {
-      type: "doc",
-      id: "reference"
-    },
-    {
-      type: "category",
-      label: "Integrations",
-      items: [
-        "reference/ref-integrations",
-      ]
-    },
-    {
-      type: "category",
-      label: "Playbooks",
-      items: [
-        "reference/ref-playbooks",
-      ]
-    },
-    {
-      type: "category",
-      label: "Scripts",
-      items: [
-        "reference/ref-scripts",
-      ]
-    },
-    {
-      type: "category",
-      label: "REST API",
-      items: [
-        "reference/ref-restapi",
-      ]
-    },
-    {
-      type: "category",
-      label: "Code",
-      items: [
-        "reference/ref-code",
-      ]
-    },
-    {
-      type: "category",
-      label: "Demisto SDK",
-      items: [
-        "reference/ref-demisto-sdk",
-      ]
     }
   ],
   partners:
@@ -194,3 +126,10 @@ module.exports = {
     },
   ]
 };
+
+if (fs.existsSync("docs/reference/sidebar.json")) {
+  referenceSideBar = fs.readJSONSync("docs/reference/sidebar.json")
+  sidebars["reference"] = referenceSideBar
+}
+
+module.exports = sidebars;
