@@ -84,12 +84,12 @@ The following section shows several examples of common fields that are used in r
 ### False Positive
 Below is an example of a mandatory Incident field "False Positive" to be filled at time of Incident Close. The Field can have a value YES or NO and the SOC admin should be able to query or run report based on this field. After this field is added, all incidents will need to have this filled in before an incident can be marked closed.
 
-![Single Select False Positive](../../doc_imgs/howtos/incidents/Single-Select_False-Positive.png)
+![Single Select False Positive](../doc_imgs/incidents/Single-Select_False-Positive.png)
 
 ### SLA Fields
 The following SLA field can be used to trigger a notification when the status effecting the SLA of an incident changes. In addition, if the SLA is breached, we have configured the field such that an email is sent to the owner's supervisor.
 
-![SLA Incident Field](../../doc_imgs/howtos/incidents/SLA_Incident_Field.png)
+![SLA Incident Field](../doc_imgs/incidents/SLA_Incident_Field.png)
 
 ## Troubleshooting Conflicts with Custom Incident Fields
 **Problem**
