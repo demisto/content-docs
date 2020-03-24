@@ -29,11 +29,25 @@ Cortex XSOAR comes with the several TIM feeds out of the box. In this flow, we w
 
 3. Click **Done**.
 
+## Create List of Exclusions
+
+Before you can customize your playbook, you should first create a list(s) for indicators that you want to exclude from the manual review process.
+
+1. Navigate to **Settings > Advanced > Lists**.
+    For purposes of this example, we will create a list of business partner IP addresses.
+
+2. Click **Add a list**. 
+
+    - Enter a meaninful name for the list. For examle, BusinessPartnersIPaddresses.
+    - In the data field, enter a comma-separated list of IP addresses of your business partners.
+    
+3. Click **Save**.
+
 ## Customize your Playbook
 
 After configuring the feed, we need to customize the playbook to process the indicators and determine which are legitimate.
 
-1. Navigate to **Playbooks** and search for the ***Processing Indicators That Require Manual Review*** playbook. This is the playbook we will trigger in our feed-triggered job.
+1. Navigate to **Playbooks** and search for the **Process Indicators - Manual Review** playbook. This is the playbook we will trigger in our feed-triggered job.
 
 2. Click the **Playbook Triggered** task at the top of the playbook. 
 
@@ -41,11 +55,19 @@ After configuring the feed, we need to customize the playbook to process the ind
     - Select the **From indicators** radio button.
     - Under **Query**, enter a query to process the specific indicators that you want.
     - Click **Save**.
-    - Click the From co
 
 ![Define Playbook Query](../../doc_imgs/tutorials/playbooks/tutorial_playbook_inputs-outputs.png "Define Playbook Query")
 
 3. Click **Save Version**.
+
+At this point, you have the option of excluding certain IPs, hashes, domains and more from the review process using the list(s) you created earlier.
+
+4. Search for the **Indicator Auto Processing** playbook.
+
+    - Click **Edit**.
+    - Click on the sub-playbook task for the entity for which you want to define exclusions. For example, to exclude business partner IP addresses, click on the **Process Indicators Against Business Partners IP List** task.
+    - Under **Inputs**, enter the name of the list. In our example earlier, we used BusinessPartnersIPaddresses.
+    - Click **Ok**.
 
 ## Define a Feed-Triggered Job
 
