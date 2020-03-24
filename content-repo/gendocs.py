@@ -67,7 +67,7 @@ def is_html_doc(txt: str) -> bool:
 
 def gen_html_doc(txt: str) -> str:
     # create a javascript string
-    soup = BeautifulSoup(txt)
+    soup = BeautifulSoup(txt, features="html.parser")
     txt = soup.prettify()
     txt = json.dumps(txt)
     return (f'export const txt = {txt};\n\n' +
