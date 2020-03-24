@@ -39,7 +39,7 @@ jobs:
     - name: Fetch Dependent Files (content repo)
       run: |
         cd content-repo
-        wget https://raw.githubusercontent.com/demisto/content/master/Scripts/CommonServerPython/CommonServerPython.py
+        wget https://raw.githubusercontent.com/demisto/content/master/Packs/Base/Scripts/CommonServerPython/CommonServerPython.py
         wget https://raw.githubusercontent.com/demisto/content/master/Tests/demistomock/demistomock.py
     - name: Lint
       run: |

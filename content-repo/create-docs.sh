@@ -85,7 +85,7 @@ rm -rf ${TARGET_DIR}
 mkdir ${TARGET_DIR}
 
 echo "Copying CommonServerPython.py and demistomock.py"
-cp ${CONTENT_GIT_DIR}/Scripts/CommonServerPython/CommonServerPython.py .
+cp ${CONTENT_GIT_DIR}/Packs/Base/Scripts/CommonServerPython/CommonServerPython.py .
 cp ${CONTENT_GIT_DIR}/Tests/demistomock/demistomock.py .
 
 if [ -z "${NETLIFY}" ]; then
