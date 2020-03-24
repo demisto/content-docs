@@ -6,6 +6,7 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "cp -RPv docs/doc_imgs/* static/doc_imgs/ && replace '(\\.\\.\\/){0,2}doc_imgs' '/doc_imgs' docs/* --include='*.md*' --recursive && docusaurus build",
+    "findorphans": "for i in `cd docs && find . -name '*.md' | cut -d '.' -f2 | cut -d'/' -f2-`; do grep $i sidebars.js 1>/dev/null || echo \"Document not in sidebar: $i\"; done",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy"
   },
