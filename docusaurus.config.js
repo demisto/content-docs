@@ -16,8 +16,8 @@ module.exports = {
   themeConfig: {
     algolia: {
       apiKey: process.env.ALGOLIA_APIKEY,
-      appId: process.env.ALGOLIA_APPID,
-      indexName: process.env.ALGOLIA_INDEX
+      indexName: process.env.ALGOLIA_INDEX,
+      algoliaOptions: {} // Optional, if provided by Algolia
     },
     sidebarCollapsible: true,
     navbar: {
@@ -27,32 +27,48 @@ module.exports = {
         src: "img/demistopeelable.png"
       },
 
+      menus: [
+        {
+          label: "Partners",
+          items: [
+            { to: "docs/partners/why-demisto", label: "Why Demisto?" },
+            {
+              to: "docs/partners/become-a-tech-partner",
+              label: "Become a Partner"
+            },
+            {
+              to: "docs/partners/partner-owned-integration",
+              label: "Partner Owned Integration"
+            },
+            {
+              to: "docs/partners/development-partners",
+              label: "Development Partners"
+            },
+            {
+              to: "https://start.paloaltonetworks.com/become-a-technology-partner",
+              label: "Sign Up Now"
+            }
+          ],
+          position: "right"
+        }
+      ],
+
       links: [
         {
-          to: "docs/getting-started-guide",
-          label: "Development Guide",
+          to: "docs/welcome",
+          label: "Developer Docs",
           position: "left"
         },
         {
-          to: "docs/use-cases",
-          label: "Use Cases",
+          to: "docs/tutorials/tut-setup-dev",
+          label: "Tutorials",
           position: "left"
         },
-        {
-          to: "docs/reference/index",
+/*        {
+          to: "docs/reference",
           label: "Reference",
           position: "left"
-        },
-        {
-          to: "docs/why-demisto",
-          label: "Why become a Partner?",
-          position: "right"
-        },        
-        {
-          to: "docs/become-a-tech-partner",
-          label: "Become a Technology Partner",
-          position: "right"
-        },
+        },*/
         {
           href: "http://github.com/demisto/content/",
           label: "GitHub",
@@ -71,9 +87,12 @@ module.exports = {
         {
           title: "Docs",
           items: [
-            { to: "docs/getting-started-guide", label: "Development Guide" },
-            { to: "docs/why-demisto", label: "Why become a Partner?" },
-            { to: "docs/become-a-tech-partner", label: "Become a Technology Partner" }
+            { to: "docs/howtos/integrations/getting-started-guide", label: "Development Guide" },
+            { to: "docs/partners/why-demisto", label: "Why become a Partner?" },
+            {
+              to: "docs/partners/become-a-tech-partner",
+              label: "Become a Technology Partner"
+            }
           ]
         },
         {
@@ -124,5 +143,6 @@ module.exports = {
       changefreq: "weekly",
       priority: 0.5
     }
-  ]
+  ],
+  customFields: {}
 };
