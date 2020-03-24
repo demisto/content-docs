@@ -20,10 +20,10 @@ Cortex XSOAR comes with the several TIM feeds out of the box. In this flow, we w
 
 2. Click **Add instance**.
 
-    a. Under **Sub-Feeds**, select from where you want to pull the data.
-    b. Determine the default reputation that you want indicators from this feed to receive. 
-    c. You can change the **Source Reliability**. Cortex XSOAR has this feed defined as fairly reliable.
-    d. Determine when the indicator expires and how often to fetch indicators from the feed.
+  a. Under **Sub-Feeds**, select from where you want to pull the data.
+  b. Determine the default reputation that you want indicators from this feed to receive. 
+  c. You can change the **Source Reliability**. Cortex XSOAR has this feed defined as fairly reliable.
+  d. Determine when the indicator expires and how often to fetch indicators from the feed.
 
 ![Threat Feed](../../doc_imgs/tutorials/playbooks/tutorial_playbook_tim_feed.png "Threat Feed")
 
@@ -37,11 +37,11 @@ After configuring the feed, we need to customize the playbook.
 
 2. Click **Playbook Triggered** task at the very top. 
 
-    a. Under the Inputs of the From context data radio button, we put a value of *Yes* so an incident with our indicators for review will open automatically. 
-    b. Select the **From indicators** radio button.
-    c. Under **Query**, enter a query to process the specific indicators that you want.
-    d. Click **Save**.
-    e. Click the From co
+  a. Under the Inputs of the From context data radio button, we put a value of *Yes* so an incident with our indicators for review will open automatically. 
+  b. Select the **From indicators** radio button.
+  c. Under **Query**, enter a query to process the specific indicators that you want.
+  d. Click **Save**.
+  e. Click the From co
 
 ![Define Playbook Query](../../doc_imgs/tutorials/playbooks/tutorial_playbook_inputs-outputs.png "Define Playbook Query")
 
@@ -53,10 +53,10 @@ Now that the feed and playbook are set up, you need to define a job that will tr
 
 1. Navigate to **Jobs** and click **New Job**.
 
-    a. Select the **Feed triggered** radio button.
-    b. Under **Triggers**, select **Specific feeds** and select the feed whose completion will trigger this job. In this case, it should be the Bambenek Consulting feed you defined earlier.
-    c. Enter a descriptive name for the job.
-    d. Select the Processing Indicators That Require Manual Review playbook to run when this job is triggered. 
+  a. Select the **Feed triggered** radio button.
+  b. Under **Triggers**, select **Specific feeds** and select the feed whose completion will trigger this job. In this case, it should be the Bambenek Consulting feed you defined earlier.
+  c. Enter a descriptive name for the job.
+  d. Select the Processing Indicators That Require Manual Review playbook to run when this job is triggered. 
 
 2. Click **Create New Job**.
 
@@ -72,11 +72,11 @@ After setting up all of the infrastructure, we need to create one final job to p
 
 1. Navigate to **Jobs** and click **New Job**.
 
-    a. Select the **Time triggered** radio button.
-    b. Select the **Recurring** checkbox and determine how often you want the job to run.
+  a. Select the **Time triggered** radio button.
+  b. Select the **Recurring** checkbox and determine how often you want the job to run.
        In our example, we have it run daily at midnight.
-    c. Enter a descriptive name for the job.
-    d. Under **Playbook**, select the Add All Indicator Types To SIEM playbook to run when this job runs. 
+  c. Enter a descriptive name for the job.
+  d. Under **Playbook**, select the Add All Indicator Types To SIEM playbook to run when this job runs. 
 
 2. Click **Create New Job**.
 
@@ -88,28 +88,28 @@ After setting up all of the infrastructure, we need to create one final job to p
 Now that everything is set up, let's test the flow.
 
 1. Navigate to **Settings** -> **Integrations** -> **Servers and Services** and edit the setting for the Bambenek instance we created earlier.
-    a. Click **Re-fetch indicators from this instance**.
-    b. Click **Fetch**.
+  a. Click **Re-fetch indicators from this instance**.
+  b. Click **Fetch**.
 2. Navigate to **Jobs**. </br> The feed-triggered job we created earlier should be running.
-    a. Click **Running**. </br> This takes you into the actual job. 
-    b. Navigate to the **Work Plan** page and click on the task labeled *Create Process Indicators Manually incident*. 
-    c. Under the **Outputs** tab, note the incident ID for the incident that was created.
+  a. Click **Running**. </br> This takes you into the actual job. 
+  b. Navigate to the **Work Plan** page and click on the task labeled *Create Process Indicators Manually incident*. 
+  c. Under the **Outputs** tab, note the incident ID for the incident that was created.
 
 ![Manual Incident ID](../../doc_imgs/tutorials/playbooks/tutorial_playbook_manual-incident-id.png "Manual Incident ID")
 
 3. Navigate to **Incidents** and click on the incident that was created in the previous step.
-    a. Under the **Indicators** page, click on an indicator. 
-    b. Click the edit icon and add the tags that apply to the indicator. We have added the approved_black tag. This is the tag that the Add All Indicator Types To SIEM playbook used to determine what needs to be pushed. If you use a different tag, make sure to change the playbook accordingly. </br> **Note** You can add tags in bulk to multiple indicators from the main Indicators page, however you will not be able to remove any tags that are already applied to an indicator.
+  a. Under the **Indicators** page, click on an indicator. 
+  b. Click the edit icon and add the tags that apply to the indicator. We have added the approved_black tag. This is the tag that the Add All Indicator Types To SIEM playbook used to determine what needs to be pushed. If you use a different tag, make sure to change the playbook accordingly. </br> **Note** You can add tags in bulk to multiple indicators from the main Indicators page, however you will not be able to remove any tags that are already applied to an indicator.
 ![Add Tags](../../doc_imgs/tutorials/playbooks/tutorial_playbook_add-tag.png "Add Tags")
 
-    c. Under the **Work Plan** page, click the *Manually review the incident* task, select the **Yes** radio button, and click **Mark Completed**.
+  c. Under the **Work Plan** page, click the *Manually review the incident* task, select the **Yes** radio button, and click **Mark Completed**.
 
 4. Navigate to **Jobs**. 
-    a. Select the time-triggered job you defined to push content to the SIEM and click **Run now**. 
-    b. Click **Running**.
-    c. Under the **Work Plan** page, verify that the playbook completed. 
+  a. Select the time-triggered job you defined to push content to the SIEM and click **Run now**. 
+  b. Click **Running**.
+  c. Under the **Work Plan** page, verify that the playbook completed. 
 
 5. Navigate to **Indicators**. 
-    a. In the query, enter *tags:SIEM*. This is the tag appended to every indicator that has been processed and pushed to the SIEM.
+  a. In the query, enter *tags:SIEM*. This is the tag appended to every indicator that has been processed and pushed to the SIEM.
 
 ![Pushed to SIEM](../../doc_imgs/tutorials/playbooks/tutorial_playbook_pushed-to-SIEM.png "Pushed to SIEM")    
