@@ -12,7 +12,7 @@ Docker is a tool used by developers to package together dependencies into a sing
 Primarily we use docker to run python scripts and integrations in a controlled environment. They run isolated from the server to prevent someone from accidentally damaging the server. By packaging libraries and dependencies together, we can prevent unknown issues from occurring since the environment is all the same.
 
 ## Script/Integration Configuration
-Specifying which docker image to use is done in the Demisto IDE (Open: Settings -> Docker image name). If you don't specify a docker image, a default docker image using Python 2.7 is used. For new scripts and integrations, unless there is a specific reason not to use Python 2 (for example: a need to use a library which is not available for Python 3), we require using a Python 3 image. 
+Specifying which docker image to use is done in the Demisto IDE (Open: Settings -> Docker image name). If you don't specify a docker image, a default docker image using Python 2.7 is used. For new scripts and integrations, unless there is a specific reason to use Python 2 (for example: a need to use a library which is not available for Python 3), we require using a Python 3 image. 
 
 **Note**: Starting in Demisto 5.0, you can specify in the Demisto IDE the Python version (2.7 or 3.x). Once you choose 3.x, the latest Demisto Python 3 Docker image will be selected automatically.
 
