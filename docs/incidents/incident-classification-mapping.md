@@ -2,7 +2,7 @@
 id: incident-classification-mapping
 title: Classification and Mapping
 ---
-The classification and mapping feature enables you to take the events and event information that Demisto ingests from integrations or REST API, and classify the event as a type of Demisto incident. For example, Cortex might generate alerts from Traps which you would classify according to the information in those either as dedicated Traps incident types or maybe Authentication or Malware. You might have EWS configured to ingest both phishing and malware alerts which you would want to classify to their respecitve incident types based on some information in the event. By classifying the events differently, you have more control of the incident type and allowing you to run multiple playbooks for the events coming from one source. 
+The classification and mapping feature enables you to take the events and event information that Demisto ingests from integrations or REST API, and classify the event as a type of Demisto incident. For example, Cortex might generate alerts from Traps which you would classify according to the information in those either as dedicated Traps incident types or maybe Authentication or Malware. You might have EWS configured to ingest both phishing and malware alerts which you would want to classify to their respective incident types based on some information in the event. By classifying the events differently, you have more control of the incident type and allowing you to run multiple playbooks for the events coming from one source. 
 
 Once you classify the incident, you can map the fields from the 3rd party integration to the fields that you defined in the incident layout.
 Any fields that you do not map, are automatically mapped to Demisto labels. While this information can still be accessed, it is always easier to work with fields. 
@@ -12,7 +12,7 @@ To get the most benefit out of classification and mapping, make sure that you un
 ## Classification
 Classification determines the type of incident that is created for events ingested from a specific integration.  
 You can classify events in one of two ways:
-* When defining an integration - Select the incident type that is created. When this is configured, it becomes the default incident type. If you do not classify the event through classification and mapping, it will be set as what you have defined here. For information about defining the incident type within the integration settings, see [Demisto Dev Hub](https://demisto.pan.dev/).
+* When defining an integration - Select the incident type that is created. When this is configured, it becomes the default incident type. If you do not classify the event through classification and mapping, it will be set as what you have defined here. For information about defining the incident type within the integration settings, see [XSOAR Dev Hub](https://xsoar.pan.dev/docs/reference).
 * By setting a classification key - Use the classification engine to determine the incident type. This overrides whatever you configured in the integration settings.
 
 ## Classify using a classification key
@@ -22,7 +22,7 @@ When an integration fetches incidents, it populates the rawJSON object in the in
 1. Open the Classification & Mapping window for the Integrations instance: 
 
 - In **Settings** -> **Integrations** -> **Servers & Services** click **Mapping** next to the integration instance.
-- In **Settings** -> **Integrations** -> **Classifications & Mapping** select the inegration instance from the drop-down menu.
+- In **Settings** -> **Integrations** -> **Classifications & Mapping** select the integration instance from the drop-down menu.
 
 2. Click **Set up a classification rule** to open the Classification wizard.
 

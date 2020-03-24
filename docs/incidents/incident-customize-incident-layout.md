@@ -50,7 +50,7 @@ You can configure which tabs appear and for whom, as well as duplicate or remove
 
 You can determine how a section in the layout appears in the layout. For example, does the section include the section header or not. You can also configure the fields to appear in rows or as cards. For example, if you know that some of the field values will be very long, you are better off using rows. If you know that the field values are short, you might want to use cards so you can fit more fields in a section.
 
-![Align as Cards](../../doc_imgs/howtos/incidents/Layout-Builder_Section-Cards.png "Align as Cards")
+![Align as Cards](../doc_imgs/incidents/Layout-Builder_Section-Cards.png "Align as Cards")
 
 To remove or duplicate a section, or change its properties:
 
@@ -68,7 +68,7 @@ To change the information that appears in dynamic sections:
 
    For example, to see all indicators of type IP and with a reputation of Bad that were found by a specific feed since March 1st 2020, enter Type:IP and reputation:Bad and firstseenbyfeed:>="2020-03-01T00:00:00 +0200".
 
-  ![Dynamic Section Query](../../doc_imgs/howtos/incidents/Layout-Builder_Dynamic-Section-Query.png "Dynamic Section Query")
+  ![Dynamic Section Query](../doc_imgs/incidents/Layout-Builder_Dynamic-Section-Query.png "Dynamic Section Query")
 
 4. Click **OK**.
 

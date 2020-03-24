@@ -94,11 +94,11 @@ The following scenario shows how Auto Extract is used in the *Process Email - Ge
 
    Under the **Outputs** tab you can see all of the different data that the task extracts.
 
-   ![Parse Email Files - Outputs tab](../../doc_imgs/howtos/incidents/Auto-Extract_ParseEmailFiles_Outputs.png)
+   ![Parse Email Files - Outputs tab](../doc_imgs//incidents/Auto-Extract_ParseEmailFiles_Outputs.png)
 
   3. Navigate to the **Advanced** tab. 
 
-   ![Parse Email Files - Inline](../../doc_imgs/howtos/incidents/Auto-Extract_ParseEmailFiles_Inline.png)
+   ![Parse Email Files - Inline](../doc_imgs//incidents/Auto-Extract_ParseEmailFiles_Inline.png)
   
    Note that under Auto extract indicators, the Inline option is selected. This indicates that all of the outputs will be processed before the playbook moves ahead to the next task.
 
@@ -106,6 +106,6 @@ The following scenario shows how Auto Extract is used in the *Process Email - Ge
 
    Under the Advanced tab, you can see that **Auto extract indicators** is set to None because the indicators have already been enriched and there is no need to do it again.
 
- ![Parse Email Files - Disabled](../../doc_imgs/howtos/incidents/Auto-Extract_ParseEmailFiles_Disabled.png)
+ ![Parse Email Files - Disabled](../doc_imgs//incidents/Auto-Extract_ParseEmailFiles_Disabled.png)
 
 In the above example, had we set the reputation.calc.algorithm.tasks server configuration to 1, we would not have had to go into the **Advanced** tab of the **Set incident with the Email object data** task and manually tell the task not to extract the indicators. It would use the system default.
