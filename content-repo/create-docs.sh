@@ -81,8 +81,12 @@ cd ${SCRIPT_DIR}
 
 TARGET_DIR=${SCRIPT_DIR}/../docs/reference
 echo "Deleting and creating dir: ${TARGET_DIR}"
-rm -rf ${TARGET_DIR}
-mkdir ${TARGET_DIR}
+rm -rf ${TARGET_DIR}/integrations
+rm -rf ${TARGET_DIR}/playbooks
+rm -rf ${TARGET_DIR}/scripts
+mkdir ${TARGET_DIR}/integrations
+mkdir ${TARGET_DIR}/playbooks
+mkdir ${TARGET_DIR}/scripts
 
 echo "Copying CommonServerPython.py and demistomock.py"
 cp ${CONTENT_GIT_DIR}/Packs/Base/Scripts/CommonServerPython/CommonServerPython.py .

@@ -10,11 +10,19 @@ import traceback
 import shutil
 import json
 import tempfile
+from bs4 import BeautifulSoup
 from mdx_utils import fix_mdx, verify_mdx
 from CommonServerPython import tableToMarkdown  # type: ignore
 from typing import List
 
-INTEGRATION_DOCS_MATCH = ["Integrations/[^/]+?/README.md", "Packs/[^/]+?/Integrations/[^/]+?/README.md", "Beta_Integrations/[^/]+?/README.md"]
+INTEGRATION_DOCS_MATCH = [
+    "Integrations/[^/]+?/README.md",
+    "Integrations/.+_README.md",
+    "Packs/[^/]+?/Integrations/[^/]+?/README.md",
+    "Packs/[^/]+?/Integrations/.+_README.md",
+    "Beta_Integrations/[^/]+?/README.md",
+    "Beta_Integrations/.+_README.md",
+]
 INTEGRATIONS_PREFIX = 'integrations'
 NO_HTML = '<!-- NOT_HTML_DOC -->'
 YES_HTML = '<!-- HTML_DOC -->'
@@ -59,6 +67,8 @@ def is_html_doc(txt: str) -> bool:
 
 def gen_html_doc(txt: str) -> str:
     # create a javascript string
+    soup = BeautifulSoup(txt)
+    txt = soup.prettify()
     txt = json.dumps(txt)
     return (f'export const txt = {txt};\n\n' +
             '<div dangerouslySetInnerHTML={{__html: txt}} />\n')
@@ -150,10 +160,6 @@ def main():
     parser.add_argument("-t", "--target", help="Target dir to generate docs at.", required=True)
     parser.add_argument("-d", "--dir", help="Content repo dir.", required=True)
     args = parser.parse_args()
-    print(f'Deleting dir: {args.target}')
-    shutil.rmtree(args.target)
-    print(f'Creating dir: {args.target}')
-    os.makedirs(args.target)
     prefix = os.path.basename(args.target)
     doc_infos, integrations_full_prefix = create_integration_docs(args.dir, args.target)
     doc_infos = sorted(doc_infos, key=lambda d: d.name)  # sort by name
