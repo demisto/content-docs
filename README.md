@@ -23,7 +23,9 @@ npm start
 Start writing docs...
 
 ## Generating Reference Docs
-Reference docs are generated from the Demisto Content repository: https://github.com/demisto/content . When working locally you can generate the reference docs by running:
+Reference docs are generated from the Demisto Content repository: https://github.com/demisto/content . To generate the docs we use [pipenv](https://github.com/pypa/pipenv). Make sure to install pipenv by running: `pip3 install pipenv`.
+
+When working locally you can generate the reference docs by running:
 ```
 npm run reference-docs
 ```
@@ -32,7 +34,7 @@ This task will checkout the content repository and generate the docs. The genera
 When generating the docs the `master` branch of the `content` repo will be used or if there is a matching branch with the same name as the current branch of `content-docs`, that branch will be used.
 
 ### Generation Code
-Code used for generating content reference docs is written in Python and resides in the `content-repo` folder. To setup a development environment we use [pipenv](https://github.com/pypa/pipenv). Setup a proper Python env by running:
+Code used for generating content reference docs is written in Python and resides in the `content-repo` folder. To setup a development environment we use [pipenv](https://github.com/pypa/pipenv). Make sure to install pipenv by running: `pip3 install pipenv`. Setup a proper Python env by running:
 ```
 pipenv install --dev
 ```
