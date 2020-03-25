@@ -76,12 +76,16 @@ def gen_html_doc(txt: str) -> str:
 
 def process_integration_doc(readme_file: str, target_dir: str, content_dir: str) -> DocInfo:
     base_dir = os.path.dirname(readme_file)
-    ymlfiles = glob.glob(base_dir + '/*.yml')
-    if not ymlfiles:
-        raise ValueError(f'{readme_file}: no yml file found')
-    if len(ymlfiles) > 1:
-        raise ValueError(f'{readme_file}: mulitple yml files found: {ymlfiles}')
-    with open(ymlfiles[0], 'r', encoding='utf-8') as f:
+    if readme_file.endswith('_README.md'):
+        ymlfile = readme_file[0:readme_file.index('_README.md')] + '.yml'
+    else:
+        ymlfiles = glob.glob(base_dir + '/*.yml')
+        if not ymlfiles:
+            raise ValueError(f'no yml file found')
+        if len(ymlfiles) > 1:
+            raise ValueError(f'mulitple yml files found: {ymlfiles}')
+        ymlfile = ymlfiles[0]
+    with open(ymlfile, 'r', encoding='utf-8') as f:
         yml_data = yaml.safe_load(f)
     id = yml_data['commonfields']['id']
     id = inflection.dasherize(inflection.underscore(id)).replace(' ', '-')
@@ -89,7 +93,7 @@ def process_integration_doc(readme_file: str, target_dir: str, content_dir: str)
     with open(readme_file, 'r', encoding='utf-8') as f:
         content = f.read()
     if not content.strip():
-        raise ValueError(f'{readme_file}: is empty')
+        raise ValueError(f'empty file')
     if is_html_doc(content):
         print(f'{readme_file}: detect html file')
         content = gen_html_doc(content)
@@ -144,7 +148,7 @@ def create_integration_docs(content_dir: str, target_dir: str):
             success.append(r)
         except Exception as ex:
             print(f'ERROR: failed processing: {r}. Exception: {ex}.\n{traceback.format_exc()}--------------------------')
-            fail.append(r)
+            fail.append(f'{r} ({str(ex).splitlines()[0]})')
     print("Success integration docs:")
     for r in sorted(success):
         print(r)

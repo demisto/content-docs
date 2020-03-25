@@ -48,28 +48,21 @@ def test_process_integration_doc(tmp_path):
         process_integration_doc(f'{BASE_DIR}/test_data/empty-readme.md', str(tmp_path), BASE_DIR)
         assert False, 'empty file should fail'
     except Exception as ex:
-        assert 'empty' in str(ex)
+        assert 'no yml file found' in str(ex)
     process_integration_doc(f'{SAMPLE_CONTENT}/Integrations/SlashNextPhishingIncidentResponse/README.md', str(tmp_path), SAMPLE_CONTENT)
     process_integration_doc(f'{SAMPLE_CONTENT}/Integrations/Gmail/README.md', str(tmp_path), SAMPLE_CONTENT)
 
 
 def test_process_integration_doc_same_dir(tmp_path):
-    res = process_integration_doc(f'{SAMPLE_CONTENT}/Integrations/DomainTools_Iris/README.md', str(tmp_path), SAMPLE_CONTENT)
-    assert res.id == 'domain-tools-iris'
+    res = process_integration_doc(f'{SAMPLE_CONTENT}/Integrations/integration-F5_README.md', str(tmp_path), SAMPLE_CONTENT)
+    assert res.id == 'f5-firewall'
     assert res.description
-    assert res.name == 'DomainTools Iris'
+    assert res.name == 'F5 firewall'
     with open(str(tmp_path / f'{res.id}.md'), 'r') as f:
         assert f.readline().startswith('---')
         assert f.readline().startswith(f'id: {res.id}')
         assert f.readline().startswith(f'title: {res.name}')
         assert f.readline().startswith(f'custom_edit_url: https://github.com/demisto/content/')
-    try:
-        process_integration_doc(f'{BASE_DIR}/test_data/empty-readme.md', str(tmp_path), BASE_DIR)
-        assert False, 'empty file should fail'
-    except Exception as ex:
-        assert 'empty' in str(ex)
-    process_integration_doc(f'{SAMPLE_CONTENT}/Integrations/SlashNextPhishingIncidentResponse/README.md', str(tmp_path), SAMPLE_CONTENT)
-    process_integration_doc(f'{SAMPLE_CONTENT}/Integrations/Gmail/README.md', str(tmp_path), SAMPLE_CONTENT)
 
 
 def test_table_doc_info():
