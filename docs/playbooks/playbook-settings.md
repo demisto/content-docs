@@ -6,8 +6,8 @@ You can manage general playbook settings such as the name, who can edit and run 
 
 	1. Under **Roles**, select the roles for which the playbook is available.
 	1. Under Playbook triggers, select the Incident Types for which this playbook runs. <br/> **Note**: This will overwrite the settings configured in the respective incident types. The playbook currently defined for the incident type is listed under **Triggered playbook**.
-	1. Under **Advanced**, determine if the playbook runs in quiet mode. 
-		When in Quiet mode, the playbook does not write inputs and outputs and does not auto-extract indicators. Quiet mode is recommended for scenarios that involve a lot of information that might adversely affect performance, for example, processing indicators from threat intel feeds. All of the information is still available in the context data, and errors and warnings are written to the War Room.
+	1. Under **Advanced**, determine if the playbook runs in quiet mode. <br/>
+		When **Quiet Mode** is selected, the playbook does not display inputs and outputs and does not auto-extract indicators. All of the information is still available in the context data, and errors and warnings are written to the War Room. Quiet mode is recommended for scenarios that involve a lot of information that might adversely affect performance, for example, processing indicators from threat intel feeds. 
 
 	![Playbook Settings](../doc_imgs/playbooks/playbook-settings.png "Playbook Settings")
 
