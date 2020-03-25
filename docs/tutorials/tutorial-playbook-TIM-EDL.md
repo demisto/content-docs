@@ -8,7 +8,7 @@ This tutorial walks you through setting up a playbook to take indicators from a 
 
 2. Customize a playbook that is triggered by the feed to process the indicators and determine which are legitimate.
 
-3. Define a feed-triggered job that runs every time indicators are ingested to the feed.
+3. Define a feed-triggered job that runs every time indicators are ingested by the feed.
 
 4. Review the indicators and determine with which tags each indicator should be tagged.
 
@@ -18,7 +18,7 @@ This tutorial does not cover every possible scenario in this flow. It provides a
 
 ## Configure the Threat Intel Feed
 
-Cortex XSOAR comes with the several TIM feeds out of the box. In this flow, we will define the Bambenek Consulting feed, as it is considered relatively reliable.
+Cortex XSOAR comes with the several TIM feeds out of the box. In this flow, we will define the Bambenek Consulting feed.
 
 1. Navigate to **Settings > Integrations > Servers and Services** and search for Bambenek.
 
@@ -63,7 +63,7 @@ After configuring the feed, we need to customize the playbook to process the ind
 
     2. Select the **From indicators** radio button.
 
-    3. Under **Query**, enter a query to process the specific indicators that you want.
+    3. Under **Query**, enter a query to process the specific indicators that you want. For example, sourceBrands:"Bambenek Consulting Feed".
 
     4. Click **Save**.
 
