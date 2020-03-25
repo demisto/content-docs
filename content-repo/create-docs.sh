@@ -48,10 +48,15 @@ fi
 
 echo "==== content git url: ${CONTENT_GIT_URL} branch: ${CONTENT_BRANCH} ===="
 
-# Do a shallow clone to speed things up
 if [[ -d ${CONTENT_GIT_DIR} && $(cd ${CONTENT_GIT_DIR}; git remote get-url origin) != "${CONTENT_GIT_URL}" ]]; then
     echo "Deleting dir: ${CONTENT_GIT_DIR} as remote url dooesn't match ${CONTENT_GIT_URL} ..."
     rm -rf "${CONTENT_GIT_DIR}"
+fi
+
+if [ -n "${NETLIFY}" ]; then
+    echo "Setting git config"
+    git config --global user.email "netlifybuild@demisto.com"
+    git config --global user.name "Netlify Dev Docs Build"
 fi
 
 if [ ! -d ${CONTENT_GIT_DIR} ]; then
@@ -59,7 +64,7 @@ if [ ! -d ${CONTENT_GIT_DIR} ]; then
     git clone ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}
 else
     echo "Content dir: ${CONTENT_GIT_DIR} exists. Skipped clone."
-    if [ -z "${CONTENT_REPO_SKIP_PULL}"]; then
+    if [ -z "${CONTENT_REPO_SKIP_PULL}"]; then        
         echo "Doing pull..."
         (cd ${CONTENT_GIT_DIR}; git pull)
     fi
