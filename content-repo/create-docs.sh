@@ -54,6 +54,8 @@ if [[ -d ${CONTENT_GIT_DIR} && $(cd ${CONTENT_GIT_DIR}; git remote get-url origi
 fi
 
 if [ -n "${NETLIFY}" ]; then
+    echo "Deleting cached content dir..."
+    rm -rf "${CONTENT_GIT_DIR}"
     echo "Setting git config"
     git config --global user.email "netlifybuild@demisto.com"
     git config --global user.name "Netlify Dev Docs Build"
