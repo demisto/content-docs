@@ -152,9 +152,10 @@ def create_integration_docs(content_dir: str, target_dir: str):
     print("Success integration docs:")
     for r in sorted(success):
         print(r)
-    print("\nFailed integration docs:")
+    print("\n===========================================\nFailed integration docs:")
     for r in sorted(fail):
         print(r)
+    print("\n===========================================\n")
     return doc_infos, prefix
 
 
