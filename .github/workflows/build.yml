@@ -1,0 +1,52 @@
+name: Lint and Unit Tests
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: Read .nvmrc
+      run: echo ::set-output name=NVMRC::$(cat .nvmrc)  # see: https://help.github.com/en/actions/automating-your-workflow-with-github-actions/development-tools-for-github-actions#set-an-output-parameter-set-output
+      id: nvm
+    - name: Set up node
+      uses: actions/setup-node@v1
+      with:
+        node-version: "${{ steps.nvm.outputs.NVMRC }}"
+    - name: Cache npm
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - name: Cache pip
+      uses: actions/cache@v1
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/Pipfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    - run: npm install
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '3.7'
+    - name: Setup pipenv
+      run: |
+        pip install pipenv
+        pipenv install --dev
+    - name: Fetch Dependent Files (content repo)
+      run: |
+        cd content-repo
+        wget https://raw.githubusercontent.com/demisto/content/master/Packs/Base/Scripts/CommonServerPython/CommonServerPython.py
+        wget https://raw.githubusercontent.com/demisto/content/master/Tests/demistomock/demistomock.py
+    - name: Lint
+      run: |
+        cd content-repo
+        pipenv run mypy gendocs.py
+        pipenv run flake8 *.py
+    - name: Unit Testing
+      run: |
+        cd content-repo
+        pipenv run pytest -v

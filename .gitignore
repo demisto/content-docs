@@ -27,3 +27,8 @@ yarn-debug.log*
 yarn-error.log*
 **/.idea/**
 **/.vscode/**
+content-repo/.content
+__pycache__
+static/doc_imgs
+.mypy_cache
+docs/reference
