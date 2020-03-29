@@ -1,3 +1,7 @@
+---
+id: concepts-xsoar-concepts
+title: Cortex XSOAR Concepts
+---
 It is important to familiarize yourself with Demisto components, UI terminology, and key concepts.
 
 ## Incidents
