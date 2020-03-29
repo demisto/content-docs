@@ -36,7 +36,7 @@ Cortex XSOAR comes with the several TIM feeds out of the box. In this flow, we w
 
 3. Click **Done**.
 
-## Create List of Exclusions
+## Create List of Indicators not to Process
 
 Before you can customize your playbook, you should first create a list(s) for indicators that you want to exclude from the manual review process.
 
@@ -59,7 +59,7 @@ After configuring the feed, we need to customize the playbook to process the ind
 
 2. Click the **Playbook Triggered** task at the top of the playbook. 
 
-    1. Under the Inputs of the From context data radio button, we put a value of *Yes* so an incident with our indicators for review will open automatically. 
+    1. Under the **Inputs** of the **From context data** radio button, we put a value of *Yes* so an incident with our indicators for review will open automatically. 
 
     2. Select the **From indicators** radio button.
 
@@ -77,9 +77,9 @@ At this point, you have the option of excluding certain IPs, hashes, domains and
 
     1. Click **Edit**.
     
-    2. Click on the sub-playbook task for the entity for which you want to define exclusions. For example, to exclude business partner IP addresses, click on the **Process Indicators Against Business Partners IP List** task.
+    2. Click on the sub-playbook task for the entity that you do not want to process. For example, to exclude business partner IP addresses, click on the **Process Indicators Against Business Partners IP List** task.
 
-    3. Under **Inputs**, enter the name of the list. In our example earlier, we used BusinessPartnersIPaddresses.
+    3. Under **Inputs**, enter the name of the list. In our example earlier, we used *BusinessPartnersIPaddresses*.
 
     4. Click **Ok**.
 
