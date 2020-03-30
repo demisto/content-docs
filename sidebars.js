@@ -82,11 +82,19 @@ module.exports = {
       type: "category",
       label: "Playbooks",
       items: [
+        "playbooks/playbooks-overview",
         "playbooks/playbook-contributions",
         "playbooks/playbooks",
+        "playbooks/playbook-settings",
         "playbooks/playbook-conventions",
+        "playbooks/howto-playbooks-inputs-outputs",
+        "playbooks/create-playbook-task",
+        "playbooks/create-conditional-task",
+        "playbooks/playbooks-communication-task-concepts",
+        "playbooks/playbooks-create-communication-task",
+        "playbooks/playbooks-communication-task-customize-message",
         "playbooks/generic-polling",
-        "playbooks/howto-playbooks-inputs-outputs"
+        "playbooks/playbooks-field-reference"
       ]
     },
     // {
