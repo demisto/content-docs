@@ -44,11 +44,11 @@ For example, a package of the integration [Palo Alto Networks Cortex](https://gi
 To split a yml file exported from the Demisto Server into the Directory Structure you can use the following:
 
 You can extract a YAML file into Directory Structure by using the following:
- - `demisto-sdk split-yml ...` This command will also format the code (using autopep8) and setup the proper Pipenv files. See full command documentation [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/split_yml/split_yml_command.md).
+ - `demisto-sdk split-yml`: This command will also format the code (using autopep8) and setup the proper Pipenv files. See full command documentation [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/split_yml/README.md).
  - [Demisto IntelliJ Plugin](https://plugins.jetbrains.com/plugin/12093-demisto-add-on-for-pycharm)
 
 ## Generate a YML file from Directory Structure
 
 To unify the YAML use:
--  `demisto-sdk unify ...` See full command documentation [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/unify/unify_command.md).
+-  `demisto-sdk unify`: See full command documentation [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/unify/README.md).
 - [Demisto IntelliJ Plugin](https://plugins.jetbrains.com/plugin/12093-demisto-add-on-for-pycharm)
