@@ -58,8 +58,8 @@ Map output from a playbook task directly to an incident field.
 
 | Field | Description | Required |
 | ------ | ------ |
-| Ask by | The method for sending the message and survey.<br> * Email <br> * Slack <br> Mattermost <br> If you do not specify this parameter, the Allow from workplan method will be enforced, meaning users can complete the survey from the workplan. | Optional |
-| To | The message and survey recipients. There are several ways to define the recipients. <br> * **User role**: Click inside the field to select a user role. All users assigned to the role will receive the message and survey. <br> * **Email address**: Manually type email addresses for Demisto users and/or external users. <br> * **Context**: Click the context icon to define recipients from context data. | Required |
+| Ask by | The method for sending the message and survey.<br/> * Email <br/> * Slack <br/> Mattermost <br/> If you do not specify this parameter, the Allow from workplan method will be enforced, meaning users can complete the survey from the workplan. | Optional |
+| To | The message and survey recipients. There are several ways to define the recipients. <br/> * **User role**: Click inside the field to select a user role. All users assigned to the role will receive the message and survey. <br/> * **Email address**: Manually type email addresses for Demisto users and/or external users. <br/> * **Context**: Click the context icon to define recipients from context data. | Required |
 | Subject | The message subject that displays to message recipients. You can make the survey question the subject, but if you don't write the question here, you should write the question in the message body field. | Required |
 | Message body | The text that displays in the body of the message. Although this field is optional, if you don't write the survey question in the Subject field, you should include it in the message body. This is a long-text field. | Optional |
 | Reply Options | The answers that display in the message, which users can select directly from the message. | Required |
@@ -84,7 +84,7 @@ The configuration options in the Timing tab define the frequency that the messag
 | Field | Description | Required |
 | ------ | ------ |
 | Question | A question to ask recipients. | Required |
-| Answer Type | The field type for the answer field. Valid values are: <br> * Short text <br> * Long text <br> * Number <br> * Single select - requires you to define a reply option. <br> * Multi select - requires you to define a reply option. <br> * Date picker <br> * Attachments | Required |
+| Answer Type | The field type for the answer field. Valid values are: <br/> * Short text <br/> * Long text <br/> * Number <br/> * Single select - requires you to define a reply option. <br/> * Multi select - requires you to define a reply option. <br/> * Date picker <br/> * Attachments | Required |
 | Mandatory | If this checkbox is selected for a question, survey recipients will not be able to submit the survey until they answer this question. | Optional |
 | Help Message | The message that displays when users hover over the question mark help button for the survey question. | Optional |
 | Placeholder | The empty value text that displays in the question's answer field. | Optional |
