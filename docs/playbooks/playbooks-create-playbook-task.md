@@ -4,11 +4,11 @@ title: Create a Playbook Task
 ---
 Cortex XSOAR supports different task types for the different aspects of the playbook. Each task type requires different information and provides different capabilities. You should choose your task type based on what you want to accomplish in the task. For example, for encrichment, you might want to run an enrichment sub-playbook or a command that returns additional information for an indicator. If you are at a fork in your decision tree, you should use a conditional task to help you determine which path to continue down.
 
-For more information about the different task types, see [INSERT XREF to Playbook Task Concepts]
+For more information about the different task types, see [Playbook Concepts](../playbooks/playbooks-overview). 
 
 To create a task:
 
-## Create an Ask Task
+## Create a Task
 
 1. In a playbook, click **+ Create Task**.
 

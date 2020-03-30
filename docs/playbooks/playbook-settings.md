@@ -1,3 +1,7 @@
+---
+id: playbook-settings
+title: Playbook Settings
+---
 You can manage general playbook settings such as the name, who can edit and run the playbook, as well as for which incident types the playbook runs in the playbook settings.
 
 1. From the **Playbooks** page, click on the playbook whose settings you want to manage.

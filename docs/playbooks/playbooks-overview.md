@@ -37,7 +37,7 @@ For example, in a phishing playbook, you would have different sections for the i
 ## Inputs and Outputs
 Depending on the task type that you select, and the script that you are running, your playbook task has inputs and outputs. 
 
-Inputs are data pieces that are present in the playbook or task. The inputs are often manipulated or enriched and they produce outputs. Outputs are objects whose entries will serve the tasks throughout the playbook, and they can be derived from the result of a task or command. To learn more about inputs and outputs, see [INSERT XREF Inputs-Outputs doc].
+Inputs are data pieces that are present in the playbook or task. The inputs are often manipulated or enriched and they produce outputs. Outputs are objects whose entries will serve the tasks throughout the playbook, and they can be derived from the result of a task or command. To learn more about inputs and outputs, see [Playbook Inputs and Outputs](../playbooks/playbooks-inputs-outputs).
 
 ## Field Mapping
 You can map output from a playbook task directly to an incident field. This means that the value for an output key populates the specified field per incident. This is a good alternative to using a task with a set incident command. 
