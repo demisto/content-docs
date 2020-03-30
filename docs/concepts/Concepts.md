@@ -24,7 +24,7 @@ Cortex XSOAR is an orchestration and automation system used to bring all of the 
 
 ## Integrations
 
-Third-party tools and services that the Demisto platform orchestrates and automates SOC operations. In addition to third-party tools, you can create your own integration using the Bring Your Own Integration (BYOI) feature.
+Third-party tools and services that the Cortex XSOAR platform orchestrates and automates SOC operations. In addition to third-party tools, you can create your own integration using the Bring Your Own Integration (BYOI) feature.
 
 The following lists some of the integration categories available in Cortex XSOAR. The list is not exhaustive, and highlights the main categories:
 
