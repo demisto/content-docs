@@ -62,7 +62,7 @@ It's important to maintain a never ending process in the container. That means:
 
 To run multiple processes in parallel, you can use async code. For an example you can check out the `Slack v2` or `Microsoft Teams` integrations.
 
-## Invoking Long Running http Integrations via Demisto Server's route handling 
+## Invoking HTTP Integrations via Demisto Server's route handling 
 
 **Supported Demisto Server version**: 5.5 and above
 
