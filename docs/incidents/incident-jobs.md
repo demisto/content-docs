@@ -4,7 +4,7 @@ title: Jobs
 ---
 You can create scheduled events in Cortex XSOAR using jobs. Jobs are triggered either by time-triggered events or feed-triggered events. For example, you can define a feed-triggered job to trigger a playbook when a specified TIM feed finishes a fetch operation for new indicators. Or you can schedule a time-triggered job that runs nightly and removes expired indicators.
 
-For a full tutorial on using jobs to trigger playbooks, 
+For a better understanding of how jobs are implemented to trigger playbooks, read the [tutorial for adding indicators to a SIEM](../tutorials/tutorial-playbook-TIM-EDL)
 
 ## Create a Job
 
@@ -61,8 +61,8 @@ The following table lists the fields available when defining a job, and their de
 | Recurring | Determine if the job is triggered at a pre-determined time interval. |
 | Tags | Add tags to apply to the job. You can use these tags as a search parameter in the system. |
 | Name | Enter a meaningful name for the job. |
-| Owner | Assign an owner for the job. |
-| Role | Select the role who can access this job. |
+| Owner | Assign an owner to the incident. |
+| Role | Select the role who can access the incident. |
 | Type | Determine the incident type created by this job. |
 | Severity | Determine the severity of the incident that is created. |
 | Playbook | Determine which playbook to run when this job is triggered. |
