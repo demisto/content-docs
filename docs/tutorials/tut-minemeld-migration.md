@@ -1,6 +1,6 @@
 ---
 id: tut-minemeld-migration
-title: Migrating MineMeld Nodes to Cortex XSOAR Integrations
+title: Migrating MineMeld to Cortex XSOAR
 ---
 
 This tutorial explains how to implement the functionality of MineMeld nodes in Cortex XSOAR using a series of integrations. After you complete the tutorial, you’ll be able to perform core MineMeld functions in Cortex XSOAR.
