@@ -102,7 +102,8 @@ const sidebars = {
       label: "Tutorials",
       items: [
             "tutorials/tut-setup-dev",
-            "tutorials/tut-integration-ui"
+            "tutorials/tut-integration-ui",
+            "tutorials/tut-minemeld-migration"
           ]
     }
   ],
