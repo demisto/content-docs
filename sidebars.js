@@ -90,6 +90,7 @@ const sidebars = {
         "playbooks/playbook-settings",
         "playbooks/playbook-conventions",
         "playbooks/playbooks-inputs-outputs",
+        "playbooks/playbooks-extend-context",
         "playbooks/playbooks-create-playbook-task",
         "playbooks/playbooks-create-conditional-task",
         "playbooks/playbooks-communication-task-concepts",
