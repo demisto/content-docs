@@ -38,11 +38,11 @@ The **Parameter Configuration** displays any configuration parameters that need 
 | feodotracker.ipblocklist | Feodo Tracker IP Blocklist Feed | **Feed Source**: Currently Active |
 | feodotracker.hashes | Feodo Tracker Hashes Feed | |
 | malwaredomainlist.ip | Malware Domain List Active IPs Feed | |
-| o365-api.\<region\>-\<service\> | Office 365 Feed | **Regions**: \<region\><br>**Services**: \<service\> |
-| phishme.Intelligence | Cofense Feed | **Username**: \<your-cofense-username\><br>**Password**: \<your-cofense-password\> |
-| proofpoint.EmergingThreatsDomains | Proofpoint Feed | **Authorization Code**: \<key-from-proofpoint-used-to-access-the-api\><br>**Indicator Reputation**: \<what-reputation-to-assign-indicators-fetched-from-this-feed\><br>**Indicator Type**: domain |
-| proofpoint.EmergingThreatsIPs | Proofpoint Feed | **Authorization Code**: \<key-from-proofpoint-used-to-access-the-api\><br>**Indicator Reputation**: \<what-reputation-to-assign-indicators-fetched-from-this-feed\><br>**Indicator Type**: ip |
-| recordedfuture.MasterRiskList | Recorded Future RiskList Feed | **Indicator Type**: \<the-type-of-indicator-to-fetch-from-this-feed\><br>**API token**: \<your-recorded-future-api-token\> |
+| o365-api.\<region\>-\<service\> | Office 365 Feed | **Regions**: \<region\><br />**Services**: \<service\> |
+| phishme.Intelligence | Cofense Feed | **Username**: \<your-cofense-username\><br />**Password**: \<your-cofense-password\> |
+| proofpoint.EmergingThreatsDomains | Proofpoint Feed | **Authorization Code**: \<key-from-proofpoint-used-to-access-the-api\><br />**Indicator Reputation**: \<what-reputation-to-assign-indicators-fetched-from-this-feed\><br />**Indicator Type**: domain |
+| proofpoint.EmergingThreatsIPs | Proofpoint Feed | **Authorization Code**: \<key-from-proofpoint-used-to-access-the-api\><br />**Indicator Reputation**: \<what-reputation-to-assign-indicators-fetched-from-this-feed\><br />**Indicator Type**: ip |
+| recordedfuture.MasterRiskList | Recorded Future RiskList Feed | **Indicator Type**: \<the-type-of-indicator-to-fetch-from-this-feed\><br />**API token**: \<your-recorded-future-api-token\> |
 | spamhaus.\<service\> | Spamhaus Feed | **Services**: \<service-url\> |
 | sslabusech.ipblacklist | abuse.ch SSL Blacklist Feed | **Services**: https://sslbl.abuse.ch/blacklist/sslipblacklist.csv |
 | tor.exit_addresses | Tor Exit Addresses Feed | |
