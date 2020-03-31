@@ -1,3 +1,6 @@
+# Redirect main docs page
+/docs	/docs/welcome
+
 # Redirect existing docs
 
 # Partner docs
@@ -48,3 +51,48 @@
 # Tutorials
 /docs/tutorial-setup-dev	/docs/tutorials/getting-started/tut-setup-dev
 /docs/tutorial	/docs/tutorials/integrations/tut-integration-ui
+
+
+# Redirect docs after second restyle of 3/20/2020
+
+# Howtos Integrations
+/docs/howtos/integrations/changelog /docs/integrations/changelog
+/docs/howtos/integrations/code-conventions  /docs/integrations/code-conventions
+/docs/howtos/integrations/context-and-outputs   /docs/integrations/context-and-outputs
+/docs/howtos/integrations/context-standards /docs/integrations/context-standards
+/docs/howtos/integrations/dbot  /docs/integrations/dbot
+/docs/howtos/integrations/debugging /docs/integrations/debugging
+/docs/howtos/integrations/dev-setup /docs/integrations/dev-setup
+/docs/howtos/integrations/doc-structure /docs/integrations/doc-structure
+/docs/howtos/integrations/docker    /docs/integrations/docker
+/docs/howtos/integrations/dt    /docs/integrations/dt
+/docs/howtos/integrations/fetching-credentials  /docs/integrations/fetching-credentials
+/docs/howtos/integrations/fetching-incidents    /docs/integrations/fetching-incidents
+/docs/howtos/integrations/getting-started-guide /docs/integrations/getting-started-guide
+/docs/howtos/integrations/integration-docs  /docs/integrations/integration-docs
+/docs/howtos/integrations/linting   /docs/integrations/linting
+/docs/howtos/integrations/long-running  /docs/integrations/long-running
+/docs/howtos/integrations/package-dir   /docs/integrations/package-dir
+/docs/howtos/integrations/parameter-types   /docs/integrations/parameter-types
+/docs/howtos/integrations/test-playbooks    /docs/integrations/test-playbooks
+/docs/howtos/integrations/unit-testing  /docs/integrations/unit-testing
+/docs/howtos/integrations/yaml-file /docs/integrations/yaml-file
+# the next two are correct
+/docs/howtos/integrations/integration-cache /docs/integrations/integration-cache
+/docs/howtos/integrations/integration-context /docs/integrations/integration-cache
+
+# Howtos Contributing
+/docs/howtos/contributing/circleci  /docs/contributing/circleci
+
+# Howtos Playbooks
+/docs/howtos/playbooks/playbook-conventions /docs/playbooks/playbook-conventions
+/docs/howtos/playbooks/playbooks    /docs/playbooks/playbooks
+/docs/howtos/playbooks/generic-polling  /docs/playbooks/generic-polling
+
+# Tutorials
+/docs/tutorials/getting-started/tut-setup-dev   /docs/tutorials/tut-setup-dev
+/docs/tutorials/integrations/tut-integration-ui /docs/tutorials/tut-integration-ui
+
+#Sign Up
+
+/sign-addn https://na2.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=f1b0bfb5-5e5a-49b9-8ed6-5b475605cefa&env=na2&acct=11b87c14-db4f-4b90-b5b1-58b37f18856f&v=2
