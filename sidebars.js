@@ -104,9 +104,9 @@ const sidebars = {
       type: "category",
       label: "Incidents, Fields & Layouts",
       items: [
+        "incidents/incident-xsoar-incident-lifecycle",
         "incidents/incident-types",
         "incidents/incident-customize-incident-layout",
-        "incidents/incident-xsoar-incident-lifecycle",
         "incidents/incident-fields",
         "incidents/incident-jobs",
         "incidents/incident-auto-extract",
