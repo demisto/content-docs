@@ -26,24 +26,24 @@ The **Parameter Configuration** displays any configuration parameters that need 
 | Prototype | Integration | Parameter Configuration |
 | --------- | ----------- | ----------------------- |
 | alienvault.reputation | Alienvault Reputation Feed | |
-| aws.\<service\> | AWS Feed | **Services**: \<service\> |
+| aws.&lt;service&gt; | AWS Feed | **Services**: &lt;service&gt; |
 | azure.cloudIPs | Azure Feed | |
-| bambenekconsulting.\<service\> | Bambenek Consulting Feed | **Services**: \<service-url\> |
-| blocklist_de.\<service\> | Blocklist_de Feed | **Services**: \<service\> |
+| bambenekconsulting.&lt;service&gt; | Bambenek Consulting Feed | **Services**: &lt;service-url&gt; |
+| blocklist_de.&lt;service&gt; | Blocklist_de Feed | **Services**: &lt;service&gt; |
 | bruteforceblocker.blist | BruteForceBlocker Feed | |
-| cloudflare.\<service\> | Cloudflare Feed | **Services**: \<service-url\> |
+| cloudflare.&lt;service&gt; | Cloudflare Feed | **Services**: &lt;service-url&gt; |
 | dshield.block | DShield Feed | |
 | fastly.ipv4 | Fastly Feed | |
 | feodotracker.badips | Feodo Tracker IP Blocklist Feed | **Feed Source**: Last 30 Days |
 | feodotracker.ipblocklist | Feodo Tracker IP Blocklist Feed | **Feed Source**: Currently Active |
 | feodotracker.hashes | Feodo Tracker Hashes Feed | |
 | malwaredomainlist.ip | Malware Domain List Active IPs Feed | |
-| o365-api.\<region\>-\<service\> | Office 365 Feed | **Regions**: \<region\><br />**Services**: \<service\> |
-| phishme.Intelligence | Cofense Feed | **Username**: \<your-cofense-username\><br />**Password**: \<your-cofense-password\> |
-| proofpoint.EmergingThreatsDomains | Proofpoint Feed | **Authorization Code**: \<key-from-proofpoint-used-to-access-the-api\><br />**Indicator Reputation**: \<what-reputation-to-assign-indicators-fetched-from-this-feed\><br />**Indicator Type**: domain |
-| proofpoint.EmergingThreatsIPs | Proofpoint Feed | **Authorization Code**: \<key-from-proofpoint-used-to-access-the-api\><br />**Indicator Reputation**: \<what-reputation-to-assign-indicators-fetched-from-this-feed\><br />**Indicator Type**: ip |
-| recordedfuture.MasterRiskList | Recorded Future RiskList Feed | **Indicator Type**: \<the-type-of-indicator-to-fetch-from-this-feed\><br />**API token**: \<your-recorded-future-api-token\> |
-| spamhaus.\<service\> | Spamhaus Feed | **Services**: \<service-url\> |
+| o365-api.&lt;region&gt;-&lt;service&gt; | Office 365 Feed | **Regions**: &lt;region&gt;<br />**Services**: &lt;service&gt; |
+| phishme.Intelligence | Cofense Feed | **Username**: &lt;your-cofense-username&gt;<br />**Password**: &lt;your-cofense-password&gt; |
+| proofpoint.EmergingThreatsDomains | Proofpoint Feed | **Authorization Code**: &lt;key-from-proofpoint-used-to-access-the-api&gt;<br />**Indicator Reputation**: &lt;what-reputation-to-assign-indicators-fetched-from-this-feed&gt;<br />**Indicator Type**: domain |
+| proofpoint.EmergingThreatsIPs | Proofpoint Feed | **Authorization Code**: &lt;key-from-proofpoint-used-to-access-the-api&gt;<br />**Indicator Reputation**: &lt;what-reputation-to-assign-indicators-fetched-from-this-feed&gt;<br />**Indicator Type**: ip |
+| recordedfuture.MasterRiskList | Recorded Future RiskList Feed | **Indicator Type**: &lt;the-type-of-indicator-to-fetch-from-this-feed&gt;<br />**API token**: &lt;your-recorded-future-api-token&gt; |
+| spamhaus.&lt;service&gt; | Spamhaus Feed | **Services**: &lt;service-url&gt; |
 | sslabusech.ipblacklist | abuse.ch SSL Blacklist Feed | **Services**: https://sslbl.abuse.ch/blacklist/sslipblacklist.csv |
 | tor.exit_addresses | Tor Exit Addresses Feed | |
 
