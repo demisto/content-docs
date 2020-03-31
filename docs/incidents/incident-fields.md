@@ -1,5 +1,5 @@
 ---
-id: howto-incident-fields
+id: incident-fields
 title: Working with Incident Fields
 ---
 Incident Fields are used for accepting or populating incident data coming from incidents. You create fields for information you know will be coming from 3rd party integrations and in which you want to insert the information. The fields are added to Incident Type layouts and are mapped using the Classification and Mapping feature. In addition, Incident Fields can be populated by the incident team members during an investigation, at the beginning of the investigation or prior to closing the investigation.
@@ -36,8 +36,8 @@ There are different types of Incident Fields. You should define the Field Type a
 * User - a user in the system to state a manager or fallback
 * Role
 * Attachments - enables adding an attachment, such as .doc, malicious files, reports, images of an incident.
-* SLA - view how much time is left before an SLA becomes past due, as well as configure actions to take in the event that the SLA does pass. For more information, see Working with SLAs.
-* Grid - include an interactive, editable grid as a field type for selected incident types or all incident types. For more information, see Grid Field.
+* SLA - view how much time is left before an SLA becomes past due, as well as configure actions to take in the event that the SLA does pass. For more information, see [Working with SLAs](#sla-fields).
+* Grid - include an interactive, editable grid as a field type for selected incident types or all incident types. 
 
 ## Incident Field Properties
 The following tables list the fields that are common to all Incident Fields. For a list of fields, and their descriptions, that are specific to a Field Type, see the sections, below.
@@ -98,7 +98,7 @@ When trying to download a content update, you receive the following message:
 
 `Warning: content update has encountered some conflicts`
 
-This occurs when a content update has an incident field with the same name as a custom incident field that already exists in Demisto.
+This occurs when a content update has an incident field with the same name as a custom incident field that already exists in Cortex XSOAR.
 
 **Solution**
 

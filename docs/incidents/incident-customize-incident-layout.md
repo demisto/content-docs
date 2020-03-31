@@ -17,7 +17,7 @@ You can add dynamic sections to a layout, such as a graph of the number of bad i
 
 1. Navigate to **Settings** -> **Advanced** -> **Incident Types**.
 
-2. Select the incident type whose layout you want to edit and click Edit **Layout**.
+2. Select the incident type whose layout you want to edit and click **Edit Layout**.
    You are presented with the current layout, which is populated with demo data so you can see how the fields fit.
 
 3. (Optional) Drag and drop the tabs to reorder their appearance. For example, drag the **War Room** so it appears after the **Work Plan**. You can also click **+New tab** to add a tab that currently does not exist.

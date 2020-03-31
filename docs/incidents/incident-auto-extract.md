@@ -2,7 +2,7 @@
 id: incident-auto-extract
 title: Auto Extract
 ---
-The auto-extract feature extracts indicators and enriches their reputations using commands and scripts defined for the indicator type. You can automatically extract indicators in the following scenarios:
+The Auto Extract feature extracts indicators and enriches their reputations using commands and scripts defined for the indicator type. You can automatically extract indicators in the following scenarios:
 
 * When fetching incidents
 
@@ -14,13 +14,13 @@ By default, Auto Extract is enabled to help you get up and running as you set up
 
 As a result, Cortex XSOAR recommends that you turn off Auto Extract using the server configurations for the different Auto Extract options and only turn it on for those specific scenarios where it is necessary. 
 
-## Auto-extract modes
+## Auto Extract Modes
 
 Auto Extract supports the following modes:
 
 * None - Indicators are not automatically extracted. Use this option when you do not want to further evaluate the indicators. 
 
-* Inline - Indicators are extracted and enriched within the context that auto-extract runs, and the findings are added to the Context Data. For example, if you define auto-extract for the Phishing incident type as inline, all of the indicators for incident classified as Phishing will be extracted and enriched before anything else happens. The playbook you defined to run by default will not run until the indicators have been fully processed. Use this option when you need to have the most robust information available per indicator. Unless otherwise configured in a system configuration, this is the default mode in which auto-extract executes.
+* Inline - Indicators are extracted and enriched within the context that Auto Extract runs, and the findings are added to the Context Data. For example, if you define Auto Extract for the Phishing incident type as inline, all of the indicators for incident classified as Phishing will be extracted and enriched before anything else happens. The playbook you defined to run by default will not run until the indicators have been fully processed. Use this option when you need to have the most robust information available per indicator. Unless otherwise configured in a system configuration, this is the default mode in which Auto Extract executes.
 
    **Note**: This configuration will slow down your system performance. 
 
@@ -61,14 +61,14 @@ To disable Auto Extract for an automation, add the "IgnoreAutoExtract": True va
 
 
 ### Disable for Integrations
-To disable auto-extract for a specific integration, add the following parameter to the integration configuration.
+To disable Auto Extract for a specific integration, add the following parameter to the integration configuration.
 
 "IgnoreAutoExtract": True
 
 
 ## Configure What Auto Extract Executes
 
-When auto-extract is used, it extracts all indicators that match the regex defined in an indicator type, and enriches those indicators using its commands. For example, out-of-the-box, the URL indicator is enriched using the !url command. You can decide to further enrich IP indicators by using a script that calls multiple integrations, such as urlscan.io and URLhaus.
+When Auto Extract is used, it extracts all indicators that match the regex defined in an indicator type, and enriches those indicators using its commands. For example, out-of-the-box, the URL indicator is enriched using the *!url* command. You can decide to further enrich IP indicators by using a script that calls multiple integrations, such as urlscan.io and URLhaus.
 
 1. Navigate to **Setting** -> **Advanced** -> **Indicator Types**.
 
@@ -100,11 +100,11 @@ The following scenario shows how Auto Extract is used in the *Process Email - Ge
 
    ![Parse Email Files - Inline](../doc_imgs//incidents/Auto-Extract_ParseEmailFiles_Inline.png)
   
-   Note that under Auto extract indicators, the Inline option is selected. This indicates that all of the outputs will be processed before the playbook moves ahead to the next task.
+   Note that under **Auto extract indicators**, the *Inline* option is selected. This indicates that all of the outputs will be processed before the playbook moves ahead to the next task.
 
 4. Open the **Set incident with the Email object data** task. This task receives the data from the **Add original email attachments to context** task and sets the various data points to context. 
 
-   Under the Advanced tab, you can see that **Auto extract indicators** is set to None because the indicators have already been enriched and there is no need to do it again.
+   Under the Advanced tab, you can see that **Auto extract indicators** is set to *None* because the indicators have already been enriched and there is no need to do it again.
 
  ![Parse Email Files - Disabled](../doc_imgs//incidents/Auto-Extract_ParseEmailFiles_Disabled.png)
 

@@ -2,7 +2,7 @@
 id: incident-pre-processing
 title: Pre-processing Rules
 ---
-Pre-processing rules enable you to perform certain actions on incidents as they are ingested into Demisto directly from the user interface. Through these rules, you can select incoming events on which to perform actions, for example, link the incoming incident to an existing incident, or under pre-configured conditions, drop the incoming incident altogether.
+Pre-processing rules enable you to perform certain actions on incidents as they are ingested into Cortex XSOAR directly from the user interface. Through these rules, you can select incoming events on which to perform actions, for example, link the incoming incident to an existing incident, or under pre-configured conditions, drop the incoming incident altogether.
 
 **Notes**: Rules are applied in descending order, and only one rule is applied per incident.
 
@@ -47,4 +47,4 @@ In most cases, in a phishing campaign, the email subject will be similar. Theref
 
 As we know that this is a campaign, we are going to ask to close the incoming incident and link it to an already existing incident.
 
-Lastly, we have to tell Cortex xSOAR to which incident to link the incoming incident, so we've asked to link to the oldest incident, since we want to link to the first incident in the campaign.
+Lastly, we have to tell Cortex XSOAR to which incident to link the incoming incident, so we've asked to link to the oldest incident, since we want to link to the first incident in the campaign.

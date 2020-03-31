@@ -13,9 +13,9 @@ Before you begin configuring integrations and ingesting information from 3rd par
 
 | Phase | Description | 
 | ------ | ------ |
-| Create fields | Used to display information from 3rd-party integrations and playbook tasks when an incident is created or processed. For more information, see [Working with Incident Fields](howto-incident-fields).|
+| Create fields | Used to display information from 3rd-party integrations and playbook tasks when an incident is created or processed. For more information, see [Working with Incident Fields](incident-fields).|
 | Create incident types | Classify the different types of attacks with which your organization deals. For more information, see [Incident Types](incident-types). |
-| Create incident layouts | Customize your layouts for each incident type to make sure the most relevant information is show for each type. For more information, see [Customize Incident Layouts](incident-customize-incident-layout). |
+| Create incident layouts | Customize your layouts for each incident type to make sure the most relevant information is shown for each type. For more information, see [Customize Incident Layouts](incident-customize-incident-layout). |
 
 
 This is an iterative process. After you initially create your fields and incident types, as well as implement them in your incident layouts, you will start the process of ingesting information. You will then see how accurately you have mapped out your information. Make changes as you go along and learn more about the information you are receiving. Information that is not mapped to fields will be available in labels, of course, but it is much easier to work with the information when it is properly mapped to a field and displayed in the relevant layouts.

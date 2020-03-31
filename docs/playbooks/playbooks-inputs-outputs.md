@@ -1,5 +1,5 @@
 ---
-id: howto-playbooks-inputs-outputs
+id: playbooks-inputs-outputs
 title: Inputs and Outputs
 ---
 Playbooks and tasks have inputs, which are data pieces that are present in the playbook or task. The inputs are often manipulated or enriched and they produce outputs. The inputs might come from the incident itself, such the role to whom to assign the incident, or an input can be provided by an integration. For example, when an Active Directory integration is used in a task to extract a user's credentials. 

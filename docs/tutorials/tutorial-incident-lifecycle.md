@@ -19,9 +19,9 @@ Cortex XSOAR comes with the Access and Authentication incident types configured 
 
     1. Under **Name**, enter *QRadar-Default*.
 
-    2. Select the **Run playbook automatically** checkbox.
+    1. Select the **Run playbook automatically** checkbox.
 
-    3. Under Auto extract incident indicators, select **Inline**.
+    1. Under Auto extract incident indicators, select **Inline**.
 
    ![Incident Type](../doc_imgs/tutorials/tutorial-incident-lifecycle/Indicator-Type_Default-QRadarpng.png "Incident Type")
 
@@ -72,9 +72,11 @@ Now that we have the fields that we want, and placed them in the layouts that we
 
    1. Enter a name and credentials to connect to the QRadar instance.
 
-   2. Under **Incident type**, select QRadar-Default. This will be used as the default incident type for any incidents that we do not classify. 
+   2. Select the **Fetch incidents** radio button.
 
-   3. Click **Done**.
+   3. Under **Incident type**, select QRadar-Default. This will be used as the default incident type for any incidents that we do not classify. 
+
+   4. Click **Done**.
 
 ## Classification and Mapping
 

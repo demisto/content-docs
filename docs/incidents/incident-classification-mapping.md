@@ -2,10 +2,10 @@
 id: incident-classification-mapping
 title: Classification and Mapping
 ---
-The classification and mapping feature enables you to take the events and event information that Demisto ingests from integrations or REST API, and classify the event as a type of Demisto incident. For example, Cortex might generate alerts from Traps which you would classify according to the information in those either as dedicated Traps incident types or maybe Authentication or Malware. You might have EWS configured to ingest both phishing and malware alerts which you would want to classify to their respective incident types based on some information in the event. By classifying the events differently, you have more control of the incident type and allowing you to run multiple playbooks for the events coming from one source. 
+The classification and mapping feature enables you to take the events and event information that Cortex XSOAR ingests from integrations or REST API, and classify the event as a type of Cortex XSOAR incident. For example, Cortex might generate alerts from Traps which you would classify according to the information in those either as dedicated Traps incident types or maybe Authentication or Malware. You might have EWS configured to ingest both phishing and malware alerts which you would want to classify to their respective incident types based on some information in the event. By classifying the events differently, you have more control of the incident type and allowing you to run multiple playbooks for the events coming from one source. 
 
 Once you classify the incident, you can map the fields from the 3rd party integration to the fields that you defined in the incident layout.
-Any fields that you do not map, are automatically mapped to Demisto labels. While this information can still be accessed, it is always easier to work with fields. 
+Any fields that you do not map, are automatically mapped to Cortex XSOAR labels. While this information can still be accessed, it is always easier to work with fields. 
 
 To get the most benefit out of classification and mapping, make sure that you understand which information will be ingested from the events so you can set up the fields and incident types accordingly. 
 
