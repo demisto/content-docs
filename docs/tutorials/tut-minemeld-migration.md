@@ -26,12 +26,12 @@ The **Parameter Configuration** displays any configuration parameters that need 
 | Prototype | Integration | Parameter Configuration |
 | --------- | ----------- | ----------------------- |
 | alienvault.reputation | Alienvault Reputation Feed | |
-| aws.\<service\> | AWS Feed | **Sub-Feeds**: \<service\> |
+| aws.\<service\> | AWS Feed | **Services**: \<service\> |
 | azure.cloudIPs | Azure Feed | |
-| bambenekconsulting.\<service\> | Bambenek Consulting Feed | **Sub-Feeds**: \<service-url\> |
-| blocklist_de.\<service\> | Blocklist_de Feed | **Sub-Feeds**: \<service\> |
+| bambenekconsulting.\<service\> | Bambenek Consulting Feed | **Services**: \<service-url\> |
+| blocklist_de.\<service\> | Blocklist_de Feed | **Services**: \<service\> |
 | bruteforceblocker.blist | BruteForceBlocker Feed | |
-| cloudflare.\<service\> | Cloudflare Feed | **Sub-Feeds**: \<service-url\> |
+| cloudflare.\<service\> | Cloudflare Feed | **Services**: \<service-url\> |
 | dshield.block | DShield Feed | |
 | fastly.ipv4 | Fastly Feed | |
 | feodotracker.badips | Feodo Tracker IP Blocklist Feed | **Feed Source**: Last 30 Days |
@@ -43,8 +43,8 @@ The **Parameter Configuration** displays any configuration parameters that need 
 | proofpoint.EmergingThreatsDomains | Proofpoint Feed | **Authorization Code**: \<key-from-proofpoint-used-to-access-the-api\><br>**Indicator Reputation**: \<what-reputation-to-assign-indicators-fetched-from-this-feed\><br>**Indicator Type**: domain |
 | proofpoint.EmergingThreatsIPs | Proofpoint Feed | **Authorization Code**: \<key-from-proofpoint-used-to-access-the-api\><br>**Indicator Reputation**: \<what-reputation-to-assign-indicators-fetched-from-this-feed\><br>**Indicator Type**: ip |
 | recordedfuture.MasterRiskList | Recorded Future RiskList Feed | **Indicator Type**: \<the-type-of-indicator-to-fetch-from-this-feed\><br>**API token**: \<your-recorded-future-api-token\> |
-| spamhaus.\<service\> | Spamhaus Feed | **Sub-Feeds**: \<service-url\> |
-| sslabusech.ipblacklist | abuse.ch SSL Blacklist Feed | **Sub-Feeds**: https://sslbl.abuse.ch/blacklist/sslipblacklist.csv |
+| spamhaus.\<service\> | Spamhaus Feed | **Services**: \<service-url\> |
+| sslabusech.ipblacklist | abuse.ch SSL Blacklist Feed | **Services**: https://sslbl.abuse.ch/blacklist/sslipblacklist.csv |
 | tor.exit_addresses | Tor Exit Addresses Feed | |
 
 
@@ -105,7 +105,7 @@ Let's configure an instance.
 
 <img src="../doc_imgs/tutorials/tut-minemeld-migration/aws-feed-configuration-1.png"></img>
 
-Cortex XSOAR provides default values for many of the configuration parameters, as determined by the source of the feed. To configure the integration instance to fetch from the same source as the MineMeld node we are migrating from, we only need to update a single parameter. In this particular case, we only need to click the `Sub-Feeds` dropdown menu and click `CLOUDFRONT`. 
+Cortex XSOAR provides default values for many of the configuration parameters, as determined by the source of the feed. To configure the integration instance to fetch from the same source as the MineMeld node we are migrating from, we only need to update a single parameter. In this particular case, we only need to click the `Services` dropdown menu and click `CLOUDFRONT`. 
 
 <img src="../doc_imgs/tutorials/tut-minemeld-migration/aws-feed-configuration-2.png"></img>
 
@@ -118,7 +118,7 @@ Click `Done` at the bottom right of the configuration panel and you're all done!
 
 ## AWS Feed Continued
 
-As you may have noticed when configuring the `AWS Feed` instance to pull indicators from `CLOUDFRONT`, there were additional sub-feeds that you could select. So, if it were the case that your MineMeld configuration contained multiple nodes, as shown below, whose prototypes were prefixed with `aws`, there are two options for configuring these additional AWS feeds in Cortex XSOAR.
+As you may have noticed when configuring the `AWS Feed` instance to pull indicators from `CLOUDFRONT`, there were additional services that you could select. So, if it were the case that your MineMeld configuration contained multiple nodes, as shown below, whose prototypes were prefixed with `aws`, there are two options for configuring these additional AWS feeds in Cortex XSOAR.
 ```
   allow-ip_aws_cloudfront:
     inputs: []
@@ -137,7 +137,7 @@ Let's see what we could do now if we wanted to configure the `allow-ip_aws_ec2` 
 
 <img src="../doc_imgs/tutorials/tut-minemeld-migration/aws-feed-cog.png"></img>
 
-In the drop-down menu for the `Sub-Feeds` multi-select field, click `EC2`. 
+In the drop-down menu for the `Services` multi-select field, click `EC2`. 
 
 <img src="../doc_imgs/tutorials/tut-minemeld-migration/aws-feed-configuration-4.png"></img><img src="../doc_imgs/tutorials/tut-minemeld-migration/aws-feed-configuration-5.png"></img>
 
