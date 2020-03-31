@@ -16,8 +16,7 @@ For a better understanding of how jobs are implemented to trigger playbooks, rea
 
 ### Time-triggered Jobs
 1. To configure the job to recur, select **Recurring**. <br/> Determine at which intervals the job recurs, when it starts, and when the job expires. 
-You can also configure the recurring job using a cron expresion. To do so, click **Switch to Cron view** and enter the expression. For assistance in defining the cron expression, click **Show cron examples**. 
-<br/> To configure the job to run once, enter a date and time in the **Start at** field.
+You can also configure the recurring job using a cron expresion. To do so, click **Switch to Cron view** and enter the expression. For assistance in defining the cron expression, click **Show cron examples**. <br/> To configure the job to run once, enter a date and time in the **Start at** field.
 
 ![Time-triggered Job](../doc_imgs/incidents/Jobs_Time-Triggered_Basic.png)
 
