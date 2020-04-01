@@ -14,6 +14,17 @@ from bs4 import BeautifulSoup
 from mdx_utils import fix_mdx, verify_mdx
 from CommonServerPython import tableToMarkdown  # type: ignore
 from typing import List
+from datetime import datetime
+
+# override print so we have a timestamp with each print
+org_print = print
+
+
+def timestamped_print(*args, **kwargs):
+    org_print(datetime.now(), *args, **kwargs)
+
+
+print = timestamped_print
 
 INTEGRATION_DOCS_MATCH = [
     "Integrations/[^/]+?/README.md",
@@ -29,8 +40,13 @@ SCRIPTS_DOCS_MATCH = [
     "Packs/[^/]+?/Scripts/[^/]+?/README.md",
     "Packs/[^/]+?/Scripts/.+_README.md",
 ]
+PLAYBOOKS_DOCS_MATCH = [
+    "Playbooks/.+_README.md",
+    "Packs/[^/]+?/Playbooks/.+_README.md",
+]
 INTEGRATIONS_PREFIX = 'integrations'
 SCRIPTS_PREFIX = 'scripts'
+PLAYBOOKS_PREFIX = 'playbooks'
 NO_HTML = '<!-- NOT_HTML_DOC -->'
 YES_HTML = '<!-- HTML_DOC -->'
 BRANCH = os.getenv('HEAD', 'master')
@@ -83,7 +99,7 @@ def gen_html_doc(txt: str) -> str:
             '<div dangerouslySetInnerHTML={{__html: txt}} />\n')
 
 
-def process_code_doc(readme_file: str, target_dir: str, content_dir: str) -> DocInfo:
+def process_readme_doc(readme_file: str, target_dir: str, content_dir: str) -> DocInfo:
     base_dir = os.path.dirname(readme_file)
     if readme_file.endswith('_README.md'):
         ymlfile = readme_file[0:readme_file.index('_README.md')] + '.yml'
@@ -96,11 +112,9 @@ def process_code_doc(readme_file: str, target_dir: str, content_dir: str) -> Doc
         ymlfile = ymlfiles[0]
     with open(ymlfile, 'r', encoding='utf-8') as f:
         yml_data = yaml.safe_load(f)
-    id = yml_data['commonfields']['id']
+    id = yml_data.get('commonfields', {}).get('id') or yml_data['id']
     id = inflection.dasherize(inflection.underscore(id)).replace(' ', '-')
-    name = yml_data.get('display') or yml_data.get('name')
-    if not name:
-        raise ValueError(f'name not found')
+    name = yml_data.get('display') or yml_data['name']
     desc = yml_data.get('description') or yml_data.get('comment')
     doc_info = DocInfo(id, name, desc)
     with open(readme_file, 'r', encoding='utf-8') as f:
@@ -158,18 +172,18 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
     fail = []
     for r in readme_files:
         try:
-            doc_infos.append(process_code_doc(r, integrations_dir, content_dir))
+            doc_infos.append(process_readme_doc(r, integrations_dir, content_dir))
             success.append(r)
         except Exception as ex:
             print(f'ERROR: failed processing: {r}. Exception: {ex}.\n{traceback.format_exc()}--------------------------')
             fail.append(f'{r} ({str(ex).splitlines()[0]})')
-    print(f'Success {prefix} docs:')
+    org_print(f'\n===========================================\nSuccess {prefix} docs:')
     for r in sorted(success):
         print(r)
-    print(f'\n===========================================\nFailed {prefix} docs:')
+    org_print(f'\n===========================================\nFailed {prefix} docs:')
     for r in sorted(fail):
         print(r)
-    print("\n===========================================\n")
+    org_print("\n===========================================\n")
     return sorted(doc_infos, key=lambda d: d.name)  # sort by name
 
 
@@ -182,7 +196,9 @@ def main():
     prefix = os.path.basename(args.target)
     integrations_full_prefix = f'{prefix}/{INTEGRATIONS_PREFIX}'
     scripts_full_prefix = f'{prefix}/{SCRIPTS_PREFIX}'
+    playbooks_full_prefix = f'{prefix}/{PLAYBOOKS_PREFIX}'
     integration_doc_infos = create_docs(args.dir, args.target, INTEGRATION_DOCS_MATCH, INTEGRATIONS_PREFIX)
+    playbooks_doc_infos = create_docs(args.dir, args.target, PLAYBOOKS_DOCS_MATCH, PLAYBOOKS_PREFIX)
     script_doc_infos = create_docs(args.dir, args.target, SCRIPTS_DOCS_MATCH, SCRIPTS_PREFIX)
     index_base = f'{os.path.dirname(os.path.abspath(__file__))}/reference-index.md'
     index_target = args.target + '/index.md'
@@ -190,9 +206,12 @@ def main():
     with open(index_target, 'a', encoding='utf-8') as f:
         f.write("\n\n## Integrations\n\n")
         f.write(index_doc_infos(integration_doc_infos, INTEGRATIONS_PREFIX))
+        f.write("\n\n## Playbooks\n\n")
+        f.write(index_doc_infos(playbooks_doc_infos, PLAYBOOKS_PREFIX))
         f.write("\n\n## Scripts\n\n")
         f.write(index_doc_infos(script_doc_infos, SCRIPTS_PREFIX))
     integration_items = [f'{integrations_full_prefix}/{d.id}' for d in integration_doc_infos]
+    playbook_items = [f'{playbooks_full_prefix}/{d.id}' for d in playbooks_doc_infos]
     script_items = [f'{scripts_full_prefix}/{d.id}' for d in script_doc_infos]
     sidebar = [
         {
@@ -203,6 +222,11 @@ def main():
             "type": "category",
             "label": "Integrations",
             "items": integration_items
+        },
+        {
+            "type": "category",
+            "label": "Playbooks",
+            "items": playbook_items
         },
         {
             "type": "category",
