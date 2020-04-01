@@ -23,10 +23,19 @@ INTEGRATION_DOCS_MATCH = [
     "Beta_Integrations/[^/]+?/README.md",
     "Beta_Integrations/.+_README.md",
 ]
+SCRIPTS_DOCS_MATCH = [
+    "Scripts/[^/]+?/README.md",
+    "Scripts/.+_README.md",
+    "Packs/[^/]+?/Scripts/[^/]+?/README.md",
+    "Packs/[^/]+?/Scripts/.+_README.md",
+]
 INTEGRATIONS_PREFIX = 'integrations'
+SCRIPTS_PREFIX = 'scripts'
 NO_HTML = '<!-- NOT_HTML_DOC -->'
 YES_HTML = '<!-- HTML_DOC -->'
 BRANCH = os.getenv('HEAD', 'master')
+# env vars for faster development
+MAX_FILES = int(os.getenv('MAX_FILES', -1))
 
 
 class DocInfo:
@@ -74,7 +83,7 @@ def gen_html_doc(txt: str) -> str:
             '<div dangerouslySetInnerHTML={{__html: txt}} />\n')
 
 
-def process_integration_doc(readme_file: str, target_dir: str, content_dir: str) -> DocInfo:
+def process_code_doc(readme_file: str, target_dir: str, content_dir: str) -> DocInfo:
     base_dir = os.path.dirname(readme_file)
     if readme_file.endswith('_README.md'):
         ymlfile = readme_file[0:readme_file.index('_README.md')] + '.yml'
@@ -89,7 +98,11 @@ def process_integration_doc(readme_file: str, target_dir: str, content_dir: str)
         yml_data = yaml.safe_load(f)
     id = yml_data['commonfields']['id']
     id = inflection.dasherize(inflection.underscore(id)).replace(' ', '-')
-    doc_info = DocInfo(id, yml_data['display'], yml_data.get('description'))
+    name = yml_data.get('dispaly') or yml_data.get('name')
+    if not name:
+        raise ValueError(f'name not found')
+    desc = yml_data.get('description') or yml_data.get('comment')
+    doc_info = DocInfo(id, name, desc)
     with open(readme_file, 'r', encoding='utf-8') as f:
         content = f.read()
     if not content.strip():
@@ -129,14 +142,15 @@ def index_doc_infos(doc_infos: List[DocInfo], link_prefix: str):
     return fix_mdx(res)
 
 
-def create_integration_docs(content_dir: str, target_dir: str):
+def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix: str):
     print(f'Using BRANCH: {BRANCH}')
-    # Search for integration readme files
-    readme_files = findfiles(INTEGRATION_DOCS_MATCH, content_dir)
-    print(f'Processing: {len(readme_files)} integrations ...')
-    prefix = os.path.basename(target_dir)
-    prefix = f'{prefix}/{INTEGRATIONS_PREFIX}'
-    integrations_dir = f'{target_dir}/{INTEGRATIONS_PREFIX}'
+    # Search for readme files
+    readme_files = findfiles(regex_list, content_dir)
+    print(f'Processing: {len(readme_files)} {prefix} files ...')
+    if MAX_FILES > 0:
+        print(f'DEV MODE. Truncating file list to: {MAX_FILES}')
+        readme_files = readme_files[:MAX_FILES]
+    integrations_dir = f'{target_dir}/{prefix}'
     if not os.path.exists(integrations_dir):
         os.makedirs(integrations_dir)
     doc_infos: List[DocInfo] = []
@@ -144,19 +158,19 @@ def create_integration_docs(content_dir: str, target_dir: str):
     fail = []
     for r in readme_files:
         try:
-            doc_infos.append(process_integration_doc(r, integrations_dir, content_dir))
+            doc_infos.append(process_code_doc(r, integrations_dir, content_dir))
             success.append(r)
         except Exception as ex:
             print(f'ERROR: failed processing: {r}. Exception: {ex}.\n{traceback.format_exc()}--------------------------')
             fail.append(f'{r} ({str(ex).splitlines()[0]})')
-    print("Success integration docs:")
+    print(f'Success {prefix} docs:')
     for r in sorted(success):
         print(r)
-    print("\n===========================================\nFailed integration docs:")
+    print(f'\n===========================================\nFailed {prefix} docs:')
     for r in sorted(fail):
         print(r)
     print("\n===========================================\n")
-    return doc_infos, prefix
+    return sorted(doc_infos, key=lambda d: d.name)  # sort by name
 
 
 def main():
@@ -166,15 +180,20 @@ def main():
     parser.add_argument("-d", "--dir", help="Content repo dir.", required=True)
     args = parser.parse_args()
     prefix = os.path.basename(args.target)
-    doc_infos, integrations_full_prefix = create_integration_docs(args.dir, args.target)
-    doc_infos = sorted(doc_infos, key=lambda d: d.name)  # sort by name
+    integrations_full_prefix = f'{prefix}/{INTEGRATIONS_PREFIX}'
+    scripts_full_prefix = f'{prefix}/{SCRIPTS_PREFIX}'
+    integration_doc_infos = create_docs(args.dir, args.target, INTEGRATION_DOCS_MATCH, INTEGRATIONS_PREFIX)
+    script_doc_infos = create_docs(args.dir, args.target, SCRIPTS_DOCS_MATCH, SCRIPTS_PREFIX)
     index_base = f'{os.path.dirname(os.path.abspath(__file__))}/reference-index.md'
     index_target = args.target + '/index.md'
     shutil.copy(index_base, index_target)
     with open(index_target, 'a', encoding='utf-8') as f:
         f.write("\n\n## Integrations\n\n")
-        f.write(index_doc_infos(doc_infos, INTEGRATIONS_PREFIX))
-    integration_items = [f'{integrations_full_prefix}/{d.id}' for d in doc_infos]
+        f.write(index_doc_infos(integration_doc_infos, INTEGRATIONS_PREFIX))
+        f.write("\n\n## Scripts\n\n")
+        f.write(index_doc_infos(script_doc_infos, SCRIPTS_PREFIX))
+    integration_items = [f'{integrations_full_prefix}/{d.id}' for d in integration_doc_infos]
+    script_items = [f'{scripts_full_prefix}/{d.id}' for d in script_doc_infos]
     sidebar = [
         {
             "type": "doc",
@@ -184,6 +203,11 @@ def main():
             "type": "category",
             "label": "Integrations",
             "items": integration_items
+        },
+        {
+            "type": "category",
+            "label": "Scripts",
+            "items": script_items
         }
     ]
     with open(f'{args.target}/sidebar.json', 'w') as f:
