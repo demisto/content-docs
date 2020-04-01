@@ -65,6 +65,11 @@ def test_process_code_doc_same_dir(tmp_path):
         assert f.readline().startswith(f'custom_edit_url: https://github.com/demisto/content/')
 
 
+def test_process_code_doc_edl(tmp_path):
+    res = process_code_doc(f'{SAMPLE_CONTENT}/Integrations/PaloAltoNetworks_PAN_OS_EDL_Management/README.md', str(tmp_path), SAMPLE_CONTENT)
+    assert res.name == 'Palo Alto Networks PAN-OS EDL Management'
+
+
 def test_process_code_script(tmp_path):
     res = process_code_doc(f'{SAMPLE_CONTENT}/Scripts/script-IsIPInRanges_README.md', str(tmp_path), SAMPLE_CONTENT)
     assert res.id == 'is-ip-in-ranges'

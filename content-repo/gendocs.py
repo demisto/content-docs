@@ -98,7 +98,7 @@ def process_code_doc(readme_file: str, target_dir: str, content_dir: str) -> Doc
         yml_data = yaml.safe_load(f)
     id = yml_data['commonfields']['id']
     id = inflection.dasherize(inflection.underscore(id)).replace(' ', '-')
-    name = yml_data.get('dispaly') or yml_data.get('name')
+    name = yml_data.get('display') or yml_data.get('name')
     if not name:
         raise ValueError(f'name not found')
     desc = yml_data.get('description') or yml_data.get('comment')
