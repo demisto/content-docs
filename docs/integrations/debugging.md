@@ -3,7 +3,7 @@ id: debugging
 title: Debugging
 ---
 
-Over the course of developing Integrations and Scripts, it is expected that at *some* point your code will cause something to break. In fact, one of the greatest features of Demisto is to use machine learning to better time these crashes so they occur on your time off. 
+Over the course of developing Integrations and Scripts, it is expected that at *some* point your code will cause something to break. In fact, one of the greatest features of Cortex XSOAR is to use machine learning to better time these crashes so they occur on your time off. 
 
 
 ## Printing to the War Room
@@ -48,7 +48,7 @@ from CommonServerUserPython import *
 ```
 This is the part where you start to understand what they are (well, at least one of them and that's good enough for now).
 
-Demisto is a sophisticated platform with tons of amazing features but sometimes, especially when debugging, you only want one simple command to work. `demisto` as a python library has a lot of functions that are integrated with the server some examples you can see above but for our debugging we usually want to use 2 or 3 of these functions:
+Cortex XSOAR is a sophisticated platform with tons of amazing features but sometimes, especially when debugging, you only want one simple command to work. `demisto` as a python library has a lot of functions that are integrated with the server some examples you can see above but for our debugging we usually want to use 2 or 3 of these functions:
 1. We want the `demisto.params()` function to return the connection details we insert into the create instance in the UI.
 2. We want `demisto.command()` to return the name of the command we want to run.
 3. We want `demisto.args()` to return the arguments for that command.
@@ -82,5 +82,5 @@ will take their information from there.
 
 This is called mocking demisto.
 
-We need to make sure that all Demisto functions that are used in the functions we are testing are mocked correctly.
+We need to make sure that all Cortex XSOAR functions that are used in the functions we are testing are mocked correctly.
 Now we can use the debugger from the IDE or ipdb to debug the code as we would any other simple Python file!

@@ -12,9 +12,9 @@ Docker is a tool used by developers to package together dependencies into a sing
 Primarily we use docker to run python scripts and integrations in a controlled environment. They run isolated from the server to prevent someone from accidentally damaging the server. By packaging libraries and dependencies together, we can prevent unknown issues from occurring since the environment is all the same.
 
 ## Script/Integration Configuration
-Specifying which docker image to use is done in the Demisto IDE (Open: Settings -> Docker image name). If you don't specify a docker image, a default docker image using Python 2.7 is used. For new scripts and integrations, unless there is a specific reason to use Python 2 (for example: a need to use a library which is not available for Python 3), we require using a Python 3 image. 
+Specifying which docker image to use is done in the Cortex XSOAR IDE (Open: Settings -> Docker image name). If you don't specify a docker image, a default docker image using Python 2.7 is used. For new scripts and integrations, unless there is a specific reason to use Python 2 (for example: a need to use a library which is not available for Python 3), we require using a Python 3 image. 
 
-**Note**: Starting in Demisto 5.0, you can specify in the Demisto IDE the Python version (2.7 or 3.x). Once you choose 3.x, the latest Demisto Python 3 Docker image will be selected automatically.
+**Note**: Starting in Demisto 5.0, you can specify in the Cortex XSOAR IDE the Python version (2.7 or 3.x). Once you choose 3.x, the latest Cortex XSOAR Python 3 Docker image will be selected automatically.
 
 The selected docker image is configured in the script/integration yaml file under the key: `dockerimage`. See: [Yaml File Overview](yaml-file).
 
@@ -23,9 +23,9 @@ Starting with Demisto 5.0, it is possible to update the docker image of a script
 
 # Docker Images 
 
-Demisto maintains a large repository of docker images. All docker images are available via docker hub under the Demisto organization: https://hub.docker.com/u/demisto/. Docker image creation process is managed via the open source project [demisto/dockerfiles](https://github.com/demisto/dockerfiles). Before trying to create a new docker image, check if there is one available already. You can search the [repository-info branch](https://github.com/demisto/dockerfiles/blob/repository-info/README.md) which is updated nightly with image metadata and os/python packages used in the images.
+Palo Alto Networks maintains a large repository of docker images. All docker images are available via docker hub under the Demisto organization: https://hub.docker.com/u/demisto/. Docker image creation process is managed via the open source project [demisto/dockerfiles](https://github.com/demisto/dockerfiles). Before trying to create a new docker image, check if there is one available already. You can search the [repository-info branch](https://github.com/demisto/dockerfiles/blob/repository-info/README.md) which is updated nightly with image metadata and os/python packages used in the images.
 
-**Important:** For security reasons, we cannot accept images which are not part of the docker hub Demisto organization. 
+**Important:** For security reasons, we cannot accept images which are not part of the docker hub Palo Alto Networks (Demisto) organization. 
 
 If you can not find an existing image, follow through to read below on how to create a docker image for testing and production use.
 
@@ -37,7 +37,7 @@ We cannot just choose any package to be used in our integrations and there are m
 These are just some of the many things we must take into consideration.
 
 ## Licensing
-The Demisto Content repository is produced with a (Massachusetts Institute of Technology) MIT license which means that we use only packages whose license is compatible with the MIT license. As a general rule of thumb, we only use `permissive` licenses. For a complete list of OSS licenses and their types see: https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses .
+The Cortex XSOAR Content repository is produced with a (Massachusetts Institute of Technology) MIT license which means that we use only packages whose license is compatible with the MIT license. As a general rule of thumb, we only use `permissive` licenses. For a complete list of OSS licenses and their types see: https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses .
 
 **Please Note:** Other licenses may be permitted with specific approval.
 

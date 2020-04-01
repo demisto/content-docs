@@ -5,7 +5,7 @@ title: Test Playbooks
 
 We use Test Playbooks to test our integrations and automation scripts. The Test Playbooks provide full *End to End* testing. For testing small units of code, use [Unit Testing](unit-testing). 
 
-Tests are run using our CI framework. They are run both as part of the build process and on a nightly basis. If you are a contributor, during the initial PR, Test Playbooks will not run but they will be used as part of the review process. Once the PR is merged into a `contrib/*` branch by one of the team members and credentials (if needed) are provided to Demisto, the test playbooks will be run as part of our CI framework. 
+Tests are run using our CI framework. They are run both as part of the build process and on a nightly basis. If you are a contributor, during the initial PR, Test Playbooks will not run but they will be used as part of the review process. Once the PR is merged into a `contrib/*` branch by one of the team members and credentials (if needed) are provided to Cortex XSOAR, the test playbooks will be run as part of our CI framework. 
 
 **Note:** Test Playbooks are required as part of the PR acceptance review process. For simple Scripts that have unit tests, a test playbook is optional.
 
@@ -61,7 +61,7 @@ After you build the command, verify that you have received the results that you 
 | **From previous tasks** |  Click **{}** to display the **Select source for** tool. The **Select source for** tool displays the **#2 ip** task that you created. |
 | **2 ip** | Click to display the **ip** task configurations. |
 | **IP** | Click **Address** and click **Close**. The `IP.Address` is displayed in the **From previous tasks** field. This is the Context Path. |
-| **From previous tasks** | Wrap the Context Path using this format `${IP.Address}`. Wrapping the Context Path tells Demisto to retrieve the value located in the curly brackets. |
+| **From previous tasks** | Wrap the Context Path using this format `${IP.Address}`. Wrapping the Context Path tells Cortex XSOAR to retrieve the value located in the curly brackets. |
 | **As value** | Type 8.8.8.8 and click ✅. |
 
 **Note:** If you need to edit the value in a field, you can click on the value and edit it. For example, click on the value in the **From previous tasks** field and edit the `${IP.Address}` value.
@@ -81,7 +81,7 @@ After you build the command, verify that you have received the results that you 
 8. Choose the **yes** label name for the condition and click **Save**.
 
 ### Naming and Exporting the Playbook
-Demisto uses a standard naming convention for playbook tests that follows this format: `Integration_Name-Test`.
+Cortex XSOAR uses a standard naming convention for playbook tests that follows this format: `Integration_Name-Test`.
 
 1. Click **Save Version**.
 2. Exit the playbook editor.

@@ -11,7 +11,7 @@ You are not required to give us access to your product if you don’t want to.
 
 We’ve made launching a POI seamless and easy:
 
-1. New partners apply at our registration page at demisto.pan.dev and follow the normal process to [become a technical partner](become-a-tech-partner). (Existing partners skip this step.) Be sure to sign up for [TSANet](https://paloaltonetworks-nextwave.connect.tsanet.org/); that’s how our support teams will find each other.
+1. New partners apply at our registration page at [xsoar.pan.dev](https://xsoar.pan.dev) and follow the normal process to [become a technical partner](become-a-tech-partner). (Existing partners skip this step.) Be sure to sign up for [TSANet](https://paloaltonetworks-nextwave.connect.tsanet.org/); that’s how our support teams will find each other.
 
 2. When you create your integration, enter relevant support and contact information in the description field.
 

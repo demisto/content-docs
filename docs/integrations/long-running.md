@@ -34,11 +34,11 @@ For that we have dedicated functions to interact with the server:
 * `addEntry` - Adds an entry to a specified incident War Room.
 * `createIncidents` - Creates incidents according to a provided JSON. Unlike `demisto.incidents()`, this function requires actual incident fields in the JSON argument.
 For example - `{'name': 'incident', 'type': 'Phishing', 'customFields': {'field1': 'value'}`.
-* `findUser` - Find a Demisto user by a name or email. Useful for creating incidents.
+* `findUser` - Find a Cortex XSOAR user by a name or email. Useful for creating incidents.
 * `handleEntitlementForUser` - Adds an entry with entitlement to a provided investigation.
 * `updateModuleHealth` - Update the instance status. It's a way to reflect the container state to the user.
 ![image](../doc_imgs/integrations/66123930-cb284500-e5eb-11e9-804d-6154423e6cee.png)
-* `mirrorInvestigation` - For chat based integrations, mirror a provided Demisto investigation to the corresponding chat module.
+* `mirrorInvestigation` - For chat based integrations, mirror a provided Cortex XSOAR investigation to the corresponding chat module.
 * `directMessage` - For chat based integrations, handle free text sent from a user to the chat module and process it in the server.
 
 ### Manage container states 
@@ -62,27 +62,27 @@ It's important to maintain a never ending process in the container. That means:
 
 To run multiple processes in parallel, you can use async code. For an example you can check out the `Slack v2` or `Microsoft Teams` integrations.
 
-## Invoking HTTP Integrations via Demisto Server's route handling 
+## Invoking HTTP Integrations via Cortex XSOAR Server's route handling 
 
-**Supported Demisto Server version**: 5.5 and above
+**Supported Cortex XSOAR Server version**: 5.5 and above
 
-Demisto supports setting up long running integrations which expose an HTTP endpoint. Such integrations include:
+Cortex XSOAR supports setting up long running integrations which expose an HTTP endpoint. Such integrations include:
 * Palo Alto Networks PAN-OS EDL Service
 * Export Indicators Service
 * Microsoft Teams
 
-When you initiate these integrations, they listen on an incoming HTTP port. The port is configured via the **Listen Port** setting of the integration. The HTTP interface can be accessed directly over the port, for example by running curl locally on the Demisto Server machine (assuming the configured port is 7000 and HTTP is being used):
+When you initiate these integrations, they listen on an incoming HTTP port. The port is configured via the **Listen Port** setting of the integration. The HTTP interface can be accessed directly over the port, for example by running curl locally on the Cortex XSOAR Server machine (assuming the configured port is 7000 and HTTP is being used):
 ```
 curl http://localhost:7000
 ```
 
 **Important Note:** Each integration instance should be configured with a unique listening port number.
 
-To access the integration over the listening port via the Demisto Server's DNS host, you would use (assuming the configured port is 7000 and http is being used) the url: `http://<demisto_dns>:7000`. This requires opening the port to external access. Usually this involves a firewall or security group modification. 
+To access the integration over the listening port via the Cortex XSOAR Server's DNS host, you would use (assuming the configured port is 7000 and http is being used) the url: `http://<cortex_xsoar_dns>:7000`. This requires opening the port to external access. Usually this involves a firewall or security group modification. 
 
-Starting with Demisto Server v5.5 there is an option to route the HTTP request via the Demisto Server's HTTPS endpoint. This is useful if you would like to avoid opening an additional port (the long running integration's port) on the Demisto Server's machine to outside access. 
+Starting with Cortex XSOAR Server v5.5 there is an option to route the HTTP request via the Cortex XSOAR Server's HTTPS endpoint. This is useful if you would like to avoid opening an additional port (the long running integration's port) on the Cortex XSOAR Server's machine to outside access. 
 
-To configure a long running integration to be accessed via Demisto Server's https endpoint perform the following:
+To configure a long running integration to be accessed via Cortex XSOAR Server's https endpoint perform the following:
 * Configure the long running integration to listen on a unique port
 * Make sure the long running integration is setup to use http (not https)
 * Add the following advanced Server parameter:
@@ -92,16 +92,16 @@ To configure a long running integration to be accessed via Demisto Server's http
   * Name: `instance.execute.external.edl`
   * Value: `true`
 
-You will then be able to access the long running integration via the Demisto Server's https endpoint. The route to the integration will be available at:
+You will then be able to access the long running integration via the Cortex XSOAR Server's https endpoint. The route to the integration will be available at:
 ```
 https://<demisto_server_url>/instance/execute/<instance_name>
 ```
-For example, to test access to an instance named `edl` run the following curl command from the Demisto Server's machine:
+For example, to test access to an instance named `edl` run the following curl command from the Cortex XSOAR Server's machine:
 ```
 curl -k https://localhost/instance/execute/edl
 ```
 
-There is also the option to set a default value that all http long running integrations are exposed via the Demisto's Server https endpoint. Do this by setting the following Server advanced parameter:
+There is also the option to set a default value that all http long running integrations are exposed via the Cortex XSOAR's Server https endpoint. Do this by setting the following Server advanced parameter:
 * Name: `instance.execute.external`
 * Value: `true`
 

@@ -18,10 +18,6 @@ can begin create content and integrations.
 
 Learn the core fundamentals to get started developing with Cortex XSOAR. This section includes documents that cover many relevant concepts that are useful to understand how Cortex XSOAR works, what components are used for which tasks and how the contribution process works.
 
-### How-Tos
-
-Dive into details and learn how to do stuff with Cortex XSOAR.
-
 ### Tutorials
 
 Detailed instructions to learn step-by-step.

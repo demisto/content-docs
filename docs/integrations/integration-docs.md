@@ -9,7 +9,7 @@ Documentation is a critical step that assists customers who may use your integra
 
 
 ## Creating Documentation
-Within Demisto, exists the ability to generate documentation for your integration. First verify that the DocumentationAutomation script exists in your content by navigating to the **Automation** tab in Demisto.
+Within Cortex XSOAR, exists the ability to generate documentation for your integration. First verify that the DocumentationAutomation script exists in your content by navigating to the **Automation** tab in Cortex XSOAR.
 
 First, take the YAML file of your integration and upload it to the War Room. Please note the entry ID as you will need it in the next step.
 
@@ -30,7 +30,7 @@ Where there is missing information, be sure to fill out the document completely.
 
 
 ## Using commands parameter
-To automatically generate example output (human readable and context), you should create a text file containing command examples, one per line. The command examples should appear the same way they would as in the CLI in Demisto, for example `!url url=8.8.8.8`.
+To automatically generate example output (human readable and context), you should create a text file containing command examples, one per line. The command examples should appear the same way they would as in the CLI in Cortex XSOAR, for example `!url url=8.8.8.8`.
 Commands will be executed one at a time, in the order in which they appear in the file. If there are duplicates of a command included in the text file, only the output of the command's first execution  will be included in the generated documentation output.
 
 Example for commands file:

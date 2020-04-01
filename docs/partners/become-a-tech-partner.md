@@ -78,7 +78,7 @@ We will also provide you a **Partner ID** that you will use during the GitHub su
 We recommend your technical team review the docs on this site, and the following useful resources:
 - Our [GitHub Content repository](https://github.com/demisto/content), and
 - Cortex XSOAR [Support Portal](https://support.demisto.com)
-- [Demisto Platform Installation Guide](https://support.demisto.com/hc/en-us/sections/360001323614-Installing-Demisto)
+- [Cortex XSOAR Platform Installation Guide](https://support.demisto.com/hc/en-us/sections/360001323614-Installing-Demisto)
 - [Slack](https://www.demisto.com/community/) #demisto-integrations-help
 - [GitHub](https://github.com/demisto/content/#demisto-platform---content-repository)
 - [Cortex XSOAR Concepts, and Terminology](https://support.demisto.com/hc/en-us/articles/360005126713-Demisto-Components-Concepts-and-Terminology)
