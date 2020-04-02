@@ -137,7 +137,7 @@ const sidebars = {
   [
     {
       type: "doc",
-      id: "partners/why-demisto"
+      id: "partners/why-xsoar"
     },
     {
       type: "doc",

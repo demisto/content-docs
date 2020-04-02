@@ -4,7 +4,7 @@ title: Create Playbooks
 ---
 
 ## Getting Started
-To create a playbook, we begin by navigating to the **Playbooks** tab in Demisto and clicking **New Playbook**. 
+To create a playbook, we begin by navigating to the **Playbooks** tab in Cortex XSOAR and clicking **New Playbook**. 
 
 ## Adding a Command
 Playbooks run commands that are found in both an integration as well as scripts. For this example, we will look at the Integration IPInfo. IPInfo accepts only one command called ```!ip```. A search for ipinfo in the Task Library will display the command "ip". Click **Add** to bring up the configuration options. 
@@ -26,7 +26,7 @@ Under the section "Condition for yes", we will click the **{}** option to bring 
 
 <img src="../doc_imgs/playbooks/50276603-fff75100-044a-11e9-97ef-c848cc051985.png" width="400" align="middle"></img>
 
-We now must wrap the Context Path like this **${IP.Address}**. This tells Demisto that we are looking for the value present at that location.
+We now must wrap the Context Path like this **${IP.Address}**. This tells Cortex XSOAR that we are looking for the value present at that location.
 
 Next, in the "Equals (String)" field enter our expected value of "8.8.8.8" and click ✅ followed by **Save**. Connect the tasks together. 
 

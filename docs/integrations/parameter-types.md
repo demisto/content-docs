@@ -3,7 +3,7 @@ id: parameter-types
 title: Integration Parameter Types
 ---
 
-Integration Parameter Types are used to configure instances of the integration. When adding a parameter to an integration in Demisto, there are numerous types to choose from.
+Integration Parameter Types are used to configure instances of the integration. When adding a parameter to an integration in Cortex XSOAR, there are numerous types to choose from.
 Each type will effect the parameter behavior and interaction with the user. 
 
 ## Boolean
@@ -54,8 +54,8 @@ Access: `demisto.params().get('token')`
 ## Authentication
 
 This type of parameter is used for username-password credentials - username as plain text and an encrypted password. 
-It supports retrieving credentials from the Demisto credentials store(more info on the credentials store can be found in
-the Demisto support portal).
+It supports retrieving credentials from the Cortex XSOAR credentials store(more info on the credentials store can be found in
+the Cortex XSOAR support portal).
 
 ![image](../doc_imgs/integrations/54882618-89f8f080-4e64-11e9-8bbc-e4974c9466a5.png)
 
@@ -89,7 +89,7 @@ Access: `demisto.params().get('sort')`
 
 ## Important Note
 
-Once a parameter is set in an integration configuration, it is saved to the Demisto database, so before changing an existing
+Once a parameter is set in an integration configuration, it is saved to the Cortex XSOAR database, so before changing an existing
 parameter you have to consider the existing values (backward compatibility).
 
 

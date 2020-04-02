@@ -1,14 +1,14 @@
 ---
-id: why-demisto 
+id: why-xsoar 
 title: Why become a Partner? 
 ---
 
-Why develop your own content and integrations (BYOI) for the Demisto platform? As the fastest growing SOAR platform on the market, we already have hundreds of integrations so customers and prospects get the most out of their security investments. Another advantage? As we show our extensive integration list to prospects, you gain exposure and visibility for addressing use cases encountered in the SOC.
+Why develop your own content and integrations (BYOI) for the Cortex XSOAR platform? As the fastest growing SOAR platform on the market, we already have hundreds of integrations so customers and prospects get the most out of their security investments. Another advantage? As we show our extensive integration list to prospects, you gain exposure and visibility for addressing use cases encountered in the SOC.
 <a class="button button--outline button--primary button--lg" href="https://youtu.be/BzB10GGQ8ms" target="_blank">Learn more about Security Orchestration!</a>
 
 ## What are some benefits?
 
-Integrating with Demisto allows your customers to leverage your product(s), in tandem with the hundreds of products in the Demisto SOAR ecosystem, to automate and streamline their security operations. 
+Integrating with Cortex XSOAR allows your customers to leverage your product(s), in tandem with the hundreds of products in the Cortex XSOAR SOAR ecosystem, to automate and streamline their security operations. 
 
 <a class="button button--outline button--primary button--lg" href="https://www.demisto.com/integrations/" target="_blank">Check out some of our integrations!</a>
 <br/><br/>
@@ -21,7 +21,7 @@ Here are a few of the benefits:
 
 ## Easier than you think!
 
-Building an integration with the Demisto platform is easier than you might think. Map your product APIs/commands into the Demisto language so they can be called by our orchestration engine. Add them to sample playbooks so prospects can see how it works. Build out use cases that solve customer needs. 
+Building an integration with the Cortex XSOAR platform is easier than you might think. Map your product APIs/commands into the Cortex XSOAR language so they can be called by our orchestration engine. Add them to sample playbooks so prospects can see how it works. Build out use cases that solve customer needs. 
 
 
 ## What's the cost? 

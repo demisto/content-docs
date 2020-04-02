@@ -3,7 +3,7 @@ id: use-cases
 title: Use Cases
 ---
 
-This section includes common Use Cases for the different categories of Demisto integrations. While this list is not meant to be exhaustive, it's a good starting point for you to understand what use cases could be supported by your integration.
+This section includes common Use Cases for the different categories of Cortex XSOAR integrations. While this list is not meant to be exhaustive, it's a good starting point for you to understand what use cases could be supported by your integration.
 
 ## Analytics and SIEM
 
@@ -21,7 +21,7 @@ Analytics & SIEM Integration Example: [ArcSight ESM](https://support.demisto.com
 ## Authentication
 
 **Top Use Cases:**
-- Use credentials from authentication vault in order to configure instances in Demisto (Save credentials in: Settings -> Integrations -> Credentials)
+- Use credentials from authentication vault in order to configure instances in Cortex XSOAR (Save credentials in: Settings -> Integrations -> Credentials)
 The integration should include the isFetchCredentials Parameter, and other integrations that will use credentials from the vault, should have the ‘Switch to credentials’ option.
 - Lock/Delete Account – Give option to lock account (credentials), and unlock/undelete.
 - Reset Account - Perform a reset password command for an account.

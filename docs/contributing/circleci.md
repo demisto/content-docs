@@ -23,17 +23,17 @@ Lets go over our steps to understand what each of them is doing:
 - Common Server Documentation
     - This step builds all of the documentation for the server and includes, API documentation, getting started, as well as other documentation.
 - Create Content Artifacts
-    - These artifacts are the zip files that are uploaded to the server and contain all of the content for Demisto. They are composed of two parts:
+    - These artifacts are the zip files that are uploaded to the server and contain all of the content for Cortex XSOAR. They are composed of two parts:
         - content_new.zip contains all actual content, playbooks/scripts/integrations
         - content_test.zip contains all the test_playbooks
 - Download Artifacts
-    - This step retrieves the latest "Green" (or stable) build of the Demisto server.
+    - This step retrieves the latest "Green" (or stable) build of the Cortex XSOAR server.
 - Download Configuration
     - Downloads data from content-test-conf, where all the private data is stored. This includes API keys, login details, and other configurations needed to create an instance of an integration.
 - Create Instance
     - Create AWS instance for the build
 - Setup Instance
-    - Sets up Demisto on the AWS instance, as well as copies the content from the branch you are working on to the instance itself.
+    - Sets up Cortex XSOAR on the AWS instance, as well as copies the content from the branch you are working on to the instance itself.
 - Run Tests
     - This step iterates over each of the test playbooks. This involves creating an incident, attaching the test playbook to the incident, running the playbook, and finally awaiting the results.
 - Destroy Instances
