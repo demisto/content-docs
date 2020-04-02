@@ -12,9 +12,11 @@
 
  .heroBanner {
   padding: 4rem 0;
+  text-align: center;
   position: relative;
   overflow: hidden;
   border-bottom-right-radius: 10% 20%;
+  background-color: #F4F4F2 !important;
 }
 
 @media screen and (max-width: 966px) {
@@ -29,58 +31,7 @@
   justify-content: center;
   position: float;
   bottom: 0;
-}
-
-.quickstart {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 1em 1em 1em 1em;
-}
-
-.panos {
-  background-color: #9476e7;
-  border-color: #9476e7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 1em 1em 1em 1em;
-  padding-bottom: 5px;
-}
-
-.demisto {
-  background-color: #93d50a;
-  border-color: #93d50a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 1em 1em 1em 1em;
-  padding-bottom: 5px;
-}
-
-.cortex {
-  background-color: #16c2b8;
-  border-color: #16c2b8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 1em 1em 1em 1em;
-}
-
-.prisma {
-  background-color: #f3713c;
-  border-color: #f3713c;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 1em 1em 1em 1em;
-}
-
-.github {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0 1em 1em 0;
+  margin-right: 4px;
 }
 
 .buttons-tools-github {
@@ -90,45 +41,15 @@
   border-radius: 0 1em 1em 0 !important;
 }
 
-.features {
-  align-items: center;
-  padding: 2rem 0;
-  width: 100%;
-  display: flex;
-}
-
-.video {
-  align-items: center;
-  padding: 2rem 0;
-  width: 100%;
-  display: flex;
-  color: white;
-  text-align: center;
-  justify-content: center;
-  background-color: #333333;
-}
-
 .tools {
   align-items: center;
   padding: 2rem 0;
   width: 100%;
   display: flex;
-  color: white;
+  color: #000;
   text-align: center;
   justify-content: center;
-  background-color: #333333;
-}
-
-.toolsslant {
-  align-items: center;
-  padding: 2rem 0;
-  width: 100%;
-  display: flex;
-  color: white;
-  text-align: center;
-  justify-content: center;
-  background-color: #333333;
- 
+  background-color: #f4f4f2;
 }
 
 .headerImage {
@@ -158,9 +79,11 @@
   padding: 1rem 0;
 }
 
-.hero__title {
-  z-index: 1 !important;
+
+.heroProjectDescription{
+  color: #000 !important;
 }
+
 
 .headerLogo {
   z-index: 5 !important;
@@ -185,7 +108,7 @@
 }
 
 .heroProjectTagline {
-  color: #fff;
+  color: #000;
   font-size: 4rem;
   margin: 0;
   margin-top: 1rem;
@@ -193,22 +116,23 @@
 }
 
 .heroProjectKeywords {
-  color: var(--ifm-color-black);
+  color: #00cc66;
 }
 
 .heroLogo {
   animation-duration: 2s;
   animation-name: jackInTheBox;
   float: right;
-  height: 20rem;
+  height: 15rem;
   margin-top: 1px;
   padding: 5px;
 }
 
 @media only screen and (max-width: 768px) {
+  
   .hero {
-    padding-left: 20px;
-    padding-right: 20px;
+    border-left: 20px;
+    border-right: 20px;
   }
 
   .heroInner {
@@ -267,21 +191,239 @@
   line-height: 1.2em;
   text-decoration: none !important;
   transition: background 0.3s, color 0.3s;
-  border-radius: 8px;
   border-width: 2px;
-  color: #fff;
   font-size: 24px;
   font-weight: bold;
-  margin-right: 24px;
+  padding-right: 3rem;
   padding: 18px 36px;
   z-index: 10;
+  border-radius: 5;
+  margin-bottom: 1rem;
+  color: #fff !important;
 }
 
 .indexCtasGitHubButton {
   vertical-align: sub;
 }
 
+
+/**
+ * Copyright (c) 2017-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.github {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 1em 1em 0;
+}
+
+.doc {
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+  display: flex;
+  border-bottom-left-radius: 100% 600px;
+  border-bottom-right-radius: 100% 600px;
+}
+
+.features {
+  color: var(--ifm-feature-color);
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  border-bottom-left-radius: 100% 600px;
+  border-bottom-right-radius: 100% 600px;
+}
+
+.hero__title {
+  z-index: 1 !important;
+  color: #000000 !important;
+}
+
 .hero__subtitle {
   z-index: 1 !important;
   color: #a4a9ad !important;
+}
+
+
+
+.text__gray {
+  color: #000000 !important;
+}
+
+/* Animation */
+@keyframes jackInTheBox {
+  from {
+    opacity: 0;
+    transform: scale(0.1) rotate(30deg);
+    transform-origin: center bottom;
+  }
+
+  50% {
+    transform: rotate(-10deg);
+  }
+
+  70% {
+    transform: rotate(3deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.text {
+  font-family: Poppins, sans-serif;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: normal;
+  color: var(--ifm-font-base-color);
+}
+
+.text-big {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.text-huge {
+  font-size: 2.5em;
+  font-weight: bold;
+  line-height: 1.25;
+}
+
+.text.heading-helper {
+  color: var(--uni-heading-helper-color);
+  font-family: Muli;
+  font-size: 1em;
+  font-weight: 600;
+  letter-spacing: 1px;
+  opacity: 0.6;
+}
+
+.heading {
+  color: var(--uni-heading-color);
+  font-family: Poppins;
+  font-size: 2em;
+  font-weight: bold;
+  line-height: 1.31;
+  margin-bottom: 2em;
+}
+
+.heading-white {
+  --uni-heading-color: var(--white);
+}
+
+.text.emphasis {
+  color: var(--dodger-blue);
+  font-family: Poppins;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.42;
+}
+
+.text.paragraph {
+  color: var(--white);
+  font-family: Muli;
+  font-size: 1em;
+  line-height: 1.75;
+  margin-bottom: 0.8em;
+  opacity: 0.8;
+}
+
+.text.section-subtitle {
+  color: var(--white);
+  font-family: Muli;
+  font-size: 1em;
+  font-weight: 600;
+  letter-spacing: 1px;
+  opacity: 0.6;
+}
+
+.text.footer-heading {
+  color: var(--dodger-blue);
+  font-family: Muli;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.supported {
+  color: var(--white);
+  font-family: Muli;
+  font-size: 0.85em;
+  font-weight: 600;
+  line-height: 2;
+  margin-top: 3em;
+  opacity: 0.6;
+}
+
+.title {
+  color: var(--white);
+  display: block;
+}
+
+.description {
+  color: var(--bright-cyan);
+  display: block;
+  margin: 24px 0;
+}
+
+.bullets {
+  color: var(--periwinkle);
+}
+
+.bullets li {
+  margin-bottom: 0;
+}
+
+.bullets li::before {
+  background-color: var(--periwinkle) !important;
+}
+
+.landing :global .hero .container {
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+
+.landing :global .container {
+  margin-top: 4em;
+  margin-bottom: 4em;
+}
+
+.landing .section-content :global .row {
+  position: relative;
+}
+
+@media (max-width: 996px) {
+  .landing :global .col {
+    margin-bottom: 2em;
+  }
+  .landing :global .col:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+@supports (background-clip: text) {
+  .description {
+    background-image: linear-gradient(
+      0.25turn,
+      var(--ifm-color-primary),
+      #807d7c
+    );
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }

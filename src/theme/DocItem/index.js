@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -32,7 +32,9 @@ function DocTOC({ headings }) {
 
 /* eslint-disable jsx-a11y/control-has-associated-label */
 function Headings({ headings, isChild }) {
-  if (!headings.length) return null;
+  if (!headings.length) {
+    return null;
+  }
   return (
     <ul className={isChild ? "" : "contents contents__left-border"}>
       {headings.map(heading => (
@@ -51,36 +53,40 @@ function Headings({ headings, isChild }) {
 
 function DocItem(props) {
   const { siteConfig = {} } = useDocusaurusContext();
-  const { url: siteUrl } = siteConfig;
+  const { url: siteUrl, title: siteTitle } = siteConfig;
   const { content: DocContent } = props;
   const { metadata } = DocContent;
   const {
     description,
     title,
     permalink,
-    image: metaImage,
     editUrl,
     lastUpdatedAt,
     lastUpdatedBy,
-    keywords,
     version,
     source
   } = metadata;
   const {
     frontMatter: {
+      image: metaImage,
+      keywords,
       hide_title: hideTitle,
       hide_table_of_contents: hideTableOfContents
     }
   } = DocContent;
 
   const issueTitle = `Issue with "${title}" in ${source}`;
-  const issueUrl = `https://github.com/demisto/content-docs/issues/new?labels=documentation&template=developer-documentation-issue.md&title=${issueTitle}`;
+  const issueUrl = `https://github.com/PaloAltoNetworks/cortex.pan.dev/issues/new?labels=documentation&template=developer-documentation-issue.md&title=${issueTitle}`;
   const metaImageUrl = siteUrl + useBaseUrl(metaImage);
 
   return (
     <>
       <Head>
-        {title && <title>{title}</title>}
+        {title && (
+          <title>
+            {title} | {siteTitle}
+          </title>
+        )}
         {description && <meta name="description" content={description} />}
         {description && (
           <meta property="og:description" content={description} />
@@ -98,7 +104,7 @@ function DocItem(props) {
       <div className="padding-vert--lg">
         <div className="container">
           <div className="row">
-            <div className="col">
+            <div className={classnames("col", styles.docItemCol)}>
               <div className={styles.docItemContainer}>
                 <article>
                   {version && (
@@ -184,21 +190,21 @@ function DocItem(props) {
                               )}
                             </small>
                           </em>
-                          <div className="row">
-                            <div className="col text--right">
-                              <Link
-                                className={classnames(
-                                  "button button--outline button--primary button--md"
-                                )}
-                                href={issueUrl}
-                                target="_blank"
-                              >
-                                Report an Issue
-                              </Link>
-                            </div>
-                          </div>
                         </div>
                       )}
+                    </div>
+                    <div className="row">
+                      <div className="col text--right">
+                        <Link
+                          className={classnames(
+                            "button button--outline button--primary button--md"
+                          )}
+                          href={issueUrl}
+                          target="_blank"
+                        >
+                          Report an Issue
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 )}

@@ -6,14 +6,18 @@
  */
 
 module.exports = {
-  title: "Demisto",
+  title: "Cortex XSOAR",
   tagline: "Developers - Palo Alto Networks",
-  url: "https://demisto.pan.dev",
+  url: "https://xsoar.pan.dev",
   baseUrl: "/",
-  favicon: "img/demistofavicon.png", //square version
-  organizationName: "Demisto", // Usually your GitHub org/user name.
+  favicon: "img/Cortex-XSOAR-product-green.svg", //square version
+  organizationName: "Cortex XSOAR", // Usually your GitHub org/user name.
   projectName: "content-docs", // Usually your repo name.
   themeConfig: {
+    prism: {
+      theme: require("prism-react-renderer/themes/github"),
+      darkTheme: require("prism-react-renderer/themes/oceanicNext")
+    },
     algolia: {
       apiKey: process.env.ALGOLIA_APIKEY,
       indexName: process.env.ALGOLIA_INDEX,
@@ -23,15 +27,30 @@ module.exports = {
     navbar: {
       title: "",
       logo: {
-        alt: "Demisto for Developers",
-        src: "img/demistopeelable.png"
+        alt: "Cortex for Developers",
+        src: "img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal.svg",
+        srcDark: "img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal-KO.svg"
       },
-
-      menus: [
+      links: [
+        {
+          to: "docs/welcome",
+          label: "Developer Docs",
+          position: "left"
+        },
+        {
+          to: "docs/tutorials/tut-setup-dev",
+          label: "Tutorials",
+          position: "left"
+        },
+        {
+          to: "docs/reference/index",
+          label: "Reference",
+          position: "left"
+        },
         {
           label: "Partners",
           items: [
-            { to: "docs/partners/why-demisto", label: "Why Demisto?" },
+            { to: "docs/partners/why-demisto", label: "Why Cortex XSOAR?" },
             {
               to: "docs/partners/become-a-tech-partner",
               label: "Become a Partner"
@@ -50,24 +69,6 @@ module.exports = {
             }
           ],
           position: "right"
-        }
-      ],
-
-      links: [
-        {
-          to: "docs/welcome",
-          label: "Developer Docs",
-          position: "left"
-        },
-        {
-          to: "docs/tutorials/tut-setup-dev",
-          label: "Tutorials",
-          position: "left"
-        },
-        {
-          to: "docs/reference/index",
-          label: "Reference",
-          position: "left"
         },
         {
           href: "http://github.com/demisto/content/",
@@ -79,6 +80,24 @@ module.exports = {
           label: "Blog",
           position: "right"
         }
+      ],
+      sites: [
+        {
+          label: "Products",
+          items: [
+            {
+              href: "https://panos.pan.dev",
+              label: "PAN-OS",
+              logo: "/img/strata_favicon.png"
+            },
+            {
+              href: "https://cortex.pan.dev",
+              label: "Cortex",
+              logo: "/img/cortexfavicon.png"
+            },
+          ],
+          position: "right"
+        }
       ]
     },
     footer: {
@@ -87,7 +106,7 @@ module.exports = {
         {
           title: "Docs",
           items: [
-            { to: "docs/howtos/integrations/getting-started-guide", label: "Development Guide" },
+            { to: "docs/integrations/getting-started-guide", label: "Development Guide" },
             { to: "docs/partners/why-demisto", label: "Why become a Partner?" },
             {
               to: "docs/partners/become-a-tech-partner",
@@ -107,8 +126,8 @@ module.exports = {
       ],
       logo: {
         alt: "Palo Alto Networks for Developers",
-        src: "img/pandev.png"
-        // href: "https://pan.dev"
+        src: "img/PANW_Parent_Brand_Primary_Logo_RGB_KO.svg",
+        href: "https://pan.dev"
       },
       copyright: `Copyright © ${new Date().getFullYear()} Palo Alto Networks, Inc.`
     }

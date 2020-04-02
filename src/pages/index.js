@@ -16,11 +16,11 @@ import styles from "./styles.module.css";
 
 const features = [
   {
-    title: <>What is Demisto?</>,
+    title: <>What is Cortex XSOAR?</>,
     imageUrl: "img/undraw_pair_programming_njlp.svg",
     description: (
       <>
-        Demisto is the most comprehensive SOAR platform in the market today,
+        Cortex XSOAR is the most comprehensive SOAR platform in the market today,
         orchestrating across hundreds of security products to help your SOC
         customers standardize and automate their processes for faster response
         times and increased team productivity. Read More or watch some videos
@@ -74,7 +74,7 @@ const features = [
     )
   },
   {
-    title: <>Demisto Use Cases</>,
+    title: <>Cortex XSOAR Use Cases</>,
     imageUrl: "img/undraw_google_analytics_a57d.svg",
     description: (
       <>
@@ -126,7 +126,7 @@ function Home() {
   return (
     <Layout
       title={`${siteConfig.themeConfig.navbar.title}`}
-      description="All things related to automation and development with Demisto"
+      description="All things related to automation and development with Cortex XSOAR (formerly Demisto)"
     >
       <ScrollUpButton />
 
@@ -141,32 +141,32 @@ function Home() {
             <div className={styles.heroInner}>
               <h1 className={styles.heroProjectTagline}>
                 <img
-                  alt="Demisto"
+                  alt="Cortex XSOAR"
                   className={styles.heroLogo}
-                  src={useBaseUrl("img/Demisto-Icon-White.png")}
+                  src={useBaseUrl("img/Cortex-XSOAR-black.svg")}
                 />
                 Automate the{" "}
                 <span className={styles.heroProjectKeywords}>future</span> with{" "}
-                <span className={styles.heroProjectKeywords}>Demisto.</span>{" "}
+                <span className={styles.heroProjectKeywords}>Cortex XSOAR</span>{" "}
               </h1>
-              <h3>
+              <h3 className={styles.heroProjectDescription}>
                 Develop new integrations, automations, playbooks, reports and
                 more...
               </h3>
               <div className={styles.indexCtas}>
                 <Link
                   className={classnames(
-                    "button button--outline button--secondary button--lg",
-                    styles.indexCtasGetStartedButton
+                    "button button--info button--secondary button--lg",
+                    styles.headerButtons
                   )}
-                  to="docs/why-demisto"
+                  to="docs/partners/why-xsoar"
                 >
-                  Why Demisto?
+                  Why Cortex XSOAR?
                 </Link>
                 <Link
                   className={classnames(
-                    "button button--outline button--secondary button--lg",
-                    styles.indexCtasGetStartedButton
+                    "button button--info button--secondary button--lg",
+                    styles.headerButtons
                   )}
                   href="https://start.paloaltonetworks.com/become-a-technology-partner"
                 >
@@ -193,10 +193,10 @@ function Home() {
         <section className={styles.hero}>
           <div className="customer">
             <div className="customer-inner">
-              Are you a Demisto Customer or an Independent Developer?
-              <Link to="docs/getting-started-guide"> Get Started Now!</Link>
+              Are you a Cortex XSOAR Customer or an Independent Developer?
+              <Link to="docs/integrations/getting-started-guide"> Get Started Now!</Link>
               <br /> 
-              Join <b>#demisto-integrations-help</b> on our <a href="https://go.demisto.com/join-our-slack-community">Slack community</a> today.
+              Join <b>#demisto-integrations-help</b> on our <a href="https://start.paloaltonetworks.com/join-our-slack-community">Slack community</a> today.
             </div>
           </div>
         </section>     
@@ -205,7 +205,7 @@ function Home() {
             <div className="row">
               <div className="col col--6">
                 <img
-                  alt="Demisto"
+                  alt="Cortex XSOAR"
                   src={useBaseUrl("img/undraw_creative_team_r90h.svg")}
                 />
               </div>

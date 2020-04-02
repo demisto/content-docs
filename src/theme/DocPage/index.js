@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -18,35 +18,36 @@ import NotFound from "@theme/NotFound";
 import React from "react";
 import styles from "./styles.module.css";
 
-function matchingRouteExist(routes, pathname) {
-  return routes.some(route => matchPath(pathname, route));
-}
-
 function DocPage(props) {
-  const { route, docsMetadata, location } = props;
+  const { route: baseRoute, docsMetadata, location } = props;
+  // case-sensitive route such as it is defined in the sidebar
+  const currentRoute =
+    baseRoute.routes.find(route => {
+      return matchPath(location.pathname, route);
+    }) || {};
   const { permalinkToSidebar, docsSidebars, version } = docsMetadata;
-  const sidebar = permalinkToSidebar[location.pathname.replace(/\/$/, "")];
+  const sidebar = permalinkToSidebar[currentRoute.path];
   const {
     siteConfig: { themeConfig = {} } = {},
-    siteConfig: { customFields = {} } = {}
+    siteConfig: { customFields = {} } = {},
+    isClient
   } = useDocusaurusContext();
   const { sidebarCollapsible = true } = themeConfig;
-  //const { docbar = {} } = customFields;
-  //const { options = [] } = docbar;
-  const { options = [] } = {};
+  const { docbar = {} } = customFields;
+  const { options = [] } = docbar;
 
-  if (!matchingRouteExist(route.routes, location.pathname)) {
+  if (Object.keys(currentRoute).length === 0) {
     return <NotFound {...props} />;
   }
 
   return (
-    <Layout version={version}>
+    <Layout version={version} key={isClient}>
       <div className={styles.docPage}>
         {sidebar && (
           <div className={styles.docSidebarContainer}>
             <DocSidebar
               docsSidebars={docsSidebars}
-              location={location}
+              path={currentRoute.path}
               sidebar={sidebar}
               sidebarCollapsible={sidebarCollapsible}
             />
@@ -62,11 +63,32 @@ function DocPage(props) {
               backgroundColor: "var(--ifm-background-color)"
             }}
           >
-
-            <></>
+            {options.map((menuItem, i) => (
+              <Link
+                className={
+                  "button button--outline button--secondary button--md " +
+                  (typeof window !== "undefined" &&
+                  window.location.pathname.split("/")[2] ==
+                    useBaseUrl(menuItem.to).split("/")[2]
+                    ? "button--active--tab shadow--lw"
+                    : "")
+                }
+                style={{
+                  borderRadius: "0 0 0 0",
+                  borderColor: "var(--ifm-contents-border-color)",
+                  borderWidth: "0",
+                  padding:
+                    "calc( var(--ifm-button-padding-vertical) * 1.5  ) calc( var(--ifm-button-padding-horizontal) * .65 )"
+                }}
+                key={i}
+                to={useBaseUrl(menuItem.to)}
+              >
+                {menuItem.label}
+              </Link>
+            ))}
           </div>
           <MDXProvider components={MDXComponents}>
-            {renderRoutes(route.routes)}
+            {renderRoutes(baseRoute.routes)}
           </MDXProvider>
         </main>
       </div>
