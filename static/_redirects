@@ -31,8 +31,10 @@
 /docs/linting	/docs/howtos/integrations/linting
 /docs/long-running	/docs/howtos/integrations/long-running
 /docs/package-dir	/docs/howtos/integrations/package-dir
+/docs/package-dir	/docs/howtos/integrations/package-dir
 /docs/parameter-types	/docs/howtos/integrations/parameter-types
-/docs/testing	/docs/howtos/integrations/test-playbooks
+/docs/testing	/docs/integrations/test-playbooks
+/docs/integrations/testing	/docs/integrations/test-playbooks
 /docs/unit-testing	/docs/howtos/integrations/unit-testing
 /docs/yaml-file	/docs/howtos/integrations/yaml-file
 
@@ -69,6 +71,7 @@
 /docs/howtos/integrations/linting   /docs/integrations/linting
 /docs/howtos/integrations/long-running  /docs/integrations/long-running
 /docs/howtos/integrations/package-dir   /docs/integrations/package-dir
+/docs/howtos/integrations/packs-format   /docs/integrations/packs-format
 /docs/howtos/integrations/parameter-types   /docs/integrations/parameter-types
 /docs/howtos/integrations/test-playbooks    /docs/integrations/test-playbooks
 /docs/howtos/integrations/unit-testing  /docs/integrations/unit-testing
@@ -97,3 +100,6 @@
 /extra	/docs/partners/why-demisto
 /docs/why-demisto	/docs/partners/why-xsoar
 /docs/partners/why-demisto   /docs/partners/why-xsoar
+
+# Other
+/docs/reference	/docs/reference/index
