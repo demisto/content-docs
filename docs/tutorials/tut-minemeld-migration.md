@@ -266,6 +266,7 @@ Now if we go back to the aggregator node, we see that it too only has one input 
 Click on the prototype listed there, `tor.exit_addresses`, to see more details.
 
 We know from the table mapping MineMeld prototypes to Cortex XSOAR integrations detailed [above](#minemeld-prototype-to-cortex-xsoar-integration-mapping) that the `tor.exit_addresses` prototype maps to the _Tor Exit Addresses Feed_ integration. And with that, we have all the information we need to move forward. Let's review and gather here the information we collected from looking at the output node we want to migrate, and all the nodes that flow into it.
+
 1. Filters for indicators whose `confidence` is greater than 75 and whose `share_level` is 'green'
 2. Filters for indicators whose `type` is 'IPv4'
 3. The `tor.exit_addresses` prototype maps to the _Tor Exit Addresses Feed_ integration
