@@ -21,7 +21,7 @@ org_print = print
 
 
 def timestamped_print(*args, **kwargs):
-    org_print(datetime.now(), *args, **kwargs)
+    org_print(datetime.now().strftime("%H:%M:%S.%f"), *args, **kwargs)
 
 
 print = timestamped_print
@@ -177,10 +177,10 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
         except Exception as ex:
             print(f'ERROR: failed processing: {r}. Exception: {ex}.\n{traceback.format_exc()}--------------------------')
             fail.append(f'{r} ({str(ex).splitlines()[0]})')
-    org_print(f'\n===========================================\nSuccess {prefix} docs:')
+    org_print(f'\n===========================================\nSuccess {prefix} docs ({len(success)}):')
     for r in sorted(success):
         print(r)
-    org_print(f'\n===========================================\nFailed {prefix} docs:')
+    org_print(f'\n===========================================\nFailed {prefix} docs ({len(fail)}):')
     for r in sorted(fail):
         print(r)
     org_print("\n===========================================\n")
