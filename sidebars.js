@@ -128,7 +128,8 @@ const sidebars = {
             "tutorials/tut-setup-dev",
             "tutorials/tut-integration-ui",
             "tutorials/tutorial-incident-lifecycle",
-            "tutorials/tutorial-playbook-TIM-EDL"
+            "tutorials/tutorial-playbook-TIM-EDL",
+            "tutorials/tutorial-TIM-export-indicators-to-3rd-party"
           ]
     }
   ],
