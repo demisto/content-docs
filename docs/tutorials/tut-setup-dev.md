@@ -61,7 +61,7 @@ You will need to build your integration using **Python** and, more specifically,
 
 **Note**: You don't need to be a a Python expert (I'm not!) to write a good integration, although some intermediate level knowledge is preferred.
 
-It is also recommended to have both Python 2 and Python 3 installed on your system: for that purpose, please download and install **[pyenv](https://github.com/pyenv/pyenv)**. It allows to easily manage multiple versions of Python on your system. Without `pyenv`, under MacOS, you might have problems when creating a `virtualenv` that contains both Python 2 and Python 3.
+It is also recommended to have a dedicated Python 3 installed on your system: for that purpose, please download and install **[pyenv](https://github.com/pyenv/pyenv)**. It allows to easily manage multiple versions of Python on your system.
 
 ### GitHub
 
@@ -114,40 +114,34 @@ We assume you have an Operating System and that is working :)
 
 #### Python and pyenv
 
-You will need both `python2` and `python3` installed on your system. While there are multiple ways to achieve this, we recommend using `pyenv`. At the time of writing, the latest versions of Python are *2.7.17* and *3.7.5*, so we're going to use these.
+You will need `python3` installed on your system. We recommend using `pyenv`. At the time of writing, the latest version of Python 3.7 is *3.7.5*.
 
-Make sure `pyenv` in installed:
+Make sure `pyenv` in installed and that the `eval "$(pyenv init -)` expression is placed in your shell configuration (`~/.bashrc` or `~/.zshrc`) - [more information about this](https://github.com/pyenv/pyenv#installation).
 
 ```bash
+sb@dddd:~/demisto$ eval "$(pyenv init -)
 sb@dddd:~/demisto$ pyenv -v
 pyenv 1.2.15
 sb@dddd:~/demisto$~/demisto$
 ```
+If it doesn't work, please follow the instructions [here](https://github.com/pyenv/pyenv#installation). Either Homebrew for MacOS or the automatic installer on Linux/WSL work fine.
 
-If not, please follow the instructions [here](https://github.com/pyenv/pyenv#installation). Either Homebrew for MacOS or the automatic installer on Linux/WSL work fine.
-
-Make sure that the required versions of Python are available:
+Make sure that the required version of Python is available:
 
 ```bash
 sb@dddd:~/demisto$ pyenv versions
-  2.7.17
   3.7.5
 sb@dddd:~/demisto$
 ```
+If it doesn't work, please follow the instructions [here](https://github.com/pyenv/pyenv#installation). Either Homebrew for MacOS or the automatic installer on Linux/WSL work fine.
 
-If they're missing, you will need to install them. As `pyenv` compiles CPython, you might need some libraries. Depending on your OS, [this](https://github.com/pyenv/pyenv/wiki/Common-build-problems) article explains how to install the required dependencies and provides useful troubleshooting info.
+If it is missing, you will need to install it. As `pyenv` compiles CPython, you might need some libraries. Depending on your OS, [this](https://github.com/pyenv/pyenv/wiki/Common-build-problems) article explains how to install the required dependencies and provides useful troubleshooting info.
 
 Also, it's a good time to take a break as installing might take a bit.
 
-Install Python 2.7.17 and 3.7.5:
+Install Python 3.7.5:
 
 ```bash
-sb@dddd:~/demisto$ pyenv install 2.7.17
-Downloading Python-2.7.17.tar.xz...
--> https://www.python.org/ftp/python/2.7.17/Python-2.7.17.tar.xz
-Installing Python-2.7.17...
-Installed Python-2.7.17 to /home/sb/.pyenv/versions/2.7.17
-
 sb@dddd:~/demisto$ pyenv install 3.7.5
 Downloading Python-3.7.5.tar.xz...
 -> https://www.python.org/ftp/python/3.7.5/Python-3.7.5.tar.xz
@@ -155,11 +149,9 @@ Installing Python-3.7.5...
 Installed Python-3.7.5 to /home/sb/.pyenv/versions/3.7.5
 
 sb@dddd:~/demisto$ pyenv versions
-  2.7.17
   3.7.5
 sb@dddd:~/demisto$
 ```
-
 And that's it! Again, if the installation fails, check out [this](https://github.com/pyenv/pyenv/wiki/Common-build-problems) page.
 
 #### GitHub
@@ -234,37 +226,18 @@ sb@dddd:~/demisto/content$ pyenv local
 pyenv: no local version configured for this directory
 ```
 
-You can tell `pyenv` to use the latest versions of Python 2 and Python 3 you previously installed and verify that everything is set correctly:
+You can tell `pyenv` to use the latest version Python 3 you previously installed and verify that everything is set correctly:
 ```
-sb@dddd:~/demisto/content$ pyenv local 3.7.5 2.7.17
+sb@dddd:~/demisto/content$ pyenv local 3.7.5
 
 sb@dddd:~/demisto/content$ pyenv local
 3.7.5
-2.7.17
 
-sb@dddd:~/demisto/content$ which python2
-/home/sb/.pyenv/shims/python2
 sb@dddd:~/demisto/content$ which python3
 /home/sb/.pyenv/shims/python3
 
-sb@dddd:~/demisto/content$ python2 -V
-Python 2.7.17
 sb@dddd:~/demisto/content$ python3 -V
 Ptyhon 3.7.5
-```
-
-Now that Python is set up correctly, also install `pipenv` that will be useful when running Unit Tests
-
-```bash
-sb@dddd:~/demisto/content$ pip install pipenv
-Collecting pipenv
-
-[... output omitted for brevity ...]
-
-Successfully installed certifi-2019.11.28 pipenv-2018.11.26 virtualenv-16.7.9 virtualenv-clone-0.5.3
-
-sb@dddd:~/demisto/content$ which pipenv
-/home/sb/.pyenv/shims/pipenv
 ```
 
 OK, now you can run the `.hooks/bootstrap` script that will install the dependencies and create the `virtualenv`:
@@ -293,6 +266,8 @@ Deactivate by running: deactivate
 sb@dddd:~/demisto/content$
 ```
 
+*Note*: if you are using WSL and you see some errors about "python.exe" getting called, disable it in App Execution Alias ([details](https://superuser.com/questions/1437590/typing-python-on-windows-10-version-1903-command-prompt-opens-microsoft-stor)).
+
 Everything is configured, and you can start developing. When you work on your integration, you can activate the `virtualenv` with the `activate` command:
 ```bash
 sb@dddd:~/demisto/content$ . ./venv/bin/activate
@@ -310,7 +285,7 @@ sb@dddd:~/demisto/content$
 
 Our content ships with an `HelloWorld` integration that provides basic functionality and is useful to understand how to create integrations.
 
-It's located in the `Integrations/HelloWorld` folder. We will use `demisto-sdk` to run the *linting* and *unit testing* in order to make sure that everything is fine with the dev environment (python, docker, etc.).
+It's located in the `Packs/HelloWorld/Integrations/HelloWorld` folder. We will use `demisto-sdk` to run the *linting* and *unit testing* in order to make sure that everything is fine with the dev environment (python, docker, etc.).
 
 First, make sure you are running inside the `virtualenv`:
 ```bash
@@ -328,14 +303,14 @@ Now, run the `demisto-sdk lint` command on the folder `Packs/HelloWorld/Integrat
  or if you want to run  against all the committed files in your branch you can use `demisto-sdk lint -g`.
 It will run both the [linters](linting) and [pytest](unit-testing):
 ```bash
-(venv) sb@dddd:~/demisto/content$ demisto-sdk lint -d Integrations/HelloWorld
+(venv) sb@dddd:~/demisto/content$ demisto-sdk lint -d Packs/HelloWorld/Integrations/HelloWorld
 Detected python version: [3.7] for docker image: demisto/python3:3.7.4.2245
 ========= Running flake8 ===============
 flake8 completed
-========= Running mypy on: /home/sb/demisto/content/Integrations/HelloWorld/HelloWorld.py ===============
+========= Running mypy on: /home/sb/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py ===============
 Success: no issues found in 1 source file
 mypy completed
-========= Running bandit on: /home/sb/demisto/content/Integrations/HelloWorld/HelloWorld.py ===============
+========= Running bandit on: /home/sb/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py ===============
 bandit completed
 2019-12-27 10:27:17.789503: Existing image: devtestdemisto/python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54 not found will obtain lock file or wait for image
 2019-12-27 10:27:17.791519: Obtained lock file: .lock-devtestdemisto-python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54    2019-12-27 10:27:17.791991: Trying to pull image: devtestdemisto/python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54        Pull succeeded with output: 3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54: Pulling from devtestdemisto/python3
@@ -383,7 +358,7 @@ In order to create a branch, use the  `git checkout -b [branch_name]` command, w
 Switched to a new branch 'my_integration_name'
 ```
 
-Now, create a directory under `￿Packs/<Your pack name>`, named after your product where you will put all your content files later, and add it to the staged changes in `git`.  
+Now, use `demisto-sdk` to create a directory under `Packs/<Your pack name>`, named after your product where you will put all your content files later, and add it to the staged changes in `git`.  
 For more description regarding what exactly a pack is please click [here](packs-fromat). 
 
 Make sure you use **PascalCase** in the directory name (i.e. `MyIntegration`), you can create a Pack and an Integration directory using the `demisto-sdk init` command.
