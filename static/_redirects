@@ -5,12 +5,8 @@
 
 # Partner docs
 /docs/become-a-tech-partner	/docs/partners/become-a-tech-partner
-/docs/why-demisto	/docs/partners/why-demisto
 /docs/partner-owned-integration	/docs/partners/partner-owned-integration
 /docs/development-partners	/docs/partners/development-partners
-
-# Extra special page for RSA C
-/extra	/docs/partners/why-demisto
 
 # Concepts
 /docs/design-best-practices	/docs/concepts/design-best-practices
@@ -98,4 +94,6 @@
 /sign-addn https://na2.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=f1b0bfb5-5e5a-49b9-8ed6-5b475605cefa&env=na2&acct=11b87c14-db4f-4b90-b5b1-58b37f18856f&v=2
 
 # Rebranding
-/partners/why-demisto   /partners/why-xsoar
+/extra	/docs/partners/why-demisto
+/docs/why-demisto	/docs/partners/why-xsoar
+/docs/partners/why-demisto   /docs/partners/why-xsoar
