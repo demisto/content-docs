@@ -47,7 +47,7 @@ This file will generate the structure of the file based on our need but the cont
 The file contains a general explanation for the pack and you are free to add any information relevant for the pack.
 
 ### .secrets-ignore
-This file will be used while running the `demisto-sdk secrets`([explanation](https://github.com/demisto/demisto-sdk/blob/master/docs/secrets.md)), we will determine the file and will
+This file will be used while running the `demisto-sdk secrets`([explanation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/secrets/README.md)), we will determine the file and will
  use it as a  white list of approved words for your PR.
 
-**Note**: We use `demisto-sdk secrets` as part of our pre-commit hoot to check that possposible secrets in the PR aren't exposed to a public repository.
+**Note**: We use `demisto-sdk secrets` as part of our pre-commit hook to check that possible secrets in the PR aren't exposed to a public repository.

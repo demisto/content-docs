@@ -3,15 +3,15 @@ id: tut-setup-dev
 title: Set Up Your Dev Environment
 ---
 
-Thank you for showing interest in contributing to the Demisto content. We hope this experience will be easy and fun.
+Thank you for showing interest in contributing to the Cortex XSOAR content. We hope this experience will be easy and fun.
 
-This tutorial will guide you on how to set up your dev environment to quickly start developing on Demisto. While in Demisto you can write code directly in the UI, which is awesome, you'll need a proper development environment external to Demisto to contribute a full integration.. This is because, in order to build a full fledged integration, you'll need to *lint* your code, run unit tests with *pytest*, create some documentation, submit your changes via *git* and more.
+This tutorial will guide you on how to set up your dev environment to quickly start developing on Cortex XSOAR. While in Cortex XSOAR you can write code directly in the UI, which is awesome, you'll need a proper development environment external to Cortex XSOAR to contribute a full integration.. This is because, in order to build a full fledged integration, you'll need to *lint* your code, run unit tests with *pytest*, create some documentation, submit your changes via *git* and more.
 
 If you've been through this process already and just want a quick reference, you can jump to the [Development Setup](../integrations/dev-setup) page, otherwise keep reading for more details.
 
 ## Which tools should I use?
 
-As mentioned, you'll need a combination of both the Demisto UI and other tools. 
+As mentioned, you'll need a combination of both the Cortex XSOAR UI and other tools. 
 
 As a general rule of the thumb, we recommend that you use an external IDE and toolchain when:
 - Working on your [integration code](../integrations/code-conventions) (YourIntegration.py)
@@ -19,7 +19,7 @@ As a general rule of the thumb, we recommend that you use an external IDE and to
 - Working on the [CHANGELOG.md](../integrations/changelog) and README.md documentation files
 - Running the [linting](../integrations/linting) and testing
 
-Instead, you should use the Demisto UI when:
+Instead, you should use the Cortex XSOAR UI when:
 - Creating the [Test Playbooks](../integrations/test-playbooks)
 - Auto-generate the [integration documentation](../integrations/integration-docs)
 - Creating [example playbooks](../playbooks/playbooks) to demonstrate your integration
@@ -33,18 +33,18 @@ When it comes to an External IDE, you should stick to what you're comfortable wi
 We developed a free [plugin](https://plugins.jetbrains.com/plugin/12093-demisto-add-on-for-pycharm) for [PyCharm](https://www.jetbrains.com/pycharm/) that simplifies/automates a few tasks such as:
 - Running unit tests
 - Creating a blank integration or automation script
-- Uploading/Downloading your integration code to/from Demisto
-- Running commands directly on Demisto
+- Uploading/Downloading your integration code to/from Cortex XSOAR
+- Running commands directly on Cortex XSOAR
 
 However, if you want to a different IDE (Visual Studio Code, Sublime, vi, emacs, etc.) it's totally fine! It just means that some of those tasks must be performed manually. To automate them, you can use the  [demisto-sdk](https://github.com/demisto/demisto-sdk). In this tutorial, we will be using it for unit tests, but more features will come in the future.
 
 ## Requirements
 
-Here are few requirements to make sure that you an easily build an Demisto Integration without running into issues down the road.
+Here are few requirements to make sure that you an easily build an Cortex XSOAR Integration without running into issues down the road.
 
-### Demisto
+### Cortex XSOAR
 
-You need an instance of Demisto up and running. You can Sign Up for the [Demisto Free Edition](https://start.paloaltonetworks.com/sign-up-for-demisto-free-edition) or, if you're entitled to, contact your Business Development representative to have a non-production license.
+You need an instance of Cortex XSOAR up and running. You can Sign Up for the [Cortex XSOAR Free Edition](https://start.paloaltonetworks.com/sign-up-for-demisto-free-edition) or, if you're entitled to, contact your Business Development representative to have a non-production license.
 
 ### Operating System
 
@@ -61,17 +61,17 @@ You will need to build your integration using **Python** and, more specifically,
 
 **Note**: You don't need to be a a Python expert (I'm not!) to write a good integration, although some intermediate level knowledge is preferred.
 
-It is also recommended to have both Python 2 and Python 3 installed on your system: for that purpose, please download and install **[pyenv](https://github.com/pyenv/pyenv)**. It allows to easily manage multiple versions of Python on your system. Without `pyenv`, under MacOS, you might have problems when creating a `virtualenv` that contains both Python 2 and Python 3.
+It is also recommended to have a dedicated Python 3 installed on your system: for that purpose, please download and install **[pyenv](https://github.com/pyenv/pyenv)**. It allows to easily manage multiple versions of Python on your system.
 
 ### GitHub
 
-You will need a **[GitHub](https://github.com)** account, as the contribution process requires you to submit a Pull Request in the [Demisto Content Repository](https://github.com/demisto/content). To learn more about Pull Requests and contributing , check out the [Collaborating with issue and pull requests](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests) tutorial on GitHub, as well as our [Content Contribution Guide](https://github.com/demisto/content/blob/master/CONTRIBUTING.md).
+You will need a **[GitHub](https://github.com)** account, as the contribution process requires you to submit a Pull Request in the [Cortex XSOAR Content Repository](https://github.com/demisto/content). To learn more about Pull Requests and contributing , check out the [Collaborating with issue and pull requests](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests) tutorial on GitHub, as well as our [Content Contribution Guide](https://github.com/demisto/content/blob/master/CONTRIBUTING.md).
 
 And you will need a `git` client on your system (git, GitHub Desktop, SourceTree, etc). In the examples we'll just use the `git` command line client.
 
 ### Docker
 
-In order to be able to run linting and tests, you should have **Docker** installed on your machine. This way you can test your code using the same Python environment as the one that will run inside the Demisto instance.
+In order to be able to run linting and tests, you should have **Docker** installed on your machine. This way you can test your code using the same Python environment as the one that will run inside the Cortex XSOAR instance.
 
 *Note* if you're using WSL, you cannot run Docker natively on WSL, but you can install Docker Desktop on Windows and configure WSL to communicate to it using [this](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly) tutorial.
 
@@ -94,15 +94,15 @@ OK, let's begin.
 
 Let's go make sure that all the requirements are satisfied, one by one.
 
-#### Demisto
+#### Cortex XSOAR
 
-We are assuming that Demisto is already installed. For more information about installing Demisto pleae refer to [this article](https://support.demisto.com/hc/en-us/sections/360001323614-Installing-Demisto) (Support Center credentials are required)
+We are assuming that Cortex XSOAR is already installed. For more information about installing Cortex XSOAR please refer to [this article](https://support.demisto.com/hc/en-us/sections/360001323614-Installing-Demisto) (Support Center credentials are required)
 
-Check if your Demisto License is correctly installed by navigating to *Settings* -> *ABOUT* -> *License* and make sure that everything is green:
+Check if your Cortex XSOAR License is correctly installed by navigating to *Settings* -> *ABOUT* -> *License* and make sure that everything is green:
 
-![Check Demisto License](../doc_imgs/tutorials/tut-setup-dev/01-checkdemistolicense.gif)
+![Check Cortex XSOAR License](../doc_imgs/tutorials/tut-setup-dev/01-checkdemistolicense.gif)
 
-**PRO tip**: you can quickly navigate to different pages within Demisto by hitting *Ctrl-K* and then typing what you want. For the license page, for example, type */settings/license* or just *lic* and select the autocompleted option:
+**PRO tip**: you can quickly navigate to different pages within Cortex XSOAR by hitting *Ctrl-K* and then typing what you want. For the license page, for example, type */settings/license* or just *lic* and select the autocompleted option:
 
 ![Jump to Page](../doc_imgs/tutorials/tut-setup-dev/02-jumptopage.png)
 
@@ -114,40 +114,34 @@ We assume you have an Operating System and that is working :)
 
 #### Python and pyenv
 
-You will need both `python2` and `python3` installed on your system. While there are multiple ways to achieve this, we recommend using `pyenv`. At the time of writing, the latest versions of Python are *2.7.17* and *3.7.5*, so we're going to use these.
+You will need `python3` installed on your system. We recommend using `pyenv`. At the time of writing, the latest version of Python 3.7 is *3.7.5*.
 
-Make sure `pyenv` in installed:
+Make sure `pyenv` in installed and that the `eval "$(pyenv init -)` expression is placed in your shell configuration (`~/.bashrc` or `~/.zshrc`) - [more information about this](https://github.com/pyenv/pyenv#installation).
 
 ```bash
+sb@dddd:~/demisto$ eval "$(pyenv init -)
 sb@dddd:~/demisto$ pyenv -v
 pyenv 1.2.15
 sb@dddd:~/demisto$~/demisto$
 ```
+If it doesn't work, please follow the instructions [here](https://github.com/pyenv/pyenv#installation). Either Homebrew for MacOS or the automatic installer on Linux/WSL work fine.
 
-If not, please follow the instructions [here](https://github.com/pyenv/pyenv#installation). Either Homebrew for MacOS or the automatic installer on Linux/WSL work fine.
-
-Make sure that the required versions of Python are available:
+Make sure that the required version of Python is available:
 
 ```bash
 sb@dddd:~/demisto$ pyenv versions
-  2.7.17
   3.7.5
 sb@dddd:~/demisto$
 ```
+If it doesn't work, please follow the instructions [here](https://github.com/pyenv/pyenv#installation). Either Homebrew for MacOS or the automatic installer on Linux/WSL work fine.
 
-If they're missing, you will need to install them. As `pyenv` compiles CPython, you might need some libraries. Depending on your OS, [this](https://github.com/pyenv/pyenv/wiki/Common-build-problems) article explains how to install the required dependencies and provides useful troubleshooting info.
+If it is missing, you will need to install it. As `pyenv` compiles CPython, you might need some libraries. Depending on your OS, [this](https://github.com/pyenv/pyenv/wiki/Common-build-problems) article explains how to install the required dependencies and provides useful troubleshooting info.
 
 Also, it's a good time to take a break as installing might take a bit.
 
-Install Python 2.7.17 and 3.7.5:
+Install Python 3.7.5:
 
 ```bash
-sb@dddd:~/demisto$ pyenv install 2.7.17
-Downloading Python-2.7.17.tar.xz...
--> https://www.python.org/ftp/python/2.7.17/Python-2.7.17.tar.xz
-Installing Python-2.7.17...
-Installed Python-2.7.17 to /home/sb/.pyenv/versions/2.7.17
-
 sb@dddd:~/demisto$ pyenv install 3.7.5
 Downloading Python-3.7.5.tar.xz...
 -> https://www.python.org/ftp/python/3.7.5/Python-3.7.5.tar.xz
@@ -155,11 +149,9 @@ Installing Python-3.7.5...
 Installed Python-3.7.5 to /home/sb/.pyenv/versions/3.7.5
 
 sb@dddd:~/demisto$ pyenv versions
-  2.7.17
   3.7.5
 sb@dddd:~/demisto$
 ```
-
 And that's it! Again, if the installation fails, check out [this](https://github.com/pyenv/pyenv/wiki/Common-build-problems) page.
 
 #### GitHub
@@ -192,7 +184,7 @@ Great, all the prerequisites are set! We can get started.
 
 ### Step 2: Fork the GitHub repo
 
-Make sure you're logged on GitHub and navigate to the [Demisto Content Repo](https://github.com/demisto/content) and click on **Fork**:
+Make sure you're logged on GitHub and navigate to the [Cortex XSOAR Content Repo](https://github.com/demisto/content) and click on **Fork**:
 
 ![Fork Repository](../doc_imgs/tutorials/tut-setup-dev/04-fork.png)
 
@@ -200,7 +192,7 @@ Once the fork is complete, copy the your URL:
 
 ![Copy GitHub URL](../doc_imgs/tutorials/tut-setup-dev/05-copygithuburl.png)
 
-This is the fork where you will commit your code and, once ready, create the Pull Request to submit your contribution back to the Demisto Content repository.
+This is the fork where you will commit your code and, once ready, create the Pull Request to submit your contribution back to the Cortex XSOAR Content repository.
 
 ### Step 3: Clone the GitHub fork locally
 
@@ -234,37 +226,18 @@ sb@dddd:~/demisto/content$ pyenv local
 pyenv: no local version configured for this directory
 ```
 
-You can tell `pyenv` to use the latest versions of Python 2 and Python 3 you previously installed and verify that everything is set correctly:
+You can tell `pyenv` to use the latest version Python 3 you previously installed and verify that everything is set correctly:
 ```
-sb@dddd:~/demisto/content$ pyenv local 3.7.5 2.7.17
+sb@dddd:~/demisto/content$ pyenv local 3.7.5
 
 sb@dddd:~/demisto/content$ pyenv local
 3.7.5
-2.7.17
 
-sb@dddd:~/demisto/content$ which python2
-/home/sb/.pyenv/shims/python2
 sb@dddd:~/demisto/content$ which python3
 /home/sb/.pyenv/shims/python3
 
-sb@dddd:~/demisto/content$ python2 -V
-Python 2.7.17
 sb@dddd:~/demisto/content$ python3 -V
 Ptyhon 3.7.5
-```
-
-Now that Python is set up correctly, also install `pipenv` that will be useful when running Unit Tests
-
-```bash
-sb@dddd:~/demisto/content$ pip install pipenv
-Collecting pipenv
-
-[... output omitted for brevity ...]
-
-Successfully installed certifi-2019.11.28 pipenv-2018.11.26 virtualenv-16.7.9 virtualenv-clone-0.5.3
-
-sb@dddd:~/demisto/content$ which pipenv
-/home/sb/.pyenv/shims/pipenv
 ```
 
 OK, now you can run the `.hooks/bootstrap` script that will install the dependencies and create the `virtualenv`:
@@ -293,6 +266,8 @@ Deactivate by running: deactivate
 sb@dddd:~/demisto/content$
 ```
 
+*Note*: if you are using WSL and you see some errors about "python.exe" getting called, disable it in App Execution Alias ([details](https://superuser.com/questions/1437590/typing-python-on-windows-10-version-1903-command-prompt-opens-microsoft-stor)).
+
 Everything is configured, and you can start developing. When you work on your integration, you can activate the `virtualenv` with the `activate` command:
 ```bash
 sb@dddd:~/demisto/content$ . ./venv/bin/activate
@@ -310,7 +285,7 @@ sb@dddd:~/demisto/content$
 
 Our content ships with an `HelloWorld` integration that provides basic functionality and is useful to understand how to create integrations.
 
-It's located in the `Integrations/HelloWorld` folder. We will use `demisto-sdk` to run the *linting* and *unit testing* in order to make sure that everything is fine with the dev environment (python, docker, etc.).
+It's located in the `Packs/HelloWorld/Integrations/HelloWorld` folder. We will use `demisto-sdk` to run the *linting* and *unit testing* in order to make sure that everything is fine with the dev environment (python, docker, etc.).
 
 First, make sure you are running inside the `virtualenv`:
 ```bash
@@ -328,14 +303,14 @@ Now, run the `demisto-sdk lint` command on the folder `Packs/HelloWorld/Integrat
  or if you want to run  against all the committed files in your branch you can use `demisto-sdk lint -g`.
 It will run both the [linters](linting) and [pytest](unit-testing):
 ```bash
-(venv) sb@dddd:~/demisto/content$ demisto-sdk lint -d Integrations/HelloWorld
+(venv) sb@dddd:~/demisto/content$ demisto-sdk lint -d Packs/HelloWorld/Integrations/HelloWorld
 Detected python version: [3.7] for docker image: demisto/python3:3.7.4.2245
 ========= Running flake8 ===============
 flake8 completed
-========= Running mypy on: /home/sb/demisto/content/Integrations/HelloWorld/HelloWorld.py ===============
+========= Running mypy on: /home/sb/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py ===============
 Success: no issues found in 1 source file
 mypy completed
-========= Running bandit on: /home/sb/demisto/content/Integrations/HelloWorld/HelloWorld.py ===============
+========= Running bandit on: /home/sb/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py ===============
 bandit completed
 2019-12-27 10:27:17.789503: Existing image: devtestdemisto/python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54 not found will obtain lock file or wait for image
 2019-12-27 10:27:17.791519: Obtained lock file: .lock-devtestdemisto-python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54    2019-12-27 10:27:17.791991: Trying to pull image: devtestdemisto/python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54        Pull succeeded with output: 3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54: Pulling from devtestdemisto/python3
@@ -374,7 +349,7 @@ Note that the tests run within a Docker container so, if everything worked well,
 
 ### Step 6: Create a branch and integration directory
 
-The [Git Flow](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests) requires to create a *branch* with your new code, that you will later use to submit a *Pull Request*. This tutorial doesn't mean to be an exhaustive guide on how to use `git`: its purpose is just to make sure that you have all the requirements and tools in place to successfully develop a Demisto Integration.
+The [Git Flow](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests) requires to create a *branch* with your new code, that you will later use to submit a *Pull Request*. This tutorial doesn't mean to be an exhaustive guide on how to use `git`: its purpose is just to make sure that you have all the requirements and tools in place to successfully develop a Cortex XSOAR Integration.
 
 In order to create a branch, use the  `git checkout -b [branch_name]` command, where the name of the branch corresponds to your integration:
 
@@ -383,7 +358,7 @@ In order to create a branch, use the  `git checkout -b [branch_name]` command, w
 Switched to a new branch 'my_integration_name'
 ```
 
-Now, create a directory under `￿Packs/<Your pack name>`, named after your product where you will put all your content files later, and add it to the staged changes in `git`.  
+Now, use `demisto-sdk` to create a directory under `Packs/<Your pack name>`, named after your product where you will put all your content files later, and add it to the staged changes in `git`.  
 For more description regarding what exactly a pack is please click [here](packs-fromat). 
 
 Make sure you use **PascalCase** in the directory name (i.e. `MyIntegration`), you can create a Pack and an Integration directory using the `demisto-sdk init` command.
@@ -511,6 +486,6 @@ You can go back to GitHub and, under **your** fork, you should be able to see th
 
 ![GitHub Branch](../doc_imgs/tutorials/tut-setup-dev/06-githubbranch.png)
 
-Congratulations! You completed the set up of the Development Environment for Demisto! Now you can start writing your code. Please have a look at the [Code Conventions](../integrations/code-conventions).
+Congratulations! You completed the set up of the Development Environment for Cortex XSOAR! Now you can start writing your code. Please have a look at the [Code Conventions](../integrations/code-conventions).
 
 Thank for your time, we hope you enjoyed this tutorial. Please report issues and suggestions using the link below!

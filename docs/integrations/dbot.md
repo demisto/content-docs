@@ -3,7 +3,7 @@ id: dbot
 title: DBot
 ---
 
-DBot is the Demisto machine learning bot which ingests information about indicators to determine if they are malicious or not. Since DBot requires a very specific dataset, we must format our data as per this article.
+DBot is the Cortex XSOAR machine learning bot which ingests information about indicators to determine if they are malicious or not. Since DBot requires a very specific dataset, we must format our data as per this article.
 
 ## Context Format
 ```python
@@ -87,7 +87,7 @@ Malicious has two key values, "Vendor" and "Description". Vendor is the entity r
 }
 ```
 
-**Please Note**: We are unable to use the Demisto Transformers (DT) within the DBot score context. 
+**Please Note**: We are unable to use the Cortex XSOAR Transformers (DT) within the DBot score context. 
 
 For example, using the following in your DBot context, will not work:
 

@@ -52,7 +52,7 @@ In the integration YAML file, the command outputs are defined as such:
 In the context menu, you will see three fields; Context Path, Description and Type. Their uses are as follows:
 * **Context Path** - This is a Dot Notation representation of the path to access the context
 * **Description** - A short description of what the context is
-* **Type** - Indicating the type of value that is located at the path enables Demisto to format the data correctly
+* **Type** - Indicating the type of value that is located at the path enables Cortex XSOAR to format the data correctly
 
 
 ```buildoutcfg
@@ -139,5 +139,5 @@ return_outputs(
     That is, no need to modify the API response and map it to human readable keys.
     You might see old integrations in which this map exist, but this is no longer required. 
 
-### DT (Demisto Transform Language)
+### DT (Cortex XSOAR Transform Language)
 In the above example, we observe the entry context using ```(val.ReportID == obj.ReportID)```. This works to *tie together* related entry context objects. In this instance, we are using the value of the ReportID key as the unique identifier to search through the existing context and link related objects. This prevents data from being overwritten as well as further enriches an existing entry with more information. Learn more about linking context [here](dt).
