@@ -63,7 +63,7 @@ After configuring the feed, we need to customize the playbook to process the ind
 
     2. Select the **From indicators** radio button.
 
-    3. Under **Query**, enter a query to process the specific indicators that you want. For example, sourceBrands:"Bambenek Consulting Feed".
+    3. Under **Query**, enter a query to process the specific indicators that you want. For example, *sourceBrands:"Bambenek Consulting Feed"*.
 
     4. Click **Save**.
 
