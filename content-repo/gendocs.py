@@ -168,7 +168,7 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
     if FILE_REGEX:
         print(f'DEV MODE. Matching only files which match: {FILE_REGEX}')
         regex = re.compile(FILE_REGEX)
-        readme_files = filter(regex.search, readme_files)
+        readme_files = list(filter(regex.search, readme_files))
     integrations_dir = f'{target_dir}/{prefix}'
     if not os.path.exists(integrations_dir):
         os.makedirs(integrations_dir)
