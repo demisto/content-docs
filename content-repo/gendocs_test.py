@@ -42,7 +42,7 @@ def test_process_readme_doc(tmp_path):
     with open(str(tmp_path / f'{res.id}.md'), 'r') as f:
         assert f.readline().startswith('---')
         assert f.readline().startswith(f'id: {res.id}')
-        assert f.readline().startswith(f'title: {res.name}')
+        assert f.readline().startswith(f'title: "{res.name}"')
         assert f.readline().startswith(f'custom_edit_url: https://github.com/demisto/content/')
     try:
         process_readme_doc(f'{BASE_DIR}/test_data/empty-readme.md', str(tmp_path), BASE_DIR)
@@ -61,7 +61,7 @@ def test_process_readme_doc_same_dir(tmp_path):
     with open(str(tmp_path / f'{res.id}.md'), 'r') as f:
         assert f.readline().startswith('---')
         assert f.readline().startswith(f'id: {res.id}')
-        assert f.readline().startswith(f'title: {res.name}')
+        assert f.readline().startswith(f'title: "{res.name}"')
         assert f.readline().startswith(f'custom_edit_url: https://github.com/demisto/content/')
 
 
@@ -84,7 +84,7 @@ def test_process_code_script(tmp_path):
     with open(str(tmp_path / f'{res.id}.md'), 'r') as f:
         assert f.readline().startswith('---')
         assert f.readline().startswith(f'id: {res.id}')
-        assert f.readline().startswith(f'title: {res.name}')
+        assert f.readline().startswith(f'title: "{res.name}"')
         assert f.readline().startswith(f'custom_edit_url: https://github.com/demisto/content/')
 
 
