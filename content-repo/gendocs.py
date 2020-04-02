@@ -52,6 +52,7 @@ YES_HTML = '<!-- HTML_DOC -->'
 BRANCH = os.getenv('HEAD', 'master')
 # env vars for faster development
 MAX_FILES = int(os.getenv('MAX_FILES', -1))
+FILE_REGEX = os.getenv('FILE_REGEX')
 
 
 class DocInfo:
@@ -134,7 +135,7 @@ def process_readme_doc(readme_file: str, target_dir: str, content_dir: str) -> D
         if readme_repo_path.startswith(content_dir):
             readme_repo_path = readme_repo_path[len(content_dir):]
         edit_url = f'https://github.com/demisto/content/blob/{BRANCH}/{readme_repo_path}'
-        content = f'---\nid: {id}\ntitle: {doc_info.name}\ncustom_edit_url: {edit_url}\n---\n\n' + content
+        content = f'---\nid: {id}\ntitle: "{doc_info.name}"\ncustom_edit_url: {edit_url}\n---\n\n' + content
     with tempfile.NamedTemporaryFile('w', encoding='utf-8') as f:  # type: ignore
         f.write(content)
         f.flush()
@@ -164,6 +165,10 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
     if MAX_FILES > 0:
         print(f'DEV MODE. Truncating file list to: {MAX_FILES}')
         readme_files = readme_files[:MAX_FILES]
+    if FILE_REGEX:
+        print(f'DEV MODE. Matching only files which match: {FILE_REGEX}')
+        regex = re.compile(FILE_REGEX)
+        readme_files = filter(regex.search, readme_files)
     integrations_dir = f'{target_dir}/{prefix}'
     if not os.path.exists(integrations_dir):
         os.makedirs(integrations_dir)
