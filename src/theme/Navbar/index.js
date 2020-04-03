@@ -128,6 +128,7 @@ function Navbar() {
   } = navbar;
   const [sidebarShown, setSidebarShown] = useState(false);
   const [menuShown, setMenuShown] = useState({});
+  const [siteMenuShown, setSiteMenuShown] = useState({});
   const [isSearchBarExpanded, setIsSearchBarExpanded] = useState(false);
   const [theme, setTheme] = useTheme();
 
@@ -145,6 +146,12 @@ function Navbar() {
   const toggleMenu = id => {
     setMenuShown(menuShown => {
       return { ...menuShown, [id]: !menuShown[id] };
+    });
+  };
+
+  const toggleSiteMenu = id => {
+    setSiteMenuShown(siteMenuShown => {
+      return { ...siteMenuShown, [id]: !siteMenuShown[id] };
     });
   };
 
@@ -275,6 +282,7 @@ function Navbar() {
             <ul className="menu__list">
               {menus.map((menuItem, i) => {
                 var className = menuShown[i]
+                var className = siteMenuShown[i]
                   ? "menu__list-item"
                   : "menu__list-item menu__list-item--collapsed";
 
@@ -283,6 +291,7 @@ function Navbar() {
                     <a
                       className="menu__link menu__link--sublist"
                       onClick={() => toggleMenu(i)}
+                      onClick={() => toggleSiteMenu(i)}
                     >
                       {menuItem.label}
                     </a>
