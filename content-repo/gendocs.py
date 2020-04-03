@@ -55,6 +55,12 @@ MAX_FILES = int(os.getenv('MAX_FILES', -1))
 FILE_REGEX = os.getenv('FILE_REGEX')
 
 
+def normalize_id(id: str):
+    id = inflection.dasherize(inflection.underscore(id)).replace(' ', '-')
+    # replace all non word carachercters (dash is ok)
+    return re.sub(r'[^\w-]', '', id)
+
+
 class DocInfo:
     def __init__(self, id: str, name: str, description: str):
         self.id = id
@@ -114,7 +120,7 @@ def process_readme_doc(readme_file: str, target_dir: str, content_dir: str) -> D
     with open(ymlfile, 'r', encoding='utf-8') as f:
         yml_data = yaml.safe_load(f)
     id = yml_data.get('commonfields', {}).get('id') or yml_data['id']
-    id = inflection.dasherize(inflection.underscore(id)).replace(' ', '-')
+    id = normalize_id(id)
     name = yml_data.get('display') or yml_data['name']
     desc = yml_data.get('description') or yml_data.get('comment')
     doc_info = DocInfo(id, name, desc)

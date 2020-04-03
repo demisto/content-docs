@@ -1,5 +1,5 @@
 from gendocs import INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
-    verify_mdx, index_doc_infos, fix_mdx, DocInfo, gen_html_doc
+    verify_mdx, index_doc_infos, fix_mdx, DocInfo, gen_html_doc, normalize_id
 import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -110,3 +110,8 @@ def test_bad_html():
     assert '>=' in bad_html
     res = gen_html_doc(bad_html)
     assert '>=' not in res
+
+
+def test_normalize_id():
+    assert normalize_id("that's not good") == 'thats-not-good'
+    assert normalize_id("have i been pwned? v2") == 'have-i-been-pwned-v2'
