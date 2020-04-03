@@ -88,7 +88,7 @@ def process_integration_doc(readme_file: str, target_dir: str, content_dir: str)
     with open(ymlfile, 'r', encoding='utf-8') as f:
         yml_data = yaml.safe_load(f)
     id = yml_data['commonfields']['id']
-    id = inflection.dasherize(inflection.underscore(id)).replace(' ', '-')
+    id = inflection.dasherize(inflection.underscore(id)).replace(' ', '-').replace('?', '')
     doc_info = DocInfo(id, yml_data['display'], yml_data.get('description'))
     with open(readme_file, 'r', encoding='utf-8') as f:
         content = f.read()

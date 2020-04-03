@@ -25,7 +25,7 @@ Optionally, macOS users can install via [homebrew](https://docs.brew.sh/Homebrew
 Docker is an optional, but highly recommended install. If you would like to write [unit tests](unit-testing) and run them, as we do in our CI process (within docker), we recommend installing docker. See: https://docs.docker.com/install/ for install options.
 
 ## Setting Up a Development Environment
-Clone (Demisto users) or [Fork](https://guides.github.com/activities/forking/) (external contributors) the Demisto Content repository.
+Clone (Cortex XSOAR users) or [Fork](https://guides.github.com/activities/forking/) (external contributors) the Cortex XSOAR Content repository.
 ### Install Python virtualenv
 We recommend using [virtualenv](https://github.com/pypa/virtualenv) to create an isolated virtual python development environment. To install virtual env run:
 ```
@@ -34,7 +34,7 @@ pip install virtualenv
 **Note:** Python 3 includes the `venv` module for creating virtual envs, but it does not permit creating virtual envs with other versions of Python (such as Python 2). Thus, we use the `virtualenv` package.
 
 ### Bootstrap
-Once `virtualenv` is installed you can run the [`bootstrap`](../../.hooks/bootstrap) script. The script will setup a pre-commit hook which will validate your modified files before committing and setup a python virtual env for development with the package requirements for [python2](../../dev-requirements-py2.txt) and [python3](../../dev-requirements-py3.txt). Run the script from the root directory of the source tree:
+Once `virtualenv` is installed you can run the [`bootstrap`](https://github.com/demisto/content/blob/master/.hooks/bootstrap) script. The script will setup a pre-commit hook which will validate your modified files before committing and setup a python virtual env for development with the package requirements for [python2](https://github.com/demisto/content/blob/master/dev-requirements-py2.txt) and [python3](https://github.com/demisto/content/blob/master/dev-requirements-py3.txt). Run the script from the root directory of the source tree:
 ```
 .hooks/bootstrap
 ```
@@ -60,18 +60,18 @@ demisto-sdk split-yml --help
 
 ## IDE
 
-Demisto offers two IDEs for developing: IntelliJ Plugin and built-in platform IDE.
+Cortex XSOAR offers two IDEs for developing: IntelliJ Plugin and built-in platform IDE.
 
-## Demisto IntelliJ Plugin
-The Demisto Add-on for PyCharm simplifies third-party integration and script development by enabling users to author Python content for Demisto directly in PyCharm. Recommended for developing Python [unit tests](unit-testing).
+## Cortex XSOAR IntelliJ Plugin
+The Cortex XSOAR Add-on for PyCharm simplifies third-party integration and script development by enabling users to author Python content for Cortex XSOAR directly in PyCharm. Recommended for developing Python [unit tests](unit-testing).
 
 Read more [here](https://plugins.jetbrains.com/plugin/12093-demisto-add-on-for-pycharm)
 
-## The Demisto IDE
-It is important to take a moment and familiarise yourself with the Demisto IDE as it may work differently than other IDEs you are familiar with. Some key differences between the Demisto IDE and ,for example pyCharm, is the absence of an interpreter. You will have to be mindful of Demisto reserved variables as you develop your integration. **(See Reserved Variables) **
+## The Cortex XSOAR IDE
+It is important to take a moment and familiarize yourself with the Cortex XSOAR IDE as it may work differently than other IDEs you are familiar with. Some key differences between the Cortex XSOAR IDE and ,for example pyCharm, is the absence of an interpreter. You will have to be mindful of Cortex XSOAR reserved variables as you develop your integration. **(See Reserved Variables) **
 
 ### The Script Helper
-Demisto is equipped with a script helper which is accessible via the button below:
+Cortex XSOAR is equipped with a script helper which is accessible via the button below:
 
 ![](../doc_imgs/integrations/script-helper.png)
 

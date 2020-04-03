@@ -58,7 +58,7 @@ Notice how the W in "Word" is capitalized because it's a name of a program
 ## Mistakes / Commonly Overlooked
 
 -   Specify `auto-extract` settings for **every possible task** in the "Advanced" tab (tasks such as conditions or section headers don't support this). Rule of thumb: set to None, unless the data printed to war room contains crucial indicators.
-(! `auto-extract` is a feature in Demisto that takes all outputs from a command and extract indicators from them)
+(! `auto-extract` is a feature in Cortex XSOAR that takes all outputs from a command and extract indicators from them)
 
 
 ![image](../doc_imgs/playbooks/62229068-97505980-b3c7-11e9-9c80-18b6f84ba90c.png)

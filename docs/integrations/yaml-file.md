@@ -6,10 +6,10 @@ title: YAML Files
 ## What is a YAML file?
 A YAML file is a form of structured data. It is visually similar to a JSON tree, however is less strict with syntax. Think of it as key, value set for your integration.
 
-When pushing an integration for public release, your YAML file must follow certain structural requirements in order to work properly. In this section we will review the various parts of the Demisto YAML file.
+When pushing an integration for public release, your YAML file must follow certain structural requirements in order to work properly. In this section we will review the various parts of the Cortex XSOAR YAML file.
 
 ## Common Fields
-The Common Fields section contains information that the Demisto server will use to identify your integration. See the example below:
+The Common Fields section contains information that the Cortex XSOAR server will use to identify your integration. See the example below:
 
 ```yml
 commonfields:
@@ -101,10 +101,10 @@ script:
   subtype: python3
   dockerimage: demisto/python3:3.7.5.3066
 ```
-Type indicates the language your integration is written in. Demisto currently supports Python and JavaScript. When using Python specifying `subtype` field is required (either: `python2` or `python3`). Additionally, when using Python `dockerimage` should be specified. If `dockerimage` is not specified a default Python 2 image will be used.
+Type indicates the language your integration is written in. Cortex XSOAR currently supports Python and JavaScript. When using Python specifying `subtype` field is required (either: `python2` or `python3`). Additionally, when using Python `dockerimage` should be specified. If `dockerimage` is not specified a default Python 2 image will be used.
 
 ## Commands
-The command section tells Demisto what arguments are required for your command as well as what the outputs are.
+The command section tells Cortex XSOAR what arguments are required for your command as well as what the outputs are.
 
 ```yml
   commands:
@@ -142,7 +142,7 @@ An explanation of these fields is as follows:
 | **runonce** | Boolean to indicate if the function runs repeatedly|
 
 ## Version and Tests
-The last section of the YAML file provides Demisto with information regarding what version is supported and tests. See the example below:
+The last section of the YAML file provides Cortex XSOAR with information regarding what version is supported and tests. See the example below:
 
 ```yml
 fromversion: 4.1.0
@@ -152,7 +152,7 @@ tests:
 
 From version indicates the server version that is supported with the integration. If the server version is below the fromversion, the integration will not display in the Settings area.
 
-Tests instructs the Demisto CircleCI tool which test to run to verify that the integration is working. 
+Tests instructs the Cortex XSOAR CircleCI tool which test to run to verify that the integration is working. 
 
 If you want to run all of the tests you will need to add to the tests section ```Run all tests``` as the test you would like to run.
 

@@ -87,8 +87,8 @@ module.exports = {
         {
           title: "Docs",
           items: [
-            { to: "docs/howtos/integrations/getting-started-guide", label: "Development Guide" },
-            { to: "docs/partners/why-demisto", label: "Why become a Partner?" },
+            { to: "docs/integrations/getting-started-guide", label: "Development Guide" },
+            { to: "docs/partners/why-xsoar", label: "Why become a Partner?" },
             {
               to: "docs/partners/become-a-tech-partner",
               label: "Become a Technology Partner"
