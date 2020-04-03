@@ -3,14 +3,14 @@ id: development-partners
 title: Development Partners
 ---
 
-We’ve been talking with lots of technical partners in the past few months who are excited to join the Demisto ecosystem. Many technical partners are able to build their integration in-house with their existing development teams. (Learn [what it takes](become-a-tech-partner) to build an integration.) But there are many partners that are interested in joining our ecosystem but may be resource- or roadmap-constrained; they are unable to commit to building the integration.
+We’ve been talking with lots of technical partners in the past few months who are excited to join the Cortex XSOAR ecosystem. Many technical partners are able to build their integration in-house with their existing development teams. (Learn [what it takes](become-a-tech-partner) to build an integration.) But there are many partners that are interested in joining our ecosystem but may be resource- or roadmap-constrained; they are unable to commit to building the integration.
 
-To address this need, we’re pleased to have software development companies that have been trained by, and have access to, our engineering team to reduce risk in the integration development lifecycle. We call these Development Partners. The development partners below can help you with some or all of the integration work. These partners typically will do end-to-end work including scoping, designing, coding, testing, and checking the code into our repository. They know our process and the Demisto product and can dramatically speed up your integration timeline.
+To address this need, we’re pleased to have software development companies that have been trained by, and have access to, our engineering team to reduce risk in the integration development lifecycle. We call these Development Partners. The development partners below can help you with some or all of the integration work. These partners typically will do end-to-end work including scoping, designing, coding, testing, and checking the code into our repository. They know our process and the Cortex XSOAR product and can dramatically speed up your integration timeline.
 
 ## How It Works
 Having your integration built by a development partner and certified by us is easy:
 
-1. Contact one or more of the partners below - They’ve been pre-screened and trained by Demisto teams.
+1. Contact one or more of the partners below - They’ve been pre-screened and trained by Cortex XSOAR teams.
 
 2. Establish scoping and contracting - Define what you want to accomplish in your integration. We’re happy to join calls to define use cases and commands based on our experience -- just let us know! (Palo Alto Networks is not a party to your agreement.)
 

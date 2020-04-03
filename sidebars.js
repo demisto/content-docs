@@ -129,7 +129,8 @@ const sidebars = {
             "tutorials/tut-integration-ui",
             "tutorials/tutorial-incident-lifecycle",
             "tutorials/tutorial-playbook-TIM-EDL",
-            "tutorials/tutorial-TIM-export-indicators-to-3rd-party"
+            "tutorials/tutorial-TIM-export-indicators-to-3rd-party",
+            "tutorials/tut-minemeld-migration"
           ]
     }
   ],
@@ -137,7 +138,7 @@ const sidebars = {
   [
     {
       type: "doc",
-      id: "partners/why-demisto"
+      id: "partners/why-xsoar"
     },
     {
       type: "doc",

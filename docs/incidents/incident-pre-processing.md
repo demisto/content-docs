@@ -13,7 +13,7 @@ To create a rule:
 1. Navigate to **Settings > Integrations > Pre-Process Rules**.
 2. Click **New Rule**.
 3. Enter a name for the rule.
-   Demisto recommends that you give meaningful names that will help you identify what the rule does when viewing the list of rules.
+   Cortex XSOAR recommends that you give meaningful names that will help you identify what the rule does when viewing the list of rules.
 4. Determine under which conditions the rule is applied to an incoming incident.
    For example, if you know that there is a phishing campaign, you can create a rule for emails with a specific subject.
    **Note**: You can add multiple conditions within a filter, and also add multiple filters. 

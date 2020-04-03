@@ -5,7 +5,7 @@ title: Create an Integration
 
 ## Welcome
 
->*First and foremost, I want to welcome you to the Demisto team. We are excited to have you and we look forward to working with you. Please note that this tutorial assumes that you have a working instance of Demisto.*
+>*First and foremost, I want to welcome you to the Palo Alto Networks team. We are excited to have you and we look forward to working with you. Please note that this tutorial assumes that you have a working instance of Cortex XSOAR.*
 
 The code we will be writing will be available in segments as we go along, as well as in it's entirety at the end.
 
@@ -17,17 +17,17 @@ The code we will be writing will be available in segments as we go along, as wel
 
 If this option is unavailable for you, it means that you do not have the proper permissions required for this tutorial. Please reach out to your Admin for assistance.
 
-## The Demisto IDE
+## The Cortex XSOAR IDE
 
->*Here we see the Demisto IDE. This more than likely looks different than other IDEs you may have previously worked with, So, let’s take a minute and point out what makes it different.*
+>*Here we see the Cortex XSOAR IDE. This more than likely looks different than other IDEs you may have previously worked with, So, let’s take a minute and point out what makes it different.*
 
-While the Demisto IDE has many features, you may wish to pre-write your code in a standalone IDE such as Pycharm or IntelliJ.
+While the Cortex XSOAR IDE has many features, you may wish to pre-write your code in a standalone IDE such as Pycharm or IntelliJ.
 
 ## Script Helper
 
 ![scripthelper](../doc_imgs/tutorials/tut-integration-ui/script-helper-screen.png)
 
->*One of the greatest tools you will have while creating your integration is the Script Helper. The script helper is a library of all of the different common server functions within Demisto. If you want to format a table, manipulate data, or post something to the war room; more often than not, there is a function for it here.*
+>*One of the greatest tools you will have while creating your integration is the Script Helper. The script helper is a library of all of the different common server functions within Cortex XSOAR. If you want to format a table, manipulate data, or post something to the war room; more often than not, there is a function for it here.*
 
 The script helper assists you in many functions. Generally if a function you created seems trivial, or you ask yourself "Why did I need to write that?" chances are it exists in the script helper. If not, let someone know! If you have come up with a brilliantly simple way to do something, it probably is needed and should be added to the common server functions.
 
@@ -35,7 +35,7 @@ The script helper assists you in many functions. Generally if a function you cre
 
 >*We are going to create an English to Yoda translator today.*
 
-This is meant to be a very simple integration that calls on an API much in the same way that other integrations work. While some things may seem silly, the function of calling an API, transforming data, and posting it to the war room, are all universal within Demisto.
+This is meant to be a very simple integration that calls on an API much in the same way that other integrations work. While some things may seem silly, the function of calling an API, transforming data, and posting it to the war room, are all universal within Cortex XSOAR.
 
 We use the Yoda-Speak translate API available at [FunTranslations](https://funtranslations.com/api/yoda)
 
@@ -47,11 +47,11 @@ The description should include basic details about the integration, common troub
 
 ![fetches_incidents](../doc_imgs/tutorials/tut-integration-ui/fetch-incidents.png)
 
->If you notice, we also have a checkbox for “Fetches Incidents”. This setting tells demisto that our integration has a command called “fetch-incidents” and will need to run periodically. This feature is what makes Demisto so incredibly useful for our customers since it ingests events and turns them into Incidents in Demisto.
+>If you notice, we also have a checkbox for “Fetches Incidents”. This setting tells Cortex XSOAR that our integration has a command called “fetch-incidents” and will need to run periodically. This feature is what makes Cortex XSOAR so incredibly useful for our customers since it ingests events and turns them into Incidents in Cortex XSOAR.
 
 You can read about the fetching-incidents process [here](../integrations/fetching-incidents). For simple APIs that return enrichment data, this may not be necessary, but for SEIMs, or other tools which report incidents, the fetch function is an absolute necessity.
 
->Since we are just translating something today, we don’t need to use this, but we will cover this in depth in another video. The last part is the logo. When we create an integration that is open to the public, we need to use an image that looks good. We recommend an image no larger than 4kb and in the PNG format. I have one ready that we will use, so I will drag it into the box.
+>Since we are just translating something today, we don’t need to use this, but we will cover this in depth in another video. The last part is the logo. When we create an integration that is open to the public, we need to use an image that looks good. We recommend an image no larger than 10KB and in the PNG format. I have one ready that we will use, so I will drag it into the box.
 
 ![drag logo](../doc_imgs/tutorials/tut-integration-ui/drag-logo.png)
 
@@ -105,7 +105,7 @@ Command names should follow the convention "brand-function". For example, Virus 
 
 Arguments are similar to Parameters in that they are configurable by a user, but unlike parameters, arguments are single use only and specific to only one command. **Arguments are not shared with other commands and must be present for each command.**
 
->For outputs, lets make it so that we can see the translation in the context by adding “YodaSpeak.TheForce.Translation” to the context path. We name it this way to follow the Demisto Context Convention of “Brandname.Object.Property“. For description we will write “Translation, this is” with the type set as “string”
+>For outputs, lets make it so that we can see the translation in the context by adding “YodaSpeak.TheForce.Translation” to the context path. We name it this way to follow the Cortex XSOAR Context Convention of “Brandname.Object.Property“. For description we will write “Translation, this is” with the type set as “string”
 
 ![screen shot 2019-01-08 at 13 53 36](../doc_imgs/tutorials/tut-integration-ui/outputs-screen.png)
 
@@ -118,7 +118,7 @@ import requests
 import json
 import collections
 ```
-These packages are part of the standard Demisto docker image. If you would like to use python libraries that are not part of the standard Demisto image, you can create your own image. To learn how to do so, [visit this page](url)
+These packages are part of the standard Cortex XSOAR docker image. If you would like to use python libraries that are not part of the standard Cortex XSOAR image, you can create your own image. To learn how to do so, [visit this page](url)
 
 >This part allows us to ignore certificate warnings and is part of the “insecure” setting.
 
@@ -129,7 +129,7 @@ requests.packages.urllib3.disable_warnings()
 
 This applies to the "insecure" parameter we created earlier and helps the OS from displaying the "Insecure" dialog box commonly present when accessing an insecure resource.
 
->First, I am going to add some of our global variables. Notice how they are all named in all caps. This is part of our [Demisto Code Standards](url) and is used to distinguish them from “Arguments” which are not capitalized. I can use parameters in any command within the integration which is why we call them “Global”
+>First, I am going to add some of our global variables. Notice how they are all named in all caps. This is part of our [Code Conventions](../integrations/code-conventions) and is used to distinguish them from “Arguments” which are not capitalized. I can use parameters in any command within the integration which is why we call them “Global”
 
 ```python
 BASE_URL = demisto.params().get('url')
@@ -148,7 +148,7 @@ These are the same Parameters we created earlier. See the connection between the
 
 ![params](../doc_imgs/tutorials/tut-integration-ui/50829961-de54ff80-134e-11e9-8a85-d5b1bb24e246.png)
 
->Next, I put in our execution block. This part tells Demisto that when a command is called in the war room or a playbook, which specific function we need to run.
+>Next, I put in our execution block. This part tells Cortex XSOAR that when a command is called in the war room or a playbook, which specific function we need to run.
 
 ```python
 ''' EXECUTION '''
@@ -186,7 +186,7 @@ def translate_command():
 
 >We will pass this argument back to our translate function as a variable.
 
-This is part of the Demisto Code Convention which states that arguments are to reside only within the command function. This ensures that if other commands need to use the same code, that the arguments are always available.
+This is part of the Cortex XSOAR Code Convention which states that arguments are to reside only within the command function. This ensures that if other commands need to use the same code, that the arguments are always available.
 
 ```python
 '''MAIN FUNCTIONS'''
@@ -195,7 +195,7 @@ def translate(text):
 
 >Let’s work on the translate function. This is where we make our API calls, handle any business logic, and do any filtering of results. This function will accept the “Text” variable we created earlier and will return the response from the API.
 
-The main function should handle all major aspects of the command and return the data needed. It is the job of the ```translate_command``` function to prepare the data for import into Demisto.
+The main function should handle all major aspects of the command and return the data needed. It is the job of the ```translate_command``` function to prepare the data for import into Cortex XSOAR.
 
 ```python
 '''MAIN FUNCTIONS'''
@@ -241,7 +241,7 @@ def http_request(method, URL_SUFFIX, json=None):
 
 >Since this function could fail on a bad API call, we need to handle the errors. Typically we would raise an error, but this wouldn’t give us much information other than the stack trace. So we will use a function from the script helper called “return_error” and pass along the error message that way.
 
-This follows the Demisto Code Convention which states that we do not "Raise" errors. The reason behind this is that if the function were to fail, a user would only see the stack trace and not the error itself.
+This follows the Cortex XSOAR Code Convention which states that we do not "Raise" errors. The reason behind this is that if the function were to fail, a user would only see the stack trace and not the error itself.
 
 ![screen shot 2019-01-08 at 14 53 36](../doc_imgs/tutorials/tut-integration-ui/50831927-37c02d00-1355-11e9-89eb-f58507f46027.png)
 
@@ -288,7 +288,7 @@ tableToMarkdown accepts many different variables which can be used to transform 
 
 The ```val.Original && val.Original == obj.Original``` part works to update entries within the context. So using the example, the value of the context key "Original" is matched where the value of our context object is equal.
 
->Okay, it looks like we are done with our translate code, but let’s also add a test function so we can see if the integration fails. I’ll add another command in the execution block called “test-module”. You don’t need to add a command for this in the settings since it is a built in command. Since the test command does not accept arguments, we need to create a text string for the translate function to test. So I will create one here and pass it to the translate command. Since we already handled errors in this command, I don’t have to do anything special. Lastly, we return “ok”. This lets Demisto know that the integration is working correctly.
+>Okay, it looks like we are done with our translate code, but let’s also add a test function so we can see if the integration fails. I’ll add another command in the execution block called “test-module”. You don’t need to add a command for this in the settings since it is a built in command. Since the test command does not accept arguments, we need to create a text string for the translate function to test. So I will create one here and pass it to the translate command. Since we already handled errors in this command, I don’t have to do anything special. Lastly, we return “ok”. This lets Cortex XSOAR know that the integration is working correctly.
 
 When we test an integration, we are testing for the health of the connection. Customers and users alike will usually test their integration before heading to the war room to start working. To test the health of this integration we test that the HTTP status code returns as 200.
 

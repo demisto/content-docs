@@ -4,11 +4,11 @@ title: Fetching Credentials
 ---
 
 As seen [here](https://support.demisto.com/hc/en-us/articles/115002567894), it is possible to integrate with 3rd party credential 
-vaults for Demisto to use when authenticating with integrations. This article provides an example of such integration.
+vaults for Cortex XSOAR to use when authenticating with integrations. This article provides an example of such integration.
 
 ## Requirements
 
-In order to fetch credentials to the Demisto credentials store, the integration needs to be able to retrieve credential objects 
+In order to fetch credentials to the Cortex XSOAR credentials store, the integration needs to be able to retrieve credential objects 
 in the format of a username and password (key:value).
 
 ## Implementation
@@ -16,13 +16,14 @@ in the format of a username and password (key:value).
 ### isFetchCredentials Parameter
   
 For this example we are going to look at the HashiCorp Vault integration. The first thing you need to do is add a boolean parameter with the name:
-`isFetchCredentials`(You can give it a different display name). When this parameter is set to true, Demisto will fetch credentials from the integration.
+`isFetchCredentials`(You can give it a different display name). When this parameter is set to true, Cortex XSOAR will fetch credentials from the integration.
+
 It would look like something like this: ![image](../doc_imgs/integrations/53886096-eae09600-4027-11e9-8c2d-a46078c3dcc4.png)  
 ![image](../doc_imgs/integrations/53886311-69d5ce80-4028-11e9-9755-08585fecff34.png)
 
 ### fetch-credentials Command
 
-When Demisto tries to fetch credentials from the integrations, it will call a command called `fetch-credentials`.
+When Cortex XSOAR tries to fetch credentials from the integrations, it will call a command called `fetch-credentials`.
 This is where you should implement the credentials retrieving logic:
 ```python
 if demisto.command() == 'fetch-credentials':
@@ -49,14 +50,14 @@ When you're done creating the credentials objects, send them to the credentials 
 `demisto.credentials(credentials)`.
 
 ## Runtime
-When an integration instance is configured with credentials from a vault, each time credentials are needed Demisto
+When an integration instance is configured with credentials from a vault, each time credentials are needed Cortex XSOAR
 will query the vault integration with an `identifier` for the relevant integration as an argument to the `fetch_credentials` command (accessible via the `args` 
 object). `identifier` reflects the `name` property of the credentials object.
 It is important to use it to return only **one** set of credentials for the relevant integration,
 because in this case, if multiple credentials sets are returned, the process will fail and an error will be thrown.
 
 ## Result
-If everything went well you should be able to see the credentials in the Demisto credentials store:
+If everything went well you should be able to see the credentials in the Cortex XSOAR credentials store:
 ![image](../doc_imgs/integrations/53886981-f339d080-4029-11e9-9d27-a76b85d2d025.png)
 Note that these credentials cannot be edited or deleted, they reflect what's in the vault. You can stop fetching credentials by unticking the 
 `Fetch Credentials` checkbox in the integration settings.

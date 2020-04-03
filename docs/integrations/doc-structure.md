@@ -4,20 +4,20 @@ title: Integration Doc Format
 ---
 
 ## Overview
-Type of the product and common use case through Demisto.
+Type of the product and common use case through Cortex XSOAR.
   What is this integration good for? 
   What does the integration do? 
 Known limitations (only if needed in this high level view)
 What version of the integrated product was tested (and what versions we believe are supported. e.g. tested on 2.0, should work on 2.0 and up) 
 
-## To set up [integration name] to work with Demisto:
-Just list the requirements for integrating with Demisto. You can include links to third-party documentation if necessary.
+## To set up [integration name] to work with Cortex XSOAR:
+Just list the requirements for integrating with Cortex XSOAR. You can include links to third-party documentation if necessary.
 
 * API token
 * Credentials 
 * Etc
 
-## To set up the integration on Demisto:
+## To set up the integration on Cortex XSOAR:
 For example:
 
 1. Go to ‘Settings > Integrations > Servers & Services’
@@ -28,7 +28,7 @@ For example:
     * **Appliance IP/Hostname**: The hostname or IP address of the appliance being used.
     * **Appliance Port**: The appliance port being used.
     * **Username and Password**: The username and password, or toggle to Credentials.
-    * **Fetch incidents**: Select whether to automatically create Demisto incidents from this integration instance. 
+    * **Fetch incidents**: Select whether to automatically create Cortex XSOAR incidents from this integration instance. 
     * **Test** What is tested and what to do if the test fails
 
 

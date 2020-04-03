@@ -4,11 +4,11 @@ title: Code Conventions
 ---
 
 ## Python Code Conventions
-We use standardized code conventions to ensure uniformity across all Demisto Integrations. This section outlines our code conventions.
+We use standardized code conventions to ensure uniformity across all Cortex XSOAR Integrations. This section outlines our code conventions.
 
 New integrations and scripts should follow these conventions. When working on small fixes and modifications to existing code, follow the conventions used in the existing code.
 
-**Note:** Demisto supports also JavaScript integrations and scripts. Our preferred development language is Python, and all new integrations and scripts should be developed in Python, which also provides a wider set of capabilities compared to the available JavaScript support. Simple scripts may still be developed in JavaScript using the conventions provided by the default script template used in the Demisto IDE.
+**Note:** Cortex XSOAR supports also JavaScript integrations and scripts. Our preferred development language is Python, and all new integrations and scripts should be developed in Python, which also provides a wider set of capabilities compared to the available JavaScript support. Simple scripts may still be developed in JavaScript using the conventions provided by the default script template used in the Cortex XSOAR IDE.
 
 ## Example Code and Templates
 For an example of a **Hello World** integration see [HelloWorld](https://github.com/demisto/content/tree/master/Packs/HelloWorld/Integrations/HelloWorld).
@@ -51,7 +51,7 @@ url = demisto.params().get("url")
 These are the best practices for defining the Main function.
 - Create the `main` function and in the main extract all the integration parameters.
 - Implement the **_command** function for each integration command (e.g., `say_hello_command(client, demisto.args())`)
-- To properly handle exceptions, wrap the commands with try/except in the main. The `return_error()` function receives error message and returns error entry back into Demisto. It will also print the full error to the Demisto logs. 
+- To properly handle exceptions, wrap the commands with try/except in the main. The `return_error()` function receives error message and returns error entry back into Cortex XSOAR. It will also print the full error to the Cortex XSOAR logs. 
 - For logging, use the `LOG("write some log here")` function.
 - In the main function, initialize the Client instance, and pass that client to `_command` functions.
 ```python
@@ -119,7 +119,7 @@ These are the best practices for defining the Client class.
 ```python
 class Client(BaseClient):
     """
-    Client will implement the service API, should not contain Demisto logic.
+    Client will implement the service API, should not contain Cortex XSOAR logic.
     Should do requests and return data
     """
 
@@ -221,7 +221,7 @@ def main():
 
 
 ## IOC Reputation Commands
-There are two implementation requirements for reputation commands (aka `!file`, `!email`, `!domain`, `!url`, and `!ip`) that are enforced by checks in the [hook_validations](../../Tests/scripts/hook_validations/integration.py).
+There are two implementation requirements for reputation commands (aka `!file`, `!email`, `!domain`, `!url`, and `!ip`) that are enforced by checks in the [hook_validations](https://github.com/demisto/content/blob/master/Tests/scripts/hook_validations/integration.py).
 - The reputation command's argument of the same name must have `default` set to `True`.
 - The reputation command's argument of the same name must have `isArray` set to `True`.
 
@@ -275,7 +275,7 @@ def fetch_incidents(client, last_run, first_fetch_time):
 
     Returns:
         next_run: This will be last_run in the next fetch-incidents
-        incidents: Incidents that will be created in Demisto
+        incidents: Incidents that will be created in Cortex XSOAR
     """
     # Get the last fetch time, if exists
     last_fetch = last_run.get('last_fetch')
@@ -433,7 +433,7 @@ ec = ({
 ```
 
 In this instance, the ```val.URL && val.URL == obj.URL``` links together the results retrieved from this integration with results already in the context where the value of the URL is the same.
-For more information about the syntax of linking and Demisto Transform Language in general have a look [here](dt) 
+For more information about the syntax of linking and Cortex XSOAR Transform Language in general have a look [here](dt) 
 
 ## Logging
 In some cases, it may be necessary to pass information to the logs to assist future debugging. 
@@ -458,7 +458,7 @@ except Exception, ex:
     LOG.print_log() # all the above messages will be printed to logs only when LOG.print_log() executed
 ```
 
-You can also use the ```@logger``` decorator in Demisto. When the decorator is placed at the top of each function, the logger will print the function name as well as all of the argument values to the ```LOG```.
+You can also use the ```@logger``` decorator in Cortex XSOAR. When the decorator is placed at the top of each function, the logger will print the function name as well as all of the argument values to the ```LOG```.
 ```python
 @logger
 def get_ip(ip):
@@ -520,7 +520,7 @@ In the War Room, this is how a table will appear:
 You may also use ```headerTransform``` to convert the existing keys into formatted headers.
 
 ### demisto.command()
-```demisto.command()``` is typically used to tie a function to a command in Demisto, for example:
+```demisto.command()``` is typically used to tie a function to a command in Cortex XSOAR, for example:
 ```python
     if demisto.command() == 'ip':
         ip_search_command()

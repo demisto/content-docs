@@ -5,12 +5,8 @@
 
 # Partner docs
 /docs/become-a-tech-partner	/docs/partners/become-a-tech-partner
-/docs/why-demisto	/docs/partners/why-demisto
 /docs/partner-owned-integration	/docs/partners/partner-owned-integration
 /docs/development-partners	/docs/partners/development-partners
-
-# Extra special page for RSA C
-/extra	/docs/partners/why-demisto
 
 # Concepts
 /docs/design-best-practices	/docs/concepts/design-best-practices
@@ -35,8 +31,10 @@
 /docs/linting	/docs/howtos/integrations/linting
 /docs/long-running	/docs/howtos/integrations/long-running
 /docs/package-dir	/docs/howtos/integrations/package-dir
+/docs/package-dir	/docs/howtos/integrations/package-dir
 /docs/parameter-types	/docs/howtos/integrations/parameter-types
-/docs/testing	/docs/howtos/integrations/test-playbooks
+/docs/testing	/docs/integrations/test-playbooks
+/docs/integrations/testing	/docs/integrations/test-playbooks
 /docs/unit-testing	/docs/howtos/integrations/unit-testing
 /docs/yaml-file	/docs/howtos/integrations/yaml-file
 
@@ -73,6 +71,7 @@
 /docs/howtos/integrations/linting   /docs/integrations/linting
 /docs/howtos/integrations/long-running  /docs/integrations/long-running
 /docs/howtos/integrations/package-dir   /docs/integrations/package-dir
+/docs/howtos/integrations/packs-format   /docs/integrations/packs-format
 /docs/howtos/integrations/parameter-types   /docs/integrations/parameter-types
 /docs/howtos/integrations/test-playbooks    /docs/integrations/test-playbooks
 /docs/howtos/integrations/unit-testing  /docs/integrations/unit-testing
@@ -96,3 +95,11 @@
 #Sign Up
 
 /sign-addn https://na2.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=f1b0bfb5-5e5a-49b9-8ed6-5b475605cefa&env=na2&acct=11b87c14-db4f-4b90-b5b1-58b37f18856f&v=2
+
+# Rebranding
+/extra	/docs/partners/why-demisto
+/docs/why-demisto	/docs/partners/why-xsoar
+/docs/partners/why-demisto   /docs/partners/why-xsoar
+
+# Other
+/docs/reference	/docs/reference/index
