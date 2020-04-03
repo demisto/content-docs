@@ -13,8 +13,10 @@ import tempfile
 from bs4 import BeautifulSoup
 from mdx_utils import fix_mdx, verify_mdx
 from CommonServerPython import tableToMarkdown  # type: ignore
-from typing import List
+from typing import List, Optional
 from datetime import datetime
+from multiprocessing import Pool, cpu_count
+from functools import partial
 
 # override print so we have a timestamp with each print
 org_print = print
@@ -25,6 +27,7 @@ def timestamped_print(*args, **kwargs):
 
 
 print = timestamped_print
+
 
 INTEGRATION_DOCS_MATCH = [
     "Integrations/[^/]+?/README.md",
@@ -62,10 +65,12 @@ def normalize_id(id: str):
 
 
 class DocInfo:
-    def __init__(self, id: str, name: str, description: str):
+    def __init__(self, id: str, name: str, description: str, readme: str, error_msg: Optional[str] = None):
         self.id = id
         self.name = name
         self.description = description
+        self.readme = readme
+        self.error_msg = error_msg
 
 
 def findfiles(match_patterns: List[str], target_dir: str) -> List[str]:
@@ -106,48 +111,52 @@ def gen_html_doc(txt: str) -> str:
             '<div dangerouslySetInnerHTML={{__html: txt}} />\n')
 
 
-def process_readme_doc(readme_file: str, target_dir: str, content_dir: str) -> DocInfo:
-    base_dir = os.path.dirname(readme_file)
-    if readme_file.endswith('_README.md'):
-        ymlfile = readme_file[0:readme_file.index('_README.md')] + '.yml'
-    else:
-        ymlfiles = glob.glob(base_dir + '/*.yml')
-        if not ymlfiles:
-            raise ValueError(f'no yml file found')
-        if len(ymlfiles) > 1:
-            raise ValueError(f'mulitple yml files found: {ymlfiles}')
-        ymlfile = ymlfiles[0]
-    with open(ymlfile, 'r', encoding='utf-8') as f:
-        yml_data = yaml.safe_load(f)
-    id = yml_data.get('commonfields', {}).get('id') or yml_data['id']
-    id = normalize_id(id)
-    name = yml_data.get('display') or yml_data['name']
-    desc = yml_data.get('description') or yml_data.get('comment')
-    doc_info = DocInfo(id, name, desc)
-    with open(readme_file, 'r', encoding='utf-8') as f:
-        content = f.read()
-    if not content.strip():
-        raise ValueError(f'empty file')
-    if is_html_doc(content):
-        print(f'{readme_file}: detect html file')
-        content = gen_html_doc(content)
-    else:
-        content = fix_mdx(content)
-    # check if we have a header
-    lines = content.splitlines(True)
-    has_header = len(lines) >= 2 and lines[0].startswith('---') and lines[1].startswith('id:')
-    if not has_header:
-        readme_repo_path = readme_file
-        if readme_repo_path.startswith(content_dir):
-            readme_repo_path = readme_repo_path[len(content_dir):]
-        edit_url = f'https://github.com/demisto/content/blob/{BRANCH}/{readme_repo_path}'
-        content = f'---\nid: {id}\ntitle: "{doc_info.name}"\ncustom_edit_url: {edit_url}\n---\n\n' + content
-    with tempfile.NamedTemporaryFile('w', encoding='utf-8') as f:  # type: ignore
-        f.write(content)
-        f.flush()
-        verify_mdx(f.name)
-        shutil.copy(f.name, f'{target_dir}/{id}.md')
-    return doc_info
+def process_readme_doc(target_dir: str, content_dir: str, readme_file: str, ) -> DocInfo:
+    try:
+        base_dir = os.path.dirname(readme_file)
+        if readme_file.endswith('_README.md'):
+            ymlfile = readme_file[0:readme_file.index('_README.md')] + '.yml'
+        else:
+            ymlfiles = glob.glob(base_dir + '/*.yml')
+            if not ymlfiles:
+                raise ValueError(f'no yml file found')
+            if len(ymlfiles) > 1:
+                raise ValueError(f'mulitple yml files found: {ymlfiles}')
+            ymlfile = ymlfiles[0]
+        with open(ymlfile, 'r', encoding='utf-8') as f:
+            yml_data = yaml.safe_load(f)
+        id = yml_data.get('commonfields', {}).get('id') or yml_data['id']
+        id = normalize_id(id)
+        name = yml_data.get('display') or yml_data['name']
+        desc = yml_data.get('description') or yml_data.get('comment')
+        doc_info = DocInfo(id, name, desc, readme_file)
+        with open(readme_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+        if not content.strip():
+            raise ValueError(f'empty file')
+        if is_html_doc(content):
+            print(f'{readme_file}: detect html file')
+            content = gen_html_doc(content)
+        else:
+            content = fix_mdx(content)
+        # check if we have a header
+        lines = content.splitlines(True)
+        has_header = len(lines) >= 2 and lines[0].startswith('---') and lines[1].startswith('id:')
+        if not has_header:
+            readme_repo_path = readme_file
+            if readme_repo_path.startswith(content_dir):
+                readme_repo_path = readme_repo_path[len(content_dir):]
+            edit_url = f'https://github.com/demisto/content/blob/{BRANCH}/{readme_repo_path}'
+            content = f'---\nid: {id}\ntitle: "{doc_info.name}"\ncustom_edit_url: {edit_url}\n---\n\n' + content
+        with tempfile.NamedTemporaryFile('w', encoding='utf-8') as f:  # type: ignore
+            f.write(content)
+            f.flush()
+            verify_mdx(f.name)
+            shutil.copy(f.name, f'{target_dir}/{id}.md')
+        return doc_info
+    except Exception as ex:
+        print(f'fail: {readme_file}. Exception: {traceback.format_exc()}')
+        return DocInfo('', '', '', readme_file, str(ex).splitlines()[0])
 
 
 def index_doc_infos(doc_infos: List[DocInfo], link_prefix: str):
@@ -163,6 +172,12 @@ def index_doc_infos(doc_infos: List[DocInfo], link_prefix: str):
     return fix_mdx(res)
 
 
+# POOL has to be declared after process_readme_doc so it can find it when doing map
+# multiprocess pool
+POOL_SIZE = cpu_count * 2
+POOL = Pool(POOL_SIZE)
+
+
 def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix: str):
     print(f'Using BRANCH: {BRANCH}')
     # Search for readme files
@@ -175,19 +190,18 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
         print(f'DEV MODE. Matching only files which match: {FILE_REGEX}')
         regex = re.compile(FILE_REGEX)
         readme_files = list(filter(regex.search, readme_files))
-    integrations_dir = f'{target_dir}/{prefix}'
-    if not os.path.exists(integrations_dir):
-        os.makedirs(integrations_dir)
+    target_sub_dir = f'{target_dir}/{prefix}'
+    if not os.path.exists(target_sub_dir):
+        os.makedirs(target_sub_dir)
     doc_infos: List[DocInfo] = []
     success = []
     fail = []
-    for r in readme_files:
-        try:
-            doc_infos.append(process_readme_doc(r, integrations_dir, content_dir))
-            success.append(r)
-        except Exception as ex:
-            print(f'ERROR: failed processing: {r}. Exception: {ex}.\n{traceback.format_exc()}--------------------------')
-            fail.append(f'{r} ({str(ex).splitlines()[0]})')
+    for doc_info in POOL.map(partial(process_readme_doc, target_sub_dir, content_dir), readme_files):
+        if doc_info.error_msg:
+            fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
+        else:
+            doc_infos.append(doc_info)
+            success.append(doc_info.readme)
     org_print(f'\n===========================================\nSuccess {prefix} docs ({len(success)}):')
     for r in sorted(success):
         print(r)
@@ -204,6 +218,7 @@ def main():
     parser.add_argument("-t", "--target", help="Target dir to generate docs at.", required=True)
     parser.add_argument("-d", "--dir", help="Content repo dir.", required=True)
     args = parser.parse_args()
+    print(f'Using multiprocess pool size: {POOL_SIZE}')
     prefix = os.path.basename(args.target)
     integrations_full_prefix = f'{prefix}/{INTEGRATIONS_PREFIX}'
     scripts_full_prefix = f'{prefix}/{SCRIPTS_PREFIX}'

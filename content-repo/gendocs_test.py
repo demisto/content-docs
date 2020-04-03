@@ -35,7 +35,7 @@ def test_fix_mdx():
 
 
 def test_process_readme_doc(tmp_path):
-    res = process_readme_doc(f'{SAMPLE_CONTENT}/Integrations/DomainTools_Iris/README.md', str(tmp_path), SAMPLE_CONTENT)
+    res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, f'{SAMPLE_CONTENT}/Integrations/DomainTools_Iris/README.md')
     assert res.id == 'domain-tools-iris'
     assert res.description
     assert res.name == 'DomainTools Iris'
@@ -44,17 +44,14 @@ def test_process_readme_doc(tmp_path):
         assert f.readline().startswith(f'id: {res.id}')
         assert f.readline().startswith(f'title: "{res.name}"')
         assert f.readline().startswith(f'custom_edit_url: https://github.com/demisto/content/')
-    try:
-        process_readme_doc(f'{BASE_DIR}/test_data/empty-readme.md', str(tmp_path), BASE_DIR)
-        assert False, 'empty file should fail'
-    except Exception as ex:
-        assert 'no yml file found' in str(ex)
-    process_readme_doc(f'{SAMPLE_CONTENT}/Integrations/SlashNextPhishingIncidentResponse/README.md', str(tmp_path), SAMPLE_CONTENT)
-    process_readme_doc(f'{SAMPLE_CONTENT}/Integrations/Gmail/README.md', str(tmp_path), SAMPLE_CONTENT)
+    res = process_readme_doc(str(tmp_path), BASE_DIR, f'{BASE_DIR}/test_data/empty-readme.md')
+    assert 'no yml file found' in res.error_msg
+    process_readme_doc(str(tmp_path), SAMPLE_CONTENT, f'{SAMPLE_CONTENT}/Integrations/SlashNextPhishingIncidentResponse/README.md')
+    process_readme_doc(str(tmp_path), SAMPLE_CONTENT, f'{SAMPLE_CONTENT}/Integrations/Gmail/README.md')
 
 
 def test_process_readme_doc_same_dir(tmp_path):
-    res = process_readme_doc(f'{SAMPLE_CONTENT}/Integrations/integration-F5_README.md', str(tmp_path), SAMPLE_CONTENT)
+    res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, f'{SAMPLE_CONTENT}/Integrations/integration-F5_README.md', )
     assert res.id == 'f5-firewall'
     assert res.description
     assert res.name == 'F5 firewall'
@@ -66,18 +63,18 @@ def test_process_readme_doc_same_dir(tmp_path):
 
 
 def test_process_readme_doc_edl(tmp_path):
-    res = process_readme_doc(f'{SAMPLE_CONTENT}/Integrations/PaloAltoNetworks_PAN_OS_EDL_Management/README.md', str(tmp_path), SAMPLE_CONTENT)
+    res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, f'{SAMPLE_CONTENT}/Integrations/PaloAltoNetworks_PAN_OS_EDL_Management/README.md')
     assert res.name == 'Palo Alto Networks PAN-OS EDL Management'
 
 
 def test_process_readme_doc_playbookl(tmp_path):
-    res = process_readme_doc(f'{SAMPLE_CONTENT}/Playbooks/playbook-lost_stolen_device_README.md', str(tmp_path), SAMPLE_CONTENT)
+    res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, f'{SAMPLE_CONTENT}/Playbooks/playbook-lost_stolen_device_README.md')
     assert res.name == 'Lost / Stolen Device Playbook'
     assert 'Initial incident details should be the name of the reporting person' in res.description
 
 
 def test_process_code_script(tmp_path):
-    res = process_readme_doc(f'{SAMPLE_CONTENT}/Scripts/script-IsIPInRanges_README.md', str(tmp_path), SAMPLE_CONTENT)
+    res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, f'{SAMPLE_CONTENT}/Scripts/script-IsIPInRanges_README.md')
     assert res.id == 'is-ip-in-ranges'
     assert res.description
     assert res.name == 'IsIPInRanges'
@@ -90,7 +87,7 @@ def test_process_code_script(tmp_path):
 
 def test_table_doc_info():
     doc_infos = [
-        DocInfo('test', 'Test Integration', "this is a description\nwith new line")
+        DocInfo('test', 'Test Integration', "this is a description\nwith new line", "test/README.md")
     ]
     res = index_doc_infos(doc_infos, 'integrations')
     assert '<br/>' in res
