@@ -10,7 +10,7 @@ module.exports = {
   tagline: "Developers - Palo Alto Networks",
   url: "https://xsoar.pan.dev",
   baseUrl: "/",
-  favicon: "img/Cortex-XSOAR-product-green.svg", //square version
+  favicon: "/img/Cortex-XSOAR-product-green.svg", //square version
   organizationName: "Demisto", // Usually your GitHub org/user name.
   projectName: "content-docs", // Usually your repo name.
   themeConfig: {
@@ -24,24 +24,24 @@ module.exports = {
       title: "",
       logo: {
         alt: "Cortex XSOAR for Developers (Formerly Demisto)",
-        src: "img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal.svg"
+        src: "/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal.svg"
       },
 
       menus: [
         {
           label: "Partners",
           items: [
-            { to: "docs/partners/why-xsoar", label: "Why Cortex XSOAR?" },
+            { to: "/docs/partners/why-xsoar", label: "Why Cortex XSOAR?" },
             {
               to: "docs/partners/become-a-tech-partner",
               label: "Become a Partner"
             },
             {
-              to: "docs/partners/partner-owned-integration",
+              to: "/docs/partners/partner-owned-integration",
               label: "Partner Owned Integration"
             },
             {
-              to: "docs/partners/development-partners",
+              to: "/docs/partners/development-partners",
               label: "Development Partners"
             },
             {
@@ -55,17 +55,17 @@ module.exports = {
 
       links: [
         {
-          to: "docs/welcome",
+          to: "/docs/welcome",
           label: "Developer Docs",
           position: "left"
         },
         {
-          to: "docs/tutorials/tut-setup-dev",
+          to: "/docs/tutorials/tut-setup-dev",
           label: "Tutorials",
           position: "left"
         },
         {
-          to: "docs/reference/index",
+          to: "/docs/reference/index",
           label: "Reference",
           position: "left"
         },
@@ -110,8 +110,7 @@ module.exports = {
         {
           title: "Docs",
           items: [
-            { to: "/docs/integrations/getting-started-guide", label: "Development Guide" },
-            { to: "/docs/partners/why-xsoar", label: "Why become a Partner?" },
+            { to: "/docs/welcome", label: "Developer Docs" },
             {
               to: "/docs/partners/become-a-tech-partner",
               label: "Become a Technology Partner"
@@ -130,7 +129,7 @@ module.exports = {
       ],
       logo: {
         alt: "Palo Alto Networks for Developers",
-        src: "img/PANW_Parent_Brand_Primary_Logo_RGB_KO.svg"
+        src: "/img/PANW_Parent_Brand_Primary_Logo_RGB_KO.svg"
         // href: "https://pan.dev"
       },
       copyright: `Copyright © ${new Date().getFullYear()} Palo Alto Networks, Inc.`

@@ -55,20 +55,10 @@ html[data-theme="dark"] {
 
   --ifm-color-content-secondary: rgba(255, 255, 255, 1);
 
+  --ifm-navbar-background-color: #4d494a;
+
   /* Mardown color in dark mode */
   --ifm-color-gray-800: var(--ifm-color-gray-300);
-}
-
-.navbar a.navbar__link {
-  color: #000;
-}
-
-.navbar.navbar--fixed-top {
-  background-color: #f4f4f2;
-}
-
-.dropdown .dropdown__menu {
-  background-color: #f4f4f2;
 }
 
 .footer.footer--dark {

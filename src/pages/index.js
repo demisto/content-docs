@@ -66,7 +66,7 @@ const features = [
             "button button--outline button--primary button--md",
             styles.getStarted
           )}
-          href="/docs/why-demisto"
+          href="/docs/partners/why-xsoar"
         >
           Learn More
         </Link>
@@ -90,7 +90,7 @@ const features = [
             "button button--outline button--primary button--md",
             styles.getStarted
           )}
-          to="docs/use-cases"
+          to="/docs/concepts/use-cases"
         >
           Learn More
         </Link>
@@ -159,7 +159,7 @@ function Home() {
                     "button button--info button--secondary button--lg",
                     styles.headerButtons
                   )}
-                  to="docs/partners/why-xsoar"
+                  to="/docs/partners/why-xsoar"
                 >
                   Why Cortex XSOAR?
                 </Link>
@@ -194,7 +194,7 @@ function Home() {
           <div className="customer">
             <div className="customer-inner">
               Are you a Cortex XSOAR Customer or an Independent Developer?
-              <Link to="docs/integrations/getting-started-guide"> Get Started Now!</Link>
+              <Link to="/docs/welcome"> Get Started Now!</Link>
               <br /> 
               Join <b>#demisto-integrations-help</b> on our <a href="https://start.paloaltonetworks.com/join-our-slack-community">Slack community</a> today.
             </div>

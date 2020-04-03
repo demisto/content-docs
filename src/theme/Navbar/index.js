@@ -135,7 +135,6 @@ function Navbar() {
 
   const showSidebar = useCallback(() => {
     document.body.style.overflow = "hidden";
-    setSidebarShown(true);
   }, [setSidebarShown]);
   const hideSidebar = useCallback(() => {
     document.body.style.overflow = "visible";
@@ -203,11 +202,6 @@ function Navbar() {
               </strong>
             )}
           </Link>
-          {sites
-            .filter(siteItem => siteItem.position !== "right")
-            .map((siteItem, i) => (
-              <SiteMenu {...siteItem} key={i} />
-            ))}
           {menus
             .filter(menuItem => menuItem.position !== "right")
             .map((menuItem, i) => (
@@ -218,13 +212,13 @@ function Navbar() {
             .map((linkItem, i) => (
               <NavLink {...linkItem} key={i} />
             ))}
-        </div>
-        <div className="navbar__items navbar__items--right">
           {sites
-            .filter(siteItem => siteItem.position === "right")
+            .filter(siteItem => siteItem.position !== "right")
             .map((siteItem, i) => (
               <SiteMenu {...siteItem} key={i} />
             ))}
+        </div>
+        <div className="navbar__items navbar__items--right">
           {menus
             .filter(menuItem => menuItem.position === "right")
             .map((menuItem, i) => (
@@ -234,6 +228,11 @@ function Navbar() {
             .filter(linkItem => linkItem.position === "right")
             .map((linkItem, i) => (
               <NavLink {...linkItem} key={i} />
+            ))}
+          {sites
+            .filter(siteItem => siteItem.position === "right")
+            .map((siteItem, i) => (
+              <SiteMenu {...siteItem} key={i} />
             ))}
           {!disableDarkMode && (
             <Toggle
@@ -273,33 +272,6 @@ function Navbar() {
         <div className="navbar-sidebar__items">
           <div className="menu">
             <ul className="menu__list">
-              {sites.map((siteItem, i) => {
-                var className = menuShown[i]
-                  ? "menu__list-item"
-                  : "menu__list-item menu__list-item--collapsed";
-
-                return (
-                  <li className={className} key={i}>
-                    <a
-                      className="menu__link menu__link--sublist"
-                      onClick={() => toggleMenu(i)}
-                    >
-                      {siteItem.label}
-                    </a>
-                    <ul className="menu__list">
-                      {siteItem.items.map((item, i) => (
-                        <li className="menu__list-item" key={i}>
-                          <SiteLink
-                            className="menu__link"
-                            {...item}
-                            onClick={hideSidebar}
-                          />
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                );
-              })}
               {menus.map((menuItem, i) => {
                 var className = menuShown[i]
                   ? "menu__list-item"
@@ -336,6 +308,33 @@ function Navbar() {
                   />
                 </li>
               ))}
+              {sites.map((siteItem, i) => {
+                var className = menuShown[i]
+                  ? "menu__list-item"
+                  : "menu__list-item menu__list-item--collapsed";
+
+                return (
+                  <li className={className} key={i}>
+                    <a
+                      className="menu__link menu__link--sublist"
+                      onClick={() => toggleMenu(i)}
+                    >
+                      {siteItem.label}
+                    </a>
+                    <ul className="menu__list">
+                      {siteItem.items.map((item, i) => (
+                        <li className="menu__list-item" key={i}>
+                          <SiteLink
+                            className="menu__link"
+                            {...item}
+                            onClick={hideSidebar}
+                          />
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
