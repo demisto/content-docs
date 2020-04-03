@@ -200,6 +200,9 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
     doc_infos: List[DocInfo] = []
     success = []
     fail = []
+    # flush before starting multi process
+    sys.stdout.flush()
+    sys.stderr.flush()
     for doc_info in POOL.map(partial(process_readme_doc, target_sub_dir, content_dir), readme_files):
         if doc_info.error_msg:
             fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
