@@ -20,10 +20,12 @@ if [[ -n "${NETLIFY}" ]]; then
     echo "REVIEW_ID=${REVIEW_ID}"
     echo "DEPLOY_PRIME_URL=${DEPLOY_PRIME_URL}"
     echo "DEPLOY_URL=${DEPLOY_URL}"
-    echo "CPU INFO"
-    cat /proc/cpuinfo
-    echo "MEMORY INFO"
-    cat /proc/meminfo
+    echo "CPU QUOTA"
+    cat /sys/fs/cgroup/cpu/cpu.cfs_quota_us || echo "CPU Quota not available"
+    echo "CPU COUNT"
+    nproc || echo "nproc not available"
+    echo "MEMORY LIMIT (bytes)"
+    cat /sys/fs/cgroup/memory/memory.limit_in_bytes || echo "Memory limit not available"
 fi
 if [[ -n "${NETLIFY}" && -n "${HEAD}" ]]; then
     CURRENT_BRANCH="${HEAD}"
