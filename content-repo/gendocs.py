@@ -15,7 +15,7 @@ from mdx_utils import fix_mdx, verify_mdx
 from CommonServerPython import tableToMarkdown  # type: ignore
 from typing import List, Optional
 from datetime import datetime
-from multiprocessing import Pool, cpu_count
+from multiprocessing import Pool
 from functools import partial
 
 # override print so we have a timestamp with each print
@@ -174,7 +174,7 @@ def index_doc_infos(doc_infos: List[DocInfo], link_prefix: str):
 
 # POOL has to be declared after process_readme_doc so it can find it when doing map
 # multiprocess pool
-POOL_SIZE = cpu_count() * 2
+POOL_SIZE = 4
 POOL = Pool(POOL_SIZE)
 
 
