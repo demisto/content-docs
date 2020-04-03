@@ -135,6 +135,7 @@ function Navbar() {
 
   const showSidebar = useCallback(() => {
     document.body.style.overflow = "hidden";
+    setSidebarShown(true);
   }, [setSidebarShown]);
   const hideSidebar = useCallback(() => {
     document.body.style.overflow = "visible";
