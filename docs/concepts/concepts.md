@@ -20,7 +20,7 @@ Incident Fields are used for accepting or populating incident data coming from i
 
 ## Incident Lifecycle
 
-Cortex XSOAR is an orchestration and automation system used to bring all of the various pieces of your security apparatus together. Using Cortex XSOAR, you can define integrations with your 3rd-party security and incident management vendors. You can then trigger events from these integrations that become incidents in Cortex XSOAR. Once the incidents are created, you can run playbooks on these incidents to enrich them with information from other products in your system, which helps you complete the picture. In most cases, you can use rules and automation to determine if an incident requires further investigation or can be closed based on the findings. This enables your analysts to focus on the minority of incidents that require further investigation.
+Cortex XSOAR is an orchestration and automation system used to bring all of the various pieces of your security apparatus together. Using Cortex XSOAR, you can define integrations with your 3rd-party security and incident management vendors. You can then trigger events from these integrations that become incidents in Cortex XSOAR. Once the incidents are created, you can run playbooks on these incidents to enrich them with information from other products in your system, which helps you complete the picture. In most cases, you can use rules and automation to determine if an incident requires further investigation or can be closed based on the findings. This enables your analysts to focus on the minority of incidents that require further investigation. More information [here](../incidents/incident-xsoar-incident-lifecycle).
 
 ## Integrations
 
