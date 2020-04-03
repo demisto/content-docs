@@ -3,6 +3,7 @@
 import argparse
 import re
 import os
+import sys
 import glob
 import yaml
 import inflection
@@ -157,6 +158,9 @@ def process_readme_doc(target_dir: str, content_dir: str, readme_file: str, ) ->
     except Exception as ex:
         print(f'fail: {readme_file}. Exception: {traceback.format_exc()}')
         return DocInfo('', '', '', readme_file, str(ex).splitlines()[0])
+    finally:
+        sys.stdout.flush()
+        sys.stderr.flush()
 
 
 def index_doc_infos(doc_infos: List[DocInfo], link_prefix: str):
