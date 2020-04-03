@@ -62,8 +62,8 @@ Please read the following guidelines. Following these guidelines will maximize t
 * Create a test playbook as documented [here](testing). **Note**: for simple Scripts that have unit tests, a test playbook is optional.
 * Validate that our validation hooks pass. If you used `.hooks/bootstrap` as documented in the [Dev Setup Guide]
 (dev-setup) the validation hook will run automatically upon commit. You can also run the validation hooks manually by
- running `.hooks/pre-commit`. If you want to validate specific files please use the demisto-sdk commands [validate](https://github.com/demisto/demisto-sdk/blob/master/docs/validate_command.md)
-  or [lint](https://github.com/demisto/demisto-sdk/blob/master/docs/lint_command.md) 
+ running `.hooks/pre-commit`. If you want to validate specific files please use the demisto-sdk commands [validate](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md)
+  or [lint](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/lint/README.md) 
 * Document your integration as detailed [here](integration-docs).
 * Document your changes in the relevant changelog file as detailed [here](changelog)
 

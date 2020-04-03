@@ -8,7 +8,7 @@ For better separation between Content artifacts from different use cases and Par
 For instance a pack for CortexXDR will look as can be seen in the Content Repository 
 [Packs/CortexXDR](https://github.com/demisto/content/tree/master/Packs/CortexXDR).
 
-To generate a new pack make sure to use: `demisto-sdk init --pack`. Detailed command instructions are available [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/init_command.md).
+To generate a new pack make sure to use: `demisto-sdk init --pack`. Detailed command instructions are available [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md).
 
 **Note**: The Content repo is going through a transition phase to move all content into packs. During this phase you will see some Content artifacts are still not maintained within Packs. All new Content should be maintained via Packs.
 
