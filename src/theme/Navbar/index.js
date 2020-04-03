@@ -38,6 +38,51 @@ function NavLink({ to, href, label, position, ...props }) {
   );
 }
 
+function SiteLink({
+  activeBasePath,
+  to,
+  href,
+  label,
+  position,
+  logo,
+  ...props
+}) {
+  const toUrl = useBaseUrl(to);
+  const activeBaseUrl = useBaseUrl(activeBasePath);
+
+  return (
+    <Link
+      className="navbar__item navbar__link"
+      {...(href
+        ? {
+            target: "_self",
+            rel: "noopener noreferrer",
+            href
+          }
+        : {
+            activeClassName: "navbar__link--active",
+            to: toUrl,
+            ...(activeBasePath
+              ? {
+                  isActive: (_match, location) =>
+                    location.pathname.startsWith(activeBaseUrl)
+                }
+              : null)
+          })}
+      {...props}
+    >
+      <span>
+        <div className="avatar">
+          <img className="avatar__photo avatar__photo--sm" src={logo} />
+          <div className="avatar__intro">
+            <h5 className="avatar__name">{label}</h5>
+          </div>
+        </div>
+      </span>
+    </Link>
+  );
+}
+
 function NavMenu(props) {
   return (
     <div className="navbar__item dropdown dropdown--hoverable">
@@ -46,6 +91,21 @@ function NavMenu(props) {
         {props.items.map((linkItem, i) => (
           <li key={i}>
             <NavLink {...linkItem} key={i} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function SiteMenu(props) {
+  return (
+    <div className="navbar__item dropdown dropdown--hoverable">
+      <a className="navbar__link">{props.label}</a>
+      <ul className="dropdown__menu">
+        {props.items.map((linkItem, i) => (
+          <li key={i}>
+            <SiteLink {...linkItem} key={i} />
           </li>
         ))}
       </ul>
@@ -63,10 +123,12 @@ function Navbar() {
     logo = {},
     links = [],
     menus = [],
+    sites = [],
     hideOnScroll = false
   } = navbar;
   const [sidebarShown, setSidebarShown] = useState(false);
   const [menuShown, setMenuShown] = useState({});
+  const [siteMenuShown, setSiteMenuShown] = useState({});
   const [isSearchBarExpanded, setIsSearchBarExpanded] = useState(false);
   const [theme, setTheme] = useTheme();
 
@@ -84,6 +146,12 @@ function Navbar() {
   const toggleMenu = id => {
     setMenuShown(menuShown => {
       return { ...menuShown, [id]: !menuShown[id] };
+    });
+  };
+
+  const toggleSiteMenu = id => {
+    setSiteMenuShown(siteMenuShown => {
+      return { ...siteMenuShown, [id]: !siteMenuShown[id] };
     });
   };
 
@@ -152,6 +220,11 @@ function Navbar() {
             .map((linkItem, i) => (
               <NavLink {...linkItem} key={i} />
             ))}
+          {sites
+            .filter(siteItem => siteItem.position !== "right")
+            .map((siteItem, i) => (
+              <SiteMenu {...siteItem} key={i} />
+            ))}
         </div>
         <div className="navbar__items navbar__items--right">
           {menus
@@ -163,6 +236,11 @@ function Navbar() {
             .filter(linkItem => linkItem.position === "right")
             .map((linkItem, i) => (
               <NavLink {...linkItem} key={i} />
+            ))}
+          {sites
+            .filter(siteItem => siteItem.position === "right")
+            .map((siteItem, i) => (
+              <SiteMenu {...siteItem} key={i} />
             ))}
           {!disableDarkMode && (
             <Toggle
@@ -204,6 +282,7 @@ function Navbar() {
             <ul className="menu__list">
               {menus.map((menuItem, i) => {
                 var className = menuShown[i]
+                var className = siteMenuShown[i]
                   ? "menu__list-item"
                   : "menu__list-item menu__list-item--collapsed";
 
@@ -212,6 +291,7 @@ function Navbar() {
                     <a
                       className="menu__link menu__link--sublist"
                       onClick={() => toggleMenu(i)}
+                      onClick={() => toggleSiteMenu(i)}
                     >
                       {menuItem.label}
                     </a>
@@ -238,6 +318,33 @@ function Navbar() {
                   />
                 </li>
               ))}
+              {sites.map((siteItem, i) => {
+                var className = menuShown[i]
+                  ? "menu__list-item"
+                  : "menu__list-item menu__list-item--collapsed";
+
+                return (
+                  <li className={className} key={i}>
+                    <a
+                      className="menu__link menu__link--sublist"
+                      onClick={() => toggleMenu(i)}
+                    >
+                      {siteItem.label}
+                    </a>
+                    <ul className="menu__list">
+                      {siteItem.items.map((item, i) => (
+                        <li className="menu__list-item" key={i}>
+                          <SiteLink
+                            className="menu__link"
+                            {...item}
+                            onClick={hideSidebar}
+                          />
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
