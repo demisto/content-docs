@@ -174,7 +174,7 @@ def index_doc_infos(doc_infos: List[DocInfo], link_prefix: str):
 
 # POOL has to be declared after process_readme_doc so it can find it when doing map
 # multiprocess pool
-POOL_SIZE = cpu_count * 2
+POOL_SIZE = cpu_count() * 2
 POOL = Pool(POOL_SIZE)
 
 
