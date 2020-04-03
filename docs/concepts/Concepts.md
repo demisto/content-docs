@@ -1,5 +1,5 @@
 ---
-id: concepts-xsoar-concepts
+id: concepts
 title: Cortex XSOAR Concepts
 ---
 It is important to familiarize yourself with Cortex XSOAR components, UI terminology, and key concepts.

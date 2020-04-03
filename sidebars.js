@@ -13,6 +13,10 @@ const sidebars = {
       items: [
           {
             type: "doc",
+            id: "concepts/concepts"
+          },
+          {
+            type: "doc",
             id: "concepts/use-cases"
           },
           {
