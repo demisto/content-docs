@@ -14,14 +14,24 @@
 /* You can override the default Infima variables here. */
 
 :root {
-  --ifm-color-primary: #98c23d;
-  --ifm-color-primary-dark: #a7cb5a;
-  --ifm-color-primary-darker: #b6d477;
-  --ifm-color-primary-dt: #c7de95;
-  --ifm-color-primary-light: #d6e7b1;
-  --ifm-color-primary-lighter: #e5f0ce;
-  --ifm-color-primary-lightest: #f4f8eb;
+  --ifm-color-primary: #00cc66;
+  --ifm-color-primary-dark: #00b85c;
+  --ifm-color-primary-darker: #00ad57;
+  --ifm-color-primary-darkest: #008f47;
+  --ifm-color-primary-light: #00e070;
+  --ifm-color-primary-lighter: #00eb75;
+  --ifm-color-primary-lightest: #0aff85;
+  --ifm-hero-background-color: #f9f9f9 !important;
+  --ifm-link-color: #00cc66;
   --ifm-background-color: #fff;
+  --ifm-navbar-search-input-color: var(--ifm-color-gray-900);
+  --ifm-navbar-search-placeholder-color: var(--ifm-color-gray-900);
+  --ra-color-tip: var(--ifm-color-primary);
+  --ra-color-text-dark: #000;
+  --ifm-color-info: #00cc66;
+  --ifm-color-info-dark: #807a7b;
+  --ifm-color-info-darker: #807a7b;
+
 }
 
 /* Dark mode overrides */
@@ -47,14 +57,22 @@ html[data-theme="dark"] {
 
   /* Mardown color in dark mode */
   --ifm-color-gray-800: var(--ifm-color-gray-300);
+}
 
-  /* Search input color in dark mode */
-  --ifm-navbar-search-input-color: var(--ifm-color-gray-900);
-  --ifm-navbar-search-input-background-color: #fff;
+.navbar a.navbar__link {
+  color: #000;
+}
+
+.navbar.navbar--fixed-top {
+  background-color: #f4f4f2;
+}
+
+.dropdown .dropdown__menu {
+  background-color: #f4f4f2;
 }
 
 .footer.footer--dark {
-  --ifm-footer-background-color: #333333;
+  --ifm-footer-background-color: #000;
 }
 
 /* Docs overrides */
@@ -79,6 +97,7 @@ blockquote {
 
 .button {
   z-index: 1;
+  margin-right: 4px;
 }
 
 /* Dropdown menu overrides */
@@ -92,6 +111,48 @@ blockquote {
   display: block;
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
+}
+
+.button--active--tab {
+  background-color: var(--ifm-background-color) !important;
+  color: var(--ifm-color-primary) !important;
+  border-color: var(--ifm-color-primary) !important;
+  border-width: medium !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+:target:before {
+  height: 105px !important;
+  margin: -105px 0 0 !important;
+}
+
+.shadow--md {
+  min-height: 250px !important;
+  margin-bottom: 15px;
+}
+
+.stretch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero {
+  border-bottom-left-radius: 100% 100px !important;
+  border-bottom-right-radius: 100% 100px !important;
+  border-bottom: 5px solid var(--ifm-color-primary) !important;
+}
+
+/* Override content links active color */
+
+.contents__link--active {
+  --ifm-color-primary: #00cc66;
+}
+
+.footer.footer--dark {
+  background-color: #000000;
 }
 
 .announcement {
@@ -109,11 +170,11 @@ blockquote {
 }
 
 .integrations {
-  color: #333333;
+  color: #807a7b;
   font-weight: bold;
   font-size: 35px;
   padding: 48px;
-  margin: 0 auto -40px;
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -124,7 +185,7 @@ blockquote {
 
 .customer {
   color: #fff;
-  background-color: #98c23d;
+  background-color: #00cc66;
   font-weight: bold;
   font-size: 35px;
   padding: 48px;
@@ -144,7 +205,7 @@ blockquote {
 }
 
 .customer-inner > a {
-  color: #333333;
+  color: #000;
 }
 
 /* XXX probably not the cleanest way */
@@ -187,4 +248,8 @@ blockquote {
 
 :target {
   outline: none
+}
+
+html[data-theme="dark"] .docusaurus-highlight-code-line {
+  background-color: rgba(197, 189, 189, 0.3);
 }

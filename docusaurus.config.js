@@ -6,11 +6,11 @@
  */
 
 module.exports = {
-  title: "Demisto",
+  title: "Cortex XSOAR",
   tagline: "Developers - Palo Alto Networks",
-  url: "https://demisto.pan.dev",
+  url: "https://xsoar.pan.dev",
   baseUrl: "/",
-  favicon: "img/demistofavicon.png", //square version
+  favicon: "img/Cortex-XSOAR-product-green.svg", //square version
   organizationName: "Demisto", // Usually your GitHub org/user name.
   projectName: "content-docs", // Usually your repo name.
   themeConfig: {
@@ -23,15 +23,15 @@ module.exports = {
     navbar: {
       title: "",
       logo: {
-        alt: "Demisto for Developers",
-        src: "img/demistopeelable.png"
+        alt: "Cortex XSOAR for Developers (Formerly Demisto)",
+        src: "img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal.svg"
       },
 
       menus: [
         {
           label: "Partners",
           items: [
-            { to: "docs/partners/why-demisto", label: "Why Demisto?" },
+            { to: "docs/partners/why-xsoar", label: "Why Cortex XSOAR?" },
             {
               to: "docs/partners/become-a-tech-partner",
               label: "Become a Partner"
@@ -79,6 +79,29 @@ module.exports = {
           label: "Blog",
           position: "right"
         }
+      ],
+      sites: [
+        {
+          label: "Products",
+          items: [
+            {
+              href: "https://panos.pan.dev",
+              label: "PAN-OS",
+              logo: "/img/strata_favicon.png"
+            },
+            {
+              href: "https://cortex.pan.dev",
+              label: "Cortex Data Lake",
+              logo: "/img/cortexfavicon.png"
+            },
+            {
+              href: "https://xsoar.pan.dev",
+              label: "Cortex XSOAR",
+              logo: "/img/Cortex-XSOAR-product-green.svg"
+            }
+          ],
+          position: "right"
+        }
       ]
     },
     footer: {
@@ -87,10 +110,10 @@ module.exports = {
         {
           title: "Docs",
           items: [
-            { to: "docs/howtos/integrations/getting-started-guide", label: "Development Guide" },
-            { to: "docs/partners/why-demisto", label: "Why become a Partner?" },
+            { to: "/docs/integrations/getting-started-guide", label: "Development Guide" },
+            { to: "/docs/partners/why-xsoar", label: "Why become a Partner?" },
             {
-              to: "docs/partners/become-a-tech-partner",
+              to: "/docs/partners/become-a-tech-partner",
               label: "Become a Technology Partner"
             }
           ]
@@ -107,7 +130,7 @@ module.exports = {
       ],
       logo: {
         alt: "Palo Alto Networks for Developers",
-        src: "img/pandev.png"
+        src: "img/PANW_Parent_Brand_Primary_Logo_RGB_KO.svg"
         // href: "https://pan.dev"
       },
       copyright: `Copyright © ${new Date().getFullYear()} Palo Alto Networks, Inc.`
