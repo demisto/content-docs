@@ -45,7 +45,7 @@ Example for commands file:
 ## Documentation Examples
 
 * [Microsoft Graph Groups](https://github.com/demisto/content/blob/master/Integrations/MicrosoftGraphGroups/README.md): Shows how the commands and examples should be presented.
-* [Slack v2](https://github.com/demisto/content/blob/master/Integrations/Slack/README.md): Shows an example of the troubleshooting section.
+* [Slack v2](https://github.com/demisto/content/blob/master/Packs/Slack/Integrations/Slack/README.md): Shows an example of the troubleshooting section.
 
 Example Images: 
 ![image](../doc_imgs/integrations/40935346-7ca3b24a-6840-11e8-8540-b00677cd6657.png)
