@@ -51,7 +51,7 @@ The description should include basic details about the integration, common troub
 
 You can read about the fetching-incidents process [here](../integrations/fetching-incidents). For simple APIs that return enrichment data, this may not be necessary, but for SEIMs, or other tools which report incidents, the fetch function is an absolute necessity.
 
->Since we are just translating something today, we don’t need to use this, but we will cover this in depth in another video. The last part is the logo. When we create an integration that is open to the public, we need to use an image that looks good. We recommend an image no larger than 4kb and in the PNG format. I have one ready that we will use, so I will drag it into the box.
+>Since we are just translating something today, we don’t need to use this, but we will cover this in depth in another video. The last part is the logo. When we create an integration that is open to the public, we need to use an image that looks good. We recommend an image no larger than 10KB and in the PNG format. I have one ready that we will use, so I will drag it into the box.
 
 ![drag logo](../doc_imgs/tutorials/tut-integration-ui/drag-logo.png)
 
