@@ -9,7 +9,7 @@ You can access the generated website at: https://demisto.pan.dev/
 
 ## Running the site locally
 ### Node Setup
-We use node 10.15.x for running the project. It is recommended to use `nvm`. See: https://github.com/nvm-sh/nvm for install instructions. It is recommended to setup `auto use` as specified here: https://github.com/nvm-sh/nvm#calling-nvm-use-automatically-in-a-directory-with-a-nvmrc-file . The root dir of the project contains a proper `.nvmrc` file with the recommended version to use.
+We use node 12.x for running the project. It is recommended to use `nvm`. See: https://github.com/nvm-sh/nvm for install instructions. It is recommended to setup `auto use` as specified here: https://github.com/nvm-sh/nvm#calling-nvm-use-automatically-in-a-directory-with-a-nvmrc-file . The root dir of the project contains a proper `.nvmrc` file with the recommended version to use.
 
 ### Install and Start
 Install all dependencies:

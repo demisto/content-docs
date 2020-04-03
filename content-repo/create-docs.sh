@@ -20,6 +20,10 @@ if [[ -n "${NETLIFY}" ]]; then
     echo "REVIEW_ID=${REVIEW_ID}"
     echo "DEPLOY_PRIME_URL=${DEPLOY_PRIME_URL}"
     echo "DEPLOY_URL=${DEPLOY_URL}"
+    echo "CPU INFO"
+    cat /proc/cpuinfo
+    echo "MEMORY INFO"
+    cat /proc/meminfo
 fi
 if [[ -n "${NETLIFY}" && -n "${HEAD}" ]]; then
     CURRENT_BRANCH="${HEAD}"
