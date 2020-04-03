@@ -53,35 +53,37 @@ Now that we have configured the Cortex XSOAR side of things, we need to configur
 
 	1. In the Intelligence Download Settings section, we enter the following:
 
-		* A meaningful name so we can identify what the intelligence download does from the main view.
+	   * A meaningful name so we can identify what the intelligence download does from the main view.
 
-		* Verify **Is Threat Intelligence** is selected.
+	   * Verify **Is Threat Intelligence** is selected.
 
-		* Provide more detailed information about exactly what we are getting in this feed in the **Description** field.
+	   * Provide more detailed information about exactly what we are getting in this feed in the **Description** field.
 
-		* Enter the following as the **URL**:
+	   * Enter the following as the **URL**:<br/>
 		`https://<Cortex XSOAR_address>/instance/execute/instance_name`
-	 		where 
-	 		* Cortex XSOAR_address is the URL of your Cortex XSOAR instance 
-	 		* instance_name is the name of the integration instance.
+
+	 		where
+
+	 	   * Cortex XSOAR_address is the URL of your Cortex XSOAR instance 
+	 	   * instance_name is the name of the integration instance.
 
 	 		For example, `https://myCortexXSOAR.com/instance/execute/ExportIndicators_instance_1`
 
-	 	* The reliability or confidence we have in the source of this information in the **Weight** field.
+	   * The reliability or confidence we have in the source of this information in the **Weight** field.
 
 	 ![Intelligence Download Settings](../doc_imgs/tutorials/tutorial-playbook-export-to-splunk/splunk_intelligence-download-settings.png)
 
 	 1. Under **Parsing Options**:
 
-	 	* As we have a CSV file, we enter *,* as the **Delimiting regular expression**. 
+	    * As we have a CSV file, we enter *,* as the **Delimiting regular expression**. 
 
-	 	* The **Fields** should be entered as follows:
+	    * The **Fields** should be entered as follows:
 	 		ip:"$9"
 
-	 		* ip is the indicator type as it is called in Splunk.
-	 		* $9 is the column in the csv file in which the value is located.
+	 	  * ip is the indicator type as it is called in Splunk.
+	 	  * $9 is the column in the csv file in which the value is located.
 
-	 	* Under **Skip header lines**, we enter 1, as that is the header row in our CSV file.
+	    * Under **Skip header lines**, we enter 1, as that is the header row in our CSV file.
 
 	 ![Intelligence Download Settings](../doc_imgs/tutorials/tutorial-playbook-export-to-splunk/splunk_parsing-options.png)
 
