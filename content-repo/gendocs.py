@@ -10,9 +10,8 @@ import inflection
 import traceback
 import shutil
 import json
-import tempfile
 from bs4 import BeautifulSoup
-from mdx_utils import fix_mdx, verify_mdx
+from mdx_utils import fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server
 from CommonServerPython import tableToMarkdown  # type: ignore
 from typing import List, Optional
 from datetime import datetime
@@ -149,11 +148,9 @@ def process_readme_doc(target_dir: str, content_dir: str, readme_file: str, ) ->
                 readme_repo_path = readme_repo_path[len(content_dir):]
             edit_url = f'https://github.com/demisto/content/blob/{BRANCH}/{readme_repo_path}'
             content = f'---\nid: {id}\ntitle: "{doc_info.name}"\ncustom_edit_url: {edit_url}\n---\n\n' + content
-        with tempfile.NamedTemporaryFile('w', encoding='utf-8') as f:  # type: ignore
+        verify_mdx_server(content)
+        with open(f'{target_dir}/{id}.md', mode='w', encoding='utf-8') as f:  # type: ignore
             f.write(content)
-            f.flush()
-            verify_mdx(f.name)
-            shutil.copy(f.name, f'{target_dir}/{id}.md')
         return doc_info
     except Exception as ex:
         print(f'fail: {readme_file}. Exception: {traceback.format_exc()}')
@@ -226,6 +223,8 @@ def main():
     parser.add_argument("-d", "--dir", help="Content repo dir.", required=True)
     args = parser.parse_args()
     print(f'Using multiprocess pool size: {POOL_SIZE}')
+    print('Starting MDX server...')
+    start_mdx_server()
     prefix = os.path.basename(args.target)
     integrations_full_prefix = f'{prefix}/{INTEGRATIONS_PREFIX}'
     scripts_full_prefix = f'{prefix}/{SCRIPTS_PREFIX}'
@@ -269,6 +268,8 @@ def main():
     ]
     with open(f'{args.target}/sidebar.json', 'w') as f:
         json.dump(sidebar, f, indent=4)
+    print('Stopping mdx server ...')
+    stop_mdx_server()
 
 
 if __name__ == "__main__":

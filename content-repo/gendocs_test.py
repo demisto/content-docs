@@ -1,24 +1,38 @@
 from gendocs import INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
-    verify_mdx, index_doc_infos, fix_mdx, DocInfo, gen_html_doc, normalize_id
+    index_doc_infos, DocInfo, gen_html_doc, normalize_id
+from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server
 import os
+import pytest
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SAMPLE_CONTENT = f'{BASE_DIR}/test_data/sample-content'
 
 
-def test_findfiles():
-    res = findfiles(INTEGRATION_DOCS_MATCH, SAMPLE_CONTENT)
-    assert f'{SAMPLE_CONTENT}/Packs/CortexXDR/Integrations/PaloAltoNetworks_XDR/README.md' in res
-    assert f'{SAMPLE_CONTENT}/Integrations/SMIME_Messaging/readme.md' in res
-    assert f'{SAMPLE_CONTENT}/Integrations/PhishLabsIOC_DRP/README.md' in res
-    assert f'{SAMPLE_CONTENT}/Beta_Integrations/SymantecDLP/README.md' in res
-    assert f'{SAMPLE_CONTENT}/Integrations/integration-F5_README.md' in res
+@pytest.fixture(scope='module')
+def mdx_server():
+    yield start_mdx_server()
+    print('Cleaning up MDX server')
+    stop_mdx_server()
 
 
 def test_verify_mdx():
     try:
         verify_mdx(f'{BASE_DIR}/test_data/bad-mdx-readme.md')
         assert False, 'should fail verify'
+    except Exception as ex:
+        assert 'Expected corresponding JSX closing tag' in str(ex)
+
+
+def test_verify_mdx_server(mdx_server):
+    with open(f'{BASE_DIR}/test_data/good-readme.md', mode='r', encoding='utf-8') as f:
+        data = f.read()
+        verify_mdx_server(data)
+    # test bad readme
+    try:
+        with open(f'{BASE_DIR}/test_data/bad-mdx-readme.md', mode='r', encoding='utf-8') as f:
+            data = f.read()
+            verify_mdx_server(data)
+            assert False, 'should fail verify'
     except Exception as ex:
         assert 'Expected corresponding JSX closing tag' in str(ex)
 
@@ -32,6 +46,15 @@ def test_fix_mdx():
     assert '<!--' not in res
     assert '-->' not in res
     assert 'html comment' not in res
+
+
+def test_findfiles():
+    res = findfiles(INTEGRATION_DOCS_MATCH, SAMPLE_CONTENT)
+    assert f'{SAMPLE_CONTENT}/Packs/CortexXDR/Integrations/PaloAltoNetworks_XDR/README.md' in res
+    assert f'{SAMPLE_CONTENT}/Integrations/SMIME_Messaging/readme.md' in res
+    assert f'{SAMPLE_CONTENT}/Integrations/PhishLabsIOC_DRP/README.md' in res
+    assert f'{SAMPLE_CONTENT}/Beta_Integrations/SymantecDLP/README.md' in res
+    assert f'{SAMPLE_CONTENT}/Integrations/integration-F5_README.md' in res
 
 
 def test_process_readme_doc(tmp_path):
