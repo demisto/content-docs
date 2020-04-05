@@ -13,7 +13,7 @@ import json
 from bs4 import BeautifulSoup
 from mdx_utils import fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server
 from CommonServerPython import tableToMarkdown  # type: ignore
-from typing import List, Optional
+from typing import List, Optional, Dict
 from datetime import datetime
 from multiprocessing import Pool
 from functools import partial
@@ -200,7 +200,7 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
     # flush before starting multi process
     sys.stdout.flush()
     sys.stderr.flush()
-    seen_docs = {}
+    seen_docs: Dict[str, DocInfo] = {}
     for doc_info in POOL.map(partial(process_readme_doc, target_sub_dir, content_dir), readme_files):
         if doc_info.error_msg:
             fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
