@@ -200,12 +200,16 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
     # flush before starting multi process
     sys.stdout.flush()
     sys.stderr.flush()
+    seen_docs = {}
     for doc_info in POOL.map(partial(process_readme_doc, target_sub_dir, content_dir), readme_files):
         if doc_info.error_msg:
             fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
+        elif doc_info.id in seen_docs:
+            fail.append(f'{doc_info.readme} (duplicate with {seen_docs[doc_info.id].readme})')
         else:
             doc_infos.append(doc_info)
             success.append(doc_info.readme)
+            seen_docs[doc_info.id] = doc_info
     org_print(f'\n===========================================\nSuccess {prefix} docs ({len(success)}):')
     for r in sorted(success):
         print(r)
