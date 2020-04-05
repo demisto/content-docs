@@ -44,7 +44,7 @@ jobs:
     - name: Lint
       run: |
         cd content-repo
-        pipenv run mypy gendocs.py
+        pipenv run mypy
         pipenv run flake8 *.py
     - name: Unit Testing
       run: |
