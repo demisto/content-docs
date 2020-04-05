@@ -58,7 +58,7 @@ The documentation should be posted in the integration/automation script director
 ## Documentation Deployment
 Once the PR with the documentation README file is merged in to master, it will trigger an update to the Cortex XSOAR Developer Hub. When the deployment is complete the documentation will be available at the [reference docs section](https://xsoar.pan.dev/docs/reference/index). If you wish to preview how the documentation looks at the Developer Hub, before merging to master, you can create a PR at the [content-docs repo](https://github.com/demisto/content-docs) with the same branch name as the PR you are working on in the [content repo](https://github.com/demisto/content-docs). Mention in the PR that it is related to a PR from the content repo. Your PR in the content-docs repo will include a preview link in the GitHub Checks section from `deploy/netlify`. You can perform a dummy white space change for the PR that will re-trigger the build and create a new preview. Example screen shot:
 
-
+![image](../doc_imgs/integrations/doc-preview-check.png)
 
 ## Notes
-We use [MDX](https://mdxjs.com/) for the Markdown generation. MDX is complaint with regular Markdown, but it requires that any html used be jsx complaint. Meaning all html tags need to contain a closing tag. For example don't use: `<br>`, use: `<br/>`. Additionally, html entities `< >`, not in code blocks, need to be encoded. Use `&lt;` and `&gt;`to encode.
+We use [MDX](https://mdxjs.com/) for the Markdown generation. MDX is complaint with regular Markdown, but it requires that any html used be jsx complaint. Meaning all html tags need to contain a closing tag. For example don't use: `<br>`, use: `<br/>`. Additionally, html entities `< >`, not in code blocks, need to be encoded. Use `&lt;` and `&gt;` to encode.
