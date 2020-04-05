@@ -24,7 +24,7 @@ Cortex XSOAR comes with the several TIM feeds out of the box. In this flow, we w
 
 2. Click **Add instance**.
 
-    1. Under **Sub-Feeds**, select from where you want to pull the data.
+    1. Under **Services**, select from where you want to pull the data. For example, *All Indicator Feed*.
 
     2. Determine the default reputation that you want indicators from this feed to receive. 
 
@@ -63,7 +63,7 @@ After configuring the feed, we need to customize the playbook to process the ind
 
     2. Select the **From indicators** radio button.
 
-    3. Under **Query**, enter a query to process the specific indicators that you want. For example, sourceBrands:"Bambenek Consulting Feed".
+    3. Under **Query**, enter a query to process the specific indicators that you want. For example, *sourceBrands:"Bambenek Consulting Feed"*.
 
     4. Click **Save**.
 
@@ -103,7 +103,7 @@ Now that the feed and playbook are set up, you need to define a job that will tr
 
 ## Customize the Add All Indicator Types To SIEM Playbook
 
-Now that we have the infrastructure for pushing the feeds set up, we need to customize the ***Add All Indicator Types To SIEM*** playbook. This playbook, as it is aptly named, pushes the indicators that have been tagged to their respective lists in the SIEM. By default, the playbook is configured to work with ArcSight and QRadar, however, you should change this to match the SIEM in your system. 
+Now that we have the infrastructure for pushing the feeds set up, we need to customize the **Add All Indicator Types To SIEM** playbook. This playbook, as it is aptly named, pushes the indicators that have been tagged to their respective lists in the SIEM. By default, the playbook is configured to work with ArcSight and QRadar, however, you should change this to match the SIEM in your system. 
 
 ## Define a Job to Push the Indicators to the SIEM
 

@@ -12,7 +12,9 @@ For a better understanding of how jobs are implemented to trigger playbooks, rea
 
 1. Click **New Job**.
 
-1. Determine if the job is time-triggered or feed-triggered. <br/> * Time-triggered jobs run at pre-determined times. You can schedule the job to run at a recurring time or one time at a specific time or date. <br/> Feed-triggered jobs run when a feed has completed an operation. For example, a TIM feed has finished ingesting new indicators.
+1. Determine if the job is time-triggered or feed-triggered. 
+	* Time-triggered jobs run at pre-determined times. You can schedule the job to run at a recurring time or one time at a specific time or date. 
+	* Feed-triggered jobs run when a feed has completed an operation. For example, a TIM feed has finished ingesting new indicators.
 
 ### Time-triggered Jobs
 1. To configure the job to recur, select **Recurring**. <br/> Determine at which intervals the job recurs, when it starts, and when the job expires. 

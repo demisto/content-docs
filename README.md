@@ -1,11 +1,11 @@
 ![Content logo](demisto_content_logo.png)
 
-# Demisto Content Developer Docs
-This repo holds Demisto's Content Developer Docs. The Content Developer Docs provide information on how to develop Content for the Demisto platform. The actual content is hosted at the following repo: https://github.com/demisto/content. 
+# Cortex XSOAR Content Developer Docs
+This repo holds Cortex XSOAR's Content Developer Docs. The Content Developer Docs provide information on how to develop Content for the Cortex XSOAR platform. The actual content is hosted at the following repo: https://github.com/demisto/content. 
 
 This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
 
-You can access the generated website at: https://demisto.pan.dev/ 
+You can access the generated website at: https://xsoar.pan.dev/ 
 
 ## Running the site locally
 ### Node Setup
@@ -23,7 +23,7 @@ npm start
 Start writing docs...
 
 ## Generating Reference Docs
-Reference docs are generated from the Demisto Content repository: https://github.com/demisto/content . To generate the docs we use [pipenv](https://github.com/pypa/pipenv). Make sure to install pipenv by running: `pip3 install pipenv`.
+Reference docs are generated from the Cortex XSOAR Content repository: https://github.com/demisto/content . To generate the docs we use [pipenv](https://github.com/pypa/pipenv). Make sure to install pipenv by running: `pip3 install pipenv`.
 
 When working locally you can generate the reference docs by running:
 ```

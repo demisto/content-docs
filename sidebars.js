@@ -13,6 +13,10 @@ const sidebars = {
       items: [
           {
             type: "doc",
+            id: "concepts/concepts"
+          },
+          {
+            type: "doc",
             id: "concepts/use-cases"
           },
           {
@@ -129,6 +133,7 @@ const sidebars = {
             "tutorials/tut-integration-ui",
             "tutorials/tutorial-incident-lifecycle",
             "tutorials/tutorial-playbook-TIM-EDL",
+            "tutorials/tutorial-TIM-export-indicators-to-3rd-party",
             "tutorials/tut-minemeld-migration"
           ]
     }

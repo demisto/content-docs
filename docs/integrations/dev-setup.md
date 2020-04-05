@@ -34,7 +34,7 @@ pip install virtualenv
 **Note:** Python 3 includes the `venv` module for creating virtual envs, but it does not permit creating virtual envs with other versions of Python (such as Python 2). Thus, we use the `virtualenv` package.
 
 ### Bootstrap
-Once `virtualenv` is installed you can run the [`bootstrap`](../../.hooks/bootstrap) script. The script will setup a pre-commit hook which will validate your modified files before committing and setup a python virtual env for development with the package requirements for [python2](../../dev-requirements-py2.txt) and [python3](../../dev-requirements-py3.txt). Run the script from the root directory of the source tree:
+Once `virtualenv` is installed you can run the [`bootstrap`](https://github.com/demisto/content/blob/master/.hooks/bootstrap) script. The script will setup a pre-commit hook which will validate your modified files before committing and setup a python virtual env for development with the package requirements for [python2](https://github.com/demisto/content/blob/master/dev-requirements-py2.txt) and [python3](https://github.com/demisto/content/blob/master/dev-requirements-py3.txt). Run the script from the root directory of the source tree:
 ```
 .hooks/bootstrap
 ```

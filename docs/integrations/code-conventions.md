@@ -221,7 +221,7 @@ def main():
 
 
 ## IOC Reputation Commands
-There are two implementation requirements for reputation commands (aka `!file`, `!email`, `!domain`, `!url`, and `!ip`) that are enforced by checks in the [hook_validations](../../Tests/scripts/hook_validations/integration.py).
+There are two implementation requirements for reputation commands (aka `!file`, `!email`, `!domain`, `!url`, and `!ip`) that are enforced by checks in the [hook_validations](https://github.com/demisto/content/blob/master/Tests/scripts/hook_validations/integration.py).
 - The reputation command's argument of the same name must have `default` set to `True`.
 - The reputation command's argument of the same name must have `isArray` set to `True`.
 

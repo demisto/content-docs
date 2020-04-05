@@ -3,7 +3,7 @@ id: integration-logo
 title: Integration Logo Standards
 ---
 
-- Size up to 4KB.
+- Size up to 10KB.
 - Dimensions of 120x50.
 - Transparent background.
 
