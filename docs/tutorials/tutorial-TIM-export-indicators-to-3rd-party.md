@@ -64,7 +64,7 @@ Now that we have configured the Cortex XSOAR side of things, we need to configur
 	   * Enter the following as the **URL**:<br/>
 		`https://<Cortex XSOAR_address>/instance/execute/instance_name`
 
-	 		where
+	 	where
 
 	 	   * Cortex XSOAR_address is the URL of your Cortex XSOAR instance 
 	 	   * instance_name is the name of the integration instance.
@@ -80,10 +80,10 @@ Now that we have configured the Cortex XSOAR side of things, we need to configur
 	    * As we have a CSV file, we enter *,* as the **Delimiting regular expression**. 
 
 	    * The **Fields** should be entered as follows:
-	 		ip:"$9"
+	 		ip:$1
 
 	 	  * ip is the indicator type as it is called in Splunk.
-	 	  * $9 is the column in the csv file in which the value is located.
+	 	  * $1 is the column in the csv file in which the value is located.
 
 	    * Under **Skip header lines**, we enter 1, as that is the header row in our CSV file.
 
