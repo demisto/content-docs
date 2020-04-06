@@ -7,10 +7,12 @@
     "test": "cd content-repo && pipenv install --dev && pipenv run flake8 *.py && pipenv run mypy gendocs.py && pipenv run pytest -v",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "npm run reference-docs && cp -RPv docs/doc_imgs/* static/doc_imgs/ && replace '(\\.\\.\\/){0,2}doc_imgs' '/doc_imgs' docs/* --include='*.md*' --recursive && docusaurus build",
+    "build-docusaurus": "cp -RPv docs/doc_imgs/* static/doc_imgs/ && replace '(\\.\\.\\/){0,2}doc_imgs' '/doc_imgs' docs/* --include='*.md*' --recursive && docusaurus build",
+    "build": "npm run reference-docs && npm run build-docusaurus",
     "findorphans": "for i in `cd docs && find . -name '*.md' | cut -d '.' -f2 | cut -d'/' -f2-`; do grep $i sidebars.js 1>/dev/null || echo \"Document not in sidebar: $i\"; done",
     "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy"
+    "deploy": "docusaurus deploy",
+    "node": "node"
   },
   "dependencies": {
     "@docusaurus/core": "2.0.0-alpha.48",

@@ -16,13 +16,15 @@ In this tutorial, we are going to configure the Export Indicators Service to exp
 		`sourceBrands:"Bambenek Consulting Feed" AND type:IP AND (reputation:Bad OR reputation:Suspicious)`
 		This will bring us all IP indicators coming from the Bambenek feed, which have a reputation of either 'Bad' or 'Suspicious'.
 
-	1. Under **Outbound Format**, we select *CSV*. This is the format specifically expected by Splunk.
+	1. Under **Outbound Format**, we select *CSV*. In this format, only the indicator is exported. <br/>If we want to export the indicator with all of its metadata, we could select *XSOAR CSV*. This is useful for situation where you want to ingest additional data into Splunk.
 
 	1. We ensure that the **Long running instance** checkbox is selected. This keeps communication between the 3rd party application consuming this data and the integration constant. The integration will not work if this checkbox is not selected.
 
 	1. Under **Listen Port**, we enter 7000 as the port through which you want to connect to the integration. 
 
 	1. (Optional) Cortex XSOAR recommends that you configure the instance to require a username and password. We click **Switch to username and password** and enter the authentication credentials.
+
+	1. We must also select the **CSV as Text** checkbox. This means the query results will be hosted on the server at the port or address that we configured so Splunk can access the information as a web service. 
 
 	![Configure Export Indicator Service](../doc_imgs/tutorials/tutorial-playbook-export-to-splunk/configure_export-indicator-service.png)
 
@@ -62,7 +64,7 @@ Now that we have configured the Cortex XSOAR side of things, we need to configur
 	   * Enter the following as the **URL**:<br/>
 		`https://<Cortex XSOAR_address>/instance/execute/instance_name`
 
-	 		where
+	 	where
 
 	 	   * Cortex XSOAR_address is the URL of your Cortex XSOAR instance 
 	 	   * instance_name is the name of the integration instance.
@@ -78,10 +80,10 @@ Now that we have configured the Cortex XSOAR side of things, we need to configur
 	    * As we have a CSV file, we enter *,* as the **Delimiting regular expression**. 
 
 	    * The **Fields** should be entered as follows:
-	 		ip:"$9"
+	 		ip:$1
 
 	 	  * ip is the indicator type as it is called in Splunk.
-	 	  * $9 is the column in the csv file in which the value is located.
+	 	  * $1 is the column in the csv file in which the value is located.
 
 	    * Under **Skip header lines**, we enter 1, as that is the header row in our CSV file.
 
@@ -99,4 +101,6 @@ After defining the feed in Splunk, we want to ensure that the indicators are bei
 
 1. Under **Threat Group**, we select the Intelligence object that we created earlier and click **Submit**.
 
-The indicators are avaiable in Splunk, meaning our ingestion process worked. 
+Under the Network tab, in the IP Intelligence section, we can see that our indicators are avaiable, meaning our ingestion process worked.
+
+![Splunk Threat Artifacts](../doc_imgs/tutorials/tutorial-playbook-export-to-splunk/splunk_threat_artifiacts.png)
