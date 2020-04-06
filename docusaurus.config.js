@@ -17,7 +17,7 @@ module.exports = {
     algolia: {
       apiKey: process.env.ALGOLIA_APIKEY,
       indexName: process.env.ALGOLIA_INDEX,
-      algoliaOptions: {} // Optional, if provided by Algolia
+      algoliaOptions: { typoTolerance: false } // Optional, if provided by Algolia
     },
     sidebarCollapsible: true,
     navbar: {
