@@ -156,3 +156,5 @@ Let's review the object key and values.
 * `"rawJSON"` - _required_. This dictionary should contain the `"value"` and `"type"` fields as well as any other unmodified data returned from the feed source about an indicator.
 * `"fields"` - _optional_. A dictionary that maps values to existing indicator fields defined in Cortex XSOAR where the key is the `cliname` of an indicator field.
 * `"score"` - _optional_. The reputation score to assign to the indicator object, scores range from 0 to 3 where 0 - None, 1 - Good, 2 - Suspicious, and 3 - Bad. Assign a value only if you wish to explicitly assign a score to an indicator in your code. Typically, indicator reputation is set at a Feed Integration configuration level by setting the `Indicator Reputation` parameter when configuring an instance.
+
+*Note:* In indicators of type "File", if you have multiple hash types for the same file (i.e. MD5, SHA256, etc.), you can use the corresponding `"fields"` to associate all hashes to the same object. The supported fields are: `md5`, `sha1`, `sha256`, `sha512`, `ssdeep`. You can use any of the aforementioned hash types as the indicator value for an indicator of type "File".
