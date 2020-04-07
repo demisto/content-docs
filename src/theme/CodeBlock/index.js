@@ -13,7 +13,6 @@ import Clipboard from 'clipboard';
 import rangeParser from 'parse-numeric-range';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useThemeContext from '@theme/hooks/useThemeContext';
-
 import styles from './styles.module.css';
 
 const highlightLinesRangeRegex = /{([\d,-]+)}/;
@@ -91,14 +90,19 @@ export default ({children, className: languageClassName, metastring}) => {
       language={language}>
       {({className, style, tokens, getLineProps, getTokenProps}) => (
         <pre className={classnames(className, styles.codeBlock)}>
+          {language != "console" ? (
           <button
             ref={button}
             type="button"
             aria-label="Copy code to clipboard"
             className={styles.copyButton}
-            onClick={handleCopyCode}>
+            onClick={handleCopyCode}
+            >
             {showCopied ? 'Copied' : 'Copy'}
           </button>
+          ) : (
+            <div />
+          )}
 
           <code ref={target} className={styles.codeBlockLines} style={style}>
             {tokens.map((line, i) => {
