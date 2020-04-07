@@ -10,7 +10,7 @@ module.exports = {
   tagline: "Developers - Palo Alto Networks",
   url: "https://xsoar.pan.dev",
   baseUrl: "/",
-  favicon: "/img/Cortex-XSOAR-product-green.svg", //square version
+  favicon: "/img/cortexfavicon.png", //square version
   organizationName: "Demisto", // Usually your GitHub org/user name.
   projectName: "content-docs", // Usually your repo name.
   themeConfig: {
