@@ -24,7 +24,8 @@ module.exports = {
       title: "",
       logo: {
         alt: "Cortex XSOAR for Developers (Formerly Demisto)",
-        src: "/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal.svg"
+        src: "/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal.svg",
+        srcDark: "static/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal-KO.svg"
       },
 
       menus: [
