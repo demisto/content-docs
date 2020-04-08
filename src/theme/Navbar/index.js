@@ -155,6 +155,18 @@ function Navbar() {
     setSidebarShown(false);
   }, [setSidebarShown]);
 
+  const toggleMenu = id => {
+    setMenuShown(menuShown => {
+      return { ...menuShown, [id]: !menuShown[id] };
+    });
+  };
+
+  const toggleSiteMenu = id => {
+    setSiteMenuShown(siteMenuShown => {
+      return { ...siteMenuShown, [id]: !siteMenuShown[id] };
+    });
+  };
+
   const onToggleChange = useCallback(
     e => (e.target.checked ? setDarkTheme() : setLightTheme()),
     [setLightTheme, setDarkTheme],
@@ -308,9 +320,8 @@ function Navbar() {
         <div className="navbar-sidebar__items">
           <div className="menu">
             <ul className="menu__list">
-            {menus.map((menuItem, i) => {
+              {menus.map((menuItem, i) => {
                 var className = menuShown[i]
-                var className = siteMenuShown[i]
                   ? "menu__list-item"
                   : "menu__list-item menu__list-item--collapsed";
 
@@ -319,7 +330,6 @@ function Navbar() {
                     <a
                       className="menu__link menu__link--sublist"
                       onClick={() => toggleMenu(i)}
-                      onClick={() => toggleSiteMenu(i)}
                     >
                       {menuItem.label}
                     </a>
@@ -346,8 +356,7 @@ function Navbar() {
                   />
                 </li>
               ))}
-              {menus.map((menuItem, i) => {
-                var className = menuShown[i]
+              {sites.map((siteItem, i) => {
                 var className = siteMenuShown[i]
                   ? "menu__list-item"
                   : "menu__list-item menu__list-item--collapsed";
@@ -356,15 +365,14 @@ function Navbar() {
                   <li className={className} key={i}>
                     <a
                       className="menu__link menu__link--sublist"
-                      onClick={() => toggleMenu(i)}
                       onClick={() => toggleSiteMenu(i)}
                     >
-                      {menuItem.label}
+                      {siteItem.label}
                     </a>
                     <ul className="menu__list">
-                      {menuItem.items.map((item, i) => (
+                      {siteItem.items.map((item, i) => (
                         <li className="menu__list-item" key={i}>
-                          <NavLink
+                          <SiteLink
                             className="menu__link"
                             {...item}
                             onClick={hideSidebar}
