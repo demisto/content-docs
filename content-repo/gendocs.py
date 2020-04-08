@@ -17,6 +17,7 @@ from typing import List, Optional, Dict
 from datetime import datetime
 from multiprocessing import Pool
 from functools import partial
+import html
 
 # override print so we have a timestamp with each print
 org_print = print
@@ -128,7 +129,16 @@ def process_readme_doc(target_dir: str, content_dir: str, readme_file: str, ) ->
         id = yml_data.get('commonfields', {}).get('id') or yml_data['id']
         id = normalize_id(id)
         name = yml_data.get('display') or yml_data['name']
+        name = html.escape(name)
         desc = yml_data.get('description') or yml_data.get('comment')
+        if desc:
+            word_break = False
+            for word in re.split(r'\s|-', desc):
+                if len(word) > 40:
+                    word_break = True
+            desc = html.escape(desc)
+            if word_break:  # long words tell browser to break in the midle
+                desc = '<span style={{wordBreak: "break-word"}}>' + desc + '</span>'
         doc_info = DocInfo(id, name, desc, readme_file)
         with open(readme_file, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -165,8 +175,13 @@ def index_doc_infos(doc_infos: List[DocInfo], link_prefix: str):
         return ''
     table_items = []
     for d in doc_infos:
+        link_name = f'[{d.name}]({link_prefix}/{d.id})'
+        for word in re.split(r'\s|-', d.name):
+            if len(word) > 25:  # we have a long word tell browser ok to break it
+                link_name = '<span style={{wordBreak: "break-word"}}>' + link_name + '</span>'
+                break
         table_items.append({
-            'Name': f'[{d.name}]({link_prefix}/{d.id})',
+            'Name': link_name,
             'Description': d.description
         })
     res = tableToMarkdown('', table_items, headers=['Name', 'Description'])
