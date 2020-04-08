@@ -10,7 +10,7 @@ module.exports = {
   tagline: "Developers - Palo Alto Networks",
   url: "https://xsoar.pan.dev",
   baseUrl: "/",
-  favicon: "/img/Cortex-XSOAR-product-green.svg", //square version
+  favicon: "/img/cortexfavicon.png", //square version
   organizationName: "Demisto", // Usually your GitHub org/user name.
   projectName: "content-docs", // Usually your repo name.
   themeConfig: {
@@ -24,7 +24,8 @@ module.exports = {
       title: "",
       logo: {
         alt: "Cortex XSOAR for Developers (Formerly Demisto)",
-        src: "/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal.svg"
+        src: "/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal.svg",
+        srcDark: "/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal-KO.svg"
       },
 
       menus: [
