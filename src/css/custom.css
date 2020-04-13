@@ -244,3 +244,11 @@ blockquote {
 html[data-theme="dark"] .docusaurus-highlight-code-line {
   background-color: rgba(197, 189, 189, 0.3);
 }
+
+video {
+  /* override other styles to make responsive 
+    Based on: https://css-tricks.com/fluid-width-video/
+  */
+  width: 100%    !important;
+  height: auto   !important;
+}
