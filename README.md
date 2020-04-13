@@ -9,7 +9,7 @@ You can access the generated website at: https://xsoar.pan.dev/
 
 ## Running the site locally
 ### Node Setup
-We use node 10.15.x for running the project. It is recommended to use `nvm`. See: https://github.com/nvm-sh/nvm for install instructions. It is recommended to setup `auto use` as specified here: https://github.com/nvm-sh/nvm#calling-nvm-use-automatically-in-a-directory-with-a-nvmrc-file . The root dir of the project contains a proper `.nvmrc` file with the recommended version to use.
+We use node 12.x for running the project. It is recommended to use `nvm`. See: https://github.com/nvm-sh/nvm for install instructions. It is recommended to setup `auto use` as specified here: https://github.com/nvm-sh/nvm#calling-nvm-use-automatically-in-a-directory-with-a-nvmrc-file . The root dir of the project contains a proper `.nvmrc` file with the recommended version to use.
 
 ### Install and Start
 Install all dependencies:
@@ -60,3 +60,4 @@ Before merging any PRs, we need all contributors to sign a contributor license a
 When you open a new pull request, a bot will evaluate whether you have signed the CLA. If required, the bot will comment on the pull request, including a link to accept the agreement. The CLA document is also available for review as a [PDF](https://github.com/demisto/content/blob/master/docs/cla.pdf).
 
 If the `license/cla` status check remains on *Pending*, even though all contributors have accepted the CLA, you can recheck the CLA status by visiting the following link (replace **[PRID]** with the ID of your PR): https://cla-assistant.io/check/demisto/content-docs?pullRequest=[PRID] .
+

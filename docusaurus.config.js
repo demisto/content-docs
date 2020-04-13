@@ -10,21 +10,22 @@ module.exports = {
   tagline: "Developers - Palo Alto Networks",
   url: "https://xsoar.pan.dev",
   baseUrl: "/",
-  favicon: "/img/Cortex-XSOAR-product-green.svg", //square version
+  favicon: "/img/cortexfavicon.png", //square version
   organizationName: "Demisto", // Usually your GitHub org/user name.
   projectName: "content-docs", // Usually your repo name.
   themeConfig: {
     algolia: {
       apiKey: process.env.ALGOLIA_APIKEY,
       indexName: process.env.ALGOLIA_INDEX,
-      algoliaOptions: {} // Optional, if provided by Algolia
+      algoliaOptions: { typoTolerance: false } // Optional, if provided by Algolia
     },
     sidebarCollapsible: true,
     navbar: {
       title: "",
       logo: {
         alt: "Cortex XSOAR for Developers (Formerly Demisto)",
-        src: "/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal.svg"
+        src: "/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal.svg",
+        srcDark: "/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal-KO.svg"
       },
 
       menus: [
