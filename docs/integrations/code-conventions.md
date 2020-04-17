@@ -1,9 +1,8 @@
 ---
 id: code-conventions
-title: Code Conventions
+title: Python Code Conventions
 ---
 
-## Python Code Conventions
 We use standardized code conventions to ensure uniformity across all Cortex XSOAR Integrations. This section outlines our code conventions.
 
 New integrations and scripts should follow these conventions. When working on small fixes and modifications to existing code, follow the conventions used in the existing code.
