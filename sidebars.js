@@ -49,6 +49,7 @@ const sidebars = {
           label: "Developing",
           items: [
             "integrations/code-conventions",
+            "integrations/powershell-code",
             "integrations/yaml-file",
             "integrations/integration-logo",
             "integrations/parameter-types",
