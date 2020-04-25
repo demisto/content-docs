@@ -51,14 +51,14 @@ The following fields are populated in the pack metadata:
 | author | String | The name of the organization / developer which developed the integration. |
 | url | String | The URL to which users should refer to in case of support needed regarding the pack. Usually is the organization support URL or the developer GitHub repository. |
 | email | String | The email address to which users should reach out to in case of support needed regarding the pack. |
-| categories | List | The use-case categories which are implemented in the pack. Usually set by the integration, which included in the pack category. Should be one of the following:<br />1. Analytics & SIEM<br />2. Utilities<br />3.Messaging<br />4.Endpoint<br />5.Network Security<br />6.Vulnerability Management<br />7.Case Management<br />8.Forensics & Malware Analysis<br />9.IT Services<br />10.Data Enrichment & Threat Intelligence<br />11.Authentication<br />12.Database<br />13.Deception<br />14.Email Gateway|
+| categories | List | The use-case categories which are implemented in the pack. Usually set by the integration, which included in the pack category. Should be one of the following:<br />1. Analytics & SIEM<br />2. Utilities<br />3. Messaging<br />4. Endpoint<br />5. Network Security<br />6. Vulnerability Management<br />7. Case Management<br />8. Forensics & Malware Analysis<br />9. IT Services<br />10. Data Enrichment & Threat Intelligence<br />11. Authentication<br />12. Database<br />13. Deception<br />14. Email Gateway|
 | tags | List | Tags to be attached to the pack on Cortex XSOAR marketplace. |
 | created | String | Pack creation time in ISO 8601 format - YYYY-MM-DDTHH:mm:ssZ, e.g. 2020-01-25T10:00:00Z |
 | updated | String | Pack last update time in ISO 8601 format - YYYY-MM-DDTHH:mm:ssZ, e.g. 2020-01-25T10:00:00Z |
 | beta | Boolean | Whether the pack is in beta version or not. |
 | deprecated | Boolean | Whether the pack is deprecated or not. |
 | useCases | List | Use-cases implemented by the pack. |
-| keywords | List | List of strings by which the content will come up by in Cortex XSOAR marketplace. |
+| keywords | List | List of strings by which the pack can be found in Cortex XSOAR marketplace. |
 | dependencies | Dictionary | An object that describes the content packs that the pack is dependant on. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | displayedImages | List | Images to be displayed in Cortex XSOAR marketplace. |
 
