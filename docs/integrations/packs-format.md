@@ -60,7 +60,7 @@ The following fields are populated in the pack metadata:
 | useCases | List | Use-cases implemented by the pack. |
 | keywords | List | List of strings by which the pack can be found in Cortex XSOAR marketplace. |
 | dependencies | Dictionary | An object that describes the content packs that the pack is dependant on. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
-| displayedImages | List | Images to be displayed in Cortex XSOAR marketplace. |
+| displayedImages | List | Images to be displayed in Cortex XSOAR marketplace. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 
 Pack metadata contents for example:
 
@@ -92,8 +92,17 @@ Pack metadata contents for example:
         "adaptive cyber protection",
         "apt"
     ],
-    "dependencies": {},
-    "displayedImages": []
+    "dependencies": {
+        "Base": {
+            "mandatory": true,
+            "minVersion": "1.0.0",
+            "author": "Cortex XSOAR",
+            "name": "Base"
+        }
+    },
+    "displayedImages": [
+        "CortexXDR"
+    ]
 }
 ```
 
