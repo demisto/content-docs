@@ -1,97 +1,58 @@
 /**
- * Copyright (c) 2017-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
 
-import Link from "@docusaurus/Link";
-import renderRoutes from "@docusaurus/renderRoutes";
-import { matchPath } from "@docusaurus/router";
-import useBaseUrl from "@docusaurus/useBaseUrl";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import { MDXProvider } from "@mdx-js/react";
-import DocSidebar from "@theme/DocSidebar";
-import Layout from "@theme/Layout";
-import MDXComponents from "@theme/MDXComponents";
-import NotFound from "@theme/NotFound";
-import React from "react";
-import styles from "./styles.module.css";
+import React from 'react';
+import {MDXProvider} from '@mdx-js/react';
 
-function matchingRouteExist(routes, pathname) {
-  return routes.some(route => matchPath(pathname, route));
-}
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import renderRoutes from '@docusaurus/renderRoutes';
+import Layout from '@theme/Layout';
+import DocSidebar from '@theme/DocSidebar';
+import MDXComponents from '@theme/MDXComponents';
+import NotFound from '@theme/NotFound';
+import {matchPath} from '@docusaurus/router';
+
+import styles from './styles.module.css';
 
 function DocPage(props) {
-  const { route, docsMetadata, location } = props;
-  const { permalinkToSidebar, docsSidebars, version } = docsMetadata;
-  const sidebar = permalinkToSidebar[location.pathname.replace(/\/$/, "")];
+  const {route: baseRoute, docsMetadata, location} = props;
+  // case-sensitive route such as it is defined in the sidebar
+  const currentRoute =
+    baseRoute.routes.find(route => {
+      return matchPath(location.pathname, route);
+    }) || {};
+  const {permalinkToSidebar, docsSidebars, version} = docsMetadata;
+  const sidebar = permalinkToSidebar[currentRoute.path];
   const {
-    siteConfig: { themeConfig = {} } = {},
-    siteConfig: { customFields = {} } = {}
+    siteConfig: {themeConfig = {}} = {},
+    isClient,
   } = useDocusaurusContext();
-  const { sidebarCollapsible = true } = themeConfig;
-  const { docbar = {} } = customFields;
-  const { options = [] } = docbar;
+  const {sidebarCollapsible = true} = themeConfig;
 
-  if (!matchingRouteExist(route.routes, location.pathname)) {
+  if (Object.keys(currentRoute).length === 0) {
     return <NotFound {...props} />;
   }
 
   return (
-    <Layout version={version}>
+    <Layout version={version} key={isClient}>
       <div className={styles.docPage}>
         {sidebar && (
           <div className={styles.docSidebarContainer}>
             <DocSidebar
               docsSidebars={docsSidebars}
-              location={location}
+              path={currentRoute.path}
               sidebar={sidebar}
               sidebarCollapsible={sidebarCollapsible}
             />
           </div>
         )}
         <main className={styles.docMainContainer}>
-          <div
-            className="row row--no-gutters"
-            style={{
-              position: "sticky",
-              top: "60px",
-              zIndex: 1,
-              backgroundColor: "var(--ifm-background-color)"
-            }}
-          >
-            {typeof window !== "undefined" &&
-            window.location.pathname.split("/")[2] !== "partners" ? (
-              options.map((menuItem, i) => (
-                <Link
-                  className={
-                    "button button--outline button--secondary button--lg " +
-                    (typeof window !== "undefined" &&
-                    window.location.pathname.split("/")[2] ==
-                      useBaseUrl(menuItem.to).split("/")[2]
-                      ? "button--active--tab shadow--lw"
-                      : "")
-                  }
-                  style={{
-                    borderRadius: "0 0 0 0",
-                    borderColor: "var(--ifm-contents-border-color)",
-                    borderWidth: "0",
-                    padding:
-                      "calc( var(--ifm-button-padding-vertical) * 1.5  ) calc( var(--ifm-button-padding-horizontal) * .65 )"
-                  }}
-                  key={i}
-                  to={useBaseUrl(menuItem.to)}
-                >
-                  {menuItem.label}
-                </Link>
-              ))
-            ) : (
-              <></>
-            )}
-          </div>
           <MDXProvider components={MDXComponents}>
-            {renderRoutes(route.routes)}
+            {renderRoutes(baseRoute.routes)}
           </MDXProvider>
         </main>
       </div>

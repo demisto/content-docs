@@ -1,37 +1,43 @@
-module.exports = {
-  concepts:
+const fs = require('fs-extra');
+
+const sidebars = {
+  docs:
   [
-      {
-        type: "doc",
-        id: "concepts"
-      },
-      {
-        type: "doc",
-        id: "concepts/use-cases"
-      },
-      {
-        type: "doc",
-        id: "concepts/design-best-practices"
-      },
-      {
-        type: "doc",
-        id: "concepts/faq"
-      },
-  ],
-  howtos: [
     {
       type: "doc",
-      id: "howtos"
+      id: "welcome"
+    },
+    {
+      type: "category",
+      label: "Concepts",
+      items: [
+          {
+            type: "doc",
+            id: "concepts/concepts"
+          },
+          {
+            type: "doc",
+            id: "concepts/use-cases"
+          },
+          {
+            type: "doc",
+            id: "concepts/design-best-practices"
+          },
+          {
+            type: "doc",
+            id: "concepts/faq"
+          },
+      ],
     },
     {
       type: "category",
       label: "Getting Started",
       items: [
-        "howtos/integrations/getting-started-guide",
-        "howtos/integrations/dev-setup",
-        "howtos/integrations/packs-format",
-        "howtos/integrations/package-dir",
-        "howtos/integrations/docker",
+        "integrations/getting-started-guide",
+        "integrations/dev-setup",
+        "integrations/packs-format",
+        "integrations/package-dir",
+        "integrations/docker",
       ]
     },
     {
@@ -42,38 +48,39 @@ module.exports = {
           type: "category",
           label: "Developing",
           items: [
-            "howtos/integrations/code-conventions",
-            "howtos/integrations/yaml-file",
-            "howtos/integrations/integration-logo",
-            "howtos/integrations/parameter-types",
-            "howtos/integrations/fetching-incidents",
-            "howtos/integrations/feeds",
-            "howtos/integrations/fetching-credentials",
-            "howtos/integrations/long-running",
-            "howtos/integrations/context-and-outputs",
-            "howtos/integrations/context-standards",
-            "howtos/integrations/dbot",
-            "howtos/integrations/dt",
-            "howtos/integrations/integration-cache",
+            "integrations/code-conventions",
+            "integrations/powershell-code",
+            "integrations/yaml-file",
+            "integrations/integration-logo",
+            "integrations/parameter-types",
+            "integrations/fetching-incidents",
+            "integrations/feeds",
+            "integrations/fetching-credentials",
+            "integrations/long-running",
+            "integrations/context-and-outputs",
+            "integrations/context-standards",
+            "integrations/dbot",
+            "integrations/dt",
+            "integrations/integration-cache",
           ]
         },
         {
           type: "category",
           label: "Testing",
           items: [
-            "howtos/integrations/linting",
-            "howtos/integrations/unit-testing",
-            "howtos/integrations/test-playbooks",
-            "howtos/integrations/debugging"
+            "integrations/linting",
+            "integrations/unit-testing",
+            "integrations/test-playbooks",
+            "integrations/debugging"
           ],
         },
         {
           type: "category",
           label: "Documenting",
           items: [
-            "howtos/integrations/integration-docs",
-            "howtos/integrations/doc-structure",
-            "howtos/integrations/changelog"
+            "integrations/integration-docs",
+            "integrations/doc-structure",
+            "integrations/changelog"
           ],
         }
       ]
@@ -82,142 +89,61 @@ module.exports = {
       type: "category",
       label: "Playbooks",
       items: [
-        "howtos/playbooks/playbooks",
-        "howtos/playbooks/playbook-conventions",
-        "howtos/playbooks/generic-polling"
-      ]
-    },
-    {
-      type: "category",
-      label: "Scripts",
-      items: [
-        "howtos/how-scripts",
+        "playbooks/playbooks-overview",
+        "playbooks/playbook-contributions",
+        "playbooks/playbooks",
+        "playbooks/playbook-settings",
+        "playbooks/playbook-conventions",
+        "playbooks/playbooks-inputs-outputs",
+        "playbooks/playbooks-extend-context",
+        "playbooks/playbooks-create-playbook-task",
+        "playbooks/playbooks-create-conditional-task",
+        "playbooks/playbooks-communication-task-concepts",
+        "playbooks/playbooks-create-communication-task",
+        "playbooks/playbooks-communication-task-customize-message",
+        "playbooks/generic-polling",
+        "playbooks/playbooks-field-reference"
       ]
     },
     {
       type: "category",
       label: "Incidents, Fields & Layouts",
       items: [
-        "howtos/how-incidents"
-      ]
-    },
-    {
-      type: "category",
-      label: "Dashboards & Widgets",
-      items: [
-        "howtos/how-dashboards"
+        "incidents/incident-xsoar-incident-lifecycle",
+        "incidents/incident-types",
+        "incidents/incident-customize-incident-layout",
+        "incidents/incident-fields",
+        "incidents/incident-jobs",
+        "incidents/incident-auto-extract",
+        "incidents/incident-classification-mapping",
+        "incidents/incident-pre-processing",
       ]
     },
     {
       type: "category",
       label: "Contributing",
       items: [
-        "howtos/contributing/circleci",
-      ]
-    },
-  ],
-  tutorials: [
-    {
-      type: "doc",
-      id: "tutorials"
-    },
-    {
-      type: "category",
-      label: "Getting Started",
-      items: [
-         "tutorials/getting-started/tut-setup-dev",
+        "contributing/circleci",
       ]
     },
     {
       type: "category",
-      label: "Integrations",
+      label: "Tutorials",
       items: [
-        "tutorials/integrations/tut-integration-ui"
-      ]
-    },
-    {
-      type: "category",
-      label: "Playbooks",
-      items: [
-        "tutorials/tut-playbooks"
-      ]
-    },
-    {
-      type: "category",
-      label: "Scripts",
-      items: [
-        "tutorials/tut-scripts"
-      ]
-    },
-    {
-      type: "category",
-      label: "Incidents, Fields & Layouts",
-      items: [
-        "tutorials/tut-incidents"
-      ]
-    },
-    {
-      type: "category",
-      label: "Dashboard & Widgets",
-      items: [
-        "tutorials/tut-dashboards"
-      ]
-    },
-  ],
-  reference:
-  [
-    {
-      type: "doc",
-      id: "reference"
-    },
-    {
-      type: "category",
-      label: "Integrations",
-      items: [
-        "reference/ref-integrations",
-      ]
-    },
-    {
-      type: "category",
-      label: "Playbooks",
-      items: [
-        "reference/ref-playbooks",
-      ]
-    },
-    {
-      type: "category",
-      label: "Scripts",
-      items: [
-        "reference/ref-scripts",
-      ]
-    },
-    {
-      type: "category",
-      label: "REST API",
-      items: [
-        "reference/ref-restapi",
-      ]
-    },
-    {
-      type: "category",
-      label: "Code",
-      items: [
-        "reference/ref-code",
-      ]
-    },
-    {
-      type: "category",
-      label: "Demisto SDK",
-      items: [
-        "reference/ref-demisto-sdk",
-      ]
+            "tutorials/tut-setup-dev",
+            "tutorials/tut-integration-ui",
+            "tutorials/tutorial-incident-lifecycle",
+            "tutorials/tutorial-playbook-TIM-EDL",
+            "tutorials/tutorial-TIM-export-indicators-to-3rd-party",
+            "tutorials/tut-minemeld-migration"
+          ]
     }
   ],
   partners:
   [
     {
       type: "doc",
-      id: "partners/why-demisto"
+      id: "partners/why-xsoar"
     },
     {
       type: "doc",
@@ -233,3 +159,10 @@ module.exports = {
     },
   ]
 };
+
+if (fs.existsSync("docs/reference/sidebar.json")) {
+  referenceSideBar = fs.readJSONSync("docs/reference/sidebar.json")
+  sidebars["reference"] = referenceSideBar
+}
+
+module.exports = sidebars;
