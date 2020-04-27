@@ -45,7 +45,7 @@ The following fields are populated in the pack metadata:
 | ---- | ---- |  ---- |
 | name | String | The pack name. Usually it's the name of the integration the pack contains (e.g. CortexXDR) or the use-case implemented in it. |
 | description | String | A short overview of the pack. |
-| support | String | Should be one of the following:<br />1.  xsoar - Supported by Cortex XSOAR.<br />2.  partner - Supported by a Cortex XSOAR partner.<br />3.  developer - Supported by an independent developer/organization.<br />4.  community - Not officialy supported, but available for the community to use.  |
+| support | String | Should be one of the following:<br />1.  xsoar - Supported by Cortex XSOAR.<br />2.  partner - Supported by a Cortex XSOAR partner.<br />3.  developer - Supported by an independent developer/organization.<br />4.  community - Not officialy supported, but available for the community to use.<br /> For `partner` and `developer`, either email address or URL fields must be filled out.  |
 | serverMinVersion | String | Cortex XSOAR minimum version from which the pack is available in the format `x.x.x`, e.g. "5.5.0" |
 | currentVersion | String | The pack version, in the format of `x.x.x`. On the initial release this should be set to "1.0.0". |
 | author | String | The name of the organization / developer which developed the integration. |
