@@ -8,7 +8,7 @@ For better separation between Content artifacts from different use cases and Par
 For instance a pack for CortexXDR will look as can be seen in the Content Repository 
 [Packs/CortexXDR](https://github.com/demisto/content/tree/master/Packs/CortexXDR).
 
-To generate a new pack make sure to use: `demisto-sdk init --pack`. Detailed command instructions are available [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/init_command.md).
+To generate a new pack make sure to use: `demisto-sdk init --pack`. Detailed command instructions are available [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md).
 
 **Note**: The Content repo is going through a transition phase to move all content into packs. During this phase you will see some Content artifacts are still not maintained within Packs. All new Content should be maintained via Packs.
 
@@ -111,7 +111,7 @@ Pack metadata contents for example:
 The file contains a general explanation for the pack and you are free to add any information relevant for the pack.
 
 ### .secrets-ignore
-This file will be used while running the `demisto-sdk secrets`([explanation](https://github.com/demisto/demisto-sdk/blob/master/docs/secrets.md)), we will determine the file and will
+This file will be used while running the `demisto-sdk secrets`([explanation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/secrets/README.md)), we will determine the file and will
  use it as a  white list of approved words for your PR.
 
-**Note**: We use `demisto-sdk secrets` as part of our pre-commit hoot to check that possposible secrets in the PR aren't exposed to a public repository.
+**Note**: We use `demisto-sdk secrets` as part of our pre-commit hook to check that possible secrets in the PR aren't exposed to a public repository.

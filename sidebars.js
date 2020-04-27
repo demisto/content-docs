@@ -13,6 +13,10 @@ const sidebars = {
       items: [
           {
             type: "doc",
+            id: "concepts/concepts"
+          },
+          {
+            type: "doc",
             id: "concepts/use-cases"
           },
           {
@@ -45,6 +49,7 @@ const sidebars = {
           label: "Developing",
           items: [
             "integrations/code-conventions",
+            "integrations/powershell-code",
             "integrations/yaml-file",
             "integrations/integration-logo",
             "integrations/parameter-types",
@@ -84,10 +89,34 @@ const sidebars = {
       type: "category",
       label: "Playbooks",
       items: [
+        "playbooks/playbooks-overview",
         "playbooks/playbook-contributions",
         "playbooks/playbooks",
+        "playbooks/playbook-settings",
         "playbooks/playbook-conventions",
-        "playbooks/generic-polling"
+        "playbooks/playbooks-inputs-outputs",
+        "playbooks/playbooks-extend-context",
+        "playbooks/playbooks-create-playbook-task",
+        "playbooks/playbooks-create-conditional-task",
+        "playbooks/playbooks-communication-task-concepts",
+        "playbooks/playbooks-create-communication-task",
+        "playbooks/playbooks-communication-task-customize-message",
+        "playbooks/generic-polling",
+        "playbooks/playbooks-field-reference"
+      ]
+    },
+    {
+      type: "category",
+      label: "Incidents, Fields & Layouts",
+      items: [
+        "incidents/incident-xsoar-incident-lifecycle",
+        "incidents/incident-types",
+        "incidents/incident-customize-incident-layout",
+        "incidents/incident-fields",
+        "incidents/incident-jobs",
+        "incidents/incident-auto-extract",
+        "incidents/incident-classification-mapping",
+        "incidents/incident-pre-processing",
       ]
     },
     {
@@ -102,7 +131,11 @@ const sidebars = {
       label: "Tutorials",
       items: [
             "tutorials/tut-setup-dev",
-            "tutorials/tut-integration-ui"
+            "tutorials/tut-integration-ui",
+            "tutorials/tutorial-incident-lifecycle",
+            "tutorials/tutorial-playbook-TIM-EDL",
+            "tutorials/tutorial-TIM-export-indicators-to-3rd-party",
+            "tutorials/tut-minemeld-migration"
           ]
     }
   ],
@@ -110,7 +143,7 @@ const sidebars = {
   [
     {
       type: "doc",
-      id: "partners/why-demisto"
+      id: "partners/why-xsoar"
     },
     {
       type: "doc",

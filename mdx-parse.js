@@ -9,10 +9,14 @@ cli.parse(process.argv)
 async function parseMDX(file) {
     const contents = await readFile(file, 'utf8');
     parsed = await mdx(contents)    
-    console.log(`${parsed}`)
+    console.log("parsed successfully!")
 }
 
-parseMDX(cli.file).catch((reason) => {
-    console.error(reason)
-    process.exit(1)
+parseMDX(cli.file)
+    .then((res) => {
+        process.exit(0)
+    })
+    .catch((reason) => {
+        console.error(reason)
+        process.exit(1)
 })

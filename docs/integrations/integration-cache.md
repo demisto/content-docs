@@ -9,9 +9,9 @@ Occasionally, you might need to store data between integration commands runs.
 
 A common use-case would be storing API tokens which have expiration time (i.e. JWT). 
 
-Very often JWTs (a.k.a. JSON Web Tokens) are generated through an API call and have a validity of several minutes or hours: in order to avoid re-generating tokens every time a command is executed in Demisto, you can cache them using `integrationContext` and retrieve them until they expire.
+Very often JWTs (a.k.a. JSON Web Tokens) are generated through an API call and have a validity of several minutes or hours: in order to avoid re-generating tokens every time a command is executed in Cortex XSOAR, you can cache them using `integrationContext` and retrieve them until they expire.
 
-For that, Demisto introduces the cached object `integrationContext`.
+For that, Cortex XSOAR introduces the cached object `integrationContext`.
 
 The object is stored in the database per integration instance.
 

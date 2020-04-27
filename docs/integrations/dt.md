@@ -1,9 +1,9 @@
 ---
 id: dt
-title: Demisto Transform Language
+title: Cortex XSOAR Transform Language (DT)
 ---
 
-Demisto Transform Language (commonly referred to as **DT**) is used for various functions within Demisto related to Context. In it's most basic sense, DT is a query langauge for JSON objects. If you are familiar with JSONQuery, this should be very familiar to you.
+Cortex XSOAR Transform Language (commonly referred to as **DT**) is used for various functions within Cortex XSOAR related to Context. In it's most basic sense, DT is a query language for JSON objects. If you are familiar with JSONQuery, this should be very familiar to you.
 
 ## Context Example
 We are going to use the following as our example context and go over the various ways that DT can be used to access, aggregate, and mutate data.
@@ -149,8 +149,8 @@ An example of how this may be used in your code is the following:
 ec = {
     "Data": "www.demisto.com",
     "Malicious": {
-        "Vendor": "Demisto",
-        "Description": "This indicator found to be malicious by Demisto"
+        "Vendor": "Palo Alto Networks",
+        "Description": "This indicator found to be malicious by Palo Alto Networks"
     }
 }
 

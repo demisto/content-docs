@@ -3,10 +3,10 @@ id: fetching-incidents
 title: Fetching Incidents
 ---
 
-Demisto can pull events from 3rd party tools and convert them into actionable incidents. There are a few important parts that are necessary to keep in mind while doing so and they are outlined below.
+Cortex XSOAR can pull events from 3rd party tools and convert them into actionable incidents. There are a few important parts that are necessary to keep in mind while doing so and they are outlined below.
 
 ## The `fetch-incidents` Command
-The `fetch incidents` command is the function that Demisto calls every minute to import new incidents and is triggered by the "Fetches incidents" parameter in the integration configuration. It is not necessary to configure the `fetch-incidents` command in the Integration Settings.
+The `fetch incidents` command is the function that Cortex XSOAR calls every minute to import new incidents and is triggered by the "Fetches incidents" parameter in the integration configuration. It is not necessary to configure the `fetch-incidents` command in the Integration Settings.
 
 ![screen shot 2019-01-07 at 15 35 01](../doc_imgs/integrations/50771147-6aedb800-1292-11e9-833f-b5dd13e3507b.png)
 
@@ -26,7 +26,7 @@ if demisto.command() == 'fetch-incidents':
 ```
 
 ## Last Run
-demisto.getLastRun() is the function that retrieves the previous run time. To avoid duplicating incidents, it's important that Demisto only fetches events that occurred since the last time the function was run. This helps avoid duplicate incidents.
+demisto.getLastRun() is the function that retrieves the previous run time. To avoid duplicating incidents, it's important that Cortex XSOAR only fetches events that occurred since the last time the function was run. This helps avoid duplicate incidents.
 
 ```python
     # demisto.getLastRun() will returns an obj with the previous run in it.
@@ -40,7 +40,7 @@ It is best practices to allow a customer to specify how far back in time they wi
 
 ## Query and Parameters
 
-Queries and parameters allow for filtering of events to take place. In some cases, a customer may only wish to import certain event types into Demisto. In this case, they would need to query the API for only that specific event type. These should be configurable Parameters in the integration settings.
+Queries and parameters allow for filtering of events to take place. In some cases, a customer may only wish to import certain event types into Cortex XSOAR. In this case, they would need to query the API for only that specific event type. These should be configurable Parameters in the integration settings.
 
 The following example shows how we use both **First Run** and the **Query** option:
 ```python
@@ -61,7 +61,7 @@ The following example shows how we use both **First Run** and the **Query** opti
 Incidents are created by building an array of incident objects. These object all must contain the ```name``` of the incident, when the incident ```occurred``` as well as the ```rawJSON``` for the incident.
 
 ```python
-# convert the events to demisto incident 
+# convert the events to Cortex XSOAR incident 
 events = [
   {
       'name': 'event_1',
@@ -81,7 +81,7 @@ for event in events:
 ```
 
 ### rawJSON
-When fetching incidents, it's important to include the ```rawJSON``` key in the incident field, which enables event mapping. Mapping is how an event gets imported into Demisto, since it allows a customer to choose which data from the event to be mapped to their proper fields. An example of this is below:
+When fetching incidents, it's important to include the ```rawJSON``` key in the incident field, which enables event mapping. Mapping is how an event gets imported into Cortex XSOAR, since it allows a customer to choose which data from the event to be mapped to their proper fields. An example of this is below:
 
 ```python
 incident = {
@@ -100,13 +100,13 @@ demisto.setLastRun({
   'start_time': datetime.now()
 })
 ```
-### Sending the Incidents to Demisto
+### Sending the Incidents to Cortex XSOAR
 When all of the incidents have been created, we return the array of incidents by using the ```demisto.incidents()``` function. This is similar to the ```demisto.results()``` function, but is used exclusively to handle incident objects.
 
 An example of it's usage is below:
 
 ```python
-# this command will create incidents in Demisto
+# this command will create incidents in Cortex XSOAR
 demisto.incidents(incidents)
 ```
 
