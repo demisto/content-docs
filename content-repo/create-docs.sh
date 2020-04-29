@@ -94,10 +94,11 @@ fi
 cd ${SCRIPT_DIR}
 
 if [[ "$PULL_REQUEST" == "true" && "$CONTENT_BRANCH" == "master" ]]; then
-    echo "Checking if only doc files where modified and we can do a limited preview build..."
-    git remote -v
+    echo "Checking if only doc files where modified and we can do a limited preview build..."    
     if [ -z "$CONTENT_DOC_NO_FETCH" ]; then
-        git fetch
+        git remote get-url origin || git remote add origin https://github.com/demisto/demisto-content.git
+        git remote -v
+        git fetch origin
     fi
     echo "HEAD ref $(git rev-parse HEAD). remotes/origin/master ref: $(git rev-parse master)"
     DIFF_FILES=$(git diff --name-only  remotes/origin/master...HEAD --)  # so we fail on errors if there is a problem
