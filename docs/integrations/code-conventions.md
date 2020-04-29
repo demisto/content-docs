@@ -689,4 +689,6 @@ demisto.results({
 **Note:** By default, IgnoreAutoExtract is set to ```False```.
 
 ## Quality Examples of Integrations
-* [Proofpoint TAP v2](https://github.com/demisto/content/tree/master/Integrations/ProofpointTAP_v2)
+* [Google Cloud Functions](https://github.com/demisto/content/tree/master/Packs/GoogleCloudFunctions/Integrations/GoogleCloudFunctions)
+* [Cortex XDR](https://github.com/demisto/content/tree/master/Packs/CortexXDR/Integrations/PaloAltoNetworks_XDR)
+* [Proofpoint TAP v2](https://github.com/demisto/content/tree/master/Packs/ProofpointTAP_v2/Integrations/ProofpointTAP_v2)
