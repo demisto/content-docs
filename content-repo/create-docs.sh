@@ -95,8 +95,8 @@ cd ${SCRIPT_DIR}
 
 if [[ "$PULL_REQUEST" == "true" && "$CONTENT_BRANCH" == "master" ]]; then
     echo "Checking if only doc files where modified and we can do a limited preview build..."
-    git branch -a
-    DIFF_FILES=$(git diff --name-only  remotes/origin/HEAD...HEAD --)  # so we fail on errors if there is a problem
+    echo "HEAD ref $(git rev-parse HEAD). master ref: $(git rev-parse master)"
+    DIFF_FILES=$(git diff --name-only  master...HEAD --)  # so we fail on errors if there is a problem
     echo -e "Modified files:\n$DIFF_FILES\n-----------"    
     echo "$DIFF_FILES" | grep -v -E '^docs/' || MAX_FILES=20    
     if [ -n "$MAX_FILES" ]; then
