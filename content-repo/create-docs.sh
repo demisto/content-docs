@@ -96,7 +96,7 @@ cd ${SCRIPT_DIR}
 if [[ "$PULL_REQUEST" == "true" && "$CONTENT_BRANCH" == "master" ]]; then
     echo "Checking if only doc files where modified and we can do a limited preview build..."    
     if [ -z "$CONTENT_DOC_NO_FETCH" ]; then
-        git remote get-url origin || git remote add origin https://github.com/demisto/demisto-content.git
+        git remote get-url origin || git remote add origin https://github.com/demisto/content-docs.git
         git remote -v
         git fetch origin
     fi
