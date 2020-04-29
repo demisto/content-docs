@@ -200,10 +200,10 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
     readme_files = findfiles(regex_list, content_dir)
     print(f'Processing: {len(readme_files)} {prefix} files ...')
     if MAX_FILES > 0:
-        print(f'DEV MODE. Truncating file list to: {MAX_FILES}')
+        print(f'PREVIEW MODE. Truncating file list to: {MAX_FILES}')
         readme_files = readme_files[:MAX_FILES]
     if FILE_REGEX:
-        print(f'DEV MODE. Matching only files which match: {FILE_REGEX}')
+        print(f'PREVIEW MODE. Matching only files which match: {FILE_REGEX}')
         regex = re.compile(FILE_REGEX)
         readme_files = list(filter(regex.search, readme_files))
     target_sub_dir = f'{target_dir}/{prefix}'
@@ -255,6 +255,8 @@ def main():
     index_target = args.target + '/index.md'
     shutil.copy(index_base, index_target)
     with open(index_target, 'a', encoding='utf-8') as f:
+        if MAX_FILES > 0:
+            f.write(f'\n\n# =====<br/>BUILD PREVIEW only {MAX_FILES} files from each category! <br/>=====\n\n')
         f.write("\n\n## Integrations\n\n")
         f.write(index_doc_infos(integration_doc_infos, INTEGRATIONS_PREFIX))
         f.write("\n\n## Playbooks\n\n")

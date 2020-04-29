@@ -87,10 +87,22 @@ else
         exit 2
     fi
     echo "Couldn't find $CONTENT_BRANCH using master to generate build"
+    CONTENT_BRANCH=master
     git checkout master
 fi
 
 cd ${SCRIPT_DIR}
+
+if [[ "$PULL_REQUEST" == "true" && "$CONTENT_BRANCH" == "master" ]]; then
+    echo "Checking if only doc files where modified and we can do a limited preview build..."
+    DIFF_FILES=$(git diff --name-only  origin/master...HEAD)  # so we fail on errors if there is a problem
+    echo -e "Modified files:\n$DIFF_FILES\n-----------"    
+    echo "$DIFF_FILES" | grep -v -E '^docs/' || MAX_FILES=20    
+    if [ -n "$MAX_FILES" ]; then
+        echo "MAX_FILES set to: $MAX_FILES"
+        export MAX_FILES
+    fi
+fi
 
 TARGET_DIR=${SCRIPT_DIR}/../docs/reference
 echo "Deleting and creating dir: ${TARGET_DIR}"
