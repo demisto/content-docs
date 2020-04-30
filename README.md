@@ -31,7 +31,12 @@ npm run reference-docs
 ```
 This task will checkout the content repository and generate the docs. The generated docs are ignored by `.gitignore` and shouldn't be checked in as they are generated during the build.
 
-When generating the docs the `master` branch of the `content` repo will be used or if there is a matching branch with the same name as the current branch of `content-docs`, that branch will be used.
+When generating the docs the `master` branch of the `content` repo will be used or if there is a matching branch with the same name as the current branch of `content-docs`, that branch will be used. 
+
+If you have the `content` repo checked out locally and you would like to use it for generating the reference docs (for example when working on a Content Integration Doc), you can set the path to your `content` repo dir with the environment variable: `CONTENT_REPO_DIR`. For example:
+```
+ CONTENT_REPO_DIR=~/dev/demisto/content npm run reference-docs
+```
 
 ### Generation Code
 Code used for generating content reference docs is written in Python and resides in the `content-repo` folder. To setup a development environment we use [pipenv](https://github.com/pypa/pipenv). Make sure to install pipenv by running: `pip3 install pipenv`. Setup a proper Python env by running:
