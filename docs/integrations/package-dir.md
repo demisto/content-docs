@@ -24,17 +24,17 @@ The `Directory Structure` is as follows:
 ```
    
 
-For example, a package of the integration [Palo Alto Networks Cortex](https://github.com/demisto/content/tree/master/Integrations/PaloAltoNetworksCortex) is stored under Integrations directory in a sub-directory named `PaloAltoNetworksCortex` and contain the following files:
+For example, the integration [Palo Alto Networks Cortex XDR](https://github.com/demisto/content/tree/master/Packs/CortexXDR/Integrations/PaloAltoNetworks_XDR) is stored under Integrations directory in a sub-directory named `PaloAltoNetworks_XDR` and contain the following files:
 
 ```
 .Integrations   
 │
-└─── .PaloAltoNetworksCortex
-│    ├── PaloAltoNetworksCortex.py
-│    ├── PaloAltoNetworksCortex_test.py
-│    ├── PaloAltoNetworksCortex.yml
-│    ├── PaloAltoNetworksCortex_image.png
-│    ├── PaloAltoNetworksCortex_description.md
+└─── .PaloAltoNetworks_XDR
+│    ├── PaloAltoNetworks_XDR.py
+│    ├── PaloAltoNetworks_XDR_test.py
+│    ├── PaloAltoNetworks_XDR.yml
+│    ├── PaloAltoNetworks_XDR_image.png
+│    ├── PaloAltoNetworks_XDR_description.md
 │    ├── README.md
 │    ├── Pipfile
 |    └── Pipfile.lock
