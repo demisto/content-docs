@@ -18,7 +18,6 @@ Returns the report of a file or URL that was submitted to the sandbox.
 ```json
 {
     "Category": "File",
-    "Completed": "2019-05-30 14:06:33",
     "Duration": 68,
     "Network": [
         {
@@ -39,9 +38,7 @@ Returns the report of a file or URL that was submitted to the sandbox.
     ],
     "ReportID": "413336",
     "Started": "2019-05-30 14:05:25",
-    "Verdict": "Benign",
-    "VmID": "",
-    "VmName": ""
+    "Verdict": "Benign"
 }
 ```
 
@@ -69,18 +66,9 @@ outputs:
 - contextPath: ThreatStream.Analysis.Started
   description: Detonation start time.
   type: String
-- contextPath: ThreatStream.Analysis.Completed
-  description: Detonation completion time.
-  type: String
 - contextPath: ThreatStream.Analysis.Duration
   description: Duration of the detonation (in seconds).
   type: Number
-- contextPath: ThreatStream.Analysis.VmName
-  description: The name of the VM.
-  type: String
-- contextPath: ThreatStream.Analysis.VmID
-  description: The ID of the VM.
-  type: String
 - contextPath: ThreatStream.Analysis.Network.UdpSource
   description: The source of UDP.
   type: String
@@ -101,7 +89,6 @@ report_id = '413336'
 
 response_from_api = {
     "Category": "File",
-    "Completed": "2019-05-30 14:06:33",
     "Duration": 68,
     "Network": [
         {
@@ -122,9 +109,7 @@ response_from_api = {
     ],
     "ReportID": "413336",
     "Started": "2019-05-30 14:05:25",
-    "Verdict": "Benign",
-    "VmID": "",
-    "VmName": ""
+    "Verdict": "Benign"
 } # assume that we get this response from the service
 
 command_results = CommandResults(
@@ -141,54 +126,6 @@ return_results(command_result)
     That is, no need to modify the API response and map it to human readable keys.
     You might see old integrations in which this map exist, but this is no longer required. 
 
-#### Reputation commands outputs `!ip` `!domain` `!url` `!cve` `!file`
-
-**IP - Example**
-```python
-dbot_score = Common.DBotScore(
-    indicator='8.8.8.8',
-    indicator_type=DBotScoreType.IP,
-    integration_name='Virus Total',
-    score=DBotScore.GOOD
-)
-
-ip = Common.IP(
-    ip='8.8.8.8',
-    asn='Google LLC',
-    dbot_score=dbot_score
-)
-
-command_results = CommandResults(
-    indicators=[ip]
-)
-
-return_results(command_results)
-```
-
-**Domain - Example**
-```python
-dbot_score = Common.DBotScore(
-    indicator='8.8.8.8',
-    indicator_type=DBotScoreType.IP,
-    integration_name='Virus Total',
-    score=Common.DBotScore.GOOD
-)
-
-domain = Common.Domain(
-    domain='google.com',
-    dns='ns3.google.com',
-    whois=WHOIS(
-        registrar_name='MarkMonitor Inc.',
-        registrar_abuse_email='abusecomplaints@markmonitor.com'
-    )
-)
-
-command_results = CommandResults(
-    indicators=[domain]
-)
-
-return_results(command_results)
-```
 
 ### Examples:
 - [Return data (common case)](#return-data) 
@@ -242,7 +179,7 @@ outputs:
 | 100 | alert1 |
 | 200 | alert2 |
 
-*Context - The way it stored in incident context*
+*Context Data - The way it is stored in the incident context data*
 ```json
 {
   "PrismaCompute": {
@@ -402,7 +339,7 @@ results = CommandResults(
 return_results(results)
 ```
 
-*Context - The way it stored in incident context*
+*Context Data - The way it is stored in the incident context data*
 ```
 {
     "Autofocus": {
@@ -631,7 +568,7 @@ return_results(results)
 
 ```
 
-*Context - The way it stored in incident context*
+*Context Data - The way it is stored in the incident context data*
 ```json
 {
     "Domain": {
@@ -751,19 +688,358 @@ return_results(results)
 
 #### <a name='return-url-reputation'></a> Return URL reputation
 ```python
+url_arg = 'https://www.ynetto.co.il'
+url_raw_response = {
+    'url': 'https://www.ynetto.co.il',
+    'verdict': 'Malicious',
+    'detection_engines': 10,
+    'positive_engines': 10
+}
 
+score = Common.DBotScore.GOOD
+if url_raw_response.get('verdict') == 'Malicious':
+    score = Common.DBotScore.BAD
+
+dbot_score = Common.DBotScore(
+    indicator=url_arg,
+    indicator_type=DBotScoreType.URL,
+    integration_name='Virus Total',
+    score=score
+)
+
+url = Common.URL(
+    url=url_arg,
+    detection_engines=url_raw_response.get('detection_engines'),
+    positive_detections=url_raw_response.get('positive_engines'),
+    dbot_score=dbot_score
+)
+
+results = CommandResults(
+    outputs_prefix='VirusTotal.URL',
+    outputs_key_field='url',
+    outputs=url_raw_response,
+    indicators=[url]
+)
+
+return_results(results)
+```
+
+*YAML Definition*
+```yaml
+# Reputation commands usually should return DBotScore object - https://xsoar.pan.dev/docs/integrations/context-standards#dbot-score
+outputs:
+- contextPath: DBotScore.Indicator
+  description: The indicator that was tested.
+  type: String
+- contextPath: DBotScore.Type
+  description: The indicator type.
+  type: String
+- contextPath: DBotScore.Vendor
+  description: The vendor used to calculate the score.
+  type: String
+- contextPath: DBotScore.Score
+  description: The actual score.
+  type: Number
+
+# Reputation commands usually should return DBotScore object - https://xsoar.pan.dev/docs/integrations/context-standards#url
+- contextPath: URL.Data
+  description: The URL
+  type: String
+- contextPath: URL.DetectionEngines
+  description: The total number of engines that checked the indicator.
+  type: String
+- contextPath: URL.PositiveDetections
+  description: The number of engines that positively detected the indicator as malicious.
+  type: String
+- contextPath: URL.Malicious.Vendor
+  description: The vendor reporting the URL as malicious.
+  type: String
+- contextPath: URL.Malicious.Description
+  description: A description of the malicious URL.
+  type: String
+
+- contextPath: VirusTotal.URL.url
+  description: The URL
+  type: String
+- contextPath: VirusTotal.URL.verdict
+  description: Verdict can be Malicious or Benign
+  type: String
+- contextPath: VirusTotal.URL.detection_engines
+  description: Number of engines
+  type: Number
+- contextPath: VirusTotal.URL.positive_engines
+  description: Number of positive engines
+  type: Number
+```
+
+
+*Context Data - The way it is stored in the incident context data*
+```json
+{
+    "URL": {
+        "Data": "https://www.ynetto.co.il",
+        "DetectionEngines": 10,
+        "PositiveDetections": 10,
+        "Malicious": {
+            "Vendor": "Virus Total",
+            "Description": null
+        }
+    },
+    "DBotScore": {
+        "Indicator": "https://www.ynetto.co.il",
+        "Type": "url",
+        "Vendor": "Virus Total",
+        "Score": 3
+    },
+    "VirusTotal": {
+        "URL": {
+            "url": "https://www.ynetto.co.il",
+            "verdict": "Malicious",
+            "detection_engines": 10,
+            "positive_engines": 10
+        }
+    }
+}
 ```
 
 #### <a name='return-file-reputation'></a> Return File reputation
 ```python
+md5 = '9498ff82a64ff445398c8426ed63ea5b'
+hash_reputation_response = {
+    "md5": "9498ff82a64ff445398c8426ed63ea5b",
+    "permalink": "https://www.virustotal.com/file/8b2e701e91101955c73865589a4c72999aeabc11043f712e05fdb1c17c4ab19a/analysis/1587134153/",
+    "positives": 58,
+    "resource": "9498FF82A64FF445398C8426ED63EA5B",
+    "response_code": 1,
+    "scan_date": "2020-04-17 14:35:53",
+    "scan_id": "8b2e701e91101955c73865589a4c72999aeabc11043f712e05fdb1c17c4ab19a-1587134153",
+    "sha1": "36f9ca40b3ce96fcee1cf1d4a7222935536fd25b",
+    "sha256": "8b2e701e91101955c73865589a4c72999aeabc11043f712e05fdb1c17c4ab19a",
+    "total": 70,
+    "verbose_msg": "Scan finished, information embedded"
+}
 
+score = Common.DBotScore.GOOD
+if hash_reputation_response.get('positives') > 20:
+    score = Common.DBotScore.BAD
+if hash_reputation_response.get('positives') > 3:
+    score = Common.DBotScore.SUSPICIOUS
+
+
+dbot_score = Common.DBotScore(
+    indicator=md5,
+    indicator_type=DBotScoreType.FILE,
+    integration_name='Virus Total',
+    score=score,
+    malicious_description=hash_reputation_response.get('verbose_msg')
+)
+
+file = Common.File(
+    md5=md5,
+    sha1=hash_reputation_response.get('sha1'),
+    sha256=hash_reputation_response.get('sha256'),
+    dbot_score=dbot_score
+)
+
+results = CommandResults(
+    outputs_prefix='VirusTotal.File',
+    outputs_key_field='md5',
+    outputs=hash_reputation_response,
+    indicators=[file]
+)
+
+return_results(results)
+```
+
+*YAML Definition*
+```yaml
+outputs:
+# Reputation commands usually should return DBotScore object - https://xsoar.pan.dev/docs/integrations/context-standards#file
+- contextPath: File.Name
+  description: The full file name (including file extension).
+  type: String
+- contextPath: File.MD5
+  description: The MD5 hash of the file.
+  type: String
+- contextPath: File.SHA1
+  description: The SHA1 hash of the file.
+  type: String
+- contextPath: File.SHA256
+  description: The SHA256 hash of the file.
+  type: String
+- contextPath: File.Malicious.Vendor
+  description: The vendor that reported the file as malicious.
+  type: String
+- contextPath: File.Malicious.Description
+  description: A description explaining why the file was determined to be malicious.
+  type: String
+  
+# Reputation commands usually should return DBotScore object - https://xsoar.pan.dev/docs/integrations/context-standards#dbot-score
+- contextPath: DBotScore.Indicator
+  description: The indicator that was tested.
+  type: String
+- contextPath: DBotScore.Type
+  description: The indicator type.
+  type: String
+- contextPath: DBotScore.Vendor
+  description: The vendor used to calculate the score.
+  type: String
+- contextPath: DBotScore.Score
+  description: The actual score.
+  type: Number
+  
+- contextPath: VirusTotal.File.md5
+  description: The MD5 hash of the file.
+  type: String
+- contextPath: VirusTotal.File.permalink
+  description: Link to the file report
+  type: String
+- contextPath: VirusTotal.File.positives
+  description: Number of positive engines
+  type: Number
+- contextPath: VirusTotal.File.resource
+  description: The resource
+  type: String
+- contextPath: VirusTotal.File.response_code
+  description: Response code, it is a number between 1-10
+  type: Number
+- contextPath: VirusTotal.File.scan_date
+  description: Scan date of a format 2010-05-15 03:38:44
+  type: Date
+- contextPath: VirusTotal.File.scan_id
+  description: Scan ID
+  type: String
+- contextPath: VirusTotal.File.sha1
+  description: The SHA1 hash of the file.
+  type: String
+- contextPath: VirusTotal.File.sha256
+  description: The SHA256 hash of the file.
+  type: String
+- contextPath: VirusTotal.File.total
+  description: Total number of engines
+  type: Number
+- contextPath: VirusTotal.File.verbose_msg
+  description: Verbose message about the hash
+  type: String
+```
+
+*Context Data - The way it is stored in the incident context data*
+```json
+{
+    "File": {
+        "MD5": "9498ff82a64ff445398c8426ed63ea5b",
+        "SHA1": "36f9ca40b3ce96fcee1cf1d4a7222935536fd25b",
+        "SHA256": "8b2e701e91101955c73865589a4c72999aeabc11043f712e05fdb1c17c4ab19a"
+    },
+    "DBotScore": {
+        "Indicator": "9498ff82a64ff445398c8426ed63ea5b",
+        "Type": "file",
+        "Vendor": "Virus Total",
+        "Score": 2
+    },
+    "VirusTotal": {
+        "File": {
+            "md5": "9498ff82a64ff445398c8426ed63ea5b",
+            "permalink": "https://www.virustotal.com/file/8b2e701e91101955c73865589a4c72999aeabc11043f712e05fdb1c17c4ab19a/analysis/1587134153/",
+            "positives": 58,
+            "resource": "9498FF82A64FF445398C8426ED63EA5B",
+            "response_code": 1,
+            "scan_date": "2020-04-17 14:35:53",
+            "scan_id": "8b2e701e91101955c73865589a4c72999aeabc11043f712e05fdb1c17c4ab19a-1587134153",
+            "sha1": "36f9ca40b3ce96fcee1cf1d4a7222935536fd25b",
+            "sha256": "8b2e701e91101955c73865589a4c72999aeabc11043f712e05fdb1c17c4ab19a",
+            "total": 70,
+            "verbose_msg": "Scan finished, information embedded"
+        }
+    }
+}
 ```
 
 #### <a name='return-cve-reputation'></a> Return CVE reputation
 ```python
+cve_arg = 'CVE-2015-1653'
 
+cve_raw_response = {
+    "Modified": "2018-10-12T22:08:00",
+    "Published": "2015-04-14T20:59:00",
+    "assigner": "cve@mitre.org",
+    "cvss": 4.3,
+    "cvss-time": "2018-10-12T22:08:00",
+    "cwe": "CWE-79",
+    "id": "CVE-2015-1653",
+    "references": [
+        "http://www.securitytracker.com/id/1032111",
+        "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2015/ms15-036"
+    ],
+    "summary": "Cross-site scripting (XSS) vulnerability in Microsoft ",
+}
+
+cve = Common.CVE(
+    id=cve_arg,
+    cvss=cve_raw_response.get('cvss'),
+    description=cve_raw_response.get('summary'),
+    published=cve_raw_response.get('Published'),
+    modified=cve_raw_response.get('Modified')
+)
+
+results = CommandResults(
+    outputs_prefix='CVEMitre.CVE',
+    outputs_key_field='id',
+    outputs=cve_raw_response,
+    indicators=[cve]
+)
+
+return_results(results)
 ```
 
+*YAML Definition*
+```yaml
+outputs:
+- contextPath: CVE.ID
+  description: 'The ID of the CVE, for example: CVE-2015-1653'
+  type: String
+- contextPath: CVE.CVSS
+  description: 'The CVSS of the CVE, for example: 10.0'
+  type: String
+- contextPath: CVE.Published
+  description: The timestamp of when the CVE was published.
+  type: Date
+- contextPath: CVE.Modified
+  description: The timestamp of when the CVE was last modified.
+  type: Date
+- contextPath: CVE.Description
+  description: A description of the CVE.
+  type: String
+```
+
+*Context Data - The way it is stored in the incident context data*
+```json
+{
+    "CVE": {
+        "ID": "CVE-2015-1653",
+        "CVSS": 4.3,
+        "Published": "2015-04-14T20:59:00",
+        "Modified": "2018-10-12T22:08:00",
+        "Description": "Cross-site scripting (XSS) vulnerability in Microsoft "
+    },
+    "CVEMitre": {
+        "CVE": {
+            "Modified": "2018-10-12T22:08:00",
+            "Published": "2015-04-14T20:59:00",
+            "assigner": "cve@mitre.org",
+            "cvss": 4.3,
+            "cvss-time": "2018-10-12T22:08:00",
+            "cwe": "CWE-79",
+            "id": "CVE-2015-1653",
+            "references": [
+                "http://www.securitytracker.com/id/1032111",
+                "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2015/ms15-036"
+            ],
+            "summary": "Cross-site scripting (XSS) vulnerability in Microsoft "
+        }
+    }
+}
+```
 
 
 ### DT (Cortex XSOAR Transform Language)
