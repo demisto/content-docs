@@ -14,7 +14,7 @@ Let's look at a real world example that can show you how context is used:
 For example **ThreatStream** integration has command **threatstream-analysis-report**. 
 Returns the report of a file or URL that was submitted to the sandbox.
 
-#### REST API returns
+#### The response from the REST API
 ```json
 {
     "Category": "File",
@@ -53,7 +53,7 @@ In the context menu, you will see three fields; Context Path, Description and Ty
 
 Use [json-to-outputs](https://github.com/demisto/demisto-sdk#convert-json-to-demisto-outputs) command in 
 [demisto-sdk](https://github.com/demisto/demisto-sdk) tool to convert JSON into yml.
-<br/>*Example:* `demisto-sdk json-to-outputs -c threatstream-analysis-report -p ThreatStream.Analysis` 
+<br/>**Example:** `demisto-sdk json-to-outputs -c threatstream-analysis-report -p ThreatStream.Analysis` 
 
 ```buildoutcfg
 outputs:
@@ -127,19 +127,9 @@ return_results(command_result)
     You might see old integrations in which this map exist, but this is no longer required. 
 
 
-### Examples:
-- [Return data (common case)](#return-data) 
-- [Return results with custom markdown](return-custom-markdown)
-- [Return potentially malicious file](return-file)
-- [Return non malicious file (e.g. reports)](return-entry-file)
-- [Return IP reputation](#return-ip-reputation)
-- [Return Domain reputation](#return-domain-reputation)
-- [Return URL reputation](#return-url-reputation)
-- [Return File reputation](#return-file-reputation)
-- [Return CVE reputation](#return-cve-reputation)
+---
 
-#### <a name='return-data'></a> Return Data (common case)
-*Code*
+### Return Data (common case)
 ```python
 alerts = [
     {
@@ -161,7 +151,7 @@ return_results(results)
 
 ```
 
-*YAML Definition*
+**YAML Definition**
 ```yaml
 outputs:
 - contextPath: PrismaCloud.Alert.id
@@ -172,14 +162,14 @@ outputs:
   type: String
 ```
 
-*Markdown*
-### Results
+**Markdown**
+#### Results
 |id|name|
 |---|---|
 | 100 | alert1 |
 | 200 | alert2 |
 
-*Context Data - The way it is stored in the incident context data*
+**Context Data - The way it is stored in the incident context data**
 ```json
 {
   "PrismaCompute": {
@@ -197,8 +187,9 @@ outputs:
 }
 ```
 
+---
 
-#### <a name='return-custom-markdown'></a> Return results with custom markdown
+### Return results with custom markdown
 ```python
 alerts = [
     {
@@ -211,7 +202,7 @@ alerts = [
     }
 ]
 
-markdown = '## This is header<br/><br/>'
+markdown = '##### This is header<br/><br/>'
 markdown += tableToMarkdown('Table title', alerts, headers=['id', 'name'])
 
 results = CommandResults(
@@ -223,22 +214,25 @@ results = CommandResults(
 return_results(results)
 ```
 
-*Markdown*
-## This is header<br/><br/>
-### Table title
+**Markdown**
+##### This is header<br/><br/>
+#### Table title
 |id|name|
 |---|---|
 | 100 | alert1 |
 | 200 | alert2 |
 
-#### <a name='return-file'></a> Return file (potentially malicious - e.g. email attachment)
-*Code*
+---
+
+### Return File
+**Note**: *potentially malicious file - e.g. email attachment*
+
 ```python
 file_entry = fileResult(filename='file.txt', data='file content')
 demisto.results(file_entry)
 ```
 
-*YAML*
+**YAML Definition**
 ```yaml
 outputs:
 - contextPath: File.Size
@@ -272,16 +266,17 @@ outputs:
   description: The file extension.
   type: String
 ```
+---
 
+### Return Info File 
+**Note**: *non malicious files - e.g. reports*
 
-#### <a name='return-entry-file'></a> Return file (non malicious - e.g. reports)
-*Code*
 ```python
 file_entry = fileResult(filename='file.txt', data='file content', file_type=EntryType.ENTRY_INFO_FILE)
 demisto.results(file_entry)
 ```
 
-*YAML*
+**YAML Definition**
 ```yaml
 outputs:
 - contextPath: InfoFile.Name
@@ -300,8 +295,9 @@ outputs:
   description: Basic information of the file
   type: string
 ```
+---
 
-#### <a name='return-ip-reputation'></a> Return IP reputation
+### Return IP reputation
 ```python
 ip_reputation_from_autofocus = {
     'indicator': '5.5.5.5',
@@ -339,7 +335,7 @@ results = CommandResults(
 return_results(results)
 ```
 
-*Context Data - The way it is stored in the incident context data*
+**Context Data - The way it is stored in the incident context data**
 ```
 {
     "Autofocus": {
@@ -368,7 +364,7 @@ return_results(results)
 }
 ```
 
-*YAML Definition*
+**YAML Definition**
 ```yaml
 outputs:
 - contextPath: Autofocus.IP.indicator
@@ -406,14 +402,15 @@ outputs:
 
 
 
-*Markdown*
-### Results
+**Markdown**
+#### Results
 |asn|confidence|indicator|
 |---|---|---|
 | 12345 | 95 | 5.5.5.5 |
 
+---
 
-#### <a name='return-domain-reputation'></a> Return Domain reputation
+### Return Domain reputation
 ```python
 domain_raw = get_domain_from_autofocus('google.com')
 
@@ -686,7 +683,9 @@ return_results(results)
 }
 ```
 
-#### <a name='return-url-reputation'></a> Return URL reputation
+---
+
+### Return URL reputation
 ```python
 url_arg = 'https://www.ynetto.co.il'
 url_raw_response = {
@@ -724,7 +723,7 @@ results = CommandResults(
 return_results(results)
 ```
 
-*YAML Definition*
+**YAML Definition**
 ```yaml
 # Reputation commands usually should return DBotScore object - https://xsoar.pan.dev/docs/integrations/context-standards#dbot-score
 outputs:
@@ -773,7 +772,7 @@ outputs:
 ```
 
 
-*Context Data - The way it is stored in the incident context data*
+**Context Data - The way it is stored in the incident context data**
 ```json
 {
     "URL": {
@@ -802,7 +801,9 @@ outputs:
 }
 ```
 
-#### <a name='return-file-reputation'></a> Return File reputation
+---
+
+### Return File/Hash reputation
 ```python
 md5 = '9498ff82a64ff445398c8426ed63ea5b'
 hash_reputation_response = {
@@ -851,7 +852,7 @@ results = CommandResults(
 return_results(results)
 ```
 
-*YAML Definition*
+**YAML Definition**
 ```yaml
 outputs:
 # Reputation commands usually should return DBotScore object - https://xsoar.pan.dev/docs/integrations/context-standards#file
@@ -923,7 +924,7 @@ outputs:
   type: String
 ```
 
-*Context Data - The way it is stored in the incident context data*
+**Context Data - The way it is stored in the incident context data**
 ```json
 {
     "File": {
@@ -955,7 +956,9 @@ outputs:
 }
 ```
 
-#### <a name='return-cve-reputation'></a> Return CVE reputation
+---
+
+### Return CVE reputation
 ```python
 cve_arg = 'CVE-2015-1653'
 
@@ -992,7 +995,7 @@ results = CommandResults(
 return_results(results)
 ```
 
-*YAML Definition*
+**YAML Definition**
 ```yaml
 outputs:
 - contextPath: CVE.ID
@@ -1012,7 +1015,7 @@ outputs:
   type: String
 ```
 
-*Context Data - The way it is stored in the incident context data*
+**Context Data - The way it is stored in the incident context data**
 ```json
 {
     "CVE": {
@@ -1041,6 +1044,7 @@ outputs:
 }
 ```
 
+---
 
 ### DT (Cortex XSOAR Transform Language)
 In the above example, we observe the entry context using ```(val.ReportID == obj.ReportID)```. This works to *tie together* related entry context objects. In this instance, we are using the value of the ReportID key as the unique identifier to search through the existing context and link related objects. This prevents data from being overwritten as well as further enriches an existing entry with more information. Learn more about linking context [here](dt).
