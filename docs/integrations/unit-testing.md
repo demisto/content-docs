@@ -8,10 +8,14 @@ Unit testing should be used to test small units of code in an isolated and deter
 In order to work with unit testing the integration or automation script need to be developed in [package (directory) structure](package-dir), where the yml file is separated from the python file and resides in its own directory.
 
 ### Setup Pipenv 
-To run locally the unit tests we want to setup a virtual environment with all required dependencies (both runtime and development). To achieve this we use [Pipenv](https://pipenv.readthedocs.io/en/latest/). Setup:
+To run locally the unit tests we want to setup a virtual environment with all required dependencies (both runtime and development). To achieve this we use [Pipenv](https://pipenv.readthedocs.io/en/latest/).
+
+Our recommended way to setup an integration into the [package (directory) structure](package-dir) is to use: `desmito-sdk split-yml`. See full command documentation [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/split_yml/README.md).
+
+Manual Setup:
 
 * **Install pipenv**: Follow the [instructions](https://pipenv.readthedocs.io/en/latest/install/#installing-pipenv).
-* **Copy base Pipenv files**: Copy the base Pipenv and Pipenv.lock files to the target package directory from: [Tests/scripts/dev_envs](https://github.com/demisto/content/tree/master/Tests/scripts/dev_envs).
+* **Copy base Pipenv files**: Copy the base Pipenv and Pipenv.lock files to the target package directory from: [demisto_sdk/commands/lint/resources](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/lint/resources).
 * **Install additional runtime dependencies**: using: `pipenv install <dependency>`. For example: `pipenv install ldap3`
 * **Sync Pipenv**: (including dev dependencies) by running: `pipenv sync --dev`
 * **Enable Virtual Env**: To enable the Pipenv virtual env in the shell run: `pipenv shell`. To exit the virtual env simply run: `exit`.
