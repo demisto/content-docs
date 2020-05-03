@@ -1,7 +1,7 @@
 ![Content logo](demisto_content_logo.png)
 
 # Cortex XSOAR Content Developer Docs
-This repo holds Cortex XSOAR's Content Developer Docs. The Content Developer Docs provide information on how to develop Content for the Cortex XSOAR platform. The actual content is hosted at the following repo: https://github.com/demisto/content. 
+This repo holds Cortex XSOAR Content Developer Docs. The Content Developer Docs provide information on how to develop and contribute content to the Cortex XSOAR platform. The actual content is hosted at the following repo: https://github.com/demisto/content. 
 
 This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
 
@@ -23,7 +23,7 @@ npm start
 Start writing docs...
 
 ## Generating Reference Docs
-Reference docs are generated from the Cortex XSOAR Content repository: https://github.com/demisto/content . If you are working on general site docs which are not reference docs from the Content repo, you don't need to run this step to preview your docs.
+Reference docs are generated from the Cortex XSOAR Content repository: https://github.com/demisto/content. If you are working on general site docs which are not reference docs from the Content repo, you don't need to run this step to preview your docs.
 
 To generate the docs we use [pipenv](https://github.com/pypa/pipenv). Make sure to install pipenv by running: `pip3 install pipenv`.
 
@@ -33,15 +33,15 @@ npm run reference-docs
 ```
 This task will checkout the content repository and generate the docs. The generated docs are ignored by `.gitignore` and shouldn't be checked in as they are generated during the build.
 
-When generating the docs the `master` branch of the `content` repo will be used or if there is a matching branch with the same name as the current branch of `content-docs`, that branch will be used. 
+When generating the docs the `master` branch of the `content` repo will be used unless there is a matching branch with the same name as the current branch of `content-docs`, that branch will be used. 
 
-If you have the `content` repo checked out locally and you would like to use it for generating the reference docs (for example when working on a Content Integration Doc), you can set the path to your `content` repo dir with the environment variable: `CONTENT_REPO_DIR`. For example:
+If you have the `content` repo checked out locally and you want to use it for generating the reference docs (for example when working on a Content Integration Doc), you can set the path to your `content` repo dir with the environment variable: `CONTENT_REPO_DIR`. For example:
 ```
  CONTENT_REPO_DIR=~/dev/demisto/content npm run reference-docs
 ```
 
 ### Generation Code
-Code used for generating content reference docs is written in Python and resides in the `content-repo` folder. To setup a development environment we use [pipenv](https://github.com/pypa/pipenv). Make sure to install pipenv by running: `pip3 install pipenv`. Setup a proper Python env by running:
+Code used for generating content reference docs is written in Python and resides in the `content-repo` folder. To set up a development environment we use [pipenv](https://github.com/pypa/pipenv). Make sure to install pipenv by running: `pip3 install pipenv`. Setup a proper Python env by running:
 ```
 pipenv install --dev
 ```
