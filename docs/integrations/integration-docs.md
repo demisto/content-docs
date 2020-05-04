@@ -5,41 +5,45 @@ title: Integration Documentation
 
 Documentation is a critical step that assists customers who may use your integration by providing insight into how the integration is supposed to work. From creating custom playbooks, to providing background information to assist in debugging, it is important to ensure that the documentation explains every aspect of the integration. Documentation is maintained as `README.md` per integration/automation/playbook and made available for customers as part of the [reference docs](https://xsoar.pan.dev/docs/reference/index) of the Cortex XSOAR Developer Hub.
 
-**Note:** The documentation must conform to the [Integration Doc Format](doc-structure).
-
-
-## Creating Documentation
-Within Cortex XSOAR, exists the ability to generate documentation for your integration. First verify that the DocumentationAutomation script exists in your content by navigating to the **Automation** tab in Cortex XSOAR.
-
-First, take the YAML file of your integration and upload it to the War Room. Please note the entry ID as you will need it in the next step.
-
-To use the DocumentationAutomation script, navigate to the War Room and execute the command:
- ```
-!DocumentationAutomation entryID="the_entry_id_of_the_uploaded_yml_integration"
-```
-You may choose to include the other arguments depending on what you may need.
-
-Once the command has been executed, you will see the documentation html in the War Room as a new entry and a copy of it as a file entry. Review the generated document.
-
-Where there is missing information, be sure to fill out the document completely. It is advised to include use-cases, screenshots, and examples of the context. 
 
 ## Documentation _must_ be generated if:
 1.  If the integration is new then you are required to create new documentation.
 2.  If the integration is existing but missing documentation then please create new documentation.
 3.  If the integration is existing and some of the integration has changed. For example, a new command was added, context was changed, or anything else; please update the documentation.
 
+:::note
+The documentation must conform to the [Integration Doc Format](doc-structure).
+:::
 
-## Using commands parameter
+
+## Creating Documentation
+Use the `demisto-sdk generate-docs` command to generate documentation for your Integration. Documentation for the command is available [here](https://github.com/demisto/demisto-sdk#generate-docs). 
+
+### Command Examples
 To automatically generate example output (human readable and context), you should create a text file containing command examples, one per line. The command examples should appear the same way they would as in the CLI in Cortex XSOAR, for example `!url url=8.8.8.8`.
-Commands will be executed one at a time, in the order in which they appear in the file. If there are duplicates of a command included in the text file, only the output of the command's first execution  will be included in the generated documentation output.
+Commands will be executed one at a time, in the order in which they appear in the file. If there are duplicates of a command included in the text file, only the output of the command's first execution  will be included in the generated documentation output. 
 
-Example for commands file:
+Create a `command_examples.txt` file in the same directory as the Integration. Make sure to check this file in to git, so if needed to regenerate the documentation in the future, the commands are easily available. Example for `command_examples.txt` file:
 ```
 !ip ip=8.8.8.8
 !domain domain=demisto.com
 ```
 
-![ScreenRecording2019-09-22at16241](../doc_imgs/integrations/65404184-313ced00-dde0-11e9-9257-e61e2943fd75.gif)
+A larger example of such a file is available [here](https://github.com/demisto/content/blob/master/Packs/Securonix/Integrations/Securonix/commands_examples.txt).
+
+### Run `demisto-sdk generate-docs`
+Make sure to set your environment variables: `DEMISTO_BASE_URL` and `DEMISTO_API_KEY` so `demisto-sdk` will be able to connect to the Server to run the commands. Run the `generate-docs` command with an input of the Integration yml file and the `command_examples.txt` file. For example:
+```
+demisto-sdk generate-docs --insecure -e Packs/Nmap/Integrations/Nmap/command_examples.txt -i Packs/Nmap/Integrations/Nmap/Nmap.yml
+Start generating integration documentation...
+found the following commands:
+!nmap-scan options="-sV" targets=scanme.nmap.org
+Output file was saved to :
+/Users/glichtman/dev/demisto/content/Packs/Nmap/Integrations/Nmap/README.md
+``` 
+:::note
+If you are connecting to a Server with a self signed certificate, make sure to pass the `--insecure` option to the `generate-docs` command.
+:::
 
 ## Images
 Images in the documentation should be added to the relevant pack under a `doc_files` or `doc_imgs` directory. All images should be included with absolute URLs. To obtain an absolute URL to an image from GitHub:
@@ -102,7 +106,16 @@ Example Images:
 The documentation should be posted in the integration/automation script directory as a `README.md` file. If the integration/automation is not in the [Directory Structure](package-dir), name the documentation file the same as the yml file without the `.yml` extension and with an ending of: `_README.md`. For example: [integration-mcafeeDam_README.md](https://github.com/demisto/content/blob/master/Packs/Legacy/Integrations/integration-mcafeeDam_README.md).
 
 ## Documentation Deployment
-Once the PR with the documentation README file is merged in to master, it will trigger an update to the Cortex XSOAR Developer Hub. When the deployment is complete, the documentation will be available at the [reference docs section](https://xsoar.pan.dev/docs/reference/index). If you wish to preview how the documentation looks at the Developer Hub, before merging to master, you can create a PR at the [content-docs repo](https://github.com/demisto/content-docs) with the same branch name as the PR you are working on in the [content repo](https://github.com/demisto/content-docs). Mention in the PR that it is related to a PR from the content repo. Your PR in the content-docs repo will include a preview link in the GitHub Checks section from `deploy/netlify`. You can perform a dummy white space change for the PR that will re-trigger the build and create a new preview. Example screenshot for preview link:
+Once the PR with the documentation README file is merged in to master, it will trigger an update to the Cortex XSOAR Developer Hub. When the deployment is complete, the documentation will be available at the [reference docs section](https://xsoar.pan.dev/docs/reference/index). If you wish to preview how the documentation looks at the Developer Hub, before merging to master, you can either run locally the `content-docs` project to preview the Reference Docs site locally or create a PR at the [content-docs repo](https://github.com/demisto/content-docs). 
+
+### Preview by Generating Reference Docs Locally (recommended)
+Clone or download the [content-docs repo](https://github.com/demisto/content-docs). Follow the instructions at the project's [README](https://github.com/demisto/content-docs/blob/master/README.md) to run the site locally and generate Reference Docs for the `content` repo you have locally. For example run in the `content-docs` checkout dir:
+```bash
+CONTENT_REPO_DIR=~/dev/demisto/content npm run reference-docs && npm start
+```
+
+### Preview by Creating a PR at the Content Docs Repo
+Create a PR at the [content-docs repo](https://github.com/demisto/content-docs) with the same branch name as the PR you are working on in the [content repo](https://github.com/demisto/content-docs). Mention in the PR that it is related to a PR from the content repo. Your PR in the content-docs repo will include a preview link in the GitHub Checks section from `deploy/netlify`. You can perform a dummy white space change for the PR that will re-trigger the build and create a new preview. Example screenshot for preview link:
 
 <img width="500" src="../doc_imgs/integrations/doc-preview-check.png" />
 

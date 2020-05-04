@@ -4,11 +4,11 @@ title: Integration Doc Format
 ---
 
 ## Overview
-Type of the product and common use case through Cortex XSOAR.
+This is an example Integration Doc. Here you will provide an **Overview** of the Integration. Type of the product and common use case through Cortex XSOAR.
   What is this integration good for? 
   What does the integration do? 
 Known limitations (only if needed in this high level view)
-What version of the integrated product was tested (and what versions we believe are supported. e.g. tested on 2.0, should work on 2.0 and up) 
+What version of the integrated product was tested (and what versions we believe are supported. e.g. tested on 2.0, should work on 2.0 and up).
 
 ## To set up [integration name] to work with Cortex XSOAR:
 Just list the requirements for integrating with Cortex XSOAR. You can include links to third-party documentation if necessary.
