@@ -5,7 +5,7 @@ title: Create an Integration
 
 ## Welcome
 
->*First and foremost, I want to welcome you to the Palo Alto Networks team. We are excited to have you and we look forward to working with you. Please note that this tutorial assumes that you have a working instance of Cortex XSOAR.*
+>*First and foremost, I want to welcome you to the Palo Alto Networks team. We are excited to have you and we look forward to working with you. Please note that this tutorial assumes that you have a working instance of Cortex XSOAR.<br/><br/>**Note**: To keep things minimal, not all code in the tutorial follows our code conventions. Please see: [Code Conventions](../integrations/code-conventions) document to learn more about our coding standards.*
 
 The code we will be writing will be available in segments as we go along, as well as in it's entirety at the end.
 
