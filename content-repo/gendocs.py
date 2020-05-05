@@ -310,12 +310,12 @@ def main():
     shutil.copy(index_base, index_target)
     with open(index_target, 'a', encoding='utf-8') as f:
         if MAX_FILES > 0:
-            f.write(f'\n\n# =====<br/>BUILD PREVIEW only {MAX_FILES} files from each category! <br/>=====\n\n')        
+            f.write(f'\n\n# =====<br/>BUILD PREVIEW only {MAX_FILES} files from each category! <br/>=====\n\n')
         f.write("\n\n## Integrations\n\n")
         f.write(index_doc_infos(integration_doc_infos, INTEGRATIONS_PREFIX))
         f.write("\n\n## Playbooks\n\n")
         f.write(index_doc_infos(playbooks_doc_infos, PLAYBOOKS_PREFIX))
-        f.write("\n\n## Scripts\n\n")        
+        f.write("\n\n## Scripts\n\n")
         f.write(index_doc_infos(script_doc_infos, SCRIPTS_PREFIX))
         f.write("\n\n## Release Notes\n\n")
         f.write(index_doc_infos(release_doc_infos, RELEASES_PREFIX))
