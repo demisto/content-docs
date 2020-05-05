@@ -3,16 +3,16 @@ id: context-and-outputs
 title: Context and Outputs
 ---
 
-# Overview
+## Overview
 
-Context is a map (dictionary) /JSON object that is created for each incident and is used to store structured results from the integration commands and automation scripts. The context keys are strings and the values can be strings, numbers, objects, and arrays.
+The Context is a map (dictionary) / JSON object that is created for each incident and is used to store structured results from the integration commands and automation scripts. The Context keys are strings and the values can be strings, numbers, objects, and arrays.
 
-The main use of context is to pass data between playbook tasks, one task stores output in the context and the other task reads that output from the context and uses it.
+The main use of the Context is to pass data between playbook tasks, one task stores its output in the Context and the other task reads that output from the Context and uses it.
 
-Let's look at a real world example that can show you how context is used:
+Let's look at a real world example that can show you how the Context is used:
 
-For example **ThreatStream** integration has command **threatstream-analysis-report**. 
-Returns the report of a file or URL that was submitted to the sandbox.
+For example **ThreatStream** integration has the command **threatstream-analysis-report**. 
+The command returns the report of a file or URL that was submitted to the sandbox.
 
 #### The response from the REST API
 ```json
@@ -46,14 +46,14 @@ Returns the report of a file or URL that was submitted to the sandbox.
 In the integration YAML file, the command outputs are defined as such:
 **BrandName.Object.PropertyName**
 
-In the context menu, you will see three fields; Context Path, Description and Type. Their uses are as follows:
-* **Context Path** - This is a Dot Notation representation of the path to access the context
-* **Description** - A short description of what the context is
-* **Type** - Indicating the type of value that is located at the path enables Cortex XSOAR to format the data correctly
+For each output entry, you have three fields; Context Path, Description and Type. Their uses are as follows:
+* **Context Path** - This is a Dot Notation representation of the path to access the Context.
+* **Description** - A short description of what this Context entry represents.
+* **Type** - Indicating the type of value that is located at the path. Enables Cortex XSOAR to format the data correctly.
 
 Use [json-to-outputs](https://github.com/demisto/demisto-sdk#convert-json-to-demisto-outputs) command in 
 [demisto-sdk](https://github.com/demisto/demisto-sdk) tool to convert JSON into yml.
-<br/>**Example:** `demisto-sdk json-to-outputs -c threatstream-analysis-report -p ThreatStream.Analysis` 
+**Example:** `demisto-sdk json-to-outputs -c threatstream-analysis-report -p ThreatStream.Analysis` 
 
 ```buildoutcfg
 outputs:
@@ -121,13 +121,15 @@ return_results(command_result)
 ```
 
 **Notes**: 
-  - The code **must** match the context path in the yml.
-  - You can output the API response as is to the context as value, under the brand name key.
-    That is, no need to modify the API response and map it to human readable keys.
-    You might see old integrations in which this map exist, but this is no longer required. 
+  - The code **must** match the context path outputs specified in the yml file.
+  - You can output the API response as is to the context as a raw value, under the brand name key.
+    There is no need to modify the API response and map it to human readable keys.
+    You might still see old integrations in which this type of mapping is performed, but this is not a requirement. 
 
 
 ---
+
+## Context Use Cases 
 
 ### Return Data (common case)
 ```python
@@ -163,11 +165,11 @@ outputs:
 ```
 
 **Markdown**
-#### Results
-|id|name|
-|---|---|
-| 100 | alert1 |
-| 200 | alert2 |
+>#### Results
+>|id|name|
+>|---|---|
+>| 100 | alert1 |
+>| 200 | alert2 |
 
 **Context Data - The way it is stored in the incident context data**
 ```json
@@ -202,8 +204,8 @@ alerts = [
     }
 ]
 
-markdown = '##### This is header<br/><br/>'
-markdown += tableToMarkdown('Table title', alerts, headers=['id', 'name'])
+markdown = '### This is the Header\n'
+markdown += tableToMarkdown('Table Title', alerts, headers=['id', 'name'])
 
 results = CommandResults(
     readable_output=markdown,
@@ -215,12 +217,12 @@ return_results(results)
 ```
 
 **Markdown**
-##### This is header<br/><br/>
-#### Table title
-|id|name|
-|---|---|
-| 100 | alert1 |
-| 200 | alert2 |
+>### This is the Header
+>#### Table Title
+>|id|name|
+>|---|---|
+>| 100 | alert1 |
+>| 200 | alert2 |
 
 ---
 
@@ -403,10 +405,10 @@ outputs:
 
 
 **Markdown**
-#### Results
-|asn|confidence|indicator|
-|---|---|---|
-| 12345 | 95 | 5.5.5.5 |
+>#### Results
+>|asn|confidence|indicator|
+>|---|---|---|
+>| 12345 | 95 | 5.5.5.5 |
 
 ---
 
