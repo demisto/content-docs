@@ -26,7 +26,7 @@ The following is the format for a file.
         "SHA256": "STRING, The SHA256 hash of the file.",
         "SHA512": "STRING The SHA512 hash of the file.",
         "SSDeep": "STRING, The ssdeep hash of the file (same as displayed in file entries).",
-        "Extension": "STRING, The file extension, for example: "xls".",
+        "Extension": "STRING, The file extension, for example: 'xls'.",
         "Type": "STRING, The file type, as determined by libmagic (same as displayed in file entries).",
         "Hostname": "STRING, The name of the host where the file was found. Should match Path.",
         "Path": "STRING, The path where the file is located.",
@@ -52,6 +52,86 @@ The following is the format for a file.
 }
 ```
 
+**In YAML**
+```yaml
+outputs:
+- contextPath: File.Name
+  description: The full file name (including file extension).
+  type: String
+- contextPath: File.EntryID
+  description: The ID for locating the file in the War Room.
+  type: String
+- contextPath: File.Size
+  description: The size of the file in bytes.
+  type: Number
+- contextPath: File.MD5
+  description: The MD5 hash of the file.
+  type: String
+- contextPath: File.SHA1
+  description: The SHA1 hash of the file.
+  type: String
+- contextPath: File.SHA256
+  description: The SHA1 hash of the file.
+  type: String
+- contextPath: File.SHA512
+  description: The SHA512 hash of the file.
+  type: String
+- contextPath: File.SSDeep
+  description: The ssdeep hash of the file (same as displayed in file entries).
+  type: String
+- contextPath: File.Extension
+  description: "The file extension, for example: 'xls'."
+  type: String
+- contextPath: File.Type
+  description: The file type, as determined by libmagic (same as displayed in file entries).
+  type: String
+- contextPath: File.Hostname
+  description: The name of the host where the file was found. Should match Path.
+  type: String
+- contextPath: File.Path
+  description: The path where the file is located.
+  type: String
+- contextPath: File.Company
+  description: The name of the company that released a binary.
+  type: String
+- contextPath: File.ProductName
+  description: The name of the product to which this file belongs.
+  type: String
+- contextPath: File.DigitalSignature.Publisher
+  description: The publisher of the digital signature for the file.
+  type: String
+- contextPath: File.Actor
+  description: The actor reference.
+  type: String
+- contextPath: File.Tags
+  description: (List) Tags of the file.
+  type: Unknown
+- contextPath: File.Signature.Authentihash
+  description: The authentication hash.
+  type: String
+- contextPath: File.Signature.Copyright
+  description: Copyright information.
+  type: String
+- contextPath: File.Signature.Description
+  description: A description of the signature.
+  type: String
+- contextPath: File.Signature.FileVersion
+  description: The file version.
+  type: String
+- contextPath: File.Signature.InternalName
+  description: The internal name of the file.
+  type: String
+- contextPath: File.Signature.OriginalName
+  description: The original name of the file.
+  type: String
+- contextPath: File.Malicious.Vendor
+  description: The vendor that reported the file as malicious.
+  type: String
+- contextPath: File.Malicious.Description
+  description: A description explaining why the file was determined to be malicious.
+  type: String
+```
+
 ## Report
 The following is the format for a report.
 
@@ -64,17 +144,18 @@ The following is the format for a report.
 }
 ```
 
+**In YAML**
+```yaml
+
+```
+
 ## IP
 The following is the format for an IP entity
 
 ```python
 "IP": {
-    "Malicious":{
-        "Vendor": "STRING, The vendor reporting the IP address as malicious.",
-        "Description": "STRING, A description explaining why the IP address was reported as malicious."
-    },
     "Address": "STRING, IP address",
-    "ASN": "STRING, The autonomous system name for the IP address, for example: "AS8948".",
+    "ASN": "STRING, The autonomous system name for the IP address, for example: 'AS8948'.",
     "Hostname": "STRING, The hostname that is mapped to this IP address.",
     "Geo":{
         "Location": "STRING, The geolocation where the IP address is located, in the format: latitude:longitude.",
@@ -82,8 +163,48 @@ The following is the format for an IP entity
         "Description": "STRING, Additional information about the location."
     },
     "DetectionEngines": "NUMBER, The total number of engines that checked the indicator.",
-    "PositiveDetections": "NUMBEr, The number of engines that positively detected the indicator as malicious."
+    "PositiveDetections": "NUMBEr, The number of engines that positively detected the indicator as malicious.",
+    "Malicious":{
+        "Vendor": "STRING, The vendor reporting the IP address as malicious.",
+        "Description": "STRING, A description explaining why the IP address was reported as malicious."
+    }
 }
+```
+
+**In YAML**
+```yaml
+outputs:- 
+contextPath: IP.Address
+  description: IP address
+  type: String
+- contextPath: IP.ASN
+  description: 'The autonomous system name for the IP address, for example: "AS8948".'
+  type: String
+- contextPath: IP.Hostname
+  description: The hostname that is mapped to this IP address.
+  type: String
+- contextPath: IP.Geo.Location
+  description: 'The geolocation where the IP address is located, in the format: latitude:longitude.'
+  type: String
+- contextPath: IP.Geo.Country
+  description: The country in which the IP address is located.
+  type: String
+- contextPath: IP.Geo.Description
+  description: Additional information about the location.
+  type: String
+- contextPath: IP.DetectionEngines
+  description: The total number of engines that checked the indicator.
+  type: Number
+- contextPath: IP.PositiveDetections
+  description: The number of engines that positively detected the indicator as malicious.
+  type: Number
+- contextPath: IP.Malicious.Vendor
+  description: The vendor reporting the IP address as malicious.
+  type: String
+- contextPath: IP.Malicious.Description
+  description: A description explaining why the IP address was reported as malicious.
+  type: String
+
 ```
 
 ## Endpoint
@@ -107,6 +228,11 @@ The following is the format for an Endpoint.
 }
 ```
 
+**In YAML**
+```yaml
+
+```
+
 ## Ticket
 The following is the format for a ticket.
 ```python
@@ -116,6 +242,11 @@ The following is the format for a ticket.
     "Assignee": "STRING, The user assigned to the ticket.",
     "State": "STRING, The status of the ticket. Can be "closed", "open", or "on hold"."
 }
+```
+
+**In YAML**
+```yaml
+
 ```
 
 ## Email Object
@@ -137,21 +268,56 @@ The following is the format for an Email Object.
 }
 ```
 
+**In YAML**
+```yaml
+outputs:
+- contextPath: Email.To
+  description: The recipient of the email.
+  type: String
+- contextPath: Email.From
+  description: The sender of the email.
+  type: String
+- contextPath: Email.CC
+  description: Email addresses CC'ed to the email.
+  type: String
+- contextPath: Email.BCC
+  description: Email addresses BCC'ed to the email.
+  type: String
+- contextPath: Email.Format
+  description: The format of the email.
+  type: String
+- contextPath: Email.Body/HTML
+  description: The HTML version of the email.
+  type: String
+- contextPath: Email.Body/Text
+  description: The plain-text version of the email.
+  type: String
+- contextPath: Email.Subject
+  description: The subject of the email.
+  type: String
+- contextPath: Email.Headers
+  description: The headers of the email.
+  type: String
+- contextPath: Email.Attachments
+  description: List<String> Entry IDs of email attachments
+  type: Unknown
+```
+
 ## Domain
 The following is the format for a Domain. Please note that for WHOIS, the entity is a dictionary nested for the key "WHOIS".
 ```python
 "Domain": {
-    "Name": "STRING, The domain name, for example: "google.com".",
+    "Name": "STRING, The domain name, for example: 'google.com'.",
     "DNS": "STRING, A list of IP objects resolved by DNS.",
     "DetectionEngines": "NUMBER, The total number of engines that checked the indicator.",
     "PositiveDetections": "NUMBER, The number of engines that positively detected the indicator as malicious.",
     "CreationDate": "DATE, The date that the domain was created.",
-    "DomainStatus": "STRING, The status of the domain.",
+    "UpdatedDate": "DATE, The date that the domain was last updated.",
     "ExpirationDate": "DATE, The expiration date of the domain.",
+    "DomainStatus": "STRING, The status of the domain.",
     "NameServers": "STRING, Name servers of the domain.",
     "Organization": "STRING, The organization of the domain.",
     "Subdomains": "STRING, Subdomains of the domain.",
-    "UpdatedDate": "DATE, The date that the domain was last updated.",
     "Admin": {
         "Country": "STRING, The country of the domain administrator.",
         "Email": "STRING, The email address of the domain administrator.",
@@ -162,12 +328,11 @@ The following is the format for a Domain. Please note that for WHOIS, the entity
         "Country": "STRING, The country of the registrant.",
         "Email": "STRING, The email address of the registrant.",
         "Name": "STRING, The name of the registrant.",
-        "Phone": "STRING, The phone number for receiving abuse reports.",
-        "Email": "STRING, The email address for receiving abuse reports."
+        "Phone": "STRING, The phone number for receiving abuse reports."
     },
     "WHOIS": {
         "DomainStatus": "STRING, The status of the domain.",
-        "NameServers": "STRING, A list of name servers, for example: "ns1.bla.com, ns2.bla.com".",
+        "NameServers": "STRING, A list of name servers, for example: 'ns1.bla.com, ns2.bla.com'.",
         "CreationDate": "DATE, The date that the domain was created.",
         "UpdatedDate": "DATE, The date that the domain was last updated.",
         "ExpirationDate": "DATE, The date that the domain expires.",
@@ -177,7 +342,7 @@ The following is the format for a Domain. Please note that for WHOIS, the entity
             "Phone": "STRING, The phone number of the registrant."
         },
         "Registrar": {
-            "Name": "STRING, The name of the registrar, for example: "GoDaddy".",
+            "Name": "STRING, The name of the registrar, for example: 'GoDaddy'.",
             "AbuseEmail": "STRING, The email address of the contact for reporting abuse.",
             "AbusePhone": "STRING, The phone number of contact for reporting abuse."
         },
@@ -191,9 +356,123 @@ The following is the format for a Domain. Please note that for WHOIS, the entity
     "Malicious":{
         "Vendor": "STRING, The vendor reporting the domain as malicious.",
         "Description": "STRING, A description explaining why the domain was reported as malicious."
-    },
+    }
 }
 ```
+
+**In YAML**
+```yaml
+outputs:
+- contextPath: Domain.Name
+  description: 'The domain name, for example: "google.com".'
+  type: String
+- contextPath: Domain.DNS
+  description: A list of IP objects resolved by DNS.
+  type: String
+- contextPath: Domain.DetectionEngines
+  description: The total number of engines that checked the indicator.
+  type: Number
+- contextPath: Domain.PositiveDetections
+  description: The number of engines that positively detected the indicator as malicious.
+  type: Number
+- contextPath: Domain.CreationDate
+  description: The date that the domain was created.
+  type: Date
+- contextPath: Domain.UpdatedDate
+  description: The date that the domain was last updated.
+  type: String
+- contextPath: Domain.ExpirationDate
+  description: The expiration date of the domain.
+  type: Date
+- contextPath: Domain.DomainStatus
+  description: The status of the domain.
+  type: Datte
+- contextPath: Domain.NameServers
+  description: (List<String>) Name servers of the domain.  
+  type: Unknown
+- contextPath: Domain.Organization
+  description: The organization of the domain.
+  type: String
+- contextPath: Domain.Subdomains
+  description: (List<String>) Subdomains of the domain.
+  type: Unknown
+- contextPath: Domain.Admin.Country
+  description: The country of the domain administrator.
+  type: String
+- contextPath: Domain.Admin.Email
+  description: The email address of the domain administrator.
+  type: String
+- contextPath: Domain.Admin.Name
+  description: The name of the domain administrator.
+  type: String
+- contextPath: Domain.Admin.Phone
+  description: The phone number of the domain administrator.
+  type: String
+- contextPath: Domain.Registrant.Country
+  description: The country of the registrant.
+  type: String
+- contextPath: Domain.Registrant.Email
+  description: The email address of the registrant.
+  type: String
+- contextPath: Domain.Registrant.Name
+  description: The name of the registrant.
+  type: String
+- contextPath: Domain.Registrant.Phone
+  description: The phone number for receiving abuse reports.
+  type: String
+- contextPath: Domain.WHOIS.DomainStatus
+  description: The status of the domain.
+  type: String
+- contextPath: Domain.WHOIS.NameServers
+  description: (List<String>) Name servers of the domain.
+  type: String
+- contextPath: Domain.WHOIS.CreationDate
+  description: The date that the domain was created.
+  type: Date
+- contextPath: Domain.WHOIS.UpdatedDate
+  description: The date that the domain was last updated.
+  type: Date
+- contextPath: Domain.WHOIS.ExpirationDate
+  description: The expiration date of the domain.
+  type: Date
+- contextPath: Domain.WHOIS.Registrant.Name
+  description: The name of the registrant.
+  type: String
+- contextPath: Domain.WHOIS.Registrant.Email
+  description: The email address of the registrant.
+  type: String
+- contextPath: Domain.WHOIS.Registrant.Phone
+  description: The phone number of the registrant.
+  type: String
+- contextPath: Domain.WHOIS.Registrar.Name
+  description: 'The name of the registrar, for example: 'GoDaddy"'
+  type: String
+- contextPath: Domain.WHOIS.Registrar.AbuseEmail
+  description: The email address of the contact for reporting abuse.
+  type: String
+- contextPath: Domain.WHOIS.Registrar.AbusePhone
+  description: The phone number of contact for reporting abuse.
+  type: String
+- contextPath: Domain.WHOIS.Admin.Name
+  description: The name of the domain administrator.
+  type: String
+- contextPath: Domain.WHOIS.Admin.Email
+  description: The email address of the domain administrator.
+  type: String
+- contextPath: Domain.WHOIS.Admin.Phone
+  description: The phone number of the domain administrator.
+  type: String
+- contextPath: Domain.WHOIS/History
+  description: List of Whois objects
+  type: String
+- contextPath: Domain.Malicious.Vendor
+  description: The vendor reporting the domain as malicious.
+  type: String
+- contextPath: Domain.Malicious.Description
+  description: A description explaining why the domain was reported as malicious.
+  type: String
+```
+
 ## URL
 The following is the format for a URL entity.
 ```python
@@ -204,27 +483,67 @@ The following is the format for a URL entity.
         "Description": "STRING, A description of the malicious URL."
     },
     "DetectionEngines": "NUMBER, The total number of engines that checked the indicator.",
-    "PositiveDetections": "NUMBER, The number of engines that positively detected the indicator as malicious.",
+    "PositiveDetections": "NUMBER, The number of engines that positively detected the indicator as malicious."
 }
+```
+
+**In YAML**
+```yaml
+outputs:
+- contextPath: URL.Data
+  description: The URL
+  type: String
+- contextPath: URL.DetectionEngines
+  description: The total number of engines that checked the indicator.
+  type: String
+- contextPath: URL.PositiveDetections
+  description: The number of engines that positively detected the indicator as malicious.
+  type: String
+- contextPath: URL.Malicious.Vendor
+  description: The vendor reporting the URL as malicious.
+  type: String
+- contextPath: URL.Malicious.Description
+  description: A description of the malicious URL.
+  type: String
 ```
 
 ## CVE
 The following is the format for a CVE.
 ```python
 "CVE": {
-    "ID": "STRING, The ID of the CVE, for example: "CVE-2015-1653".",
-    "CVSS": "STRING, The CVSS of the CVE, for example: "10.0".",
+    "ID": "STRING, The ID of the CVE, for example: CVE-2015-1653",
+    "CVSS": "STRING, The CVSS of the CVE, for example: 10.0",
     "Published": "DATE, The timestamp of when the CVE was published.",
     "Modified": "DATE, The timestamp of when the CVE was last modified.",
     "Description": "STRING, A description of the CVE."
 }
 ```
 
+**In YAML**
+```yaml
+outputs:
+- contextPath: CVE.ID
+  description: 'The ID of the CVE, for example: CVE-2015-1653'
+  type: String
+- contextPath: CVE.CVSS
+  description: 'The CVSS of the CVE, for example: 10.0'
+  type: String
+- contextPath: CVE.Published
+  description: The timestamp of when the CVE was published.
+  type: Date
+- contextPath: CVE.Modified
+  description: The timestamp of when the CVE was last modified.
+  type: Date
+- contextPath: CVE.Description
+  description: A description of the CVE.
+  type: String
+```
+
 ## Account
 The following is the format for an Account entity.
 ```python
 "Account": {
-    "Type": "STRING, The account type. The most common value is "AD", but can be "LocalOS", "Google", "AppleID", ... ",
+    "Type": "STRING, The account type. The most common value is 'AD', but can be 'LocalOS', 'Google', 'AppleID', ... ",
     "ID": "STRING, The unique ID for the account (integration specific). For AD accounts this is the Distinguished Name (DN).",
     "Username": "STRING, The username in the relevant system.",
     "DisplayName": "STRING, The display name.",
@@ -233,7 +552,7 @@ The following is the format for an Account entity.
     "OrganizationUnit": "STRING, The Organization Unit (OU) of the account.",
     "Email": {
         "Address": "STRING, The email address of the account."
-    }
+    },
     "TelephoneNumber": "STRING, The phone number associated with the account.",
     "Office": "STRING, The office where the person associated with the account works.",
     "JobTitle": "STRING, The job title of the account.",
@@ -242,8 +561,64 @@ The following is the format for an Account entity.
     "State": "STRING, The state where the account works.",
     "City": "STRING, The city associated with the account.",
     "Street": "STRING, The street associated with the account.",
-    "IsEnabled": "BOOL, Whether the account is enabled or disabled. "True" means the account is enabled."
+    "IsEnabled": "BOOL, Whether the account is enabled or disabled. 'True' means the account is enabled."
 }
+```
+
+**In YAML**
+```yaml
+outputs:
+- contextPath: Account.Type
+  description: The account type. The most common value is 'AD', but can be 'LocalOS', 'Google', 'AppleID'
+  type: String
+- contextPath: Account.ID
+  description: The unique ID for the account (integration specific). For AD accounts this is the Distinguished Name (DN).
+  type: String
+- contextPath: Account.Username
+  description: The username in the relevant system.
+  type: String
+- contextPath: Account.DisplayName
+  description: The display name.
+  type: String
+- contextPath: Account.Groups
+  description: Groups to which the account belongs (integration specific). For example, for AD these are groups of which the account is memberOf.
+  type: String
+- contextPath: Account.Domain
+  description: The domain of the account.
+  type: String
+- contextPath: Account.OrganizationUnit
+  description: The Organization Unit (OU) of the account.
+  type: String
+- contextPath: Account.Email.Address
+  description: The email address of the account.
+  type: String
+- contextPath: Account.TelephoneNumber
+  description: The phone number associated with the account.
+  type: String
+- contextPath: Account.Office
+  description: The office where the person associated with the account works.
+  type: String
+- contextPath: Account.JobTitle
+  description: The job title of the account.
+  type: String
+- contextPath: Account.Department
+  description: The department of the account.
+  type: String
+- contextPath: Account.Country
+  description: The country associated with the account.
+  type: String
+- contextPath: Account.State
+  description: The state where the account works.
+  type: String
+- contextPath: Account.City
+  description: The city associated with the account.
+  type: String
+- contextPath: Account.Street
+  description: The street associated with the account.
+  type: String
+- contextPath: Account.IsEnabled
+  description: Whether the account is enabled or disabled. 'True' means the account is enabled.
+  type: Bool
 ```
 
 ## Registry Key
@@ -256,6 +631,20 @@ The following is the format for a Registry Key.
 }
 ```
 
+**In YAML**
+```yaml
+outputs:
+- contextPath: RegistryKey.Path
+  description: The path to the registry key
+  type: String
+- contextPath: RegistryKey.Name
+  description: The name of registry key.
+  type: String
+- contextPath: RegistryKey.Value
+  description: The value at the given RegistryKey.
+  type: String
+```
+
 ## Rule
 The following is the format for a Rule.
 ```python
@@ -263,6 +652,11 @@ The following is the format for a Rule.
     "Name": "STRING, The name of the rule.",
     "Condition": "STRING, The condition for the rule."
 }
+```
+
+**In YAML**
+```yaml
+
 ```
 
 ## Event
@@ -277,6 +671,11 @@ The following is the format for an Event.
 }
 ```
 
+**In YAML**
+```yaml
+
+```
+
 ## Directory
 The following is the format for a Directory.
 ```python
@@ -284,6 +683,11 @@ The following is the format for a Directory.
     "Path": "STRING, The directory path. Can be "local" or "UNC".",
     "Endpoint": "STRING, Whether the directory is found on a specific endpoint."
 }
+```
+
+**In YAML**
+```yaml
+
 ```
 
 ## Service
@@ -296,6 +700,11 @@ The following is the format for a Service.
     "StartType": "STRING, How the service was started.",
     "State": "STRING, The status of the service."
 }
+```
+
+**In YAML**
+```yaml
+
 ```
 
 ## Process
@@ -317,6 +726,11 @@ The following is the format for a process.
 }
 ```
 
+**In YAML**
+```yaml
+
+```
+
 ## Host
 The following is the format for a host.
 ```python
@@ -336,6 +750,51 @@ The following is the format for a host.
     "Processors": "INT, The number of processors that the host is using.'" 
 }
 ```
+
+**In YAML**
+```yaml
+outputs:
+- contextPath: Host.Domain
+  description: The domain of the host.
+  type: String
+- contextPath: Host.Hostname
+  description: The name of the host.
+  type: String
+- contextPath: Host.BIOVersion
+  description: The BIOS version of the host.
+  type: String
+- contextPath: Host.ID
+  description: The unique ID within the tool retrieving the host.
+  type: String
+- contextPath: Host.DHCPServer
+  description: The DHCP server.
+  type: String
+- contextPath: Host.IP
+  description: The IP address of the host.
+  type: String
+- contextPath: Host.MACAddress
+  description: The MAC address of the host.
+  type: String
+- contextPath: Host.Memory
+  description: Memory on the host.
+  type: String
+- contextPath: Host.Model
+  description: The model of the host.
+  type: String
+- contextPath: Host.OS
+  description: Host OS.
+  type: String
+- contextPath: Host.OSVersion
+  description: The OS version of the host.
+  type: String
+- contextPath: Host.Processor
+  description: The processor of the host.
+  type: String
+- contextPath: Host.Processors
+  description: The number of processors that the host is using.
+  type: Number
+```
+
 ## InfoFile
 The following is the expected format for an InfoFile
 ```python
@@ -349,6 +808,29 @@ The following is the expected format for an InfoFile
 }
 ```
 
+**In YAML**
+```yaml
+outputs:
+- contextPath: InfoFile.Name
+  description: The file name.
+  type: String
+- contextPath: InfoFile.EntryID
+  description: The ID for locating the file in the War Room.
+  type: String
+- contextPath: InfoFile.Size
+  description: The size of the file (in bytes).
+  type: Number
+- contextPath: InfoFile.Type
+  description: The file type, as determined by libmagic (same as displayed in file entries).
+  type: String
+- contextPath: InfoFile.Extension
+  description: The file extension.
+  type: String
+- contextPath: InfoFile.Info
+  description: Basic information about the file.
+  type: String
+```
+
 ## DBot Score
 The following is the format for a DBot Score entry.
 ```python
@@ -358,4 +840,21 @@ The following is the format for a DBot Score entry.
     "Vendor": "The vendor used to calculate the score.",
     "Score": "The actual score."
 }
+```
+
+**In YAML**
+```yaml
+- contextPath: DBotScore.Indicator
+  description: The indicator that was tested.
+  type: String
+- contextPath: DBotScore.Type
+  description: The indicator type.
+  type: String
+- contextPath: DBotScore.Vendor
+  description: The vendor used to calculate the score.
+  type: String
+- contextPath: DBotScore.Score
+  description: The actual score.
+  type: Number
+
 ```
