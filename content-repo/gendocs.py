@@ -232,7 +232,7 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
     for r in sorted(fail):
         print(r)
     org_print("\n===========================================\n")
-    return sorted(doc_infos, key=lambda d: d.name)  # sort by name
+    return sorted(doc_infos, key=lambda d: d.name.lower())  # sort by name
 
 
 def main():
