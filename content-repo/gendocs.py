@@ -353,7 +353,7 @@ def main():
         },
         {
             "type": "category",
-            "label": "Release Notes",
+            "label": "Content Release Notes",
             "items": release_items
         },
     ]
