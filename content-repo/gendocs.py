@@ -13,7 +13,7 @@ import json
 from bs4 import BeautifulSoup
 from mdx_utils import fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server
 from CommonServerPython import tableToMarkdown  # type: ignore
-from typing import List, Optional, Dict
+from typing import List, Optional, Dict, Tuple
 from datetime import datetime
 from multiprocessing import Pool
 from functools import partial
@@ -179,9 +179,15 @@ def process_release_doc(target_dir: str, release_file: str) -> DocInfo:
         desc_match = re.search(r'Published on .*', content, re.IGNORECASE)
         if not desc_match:
             raise ValueError('Published on... not found for release: ' + name)
-        doc_info = DocInfo(name, name, desc_match[0], release_file)
+        doc_info = DocInfo(name, f'Content Release {name}', desc_match[0], release_file)
         edit_url = f'https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/releases/{name}.md'
-        content = f'---\nid: {name}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\n---\n\n' + content
+        #  replace the title to be with one # so it doesn't appear in the TOC
+        content = re.sub(r'^## Demisto Content Release Notes', '# Demisto Content Release Notes', content)
+        content = f'---\nid: {name}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\nhide_title: true\n---\n\n' + content
+        content = content + \
+            f'\n\n---\n### Assets\n\n* **Download:** ' + \
+            f'[content_new.zip](https://github.com/demisto/content/releases/download/{name}/content_new.zip)\n' + \
+            f'* **Browse the Source Code:** [Content Repo @ {name}](https://github.com/demisto/content/tree/{name})\n'
         verify_mdx_server(content)
         with open(f'{target_dir}/{name}.md', mode='w', encoding='utf-8') as f:
             f.write(content)
@@ -194,7 +200,9 @@ def process_release_doc(target_dir: str, release_file: str) -> DocInfo:
         sys.stderr.flush()
 
 
-def index_doc_infos(doc_infos: List[DocInfo], link_prefix: str):
+def index_doc_infos(doc_infos: List[DocInfo], link_prefix: str, headers: Optional[Tuple[str, str]] = None):
+    if not headers:
+        headers = ('Name', 'Description')
     if not doc_infos:
         return ''
     table_items = []
@@ -205,10 +213,10 @@ def index_doc_infos(doc_infos: List[DocInfo], link_prefix: str):
                 link_name = '<span style={{wordBreak: "break-word"}}>' + link_name + '</span>'
                 break
         table_items.append({
-            'Name': link_name,
-            'Description': d.description
+            headers[0]: link_name,
+            headers[1]: d.description
         })
-    res = tableToMarkdown('', table_items, headers=['Name', 'Description'])
+    res = tableToMarkdown('', table_items, headers=headers)
     return fix_mdx(res)
 
 
@@ -318,7 +326,7 @@ def main():
         f.write("\n\n## Scripts\n\n")
         f.write(index_doc_infos(script_doc_infos, SCRIPTS_PREFIX))
         f.write("\n\n## Release Notes\n\n")
-        f.write(index_doc_infos(release_doc_infos, RELEASES_PREFIX))
+        f.write(index_doc_infos(release_doc_infos, RELEASES_PREFIX, headers=('Name', 'Date')))
     integration_items = [f'{integrations_full_prefix}/{d.id}' for d in integration_doc_infos]
     playbook_items = [f'{playbooks_full_prefix}/{d.id}' for d in playbooks_doc_infos]
     script_items = [f'{scripts_full_prefix}/{d.id}' for d in script_doc_infos]
