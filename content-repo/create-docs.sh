@@ -11,6 +11,8 @@ if [[ "${SCRIPT_DIR}" != /* ]]; then
     SCRIPT_DIR="${CURRENT_DIR}/${SCRIPT_DIR}"
 fi
 
+export GIT_LFS_SKIP_SMUDGE=1
+
 if [[ -n "$CONTENT_REPO_DIR" ]]; then
     CONTENT_GIT_DIR=$CONTENT_REPO_DIR
     echo "============== Local manual DEV MODE detected. ==================="
