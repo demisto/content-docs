@@ -11,6 +11,8 @@ if [[ "${SCRIPT_DIR}" != /* ]]; then
     SCRIPT_DIR="${CURRENT_DIR}/${SCRIPT_DIR}"
 fi
 
+export GIT_LFS_SKIP_SMUDGE=1
+
 if [[ -n "$CONTENT_REPO_DIR" ]]; then
     CONTENT_GIT_DIR=$CONTENT_REPO_DIR
     echo "============== Local manual DEV MODE detected. ==================="
@@ -67,8 +69,11 @@ else
     fi
 
     if [ -n "${NETLIFY}" ]; then
-        echo "Deleting cached content dir..."
-        rm -rf "${CONTENT_GIT_DIR}"
+        if [[ -d ${CONTENT_GIT_DIR} ]]; then
+            echo "Content git dir cached size: $(du -sh ${CONTENT_GIT_DIR})"
+            echo "Deleting cached content dir..."
+            rm -rf "${CONTENT_GIT_DIR}"
+        fi
         echo "Setting git config"
         git config --global user.email "netlifybuild@demisto.com"
         git config --global user.name "Netlify Dev Docs Build"
@@ -98,6 +103,8 @@ else
         git checkout master
     fi
 fi
+
+echo "Content git dir [${CONTENT_GIT_DIR}] size: $(du -sh ${CONTENT_GIT_DIR})"
 
 cd ${SCRIPT_DIR}
 
