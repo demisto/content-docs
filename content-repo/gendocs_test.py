@@ -146,9 +146,9 @@ def test_process_release_doc(tmp_path, mdx_server):
     res = process_release_doc(str(tmp_path), release_file)
     assert res.id == '20.4.1'
     assert res.description.startswith('Published on')
-    assert res.name == '20.4.1'
+    assert res.name == 'Content Release 20.4.1'
     with open(str(tmp_path / f'{res.id}.md'), 'r') as f:
         assert f.readline().startswith('---')
         assert f.readline().startswith(f'id: {res.id}')
-        assert f.readline().startswith(f'title: "{res.name}"')
+        assert f.readline().startswith(f'title: "{res.id}"')
         assert f.readline().startswith(f'custom_edit_url: https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/releases')
