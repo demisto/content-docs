@@ -13,7 +13,7 @@ import json
 from bs4 import BeautifulSoup
 from mdx_utils import fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server
 from CommonServerPython import tableToMarkdown  # type: ignore
-from typing import List, Optional, Dict
+from typing import List, Optional, Dict, Tuple
 from datetime import datetime
 from multiprocessing import Pool
 from functools import partial
@@ -51,6 +51,7 @@ PLAYBOOKS_DOCS_MATCH = [
 INTEGRATIONS_PREFIX = 'integrations'
 SCRIPTS_PREFIX = 'scripts'
 PLAYBOOKS_PREFIX = 'playbooks'
+RELEASES_PREFIX = 'releases'
 NO_HTML = '<!-- NOT_HTML_DOC -->'
 YES_HTML = '<!-- HTML_DOC -->'
 BRANCH = os.getenv('HEAD', 'master')
@@ -170,7 +171,38 @@ def process_readme_doc(target_dir: str, content_dir: str, readme_file: str, ) ->
         sys.stderr.flush()
 
 
-def index_doc_infos(doc_infos: List[DocInfo], link_prefix: str):
+def process_release_doc(target_dir: str, release_file: str) -> DocInfo:
+    try:
+        name = os.path.splitext(os.path.basename(release_file))[0]
+        with open(release_file, 'r') as f:
+            content = f.read()
+        desc_match = re.search(r'Published on .*', content, re.IGNORECASE)
+        if not desc_match:
+            raise ValueError('Published on... not found for release: ' + name)
+        doc_info = DocInfo(name, f'Content Release {name}', desc_match[0], release_file)
+        edit_url = f'https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/releases/{name}.md'
+        #  replace the title to be with one # so it doesn't appear in the TOC
+        content = re.sub(r'^## Demisto Content Release Notes', '# Demisto Content Release Notes', content)
+        content = f'---\nid: {name}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\nhide_title: true\n---\n\n' + content
+        content = content + \
+            f'\n\n---\n### Assets\n\n* **Download:** ' + \
+            f'[content_new.zip](https://github.com/demisto/content/releases/download/{name}/content_new.zip)\n' + \
+            f'* **Browse the Source Code:** [Content Repo @ {name}](https://github.com/demisto/content/tree/{name})\n'
+        verify_mdx_server(content)
+        with open(f'{target_dir}/{name}.md', mode='w', encoding='utf-8') as f:
+            f.write(content)
+        return doc_info
+    except Exception as ex:
+        print(f'fail: {release_file}. Exception: {traceback.format_exc()}')
+        return DocInfo('', '', '', release_file, str(ex).splitlines()[0])
+    finally:
+        sys.stdout.flush()
+        sys.stderr.flush()
+
+
+def index_doc_infos(doc_infos: List[DocInfo], link_prefix: str, headers: Optional[Tuple[str, str]] = None):
+    if not headers:
+        headers = ('Name', 'Description')
     if not doc_infos:
         return ''
     table_items = []
@@ -181,10 +213,10 @@ def index_doc_infos(doc_infos: List[DocInfo], link_prefix: str):
                 link_name = '<span style={{wordBreak: "break-word"}}>' + link_name + '</span>'
                 break
         table_items.append({
-            'Name': link_name,
-            'Description': d.description
+            headers[0]: link_name,
+            headers[1]: d.description
         })
-    res = tableToMarkdown('', table_items, headers=['Name', 'Description'])
+    res = tableToMarkdown('', table_items, headers=headers)
     return fix_mdx(res)
 
 
@@ -235,6 +267,34 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
     return sorted(doc_infos, key=lambda d: d.name.lower())  # sort by name
 
 
+def create_releases(target_dir: str):
+    releases_dir = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs/{RELEASES_PREFIX}'
+    target_sub_dir = f'{target_dir}/{RELEASES_PREFIX}'
+    if not os.path.exists(target_sub_dir):
+        os.makedirs(target_sub_dir)
+    release_files = glob.glob(f'{releases_dir}/*.md')
+    doc_infos: List[DocInfo] = []
+    success = []
+    fail = []
+    # flush before starting multi process
+    sys.stdout.flush()
+    sys.stderr.flush()
+    for doc_info in POOL.map(partial(process_release_doc, target_sub_dir), release_files):
+        if doc_info.error_msg:
+            fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
+        else:
+            doc_infos.append(doc_info)
+            success.append(doc_info.readme)
+    org_print(f'\n===========================================\nSuccess release docs ({len(success)}):')
+    for r in sorted(success):
+        print(r)
+    org_print(f'\n===========================================\nFailed release docs ({len(fail)}):')
+    for r in sorted(fail):
+        print(r)
+    org_print("\n===========================================\n")
+    return sorted(doc_infos, key=lambda d: d.name.lower(), reverse=True)
+
+
 def main():
     parser = argparse.ArgumentParser(description='Generate Content Docs',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -248,9 +308,11 @@ def main():
     integrations_full_prefix = f'{prefix}/{INTEGRATIONS_PREFIX}'
     scripts_full_prefix = f'{prefix}/{SCRIPTS_PREFIX}'
     playbooks_full_prefix = f'{prefix}/{PLAYBOOKS_PREFIX}'
+    releases_full_prefix = f'{prefix}/{RELEASES_PREFIX}'
     integration_doc_infos = create_docs(args.dir, args.target, INTEGRATION_DOCS_MATCH, INTEGRATIONS_PREFIX)
     playbooks_doc_infos = create_docs(args.dir, args.target, PLAYBOOKS_DOCS_MATCH, PLAYBOOKS_PREFIX)
     script_doc_infos = create_docs(args.dir, args.target, SCRIPTS_DOCS_MATCH, SCRIPTS_PREFIX)
+    release_doc_infos = create_releases(args.target)
     index_base = f'{os.path.dirname(os.path.abspath(__file__))}/reference-index.md'
     index_target = args.target + '/index.md'
     shutil.copy(index_base, index_target)
@@ -263,9 +325,12 @@ def main():
         f.write(index_doc_infos(playbooks_doc_infos, PLAYBOOKS_PREFIX))
         f.write("\n\n## Scripts\n\n")
         f.write(index_doc_infos(script_doc_infos, SCRIPTS_PREFIX))
+        f.write("\n\n## Content Release Notes\n\n")
+        f.write(index_doc_infos(release_doc_infos, RELEASES_PREFIX, headers=('Name', 'Date')))
     integration_items = [f'{integrations_full_prefix}/{d.id}' for d in integration_doc_infos]
     playbook_items = [f'{playbooks_full_prefix}/{d.id}' for d in playbooks_doc_infos]
     script_items = [f'{scripts_full_prefix}/{d.id}' for d in script_doc_infos]
+    release_items = [f'{releases_full_prefix}/{d.id}' for d in release_doc_infos]
     sidebar = [
         {
             "type": "doc",
@@ -285,7 +350,12 @@ def main():
             "type": "category",
             "label": "Scripts",
             "items": script_items
-        }
+        },
+        {
+            "type": "category",
+            "label": "Content Release Notes",
+            "items": release_items
+        },
     ]
     with open(f'{args.target}/sidebar.json', 'w') as f:
         json.dump(sidebar, f, indent=4)

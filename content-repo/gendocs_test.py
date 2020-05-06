@@ -1,5 +1,5 @@
 from gendocs import INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
-    index_doc_infos, DocInfo, gen_html_doc, normalize_id
+    index_doc_infos, DocInfo, gen_html_doc, normalize_id, process_release_doc
 from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server
 import os
 import pytest
@@ -46,6 +46,10 @@ def test_fix_mdx():
     assert '<!--' not in res
     assert '-->' not in res
     assert 'html comment' not in res
+    res = fix_mdx('multiple<br>values<br>')
+    assert '<br>' not in res
+    res = fix_mdx('valide br: <br></br>')
+    assert '<br></br>' in res
 
 
 def test_findfiles():
@@ -135,3 +139,16 @@ def test_bad_html():
 def test_normalize_id():
     assert normalize_id("that's not good") == 'thats-not-good'
     assert normalize_id("have i been pwned? v2") == 'have-i-been-pwned-v2'
+
+
+def test_process_release_doc(tmp_path, mdx_server):
+    release_file = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs/releases/20.4.1.md'
+    res = process_release_doc(str(tmp_path), release_file)
+    assert res.id == '20.4.1'
+    assert res.description.startswith('Published on')
+    assert res.name == 'Content Release 20.4.1'
+    with open(str(tmp_path / f'{res.id}.md'), 'r') as f:
+        assert f.readline().startswith('---')
+        assert f.readline().startswith(f'id: {res.id}')
+        assert f.readline().startswith(f'title: "{res.id}"')
+        assert f.readline().startswith(f'custom_edit_url: https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/releases')
