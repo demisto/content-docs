@@ -10,13 +10,13 @@ MDX_SERVER_PROCESS: Optional[subprocess.Popen] = None
 
 def fix_mdx(txt: str) -> str:
     replace_tuples = [
-        ('<br>', '<br/>'),
-        ('<hr>', '<hr/>'),
+        ('<br>(?!</br>)', '<br/>'),
+        ('<hr>(?!</hr>)', '<hr/>'),
         ('<pre>', '<pre>{`'),
         ('</pre>', '`}</pre>'),
     ]
     for old, new in replace_tuples:
-        txt = txt.replace(old, new)
+        txt = re.sub(old, new, txt, flags=re.IGNORECASE)
     # remove html comments
     txt = re.sub(r'<\!--.*?-->', '', txt, flags=re.DOTALL)
     return txt

@@ -46,6 +46,10 @@ def test_fix_mdx():
     assert '<!--' not in res
     assert '-->' not in res
     assert 'html comment' not in res
+    res = fix_mdx('multiple<br>values<br>')
+    assert '<br>' not in res
+    res = fix_mdx('valide br: <br></br>')
+    assert '<br></br>' in res
 
 
 def test_findfiles():
