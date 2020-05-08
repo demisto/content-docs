@@ -71,7 +71,7 @@ def main():
 
     proxy = demisto.params().get('proxy', False)
 
-    LOG(f'Command being called is {demisto.command()}')
+    demisto.debug(f'Command being called is {demisto.command()}')
     try:
         client = Client(
             base_url=base_url,
@@ -95,7 +95,7 @@ def main():
             demisto.incidents(incidents)
 
         elif demisto.command() == 'helloworld-say-hello':
-            return_outputs(*say_hello_command(client, demisto.args()))
+            return_results(say_hello_command(client, demisto.args()))
 
     # Log exceptions
     except Exception as e:
@@ -157,10 +157,10 @@ class Client(BaseClient):
 These are the best practices for defining the command functions.
 - Each integration command should have a corresponding `_command` function.
 - Each **_command** function should use `Client` class functions.
-- Each **_command** function should be unit testable. This means you should avoid using global functions, such as `demisto.results()`, `return_error()`, or `return_outputs()`.
+- Each **_command** function should be unit testable. This means you should avoid using global functions, such as `demisto.results()`, `return_error()`, or `return_results()`.
 - The **_command** function will receive `client` instance and `args` (`demisto.args()` dictionary).
 - The **_command** function will return 3 variables: readable_output, outputs, raw_response
-- To extract the outputs and return them to the War Room, in the `main` use `return_outputs(*say_hello_command(client, demisto.args()))`.
+- To return results to the War Room, in the `main` use `return_results(say_hello_command(client, demisto.args()))`.
 ```python
 def say_hello_command(client, args):
     """
@@ -186,14 +186,20 @@ def say_hello_command(client, args):
     # readable output will be in markdown format - https://www.markdownguide.org/basic-syntax/
     readable_output = f'## {result}'
     outputs = {
+        'name': name,
         'hello': result
     }
-
-    return (
-        readable_output,
-        outputs,
-        result  # raw response - the original response
+    
+    results = CommandResults(
+        outputs_prefix='HelloWorld.Result',
+        outputs_key_field='name',
+        outputs=outputs,
+        
+        readable_output=readable_output,
+        raw_response=result
     )
+
+    return results
 
 
 def main():
@@ -211,7 +217,7 @@ def main():
         SOME CODE HERE...
         """
         if demisto.command() == 'helloworld-say-hello':
-            return_outputs(*say_hello_command(client, demisto.args()))
+            return_results(say_hello_command(client, demisto.args()))
 
     # Log exceptions
     except Exception as e:
@@ -234,7 +240,7 @@ For more details on these two command argument properties look at the [yaml-file
 if demisto.command() == 'test-module':
     # This is the call made when pressing the integration Test button.
     result = test_module(client)
-    demisto.results(result)
+    return_results(result)
 ```
 ```python
 def test_module(client):
@@ -343,10 +349,10 @@ def main():
     try:
         if demisto.command() == 'test-module':
             test_get_session()
-            demisto.results('ok')
+            return_results('ok')
     
         if demisto.command() == 'atd-login':
-            get_session_command()
+            return_results(get_session_command(client, demisto.args()))
     
     except Exception as e:
         return_error(f'Failed to execute {demisto.command()} command. Error: {str(e)}')
@@ -373,15 +379,20 @@ def test_say_hello():
         proxy=False)
 
     args = {
-        "name": "Dbot"
+        "name": "DBot"
     }
-    _, outputs, _ = say_hello_command(client, args)
+    results = say_hello_command(client, args)
 
-    assert outputs["hello"] == "Hello Dbot"
+    assert results.outputs == {
+        'name': 'DBot',
+        'hello': "Hello DBot"
+    }
+    assert results.outputs_prefix == 'HelloWorld.Result'
+    assert results.outputs_key_field == 'name'
 
 
 def test_say_hello_over_http(requests_mock):
-    mock_response = {"result": "Hello Dbot"}
+    mock_response = {"result": "Hello DBot"}
     requests_mock.get("https://test.com/api/v1/suffix/hello/Dbot", json=mock_response)
 
     client = Client(
@@ -391,11 +402,16 @@ def test_say_hello_over_http(requests_mock):
         proxy=False)
 
     args = {
-        "name": "Dbot"
+        'name': 'DBot'
     }
-    _, outputs, _ = say_hello_over_http_command(client, args)
+    results = say_hello_over_http_command(client, args)
 
-    assert outputs["hello"] == "Hello Dbot"
+    assert results.outputs == {
+        'name': 'DBot',
+        'hello': 'Hello DBot'
+    }
+    assert results.outputs_prefix == 'HelloWorld.Result'
+    assert results.outputs_key_field == 'name'
 ```
 
 ## Variable Naming
@@ -441,21 +457,11 @@ First, we need to ensure that the debug level logging is enabled. Go to **Settin
  
 To post to the logs, we use the following:
 ```python
-demisto.debug('This is some information we want in the logs')
+demisto.debug('DEBUG level - This is some information we want in the logs')
+demisto.info('INFO level - This is some information we want in the logs')
+demisto.error('ERROR level - This is some information we want in the logs')
 ```
 
-```LOG``` is also available for logging and will print to the logs only when  ```LOG.print_log()``` is executed. This is used to print trace logs.
-```python
-try:
-    LOG('message 1')
-    if demisto.command() == 'virustotal-get-ip':
-        LOG('message 2')
-        get_ip_command()
-
-except Exception, ex:
-    LOG(ex.message)
-    LOG.print_log() # all the above messages will be printed to logs only when LOG.print_log() executed
-```
 
 You can also use the ```@logger``` decorator in Cortex XSOAR. When the decorator is placed at the top of each function, the logger will print the function name as well as all of the argument values to the ```LOG```.
 ```python
@@ -551,7 +557,56 @@ You may also use ```headerTransform``` to convert the existing keys into formatt
  <img width="758" src="../doc_imgs/integrations/50575199-fd5d0a00-0e01-11e9-9d54-944eb7c6f287.png"></img>
 
 
-### demisto.results()
+### CommandResults
+This class is used to return outputs. This object represents an entry in warroom.
+
+| Arg               | Type   | Description                                                                                                                                                                                |
+|-------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| outputs_prefix    | str    | Should be identical to the prefix in the yml contextPath in yml file. for example:         CortexXDR.Incident                                                                              |
+| outputs_key_field | str    | Primary key field in the main object. If the command returns Incidents, and of the properties of Incident is incident_id, then outputs_key_field='incident_id'                             |
+| outputs           | object | The data to be returned and will be set to context                                                                                                                                         |
+| human_readable    | str    | (Optional) markdown string that will be presented in the warroom, should be human readable -  (HumanReadable) - if not set, readable output will be generated via tableToMarkdown function |
+| raw_response      | object | (Optional) must be dictionary, if not provided then will be equal to outputs.  Usually must be the original raw response from the 3rd party service (originally Contents)                  |
+| indicators        | list   | Must be list of Indicator types, like Common.IP, Common.URL, Common.File, Common.Domain, Common.CVE.                                                                                       |
+
+**Example**
+```python
+results = CommandResults(
+    outputs='VirusTotal.IP',
+    outputs_key_field='Address',
+    outputs={
+        'Address': '8.8.8.8',
+        'ASN': 12345
+    }
+)
+return_results(results)
+```
+
+
+### return_results
+```return_results()``` calls `demisto.results()`. It accept `CommandResults` object or any object that `demisto.results` 
+can accept.
+Use return_results to return mainly `CommandResults` object or basic `string`.
+**Example**
+```python
+results = CommandResults(
+    outputs='VirusTotal.IP',
+    outputs_key_field='Address',
+    outputs={
+        'Address': '8.8.8.8',
+        'ASN': 12345
+    }
+)
+return_results(results)
+```
+
+```python
+return_results('Hello World')
+```
+
+### DEPRECATED - demisto.results()
+_Note_: Use `return_results` instead
+
 ```demisto.results()``` returns entries to the warroom from an integration command or an automation.
 A typical example of returning an entry from an integration command looks as follows:
 ```python
@@ -596,36 +651,35 @@ The entry is composed of multiple components.
 The `entryTypes` and `formats` dictionaries are ease-of-use dictionaries imported from `CommonServerPython` and respectively appear as follows:
 ```python
 # entryTypes
-entryTypes = {
-    'note': 1,
-    'downloadAgent': 2,
-    'file': 3,
-    'error': 4,
-    'pinned': 5,
-    'userManagement': 6,
-    'image': 7,
-    'plagroundError': 8,
-    'playgroundError': 8,
-    'entryInfoFile': 9,
-    'warning': 11,
-    'map': 15,
-    'widget': 17
-}
+class EntryType(object):
+    NOTE = 1
+    DOWNLOAD_AGENT = 2
+    FILE = 3
+    ERROR = 4
+    PINNED = 5
+    USER_MANAGEMENT = 6
+    IMAGE = 7
+    PLAYGROUND_ERROR = 8
+    ENTRY_INFO_FILE = 9
+    WARNING = 11
+    MAP_ENTRY_TYPE = 15
+    WIDGET = 17
 ```
 ```python
 # formats
-formats = {
-    'html': 'html',
-    'table': 'table',
-    'json': 'json',
-    'text': 'text',
-    'dbotResponse': 'dbotCommandResponse',
-    'markdown': 'markdown'
-}
+class EntryFormat(object):
+    HTML = 'html'
+    TABLE = 'table'
+    JSON = 'json'
+    TEXT = 'text'
+    DBOT_RESPONSE = 'dbotCommandResponse'
+    MARKDOWN = 'markdown'
 ```
 
 
-### return_outputs
+### DEPRECATED - return_outputs
+_Note_: Use `return_results` instead
+ 
 `return_outputs()` is a convenience function - it is simply a wrapper of `demisto.results()` used to return results to the War Room and which defaults to the most commonly used configuration for entries, only exposing the most functional parameters for the sake of simplicity. For example:
 ```python
 def return_outputs(readable_output, outputs=None, raw_response=None, timeline=None):
@@ -658,7 +712,6 @@ return_outputs(
     {'Value': 'some indicator', 'Message': 'Some message', 'Category': 'Integration Update'}
 )
 ```
-_Note_: Using `return_outputs()` is the preferred method of returning entries to the war room. `demisto.results()` should only be used if the user's use-case demands more specificity than the `return_outputs()` function permits.
 
 
 **Error**
