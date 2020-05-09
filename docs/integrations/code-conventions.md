@@ -51,7 +51,7 @@ These are the best practices for defining the Main function.
 - Create the `main` function and in the main extract all the integration parameters.
 - Implement the **_command** function for each integration command (e.g., `say_hello_command(client, demisto.args())`)
 - To properly handle exceptions, wrap the commands with try/except in the main. The `return_error()` function receives error message and returns error entry back into Cortex XSOAR. It will also print the full error to the Cortex XSOAR logs. 
-- For logging, use the `LOG("write some log here")` function.
+- For logging, use the `demisto.debug("write some log here")` function.
 - In the main function, initialize the Client instance, and pass that client to `_command` functions.
 ```python
 def main():
@@ -424,13 +424,6 @@ When naming variables use the following convention.
 ```variableName```
 
 ## Outputs
-When naming outputs for context use the following convention.
-
-```Brandname.Object.Property```
-
-For example:
-```IPInfo.IP.ASN```
-
 Make sure you read and understand [Context and Outputs](context-and-outputs).
 
 Make sure you follow our [context standards](context-standards) when naming indicator outputs.
@@ -581,12 +574,13 @@ results = CommandResults(
 )
 return_results(results)
 ```
-
+__Note:__ More examples on how to return results, [here](context-and-outputs)
 
 ### return_results
 ```return_results()``` calls `demisto.results()`. It accept `CommandResults` object or any object that `demisto.results` 
 can accept.
-Use return_results to return mainly `CommandResults` object or basic `string`.
+Use `return_results` to return mainly `CommandResults` object or basic `string`.
+
 **Example**
 ```python
 results = CommandResults(
@@ -604,6 +598,20 @@ return_results(results)
 return_results('Hello World')
 ```
 
+__Note:__ More examples on how to return results, [here](context-and-outputs)
+
+### return_error
+**Note:** Will return error entry to the warroom and will call `sys.exit()` - meaning the script will stop.
+
+```python
+return_error(message="error has occurred: API Key is incorrect", error=ex)
+```
+
+Will produce an error in the War Room, for example:
+
+<img width="907" src="../doc_imgs/integrations/50571503-ed6b0900-0db4-11e9-8e9e-dc23f5ff403c.png"></img>
+
+
 ### DEPRECATED - demisto.results()
 _Note_: Use `return_results` instead
 
@@ -612,18 +620,18 @@ A typical example of returning an entry from an integration command looks as fol
 ```python
 demisto.results(
     {
-        'Type': entryTypes['note'],
-        'ContentsFormat': formats['text'],
+        'Type': EntryType.NOTE,
+        'ContentsFormat': EntryFormat.TEXT,
         'Content': res,
         'HumanReadable': 'Submitted file is being analyzed.',
-        'ReadableContentsFormat': formats['markdown'],
+        'ReadableContentsFormat': EntryFormat.MARKDOWN,
         'EntryContext': entry_context,
         'IndicatorTimeline': timeline
     }
 )
 ```
 The entry is composed of multiple components.
-* The `Type` dictates what kind of entry is returned to the warroom. The available options as of today are shown in the dictionary keys of `entryTypes` below.
+* The `Type` dictates what kind of entry is returned to the warroom. The available options as of today are shown in the dictionary keys of `EntryType` below.
 * The `ContentsFormat` dictates how to format the value passed to the `Content` field, the available options can be seen below.
 * The `Content` usually takes the raw unformatted data - if an API call was made in a command, then typically the response from the request is passed here.
 * The `HumanReadable` is the textual information displayed in the warroom entry.
@@ -648,9 +656,8 @@ The entry is composed of multiple components.
     The answer is any time that a command operates on an indicator. A good indicator (pun intended?) of when `timeline` data should be included in an entry is to look and see if the command returns a `DBotScore` or entities as described in our [context standards documentation](../integrations/context-standards) to the entry context. A common case is reputation commands, i.e. `!ip`, `!url`, `!file`, etc. When implementing these commands in integrations, `timeline` data should be included in the returned entry. To see an example of an integration that returns entries with `timeline` data, take a look at our [AbuseIPDB integration](https://github.com/demisto/content/blob/master/Integrations/AbuseDB/AbuseDB.py#L201).
 
 
-The `entryTypes` and `formats` dictionaries are ease-of-use dictionaries imported from `CommonServerPython` and respectively appear as follows:
+The `EntryType` and `EntryFormat` enum classes are imported from `CommonServerPython` and respectively appear as follows:
 ```python
-# entryTypes
 class EntryType(object):
     NOTE = 1
     DOWNLOAD_AGENT = 2
@@ -666,7 +673,6 @@ class EntryType(object):
     WIDGET = 17
 ```
 ```python
-# formats
 class EntryFormat(object):
     HTML = 'html'
     TABLE = 'table'
@@ -712,16 +718,6 @@ return_outputs(
     {'Value': 'some indicator', 'Message': 'Some message', 'Category': 'Integration Update'}
 )
 ```
-
-
-**Error**
-```python
-return_error(message="error has occured: API Key is incorrect", error=ex)
-```
-
-Will produce an error in the War Room, for example:
-
-<img width="907" src="../doc_imgs/integrations/50571503-ed6b0900-0db4-11e9-8e9e-dc23f5ff403c.png"></img>
 
 
 ### AutoExtract
