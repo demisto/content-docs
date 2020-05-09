@@ -82,7 +82,7 @@ def main():
         if demisto.command() == 'test-module':
             # This is the call made when pressing the integration Test button.
             result = test_module(client)
-            demisto.results(result)
+            return_results(result)
 
         elif demisto.command() == 'fetch-incidents':
             # Set and define the fetch incidents command to run after activated via integration settings.
@@ -122,35 +122,86 @@ class Client(BaseClient):
     Should do requests and return data
     """
 
-    def say_hello(self, name):
-        return f'Hello {name}'
+    def get_ip_reputation(self, ip: str) -> Dict[str, Any]:
+        """Gets the IP reputation using the '/ip' API endpoint
 
-    def say_hello_http_request(self, name):
+        :type ip: ``str``
+        :param ip: IP address to get the reputation for
+
+        :return: dict containing the IP reputation as returned from the API
+        :rtype: ``Dict[str, Any]``
         """
-        initiates a http request to test url
-        """
-        data = self._http_request(
+
+        return self._http_request(
             method='GET',
-            url_suffix='/hello/' + name
-        )
-        return data.get('result')
-
-    def list_incidents(self):
-        """
-        returns dummy incident data, just for the example.
-        """
-        return [
-            {
-                'incident_id': 1,
-                'description': 'Hello incident 1',
-                'created_time': datetime.utcnow().strftime(DATE_FORMAT)
-            },
-            {
-                'incident_id': 2,
-                'description': 'Hello incident 2',
-                'created_time': datetime.utcnow().strftime(DATE_FORMAT)
+            url_suffix=f'/ip',
+            params={
+                'ip': ip
             }
-        ]
+        )
+
+    def get_alert(self, alert_id: str) -> Dict[str, Any]:
+        """Gets a specific HelloWorld alert by id
+
+        :type alert_id: ``str``
+        :param alert_id: id of the alert to return
+
+        :return: dict containing the alert as returned from the API
+        :rtype: ``Dict[str, Any]``
+        """
+
+        return self._http_request(
+            method='GET',
+            url_suffix=f'/get_alert_details',
+            params={
+                'alert_id': alert_id
+            }
+        )
+```
+
+#### Example - client instance using API KEY
+```python
+api_key = demisto.params().get('apikey')
+
+# get the service API url
+base_url = urljoin(demisto.params()['url'], '/api/v1')
+
+# if your Client class inherits from BaseClient, SSL verification is
+# handled out of the box by it, just pass ``verify_certificate`` to
+# the Client constructor
+verify_certificate = not demisto.params().get('insecure', False)
+
+headers = {
+    'Authorization': f'Bearer {api_key}'
+}
+
+client = Client(
+    base_url=base_url,
+    verify=verify_certificate,
+    headers=headers,
+    proxy=proxy
+)
+```
+
+#### Example - client instance using Basic Authentication
+```python
+username = demisto.params().get('credentials').get('identifier')
+password = demisto.params().get('credentials').get('password')
+
+# get the service API url
+base_url = urljoin(demisto.params()['url'], '/api/v1')
+
+# if your Client class inherits from BaseClient, SSL verification is
+# handled out of the box by it, just pass ``verify_certificate`` to
+# the Client constructor
+verify_certificate = not demisto.params().get('insecure', False)
+
+client = Client(
+    base_url=base_url,
+    verify=verify_certificate,
+    auth=(username, password),
+    proxy=proxy
+)
 ```
 
 ## Command Functions
@@ -490,7 +541,7 @@ This will return a file to the War Room by using the following syntax:
 filename = "foo.txt",
 file_content = "hello foo"
 
-demisto.results(fileResult(filename, file_content))
+return_results(fileResult(filename, file_content))
 ```
 
 You can specify the file type, but it defaults to "None" when not provided.
