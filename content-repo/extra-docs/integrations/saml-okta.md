@@ -8,18 +8,12 @@ You can authenticate your Demisto users using SAML 2.0 authentication and Okta a
 
 This definition of SAML 2.0 is taken from the [SAML 2.0 page in Wikipedia](https://en.wikipedia.org/wiki/SAML_2.0).
 
-Security Assertion Markup Language 2.0 (SAML 2.0) is a version of the SAML standard for  
-exchanging authentication and authorization data between security domains. SAML 2.0 is an  
-XML-based protocol that uses security tokens containing assertions to pass information  
-about a principal (usually an end user) between a SAML authority, named an Identity  
-Provider, and a SAML consumer, named a Service Provider. SAML 2.0 enables web-based  
-authentication and authorization scenarios including cross-domain single sign-on (SSO),  
-which helps reduce the administrative overhead of distributing multiple authentication  
-tokens to the user.
+Security Assertion Markup Language 2.0 (SAML 2.0) is a version of the SAML standard for  exchanging authentication and authorization data between security domains. SAML 2.0 is an  XML-based protocol that uses security tokens containing assertions to pass information  about a principal (usually an end user) between a SAML authority, named an Identity  Provider, and a SAML consumer, named a Service Provider. SAML 2.0 enables web-based  authentication and authorization scenarios including cross-domain single sign-on (SSO),  which helps reduce the administrative overhead of distributing multiple authentication  tokens to the user.
 
 ## Definitions
 
 These parameters are part of the configuration process.
+
 | **Parameter** | **Value** |
 | --- | --- |
 Service Provider |  Demisto
