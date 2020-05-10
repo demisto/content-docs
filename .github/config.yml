@@ -1,0 +1,21 @@
+issueOpen: |
+  Hello World! Welcome to our Content Developer Docs project!
+  Thanks and congrats for opening your very first issue.
+  If you know the fix, you may also submit a PR to fix the issue if you like! 
+   
+newPRWelcomeComment: |
+  Welcome! Thank you and congrats on your first pull request.
+  
+  **What happens next?**
+  * Netlify is building a preview of the site with your modifications.
+  * Once the Netlify build is complete a preview will be available  at the _Checks_ section of the PR under _deploy/netlify_.
+  * A member of the team will then review the pull request and provide feedback as needed.
+  * If all is good and the pull request has passed review, you will be able to merge the PR.
+  
+  Good luck to us all!
+
+firstPRMergeComment: |
+  Congrats on merging your first pull request! 
+  
+  Netilfy is now creating a production deploy. In about 30 minutes our site: https://xsoar.pan.dev will be updated with the changes from this PR. 
+
