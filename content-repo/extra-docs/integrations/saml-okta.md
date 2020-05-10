@@ -107,6 +107,7 @@ Before you configure an instance of the SAML 2.0 integration in Demisto, access 
 1.  In Demisto, navigate to **Settings > Integrations > Servers & Services**.
 2.  Search for SAML 2.0.
 3.  Click **Add instance** to configure a new integration instance.
+
     | **Attribute** | **Description** |
     | --- | --- |
     Name | A meaningful name for the integration instance.
