@@ -13,7 +13,7 @@ import json
 from bs4 import BeautifulSoup
 from mdx_utils import fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server
 from CommonServerPython import tableToMarkdown  # type: ignore
-from typing import List, Optional, Dict, Tuple
+from typing import List, Optional, Dict, Tuple, Iterator
 from datetime import datetime
 from multiprocessing import Pool
 from functools import partial
@@ -245,7 +245,7 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str) -> 
         return DocInfo('', '', '', readme_file, str(ex).splitlines()[0])
 
 
-def process_extra_docs(target_dir: str, prefix: str):
+def process_extra_docs(target_dir: str, prefix: str) -> Iterator[DocInfo]:
     md_dir = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs/{prefix}'
     for readme_file in glob.glob(f'{md_dir}/*.md'):
         yield process_extra_readme_doc(target_dir, prefix, readme_file)

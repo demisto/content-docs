@@ -8,7 +8,7 @@ newPRWelcomeComment: |
   
   **What happens next?**
   * Netlify is building a preview of the site with your modifications.
-  * Once the Netlify build is complete a preview will be available  at the _Checks_ section of the PR under _deploy/netlify_.
+  * Once the Netlify build is complete a preview will be available at the _Checks_ section of the PR under _deploy/netlify_.
   * A member of the team will then review the pull request and provide feedback as needed.
   * If all is good and the pull request has passed review, you will be able to merge the PR.
   
