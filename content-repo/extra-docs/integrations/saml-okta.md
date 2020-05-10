@@ -24,8 +24,8 @@ Identity Provider | Okta
 
 There are several steps you need to complete.
 
-1.  Create Okta Groups for Demisto Users
-2.  [Define the Okta application for Demisto authentication](#create-okta-groups-for-demisto-users)
+1.  [Create Okta Groups for Demisto Users](#create-okta-groups-for-demisto-users)
+2.  [Define the Okta application for Demisto authentication](#how-to-create-and-add-users-to-an-okta-group)
 3.  [Configure the SAML 2.0 integration in Demisto](#configure-the-saml-20-integration-in-demisto)
 4.  [Map Okta groups to Demisto roles](#map-okta-groups-to-demisto-roles)
 
@@ -97,7 +97,7 @@ To authenticate Demisto users with Okta, you need to have at least one Okta grou
     ![](../../../docs/doc_imgs/reference/mceclip2.png)
 10.  Click **Finish**.
 
-## Configure the SAML 2.0 Integration in Demisto
+### Configure the SAML 2.0 Integration in Demisto
 
 Before you configure an instance of the SAML 2.0 integration in Demisto, access the Okta Setup Instructions and Identity Provider metadata in Okta. The values of several integration parameters are located here, such as Identity Provider Single Sign-On URL.
 
@@ -133,7 +133,7 @@ Before you configure an instance of the SAML 2.0 integration in Demisto, access 
 5.  Go back to the instance settings, and click **Get service provider metadata**, to verify that the settings are successful.  
     ![](../../../docs/doc_imgs/reference/mceclip7.png)
 
-## Map Okta Groups to Demisto Roles
+### Map Okta Groups to Demisto Roles
 
 It is important that when you specify the Okta group in Demisto to map to a role that you use the exact group name as it appears in Okta. Alternatively, you can specify .\*, which will pass all Okta groups to the relevant Demisto roles (this is not recommended).
 
