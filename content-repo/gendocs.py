@@ -257,7 +257,7 @@ POOL_SIZE = 4
 POOL = Pool(POOL_SIZE)
 
 
-def process_doc_info(doc_info: DocInfo, success: List[DocInfo], fail: List[DocInfo], doc_infos: List[DocInfo], seen_docs: Dict[str, DocInfo]):
+def process_doc_info(doc_info: DocInfo, success: List[str], fail: List[str], doc_infos: List[DocInfo], seen_docs: Dict[str, DocInfo]):
     if doc_info.error_msg:
         fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
     elif doc_info.id in seen_docs:
@@ -284,8 +284,8 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
     if not os.path.exists(target_sub_dir):
         os.makedirs(target_sub_dir)
     doc_infos: List[DocInfo] = []
-    success = []
-    fail = []
+    success: List[str] = []
+    fail: List[str] = []
     # flush before starting multi process
     sys.stdout.flush()
     sys.stderr.flush()
