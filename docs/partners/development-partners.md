@@ -34,7 +34,7 @@ Crest Data Systems is a leading provider of software integrations and custom sol
 → Contact Malhar Shah at [malhar@crestdatasys.com](mailto:malhar@crestdatasys.com)
 
 
-### QMasters ([qmasters.co](https://qmasters.com))
+### QMasters ([qmasters.co](https://qmasters.co))
 
 ![qmasters_dev_partner](../doc_imgs/partners/qmasters_dev_partner.png)
 
