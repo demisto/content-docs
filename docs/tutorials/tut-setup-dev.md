@@ -425,7 +425,7 @@ The last step is to `commit` your changes and `push` them to the *origin* in ord
 
 But you can also run the hooks locally using the demisto-sdk, in order to do that you can run the commands:  
 1. `demisto-sdk format` - this will auto correct couple of things in order for our validation to pass. 
-You can see the [docs](https://github.com/demisto/demisto-sdk/blob/master/docs/format_command.md)  
+You can see the [docs](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/format/README.md)  
 2. `demisto-sdk validate -g` - this will validate the integrity of the yml files, and will make sure they follow 
 our pre-set of roles. You can see the [docs](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md)  
 3. `demisto-sdk lint -d <The path to your changed/newly added content entity>` - this will run lint and pytest on your 
