@@ -118,11 +118,7 @@ function Feature({ imageUrl, title, description, button }) {
 function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
-  const scrollToRef = ref => ref.current.scrollIntoView({ behavior: "smooth" });
   const vertificalsRef = useRef(null);
-  const toolsRef = useRef(null);
-  const scrollToVerticals = () => scrollToRef(vertificalsRef);
-  const scrollToTools = () => scrollToRef(toolsRef);
   return (
     <Layout
       title={`${siteConfig.themeConfig.navbar.title}`}
