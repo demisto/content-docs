@@ -301,7 +301,7 @@ Use demisto-sdk -h to see the available commands.
 
 Now, run the `demisto-sdk lint` command on the folder `Packs/HelloWorld/Integrations/HelloWorld` using the `-d` option,
  or if you want to run  against all the committed files in your branch you can use `demisto-sdk lint -g`.
-It will run both the [linters](linting) and [pytest](unit-testing):
+It will run both the [linters](../integratios/linting) and [pytest](../integrations/unit-testing):
 ```bash
 (venv) sb@dddd:~/demisto/content$ demisto-sdk lint -d Packs/HelloWorld/Integrations/HelloWorld
 Detected python version: [3.7] for docker image: demisto/python3:3.7.4.2245
@@ -359,7 +359,7 @@ Switched to a new branch 'my_integration_name'
 ```
 
 Now, use `demisto-sdk` to create a directory under `Packs/<Your pack name>`, named after your product where you will put all your content files later, and add it to the staged changes in `git`.  
-For more description regarding what exactly a pack is please click [here](packs-fromat). 
+For more description regarding what exactly a pack is please click [here](../integrations/packs-fromat). 
 
 Make sure you use **PascalCase** in the directory name (i.e. `MyIntegration`), you can create a Pack and an Integration directory using the `demisto-sdk init` command.
 
@@ -425,7 +425,7 @@ The last step is to `commit` your changes and `push` them to the *origin* in ord
 
 But you can also run the hooks locally using the demisto-sdk, in order to do that you can run the commands:  
 1. `demisto-sdk format` - this will auto correct couple of things in order for our validation to pass. 
-You can see the [docs](https://github.com/demisto/demisto-sdk/blob/master/docs/format_command.md)  
+You can see the [docs](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/format/README.md)  
 2. `demisto-sdk validate -g` - this will validate the integrity of the yml files, and will make sure they follow 
 our pre-set of roles. You can see the [docs](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md)  
 3. `demisto-sdk lint -d <The path to your changed/newly added content entity>` - this will run lint and pytest on your 
