@@ -118,7 +118,7 @@ if [[ "$PULL_REQUEST" == "true" && "$CONTENT_BRANCH" == "master" ]]; then
     echo "HEAD ref $(git rev-parse HEAD). remotes/origin/master ref: $(git rev-parse remotes/origin/master)"
     DIFF_FILES=$(git diff --name-only  remotes/origin/master...HEAD --)  # so we fail on errors if there is a problem
     echo -e "Modified files:\n$DIFF_FILES\n-----------"    
-    echo "$DIFF_FILES" | grep -v -E '^docs/' || MAX_FILES=20    
+    echo "$DIFF_FILES" | grep -v -E '^docs/|^content-repo/extra-docs/|^static/' || MAX_FILES=20    
     if [ -n "$MAX_FILES" ]; then
         echo "MAX_FILES set to: $MAX_FILES"
         export MAX_FILES

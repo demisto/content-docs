@@ -1,12 +1,6 @@
 const mdx = require('@mdx-js/mdx');
 const http = require('http')
 
-async function parseMDX(file) {
-    const contents = await readFile(file, 'utf8');
-    parsed = await mdx(contents)
-    console.log("parsed successfully!")
-}
-
 function requestHandler(req, res) {
     // console.log(req)
     if (req.method != 'POST') {

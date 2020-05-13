@@ -13,7 +13,7 @@ import json
 from bs4 import BeautifulSoup
 from mdx_utils import fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server
 from CommonServerPython import tableToMarkdown  # type: ignore
-from typing import List, Optional, Dict, Tuple
+from typing import List, Optional, Dict, Tuple, Iterator
 from datetime import datetime
 from multiprocessing import Pool
 from functools import partial
@@ -113,7 +113,7 @@ def gen_html_doc(txt: str) -> str:
             '<div dangerouslySetInnerHTML={{__html: txt}} />\n')
 
 
-def process_readme_doc(target_dir: str, content_dir: str, readme_file: str, ) -> DocInfo:
+def process_readme_doc(target_dir: str, content_dir: str, readme_file: str) -> DocInfo:
     try:
         base_dir = os.path.dirname(readme_file)
         if readme_file.endswith('_README.md'):
@@ -174,7 +174,7 @@ def process_readme_doc(target_dir: str, content_dir: str, readme_file: str, ) ->
 def process_release_doc(target_dir: str, release_file: str) -> DocInfo:
     try:
         name = os.path.splitext(os.path.basename(release_file))[0]
-        with open(release_file, 'r') as f:
+        with open(release_file, 'r', encoding='utf-8') as f:
             content = f.read()
         desc_match = re.search(r'Published on .*', content, re.IGNORECASE)
         if not desc_match:
@@ -220,10 +220,52 @@ def index_doc_infos(doc_infos: List[DocInfo], link_prefix: str, headers: Optiona
     return fix_mdx(res)
 
 
+def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str) -> DocInfo:
+    try:
+        with open(readme_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+        front_matter_match = re.match(r'---\n(.*?)\n---', content, re.DOTALL)
+        if not front_matter_match:
+            raise ValueError(f'No front matter. Extra docs must have description and title front matter. File: {readme_file}')
+        yml_matter = front_matter_match[1]
+        yml_data = yaml.safe_load(yml_matter)
+        name = yml_data['title']
+        file_id = yml_data.get('id') or normalize_id(name)
+        desc = yml_data.get('description')
+        readme_file_name = os.path.basename(readme_file)
+        edit_url = f'https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/{prefix}/{readme_file_name}'
+        content = content.replace(front_matter_match[0], '')
+        content = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\n---\n\n' + content
+        verify_mdx_server(content)
+        with open(f'{target_dir}/{file_id}.md', mode='w', encoding='utf-8') as f:
+            f.write(content)
+        return DocInfo(file_id, name, desc, readme_file)
+    except Exception as ex:
+        print(f'fail: {readme_file}. Exception: {traceback.format_exc()}')
+        return DocInfo('', '', '', readme_file, str(ex).splitlines()[0])
+
+
+def process_extra_docs(target_dir: str, prefix: str) -> Iterator[DocInfo]:
+    md_dir = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs/{prefix}'
+    for readme_file in glob.glob(f'{md_dir}/*.md'):
+        yield process_extra_readme_doc(target_dir, prefix, readme_file)
+
+
 # POOL has to be declared after process_readme_doc so it can find it when doing map
 # multiprocess pool
 POOL_SIZE = 4
 POOL = Pool(POOL_SIZE)
+
+
+def process_doc_info(doc_info: DocInfo, success: List[str], fail: List[str], doc_infos: List[DocInfo], seen_docs: Dict[str, DocInfo]):
+    if doc_info.error_msg:
+        fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
+    elif doc_info.id in seen_docs:
+        fail.append(f'{doc_info.readme} (duplicate with {seen_docs[doc_info.id].readme})')
+    else:
+        doc_infos.append(doc_info)
+        success.append(doc_info.readme)
+        seen_docs[doc_info.id] = doc_info
 
 
 def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix: str):
@@ -242,21 +284,16 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
     if not os.path.exists(target_sub_dir):
         os.makedirs(target_sub_dir)
     doc_infos: List[DocInfo] = []
-    success = []
-    fail = []
+    success: List[str] = []
+    fail: List[str] = []
     # flush before starting multi process
     sys.stdout.flush()
     sys.stderr.flush()
     seen_docs: Dict[str, DocInfo] = {}
     for doc_info in POOL.map(partial(process_readme_doc, target_sub_dir, content_dir), readme_files):
-        if doc_info.error_msg:
-            fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
-        elif doc_info.id in seen_docs:
-            fail.append(f'{doc_info.readme} (duplicate with {seen_docs[doc_info.id].readme})')
-        else:
-            doc_infos.append(doc_info)
-            success.append(doc_info.readme)
-            seen_docs[doc_info.id] = doc_info
+        process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
+    for doc_info in process_extra_docs(target_sub_dir, prefix):
+        process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
     org_print(f'\n===========================================\nSuccess {prefix} docs ({len(success)}):')
     for r in sorted(success):
         print(r)
