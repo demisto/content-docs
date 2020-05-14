@@ -11,7 +11,7 @@ To generate a change log, run the following command provided by the `demisto-sdk
 demisto-sdk update-release-notes -p [Changed Pack Name] -u [major|minor|revision]
 ```
 
-This command will bump the `currentVersion` found in `pack_metadata.json` file automatically according the the update version (as denoted by the `-u` flag) for you.
+This command will bump the `currentVersion` found in `pack_metadata.json` file automatically according to the update version (as denoted by the `-u` flag) for you.
 
 ## Naming
 The change log file will be generated for you and is found under the `ReleaseNotes` folder within each pack. If this folder does not already exist, one will be created for you.
