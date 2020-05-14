@@ -24,7 +24,7 @@ All the directories within the pack are the representation of all the possible e
 - IncidentFields
 - Layouts
 - Classifiers
-- Misc
+- IndicatorTypes
 - IndicatorFields
 - Connections
 - TestPlaybooks
