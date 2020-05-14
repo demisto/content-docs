@@ -90,4 +90,4 @@ One should specify in the corresponding change log file the following changes:
   - Updating outputs
   - Fixes for customer bugs
 
-To view the previous format for release notes, you may find them [here.](../integrations/changelog-old)
+To view the previous format for release notes, you may find them [here.](../integrations/changelog-old-format)
