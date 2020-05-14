@@ -1,11 +1,11 @@
 ---
-id: changelog-old
+id: changelog-old-format
 title: Change Log (Old Format)
 ---
 
 A change log file helps to keep track on the changes made for a specific content entity like an integration or a playbook.
 
-XSoar has changed the format of the change log to utilize the format created by the `demisto-sdk update-release-notes` command. Please use the new format which can be found [here.](https://demisto.pan.dev/docs/integrations/changelog)
+XSoar has changed the format of the change log to utilize the format created by the `demisto-sdk update-release-notes` command. Please use the new format which can be found [here.](../integrations/changelog)
 
 ## Naming
 Under the same path of the changed content entity add a new file:

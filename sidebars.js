@@ -80,7 +80,8 @@ const sidebars = {
           items: [
             "integrations/integration-docs",
             "integrations/doc-structure",
-            "integrations/changelog"
+            "integrations/changelog",
+            "integrations/changelog-old-format",
           ],
         }
       ]
