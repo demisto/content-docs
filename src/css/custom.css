@@ -252,3 +252,9 @@ video {
   width: 100%    !important;
   height: auto   !important;
 }
+
+/* Algolia overrides */
+.algolia-autocomplete .ds-dropdown-menu {
+  height: 500px !important;
+  overflow: auto !important;
+}
