@@ -90,4 +90,8 @@ One should specify in the corresponding change log file the following changes:
   - Updating outputs
   - Fixes for customer bugs
 
+Generally, you will use the command when you are ready to merge and expect no other changes. If you need to make additional 
+changes *after* running the command, you will need to remove the `-u` argument. This will generate a new release notes 
+file for you to fill out.
+
 To view the previous format for release notes, you may find them [here.](../integrations/changelog-old-format)
