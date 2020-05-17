@@ -80,7 +80,7 @@ You can create new Python files, or open existing Python files.
 
 ### Create a Python file
 
-1.  Under the **Cortex XSOAR Settings** toolbar, you’ll have two button named `Create Cortex XSOAR Automation Configuration` and `Create Cortex XSOAR Integration Configuration`
+1.  Under the **Cortex XSOAR Settings** toolbar, you’ll have two buttons named `Create Cortex XSOAR Automation Configuration` and `Create Cortex XSOAR Integration Configuration`
 2.  Click the appropriate button. A new Cortex XSOAR YML file is created for this script, and you can now define arguments and other settings.
 
 ### Edit an Existing Cortex XSOAR File
