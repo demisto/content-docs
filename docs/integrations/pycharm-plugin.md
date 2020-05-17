@@ -56,7 +56,7 @@ To interact with Cortex XSOAR while working in PyCharm, you need to enter severa
 6.  Optional: To test the configuration, click **Test**.
 7.  Click **Apply**.
 
-After you successfully configure the plugin several files are automatically downloaded from your Cortex XSOAR instance and saved in your project's root. These files enable you to use the functions you defined in Cortex XSOAR and run the scripts locally in PyCharm.
+After you successfully configure the plugin, several files are automatically downloaded from your Cortex XSOAR instance and saved in your project's root directory. These files enable you to use the functions you defined in Cortex XSOAR and run the scripts locally in PyCharm.
 
 *   `CommonServerPython`
 *   `CommonServerUserPython`
