@@ -114,7 +114,7 @@ From PyCharm, you can run an integration or automation in Cortex XSOAR. When you
 
 In general, you do not need to update Cortex XSOAR mock files. When there is an important update to the mock files, we will announce it in the plugin release notes.
 
-You might want manually update the mock files after content updates, in which `CommonPythonServer` and `CommonServerUserPython` files are changed or updated. Manually updating the mock files updates the files in your local environment.
+You might want to manually update the mock files after content updates, in which `CommonPythonServer` and `CommonServerUserPython` files are changed or updated. Manually updating the mock files updates the files in your local environment.
 
 To update the Cortex XSOAR mock files, select **Tools > Cortex XSOAR Plugin Setup**, and click Update **Cortex XSOAR Mocks**.
 
