@@ -13,6 +13,14 @@ demisto-sdk update-release-notes -p [Changed Pack Name] -u [major|minor|revision
 
 This command will bump the `currentVersion` found in `pack_metadata.json` file automatically according to the update version (as denoted by the `-u` flag) for you.
 
+Generally, you will use the command when you are ready to merge and expect no other changes. If you need to make additional 
+changes *after* running the command, you will need to remove the `-u` argument. This will generate a new release notes 
+file for you to fill out.
+
+```bash
+demisto-sdk update-release-notes -p [Changed Pack Name]
+```
+
 ## Naming
 The change log file will be generated for you and is found under the `ReleaseNotes` folder within each pack. If this folder does not already exist, one will be created for you.
 
@@ -89,9 +97,5 @@ One should specify in the corresponding change log file the following changes:
   - Adding/updating arguments
   - Updating outputs
   - Fixes for customer bugs
-
-Generally, you will use the command when you are ready to merge and expect no other changes. If you need to make additional 
-changes *after* running the command, you will need to remove the `-u` argument. This will generate a new release notes 
-file for you to fill out.
 
 To view the previous format for release notes, you may find them [here.](../integrations/changelog-old-format)
