@@ -5,82 +5,97 @@ title: Change Log
 
 A change log file helps to keep track on the changes made for a specific content entity like an integration or a playbook.
 
-## Naming
-Under the same path of the changed content entity add a new file:
- - In case of a package, file name is `CHANGELOG.md`.
- - otherwise, file name has the same base name with the suffix of `_CHANGELOG.md`.
+To generate a change log, run the following command provided by the `demisto-sdk`:
 
-For example,
-- If the changed file is `Integrations/Alexa/Alexa.py` then create `Integrations/Alexa/CHANGELOG.md` with the release notes inside.
-- If the changed file is `Integrations/integration-jira.yml` then create `Integrations/integration-jira_CHANGELOG.md` with the release notes inside.
-- If the changed file is `Playbooks/playbook-Phishing.yml` then create `Playbooks/playbook-Phishing_CHANGELOG.md` with the release notes inside.
+```bash
+demisto-sdk update-release-notes -p [Changed Pack Name] -u [major|minor|revision]
+```
+
+This command will bump the `currentVersion` found in `pack_metadata.json` file automatically according to the update version (as denoted by the `-u` flag) for you.
+
+Generally, you will use the command when you are ready to merge and expect no other changes. If you need to make additional 
+changes *after* running the command, you will need to remove the `-u` argument. This will generate a new release notes 
+file for you to fill out.
+
+```bash
+demisto-sdk update-release-notes -p [Changed Pack Name]
+```
+
+## Naming
+The change log file will be generated for you and is found under the `ReleaseNotes` folder within each pack. If this folder does not already exist, one will be created for you.
+
+The names for the files generated should not be changed as this will cause potential issues in the future. 
 
 
 ## Format
-The change log file should be in a descendant order of release sections.
+After running the `demisto-sdk` command mentioned above, the change log which was generated will contain a section for each entity changed in the pack as well as a placeholder (`%%UPDATE_RN%%`).
+This placeholder should be replaced with a line describing what was changed for that specific entity.
 
-The first section of the file will always be the `Unreleased` changes.
-All other sections should start with a header containing the release version and published date:
-```## [19.8.0] - 2019-08-06```
+For example, if changes were detected in the Cortex XDR pack for the items IncidentFields, Integrations, and Playbooks; the following would be created:
+```markdown
+#### IncidentFields
+- __XDR Alerts__
+%%UPDATE_RN%%
 
-each change should be added at the start of the `Unreleased` section as an independed bullet.
+#### Integrations
+- __Cortex XDR - IR__
+%%UPDATE_RN%%
 
-For example,
+#### Playbooks
+- __Cortex XDR - Isolate Endpoints__
+%%UPDATE_RN%%
+
+- __Cortex XDR - Port Scan__
+%%UPDATE_RN%%
+
 ```
-## [Unreleased]
 
-
-## [19.8.0] - 2019-08-06
-  - Fixed an issue with the *description* argument in the ***threatstream-create-model*** command.
-
-
-## [19.6.1] - 2019-06-25
-#### New Integration
-Use the Anomali ThreatStream V2 integration to query and submit threats.
-
-```
 ## MD Formatting
 For single line RNs, follow this format:
-```
-## [Unreleased]
-Release note here.
+```markdown
+#### Integrations
+- __Cortex XDR - IR__
+  - Release note here.
 ```
 
 For single line RNs with a nested list, follow this format:
-```
-## [Unreleased]
-Release note here.
-  - List item 1
-  - List item 2
+```markdown
+#### Integrations
+- __Cortex XDR - IR__
+  - Release note here.
+    - List item 1
+    - List item 2
 ```
 
-For multiple line RNs (or appending to existing RN), follow this format:
-```
-## [Unreleased]
+For multiline RNs, follow this format:
+```markdown
+#### Integrations
+- __Cortex XDR - IR__
   - Release note 1 here.
   - Release note 2 here.
   - Release note 2 here.
 ```
 
-For multiple line RNs with nested content, follow this format:
-```
-## [Unreleased]
+For multiline RNs with nested content, follow this format:
+```markdown
+#### Integrations
+- __Cortex XDR - IR__
   - Release note 1 here.
-    - Nested item 1
-    - Nested item 2
+    - List item 1
+    - List item 2
   - Release note 2 here.
+    - List item 1
+    - List item 2
   - Release note 2 here.
 ```
 
 ## What Should Be Logged
 One should specify in the corresponding change log file the following changes:
-  - everything
-  - adding command
-  - adding/updating parameters
-  - adding/updating arguments
-  - updating outputs
-  - fixing customer bugs
-  
-## Note
-New content entities (with the exception of classifier and reputation) do not require you to submit a change log file.  This file will be automatically generated in the content release process.
+  - Any change made
+  - Creation of a new command
+  - Adding/updating parameters
+  - Adding/updating arguments
+  - Updating outputs
+  - Fixes for customer bugs
 
+To view the previous format for release notes, you may find them [here.](../integrations/changelog-old-format)
