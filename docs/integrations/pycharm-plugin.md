@@ -130,7 +130,7 @@ Since the script is run as a regular Python file, you can debug the code by addi
 |--- |--- |--- |
 |command|Called for `demisto.command()`|return `"my_command_name"`|
 |args|Called for `demisto.args()`|return `{ "myArg": "example"}`|
-|parameters|Called fort `demisto.params()`|return `{ "api_key": "example"}`|
+|parameters|Called for `demisto.params()`|return `{ "api_key": "example"}`|
 
 
 ## Logs
