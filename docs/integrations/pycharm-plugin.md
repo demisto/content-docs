@@ -60,7 +60,7 @@ After you successfully configure the plugin, several files are automatically dow
 
 *   `CommonServerPython`
 *   `CommonServerUserPython`
-*   `Cortex XSOARmock` (enables you to run the scripts locally in PyCharm)
+*   `demistomock` (enables you to run the scripts locally in PyCharm)
 
 ![PyCharm_-_General.png](../doc_imgs/integrations/pycharm-general.png)
 
