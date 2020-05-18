@@ -1,6 +1,9 @@
 # Redirect main docs page
 /docs	/docs/welcome
 
+# Redirect used by Server link (do NOT delete)
+/start-contributing /docs/welcome
+
 # Redirect existing docs
 
 # Partner docs
