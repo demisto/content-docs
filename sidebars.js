@@ -34,7 +34,9 @@ const sidebars = {
       label: "Getting Started",
       items: [
         "integrations/getting-started-guide",
-        "integrations/dev-setup",
+        "integrations/dev-setup",        
+        "integrations/xsoar-ide",
+        "integrations/pycharm-plugin",
         "integrations/packs-format",
         "integrations/package-dir",
         "integrations/docker",
