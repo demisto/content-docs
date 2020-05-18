@@ -14,7 +14,7 @@ In this section we captured some of the Design Best practices that you should be
 - Add score thresholds and DBot score mapping to the integration documentation.
 - Add generic reputation commands such as “!url,ip,file,domain”.
 - Global Context outputs – Don’t forget global context outputs for DBot scoring and global indicators.
-- When adding or removing indicators, add a message to the indicator timeline. the message should be from example: **The indicator XXX was added to XXX**. see [https://demisto.pan.dev/docs/integrations/code-conventions#deprecated---demistoresults](Demisto Results)
+- When adding or removing indicators, add a message to the indicator timeline. the message should be from example: **The indicator was added to XXX**. see [https://demisto.pan.dev/docs/integrations/code-conventions#deprecated---demistoresults](Demisto Results)
 - Be sure to check the top [Use Cases](use-cases). If those are supported via api make sure to include them in the integration.
 - Time arguments – When the command supports filtering results by time, use start + end time parameters (if supported by UI), and a timeframe parameter, that accepts inputs such as “4 days ago”, “5 minutes ago”, etc.
 - The data you return should make sense to an analyst (convert Epoch timestamps, decrypt data if needed. If you return IDs, make sure to return the original asset name, category type, group name etc.)
