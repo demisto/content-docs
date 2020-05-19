@@ -36,7 +36,7 @@ When an integration fetches incidents, it populates the rawJSON object in the in
 
    The event attributes are presented on the right side of the screen. Click on the attribute by which you want to classify the incidents. You can navigate between the fetched events to view all of the attributes in the other events and to ensure that you are selecting a viable attribute. In our example, below, we are classifying by the description attribute. 
 
-   You can use filters and transformers to make the selection more exact. For more information, see [INSERT LINK TO filters and transformers doc]
+   You can use filters and transformers to make the selection more exact.
 
 5. Click **Done**.
 
@@ -54,6 +54,6 @@ You should map event attributes to the incident fields so the information is ind
 
 2. In the Mapping Wizard, in the left pane click **Choose data path**.
 
-3. Click the event attribute to which you want to map. You can further manipulate the field using filters and transformers. For more information, see [INSERT LINK TO filters and transformers doc].
+3. Click the event attribute to which you want to map. You can further manipulate the field using filters and transformers.
 
 4. Click **Done**.
