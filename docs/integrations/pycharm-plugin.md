@@ -31,11 +31,10 @@ There are specific installation instructions depending on your PyCharm version.
 
 1.  From the top menu, click **PyCharm > Preferences**.
 2.  Select **Plugins > Browse Repositories**.
-3.  Search for "_Cortex XSOAR_".
-4.  When "_Cortex XSOAR Add-on for PyCharm"_ is located, click **Install**.
-5.  Continue to [Configure Cortex XSOAR on PyCharm](#Cortex XSOAR-setup).
+3.  Search for "_Demisto_".
+4.  When "_Demisto Add-on for PyCharm"_ is located, click **Install**.
 
-### PyCharm 18.3 (and lateer)
+### PyCharm 18.3 (and later)
 
 1.  From the top menu, click **PyCharm > Preferences**.
 2.  Select **Plugins > Marketplace**.
