@@ -31,24 +31,22 @@ There are specific installation instructions depending on your PyCharm version.
 
 1.  From the top menu, click **PyCharm > Preferences**.
 2.  Select **Plugins > Browse Repositories**.
-3.  Search for "_Cortex XSOAR_".
-4.  When "_Cortex XSOAR Add-on for PyCharm"_ is located, click **Install**.
-5.  Continue to [Configure Cortex XSOAR on PyCharm](#Cortex XSOAR-setup).
+3.  Search for "_Demisto_".
+4.  When "_Demisto Add-on for PyCharm"_ is located, click **Install**.
 
-### PyCharm 18.3
+### PyCharm 18.3 (and later)
 
 1.  From the top menu, click **PyCharm > Preferences**.
 2.  Select **Plugins > Marketplace**.
-3.  Search for "_Cortex XSOAR_".
-4.  When "_Cortex XSOAR Add-on for PyCharm"_ is located, click **Install**.
-5.  Continue to [Configure Cortex XSOAR on PyCharm](#Cortex XSOAR-setup).
+3.  Search for "_Demisto_".
+4.  When "_Demisto Add-on for PyCharm"_ is located, click **Install**.
 
 ## Configure Cortex XSOAR on PyCharm
 
 To interact with Cortex XSOAR while working in PyCharm, you need to enter several Cortex XSOAR instance parameters.
 
 1.  Open the project you want to work on in PyCharm. For example, `Cortex XSOAR Content` repository.
-2.  In PyCharm, click **Preferences > Tools > Cortex XSOAR Plugin Setup**.
+2.  In PyCharm, click **Preferences > Tools > Denmisto Plugin Setup**.
 3.  (MacOS users) When prompted for access to your keychain, select **Allow Always**. This will avoid issues later on.
 4.  Enter your Cortex XSOAR server URL and port, if necessary.  
     If you are working on a dev instance on localhost, use HTTP (not HTTPS), for example: ([http://localhost:8080](http://localhost:8080/)).
@@ -116,7 +114,7 @@ In general, you do not need to update Cortex XSOAR mock files. When there is an 
 
 You might want to manually update the mock files after content updates, in which `CommonPythonServer` and `CommonServerUserPython` files are changed or updated. Manually updating the mock files updates the files in your local environment.
 
-To update the Cortex XSOAR mock files, select **Tools > Cortex XSOAR Plugin Setup**, and click Update **Cortex XSOAR Mocks**.
+To update the Cortex XSOAR mock files, select **Tools > Demisto Plugin Setup**, and click Update **Demisto Mocks**.
 
 ![](../doc_imgs/integrations/pycharm-pycharm-mceclip0.png)
 
