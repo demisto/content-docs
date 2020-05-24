@@ -17,7 +17,7 @@ module.exports = {
     algolia: {
       apiKey: process.env.ALGOLIA_APIKEY,
       indexName: process.env.ALGOLIA_INDEX,
-      algoliaOptions: { typoTolerance: false } // Optional, if provided by Algolia
+      algoliaOptions: { typoTolerance: false, hitsPerPage: 1000, filters: 'anchor:"__docusaurus"' } // Optional, if provided by Algolia
     },
     sidebarCollapsible: true,
     navbar: {
