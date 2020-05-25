@@ -1,0 +1,22 @@
+name: Verify Site Links
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Set up Go 1.13
+      uses: actions/setup-go@v1
+      with:
+        go-version: 1.13.11
+      id: go
+    - name: Setup muffet
+      run: 'go get -u github.com/raviqqe/muffet'
+    - name: Verify Links
+      run: |
+        muffet -c 64 \
+        -e 'https://xsoar.pan.dev/.*#\!$' \
+        -e 'https://github.com/demisto/content-docs/.*' \
+        -e 'https://github.com/demisto/content/blob/master//Packs/.*' \
+        https://xsoar.pan.dev
