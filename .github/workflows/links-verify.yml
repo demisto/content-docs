@@ -1,0 +1,27 @@
+name: Verify Site Links
+
+on:
+  schedule: # daily at 8am
+    - cron: '0 0 8 * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Set up Go 1.13
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.13.11
+      id: go
+    - name: Setup muffet
+      run: 'go get -u github.com/raviqqe/muffet'
+    - name: Verify Links
+      run: |
+        muffet -c 64 --ignore-fragments \
+        -e 'https://github.com/demisto/content-docs/.*' \
+        -e 'https://github.com/demisto/content/blob/master//Packs/.*' \
+        -e 'https?://192\.168\.\d+\.\d+.*' \
+        -e 'https?://10\.\d+\.\d+\.\d+.*' \
+        -e 'https://github.com/demisto/content/releases/download/.*' \
+        -e 'https://github.com/demisto/content/tree/\d+\.\d+\.\d+' \
+        https://xsoar.pan.dev
