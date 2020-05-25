@@ -15,7 +15,7 @@ jobs:
       run: 'go get -u github.com/raviqqe/muffet'
     - name: Verify Links
       run: |
-        muffet -c 64 \
+        muffet -c 64 --ignore-fragments \
         -e 'https://xsoar.pan.dev/.*#\!$' \
         -e 'https://github.com/demisto/content-docs/.*' \
         -e 'https://github.com/demisto/content/blob/master//Packs/.*' \
