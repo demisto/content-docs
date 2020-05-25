@@ -97,5 +97,13 @@ One should specify in the corresponding change log file the following changes:
   - Adding/updating arguments
   - Updating outputs
   - Fixes for customer bugs
+  
+You may encounter a scenario where certain changes are not necessary to document in the release notes. To solve this, you may comment out the entries by using the following syntax:
+
+```markdown
+<!--
+Here's some hidden text.
+-->
+```
 
 To view the previous format for release notes, you may find them [here.](../integrations/changelog-old-format)
