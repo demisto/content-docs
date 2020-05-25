@@ -19,6 +19,7 @@ jobs:
         -e 'https://github.com/demisto/content-docs/.*' \
         -e 'https://github.com/demisto/content/blob/master//Packs/.*' \
         -e 'https?://192\.168\.\d+\.\d+.*' \
+        -e 'https?://10\.\d+\.\d+\.\d+.*' \
         -e 'https://github.com/demisto/content/releases/download/.*' \
         -e 'https://github.com/demisto/content/tree/\d+\.\d+\.\d+' \
         https://xsoar.pan.dev
