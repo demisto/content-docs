@@ -44,7 +44,7 @@ All unit tests should be written in a separate PowerShell file named: `<Integrat
 ```powershell
 . $PSScriptRoot\<IntegrationFileName>.ps1
 ```  
-Group related unit tests using the `Describe` block. Use `Context` for grouping tests that use the same mock logic. Write your tests using the `It` command. For more details see the [Pester Docs](https://pester.dev/docs/quick-start). Example unit tests can be seen at: [VerifyJSON](https://github.com/demisto/content/tree/master/Packs/Legacy/Scripts/VerifyJSON).
+Group related unit tests using the `Describe` block. Use `Context` for grouping tests that use the same mock logic. Write your tests using the `It` command. For more details see the [Pester Docs](https://pester.dev/docs/quick-start). Example unit tests can be seen at: [VerifyJSON](https://github.com/demisto/content/tree/master/Packs/CommonScripts/Scripts/VerifyJSON).
 
 ### Mocking
 Pester supports mocking PowerShell functions. You can mock any function defined in CommonServerPowerShell.ps1 and functions included in standard PowerShell and imported modules. Pester doesn't support mocking object methods. This includes methods of the `$demisto` object. You can however modify the `$demisto` object properties in a test. For example you can set the `ContextArgs` property to control the return of `$demisto.Args()` method. Example code:

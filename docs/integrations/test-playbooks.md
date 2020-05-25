@@ -121,5 +121,5 @@ The following table describes the fields:
 
 
 ## Resources
-* [Example of a Test Playbook](https://github.com/demisto/content/blob/master/TestPlaybooks/playbook-Carbon_Black_Response_Test.yml)
+* [Example of a Test Playbook](https://github.com/demisto/content/blob/master/Packs/Carbon_Black_Enterprise_Response/TestPlaybooks/playbook-Carbon_Black_Response_Test.yml)
 * [Example of a Playbook Image](../doc_imgs/integrations/41154872-459f93fe-6b24-11e8-848b-25ca71f59629.png)

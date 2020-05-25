@@ -116,7 +116,7 @@ You might want to manually update the mock files after content updates, in which
 
 To update the Cortex XSOAR mock files, select **Tools > Demisto Plugin Setup**, and click Update **Demisto Mocks**.
 
-![](../doc_imgs/integrations/pycharm-pycharm-mceclip0.png)
+![](../doc_imgs/integrations/pycharm-mceclip0.png)
 
 ## Local Run/Local Debug (Advanced)
 
