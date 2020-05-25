@@ -100,7 +100,7 @@ One should specify in the corresponding change log file the following changes:
   
   
 ## Excluding Items
-Release notes are required to contain all items which have been changed documented within them. As such, validation will fail if detected items are removed from the generated release notes file.
+Release notes are required to contain all items which have been changed included in the generated file. As such, validation will fail if detected items are removed from the generated release notes file.
 
 However, you may encounter a scenario where certain changes are not necessary to document in the release notes. To solve this, you may comment out the entries by using the following syntax:
 
