@@ -1,6 +1,8 @@
 name: Verify Site Links
 
-on: [push]
+on:
+  schedule: # daily at 8am
+    - cron: '0 0 8 * *'
 
 jobs:
   build:
