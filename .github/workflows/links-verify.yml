@@ -1,8 +1,8 @@
 name: Verify Site Links
 
 on:
-  schedule: # daily at 8am
-    - cron: '0 0 8 * *'
+  schedule: # daily at 12 noon UTC
+    - cron: '0 12 * * *'
 
 jobs:
   build:
