@@ -76,4 +76,4 @@ demisto.setIntegrationContext(integration_context)
 
 ### For more examples, refer to following integrations:
  - [Microsoft Graph](https://github.com/demisto/content/blob/master/Packs/ApiModules/Scripts/MicrosoftApiModule/MicrosoftApiModule.py)
- - [EWS v2](https://github.com/demisto/content/blob/master/Integrations/EWSv2/EWSv2.py) 
+ - [EWS v2](https://github.com/demisto/content/blob/master/Packs/EWS/Integrations/EWSv2/EWSv2.py) 

@@ -301,7 +301,7 @@ Use demisto-sdk -h to see the available commands.
 
 Now, run the `demisto-sdk lint` command on the folder `Packs/HelloWorld/Integrations/HelloWorld` using the `-d` option,
  or if you want to run  against all the committed files in your branch you can use `demisto-sdk lint -g`.
-It will run both the [linters](../integratios/linting) and [pytest](../integrations/unit-testing):
+It will run both the [linters](../integrations/linting) and [pytest](../integrations/unit-testing):
 ```bash
 (venv) sb@dddd:~/demisto/content$ demisto-sdk lint -d Packs/HelloWorld/Integrations/HelloWorld
 Detected python version: [3.7] for docker image: demisto/python3:3.7.4.2245
@@ -359,7 +359,7 @@ Switched to a new branch 'my_integration_name'
 ```
 
 Now, use `demisto-sdk` to create a directory under `Packs/<Your pack name>`, named after your product where you will put all your content files later, and add it to the staged changes in `git`.  
-For more description regarding what exactly a pack is please click [here](../integrations/packs-fromat). 
+For more description regarding what exactly a pack is please click [here](../integrations/packs-format). 
 
 Make sure you use **PascalCase** in the directory name (i.e. `MyIntegration`), you can create a Pack and an Integration directory using the `demisto-sdk init` command.
 
