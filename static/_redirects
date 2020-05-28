@@ -1,5 +1,5 @@
 # Redirect subdomain
-https://xsoar.pan.dev/* https://demisto.pan.dev/:splat 301!
+https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 
 
 # Redirect main docs page
