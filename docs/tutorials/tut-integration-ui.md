@@ -269,7 +269,7 @@ def translate_command():
 
 >Let's create a table out of the human_readable dictionary so the translation will look nice in the war room. Go to the Script Helper and let’s select tableToMarkdown. Click “Copy to Script”. We will call this table “Yoda says…” and give the function our dictionary.
 
-tableToMarkdown accepts many different variables which can be used to transform data, remove null, and create custom headers. Learn more about this [command here](url)
+tableToMarkdown accepts many different variables which can be used to transform data, remove null, and create custom headers. Learn more about this [command here](../integrations/code-conventions#tabletomarkdown)
 
 ```python
     ec = {'YodaSpeak.TheForce(val.Original && val.Original == obj.Original)': contxt}
