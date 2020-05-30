@@ -277,7 +277,7 @@ def main():
 
 
 ## IOC Reputation Commands
-There are two implementation requirements for reputation commands (aka `!file`, `!email`, `!domain`, `!url`, and `!ip`) that are enforced by checks in the [hook_validations](https://github.com/demisto/content/blob/master/Tests/scripts/hook_validations/integration.py).
+There are two implementation requirements for reputation commands (aka `!file`, `!email`, `!domain`, `!url`, and `!ip`) that are enforced by checks in the [demisto-sdk](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md).
 - The reputation command's argument of the same name must have `default` set to `True`.
 - The reputation command's argument of the same name must have `isArray` set to `True`.
 
@@ -704,7 +704,7 @@ The entry is composed of multiple components.
     Any Cortex XSOAR integration command that returns `timeline` data should include the `'Category'` value of `'Integration Update'`. When returning `timeline` data from a Cortex XSOAR automation, the value passed to the `'Category'` field should be `'Automation Update'`.
 
     **So when should one include a timeline object in an entry returned to the war room?**  
-    The answer is any time that a command operates on an indicator. A good indicator (pun intended?) of when `timeline` data should be included in an entry is to look and see if the command returns a `DBotScore` or entities as described in our [context standards documentation](../integrations/context-standards) to the entry context. A common case is reputation commands, i.e. `!ip`, `!url`, `!file`, etc. When implementing these commands in integrations, `timeline` data should be included in the returned entry. To see an example of an integration that returns entries with `timeline` data, take a look at our [AbuseIPDB integration](https://github.com/demisto/content/blob/master/Integrations/AbuseDB/AbuseDB.py#L201).
+    The answer is any time that a command operates on an indicator. A good indicator (pun intended?) of when `timeline` data should be included in an entry is to look and see if the command returns a `DBotScore` or entities as described in our [context standards documentation](../integrations/context-standards) to the entry context. A common case is reputation commands, i.e. `!ip`, `!url`, `!file`, etc. When implementing these commands in integrations, `timeline` data should be included in the returned entry. To see an example of an integration that returns entries with `timeline` data, take a look at our [AbuseIPDB integration](https://github.com/demisto/content/blob/14148b68f5030a64c6fe6f7cf5af4f184e93abad/Packs/AbuseDB/Integrations/AbuseDB/AbuseDB.py#L215).
 
 
 The `EntryType` and `EntryFormat` enum classes are imported from `CommonServerPython` and respectively appear as follows:
@@ -791,4 +791,4 @@ demisto.results({
 ## Quality Examples of Integrations
 * [Google Cloud Functions](https://github.com/demisto/content/tree/master/Packs/GoogleCloudFunctions/Integrations/GoogleCloudFunctions)
 * [Cortex XDR](https://github.com/demisto/content/tree/master/Packs/CortexXDR/Integrations/PaloAltoNetworks_XDR)
-* [Proofpoint TAP v2](https://github.com/demisto/content/tree/master/Packs/ProofpointTAP_v2/Integrations/ProofpointTAP_v2)
+* [Proofpoint TAP v2](https://github.com/demisto/content/tree/master/Packs/ProofpointTAP/Integrations/ProofpointTAP_v2)

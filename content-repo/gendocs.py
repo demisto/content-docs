@@ -154,7 +154,6 @@ def process_readme_doc(target_dir: str, content_dir: str, readme_file: str) -> D
         id = yml_data.get('commonfields', {}).get('id') or yml_data['id']
         id = normalize_id(id)
         name = yml_data.get('display') or yml_data['name']
-        name = html.escape(name)
         desc = yml_data.get('description') or yml_data.get('comment')
         if desc:
             word_break = False
@@ -182,7 +181,7 @@ def process_readme_doc(target_dir: str, content_dir: str, readme_file: str) -> D
             if readme_repo_path.startswith(content_dir):
                 readme_repo_path = readme_repo_path[len(content_dir):]
             edit_url = f'https://github.com/demisto/content/blob/{BRANCH}/{readme_repo_path}'
-            header = f'---\nid: {id}\ntitle: "{doc_info.name}"\ncustom_edit_url: {edit_url}\n---\n\n'
+            header = f'---\nid: {id}\ntitle: {json.dumps(doc_info.name)}\ncustom_edit_url: {edit_url}\n---\n\n'
             content = get_deprecated_data(yml_data, desc) + content
             content = get_beta_data(yml_data, content) + content
             content = header + content
@@ -235,8 +234,9 @@ def index_doc_infos(doc_infos: List[DocInfo], link_prefix: str, headers: Optiona
         return ''
     table_items = []
     for d in doc_infos:
-        link_name = f'[{d.name}]({link_prefix}/{d.id})'
-        for word in re.split(r'\s|-', d.name):
+        name = html.escape(d.name)
+        link_name = f'[{name}]({link_prefix}/{d.id})'
+        for word in re.split(r'\s|-', name):
             if len(word) > 25:  # we have a long word tell browser ok to break it
                 link_name = '<span style={{wordBreak: "break-word"}}>' + link_name + '</span>'
                 break

@@ -97,5 +97,19 @@ One should specify in the corresponding change log file the following changes:
   - Adding/updating arguments
   - Updating outputs
   - Fixes for customer bugs
+  
+  
+## Excluding Items
+Release notes are required to contain all items which have been changed included in the generated file. As such, validation will fail if detected items are removed from the generated release notes file.
+
+However, you may encounter a scenario where certain changes are not necessary to document in the release notes. To solve this, you may comment out the entries by using the following syntax:
+
+```markdown
+<!--
+#### Integrations
+- __Cortex XDR - IR__
+  - Renamed an item. Not necessary to document in release notes.
+-->
+```
 
 To view the previous format for release notes, you may find them [here.](../integrations/changelog-old-format)

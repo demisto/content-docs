@@ -118,7 +118,7 @@ import requests
 import json
 import collections
 ```
-These packages are part of the standard Cortex XSOAR docker image. If you would like to use python libraries that are not part of the standard Cortex XSOAR image, you can create your own image. To learn how to do so, [visit this page](url)
+These packages are part of the standard Cortex XSOAR docker image. If you would like to use python libraries that are not part of the standard Cortex XSOAR image, you can create your own image. To learn how to do so, [visit this page](../integrations/docker)
 
 >This part allows us to ignore certificate warnings and is part of the “insecure” setting.
 
