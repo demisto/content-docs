@@ -52,6 +52,7 @@ INTEGRATIONS_PREFIX = 'integrations'
 SCRIPTS_PREFIX = 'scripts'
 PLAYBOOKS_PREFIX = 'playbooks'
 RELEASES_PREFIX = 'releases'
+ATRICLES_PREFIX = 'articles'
 NO_HTML = '<!-- NOT_HTML_DOC -->'
 YES_HTML = '<!-- HTML_DOC -->'
 BRANCH = os.getenv('HEAD', 'master')
@@ -129,8 +130,9 @@ def get_beta_data(yml_data: dict, content: str):
         if not re.search(r'This is a beta', content, re.IGNORECASE):
             # only add the beta disclaimer if it is not in the docs
             msg = 'This is a beta Integration, which lets you implement and test pre-release software. ' \
-                  'Since the integration is beta, it might contain bugs. Updates to the integration during the beta phase might include non-backward compatible features. '\
-                  'We appreciate your feedback on the quality and usability of the integration to help us identify issues, fix them, and continually improve.\n'
+                  'Since the integration is beta, it might contain bugs. Updates to the integration during the beta phase might '\
+                  'include non-backward compatible features. We appreciate your feedback on the quality and usability of the '\
+                  'integration to help us identify issues, fix them, and continually improve.\n'
         return f':::info beta\n{msg}:::\n\n'
     return ""
 
@@ -358,6 +360,26 @@ def create_releases(target_dir: str):
     return sorted(doc_infos, key=lambda d: d.name.lower(), reverse=True)
 
 
+def create_articles(target_dir: str):
+    target_sub_dir = f'{target_dir}/{ATRICLES_PREFIX}'
+    if not os.path.exists(target_sub_dir):
+        os.makedirs(target_sub_dir)
+    doc_infos: List[DocInfo] = []
+    success: List[str] = []
+    fail: List[str] = []
+    seen_docs: Dict[str, DocInfo] = {}
+    for doc_info in process_extra_docs(target_sub_dir, ATRICLES_PREFIX):
+        process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
+    org_print(f'\n===========================================\nSuccess {ATRICLES_PREFIX} docs ({len(success)}):')
+    for r in sorted(success):
+        print(r)
+    org_print(f'\n===========================================\nFailed {ATRICLES_PREFIX} docs ({len(fail)}):')
+    for r in sorted(fail):
+        print(r)
+    org_print("\n===========================================\n")
+    return sorted(doc_infos, key=lambda d: d.name.lower())  # sort by name
+
+
 def main():
     parser = argparse.ArgumentParser(description='Generate Content Docs',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -372,10 +394,12 @@ def main():
     scripts_full_prefix = f'{prefix}/{SCRIPTS_PREFIX}'
     playbooks_full_prefix = f'{prefix}/{PLAYBOOKS_PREFIX}'
     releases_full_prefix = f'{prefix}/{RELEASES_PREFIX}'
+    articles_full_prefix = f'{prefix}/{ATRICLES_PREFIX}'
     integration_doc_infos = create_docs(args.dir, args.target, INTEGRATION_DOCS_MATCH, INTEGRATIONS_PREFIX)
     playbooks_doc_infos = create_docs(args.dir, args.target, PLAYBOOKS_DOCS_MATCH, PLAYBOOKS_PREFIX)
     script_doc_infos = create_docs(args.dir, args.target, SCRIPTS_DOCS_MATCH, SCRIPTS_PREFIX)
     release_doc_infos = create_releases(args.target)
+    article_doc_infos = create_articles(args.target)
     index_base = f'{os.path.dirname(os.path.abspath(__file__))}/reference-index.md'
     index_target = args.target + '/index.md'
     shutil.copy(index_base, index_target)
@@ -388,11 +412,14 @@ def main():
         f.write(index_doc_infos(playbooks_doc_infos, PLAYBOOKS_PREFIX))
         f.write("\n\n## Scripts\n\n")
         f.write(index_doc_infos(script_doc_infos, SCRIPTS_PREFIX))
+        f.write("\n\n## Articles\n\n")
+        f.write(index_doc_infos(article_doc_infos, ATRICLES_PREFIX))
         f.write("\n\n## Content Release Notes\n\n")
         f.write(index_doc_infos(release_doc_infos, RELEASES_PREFIX, headers=('Name', 'Date')))
     integration_items = [f'{integrations_full_prefix}/{d.id}' for d in integration_doc_infos]
     playbook_items = [f'{playbooks_full_prefix}/{d.id}' for d in playbooks_doc_infos]
     script_items = [f'{scripts_full_prefix}/{d.id}' for d in script_doc_infos]
+    article_items = [f'{articles_full_prefix}/{d.id}' for d in article_doc_infos]
     release_items = [f'{releases_full_prefix}/{d.id}' for d in release_doc_infos]
     sidebar = [
         {
@@ -413,6 +440,11 @@ def main():
             "type": "category",
             "label": "Scripts",
             "items": script_items
+        },
+        {
+            "type": "category",
+            "label": "Articles",
+            "items": article_items
         },
         {
             "type": "category",
