@@ -51,7 +51,7 @@ Pester supports mocking PowerShell functions. You can mock any function defined 
 ```powershell
 $demisto.ContextArgs = @{arg1 = 'val1' }
 ``` 
-Additionally, you can mock functions called by the `$demisto` object. For example you can mock `DemistoServerLog` which is called by the `$demisto` object methods: `Info, Debug, Error`. Example of using mocking can be seen at: [VerifyJSON](https://github.com/demisto/content/tree/master/Packs/Legacy/Scripts/VerifyJSON). More info about Pester Mocking is available [here](https://pester.dev/docs/usage/mocking).
+Additionally, you can mock functions called by the `$demisto` object. For example you can mock `DemistoServerLog` which is called by the `$demisto` object methods: `Info, Debug, Error`. Example of using mocking can be seen at: [VerifyJSON](https://github.com/demisto/content/tree/master/Packs/CommonScripts/Scripts/VerifyJSON). More info about Pester Mocking is available [here](https://pester.dev/docs/usage/mocking).
 
 ## Run Lint and Test
 
