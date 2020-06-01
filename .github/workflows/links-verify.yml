@@ -25,4 +25,8 @@ jobs:
         -e 'https://github.com/demisto/content/releases/download/.*' \
         -e 'https://github.com/demisto/content/tree/\d+\.\d+\.\d+' \
         -e 'https?://localhost.*' \
+        -e 'https?://example.*' \
+        -e 'https?://hostname/.*' \
+        -e 'https://yourdomain.*' \
+        -e 'https://.*\.domain.com/' \
         https://xsoar.pan.dev
