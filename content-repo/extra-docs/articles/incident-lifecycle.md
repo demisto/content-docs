@@ -1,8 +1,9 @@
 ---
-id: tutorial-incident-lifecycle
+id: incident-lifecycle
 title: Ingesting Incidents
+description: Takes you through a flow of setting up a SIEM to ingest multiple event types from a single source.
 ---
-This document takes you through a flow of setting up a SIEM to ingest multiple event types from a single source. It walks you through parts of the planning, integration definition, and classification and mapping stages of the incident lifecycle. For information about the incident lifecycle, see Cortex XSOAR Overview.
+This document takes you through a flow of setting up a SIEM to ingest multiple event types from a single source. It walks you through parts of the planning, integration definition, and classification and mapping stages of the incident lifecycle.
 
 This document does not cover every possible scenario in this flow, as that would be impossible. We attempt to give you a real-life scenario touching on certain points from which you can extrapolate to other scenarios.
 
@@ -23,7 +24,7 @@ Cortex XSOAR comes with the Access and Authentication incident types configured 
 
     1. Under Auto extract incident indicators, select **Inline**.
 
-   ![Incident Type](../doc_imgs/tutorials/tutorial-incident-lifecycle/Indicator-Type_Default-QRadarpng.png "Incident Type")
+   ![Incident Type](../../../docs/doc_imgs/tutorials/tutorial-incident-lifecycle/Indicator-Type_Default-QRadarpng.png "Incident Type")
 
 3. Click **Save**.
 
@@ -44,7 +45,7 @@ The next thing we need to do is ensure that we have the fields that we want for 
     4. In the **Add to incident types field**, select **Access** and **Authentication**.
 
 
-   ![New Field](../doc_imgs/tutorials/tutorial-incident-lifecycle/New-Field_Importance.png "New Field")
+   ![New Field](../../../docs/doc_imgs/tutorials/tutorial-incident-lifecycle/New-Field_Importance.png "New Field")
 
 3. Click **Save**.
 
@@ -60,7 +61,7 @@ The next thing we need to do is ensure that we have the fields that we want for 
 
 5. Repeat this process for the Authentication incident type.
 
-![Insert Field](../doc_imgs/tutorials/tutorial-incident-lifecycle/Customize-Layout_Insert-Field.png "Insert Field")
+![Insert Field](../../../docs/doc_imgs/tutorials/tutorial-incident-lifecycle/Customize-Layout_Insert-Field.png "Insert Field")
 
 ## Define an Integration Instance
 
@@ -88,7 +89,7 @@ Now that we are starting to ingest incidents from QRadar, we need to classify th
 
 3. We select the *description* attribute as the key based on which we want to classify. 
 
-   ![Set Classification Key](../doc_imgs/tutorials/tutorial-incident-lifecycle/C-M_SIEM_Set-Classification-Key.png "Set Classification Key")
+   ![Set Classification Key](../../../docs/doc_imgs/tutorials/tutorial-incident-lifecycle/C-M_SIEM_Set-Classification-Key.png "Set Classification Key")
 
    We see that this results in 6 unique unmapped values out of the 20 events that were pulled. 
 
@@ -98,7 +99,7 @@ Now that we are starting to ingest incidents from QRadar, we need to classify th
 
    Ido port scan will go under Network and DJM will be left untouched. Since we didn't provide any incident time for DJM, it will default to the incident type configured in the instance.
 
-![Complete Classification](../doc_imgs/tutorials/tutorial-incident-lifecycle/C-M_SIEM_Set-Classification.png "Complete Classification")
+![Complete Classification](../../../docs/doc_imgs/tutorials/tutorial-incident-lifecycle/C-M_SIEM_Set-Classification.png "Complete Classification")
 
 5. Save the classifier. Stopping here would mean that we have defined how events originating from QRadar are classified, but we still haven't mapped the event attributes to the fields in the incident types.
 
@@ -144,16 +145,16 @@ Now that we are starting to ingest incidents from QRadar, we need to classify th
       
    8. Click **Done**.
 
-   ![Set Mapping](../doc_imgs/tutorials/tutorial-incident-lifecycle/C-M_SIEM_Mapping.png "Set Mapping")
+   ![Set Mapping](../../../docs/doc_imgs/tutorials/tutorial-incident-lifecycle/C-M_SIEM_Mapping.png "Set Mapping")
 
 7. Repeat this process for the Access incident type.
 
 When incidents start flowing into Cortex XSOAR from the QRadar instance, we see that those that we classified are mapped to Access or Authentication, and those that we did not, are mapped to the Default-QRadar incident we created above.
 
-![View Ingested Incidents](../doc_imgs/tutorials/tutorial-incident-lifecycle/Incidents_Ingested-Incidents.png "View Ingested Incidents")
+![View Ingested Incidents](../../../docs/doc_imgs/tutorials/tutorial-incident-lifecycle/Incidents_Ingested-Incidents.png "View Ingested Incidents")
 
 ## Investigate an Incident
 
 We can then go into one of our incidents, in this case an authentication investigation, and see how the changes we made to our layout and mapping are expressed in the incident itself. Notice that the incident name and details are based on the transformer that we created when we mapped the fields. And the Importance field, which was mapped to the magnitude attribute in QRadar is where we inserted it in the Case Details section.
 
-![Investigate Incident](../doc_imgs/tutorials/tutorial-incident-lifecycle/Investigate_Inciden.png "Investigate Incident")
+![Investigate Incident](../../../docs/doc_imgs/tutorials/tutorial-incident-lifecycle/Investigate_Inciden.png "Investigate Incident")
