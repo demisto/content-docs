@@ -134,8 +134,7 @@ const sidebars = {
       label: "Tutorials",
       items: [
             "tutorials/tut-setup-dev",
-            "tutorials/tut-integration-ui",
-            "tutorials/tutorial-playbook-TIM-EDL"            
+            "tutorials/tut-integration-ui"            
           ]
     }
   ],
