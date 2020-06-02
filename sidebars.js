@@ -135,8 +135,7 @@ const sidebars = {
       items: [
             "tutorials/tut-setup-dev",
             "tutorials/tut-integration-ui",
-            "tutorials/tutorial-playbook-TIM-EDL",
-            "tutorials/tutorial-TIM-export-indicators-to-3rd-party"            
+            "tutorials/tutorial-playbook-TIM-EDL"            
           ]
     }
   ],
