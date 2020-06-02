@@ -30,4 +30,5 @@ jobs:
         -e 'https://yourdomain.*' \
         -e 'https://.*\.domain.com/' \
         -e 'https://partner.analystplatform.com.*' \
+        -e 'https://demistodev.atlassian.net.*' \
         https://xsoar.pan.dev
