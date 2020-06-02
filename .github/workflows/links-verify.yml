@@ -29,4 +29,5 @@ jobs:
         -e 'https?://hostname/.*' \
         -e 'https://yourdomain.*' \
         -e 'https://.*\.domain.com/' \
+        -e 'https://partner.analystplatform.com.*' \
         https://xsoar.pan.dev
