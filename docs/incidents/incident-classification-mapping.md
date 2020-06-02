@@ -66,14 +66,14 @@ Classifier and mapper files structure differs before and after Cortex XSOAR vers
 
 The classifier & mapper should be represented in one file, as exported from Cortex XSOAR, with addition of the field `toVersion: 5.9.9`.
 
-The file should be named `classifier-<PACK-NAME>`, e.g. `classifier-CortexXDR`
+The file should be named `classifier-<PACK-NAME>_5_9_9.json`, e.g. `classifier-CortexXDR_5_9_9.json`
 
 #### Cortex XSOAR version 6.0 and above
 
 Cortex XSOAR version 6.0 introduces an improved classification & mapping experience, which includes a mirroring functionality by allowing to map outgoing incidents.
 
 Classifier file:
- - Filename: `classifier-<PACK-NAME>`, e.g. `classifier-CortexXDR`
+ - Filename: `classifier-<PACK-NAME>.json`, e.g. `classifier-CortexXDR.json`
  - File contents:
  ```json 
  {
@@ -129,7 +129,7 @@ Classifier file:
  ```
  
  Incoming mapper file:
- - Filename: `classifier-mapper-incoming-<PACK-NAME>`, e.g. `classifier-mapper-incoming--CortexXDR`
+ - Filename: `classifier-mapper-incoming-<PACK-NAME>.json`, e.g. `classifier-mapper-incoming--CortexXDR.json`
  - File contents:
   ```json
  {
