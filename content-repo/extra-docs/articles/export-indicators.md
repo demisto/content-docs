@@ -1,10 +1,11 @@
 ---
-id: tutorial-TIM-export-indicators-to-3rd-party
+id: export-indicators
 title: Export Indicators to a 3rd-party
+description: Walk through of the configuration of the Export Indicators Service to export indicators with a bad or suspicious reputation coming from a specific Threat Intel Management (TIM) feed to Splunk.
 ---
 Starting with version 5.5, you can export the indicators in Cortex XSOAR to your SIEM or EDL using the Export Indicators Service integration. This integration exports indicators to a file based on a query that you define. 
 
-In this tutorial, we are going to configure the Export Indicators Service to export indicators with a bad or suspicious reputation coming from a specific Threat Intel Management (TIM) feed. We will then configure Splunk to import these indicators.
+In this article, we are going to configure the Export Indicators Service to export indicators with a bad or suspicious reputation coming from a specific Threat Intel Management (TIM) feed. We will then configure Splunk to import these indicators.
 
 ## Define the Export Indicators Service
 
@@ -26,7 +27,7 @@ In this tutorial, we are going to configure the Export Indicators Service to exp
 
 	1. We must also select the **CSV as Text** checkbox. This means the query results will be hosted on the server at the port or address that we configured so Splunk can access the information as a web service. 
 
-	![Configure Export Indicator Service](../doc_imgs/tutorials/tutorial-playbook-export-to-splunk/configure_export-indicator-service.png)
+	![Configure Export Indicator Service](../../../docs/doc_imgs/tutorials/tutorial-playbook-export-to-splunk/configure_export-indicator-service.png)
 
 1. Click **Done**. 
 
@@ -38,7 +39,7 @@ To enable external applications to access the Export Indicators Service integrat
 
 1. In the **Server Configuration** section, we verify that the instance.execute.external key is set to true. 
 
-![Add Server Configuration](../doc_imgs/tutorials/tutorial-playbook-export-to-splunk/add_server-configuration.png)
+![Add Server Configuration](../../../docs/doc_imgs/tutorials/tutorial-playbook-export-to-splunk/add_server-configuration.png)
 
 
 ## Configure Splunk Enterprise
@@ -73,7 +74,7 @@ Now that we have configured the Cortex XSOAR side of things, we need to configur
 
 	   * The reliability or confidence we have in the source of this information in the **Weight** field.
 
-	 ![Intelligence Download Settings](../doc_imgs/tutorials/tutorial-playbook-export-to-splunk/splunk_intelligence-download-settings.png)
+	 ![Intelligence Download Settings](../../../docs/doc_imgs/tutorials/tutorial-playbook-export-to-splunk/splunk_intelligence-download-settings.png)
 
 	 1. Under **Parsing Options**:
 
@@ -87,7 +88,7 @@ Now that we have configured the Cortex XSOAR side of things, we need to configur
 
 	    * Under **Skip header lines**, we enter 1, as that is the header row in our CSV file.
 
-	 ![Intelligence Download Settings](../doc_imgs/tutorials/tutorial-playbook-export-to-splunk/splunk_parsing-options.png)
+	 ![Intelligence Download Settings](../../../docs/doc_imgs/tutorials/tutorial-playbook-export-to-splunk/splunk_parsing-options.png)
 
 1. Click **Save**.
 
@@ -103,4 +104,4 @@ After defining the feed in Splunk, we want to ensure that the indicators are bei
 
 Under the Network tab, in the IP Intelligence section, we can see that our indicators are avaiable, meaning our ingestion process worked.
 
-![Splunk Threat Artifacts](../doc_imgs/tutorials/tutorial-playbook-export-to-splunk/splunk_threat_artifiacts.png)
+![Splunk Threat Artifacts](../../../docs/doc_imgs/tutorials/tutorial-playbook-export-to-splunk/splunk_threat_artifiacts.png)
