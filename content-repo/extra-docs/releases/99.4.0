@@ -1,0 +1,931 @@
+# Cortex XSOAR Content Release Notes for version 20.5.4 (12344)
+##### Published on 03 June 2020
+## AWS Feed Pack v1.0.1
+
+#### Classifiers
+- __AWS Feed - Classifier__
+Updated classifier according to new schema.
+
+#### Integrations
+- __AWS Feed__
+Added default classifier and mapper.
+---
+## Access Investigation Pack v1.1.0
+<!-- comment -->
+---
+## Active Directory Query Pack v1.0.0
+
+### Scripts
+- __SendEmailToManager__
+-
+
+
+---
+## ApiModules Pack v1.0.1
+
+### Scripts
+- __JSONFeedApiModule__
+- 
+
+---
+## ArcSight ESM Pack v1.0.1
+
+#### Integrations
+- __ArcSight ESM v2__
+Fixed a breaking change in the outputs of the ***as-get-security-events*** command.
+
+---
+## Awake Security Pack v1.0.1
+
+### Integrations
+- __Awake Security__
+Fixed an issue where the context did not update properly for ***awake-query-activities***, ***awake-query-devices*** and ***awake-query-activities*** commands.
+
+---
+## Base Pack v1.0.1
+
+### Scripts
+- __CommonServerPython__
+Fixed IPv4 regex to only catch IPv4 addresses, not CIDR ranges.
+
+
+---
+## Base Pack v1.0.2
+### Scripts
+- __CommonServerPython__
+  - Added new function **auto_detect_indicator_type** to indicate the type of indicator.
+---
+## Base Pack v1.0.3
+### Scripts
+- __CommonServerPython__
+  - Added **Endpoint** Common class.
+
+---
+## Base Pack v1.0.4
+### Scripts
+- __CommonServerPython__  
+Updated `handle_proxy` function to unset relevant environment variables when *unsecure* or *insecure* params are set.
+
+---
+## Brute Force Pack v1.1.0
+<!-- comment -->
+---
+## Carbon Black Defense Pack v1.1.0
+
+#### Integrations
+- __Carbon Black Defense__
+ - Fixed a bug in the ***cbd-find-events*** command where hash arguments were not processed correctly.
+
+---
+## Carbon Black Enterprise Response Pack v1.0.1
+
+### Integrations
+- __carbonblack-v2__
+    - Added new context outputs for the ***cb-get-processes*** command:
+        - **File.Name**
+        - **File.MD5**
+        - **File.Path**
+        - **Endpoint.Hostname**
+
+---
+## Check Point Firewall Pack v1.0.1
+
+#### Integrations
+- __Check Point__
+Added the **command** argument to the ***checkpoint*** command. This argument is the command to run in the firewall.
+
+---
+## Chronicle Pack v1.0.1
+### Integrations
+- __Google Chronicle Backstory__
+Integration name has been updated
+
+---
+## Cisco Threat Grid Pack v1.0.1
+
+### Integrations
+- __README.md__
+Fixed image paths in documentation.
+
+
+---
+## Claroty Pack v1.0.1
+
+#### Classifiers
+- __Claroty - Classifier__
+Updated classifier according to new schema.
+
+#### Integrations
+- __Claroty__
+Added default classifier and mapper.
+
+---
+## Cofense Feed Pack v1.0.1
+
+### Integrations
+- __Cofense Feed__
+Fixed a bug where the 'test' button always returned a positive 
+answer.
+
+---
+## Cofense Feed Pack v1.0.2
+
+#### Integrations
+- __Cofense Feed__
+Removed the threat type **phish**.
+
+---
+## Common Playbooks Pack v1.0.1
+
+### Playbooks
+- __Detonate File - Generic__
+-
+
+---
+## Common Scripts Pack v1.0.1
+### Scripts	
+__ParseEmailFiles__	
+- Fixed an issue parsing EML files encoded with a BOM.	
+- Fixed an issue with header parsing.
+
+
+---
+## Common Scripts Pack v1.1.0
+### Scripts
+- __SetGridField__
+    - Fixed an issue with a dictionary element.
+    - Added support for lists of values.
+    - Added support for unpacking nested elements.
+    - The argument **keys** is no longer mandatory, all the keys will be taken by default.
+
+
+---
+## Common Scripts Pack v1.1.1
+
+### Scripts
+- __CreateIndicatorFromSTIXTest__
+-
+
+
+---
+## Common Scripts Pack v1.1.2
+
+### Scripts
+- __IsIPInRanges__
+    - Added private IP address ranges.
+
+---
+## Common Types Pack v1.0.1
+
+#### Classifiers
+- __Mail Listener - Classifier__
+Updated classifier according to new schema.
+
+---
+## Cortex Data Lake Pack v1.0.1
+
+### Integrations
+- __Cortex Data Lake__
+  - Fixed a bug in the ***cdl-query-logs*** when no records are found for a given query.
+
+---
+## CrowdStrike Falcon Streaming Pack v1.0.1
+
+#### Classifiers
+- __CrowdStrike Falcon Streaming - Classifier__
+Updated classifier according to new schema.
+
+---
+## Cybereason Pack v1.0.1
+
+### Integrations
+- __README.md__
+Fixed image paths in documentation.
+
+
+---
+## Cymulate Pack v1.0.1
+
+#### Classifiers
+- __Cymulate - Classifier__
+Updated classifier according to new schema.
+
+#### Integrations
+- __Cymulate__
+Added default classifier and mapper.
+
+---
+## D2 Pack v1.0.0
+### Scripts
+- __StaticAnalyze__
+-
+
+
+---
+## Demisto REST API Pack v1.0.1
+
+#### Integrations
+- __Demisto REST API__
+Fixed an issue in which URL endpoints given with forward slash character as prefix were not processed as expected. 
+---
+## Deprecated Content Pack v1.0.3
+
+### Playbooks
+- __Phishing Playbook - Manual__
+  - Added the **Phishing Playbook - Manual** playbook to the DeprecatedContent pack.
+
+---
+## Deprecated Content Pack v1.0.4
+
+### Integrations
+- __SafeBreach__
+Use the **SafeBreach v2** integration instead.
+
+---
+## Deprecated Content Pack v1.1.0
+
+### Integrations
+- __PostgreSQL__
+  - Added PostgreSQL to Deprecated Pack.
+
+---
+## Deprecated Content Pack v1.1.1
+
+### Scripts
+- __DBotPredictPhishingLabel__
+
+---
+## Deprecated Content Pack v1.1.2
+
+### Scripts
+- __DBotPreparePhishingData__
+
+---
+## EWS Pack v1.0.1
+
+#### Integrations
+- __EWS v2__
+-
+#### Classifiers
+- __EWS v2 - Classifier__
+-
+---
+## Elasticsearch Pack v1.0.1
+
+### Integrations
+- __README.md__
+Fixed image paths in documentation.
+
+
+---
+## Elasticsearch Feed Pack v1.0.1
+### Integrations
+- __Elasticsearch Feed__
+  - Fixed an issue where the integration would handle `Generic Feed` as `Cortex XSOAR Feed`.
+
+
+---
+## Expanse Pack v1.0.1
+
+### Integrations
+- __Expanse__
+  - Added support for filtering incident creation by Expanse Exposure severity level.
+
+
+
+---
+## FakePack1 Pack v1.1.0
+
+#### Integrations
+- __FakePack1_Integration1__
+  This is a fake minor release note.
+- __FakePack1_Integration2__
+  This is a fake minor release note.
+
+---
+## FakePack1 Pack v2.0.0
+
+#### Integrations
+- __FakePack1_Integration1__
+  This is a fake major release note.
+- __FakePack1_Integration2__
+  This is a fake major release note.
+
+---
+## FakePack2 Pack v1.1.0
+
+#### Scripts
+- __FakePack2_Script1__
+  This is a fake minor release note.
+
+---
+## FireEye HX Pack v1.0.1
+
+### Integrations
+- __README.md__
+Fixed image paths in documentation.
+
+
+---
+## FortiSIEM Pack v1.0.0
+
+### Integrations
+- __FortiSIEM__
+Fixed an issue where the authentication did not work properly.
+
+
+---
+## GDPR Pack v1.0.1
+
+#### Playbooks
+- __GDPR Breach Notification__
+-
+
+---
+## GenericSQL Pack v1.0.1
+
+### Integrations
+- __Generic SQL__
+Fixed an issue where connecting to an MS SQL database using an encrypted connection failed.
+
+
+---
+## Gmail Pack v1.0.1
+
+#### Classifiers
+- __Gmail - Classifier__
+Updated classifier according to new schema.
+
+#### Integrations
+- __Gmail Single User__
+Added default classifier and mapper.
+---
+## Gmail Single User (Beta) Pack v1.0.1
+
+#### Integrations
+- __Gmail Single User__
+Added default classifier and mapper.
+
+#### Classifiers
+- __Gmail Single User - Classifier__
+Updated classifier according to new schema.
+
+---
+## Google Vault Pack v1.0.1
+
+### Integrations
+- __README.md__
+Fixed image paths in documentation.
+
+
+---
+## HelloWorld Pack v1.1.0
+
+### Integrations
+- __HelloWorld__
+  - Grammar correction for code description.
+
+### Scripts
+- __HelloWorldScript__
+  - Grammar correction for code description.
+.
+
+---
+## HelloWorld Pack v1.1.1
+<!--
+#### Playbooks
+- __Handle Hello World Alert__
+Minor grammar fix
+-->
+Corrected minor grammatical issues in the `Handle Hello World` playbook.
+---
+## HelloWorld Pack v1.1.2
+
+### Integrations
+- __HelloWorld__
+Changed category to Utilities
+
+---
+## HelloWorld Pack v1.1.3
+
+#### Integrations
+- __HelloWorld__
+Added default classifier and mapper.
+
+#### Classifiers
+- __Hello World - Classification__
+Updated classifier according to new schema.
+
+- __Hello World - Incoming Mapper__
+Added incoming mapper.
+---
+## IBM QRadar Pack v1.0.2
+
+#### Classifiers
+- __QRadar - Classifier__
+Updated classifier according to new schema.
+
+#### Integrations
+- __QRadar__
+Added default classifier and mapper.
+---
+## IBM Resilient Systems Pack v1.0.1
+
+### Integrations
+- __IBM Resilient Systems__
+Fixed an issue where the ***fetch-incident*** command did not pull all incidents.
+
+---
+## Illusive Networks Pack v1.0.1
+
+#### Integrations
+- __IllusiveNetworks__
+Added default classifier and mapper.
+
+#### Classifiers
+- __Illusive Networks - Classification__
+Updated classifier according to new schema.
+
+- __Illusive Networks - Incoming Mapper__
+Added incoming mapper.
+---
+## Indeni Pack v1.0.1
+
+#### Playbooks
+- __Indeni Demo__
+-
+
+---
+## Indeni Pack v1.0.2
+
+#### Integrations
+- __Indeni__
+Added default classifier and mapper.
+
+#### Classifiers
+- __Indeni - Classifier__
+Updated classifier according to new schema.
+
+---
+## Indeni Pack v1.0.3
+
+### IncidentTypes
+- __Indeni Incident__
+-
+
+---
+## Logz.io Pack v1.0.1
+
+
+### IncidentTypes
+- __Logz.io Alert__
+-
+
+#### Integrations
+- __Logz.io__
+Added default classifier and mapper.
+
+#### Classifiers
+- __Logz.io - Classification__
+Updated classifier according to new schema.
+
+- __Logz.io - Incoming Mapper__
+Added incoming mapper.
+
+---
+## Logz.io Pack v1.0.2
+<!--
+### Playbooks
+- __Logz.Io Handle Alert__
+
+### Integrations
+- __Logz.io__
+-->
+
+---
+## Lost / Stolen Device Pack v1.0.0
+<!-- comment -->
+
+---
+## MITRE ATT&CK Pack v1.0.1
+
+### Integrations
+- __MITRE ATT&CK__
+Fixed an issue where the **insecure** and **proxy** parameters were not passed while fetching indicators.
+
+
+---
+## McAfee Active Response Pack v1.0.1
+
+### Integrations
+- __README.md__
+Fixed image paths in documentation.
+
+
+---
+## Microsoft Graph Mail Single User Pack v1.0.1
+
+### Integrations
+- __Microsoft Graph Mail Single User__
+Fixed an issue in which some emails were not fetched as incidents.
+
+
+---
+## Microsoft Graph Mail Single User Pack v1.0.2
+
+#### Integrations
+- __Microsoft Graph Mail Single User__
+-
+
+#### Classifiers
+- __Microsoft Graph Mail Single User - Classification__
+Updated classifier according to new schema.
+
+- __Microsoft Graph Mail Single User - Incoming Mapper__
+Added incoming mapper.
+---
+## Microsoft Graph Security Pack v2.0.0
+
+### Integrations
+- __Microsoft Graph__
+- Added fetch-incidents function and unit test
+
+
+---
+## Microsoft Intune Feed Pack v1.0.0
+### Integrations
+- __Microsoft Intune Feed__
+- 
+
+
+---
+## Microsoft Teams Pack v1.0.1
+
+#### Integrations
+- __Microsoft Teams__
+Improved error handling.
+
+---
+## Mimecast Pack v1.0.1
+
+#### Integrations
+- __MimecastV2__
+Fixed parsing of responses for the ***create-mimecast-incident*** command.
+
+---
+## MongoDB Pack v1.0.1
+
+### Integrations
+- __MongoDB__  
+Fixed an issue when pulling a object that contains date.
+
+
+
+---
+## Non Supported Pack v1.0.0
+### Scripts
+- __FindSimilarIncidents__
+Fixed an issue where incidents with numbered keys raised an error.
+
+
+---
+## OnboardingIntegration Pack v1.0.1
+#### Classifiers
+- __Onboarding Integration - Classifier__
+Updated classifier according to new schema.
+
+#### Integrations
+- __OnboardingIntegration__
+Added default classifier and mapper.
+
+---
+## PAN-OS Pack v1.0.1
+### Integrations
+- __Panorama__ 
+- Replaced the spaces in the URL context output of the **!panorama-create-edl** command to `%20`.   
+
+---
+## PAN-OS Pack v1.0.2
+
+### Integrations
+- __Panorama__
+- POST request parameterss are now passed through body and not through the URI.
+
+
+---
+## PANW Comprehensive Investigation Pack v1.0.0
+<!--
+comment
+-->
+---
+## Palo Alto Networks Cortex XDR - Investigation and Response Pack v1.0.1
+
+#### Classifiers
+- __Cortex XDR - Classifier__
+Updated classifier according to new schema.
+
+#### Integrations
+- __Cortex XDR - IR__
+Added default classifier and mapper.
+
+---
+## Palo Alto Networks PAN-OS EDL Service Pack v1.0.1
+
+### Integrations
+- __EDL__
+- Added request parameters through URL
+
+
+---
+## Palo Alto Networks PAN-OS EDL Service Pack v1.0.2
+### Integrations
+- __EDL__
+- Added request parameters through URL
+- __README.md__
+
+### Playbooks
+- __PAN-OS EDL Service Configuration__
+  - New playbook added to the EDL pack - EDL Service Configuration. A single-run playbook which enables Cortex XSOAR's built-in External Dynamic List (EDL) as a service with PAN-OS native EDL Objects to create firewall policy rules that continuously updates with Cortex XSOAR built-in indicator managment cpabilities.
+
+---
+## Palo Alto Networks Traps Pack v1.0.0
+### Integrations
+- __Traps__
+
+- __Palo Alto Traps ESM (Beta)__
+
+
+---
+## Palo Alto Networks WildFire Pack v1.0.1
+
+### Integrations
+- __WildFire-v2__
+Fixed an issue in which the ***wildfire-get-sample*** command returned the wrong filename.
+
+---
+## Phishing Pack v1.1.0
+<!--
+Renamed files. No need for RNs
+-->
+---
+## Phishing Pack v1.1.1
+### Layouts
+- __Phishing__
+  - Removed custom fields from the incident Quick View layout that raised warnings.
+
+
+---
+## Phishing Pack v1.1.2
+Moved Phishing Playbook - Manual to this pack
+---
+## Prisma Cloud Pack v1.0.0
+This pack contains Prisma Cloud related content.
+
+---
+## Prisma Cloud Pack v1.0.1
+
+#### Classifiers
+- __Prisma Cloud - Classifier__
+Updated classifier according to new schema.
+- __Prisma Cloud App - Classifier__
+Updated classifier according to new schema.
+
+
+
+---
+## Prisma Cloud Pack v1.0.2
+
+#### Classifiers
+- __Prisma Cloud - Classifier__
+-
+
+---
+## Prisma Cloud (RedLock) Pack v1.0.1
+
+#### Integrations
+- __RedLock__
+Added defAdded default classifier and mapper.ault classifier and mapper.
+---
+## Prisma Cloud Compute Pack v1.0.1
+
+#### Classifiers
+- __Palo Alto Networks Prisma Cloud Compute - Classifier__
+Updated classifier according to new schema.
+
+---
+## ProtectWise Pack v1.0.0
+### Scripts
+- __PWObservationPcapDownload__
+Fixed an issue where an error was raised when only one sensor id was provided.
+
+
+
+---
+## RTIR Pack v1.0.1
+
+#### Integrations
+- __RTIR__
+Improved parsing of ticket history and ticket links.
+
+---
+## Ransomware Pack v1.0.0
+<!--
+comment
+-->
+---
+## Recorded Future Pack v1.0.1
+
+### Integrations
+- __Recorded Future__
+Fixed an issue in **recorded-future-get-related-entities** where the command output was mishandled.
+
+
+---
+## SafeBreach - Breach and Attack Simulation platform Pack v1.0.1
+
+### Integrations
+- __integration-SafeBreach_README.md__
+Fixed image paths in documentation.
+
+
+---
+## Salesforce Pack v1.0.1
+
+### Integrations
+- __integration-Salesforce_README.md__
+Fixed image paths in documentation.
+
+
+---
+## ServiceNow Pack v1.1.0
+
+### Integrations
+- __ServiceNow v2__
+  - Added the *incident_name* parameter, to allow the user to choose the column from ServiceNow on which the fetched incidents will be named.
+  - Fixed an issue where system proxy settings were always being used.
+  - Fixed an issue where ***fetch-incidents*** command with attachments did not work as expected.
+
+
+---
+## ServiceNow Pack v1.1.1
+
+### Integrations
+- __ServiceNow v2__
+Fixed the timestamp field parameter description.
+
+
+---
+## ServiceNow Pack v1.1.2
+
+#### Integrations
+- __ServiceNow v2__
+Fixed an issue in which the **ServiceNow ticket column to be set as the incident name** parameter was not initialized with the default value as expected.
+
+---
+## Shodan Pack v1.0.1
+
+### Integrations
+- __Shodan_v2__
+Fixed an issue in which searching for an IP address without information raised an error.
+
+---
+## Signal Sciences WAF Pack v1.0.1
+
+#### Integrations
+- __Signal Sciences WAF__
+Added verification to the **Corporation Name** parameter to match the required pattern.
+
+---
+## Silverfort Pack v1.0.1
+
+#### Playbooks
+- __Silverfort Update Risk for Domain Admins Incidents__
+-
+- __Silverfort Disable High Risk Account__
+-
+
+---
+## Sixgill DarkFeed Threat Intelligence Pack v1.0.1
+
+#### Integrations
+- __Sixgill__
+Added default classifier and mapper.
+
+#### Classifiers
+- __Sixgill - Classification__
+Updated classifier according to new schema.
+
+- __Sixgill - Incoming Mapper__
+Added incoming mapper.
+
+---
+## Slack Pack v1.1.0
+### Integrations
+- __SlackV2__
+    - Update default integration parameter to new brand name Palo Alto Networks XSOAR (formerly Demisto).
+
+---
+## Smokescreen IllusionBLACK Pack v1.0.1
+
+#### Integrations
+- __Smokescreen IllusionBLACK__
+Updated classifier according to new schema.
+
+#### Classifiers
+- __Smokescreen IllusionBLACK - Classifier__
+Added default classifier and mapper.
+
+---
+## SplunkPy Pack v1.0.1
+
+### Integrations
+- __SplunkPy__
+Added support for HTTPS handler, which uses the Python **requests** library.
+
+
+---
+## SplunkPy Pack v1.0.2
+
+#### Classifiers
+- __Splunk - Classifier__
+Updated classifier according to new schema.
+
+#### Integrations
+- __SplunkPy__
+Added defAdded default classifier and mapper.ault classifier and mapper.
+---
+## Stealthwatch Cloud Pack v1.0.1
+
+#### Integrations
+- __Stealthwatch Cloud__
+Fixed an issue where the ***sw-update-alert*** command was not updating the alert as expected.
+---
+## SumoLogic Pack v1.0.1
+
+### Integrations
+- __SumoLogic__
+Changed integration image from csv to png. 
+
+
+---
+## ThreatConnect Pack v1.0.1
+
+### Integrations
+- __README.md__
+Fixed image paths in documentation.
+
+
+---
+## ThreatMiner Pack v1.0.1
+### Integrations
+- __ThreatMiner__
+Fixed a bug in the **ip** command when searching for IP addresses that don't have reports in ThreatMiner.
+
+
+---
+## ThreatQ Pack v1.0.1
+
+### Integrations
+- __README.md__
+Fixed image paths in documentation.
+
+
+---
+## ThreatQ Pack v1.0.2
+
+#### Integrations
+- __ThreatQ v2__
+Fixed an issue where indicators were duplicated in the context data.
+
+---
+## TruSTAR Pack v1.1.0
+
+### Integrations
+- __TruSTAR__
+  - Breaking changes:
+    - `normalized_triage_score` argument replaced by `priority_event_score` in `trustar-get-phishing-submissions` and `trustar-get-phishing-indicators` command.
+    - `normalized_source_score` argument replaced by `normalized_indicator_score` in `trustar-get-phishing-indicators` command.
+    - Updated context outputs on `trustar-get-phishing-submissions` and `trustar-get-phishing-indicators`.
+
+  - Non Breaking changes:
+    - Fixed `from_time` description on `trustar-get-phishing-indicators` and `trustar-get-phishing-submissions` to '24 hours ago'
+    - Added -1 to list of default values in `priority_event_score` on `trustar-get-phishing-submissions`
+    - Added -1 to list of default values in `priority_event_score` and `normalized_indicator_score` on `trustar-get-phishing-indicators`
+
+
+---
+## US - Breach Notification Pack v1.0.1
+
+### IncidentTypes
+- __US Breach Notification__
+-
+
+---
+## Whois Pack v1.0.1
+
+### Integrations
+- __Whois__
+    - Added the *Domain.Whois.QueryResult* output, which tells whether the query found a matching result.
+
+
+---
