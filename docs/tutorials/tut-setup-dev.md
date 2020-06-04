@@ -116,10 +116,10 @@ We assume you have an Operating System and that is working :)
 
 You will need `python3` installed on your system. We recommend using `pyenv`. At the time of writing, the latest version of Python 3.7 is *3.7.5*.
 
-Make sure `pyenv` in installed and that the `eval "$(pyenv init -)` expression is placed in your shell configuration (`~/.bashrc` or `~/.zshrc`) - [more information about this](https://github.com/pyenv/pyenv#installation).
+Make sure `pyenv` in installed and that the `eval "$(pyenv init -)"` expression is placed in your shell configuration (`~/.bashrc` or `~/.zshrc`) - [more information about this](https://github.com/pyenv/pyenv#installation).
 
 ```bash
-sb@dddd:~/demisto$ eval "$(pyenv init -)
+sb@dddd:~/demisto$ eval "$(pyenv init -)"
 sb@dddd:~/demisto$ pyenv -v
 pyenv 1.2.15
 sb@dddd:~/demisto$~/demisto$
