@@ -4,7 +4,7 @@ title: Integration Parameter Types
 ---
 
 Integration Parameter Types are used to configure instances of the integration. When adding a parameter to an integration in Cortex XSOAR, there are numerous types to choose from.
-Each type will effect the parameter behavior and interaction with the user. 
+Each type will affect the parameter behavior and interaction with the user. 
 
 ## Boolean
 
@@ -41,7 +41,7 @@ Access: `demisto.params().get('cert')`
 
 ## Encrypted
 
-This type of parameters is used for encrypted inputs, such as API tokens. This should not be used for username-password 
+This type of parameter is used for encrypted inputs, such as API tokens. This should not be used for username-password 
 credentials however. It creates a small sized text box with an encrypted text, which would also be stored encrypted in
 the database. 
 
@@ -54,7 +54,7 @@ Access: `demisto.params().get('token')`
 ## Authentication
 
 This type of parameter is used for username-password credentials - username as plain text and an encrypted password. 
-It supports retrieving credentials from the Cortex XSOAR credentials store(more info on the credentials store can be found in
+It supports retrieving credentials from the Cortex XSOAR credentials store (more info on the credentials store can be found in
 the Cortex XSOAR support portal).
 
 ![image](../doc_imgs/integrations/54882618-89f8f080-4e64-11e9-8bbc-e4974c9466a5.png)
@@ -90,7 +90,7 @@ Access: `demisto.params().get('sort')`
 ## Important Note
 
 Once a parameter is set in an integration configuration, it is saved to the Cortex XSOAR database, so before changing an existing
-parameter you have to consider the existing values (backward compatibility).
+parameter, you have to consider the existing values (backward compatibility).
 
 
 
