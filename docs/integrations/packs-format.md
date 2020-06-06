@@ -46,7 +46,6 @@ The following fields are populated in the pack metadata:
 | name | String | The pack name. Usually it's the name of the integration the pack contains (e.g. CortexXDR) or the use-case implemented in it. |
 | description | String | A short overview of the pack. |
 | support | String | Should be one of the following:<br />1.  xsoar - Supported by Cortex XSOAR.<br />2.  partner - Supported by a Cortex XSOAR partner.<br />3.  developer - Supported by an independent developer/organization.<br />4.  community - Not officialy supported, but available for the community to use.<br /> For `partner` and `developer`, either email address or URL fields must be filled out.  |
-| serverMinVersion | String | Cortex XSOAR minimum version from which the pack is available in the format `x.x.x`, e.g. "5.5.0" |
 | currentVersion | String | The pack version, in the format of `x.x.x`. On the initial release this should be set to "1.0.0". |
 | author | String | The name of the organization / developer which developed the integration. |
 | url | String | The URL to which users should refer to in case of support needed regarding the pack. Usually is the organization support URL or the developer GitHub repository. |
@@ -54,13 +53,10 @@ The following fields are populated in the pack metadata:
 | categories | List | The use-case categories which are implemented in the pack. Usually set by the integration, which included in the pack category. Should be one of the following:<br />1. Analytics & SIEM<br />2. Utilities<br />3. Messaging<br />4. Endpoint<br />5. Network Security<br />6. Vulnerability Management<br />7. Case Management<br />8. Forensics & Malware Analysis<br />9. IT Services<br />10. Data Enrichment & Threat Intelligence<br />11. Authentication<br />12. Database<br />13. Deception<br />14. Email Gateway|
 | tags | List | Tags to be attached to the pack on Cortex XSOAR marketplace. |
 | created | String | Pack creation time in ISO 8601 format - YYYY-MM-DDTHH:mm:ssZ, e.g. 2020-01-25T10:00:00Z |
-| updated | String | Pack last update time in ISO 8601 format - YYYY-MM-DDTHH:mm:ssZ, e.g. 2020-01-25T10:00:00Z |
-| beta | Boolean | Whether the pack is in beta version or not. |
-| deprecated | Boolean | Whether the pack is deprecated or not. |
 | useCases | List | Use-cases implemented by the pack. |
 | keywords | List | List of strings by which the pack can be found in Cortex XSOAR marketplace. |
-| dependencies | Dictionary | An object that describes the content packs that the pack is dependant on. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
-| displayedImages | List | Images to be displayed in Cortex XSOAR marketplace. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
+| dependencies | Dictionary | (Optional) An object that describes the content packs that the pack is dependant on. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
+| displayedImages | List | (Optional) Images to be displayed in Cortex XSOAR marketplace. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 
 Pack metadata contents for example:
 
@@ -69,7 +65,6 @@ Pack metadata contents for example:
     "name": "Palo Alto Networks Cortex XDR - Investigation and Response",
     "description": "Cortex XDR is the world's first detection and response app that natively integrates network, endpoint and cloud data to stop sophisticated attacks.",
     "support": "xsoar",
-    "serverMinVersion": "5.5.0",
     "currentVersion": "1.0.0",
     "author": "Cortex XSOAR  ",
     "url": "https://www.paloaltonetworks.com/cortex",
@@ -82,9 +77,6 @@ Pack metadata contents for example:
         "xdr"
     ],
     "created": "2020-03-11T13:16:53Z",
-    "updated": "2020-03-11T13:16:53Z",
-    "beta": false,
-    "deprecated": false,
     "useCases": [
         "Malware"
     ],
@@ -95,9 +87,11 @@ Pack metadata contents for example:
     "dependencies": {
         "Base": {
             "mandatory": true,
-            "minVersion": "1.0.0",
-            "author": "Cortex XSOAR",
             "name": "Base"
+        },
+        "CortexXDR": {
+            "mandatory": false,
+            "name": "Palo Alto Networks - Cortex XDR"
         }
     },
     "displayedImages": [
