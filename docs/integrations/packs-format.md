@@ -66,7 +66,7 @@ Pack metadata contents for example:
     "description": "Cortex XDR is the world's first detection and response app that natively integrates network, endpoint and cloud data to stop sophisticated attacks.",
     "support": "xsoar",
     "currentVersion": "1.0.0",
-    "author": "Cortex XSOAR  ",
+    "author": "Cortex XSOAR",
     "url": "https://www.paloaltonetworks.com/cortex",
     "email": "",
     "categories": [
