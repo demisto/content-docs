@@ -100,6 +100,32 @@ Pack metadata contents for example:
 }
 ```
 
+A supported partner pack metadata contents for example:
+```json
+{
+    "name": "Product name",
+    "description": "Pack description",
+    "support": "partner",
+    "serverMinVersion": "5.0.0",
+    "currentVersion": "1.0.0",
+    "author": "Partner name",
+    "url": "https://www.<partner>.com",
+    "email": "support@<partner>.com",
+    "categories": [
+        "Deception"
+    ],
+    "tags": [],
+    "created": "2020-03-19T09:39:30Z",
+    "updated": "2020-03-19T09:39:30Z",
+    "beta": false,
+    "deprecated": false,
+    "certification": "certified",
+    "useCases": [],
+    "keywords": [],
+    "dependencies": {}
+}
+```
+
 
 ### README.md
 The file contains a general explanation for the pack and you are free to add any information relevant for the pack.
