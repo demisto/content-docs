@@ -115,7 +115,6 @@ A supported partner pack metadata contents for example:
     ],
     "tags": [],
     "created": "2020-03-19T09:39:30Z",
-    "certification": "certified",
     "useCases": [],
     "keywords": [],
     "dependencies": {}
