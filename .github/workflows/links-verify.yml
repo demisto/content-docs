@@ -17,6 +17,7 @@ jobs:
       run: 'go get -u github.com/raviqqe/muffet'
     - name: Verify Links
       run: |
+        muffet --version
         muffet -c 64 --ignore-fragments -b 8192 \
         -e 'https://github.com/demisto/content-docs/.*' \
         -e 'https://github.com/demisto/content/blob/master//Packs/.*' \
@@ -31,4 +32,5 @@ jobs:
         -e 'https://.*\.domain.com/' \
         -e 'https://partner.analystplatform.com.*' \
         -e 'https://demistodev.atlassian.net.*' \
+        -e 'https://.*s3.amazonaws.com/.*X-Amz-Credential.*' \
         https://xsoar.pan.dev
