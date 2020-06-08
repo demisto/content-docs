@@ -100,6 +100,28 @@ Pack metadata contents for example:
 }
 ```
 
+A supported partner pack metadata contents for example:
+```json
+{
+    "name": "Product name",
+    "description": "Pack description",
+    "support": "partner",
+    "currentVersion": "1.1.0",
+    "author": "Partner name",
+    "url": "https://www.<partner>.com",
+    "email": "support@<partner>.com",
+    "categories": [
+        "Deception"
+    ],
+    "tags": [],
+    "created": "2020-03-19T09:39:30Z",
+    "certification": "certified",
+    "useCases": [],
+    "keywords": [],
+    "dependencies": {}
+}
+```
+
 
 ### README.md
 The file contains a general explanation for the pack and you are free to add any information relevant for the pack.
