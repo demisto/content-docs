@@ -106,7 +106,6 @@ A supported partner pack metadata contents for example:
     "name": "Product name",
     "description": "Pack description",
     "support": "partner",
-    "serverMinVersion": "5.0.0",
     "currentVersion": "1.1.0",
     "author": "Partner name",
     "url": "https://www.<partner>.com",
