@@ -1,9 +1,11 @@
 ---
-title: Connection issues troubleshooting guide
+title: Troubleshooting Guide
 description: This article helps common troubleshooting issues with XSOAR integrations
 ---
 
-# Connection issues troubleshooting guide
+# Troubleshooting Guide
+
+##Connection issues troubleshooting guide:
 ### When a customer has any connection errors try the following steps:
 1. Check and uncheck the “insecure” checkbox
 2. Check and uncheck the “proxy” checkbox
