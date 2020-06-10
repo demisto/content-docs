@@ -15,9 +15,9 @@ module.exports = {
   projectName: "content-docs", // Usually your repo name.
   themeConfig: {
     algolia: {
-      apiKey: process.env.ALGOLIA_APIKEY,
-      indexName: process.env.ALGOLIA_INDEX,
-      algoliaOptions: { typoTolerance: false, hitsPerPage: 1000, filters: 'anchor:"__docusaurus"' } // Optional, if provided by Algolia
+      apiKey: "f5dfbee43cfa4c5024b10045c6d91461",
+      indexName: "demisto",
+      algoliaOptions: { typoTolerance: false, hitsPerPage: 1000 } // Optional, if provided by Algolia
     },
     sidebarCollapsible: true,
     navbar: {

@@ -44,14 +44,14 @@ All unit tests should be written in a separate PowerShell file named: `<Integrat
 ```powershell
 . $PSScriptRoot\<IntegrationFileName>.ps1
 ```  
-Group related unit tests using the `Describe` block. Use `Context` for grouping tests that use the same mock logic. Write your tests using the `It` command. For more details see the [Pester Docs](https://pester.dev/docs/quick-start). Example unit tests can be seen at: [VerifyJSON](https://github.com/demisto/content/tree/master/Packs/Legacy/Scripts/VerifyJSON).
+Group related unit tests using the `Describe` block. Use `Context` for grouping tests that use the same mock logic. Write your tests using the `It` command. For more details see the [Pester Docs](https://pester.dev/docs/quick-start). Example unit tests can be seen at: [VerifyJSON](https://github.com/demisto/content/tree/master/Packs/CommonScripts/Scripts/VerifyJSON).
 
 ### Mocking
 Pester supports mocking PowerShell functions. You can mock any function defined in CommonServerPowerShell.ps1 and functions included in standard PowerShell and imported modules. Pester doesn't support mocking object methods. This includes methods of the `$demisto` object. You can however modify the `$demisto` object properties in a test. For example you can set the `ContextArgs` property to control the return of `$demisto.Args()` method. Example code:
 ```powershell
 $demisto.ContextArgs = @{arg1 = 'val1' }
 ``` 
-Additionally, you can mock functions called by the `$demisto` object. For example you can mock `DemistoServerLog` which is called by the `$demisto` object methods: `Info, Debug, Error`. Example of using mocking can be seen at: [VerifyJSON](https://github.com/demisto/content/tree/master/Packs/Legacy/Scripts/VerifyJSON). More info about Pester Mocking is available [here](https://pester.dev/docs/usage/mocking).
+Additionally, you can mock functions called by the `$demisto` object. For example you can mock `DemistoServerLog` which is called by the `$demisto` object methods: `Info, Debug, Error`. Example of using mocking can be seen at: [VerifyJSON](https://github.com/demisto/content/tree/master/Packs/CommonScripts/Scripts/VerifyJSON). More info about Pester Mocking is available [here](https://pester.dev/docs/usage/mocking).
 
 ## Run Lint and Test
 

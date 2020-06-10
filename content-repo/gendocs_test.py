@@ -1,6 +1,6 @@
 from gendocs import INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
     index_doc_infos, DocInfo, gen_html_doc, normalize_id, process_release_doc, process_extra_readme_doc, \
-    INTEGRATIONS_PREFIX
+    INTEGRATIONS_PREFIX, get_deprecated_data
 from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server
 import os
 import pytest
@@ -167,3 +167,13 @@ def test_process_extra_doc(tmp_path, mdx_server):
         assert f.readline().startswith(f'id: {res.id}')
         assert f.readline().startswith(f'title: "{res.name}"')
         assert f.readline().startswith(f'custom_edit_url: https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/integrations')
+
+
+def test_get_deprecated_data():
+    res = get_deprecated_data({"deprecated": True}, "Deprecated - We recommend using ServiceNow v2 instead.")
+    assert "We recommend using ServiceNow v2 instead" in res
+    assert get_deprecated_data({"deprecated": False}, "stam") == ""
+    res = get_deprecated_data({"deprecated": True}, "Deprecated: use Shodan v2 instead. Search engine for Internet-connected devices.")
+    assert "use Shodan v2 instead" in res
+    res = get_deprecated_data({"deprecated": True}, "Deprecated. Use The Generic SQL integration instead.")
+    assert "Use The Generic SQL integration instead" in res

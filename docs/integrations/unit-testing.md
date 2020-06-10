@@ -5,7 +5,7 @@ title: Unit Testing
 
 Unit testing should be used to test small units of code in an isolated and deterministic fashion. Unit tests should avoid performing communication with external APIs and should prefer to use mocking. Testing actual interaction with external APIs should be performed via [Test Playbooks](test-playbooks). Unit testing is currently supported for Python and PowerShell (no JS). This doc outlines Python setup. For PowerShell see [here](powershell-code).
 ## Environment Setup
-In order to work with unit testing the integration or automation script need to be developed in [package (directory) structure](package-dir), where the yml file is separated from the python file and resides in its own directory.
+In order to work with unit testing, the integration or automation script needs to be developed in [package (directory) structure](package-dir), where the yml file is separated from the python file and resides in its own directory.
 
 ### Setup Pipenv 
 To run locally the unit tests we want to setup a virtual environment with all required dependencies (both runtime and development). To achieve this we use [Pipenv](https://pipenv.readthedocs.io/en/latest/).
@@ -15,7 +15,7 @@ Our recommended way to setup an integration into the [package (directory) struct
 Manual Setup:
 
 * **Install pipenv**: Follow the [instructions](https://pipenv.readthedocs.io/en/latest/install/#installing-pipenv).
-* **Copy base Pipenv files**: Copy the base Pipenv and Pipenv.lock files to the target package directory from: [demisto_sdk/commands/lint/resources](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/lint/resources).
+* **Copy base Pipenv files**: Copy the base Pipfile and Pipfile.lock files to the target package directory from: [demisto_sdk/commands/lint/resources](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/lint/resources).
 * **Install additional runtime dependencies**: using: `pipenv install <dependency>`. For example: `pipenv install ldap3`
 * **Sync Pipenv**: (including dev dependencies) by running: `pipenv sync --dev`
 * **Enable Virtual Env**: To enable the Pipenv virtual env in the shell run: `pipenv shell`. To exit the virtual env simply run: `exit`.
@@ -40,10 +40,10 @@ if __name__ == "__builtin__" or __name__ == "builtins":
 ``` 
 
 ## Write Your Unit Tests
-Unit test should be written in a separate Python file named: `<your_choice>_test.py`. Within the unit test file, each unit test function should be named: `test_<your name>`. More information on writing unit tests and their format is available at the [PyTest Docs](https://docs.pytest.org/en/latest/contents.html). Good place to see example unit tests: [Proofpoint TAP v2 integration](https://github.com/demisto/content/blob/master/Integrations/ProofpointTAP_v2/ProofpointTAP_v2_test.py) 
+Unit tests should be written in a separate Python file named: `<your_choice>_test.py`. Within the unit test file, each unit test function should be named: `test_<your name>`. More information on writing unit tests and their format is available at the [PyTest Docs](https://docs.pytest.org/en/latest/contents.html). Good place to see example unit tests: [Proofpoint TAP v2 integration](https://github.com/demisto/content/blob/master/Packs/ProofpointTAP/Integrations/ProofpointTAP_v2/ProofpointTAP_v2_test.py) 
 
 ### Mocking
-We use [pytest-mock](https://github.com/pytest-dev/pytest-mock/) for mocking. `pytest-mock` is enabled by default and installed in the base environment mentioned above. To use a `mocker` object simply pass it as a parameter to your test function. The `mocker` can then be used to mock both the demisto object and also external APIs. An example of using a `mocker` object is available [here](https://github.com/demisto/content/blob/master/Scripts/ParseEmailFiles/parse_email_files_test.py).
+We use [pytest-mock](https://github.com/pytest-dev/pytest-mock/) for mocking. `pytest-mock` is enabled by default and installed in the base environment mentioned above. To use a `mocker` object, simply pass it as a parameter to your test function. The `mocker` can then be used to mock both the demisto object and also external APIs. An example of using a `mocker` object is available [here](https://github.com/demisto/content/blob/master/Packs/CommonScripts/Scripts/ParseEmailFiles/parse_email_files_test.py).
 
 ## Running Your Unit Tests
 ### Command Line
@@ -143,7 +143,7 @@ After declaring the variables and assigning their values, you need to assign the
 
 To read more on parametrize fixtures, visit: https://docs.pytest.org/en/latest/parametrize.html
 
-An example of a test using the paramertrize fixture is avialable [here](https://github.com/demisto/content/blob/master/Scripts/ExtractDomainFromUrlFormat/ExtractDomainFromUrlFormat_test.py#L7).
+An example of a test using the paramertrize fixture is avialable [here](https://github.com/demisto/content/blob/master/Packs/CommonScripts/Scripts/ExtractDomainFromUrlFormat/ExtractDomainFromUrlFormat_test.py#L7).
 
 ### Testing Exceptions
 If a function is raising an exception in some case we want to test the right exception is raised and that the error message is correct.

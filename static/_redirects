@@ -1,3 +1,7 @@
+# Redirect subdomain
+https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
+
+
 # Redirect main docs page
 /docs	/docs/welcome
 
@@ -94,6 +98,12 @@
 # Tutorials
 /docs/tutorials/getting-started/tut-setup-dev   /docs/tutorials/tut-setup-dev
 /docs/tutorials/integrations/tut-integration-ui /docs/tutorials/tut-integration-ui
+
+# Tuts that moved to articles
+/docs/tutorials/tut-minemeld-migration /docs/reference/articles/minemeld-migration
+/docs/tutorials/tutorial-incident-lifecycle /docs/reference/articles/incident-lifecycle
+/docs/tutorials/tutorial-playbook-TIM-EDL /docs/reference/articles/tim-edl
+/docs/tutorials/tutorial-TIM-export-indicators-to-3rd-party /docs/reference/articles/export-indicators
 
 #Sign Up
 

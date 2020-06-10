@@ -118,7 +118,7 @@ import requests
 import json
 import collections
 ```
-These packages are part of the standard Cortex XSOAR docker image. If you would like to use python libraries that are not part of the standard Cortex XSOAR image, you can create your own image. To learn how to do so, [visit this page](url)
+These packages are part of the standard Cortex XSOAR docker image. If you would like to use python libraries that are not part of the standard Cortex XSOAR image, you can create your own image. To learn how to do so, [visit this page](../integrations/docker)
 
 >This part allows us to ignore certificate warnings and is part of the “insecure” setting.
 
@@ -269,7 +269,7 @@ def translate_command():
 
 >Let's create a table out of the human_readable dictionary so the translation will look nice in the war room. Go to the Script Helper and let’s select tableToMarkdown. Click “Copy to Script”. We will call this table “Yoda says…” and give the function our dictionary.
 
-tableToMarkdown accepts many different variables which can be used to transform data, remove null, and create custom headers. Learn more about this [command here](url)
+tableToMarkdown accepts many different variables which can be used to transform data, remove null, and create custom headers. Learn more about this [command here](../integrations/code-conventions#tabletomarkdown)
 
 ```python
     ec = {'YodaSpeak.TheForce(val.Original && val.Original == obj.Original)': contxt}
