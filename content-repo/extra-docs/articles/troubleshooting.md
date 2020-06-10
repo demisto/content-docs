@@ -31,6 +31,10 @@ description: This article helps common troubleshooting issues with XSOAR integra
     - If section a. worked but sections b. and c. failed: This could possibly be an integration bug, open an issue with server log bundle and preferably a .pcap files of the commands attempts.
 4. See if the customer’s firewall is blocking some packets during a command. Since some integrations has some internal redirection to different destination IPs. See this issue as an example
 
+### Diagram for section 3:
+![](https://raw.githubusercontent.com/demisto/content-docs/ec010688ce513b599bde8cdc8b5ad5c743526a8a/static/img/troubleshooting_diagram.jpg)
+
+
 ### Examples:
 1. #### EWS v2 integration does not honor proxy settings with Engine:
     When proxy checkbox was unchecked AND engine was in use AND engine had proxy defined to connect to server, integration kept using proxy and fail requests.
