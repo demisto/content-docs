@@ -112,4 +112,17 @@ However, you may encounter a scenario where certain changes are not necessary to
 -->
 ```
 
+## Common Troubleshooting Tips
+
+<details>
+<summary>I excluded an item from the changelog file, but it won't pass validation.</summary>
+<br>
+Make sure to remove the `%%%UPDATE_RN%%` from the generated file.
+</details>
+<details>
+<summary>When I run the **update-release-notes** command, it does not find any of my changes.</summary>
+<br>
+First make sure you have committed your files. Next check to see that the type of file you changed requires a release notes entry. TestPlaybooks, Images, README's and TestData don't require release notes.
+</details>
+
 To view the previous format for release notes, you may find them [here.](../integrations/changelog-old-format)
