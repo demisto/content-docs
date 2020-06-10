@@ -21,6 +21,9 @@ file for you to fill out.
 demisto-sdk update-release-notes -p [Changed Pack Name]
 ```
 
+For more detailed information regarding the `update-release-notes` command in the `demisto-sdk`, please refer to the 
+[documentation found here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/update_release_notes/README.md).
+
 ## Naming
 The change log file will be generated for you and is found under the `ReleaseNotes` folder within each pack. If this folder does not already exist, one will be created for you.
 
