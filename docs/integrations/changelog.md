@@ -3,7 +3,7 @@ id: changelog
 title: Change Log
 ---
 
-A change log file helps to keep track on the changes made for a specific content entity like an integration or a playbook.
+A change log file helps to keep track of the changes made for a specific content entity like an integration or a playbook.
 
 To generate a change log, run the following command provided by the `demisto-sdk`:
 
@@ -14,7 +14,7 @@ demisto-sdk update-release-notes -p [Changed Pack Name] -u [major|minor|revision
 This command will bump the `currentVersion` found in `pack_metadata.json` file automatically according to the update version (as denoted by the `-u` flag) for you.
 
 Generally, you will use the command when you are ready to merge and expect no other changes. If you need to make additional 
-changes *after* running the command, you will need to remove the `-u` argument. This will generate a new release notes 
+changes *after* running the command, you will need to remove the `-u` argument. This will update the release notes 
 file for you to fill out.
 
 ```bash
@@ -33,20 +33,20 @@ This placeholder should be replaced with a line describing what was changed for 
 
 For example, if changes were detected in the Cortex XDR pack for the items IncidentFields, Integrations, and Playbooks; the following would be created:
 ```markdown
-#### IncidentFields
-- __XDR Alerts__
-%%UPDATE_RN%%
+#### Incident Fields
+##### XDR Alerts
+  - %%UPDATE_RN%%
 
 #### Integrations
-- __Cortex XDR - IR__
-%%UPDATE_RN%%
+##### Cortex XDR - IR
+  - %%UPDATE_RN%%
 
 #### Playbooks
-- __Cortex XDR - Isolate Endpoints__
-%%UPDATE_RN%%
+##### Cortex XDR - Isolate Endpoints
+  - %%UPDATE_RN%%
 
-- __Cortex XDR - Port Scan__
-%%UPDATE_RN%%
+##### Cortex XDR - Port Scan
+  - %%UPDATE_RN%%
 
 ```
 
@@ -54,14 +54,14 @@ For example, if changes were detected in the Cortex XDR pack for the items Incid
 For single line RNs, follow this format:
 ```markdown
 #### Integrations
-- __Cortex XDR - IR__
+##### Cortex XDR - IR
   - Release note here.
 ```
 
 For single line RNs with a nested list, follow this format:
 ```markdown
 #### Integrations
-- __Cortex XDR - IR__
+##### Cortex XDR - IR
   - Release note here.
     - List item 1
     - List item 2
@@ -70,7 +70,7 @@ For single line RNs with a nested list, follow this format:
 For multiline RNs, follow this format:
 ```markdown
 #### Integrations
-- __Cortex XDR - IR__
+##### Cortex XDR - IR
   - Release note 1 here.
   - Release note 2 here.
   - Release note 2 here.
@@ -79,7 +79,7 @@ For multiline RNs, follow this format:
 For multiline RNs with nested content, follow this format:
 ```markdown
 #### Integrations
-- __Cortex XDR - IR__
+##### Cortex XDR - IR
   - Release note 1 here.
     - List item 1
     - List item 2
@@ -109,7 +109,7 @@ this, you may comment out the entries by using the following syntax:
 ```markdown
 <!--
 #### Integrations
-- __Cortex XDR - IR__
+##### Cortex XDR - IR
   - Renamed an item. Not necessary to document in release notes.
 -->
 ```
@@ -118,7 +118,7 @@ this, you may comment out the entries by using the following syntax:
 
 #### I excluded an item from the changelog file, but it won't pass validation.
 
-Make sure to remove the `%%%UPDATE_RN%%` from the generated file and leave the other generated items intact.
+Make sure to remove the `%%UPDATE_RN%%` from the generated file and leave the other generated items intact.
 
 #### When I run the `update-release-notes` command, it does not find any of my changes.
 
