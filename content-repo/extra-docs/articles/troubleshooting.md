@@ -35,7 +35,7 @@ description: This article helps common troubleshooting issues with XSOAR integra
 ![](https://raw.githubusercontent.com/demisto/content-docs/ec010688ce513b599bde8cdc8b5ad5c743526a8a/static/img/troubleshooting_diagram.jpg)
 
 
-### Examples:
+### Connection issues examples:
 1. #### EWS v2 integration does not honor proxy settings with Engine:
     When proxy checkbox was unchecked AND engine was in use AND engine had proxy defined to connect to server, integration kept using proxy and fail requests.
     solved by setting the server config with 
@@ -47,4 +47,21 @@ description: This article helps common troubleshooting issues with XSOAR integra
     Client got the following exception `SSLError(SSLEOFError(8, u'EOF occurred in violation of protocol (_ssl.c:661)'),)`.
     
     solved by whitelisting a URL in the firewall.
+3. #### Cortex XDR Timeouts:
+Customer got the following exception
+```
+Traceback (most recent call last):
+    raise ReadTimeoutError(self, url, "Read timed out. (read timeout=%s)" % timeout_value)
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='api-panwhq.xdr.us.paloaltonetworks.com', port=443): Read timed out. (read timeout=10)
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api-panwhq.xdr.us.paloaltonetworks.com', port=443): Max retries exceeded with url: /public_api/v1/incidents/get_incident_extra_data/ (Caused by ReadTimeoutError("HTTPSConnectionPool(host='api-panwhq.xdr.us.paloaltonetworks.com', port=443): Read timed out. (read timeout=10)"))
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api-panwhq.xdr.us.paloaltonetworks.com', port=443): Max retries exceeded with url: /public_api/v1/incidents/get_incident_extra_data/ (Caused by ReadTimeoutError("HTTPSConnectionPool(host='api-panwhq.xdr.us.paloaltonetworks.com', port=443): Read timed out. (read timeout=10)"))
+DemistoException: ('\nError Type: <requests.exceptions.ConnectionError>\nError Number: [None]\nMessage: None\nVerify that the server URL parameter is correct and that you have access to the server from your host.', ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\'api-panwhq.xdr.us.paloaltonetworks.com\', port=443): Max retries exceeded with url: /public_api/v1/incidents/get_incident_extra_data/ (Caused by ReadTimeoutError("HTTPSConnectionPool(host=\'api-panwhq.xdr.us.paloaltonetworks.com\', port=443): Read timed out. (read timeout=10)"))')))
+('\nError Type: <requests.exceptions.ConnectionError>\nError Number: [None]\nMessage: None\nVerify that the server URL parameter is correct and that you have access to the server from your host.', ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\'api-panwhq.xdr.us.paloaltonetworks.com\', port=443): Max retries exceeded with url: /public_api/v1/incidents/get_incident_extra_data/ (Caused by ReadTimeoutError("HTTPSConnectionPool(host=\'api-panwhq.xdr.us.paloaltonetworks.com\', port=443): Read timed out. (read timeout=10)"))'))) (source: /home/circleci/.go_workspace/src/github.com/demisto/server/services/automation/dockercoderunner.go:716) 
+Failed to execute xdr-get-incident-extra-data command. Error: ('\nError Type: <requests.exceptions.ConnectionError>\nError Number: [None]\nMessage: None\nVerify that the server URL parameter is correct and that you have access to the server from your host.', ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\'api-panwhq.xdr.us.paloaltonetworks.com\', port=443): Max retries exceeded with url: /public_api/v1/incidents/get_incident_extra_data/ (Caused by ReadTimeoutError("HTTPSConnectionPool(host=\'api-panwhq.xdr.us.paloaltonetworks.com\', port=443): Read timed out. (read timeout=10)"))')))
+Failed to execute xdr-get-incident-extra-data command. Error: ('\nError Type: <requests.exceptions.ConnectionError>\nError Number: [None]\nMessage: None\nVerify that the server URL parameter is correct and that you have access to the server from your host.', ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\'api-panwhq.xdr.us.paloaltonetworks.com\', port=443): Max retries exceeded with url: /public_api/v1/incidents/get_incident_extra_data/ (Caused by ReadTimeoutError("HTTPSConnectionPool(host=\'api-panwhq.xdr.us.paloaltonetworks.com\', port=443): Read timed out. (read timeout=10)"))'))) (source: /home/circleci/.go_workspace/src/github.com/demisto/server/services/automation/dockercoderunner.go:716) 
+
+```
+    
 
