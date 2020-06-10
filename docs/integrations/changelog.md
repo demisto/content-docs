@@ -100,9 +100,11 @@ One should specify in the corresponding change log file the following changes:
   
   
 ## Excluding Items
-Release notes are required to contain all items which have been changed included in the generated file. As such, validation will fail if detected items are removed from the generated release notes file.
+Release notes are required to contain all items which have been changed included in the generated file. As such, validation 
+will fail if detected items are removed from the generated release notes file.
 
-However, you may encounter a scenario where certain changes are not necessary to document in the release notes. To solve this, you may comment out the entries by using the following syntax:
+However, you may encounter a scenario where certain changes are not necessary to document in the release notes. To solve 
+this, you may comment out the entries by using the following syntax:
 
 ```markdown
 <!--
@@ -114,15 +116,24 @@ However, you may encounter a scenario where certain changes are not necessary to
 
 ## Common Troubleshooting Tips
 
-### I excluded an item from the changelog file, but it won't pass validation.
+#### I excluded an item from the changelog file, but it won't pass validation.
 
- Make sure to remove the `%%%UPDATE_RN%%` from the generated file.
+Make sure to remove the `%%%UPDATE_RN%%` from the generated file and leave the other generated items intact.
 
-### When I run the **update-release-notes** command, it does not find any of my changes.
+#### When I run the `update-release-notes` command, it does not find any of my changes.
 
-First make sure you have committed your files. Next check to see that the type of file you changed requires a release notes entry. 
+First make sure you have committed your files. Next check to see that the type of file you changed requires a release notes 
+entry. TestPlaybooks, Images, README's and TestData don't require release notes.
 
-TestPlaybooks, Images, README's and TestData don't require release notes.
+#### I ran the command and filled out the release notes correctly, but it still fails validation.
+
+On rare occasions it's possible that the pack you are working on has already had the version bumped. To resolve this, delete 
+the generated changelog and restore the `currentVersion` in the `pack_metadata.json` file to it's original version. Next pull from the master branch. 
+Lastly, run the `update-release-notes` command as you previously had done.
+
+#### I added a new pack. Do I need release notes?
+
+New packs do not require release notes. The build process will automatically create the initial changelog for you.
 
 
 To view the previous format for release notes, you may find them [here.](../integrations/changelog-old-format)
