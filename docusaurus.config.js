@@ -17,7 +17,7 @@ module.exports = {
     algolia: {
       apiKey: "f5dfbee43cfa4c5024b10045c6d91461",
       indexName: "demisto",
-      algoliaOptions: { typoTolerance: false, hitsPerPage: 1000 } // Optional, if provided by Algolia
+      algoliaOptions: { typoTolerance: false, hitsPerPage: 1000, filters: 'type:lvl1' } // Optional, if provided by Algolia
     },
     sidebarCollapsible: true,
     navbar: {
