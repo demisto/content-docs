@@ -77,7 +77,7 @@ for event in events:
         'occurred': event['create_time'], # must be string of a format ISO8601
         'rawJSON': json.dumps(event)  # the original event, this will allow mapping of the event in the mapping stage. Don't forget to `json.dumps`
     }
-    incident.append(incident)
+    incidents.append(incident)
 ```
 
 ### rawJSON
