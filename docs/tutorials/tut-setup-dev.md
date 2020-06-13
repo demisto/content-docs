@@ -299,50 +299,77 @@ Then, make sure that `demisto-sdk` has been installed automatically by the boots
 Use demisto-sdk -h to see the available commands.
 ```
 
-Now, run the `demisto-sdk lint` command on the folder `Packs/HelloWorld/Integrations/HelloWorld` using the `-d` option,
+Now, run the `demisto-sdk lint` command on the folder `Packs/HelloWorld/Integrations/HelloWorld` using the `-i` option,
  or if you want to run  against all the committed files in your branch you can use `demisto-sdk lint -g`.
 It will run both the [linters](../integrations/linting) and [pytest](../integrations/unit-testing):
 ```bash
 (venv) sb@dddd:~/demisto/content$ demisto-sdk lint -i Packs/HelloWorld/Integrations/HelloWorld
-Detected python version: [3.7] for docker image: demisto/python3:3.7.4.2245
-========= Running flake8 ===============
-flake8 completed
-========= Running mypy on: /home/sb/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py ===============
-Success: no issues found in 1 source file
-mypy completed
-========= Running bandit on: /home/sb/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py ===============
-bandit completed
-2019-12-27 10:27:17.789503: Existing image: devtestdemisto/python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54 not found will obtain lock file or wait for image
-2019-12-27 10:27:17.791519: Obtained lock file: .lock-devtestdemisto-python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54    2019-12-27 10:27:17.791991: Trying to pull image: devtestdemisto/python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54        Pull succeeded with output: 3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54: Pulling from devtestdemisto/python3
+Execute lint and test on 1/1 packages
+HelloWorld - Facts - Using yaml file /home/sb/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.yml
+HelloWorld - Facts - Pulling docker images, can take up to 1-2 minutes if not exists locally 
+HelloWorld - Facts - demisto/python3:3.8.2.6981 - Python 3.8
+HelloWorld - Facts - Tests found
+HelloWorld - Facts - Lint file /home/sb/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld_test.py
+HelloWorld - Facts - Lint file /home/sb/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py
+HelloWorld - Flake8 - Start
+HelloWorld - Flake8 - Successfully finished
+HelloWorld - Bandit - Start
+HelloWorld - Bandit - Successfully finished
+HelloWorld - Mypy - Start
+HelloWorld - Mypy - Successfully finished
+HelloWorld - Vulture - Start
+HelloWorld - Vulture - Successfully finished
+HelloWorld - Flake8 - Start
+HelloWorld - Flake8 - Successfully finished
+HelloWorld - Image create - Trying to pull existing image devtestdemisto/python3:3.8.2.6981-02b43abe979132c89892e089d5b8254d
+HelloWorld - Image create - Found existing image devtestdemisto/python3:3.8.2.6981-02b43abe979132c89892e089d5b8254d
+HelloWorld - Image create - Copy pack dir to image devtestdemisto/python3:3.8.2.6981-02b43abe979132c89892e089d5b8254d
+HelloWorld - Image create - Image sha256:ba9f6ede55 created successfully
+HelloWorld - Pylint - Image sha256:ba9f6ede55 - Start
+HelloWorld - Pylint - Image sha256:ba9f6ede55 - exit-code: 0
+HelloWorld - Pylint - Image sha256:ba9f6ede55 - Successfully finished
+HelloWorld - Pytest - Image sha256:ba9f6ede55 - Start
+        ============================= test session starts ==============================
+        platform linux -- Python 3.8.2, pytest-5.0.1, py-1.8.1, pluggy-0.13.1
+        rootdir: /devwork
+        plugins: json-0.4.0, forked-1.1.3, mock-2.0.0, asyncio-0.10.0, datadir-ng-1.1.1, requests-mock-1.7.0, xdist-1.31.0
+        collected 10 items
 
-[... output omitted for brevity ...]
+        HelloWorld_test.py ..........                                            [100%]
 
-1158abee0d53: Download complete
-1158abee0d53: Pull complete
-Digest: sha256:7132d0335cebd6c90d242b30e9fc67cf8edb12bb190b439924906deeba9a7941
-Status: Downloaded newer image for devtestdemisto/python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54
-docker.io/devtestdemisto/python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54
+        -------------- generated json report: /devwork/report_pytest.json --------------
+        ========================== 10 passed in 0.43 seconds ===========================
+HelloWorld - Pytest - Image sha256:ba9f6ede55 - exit-code: 0
+HelloWorld - Pytest - Image sha256:ba9f6ede55 - Successfully finished
+Flake8       - [PASS]
+Bandit       - [PASS]
+Mypy         - [PASS]
+Vulture      - [PASS]
+Pytest       - [PASS]
+Pylint       - [PASS]
+Pwsh analyze - [SKIPPED]
+Pwsh test    - [SKIPPED]
 
+Passed Unit-tests:
+  - Package: HelloWorld
+      - Image: demisto/python3:3.8.2.6981
+         - HelloWorld_test.py::test_say_hello
+         - HelloWorld_test.py::test_start_scan
+         - HelloWorld_test.py::test_status_scan
+         - HelloWorld_test.py::test_scan_results
+         - HelloWorld_test.py::test_search_alerts
+         - HelloWorld_test.py::test_get_alert
+         - HelloWorld_test.py::test_update_alert_status
+         - HelloWorld_test.py::test_ip
+         - HelloWorld_test.py::test_domain
+         - HelloWorld_test.py::test_fetch_incidents
 
-
-======== Running pylint on files: HelloWorld.py ===========
-Pylint completed with status code: 0
-========= Running pytest ===============
-collecting tests...
-============================= test session starts ==============================
-platform linux -- Python 3.7.4, pytest-5.0.1, py-1.8.0, pluggy-0.13.0 -- /usr/local/bin/python
-cachedir: .pytest_cache
-rootdir: /devwork
-plugins: mock-1.11.1, asyncio-0.10.0, xdist-1.30.0, forked-1.1.1, requests-mock-1.7.0
-collecting ... collected 2 items
-
-HelloWorld_test.py::test_say_hello PASSED                                [ 50%]
-HelloWorld_test.py::test_say_hello_over_http PASSED                      [100%]
-
-=========================== 2 passed in 0.40 seconds ===========================
-Pytest completed with status code: 0
-
-(venv) sb@dddd:~/demisto/content$
+#########
+ Summary 
+#########
+Packages: 1
+Packages PASS: 1
+Packages FAIL: 0
 ```
 
 Note that the tests run within a Docker container so, if everything worked well, it means that your development environment is up and running correctly!
