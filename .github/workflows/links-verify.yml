@@ -33,4 +33,5 @@ jobs:
         -e 'https://partner.analystplatform.com.*' \
         -e 'https://demistodev.atlassian.net.*' \
         -e 'https://.*s3.amazonaws.com/.*X-Amz-Credential.*' \
+        -e 'http://medimobility.es/wordpress/.*' \
         https://xsoar.pan.dev
