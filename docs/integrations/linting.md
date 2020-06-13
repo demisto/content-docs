@@ -37,7 +37,7 @@ Options:
 
 An example of the result for running our lint checks on the HelloWorld package will look like: 
 ```buildoutcfg
-➜  content git:(master) ✗ demisto-sdk lint -d Packs/HelloWorld/Integrations/HelloWorld
+➜  content git:(master) ✗ demisto-sdk lint -i Packs/HelloWorld/Integrations/HelloWorld
 Detected python version: [3.7] for docker image: demisto/python3:3.7.4.2245
 ============ Starting process for: /Users/rkozakish/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/ ============
 

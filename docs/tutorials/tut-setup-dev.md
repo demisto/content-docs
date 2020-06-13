@@ -303,7 +303,7 @@ Now, run the `demisto-sdk lint` command on the folder `Packs/HelloWorld/Integrat
  or if you want to run  against all the committed files in your branch you can use `demisto-sdk lint -g`.
 It will run both the [linters](../integrations/linting) and [pytest](../integrations/unit-testing):
 ```bash
-(venv) sb@dddd:~/demisto/content$ demisto-sdk lint -d Packs/HelloWorld/Integrations/HelloWorld
+(venv) sb@dddd:~/demisto/content$ demisto-sdk lint -i Packs/HelloWorld/Integrations/HelloWorld
 Detected python version: [3.7] for docker image: demisto/python3:3.7.4.2245
 ========= Running flake8 ===============
 flake8 completed
@@ -428,7 +428,7 @@ But you can also run the hooks locally using the demisto-sdk, in order to do tha
 You can see the [docs](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/format/README.md)  
 2. `demisto-sdk validate -g` - this will validate the integrity of the yml files, and will make sure they follow 
 our pre-set of roles. You can see the [docs](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md)  
-3. `demisto-sdk lint -d <The path to your changed/newly added content entity>` - this will run lint and pytest on your 
+3. `demisto-sdk lint -i <The path to your changed/newly added content entity>` - this will run lint and pytest on your 
 changed python files. You can see the [docs](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/lint/README.md)  
 
 
