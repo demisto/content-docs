@@ -11,80 +11,110 @@ All linters are run via the demisto-sdk:
 demisto-sdk lint -h
 Usage: demisto-sdk lint [OPTIONS]
 
-Options:
-  -h, --help                 Show this message and exit.
-  -d, --dir TEXT             Specify directory of integration/script
-  --no-pylint                Do NOT run pylint linter
-  --no-mypy                  Do NOT run mypy static type checking
-  --no-flake8                Do NOT run flake8 linter
-  --no-bandit                Do NOT run bandit linter
-  --no-test                  Do NOT test (skip pytest)
-  -r, --root                 Run pytest container with root user
-  -k, --keep-container       Keep the test container
-  -v, --verbose              Verbose output - mainly for debugging purposes
-  --cpu-num INTEGER          Number of CPUs to run pytest on (can set to
-                             `auto` for automatic detection of the number of
-                             CPUs)
-  -p, --parallel             Run tests in parallel
-  -m, --max-workers INTEGER  How many threads to run in parallel
-  -g, --git                  Will run only on changed packages
-  -a, --run-all-tests        Run lint on all directories in content repo
-  --outfile TEXT             Save failing packages to a file
+  Lint command will perform:
 
+      1. Package in host checks - flake8, bandit, mypy, vulture.
+
+      2. Package in docker image checks -  pylint, pytest, powershell - test, powershell -
+      analyze.
+
+  Meant to be used with integrations/scripts that use the folder (package) structure. Will
+  lookup up what docker image to use and will setup the dev dependencies and file in the target
+  folder.
+
+Options:
+  -h, --help                    Show this message and exit.
+  -i, --input PATH              Specify directory of integration/script
+  -g, --git                     Will run only on changed packages
+  -a, --all-packs               Run lint on all directories in content repo
+  -v, --verbose                 Verbosity level -v / -vv / .. / -vvv  [default: 2]
+  -q, --quiet                   Quiet output, only output results in the end
+  -p, --parallel INTEGER RANGE  Run tests in parallel  [default: 1]
+  --no-flake8                   Do NOT run flake8 linter
+  --no-bandit                   Do NOT run bandit linter
+  --no-mypy                     Do NOT run mypy static type checking
+  --no-vulture                  Do NOT run vulture linter
+  --no-pylint                   Do NOT run pylint linter
+  --no-test                     Do NOT test (skip pytest)
+  --no-pwsh-analyze             Do NOT run powershell analyze
+  --no-pwsh-test                Do NOT run powershell test
+  -kc, --keep-container         Keep the test container
+  --test-xml PATH               Path to store pytest xml results
+  --failure-report PATH         Path to store failed packs report
+  -lp, --log-path PATH          Path to store all levels of logs
 ```
 
 **Note**: this script is also used to run pytest. See: [Unit Testing](unit-testing)
 
 An example of the result for running our lint checks on the HelloWorld package will look like: 
 ```buildoutcfg
-➜  content git:(master) ✗ demisto-sdk lint -d Packs/HelloWorld/Integrations/HelloWorld
-Detected python version: [3.7] for docker image: demisto/python3:3.7.4.2245
-============ Starting process for: /Users/rkozakish/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/ ============
+➜  content git:(master) ✗ demisto-sdk lint -i Packs/HelloWorld/Integrations/HelloWorld
+Execute lint and test on 1/1 packages
+HelloWorld - Facts - Using yaml file /home/sb/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.yml
+HelloWorld - Facts - Pulling docker images, can take up to 1-2 minutes if not exists locally 
+HelloWorld - Facts - demisto/python3:3.8.2.6981 - Python 3.8
+HelloWorld - Facts - Tests found
+HelloWorld - Facts - Lint file /home/sb/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld_test.py
+HelloWorld - Facts - Lint file /home/sb/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py
+HelloWorld - Flake8 - Start
+HelloWorld - Flake8 - Successfully finished
+HelloWorld - Bandit - Start
+HelloWorld - Bandit - Successfully finished
+HelloWorld - Mypy - Start
+HelloWorld - Mypy - Successfully finished
+HelloWorld - Vulture - Start
+HelloWorld - Vulture - Successfully finished
+HelloWorld - Flake8 - Start
+HelloWorld - Flake8 - Successfully finished
+HelloWorld - Image create - Trying to pull existing image devtestdemisto/python3:3.8.2.6981-02b43abe979132c89892e089d5b8254d
+HelloWorld - Image create - Found existing image devtestdemisto/python3:3.8.2.6981-02b43abe979132c89892e089d5b8254d
+HelloWorld - Image create - Copy pack dir to image devtestdemisto/python3:3.8.2.6981-02b43abe979132c89892e089d5b8254d
+HelloWorld - Image create - Image sha256:ba9f6ede55 created successfully
+HelloWorld - Pylint - Image sha256:ba9f6ede55 - Start
+HelloWorld - Pylint - Image sha256:ba9f6ede55 - exit-code: 0
+HelloWorld - Pylint - Image sha256:ba9f6ede55 - Successfully finished
+HelloWorld - Pytest - Image sha256:ba9f6ede55 - Start
+        ============================= test session starts ==============================
+        platform linux -- Python 3.8.2, pytest-5.0.1, py-1.8.1, pluggy-0.13.1
+        rootdir: /devwork
+        plugins: json-0.4.0, forked-1.1.3, mock-2.0.0, asyncio-0.10.0, datadir-ng-1.1.1, requests-mock-1.7.0, xdist-1.31.0
+        collected 10 items
 
+        HelloWorld_test.py ..........                                            [100%]
 
-========= Running flake8 on: /Users/rkozakish/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py===============
-flake8 completed for: /Users/rkozakish/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py
+        -------------- generated json report: /devwork/report_pytest.json --------------
+        ========================== 10 passed in 0.43 seconds ===========================
+HelloWorld - Pytest - Image sha256:ba9f6ede55 - exit-code: 0
+HelloWorld - Pytest - Image sha256:ba9f6ede55 - Successfully finished
+Flake8       - [PASS]
+Bandit       - [PASS]
+Mypy         - [PASS]
+Vulture      - [PASS]
+Pytest       - [PASS]
+Pylint       - [PASS]
+Pwsh analyze - [SKIPPED]
+Pwsh test    - [SKIPPED]
 
-========= Running mypy on: /Users/rkozakish/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py ===============
-Success: no issues found in 1 source file
+Passed Unit-tests:
+  - Package: HelloWorld
+      - Image: demisto/python3:3.8.2.6981
+         - HelloWorld_test.py::test_say_hello
+         - HelloWorld_test.py::test_start_scan
+         - HelloWorld_test.py::test_status_scan
+         - HelloWorld_test.py::test_scan_results
+         - HelloWorld_test.py::test_search_alerts
+         - HelloWorld_test.py::test_get_alert
+         - HelloWorld_test.py::test_update_alert_status
+         - HelloWorld_test.py::test_ip
+         - HelloWorld_test.py::test_domain
+         - HelloWorld_test.py::test_fetch_incidents
 
-mypy completed for: /Users/rkozakish/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py
-
-========= Running bandit on: /Users/rkozakish/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py ===============
-bandit completed for: /Users/rkozakish/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py
-
-Detected python version: [3.7] for docker image: demisto/python3:3.7.4.2245
-2020-03-06 16:11:29.678067: Using already existing docker image: devtestdemisto/python3:3.7.4.2245-4bbcae9c522cbe0aaa1818e29a66aae0
-
-========== Running tests/pylint for: /Users/rkozakish/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/ =========
-a9fd500285f9bb96ada38e3bb71de4e2316eed51190269224895208f6fa963a2
-
-
-
-=============== Running pylint on files: HelloWorld.py ===============
-Pylint completed with status code: 0
-
-========= Running pytest ===============
-collecting tests...
-============================= test session starts ==============================
-platform linux -- Python 3.7.4, pytest-5.0.1, py-1.8.0, pluggy-0.13.1 -- /usr/local/bin/python
-cachedir: .pytest_cache
-rootdir: /devwork
-plugins: xdist-1.31.0, asyncio-0.10.0, requests-mock-1.7.0, datadir-ng-1.1.1, mock-1.13.0, forked-1.1.3
-collecting ... collected 2 items
-
-HelloWorld_test.py::test_say_hello PASSED                                [ 50%]
-HelloWorld_test.py::test_say_hello_over_http PASSED                      [100%]
-
-=========================== 2 passed in 0.23 seconds ===========================
-Pytest completed with status code: 0
-
-============ Finished process for: /Users/rkozakish/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/  with docker: demisto/python3:3.7.4.2245 ============
-
-
-******* SUCCESS PKGS: *******
-
-	Packs/HelloWorld/Integrations/HelloWorld
+#########
+ Summary 
+#########
+Packages: 1
+Packages PASS: 1
+Packages FAIL: 0
 ```
 
 ## Flake8

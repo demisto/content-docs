@@ -73,26 +73,39 @@ run locally the same way CircleCI runs the tests, run the `demisto-sdk lint` com
 Run the script with `-h` to see command line options:
 ```
 demisto-sdk lint -h
-Usage: ≈ [OPTIONS]
+Usage: demisto-sdk lint [OPTIONS]
+
+  Lint command will perform:
+
+      1. Package in host checks - flake8, bandit, mypy, vulture.
+
+      2. Package in docker image checks -  pylint, pytest, powershell - test, powershell -
+      analyze.
+
+  Meant to be used with integrations/scripts that use the folder (package) structure. Will
+  lookup up what docker image to use and will setup the dev dependencies and file in the target
+  folder.
 
 Options:
-  -h, --help                 Show this message and exit.
-  -d, --dir DIR             Specify directory of integration/script
-  --no-pylint                Do NOT run pylint linter
-  --no-mypy                  Do NOT run mypy static type checking
-  --no-flake8                Do NOT run flake8 linter
-  --no-bandit                Do NOT run bandit linter
-  --no-test                  Do NOT test (skip pytest)
-  -r, --root                 Run pytest container with root user
-  -k, --keep-container       Keep the test container
-  -v, --verbose              Verbose output - mainly for debugging purposes
-  --cpu-num INTEGER          Number of CPUs to run pytest on (can set to `auto` for automatic
-                             detection of the number of CPUs)
-  -p, --parallel             Run tests in parallel
-  -m, --max-workers INTEGER  How many threads to run in parallel
-  -g, --git                  Will run only on changed packages
-  -a, --run-all-tests        Run lint on all directories in content repo
-
+  -h, --help                    Show this message and exit.
+  -i, --input PATH              Specify directory of integration/script
+  -g, --git                     Will run only on changed packages
+  -a, --all-packs               Run lint on all directories in content repo
+  -v, --verbose                 Verbosity level -v / -vv / .. / -vvv  [default: 2]
+  -q, --quiet                   Quiet output, only output results in the end
+  -p, --parallel INTEGER RANGE  Run tests in parallel  [default: 1]
+  --no-flake8                   Do NOT run flake8 linter
+  --no-bandit                   Do NOT run bandit linter
+  --no-mypy                     Do NOT run mypy static type checking
+  --no-vulture                  Do NOT run vulture linter
+  --no-pylint                   Do NOT run pylint linter
+  --no-test                     Do NOT test (skip pytest)
+  --no-pwsh-analyze             Do NOT run powershell analyze
+  --no-pwsh-test                Do NOT run powershell test
+  -kc, --keep-container         Keep the test container
+  --test-xml PATH               Path to store pytest xml results
+  --failure-report PATH         Path to store failed packs report
+  -lp, --log-path PATH          Path to store all levels of logs
 ```
 
 Sample output:
