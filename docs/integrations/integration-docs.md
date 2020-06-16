@@ -72,22 +72,43 @@ Or if you want more control on the image (for example setting width dimension) y
 * URL to `master` branch: https://github.com/demisto/content/raw/master/Packs/AutoFocus/doc_files/AutoFocusPolling.png
 * URL after redirection (also valid): https://raw.githubusercontent.com/demisto/content/master/Packs/AutoFocus/doc_files/AutoFocusPolling.png
 
+:::note
+To keep our main Content repo small we limit images to 2MB. For larger images, follow the instructions for [Videos](#videos) on how to store large media files in our [content-assets](https://github.com/demisto/content-assets) repository. 
+:::
+
+
 ## Videos
-A video can provide a great addition to the documentation either as a demo video or tutorial. Similar to images, videos should be added to the relevant pack under a `doc_files` or `doc_imgs` directory. The preferred video format is `mp4`. 
+A video can provide a great addition to the documentation either as a demo video or tutorial. The preferred video format is `mp4`. 
 
-Since video files are larger in size, we require using [git-lfs](https://git-lfs.github.com/) to add these files to the content repo (a getting started git-lfs tutorial is available [here](https://github.com/git-lfs/git-lfs/wiki/Tutorial)).
+Because of their size and in order to keep our main Content repo small, we store large media files in a separate repository: [content-assets](https://github.com/demisto/content-assets). 
 
-All videos should be included with absolute URLs. To obtain a URL to a video from GitHub follow the same steps as detailed for images.
+To add the video file, open a pull request with the video file at [content-assets](https://github.com/demisto/content-assets/pulls) repository. The file should be placed in the directory: `Assets/<PackName>/`. 
+
+All videos should be included with absolute URLs. To obtain a URL to a video from GitHub follow the same steps as detailed for images only now this is being done in the [content-assets](https://github.com/demisto/content-assets) repository.
 
 Include the video using the HTML `<video>` tag, such as:
 ```
 <video controls>
-    <source src="https://github.com/demisto/content/raw/b4bf86e4b8a4e5217abca615618b40f587896565/Packs/FeedJSON/Integrations/FeedJSON/demo_video/Json_generic_feed_demo.mp4"
+    <source src="https://github.com/demisto/content-assets/raw/7982404664dc68c2035b7c701d093ec026628802/Assets/FeedJSON/Json_generic_feed_demo.mp4"
             type="video/mp4"/>
-    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content/blob/b4bf86e4b8a4e5217abca615618b40f587896565/Packs/FeedJSON/Integrations/FeedJSON/demo_video/Json_generic_feed_demo.mp4 
+    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/blob/7982404664dc68c2035b7c701d093ec026628802/Assets/FeedJSON/Json_generic_feed_demo.mp4 
 </video>
 ```
 **Note:** GitHub markdown preview will not display the video (it will show the `browser not supported message`). Rest assured, the dev docs site will display the video properly as can be seen at the following [example](https://xsoar.pan.dev/docs/reference/integrations/json-feed#demo-video).
+
+### Large Files (over 50MB)
+For files larger than 50MB, we require using [git-lfs](https://git-lfs.github.com/) to add these files to the content repo (a getting started git-lfs tutorial is available [here](https://github.com/git-lfs/git-lfs/wiki/Tutorial)).
+
+Steps for adding a large file:
+* Clone or fork the [content-assets](https://github.com/demisto/content-assets) repository.
+* Make sure you have git-lfs installed. See instructions [here](https://github.com/git-lfs/git-lfs/wiki/Installation).
+* Install git-lfs in the repo: `git lfs install`
+* Copy the video file to the proper directory: `Assets/<PackName>`.
+* Add the video as a **tracked** file: `git lfs track Assets/<PackName>/<video_file_name>.mp4`.
+* Add the file to git: `git add Assets/<PackName>/<video_file_name>.mp4`
+* Add the `.gitattributes` file: `git add .gitattributes`
+* Commit and push using: `git commit` and `git push`. 
+* Open a pull a request 
 
 ## Documentation Examples
 
