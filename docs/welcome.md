@@ -13,6 +13,25 @@ Cortex XSOAR's security orchestration and automation enables standardized, autom
 
 The Cortex XSOAR Developer Hub includes several documentation sections, that cover different use cases. Use the left side-bar navigation to navigate between the different sections and articles. We recommend staring with the **Concepts** section to learn the core fundamentals to get started developing with Cortex XSOAR. After familiarizing yourself with the different concepts, we recommend following the **Getting Started** section which will provide you with all the details needed to get your development environment up and running. Follow the **Integrations**, **Playbooks**, **Incidents, Fields & Layouts** sections as appropriate for your development needs.
 
+### Concepts
+
+Learn the [core fundamentals](concepts/concepts) to get started developing with Cortex XSOAR. This section includes documents that cover many relevant concepts that are useful to understand how Cortex XSOAR works, what components are used for which tasks and how the contribution process works.
+
+### Getting Started
+
+Do you want to build a Cortex XSOAR Integration? This section shows you how to [get started](integrations/getting-started-guide) from setting up your IDE, how to use the PyCharm plugin, how to store content elements in a Pack and how we use Docker to run integrations. 
+
+### Integrations
+
+As the main connection between Cortex XSOAR and the 3rd party product, an [integration](integrations/code-conventions) forms the basis for the work you'll be contributing. You'll learn how to [fetch incidents](integrations/fetching-incidents) from your system in order to create incdients in Cortex XSOAR as well as the details around the integration best practices, logos, YAML files, etc.  
+
+### Playbooks
+
+[Playbooks](playbooks/playbooks-overview) allow our mutual customers to execute multiple commands against multiple systems in a sequential, repeatable workflow. A playbook is key to showing the value of the joint solution and this section will cover how to create playbooks, using the Context to share variables within your playbooks and how to manage a task. 
+
+### Incidents, Fields & Layouts
+
+Learn about the [incident lifecycle](incidents/incident-xsoar-incident-lifecycle) within our platform. And Cortex XSOAR allows customization of many aspects of the system including the layout of data within an incident. 
 
 ## Reference
 
