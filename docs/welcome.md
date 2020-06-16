@@ -20,4 +20,4 @@ In the [Reference](reference/index) section you will find detailed reference doc
 
 ## Partners
 
-If you are a Palo Alto Networks Technology Partner, please check out our [Partners](partners/why-xsoar) section of the site.
+If you are a Palo Alto Networks Technology Partner, or wish to become a Partner, please check out our [Partners](partners/why-xsoar) section of the site.
