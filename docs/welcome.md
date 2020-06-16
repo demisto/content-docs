@@ -11,29 +11,32 @@ Cortex XSOAR's security orchestration and automation enables standardized, autom
 
 ## Developer Documentation
 
-The Cortex XSOAR Developer Hub includes several documentation sections, that cover different use cases, from 
+The Cortex XSOAR Developer Hub includes several documentation sections, as shown below:
 
 ### Concepts
 
-Learn the core fundamentals to get started developing with Cortex XSOAR. This section includes documents that cover many relevant concepts that are useful to understand how Cortex XSOAR works, what components are used for which tasks and how the contribution process works.
+Learn the [core fundamentals](concepts/concepts) to get started developing with Cortex XSOAR. This section includes documents that cover many relevant concepts that are useful to understand how Cortex XSOAR works, what components are used for which tasks and how the contribution process works.
 
 ### Getting Started
 
-Do you want to build a Cortex XSOAR Integration? 
+Do you want to build a Cortex XSOAR Integration? This section shows you how to [get started](integrations/getting-started-guide) from setting up your IDE, how to use the PyCharm plugin, how to store content elements in a Pack and how we use Docker to run integrations. 
 
 ### Integrations
 
+As the main connection between Cortex XSOAR and your Partner product, an [integration](integrations/code-conventions) forms the basis for the work you'll be contributing. You'll learn how to [fetch incidents](integrations/fetching-incidents) from your system in order to create incdients in Cortex XSOAR as well as the details around the integration best practices, logos, YAML files, etc.  
+
 ### Playbooks
+
+[Playbooks](playbooks/playbooks-overview) allow our mutual customers to execute multiple commands against multiple systems in a sequential, repeatable workflow. A playbook is key to showing the value of the joint solution and this section will cover how to create playbooks, using the Context to share variables within your playbooks and how to manage a task. 
 
 ### Incidents, Fields & Layouts
 
-[Incident Lifecycle](incidents/incident-xsoar-incident-lifecycle)
+Learn about the [incident lifecycle](incidents/incident-xsoar-incident-lifecycle) within our platform. And Cortex XSOAR allows customization of many aspects of the system including the layout of data within an incident. 
 
-### Contributing
 
 ## Tutorials
 
-Detailed instructions to learn step-by-step.
+Detailed instructions to learn step-by-step how to set up your IDE and [build an integration](tutorials/tut-integration-ui) from scratch.
 
 ## Reference
 
@@ -41,4 +44,4 @@ In the [Reference](reference/index) section you will find detailed reference doc
 
 ## Partners
 
-If you are a Palo Alto Networks Technology Partner, you will find [Partners](partners/why-xsoar) section of the site.
+If you are a Palo Alto Networks Technology Partner, or interested in becoming a Partner, see the [Partners](partners/why-xsoar) section.
