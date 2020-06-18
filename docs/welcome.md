@@ -3,7 +3,7 @@ id: welcome
 title: Welcome
 ---
 
-Welcome to the Cortex XSOAR Developer Hub and thank you for your interest! Here you will find a lot of information on how to develop content in Cortex XSOAR. If you see something missing or errors, please let us know by using the `Report an issue` button at the bottom of each page. We value your contribution and we strive to give you a great developer experience.
+Welcome to the Cortex XSOAR Developer Hub! You'll be able find a lot of information on how to develop content in Cortex XSOAR. If you see something missing or have any comments, please let us know by using the `Report an issue` button at the bottom of each page. We value your contribution and we strive to give you a great developer experience.
 
 ## About Cortex XSOAR
 
@@ -23,7 +23,7 @@ Do you want to build a Cortex XSOAR Integration? This section shows you how to [
 
 ### Integrations
 
-As the main connection between Cortex XSOAR and the 3rd party product, an [integration](integrations/code-conventions) forms the basis for the work you'll be contributing. You'll learn how to [fetch incidents](integrations/fetching-incidents) from your system in order to create incdients in Cortex XSOAR as well as the details around the integration best practices, logos, YAML files, etc.  
+As the main connection between Cortex XSOAR and the 3rd-party product, an [integration](integrations/code-conventions) forms the basis for the work you'll be contributing. You'll learn how to [fetch incidents](integrations/fetching-incidents) from your system in order to create incdients in Cortex XSOAR as well as the details around the integration best practices, logos, YAML files, etc.  
 
 ### Playbooks
 
@@ -35,7 +35,7 @@ Learn about the [incident lifecycle](incidents/incident-xsoar-incident-lifecycle
 
 ## Reference
 
-In the [Reference](reference/index) section you will find detailed reference documentation about all the Cortex XSOAR components: Integration, Scripts, Playbooks, etc. As we add more content, new information will be published here.
+In the [Reference](reference/index) section you will find detailed reference documentation about all the Cortex XSOAR components: Integrations, Scripts, Playbooks, etc. As we add more content, new information will be published here.
 
 ## Partners
 
