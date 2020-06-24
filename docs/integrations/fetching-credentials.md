@@ -3,7 +3,7 @@ id: fetching-credentials
 title: Fetching Credentials
 ---
 
-As seen [here](https://support.demisto.com/hc/en-us/articles/115002567894), it is possible to integrate with 3rd party credential 
+As seen [here](https://xsoar.pan.dev/docs/reference/articles/managing-credentials), it is possible to integrate with 3rd party credential 
 vaults for Cortex XSOAR to use when authenticating with integrations. This article provides an example of such integration.
 
 ## Requirements

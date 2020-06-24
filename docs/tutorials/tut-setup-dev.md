@@ -96,7 +96,7 @@ Let's go make sure that all the requirements are satisfied, one by one.
 
 #### Cortex XSOAR
 
-We are assuming that Cortex XSOAR is already installed. For more information about installing Cortex XSOAR please refer to [this article](https://support.demisto.com/hc/en-us/sections/360001323614-Installing-Demisto) (Support Center credentials are required)
+We are assuming that Cortex XSOAR is already installed. For more information about installing Cortex XSOAR please refer to [this article](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/installation.html) (Support Center credentials are required)
 
 Check if your Cortex XSOAR License is correctly installed by navigating to *Settings* -> *ABOUT* -> *License* and make sure that everything is green:
 
