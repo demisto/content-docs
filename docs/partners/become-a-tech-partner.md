@@ -57,7 +57,7 @@ We require our Partners to take two training classes at the [Palo Alto Networks 
 
 ## 4. Identify the Use Cases
 
-Once you're accepted in the program, we'll provide you access to a few resources, including our [Support Portal](https://support.demisto.com). We'll also reach out to schedule a 60 minute technical call to identify the use cases. We expect a representative of your technical team to be in the call. 
+Once you're accepted in the program, we'll provide you access to a few resources, including our [Support Portal](https://docs.paloaltonetworks.com/). We'll also reach out to schedule a 60 minute technical call to identify the use cases. We expect a representative of your technical team to be in the call. 
 Typically the flow of the call is:
 - General overview/demo of Cortex XSOAR, its capabilities and integration requirements
 - General overview/demo of your product(s)
@@ -81,11 +81,11 @@ We will also provide you a **Partner ID** that you will use during the GitHub su
 
 We recommend your technical team review the docs on this site, and the following useful resources:
 - Our [GitHub Content repository](https://github.com/demisto/content), and
-- Cortex XSOAR [Support Portal](https://support.demisto.com)
-- [Cortex XSOAR Platform Installation Guide](https://support.demisto.com/hc/en-us/sections/360001323614-Installing-Demisto)
+- Cortex XSOAR [Support Portal](https://docs.paloaltonetworks.com/)
+- [Cortex XSOAR Platform Installation Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/installation.html)
 - [Slack](https://www.demisto.com/community/) #demisto-integrations-help
 - [GitHub](https://github.com/demisto/content/#demisto-platform---content-repository)
-- [Cortex XSOAR Concepts, and Terminology](https://support.demisto.com/hc/en-us/articles/360005126713-Demisto-Components-Concepts-and-Terminology)
+- [Cortex XSOAR Concepts, and Terminology](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/cortex-xsoar-overview/cortex-xsoar-concepts)
 - [Cortex XSOAR Getting started video tutorial](https://youtu.be/bDntS6biazI)
 
 Please reach out on Slack if you need any technical assistance or guidance. Follow the [Getting Started Guide](../integrations/getting-started-guide) to understand all the requirements and components.
