@@ -34,4 +34,10 @@ jobs:
         -e 'https://demistodev.atlassian.net.*' \
         -e 'https://.*s3.amazonaws.com/.*X-Amz-Credential.*' \
         -e 'http://medimobility.es/wordpress/.*' \
+        -e 'https://hmrc.5-notifications.com.*' \
+        -e 'https://icloud.com.uk-maps.info.*' \
+        -e 'https://software8n-chase.com.*' \
+        -e 'http://www.lifetmeda.ru.*' \
+        -e 'https://help.symantec.com.*' \
+        -e '(?i).*eicar.*' \
         https://xsoar.pan.dev
