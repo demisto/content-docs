@@ -136,7 +136,11 @@ const sidebars = {
             "tutorials/tut-setup-dev",
             "tutorials/tut-integration-ui"            
           ]
-    }
+    },
+    {
+      type: "doc",
+      id: "privacy"
+    },
   ],
   partners:
   [
