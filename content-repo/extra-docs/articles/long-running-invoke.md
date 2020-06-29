@@ -34,7 +34,7 @@ To configure a long running integration to be accessed via Cortex XSOAR Server's
   * Name: `instance.execute.external.edl`
   * Value: `true`
 
-You will then be able to access the long running integration via the Cortex XSOAR Server's https endpoint. The route to the integration will be available at:
+You will then be able to access the long running integration via the Cortex XSOAR Server's HTTPS endpoint. The route to the integration will be available at:
 ```
 https://<server_hostname>/instance/execute/<instance_name>
 ```
@@ -54,4 +54,3 @@ There is also the option to set a default value that all http long running integ
 You can then also disable specific instances by setting:
 * Name: `instance.execute.external.<instance_name>`
 * Value: `false`
-
