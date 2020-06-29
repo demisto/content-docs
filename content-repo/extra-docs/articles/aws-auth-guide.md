@@ -81,7 +81,7 @@ Before you can use the AWS integrations in Cortex XSOAR, you need to perform sev
 }
 ```
 
-4. The role attached to the server should have the following _Trust Relationship_ :
+4. The role attached to the server should have the following _Trust Relationship_:
 
 ```json
 {
