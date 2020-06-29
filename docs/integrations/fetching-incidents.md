@@ -30,7 +30,7 @@ demisto.getLastRun() is the function that retrieves the previous run time. To av
 
 ```python
     # demisto.getLastRun() will returns an obj with the previous run in it.
-    last_run = demisto.getLastRun()
+    last_run = str(demisto.getLastRun())
 ```
 
 ## First Run
