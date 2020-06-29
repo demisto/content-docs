@@ -47,7 +47,7 @@ Or from a remote machine:
 curl https://<server_hostname>/instance/execute/edl
 ```
 
-There is also the option to set a default value that all http long running integrations are exposed via the Cortex XSOAR's Server https endpoint. Do this by setting the following Server advanced parameter:
+There is also the option to set a default value that all http long running integrations are exposed via the Cortex XSOAR's Server HTTPS endpoint. Do this by setting the following Server advanced parameter:
 * Name: `instance.execute.external`
 * Value: `true`
 
