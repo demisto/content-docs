@@ -26,7 +26,7 @@ Starting with Cortex XSOAR Server v5.5 there is an option to route the HTTP requ
 ## Setup
 To configure a long running integration to be accessed via Cortex XSOAR Server's https endpoint perform the following:
 * Configure the long running integration to listen on a unique port
-* Make sure the long running integration is setup to use http (**not https**)
+* Make sure the long running integration is setup to use HTTP (**not HTTPS**)
 * Add the following advanced Server parameter:
   * Name: `instance.execute.external.<instance_name>`
   * Value: `true`
