@@ -28,7 +28,7 @@ a _Trust Relationship_ and establishes a trusted relationship between two resour
 More information regarding [Trust Relationships can be found here.](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/edit_trust.html)
 
 ### How XSOAR uses STS to Authenticate
-Your XSOAR Instance assumes a role using the follwing process flow:
+Your XSOAR Instance assumes a role using the following process flow:
 
 ![XSOAR AWS STS Auth Flow](../docs/doc_imgs/integrations/XSOAR_STS_Flow.png)
 
