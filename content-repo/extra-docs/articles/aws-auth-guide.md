@@ -22,7 +22,7 @@ For your XSOAR instance or engine, the credentials attached are the EC2 Metadata
 of environment variables that the instance can use to "trade-in" for another set of credentials. This method of 
 credential delegation is much more secure since it does not require _Access Keys_ and _Secret Keys_ to be stored anywhere.
 
-In order to facilitate this "trade-in" process, there needs to be a level of trust between the resources. This is called 
+To facilitate this "trade-in" process, there needs to be a level of trust between the resources. This is called 
 a _Trust Relationship_ and establishes a trusted relationship between two resources.
 
 More information regarding [Trust Relationships can be found here.](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/edit_trust.html)
@@ -34,7 +34,7 @@ Your XSOAR Instance assumes a role using the following process flow:
 
 - Your XSOAR Instance/engine with the role attached to it first makes a request to AWS STS and passes it the details found in the EC2 Metadata.
 - The STS service then checks to verify that the role you are requesting is allowed to be assumed by your XSOAR Instance.
-- Next the STS service returns new credentials with the allowed permissions to your XSOAR Instance.
+- Next, the STS service returns new credentials with the allowed permissions to your XSOAR Instance.
 - Lastly, using the new credentials, your AWS integration will make a request to the AWS Service and return the response.
 
 When this flow is done, the client making the request has the permissions associated with the acquired role.
@@ -120,7 +120,7 @@ are the role ARNs that you would like your AWS XSOAR integrations to assume.
 ### Configuring your Assumed Roles
 
 Now that the XSOAR server has the necessary role to begin assuming your other roles, the roles you would like your 
-AWS XSOAR integrations to assume, must be configured. These roles need to be configured to know to _trust_ your XSOAR 
+AWS XSOAR integrations to assume must be configured. These roles need to be configured to know to _trust_ your XSOAR 
 instance. This is done by configuring the following _trust relationship_ in the role you wish to assume.
 
 **Please replace the ARN role with the role attached to your XSOAR Instance (or engine).**
