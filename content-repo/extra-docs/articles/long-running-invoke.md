@@ -34,6 +34,10 @@ To configure a long running integration to be accessed via Cortex XSOAR Server's
   * Name: `instance.execute.external.edl`
   * Value: `true`
 
+**Note**: The instance name is configured via the `Name` parameter of the integration. Sample screenshot:
+<img src="../../../docs/doc_imgs/reference/integration-name-config.png" width="400" align="middle"></img>
+
+
 You will then be able to access the long running integration via the Cortex XSOAR Server's HTTPS endpoint. The route to the integration will be available at:
 ```
 https://<server_hostname>/instance/execute/<instance_name>
