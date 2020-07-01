@@ -41,13 +41,13 @@ When this flow is done, the client making the request has the permissions associ
 
 ### Current Capabilities of AWS Integrations
 
-All XSOAR AWS integrations currently allow for roles to be assumed at the integration instance level and the command 
+All AWS integrations in Cortex XSOAR currently allow for roles to be assumed at the integration-instance level and the command 
 level. This allows for very granular control over several different roles and regions.
 
-To override the role being assumed at the command level, please set the `roleArn` argument to the new role you wish to use. 
-This argument is not required but does allow you to use a different role than the default role that is configured in your AWS integration's instance configuration. 
+To override the role being assumed at the command level, set the `roleArn` argument to the new role you want to use. 
+This argument is not required but does allow you to use a role other than the default role that is configured in your AWS integration's instance configuration. 
 
-Please note that every assumed role must have an established trust relationship with your XSOAR instance or the command 
+Note that every assumed role must have an established trust relationship with your XSOAR instance or the command 
 will indicate an *authentication* issue in the CLI.
 
 ## Configure AWS Settings
