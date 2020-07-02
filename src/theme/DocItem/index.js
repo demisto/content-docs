@@ -76,6 +76,7 @@ function DocItem(props) {
   } = DocContent;
 
   const issueTitle = `Issue with "${title}" in ${source}`;
+  const pageHref = typeof window !== `undefined`
   //IMPORTANT NOTE: if changing the body, note that the defacto max url length is 2000 chars for IE
   const issueBody = `
 <!-- 
@@ -84,7 +85,7 @@ Thank you for taking the time to help us improve our documentation! Please descr
 
 ## Describe the problem
 
-* Page: [${title}](${window.location.href})
+* Page: [${title}](${siteConfig.url}${permalink})
 * Source: ${editUrl}
 
 <!--- Is this a typo, stale information, request for improvement, inaccuracy? -->
