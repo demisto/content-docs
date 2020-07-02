@@ -104,7 +104,7 @@ Thank you for taking the time to help us improve our documentation! Please descr
 <!--- If possible, help us by offering a suggested fix to the problem. If you know the fix, you may also submit a PR to fix the issue if you like! -->
 
 `
-  const issueUrl = `https://github.com/demisto/content-docs/issues/new?labels=documentation&body=${encodeURIComponent(issueBody)}&title=${issueTitle}`;
+  const issueUrl = `https://github.com/demisto/content-docs/issues/new?labels=documentation&body=${encodeURIComponent(issueBody)}&title=${encodeURIComponent(issueTitle)}`;
   const metaImageUrl = siteUrl + useBaseUrl(metaImage);
 
   return (
