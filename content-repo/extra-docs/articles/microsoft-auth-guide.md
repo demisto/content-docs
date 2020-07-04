@@ -1,14 +1,14 @@
 ---
 title: Microsoft Integrations - Authentication
-description: Microsoft integrations authentication methods in Cortex XSOAR.
+description: Authentication method for Microsoft Graph and Azure integrations in Cortex XSOAR.
 ---
 
-Microsoft integrations (Graph and Azure) in Cortex XSOAR use Azure Active Directory applications to authenticate with Microsoft APIs.
+Microsoft integrations (Graph and Azure) in Cortex XSOAR use Azure Active Directory applications to authenticate with Microsoft APIs. These integrations use OAuth 2.0 and OpenID Connect standard-compliant authentication services which use an **Application** to sign-in or delegate authentication. 
 For more information, see the [Microsoft identity platform overview](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-overview).
 
-There are 2 authentication methods: 
-1. Cortex XSOAR application
-2. Self deployed application
+There are 2 Application authentication methods available: 
+1. Cortex XSOAR Application
+2. Self Deployed Application
 
 ## Cortex XSOAR Application
 In this method, you give consent to Cortex XSOAR application to get access to your data.
