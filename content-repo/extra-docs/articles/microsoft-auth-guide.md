@@ -7,8 +7,9 @@ Microsoft integrations (Graph and Azure) in Cortex XSOAR use Azure Active Direct
 For more information, see the [Microsoft identity platform overview](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-overview).
 
 There are 2 application authentication methods available: 
-1. Cortex XSOAR Application
-2. Self-Deployed Application
+
+1.  Cortex XSOAR Application
+2.  Self-Deployed Application
 
 ## Cortex XSOAR Application
 In this method, you give consent to the Cortex XSOAR application to access your data.
@@ -16,13 +17,15 @@ Depending on the integration, this requires either admin consent to [get access 
 **Note**: This method requires that you give consent to all permissions requested by the application.
 
 To start the authentication process, go to the integration's detailed instructions:
-1. Navigate to __Settings > Integration > Servers & Services__.
-2. Search for wanted Microsoft integration, e.g. `Microsoft Defender Advanced Threat Protection`.
-3. Click __Add instance__.
-4. Click on the question mark on the top right.
 
-    <img width="300" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/instance_detailed_instructions.png">
-5. Follow the link to our authentication service to initiate the authorization flow.
+1.  Navigate to __Settings > Integration > Servers & Services__.
+2.  Search for wanted Microsoft integration, e.g. `Microsoft Defender Advanced Threat Protection`.
+3.  Click __Add instance__.
+4.  Click on the question mark on the top right.
+
+<img width="300" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/instance_detailed_instructions.png" align="middle"></img>
+
+5.  Follow the link to our authentication service to initiate the authorization flow.
 
 ## Self Deployed Application
 To use a self-configured Azure application, you need to add a new Azure App Registration in the Azure Portal. 
