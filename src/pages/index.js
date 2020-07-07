@@ -23,7 +23,7 @@ const features = [
         Cortex XSOAR is the most comprehensive SOAR platform in the market today,
         orchestrating across hundreds of security products to help your SOC
         customers standardize and automate their processes for faster response
-        times and increased team productivity. Read More or watch some videos
+        times and increased team productivity. 
       </>
     ),
     button: (
@@ -56,7 +56,7 @@ const features = [
       <>
         Join our 300+ integrations network to increase your reach into some of
         the largest SOCs in the world. Access over 60,000 customers in 150+
-        locations across multiple industries. See Why
+        locations across multiple industries.
       </>
     ),
     button: (
@@ -80,7 +80,7 @@ const features = [
       <>
         Learn about use cases relevant to your customers and create new
         scenarios that better integrate your product or services into the SOC
-        incident response lifecycle. Read More
+        incident response lifecycle.
       </>
     ),
     button: (
@@ -189,10 +189,10 @@ function Home() {
         <section className={styles.hero}>
           <div className="customer">
             <div className="customer-inner">
-              Are you a Cortex XSOAR Customer or an Independent Developer?
+              Are you a Cortex XSOAR Customer, Developer or Partner?
               <Link to="/docs/welcome"> Get Started Now!</Link>
               <br /> 
-              Join <b>#demisto-integrations-help</b> on our <a href="https://start.paloaltonetworks.com/join-our-slack-community">Slack community</a> today.
+              Join <b>#demisto-developers</b> on our <a href="https://start.paloaltonetworks.com/join-our-slack-community">Slack community</a> today.
             </div>
           </div>
         </section>     
@@ -223,9 +223,9 @@ function Home() {
         <section className={styles.features}>
           <div className="integrations">
             <div className="integrations-inner">
-              Check out our {" "}
+              See all {" "}
               <a href="https://www.demisto.com/integrations/">
-                existing integrations here!
+                existing integrations
               </a>
             </div>
           </div>
