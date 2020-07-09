@@ -83,7 +83,7 @@ An explanation of these fields is as follows:
 | | Type 15 - Single select dropdown | 
 | | Type 16 - Multiple select dropdown |
 | **required** | Boolean value to indicate that the parameter is required |
-| **additionalinfo** | Additional info about the field, will appear under a question mark in the UI |
+| **additionalinfo** | Additional info about the field, will appear under a question mark in the configuration pannel |
 
 ## Script
 This section is where your code will reside. Review the example below:
