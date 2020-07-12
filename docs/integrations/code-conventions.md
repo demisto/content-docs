@@ -609,7 +609,7 @@ This class is used to return outputs. This object represents an entry in warroom
 | outputs_prefix    | str    | Should be identical to the prefix in the yml contextPath in yml file. for example:         CortexXDR.Incident                                                                              |
 | outputs_key_field | str    | Primary key field in the main object. If the command returns Incidents, and of the properties of Incident is incident_id, then outputs_key_field='incident_id'                             |
 | outputs           | object | The data to be returned and will be set to context                                                                                                                                         |
-| human_readable    | str    | (Optional) markdown string that will be presented in the warroom, should be human readable -  (HumanReadable) - if not set, readable output will be generated via tableToMarkdown function |
+| readable_output   | str    | (Optional) markdown string that will be presented in the warroom, should be human readable -  (HumanReadable) - if not set, readable output will be generated via tableToMarkdown function |
 | raw_response      | object | (Optional) must be dictionary, if not provided then will be equal to outputs.  Usually must be the original raw response from the 3rd party service (originally Contents)                  |
 | indicators        | list   | Must be list of Indicator types, like Common.IP, Common.URL, Common.File, Common.Domain, Common.CVE.                                                                                       |
 
