@@ -80,10 +80,10 @@ const sidebars = {
           type: "category",
           label: "Documenting",
           items: [
+            "integrations/pack-docs",
             "integrations/integration-docs",
             "integrations/doc-structure",
-            "integrations/changelog",
-            "integrations/changelog-old-format",
+            "integrations/changelog"
           ],
         }
       ]
