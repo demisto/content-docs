@@ -56,6 +56,7 @@ ATRICLES_PREFIX = 'articles'
 NO_HTML = '<!-- NOT_HTML_DOC -->'
 YES_HTML = '<!-- HTML_DOC -->'
 BRANCH = os.getenv('HEAD', 'master')
+MAX_FAILURES = int(os.getenv('MAX_FAILURES', 10))  # if we have more than this amount in a single category we fail the build
 # env vars for faster development
 MAX_FILES = int(os.getenv('MAX_FILES', -1))
 FILE_REGEX = os.getenv('FILE_REGEX')
@@ -329,6 +330,9 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
     for r in sorted(fail):
         print(r)
     org_print("\n===========================================\n")
+    if len(fail) > MAX_FAILURES:
+        print(f'MAX_FAILURES of {len(fail)} exceeded limit: {MAX_FAILURES}. Aborting!!')
+        sys.exit(2)
     return sorted(doc_infos, key=lambda d: d.name.lower())  # sort by name
 
 
@@ -377,6 +381,9 @@ def create_articles(target_dir: str):
     for r in sorted(fail):
         print(r)
     org_print("\n===========================================\n")
+    if len(fail) > MAX_FAILURES:
+        print(f'MAX_FAILURES of {len(fail)} exceeded limit: {MAX_FAILURES}. Aborting!!')
+        sys.exit(2)
     return sorted(doc_infos, key=lambda d: d.name.lower())  # sort by name
 
 
