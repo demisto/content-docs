@@ -46,6 +46,7 @@ jobs:
         echo "Muffet output after 401 and 403 remove:"
         cat muffet-clean.out
         if [ -n "$(grep -v '^https'  muffet-clean.out)" ]; then
-          echo "muffet failed verification"
+          echo "muffet failed verification!!!"
+          exit 1
         fi
         echo "All good muffet passed!!!"
