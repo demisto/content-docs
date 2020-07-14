@@ -82,7 +82,7 @@ Layout structure differs before and after Cortex XSOAR version 6.0.
 
 #### Up to Cortex XSOAR version 6.0
 
-Each layout kind should be represented in one file, as exported from Cortex XSOAR, with addition of the field `toVersion: 5.9.9`.
+Each layout kind should be represented in one file, as exported from Cortex XSOAR, with addition of the field `"toVersion": "5.9.9"`.
 
 The file should be named `layout-<KIND>-<TYPE>.json`, e.g. `layout-details-Phishing.json`
 
