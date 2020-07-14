@@ -1,6 +1,7 @@
 name: Verify Site Links
 
 on:
+  # push: {} #  uncommnet for testing
   schedule: # daily at 12 noon UTC
     - cron: '0 12 * * *'
 
@@ -40,4 +41,12 @@ jobs:
         -e 'http://www.lifetmeda.ru.*' \
         -e 'https://help.symantec.com.*' \
         -e '(?i).*eicar.*' \
-        https://xsoar.pan.dev
+        https://xsoar.pan.dev > muffet.out 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
+        grep -v -E '^\s+(403|401)' muffet.out > muffet-clean.out
+        echo "Muffet output after 401 and 403 remove:"
+        cat muffet-clean.out
+        if [ -n "$(grep -v '^https'  muffet-clean.out)" ]; then
+          echo "muffet failed verification!!!"
+          exit 1
+        fi
+        echo "All good muffet passed!!!"
