@@ -90,6 +90,8 @@ The file should be named `layout-<KIND>-<TYPE>.json`, e.g. `layout-details-Phish
 
 Cortex XSOAR version 6.0 introduces better layout management. As part of it, all the kinds and types (i.e. detailsV2, edit, etc...) of layouts are consolidated in one file, as described below.
 
+The layout file exported from the system contains all the required fields, but the `"fromVersion": "6.0.0"` that needs to be added.
+
  - Filename: `layoutscontainer-<TYPE>`, e.g. `layoutscontainer-Phishing.json`
  - Files contents:
  ```json
