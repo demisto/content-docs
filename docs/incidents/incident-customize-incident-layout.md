@@ -92,6 +92,8 @@ Cortex XSOAR version 6.0 introduces better layout management. As part of it, all
 
 The layout file exported from the system contains all the required fields, but the `"fromVersion": "6.0.0"` that needs to be added.
 
+Note: for the layout to be associated with incident/indicator type, the layout ID should be populated in the `layout` attribute in the incident/indicator type JSON file.
+
  - Filename: `layoutscontainer-<TYPE>`, e.g. `layoutscontainer-Phishing.json`
  - Files contents:
  ```json
