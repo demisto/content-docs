@@ -38,8 +38,8 @@ module.exports = {
               label: "Become a Partner"
             },
             {
-              to: "/docs/partners/partner-owned-integration",
-              label: "Partner Owned Integration"
+              to: "/docs/partners/office-hours",
+              label: "Office Hours"
             },
             {
               to: "/docs/partners/development-partners",
