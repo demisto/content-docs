@@ -30,6 +30,6 @@ Here are a few highlighted recorded sessions that will likely prove useful:
 
 - <a href="https://drive.google.com/file/d/10A9jyA9ugcZr3MTHOMmx39a5uWGJr2eX/view?usp=sharing" target="_blank">Pack structure</a> (6/4/20) - A Pack is the logic folder that holds all the elements releated to your integration. Learn the contents and how to build yours. 
 
-- <a href="https://paloaltonetworks.zoom.us/rec/share/xfR2Be7KqV9LZI3QuWqBdY5mOqjLX6a80HUcrvQLz0cc3mRn0Vmr9ResbW_9juF8?startTime=1593097497000" target="_blank">Unit testing</a> (6/25/20) - Once your Pack is built, we require you to build unit tests to ensure all commands are functional. 
+- <a href="https://drive.google.com/file/d/1x57ZERhXKGiWMj6Au1q4hy4De9TRVi0P/view?usp=sharing" target="_blank">Unit testing</a> (6/25/20) - Once your Pack is built, we require you to build unit tests to ensure all commands are functional. 
 
 
