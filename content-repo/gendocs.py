@@ -116,7 +116,7 @@ def gen_html_doc(txt: str) -> str:
 
 
 def get_deprecated_data(yml_data: dict, desc: str, readme_file: str):
-    if yml_data.get('deprecated') or 'DeprecatedContent' in readme_file:
+    if yml_data.get('deprecated') or 'DeprecatedContent' in readme_file or yml_data.get('hidden'):
         dep_msg = ""
         dep_match = re.match(r'deprecated\s*[\.\-:]\s*(.*?)\.', desc, re.IGNORECASE)
         if dep_match and 'instead' in dep_match[1]:
