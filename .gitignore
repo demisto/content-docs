@@ -32,3 +32,4 @@ __pycache__
 static/doc_imgs
 .mypy_cache
 docs/reference
+docs/integrations/demistoclass.md
