@@ -76,3 +76,43 @@ To change the information that appears in dynamic sections:
 
 You can add new sections or fields to the layout by dragging and dropping them from the **Library** on the left into the layout. For example, insert a new field that you created into a new, or already existing, section.
 
+## Layout file structure
+
+Layout structure differs before and after Cortex XSOAR version 6.0.
+
+#### Up to Cortex XSOAR version 6.0
+
+Each layout kind should be represented in one file, as exported from Cortex XSOAR, with addition of the field `"toVersion": "5.9.9"`.
+
+The file should be named `layout-<KIND>-<TYPE>.json`, e.g. `layout-details-Phishing.json`
+
+#### Cortex XSOAR version 6.0 and above
+
+Cortex XSOAR version 6.0 introduces better layout management. As part of it, all the kinds and types (i.e. detailsV2, edit, etc...) of layouts are consolidated in one file, as described below.
+
+The layout file exported from the system contains all the required fields, but the `"fromVersion": "6.0.0"` that needs to be added.
+
+Note: for the layout to be associated with incident/indicator type, the layout ID should be populated in the `layout` attribute in the incident/indicator type JSON file.
+
+ - Filename: `layoutscontainer-<TYPE>`, e.g. `layoutscontainer-Phishing.json`
+ - Files contents:
+ ```json
+ {
+    "id": string,                   // Usually is the incident/indicator type ID
+    "group": incident OR indicator, // Layout entity type
+    "name": string,                 // Display name
+    "description": string,          // Short description of the layout
+    "version": -1,
+    "fromVersion": "6.0.0",
+    "details": object,              // Optional layout type (Legacy)
+    "detailsV2": object,            // Optional layout type
+    "edit": object,                 // Optional layout type
+    "close": object,                // Optional layout type
+    "quickView": object,            // Optional layout type
+    "mobile": object,               // Optional layout type
+    "indicatorsDetails": object,    // Optional layout type
+    "indicatorsQuickView": object   // Optional layout type
+ }
+ ```
+ 
+ For example, see [Phishing incident layout](https://github.com/demisto/content/blob/master/Packs/Phishing/Layouts/layoutscontainer-Phishing.json).
