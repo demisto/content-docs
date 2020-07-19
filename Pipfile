@@ -14,7 +14,7 @@ pyyaml = "*"
 inflection = "*"
 beautifulsoup4 = "*"
 requests = "*"
-pydoc-markdown = "==3.3.0"
+pydoc-markdown = "*"
 
 [requires]
 python_version = "3.7"
