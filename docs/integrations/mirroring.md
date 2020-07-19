@@ -44,4 +44,4 @@ All the functions explained here are globally available through the CommonServer
 
 ### get-mapping-fields
 * SchemeTypeMapping - this is the object you should use to keep the correct structure of the mapping for the fetched incident type.
-* AllSchemesTypesMappingObject - this is the object to gather all your SchemeTypeMapping and then to parse them properly into the results using the return_results command.
+* GetMappingFieldsResponse - this is the object to gather all your SchemeTypeMapping and then to parse them properly into the results using the return_results command.
