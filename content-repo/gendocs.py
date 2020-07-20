@@ -146,7 +146,7 @@ def process_readme_doc(target_dir: str, content_dir: str, readme_file: str) -> D
         else:
             ymlfiles = glob.glob(base_dir + '/*.yml')
             if not ymlfiles:
-                raise ValueError(f'no yml file found')
+                raise ValueError('no yml file found')
             if len(ymlfiles) > 1:
                 raise ValueError(f'mulitple yml files found: {ymlfiles}')
             ymlfile = ymlfiles[0]
@@ -168,7 +168,7 @@ def process_readme_doc(target_dir: str, content_dir: str, readme_file: str) -> D
         with open(readme_file, 'r', encoding='utf-8') as f:
             content = f.read()
         if not content.strip():
-            raise ValueError(f'empty file')
+            raise ValueError('empty file')
         if is_html_doc(content):
             print(f'{readme_file}: detect html file')
             content = gen_html_doc(content)
@@ -212,7 +212,7 @@ def process_release_doc(target_dir: str, release_file: str) -> DocInfo:
         content = re.sub(r'^## Demisto Content Release Notes', '# Demisto Content Release Notes', content)
         content = f'---\nid: {name}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\nhide_title: true\n---\n\n' + content
         content = content + \
-            f'\n\n---\n### Assets\n\n* **Download:** ' + \
+            '\n\n---\n### Assets\n\n* **Download:** ' + \
             f'[content_new.zip](https://github.com/demisto/content/releases/download/{name}/content_new.zip)\n' + \
             f'* **Browse the Source Code:** [Content Repo @ {name}](https://github.com/demisto/content/tree/{name})\n'
         verify_mdx_server(content)
