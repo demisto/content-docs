@@ -557,11 +557,11 @@ headers = ['Input', 'Output']
 tableToMarkdown(name, t, headers=headers, removeNull=True)
 ```
 The above will create the table seen below:
-| Input  |  Output |
-|---|---|
-| first  |  foo |
-| second  |  bar |
-| third  | baz  |
+| Input  | Output |
+|--------|--------|
+| first  | foo    |
+| second | bar    |
+| third  | baz    |
 
 In the War Room, this is how a table will appear:
 <img width="788" src="../doc_imgs/integrations/50571324-46846e00-0db0-11e9-9888-ddd9dc275541.png"></img>
