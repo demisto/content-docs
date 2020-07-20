@@ -557,11 +557,11 @@ headers = ['Input', 'Output']
 tableToMarkdown(name, t, headers=headers, removeNull=True)
 ```
 The above will create the table seen below:
-| Input  |  Output |
-|---|---|
-| first  |  foo |
-| second  |  bar |
-| third  | baz  |
+| Input  | Output |
+|--------|--------|
+| first  | foo    |
+| second | bar    |
+| third  | baz    |
 
 In the War Room, this is how a table will appear:
 <img width="788" src="../doc_imgs/integrations/50571324-46846e00-0db0-11e9-9888-ddd9dc275541.png"></img>
@@ -616,7 +616,7 @@ This class is used to return outputs. This object represents an entry in warroom
 **Example**
 ```python
 results = CommandResults(
-    outputs='VirusTotal.IP',
+    outputs_prefix='VirusTotal.IP',
     outputs_key_field='Address',
     outputs={
         'Address': '8.8.8.8',
@@ -635,7 +635,7 @@ Use `return_results` to return mainly `CommandResults` object or basic `string`.
 **Example**
 ```python
 results = CommandResults(
-    outputs='VirusTotal.IP',
+    outputs_prefix='VirusTotal.IP',
     outputs_key_field='Address',
     outputs={
         'Address': '8.8.8.8',
