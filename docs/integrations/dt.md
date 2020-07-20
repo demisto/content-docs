@@ -52,7 +52,7 @@ We are going to use the following as our example context and go over the various
         "URL": "google.com",
         "Country": ["IE"],
         "Certificates": [{
-            "SubjectName": "www.google.com",
+            "SubjectName": "<span>www.google</span>.com",
             "ValidFrom": "2018-12-19 08:16:00",
             "ValidTo": "2019-03-13 08:16:00",
             "Issuer": "Google Internet Authority G3"
@@ -62,7 +62,7 @@ We are going to use the following as our example context and go over the various
             "ValidTo": "2019-03-13 08:17:00",
             "Issuer": "Google Internet Authority G3"
         }, {
-            "SubjectName": "www.google.de",
+            "SubjectName": "<span>www.google</span>.de",
             "ValidFrom": "2018-12-19 08:16:00",
             "ValidTo": "2019-03-13 08:16:00",
             "Issuer": "Google Internet Authority G3"
@@ -120,9 +120,9 @@ Under "URLScan", we have an array called "Certificates". If we wanted to access 
 
 | Example | Result |
 | --- | --- |
-| `${URLScan.Certificates.SubjectName}` | \["www.google.com", "*.google.com", "www.google.de", "\*.g.doubleclick.net", "\*.apis.google.com"] |
-| ```${URLScan.Certificates.[0].SubjectName}``` | www.google.com |
-| `${URLScan.Certificates.[0:2].SubjectName}` | \["www.google.com", "*.google.com", "www.google.de"] |
+| `${URLScan.Certificates.SubjectName}` | \["<span>www.google</span>.com", "*.google.com", "<span>www.google</span>.de", "\*.g.doubleclick.net", "\*.apis.google.com"] |
+| ```${URLScan.Certificates.[0].SubjectName}``` | <span>www.google</span>.com |
+| `${URLScan.Certificates.[0:2].SubjectName}` | \["<span>www.google</span>.com", "*.google.com", "<span>www.google</span>.de"] |
 
 If you want to retrieve a range of results, you can use ```[0:9]``` where "0" is the beginning of the array and "9" is the 9th position in the array.
 
@@ -136,11 +136,11 @@ The following are a few examples of selector methods:
 | Example | Result | Description |
 | --- | --- | --- |
 | ```${DBotScore.Vendor(val == 'urlscan.io')} ``` | `urlscan.io` | will return only Vendors that exactly match the Acrobat description. |
-| ```${URLScan.Certificates.SubjectName( val.indexOf('www') == 0)}``` | `[www.google.com, www.google.de]` | will return any SubjectName that starts with "www" |
+| ```${URLScan.Certificates.SubjectName( val.indexOf('www') == 0)}``` | `[<span>www.google</span>.com, <span>www.google</span>.de]` | will return any SubjectName that starts with "www" |
 | ```${URLScan.Certificates.SubjectName( val.indexOf('doubleclick') >= 0)}``` | `*.g.doubleclick.net` | will return any SubjectName that contains doubleclick. |
 | ```${URLScan.Country( val.toUpperCase().indexOf('IE') >= 0)}``` | `IE` | will return any Country that contains IE or ie or any mixed case. |
 | ```${URLScan.Certificates(val.SubjectName.indexOf('de') == val.length-2).ValidTo}``` | `2019-03-13 08:16:00` | will return all ValidTo for certificates that have SubjectName ending with de. Please notice that we tested a relative path to “SubjectName” (“de”) and returned a different path (“ValidTo”). |
-| ```${URLScan.Certificates(val.ValidFrom == val1---URLScan.Certificates.[0].ValidFrom).SubjectName} ``` | `["www.google.com", "www.google.de", "*.apis.google.com"]`| will return all SubjectNames for Certificates that have the same ValidTo time as the first Certificate in the array. Please notice that the bind value (val1) does not start with ‘.’ and will DT the context from the top context. |
+| ```${URLScan.Certificates(val.ValidFrom == val1---URLScan.Certificates.[0].ValidFrom).SubjectName} ``` | `["<span>www.google</span>.com", "<span>www.google</span>.de", "*.apis.google.com"]`| will return all SubjectNames for Certificates that have the same ValidTo time as the first Certificate in the array. Please notice that the bind value (val1) does not start with ‘.’ and will DT the context from the top context. |
 
 Selectors are great for avoiding duplicate entries and can be used to add context to existing entries.
 
