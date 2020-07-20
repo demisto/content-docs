@@ -616,7 +616,7 @@ This class is used to return outputs. This object represents an entry in warroom
 **Example**
 ```python
 results = CommandResults(
-    outputs='VirusTotal.IP',
+    outputs_prefix='VirusTotal.IP',
     outputs_key_field='Address',
     outputs={
         'Address': '8.8.8.8',
@@ -635,7 +635,7 @@ Use `return_results` to return mainly `CommandResults` object or basic `string`.
 **Example**
 ```python
 results = CommandResults(
-    outputs='VirusTotal.IP',
+    outputs_prefix='VirusTotal.IP',
     outputs_key_field='Address',
     outputs={
         'Address': '8.8.8.8',
