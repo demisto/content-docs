@@ -17,7 +17,7 @@ module.exports = {
     algolia: {
       apiKey: "f5dfbee43cfa4c5024b10045c6d91461",
       indexName: "demisto",
-      algoliaOptions: { typoTolerance: false, hitsPerPage: 1000 } // Optional, if provided by Algolia
+      algoliaOptions: { typoTolerance: false, hitsPerPage: 1000, filters: 'type:lvl1 OR type:content' } // Optional, if provided by Algolia
     },
     sidebarCollapsible: true,
     navbar: {
@@ -38,8 +38,8 @@ module.exports = {
               label: "Become a Partner"
             },
             {
-              to: "/docs/partners/partner-owned-integration",
-              label: "Partner Owned Integration"
+              to: "/docs/partners/office-hours",
+              label: "Office Hours"
             },
             {
               to: "/docs/partners/development-partners",

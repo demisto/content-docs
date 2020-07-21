@@ -111,7 +111,7 @@ Before you configure an instance of the SAML 2.0 integration in Demisto, access 
     | **Attribute** | **Description** |
     | --- | --- |
     Name | A meaningful name for the integration instance.
-    Service Provider Entity ID |  Also known as an ACS URL. This is the URL of your Demisto server, for example: https://yourcompany.yourdomain.com/saml
+    Service Provider Entity ID |  Also known as an ACS URL. This is the URL of your Demisto server, for example: `https://yourcompany.yourdomain.com/saml`
     IdP metadata URL |  URL of your organization's IdP metadata file.  ![](../../../docs/doc_imgs/reference/mceclip5.png)
     IdP metadata file |  Your organization's IdP metadata file .
     IdP SSO URL |  URL of the IdP application that corresponds to Demisto.

@@ -52,9 +52,11 @@ INTEGRATIONS_PREFIX = 'integrations'
 SCRIPTS_PREFIX = 'scripts'
 PLAYBOOKS_PREFIX = 'playbooks'
 RELEASES_PREFIX = 'releases'
+ATRICLES_PREFIX = 'articles'
 NO_HTML = '<!-- NOT_HTML_DOC -->'
 YES_HTML = '<!-- HTML_DOC -->'
 BRANCH = os.getenv('HEAD', 'master')
+MAX_FAILURES = int(os.getenv('MAX_FAILURES', 10))  # if we have more than this amount in a single category we fail the build
 # env vars for faster development
 MAX_FILES = int(os.getenv('MAX_FILES', -1))
 FILE_REGEX = os.getenv('FILE_REGEX')
@@ -113,6 +115,29 @@ def gen_html_doc(txt: str) -> str:
             '<div dangerouslySetInnerHTML={{__html: txt}} />\n')
 
 
+def get_deprecated_data(yml_data: dict, desc: str, readme_file: str):
+    if yml_data.get('deprecated') or 'DeprecatedContent' in readme_file or yml_data.get('hidden'):
+        dep_msg = ""
+        dep_match = re.match(r'deprecated\s*[\.\-:]\s*(.*?)\.', desc, re.IGNORECASE)
+        if dep_match and 'instead' in dep_match[1]:
+            dep_msg = dep_match[1] + '\n'
+        return f':::caution Deprecated\n{dep_msg}:::\n\n'
+    return ""
+
+
+def get_beta_data(yml_data: dict, content: str):
+    if yml_data.get('beta'):
+        msg = ''
+        if not re.search(r'This is a beta', content, re.IGNORECASE):
+            # only add the beta disclaimer if it is not in the docs
+            msg = 'This is a beta Integration, which lets you implement and test pre-release software. ' \
+                  'Since the integration is beta, it might contain bugs. Updates to the integration during the beta phase might '\
+                  'include non-backward compatible features. We appreciate your feedback on the quality and usability of the '\
+                  'integration to help us identify issues, fix them, and continually improve.\n'
+        return f':::info beta\n{msg}:::\n\n'
+    return ""
+
+
 def process_readme_doc(target_dir: str, content_dir: str, readme_file: str) -> DocInfo:
     try:
         base_dir = os.path.dirname(readme_file)
@@ -121,7 +146,7 @@ def process_readme_doc(target_dir: str, content_dir: str, readme_file: str) -> D
         else:
             ymlfiles = glob.glob(base_dir + '/*.yml')
             if not ymlfiles:
-                raise ValueError(f'no yml file found')
+                raise ValueError('no yml file found')
             if len(ymlfiles) > 1:
                 raise ValueError(f'mulitple yml files found: {ymlfiles}')
             ymlfile = ymlfiles[0]
@@ -143,7 +168,7 @@ def process_readme_doc(target_dir: str, content_dir: str, readme_file: str) -> D
         with open(readme_file, 'r', encoding='utf-8') as f:
             content = f.read()
         if not content.strip():
-            raise ValueError(f'empty file')
+            raise ValueError('empty file')
         if is_html_doc(content):
             print(f'{readme_file}: detect html file')
             content = gen_html_doc(content)
@@ -157,7 +182,10 @@ def process_readme_doc(target_dir: str, content_dir: str, readme_file: str) -> D
             if readme_repo_path.startswith(content_dir):
                 readme_repo_path = readme_repo_path[len(content_dir):]
             edit_url = f'https://github.com/demisto/content/blob/{BRANCH}/{readme_repo_path}'
-            content = f'---\nid: {id}\ntitle: {json.dumps(doc_info.name)}\ncustom_edit_url: {edit_url}\n---\n\n' + content
+            header = f'---\nid: {id}\ntitle: {json.dumps(doc_info.name)}\ncustom_edit_url: {edit_url}\n---\n\n'
+            content = get_deprecated_data(yml_data, desc, readme_file) + content
+            content = get_beta_data(yml_data, content) + content
+            content = header + content
         verify_mdx_server(content)
         with open(f'{target_dir}/{id}.md', mode='w', encoding='utf-8') as f:  # type: ignore
             f.write(content)
@@ -184,7 +212,7 @@ def process_release_doc(target_dir: str, release_file: str) -> DocInfo:
         content = re.sub(r'^## Demisto Content Release Notes', '# Demisto Content Release Notes', content)
         content = f'---\nid: {name}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\nhide_title: true\n---\n\n' + content
         content = content + \
-            f'\n\n---\n### Assets\n\n* **Download:** ' + \
+            '\n\n---\n### Assets\n\n* **Download:** ' + \
             f'[content_new.zip](https://github.com/demisto/content/releases/download/{name}/content_new.zip)\n' + \
             f'* **Browse the Source Code:** [Content Repo @ {name}](https://github.com/demisto/content/tree/{name})\n'
         verify_mdx_server(content)
@@ -192,8 +220,9 @@ def process_release_doc(target_dir: str, release_file: str) -> DocInfo:
             f.write(content)
         return doc_info
     except Exception as ex:
-        print(f'fail: {release_file}. Exception: {traceback.format_exc()}')
-        return DocInfo('', '', '', release_file, str(ex).splitlines()[0])
+        print(f'fail: {release_file}. Exception: {traceback.format_exc()}. Message: {ex}')
+        # We shouldn't have failing release docs. Breack the build
+        raise
     finally:
         sys.stdout.flush()
         sys.stderr.flush()
@@ -301,6 +330,9 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
     for r in sorted(fail):
         print(r)
     org_print("\n===========================================\n")
+    if len(fail) > MAX_FAILURES:
+        print(f'MAX_FAILURES of {len(fail)} exceeded limit: {MAX_FAILURES}. Aborting!!')
+        sys.exit(2)
     return sorted(doc_infos, key=lambda d: d.name.lower())  # sort by name
 
 
@@ -332,6 +364,29 @@ def create_releases(target_dir: str):
     return sorted(doc_infos, key=lambda d: d.name.lower(), reverse=True)
 
 
+def create_articles(target_dir: str):
+    target_sub_dir = f'{target_dir}/{ATRICLES_PREFIX}'
+    if not os.path.exists(target_sub_dir):
+        os.makedirs(target_sub_dir)
+    doc_infos: List[DocInfo] = []
+    success: List[str] = []
+    fail: List[str] = []
+    seen_docs: Dict[str, DocInfo] = {}
+    for doc_info in process_extra_docs(target_sub_dir, ATRICLES_PREFIX):
+        process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
+    org_print(f'\n===========================================\nSuccess {ATRICLES_PREFIX} docs ({len(success)}):')
+    for r in sorted(success):
+        print(r)
+    org_print(f'\n===========================================\nFailed {ATRICLES_PREFIX} docs ({len(fail)}):')
+    for r in sorted(fail):
+        print(r)
+    org_print("\n===========================================\n")
+    if len(fail) > MAX_FAILURES:
+        print(f'MAX_FAILURES of {len(fail)} exceeded limit: {MAX_FAILURES}. Aborting!!')
+        sys.exit(2)
+    return sorted(doc_infos, key=lambda d: d.name.lower())  # sort by name
+
+
 def main():
     parser = argparse.ArgumentParser(description='Generate Content Docs',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -346,10 +401,12 @@ def main():
     scripts_full_prefix = f'{prefix}/{SCRIPTS_PREFIX}'
     playbooks_full_prefix = f'{prefix}/{PLAYBOOKS_PREFIX}'
     releases_full_prefix = f'{prefix}/{RELEASES_PREFIX}'
+    articles_full_prefix = f'{prefix}/{ATRICLES_PREFIX}'
     integration_doc_infos = create_docs(args.dir, args.target, INTEGRATION_DOCS_MATCH, INTEGRATIONS_PREFIX)
     playbooks_doc_infos = create_docs(args.dir, args.target, PLAYBOOKS_DOCS_MATCH, PLAYBOOKS_PREFIX)
     script_doc_infos = create_docs(args.dir, args.target, SCRIPTS_DOCS_MATCH, SCRIPTS_PREFIX)
     release_doc_infos = create_releases(args.target)
+    article_doc_infos = create_articles(args.target)
     index_base = f'{os.path.dirname(os.path.abspath(__file__))}/reference-index.md'
     index_target = args.target + '/index.md'
     shutil.copy(index_base, index_target)
@@ -362,11 +419,14 @@ def main():
         f.write(index_doc_infos(playbooks_doc_infos, PLAYBOOKS_PREFIX))
         f.write("\n\n## Scripts\n\n")
         f.write(index_doc_infos(script_doc_infos, SCRIPTS_PREFIX))
+        f.write("\n\n## Articles\n\n")
+        f.write(index_doc_infos(article_doc_infos, ATRICLES_PREFIX))
         f.write("\n\n## Content Release Notes\n\n")
         f.write(index_doc_infos(release_doc_infos, RELEASES_PREFIX, headers=('Name', 'Date')))
     integration_items = [f'{integrations_full_prefix}/{d.id}' for d in integration_doc_infos]
     playbook_items = [f'{playbooks_full_prefix}/{d.id}' for d in playbooks_doc_infos]
     script_items = [f'{scripts_full_prefix}/{d.id}' for d in script_doc_infos]
+    article_items = [f'{articles_full_prefix}/{d.id}' for d in article_doc_infos]
     release_items = [f'{releases_full_prefix}/{d.id}' for d in release_doc_infos]
     sidebar = [
         {
@@ -387,6 +447,11 @@ def main():
             "type": "category",
             "label": "Scripts",
             "items": script_items
+        },
+        {
+            "type": "category",
+            "label": "Articles",
+            "items": article_items
         },
         {
             "type": "category",

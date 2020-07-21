@@ -30,7 +30,7 @@ demisto.getLastRun() is the function that retrieves the previous run time. To av
 
 ```python
     # demisto.getLastRun() will returns an obj with the previous run in it.
-    last_run = demisto.getLastRun()
+    last_run = str(demisto.getLastRun())
 ```
 
 ## First Run
@@ -77,7 +77,7 @@ for event in events:
         'occurred': event['create_time'], # must be string of a format ISO8601
         'rawJSON': json.dumps(event)  # the original event, this will allow mapping of the event in the mapping stage. Don't forget to `json.dumps`
     }
-    incident.append(incident)
+    incidents.append(incident)
 ```
 
 ### rawJSON
