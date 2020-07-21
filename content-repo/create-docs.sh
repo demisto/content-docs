@@ -138,7 +138,7 @@ echo "Copying CommonServerPython.py and demistomock.py"
 cp ${CONTENT_GIT_DIR}/Packs/Base/Scripts/CommonServerPython/CommonServerPython.py .
 cp ${CONTENT_GIT_DIR}/Tests/demistomock/demistomock.py .
 
-echo ---\\nid: demisto-class\\ntitle:Demisto Class\\n---\\n > demistoclass.md
+echo ---\\nid: demisto-class\\ntitle: Demisto Class\\n---\\n > demistoclass.md
 
 if [ -z "${NETLIFY}" ]; then
     echo "Not running in netlify. Using pipenv"
