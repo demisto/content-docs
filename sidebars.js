@@ -170,7 +170,7 @@ if (fs.existsSync("docs/reference/sidebar.json")) {
 
 if (fs.existsSync("docs/integrations/demistoclass.md")) {
   const developingDocs = sidebars.docs.find(item => item.label === "Integrations").items.find(item => item.label === "Developing");
-  developingDocs["items"].push("integrations/demistoclass");
+  developingDocs["items"].push("integrations/demisto-class");
 }
 
 module.exports = sidebars;
