@@ -145,14 +145,14 @@ if [ -z "${NETLIFY}" ]; then
     echo "Generating docs..."
     pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
     echo "Generating Demisto class docs..."
-    echo ---\\nid: demisto-class\\ntitle: Demisto Class\\n---\\n > demisto-class.md
+    echo ---\\nid: demisto-class\\ntitle: Demisto Class\\n---\\n > ../docs/integrations/demisto-class.md
     mv demistomock.py demisto.py
     pipenv run pydoc-markdown -p demisto >> ../docs/integrations/demisto-class.md
 else
     echo "Generating docs..."
     ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
     echo "Generating Demisto class docs..."
-    echo ---\\nid: demisto-class\\ntitle: Demisto Class\\n---\\n > demisto-class.md
+    echo ---\\nid: demisto-class\\ntitle: Demisto Class\\n---\\n > ../docs/integrations/demisto-class.md
     mv demistomock.py demisto.py
     pydoc-markdown -p demisto >> ../docs/integrations/demisto-class.md
 fi
