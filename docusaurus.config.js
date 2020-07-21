@@ -72,8 +72,9 @@ module.exports = {
         },
         {
           href: "http://github.com/demisto/content/",
-          label: "GitHub",
-          position: "right"
+          position: "right",
+          className: "header-github-link",
+          "aria-label": "GitHub repository",
         },
         {
           href: "https://blog.demisto.com/",
@@ -101,7 +102,7 @@ module.exports = {
               logo: "/img/Cortex-XSOAR-product-green.svg"
             }
           ],
-          position: "right"
+          position: "products"
         }
       ]
     },
