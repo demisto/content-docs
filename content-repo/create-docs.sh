@@ -144,13 +144,13 @@ if [ -z "${NETLIFY}" ]; then
     pipenv install
     echo "Generating docs..."
     pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
+    echo "Generating Demisto class docs..."
+    mv demistomock.py demisto.py
+    pipenv run pydoc-markdown -p demisto > ../docs/integrations/demistoclass.md
 else
     echo "Generating docs..."
     ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
+    echo "Generating Demisto class docs..."
+    mv demistomock.py demisto.py
+    pydoc-markdown -p demisto > ../docs/integrations/demistoclass.md
 fi
-
-echo "Generating Demisto class docs..."
-mv demistomock.py demisto.py
-pydoc-markdown -p demisto > ../docs/integrations/demistoclass.md
-
-
