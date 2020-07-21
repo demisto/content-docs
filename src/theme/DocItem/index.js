@@ -5,20 +5,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
+import Head from "@docusaurus/Head";
+import Link from "@docusaurus/Link";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import DocPaginator from "@theme/DocPaginator";
+import useTOCHighlight from "@theme/hooks/useTOCHighlight";
+import classnames from "classnames";
+import clsx from "clsx";
+import React from "react";
+import styles from "./styles.module.css";
 
-import Head from '@docusaurus/Head';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import DocPaginator from '@theme/DocPaginator';
-import useTOCHighlight from '@theme/hooks/useTOCHighlight';
-import Link from '@docusaurus/Link';
-
-import clsx from 'clsx';
-import styles from './styles.module.css';
-
-const LINK_CLASS_NAME = 'table-of-contents__link';
-const ACTIVE_LINK_CLASS_NAME = 'table-of-contents__link--active';
+const LINK_CLASS_NAME = "table-of-contents__link";
+const ACTIVE_LINK_CLASS_NAME = "table-of-contents__link--active";
 const TOP_OFFSET = 100;
 
 function DocTOC({headings}) {
@@ -70,6 +69,7 @@ function DocItem(props) {
     lastUpdatedBy,
     version,
     latestVersionMainDocPermalink,
+    source,
   } = metadata;
   const {
     frontMatter: {
@@ -80,14 +80,46 @@ function DocItem(props) {
     },
   } = DocContent;
 
-  const metaTitle = title ? `${title} | ${siteTitle}` : siteTitle;
-  const metaImageUrl = useBaseUrl(metaImage, {absolute: true});
+  const issueTitle = `Issue with "${title}" in ${source}`;
+  //IMPORTANT NOTE: if changing the body, note that the defacto max url length is 2000 chars for IE
+  const issueBody = `
+<!-- 
+Thank you for taking the time to help us improve our documentation! Please describe the problem and a suggested fix below and we'll get back to you as soon as we can.
+-->
+
+## Describe the problem
+
+* Page: [${title}](${siteConfig.url}${permalink})
+* Source: ${editUrl}
+
+<!--- Is this a typo, stale information, request for improvement, inaccuracy? -->
+<!--- Clearly and concisely describe the problem with the documentation -->
+
+
+## Screenshots
+<!-- If applicable, add screenshots to help explain your problem. -->
+
+## Environment
+ - OS: [e.g. Windows]
+ - Browser: [e.g. chrome, safari, firefox..]
+ - Browser Version:
+
+## Suggested fix
+
+<!--- If possible, help us by offering a suggested fix to the problem. If you know the fix, you may also submit a PR to fix the issue if you like! -->
+
+`;
+  const issueUrl = `https://github.com/demisto/content-docs/issues/new?labels=documentation&body=${encodeURIComponent(issueBody)}&title=${encodeURIComponent(issueTitle)}`;
+  const metaImageUrl = siteUrl + useBaseUrl(metaImage);
 
   return (
     <>
       <Head>
-        <title>{metaTitle}</title>
-        <meta property="og:title" content={metaTitle} />
+        {title && (
+          <title>
+            {title} | {siteTitle}
+          </title>
+        )}
         {description && <meta name="description" content={description} />}
         {description && (
           <meta property="og:description" content={description} />
@@ -219,6 +251,19 @@ function DocItem(props) {
                         </em>
                       </div>
                     )}
+                  </div>
+                  <div className="row">
+                    <div className="col text--right">
+                      <Link
+                        className={classnames(
+                          "button button--outline button--primary button--md"
+                        )}
+                        href={issueUrl}
+                        target="_blank"
+                      >
+                        Report an Issue
+                      </Link>
+                    </div>
                   </div>
                 </div>
               )}

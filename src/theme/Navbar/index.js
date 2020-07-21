@@ -5,24 +5,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, {useCallback, useState, useEffect} from 'react';
-import clsx from 'clsx';
-import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-
-import SearchBar from '@theme/SearchBar';
-import Toggle from '@theme/Toggle';
-import useThemeContext from '@theme/hooks/useThemeContext';
-import useHideableNavbar from '@theme/hooks/useHideableNavbar';
-import useLockBodyScroll from '@theme/hooks/useLockBodyScroll';
-import useWindowSize, {windowSizes} from '@theme/hooks/useWindowSize';
-import useLogo from '@theme/hooks/useLogo';
-
-import styles from './styles.module.css';
+import Link from "@docusaurus/Link";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import useHideableNavbar from "@theme/hooks/useHideableNavbar";
+import useLockBodyScroll from "@theme/hooks/useLockBodyScroll";
+import useLogo from "@theme/hooks/useLogo";
+import useThemeContext from "@theme/hooks/useThemeContext";
+import useWindowSize, { windowSizes } from "@theme/hooks/useWindowSize";
+import SearchBar from "@theme/SearchBar";
+import Toggle from "@theme/Toggle";
+import clsx from "clsx";
+import React, { useCallback, useEffect, useState } from "react";
+import styles from "./styles.module.css";
 
 // retrocompatible with v1
-const DefaultNavItemPosition = 'right';
+const DefaultNavItemPosition = "right";
 
 function NavLink({
   activeBasePath,
@@ -30,25 +28,25 @@ function NavLink({
   to,
   href,
   label,
-  activeClassName = 'navbar__link--active',
+  activeclassname = "navbar__link--active",
   prependBaseUrlToHref,
   ...props
 }) {
   const toUrl = useBaseUrl(to);
   const activeBaseUrl = useBaseUrl(activeBasePath);
-  const normalizedHref = useBaseUrl(href, {forcePrependBaseUrl: true});
+  const normalizedHref = useBaseUrl(href, { forcePrependBaseUrl: true });
 
   return (
     <Link
       {...(href
         ? {
-            target: '_blank',
-            rel: 'noopener noreferrer',
+            target: "_blank",
+            rel: "noopener noreferrer",
             href: prependBaseUrlToHref ? normalizedHref : href,
           }
         : {
             isNavLink: true,
-            activeClassName,
+            activeclassname,
             to: toUrl,
             ...(activeBasePath || activeBaseRegex
               ? {
@@ -59,8 +57,59 @@ function NavLink({
                 }
               : null),
           })}
-      {...props}>
+      {...props}
+    >
       {label}
+    </Link>
+  );
+}
+
+function SiteLink({
+  activeBasePath,
+  activeBaseRegex,
+  to,
+  href,
+  label,
+  logo,
+  activeclassname = "navbar__link--active",
+  prependBaseUrlToHref,
+  ...props
+}) {
+  const toUrl = useBaseUrl(to);
+  const activeBaseUrl = useBaseUrl(activeBasePath);
+  const normalizedHref = useBaseUrl(href, { forcePrependBaseUrl: true });
+
+  return (
+    <Link
+      {...(href
+        ? {
+            target: "_self",
+            rel: "noopener noreferrer",
+            href: prependBaseUrlToHref ? normalizedHref : href,
+          }
+        : {
+            isNavLink: true,
+            activeclassname,
+            to: toUrl,
+            ...(activeBasePath || activeBaseRegex
+              ? {
+                  isActive: (_match, location) =>
+                    activeBaseRegex
+                      ? new RegExp(activeBaseRegex).test(location.pathname)
+                      : location.pathname.startsWith(activeBaseUrl),
+                }
+              : null),
+          })}
+      {...props}
+    >
+      <span>
+        <div className="avatar">
+          <img className="avatar__photo avatar__photo--sm" src={logo} />
+          <div className="avatar__intro">
+            <h5 className="avatar__name">{label}</h5>
+          </div>
+        </div>
+      </span>
     </Link>
   );
 }
@@ -74,10 +123,10 @@ function NavItem({
   const navLinkClassNames = (extraClassName, isDropdownItem = false) =>
     clsx(
       {
-        'navbar__item navbar__link': !isDropdownItem,
+        "navbar__item navbar__link": !isDropdownItem,
         dropdown__link: isDropdownItem,
       },
-      extraClassName,
+      extraClassName
     );
 
   if (!items) {
@@ -86,45 +135,105 @@ function NavItem({
 
   return (
     <div
-      className={clsx('navbar__item', 'dropdown', 'dropdown--hoverable', {
-        'dropdown--left': position === 'left',
-        'dropdown--right': position === 'right',
-      })}>
+      className={clsx("navbar__item", "dropdown", "dropdown--hoverable", {
+        "dropdown--left": position === "left",
+        "dropdown--right": position === "right",
+      })}
+    >
       <NavLink
         className={navLinkClassNames(className)}
         {...props}
         onClick={(e) => e.preventDefault()}
         onKeyDown={(e) => {
-          if (e.key === 'Enter') {
-            e.target.parentNode.classList.toggle('dropdown--show');
+          if (e.key === "Enter") {
+            e.target.parentNode.classList.toggle("dropdown--show");
           }
-        }}>
+        }}
+      >
         {props.label}
       </NavLink>
       <ul className="dropdown__menu">
-        {items.map(({className: childItemClassName, ...childItemProps}, i) => (
-          <li key={i}>
-            <NavLink
-              activeClassName="dropdown__link--active"
-              className={navLinkClassNames(childItemClassName, true)}
-              {...childItemProps}
-            />
-          </li>
-        ))}
+        {items.map(
+          ({ className: childItemClassName, ...childItemProps }, i) => (
+            <li key={i}>
+              <NavLink
+                activeclassname="dropdown__link--active"
+                className={navLinkClassNames(childItemClassName, true)}
+                {...childItemProps}
+              />
+            </li>
+          )
+        )}
       </ul>
     </div>
   );
 }
 
-function MobileNavItem({items, position: _position, className, ...props}) {
+function SiteItem({
+  items,
+  position = DefaultNavItemPosition,
+  className,
+  ...props
+}) {
+  const navLinkClassNames = (extraClassName, isDropdownItem = false) =>
+    clsx(
+      {
+        "navbar__item navbar__link": !isDropdownItem,
+        dropdown__link: isDropdownItem,
+      },
+      extraClassName
+    );
+
+  if (!items) {
+    return <NavLink className={navLinkClassNames(className)} {...props} />;
+  }
+
+  return (
+    <div
+      className={clsx("navbar__item", "dropdown", "dropdown--hoverable", {
+        "dropdown--left": position === "left",
+        "dropdown--right": position === "right",
+        "dropdown--left": position === "products",
+      })}
+    >
+      <NavLink
+        className={navLinkClassNames(className)}
+        {...props}
+        onClick={(e) => e.preventDefault()}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.target.parentNode.classList.toggle("dropdown--show");
+          }
+        }}
+      >
+        {props.label}
+      </NavLink>
+      <ul className="dropdown__menu">
+        {items.map(
+          ({ className: childItemClassName, ...childItemProps }, i) => (
+            <li key={i}>
+              <SiteLink
+                activeclassname="dropdown__link--active"
+                className={navLinkClassNames(childItemClassName, true)}
+                {...childItemProps}
+              />
+            </li>
+          )
+        )}
+      </ul>
+    </div>
+  );
+}
+
+function MobileNavItem({ items, position: _position, className, ...props }) {
   // Need to destructure position from props so that it doesn't get passed on.
   const navLinkClassNames = (extraClassName, isSubList = false) =>
     clsx(
-      'menu__link',
+      "menu__link",
       {
-        'menu__link--sublist': isSubList,
+        "menu__link--sublist": isSubList,
       },
-      extraClassName,
+      extraClassName
     );
 
   if (!items) {
@@ -141,16 +250,60 @@ function MobileNavItem({items, position: _position, className, ...props}) {
         {props.label}
       </NavLink>
       <ul className="menu__list">
-        {items.map(({className: childItemClassName, ...childItemProps}, i) => (
-          <li className="menu__list-item" key={i}>
-            <NavLink
-              activeClassName="menu__link--active"
-              className={navLinkClassNames(childItemClassName)}
-              {...childItemProps}
-              onClick={props.onClick}
-            />
-          </li>
-        ))}
+        {items.map(
+          ({ className: childItemClassName, ...childItemProps }, i) => (
+            <li className="menu__list-item" key={i}>
+              <NavLink
+                activeClassName="menu__link--active"
+                className={navLinkClassNames(childItemClassName)}
+                {...childItemProps}
+                onClick={props.onClick}
+              />
+            </li>
+          )
+        )}
+      </ul>
+    </li>
+  );
+}
+
+function MobileSiteItem({ items, position: _position, className, ...props }) {
+  // Need to destructure position from props so that it doesn't get passed on.
+  const navLinkClassNames = (extraClassName, isSubList = false) =>
+    clsx(
+      "menu__link",
+      {
+        "menu__link--sublist": isSubList,
+      },
+      extraClassName
+    );
+
+  if (!items) {
+    return (
+      <li className="menu__list-item">
+        <NavLink className={navLinkClassNames(className)} {...props} />
+      </li>
+    );
+  }
+
+  return (
+    <li className="menu__list-item">
+      <NavLink className={navLinkClassNames(className, true)} {...props}>
+        {props.label}
+      </NavLink>
+      <ul className="menu__list">
+        {items.map(
+          ({ className: childItemClassName, ...childItemProps }, i) => (
+            <li className="menu__list-item" key={i}>
+              <SiteLink
+                activeClassName="menu__link--active"
+                className={navLinkClassNames(childItemClassName)}
+                {...childItemProps}
+                onClick={props.onClick}
+              />
+            </li>
+          )
+        )}
       </ul>
     </li>
   );
@@ -160,14 +313,18 @@ function MobileNavItem({items, position: _position, className, ...props}) {
 // if position is unspecified, fallback to right (as v1)
 function splitLinks(links) {
   const leftLinks = links.filter(
-    (linkItem) => (linkItem.position ?? DefaultNavItemPosition) === 'left',
+    (linkItem) => (linkItem.position ?? DefaultNavItemPosition) === "left"
   );
   const rightLinks = links.filter(
-    (linkItem) => (linkItem.position ?? DefaultNavItemPosition) === 'right',
+    (linkItem) => (linkItem.position ?? DefaultNavItemPosition) === "right"
+  );
+  const productLinks = links.filter(
+    (linkItem) => (linkItem.position ?? DefaultNavItemPosition) === "products"
   );
   return {
     leftLinks,
     rightLinks,
+    productLinks,
   };
 }
 
@@ -175,7 +332,7 @@ function Navbar() {
   const {
     siteConfig: {
       themeConfig: {
-        navbar: {title, links = [], hideOnScroll = false} = {},
+        navbar: { title, links = [], sites = [], hideOnScroll = false } = {},
         disableDarkMode = false,
       },
     },
@@ -184,9 +341,9 @@ function Navbar() {
   const [sidebarShown, setSidebarShown] = useState(false);
   const [isSearchBarExpanded, setIsSearchBarExpanded] = useState(false);
 
-  const {isDarkTheme, setLightTheme, setDarkTheme} = useThemeContext();
-  const {navbarRef, isNavbarVisible} = useHideableNavbar(hideOnScroll);
-  const {logoLink, logoLinkProps, logoImageUrl, logoAlt} = useLogo();
+  const { isDarkTheme, setLightTheme, setDarkTheme } = useThemeContext();
+  const { navbarRef, isNavbarVisible } = useHideableNavbar(hideOnScroll);
+  const { logoLink, logoLinkProps, logoImageUrl, logoAlt } = useLogo();
 
   useLockBodyScroll(sidebarShown);
 
@@ -199,7 +356,7 @@ function Navbar() {
 
   const onToggleChange = useCallback(
     (e) => (e.target.checked ? setDarkTheme() : setLightTheme()),
-    [setLightTheme, setDarkTheme],
+    [setLightTheme, setDarkTheme]
   );
 
   const windowSize = useWindowSize();
@@ -210,16 +367,18 @@ function Navbar() {
     }
   }, [windowSize]);
 
-  const {leftLinks, rightLinks} = splitLinks(links);
+  const allLinks = links.concat(sites);
+  const { leftLinks, rightLinks, productLinks } = splitLinks(allLinks);
 
   return (
     <nav
       ref={navbarRef}
-      className={clsx('navbar', 'navbar--light', 'navbar--fixed-top', {
-        'navbar-sidebar--show': sidebarShown,
+      className={clsx("navbar", "navbar--light", "navbar--fixed-top", {
+        "navbar-sidebar--show": sidebarShown,
         [styles.navbarHideable]: hideOnScroll,
         [styles.navbarHidden]: !isNavbarVisible,
-      })}>
+      })}
+    >
       <div className="navbar__inner">
         <div className="navbar__items">
           {links != null && links.length !== 0 && (
@@ -229,14 +388,16 @@ function Navbar() {
               role="button"
               tabIndex={0}
               onClick={showSidebar}
-              onKeyDown={showSidebar}>
+              onKeyDown={showSidebar}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
                 height="30"
                 viewBox="0 0 30 30"
                 role="img"
-                focusable="false">
+                focusable="false"
+              >
                 <title>Menu</title>
                 <path
                   stroke="currentColor"
@@ -259,9 +420,10 @@ function Navbar() {
             )}
             {title != null && (
               <strong
-                className={clsx('navbar__title', {
+                className={clsx("navbar__title", {
                   [styles.hideLogoText]: isSearchBarExpanded,
-                })}>
+                })}
+              >
                 {title}
               </strong>
             )}
@@ -271,6 +433,9 @@ function Navbar() {
           ))}
         </div>
         <div className="navbar__items navbar__items--right">
+          {productLinks.map((linkItem, i) => (
+            <SiteItem {...linkItem} key={i} />
+          ))}
           {rightLinks.map((linkItem, i) => (
             <NavItem {...linkItem} key={i} />
           ))}
@@ -299,7 +464,8 @@ function Navbar() {
             className="navbar__brand"
             onClick={hideSidebar}
             to={logoLink}
-            {...logoLinkProps}>
+            {...logoLinkProps}
+          >
             {logoImageUrl != null && (
               <img
                 key={isClient}
@@ -323,6 +489,9 @@ function Navbar() {
         <div className="navbar-sidebar__items">
           <div className="menu">
             <ul className="menu__list">
+              {sites.map((linkItem, i) => (
+                <MobileSiteItem {...linkItem} onClick={hideSidebar} key={i} />
+              ))}
               {links.map((linkItem, i) => (
                 <MobileNavItem {...linkItem} onClick={hideSidebar} key={i} />
               ))}
