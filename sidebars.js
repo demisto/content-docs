@@ -168,7 +168,7 @@ if (fs.existsSync("docs/reference/sidebar.json")) {
   sidebars["reference"] = referenceSideBar
 }
 
-if (fs.existsSync("docs/integrations/demistoclass.md")) {
+if (fs.existsSync("docs/integrations/demisto-class.md")) {
   const developingDocs = sidebars.docs.find(item => item.label === "Integrations").items.find(item => item.label === "Developing");
   developingDocs["items"].push("integrations/demisto-class");
 }
