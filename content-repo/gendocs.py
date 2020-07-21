@@ -115,11 +115,11 @@ def gen_html_doc(txt: str) -> str:
             '<div dangerouslySetInnerHTML={{__html: txt}} />\n')
 
 
-def get_deprecated_data(yml_data: dict, desc: str):
-    if yml_data.get('deprecated'):
+def get_deprecated_data(yml_data: dict, desc: str, readme_file: str):
+    if yml_data.get('deprecated') or 'DeprecatedContent' in readme_file or yml_data.get('hidden'):
         dep_msg = ""
         dep_match = re.match(r'deprecated\s*[\.\-:]\s*(.*?)\.', desc, re.IGNORECASE)
-        if dep_match:
+        if dep_match and 'instead' in dep_match[1]:
             dep_msg = dep_match[1] + '\n'
         return f':::caution Deprecated\n{dep_msg}:::\n\n'
     return ""
@@ -183,7 +183,7 @@ def process_readme_doc(target_dir: str, content_dir: str, readme_file: str) -> D
                 readme_repo_path = readme_repo_path[len(content_dir):]
             edit_url = f'https://github.com/demisto/content/blob/{BRANCH}/{readme_repo_path}'
             header = f'---\nid: {id}\ntitle: {json.dumps(doc_info.name)}\ncustom_edit_url: {edit_url}\n---\n\n'
-            content = get_deprecated_data(yml_data, desc) + content
+            content = get_deprecated_data(yml_data, desc, readme_file) + content
             content = get_beta_data(yml_data, content) + content
             content = header + content
         verify_mdx_server(content)

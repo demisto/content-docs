@@ -170,10 +170,12 @@ def test_process_extra_doc(tmp_path, mdx_server):
 
 
 def test_get_deprecated_data():
-    res = get_deprecated_data({"deprecated": True}, "Deprecated - We recommend using ServiceNow v2 instead.")
+    res = get_deprecated_data({"deprecated": True}, "Deprecated - We recommend using ServiceNow v2 instead.", "README.md")
     assert "We recommend using ServiceNow v2 instead" in res
-    assert get_deprecated_data({"deprecated": False}, "stam") == ""
-    res = get_deprecated_data({"deprecated": True}, "Deprecated: use Shodan v2 instead. Search engine for Internet-connected devices.")
+    assert get_deprecated_data({"deprecated": False}, "stam", "README.md") == ""
+    res = get_deprecated_data({"deprecated": True}, "Deprecated: use Shodan v2 instead. Search engine for Internet-connected devices.", "README.md")
     assert "use Shodan v2 instead" in res
-    res = get_deprecated_data({"deprecated": True}, "Deprecated. Use The Generic SQL integration instead.")
+    res = get_deprecated_data({"deprecated": True}, "Deprecated. Use The Generic SQL integration instead.", "README.md")
     assert "Use The Generic SQL integration instead" in res
+    res = get_deprecated_data({}, "Deprecated. Add information about the vulnerability.", "Packs/DeprecatedContent/Playbooks/test-README.md")
+    assert "Add information" not in res
