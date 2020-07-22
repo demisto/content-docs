@@ -27,8 +27,22 @@ module.exports = {
         src: "/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal.svg",
         srcDark: "/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal-KO.svg"
       },
-
-      menus: [
+      links: [
+        {
+          to: "/docs/welcome",
+          label: "Developer Docs",
+          position: "left"
+        },
+        {
+          to: "/docs/tutorials/tut-setup-dev",
+          label: "Tutorials",
+          position: "left"
+        },
+        {
+          to: "/docs/reference/index",
+          label: "Reference",
+          position: "left"
+        },
         {
           label: "Partners",
           items: [
@@ -51,24 +65,6 @@ module.exports = {
             }
           ],
           position: "right"
-        }
-      ],
-
-      links: [
-        {
-          to: "/docs/welcome",
-          label: "Developer Docs",
-          position: "left"
-        },
-        {
-          to: "/docs/tutorials/tut-setup-dev",
-          label: "Tutorials",
-          position: "left"
-        },
-        {
-          to: "/docs/reference/index",
-          label: "Reference",
-          position: "left"
         },
         {
           href: "http://github.com/demisto/content/",
