@@ -67,16 +67,16 @@ module.exports = {
           position: "right"
         },
         {
+          href: "https://blog.demisto.com/",
+          label: "Blog",
+          position: "right"
+        },
+        {
           href: "http://github.com/demisto/content/",
           position: "right",
           className: "header-github-link",
           "aria-label": "GitHub repository",
         },
-        {
-          href: "https://blog.demisto.com/",
-          label: "Blog",
-          position: "right"
-        }
       ],
       sites: [
         {

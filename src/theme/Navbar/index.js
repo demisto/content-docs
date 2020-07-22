@@ -191,7 +191,6 @@ function SiteItem({
   return (
     <div
       className={clsx("navbar__item", "dropdown", "dropdown--hoverable", {
-        "dropdown--left": position === "left",
         "dropdown--right": position === "right",
         "dropdown--left": position === "products",
       })}
@@ -231,7 +230,7 @@ function MobileNavItem({ items, position: _position, className, ...props }) {
     clsx(
       "menu__link",
       {
-        "menu__link--sublist": isSubList,
+        "menu__link--sublist no_dropdown": isSubList,
       },
       extraClassName
     );
@@ -271,7 +270,7 @@ function MobileSiteItem({ items, position: _position, className, ...props }) {
   // Need to destructure position from props so that it doesn't get passed on.
   const navLinkClassNames = (extraClassName, isSubList = false) =>
     clsx(
-      "menu__link",
+      "menu__link no_dropdown",
       {
         "menu__link--sublist": isSubList,
       },

@@ -166,6 +166,10 @@ blockquote {
   background-color: #000000;
 }
 
+.footer {
+  padding: 1rem;
+}
+
 .announcement {
   color: #fff;
   font-weight: bold;
@@ -300,5 +304,9 @@ html[data-theme="dark"] .header-github-link:before {
 
 /* Dropdown override */
 .navbar__link:after {
+  display: none !important;
+}
+
+.no_dropdown:after {
   display: none !important;
 }
