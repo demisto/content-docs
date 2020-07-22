@@ -116,3 +116,11 @@ Note: for the layout to be associated with incident/indicator type, the layout I
  ```
  
  For example, see [Phishing incident layout](https://github.com/demisto/content/blob/master/Packs/Phishing/Layouts/layoutscontainer-Phishing.json).
+ 
+ ### Video on how to convert Layout files to version 6.0 and above
+ 
+ <video controls>
+    <source src="https://github.com/demisto/content-assets/raw/9f10fd6817ad98aff05e604f5d9068428a7e8ed3/Assets/xsoar.pan.dev/Convert_XSOAR_Layouts_from_5.5_to_6.0.mp4"
+            type="video/mp4"/>
+    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/blob/9f10fd6817ad98aff05e604f5d9068428a7e8ed3/Assets/xsoar.pan.dev/Convert_XSOAR_Layouts_from_5.5_to_6.0.mp4 
+</video>
