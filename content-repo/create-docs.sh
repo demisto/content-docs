@@ -144,15 +144,17 @@ if [ -z "${NETLIFY}" ]; then
     echo "Not running in netlify. Using pipenv"
     echo "Installing pipenv..."
     pipenv install
-    echo "Generating docs..."
-    pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
     echo "Generating Demisto class docs..."
     mv demistomock.py demisto.py
     pipenv run ./gen-pydocs.py -d "${ARTICLES_DIR}" -i "demisto-class" -t "Demisto Class" -m "demisto"
-else
+    mv demisto.py demistomock.py
     echo "Generating docs..."
-    ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
+    pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
+else
     echo "Generating Demisto class docs..."
     mv demistomock.py demisto.py
     ./gen-pydocs.py -d  "${ARTICLES_DIR}" -i "demisto-class" -t "Demisto Class" -m "demisto"
+    mv demisto.py demistomock.py
+    echo "Generating docs..."
+    ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
 fi
