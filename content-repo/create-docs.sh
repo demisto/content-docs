@@ -138,6 +138,8 @@ echo "Copying CommonServerPython.py and demistomock.py"
 cp ${CONTENT_GIT_DIR}/Packs/Base/Scripts/CommonServerPython/CommonServerPython.py .
 cp ${CONTENT_GIT_DIR}/Tests/demistomock/demistomock.py .
 
+ARTICLES_DIR=${SCRIPT_DIR}/extra-docs/articles
+
 if [ -z "${NETLIFY}" ]; then
     echo "Not running in netlify. Using pipenv"
     echo "Installing pipenv..."
@@ -145,20 +147,12 @@ if [ -z "${NETLIFY}" ]; then
     echo "Generating docs..."
     pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
     echo "Generating Demisto class docs..."
-    echo "---" >> ../docs/integrations/demisto-class.md
-    echo "id: demisto-class" >> ../docs/integrations/demisto-class.md
-    echo "title: Demisto Class" >> ../docs/integrations/demisto-class.md
-    echo "---" >> ../docs/integrations/demisto-class.md
     mv demistomock.py demisto.py
-    pipenv run pydoc-markdown -p demisto >> ../docs/integrations/demisto-class.md
+    pipenv run ./gen-pydocs.py -d "${ARTICLES_DIR}" -i "demisto-class" -t "Demisto Class" -m "demisto"
 else
     echo "Generating docs..."
     ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
     echo "Generating Demisto class docs..."
-    echo "---" >> ../docs/integrations/demisto-class.md
-    echo "id: demisto-class" >> ../docs/integrations/demisto-class.md
-    echo "title: Demisto Class" >> ../docs/integrations/demisto-class.md
-    echo "---" >> ../docs/integrations/demisto-class.md
     mv demistomock.py demisto.py
-    pydoc-markdown -p demisto >> ../docs/integrations/demisto-class.md
+    ./gen-pydocs.py -d  "${ARTICLES_DIR}" -i "demisto-class" -t "Demisto Class" -m "demisto"
 fi
