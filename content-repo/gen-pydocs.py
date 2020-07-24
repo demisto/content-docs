@@ -30,7 +30,8 @@ def generate_pydoc(module: str, article_id: str, article_title: str, target_dir:
     sys.stdout = stdout
     pydoc = tmp_stdout.getvalue()
 
-    content = f'---\nid: {article_id}\ntitle: {article_title}\n---\n\n{pydoc}'
+    article_description = f'API reference documentation for {article_title}.'
+    content = f'---\nid: {article_id}\ntitle: {article_title}\ndescription: {article_description}\n---\n\n{pydoc}'
     with open(f'{target_dir}/{article_id}.md', mode='w', encoding='utf-8') as f:
         f.write(content)
 
