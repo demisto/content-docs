@@ -4,7 +4,7 @@ import argparse
 import sys
 from io import StringIO
 
-from pydoc_markdown import PydocMarkdown, PythonLoader
+from pydoc_markdown import PydocMarkdown, PythonLoader, MarkdownRenderer
 
 
 def generate_pydoc(module: str, article_id: str, article_title: str, target_dir: str) -> None:
@@ -19,6 +19,7 @@ def generate_pydoc(module: str, article_id: str, article_title: str, target_dir:
         None: No data returned.
     """
     pydocmd = PydocMarkdown()
+    pydocmd.renderer = MarkdownRenderer(insert_header_anchors=False)
     loader: PythonLoader = next((ldr for ldr in pydocmd.loaders if isinstance(ldr, PythonLoader)), None)
     loader.modules = [module]
     modules = pydocmd.load_modules()
