@@ -4,7 +4,7 @@ import argparse
 import sys
 from io import StringIO
 
-from pydoc_markdown import PydocMarkdown, PythonLoader, MarkdownRenderer
+from pydoc_markdown import MarkdownRenderer, PydocMarkdown, PythonLoader
 
 
 def generate_pydoc(module: str, article_id: str, article_title: str, target_dir: str) -> None:
@@ -30,6 +30,7 @@ def generate_pydoc(module: str, article_id: str, article_title: str, target_dir:
     pydocmd.render(modules)
     sys.stdout = stdout
     pydoc = tmp_stdout.getvalue()
+    pydoc = pydoc.replace(f'# {module}', '')
 
     article_description = f'API reference documentation for {article_title}.'
     content = f'---\nid: {article_id}\ntitle: {article_title}\ndescription: {article_description}\n---\n\n{pydoc}'
