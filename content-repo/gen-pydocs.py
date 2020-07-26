@@ -19,7 +19,10 @@ def generate_pydoc(module: str, article_id: str, article_title: str, target_dir:
         None: No data returned.
     """
     pydocmd = PydocMarkdown()
-    pydocmd.renderer = MarkdownRenderer(insert_header_anchors=False)
+    pydocmd.renderer = MarkdownRenderer(
+        insert_header_anchors=False,
+        render_module_header=False
+    )
     loader: PythonLoader = next((ldr for ldr in pydocmd.loaders if isinstance(ldr, PythonLoader)), None)
     loader.modules = [module]
     modules = pydocmd.load_modules()
@@ -30,7 +33,6 @@ def generate_pydoc(module: str, article_id: str, article_title: str, target_dir:
     pydocmd.render(modules)
     sys.stdout = stdout
     pydoc = tmp_stdout.getvalue()
-    pydoc = pydoc.replace(f'# {module}', '')
 
     article_description = f'API reference documentation for {article_title}.'
     content = f'---\nid: {article_id}\ntitle: {article_title}\ndescription: {article_description}\n---\n\n{pydoc}'
