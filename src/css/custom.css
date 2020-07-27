@@ -244,6 +244,12 @@ blockquote {
   }
 }
 
+@media (max-width: 380px) {
+  .navbar__logo {
+    max-width:  90% !important;
+  }
+}
+
 .button--active--tab {
   background-color: var(--ifm-background-color) !important;
   color: var(--ifm-color-primary) !important;
