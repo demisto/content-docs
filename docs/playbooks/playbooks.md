@@ -27,7 +27,7 @@ Under the section "Condition for yes", we will click the **{}** option to bring 
 <img src="../doc_imgs/playbooks/50276603-fff75100-044a-11e9-97ef-c848cc051985.png" width="400" align="middle"></img>
 
 
-Next, in the "Equals (String)" field enter our expected value of "8.8.8.8" and by click ✅. It should look like the following:
+Next, in the "Equals (String)" field enter our expected value of "8.8.8.8" and click ✅. It should look like the following:
 
 <img src="../doc_imgs/playbooks/task_result.png" width="400" align="middle"></img>
 
