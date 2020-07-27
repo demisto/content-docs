@@ -27,10 +27,10 @@ Under the section "Condition for yes", we will click the **{}** option to bring 
 <img src="../doc_imgs/playbooks/50276603-fff75100-044a-11e9-97ef-c848cc051985.png" width="400" align="middle"></img>
 
 
-Next, in the "Equals (String)" field enter our expected value of "8.8.8.8". It should look like the following:
+Next, in the "Equals (String)" field enter our expected value of "8.8.8.8" and by click ✅. It should look like the following:
 
 <img src="../doc_imgs/playbooks/task_result.png" width="400" align="middle"></img>
 
-Finish by clicking ✅ followed by **Save**. Connect the tasks together. 
+You can test the task with the **Test** button. Finish by clicking **Save**, and connect the tasks together. 
 
 Click "Save" to save your playbook. You can attach playbooks to incidents to automate tasks that are related to that incident.
