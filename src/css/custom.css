@@ -244,12 +244,6 @@ blockquote {
   }
 }
 
-@media (max-width: 380px) {
-  .navbar__logo {
-    max-width:  90% !important;
-  }
-}
-
 .button--active--tab {
   background-color: var(--ifm-background-color) !important;
   color: var(--ifm-color-primary) !important;
@@ -315,4 +309,10 @@ html[data-theme="dark"] .header-github-link:before {
 
 .no_dropdown:after {
   display: none !important;
+}
+
+@media (max-width: 380px){
+  .navbar__logo {
+    content: url("/img/Cortex-XSoar-green.svg") !important;
+  }
 }
