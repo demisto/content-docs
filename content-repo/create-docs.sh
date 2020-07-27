@@ -140,6 +140,9 @@ cp ${CONTENT_GIT_DIR}/Tests/demistomock/demistomock.py .
 
 ARTICLES_DIR=${SCRIPT_DIR}/extra-docs/articles
 
+echo "Converting docstring to Google style..."
+pyment demistomock.py -w -o google
+
 if [ -z "${NETLIFY}" ]; then
     echo "Not running in netlify. Using pipenv"
     echo "Installing pipenv..."
