@@ -118,7 +118,7 @@ Note: for the layout to be associated with incident/indicator type, the layout I
  For example, see [Phishing incident layout](https://github.com/demisto/content/blob/master/Packs/Phishing/Layouts/layoutscontainer-Phishing.json).
  
  
- ### Video on how to convert Layout files to version 6.0 and above
+### Demo Video: how to convert Layout files to version 6.0 and above
  
  
  <video controls>
