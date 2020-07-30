@@ -35,6 +35,8 @@ else
         nproc || echo "nproc not available"
         echo "MEMORY LIMIT (bytes)"
         cat /sys/fs/cgroup/memory/memory.limit_in_bytes || echo "Memory limit not available"
+        echo "SWAP+MEMORY LIMIT (bytes)"
+        cat /sys/fs/cgroup/memory/memory.memsw.limit_in_bytes || echo "Memory+Swap limit not available"
     fi
     if [[ -n "${NETLIFY}" && -n "${HEAD}" ]]; then
         CURRENT_BRANCH="${HEAD}"
