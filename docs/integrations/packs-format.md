@@ -57,6 +57,8 @@ The following fields are populated in the pack metadata:
 | keywords | List | List of strings by which the pack can be found in Cortex XSOAR marketplace. |
 | dependencies | Dictionary | (Optional) An object that describes the content packs that the pack is dependant on. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | displayedImages | List | (Optional) Images to be displayed in Cortex XSOAR marketplace. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
+| githubUser | List | (Optional) List of Github usernames to receive notification in the PR in case pack files were modified. |
+
 
 Pack metadata contents for example:
 
@@ -117,7 +119,10 @@ A supported partner pack metadata contents for example:
     "created": "2020-03-19T09:39:30Z",
     "useCases": [],
     "keywords": [],
-    "dependencies": {}
+    "dependencies": {},
+    "githubUser": [
+        "<partner Github username>"
+    ]    
 }
 ```
 

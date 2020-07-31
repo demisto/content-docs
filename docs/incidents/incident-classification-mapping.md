@@ -72,6 +72,13 @@ The file should be named `classifier-<PACK-NAME>_5_9_9.json`, e.g. `classifier-C
 
 Cortex XSOAR version 6.0 introduces an improved classification & mapping experience, which includes a mirroring functionality by allowing to map outgoing incidents.
 
+:::note note
+You can set default classifier and/or mapper for an integration by populating the following keys in the integration YAML file with the classifier and/or mapper IDs:
+* For default classifier: `defaultclassifier`
+* For default incoming mapper: `defaultmapperin`
+* For default outgoing mapper: `defaultmapperout`
+:::
+
 Classifier file:
  - Filename: `classifier-<PACK-NAME>.json`, e.g. `classifier-CortexXDR.json`
  - File contents:
