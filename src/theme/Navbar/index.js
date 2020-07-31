@@ -5,47 +5,60 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, {useCallback, useState} from 'react';
-import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import isInternalUrl from '@docusaurus/isInternalUrl';
+import Link from "@docusaurus/Link";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import useHideableNavbar from "@theme/hooks/useHideableNavbar";
+import useLockBodyScroll from "@theme/hooks/useLockBodyScroll";
+import useLogo from "@theme/hooks/useLogo";
+import useThemeContext from "@theme/hooks/useThemeContext";
+import useWindowSize, { windowSizes } from "@theme/hooks/useWindowSize";
+import SearchBar from "@theme/SearchBar";
+import Toggle from "@theme/Toggle";
+import clsx from "clsx";
+import React, { useCallback, useEffect, useState } from "react";
+import styles from "./styles.module.css";
 
-import SearchBar from '@theme/SearchBar';
-import Toggle from '@theme/Toggle';
+// retrocompatible with v1
+const DefaultNavItemPosition = "right";
 
-import classnames from 'classnames';
-
-import useThemeContext from '@theme/hooks/useThemeContext';
-import useHideableNavbar from '@theme/hooks/useHideableNavbar';
-import useLockBodyScroll from '@theme/hooks/useLockBodyScroll';
-
-import styles from './styles.module.css';
-
-function NavLink({activeBasePath, to, href, label, position, ...props}) {
+function NavLink({
+  activeBasePath,
+  activeBaseRegex,
+  to,
+  href,
+  label,
+  activeclassname = "navbar__link--active",
+  prependBaseUrlToHref,
+  ...props
+}) {
   const toUrl = useBaseUrl(to);
   const activeBaseUrl = useBaseUrl(activeBasePath);
+  const normalizedHref = useBaseUrl(href, { forcePrependBaseUrl: true });
 
   return (
     <Link
-      className="navbar__item navbar__link"
       {...(href
         ? {
-            target: '_blank',
-            rel: 'noopener noreferrer',
-            href,
+            target: "_blank",
+            rel: "noopener noreferrer",
+            href: prependBaseUrlToHref ? normalizedHref : href,
           }
         : {
-            activeClassName: 'navbar__link--active',
+            isNavLink: true,
+            activeclassname,
             to: toUrl,
-            ...(activeBasePath
+            ...(activeBasePath || activeBaseRegex
               ? {
                   isActive: (_match, location) =>
-                    location.pathname.startsWith(activeBaseUrl),
+                    activeBaseRegex
+                      ? new RegExp(activeBaseRegex).test(location.pathname)
+                      : location.pathname.startsWith(activeBaseUrl),
                 }
               : null),
           })}
-      {...props}>
+      {...props}
+    >
       {label}
     </Link>
   );
@@ -53,34 +66,39 @@ function NavLink({activeBasePath, to, href, label, position, ...props}) {
 
 function SiteLink({
   activeBasePath,
+  activeBaseRegex,
   to,
   href,
   label,
-  position,
   logo,
+  activeclassname = "navbar__link--active",
+  prependBaseUrlToHref,
   ...props
 }) {
   const toUrl = useBaseUrl(to);
   const activeBaseUrl = useBaseUrl(activeBasePath);
+  const normalizedHref = useBaseUrl(href, { forcePrependBaseUrl: true });
 
   return (
     <Link
-      className="navbar__item navbar__link"
       {...(href
         ? {
             target: "_self",
             rel: "noopener noreferrer",
-            href
+            href: prependBaseUrlToHref ? normalizedHref : href,
           }
         : {
-            activeClassName: "navbar__link--active",
+            isNavLink: true,
+            activeclassname,
             to: toUrl,
-            ...(activeBasePath
+            ...(activeBasePath || activeBaseRegex
               ? {
                   isActive: (_match, location) =>
-                    location.pathname.startsWith(activeBaseUrl)
+                    activeBaseRegex
+                      ? new RegExp(activeBaseRegex).test(location.pathname)
+                      : location.pathname.startsWith(activeBaseUrl),
                 }
-              : null)
+              : null),
           })}
       {...props}
     >
@@ -96,55 +114,235 @@ function SiteLink({
   );
 }
 
-function NavMenu(props) {
+function NavItem({
+  items,
+  position = DefaultNavItemPosition,
+  className,
+  ...props
+}) {
+  const navLinkClassNames = (extraClassName, isDropdownItem = false) =>
+    clsx(
+      {
+        "navbar__item navbar__link": !isDropdownItem,
+        dropdown__link: isDropdownItem,
+      },
+      extraClassName
+    );
+
+  if (!items) {
+    return <NavLink className={navLinkClassNames(className)} {...props} />;
+  }
+
   return (
-    <div className="navbar__item dropdown dropdown--hoverable">
-      <a className="navbar__link">{props.label} &#9662;</a>
+    <div
+      className={clsx("navbar__item", "dropdown", "dropdown--hoverable", {
+        "dropdown--left": position === "left",
+        "dropdown--right": position === "right",
+      })}
+    >
+      <NavLink
+        className={navLinkClassNames(className)}
+        {...props}
+        onClick={(e) => e.preventDefault()}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.target.parentNode.classList.toggle("dropdown--show");
+          }
+        }}
+      >
+        {props.label}
+      </NavLink>
       <ul className="dropdown__menu">
-        {props.items.map((linkItem, i) => (
-          <li key={i}>
-            <NavLink {...linkItem} key={i} />
-          </li>
-        ))}
+        {items.map(
+          ({ className: childItemClassName, ...childItemProps }, i) => (
+            <li key={i}>
+              <NavLink
+                activeclassname="dropdown__link--active"
+                className={navLinkClassNames(childItemClassName, true)}
+                {...childItemProps}
+              />
+            </li>
+          )
+        )}
       </ul>
     </div>
   );
 }
 
-function SiteMenu(props) {
+function SiteItem({
+  items,
+  position = DefaultNavItemPosition,
+  className,
+  ...props
+}) {
+  const navLinkClassNames = (extraClassName, isDropdownItem = false) =>
+    clsx(
+      {
+        "navbar__item navbar__link": !isDropdownItem,
+        dropdown__link: isDropdownItem,
+      },
+      extraClassName
+    );
+
+  if (!items) {
+    return <NavLink className={navLinkClassNames(className)} {...props} />;
+  }
+
   return (
-    <div className="navbar__item dropdown dropdown--hoverable">
-      <a className="navbar__link">{props.label}</a>
+    <div
+      className={clsx("navbar__item", "dropdown", "dropdown--hoverable", {
+        "dropdown--right": position === "right",
+        "dropdown--left": position === "products",
+      })}
+    >
+      <NavLink
+        className={navLinkClassNames(className)}
+        {...props}
+        onClick={(e) => e.preventDefault()}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.target.parentNode.classList.toggle("dropdown--show");
+          }
+        }}
+      >
+        {props.label}
+      </NavLink>
       <ul className="dropdown__menu">
-        {props.items.map((linkItem, i) => (
-          <li key={i}>
-            <SiteLink {...linkItem} key={i} />
-          </li>
-        ))}
+        {items.map(
+          ({ className: childItemClassName, ...childItemProps }, i) => (
+            <li key={i}>
+              <SiteLink
+                activeclassname="dropdown__link--active"
+                className={navLinkClassNames(childItemClassName, true)}
+                {...childItemProps}
+              />
+            </li>
+          )
+        )}
       </ul>
     </div>
   );
+}
+
+function MobileNavItem({ items, position: _position, className, ...props }) {
+  // Need to destructure position from props so that it doesn't get passed on.
+  const navLinkClassNames = (extraClassName, isSubList = false) =>
+    clsx(
+      "menu__link",
+      {
+        "menu__link--sublist no_dropdown": isSubList,
+      },
+      extraClassName
+    );
+
+  if (!items) {
+    return (
+      <li className="menu__list-item">
+        <NavLink className={navLinkClassNames(className)} {...props} />
+      </li>
+    );
+  }
+
+  return (
+    <li className="menu__list-item">
+      <NavLink className={navLinkClassNames(className, true)} {...props}>
+        {props.label}
+      </NavLink>
+      <ul className="menu__list">
+        {items.map(
+          ({ className: childItemClassName, ...childItemProps }, i) => (
+            <li className="menu__list-item" key={i}>
+              <NavLink
+                activeClassName="menu__link--active"
+                className={navLinkClassNames(childItemClassName)}
+                {...childItemProps}
+                onClick={props.onClick}
+              />
+            </li>
+          )
+        )}
+      </ul>
+    </li>
+  );
+}
+
+function MobileSiteItem({ items, position: _position, className, ...props }) {
+  // Need to destructure position from props so that it doesn't get passed on.
+  const navLinkClassNames = (extraClassName, isSubList = false) =>
+    clsx(
+      "menu__link no_dropdown",
+      {
+        "menu__link--sublist": isSubList,
+      },
+      extraClassName
+    );
+
+  if (!items) {
+    return (
+      <li className="menu__list-item">
+        <NavLink className={navLinkClassNames(className)} {...props} />
+      </li>
+    );
+  }
+
+  return (
+    <li className="menu__list-item">
+      <NavLink className={navLinkClassNames(className, true)} {...props}>
+        {props.label}
+      </NavLink>
+      <ul className="menu__list">
+        {items.map(
+          ({ className: childItemClassName, ...childItemProps }, i) => (
+            <li className="menu__list-item" key={i}>
+              <SiteLink
+                activeClassName="menu__link--active"
+                className={navLinkClassNames(childItemClassName)}
+                {...childItemProps}
+                onClick={props.onClick}
+              />
+            </li>
+          )
+        )}
+      </ul>
+    </li>
+  );
+}
+
+// If split links by left/right
+// if position is unspecified, fallback to right (as v1)
+function splitLinks(links) {
+  const leftLinks = links.filter(
+    (linkItem) => (linkItem.position ?? DefaultNavItemPosition) === "left"
+  );
+  const rightLinks = links.filter(
+    (linkItem) => (linkItem.position ?? DefaultNavItemPosition) === "right"
+  );
+  const productLinks = links.filter(
+    (linkItem) => (linkItem.position ?? DefaultNavItemPosition) === "products"
+  );
+  return {
+    leftLinks,
+    rightLinks,
+    productLinks,
+  };
 }
 
 function Navbar() {
-  const {siteConfig = {}, isClient} = useDocusaurusContext();
-  const {baseUrl, themeConfig = {}} = siteConfig;
-  const {navbar = {}, disableDarkMode = false} = themeConfig;
   const {
-    title, 
-    logo = {}, 
-    links = [], 
-    menus = [],
-    sites = [],
-    hideOnScroll = false
-  } = navbar;
-
+    siteConfig: {
+      themeConfig: {
+        navbar: { title, links = [], sites = [], hideOnScroll = false } = {},
+        disableDarkMode = false,
+      },
+    },
+    isClient,
+  } = useDocusaurusContext();
   const [sidebarShown, setSidebarShown] = useState(false);
   const [isSearchBarExpanded, setIsSearchBarExpanded] = useState(false);
-  const [menuShown, setMenuShown] = useState({});
-  const [siteMenuShown, setSiteMenuShown] = useState({});
-  const {isDarkTheme, setLightTheme, setDarkTheme} = useThemeContext();
-  const {navbarRef, isNavbarVisible} = useHideableNavbar(hideOnScroll);
+
+  const { isDarkTheme, setLightTheme, setDarkTheme } = useThemeContext();
+  const { navbarRef, isNavbarVisible } = useHideableNavbar(hideOnScroll);
+  const { logoLink, logoLinkProps, logoImageUrl, logoAlt } = useLogo();
 
   useLockBodyScroll(sidebarShown);
 
@@ -155,122 +353,91 @@ function Navbar() {
     setSidebarShown(false);
   }, [setSidebarShown]);
 
-  const toggleMenu = id => {
-    setMenuShown(menuShown => {
-      return { ...menuShown, [id]: !menuShown[id] };
-    });
-  };
-
-  const toggleSiteMenu = id => {
-    setSiteMenuShown(siteMenuShown => {
-      return { ...siteMenuShown, [id]: !siteMenuShown[id] };
-    });
-  };
-
   const onToggleChange = useCallback(
-    e => (e.target.checked ? setDarkTheme() : setLightTheme()),
-    [setLightTheme, setDarkTheme],
+    (e) => (e.target.checked ? setDarkTheme() : setLightTheme()),
+    [setLightTheme, setDarkTheme]
   );
 
-  const logoLink = logo.href || baseUrl;
-  let logoLinkProps = {};
+  const windowSize = useWindowSize();
 
-  if (logo.target) {
-    logoLinkProps = {target: logo.target};
-  } else if (!isInternalUrl(logoLink)) {
-    logoLinkProps = {
-      rel: 'noopener noreferrer',
-      target: '_blank',
-    };
-  }
+  useEffect(() => {
+    if (windowSize === windowSizes.desktop) {
+      setSidebarShown(false);
+    }
+  }, [windowSize]);
 
-  const logoSrc = logo.srcDark && isDarkTheme ? logo.srcDark : logo.src;
-  const logoImageUrl = useBaseUrl(logoSrc);
+  const allLinks = links.concat(sites);
+  const { leftLinks, rightLinks, productLinks } = splitLinks(allLinks);
 
   return (
     <nav
       ref={navbarRef}
-      className={classnames('navbar', 'navbar--light', 'navbar--fixed-top', {
-        'navbar-sidebar--show': sidebarShown,
+      className={clsx("navbar", "navbar--light", "navbar--fixed-top", {
+        "navbar-sidebar--show": sidebarShown,
         [styles.navbarHideable]: hideOnScroll,
         [styles.navbarHidden]: !isNavbarVisible,
-      })}>
+      })}
+    >
       <div className="navbar__inner">
         <div className="navbar__items">
-          <div
-            aria-label="Navigation bar toggle"
-            className="navbar__toggle"
-            role="button"
-            tabIndex={0}
-            onClick={showSidebar}
-            onKeyDown={showSidebar}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="30"
-              height="30"
-              viewBox="0 0 30 30"
-              role="img"
-              focusable="false">
-              <title>Menu</title>
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeMiterlimit="10"
-                strokeWidth="2"
-                d="M4 7h22M4 15h22M4 23h22"
-              />
-            </svg>
-          </div>
+          {links != null && links.length !== 0 && (
+            <div
+              aria-label="Navigation bar toggle"
+              className="navbar__toggle"
+              role="button"
+              tabIndex={0}
+              onClick={showSidebar}
+              onKeyDown={showSidebar}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 30 30"
+                role="img"
+                focusable="false"
+              >
+                <title>Menu</title>
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeMiterlimit="10"
+                  strokeWidth="2"
+                  d="M4 7h22M4 15h22M4 23h22"
+                />
+              </svg>
+            </div>
+          )}
           <Link className="navbar__brand" to={logoLink} {...logoLinkProps}>
-            {logo != null && (
+            {logoImageUrl != null && (
               <img
                 key={isClient}
                 className="navbar__logo"
                 src={logoImageUrl}
-                alt={logo.alt}
+                alt={logoAlt}
               />
             )}
             {title != null && (
               <strong
-                className={classnames('navbar__title', {
+                className={clsx("navbar__title", {
                   [styles.hideLogoText]: isSearchBarExpanded,
-                })}>
+                })}
+              >
                 {title}
               </strong>
             )}
           </Link>
-          {menus
-            .filter(menuItem => menuItem.position !== "right")
-            .map((menuItem, i) => (
-              <NavMenu {...menuItem} key={i} />
-            ))}
-          {links
-            .filter(linkItem => linkItem.position !== 'right')
-            .map((linkItem, i) => (
-              <NavLink {...linkItem} key={i} />
-            ))}
-            {sites
-            .filter(siteItem => siteItem.position !== "right")
-            .map((siteItem, i) => (
-              <SiteMenu {...siteItem} key={i} />
-            ))}
+          {leftLinks.map((linkItem, i) => (
+            <NavItem {...linkItem} key={i} />
+          ))}
         </div>
         <div className="navbar__items navbar__items--right">
-          {menus
-            .filter(menuItem => menuItem.position === "right")
-            .map((menuItem, i) => (
-              <NavMenu {...menuItem} key={i} />
-            ))}
-          {links
-            .filter(linkItem => linkItem.position === 'right')
-            .map((linkItem, i) => (
-              <NavLink {...linkItem} key={i} />
-            ))}
-          {sites
-            .filter(siteItem => siteItem.position === "right")
-            .map((siteItem, i) => (
-              <SiteMenu {...siteItem} key={i} />
-            ))}
+          {productLinks.map((linkItem, i) => (
+            <SiteItem {...linkItem} key={i} />
+          ))}
+          {rightLinks.map((linkItem, i) => (
+            <NavItem {...linkItem} key={i} />
+          ))}
           {!disableDarkMode && (
             <Toggle
               className={styles.displayOnlyInLargeViewport}
@@ -296,13 +463,14 @@ function Navbar() {
             className="navbar__brand"
             onClick={hideSidebar}
             to={logoLink}
-            {...logoLinkProps}>
-            {logo != null && (
+            {...logoLinkProps}
+          >
+            {logoImageUrl != null && (
               <img
                 key={isClient}
                 className="navbar__logo"
                 src={logoImageUrl}
-                alt={logo.alt}
+                alt={logoAlt}
               />
             )}
             {title != null && (
@@ -320,69 +488,12 @@ function Navbar() {
         <div className="navbar-sidebar__items">
           <div className="menu">
             <ul className="menu__list">
-              {menus.map((menuItem, i) => {
-                var className = menuShown[i]
-                  ? "menu__list-item"
-                  : "menu__list-item menu__list-item--collapsed";
-
-                return (
-                  <li className={className} key={i}>
-                    <a
-                      className="menu__link menu__link--sublist"
-                      onClick={() => toggleMenu(i)}
-                    >
-                      {menuItem.label}
-                    </a>
-                    <ul className="menu__list">
-                      {menuItem.items.map((item, i) => (
-                        <li className="menu__list-item" key={i}>
-                          <NavLink
-                            className="menu__link"
-                            {...item}
-                            onClick={hideSidebar}
-                          />
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                );
-              })}
-              {links.map((linkItem, i) => (
-                <li className="menu__list-item" key={i}>
-                  <NavLink
-                    className="menu__link"
-                    {...linkItem}
-                    onClick={hideSidebar}
-                  />
-                </li>
+              {sites.map((linkItem, i) => (
+                <MobileSiteItem {...linkItem} onClick={hideSidebar} key={i} />
               ))}
-              {sites.map((siteItem, i) => {
-                var className = siteMenuShown[i]
-                  ? "menu__list-item"
-                  : "menu__list-item menu__list-item--collapsed";
-
-                return (
-                  <li className={className} key={i}>
-                    <a
-                      className="menu__link menu__link--sublist"
-                      onClick={() => toggleSiteMenu(i)}
-                    >
-                      {siteItem.label}
-                    </a>
-                    <ul className="menu__list">
-                      {siteItem.items.map((item, i) => (
-                        <li className="menu__list-item" key={i}>
-                          <SiteLink
-                            className="menu__link"
-                            {...item}
-                            onClick={hideSidebar}
-                          />
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                );
-              })}
+              {links.map((linkItem, i) => (
+                <MobileNavItem {...linkItem} onClick={hideSidebar} key={i} />
+              ))}
             </ul>
           </div>
         </div>

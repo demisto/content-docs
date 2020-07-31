@@ -5,15 +5,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@media screen and (max-width: 997px) {
+ @media screen and (max-width: 997px) {
   .displayOnlyInLargeViewport {
     display: none !important;
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 768px) {
   .hideLogoText {
     display: none;
+  }
+}
+
+@media (max-width: 380px){
+  .navbar__logo {
+    content: url("/img/Cortex-XSoar-black.svg") !important;
   }
 }
 
