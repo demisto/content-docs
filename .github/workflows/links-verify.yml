@@ -57,6 +57,6 @@ jobs:
         echo "All good muffet passed!!!"
     - name: Save artifcats
       uses: actions/upload-artifact@v2
-        with:
-          name: log-artifacts
-          path: muffet.txt
+      with:
+        name: log-artifacts
+        path: muffet.txt
