@@ -547,3 +547,53 @@ layout <-> incident type, indicator type, incident field, indicator field
 incident field <-> incident type
 playbook <-> incident field, indicator field, script, integrations
 Widget <-> script
+
+
+### What should I do about the dependencies?
+When a dependency is required, that means that in order to use a certain pack, the user MUST install a different pack - a behavior we want to eliminate as much as possible. 
+
+Sometimes the dependency is understandable. In this case Gmail depends on Phishing, but Phishing is a core pack and ships out of the box, so this causes no issue and mandatory can stay true:
+![image](https://user-images.githubusercontent.com/43602124/89119495-901aca80-d4b7-11ea-999e-100d8d58663e.png)
+
+In other cases the dependency must be fixed by us, manually. 
+
+### How do I fix the dependencies?
+The cases can vary from one dependency to another. Fixing a dependency involves 3 parts:
+1. Making the necessary adaptation in the content (changing playbook, merging packs, moving files to another pack, replacing deprecated script with newer script)
+2. Changing “mandatory” to “false” in the pack dependencies
+3. Removing the displayedImages section
+![image](https://user-images.githubusercontent.com/43602124/89119548-ea1b9000-d4b7-11ea-88e8-b99c2f2214f1.png)
+
+Here are some possible cases:
+- Slack pack depends on Active_Directory_Query pack:
+
+![image](https://user-images.githubusercontent.com/43602124/89119564-0ae3e580-d4b8-11ea-8950-3abc3cc95ec4.png)
+  - Understand which dependencies are normal. We have 2 optional dependencies which is OK. We also have 2 required dependencies, one of which is CommonTypes that belongs to the Core packs - so it’s also OK. Then we have Active_Directory_Query which should not be required when installing the Slack pack.
+  - At the content of the Slack pack, locate the reason/s for the dependency. We find that the playbook `Slack - General Failed Logins v2.1` uses `ad-expire-password`:
+  
+![image](https://user-images.githubusercontent.com/43602124/89119604-51394480-d4b8-11ea-9a88-e8ce3889a48a.png)
+  - Solve the issue. In this case - we can add a condition before this task - “Is Active Directory enabled?”. Then, if the Active_Directory_Query pack is not present, the condition will lead to “else” and we just solved the required dependency issue.
+Change “mandatory” to “false” in Slack’s dependency on Active_Directory_Query.
+
+- CortexXDR pack depends on PortScan pack:
+
+![image](https://user-images.githubusercontent.com/43602124/89119624-70d06d00-d4b8-11ea-8021-c1e990039dff.png)
+  - Looking through the content of CortexXDR pack we find that `Cortex XDR Port Scan` incident type is configured to run `Port Scan - Generic` from the PortScan pack.
+  
+![image](https://user-images.githubusercontent.com/43602124/89119636-86de2d80-d4b8-11ea-856a-b358aef1c654.png)
+This one is obviously a bug, because the right playbook that should run is Cortex XDR - Port Scan, and not the generic port scan playbook.
+  - Change the playbook that the incident type is tied to
+  - Change mandatory to false.
+  
+- QRadar depends on AccessInvestigation pack
+  - We see that QRadar has a playbook called `Access Investigation - QRadar` which uses `Access Investigation - Generic`.
+  
+  ![image](https://user-images.githubusercontent.com/43602124/89119663-c7d64200-d4b8-11ea-8902-cd14f9682e5c.png)
+  - Access Investigation - Generic may have to be a Core pack, if so - its mandatory dependency will be fine. 
+Another solution may be to “skip if unavailable”. This is a feature that exists on XSOAR 6.0 where if a pack is not available, the task and its continuous branch will be skipped:
+
+![image](https://user-images.githubusercontent.com/43602124/89119677-ee947880-d4b8-11ea-939b-2db8304c7786.png)
+
+Note: When should you skip and when should you “check if X is available”? Well, when a playbook uses a task that is tied to a certain integration, it makes sense to check if that integration is enabled beforehand, because the skipping feature only works on 5.5+. However, when a subplaybook is used, you can’t really check whether that subplaybook is available without using the “skip” feature, so in that case it should be skipped using the new feature.
+
+** Remember that anything from the Core pack should not be changed to “mandatory=false” **
