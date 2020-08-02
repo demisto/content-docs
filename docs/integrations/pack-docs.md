@@ -43,6 +43,12 @@ Provides data enrichment for domains and IP addresses.
 **After** (active and personal) :  
 Enrichment for your domains and IP addresses.
 
+Here are some templates that can help you get started:
+
+* "Streamline your _______ process for  _______. Optimized for _________ and ________ this _______ targeted Content Pack is ideal for _____________"
+* "Eliminate ________ by improving your__________. Rich with layouts and playbooks, this Content Pack is right for ____________"
+* "Get smarter. This pack utilizes _________ and _______for when _________ is heavily needed"
+
 ## Pack README
 For larger Packs that provide a use case, we recommend creating a README file which will be displayed in the *Details* tab of the Pack. The `README.md` file should be markdown formatted and placed in the Packs root directory. The file should contain a more detailed overview of the Pack compared to the *Description* section. You are free to add any information you see fit to include about the pack. It is recommended to provide an overview of what the Pack does and how to start working with the Pack.  
 
