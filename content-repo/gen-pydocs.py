@@ -4,7 +4,20 @@ import argparse
 import sys
 from io import StringIO
 
+import docspec
+from nr.databind.core import Field
 from pydoc_markdown import MarkdownRenderer, PydocMarkdown, PythonLoader
+
+
+class DemistoMarkdownRenderer(MarkdownRenderer):
+    func_prefix = Field(str, default=None)
+
+    def _format_function_signature(self, func: docspec.Function, override_name: str = None,
+                                   add_method_bar: bool = True) -> str:
+        function_signature = super()._format_function_signature(func, override_name, add_method_bar)
+        if self.func_prefix:
+            function_signature = f'{self.func_prefix}{function_signature}'
+        return function_signature
 
 
 def generate_pydoc(module: str, article_id: str, article_title: str, target_dir: str) -> None:
@@ -19,9 +32,10 @@ def generate_pydoc(module: str, article_id: str, article_title: str, target_dir:
         None: No data returned.
     """
     pydocmd = PydocMarkdown()
-    pydocmd.renderer = MarkdownRenderer(
+    pydocmd.renderer = DemistoMarkdownRenderer(
         insert_header_anchors=False,
-        render_module_header=False
+        render_module_header=False,
+        func_prefix='demisto.'
     )
     loader: PythonLoader = next((ldr for ldr in pydocmd.loaders if isinstance(ldr, PythonLoader)), None)
     loader.modules = [module]
