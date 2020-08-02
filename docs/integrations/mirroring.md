@@ -40,7 +40,7 @@ All the functions explained here are globally available through the CommonServer
 ### get-remote-data
 * GetRemoteDateArgs - this is an object created to maintain all the argument you receive from the server in order to use this command.
 Arguments explanation:
-  - remote_incident_it - the remote incident id.
+  - remote_incident_id - the remote incident id.
   - last_update - the time the incident was last updated - our recommendation would be to use the arg_to_timestamp function to parse it into a timestamp.
 * GetRemoteDataResponse - this is the object that maintains the format in which you should order the results from this function. You should use return_results on this object to make it work.
 Arguments explanation:
@@ -62,7 +62,7 @@ Arguments explanation:
 Arguments explanation:
   - data - will represent the data of the current incident.
   - entries - will represent the entries from your current incident 
-  - remote_incident_it - the remote incident id.
+  - remote_incident_id - the remote incident id.
   - inc_status - the status of the incident(numeric value, could be used with IncidentStatus from CommonServerPython)
   - delta - will represent the dictionary of fields which have changed from the last update.
 

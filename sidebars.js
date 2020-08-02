@@ -64,6 +64,7 @@ const sidebars = {
             "integrations/dbot",
             "integrations/dt",
             "integrations/integration-cache",
+            "integrations/mirroring_integration",
           ]
         },
         {
