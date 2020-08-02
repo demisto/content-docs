@@ -16,4 +16,4 @@ If anything is confusing or unclear,  please feel free to reach out - we would l
 This can be done using this [guide](https://help.github.jp/enterprise/2.11/user/articles/inviting-collaborators-to-a-personal-repository/).
 6. Send the details of the pack to the person you are in contact with and he will link your contribution to our system.
 7. Now the review phase begins, so as a regular review we will leave comments and will ask you to fix the comments we leave there, once we approve we move to the next step.
-8. When your build passes and we give you the ok you can merge the PR, then we will trigger a build on our side which pulls your changes once again and uploads your pack to the marketplace of XSOAR.
+8. When your build passes and we give you the ok you can merge the PR. When you do, we will trigger a build manualy which will pull your changes once again and will upload your pack to the XSOAR marketplace.
