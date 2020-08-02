@@ -538,7 +538,7 @@ Demisto Software Development Kit (SDK) has a command called `find-dependencies` 
 - A classifier from EWS pack uses incident fields from Phishing pack
 
 The dependency logic is as follows:
-
+```
 integration <-> mapper, incident type, indicator type, indicator field
 classifier <-> incident type, integration 
 mapper <-> incident type, incident field
@@ -547,7 +547,7 @@ layout <-> incident type, indicator type, incident field, indicator field
 incident field <-> incident type
 playbook <-> incident field, indicator field, script, integrations
 Widget <-> script
-
+```
 
 ### What should I do about the dependencies?
 When a dependency is required, that means that in order to use a certain pack, the user MUST install a different pack - a behavior we want to eliminate as much as possible. 
