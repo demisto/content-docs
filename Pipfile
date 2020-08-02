@@ -15,7 +15,6 @@ inflection = "*"
 beautifulsoup4 = "*"
 requests = "*"
 pydoc-markdown = "*"
-pyment = "*"
 
 [requires]
 python_version = "3.7"
