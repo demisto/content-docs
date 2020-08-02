@@ -524,3 +524,26 @@ Zimperium,
 Zoom,
 Zscaler,
 </details>
+
+### How do you find pack dependencies?
+Demisto Software Development Kit (SDK) has a command called `find-dependencies` that can detect dependencies between packs. Run the following:
+
+``` demisto-sdk find-dependencies -p 'PackName' -i 'PathToIdSet'``` - if you have an updated id_set.json file
+
+```demisto-sdk find-dependencies -p 'PackName'``` - if you don’t have the id_set.json file
+
+### What are some examples of dependencies?
+- A playbook from QRadar pack uses a playbook from AccessInvestigation pack
+- A playbook from Employee Offboarding pack uses an automation from Impossible Traveler pack
+- A classifier from EWS pack uses incident fields from Phishing pack
+
+The dependency logic is as follows:
+
+integration <-> mapper, incident type, indicator type, indicator field
+classifier <-> incident type, integration 
+mapper <-> incident type, incident field
+incident type <-> playbook, script, integration
+layout <-> incident type, indicator type, incident field, indicator field
+incident field <-> incident type
+playbook <-> incident field, indicator field, script, integrations
+Widget <-> script
