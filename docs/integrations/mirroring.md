@@ -70,7 +70,7 @@ Arguments explanation:
 * SchemeTypeMapping - this is the object you should use to keep the correct structure of the mapping for the fetched incident type.
 * GetMappingFieldsResponse - this is the object to gather all your SchemeTypeMapping and then to parse them properly into the results using the return_results command.
 
-## ￿Get going on XSOA￿R incident
+## Incident fields on a XSOAR incident 
 There are few incident fields you need to configure to get going on the system.
 * dbotMirrorDirection - Both or In
 * dbotMirrorId - represents the id of the incident in the external system
