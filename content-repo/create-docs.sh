@@ -155,7 +155,7 @@ if [ -z "${NETLIFY}" ]; then
     pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
 else
     echo "Generating Demisto class docs..."
-    eval $DEMISTO_CLASS_DOCS_CMD
+    eval '${DEMISTO_CLASS_DOCS_CMD}'
     mv demisto.py demistomock.py
     echo "Generating docs..."
     ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
