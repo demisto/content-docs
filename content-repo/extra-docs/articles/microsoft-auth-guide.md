@@ -41,3 +41,5 @@ When you configure the integration in Cortex XSOAR, enter those parameters in th
 * ID - Client ID
 * Token - Tenant ID
 * Key - Client Secret
+
+In addition, make sure to select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.

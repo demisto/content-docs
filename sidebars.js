@@ -10,6 +10,7 @@ const sidebars = {
     {
       type: "category",
       label: "Concepts",
+      collapsed: false,
       items: [
           {
             type: "doc",
@@ -32,6 +33,7 @@ const sidebars = {
     {
       type: "category",
       label: "Getting Started",
+      collapsed: false,
       items: [
         "integrations/getting-started-guide",
         "integrations/dev-setup",        

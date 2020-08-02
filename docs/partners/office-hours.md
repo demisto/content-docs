@@ -10,7 +10,7 @@ _Note:_ These are technical sessions and we request that all participants comple
 ## Join Us
 
 Office hours are held weekly at:
-- 8a US-PT / 11a US-ET / 6p IST
+- Thursdays at 8a US-PT / 11a US-ET / 6p IST
 - <a href="https://xsoar.pan.dev/office-hours">https://xsoar.pan.dev/office-hours</a> (Password required)
 
 If you'd like to join please email <a href="mailto:soar.alliances@paloaltonetworks.com">soar.alliances@paloaltonetworks.com</a> or contact your Partner representative for the password.
