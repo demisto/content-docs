@@ -57,7 +57,7 @@ Arguments explanation:
 }
 ```
 
-### get-mapping-fields
+### update-remote-system
 * UpdateRemoteSystemArgs - this is an object created to maintain all the arguments you receive from the server in order to use this command.
 Arguments explanation:
   - data - will represent the data of the current incident.
