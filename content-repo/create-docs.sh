@@ -141,7 +141,7 @@ cp ${CONTENT_GIT_DIR}/Packs/Base/Scripts/CommonServerPython/CommonServerPython.p
 cp ${CONTENT_GIT_DIR}/Tests/demistomock/demistomock.py .
 
 ARTICLES_DIR=${SCRIPT_DIR}/extra-docs/articles
-DEMISTO_CLASS_DOCS_CMD=("./gen-pydocs.py" "-d" "${ARTICLES_DIR}" "-i" "demisto-class" "-t" "Demisto Class" "-m" "demisto" "-p" "demisto." "-o" "Overview placholder")
+DEMISTO_CLASS_DOCS_CMD=("./gen-pydocs.py" "-d" "${ARTICLES_DIR}" "-i" "demisto-class" "-t" "'Demisto Class'" "-m" "demisto" "-p" "demisto." "-o" "'Overview placholder'")
 mv demistomock.py demisto.py
 
 if [ -z "${NETLIFY}" ]; then
