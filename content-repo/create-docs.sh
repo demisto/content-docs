@@ -141,7 +141,7 @@ cp ${CONTENT_GIT_DIR}/Packs/Base/Scripts/CommonServerPython/CommonServerPython.p
 cp ${CONTENT_GIT_DIR}/Tests/demistomock/demistomock.py .
 
 ARTICLES_DIR=${SCRIPT_DIR}/extra-docs/articles
-
+DEMISTO_CLASS_DOCS_CMD=("./gen-pydocs.py" "-d" "${ARTICLES_DIR}" "-i" "demisto-class" "-t" "Demisto Class" "-m" "demisto" "-p" "demisto." "-o" "Overview placholder")
 mv demistomock.py demisto.py
 
 if [ -z "${NETLIFY}" ]; then
@@ -149,13 +149,13 @@ if [ -z "${NETLIFY}" ]; then
     echo "Installing pipenv..."
     pipenv install
     echo "Generating Demisto class docs..."
-    pipenv run ./gen-pydocs.py -d "${ARTICLES_DIR}" -i "demisto-class" -t "Demisto Class" -m "demisto" -p "demisto." -o "Overview placholder"
+    pipenv run "${DEMISTO_CLASS_DOCS_CMD[@]}"
     mv demisto.py demistomock.py
     echo "Generating docs..."
     pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
 else
     echo "Generating Demisto class docs..."
-    ./gen-pydocs.py -d  "${ARTICLES_DIR}" -i "demisto-class" -t "Demisto Class" -m "demisto" -p "demisto." -o "Overview placholder"
+    eval $DEMISTO_CLASS_DOCS_CMD
     mv demisto.py demistomock.py
     echo "Generating docs..."
     ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
