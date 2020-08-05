@@ -227,6 +227,29 @@ return_results(results)
 
 ---
 
+### Multiple Unique Keys
+```python
+alerts = [
+    {
+        'id': 100,
+        'name': 'alert1'
+    },
+    {
+        'id': 200,
+        'name': 'alert2'
+    }
+]
+
+results = CommandResults(
+    outputs_prefix='PrismaCompute.Alert',
+    outputs_key_field=['id', 'name'],
+    outputs=alerts
+)
+return_results(results)
+```
+
+---
+
 ### Return File
 **Note**: *potentially malicious file - e.g. email attachment*
 
