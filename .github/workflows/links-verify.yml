@@ -46,8 +46,11 @@ jobs:
         -e 'https://api.*.crowdstrike.com.*' \
         -e 'https://dehashed.com.*' \
         -e 'https://secure.aadcdn.microsoftonline-p.com.*' \
-        https://xsoar.pan.dev > muffet.out 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
-        grep -v -E '^\s+(403|401|x509|lookup|parse|timeout|dialing)' muffet.out > muffet-clean.out
+        -e 'https://blog.demisto.com.*' \
+        -e 'https://www.demisto.com.*' \
+        -e 'https://go.demisto.com.*' \
+        https://xsoar.pan.dev > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
+        grep -v -E '^\s+(403|401|x509|lookup|parse|timeout|dialing)' muffet.txt > muffet-clean.out
         echo "Muffet output after 401, 403 and x509 remove:"
         cat muffet-clean.out
         if [ -n "$(grep -v '^https'  muffet-clean.out)" ]; then
@@ -55,3 +58,9 @@ jobs:
           exit 1
         fi
         echo "All good muffet passed!!!"
+    - name: Save artifcats
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: log-artifacts
+        path: muffet.txt
