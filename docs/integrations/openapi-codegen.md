@@ -18,5 +18,5 @@ The integration will be usable right away after generation.
 <video controls>
     <source src="https://github.com/demisto/content-assets/raw/f645684f39a96dea9edc92475dc95b788ba05f51/Assets/OpenAPICodegen/openapicodegen.m4v"
             type="video/mp4"/>
-    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/blob/7982404664dc68c2035b7c701d093ec026628802/Assets/FeedJSON/Json_generic_feed_demo.mp4 
+    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/raw/f645684f39a96dea9edc92475dc95b788ba05f51/Assets/OpenAPICodegen/openapicodegen.m4v 
 </video>
