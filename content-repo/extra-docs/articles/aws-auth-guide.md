@@ -3,10 +3,13 @@ title: AWS Integrations - Authentication
 description: AWS Integrations in Cortex XSOAR use Amazon Security Token Service (STS) to assume roles that are configured in AWS IAM service.
 ---
 
-AWS integrations in Cortex XSOAR use the Amazon Security Token Service (STS) to assume roles that are configured in AWS 
+AWS integrations in Cortex XSOAR primarily use the Amazon Security Token Service (STS) to assume roles that are configured in AWS 
 IAM service. STS generates temporary credentials, which AWS integrations in Cortex XSOAR can use to assume roles, 
 enabling you to perform various actions on the AWS services. For more information, 
 see the [Amazon STS documentation](https://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html).
+
+Some Cortex XSOAR AWS integrations are enabled to allow access keys to be used for authentication. **If you wish to use your
+ access keys, then this guide is not relevant for your configuration.**
 
 The first policy grants access to all resources using the `"*"` sign, and the other policies are more strict.
 
