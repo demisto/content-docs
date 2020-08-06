@@ -7,14 +7,14 @@ The integration will be usable right away after generation.
 * Cortex XSOAR (demisto) SDK 
 
 ### Steps
-1. Install The Cortex XSOAR SDK if it is not yet installed: `pip3 install demisto-sdk`.
+1. Install the Cortex XSOAR SDK: `pip3 install demisto-sdk`.
 2. Run the `demisto-sdk openapi-codegen` command. See this [document](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/openapi_codegen/README.md) for command examples. 
 3. Follow the instructions to generate the Cortex XSOAR integration files.
 4. Use `demisto-sdk unify` to create a unified integration YAML file from the integration files.
 5. Use `demisto-sdk upload` to upload the generated integration to Cortex XSOAR.
 6. Set up an instance and run the integration commands.
 
-### Video Guide
+### Video Tutorial
 <video controls>
     <source src="https://github.com/demisto/content-assets/raw/f645684f39a96dea9edc92475dc95b788ba05f51/Assets/OpenAPICodegen/openapicodegen.m4v"
             type="video/mp4"/>
