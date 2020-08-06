@@ -1,21 +1,18 @@
 ---
 title: AWS Integrations - Authentication
-description: AWS Integrations in Cortex XSOAR use Amazon Security Token Service (STS) to assume roles that are configured in AWS IAM service.
+description: Overview of authentication methods for AWS Integrations in Cortex XSOAR. 
 ---
 
-AWS integrations in Cortex XSOAR primarily use the Amazon Security Token Service (STS) to assume roles that are configured in AWS 
-IAM service. STS generates temporary credentials, which AWS integrations in Cortex XSOAR can use to assume roles, 
-enabling you to perform various actions on the AWS services. For more information, 
-see the [Amazon STS documentation](https://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html).
+AWS Integrations provide two options for authenticating to AWS:
+* **Access Key and Secret Key**: the integration will use a configured Access Key and Secret Key to authenticate to AWS, which are set as part of the integration configuration parameters as can be seen in the following screen shot of the *AWS - S3* Integration:
+  
+  <img width="410" src="../../../docs/doc_imgs/reference/aws-s3.png" />
+* **EC2 Instance Metadata**: the integration will use the EC2 instance metadata service to retrieve security credentials. In this scenario there is no need to configure an Access Key and Secret Key. Credential management is taken care of by the EC2 instance metadata service. The integration will fetch from the metadata service temporary credentials for authenticating to AWS. To configure the instance metadata service you will need to attach an instance profile with the required permissions to the Cortex XSOAR server or engine that is running on your AWS environment. More information at: [IAM roles for Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html).
 
-Some Cortex XSOAR AWS integrations are enabled to allow access keys to be used for authentication. **If you wish to use your
- access keys, then this guide is not relevant for your configuration.**
-
-The first policy grants access to all resources using the `"*"` sign, and the other policies are more strict.
-
-For more information, see the [AWS IAM Roles documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html).
-
-## Background Information
+## Using STS with AWS Integrations
+AWS Integrations provide the option of using the AWS Security Token Service (STS) to assume specific least privilege roles. This allows configuring a specific role per Integration instance instead of using the general role provided by the metadata service or the authentication via the Access Key and Secret Key. For more information see:
+* [Amazon STS documentation](https://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html)
+* [AWS IAM Roles documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html)
 
 ### Basic Concepts of STS
 
@@ -33,7 +30,7 @@ More information regarding [Trust Relationships can be found here.](https://docs
 ### How XSOAR uses STS to Authenticate
 Your XSOAR Instance assumes a role using the following process flow:
 
-![XSOAR AWS STS Auth Flow](../docs/doc_imgs/integrations/XSOAR_STS_Flow.png)
+![XSOAR AWS STS Auth Flow](../../../docs/doc_imgs/integrations/XSOAR_STS_Flow.png)
 
 - Your XSOAR Instance/engine with the role attached to it first makes a request to AWS STS and passes it the details found in the EC2 Metadata.
 - The STS service then checks to verify that the role you are requesting is allowed to be assumed by your XSOAR Instance.
@@ -59,13 +56,12 @@ Before you can use the AWS integrations in Cortex XSOAR, you need to perform sev
 
 ### Prerequisites
 
-*   You need to attach an instance profile with the required permissions to the Cortex XSOAR server or engine that is running on your AWS environment.
-*   Instance profile requires minimum permission: _sts:AssumeRole_.
-*   Instance profile requires permission to assume the roles needed by the AWS integrations
+* Authenticated role (either via the EC2 metadata service or via Access Key and Secret Key) requires minimum permission: _sts:AssumeRole_.
+* Authenticated role requires permission to assume the roles needed by the AWS integrations
 
-* * *
+## Configuration for using the EC2 metadata service (attached role)
 
-### Create an IAM Role for the Instance Profile
+### Create a Policy allowing to AssumeRole
 
 1.  Log in to the AWS Management Console and access the IAM console.  
     [https://console.aws.amazon.com/iam/](https://console.aws.amazon.com/iam/)
@@ -79,7 +75,7 @@ Before you can use the AWS integrations in Cortex XSOAR, you need to perform sev
     "Statement": [{
     "Effect": "Allow",
     "Action": "sts:AssumeRole",
-    "Resource": "\*"
+    "Resource": "*"
     }]
 }
 ```
@@ -122,7 +118,7 @@ are the role ARNs that you would like your AWS XSOAR integrations to assume.
 
 ### Configuring your Assumed Roles
 
-Now that the XSOAR server has the necessary role to begin assuming your other roles, the roles you would like your 
+Now that the XSOAR server/engine has the necessary role to begin assuming your other roles, the roles you would like your 
 AWS XSOAR integrations to assume must be configured. These roles need to be configured to know to _trust_ your XSOAR 
 instance. This is done by configuring the following _trust relationship_ in the role you wish to assume.
 
@@ -147,7 +143,7 @@ instance. This is done by configuring the following _trust relationship_ in the 
     
 ### Grant Required Permissions
 
-You can grant all required permissions to the instance profile to avoid the need to use different roles.
+Grant the required permissions to the instance profile. For testing purposes, you can grant all required permissions to the instance profile to simplify the setup.
 
 ```json
 {
@@ -177,6 +173,8 @@ For more information, see the [Amazon IAM documentation](https://docs.aws.amazon
 2.  Select the Cortex XSOAR Server / Engine Instance.
 3.  In the actions menu, select **Instance Settings** > **Attach/Replace IAM Role**.
 4.  From the drop-down menu, select the role you created and click **Apply**.
+
+More info available at: [Using an IAM Role to Grant Permissions to Applications Running on Amazon EC2 Instances](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html)
 
 ## Configure the Necessary IAM Roles that the AWS Integration Can Assume
 
