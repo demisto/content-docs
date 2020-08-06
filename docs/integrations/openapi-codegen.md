@@ -16,7 +16,7 @@ The integration will be usable right away after generation.
 
 ### Video Tutorial
 <video controls>
-    <source src="https://github.com/demisto/content-assets/raw/f645684f39a96dea9edc92475dc95b788ba05f51/Assets/OpenAPICodegen/openapicodegen.m4v"
+    <source src="https://github.com/demisto/content-assets/raw/master/Assets/OpenAPICodegen/openapicodegen.mp4"
             type="video/mp4"/>
-    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/raw/f645684f39a96dea9edc92475dc95b788ba05f51/Assets/OpenAPICodegen/openapicodegen.m4v 
+    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/raw/master/Assets/OpenAPICodegen/openapicodegen.mp4 
 </video>
