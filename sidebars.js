@@ -66,6 +66,7 @@ const sidebars = {
             "integrations/dbot",
             "integrations/dt",
             "integrations/integration-cache",
+            "integrations/openapi-codegen",
           ]
         },
         {
