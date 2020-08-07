@@ -55,6 +55,9 @@ Prior to acceptance into the program, all partners must complete and sign our Te
 
 We require our Partners to take two training classes at the [Palo Alto Networks Learning Center](http://education.paloaltonetworks.com/learningcenter) prior to beginning development. The classes are (1) “Demisto Fundamentals” and (2) “Cortex XSOAR Engineer.” Create a free Guest account with your business email address ([instructions](https://live.paloaltonetworks.com/t5/second-watch-articles/step-1-create-a-learning-center-account/ta-p/259527#)) and search for those two titles to enroll instantly. (Note: you must use your business email to ensure accurate reporting and tracking.) Total time: ~3hrs
 
+See [recorded videos](office-hours) from previous office hours.
+
+
 ## 4. Identify and Document 
 
 Once you're accepted in the program, we'll provide you links to a few resources, including our [Support Portal](https://docs.paloaltonetworks.com/). We'll also share a document template, already partially compiled, that outlines the scope of the integration. The document includes concepts such as:
