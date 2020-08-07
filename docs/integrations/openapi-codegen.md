@@ -72,6 +72,8 @@ The integration will be usable right away after generation.
     Use the automatically generated integration configuration (Skip the second run).
 
 #### Examples
+The Examples below are for the [Pet Store Swagger specification](https://petstore.swagger.io/).
+
 ```
 demisto-sdk openapi-codegen -i pet_swagger.json -n PetStore -o PetStoreIntegration -u "id" -r "Pet"
 ```
@@ -79,13 +81,13 @@ demisto-sdk openapi-codegen -i pet_swagger.json -n PetStore -o PetStoreIntegrati
 This will create an integration configuration for the PetStore swagger file in the `PetStoreIntegration` directory.
 It will use `id` to identify unique properties in outputs and `Pet` to identify root objects in the outputs.
 That configuration can be modified and will be used in a second run of the command.
-<br/>
+
 ```
 demisto-sdk openapi-codegen -i pet_swagger.json -n PetStore -o PetStoreIntegration -u "id" -r "Pet" -cf "PetStoreIntegration/PetStore.json"
 ```
 
 This will create the Cortex XSOAR integration for the PetStore swagger file using the configuration file located in PetStoreIntegration/PetStore.json.
-<br/>
+
  ```
 demisto-sdk openapi-codegen -i pet_swagger.json -n PetStore -o PetStoreIntegration -u "id" -r "Pet" -a
 ```
