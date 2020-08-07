@@ -56,6 +56,7 @@ ATRICLES_PREFIX = 'articles'
 NO_HTML = '<!-- NOT_HTML_DOC -->'
 YES_HTML = '<!-- HTML_DOC -->'
 BRANCH = os.getenv('HEAD', 'master')
+MAX_FAILURES = int(os.getenv('MAX_FAILURES', 10))  # if we have more than this amount in a single category we fail the build
 # env vars for faster development
 MAX_FILES = int(os.getenv('MAX_FILES', -1))
 FILE_REGEX = os.getenv('FILE_REGEX')
@@ -114,11 +115,11 @@ def gen_html_doc(txt: str) -> str:
             '<div dangerouslySetInnerHTML={{__html: txt}} />\n')
 
 
-def get_deprecated_data(yml_data: dict, desc: str):
-    if yml_data.get('deprecated'):
+def get_deprecated_data(yml_data: dict, desc: str, readme_file: str):
+    if yml_data.get('deprecated') or 'DeprecatedContent' in readme_file or yml_data.get('hidden'):
         dep_msg = ""
         dep_match = re.match(r'deprecated\s*[\.\-:]\s*(.*?)\.', desc, re.IGNORECASE)
-        if dep_match:
+        if dep_match and 'instead' in dep_match[1]:
             dep_msg = dep_match[1] + '\n'
         return f':::caution Deprecated\n{dep_msg}:::\n\n'
     return ""
@@ -145,7 +146,7 @@ def process_readme_doc(target_dir: str, content_dir: str, readme_file: str) -> D
         else:
             ymlfiles = glob.glob(base_dir + '/*.yml')
             if not ymlfiles:
-                raise ValueError(f'no yml file found')
+                raise ValueError('no yml file found')
             if len(ymlfiles) > 1:
                 raise ValueError(f'mulitple yml files found: {ymlfiles}')
             ymlfile = ymlfiles[0]
@@ -167,7 +168,7 @@ def process_readme_doc(target_dir: str, content_dir: str, readme_file: str) -> D
         with open(readme_file, 'r', encoding='utf-8') as f:
             content = f.read()
         if not content.strip():
-            raise ValueError(f'empty file')
+            raise ValueError('empty file')
         if is_html_doc(content):
             print(f'{readme_file}: detect html file')
             content = gen_html_doc(content)
@@ -182,7 +183,7 @@ def process_readme_doc(target_dir: str, content_dir: str, readme_file: str) -> D
                 readme_repo_path = readme_repo_path[len(content_dir):]
             edit_url = f'https://github.com/demisto/content/blob/{BRANCH}/{readme_repo_path}'
             header = f'---\nid: {id}\ntitle: {json.dumps(doc_info.name)}\ncustom_edit_url: {edit_url}\n---\n\n'
-            content = get_deprecated_data(yml_data, desc) + content
+            content = get_deprecated_data(yml_data, desc, readme_file) + content
             content = get_beta_data(yml_data, content) + content
             content = header + content
         verify_mdx_server(content)
@@ -211,7 +212,7 @@ def process_release_doc(target_dir: str, release_file: str) -> DocInfo:
         content = re.sub(r'^## Demisto Content Release Notes', '# Demisto Content Release Notes', content)
         content = f'---\nid: {name}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\nhide_title: true\n---\n\n' + content
         content = content + \
-            f'\n\n---\n### Assets\n\n* **Download:** ' + \
+            '\n\n---\n### Assets\n\n* **Download:** ' + \
             f'[content_new.zip](https://github.com/demisto/content/releases/download/{name}/content_new.zip)\n' + \
             f'* **Browse the Source Code:** [Content Repo @ {name}](https://github.com/demisto/content/tree/{name})\n'
         verify_mdx_server(content)
@@ -329,6 +330,9 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
     for r in sorted(fail):
         print(r)
     org_print("\n===========================================\n")
+    if len(fail) > MAX_FAILURES:
+        print(f'MAX_FAILURES of {len(fail)} exceeded limit: {MAX_FAILURES}. Aborting!!')
+        sys.exit(2)
     return sorted(doc_infos, key=lambda d: d.name.lower())  # sort by name
 
 
@@ -377,6 +381,9 @@ def create_articles(target_dir: str):
     for r in sorted(fail):
         print(r)
     org_print("\n===========================================\n")
+    if len(fail) > MAX_FAILURES:
+        print(f'MAX_FAILURES of {len(fail)} exceeded limit: {MAX_FAILURES}. Aborting!!')
+        sys.exit(2)
     return sorted(doc_infos, key=lambda d: d.name.lower())  # sort by name
 
 

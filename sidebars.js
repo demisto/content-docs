@@ -10,6 +10,7 @@ const sidebars = {
     {
       type: "category",
       label: "Concepts",
+      collapsed: false,
       items: [
           {
             type: "doc",
@@ -32,6 +33,7 @@ const sidebars = {
     {
       type: "category",
       label: "Getting Started",
+      collapsed: false,
       items: [
         "integrations/getting-started-guide",
         "integrations/dev-setup",        
@@ -64,6 +66,7 @@ const sidebars = {
             "integrations/dbot",
             "integrations/dt",
             "integrations/integration-cache",
+            "integrations/openapi-codegen",
           ]
         },
         {
@@ -80,10 +83,10 @@ const sidebars = {
           type: "category",
           label: "Documenting",
           items: [
+            "integrations/pack-docs",
             "integrations/integration-docs",
             "integrations/doc-structure",
-            "integrations/changelog",
-            "integrations/changelog-old-format",
+            "integrations/changelog"
           ],
         }
       ]

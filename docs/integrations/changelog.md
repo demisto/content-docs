@@ -5,11 +5,13 @@ title: Change Log
 
 A change log file helps to keep track of the changes made for a specific content entity like an integration or a playbook.
 
-To generate a change log, run the following command provided by the `demisto-sdk`:
+To generate a change log, first commit the changes to your branch and then run the following command provided by the `demisto-sdk`:
 
 ```bash
 demisto-sdk update-release-notes -p [Changed Pack Name] -u [major|minor|revision]
 ```
+
+**Please note:** Changes which have not been committed will not be detected automatically by the `update-release-notes` command.
 
 This command will bump the `currentVersion` found in `pack_metadata.json` file automatically according to the update version (as denoted by the `-u` flag) for you.
 
