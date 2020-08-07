@@ -80,6 +80,7 @@ To keep our main Content repo small we limit images to 2MB. For larger images, f
 ## Videos
 A video can provide a great addition to the documentation either as a demo video or tutorial. The preferred video format is `mp4`. 
 
+### Videos Stored in GitHub
 Because of their size and in order to keep our main Content repo small, we store large media files in a separate repository: [content-assets](https://github.com/demisto/content-assets). 
 
 To add the video file, open a pull request with the video file at [content-assets](https://github.com/demisto/content-assets/pulls) repository. The file should be placed in the directory: `Assets/<PackName>/`. 
@@ -96,7 +97,7 @@ Include the video using the HTML `<video>` tag, such as:
 ```
 **Note:** GitHub markdown preview will not display the video (it will show the `browser not supported message`). Rest assured, the dev docs site will display the video properly as can be seen at the following [example](https://xsoar.pan.dev/docs/reference/integrations/json-feed#demo-video).
 
-### Large Files (over 50MB)
+#### Large Files (over 50MB)
 For files larger than 50MB, we require using [git-lfs](https://git-lfs.github.com/) to add these files to the content repo (a getting started git-lfs tutorial is available [here](https://github.com/git-lfs/git-lfs/wiki/Tutorial)).
 
 Steps for adding a large file:
@@ -110,12 +111,31 @@ Steps for adding a large file:
 * Commit and push using: `git commit` and `git push`. 
 * Open a pull a request 
 
+### Videos via External Hosting (YouTube)
+You can also embed videos from external services such as YouTube via an iframe. From the external service choose to share the video and choose the **Embed** option. Then choose to **Copy** the embed snippet. 
+
+Screenshots from YouTube:
+
+**Share Dialog:**
+<img width="515" src="../doc_imgs/integrations/YouTube-embed.png" />  
+
+**Embed Dialog:**
+<img width="425" src="../doc_imgs/integrations/YouTube-embed-2.png" />
+
+Paste the embed snippet in the README documentation page. Make sure to change the `allowfullscreen` option to include `allowfullscreen="true"`. For example:
+```
+<iframe width="560" height="315" src="https://www.YouTube.com/embed/s9lRtJltTGI" frameborder="0" 
+allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+allowfullscreen="true"></iframe>
+```
+
 ## Documentation Examples
 
 * [Azure Sentinel](https://github.com/demisto/content/blob/master/Packs/AzureSentinel/Integrations/AzureSentinel/README.md): Shows how the commands and examples should be presented.
 * [Slack v2](https://github.com/demisto/content/blob/master/Packs/Slack/Integrations/Slack/README.md): Shows an example of the troubleshooting section.
 * [Autofocus Query Samples and Sessions Playbook](https://github.com/demisto/content/blob/master/Packs/AutoFocus/Playbooks/playbook-Autofocus_Query_Samples_and_Sessions_README.md): show an embedded playbook image.
 * [JSON Feed](https://github.com/demisto/content/blob/master/Packs/FeedJSON/Integrations/FeedJSON/README.md): Shows use of embedding a video.
+* [Zoom Feed](https://github.com/demisto/content/edit/master/Packs/FeedZoom/Integrations/FeedZoom/README.md): Shows use of embedding a YouTube video.
 
 Example Images: 
 
