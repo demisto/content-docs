@@ -1,11 +1,9 @@
 ---
-title: Oproxy
+title: OProxy
 description: Service for OAUTH2 authentication with 3rd party vendors to integrate with.
 ---
 
-Oproxy is a close-source service that was developed and is maintained by Cortex XSOAR on Google Cloud.
-
-It is used for OAUTH2 authentication with 3rd-party vendors (e.g., Microsoft), which is required to integrate with the vendors.
+OProxy is a service that is developed and maintained by Cortex XSOAR on Google Cloud. It is used to facilitate in performing an OAUTH2 authentication flow with a 3rd-party vendor (e.g., Microsoft). 
 
 In the authorization flow, the user grants permission for Cortex XSOAR application to access to the relevant data for running the required API queries.
 
