@@ -23,4 +23,4 @@ Conditional tasks are used for determining different paths for your playbook. Yo
 
 	![Conditional Automation](../doc_imgs/playbooks/playbook_conditional_automation.png)
 
-5. Complete the task configuration in the remaining tabs. Some configurations are required, and some are optional. For detailed information for each configuration tab, see the [Playboook Field Reference](../playbooks/playbooks-field-reference).
+5. Complete the task configuration in the remaining tabs. Some configurations are required, and some are optional. For detailed information for each configuration tab, see the [Playbook Field Reference](../playbooks/playbooks-field-reference).
