@@ -229,7 +229,7 @@ return_results(results)
 
 ### Return Data that has multiple unique identifier fields
 :::note
-Key fields are used to determine whether the data will be updated or added as new. [More info](./dt-cortex-xsoar-transform-language)
+Key fields are used to determine whether the data will be updated or added as new. [More info](./context-and-outputs#dt-cortex-xsoar-transform-language)
 :::
 ```python
 alerts = [
