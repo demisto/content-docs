@@ -227,7 +227,7 @@ return_results(results)
 
 ---
 
-### Multiple Unique Keys
+### Return Data that has multiple unique fields
 ```python
 alerts = [
     {
