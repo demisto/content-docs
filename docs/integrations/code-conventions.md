@@ -210,7 +210,7 @@ These are the best practices for defining the command functions.
 - Each **_command** function should use `Client` class functions.
 - Each **_command** function should be unit testable. This means you should avoid using global functions, such as `demisto.results()`, `return_error()`, or `return_results()`.
 - The **_command** function will receive `client` instance and `args` (`demisto.args()` dictionary).
-- The **_command** function will return 3 variables: readable_output, outputs, raw_response
+- The **_command** function will return [commandResults](https://xsoar.pan.dev/docs/integrations/code-conventions#commandresults) object. 
 - To return results to the War Room, in the `main` use `return_results(say_hello_command(client, demisto.args()))`.
 ```python
 def say_hello_command(client, args):
