@@ -131,7 +131,10 @@ module.exports = {
         // href: "https://pan.dev"
       },
       copyright: `Copyright © ${new Date().getFullYear()} Palo Alto Networks, Inc.`
-    }
+    },
+    prism: {
+      additionalLanguages: ['powershell'],
+    },
   },
   themes: ["@docusaurus/theme-live-codeblock"],
   presets: [

@@ -2,6 +2,8 @@
 id: code-conventions
 title: Python Code Conventions
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 We use standardized code conventions to ensure uniformity across all Cortex XSOAR Integrations. This section outlines our code conventions.
 
@@ -19,6 +21,16 @@ All new integrations and scripts should be written in Python 3. Python 2 is supp
 
 ## Imports 
 You define imports and disable insecure warning at the top of the file.
+
+<Tabs
+  defaultValue="py"
+  values={[
+    { label: 'Python', value: 'py', },
+    { label: 'PowerShell', value: 'pwsh', },
+  ]
+}>
+<TabItem value="py">
+
 ```python
 import demistomock as demisto
 from CommonServerPython import *
@@ -31,6 +43,18 @@ import requests
 # Disable insecure warnings
 requests.packages.urllib3.disable_warnings()
 ```
+
+</TabItem>
+<TabItem value="pwsh">
+
+```powershell
+. $PSScriptRoot\CommonServerPowerShell.ps1
+
+Import-Module -Name Az
+```
+
+</TabItem>
+</Tabs>
 
 ## Constants 
 You define constants in the file below the imports. It is important that you do not define global variables in the constants section.
