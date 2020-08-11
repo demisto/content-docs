@@ -52,6 +52,10 @@ module.exports = {
               label: "Become a Partner"
             },
             {
+              to: "/docs/partners/certiification",
+              label: "Pack Certification"
+            },
+            {
               to: "/docs/partners/office-hours",
               label: "Office Hours"
             },
