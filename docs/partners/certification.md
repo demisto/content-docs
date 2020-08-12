@@ -39,6 +39,8 @@ While we encourage certified Packs, Certification requires several additional ta
 
 1. Coding best practices — adherence to best practices for coding standards and a deeper inspection of code. 
 
+1. Partner product access - in order for us to validate the pack functionality. 
+
 
 ## Benefits
 
