@@ -227,6 +227,32 @@ return_results(results)
 
 ---
 
+### Return Data that has multiple unique identifier fields
+:::note
+Key fields are used to determine whether the data will be updated or added as new. [More info](./context-and-outputs#dt-cortex-xsoar-transform-language)
+:::
+```python
+alerts = [
+    {
+        'id': 100,
+        'name': 'alert1'
+    },
+    {
+        'id': 200,
+        'name': 'alert2'
+    }
+]
+
+results = CommandResults(
+    outputs_prefix='PrismaCompute.Alert',
+    outputs_key_field=['id', 'name'],
+    outputs=alerts
+)
+return_results(results)
+```
+
+---
+
 ### Return File
 **Note**: *potentially malicious file - e.g. email attachment*
 
