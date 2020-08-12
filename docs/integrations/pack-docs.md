@@ -67,6 +67,12 @@ Note that "Cortex XSOAR Developer Docs" should link **directly to the readme of 
 ### Images
 Images can provide a great addition to the Pack `README.md` and can help users to get a quick understanding of the Pack. For Packs that contain playbooks which implement a use case, we recommend including at least an image of the main use case playbook.  Images can be included in the same way as documented for integrations. See the [following for instructions](integration-docs#images). 
 
+### Videos
+It is possible to add an image placeholder which links to an external video. For example to add an external video hosted on YouTube use the following snippet template (replace `[YOUTUBE_VIDEO_ID]` with the YouTube video ID):
+```
+[![Video Name](https://img.youtube.com/vi/[YOUTUBE_VIDEO_ID]/0.jpg)](https://www.youtube.com/watch?v=[YOUTUBE_VIDEO_ID] "Video Name")
+```
+An example of including a YouTube video can be seen at the [Zoom Feed README](https://github.com/demisto/content/blob/master/Packs/FeedZoom/README.md).
 
 ## Pack Dependencies
 ### What are pack dependencies?

@@ -54,8 +54,9 @@ const features = [
     imageUrl: "img/undraw_mind_map_cwng.svg",
     description: (
       <>
-        Join our 300+ integrations network to increase your reach into some of
-        the largest SOCs in the world. Access over 60,000 customers in 150+
+        Join our 400+ <a href="https://www.paloaltonetworks.com/cortex/xsoar-ecosystem" target="_blank">
+              integrations network</a> to increase your reach into some of
+        the largest SOCs in the world. Access over 70,000 customers in 150+
         locations across multiple industries.
       </>
     ),
@@ -224,7 +225,7 @@ function Home() {
           <div className="integrations">
             <div className="integrations-inner">
               See all {" "}
-              <a href="https://www.demisto.com/integrations/">
+              <a href="https://www.paloaltonetworks.com/cortex/xsoar-ecosystem">
                 existing integrations
               </a>
             </div>

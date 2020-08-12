@@ -27,7 +27,7 @@ npm start
 Start writing docs...
 
 ## Generating Reference Docs
-Reference docs are generated from the Cortex XSOAR Content repository: https://github.com/demisto/content. If you are working on general site docs which are not reference docs from the Content repo, you don't need to run this step to preview your docs.
+Reference docs are generated from the [Cortex XSOAR Content repository](https://github.com/demisto/content). If you are working on general site docs which are not reference docs from the Content repo, you don't need to run this step to preview your docs.
 
 To generate the docs we use [pipenv](https://github.com/pypa/pipenv). Make sure to install pipenv by running: `pip3 install pipenv`.
 

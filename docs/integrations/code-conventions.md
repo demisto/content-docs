@@ -210,7 +210,7 @@ These are the best practices for defining the command functions.
 - Each **_command** function should use `Client` class functions.
 - Each **_command** function should be unit testable. This means you should avoid using global functions, such as `demisto.results()`, `return_error()`, or `return_results()`.
 - The **_command** function will receive `client` instance and `args` (`demisto.args()` dictionary).
-- The **_command** function will return 3 variables: readable_output, outputs, raw_response
+- The **_command** function will return an instance of the [CommandResults](https://xsoar.pan.dev/docs/integrations/code-conventions#commandresults) class. 
 - To return results to the War Room, in the `main` use `return_results(say_hello_command(client, demisto.args()))`.
 ```python
 def say_hello_command(client, args):
@@ -609,7 +609,7 @@ This class is used to return outputs. This object represents an entry in warroom
 | outputs_prefix    | str    | Should be identical to the prefix in the yml contextPath in yml file. for example:         CortexXDR.Incident                                                                              |
 | outputs_key_field | str    | Primary key field in the main object. If the command returns Incidents, and of the properties of Incident is incident_id, then outputs_key_field='incident_id'                             |
 | outputs           | object | The data to be returned and will be set to context                                                                                                                                         |
-| human_readable    | str    | (Optional) markdown string that will be presented in the warroom, should be human readable -  (HumanReadable) - if not set, readable output will be generated via tableToMarkdown function |
+| readable_output    | str    | (Optional) markdown string that will be presented in the warroom, should be human readable -  (HumanReadable) - if not set, readable output will be generated via tableToMarkdown function |
 | raw_response      | object | (Optional) must be dictionary, if not provided then will be equal to outputs.  Usually must be the original raw response from the 3rd party service (originally Contents)                  |
 | indicators        | list   | Must be list of Indicator types, like Common.IP, Common.URL, Common.File, Common.Domain, Common.CVE.                                                                                       |
 
