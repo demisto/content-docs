@@ -31,7 +31,7 @@ We encourage our Partners to achieve certification as this will up-level the qua
 
 While we encourage certified Packs, Certification requires several additional tasks and thus may not be applicable to all Partners:
 
-1. Forward compatibility testing — partners must ensure full Pack compatibility with future versions of Cortex XSOAR via a self-certify process. This process shall occur with all major and minor release of Cortex XSOAR (3-4/yr)
+1. Fully functionality testing — partners must ensure full Pack compatibility with future versions of Cortex XSOAR via a self-certify process. This process shall occur with all major and minor release of Cortex XSOAR (3-4/yr)
 
 1. Documentation — full documentation for the entire pack reviewed by Palo Alto Networks. 
 
