@@ -57,18 +57,28 @@ Arguments explanation:
 }
 ```
 
-### get-mapping-fields
+### update-remote-system
 * UpdateRemoteSystemArgs - this is an object created to maintain all the arguments you receive from the server in order to use this command.
 Arguments explanation:
-  - data - will represent the data of the current incident.
-  - entries - will represent the entries from your current incident 
-  - remote_incident_id - the remote incident id.
+  - data - will represent the data of the current incident - a dictionary object `{key: value}`
+  - entries - will represent the entries from your current incident - a list of dictionaries objects representing the entries
+  - remote_incident_id - the remote incident id - string, the id of the incident.
   - inc_status - the status of the incident(numeric value, could be used with IncidentStatus from CommonServerPython)
-  - delta - will represent the dictionary of fields which have changed from the last update.
+  - delta - will represent the dictionary of fields which have changed from the last update - a dictionary object `{key: value}` containing only the changed fields.
 
-### update-remote-system
+### get-mapping-fields
 * SchemeTypeMapping - this is the object you should use to keep the correct structure of the mapping for the fetched incident type.
 * GetMappingFieldsResponse - this is the object to gather all your SchemeTypeMapping and then to parse them properly into the results using the return_results command.
+Usage example:
+```python
+def get_mapping_fields_command():
+    xdr_incident_type_scheme = SchemeTypeMapping(type_name=XDR_INCIDENT_TYPE_NAME)
+    for field in XDR_INCIDENT_FIELDS:
+        xdr_incident_type_scheme.add_field(name=field, description=XDR_INCIDENT_FIELDS[field].get('description'))
+
+    return GetMappingFieldsResponse(xdr_incident_type_scheme)
+
+```
 
 ## ￿Get going on XSOA￿R incident
 There are few incident fields you need to configure to get going on the system.
@@ -83,6 +93,8 @@ Useful fields:
 
 * getMirrorStatistics command - a hidden command that returns mirroring statistics: total mirrored, rate limited, and last run.
 * getSyncMirrorRecords - a hidden command that returns records that hold internal mirroring metadata for each mirrored incident
+* get-remote-data - is runnable through the war room with the relevant arguments and see the results.
+* get-mapping-fields - is runnable through the war room with no arguments and see the results.
 
 Also important to note:
 
