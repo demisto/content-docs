@@ -52,7 +52,7 @@ module.exports = {
               label: "Become a Partner"
             },
             {
-              to: "/docs/partners/certiification",
+              to: "/docs/partners/certification",
               label: "Pack Certification"
             },
             {
