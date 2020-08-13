@@ -18,7 +18,7 @@ This page is meant as an overview to Marketplace. Please see the [Palo Alto Netw
 
 All content on Marketplace is included in a Pack. (see docs on packs). When Partners create a pack, you specify the content that is included in that pack. 
 
-Packs can be free or paid. Our platform does full dependency checking, too, so a pack can be dependent on, say, a command in another pack. This allows you to build a playbook addressing a full use case across products. 
+Packs can be free or paid. Our platform does full dependency checking, too, so a pack can be dependent on, say, a command in another pack. This allows you to build a playbook addressing a full use case across products. Paid content is held in your private repository. Free content is held in our open source repository. 
 
 If you previously had a Demisto or Cortex XSOAR integration, it has been converted to a pack format and added to Marketplace for you.
 
@@ -26,11 +26,9 @@ If you previously had a Demisto or Cortex XSOAR integration, it has been convert
 
 All integrations must be free. We always want to encourage our mutual customers to connect our systems such that 1+1=3. Premium paid content can consist of any other elements including complex playbooks, detailed automation scripts, dashboards that appeal to a specific user type, etc. 
 
-Premium content is held in your private repository. Free content is held in our open source repository.  
-
 ### Points
 
-The Marketplace transacts in points, rather than dollars, such that one point is valued at US$100. Customers purchase points via their Palo Alto Networks sales channels and spend those points on your content. 
+The Marketplace transacts in points, rather than dollars, such that one point is valued at US$100. Customers purchase points via their Palo Alto Networks sales channels and subscribe to your content with those points on a monthly basis. We automatically pay you a revenue share also on a monthly basis, with no invoice required!
 
 ### Show Your Pack
 
