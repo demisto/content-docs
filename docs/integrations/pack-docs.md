@@ -74,6 +74,59 @@ It is possible to add an image placeholder which links to an external video. For
 ```
 An example of including a YouTube video can be seen at the [Zoom Feed README](https://github.com/demisto/content/blob/master/Packs/FeedZoom/README.md).
 
+## Pack Keywords, Tags, Use-cases & Categories
+In order classify packs and make them easier to find, there are a number of pack metadata elements that can be used:
+- Use-case -- a name of a situation in which packs can be used - usually the pack name. 
+
+ Examples: Impossible Traveler, PCAP Analysis
+
+- Tags -- words from the same semantic field of the use-case - they help find packs using filters or the search bar, and are visible on the screen to help understand what the pack is all about.
+
+ Examples: GDPR, PII, TIM
+
+- Keywords -- like tags, but these don’t show in the UI.
+
+For example, for a pack related to messaging, you may want to add "msg" as a keyword
+
+- Category -- what field/subject the pack relates to, in high level.
+Your pack should fall into one of the existing categories:
+<details>
+<summary>Pack Categories</summary>
+  
+Analytics & SIEM
+
+Authentication
+
+Breach And Attack Simulation
+
+Case Management
+
+Data Enrichment & Threat Intelligence
+
+Database
+
+Deception
+
+Email Gateway
+
+Endpoint
+
+Forensics & Malware Analysis
+
+IT Services
+
+Messaging
+
+Network Security
+
+Utilities
+
+Vulnerability Management
+
+</details>
+
+You may use the above information to customize these elements in the pack metadata file.
+![image](https://user-images.githubusercontent.com/43602124/90132076-d1dc2880-dd75-11ea-8bee-2c0273e8bfe8.png)
 ## Pack Dependencies
 ### What are pack dependencies?
 With the introduction of Marketplace in Cortex XSOAR, the user now chooses what content they want to install and use, and that content appears in the form of Content Packs.
