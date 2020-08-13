@@ -11,7 +11,7 @@ Additionally, Partners have the ability to monetize their content on the Marketp
 
 ## Program Details
 
-This page is meant as an overview to Marketplace. Please see the [Palo Alto Networks Cortex XSOAR Partner Program Guide](/program-guide) for details on the program. 
+This page is meant as an overview to Marketplace. Please see the [Palo Alto Networks Cortex XSOAR Partner Program Guide](https://xsoar.pan.dev/program-guide) for details on the program. 
 
 
 ## Packs
