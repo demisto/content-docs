@@ -45,16 +45,28 @@ Arguments explanation:
 * GetRemoteDataResponse - this is the object that maintains the format in which you should order the results from this function. You should use return_results on this object to make it work.
 Arguments explanation:
   - mirrored_object - this is essentially the object(dict) of whatever you are trying to mirror - incident in most cases.
-  - entries - a list of entries to add to your incident - for instance:
-```buildoutcfg
-{
-    'Type': entry.get('type'),
-    'Category': entry.get('category'),
-    'Contents': entry.get('contents'),
-    'ContentsFormat': entry.get('format'),
-    'Tags': entry.get('tags'),  # the list of tags to add to the entry
-    'Note': entry.get('note')  # boolean, True for Note, False otherwise
-}
+  - entries - a list of entries to add to your incident.
+  
+An example for such a function could be:
+```python
+def get_remote_data_command(client, args):
+    parsed_args = GetRemoteDateArgs(args)
+    new_incident_data: Dict = client.get_incident_data(parsed_args.remote_incident_id, parsed_args.last_update)    new_incident_data: Dict = client.get_incident_data(parsed_args.remote_incident_id, parsed_args.last_update)
+    raw_entries: List[dict] = client.get_incident_entries(parsed_args.remote_incident_id, parsed_args.last_update)
+    parsed_entries = []
+    for entry in raw_entries:
+        parsed_entries.append({       
+            'Type': entry.get('type'),
+            'Category': entry.get('category'),
+            'Contents': entry.get('contents'),
+            'ContentsFormat': entry.get('format'),
+            'Tags': entry.get('tags'),  # the list of tags to add to the entry
+            'Note': entry.get('note')  # boolean, True for Note, False otherwise
+        })
+    
+    remote_incident_id = new_incident_data['incident_id']
+    new_incident_data['id'] = remote_incident_id
+    return GetRemoteDataResponse(new_incident_data, parsed_entries)
 ```
 
 ### update-remote-system
@@ -72,9 +84,9 @@ Arguments explanation:
 Usage example:
 ```python
 def get_mapping_fields_command():
-    xdr_incident_type_scheme = SchemeTypeMapping(type_name=XDR_INCIDENT_TYPE_NAME)
-    for field in XDR_INCIDENT_FIELDS:
-        xdr_incident_type_scheme.add_field(name=field, description=XDR_INCIDENT_FIELDS[field].get('description'))
+    xdr_incident_type_scheme = SchemeTypeMapping(type_name='incident type example')
+    for field in ['field1', 'field2', 'field3']:
+        xdr_incident_type_scheme.add_field(name=field, description='the description for the field')
 
     return GetMappingFieldsResponse(xdr_incident_type_scheme)
 
