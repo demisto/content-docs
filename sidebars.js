@@ -148,30 +148,18 @@ const sidebars = {
   partners:
   [
     {
-      type: "doc",
-      id: "docs/partners/why-xsoar"
+      type: "category",
+      label: "Partners",
+      collapsed: false,
+      items: [
+        "partners/why-xsoar",
+        "partners/become-a-tech-partner",
+        "partners/certification",
+        "partners/office-hours",
+        "partners/development-partners"
+      ],
     },
-    {
-      type: "doc",
-      id: "docs/partners/become-a-tech-partner"
-    },
-    {
-      type: "doc",
-      id: "docs/partners/marketplace"
-    },
-    {
-      type: "doc",
-      id: "docs/partners/certification"
-    },
-    {
-      type: "doc",
-      id: "docs/partners/office-hours"
-    },
-    {
-      type: "doc",
-      id: "docs/partners/development-partners"
-    },
-  ]
+  ],
 };
 
 if (fs.existsSync("docs/reference/sidebar.json")) {
