@@ -157,7 +157,15 @@ const sidebars = {
     },
     {
       type: "doc",
-      id: "partners/partner-owned-integration"
+      id: "partners/office-hours"
+    },
+    {
+      type: "doc",
+      id: "partners/marketplace"
+    },
+    {
+      type: "doc",
+      id: "partners/certification"
     },
     {
       type: "doc",
