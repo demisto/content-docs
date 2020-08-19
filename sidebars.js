@@ -157,15 +157,15 @@ const sidebars = {
     },
     {
       type: "doc",
-      id: "partners/office-hours"
-    },
-    {
-      type: "doc",
       id: "partners/marketplace"
     },
     {
       type: "doc",
       id: "partners/certification"
+    },
+    {
+      type: "doc",
+      id: "partners/office-hours"
     },
     {
       type: "doc",
