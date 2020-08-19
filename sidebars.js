@@ -149,27 +149,27 @@ const sidebars = {
   [
     {
       type: "doc",
-      id: "partners/why-xsoar"
+      id: "docs/partners/why-xsoar"
     },
     {
       type: "doc",
-      id: "partners/become-a-tech-partner"
+      id: "docs/partners/become-a-tech-partner"
     },
     {
       type: "doc",
-      id: "partners/marketplace"
+      id: "docs/partners/marketplace"
     },
     {
       type: "doc",
-      id: "partners/certification"
+      id: "docs/partners/certification"
     },
     {
       type: "doc",
-      id: "partners/office-hours"
+      id: "docs/partners/office-hours"
     },
     {
       type: "doc",
-      id: "partners/development-partners"
+      id: "docs/partners/development-partners"
     },
   ]
 };
