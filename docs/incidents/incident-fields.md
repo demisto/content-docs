@@ -91,6 +91,21 @@ The following SLA field can be used to trigger a notification when the status ef
 
 ![SLA Incident Field](../doc_imgs/incidents/SLA_Incident_Field.png)
 
+## Associate Existing Incident Fields to New Incident Types
+You can add additional incident types to an existing incident field. 
+
+A use case for this is if you make a change to your content and need to push the change to production, or if are contributing content to Marketplace and want an existing field to be available to a new incident type.
+
+The associated incident types appear in the incident field's JSON file under the **AssociatedTypes** parameter. To add an incident type to an incident field, in the JSON file add the **systemAssociatedTypes** parameter with a comma-separated list of the new incident types.
+
+1. Navigate to **Settings** -> **Advanced** -> **Fields**.
+2. Select the field to add the incident type to.
+3. Click **Export**.
+4. Open the exported JSON file in a text editor.
+5. Under the **systemAssociatedTypes** parameter, type a comma-separated list of the new incident types.  
+For example: **"systemAssociatedTypes": ["Access", "Authentication"],**
+6. Now merge the updated JSON file to the GitHub repository.
+
 ## Troubleshooting Conflicts with Custom Incident Fields
 **Problem**
 
