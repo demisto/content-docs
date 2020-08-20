@@ -96,6 +96,8 @@ You can add additional incident types to an existing incident field.
 
 A use case for this is if you make a change to your content and need to push the change to production, or if are contributing content to Marketplace and want an existing field to be available to a new incident type.
 
+**Note**: You can change the association of an existing incident field that was created with the Associate to all value. 
+
 The associated incident types appear in the incident field's JSON file under the **AssociatedTypes** parameter. To add an incident type to an incident field, in the JSON file add the **systemAssociatedTypes** parameter with a comma-separated list of the new incident types.
 
 1. Navigate to **Settings** -> **Advanced** -> **Fields**.
