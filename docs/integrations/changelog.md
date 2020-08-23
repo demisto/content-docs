@@ -1,5 +1,5 @@
 ---
-id: releaseNotes
+id: release-notes
 title: Release Notes
 ---
 

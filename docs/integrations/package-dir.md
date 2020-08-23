@@ -17,7 +17,6 @@ The `Directory Structure` is as follows:
 ├── <INTEGRATION-NAME>.yml             // Configuration YAML file.
 ├── <INTEGRATION-NAME>_image.png       // Integration PNG logo (for integrations only).
 ├── <INTEGRATION-NAME>_description.md  // Detailed instructions markdown file (for integrations only)
-├── CHANGELOG.md                       // Markdown file which include the script/integration release notes.
 ├── README.md                          // Integration / automation script documentation.
 ├── Pipfile                            // Can be copied from Tests/scripts/dev_envs/default_python3
 └── Pipfile.lock                       // Can be copied from Tests/scripts/dev_envs/default_python3    
