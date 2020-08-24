@@ -1,6 +1,6 @@
 ---
 id: certification 
-title: Certification 
+title: Pack Certification 
 ---
 
 Certification is the process by which Cortex XSOAR validates and marks the quality of the Content Pack, free or paid. It correlates with the confidence a customer should have in the delivered content offering. Certified Packs indicate the highest level of quality and reliability in our ecosystem. Palo Alto Networks sets detailed standards for certification but see below for high level guidance.
