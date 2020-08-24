@@ -133,7 +133,7 @@ entry. TestPlaybooks, Images, README's and TestData don't require release notes.
 #### I ran the command and filled out the release notes correctly, but it still fails validation.
 
 On rare occasions it's possible that the pack you are working on has already had the version bumped. To resolve this, delete 
-the generated release notes md file and restore the `currentVersion` in the `pack_metadata.json` file to it's original version. Next pull from the master branch. 
+the generated release notes Markdown (*.md) file and restore the `currentVersion` in the `pack_metadata.json` file to it's original version. Next, pull from the master branch. 
 Lastly, run the `update-release-notes` command as you previously had done.
 
 #### I added a new pack. Do I need release notes?
