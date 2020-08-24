@@ -94,7 +94,7 @@ The following SLA field can be used to trigger a notification when the status ef
 ## Associate Existing Incident Fields to New Incident Types
 You can add additional incident types to an existing incident field. 
 
-A use case for this is if you make a change to your content and need to push the change to production, or if are contributing content to Marketplace and want an existing field to be available to a new incident type.
+A use case for this is if you make a change to your content and need to push the change to production, or if you are contributing content to Marketplace and want an existing field to be available to a new incident type.
 
 **Note**: You cannot change the association of an existing incident field that was created with the **Associate to all** value. 
 
