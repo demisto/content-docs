@@ -77,7 +77,73 @@ Arguments explanation:
   - remote_incident_id - the remote incident id - string, the id of the incident.
   - inc_status - the status of the incident(numeric value, could be used with IncidentStatus from CommonServerPython)
   - delta - will represent the dictionary of fields which have changed from the last update - a dictionary object `{key: value}` containing only the changed fields.
+  
+An example for such a function could be:
+```
+def update_remote_system_command(client: Client, args: Dict[str, Any]) -> str:
+    """update-remote-system command: pushes local changes to the remote system
 
+    :type client: ``Client``
+    :param client: XSOAR client to use
+
+    :type args: ``Dict[str, Any]``
+    :param args:
+        all command arguments, usually passed from ``demisto.args()``.
+        ``args['data']`` the data to send to the remote system
+        ``args['entries']`` the entries to send to the remote system
+        ``args['incidentChanged']`` boolean telling us if the local incident indeed changed or not
+        ``args['remoteId']`` the remote incident id
+
+    :return:
+        ``str`` containing the remote incident id - really important if the incident is newly created remotely
+
+    :rtype: ``str``
+    """
+    parsed_args = UpdateRemoteSystemArgs(args)
+    if parsed_args.delta:
+        demisto.debug(f'Got the following delta keys {str(list(parsed_args.delta.keys()))}')
+        
+    demisto.debug(f'Sending incident with remote ID [{parsed_args.remote_incident_id}] to remote system\n')
+    new_incident_id: str = parsed_args.remote_incident_id
+    updated_incident = {}
+    if not parsed_args.remote_incident_id or parsed_args.incident_changed:
+        if parsed_args.remote_incident_id:
+            # First, get the incident as we need the version
+            old_incident = client.get_incident(incident_id=parsed_args.remote_incident_id)
+            for changed_key in parsed_args.delta.keys():
+                old_incident[changed_key] = parsed_args.delta[changed_key]  # type: ignore
+
+            parsed_args.data = old_incident
+
+        else:
+            parsed_args.data['createInvestigation'] = True
+
+        updated_incident = client.update_incident(incident=parsed_args.data)
+        new_incident_id = updated_incident['id']
+        demisto.debug(f'Got back ID [{new_incident_id}]')
+
+    else:
+        demisto.debug(f'Skipping updating remote incident fields [{parsed_args.remote_incident_id}] as it is '
+                      f'not new nor changed.')
+
+    if parsed_args.entries:
+        for entry in parsed_args.entries:
+            demisto.debug(f'Sending entry {entry.get("id")}')
+            client.add_incident_entry(incident_id=new_incident_id, entry=entry)
+
+    # Close incident if relevant
+    if updated_incident and parsed_args.inc_status == IncidentStatus.DONE:
+        demisto.debug(f'Closing remote incident {new_incident_id}')
+        client.close_incident(
+            new_incident_id,
+            updated_incident.get('version'),  # type: ignore
+            parsed_args.data.get('closeReason'),
+            parsed_args.data.get('closeNotes')
+        )
+
+    return new_incident_id
+
+```
 ### get-mapping-fields
 * SchemeTypeMapping - this is the object you should use to keep the correct structure of the mapping for the fetched incident type.
 * GetMappingFieldsResponse - this is the object to gather all your SchemeTypeMapping and then to parse them properly into the results using the return_results command.
