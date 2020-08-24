@@ -217,7 +217,7 @@ Widget <-> script
 ### What should I do about the dependencies?
 When a dependency is required, that means that in order to use a certain pack, the user MUST install a different pack - a behavior we want to eliminate as much as possible. 
 
-Sometimes the dependency is understandable. In this case Gmail depends on Phishing, but Phishing is a core pack and ships out of the box, so this causes no issue and mandatory can stay true:
+Sometimes the dependency is justified. In this case Gmail depends on Phishing. Phishing contains content that is absolutely needed for Gmail, so we can avoid creating duplicate content in both packs, and instead we will acknowledge this as a mandatory dependency. Due to the fact that Phishing contains such core elements, we've also decided to make Phishing a Core pack, which ships out-of-the-box, so this causes no issue and mandatory can stay true:
 ![image](https://user-images.githubusercontent.com/43602124/89119495-901aca80-d4b7-11ea-999e-100d8d58663e.png)
 
 In other cases the dependency must be fixed by us, manually. 
@@ -225,7 +225,7 @@ In other cases the dependency must be fixed by us, manually.
 ### How do I fix the dependencies?
 The cases can vary from one dependency to another. Fixing a dependency involves 3 parts:
 1. Making the necessary adaptation in the content (changing playbook, merging packs, moving files to another pack, replacing deprecated script with newer script)
-2. Changing “mandatory” to “false” in the pack dependencies
+2. Manually changing “mandatory” to “false” in the pack dependencies - only if the dependency really is optional and not mandatory, for example if an integration is used after a condition that ensures that it's enabled, and the flow continues normally otherwise. Another possible optional dependency is when an automation or a subplaybook is configured to be skipped if the pack is unavailable (through the advanced task settings).
 3. Removing the displayedImages section
 ![image](https://user-images.githubusercontent.com/43602124/89119548-ea1b9000-d4b7-11ea-88e8-b99c2f2214f1.png)
 
@@ -254,8 +254,8 @@ This one is obviously a bug, because the right playbook that should run is Corte
   - We see that QRadar has a playbook called `Access Investigation - QRadar` which uses `Access Investigation - Generic`.
   
   ![image](https://user-images.githubusercontent.com/43602124/89119663-c7d64200-d4b8-11ea-8902-cd14f9682e5c.png)
-  - Access Investigation - Generic may have to be a Core pack, if so - its mandatory dependency will be fine. 
-Another solution may be to “skip if unavailable”. This is a feature that exists on XSOAR 6.0 where if a pack is not available, the task and its continuous branch will be skipped:
+  - Access Investigation - Generic may have to be a Core pack, if so - its mandatory dependency will be fine. Note that packs become part of the Core packs only after our consideration and approval, and the list of core packs is meant to stay very limited. As a contributor, it is highly unlikely that your pack will be Core.
+Another solution may be to “skip if unavailable”. This is a feature that exists starting in XSOAR 5.5 where if the content is not available (E.g., pack is not installed), then the task and its continuous branch will be skipped:
 
 ![image](https://user-images.githubusercontent.com/43602124/89119677-ee947880-d4b8-11ea-939b-2db8304c7786.png)
 
