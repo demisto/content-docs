@@ -3,7 +3,7 @@ id: release-notes
 title: Release Notes
 ---
 
-Release notes files helps to keep track of the changes made for a specific content entity like an integration or a playbook.
+Release notes files help to keep track of the changes made for a specific content entity like an integration or a playbook.
 
 To generate a release notes markdown file, first commit the changes to your branch and then run the following command provided by the `demisto-sdk`:
 
