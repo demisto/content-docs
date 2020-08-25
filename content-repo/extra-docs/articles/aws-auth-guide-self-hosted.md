@@ -31,7 +31,7 @@ You will need to create the following resources:
    - **Tags** (optional): it is recommended to create a tag to describe the purpose (such us "Description: This user provide programmatic access to AWS - XSOAR integrations for auto-remediation").
 3. Finalize the user creation and save the Access key ID and Secret access key (you will need them when configuring the integrations in Cortex XSOAR). 
 
-### Create the IAM Roles for Untegrations (Assumed Roles)
+### Create the IAM Roles for Integrations (Assumed Roles)
 You will need to create Roles for your specific AWS - Cortex XSOAR Integrations, similar to the example below.
  
 The following steps will exemplify the creation of a role for the [AWS - IAM integration](https://xsoar.pan.dev/docs/reference/integrations/aws---iam), with some granular IAM permissions only: iam:UpdateAccountPasswordPolicy and iam:ListUsers.
