@@ -371,6 +371,9 @@ def create_releases(target_dir: str):
     for r in sorted(fail):
         print(r)
     org_print("\n===========================================\n")
+    if fail:
+        print(f'{len(fail)} failed releases. Aborting!!')
+        sys.exit(3)
     return sorted(doc_infos, key=lambda d: d.name.lower(), reverse=True)
 
 
@@ -391,8 +394,8 @@ def create_articles(target_dir: str):
     for r in sorted(fail):
         print(r)
     org_print("\n===========================================\n")
-    if len(fail) > MAX_FAILURES:
-        print(f'MAX_FAILURES of {len(fail)} exceeded limit: {MAX_FAILURES}. Aborting!!')
+    if fail:
+        print(f'{len(fail)} failed articles. Aborting!!')
         sys.exit(2)
     return sorted(doc_infos, key=lambda d: d.name.lower())  # sort by name
 
