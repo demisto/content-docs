@@ -266,7 +266,7 @@ The following steps will exemplify the creation of an IAM integration associated
 1. Search for **AWS - IAM**.
 1. Click **Add instance** to create and configure a new integration instance.
    * **Name**: a descriptive name for the integration instance.
-   * **Role Arn**: add Role Arn of the role created for this integration (such as: arn:aws:iam::<account-no>:role/xsoar-IAM.integration-Role).
+   * **Role Arn**: add Role Arn of the role created for this integration (such as: `arn:aws:iam::<account-no>:role/xsoar-IAM.integration-Role`).
    * **Role Session Name**: add a descriptive session name (such as: xsoar-IAM.integration-Role_SESSION).
    * **Role Session Duration**: add a session duration (default is 900). The XSOAR integration will have the permissions assigned only when the session is initiated and for the defined duration. 
    * **Access Key**: add the Access key that you saved when creating the IAM user.
