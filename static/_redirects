@@ -21,7 +21,7 @@ https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 /docs/faq	/docs/concepts/faq
 
 # Howtos Integrations
-/docs/release-notes	/docs/howtos/integrations/release-notes
+/docs/changelog	/docs/howtos/integrations/release-notes
 /docs/code-conventions	/docs/howtos/integrations/code-conventions
 /docs/context-and-outputs	/docs/howtos/integrations/context-and-outputs
 /docs/context-standards	/docs/howtos/integrations/context-standards
@@ -61,7 +61,7 @@ https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 # Redirect docs after second restyle of 3/20/2020
 
 # Howtos Integrations
-/docs/howtos/integrations/release-notes /docs/integrations/release-notes
+/docs/howtos/integrations/changelog /docs/integrations/release-notes
 /docs/howtos/integrations/code-conventions  /docs/integrations/code-conventions
 /docs/howtos/integrations/context-and-outputs   /docs/integrations/context-and-outputs
 /docs/howtos/integrations/context-standards /docs/integrations/context-standards
@@ -86,6 +86,9 @@ https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 # the next two are correct
 /docs/howtos/integrations/integration-cache /docs/integrations/integration-cache
 /docs/howtos/integrations/integration-context /docs/integrations/integration-cache
+
+# rename changelog to release-notes
+/docs/integrations/changelog /docs/integrations/release-notes
 
 # Howtos Contributing
 /docs/howtos/contributing/circleci  /docs/contributing/circleci

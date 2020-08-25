@@ -139,6 +139,3 @@ Lastly, run the `update-release-notes` command as you previously had done.
 #### I added a new pack. Do I need release notes?
 
 New packs do not require release notes. The build process will automatically create the initial release notes for you.
-
-
-To view the previous format for release notes, you may find them [here.](../integrations/changelog-old-format)
