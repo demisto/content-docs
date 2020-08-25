@@ -218,21 +218,21 @@ You will need to create Roles for your specific AWS - Cortex XSOAR Integrations,
 The following steps will exemplify the creation of a role for the [AWS - IAM integration](https://xsoar.pan.dev/docs/reference/integrations/aws---iam), with some granular IAM permissions only: iam:UpdateAccountPasswordPolicy and iam:ListUsers.
 1. Create the policy for the role. In the navigation pane, select **IAM > Policies > Create Policy**. 
 On the Create Policy page, paste the following code in the **JSON** tab:
-
-       {
-           "Version": "2012-10-17",
-           "Statement": [
-               {
-                   "Effect": "Allow",
-                   "Action": [
-                      "iam:UpdateAccountPasswordPolicy",
-                      "iam:ListUsers"
-                  ],
-                  "Resource": "*"
-              }
-          ]
-        }
-
+```json
+   {
+       "Version": "2012-10-17",
+       "Statement": [
+           {
+               "Effect": "Allow",
+               "Action": [
+                  "iam:UpdateAccountPasswordPolicy",
+                  "iam:ListUsers"
+              ],
+              "Resource": "*"
+          }
+      ]
+    }
+```
 1. Click **Review Policy** and add a **Name** and a **Description** (for e.g., *Name: xsoar-IAM-Remediation_Policy, Description: The policy enables rights for AWS IAM - XSOAR integration. Used for Prisma Cloud - XSOAR demo*).
 1. Go to **IAM > Roles > Create Role**.
    1. Select trusted entity type: **AWS Service**.
@@ -244,20 +244,20 @@ On the Create Policy page, paste the following code in the **JSON** tab:
 1. Update the role that you just created to trust the IAM user, so the user will be able to assume this role.
    1. Go to the Role page and select **Trust relationships > Edit trust relationship**. 
    1. For **Principal element**, replace **EC2 service** with the **IAM user** used for the authentication that you created earlier. The trust relationship should look like the following: 
-
-            {
-               "Version": "2012-10-17",
-               "Statement": [
-                   {
-                       "Effect": "Allow",
-                        "Principal": {
-                        "AWS": "arn:aws:iam::<account-no>:user/xsoar.remediation"
-                        },
-                        "Action": "sts:AssumeRole"
-                   }
-               ]
-            }   
-
+```json
+  {
+     "Version": "2012-10-17",
+     "Statement": [
+         {
+             "Effect": "Allow",
+              "Principal": {
+              "AWS": "arn:aws:iam::<account-no>:user/xsoar.remediation"
+              },
+              "Action": "sts:AssumeRole"
+         }
+     ]
+  }   
+```
 You can now add and configure the AWS integrations on Cortex XSOAR. See the documentation for each AWS integration (such as: [AWS - IAM](https://xsoar.pan.dev/docs/reference/integrations/aws---iam)). 
 The following steps will exemplify the creation of an IAM integration associated with the role created earlier. 
 
