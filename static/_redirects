@@ -87,6 +87,9 @@ https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 /docs/howtos/integrations/integration-cache /docs/integrations/integration-cache
 /docs/howtos/integrations/integration-context /docs/integrations/integration-cache
 
+# rename changelog to release-notes
+/docs/integrations/changelog /docs/integrations/release-notes
+
 # Howtos Contributing
 /docs/howtos/contributing/circleci  /docs/contributing/circleci
 
