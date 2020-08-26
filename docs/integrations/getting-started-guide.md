@@ -65,7 +65,7 @@ Please read the following guidelines. Following these guidelines will maximize t
  running `.hooks/pre-commit`. If you want to validate specific files please use the demisto-sdk commands [validate](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md)
   or [lint](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/lint/README.md) 
 * Document your integration as detailed [here](integration-docs).
-* Document your changes in the relevant changelog file as detailed [here](changelog)
+* Document your changes in a relevant release notes file as detailed [here](release-notes)
 
 At this point you should be ready to submit a Pull Request! For more details, refer to our [Contributing](https://github.com/demisto/content/blob/master/CONTRIBUTING.md) page.
 

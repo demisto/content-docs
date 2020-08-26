@@ -211,9 +211,19 @@ def process_release_doc(target_dir: str, release_file: str) -> DocInfo:
         #  replace the title to be with one # so it doesn't appear in the TOC
         content = re.sub(r'^## Demisto Content Release Notes', '# Demisto Content Release Notes', content)
         content = f'---\nid: {name}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\nhide_title: true\n---\n\n' + content
+        download_msg = "Download"
+        packs_download = ""
+        if name > '20.8.0':
+            # from 20.8.1 we also add a link to the marketplace zips
+            download_msg = "Download Content Zip (Cortex XSOAR 5.5 and earlier)"
+            packs_download = '* **Download Marketplace Packs (Cortex XSOAR 6.0 and later):** ' + \
+                f'[content_marketplace_packs.zip](https://github.com/demisto/content/releases/download/{name}/content_marketplace_packs.zip)\n'
         content = content + \
-            '\n\n---\n### Assets\n\n* **Download:** ' + \
-            f'[content_new.zip](https://github.com/demisto/content/releases/download/{name}/content_new.zip)\n' + \
+            f'\n\n---\n### Assets\n\n* **{download_msg}:** ' + \
+            f'[content_new.zip](https://github.com/demisto/content/releases/download/{name}/content_new.zip)\n'
+        if packs_download:
+            content = content + packs_download
+        content = content + \
             f'* **Browse the Source Code:** [Content Repo @ {name}](https://github.com/demisto/content/tree/{name})\n'
         verify_mdx_server(content)
         with open(f'{target_dir}/{name}.md', mode='w', encoding='utf-8') as f:
@@ -361,6 +371,9 @@ def create_releases(target_dir: str):
     for r in sorted(fail):
         print(r)
     org_print("\n===========================================\n")
+    if fail:
+        print(f'{len(fail)} failed releases. Aborting!!')
+        sys.exit(3)
     return sorted(doc_infos, key=lambda d: d.name.lower(), reverse=True)
 
 
@@ -381,8 +394,8 @@ def create_articles(target_dir: str):
     for r in sorted(fail):
         print(r)
     org_print("\n===========================================\n")
-    if len(fail) > MAX_FAILURES:
-        print(f'MAX_FAILURES of {len(fail)} exceeded limit: {MAX_FAILURES}. Aborting!!')
+    if fail:
+        print(f'{len(fail)} failed articles. Aborting!!')
         sys.exit(2)
     return sorted(doc_infos, key=lambda d: d.name.lower())  # sort by name
 

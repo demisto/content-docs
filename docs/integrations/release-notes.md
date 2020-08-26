@@ -1,11 +1,11 @@
 ---
-id: changelog
-title: Change Log
+id: release-notes
+title: Release Notes
 ---
 
-A change log file helps to keep track of the changes made for a specific content entity like an integration or a playbook.
+Release notes files help to keep track of the changes made for a specific content entity like an integration or a playbook.
 
-To generate a change log, first commit the changes to your branch and then run the following command provided by the `demisto-sdk`:
+To generate a release notes markdown file, first commit the changes to your branch and then run the following command provided by the `demisto-sdk`:
 
 ```bash
 demisto-sdk update-release-notes -p [Changed Pack Name] -u [major|minor|revision]
@@ -27,13 +27,13 @@ For more detailed information regarding the `update-release-notes` command in th
 [documentation found here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/update_release_notes/README.md).
 
 ## Naming
-The change log file will be generated for you and is found under the `ReleaseNotes` folder within each pack. If this folder does not already exist, one will be created for you.
+The release notes file will be generated for you and is found under the `ReleaseNotes` folder within each pack. If this folder does not already exist, one will be created for you.
 
 The names for the files generated should not be changed as this will cause potential issues in the future. 
 
 
 ## Format
-After running the `demisto-sdk` command mentioned above, the change log which was generated will contain a section for each entity changed in the pack as well as a placeholder (`%%UPDATE_RN%%`).
+After running the `demisto-sdk` command mentioned above, the release notes file which was generated will contain a section for each entity changed in the pack as well as a placeholder (`%%UPDATE_RN%%`).
 This placeholder should be replaced with a line describing what was changed for that specific entity.
 
 For example, if changes were detected in the Cortex XDR pack for the items IncidentFields, Integrations, and Playbooks; the following would be created:
@@ -95,7 +95,7 @@ For multiline RNs with nested content, follow this format:
 ```
 
 ## What Should Be Logged
-One should specify in the corresponding change log file the following changes:
+One should specify in the corresponding release notes file the following changes:
   - Any change made
   - Creation of a new command
   - Adding/updating parameters
@@ -121,7 +121,7 @@ this, you may comment out the entries by using the following syntax:
 
 ## Common Troubleshooting Tips
 
-#### I excluded an item from the changelog file, but it won't pass validation.
+#### I excluded an item from the release notes file, but it won't pass validation.
 
 Make sure to remove the `%%UPDATE_RN%%` from the generated file and leave the other generated items intact.
 
@@ -133,12 +133,9 @@ entry. TestPlaybooks, Images, README's and TestData don't require release notes.
 #### I ran the command and filled out the release notes correctly, but it still fails validation.
 
 On rare occasions it's possible that the pack you are working on has already had the version bumped. To resolve this, delete 
-the generated changelog and restore the `currentVersion` in the `pack_metadata.json` file to it's original version. Next pull from the master branch. 
+the generated release notes Markdown (*.md) file and restore the `currentVersion` in the `pack_metadata.json` file to it's original version. Next, pull from the master branch. 
 Lastly, run the `update-release-notes` command as you previously had done.
 
 #### I added a new pack. Do I need release notes?
 
-New packs do not require release notes. The build process will automatically create the initial changelog for you.
-
-
-To view the previous format for release notes, you may find them [here.](../integrations/changelog-old-format)
+New packs do not require release notes. The build process will automatically create the initial release notes for you.
