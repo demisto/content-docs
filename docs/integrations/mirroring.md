@@ -34,9 +34,9 @@ Use the following commands to implement a mirroring integration.
 *Note that when mirroring both incoming and outgoing data, all the commands are required. For mirroring in only one direction, only some of the commands are required.*
 - `test-module` - this is the command that is run when the `Test` button in the configuration panel of an integration is clicked.
 - `fetch-incidents` - this is the command that fetches new incidents to Cortex XSOAR.
-- `get-remote-data` - this command gets new information about the incidents in the remote system and updates *existing* incidents in Cortex XSOAR. This command is executed every 1 minute. 
-- `update-remote-system` - this command updates the remote system with the information we have in the mirrored incidents within Cortex XSOAR. This command is executed every 1 minute.
-- `get-mapping-fields` - this command will pull the different incident types and their associated incident fields from the remote system. It is used in the Mirror out configuration page in the XSOAR UI.
+- `get-remote-data` - this command gets new information about the incidents in the remote system and updates *existing* incidents in Cortex XSOAR. This command is executed every 1 minute for each individual incident. 
+- `update-remote-system` - this command updates the remote system with the information we have in the mirrored incidents within Cortex XSOAR. This command is executed whenever the incident is changed in Cortex XSOAR.
+- `get-mapping-fields` - this command pulls the different incident types and their associated incident fields from the remote system. This enables users to map XSOAR fields to the 3rd-party integration fields in the outgoing mapper. 
 
 ## Useful objects to use in your code
 All the functions explained here are globally available through the CommonServerPython file.
@@ -78,7 +78,7 @@ def get_remote_data_command(client, args):
 Arguments explanation:
   - data - represents the data of the current incident - a dictionary object `{key: value}`.
   - entries - represents the entries from your current incident - a list of dictionary objects representing the entries.
-  - remote_incident_id - the remote incident id - string, the id of the incident.
+  - remote_incident_id - the dbotMirrorID, which is the incident's ID in the 3rd party integration. 
   - inc_status - the status of the incident(numeric value, could be used with IncidentStatus from CommonServerPython).
   - delta - represents the dictionary of fields which have changed from the last update - a dictionary object `{key: value}` containing only the changed fields.
   
