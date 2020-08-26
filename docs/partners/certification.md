@@ -29,7 +29,9 @@ We encourage our Partners to achieve certification as this will up-level the qua
 
 ## Requirements
 
-While we encourage certified Packs, Certification requires several additional tasks and thus may not be applicable to all Partners:
+While we encourage certified Packs, Certification has additional requirements including:
+
+1. Mutual customers - At least two documented mutual customers requesting the Pack 
 
 1. Fully functionality testing — partners must ensure full Pack compatibility with future versions of Cortex XSOAR via a self-certify process. This process shall occur with all major and minor release of Cortex XSOAR (3-4/yr) and include each component of the Pack. 
 
