@@ -12,33 +12,37 @@ Mirroring Integrations are developed the same as other Integrations. They provid
 
 
 ## Supported Server Version
-Mirroring Integration's YAML file _must_ have the following field `fromversion: 6.0.0`. This is because Mirroring Integrations are only supported from Server version 6.0.0 and onwards.
+A Mirroring Integration's YAML file _must_ have the following field `fromversion: 6.0.0`. This is because Mirroring Integrations are only supported from Server version 6.0.0 and on.
 
 
 ## Required Parameters
-Mirroring integration should have the following parameters in the integration YAML file(under the scripts section):
+A Mirroring Integration's YAML file should have the following parameters (under the scripts section):
 ```yml
   isfetch: true
   ismappable: true
   isremotesyncin: true
   isremotesyncout: true
 ```
-While the `ismappable` and `isremotesyncin` are used for getting information from a remote incident, And the `isremotesyncout` for updating remote data.
+Where:
+- isfetch determines if the integration fetches incidents.
+- ismappable determines if the remote schema can be accessed.
+- isremotesyncin determines if mirroring from the 3rd party integration to XSOAR is supported.
+- isremotesyncout determines if mirroring from XSOAR to the 3rd party integration is supported.
 
 ## Commands
 Use the following commands to implement a mirroring integration.  
-*Note that when mirroring both incoming and outgoing data all the commands are required, while only some of the commands are required for a one-way mirror.*
+*Note that when mirroring both incoming and outgoing data, all the commands are required. For mirroring in only one direction, only some of the commands are required.*
 - `test-module` - this is the command that is run when the `Test` button in the configuration panel of an integration is clicked.
 - `fetch-incidents` - this is the command that fetches new incidents to Cortex XSOAR.
-- `get-remote-data` - this command takes new information about the incidents in the remote system and updates the *already existing* incidents in Cortex XSOAR. This command is being executed every 1 minute. 
-- `update-remote-system` - this command updates the remote system with the information we have in the mirrored incidents within Cortex XSOAR. This command is being executed every 1 minute.
-- `get-mapping-fields` - this command will pull the different incident types and their associated incident fields from the remote system, it will be used in the Mirror out configuration page in the XSOAR UI.
+- `get-remote-data` - this command gets new information about the incidents in the remote system and updates *existing* incidents in Cortex XSOAR. This command is executed every 1 minute. 
+- `update-remote-system` - this command updates the remote system with the information we have in the mirrored incidents within Cortex XSOAR. This command is executed every 1 minute.
+- `get-mapping-fields` - this command will pull the different incident types and their associated incident fields from the remote system. It is used in the Mirror out configuration page in the XSOAR UI.
 
 ## Useful objects to use in your code
 All the functions explained here are globally available through the CommonServerPython file.
 
 ### get-remote-data
-* GetRemoteDateArgs - this is an object created to maintain all the argument you receive from the server in order to use this command.
+* GetRemoteDataArgs - this is an object created to maintain all the arguments you receive from the server in order to use this command.
 Arguments explanation:
   - remote_incident_id - the remote incident id.
   - last_update - the time the incident was last updated - our recommendation would be to use the arg_to_timestamp function to parse it into a timestamp.
@@ -72,14 +76,14 @@ def get_remote_data_command(client, args):
 ### update-remote-system
 * UpdateRemoteSystemArgs - this is an object created to maintain all the arguments you receive from the server in order to use this command.
 Arguments explanation:
-  - data - will represent the data of the current incident - a dictionary object `{key: value}`
-  - entries - will represent the entries from your current incident - a list of dictionaries objects representing the entries
+  - data - represents the data of the current incident - a dictionary object `{key: value}`.
+  - entries - represents the entries from your current incident - a list of dictionary objects representing the entries.
   - remote_incident_id - the remote incident id - string, the id of the incident.
-  - inc_status - the status of the incident(numeric value, could be used with IncidentStatus from CommonServerPython)
-  - delta - will represent the dictionary of fields which have changed from the last update - a dictionary object `{key: value}` containing only the changed fields.
+  - inc_status - the status of the incident(numeric value, could be used with IncidentStatus from CommonServerPython).
+  - delta - represents the dictionary of fields which have changed from the last update - a dictionary object `{key: value}` containing only the changed fields.
   
 An example for such a function could be:
-```python
+```
 def update_remote_system_command(client: Client, args: Dict[str, Any]) -> str:
     """update-remote-system command: pushes local changes to the remote system
 
@@ -145,8 +149,8 @@ def update_remote_system_command(client: Client, args: Dict[str, Any]) -> str:
 
 ```
 ### get-mapping-fields
-* SchemeTypeMapping - this is the object you should use to keep the correct structure of the mapping for the fetched incident type.
-* GetMappingFieldsResponse - this is the object to gather all your SchemeTypeMapping and then to parse them properly into the results using the return_results command.
+* SchemeTypeMapping - the object used to keep the correct structure of the mapping for the fetched incident type.
+* GetMappingFieldsResponse - the object used to gather all your SchemeTypeMapping and then parse them properly into the results using the return_results command.
 Usage example:
 ```python
 def get_mapping_fields_command():
@@ -159,10 +163,10 @@ def get_mapping_fields_command():
 ```
 
 ## Incident fields on a XSOAR incident 
-There are few incident fields you need to configure to get going on the system.
-* dbotMirrorDirection - Both, In, out or None
-* dbotMirrorId - represents the id of the incident in the external system
-* dbotMirrorInstance - the instance that will perform the mirroring
+The following incident fields must be configured either in the integration or the instance mapping:
+* dbotMirrorDirection - valid values are Both, In, or Out.
+* dbotMirrorId - represents the id of the incident in the external system.
+* dbotMirrorInstance - the instance through which you will be mirroring.
 
 Useful fields:
 * dbotMirrorTags - tags for mirrored-out entries (comment/files).
@@ -173,7 +177,3 @@ Useful fields:
 * getSyncMirrorRecords - a hidden command that returns records that hold internal mirroring metadata for each mirrored incident
 * get-remote-data - is runnable through the war room with the relevant arguments and see the results.
 * get-mapping-fields - is runnable through the war room with no arguments and see the results.
-
-Also important to note:
-
-DO NOT change dbot mirroring fields for existing incidents after they were set
