@@ -66,10 +66,6 @@ module.exports = {
               label: "Office Hours"
             },
             {
-              to: "/docs/partners/marketplace",
-              label: "Marketplace"
-            },
-            {
               to: "/docs/partners/development-partners",
               label: "Development Partners"
             },
