@@ -79,7 +79,7 @@ Arguments explanation:
   - delta - will represent the dictionary of fields which have changed from the last update - a dictionary object `{key: value}` containing only the changed fields.
   
 An example for such a function could be:
-```
+```python
 def update_remote_system_command(client: Client, args: Dict[str, Any]) -> str:
     """update-remote-system command: pushes local changes to the remote system
 
