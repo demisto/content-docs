@@ -160,7 +160,7 @@ def get_mapping_fields_command():
 
 ## Incident fields on a XSOAR incident 
 There are few incident fields you need to configure to get going on the system.
-* dbotMirrorDirection - Both or In
+* dbotMirrorDirection - Both, In, out or None
 * dbotMirrorId - represents the id of the incident in the external system
 * dbotMirrorInstance - the instance that will perform the mirroring
 
