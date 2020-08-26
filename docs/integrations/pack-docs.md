@@ -197,6 +197,9 @@ Demisto Software Development Kit (SDK) has a command called `find-dependencies` 
 
 ```demisto-sdk find-dependencies -p 'PackName'``` - if you don’t have the id_set.json file
 
+*The `id_set.json` file defines the relationships between content elements, and dictates the dependencies accordingly. If you don't have the `id_set.json` file, it will be generated automatically during the `find-dependencies` phase. It will scan your local copy of the repository. This process may take time. If you did not make any changes that could affect dependencies in your branch, you may provide your existing `id_set.json` file to save time.*
+
+
 ### What are some examples of dependencies?
 - A playbook from QRadar pack uses a playbook from AccessInvestigation pack
 - A playbook from Employee Offboarding pack uses an automation from Impossible Traveler pack
