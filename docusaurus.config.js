@@ -46,18 +46,24 @@ module.exports = {
         {
           label: "Partners",
           items: [
-            { to: "/docs/partners/why-xsoar", label: "Why Cortex XSOAR?" },
+            { to: "/docs/partners/why-xsoar",
+             label: "Why Cortex XSOAR?" 
+            },
             {
               to: "docs/partners/become-a-tech-partner",
               label: "Become a Partner"
             },
             {
-              to: "/docs/partners/office-hours",
-              label: "Office Hours"
-            },
-            {
               to: "/docs/partners/marketplace",
               label: "Marketplace"
+            },
+            {
+              to: "/docs/partners/certification",
+              label: "Pack Certification"
+            },
+            {
+              to: "/docs/partners/office-hours",
+              label: "Office Hours"
             },
             {
               to: "/docs/partners/development-partners",
