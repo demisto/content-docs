@@ -11,7 +11,7 @@ When the Cortex XSOAR server is located within the AWS environment in a local ne
   <img width="410" src="../../../docs/doc_imgs/reference/aws-s3.png" />
 * **EC2 Instance Metadata**: the integration will use the EC2 instance metadata service to retrieve security credentials. In this scenario there is no need to configure an Access Key and Secret Key. Credential management is taken care of by the EC2 instance metadata service. The integration will fetch from the metadata service temporary credentials for authenticating to AWS. To configure the instance metadata service you will need to attach an instance profile with the required permissions to the Cortex XSOAR server or engine that is running on your AWS environment. More information at: [IAM roles for Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html).
 
-When self hosted outside the AWS environment in a remote network, the AWS Integrations combines these two options to authenticate to AWS.
+When self hosted outside the AWS environment in a remote network, the AWS Integrations should use:  **Access Key and Secret Key** authentication option.
 
 ## Using STS with AWS Integrations
 AWS Integrations provide the option of using the AWS Security Token Service (STS) to assume specific least privilege roles. This allows configuring a specific role per Integration instance instead of using the general role provided by the metadata service or the authentication via the Access Key and Secret Key. For more information see:
@@ -272,4 +272,3 @@ The following steps will exemplify the creation of an IAM integration associated
    * **Access Key**: add the Access key that you saved when creating the IAM user.
    * **Secret Key**: add the Secret key that you saved when creating the IAM user.
 1. Click **Test** to validate the connection (Keys & Token).
-
