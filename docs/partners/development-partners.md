@@ -18,10 +18,10 @@ Having your integration built by a development partner and certified by us is ea
 
 4. The development partner will keep us updated on timing and any issues. They’ll manage the GitHub pull request and certification with our Engineering teams.
 
-5. [Most common] When the Integration is complete and GA, the development partner will release the code to you as a partner owned integration; you will support the integration for defects and enhancements going forward. Be sure to register for [TSANet](https://paloaltonetworks-nextwave.connect.tsanet.org/) for that.
+5. [Most common] When the Integration is complete and GA, the development partner will release the code to you as a partner; you will support the integration for defects and enhancements going forward. Be sure to register for [TSANet](https://paloaltonetworks-nextwave.connect.tsanet.org/) for that.
 
 ## Our Partners
-Our ecosystem of helpful partners is growing. If you are interested in becoming a partner, please [contact Matt Chase](mailto:mchase@paloaltonetworks.com).
+Our ecosystem of helpful partners is growing. If you are interested in becoming a partner, please [contact us](mailto:soar.alliances@paloaltonetworks.com).
 
 
 
@@ -44,4 +44,4 @@ With decades of experience in consulting, project management, IT integration and
 → Contact Gregori Nazrovsky [gregorin@qmasters.co](mailto:gregorin@qmasters.com)
 
 
-More partners are coming soon! If you are interested in becoming a partner, please [contact Matt Chase](mailto:mchase@paloaltonetworks.com).
+More partners are coming soon! If you are interested in becoming a partner, please [contact us](mailto:soar.alliances@paloaltonetworks.com).
