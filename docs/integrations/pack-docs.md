@@ -86,7 +86,7 @@ In order classify packs and make them easier to find, there are a number of pack
 
 - Keywords -- like tags, but these don’t show in the UI.
 
-For example, for a pack related to messaging, you may want to add "msg" as a keyword
+For example, for a pack related to messaging, you may want to add "msg" as a keyword so when a user searches for "msg" they will find the pack, but the word "msg" won't show anywhere in the UI.
 
 - Category -- what field/subject the pack relates to, in high level.
 Your pack should fall into one of the existing categories:
