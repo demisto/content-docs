@@ -3,16 +3,16 @@ id: mirroring_integration
 title: Mirroring Integration
 ---
 
-Server version 6.0.0 adds support for Mirroring Integrations. These integrations allow you to mirror incidents/tickets/cases from other services.  
-For example: Another XSOAR server, Cortex XDR, ServiceNow
+Cortex XSOAR version 6.0.0 adds support for Mirroring Integrations. These integrations allow you to mirror incidents/tickets/cases from other services.  
+For example: Another XSOAR server, Cortex XDR, ServiceNow. In addition, when mapping the incident fields, mirroring enables you to pull the database schema from the integration, which brings all of the available fields into Cortex XSOAR. For more information about working with the schema, see the Select schema option described [here](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/incidents/classification-and-mapping/create-a-mapper.html).
 
-An example Mirroring Integration can be seen [here](https://github.com/demisto/content/tree/master/Packs/XSOARMirroring/Integrations/XSOARMirroring).
+An example mirroring integration can be seen [here](https://github.com/demisto/content/tree/master/Packs/XSOARMirroring/Integrations/XSOARMirroring) and [here](https://github.com/demisto/content/tree/master/Packs/ServiceNow/Integrations/ServiceNowv2).
 
-Mirroring Integrations are developed the same as other Integrations. They provide a few extra configuration parameters and APIs.
+Mirroring integrations are developed the same as other integrations. They provide a few extra configuration parameters and APIs.
 
 
 ## Supported Server Version
-A Mirroring Integration's YAML file _must_ have the following field `fromversion: 6.0.0`. This is because Mirroring Integrations are only supported from Server version 6.0.0 and on.
+For the Mirroring feature to work, the mirroring integration's YAML file _must_ have the following field `fromversion: 6.0.0`. This is because mirroring is only supported from version 6.0.0 and on.
 
 
 ## Required Parameters
@@ -25,7 +25,7 @@ A Mirroring Integration's YAML file should have the following parameters (under 
 ```
 Where:
 - isfetch determines if the integration fetches incidents.
-- ismappable determines if the remote schema can be accessed.
+- ismappable determines if the remote schema can be retrieved for this integration.
 - isremotesyncin determines if mirroring from the 3rd party integration to XSOAR is supported.
 - isremotesyncout determines if mirroring from XSOAR to the 3rd party integration is supported.
 
@@ -35,16 +35,16 @@ Use the following commands to implement a mirroring integration.
 - `test-module` - this is the command that is run when the `Test` button in the configuration panel of an integration is clicked.
 - `fetch-incidents` - this is the command that fetches new incidents to Cortex XSOAR.
 - `get-remote-data` - this command gets new information about the incidents in the remote system and updates *existing* incidents in Cortex XSOAR. This command is executed every 1 minute for each individual incident. 
-- `update-remote-system` - this command updates the remote system with the information we have in the mirrored incidents within Cortex XSOAR. This command is executed whenever the incident is changed in Cortex XSOAR.
+- `update-remote-system` - this command updates the remote system with the information we have in the mirrored incidents within Cortex XSOAR. This command is executed whenever the individual incident is changed in Cortex XSOAR.
 - `get-mapping-fields` - this command pulls the different incident types and their associated incident fields from the remote system. This enables users to map XSOAR fields to the 3rd-party integration fields in the outgoing mapper. 
 
-## Useful objects to use in your code
-All the functions explained here are globally available through the CommonServerPython file.
+## How to implement mirroring functions
+You can implement the following functions, using the classes described below, which are globally available through the CommonServerPython file.
 
 ### get-remote-data
 * GetRemoteDataArgs - this is an object created to maintain all the arguments you receive from the server in order to use this command.
 Arguments explanation:
-  - remote_incident_id - the remote incident id.
+  - remote_incident_id - contains the value of the dbotMirrorId field, which represents the id of the incident in the external system.
   - last_update - the time the incident was last updated - our recommendation would be to use the arg_to_timestamp function to parse it into a timestamp.
 * GetRemoteDataResponse - this is the object that maintains the format in which you should order the results from this function. You should use return_results on this object to make it work.
 Arguments explanation:
@@ -78,12 +78,12 @@ def get_remote_data_command(client, args):
 Arguments explanation:
   - data - represents the data of the current incident - a dictionary object `{key: value}`.
   - entries - represents the entries from your current incident - a list of dictionary objects representing the entries.
-  - remote_incident_id - the dbotMirrorID, which is the incident's ID in the 3rd party integration. 
+  - remote_incident_id - contains the value of the dbotMirrorId field, which represents the id of the incident in the external system. 
   - inc_status - the status of the incident(numeric value, could be used with IncidentStatus from CommonServerPython).
   - delta - represents the dictionary of fields which have changed from the last update - a dictionary object `{key: value}` containing only the changed fields.
   
 An example for such a function could be:
-```
+```python
 def update_remote_system_command(client: Client, args: Dict[str, Any]) -> str:
     """update-remote-system command: pushes local changes to the remote system
 
