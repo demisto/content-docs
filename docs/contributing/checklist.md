@@ -30,13 +30,13 @@ Please follow the [directory structure](TK add link here) for all the directory 
 If your pack contains at least an Integration, the integration directory should contain the following:
 
 - [ ] Code file (i.e. `Packs/YourPackName/YourIntegrationName/Integrations/YourIntegrationName.py`)
-- [ ] YML metadata file (i.e. `Packs/YourPackName/Integrations/YourIntegrationName/YourIntegrationName.yml`)
-- [ ] Description markdown file (i.e. `Packs/YourPackName/Integrations/YourIntegrationName/YourIntegrationName_description.md`)
+- [ ] Metadata file (i.e. `Packs/YourPackName/Integrations/YourIntegrationName/YourIntegrationName.yml`)
+- [ ] Description file (i.e. `Packs/YourPackName/Integrations/YourIntegrationName/YourIntegrationName_description.md`)
 - [ ] Image file (i.e. `Packs/YourPackName/Integrations/YourIntegrationName/YourIntegrationName_image.png`)
-- [ ] README markdown file (i.e. `Packs/YourPackName/Integrations/YourIntegrationName/README.md`)
+- [ ] README file (i.e. `Packs/YourPackName/Integrations/YourIntegrationName/README.md`)
 - [ ] Command examples file (i.e. `Packs/YourPackName/Integrations/YourIntegrationName/command_examples`)
 - [ ] Unit tests file (i.e. `Packs/YourPackName/Integrations/YourIntegrationName/YourIntegrationName_test.py`)
-- [ ] Unit tests data files (i.e. `Packs/YourPackName/Integrations/YourIntegrationName/test_data/*.json`)
+- [ ] Unit tests data (i.e. `Packs/YourPackName/Integrations/YourIntegrationName/test_data/*.json`)
 
 **Note**: if you use PowerShell and not Python, the extension of the code files will be `.ps1` instead of `.py`.
 
@@ -54,8 +54,8 @@ If your integration is going to be *certified*, you also have the following requ
 If your pack contains at least a playbook, the playbook directory must contain the following files:
 
 - [ ] Playbook file (i.e. `Packs/YourPackName/Playbooks/playbook-YourPlaybookName.yml`)
-- [ ] Playbook README markdown file (i.e. `Packs/YourPackName/Playbooks/playbook-YourPlaybookName.md`)
-- [ ] Playbook image file (i.e. `Packs/YourPackName/doc_files/YourPlaybookName.png`)
+- [ ] README file (i.e. `Packs/YourPackName/Playbooks/playbook-YourPlaybookName.md`)
+- [ ] Image file (i.e. `Packs/YourPackName/doc_files/YourPlaybookName.png`)
 
 *Note*: the playbook README file must be updated with the correct image link after the Pull Request is opened, as explained in the documentation [here](integration-docs#images)
 
@@ -112,22 +112,22 @@ If your integration is going to be *certified*, you also have the following requ
 
 **Note**: if your pack contains both integrations and scripts, you can use a single Test Playbook to test both.
 
-### Pack Checklist Table
+### Pack Requirements Table
 
-The data above is also summarized in the following table:
+The requirements above are also summarized in the following table:
 
-|                       Type |       Required for both non-certified and certified       | Requirement only for Certified |
-|---------------------------:|:---------------------------------------------------------:|--------------------------------|
-| Pack                       | - [ ] Pack Metadata - [ ] Pack Readme - [ ] Release Notes |                                |
-| Integration                |                                                           |                                |
-| Playbook                   |                                                           |                                |
-| Incident/Indicator Field   |                                                           |                                |
-| Incident/Indicator Type    |                                                           |                                |
-| Classifiers and Mappers    |                                                           |                                |
-| Incident/Indicator Layouts |                                                           |                                |
-| Scripts                    |                                                           |                                |
-| Widgets                    |                                                           |                                |
-| Dashboards                 |                                                           |                                |
+|               Entity Type |                                                                          Non-certified and certified                                                                          | Certified only  |
+|--------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|---------------------------------|
+| Pack                      | <ul><li>Pack metadata</li><li>Pack readme</li><li>Release Notes</li></ul>                                                                                                                       | <ul><li>Test Playbook</li></ul> |
+| Integration               | <ul><li>Code file</li><li>Metadata file</li><li>Description file</li><li>Image file</li><li>README file</li><li>Command examples file</li><li>Unit tests file</li><li>Unit tests data</li></ul> |                                 |
+| Playbook                  | <ul><li>Playbook file</li><li>README file</li><li>Image file</li></ul>                                                                                                                                          |                                 |
+| Incident/Indicator Field  | <ul><li>Incident/Indicator field file</li></ul>                                                                                                                                                             |                                 |
+| Incident/Indicator Type   | <ul><li>Incident/Indicator type file</li></ul>                                                                                                                                                              |                                 |
+| Classifier and Mapper     | <ul><li>Classifier file (for XSOAR 6.0 and above)</li><li>Mapper file (for XSOAR 6.0 and above)</li><li>Classifier 5.x file (for XSOAR 5.x)</li></ul>                                                           |                                 |
+| Incident/Indicator Layout | <ul><li>Layout files (for XSOAR 6.0 and above)</li><li>Layout file 5.x (for XSOAR 5.x)</li>                                                                                                              </ul>|                                 |
+| Script                    | <ul><li>Code file</li><li>Metadata file</li><li>README file</li><li>Unit tests file</li><li>Unit tests data</li></ul>                                                                                               | <ul><li>Test Playbook</li></ul>             |
+| Widget                    | <ul><li>Widget file</li></ul>                                                                                                                                                                               |                                 |
+| Dashboard                 | <ul><li>Dashboard file</li></ul>                                                                                                                                                                            |                                 |
 
 ## Pull Request Checklist
 
