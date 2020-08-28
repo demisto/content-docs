@@ -17,9 +17,9 @@ Happy contributing!
 
 No matter you include in your content pack or whether it's going to be certified, the pack must include the following:
 
-- Pack Metadata file (i.e. `Packs/YourPackName/pack_metadata.json`) : the information about your content pack. It should be compiled with all the required information, as explained [here](packs-format)
-- Pack README (i.e. `Packs/YourPackName/README.md`): the readme of the pack file. More information [here](pack-docs)
-- Release Notes (i.e. `Packs/YourPackName/ReleaseNotes/1_0_1.md`): these are required only if you are updating an existing Content pack, not for the first. More information [here](release-notes)
+- Pack Metadata file (i.e. `Packs/YourPackName/pack_metadata.json`) : the information about your content pack. It should be compiled with all the required information, as explained [here](packs-format).
+- Pack README (i.e. `Packs/YourPackName/README.md`): the readme of the pack file. More information [here](pack-docs).
+- Release Notes (i.e. `Packs/YourPackName/ReleaseNotes/1_0_1.md`): these are required only if you are updating an existing Content pack, not for the first. More information [here](release-notes).
 
 **Note**: Please use PascalCase (YourPackName) for the names of the directories and files that include your company, integration and playbook names (see the examples below).
 
@@ -29,7 +29,7 @@ As a reference, you can check the tree of the [Hello World](https://github.com/d
 
 Integrations and Scripts should be written with your favorite IDE (see [here](dev-setup) and [here](tut-setup-dev) for details on how to set up your dev environment)
 
-All other entity types (Playbooks, Test Playbooks, Incidents/Indicators Fields and Types, Layouts, Classifiers and Mappers, Widgets, Dashboards) should be created in the Cortex XSOAR UI and exported using `demisto-sdk download`. You can also export the files manually via the Cortex XSOAR UI (either individually using the download icons, or using the `Export Custon Content` feature) but, in that case, you'll need to format them using `demisto-sdk format`.
+All other entity types (Playbooks, Test Playbooks, Incidents/Indicators Fields and Types, Layouts, Classifiers and Mappers, Widgets, Dashboards) should be created in the Cortex XSOAR UI and exported using `demisto-sdk download`. You can also export the files manually via the Cortex XSOAR UI (either individually using the download icons, or using the `Export Custom Content` feature) but, in that case, you'll need to format them using `demisto-sdk format`.
 
 ##  Integrations
 
@@ -154,7 +154,7 @@ Before opening the Pull Request on the Cortex XSOAR [GitHub Repository](https://
 - If you're an XSOAR partner, have your `partner-id` (this should have been communicated to you over the onboarding emails from the Alliance team).
 - Join our our [Slack DFIR Community](https://www.demisto.com/community/), also useful if you have questions (use the `#demisto-developers` channel).
 - Design Document: we encourage you to prepare a Design Document that describes the capabilities of your Pack. Usually it's a Google Doc shared with you by the Alliance team.
-- Create a short video to demo your product and your pack, and link it: this will be used by our reviwers to understand what your product does and how the content pack work.
+- Create a short video to demo your product and your pack, and link it: this will be used by our reviewers to understand what your product does and how the content pack work.
 - Pass the linters `demisto-sdk lint`: if you have an Integration or Script, your code must pass the [tests](tut-setup-dev#step-5-run-the-linter-and-unit-tests).
 - Pass the validation `demisto-sdk validate`: make sure you run `demisto-sdk validate -i Packs/YourPackName` and all the checks are passed before opening the Pull Request. If unsure, ask for help on the `#demisto-developers` channel on our [Slack DFIR Community](https://www.demisto.com/community/).
 
