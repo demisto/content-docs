@@ -90,9 +90,10 @@ For example, for a pack related to messaging, you may want to add "msg" as a key
 
 - Category -- what field/subject the pack relates to, in high level.
 Your pack should fall into one of the existing categories:
+
 <details>
 <summary>Pack Categories</summary>
-  
+
 Analytics & SIEM
 
 Authentication
@@ -134,9 +135,10 @@ Pack dependencies are the requirement of one content pack, when using another pa
 
 Dependencies can be categorized as either optional or required/mandatory. Optional means the pack will **benefit** from the existence of the pack it depends on, while required means the pack **needs**, and **will not work** without the existence of the pack it depends on.
 Some packs ship out-of-the-box with XSOAR, and so depending on them is absolutely fine. Such are the Core packs:
+
 <details>
 <summary>Core Packs</summary>
-  
+
 AccessInvestigation
 
 Active_Directory_Query
@@ -188,6 +190,7 @@ VirusTotal
 WhereIsTheEgg
 
 Whois
+
 </details>
 
 ### How do you find pack dependencies?
