@@ -11,7 +11,7 @@ Depending on whether your content pack is aiming to be *certified* or not, there
 
 This article also includes a Pull Request checklist, that summarized everything you must do before and after opening a Pull Request on GitHub to contribute your pack.
 
-## Content pack checklist
+# Content pack checklist
 
 No matter you include in your content pack or whether it's going to be certified, the pack must include the following:
 
@@ -25,7 +25,7 @@ Skeleton files are created by `demisto-sdk init`. Check out [here](pack-docs) an
 
 Please follow the [directory structure](TK add link here) for all the directory information.
 
-###  Integration requirements
+##  Integrations
 
 If your pack contains at least an Integration, the integration directory should contain the following:
 
@@ -40,7 +40,7 @@ If your pack contains at least an Integration, the integration directory should 
 
 **Note**: if you use PowerShell and not Python, the extension of the code files will be `.ps1` instead of `.py`.
 
-#### Additional requirements Certified packs
+### Additional requirements Certified packs
 
 If your integration is going to be *certified*, you also have the following requirements (that are optional for non-certified):
 
@@ -49,7 +49,7 @@ If your integration is going to be *certified*, you also have the following requ
 
 ... and of course your adherence to our best practices and [code conventions](code-conventions) will be evaluated in a stricter way.
 
-### Playbook requirements
+## Playbooks
 
 If your pack contains at least a playbook, the playbook directory must contain the following files:
 
@@ -59,38 +59,38 @@ If your pack contains at least a playbook, the playbook directory must contain t
 
 *Note*: the playbook README file must be updated with the correct image link after the Pull Request is opened, as explained in the documentation [here](integration-docs#images)
 
-### Incident or Indicator Fields
+## Incident or Indicator Fields
 
 If your pack contains at least a custom Incident or Indicator field, you'll need:
 
-- [ ] Incident or Indicator field JSON files (i.e. `Packs/YourPackName/IncidentFields/YourIncidentFieldName.json` or `Packs/YourPackName/IndicatorFields/YourIndicatorFieldName.json`)
+- [ ] Incident or Indicator field JSON file (i.e. `Packs/YourPackName/IncidentFields/YourIncidentFieldName.json` or `Packs/YourPackName/IndicatorFields/YourIndicatorFieldName.json`)
 
-### Incident or Indicator Types
+## Incident or Indicator Types
 
 If your pack contains at least a custom Incident or Indicator type, you'll need:
 
-- [ ] Incident or Indicator type JSON files (i.e. `Packs/YourPackName/IncidentTypes/YourIncidentTypeName.json` or `Packs/YourPackName/IndicatorType/YourIndicatorTypeName.json`)
+- [ ] Incident or Indicator type JSON file (i.e. `Packs/YourPackName/IncidentTypes/YourIncidentTypeName.json` or `Packs/YourPackName/IndicatorType/YourIndicatorTypeName.json`)
 
 If you have a custom Incident or Indicator type, most probably you'll also have to include corresponding *Classifiers*, *Mappers* and *Layouts*:
 
-#### Classification and Mapping
+## Classifiers and Mappers
 
-- [ ] Classifier files
-- [ ] Mapper files
-
-If you want your pack to be also compatible with version 5.x of Cortex XSOAR (5.0 and 5.5), you'll also need:
-
-- [ ] Classification & Mapping JSON file
-
-#### Incident or Indicator Layouts
-
-- [ ]  Layout Files (one for each type of Layout)
+- [ ] Classifier JSON file (i.e. `Packs/YourPackName/Classifiers/classifier-YourIntegrationName.json`)
+- [ ] Mapper JSON file (i.e. `Packs/YourPackName/Classifiers/classifier-mapper-incoming-YourIntegrationName.json`)
 
 If you want your pack to be also compatible with version 5.x of Cortex XSOAR (5.0 and 5.5), you'll also need:
 
-- [ ] 5.x Layout File (one file only that contains all layout types)
+- [ ] 5.x Classifier & Mapper JSON file (i.e. `Packs/YourPackName/Classifiers/classifier-YourIntegrationName_5_9_9.json`)
 
-###  Automation script requirements
+## Incidents or Indicator Layouts
+
+- [ ] Layout JSON file (i.e. `Packs/YourPackName/Layouts/layoutscontainer-YourIncidentTypeName.json`)
+
+If you want your pack to be also compatible with version 5.x of Cortex XSOAR (5.0 and 5.5), you'll also need:
+
+- [ ] 5.x Layout JSON File (one file for each Layout type, i.e. `Packs/YourPackName/Layouts/layouts-details-YourIncidentTypeName.json`)
+
+##  Scripts (Automations)
 
 If your pack contains at least an automation script, the automation directory should contain the following:
 
@@ -102,7 +102,7 @@ If your pack contains at least an automation script, the automation directory sh
 
 **Note**: if you use PowerShell and not Python, the extension of the code files will be `.ps1` instead of `.py`.
 
-#### Additional requirements Certified packs
+### Additional requirements Certified packs
 
 If your integration is going to be *certified*, you also have the following requirements (that are optional for non-certified):
 
@@ -112,7 +112,20 @@ If your integration is going to be *certified*, you also have the following requ
 
 **Note**: if your pack contains both integrations and scripts, you can use a single Test Playbook to test both.
 
-### Pack Requirements Table
+## Widgets
+
+If your pack contains at least a custom widget, you'll need:
+
+- [ ] Widget JSON file (i.e. `Packs/YourPackName/Widgets/widget-YourWidgetName.json`)
+
+## Dashboards
+
+If your pack contains at least a custom dashboard, you'll need:
+
+- [ ] Dashboard JSON file (i.e. `Packs/YourPackName/Dashboard/dashboard-YourDashboardName.json`)
+
+
+# Pack Requirements Table
 
 The requirements above are also summarized in the following table:
 
@@ -121,15 +134,15 @@ The requirements above are also summarized in the following table:
 | Pack                      | <ul><li>Pack metadata</li><li>Pack readme</li><li>Release Notes</li></ul>                                                                                                                       | <ul><li>Test Playbook</li></ul> |
 | Integration               | <ul><li>Code file</li><li>Metadata file</li><li>Description file</li><li>Image file</li><li>README file</li><li>Command examples file</li><li>Unit tests file</li><li>Unit tests data</li></ul> |                                 |
 | Playbook                  | <ul><li>Playbook file</li><li>README file</li><li>Image file</li></ul>                                                                                                                                          |                                 |
-| Incident/Indicator Field  | <ul><li>Incident/Indicator field file</li></ul>                                                                                                                                                             |                                 |
-| Incident/Indicator Type   | <ul><li>Incident/Indicator type file</li></ul>                                                                                                                                                              |                                 |
-| Classifier and Mapper     | <ul><li>Classifier file (for XSOAR 6.0 and above)</li><li>Mapper file (for XSOAR 6.0 and above)</li><li>Classifier 5.x file (for XSOAR 5.x)</li></ul>                                                           |                                 |
-| Incident/Indicator Layout | <ul><li>Layout files (for XSOAR 6.0 and above)</li><li>Layout file 5.x (for XSOAR 5.x)</li>                                                                                                              </ul>|                                 |
+| Incident/Indicator Field  | <ul><li>Incident/Indicator field JSON file</li></ul>                                                                                                                                                             |                                 |
+| Incident/Indicator Type   | <ul><li>Incident/Indicator type JSON file</li></ul>                                                                                                                                                              |                                 |
+| Classifier and Mapper     | <ul><li>Classifier JSON file (for XSOAR 6.0 and above)</li><li>Mapper JSON file (for XSOAR 6.0 and above)</li><li>5.x Classifier JSON file (for XSOAR 5.x)</li></ul>                                                           |                                 |
+| Incident/Indicator Layout | <ul><li>Layout JSON files (for XSOAR 6.0 and above)</li><li>5.x Layout JSON file(for XSOAR 5.x)</li>                                                                                                              </ul>|                                 |
 | Script                    | <ul><li>Code file</li><li>Metadata file</li><li>README file</li><li>Unit tests file</li><li>Unit tests data</li></ul>                                                                                               | <ul><li>Test Playbook</li></ul>             |
-| Widget                    | <ul><li>Widget file</li></ul>                                                                                                                                                                               |                                 |
-| Dashboard                 | <ul><li>Dashboard file</li></ul>                                                                                                                                                                            |                                 |
+| Widget                    | <ul><li>Widget JSON file</li></ul>                                                                                                                                                                               |                                 |
+| Dashboard                 | <ul><li>Dashboard JSON file</li></ul>                                                                                                                                                                            |                                 |
 
-## Pull Request Checklist
+# Pull Request Checklist
 
 Before opening the Pull Request on the Cortex XSOAR [GitHub Repository](https://github.com/demisto/content), you need to:
 
