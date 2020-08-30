@@ -43,6 +43,8 @@ Cortex XSOAR Credentials enables you to centrally manage credentials, which incl
 
 Cortex XSOAR integrates with external credential vaults, which enables you to use them in Cortex XSOAR without hard coding or exposing them. The credentials are not stored in Cortex XSOAR, rather, the integration fetches the credentials from the external vault when called. The credentials are fetched and cached in-memory. They are passed to integrations that are executed as part of the integrations params.
 
+**Sample Credentials Provider Integrations:**
+
 *   [CyberArk AIM](https://xsoar.pan.dev/docs/reference/integrations/cyber-ark-aim)
 *   [HashiCorp Vault](https://xsoar.pan.dev/docs/reference/integrations/hashi-corp-vault)
 
