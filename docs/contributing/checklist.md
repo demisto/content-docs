@@ -51,7 +51,7 @@ If your pack contains at least an Integration, the integration directory should 
 If your integration is going to be *certified*, you also have the following requirements (optional for non-certified):
 
 - Test Playbook (i.e. `Packs/YourPackName/TestPlaybooks/playbook-YourIntegrationName_Test.yml`): required for nightly builds. More information [here](test-playbooks)
-- Custom Incident Types, Fields, Classifiers, Mappers and Layouts: **if** your integration the ability to [*fetch incidents*](fetching-incidents), most likely you need to provide custom Incident Types and the related entities. This is usually covered during the Design phase: work with your Palo Alto Networks alliance contact if in doubt.
+- Custom Incident Types, Fields, Classifiers, Mappers and Layouts: **if** your integration has the ability to [*fetch incidents*](fetching-incidents), most likely you need to provide custom Incident Types and the related entities. This is usually covered during the Design phase: work with your Palo Alto Networks alliance contact if in doubt.
 
 ... and of course your adherence to our best practices and [code conventions](code-conventions) will be evaluated in a stricter way.
 
