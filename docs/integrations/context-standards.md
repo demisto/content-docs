@@ -298,7 +298,7 @@ outputs:
 - contextPath: Email.Headers
   description: The headers of the email.
   type: String
-- contextPath: Email.Attachments
+- contextPath: Email.Attachment
   description: List<String> Entry IDs of email attachments
   type: Unknown
 ```

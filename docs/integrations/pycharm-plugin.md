@@ -100,6 +100,8 @@ When you run a script in PyCharm, the file is automatically exported to Cortex X
 
 From PyCharm, you can run an integration or automation in Cortex XSOAR. When you want to run the script in Cortex XSOAR. The script will be uploaded to, and run in Cortex XSOAR, and the results will be displayed in the `Cortex XSOAR Results` toolbar in PyCharm.
 
+To run an integration from PyCharm, you need an active Playground in Cortex XSOAR, otherwise an error is thrown in PyCharm. To create a Playground, from the Cortex XSOAR CLI run the `/playground_create` command.
+
 1.  From the **Cortex XSOAR Settings** toolbar, select what to run.  
     *   Run Automation
     *   Run Integration

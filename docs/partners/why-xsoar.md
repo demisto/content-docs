@@ -10,7 +10,7 @@ Why develop your own content and integrations (BYOI) for the Cortex XSOAR platfo
 
 Integrating with Cortex XSOAR allows your customers to leverage your product(s), in tandem with the hundreds of products in the Cortex XSOAR SOAR ecosystem, to automate and streamline their security operations. 
 
-<a class="button button--outline button--primary button--lg" href="https://www.demisto.com/integrations/" target="_blank">Check out some of our integrations!</a>
+<a class="button button--outline button--primary button--lg" href="https://www.paloaltonetworks.com/cortex/xsoar-ecosystem" target="_blank">See our integrations!</a>
 <br/><br/>
 Here are a few of the benefits: 
 

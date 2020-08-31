@@ -43,3 +43,7 @@ When you configure the integration in Cortex XSOAR, enter those parameters in th
 * Key - Client Secret
 
 In addition, make sure to select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
+
+## Revoking Consent
+
+In order to revoke consent to a Cortex XSOAR Microsoft application, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant#revoking-consent). 

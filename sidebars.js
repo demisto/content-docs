@@ -10,6 +10,7 @@ const sidebars = {
     {
       type: "category",
       label: "Concepts",
+      collapsed: false,
       items: [
           {
             type: "doc",
@@ -32,6 +33,7 @@ const sidebars = {
     {
       type: "category",
       label: "Getting Started",
+      collapsed: false,
       items: [
         "integrations/getting-started-guide",
         "integrations/dev-setup",        
@@ -65,6 +67,7 @@ const sidebars = {
             "integrations/dbot",
             "integrations/dt",
             "integrations/integration-cache",
+            "integrations/openapi-codegen",
           ]
         },
         {
@@ -84,7 +87,7 @@ const sidebars = {
             "integrations/pack-docs",
             "integrations/integration-docs",
             "integrations/doc-structure",
-            "integrations/changelog"
+            "integrations/release-notes"
           ],
         }
       ]
@@ -146,22 +149,19 @@ const sidebars = {
   partners:
   [
     {
-      type: "doc",
-      id: "partners/why-xsoar"
+      type: "category",
+      label: "Partners",
+      collapsed: false,
+      items: [
+        "partners/why-xsoar",
+        "partners/become-a-tech-partner",
+        "partners/marketplace",
+        "partners/certification",
+        "partners/office-hours",
+        "partners/development-partners"
+      ],
     },
-    {
-      type: "doc",
-      id: "partners/become-a-tech-partner"
-    },
-    {
-      type: "doc",
-      id: "partners/partner-owned-integration"
-    },
-    {
-      type: "doc",
-      id: "partners/development-partners"
-    },
-  ]
+  ],
 };
 
 if (fs.existsSync("docs/reference/sidebar.json")) {

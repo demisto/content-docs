@@ -21,7 +21,7 @@ https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 /docs/faq	/docs/concepts/faq
 
 # Howtos Integrations
-/docs/changelog	/docs/howtos/integrations/changelog
+/docs/changelog	/docs/howtos/integrations/release-notes
 /docs/code-conventions	/docs/howtos/integrations/code-conventions
 /docs/context-and-outputs	/docs/howtos/integrations/context-and-outputs
 /docs/context-standards	/docs/howtos/integrations/context-standards
@@ -61,7 +61,7 @@ https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 # Redirect docs after second restyle of 3/20/2020
 
 # Howtos Integrations
-/docs/howtos/integrations/changelog /docs/integrations/changelog
+/docs/howtos/integrations/changelog /docs/integrations/release-notes
 /docs/howtos/integrations/code-conventions  /docs/integrations/code-conventions
 /docs/howtos/integrations/context-and-outputs   /docs/integrations/context-and-outputs
 /docs/howtos/integrations/context-standards /docs/integrations/context-standards
@@ -87,6 +87,9 @@ https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 /docs/howtos/integrations/integration-cache /docs/integrations/integration-cache
 /docs/howtos/integrations/integration-context /docs/integrations/integration-cache
 
+# rename changelog to release-notes
+/docs/integrations/changelog /docs/integrations/release-notes
+
 # Howtos Contributing
 /docs/howtos/contributing/circleci  /docs/contributing/circleci
 
@@ -106,7 +109,7 @@ https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 /docs/tutorials/tutorial-TIM-export-indicators-to-3rd-party /docs/reference/articles/export-indicators
 
 #Sign Up
-
+/program-guide https://www.paloaltonetworks.com/content/dam/pan/en_US/assets/pdf/datasheets/cortex-xsoar-partner-program-guide.pdf
 /sign-addn https://na2.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=f1b0bfb5-5e5a-49b9-8ed6-5b475605cefa&env=na2&acct=11b87c14-db4f-4b90-b5b1-58b37f18856f&v=2
 
 # Rebranding
