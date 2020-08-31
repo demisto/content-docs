@@ -120,12 +120,13 @@ command_results = CommandResults(
 return_results(command_result)
 ```
 
-**Notes**: 
-  - The code **must** match the context path outputs specified in the yml file.
+:::note
+  - The code **must** match the context path outputs specified in the YAML file.
   - You can output the API response as is to the context as a raw value, under the brand name key.
     There is no need to modify the API response and map it to human readable keys.
-    You might still see old integrations in which this type of mapping is performed, but this is not a requirement. 
-
+    You might still see old integrations in which this type of mapping is performed, but this is not a requirement.
+  - Avoid using dot and space characters in the context path keys.
+:::
 
 ---
 
@@ -223,6 +224,32 @@ return_results(results)
 >|---|---|
 >| 100 | alert1 |
 >| 200 | alert2 |
+
+---
+
+### Return Data that has multiple unique identifier fields
+:::note
+Key fields are used to determine whether the data will be updated or added as new. [More info](./context-and-outputs#dt-cortex-xsoar-transform-language)
+:::
+```python
+alerts = [
+    {
+        'id': 100,
+        'name': 'alert1'
+    },
+    {
+        'id': 200,
+        'name': 'alert2'
+    }
+]
+
+results = CommandResults(
+    outputs_prefix='PrismaCompute.Alert',
+    outputs_key_field=['id', 'name'],
+    outputs=alerts
+)
+return_results(results)
+```
 
 ---
 

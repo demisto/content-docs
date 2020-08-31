@@ -30,7 +30,7 @@ def verify_mdx(readme_file: str):
 
 
 def verify_mdx_server(readme_content: str):
-    response = requests.post('http://localhost:6060', data=readme_content.encode('utf-8'), timeout=5)
+    response = requests.post('http://localhost:6060', data=readme_content.encode('utf-8'), timeout=10)
     if response.status_code != 200:
         raise ValueError(f'Failed verfiying via MDX server. Status: {response.status_code}. Error: {response.text}')
 
