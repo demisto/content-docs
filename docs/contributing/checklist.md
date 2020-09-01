@@ -7,7 +7,7 @@ This document includes a checklist that summarizes the list of files that you ne
 
 Keep in mind that content packs can contain multiple types of entities, such as Integrations, Automations, Playbooks, Incident Types, Incident Fields, and so on.
 
-Depending on whether your content pack is aiming to be *certified* or not, there will be different requirements.
+Depending on whether your content pack is aiming to be [certified](../partners/certification) or not, there will be different requirements.
 
 This article also includes a Pull Request checklist, that summarized everything you must do before and after opening a Pull Request on GitHub to contribute your pack.
 
