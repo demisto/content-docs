@@ -67,6 +67,6 @@ Please read the following guidelines. Following these guidelines will maximize t
 * Document your integration as detailed [here](integration-docs).
 * Document your changes in a relevant release notes file as detailed [here](release-notes)
 
-At this point you should be ready to submit a Pull Request! For more details, refer to our [Contributing](https://github.com/demisto/content/blob/master/CONTRIBUTING.md) page.
+At this point you should be ready to submit a Pull Request! Check out our [Contributing Checklist](checklist), and for more details, refer to our [Contributing](https://github.com/demisto/content/blob/master/CONTRIBUTING.md) page on GitHub.
 
 **Note**: if you are a technology partner, make sure you have reviewed the use cases with your Business Development contacts and that you have a *Partner ID* to associate your Pull Request to.

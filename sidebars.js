@@ -129,6 +129,7 @@ const sidebars = {
       type: "category",
       label: "Contributing",
       items: [
+        "contributing/checklist",
         "contributing/circleci",
       ]
     },
