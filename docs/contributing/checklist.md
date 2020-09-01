@@ -13,7 +13,7 @@ This article also includes a Pull Request checklist, that summarized everything 
 
 Happy contributing!
 
-# Content Pack checklist
+## Content Pack Checklist
 
 No matter what you include in your content pack or whether it's going to be certified, the pack must include the following:
 
@@ -27,13 +27,13 @@ As a reference, you can check the tree of the [Hello World](https://github.com/d
 
 To create a new content pack directory tree and structure, you should use the [`demisto-sdk init`](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/init#init) , as described in the [tutorial](../tutorials/tut-setup-dev#step-6-create-a-branch-and-integration-directory).
 
-## Where do I get all these files?
+### Where do I get all these files?
 
 Integrations and Scripts should be written with your favorite IDE (see [here](../integrations/dev-setup) and [here](../tutorials/tut-setup-dev) for details on how to set up your dev environment)
 
 All other entity types (Playbooks, Test Playbooks, Incidents/Indicators Fields and Types, Layouts, Classifiers and Mappers, Widgets, Dashboards) should be created in the Cortex XSOAR UI and exported using [`demisto-sdk download`](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/download#download) (using the `-fmt` argument). You can also export the files manually via the Cortex XSOAR UI (either individually using the download icons, or using the `Export Custom Content` feature) but, in that case, you'll need to format them using [`demisto-sdk format`](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/format/README.md).
 
-##  Integrations
+###  Integrations
 
 If your pack contains an Integration, the integration directory should contain the following:
 
@@ -46,7 +46,7 @@ If your pack contains an Integration, the integration directory should contain t
 
 **Note**: if you use PowerShell and not Python, the extension of the code files will be `.ps1` instead of `.py`.
 
-### Additional requirements Certified packs
+#### Additional requirements Certified packs
 
 If your integration is going to be [certified](../partners/certification), you also have the following requirements (optional for non-certified):
 
@@ -57,7 +57,7 @@ If your integration is going to be [certified](../partners/certification), you a
 
 ... and of course your adherence to our best practices and [code conventions](../integrations/code-conventions) will be evaluated in a stricter way.
 
-## Playbooks
+### Playbooks
 
 If your pack contains at least a playbook, the playbook directory must contain the following files:
 
@@ -67,13 +67,13 @@ If your pack contains at least a playbook, the playbook directory must contain t
 
 *Note*: the playbook README file must be updated with the correct image link after the Pull Request is opened, as explained in the documentation [here](../integrations/integration-docs#images)
 
-## Incident or Indicator Fields
+### Incident or Indicator Fields
 
 If your pack contains at least a custom Incident or Indicator field, you'll need:
 
 - Incident or Indicator field JSON file (i.e. `Packs/YourPackName/IncidentFields/YourIncidentFieldName.json` or `Packs/YourPackName/IndicatorFields/YourIndicatorFieldName.json`): if exported directly from the XSOAR UI, it must be formatted with `demisto-sdk format`.
 
-## Incident or Indicator Types
+### Incident or Indicator Types
 
 If your pack contains at least a custom Incident or Indicator type, you'll need:
 
@@ -81,7 +81,7 @@ If your pack contains at least a custom Incident or Indicator type, you'll need:
 
 If you have a custom Incident or Indicator type, most probably you'll also have to include corresponding *Classifiers*, *Mappers* and *Layouts*:
 
-## Classifiers and Mappers
+### Classifiers and Mappers
 
 - Classifier JSON file (i.e. `Packs/YourPackName/Classifiers/classifier-YourIntegrationName.json`): if exported directly from the XSOAR UI, it must be formatted with `demisto-sdk format`. If exported from Cortex XSOAR 5.x, it must also be [converted](../incidents/incident-classification-mapping#classifier--mapper-files-structure) to 6.0 format.
 - Mapper JSON file (i.e. `Packs/YourPackName/Classifiers/classifier-mapper-incoming-YourIntegrationName.json`): if exported directly from the XSOAR UI, it must be formatted with `demisto-sdk format`. If exported from Cortex XSOAR 5.x, it must also be [converted](../incidents/incident-classification-mapping#classifier--mapper-files-structure) to 6.0 format.
@@ -90,7 +90,7 @@ If you want your pack to be also compatible with version 5.x of Cortex XSOAR (5.
 
 - 5.x Classifier & Mapper JSON file (i.e. `Packs/YourPackName/Classifiers/classifier-YourIntegrationName_5_9_9.json`)
 
-## Incidents or Indicator Layouts
+### Incidents or Indicator Layouts
 
 - Layout JSON file (i.e. `Packs/YourPackName/Layouts/layoutscontainer-YourIncidentTypeName.json`): if exported directly from the XSOAR UI, it must be formatted with `demisto-sdk format`. If exported from Cortex XSOAR 5.x, it must also be [converted](../incidents/incident-customize-incident-layout#layout-file-structure) to 6.0 format.
 
@@ -98,7 +98,7 @@ If you want your pack to be also compatible with version 5.x of Cortex XSOAR (5.
 
 - 5.x Layout JSON File (one file for each Layout type, i.e. `Packs/YourPackName/Layouts/layouts-details-YourIncidentTypeName.json`)
 
-##  Scripts (Automations)
+###  Scripts (Automations)
 
 If your pack contains at least an automation script, the automation directory should contain the following:
 
@@ -107,6 +107,8 @@ If your pack contains at least an automation script, the automation directory sh
 - README  file (`Packs/YourPackName/Scripts/YourScriptName/README.md`): the script  documentation, mostly autogenerated (see [here](../integrations/integration-docs)).
 
 **Note**: if you use PowerShell and not Python, the extension of the code files will be `.ps1` instead of `.py`.
+
+#### Additional requirements Certified packs
 
 If your integration is going to be *certified*, you also have the following requirements (optional for non-certified):
 
@@ -118,20 +120,20 @@ If your integration is going to be *certified*, you also have the following requ
 
 **Note**: if your pack contains both integrations and scripts, you can use a single Test Playbook to test both.
 
-## Widgets
+### Widgets
 
 If your pack contains at least a custom widget, you'll need:
 
 - Widget JSON file (i.e. `Packs/YourPackName/Widgets/widget-YourWidgetName.json`): if exported directly from the XSOAR UI, it must be formatted with `demisto-sdk format`.
 
-## Dashboards
+### Dashboards
 
 If your pack contains at least a custom dashboard, you'll need:
 
 - Dashboard JSON file (i.e. `Packs/YourPackName/Dashboard/dashboard-YourDashboardName.json`): if exported directly from the XSOAR UI, it must be formatted with `demisto-sdk format`.
 
 
-# Checklist Table
+### Checklist Table
 
 The requirements above are also summarized in the following table:
 
@@ -149,7 +151,7 @@ The requirements above are also summarized in the following table:
 | Widget                    | <ul><li>Widget JSON file</li></ul>                                                                                                                                                                               |                                 |
 | Dashboard                 | <ul><li>Dashboard JSON file</li></ul>                                                                                                                                                                            |                                 |
 
-# Pull Request Checklist
+## Pull Request Checklist
 
 Before opening the Pull Request on the Cortex XSOAR [GitHub Repository](https://github.com/demisto/content), you need to:
 
