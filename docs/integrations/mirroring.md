@@ -60,12 +60,11 @@ def get_remote_data_command(client, args):
     parsed_entries = []
     for entry in raw_entries:
         parsed_entries.append({       
-            'Type': entry.get('type'),
-            'Category': entry.get('category'),
+            'Type': EntryType.NOTE,
             'Contents': entry.get('contents'),
-            'ContentsFormat': entry.get('format'),
-            'Tags': entry.get('tags'),  # the list of tags to add to the entry
-            'Note': entry.get('note')  # boolean, True for Note, False otherwise
+            'ContentsFormat': EntryFormat.TEXT,
+            'Tags': ['tag1', 'tag2'],  # the list of tags to add to the entry
+            'Note': False  # boolean, True for Note, False otherwise
         })
     
     remote_incident_id = new_incident_data['incident_id']
