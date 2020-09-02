@@ -130,6 +130,7 @@ const sidebars = {
       label: "Contributing",
       items: [
         "contributing/circleci",
+        "contributing/marketplace",
       ]
     },
     {
