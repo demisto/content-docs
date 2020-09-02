@@ -16,9 +16,9 @@ This page is meant as an overview to Marketplace. Please see the [Palo Alto Netw
 
 ## Packs
 
-All content on Marketplace is included in a Pack. (see docs on packs). When Partners create a pack, you specify the content that is included in that pack. 
+All content on Marketplace is included in a Pack. ([What can be in a pack?](/docs/integrations/packs-format)) When Partners create a pack, they specify the content that is included in that pack. 
 
-Packs can be free or paid. Our platform does full dependency checking, too, so a pack can be dependent on, say, a command in another pack. This allows you to build a playbook addressing a full use case across products. Paid content is held in your private repository. Free content is held in our open source repository. 
+Packs on Marketplace can be free or paid. Our platform does full dependency checking, too, so a pack can be dependent on, say, a command in another pack. This allows you to build a playbook addressing a full use case across products. Paid Packs are held in your private repository. Free Packs are held in our open source repository. 
 
 If you previously had a Demisto or Cortex XSOAR integration, it has been converted to a pack format and added to Marketplace for you.
 
