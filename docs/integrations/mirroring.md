@@ -12,7 +12,7 @@ Mirroring integrations are developed the same as other integrations. They provid
 
 
 ## Supported Server Version
-For the Mirroring feature to work, the mirroring integration's YAML file _must_ have the following field `fromversion: 6.0.0`. This is because mirroring is only supported from version 6.0.0 and on.
+Mirroring is only supported from version 6.0.0 and on.
 
 
 ## Required Parameters
