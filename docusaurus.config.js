@@ -141,6 +141,13 @@ module.exports = {
         // href: "https://pan.dev"
       },
       copyright: `Copyright © ${new Date().getFullYear()} Palo Alto Networks, Inc.`
+    },
+    announcementBar: {
+      id: 'github_star',
+      content:
+        '⭐️ If you like Cortex XSOAR Content, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/demisto/content">GitHub</a>! ⭐',
+      backgroundColor: '#fafbfc',
+      textColor: '#091E42',
     }
   },
   themes: ["@docusaurus/theme-live-codeblock"],
