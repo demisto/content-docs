@@ -16,5 +16,5 @@ In order to approve your pull request, we need:
 - Pull request build must pass
 - Fix all our notes in the pull request
 - Internal validation process must pass - we will update you if it will fail and why.
-8. Only after we approved your pull request, you are should merge pull request.
+8. Only after we approved your pull request, you should merge pull request.
 9. The pack is now officially in the XSOAR marketplace!
