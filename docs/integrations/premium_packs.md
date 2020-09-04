@@ -11,7 +11,7 @@ In this document we will go over the entire process for developing paid content 
 5. Once you have completed the work on the pack you should invite the `xsoar-bot` user as a collaborator to your repository so that we will be able to review your contribution and add it into our build system.
 This can be done using this [guide](https://help.github.jp/enterprise/2.11/user/articles/inviting-collaborators-to-a-personal-repository/).
 6. Send the details of the pack to the person you are in contact with and he will link your contribution to our system.
-7. Review Phase - we will review your pull request and leave notes, in parallel we have internal an validation process that we will spin up to validate your pack.
+7. Review Phase - we will review your pull request and leave notes, in parallel we have internal validation process that we will spin up to validate your pack.
 In order to approve your pull request, we need:
 - Pull request build must pass
 - Fix all our notes in the pull request
