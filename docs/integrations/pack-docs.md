@@ -15,7 +15,7 @@ Content Packs displayed in the Cortex XSOAR Marketplace contain 2 main documenta
 
 
 ## Pack Description
-The Pack Description is maintained in the `pack_metadata.json` file under the description field. Packs should always contain a description, even if a README file is provided with more details. This is to allow users to get a short overview of the Pack when browsing the Marketplace.
+The pack description is the first bit of information that users will see when they see your content pack. It's important to give a detailed, thorough description of what the pack contains, use cases, and overall benefits of the pack. The Pack Description is maintained in the `pack_metadata.json` file under the description field. Packs should always contain a description, even if a README file is provided with more details. This is to allow users to get a short overview of the Pack when browsing the Marketplace.
 
 ### General Description Guidelines
 - Short and to the point
@@ -50,16 +50,16 @@ Here are some templates that can help you get started:
 * "Get smarter. This pack utilizes _________ and _______for when _________ is heavily needed"
 
 ## Pack README
-For larger Packs that provide a use case, we recommend creating a README file which will be displayed in the *Details* tab of the Pack. The `README.md` file should be markdown formatted and placed in the Packs root directory. The file should contain a more detailed overview of the Pack compared to the *Description* section. You are free to add any information you see fit to include about the pack. It is recommended to provide an overview of what the Pack does and how to start working with the Pack.  
+For larger packs that provide at least one end-to-end use case you should create a detailed README file for the pack that will be displayed in the *Details* tab of the pack in the Marketplace. The `README.md` file should be markdown formatted and placed in the Packs root directory. The file should contain a more detailed overview of the Pack compared to the *Description* section. You are free to add any information you see fit to include about the pack. It is recommended to provide an overview of what the Pack does and how to start working with the Pack.  
 
 ### README structure
-- **If** the pack is a beta pack, add the following at the very beginning of the pack README file:
+- If the pack is a ***beta*** pack, add the following at the very beginning of the pack README file:
 _Note: This is a beta pack, which lets you implement and test pre-release software. Since the pack is beta, it might contain bugs. Updates to the pack during the beta phase might include non-backward compatible features. We appreciate your feedback on the quality and usability of the pack to help us identify issues, fix them, and continually improve._
-* A short paragraph connecting real life situations to the usefulness of the pack
-* A "What does this pack do?" section, explaining point by point what the capabilities of the pack or the main playbook of the pack are.
-* Optional: a sentence or two detailing the contents of the pack.
-* Mostly relevant for use-case packs that contain multiple playbooks: a reference to the README of the **main playbook** of the pack which contains most of the logic behind it. Add the following:
-_For more information, visit our Cortex XSOAR Developer Docs_
+* A short paragraph connecting real-life situations to the pack use cases.
+* A "What does this pack do?" section, explaining point-by-point the capabilities of the pack or the main playbook of the pack.
+* (Optional): a sentence or two detailing the contents of the pack.
+* Mostly relevant for use-case packs that contain multiple playbooks: a reference to the README of the **main playbook** of the pack that contains the playbook logic. Add the following:
+_For more information, visit the Cortex XSOAR Developer Docs_
 Note that "Cortex XSOAR Developer Docs" should link **directly to the readme of the main playbook**. An example of what is linked in the Phishing pack: https://xsoar.pan.dev/docs/reference/playbooks/phishing-investigation---generic-v2
 * For packs that contains playbooks: a youtube video or an image of the main playbook of the pack. The section following the pack image below explains how to add an image.
 ![image](https://user-images.githubusercontent.com/43602124/88673366-31d59c80-d0f1-11ea-9319-b7d9f2fb8625.png)
@@ -75,20 +75,20 @@ It is possible to add an image placeholder which links to an external video. For
 An example of including a YouTube video can be seen at the [Zoom Feed README](https://github.com/demisto/content/blob/master/Packs/FeedZoom/README.md).
 
 ## Pack Keywords, Tags, Use-cases & Categories
-In order classify packs and make them easier to find, there are a number of pack metadata elements that can be used:
-- Use-case -- a name of a situation in which packs can be used - usually the pack name. 
+In order classify packs and make them easier to find, there are a number of pack metadata elements that you can use:
+- ***Use-case*** -- a name of a situation in which packs can be used - usually the pack name. 
 
  Examples: Impossible Traveler, PCAP Analysis
 
-- Tags -- words from the same semantic field of the use-case - they help find packs using filters or the search bar, and are visible on the screen to help understand what the pack is all about.
+- ***Tags*** -- words from the same semantic field of the use-case. These make it easier to find packs using filters or the search bar, and are visible on the screen to help understand what the pack is and its benefit to users.
 
  Examples: GDPR, PII, TIM
 
-- Keywords -- like tags, but these don’t show in the UI.
+- ***Keywords*** -- operate like tags but aren't displayed in the UI.
 
-For example, for a pack related to messaging, you may want to add "msg" as a keyword so when a user searches for "msg" they will find the pack, but the word "msg" won't show anywhere in the UI.
+For example, for a pack related to messaging, you may want to add "msg" as a keyword so when a user searches for "msg" they will find the pack, but the word "msg" won't display in the UI.
 
-- Category -- what field/subject the pack relates to, in high level.
+- ***Category*** -- what field/subject the pack relates to, in high level.
 Your pack should fall into one of the existing categories:
 
 <details>
@@ -204,9 +204,9 @@ Demisto Software Development Kit (SDK) has a command called `find-dependencies` 
 
 
 ### What are some examples of dependencies?
-- A playbook from QRadar pack uses a playbook from AccessInvestigation pack
-- A playbook from Employee Offboarding pack uses an automation from Impossible Traveler pack
-- A classifier from EWS pack uses incident fields from Phishing pack
+- A playbook from **QRadar** pack uses a playbook from the **AccessInvestigation** pack.
+- A playbook from the **Employee Offboarding** pack uses an automation from the **Impossible Traveler** pack.
+- A classifier from the **EWS** pack uses incident fields from the **Phishing** pack.
 
 The dependency logic is as follows:
 ```
@@ -230,13 +230,13 @@ In other cases the dependency must be fixed by us, manually.
 
 ### How do I fix the dependencies?
 The cases can vary from one dependency to another. Fixing a dependency involves 3 parts:
-1. Making the necessary adaptation in the content (changing playbook, merging packs, moving files to another pack, replacing deprecated script with newer script)
-2. Manually changing “mandatory” to “false” in the pack dependencies - only if the dependency really is optional and not mandatory, for example if an integration is used after a condition that ensures that it's enabled, and the flow continues normally otherwise. Another possible optional dependency is when an automation or a subplaybook is configured to be skipped if the pack is unavailable (through the advanced task settings).
-3. Removing the displayedImages section
+1. Make the necessary adaptation in the content (change the playbook, merge packs, move files to another pack, replace a deprecated script with newer script).
+2. Manually change “mandatory” to “false” in the pack dependencies - only if the dependency is actually optional and not mandatory, for example if an integration is used after a condition that ensures that it's enabled, and the flow continues normally otherwise. Another possible optional dependency is when an automation or a subplaybook is configured to be skipped if the pack is unavailable (through the advanced task settings).
+3. Remove the displayedImages section.
 ![image](https://user-images.githubusercontent.com/43602124/89119548-ea1b9000-d4b7-11ea-88e8-b99c2f2214f1.png)
 
 Here are some possible cases:
-- Slack pack depends on Active_Directory_Query pack:
+- **Slack** pack depends on the **Active_Directory_Query** pack:
 
 ![image](https://user-images.githubusercontent.com/43602124/89119564-0ae3e580-d4b8-11ea-8950-3abc3cc95ec4.png)
   - Understand which dependencies are normal. We have 2 optional dependencies which is OK. We also have 2 required dependencies, one of which is CommonTypes that belongs to the Core packs - so it’s also OK. Then we have Active_Directory_Query which should not be required when installing the Slack pack.
