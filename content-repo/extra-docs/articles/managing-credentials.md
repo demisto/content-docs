@@ -41,7 +41,7 @@ Cortex XSOAR Credentials enables you to centrally manage credentials, which incl
 
 ## Configure an External Credentials Vault
 
-Cortex XSOAR integrates with external credential vaults, which enables you to use them in Cortex XSOAR without hard coding or exposing them. The credentials are not stored in Cortex XSOAR, rather, the integration fetches the credentials from the external vault when called. The credentials are fetched and cached in-memory for 10 minutes by default. They are passed to integrations that are executed as part of the integration params.
+Cortex XSOAR integrates with external credential vaults, which enables you to use them in Cortex XSOAR without hard coding or exposing the credentials. The credentials are not stored in Cortex XSOAR, rather, the integration fetches the credentials from the external vault when called. The credentials are fetched and cached in-memory (for 10 minutes by default). They are passed to the executed integrations as part of the integration parameters.
 
 **Sample Credentials Provider Integrations:**
 
