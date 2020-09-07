@@ -18,4 +18,6 @@ For example, if the Pack name is `HelloWorld` and the integration name is also `
 The description file should contain details on how to configure an instance of the integration, together with the relevant details needed from the product that are important to perform an easy configuration.
 The file's content can include troubleshooting tips and advanced details for different configuration cases.
 
-:::note This should not be confused with integration README.md which is the integration documentation document.
+:::note 
+This should not be confused with integration README.md which is the integration documentation document.
+:::
