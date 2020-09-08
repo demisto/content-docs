@@ -129,7 +129,7 @@ A supported partner pack metadata contents for example:
 
 
 ### README.md
-The file contains a general explanation for the pack and you are free to add any information relevant for the pack.
+The file contains a general explanation for the pack and you are free to add any information relevant for the pack. For more details refer to the [Pack Documentation](../integrations/pack-docs) page.
 
 ### .secrets-ignore
 This file will be used while running the `demisto-sdk secrets`([explanation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/secrets/README.md)), we will determine the file and will
