@@ -9,12 +9,16 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Concepts",
+      label: "Getting Started",
       collapsed: false,
       items: [
           {
             type: "doc",
-            id: "concepts/concepts"
+            id: "integrations/getting-started-guide"    
+          },
+          {
+            type: "doc",
+            id: "concepts/concepts"    
           },
           {
             type: "doc",
@@ -22,7 +26,15 @@ const sidebars = {
           },
           {
             type: "doc",
+            id: "integrations/packs-format"    
+          },
+          {
+            type: "doc",
             id: "concepts/design-best-practices"
+          },
+          {
+            type: "doc",
+            id: "contributing/checklist",
           },
           {
             type: "doc",
@@ -32,64 +44,40 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Getting Started",
-      collapsed: false,
+      label: "Developing",
       items: [
-        "integrations/getting-started-guide",
         "integrations/dev-setup",        
         "integrations/xsoar-ide",
         "integrations/pycharm-plugin",
-        "integrations/packs-format",
         "integrations/package-dir",
-        "integrations/docker",
+        "integrations/yaml-file",
+        "integrations/parameter-types",
+        "integrations/integration-logo",
+        "integrations/code-conventions",
+        "integrations/fetching-incidents",
+        "integrations/context-and-outputs",
+        "integrations/context-standards",
+        "integrations/dbot",
       ]
     },
     {
       type: "category",
-      label: "Integrations",
+      label: "Documenting",
       items: [
-        {
-          type: "category",
-          label: "Developing",
-          items: [
-            "integrations/code-conventions",
-            "integrations/powershell-code",
-            "integrations/yaml-file",
-            "integrations/integration-logo",
-            "integrations/parameter-types",
-            "integrations/fetching-incidents",
-            "integrations/feeds",
-            "integrations/fetching-credentials",
-            "integrations/long-running",
-            "integrations/context-and-outputs",
-            "integrations/context-standards",
-            "integrations/dbot",
-            "integrations/dt",
-            "integrations/integration-cache",
-            "integrations/mirroring_integration",
-            "integrations/openapi-codegen",
-          ]
-        },
-        {
-          type: "category",
-          label: "Testing",
-          items: [
-            "integrations/linting",
-            "integrations/unit-testing",
-            "integrations/test-playbooks",
-            "integrations/debugging"
-          ],
-        },
-        {
-          type: "category",
-          label: "Documenting",
-          items: [
-            "integrations/pack-docs",
-            "integrations/integration-docs",
-            "integrations/release-notes"
-          ],
-        }
-      ]
+        "integrations/pack-docs",
+        "integrations/integration-docs",
+        "integrations/release-notes"
+      ],
+    },
+    {
+      type: "category",
+      label: "Testing",
+      items: [
+        "integrations/linting",
+        "integrations/unit-testing",
+        "integrations/test-playbooks",
+        "integrations/debugging"
+      ],
     },
     {
       type: "category",
@@ -122,17 +110,25 @@ const sidebars = {
         "incidents/incident-jobs",
         "incidents/incident-auto-extract",
         "incidents/incident-classification-mapping",
-        "incidents/incident-pre-processing",
+        "incidents/incident-pre-processing"
       ]
     },
     {
       type: "category",
-      label: "Contributing",
+      label: "Advanced",
       items: [
-        "contributing/checklist",
-        "contributing/circleci",
-      ]
-    },
+          "integrations/feeds",
+          "integrations/powershell-code",
+          "integrations/fetching-credentials",
+          "integrations/long-running",
+          "integrations/dt",
+          "integrations/integration-cache",
+          "integrations/mirroring_integration",
+          "integrations/openapi-codegen",
+          "integrations/docker",
+          "contributing/circleci"
+        ]
+      },
     {
       type: "category",
       label: "Tutorials",
