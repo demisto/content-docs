@@ -86,7 +86,6 @@ const sidebars = {
           items: [
             "integrations/pack-docs",
             "integrations/integration-docs",
-            "integrations/doc-structure",
             "integrations/release-notes"
           ],
         }
