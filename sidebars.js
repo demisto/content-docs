@@ -66,6 +66,7 @@ const sidebars = {
             "integrations/dbot",
             "integrations/dt",
             "integrations/integration-cache",
+            "integrations/mirroring_integration",
             "integrations/openapi-codegen",
           ]
         },
@@ -129,6 +130,7 @@ const sidebars = {
       type: "category",
       label: "Contributing",
       items: [
+        "contributing/checklist",
         "contributing/circleci",
         "contributing/marketplace",
       ]
