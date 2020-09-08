@@ -3,15 +3,15 @@ const fs = require('fs-extra');
 const sidebars = {
   docs:
   [
-    {
-      type: "doc",
-      id: "welcome"
-    },
-    {
-      type: "category",
-      label: "Getting Started",
-      collapsed: false,
-      items: [
+    // {
+    //   type: "doc",
+    //   id: "welcome"
+    // },
+    // {
+    //   type: "category",
+    //   label: "Getting Started",
+    //   collapsed: false,
+    //   items: [
           {
             type: "doc",
             id: "integrations/getting-started-guide"    
@@ -40,8 +40,8 @@ const sidebars = {
             type: "doc",
             id: "concepts/faq"
           },
-      ],
-    },
+    //   ],
+    // },
     {
       type: "category",
       label: "Developing",
