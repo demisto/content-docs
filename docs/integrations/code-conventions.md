@@ -600,6 +600,24 @@ You may also use ```headerTransform``` to convert the existing keys into formatt
  
  <img width="758" src="../doc_imgs/integrations/50575199-fd5d0a00-0e01-11e9-9d54-944eb7c6f287.png"></img>
 
+### IndicatorsTimeline
+This class is used to create an indicator timeline.
+
+| Arg        | Type   | Description                                                                                                                                                                                |
+|------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| indicators | list   | Expects a list of indicators, if a dict is passed it will be put into a list.                                                                              |
+| category   | str    | Indicator category.
+| message    | str    | Indicator message.                                                                                                                                         |
+
+**Example**
+```python
+timeline = IndicatorsTimeline(
+      indicators=[args.get('ips')],
+      category='Some category',
+      message='IP was blocked in Checkpoint'
+)
+```
+
 
 ### CommandResults
 This class is used to return outputs. This object represents an entry in warroom.
@@ -609,9 +627,10 @@ This class is used to return outputs. This object represents an entry in warroom
 | outputs_prefix    | str    | Should be identical to the prefix in the yml contextPath in yml file. for example:         CortexXDR.Incident                                                                              |
 | outputs_key_field | str    | Primary key field in the main object. If the command returns Incidents, and of the properties of Incident is incident_id, then outputs_key_field='incident_id'                             |
 | outputs           | object | The data to be returned and will be set to context                                                                                                                                         |
-| readable_output    | str    | (Optional) markdown string that will be presented in the warroom, should be human readable -  (HumanReadable) - if not set, readable output will be generated via tableToMarkdown function |
+| readable_output    | str   | (Optional) markdown string that will be presented in the warroom, should be human readable -  (HumanReadable) - if not set, readable output will be generated via tableToMarkdown function |
 | raw_response      | object | (Optional) must be dictionary, if not provided then will be equal to outputs.  Usually must be the original raw response from the 3rd party service (originally Contents)                  |
 | indicators        | list   | Must be list of Indicator types, like Common.IP, Common.URL, Common.File, Common.Domain, Common.CVE.                                                                                       |
+| indicators_timeline | IndicatorsTimeline | Must be an IndicatorsTimeline. used by the server to populate an indicator's timeline.                                                                                       |
 
 **Example**
 ```python
@@ -621,7 +640,8 @@ results = CommandResults(
     outputs={
         'Address': '8.8.8.8',
         'ASN': 12345
-    }
+    },
+    IndicatorsTimeline = timeline
 )
 return_results(results)
 ```
