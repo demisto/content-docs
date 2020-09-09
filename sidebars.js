@@ -3,15 +3,15 @@ const fs = require('fs-extra');
 const sidebars = {
   docs:
   [
-    // {
-    //   type: "doc",
-    //   id: "welcome"
-    // },
-    // {
-    //   type: "category",
-    //   label: "Getting Started",
-    //   collapsed: false,
-    //   items: [
+    {
+        type: "doc",
+        id: "welcome"
+      },
+      {
+        type: "category",
+        label: "Getting Started",
+        collapsed: false,
+        items: [
           {
             type: "doc",
             id: "integrations/getting-started-guide"    
@@ -26,25 +26,25 @@ const sidebars = {
           },
           {
             type: "doc",
-            id: "integrations/packs-format"    
-          },
-          {
-            type: "doc",
             id: "concepts/design-best-practices"
-          },
-          {
-            type: "doc",
-            id: "contributing/checklist",
-          },
-          {
-            type: "doc",
-            id: "concepts/faq"
-          },
-    //   ],
-    // },
+          }
+        ]
+      },
+
     {
       type: "category",
-      label: "Developing",
+      label: "Content Packs",
+      collapsed: true,
+      items: [
+          "integrations/packs-format",  
+          "integrations/pack-docs",
+          "integrations/release-notes"
+      ]
+    },
+    {
+      type: "category",
+      label: "Integrations & Scripts",
+      collapsed: true,
       items: [
         "integrations/dev-setup",        
         "integrations/xsoar-ide",
@@ -58,30 +58,17 @@ const sidebars = {
         "integrations/context-and-outputs",
         "integrations/context-standards",
         "integrations/dbot",
+        "integrations/linting",
+        "integrations/unit-testing",
+        "integrations/test-playbooks",
+        "integrations/debugging",
+        "integrations/integration-docs"
       ]
     },
     {
       type: "category",
-      label: "Documenting",
-      items: [
-        "integrations/pack-docs",
-        "integrations/integration-docs",
-        "integrations/release-notes"
-      ],
-    },
-    {
-      type: "category",
-      label: "Testing",
-      items: [
-        "integrations/linting",
-        "integrations/unit-testing",
-        "integrations/test-playbooks",
-        "integrations/debugging"
-      ],
-    },
-    {
-      type: "category",
       label: "Playbooks",
+      collapsed: true,
       items: [
         "playbooks/playbooks-overview",
         "playbooks/playbook-contributions",
@@ -102,6 +89,7 @@ const sidebars = {
     {
       type: "category",
       label: "Incidents, Fields & Layouts",
+      collapsed: true,
       items: [
         "incidents/incident-xsoar-incident-lifecycle",
         "incidents/incident-types",
@@ -132,10 +120,19 @@ const sidebars = {
     {
       type: "category",
       label: "Tutorials",
+      collapsed: false,
       items: [
             "tutorials/tut-setup-dev",
             "tutorials/tut-integration-ui"            
           ]
+    },
+    {
+      type: "doc",
+      id: "contributing/checklist",
+    },
+    {
+      type: "doc",
+      id: "concepts/faq"
     },
     {
       type: "doc",
