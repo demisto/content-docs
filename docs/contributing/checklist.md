@@ -1,6 +1,6 @@
 ---
 id: checklist
-title: Contribution Checklist
+title: Contributing 
 ---
 
 This document includes a checklist that summarizes the list of files that you need in order to contribute to the Cortex XSOAR content repository. Please make sure you have everything before you open a Pull Request (unless stated otherwise).
