@@ -113,9 +113,7 @@ const sidebars = {
           "integrations/integration-cache",
           "integrations/mirroring_integration",
           "integrations/openapi-codegen",
-          "integrations/docker",
-          "contributing/circleci"
-        ]
+          "integrations/docker",        ]
       },
     {
       type: "category",
@@ -129,6 +127,10 @@ const sidebars = {
     {
       type: "doc",
       id: "contributing/checklist",
+    },
+    {
+      type: "doc",
+      id: "contributing/marketplace"
     },
     {
       type: "doc",
