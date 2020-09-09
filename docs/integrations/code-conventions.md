@@ -607,7 +607,8 @@ When `IndicatorTimeline` data is returned in an entry, the timeline section of t
 <img width="758" src="../doc_imgs/integrations/timeline_section.png"></img>
 
 **What value should be used for the `'Category'` field of a `timeline` data object?**  
-Any Cortex XSOAR integration command that returns `timeline` data should include the `'Category'` value of `'Integration Update'`. When returning `timeline` data from a Cortex XSOAR automation, the value passed to the `'Category'` field should be `'Automation Update'`.
+Any Cortex XSOAR integration command that returns `timeline` data may include the `'Category'` value.
+If not given, When returning `timeline` data from a Cortex XSOAR integration or automation, the value will be `'Integration Update'` or `'Automation Update'` accordingly.
 
 **So when should one include a timeline object in an entry returned to the war room?**  
 The answer is any time that a command operates on an indicator. A good indicator (pun intended?) of when `timeline` data should be included in an entry is to look and see if the command returns a `DBotScore` or entities as described in our [context standards documentation](../integrations/context-standards) to the entry context. A common case is reputation commands, i.e. `!ip`, `!url`, `!file`, etc. When implementing these commands in integrations, `timeline` data should be included in the returned entry. To see an example of an integration that returns entries with `timeline` data, take a look at our [AbuseIPDB integration](https://github.com/demisto/content/blob/14148b68f5030a64c6fe6f7cf5af4f184e93abad/Packs/AbuseDB/Integrations/AbuseDB/AbuseDB.py#L215).
@@ -620,6 +621,13 @@ The answer is any time that a command operates on an indicator. A good indicator
 | message    | str    | Indicator message.                                                                                                                                         |
 
 **Example**
+```python
+timeline = IndicatorsTimeline(
+      indicators=[args.get('ips')],
+      message='Important to note'
+)
+```
+
 ```python
 timeline = IndicatorsTimeline(
       indicators=[args.get('ips')],
