@@ -23,7 +23,7 @@ Do you want to build a Cortex XSOAR Integration? This section shows you how to [
 
 ### Integrations
 
-As the main connection between Cortex XSOAR and the 3rd-party product, an [integration](integrations/code-conventions) forms the basis for the work you'll be contributing. You'll learn how to [fetch incidents](integrations/fetching-incidents) from your system in order to create incdients in Cortex XSOAR as well as the details around the integration best practices, logos, YAML files, etc.  
+As the main connection between Cortex XSOAR and the 3rd-party product, an [integration](integrations/code-conventions) forms the basis for the work you'll be contributing. You'll learn how to [fetch incidents](integrations/fetching-incidents) from your system in order to create incidents in Cortex XSOAR as well as the details around the integration best practices, logos, YAML files, etc.  
 
 ### Playbooks
 
