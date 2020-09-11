@@ -69,7 +69,7 @@ Cortex XSOAR has two different kinds of commands:
 
 * system commands - Commands that enable you to perform Cortex XSOAR operations, such as clearing the playground or closing an incident. These commands are not specific to an integration. System commands are entered in the command line using a /. 
 
-* external commands - Integration-specific commands that enable you to perform actions specific to an integration. For example, you can quickly check the repuration of an ip. External commands are entered in the command line using a !. For example, !ip. 
+* external commands - Integration-specific commands that enable you to perform actions specific to an integration. For example, you can quickly check the reputation of an ip. External commands are entered in the command line using a !. For example, !ip. 
 
 ## War Room
 
