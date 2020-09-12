@@ -607,7 +607,7 @@ When `IndicatorTimeline` data is returned in an entry, the timeline section of t
 <img width="758" src="../doc_imgs/integrations/timeline_section.png"></img>
 
 **What value should be used for the `'Category'` field of a `timeline` data object?**  
-Any Cortex XSOAR integration command that returns `timeline` data may include the `'Category'` value.
+Any Cortex XSOAR integration command or automation that returns `timeline` data may include the `'Category'` value.
 If not given, When returning `timeline` data from a Cortex XSOAR integration or automation, the value will be `'Integration Update'` or `'Automation Update'` accordingly.
 
 **So when should one include a timeline object in an entry returned to the war room?**  
