@@ -37,6 +37,7 @@ const sidebars = {
       items: [
         "integrations/getting-started-guide",
         "integrations/dev-setup",        
+        "integrations/premium_packs",
         "integrations/xsoar-ide",
         "integrations/pycharm-plugin",
         "integrations/packs-format",
