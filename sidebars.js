@@ -6,32 +6,54 @@ const sidebars = {
     {
         type: "doc",
         id: "welcome"
-      },
-      {
-        type: "category",
-        label: "Getting Started",
-        collapsed: false,
-        items: [
-          {
-            type: "doc",
-            id: "integrations/getting-started-guide"    
-          },
-          {
-            type: "doc",
-            id: "concepts/concepts"    
-          },
-          {
-            type: "doc",
-            id: "concepts/use-cases"
-          },
-          {
-            type: "doc",
-            id: "concepts/design-best-practices"
-          }
-        ]
-      },
-
+    },
     {
+      type: "category",
+      label: "Getting Started",
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          id: "integrations/getting-started-guide"    
+        },
+        {
+          type: "doc",
+          id: "concepts/concepts"    
+        },
+        {
+          type: "doc",
+          id: "concepts/use-cases"
+        },
+        {
+          type: "doc",
+          id: "concepts/design-best-practices"
+        },
+        {
+          type: "category",
+          label: "Dev Environment",
+          collapsed: true,
+          items: [
+            "integrations/dev-setup",        
+            "integrations/xsoar-ide",
+            "integrations/pycharm-plugin"
+          ]
+        },        
+        {
+          type: "doc",
+          id: "concepts/faq"
+        },          
+      ]
+    },
+    {
+      type: "category",
+      label: "Contributing",
+      collapsed: true,
+      items: [
+        "contributing/checklist",
+        "contributing/marketplace"
+      ]
+    },    
+     {
       type: "category",
       label: "Content Packs",
       collapsed: true,
@@ -46,23 +68,60 @@ const sidebars = {
       label: "Integrations & Scripts",
       collapsed: true,
       items: [
-        "integrations/dev-setup",        
-        "integrations/xsoar-ide",
-        "integrations/pycharm-plugin",
-        "integrations/package-dir",
-        "integrations/yaml-file",
-        "integrations/parameter-types",
-        "integrations/integration-logo",
-        "integrations/code-conventions",
-        "integrations/fetching-incidents",
-        "integrations/context-and-outputs",
-        "integrations/context-standards",
-        "integrations/dbot",
-        "integrations/linting",
-        "integrations/unit-testing",
-        "integrations/test-playbooks",
-        "integrations/debugging",
-        "integrations/integration-docs"
+        {
+          type: "category",
+          label: "Integration components",
+          collapsed: true,          
+          items: [
+            "integrations/package-dir",
+            "integrations/yaml-file",
+            "integrations/parameter-types",
+            "integrations/integration-logo"
+          ]
+        },
+        {       
+          type: "category",
+          label: "Developing",
+          collapsed: true,          
+          items: [
+            "integrations/code-conventions",
+            "integrations/fetching-incidents",
+            "integrations/context-and-outputs",
+            "integrations/context-standards",
+            "integrations/dbot"
+          ]
+        },        
+        {       
+          type: "category",
+          label: "Testing",
+          collapsed: true,          
+          items: [
+            "integrations/linting",
+            "integrations/unit-testing",
+            "integrations/test-playbooks",
+            "integrations/debugging",
+          ]
+        }, 
+        {
+          type: "doc",
+          id: "integrations/integration-docs"
+        },
+        {       
+          type: "category",
+          label: "Advanced Topics",
+          collapsed: true,          
+          items: [
+            "integrations/feeds",
+            "integrations/powershell-code",
+            "integrations/fetching-credentials",
+            "integrations/long-running",
+            "integrations/dt",
+            "integrations/integration-cache",
+            "integrations/mirroring_integration",
+            "integrations/openapi-codegen",
+            "integrations/docker"      
+          ]
+        }
       ]
     },
     {
@@ -103,38 +162,12 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Advanced",
-      items: [
-          "integrations/feeds",
-          "integrations/powershell-code",
-          "integrations/fetching-credentials",
-          "integrations/long-running",
-          "integrations/dt",
-          "integrations/integration-cache",
-          "integrations/mirroring_integration",
-          "integrations/openapi-codegen",
-          "integrations/docker",        ]
-      },
-    {
-      type: "category",
       label: "Tutorials",
       collapsed: false,
       items: [
             "tutorials/tut-setup-dev",
             "tutorials/tut-integration-ui"            
-          ]
-    },
-    {
-      type: "doc",
-      id: "contributing/checklist",
-    },
-    {
-      type: "doc",
-      id: "contributing/marketplace"
-    },
-    {
-      type: "doc",
-      id: "concepts/faq"
+        ]
     },
     {
       type: "doc",
