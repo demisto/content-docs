@@ -23,4 +23,5 @@ In this section we captured some of the Design Best practices that you should be
 - Stick to the naming convention of the commands: ***PRODUCTNAME-OBJECTNAME-ACTION***. In this structure, it is easier to find the right object in the UI.
 - Context limitation – If the result can include a lot of data, limit the context size.
 - Polling playbook & check status command – If the command can take more than a few seconds (vulnerability scan, complex search, detonation, etc) make sure to add a polling playbook. If implemented, do remember to include a “status” command as well.
+- Keep the generic playbooks in mind when designing integrations. Where applicable, add the relevant flow to the matching playbook. see the list of generic playbooks [Here](https://github.com/demisto/content/tree/master/Packs/CommonPlaybooks/Playbooks)
 - Backwards compatibility – Don’t break it. Few suggested workarounds: keep the old context, add new paths as needed and update the outputs accordingly, if a command needs major changes, deprecate it and add a new one

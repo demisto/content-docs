@@ -131,3 +131,12 @@ Network Security (IPS/IDS) Integration Example: [ProtectWise](https://xsoar.pan.
 - Scan assets for a specific vulnerability.
 
 Vulnerability Management Integration Example: [Tenable.io](https://xsoar.pan.dev/docs/reference/integrations/tenableio)
+
+## IAM (Identity and Access Management)
+
+**Top Use Cases:**
+- Create/update/delete users.
+- Block user/Force change password
+- Managing access to resources and applications.
+
+Implement the IAM generic CRUD commands as described [Here](../integrations/generic commands/generic-iam-commands)

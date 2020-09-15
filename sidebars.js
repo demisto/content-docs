@@ -63,7 +63,22 @@ const sidebars = {
             "integrations/fetching-credentials",
             "integrations/long-running",
             "integrations/context-and-outputs",
-            "integrations/context-standards",
+            {
+              type: "category",
+              label: "Context Standards",
+              items: [
+                "integrations/context standards/about-context-standards",
+                "integrations/context standards/mandatory-context-standards",
+                "integrations/context standards/recommended-context-standards",
+              ]
+            },
+            {
+              type: "category",
+              label: "Generic Commands",
+              items: [
+                "integrations/generic commands/generic-iam-commands"
+              ]
+            },
             "integrations/dbot",
             "integrations/dt",
             "integrations/integration-cache",
