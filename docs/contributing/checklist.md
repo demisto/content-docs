@@ -3,7 +3,7 @@ id: checklist
 title: Contribution Checklist
 ---
 
-This document includes a checklist that summarizes the list of files that you need in order to [contribute](contributing/contributing) to the Cortex XSOAR content repository. Please make sure you have everything before you open a Pull Request (unless stated otherwise).
+This document includes a checklist that summarizes the list of files that you need in order to [contribute](../contributing/contributing) to the Cortex XSOAR content repository. Please make sure you have everything before you open a Pull Request (unless stated otherwise).
 
 Keep in mind that content packs can contain multiple types of entities, such as Integrations, Automations (Scripts), Playbooks, Incident Types, Incident Fields, and so on.
 

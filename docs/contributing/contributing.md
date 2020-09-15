@@ -5,7 +5,7 @@ title: Contributing
 
 Thanks for being interested in contributing to Cortex XSOAR. This document describes the Contribution process.
 
-Contributing allows you to make the content that you build on Cortex XSOAR available to every client through the  [Marketplace](partners/marketplace). Content can be either Partner or Community supported, [Free or Paid](partners/marketplace#pricing).
+Contributing allows you to make the content that you build on Cortex XSOAR available to every client through the  [Marketplace](../partners/marketplace). Content can be either Partner or Community supported, [Free or Paid](../partners/marketplace#pricing).
 
 All the free content (i.e. everything excluding Paid Content Packs) is open source and lives in the Cortex XSOAR [GitHub Repository](https://github.com/demisto/content), with a MIT license.
 
@@ -27,7 +27,7 @@ Before opening the Pull Request on the Cortex XSOAR [GitHub Repository](https://
 - Have a [GitHub](https://github.com) account that you'll use to open the Pull Request
 - If you're an XSOAR partner, have your `partner-id` (this should have been communicated to you over the onboarding emails from the Alliance team).
 - Join our our [Slack DFIR Community](https://www.demisto.com/community/), also useful if you have questions (use the `#demisto-developers` channel).
-- Design Document: we encourage you to prepare a Design Document that describes the capabilities of your Pack. Usually it's a Google Doc shared with you by the Alliance team. Click [here](https://docs.google.com/document/d/1wETtBEKg37PHNU8tYeB56M1LE314ux086z3HFeF_cX0) to see a compiled example of a Design Document.
+- Design Document: we encourage you to prepare a Design Document that describes the capabilities of your Pack. Usually it's a Google Doc shared with you by the Alliances team. Click [here](https://docs.google.com/document/d/1wETtBEKg37PHNU8tYeB56M1LE314ux086z3HFeF_cX0) to see a compiled example of a Design Document.
 - Create a short video to demo your product and your pack, and link it: this will be used by our reviewers to understand what your product does and how the content pack work.
 - Pass the linters `demisto-sdk lint`: if you have an Integration or Script, your code must pass the [tests](../tutorials/tut-setup-dev#step-5-run-the-linter-and-unit-tests).
 - Pass the validation `demisto-sdk validate`: make sure you run `demisto-sdk validate -i Packs/YourPackName` and all the checks are passed before opening the Pull Request. If unsure, ask for help on the `#demisto-developers` channel on our [Slack DFIR Community](https://www.demisto.com/community/).

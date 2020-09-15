@@ -21,12 +21,14 @@ const sidebars = {
           id: "concepts/concepts"    
         },
         {
-          type: "doc",
-          id: "concepts/use-cases"
-        },
-        {
-          type: "doc",
-          id: "concepts/design-best-practices"
+          type: "category",
+          label: "Design",
+          collapsed: true,
+          items: [
+            "concepts/design",
+            "concepts/use-cases",
+            "concepts/design-best-practices"
+          ]
         },
         {
           type: "category",
