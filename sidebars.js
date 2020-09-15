@@ -37,22 +37,23 @@ const sidebars = {
             "integrations/xsoar-ide",
             "integrations/pycharm-plugin"
           ]
-        },        
+        },
+        {
+          type: "category",
+          label: "Contributing",
+          collapsed: true,
+          items: [
+            "contributing/contributing",
+            "contributing/checklist",
+            "contributing/marketplace"
+          ]
+        },         
         {
           type: "doc",
           id: "concepts/faq"
         },          
       ]
     },
-    {
-      type: "category",
-      label: "Contributing",
-      collapsed: true,
-      items: [
-        "contributing/checklist",
-        "contributing/marketplace"
-      ]
-    },    
      {
       type: "category",
       label: "Content Packs",
