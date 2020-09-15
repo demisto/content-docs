@@ -58,9 +58,10 @@ const sidebars = {
       label: "Content Packs",
       collapsed: true,
       items: [
-          "integrations/packs-format",  
-          "integrations/pack-docs",
-          "integrations/release-notes"
+        "integrations/packs-format",  
+        "integrations/pack-docs",
+        "integrations/release-notes",
+        "integrations/premium_packs"
       ]
     },
     {
