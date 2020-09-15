@@ -21,7 +21,7 @@ Tutorials are detailed  articles that guide you through a specific task, end-to-
 
 ## Reference
 
-From the top bar, in the [Reference](reference/index) section you will find detailed reference documentation about all the Cortex XSOAR components: Integrations, Scripts, Playbooks, Release Notes, Articles, etc. You can use the search bar on the top right to find anything on this site.
+From the top bar, navigate to the [Reference](reference/index) section to find detailed reference documentation about all the Cortex XSOAR components: Integrations, Scripts, Playbooks, Release Notes, Articles, etc. You can use the search bar on the top right to find anything on this site.
 
 ## Partners
 
