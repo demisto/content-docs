@@ -246,7 +246,7 @@ This is a custom linter, based on pylint, which main purpose is to catch errors 
 For example:
 
 ```python
-a, b = ... # pylint: disable=print-exists
+print('Success!') # pylint: disable=print-exists
 ```
 
 Is is also possible to `disable` and then `enable` a block of code. For example (taken from CommonServerPython.py):
