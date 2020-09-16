@@ -74,7 +74,7 @@ const sidebars = {
       items: [
         {
           type: "category",
-          label: "Integration components",
+          label: "Components",
           collapsed: true,          
           items: [
             "integrations/package-dir",
@@ -92,7 +92,8 @@ const sidebars = {
             "integrations/fetching-incidents",
             "integrations/context-and-outputs",
             "integrations/context-standards",
-            "integrations/dbot"
+            "integrations/dbot",
+            "integrations/docker"            
           ]
         },        
         {       
@@ -122,8 +123,7 @@ const sidebars = {
             "integrations/dt",
             "integrations/integration-cache",
             "integrations/mirroring_integration",
-            "integrations/openapi-codegen",
-            "integrations/docker"      
+            "integrations/openapi-codegen"
           ]
         }
       ]
