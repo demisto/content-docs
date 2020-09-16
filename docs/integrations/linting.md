@@ -249,7 +249,7 @@ For example:
 print('Success!') # pylint: disable=print-exists
 ```
 
-Is is also possible to `disable` and then `enable` a block of code. For example (taken from CommonServerPython.py):
+It is also possible to `disable` and then `enable` a block of code. The following example is taken from CommonServerPython.py:
 
 ```python
 # pylint: disable=sys-exit-exists
