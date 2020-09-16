@@ -38,7 +38,6 @@ https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 /docs/linting	/docs/howtos/integrations/linting
 /docs/long-running	/docs/howtos/integrations/long-running
 /docs/package-dir	/docs/howtos/integrations/package-dir
-/docs/package-dir	/docs/howtos/integrations/package-dir
 /docs/parameter-types	/docs/howtos/integrations/parameter-types
 /docs/testing	/docs/integrations/test-playbooks
 /docs/integrations/testing	/docs/integrations/test-playbooks
@@ -122,3 +121,6 @@ https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 # Other
 /docs/reference	/docs/reference/index
 /office-hours https://paloaltonetworks.zoom.us/j/91689983283
+
+# Updated/Superseded articles
+/docs/integrations/doc-structure /docs/integrations/integration-docs
