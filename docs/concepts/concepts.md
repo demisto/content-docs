@@ -6,7 +6,7 @@ It is important to familiarize yourself with Cortex XSOAR components, UI termino
 
 ## Content Packs
 
-All Cortex XSOAR content is organized in Packs. Packs are essentially groups of artifacts that implement use cases in the product. Content Packs are created by Palo Alto Networks, Technology Partners, Consulting Companies, MSSPs, Customers and Individual Contributors. Content Packs include lots of different components, such as Integrations, Automations, Playbooks, Incident Types, Widgets and [more](../integrations/packs-format). If you want to [contribute](../contributing/contributing) the artifacts you created, you should create a Content Pack and submit it for review, in order for it to be added to the Cortex XSOAR Marketplace and become available to customers.
+All Cortex XSOAR content is organized in Packs. Packs are essentially groups of artifacts that implement use cases in the product. Content Packs are created by Palo Alto Networks, Technology Partners, Consulting Companies, MSSPs, Customers and Individual Contributors. Content Packs may include a variety of different components, such as Integrations, Automations, Playbooks, Incident Types, Widgets and [more](../integrations/packs-format). If you want to [contribute](../contributing/contributing) the Content entities you created, you should create a Content Pack and submit it for review, in order for it to be added to the Cortex XSOAR Marketplace and become available to customers.
 
 ## Incident Lifecycle
 
@@ -98,7 +98,7 @@ Cortex XSOAR has two different kinds of commands:
 
 * external commands - Integration-specific commands that enable you to perform actions specific to an integration. For example, you can quickly check the reputation of an ip. External commands are entered in the command line using a `!`. For example, `!ip`. 
 
-### Context
+### Context Data
 
 The different commands and playbook tasks are tied together by way of something called the Cortex XSOAR Context. Every incident and playbook has a place to store data called the Context. The context stores the results from every integration command and every automation script that is run. It is a JSON storage for each incident. Whether you run an integration command from the CLI or from a playbook task, the output result is stored into the JSON context in the incident or the playground. Simply put, if you have a command like ``` !whois query="cnn.com" ``` it would return the data and store the results into the context.
 
