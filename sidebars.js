@@ -10,7 +10,7 @@ const sidebars = {
     {
       type: "category",
       label: "Getting Started",
-      collapsed: false,
+      collapsed: true,
       items: [
         {
           type: "doc",
