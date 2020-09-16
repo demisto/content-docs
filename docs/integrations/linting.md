@@ -260,4 +260,4 @@ else:
 # pylint: enable=sys-exit-exists
 ```
 
-**Note**: pylint can take both the error name and error code when doing inline comment disables. It is best to use the name which is clearer to understand.
+**Note**: Pylint can take both the error name and error code when using an inline comment disable message. Please note, that it is best to use the name which is most clear to understand.
