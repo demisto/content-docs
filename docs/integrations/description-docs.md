@@ -21,3 +21,20 @@ The file's content can include troubleshooting tips and advanced details for dif
 :::note 
 This should not be confused with integration README.md which is the integration documentation document.
 :::
+
+## Example
+This is the contents of the `HelloWorld_description.md` file:
+```
+## Hello World
+- This section explains how to configure the instance of HelloWorld in Cortex XSOAR.
+- You can use the following API Key: `43ea9b2d-4998-43a6-ae91-aba62a26868c`
+```
+
+To display the integration description, click on the question mark button in the integration configuration panel
+
+![](../doc_imgs/integrations/description_question_mark.png)
+
+The content of the description file will be displayed 
+
+![](../doc_imgs/integrations/description.md_example.png)
+
