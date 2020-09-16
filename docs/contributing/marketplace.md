@@ -1,6 +1,6 @@
 ---
 id: marketplace
-title: Contributing From Cortex XSOAR
+title: Contributing from Cortex XSOAR UI
 ---
 
 Cortex XSOAR v6.0 introduces a Marketplace which is the central location for installing, exchanging, contributing, and managing all of your content, including playbooks, integrations, automations, fields, layouts, and more. For more information, you can read all about the [Marketplace](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/marketplace/marketplace-overview.html).

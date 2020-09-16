@@ -3,13 +3,13 @@ id: checklist
 title: Contribution Checklist
 ---
 
-This document includes a checklist that summarizes the list of files that you need in order to contribute to the Cortex XSOAR content repository. Please make sure you have everything before you open a Pull Request (unless stated otherwise).
+This document includes a checklist that summarizes the list of files that you need in order to [contribute](../contributing/contributing) to the Cortex XSOAR content repository. Please make sure you have everything before you open a Pull Request (unless stated otherwise).
 
-Keep in mind that content packs can contain multiple types of entities, such as Integrations, Automations, Playbooks, Incident Types, Incident Fields, and so on.
+Keep in mind that content packs can contain multiple types of entities, such as Integrations, Automations (Scripts), Playbooks, Incident Types, Incident Fields, and so on.
 
 Depending on whether your content pack is aiming to be [certified](../partners/certification) or not, there will be different requirements.
 
-This article also includes a Pull Request checklist, that summarized everything you must do before and after opening a Pull Request on GitHub to contribute your pack.
+
 
 Happy contributing!
 
@@ -52,7 +52,7 @@ If your pack contains an Integration, the integration directory should contain t
 
 If your integration is going to be [certified](../partners/certification), you also have the following requirements (optional for non-certified):
 
-- Test Playbook (i.e. `Packs/YourPackName/TestPlaybooks/playbook-YourIntegrationName_Test.yml`): required for nightly builds. More information [here](../integrations/test-playbooks)
+- Test Playbook (i.e. `Packs/YourPackName/TestPlaybooks/playbook-YourIntegrationName_Test.yml`): required for nightly builds. More information [here](../integrations/test-playbooks). We'll also need access credentials to a test/demo environment against which we can run the Test Playbook every night. For details, please contact the Cortex XSOAR Alliances Team.
 - Custom Incident Types, Fields, Classifiers, Mappers and Layouts: **if** your integration has the ability to [*fetch incidents*](../integrations/fetching-incidents), most likely you need to provide custom Incident Types and the related entities. This is usually covered during the Design phase: work with your Palo Alto Networks alliance contact if in doubt.
 
 ... and of course your adherence to our best practices and [code conventions](../integrations/code-conventions) will be evaluated in a stricter way.
@@ -141,7 +141,7 @@ The requirements above are also summarized in the following table:
 |--------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|---------------------------------|
 | Pack                      | <ul><li>Pack metadata</li><li>Pack readme</li><li>Release Notes</li></ul>                                                                                                                       | |
 | Design                    | | <ul><li>Must follow use case guidelines and review the design document with the Alliances team</li></ul> |
-| Integration               | <ul><li>Code file</li><li>YML file</li><li>Description file</li><li>Image file</li><li>README file</li><li>Command examples file</li><li>Unit tests file</li><li>Unit tests data</li></ul> | <ul><li>Test Playbook</li><li>Custom Incidents (if *fetch_incidents* is supported)</li></ul> |
+| Integration               | <ul><li>Code file</li><li>YML file</li><li>Description file</li><li>Image file</li><li>README file</li><li>Command examples file</li><li>Unit tests file</li><li>Unit tests data</li></ul> | <ul><li>Test Playbook</li><li>Custom Incidents (if *fetch_incidents* is supported)</li><li>Instance Credentials</li></ul> |
 | Playbook                  | <ul><li>Playbook file</li><li>README file</li><li>Image file</li></ul>                                                                                                                                          |                                 |
 | Incident/Indicator Field  | <ul><li>Incident/Indicator field JSON file</li></ul>                                                                                                                                                             |                                 |
 | Incident/Indicator Type   | <ul><li>Incident/Indicator type JSON file</li></ul>                                                                                                                                                              |                                 |
@@ -150,23 +150,3 @@ The requirements above are also summarized in the following table:
 | Script                    | <ul><li>Code file</li><li>YML file</li><li>README file</li><li>Unit tests file</li><li>Unit tests data</li></ul>                                                                                               | <ul><li>Test Playbook</li></ul>             |
 | Widget                    | <ul><li>Widget JSON file</li></ul>                                                                                                                                                                               |                                 |
 | Dashboard                 | <ul><li>Dashboard JSON file</li></ul>                                                                                                                                                                            |                                 |
-
-## Pull Request Checklist
-
-Before opening the Pull Request on the Cortex XSOAR [GitHub Repository](https://github.com/demisto/content), you need to:
-
-- Have a [GitHub](https://github.com) account that you'll use to open the Pull Request
-- If you're an XSOAR partner, have your `partner-id` (this should have been communicated to you over the onboarding emails from the Alliance team).
-- Join our our [Slack DFIR Community](https://www.demisto.com/community/), also useful if you have questions (use the `#demisto-developers` channel).
-- Design Document: we encourage you to prepare a Design Document that describes the capabilities of your Pack. Usually it's a Google Doc shared with you by the Alliance team.
-- Create a short video to demo your product and your pack, and link it: this will be used by our reviewers to understand what your product does and how the content pack work.
-- Pass the linters `demisto-sdk lint`: if you have an Integration or Script, your code must pass the [tests](../tutorials/tut-setup-dev#step-5-run-the-linter-and-unit-tests).
-- Pass the validation `demisto-sdk validate`: make sure you run `demisto-sdk validate -i Packs/YourPackName` and all the checks are passed before opening the Pull Request. If unsure, ask for help on the `#demisto-developers` channel on our [Slack DFIR Community](https://www.demisto.com/community/).
-
-After opening the Pull Request, make sure that you:
-
-- Sign the [CLA](https://github.com/demisto/content/blob/master/docs/cla.pdf): every contributor must sign our Contributor License Agreement in order for their contribution to be added to our content.
-- Monitor your Pull Request on GitHub and be ready for a demo: our Content team will add comments to the Pull Request, asking questions and requesting changes. At some point, we'll ask you to schedule a meeting to see an interactive demo, make sure you have a working installation of Cortex XSOAR with your pack fully configured.
-
-For Certified packs only:
-- Provide us credentials for a test environment: if your Pack includes an integration, we'll need credentials (i.e. API keys) to access a SaaS test/demo environment of your Product from Cortex XSOAR in order to run our nightly build. Please work with your Palo Alto Networks alliance team contact to securely provide such credentials to us.

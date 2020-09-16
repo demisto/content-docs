@@ -1,6 +1,6 @@
 ---
 id: dbot
-title: DBot
+title: Reputation and DBotScore
 ---
 
 DBot is the Cortex XSOAR machine learning bot which ingests information about indicators to determine if they are malicious or not. Since DBot requires a very specific dataset, we must format our data as per this article.
