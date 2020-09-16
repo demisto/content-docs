@@ -237,7 +237,7 @@ We run `bandit` with a confidence level of HIGH. In the rare case that it report
 
 ## XSOAR Linter
 
-This is a custom linter, based on pylint, which main purpose is to catch errors regarding Cortex XSOAR code standards. The linter is activated using pylint load plugins ability. We run this linter with custom Cortex XSOAR error and warning messages only (all other messages are disabled). On rare occasions you may encounter a need to disable an error/warning returned from this linter. Do this by adding an inline comment of the sort on the line you want to disable the error:
+This is a custom linter, based on pylint, whose main purpose is to catch errors regarding Cortex XSOAR code standards. The linter is activated using the pylint load plugins ability. We run this linter only with custom Cortex XSOAR error and warning messages (all other messages are disabled). On rare occasions, you may encounter a scenario in which you need to disable an error or warning message from being returned from by linter. To do this add an inline comment, as shown below, on the line you want to disable the error:
 
 ```
 # pylint: disable=<error-name>
