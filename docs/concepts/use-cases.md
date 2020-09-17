@@ -139,4 +139,4 @@ Vulnerability Management Integration Example: [Tenable.io](https://xsoar.pan.dev
 - Block user/Force change password
 - Managing access to resources and applications.
 
-Implement the IAM generic CRUD commands as described [Here](../integrations/generic commands/generic-iam-commands)
+Implement the IAM generic CRUD commands as described [Here](../integrations/generic-iam-commands)
