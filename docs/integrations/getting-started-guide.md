@@ -12,7 +12,7 @@ If you have trouble with any of these items, please reach out for help in over [
 Cortex XSOAR is a powerful platform that comes with a rich set of features and functionality that allow for a high degree of customization: we therefore recommend that start by familiarizing the different aspects of the product:
 
 1. Read and understand Cortex XSOAR [Concepts](../concepts/concepts).
-2. Register to the [Learning Center](http://education.paloaltonetworks.com/learningcenter) and go through the [Product Training](/partners/become-a-tech-partner#3-take-required-training).
+2. Register to the [Learning Center](http://education.paloaltonetworks.com/learningcenter) and go through the [Product Training](../partners/become-a-tech-partner#3-take-required-training).
 3. Understand the [Contribution](../contributing/contributing) process and the different tiers and support levels (certified vs non certified, partner vs community support, etc.)
 4. Bookmark the links to the [Cortex XSOAR Developer Hub](https://xsoar.pan.dev/docs/) (this site) and the [Cortex XSOAR Product Documentation Page](https://docs.paloaltonetworks.com/cortex/cortex-xsoar.html)
 4. Access to the Palo Alto Networks [DFIR Slack Community](https://start.paloaltonetworks.com/join-our-slack-community) and join the *#demisto-developers* channel
