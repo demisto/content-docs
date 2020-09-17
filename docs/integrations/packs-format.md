@@ -111,7 +111,7 @@ A supported partner pack metadata contents for example:
     "support": "partner",
     "currentVersion": "1.1.0",
     "author": "Partner name",
-    "url": "https://www.<partner>.com",
+    "url": "https://support.<partner>.com",
     "email": "support@<partner>.com",
     "categories": [
         "Deception"
