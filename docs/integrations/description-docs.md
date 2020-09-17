@@ -6,7 +6,7 @@ title: Integration Description File
 The integration description file is designated to help the XSOAR users to easily configure an instance of the chosen integration.
 
 ## Path
-The description file should be placed along with all of the integraion's files. 
+The description file should be placed along with all of the integration's files. 
 
 For example, if the Pack name is `HelloWorld` and the integration name is also `HelloWorld`, the description file path is:
 ```
@@ -37,4 +37,3 @@ To display the integration description, click on the question mark button in the
 The content of the description file will be displayed 
 
 ![](../doc_imgs/integrations/description.md_example.png)
-
