@@ -1,6 +1,6 @@
 ---
 id: design-best-practices
-title: Integration Design Best Practices
+title: Design Best Practices
 ---
 
 In this section we captured some of the Design Best practices that you should be aware of while building an integration. If you have any doubts or questions, please reach out to us over Slack.

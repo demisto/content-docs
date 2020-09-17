@@ -4,64 +4,92 @@ const sidebars = {
   docs:
   [
     {
-      type: "doc",
-      id: "welcome"
-    },
-    {
-      type: "category",
-      label: "Concepts",
-      collapsed: false,
-      items: [
-          {
-            type: "doc",
-            id: "concepts/concepts"
-          },
-          {
-            type: "doc",
-            id: "concepts/use-cases"
-          },
-          {
-            type: "doc",
-            id: "concepts/design-best-practices"
-          },
-          {
-            type: "doc",
-            id: "concepts/faq"
-          },
-      ],
+        type: "doc",
+        id: "welcome"
     },
     {
       type: "category",
       label: "Getting Started",
-      collapsed: false,
+      collapsed: true,
       items: [
-        "integrations/getting-started-guide",
-        "integrations/dev-setup",        
-        "integrations/premium_packs",
-        "integrations/xsoar-ide",
-        "integrations/pycharm-plugin",
-        "integrations/packs-format",
-        "integrations/package-dir",
-        "integrations/docker",
+        {
+          type: "doc",
+          id: "integrations/getting-started-guide"    
+        },
+        {
+          type: "doc",
+          id: "concepts/concepts"    
+        },
+        {
+          type: "category",
+          label: "Design",
+          collapsed: true,
+          items: [
+            "concepts/design",
+            "concepts/use-cases",
+            "concepts/design-best-practices"
+          ]
+        },
+        {
+          type: "category",
+          label: "Dev Environment",
+          collapsed: true,
+          items: [
+            "integrations/dev-setup",        
+            "integrations/xsoar-ide",
+            "integrations/pycharm-plugin"
+          ]
+        },
+        {
+          type: "category",
+          label: "Contributing",
+          collapsed: true,
+          items: [
+            "contributing/contributing",
+            "contributing/checklist",
+            "contributing/marketplace"
+          ]
+        },         
+        {
+          type: "doc",
+          id: "concepts/faq"
+        },          
+      ]
+    },
+     {
+      type: "category",
+      label: "Content Packs",
+      collapsed: true,
+      items: [
+        "integrations/packs-format",  
+        "integrations/pack-docs",
+        "integrations/release-notes",
+        "integrations/premium_packs"
       ]
     },
     {
       type: "category",
-      label: "Integrations",
+      label: "Integrations & Scripts",
+      collapsed: true,
       items: [
         {
           type: "category",
+          label: "Components",
+          collapsed: true,          
+          items: [
+            "integrations/package-dir",
+            "integrations/yaml-file",
+            "integrations/parameter-types",
+            "integrations/integration-logo"
+          ]
+        },
+        {       
+          type: "category",
           label: "Developing",
+          collapsed: true,          
           items: [
             "integrations/code-conventions",
-            "integrations/powershell-code",
-            "integrations/yaml-file",
-            "integrations/integration-logo",
-            "integrations/parameter-types",
             "integrations/fetching-incidents",
-            "integrations/feeds",
-            "integrations/fetching-credentials",
-            "integrations/long-running",
             "integrations/context-and-outputs",
             {
               type: "category",
@@ -80,37 +108,45 @@ const sidebars = {
               ]
             },
             "integrations/dbot",
-            "integrations/dt",
-            "integrations/integration-cache",
-            "integrations/mirroring_integration",
-            "integrations/openapi-codegen",
+            "integrations/docker"            
           ]
-        },
-        {
+        },        
+        {       
           type: "category",
           label: "Testing",
+          collapsed: true,          
           items: [
             "integrations/linting",
             "integrations/unit-testing",
             "integrations/test-playbooks",
-            "integrations/debugging"
-          ],
-        },
+            "integrations/debugging",
+          ]
+        }, 
         {
+          type: "doc",
+          id: "integrations/integration-docs"
+        },
+        {       
           type: "category",
-          label: "Documenting",
+          label: "Advanced Topics",
+          collapsed: true,          
           items: [
-            "integrations/pack-docs",
-            "integrations/integration-docs",
-            "integrations/doc-structure",
-            "integrations/release-notes"
-          ],
+            "integrations/feeds",
+            "integrations/powershell-code",
+            "integrations/fetching-credentials",
+            "integrations/long-running",
+            "integrations/dt",
+            "integrations/integration-cache",
+            "integrations/mirroring_integration",
+            "integrations/openapi-codegen"
+          ]
         }
       ]
     },
     {
       type: "category",
       label: "Playbooks",
+      collapsed: true,
       items: [
         "playbooks/playbooks-overview",
         "playbooks/playbook-contributions",
@@ -131,6 +167,7 @@ const sidebars = {
     {
       type: "category",
       label: "Incidents, Fields & Layouts",
+      collapsed: true,
       items: [
         "incidents/incident-xsoar-incident-lifecycle",
         "incidents/incident-types",
@@ -139,24 +176,17 @@ const sidebars = {
         "incidents/incident-jobs",
         "incidents/incident-auto-extract",
         "incidents/incident-classification-mapping",
-        "incidents/incident-pre-processing",
-      ]
-    },
-    {
-      type: "category",
-      label: "Contributing",
-      items: [
-        "contributing/checklist",
-        "contributing/marketplace",
+        "incidents/incident-pre-processing"
       ]
     },
     {
       type: "category",
       label: "Tutorials",
+      collapsed: true,
       items: [
             "tutorials/tut-setup-dev",
             "tutorials/tut-integration-ui"            
-          ]
+        ]
     },
     {
       type: "doc",

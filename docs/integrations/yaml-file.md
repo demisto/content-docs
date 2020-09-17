@@ -1,12 +1,11 @@
 ---
 id: yaml-file
-title: YAML Files
+title: Integration YAML File
 ---
 
-## What is a YAML file?
-A YAML file is a form of structured data. It is visually similar to a JSON tree, however is less strict with syntax. Think of it as key, value set for your integration.
+All the metadata of your integration is included in the YAML file: think of it as key, value set for your integration. When pushing content for public release, your YAML file must follow certain structural requirements in order to work properly. In this section we will review the various parts of the Cortex XSOAR YAML file. 
 
-When pushing an integration for public release, your YAML file must follow certain structural requirements in order to work properly. In this section we will review the various parts of the Cortex XSOAR YAML file.
+**Note**: Automation Scripts also have a metadata YML file that follows a very similar structure.
 
 ## Common Fields
 The Common Fields section contains information that the Cortex XSOAR server will use to identify your integration. See the example below:

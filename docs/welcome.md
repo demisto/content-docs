@@ -3,7 +3,7 @@ id: welcome
 title: Welcome
 ---
 
-Welcome to the Cortex XSOAR Developer Hub! You'll be able find a lot of information on how to develop content in Cortex XSOAR. If you see something missing or have any comments, please let us know by using the `Report an issue` button at the bottom of each page. We value your contribution and we strive to give you a great developer experience.
+Welcome to the Cortex XSOAR Developer Hub! You'll be able find a lot of information on how to create content in Cortex XSOAR. If you see something missing or have any comments, please let us know by using the `Report an issue` button at the bottom of each page. We value your contribution and we strive to give you a great developer experience.
 
 ## About Cortex XSOAR
 
@@ -11,31 +11,17 @@ Cortex XSOAR's security orchestration and automation enables standardized, autom
 
 ## Developer Documentation
 
-The Cortex XSOAR Developer Hub includes several documentation sections, that cover different use cases. Use the left side-bar navigation to navigate between the different sections and articles. We recommend staring with the **Concepts** section to learn the core fundamentals to get started developing with Cortex XSOAR. After familiarizing yourself with the different concepts, we recommend following the **Getting Started** section which will provide you with all the details needed to get your development environment up and running. Follow the **Integrations**, **Playbooks**, **Incidents, Fields & Layouts** sections as appropriate for your development needs.
+The Cortex XSOAR Developer Hub is organized in different sections to guide you through the process of creating a successful Cortex XSOAR contribution. Please start with the [Getting Started](integrations/getting-started-guide) section to understand the Cortex XSOAR concepts, the Contribution process and to set up a development environment.
 
-### Concepts
+On the left sidebar you'll find documentation for all the different things you can build: start with [Content Packs](integrations/packs-format) that represent the backbone of every contribution then, depending on what you want to create, explore the other sections accordingly: **Integrations & Scripts**, **Playbooks**, **Incidents, Fields & Layouts**.
 
-Learn the [core fundamentals](concepts/concepts) to get started developing with Cortex XSOAR. This section includes documents that cover many relevant concepts that are useful to understand how Cortex XSOAR works, what components are used for which tasks and how the contribution process works.
+## Tutorials
 
-### Getting Started
-
-Do you want to build a Cortex XSOAR Integration? This section shows you how to [get started](integrations/getting-started-guide) from setting up your IDE, how to use the PyCharm plugin, how to store content elements in a Pack and how we use Docker to run integrations. 
-
-### Integrations
-
-As the main connection between Cortex XSOAR and the 3rd-party product, an [integration](integrations/code-conventions) forms the basis for the work you'll be contributing. You'll learn how to [fetch incidents](integrations/fetching-incidents) from your system in order to create incdients in Cortex XSOAR as well as the details around the integration best practices, logos, YAML files, etc.  
-
-### Playbooks
-
-[Playbooks](playbooks/playbooks-overview) allow our mutual customers to execute multiple commands against multiple systems in a sequential, repeatable workflow. A playbook is key to showing the value of the joint solution and this section will cover how to create playbooks, using the Context to share variables within your playbooks and how to manage a task. 
-
-### Incidents, Fields & Layouts
-
-Learn about the [incident lifecycle](incidents/incident-xsoar-incident-lifecycle) within our platform. And Cortex XSOAR allows customization of many aspects of the system including the layout of data within an incident. 
+Tutorials are detailed  articles that guide you through a specific task, end-to-end. If you're getting started, make sure you check out the one to set up your development environment [here](/tutorials/tut-setup-dev).
 
 ## Reference
 
-In the [Reference](reference/index) section you will find detailed reference documentation about all the Cortex XSOAR components: Integrations, Scripts, Playbooks, etc. As we add more content, new information will be published here.
+From the top bar, navigate to the [Reference](reference/index) section to find detailed reference documentation about all the Cortex XSOAR components: Integrations, Scripts, Playbooks, Release Notes, Articles, etc. You can use the search bar on the top right to find anything on this site.
 
 ## Partners
 
