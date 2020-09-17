@@ -17,7 +17,7 @@ In MineMeld, the product revolves around the concept of nodes. There are three t
 | **outbound** | 3. Data Export: make processed data available for external consumption |
 
 ### Data Flow in Cortex XSOAR
-In Cortex XSOAR the data flow is is based on two integration types: feed integrations and outbound integrations. Cortex XSOAR provides dedicated out-of-the-box feed integrations for many feed sources, as well as generic feed integrations that you can configure to work with many feed sources. Unlike how in MineMeld the outputs of a **miner** node (the indicators fetched from a feed source) would need to be specified as the input of other node(s), all indicators fetched from feed integrations in Cortex XSOAR flow into the Cortex XSOAR instance's indicator store. Since the Cortex XSOAR indicator store already supports the mechanism of searching and filtering indicators, we are able to condense what in MineMeld was the flow of indicators into a **processor** node and then an **output** node. We do this by configuring a single instance of the **Export Indicators Service** integration. When configuring an instance of the **Export Indicators Service** integration, we can enter an indicator query (using the query syntax you would use to search and filter indicators in the Indicators page of the Cortex XSOAR platform), which determines the indicators that will be made available from this integration instance for external consumption.
+In Cortex XSOAR the data flow is based on two integration types: feed integrations and outbound integrations. Cortex XSOAR provides dedicated out-of-the-box feed integrations for many feed sources, as well as generic feed integrations that you can configure to work with many feed sources. In MineMeld, the outputs of a **miner node** (the indicators fetched from a feed source) need to be specified as the input of other node(s). However, in Cortex XSOAR, all indicators fetched from feed integrations flow into the Cortex XSOAR instance's indicator store. Since the Cortex XSOAR indicator store already supports the mechanism of searching and filtering indicators, we are able to condense what in MineMeld was the flow of indicators into a **processor** node and then an **output** node. We do this by configuring a single instance of the **Export Indicators Service** integration. When configuring an instance of the **Export Indicators Service** integration, we can enter an indicator query (using the query syntax you would use to search and filter indicators in the Indicators page of the Cortex XSOAR platform), which determines the indicators that will be made available from this integration instance for external consumption.
 
 
 ## MineMeld Prototype to Cortex XSOAR Integration Mapping
@@ -51,7 +51,7 @@ The **Parameter Configuration** displays any configuration parameters that need 
 
 ## AWS Feed Example
 
-Let's look at a specific example to better understand how to migrate a given MineMeld node. If we wanted to migrate the AWS feed shown in the MineMeld configuration file as follows,
+Let's look at a specific example to better understand how to migrate a given MineMeld node. We can migrate the AWS feed shown in the following MineMeld configuration file.
 ```
   allow-ip_aws_cloudfront:
     inputs: []
@@ -62,7 +62,7 @@ There is a node named `allow-ip_aws_cloudfront` which uses the prototype `aws.CL
 
 ![](../../../docs/doc_imgs/tutorials/tut-minemeld-migration/mm-aws-prototypes.png)
 
-When we click on the `aws.CLOUDFRONT` prototype, we are presented with additional details. The attributes that we need to look at currently to configure an instance of the Cortex XSOAR AWS Feed integration are under the `config` key.
+When we click the `aws.CLOUDFRONT` prototype, we are presented with additional details. The attributes that we need to configure for an instance of the Cortex XSOAR AWS Feed integration are under the `config` key.
 
 ![](../../../docs/doc_imgs/tutorials/tut-minemeld-migration/mm-aws-cloudfront-prototype.png)
 
@@ -106,11 +106,11 @@ Let's configure an instance.
 
 ![](../../../docs/doc_imgs/tutorials/tut-minemeld-migration/aws-feed-configuration-1.png)
 
-Cortex XSOAR provides default values for many of the configuration parameters, as determined by the source of the feed. To configure the integration instance to fetch from the same source as the MineMeld node we are migrating from, we only need to update a single parameter. In this particular case, we only need to click the `Services` dropdown menu and click `CLOUDFRONT`. 
+Cortex XSOAR provides default values for many of the configuration parameters as determined by the source of the feed. To configure the integration instance to fetch from the same source as the MineMeld node we are migrating from, we only need to update a single parameter. In this particular case, we only need to click the `Services` dropdown menu and click `CLOUDFRONT`. 
 
 ![](../../../docs/doc_imgs/tutorials/tut-minemeld-migration/aws-feed-configuration-2.png)
 
-Notice that there is also a multi-select parameter, `Regions`, which we could use if we wanted to filter indicators returned by this `AWS Feed` integration instance by their associated region data field. For our example we are returning indicators from all regions, we do not need to adjust this parameter. And as easy as that, we've finished configuring an instance. Let's make sure that everything is working properly by clicking the `Test` button at the bottom of the configuration panel. If everything is working as expected, a green 'Success!' message will appear at the bottom of the configuration panel, as shown in the screenshot below.
+Notice that there is also a multi-select parameter, `Regions`. We could configure this parameter if we wanted to filter indicators returned by this `AWS Feed` integration instance by their associated region data field. For our example, we are returning indicators from all regions, so we do not need to change this parameter. And as easy as that, we've finished configuring an instance. Let's make sure that everything is working properly by clicking the `Test` button at the bottom of the configuration panel. If everything is working as expected, a green 'Success!' message will appear at the bottom of the configuration panel, as shown in the screenshot below.
 
 ![](../../../docs/doc_imgs/tutorials/tut-minemeld-migration/aws-feed-configuration-3.png)
 
@@ -119,7 +119,7 @@ Click `Done` at the bottom right of the configuration panel and you're all done!
 
 ## AWS Feed Continued
 
-As you may have noticed when configuring the `AWS Feed` instance to pull indicators from `CLOUDFRONT`, there were additional services that you could select. So, if it were the case that your MineMeld configuration contained multiple nodes, as shown below, whose prototypes were prefixed with `aws`, there are two options for configuring these additional AWS feeds in Cortex XSOAR.
+As you may have noticed when configuring the `AWS Feed` instance to pull indicators from `CLOUDFRONT`, there were additional services that you could select. So, if your MineMeld configuration contained multiple nodes whose prototypes were prefixed with `aws` as shown below, there are two options for configuring these additional AWS feeds in Cortex XSOAR.
 ```
   allow-ip_aws_cloudfront:
     inputs: []
@@ -134,7 +134,7 @@ As you may have noticed when configuring the `AWS Feed` instance to pull indicat
     output: true
     prototype: aws.S3
 ```
-Let's see what we could do now if we wanted to configure the `allow-ip_aws_ec2` MineMeld node, whose prototype is `aws.EC2`, in Cortex XSOAR. In the case that we want to leave the parameter values for fetching from this feed source the same as what we had for fetching indicators from `CLOUDFRONT`, then there is no need to even create a new instance. Click the cog icon next to the instance we already configured.
+Let's see how to configure the `allow-ip_aws_ec2` MineMeld node, whose prototype is `aws.EC2`, in Cortex XSOAR. If we want to leave the parameter values for fetching from this feed source the same as what we had for fetching indicators from `CLOUDFRONT`, then there is no need to even create a new instance. Click the cog icon next to the instance we already configured.
 
 ![](../../../docs/doc_imgs/tutorials/tut-minemeld-migration/aws-feed-cog.png)
 
@@ -149,22 +149,22 @@ If we wanted to configure an instance of the `AWS Feed` integration to fetch fro
 
 ## Office 365 Feed Example
 
-Let's say we wanted to migrate this sample Office 365 node shown from a MineMeld configuration,
+Let's say we wanted to migrate this sample Office 365 node shown in a MineMeld configuration,
 ```
   allow-multi_o365-worldwide-any:
     inputs: []
     output: true
     prototype: o365-api.worldwide-any
 ```
-There is a node named `allow-multi_o365-worldwide-any`, which uses the prototype `o365-api.worldwide-any`. The `o365-api` prototypes appear in the AutoFocus-hosted MineMeld UI.
+There is a node named `allow-multi_o365-worldwide-any` that uses the prototype `o365-api.worldwide-any`. The `o365-api` prototypes appear in the AutoFocus-hosted MineMeld UI.
 
 ![](../../../docs/doc_imgs/tutorials/tut-minemeld-migration/mm-o365-prototypes.png)
 
-When we click on the `o365-api.worldwide-any` prototype, we are presented with additional details. The attributes we need to configure an instance of the Cortex XSOAR Office 365 Feed integration are under the `config` key.
+When we click the `o365-api.worldwide-any` prototype, we are presented with additional details. The attributes we need to configure for an instance of the Cortex XSOAR Office 365 Feed integration are under the `config` key.
 
 ![](../../../docs/doc_imgs/tutorials/tut-minemeld-migration/mm-o365-worldwide-any-prototype.png)
 
-Alternatively, we can also find all of this information in the MineMeld GitHub repository. You can find all out-of-the-box prototypes in the [MineMeld repository on GitHub](https://github.com/PaloAltoNetworks/minemeld-node-prototypes/tree/master/prototypes). In this repository are the files for all MineMeld prototypes. Since the prototype in our example begins with the prefix `o365-api`, we know the prototype we are looking for can be found in the [o365-api.yml](https://github.com/PaloAltoNetworks/minemeld-node-prototypes/blob/master/prototypes/o365-api.yml) YAML file. In this file, if we look under the `prototypes` key for `worldwide-any`, we find the following,
+Alternatively, we can also find all of this information in the MineMeld GitHub repository. You can find all out-of-the-box prototypes in the [MineMeld repository on GitHub](https://github.com/PaloAltoNetworks/minemeld-node-prototypes/tree/master/prototypes). In this repository are the files for all MineMeld prototypes. Since the prototype in our example begins with the prefix `o365-api`, we know the prototype we are looking for can be found in the [o365-api.yml](https://github.com/PaloAltoNetworks/minemeld-node-prototypes/blob/master/prototypes/o365-api.yml) file. In this file, if we look under the `prototypes` key for `worldwide-any`, we see the following,
 ```
     worldwide-any:
         author: MineMeld Core Team
