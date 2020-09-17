@@ -15,6 +15,10 @@ Documentation is a critical step that assists customers who may use your integra
 The documentation must conform to the [Integration Doc Format](doc-structure).
 :::
 
+:::note 
+This should not be confused with integration's description which is the [Integration Description File](https://xsoar.pan.dev/docs/integrations/integration-description) document.
+:::
+
 
 ## Creating Documentation
 Use the `demisto-sdk generate-docs` command to generate documentation for your Integration. Documentation for the command is available [here](https://github.com/demisto/demisto-sdk#generate-docs). 
