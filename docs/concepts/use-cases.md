@@ -16,7 +16,7 @@ This section includes common Use Cases for the different categories of Cortex XS
 
 *Please Note*: Will normally include the Fetch Incidents possibility for the instance. Can also include list-incidents or get-incident as integration commands. Important information for an Event/Incident
 
-Analytics & SIEM Integration Example: [ArcSight ESM](https://support.demisto.com/hc/en-us/articles/115003749113-ArcSight-ESM)
+Analytics & SIEM Integration Example: [ArcSight ESM](https://xsoar.pan.dev/docs/reference/integrations/arc-sight-esm-v2)
 
 ## Authentication
 
@@ -29,7 +29,7 @@ The integration should include the isFetchCredentials Parameter, and other integ
 - Lock Vault – In case of an emergency (if the vault has been compromised), allow the option to lock + unlock the whole vault.
 - Step-Up authentication - Enforce Multi Factor Authentication for an account.
 
-Authentication Integration Example: [CyberArk AIM](https://support.demisto.com/hc/en-us/articles/360015595394-CyberArk-AIM)
+Authentication Integration Example: [CyberArk AIM](https://xsoar.pan.dev/docs/reference/integrations/cyber-ark-aim)
 
 ## Case Management
 
@@ -40,7 +40,7 @@ Authentication Integration Example: [CyberArk AIM](https://support.demisto.com/h
 - Get details about a managed object, update, create, delete.
 - Add and manage users.
 
-Case Management/Ticketing Integration Example: [ServiceNow](https://support.demisto.com/hc/en-us/articles/360012776373-ServiceNow)
+Case Management/Ticketing Integration Example: [ServiceNow](https://xsoar.pan.dev/docs/reference/integrations/service-now-v2)
 
 ## Data Enrichment & Threat Intelligence
 
@@ -53,7 +53,7 @@ Case Management/Ticketing Integration Example: [ServiceNow](https://support.demi
 - Whitelist/ Blacklist indicators.
 - Calculate DBot Score for indicators.
 
-Data Enrichment & Threat Intelligence Integration Example: [VirusTotal](https://support.demisto.com/hc/en-us/articles/360033643594-VirusTotal)
+Data Enrichment & Threat Intelligence Integration Example: [VirusTotal](https://xsoar.pan.dev/docs/reference/integrations/virus-total)
 
 ## Email Gateway
 
@@ -65,7 +65,7 @@ Data Enrichment & Threat Intelligence Integration Example: [VirusTotal](https://
 - Encode/ Decode URLs in messages.
 - Release a held message (The gateway can place suspicious messages on hold, and sometimes they would need to be released to the receiver).
 
-Email Gateway Integration Example: [MimeCast](https://support.demisto.com/hc/en-us/articles/115004684608-Mimecast)
+Email Gateway Integration Example: [MimeCast](https://xsoar.pan.dev/docs/reference/integrations/mimecast-v2)
 
 ## Endpoint
 
@@ -83,7 +83,7 @@ Email Gateway Integration Example: [MimeCast](https://support.demisto.com/hc/en-
 - Get information for a specified host (OS, users, addresses, hostname)
 - Get policy information and assign policies to endpoints
 
-Endpoint Integration Examples: [Cortex XDR](https://support.demisto.com/hc/en-us/articles/360035216393-Palo-Alto-Networks-Cortex-XDR-Demisto-5-0-), [Tanium](https://support.demisto.com/hc/en-us/articles/360039455034-Tanium-v2) and [Carbon Black Protection](https://support.demisto.com/hc/en-us/articles/360022492334-Carbon-Black-Protection-v2)
+Endpoint Integration Examples: [Cortex XDR](https://xsoar.pan.dev/docs/reference/integrations/cortex-xdr---ir), [Tanium](https://xsoar.pan.dev/docs/reference/integrations/tanium-v2) and [Carbon Black Protection](https://xsoar.pan.dev/docs/reference/integrations/carbon-black-protection-v2)
 
 ## Forensics and Malware Analysis
 
@@ -94,7 +94,7 @@ Endpoint Integration Examples: [Cortex XDR](https://support.demisto.com/hc/en-us
 - Retrieve a PCAP file
 - Retrieve screenshots taken during analysis.
 
-Sandbox Integration Example: [Cuckoo Sandbox](https://support.demisto.com/hc/en-us/articles/360012792253-Cuckoo-Sandbox)
+Sandbox Integration Example: [Cuckoo Sandbox](https://xsoar.pan.dev/docs/reference/integrations/cuckoo-sandbox)
 
 ## Network Security (Firewall)
 
@@ -107,7 +107,7 @@ Sandbox Integration Example: [Cuckoo Sandbox](https://support.demisto.com/hc/en-
 - Built in blocked rule command for fast-blocking.
 - If there is a Management FW, allow the option to manage policy rules through it.
 
-Network Security Firewall Integration Example: [Palo Alto Networks PAN-OS](https://support.demisto.com/hc/en-us/articles/360014816634-Palo-Alto-Networks-PAN-OS)
+Network Security Firewall Integration Example: [Palo Alto Networks PAN-OS](https://xsoar.pan.dev/docs/reference/integrations/panorama)
 
 ## Network Security (IDS/IPS)
 
@@ -119,7 +119,7 @@ Network Security Firewall Integration Example: [Palo Alto Networks PAN-OS](https
 - Update signatures from an online source / upload + Get last signature update information.
 - Install policy (if existing).
 
-Network Security (IPS/IDS) Integration Example: [Protectwise](https://support.demisto.com/hc/en-us/articles/115001256154-Protectwise)
+Network Security (IPS/IDS) Integration Example: [ProtectWise](https://xsoar.pan.dev/docs/reference/integrations/protect-wise)
 
 ## Vulnerability Management
 
@@ -130,4 +130,4 @@ Network Security (IPS/IDS) Integration Example: [Protectwise](https://support.de
 - Get details for a specified vulnerability.
 - Scan assets for a specific vulnerability.
 
-Vulnerability Management Integration Example: [Tenable.io](https://support.demisto.com/hc/en-us/articles/360011971614-Tenable-io)
+Vulnerability Management Integration Example: [Tenable.io](https://xsoar.pan.dev/docs/reference/integrations/tenableio)

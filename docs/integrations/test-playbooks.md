@@ -88,9 +88,10 @@ Cortex XSOAR uses a standard naming convention for playbook tests that follows t
 3. Export the playbook by clicking ![download button](../doc_imgs/integrations/50277516-4d74bd80-044d-11e9-94b6-5195dd0db796.png).
 
 ## Adding the Playbook to your Project
-1. In the YAML file that you created, edit the `id` so that it is identical to the `name` field.
-2. Modify the value in the `version` field to *-1* to prevent user changes.
-3. Using the example above, the top of your YAML should look like this:
+1. Save your newly created test playbook to the `TestPlaybooks` directory in your pack.
+2. In the playbook YAML file that you created, edit the `id` so that it is identical to the `name` field.
+3. Modify the value in the `version` field to *-1* to prevent user changes.
+4. Using the example above, the top of your YAML should look like this:
 
 ```yml
 id: IPInfo-Test
@@ -121,5 +122,5 @@ The following table describes the fields:
 
 
 ## Resources
-* [Example of a Test Playbook](https://github.com/demisto/content/blob/master/TestPlaybooks/playbook-Carbon_Black_Response_Test.yml)
+* [Example of a Test Playbook](https://github.com/demisto/content/blob/master/Packs/Carbon_Black_Enterprise_Response/TestPlaybooks/playbook-Carbon_Black_Response_Test.yml)
 * [Example of a Playbook Image](../doc_imgs/integrations/41154872-459f93fe-6b24-11e8-848b-25ca71f59629.png)

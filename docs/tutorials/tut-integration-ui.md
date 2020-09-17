@@ -5,7 +5,7 @@ title: Create an Integration
 
 ## Welcome
 
->*First and foremost, I want to welcome you to the Palo Alto Networks team. We are excited to have you and we look forward to working with you. Please note that this tutorial assumes that you have a working instance of Cortex XSOAR.<br/><br/>**Note**: To keep things minimal, not all code in the tutorial follows our code conventions. Please see: [Code Conventions](../integrations/code-conventions) document to learn more about our coding standards.*
+>*First and foremost, I want to welcome you to the Palo Alto Networks team. We are excited to have you and we look forward to working with you. Please note that this tutorial assumes that you have a working instance of Cortex XSOAR.<br/><br/>**Note**: To keep things minimal, not all code in the tutorial follows our code conventions. Please see: [Code Conventions](../integrations/code-conventions) document to learn more about our coding standards. Please also note that the code samples are in Python 2 and some sections may not be fully compatible with Python 3.*
 
 The code we will be writing will be available in segments as we go along, as well as in it's entirety at the end.
 
@@ -118,7 +118,7 @@ import requests
 import json
 import collections
 ```
-These packages are part of the standard Cortex XSOAR docker image. If you would like to use python libraries that are not part of the standard Cortex XSOAR image, you can create your own image. To learn how to do so, [visit this page](url)
+These packages are part of the standard Cortex XSOAR docker image. If you would like to use python libraries that are not part of the standard Cortex XSOAR image, you can create your own image. To learn how to do so, [visit this page](../integrations/docker)
 
 >This part allows us to ignore certificate warnings and is part of the “insecure” setting.
 
@@ -269,7 +269,7 @@ def translate_command():
 
 >Let's create a table out of the human_readable dictionary so the translation will look nice in the war room. Go to the Script Helper and let’s select tableToMarkdown. Click “Copy to Script”. We will call this table “Yoda says…” and give the function our dictionary.
 
-tableToMarkdown accepts many different variables which can be used to transform data, remove null, and create custom headers. Learn more about this [command here](url)
+tableToMarkdown accepts many different variables which can be used to transform data, remove null, and create custom headers. Learn more about this [command here](../integrations/code-conventions#tabletomarkdown)
 
 ```python
     ec = {'YodaSpeak.TheForce(val.Original && val.Original == obj.Original)': contxt}

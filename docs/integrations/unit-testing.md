@@ -5,17 +5,17 @@ title: Unit Testing
 
 Unit testing should be used to test small units of code in an isolated and deterministic fashion. Unit tests should avoid performing communication with external APIs and should prefer to use mocking. Testing actual interaction with external APIs should be performed via [Test Playbooks](test-playbooks). Unit testing is currently supported for Python and PowerShell (no JS). This doc outlines Python setup. For PowerShell see [here](powershell-code).
 ## Environment Setup
-In order to work with unit testing the integration or automation script need to be developed in [package (directory) structure](package-dir), where the yml file is separated from the python file and resides in its own directory.
+In order to work with unit testing, the integration or automation script needs to be developed in [package (directory) structure](package-dir), where the yml file is separated from the python file and resides in its own directory.
 
 ### Setup Pipenv 
 To run locally the unit tests we want to setup a virtual environment with all required dependencies (both runtime and development). To achieve this we use [Pipenv](https://pipenv.readthedocs.io/en/latest/).
 
-Our recommended way to setup an integration into the [package (directory) structure](package-dir) is to use: `desmito-sdk split-yml`. See full command documentation [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/split_yml/README.md).
+Our recommended way to setup an integration into the [package (directory) structure](package-dir) is to use: `demisto-sdk split-yml`. See full command documentation [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/split_yml/README.md).
 
 Manual Setup:
 
 * **Install pipenv**: Follow the [instructions](https://pipenv.readthedocs.io/en/latest/install/#installing-pipenv).
-* **Copy base Pipenv files**: Copy the base Pipenv and Pipenv.lock files to the target package directory from: [demisto_sdk/commands/lint/resources](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/lint/resources).
+* **Copy base Pipenv files**: Copy the base Pipfile and Pipfile.lock files to the target package directory from: [demisto_sdk/commands/lint/resources](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/lint/resources).
 * **Install additional runtime dependencies**: using: `pipenv install <dependency>`. For example: `pipenv install ldap3`
 * **Sync Pipenv**: (including dev dependencies) by running: `pipenv sync --dev`
 * **Enable Virtual Env**: To enable the Pipenv virtual env in the shell run: `pipenv shell`. To exit the virtual env simply run: `exit`.
@@ -40,10 +40,10 @@ if __name__ == "__builtin__" or __name__ == "builtins":
 ``` 
 
 ## Write Your Unit Tests
-Unit test should be written in a separate Python file named: `<your_choice>_test.py`. Within the unit test file, each unit test function should be named: `test_<your name>`. More information on writing unit tests and their format is available at the [PyTest Docs](https://docs.pytest.org/en/latest/contents.html). Good place to see example unit tests: [Proofpoint TAP v2 integration](https://github.com/demisto/content/blob/master/Integrations/ProofpointTAP_v2/ProofpointTAP_v2_test.py) 
+Unit tests should be written in a separate Python file named: `<your_choice>_test.py`. Within the unit test file, each unit test function should be named: `test_<your name>`. More information on writing unit tests and their format is available at the [PyTest Docs](https://docs.pytest.org/en/latest/contents.html). Good place to see example unit tests: [Proofpoint TAP v2 integration](https://github.com/demisto/content/blob/master/Packs/ProofpointTAP/Integrations/ProofpointTAP_v2/ProofpointTAP_v2_test.py) 
 
 ### Mocking
-We use [pytest-mock](https://github.com/pytest-dev/pytest-mock/) for mocking. `pytest-mock` is enabled by default and installed in the base environment mentioned above. To use a `mocker` object simply pass it as a parameter to your test function. The `mocker` can then be used to mock both the demisto object and also external APIs. An example of using a `mocker` object is available [here](https://github.com/demisto/content/blob/master/Scripts/ParseEmailFiles/parse_email_files_test.py).
+We use [pytest-mock](https://github.com/pytest-dev/pytest-mock/) for mocking. `pytest-mock` is enabled by default and installed in the base environment mentioned above. To use a `mocker` object, simply pass it as a parameter to your test function. The `mocker` can then be used to mock both the demisto object and also external APIs. An example of using a `mocker` object is available [here](https://github.com/demisto/content/blob/master/Packs/CommonScripts/Scripts/ParseEmailFiles/parse_email_files_test.py).
 
 ## Running Your Unit Tests
 ### Command Line
@@ -73,26 +73,39 @@ run locally the same way CircleCI runs the tests, run the `demisto-sdk lint` com
 Run the script with `-h` to see command line options:
 ```
 demisto-sdk lint -h
-Usage: ≈ [OPTIONS]
+Usage: demisto-sdk lint [OPTIONS]
+
+  Lint command will perform:
+
+      1. Package in host checks - flake8, bandit, mypy, vulture.
+
+      2. Package in docker image checks -  pylint, pytest, powershell - test, powershell -
+      analyze.
+
+  Meant to be used with integrations/scripts that use the folder (package) structure. Will
+  lookup up what docker image to use and will setup the dev dependencies and file in the target
+  folder.
 
 Options:
-  -h, --help                 Show this message and exit.
-  -d, --dir DIR             Specify directory of integration/script
-  --no-pylint                Do NOT run pylint linter
-  --no-mypy                  Do NOT run mypy static type checking
-  --no-flake8                Do NOT run flake8 linter
-  --no-bandit                Do NOT run bandit linter
-  --no-test                  Do NOT test (skip pytest)
-  -r, --root                 Run pytest container with root user
-  -k, --keep-container       Keep the test container
-  -v, --verbose              Verbose output - mainly for debugging purposes
-  --cpu-num INTEGER          Number of CPUs to run pytest on (can set to `auto` for automatic
-                             detection of the number of CPUs)
-  -p, --parallel             Run tests in parallel
-  -m, --max-workers INTEGER  How many threads to run in parallel
-  -g, --git                  Will run only on changed packages
-  -a, --run-all-tests        Run lint on all directories in content repo
-
+  -h, --help                    Show this message and exit.
+  -i, --input PATH              Specify directory of integration/script
+  -g, --git                     Will run only on changed packages
+  -a, --all-packs               Run lint on all directories in content repo
+  -v, --verbose                 Verbosity level -v / -vv / .. / -vvv  [default: 2]
+  -q, --quiet                   Quiet output, only output results in the end
+  -p, --parallel INTEGER RANGE  Run tests in parallel  [default: 1]
+  --no-flake8                   Do NOT run flake8 linter
+  --no-bandit                   Do NOT run bandit linter
+  --no-mypy                     Do NOT run mypy static type checking
+  --no-vulture                  Do NOT run vulture linter
+  --no-pylint                   Do NOT run pylint linter
+  --no-test                     Do NOT test (skip pytest)
+  --no-pwsh-analyze             Do NOT run powershell analyze
+  --no-pwsh-test                Do NOT run powershell test
+  -kc, --keep-container         Keep the test container
+  --test-xml PATH               Path to store pytest xml results
+  --failure-report PATH         Path to store failed packs report
+  -lp, --log-path PATH          Path to store all levels of logs
 ```
 
 Sample output:
@@ -143,7 +156,7 @@ After declaring the variables and assigning their values, you need to assign the
 
 To read more on parametrize fixtures, visit: https://docs.pytest.org/en/latest/parametrize.html
 
-An example of a test using the paramertrize fixture is avialable [here](https://github.com/demisto/content/blob/master/Scripts/ExtractDomainFromUrlFormat/ExtractDomainFromUrlFormat_test.py#L7).
+An example of a test using the paramertrize fixture is avialable [here](https://github.com/demisto/content/blob/master/Packs/CommonScripts/Scripts/ExtractDomainFromUrlFormat/ExtractDomainFromUrlFormat_test.py#L7).
 
 ### Testing Exceptions
 If a function is raising an exception in some case we want to test the right exception is raised and that the error message is correct.

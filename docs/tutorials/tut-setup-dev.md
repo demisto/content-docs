@@ -16,7 +16,7 @@ As mentioned, you'll need a combination of both the Cortex XSOAR UI and other to
 As a general rule of the thumb, we recommend that you use an external IDE and toolchain when:
 - Working on your [integration code](../integrations/code-conventions) (YourIntegration.py)
 - Working on the [unit test script](../integrations/unit-testing) (YourIntegration_test.py)
-- Working on the [CHANGELOG.md](../integrations/changelog) and README.md documentation files
+- Working on the [release notes](../integrations/release-notes) and README.md documentation files
 - Running the [linting](../integrations/linting) and testing
 
 Instead, you should use the Cortex XSOAR UI when:
@@ -96,7 +96,7 @@ Let's go make sure that all the requirements are satisfied, one by one.
 
 #### Cortex XSOAR
 
-We are assuming that Cortex XSOAR is already installed. For more information about installing Cortex XSOAR please refer to [this article](https://support.demisto.com/hc/en-us/sections/360001323614-Installing-Demisto) (Support Center credentials are required)
+We are assuming that Cortex XSOAR is already installed. For more information about installing Cortex XSOAR please refer to [this article](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/installation.html) (Support Center credentials are required)
 
 Check if your Cortex XSOAR License is correctly installed by navigating to *Settings* -> *ABOUT* -> *License* and make sure that everything is green:
 
@@ -116,10 +116,10 @@ We assume you have an Operating System and that is working :)
 
 You will need `python3` installed on your system. We recommend using `pyenv`. At the time of writing, the latest version of Python 3.7 is *3.7.5*.
 
-Make sure `pyenv` in installed and that the `eval "$(pyenv init -)` expression is placed in your shell configuration (`~/.bashrc` or `~/.zshrc`) - [more information about this](https://github.com/pyenv/pyenv#installation).
+Make sure `pyenv` in installed and that the `eval "$(pyenv init -)"` expression is placed in your shell configuration (`~/.bashrc` or `~/.zshrc`) - [more information about this](https://github.com/pyenv/pyenv#installation).
 
 ```bash
-sb@dddd:~/demisto$ eval "$(pyenv init -)
+sb@dddd:~/demisto$ eval "$(pyenv init -)"
 sb@dddd:~/demisto$ pyenv -v
 pyenv 1.2.15
 sb@dddd:~/demisto$~/demisto$
@@ -299,50 +299,77 @@ Then, make sure that `demisto-sdk` has been installed automatically by the boots
 Use demisto-sdk -h to see the available commands.
 ```
 
-Now, run the `demisto-sdk lint` command on the folder `Packs/HelloWorld/Integrations/HelloWorld` using the `-d` option,
+Now, run the `demisto-sdk lint` command on the folder `Packs/HelloWorld/Integrations/HelloWorld` using the `-i` option,
  or if you want to run  against all the committed files in your branch you can use `demisto-sdk lint -g`.
-It will run both the [linters](../integratios/linting) and [pytest](../integrations/unit-testing):
+It will run both the [linters](../integrations/linting) and [pytest](../integrations/unit-testing):
 ```bash
-(venv) sb@dddd:~/demisto/content$ demisto-sdk lint -d Packs/HelloWorld/Integrations/HelloWorld
-Detected python version: [3.7] for docker image: demisto/python3:3.7.4.2245
-========= Running flake8 ===============
-flake8 completed
-========= Running mypy on: /home/sb/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py ===============
-Success: no issues found in 1 source file
-mypy completed
-========= Running bandit on: /home/sb/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py ===============
-bandit completed
-2019-12-27 10:27:17.789503: Existing image: devtestdemisto/python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54 not found will obtain lock file or wait for image
-2019-12-27 10:27:17.791519: Obtained lock file: .lock-devtestdemisto-python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54    2019-12-27 10:27:17.791991: Trying to pull image: devtestdemisto/python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54        Pull succeeded with output: 3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54: Pulling from devtestdemisto/python3
+(venv) sb@dddd:~/demisto/content$ demisto-sdk lint -i Packs/HelloWorld/Integrations/HelloWorld
+Execute lint and test on 1/1 packages
+HelloWorld - Facts - Using yaml file /home/sb/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.yml
+HelloWorld - Facts - Pulling docker images, can take up to 1-2 minutes if not exists locally 
+HelloWorld - Facts - demisto/python3:3.8.2.6981 - Python 3.8
+HelloWorld - Facts - Tests found
+HelloWorld - Facts - Lint file /home/sb/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld_test.py
+HelloWorld - Facts - Lint file /home/sb/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py
+HelloWorld - Flake8 - Start
+HelloWorld - Flake8 - Successfully finished
+HelloWorld - Bandit - Start
+HelloWorld - Bandit - Successfully finished
+HelloWorld - Mypy - Start
+HelloWorld - Mypy - Successfully finished
+HelloWorld - Vulture - Start
+HelloWorld - Vulture - Successfully finished
+HelloWorld - Flake8 - Start
+HelloWorld - Flake8 - Successfully finished
+HelloWorld - Image create - Trying to pull existing image devtestdemisto/python3:3.8.2.6981-02b43abe979132c89892e089d5b8254d
+HelloWorld - Image create - Found existing image devtestdemisto/python3:3.8.2.6981-02b43abe979132c89892e089d5b8254d
+HelloWorld - Image create - Copy pack dir to image devtestdemisto/python3:3.8.2.6981-02b43abe979132c89892e089d5b8254d
+HelloWorld - Image create - Image sha256:ba9f6ede55 created successfully
+HelloWorld - Pylint - Image sha256:ba9f6ede55 - Start
+HelloWorld - Pylint - Image sha256:ba9f6ede55 - exit-code: 0
+HelloWorld - Pylint - Image sha256:ba9f6ede55 - Successfully finished
+HelloWorld - Pytest - Image sha256:ba9f6ede55 - Start
+        ============================= test session starts ==============================
+        platform linux -- Python 3.8.2, pytest-5.0.1, py-1.8.1, pluggy-0.13.1
+        rootdir: /devwork
+        plugins: json-0.4.0, forked-1.1.3, mock-2.0.0, asyncio-0.10.0, datadir-ng-1.1.1, requests-mock-1.7.0, xdist-1.31.0
+        collected 10 items
 
-[... output omitted for brevity ...]
+        HelloWorld_test.py ..........                                            [100%]
 
-1158abee0d53: Download complete
-1158abee0d53: Pull complete
-Digest: sha256:7132d0335cebd6c90d242b30e9fc67cf8edb12bb190b439924906deeba9a7941
-Status: Downloaded newer image for devtestdemisto/python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54
-docker.io/devtestdemisto/python3:3.7.4.2245-3e5eff7d0ddbf839419495ab81a26c54
+        -------------- generated json report: /devwork/report_pytest.json --------------
+        ========================== 10 passed in 0.43 seconds ===========================
+HelloWorld - Pytest - Image sha256:ba9f6ede55 - exit-code: 0
+HelloWorld - Pytest - Image sha256:ba9f6ede55 - Successfully finished
+Flake8       - [PASS]
+Bandit       - [PASS]
+Mypy         - [PASS]
+Vulture      - [PASS]
+Pytest       - [PASS]
+Pylint       - [PASS]
+Pwsh analyze - [SKIPPED]
+Pwsh test    - [SKIPPED]
 
+Passed Unit-tests:
+  - Package: HelloWorld
+      - Image: demisto/python3:3.8.2.6981
+         - HelloWorld_test.py::test_say_hello
+         - HelloWorld_test.py::test_start_scan
+         - HelloWorld_test.py::test_status_scan
+         - HelloWorld_test.py::test_scan_results
+         - HelloWorld_test.py::test_search_alerts
+         - HelloWorld_test.py::test_get_alert
+         - HelloWorld_test.py::test_update_alert_status
+         - HelloWorld_test.py::test_ip
+         - HelloWorld_test.py::test_domain
+         - HelloWorld_test.py::test_fetch_incidents
 
-
-======== Running pylint on files: HelloWorld.py ===========
-Pylint completed with status code: 0
-========= Running pytest ===============
-collecting tests...
-============================= test session starts ==============================
-platform linux -- Python 3.7.4, pytest-5.0.1, py-1.8.0, pluggy-0.13.0 -- /usr/local/bin/python
-cachedir: .pytest_cache
-rootdir: /devwork
-plugins: mock-1.11.1, asyncio-0.10.0, xdist-1.30.0, forked-1.1.1, requests-mock-1.7.0
-collecting ... collected 2 items
-
-HelloWorld_test.py::test_say_hello PASSED                                [ 50%]
-HelloWorld_test.py::test_say_hello_over_http PASSED                      [100%]
-
-=========================== 2 passed in 0.40 seconds ===========================
-Pytest completed with status code: 0
-
-(venv) sb@dddd:~/demisto/content$
+#########
+ Summary 
+#########
+Packages: 1
+Packages PASS: 1
+Packages FAIL: 0
 ```
 
 Note that the tests run within a Docker container so, if everything worked well, it means that your development environment is up and running correctly!
@@ -359,7 +386,7 @@ Switched to a new branch 'my_integration_name'
 ```
 
 Now, use `demisto-sdk` to create a directory under `Packs/<Your pack name>`, named after your product where you will put all your content files later, and add it to the staged changes in `git`.  
-For more description regarding what exactly a pack is please click [here](../integrations/packs-fromat). 
+For more description regarding what exactly a pack is please click [here](../integrations/packs-format). 
 
 Make sure you use **PascalCase** in the directory name (i.e. `MyIntegration`), you can create a Pack and an Integration directory using the `demisto-sdk init` command.
 
@@ -428,7 +455,7 @@ But you can also run the hooks locally using the demisto-sdk, in order to do tha
 You can see the [docs](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/format/README.md)  
 2. `demisto-sdk validate -g` - this will validate the integrity of the yml files, and will make sure they follow 
 our pre-set of roles. You can see the [docs](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md)  
-3. `demisto-sdk lint -d <The path to your changed/newly added content entity>` - this will run lint and pytest on your 
+3. `demisto-sdk lint -i <The path to your changed/newly added content entity>` - this will run lint and pytest on your 
 changed python files. You can see the [docs](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/lint/README.md)  
 
 

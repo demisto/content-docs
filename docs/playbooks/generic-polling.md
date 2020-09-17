@@ -33,7 +33,7 @@ Follow these instructions to use the `GenericPolling` playbook.
 * **AdditionalPollingCommandArgValues** -  If the polling command has more than a single argument you can add their values via this input for example: `value1,value2,...`. 
 
 ## Example
-### [Detonate File – JoeSecurity](https://github.com/demisto/content/blob/master/Playbooks/playbook-Detonate_File_-_JoeSecurity.yml)
+### [Detonate File – JoeSecurity](https://github.com/demisto/content/blob/master/Packs/JoeSecurity/Playbooks/playbook-Detonate_File_-_JoeSecurity.yml)
 ![image](../doc_imgs/playbooks/66270734-7ee53b00-e85f-11e9-8566-e0118774070e.png)
 
 * **Start command** - `joe-analysis-submit-sample` - Starts a new analysis of a file in Joe Security.

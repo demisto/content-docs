@@ -1,8 +1,9 @@
 ---
-id: tutorial-playbook-TIM-EDL
+id: tim-edl
 title: Add Indicators to SIEM
+description: This article walks you through setting up a playbook to take indicators from a threat intel feed, enrich the indicators, and push them to your SIEM.
 ---
-This tutorial walks you through setting up a playbook to take indicators from a threat intel feed, enrich the indicators, and push them to your SIEM. 
+This article walks you through setting up a playbook to take indicators from a threat intel feed, enrich the indicators, and push them to your SIEM.
 
 1. Define a threat intel feed to ingest indicators to your system.
 
@@ -14,7 +15,7 @@ This tutorial walks you through setting up a playbook to take indicators from a 
 
 5. Customize a job that is time-based to push the indicators to the SIEM.
 
-This tutorial does not cover every possible scenario in this flow. It provides a real-life scenario that touches on important points from which you can extrapolate to other scenarios.
+This article does not cover every possible scenario in this flow. It provides a real-life scenario that touches on important points from which you can extrapolate to other scenarios.
 
 ## Configure the Threat Intel Feed
 
@@ -32,7 +33,7 @@ Cortex XSOAR comes with the several TIM feeds out of the box. In this flow, we w
 
     4. Determine when the indicator expires and how often to fetch indicators from the feed.
 
-    ![Threat Feed](../doc_imgs/tutorials/tutorial-playbook-TIM-EDL/tutorial_playbook_tim_feed.png "Threat Feed")
+    ![Threat Feed](../../../docs/doc_imgs/tutorials/tutorial-playbook-TIM-EDL/tutorial_playbook_tim_feed.png "Threat Feed")
 
 3. Click **Done**.
 
@@ -67,7 +68,7 @@ After configuring the feed, we need to customize the playbook to process the ind
 
     4. Click **Save**.
 
-    ![Define Playbook Query](../doc_imgs/tutorials/tutorial-playbook-TIM-EDL/tutorial_playbook_inputs-outputs.png "Define Playbook Query")
+    ![Define Playbook Query](../../../docs/doc_imgs/tutorials/tutorial-playbook-TIM-EDL/tutorial_playbook_inputs-outputs.png "Define Playbook Query")
 
 3. Click **Save Version**.
 
@@ -99,7 +100,7 @@ Now that the feed and playbook are set up, you need to define a job that will tr
 
 2. Click **Create New Job**.
 
-![Define a Job](../doc_imgs/tutorials/tutorial-playbook-TIM-EDL/tutorial_playbook_define-job.png "Define a Job")
+![Define a Job](../../../docs/doc_imgs/tutorials/tutorial-playbook-TIM-EDL/tutorial_playbook_define-job.png "Define a Job")
 
 ## Customize the Add All Indicator Types To SIEM Playbook
 
@@ -123,7 +124,7 @@ After setting up all of the infrastructure, we need to create one final job to p
 
 2. Click **Create New Job**.
 
-![Define a Time-triggered Job](../doc_imgs/tutorials/tutorial-playbook-TIM-EDL/tutorial_playbook_define-time-triggered-job.png "Define a Time-triggered Job")
+![Define a Time-triggered Job](../../../docs/doc_imgs/tutorials/tutorial-playbook-TIM-EDL/tutorial_playbook_define-time-triggered-job.png "Define a Time-triggered Job")
 
 
 ## Test the Flow
@@ -144,14 +145,14 @@ Now that everything is set up, let's test the flow.
 
     3. Under the **Outputs** tab, note the incident ID for the incident that was created.
 
-    ![Manual Incident ID](../doc_imgs/tutorials/tutorial-playbook-TIM-EDL/tutorial_playbook_manual-incident-id.png "Manual Incident ID")
+    ![Manual Incident ID](../../../docs/doc_imgs/tutorials/tutorial-playbook-TIM-EDL/tutorial_playbook_manual-incident-id.png "Manual Incident ID")
 
 3. Navigate to **Incidents** and click on the incident that was created in the previous step.
 
     1. Under the **Indicators** page, click on an indicator. 
     
     2. Click the edit icon and add the tags that apply to the indicator. We have added the approved_black tag. This is the tag that the Add All Indicator Types To SIEM playbook used to determine what needs to be pushed. If you use a different tag, make sure to change the playbook accordingly. <br/> **Note** You can add tags in bulk to multiple indicators from the main Indicators page, however you will not be able to remove any tags that are already applied to an indicator.
-    ![Add Tags](../doc_imgs/tutorials/tutorial-playbook-TIM-EDL/tutorial_playbook_add-tag.png "Add Tags")
+    ![Add Tags](../../../docs/doc_imgs/tutorials/tutorial-playbook-TIM-EDL/tutorial_playbook_add-tag.png "Add Tags")
 
     3. Under the **Work Plan** page, click the *Manually review the incident* task, select the **Yes** radio button, and click **Mark Completed**.
 
@@ -165,4 +166,4 @@ Now that everything is set up, let's test the flow.
 
 5. Navigate to **Indicators** and in the query, enter *tags:SIEM*. This is the tag appended to every indicator that has been processed and pushed to the SIEM.
 
-    ![Pushed to SIEM](../doc_imgs/tutorials/tutorial-playbook-TIM-EDL/tutorial_playbook_pushed-to-SIEM.png "Pushed to SIEM")    
+    ![Pushed to SIEM](../../../docs/doc_imgs/tutorials/tutorial-playbook-TIM-EDL/tutorial_playbook_pushed-to-SIEM.png "Pushed to SIEM")    

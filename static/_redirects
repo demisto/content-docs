@@ -1,5 +1,12 @@
+# Redirect subdomain
+https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
+
+
 # Redirect main docs page
 /docs	/docs/welcome
+
+# Redirect used by Server link (do NOT delete)
+/start-contributing /docs/welcome
 
 # Redirect existing docs
 
@@ -14,7 +21,7 @@
 /docs/faq	/docs/concepts/faq
 
 # Howtos Integrations
-/docs/changelog	/docs/howtos/integrations/changelog
+/docs/changelog	/docs/howtos/integrations/release-notes
 /docs/code-conventions	/docs/howtos/integrations/code-conventions
 /docs/context-and-outputs	/docs/howtos/integrations/context-and-outputs
 /docs/context-standards	/docs/howtos/integrations/context-standards
@@ -30,7 +37,6 @@
 /docs/integration-docs	/docs/howtos/integrations/integration-docs
 /docs/linting	/docs/howtos/integrations/linting
 /docs/long-running	/docs/howtos/integrations/long-running
-/docs/package-dir	/docs/howtos/integrations/package-dir
 /docs/package-dir	/docs/howtos/integrations/package-dir
 /docs/parameter-types	/docs/howtos/integrations/parameter-types
 /docs/testing	/docs/integrations/test-playbooks
@@ -54,7 +60,7 @@
 # Redirect docs after second restyle of 3/20/2020
 
 # Howtos Integrations
-/docs/howtos/integrations/changelog /docs/integrations/changelog
+/docs/howtos/integrations/changelog /docs/integrations/release-notes
 /docs/howtos/integrations/code-conventions  /docs/integrations/code-conventions
 /docs/howtos/integrations/context-and-outputs   /docs/integrations/context-and-outputs
 /docs/howtos/integrations/context-standards /docs/integrations/context-standards
@@ -80,6 +86,9 @@
 /docs/howtos/integrations/integration-cache /docs/integrations/integration-cache
 /docs/howtos/integrations/integration-context /docs/integrations/integration-cache
 
+# rename changelog to release-notes
+/docs/integrations/changelog /docs/integrations/release-notes
+
 # Howtos Contributing
 /docs/howtos/contributing/circleci  /docs/contributing/circleci
 
@@ -92,8 +101,14 @@
 /docs/tutorials/getting-started/tut-setup-dev   /docs/tutorials/tut-setup-dev
 /docs/tutorials/integrations/tut-integration-ui /docs/tutorials/tut-integration-ui
 
-#Sign Up
+# Tuts that moved to articles
+/docs/tutorials/tut-minemeld-migration /docs/reference/articles/minemeld-migration
+/docs/tutorials/tutorial-incident-lifecycle /docs/reference/articles/incident-lifecycle
+/docs/tutorials/tutorial-playbook-TIM-EDL /docs/reference/articles/tim-edl
+/docs/tutorials/tutorial-TIM-export-indicators-to-3rd-party /docs/reference/articles/export-indicators
 
+#Sign Up
+/program-guide https://www.paloaltonetworks.com/content/dam/pan/en_US/assets/pdf/datasheets/cortex-xsoar-partner-program-guide.pdf
 /sign-addn https://na2.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=f1b0bfb5-5e5a-49b9-8ed6-5b475605cefa&env=na2&acct=11b87c14-db4f-4b90-b5b1-58b37f18856f&v=2
 
 # Rebranding
@@ -101,7 +116,11 @@
 /docs/why-demisto	/docs/partners/why-xsoar
 /docs/partners/why-demisto   /docs/partners/why-xsoar
 /partner-kit https://drive.google.com/drive/folders/1oy2xycgqdofPEeXtz9fqh_zF5V5OZwkE
-
+/share https://drive.google.com/drive/u/0/folders/15sfGV-xb8MsZYKTanNETRRxvq8OeEcp2
 
 # Other
 /docs/reference	/docs/reference/index
+/office-hours https://paloaltonetworks.zoom.us/j/91689983283
+
+# Updated/Superseded articles
+/docs/integrations/doc-structure /docs/integrations/integration-docs

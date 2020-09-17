@@ -210,7 +210,7 @@ These are the best practices for defining the command functions.
 - Each **_command** function should use `Client` class functions.
 - Each **_command** function should be unit testable. This means you should avoid using global functions, such as `demisto.results()`, `return_error()`, or `return_results()`.
 - The **_command** function will receive `client` instance and `args` (`demisto.args()` dictionary).
-- The **_command** function will return 3 variables: readable_output, outputs, raw_response
+- The **_command** function will return an instance of the [CommandResults](https://xsoar.pan.dev/docs/integrations/code-conventions#commandresults) class. 
 - To return results to the War Room, in the `main` use `return_results(say_hello_command(client, demisto.args()))`.
 ```python
 def say_hello_command(client, args):
@@ -277,7 +277,7 @@ def main():
 
 
 ## IOC Reputation Commands
-There are two implementation requirements for reputation commands (aka `!file`, `!email`, `!domain`, `!url`, and `!ip`) that are enforced by checks in the [hook_validations](https://github.com/demisto/content/blob/master/Tests/scripts/hook_validations/integration.py).
+There are two implementation requirements for reputation commands (aka `!file`, `!email`, `!domain`, `!url`, and `!ip`) that are enforced by checks in the [demisto-sdk](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md).
 - The reputation command's argument of the same name must have `default` set to `True`.
 - The reputation command's argument of the same name must have `isArray` set to `True`.
 
@@ -557,11 +557,11 @@ headers = ['Input', 'Output']
 tableToMarkdown(name, t, headers=headers, removeNull=True)
 ```
 The above will create the table seen below:
-| Input  |  Output |
-|---|---|
-| first  |  foo |
-| second  |  bar |
-| third  | baz  |
+| Input  | Output |
+|--------|--------|
+| first  | foo    |
+| second | bar    |
+| third  | baz    |
 
 In the War Room, this is how a table will appear:
 <img width="788" src="../doc_imgs/integrations/50571324-46846e00-0db0-11e9-9888-ddd9dc275541.png"></img>
@@ -609,14 +609,14 @@ This class is used to return outputs. This object represents an entry in warroom
 | outputs_prefix    | str    | Should be identical to the prefix in the yml contextPath in yml file. for example:         CortexXDR.Incident                                                                              |
 | outputs_key_field | str    | Primary key field in the main object. If the command returns Incidents, and of the properties of Incident is incident_id, then outputs_key_field='incident_id'                             |
 | outputs           | object | The data to be returned and will be set to context                                                                                                                                         |
-| human_readable    | str    | (Optional) markdown string that will be presented in the warroom, should be human readable -  (HumanReadable) - if not set, readable output will be generated via tableToMarkdown function |
+| readable_output    | str    | (Optional) markdown string that will be presented in the warroom, should be human readable -  (HumanReadable) - if not set, readable output will be generated via tableToMarkdown function |
 | raw_response      | object | (Optional) must be dictionary, if not provided then will be equal to outputs.  Usually must be the original raw response from the 3rd party service (originally Contents)                  |
 | indicators        | list   | Must be list of Indicator types, like Common.IP, Common.URL, Common.File, Common.Domain, Common.CVE.                                                                                       |
 
 **Example**
 ```python
 results = CommandResults(
-    outputs='VirusTotal.IP',
+    outputs_prefix='VirusTotal.IP',
     outputs_key_field='Address',
     outputs={
         'Address': '8.8.8.8',
@@ -635,7 +635,7 @@ Use `return_results` to return mainly `CommandResults` object or basic `string`.
 **Example**
 ```python
 results = CommandResults(
-    outputs='VirusTotal.IP',
+    outputs_prefix='VirusTotal.IP',
     outputs_key_field='Address',
     outputs={
         'Address': '8.8.8.8',
@@ -704,7 +704,7 @@ The entry is composed of multiple components.
     Any Cortex XSOAR integration command that returns `timeline` data should include the `'Category'` value of `'Integration Update'`. When returning `timeline` data from a Cortex XSOAR automation, the value passed to the `'Category'` field should be `'Automation Update'`.
 
     **So when should one include a timeline object in an entry returned to the war room?**  
-    The answer is any time that a command operates on an indicator. A good indicator (pun intended?) of when `timeline` data should be included in an entry is to look and see if the command returns a `DBotScore` or entities as described in our [context standards documentation](../integrations/context-standards) to the entry context. A common case is reputation commands, i.e. `!ip`, `!url`, `!file`, etc. When implementing these commands in integrations, `timeline` data should be included in the returned entry. To see an example of an integration that returns entries with `timeline` data, take a look at our [AbuseIPDB integration](https://github.com/demisto/content/blob/master/Integrations/AbuseDB/AbuseDB.py#L201).
+    The answer is any time that a command operates on an indicator. A good indicator (pun intended?) of when `timeline` data should be included in an entry is to look and see if the command returns a `DBotScore` or entities as described in our [context standards documentation](../integrations/context-standards) to the entry context. A common case is reputation commands, i.e. `!ip`, `!url`, `!file`, etc. When implementing these commands in integrations, `timeline` data should be included in the returned entry. To see an example of an integration that returns entries with `timeline` data, take a look at our [AbuseIPDB integration](https://github.com/demisto/content/blob/14148b68f5030a64c6fe6f7cf5af4f184e93abad/Packs/AbuseDB/Integrations/AbuseDB/AbuseDB.py#L215).
 
 
 The `EntryType` and `EntryFormat` enum classes are imported from `CommonServerPython` and respectively appear as follows:
@@ -791,4 +791,4 @@ demisto.results({
 ## Quality Examples of Integrations
 * [Google Cloud Functions](https://github.com/demisto/content/tree/master/Packs/GoogleCloudFunctions/Integrations/GoogleCloudFunctions)
 * [Cortex XDR](https://github.com/demisto/content/tree/master/Packs/CortexXDR/Integrations/PaloAltoNetworks_XDR)
-* [Proofpoint TAP v2](https://github.com/demisto/content/tree/master/Packs/ProofpointTAP_v2/Integrations/ProofpointTAP_v2)
+* [Proofpoint TAP v2](https://github.com/demisto/content/tree/master/Packs/ProofpointTAP/Integrations/ProofpointTAP_v2)

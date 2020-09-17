@@ -15,9 +15,9 @@ module.exports = {
   projectName: "content-docs", // Usually your repo name.
   themeConfig: {
     algolia: {
-      apiKey: process.env.ALGOLIA_APIKEY,
-      indexName: process.env.ALGOLIA_INDEX,
-      algoliaOptions: { typoTolerance: false } // Optional, if provided by Algolia
+      apiKey: "f5dfbee43cfa4c5024b10045c6d91461",
+      indexName: "demisto",
+      algoliaOptions: { typoTolerance: false, hitsPerPage: 1000, filters: 'type:lvl1 OR type:content' } // Optional, if provided by Algolia
     },
     sidebarCollapsible: true,
     navbar: {
@@ -27,33 +27,6 @@ module.exports = {
         src: "/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal.svg",
         srcDark: "/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal-KO.svg"
       },
-
-      menus: [
-        {
-          label: "Partners",
-          items: [
-            { to: "/docs/partners/why-xsoar", label: "Why Cortex XSOAR?" },
-            {
-              to: "docs/partners/become-a-tech-partner",
-              label: "Become a Partner"
-            },
-            {
-              to: "/docs/partners/partner-owned-integration",
-              label: "Partner Owned Integration"
-            },
-            {
-              to: "/docs/partners/development-partners",
-              label: "Development Partners"
-            },
-            {
-              to: "https://start.paloaltonetworks.com/become-a-technology-partner",
-              label: "Sign Up Now"
-            }
-          ],
-          position: "right"
-        }
-      ],
-
       links: [
         {
           to: "/docs/welcome",
@@ -71,15 +44,49 @@ module.exports = {
           position: "left"
         },
         {
-          href: "http://github.com/demisto/content/",
-          label: "GitHub",
+          label: "Partners",
+          items: [
+            { to: "/docs/partners/why-xsoar",
+             label: "Why Cortex XSOAR?" 
+            },
+            {
+              to: "docs/partners/become-a-tech-partner",
+              label: "Become a Partner"
+            },
+            {
+              to: "/docs/partners/marketplace",
+              label: "Marketplace"
+            },
+            {
+              to: "/docs/partners/certification",
+              label: "Pack Certification"
+            },
+            {
+              to: "/docs/partners/office-hours",
+              label: "Office Hours"
+            },
+            {
+              to: "/docs/partners/development-partners",
+              label: "Development Partners"
+            },
+            {
+              to: "https://start.paloaltonetworks.com/become-a-technology-partner",
+              label: "Sign Up Now"
+            }
+          ],
           position: "right"
         },
         {
           href: "https://blog.demisto.com/",
           label: "Blog",
           position: "right"
-        }
+        },
+        {
+          href: "http://github.com/demisto/content/",
+          position: "right",
+          className: "header-github-link",
+          "aria-label": "GitHub repository",
+        },
       ],
       sites: [
         {
@@ -101,7 +108,7 @@ module.exports = {
               logo: "/img/Cortex-XSOAR-product-green.svg"
             }
           ],
-          position: "right"
+          position: "products"
         }
       ]
     },
@@ -134,6 +141,13 @@ module.exports = {
         // href: "https://pan.dev"
       },
       copyright: `Copyright © ${new Date().getFullYear()} Palo Alto Networks, Inc.`
+    },
+    announcementBar: {
+      id: 'github_star',
+      content:
+        '⭐️ If you like Cortex XSOAR Content, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/demisto/content">GitHub</a>! ⭐',
+      backgroundColor: '#fafbfc',
+      textColor: '#091E42',
     }
   },
   themes: ["@docusaurus/theme-live-codeblock"],

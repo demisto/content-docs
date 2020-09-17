@@ -1,0 +1,66 @@
+name: Verify Site Links
+
+on:
+  # push: {} #  uncommnet for testing
+  schedule: # daily at 12 noon UTC
+    - cron: '0 12 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Set up Go 1.13
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.13.11
+      id: go
+    - name: Setup muffet
+      run: 'go get -u github.com/raviqqe/muffet'
+    - name: Verify Links
+      run: |
+        muffet --version
+        muffet -c 64 --ignore-fragments -b 8192 \
+        -e 'https://github.com/demisto/content-docs/.*' \
+        -e 'https://github.com/demisto/content/blob/master//Packs/.*' \
+        -e 'https?://192\.168\.\d+\.\d+.*' \
+        -e 'https?://10\.\d+\.\d+\.\d+.*' \
+        -e 'https://github.com/demisto/content/releases/download/.*' \
+        -e 'https://github.com/demisto/content/tree/\d+\.\d+\.\d+' \
+        -e 'https?://localhost.*' \
+        -e 'https?://(www\.)?example.*' \
+        -e 'https?://hostname/.*' \
+        -e 'https://yourdomain.*' \
+        -e 'https://.*\.domain.com/' \
+        -e 'https://partner.analystplatform.com.*' \
+        -e 'https://demistodev.atlassian.net.*' \
+        -e 'https://.*s3.amazonaws.com/.*X-Amz-Credential.*' \
+        -e 'http://medimobility.es/wordpress/.*' \
+        -e 'https://hmrc.5-notifications.com.*' \
+        -e 'https://icloud.com.uk-maps.info.*' \
+        -e 'https://software8n-chase.com.*' \
+        -e 'http://www.lifetmeda.ru.*' \
+        -e 'https://help.symantec.com.*' \
+        -e '(?i).*eicar.*' \
+        -e 'https://www.mockapi.com/.*' \
+        -e 'https://linkedin.com/.*' \
+        -e 'https://api.*.crowdstrike.com.*' \
+        -e 'https://dehashed.com.*' \
+        -e 'https://secure.aadcdn.microsoftonline-p.com.*' \
+        -e 'https://blog.demisto.com.*' \
+        -e 'https://www.demisto.com.*' \
+        -e 'https://go.demisto.com.*' \
+        https://xsoar.pan.dev > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
+        grep -v -E '^\s+(403|401|x509|lookup|parse|timeout|dialing)' muffet.txt > muffet-clean.out
+        echo "Muffet output after 401, 403 and x509 remove:"
+        cat muffet-clean.out
+        if [ -n "$(grep -v '^https'  muffet-clean.out)" ]; then
+          echo "muffet failed verification!!!"
+          exit 1
+        fi
+        echo "All good muffet passed!!!"
+    - name: Save artifcats
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: log-artifacts
+        path: muffet.txt

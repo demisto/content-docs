@@ -1,6 +1,6 @@
 from gendocs import INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
     index_doc_infos, DocInfo, gen_html_doc, normalize_id, process_release_doc, process_extra_readme_doc, \
-    INTEGRATIONS_PREFIX
+    INTEGRATIONS_PREFIX, get_deprecated_data
 from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server
 import os
 import pytest
@@ -71,7 +71,7 @@ def test_process_readme_doc(tmp_path):
         assert f.readline().startswith('---')
         assert f.readline().startswith(f'id: {res.id}')
         assert f.readline().startswith(f'title: "{res.name}"')
-        assert f.readline().startswith(f'custom_edit_url: https://github.com/demisto/content/')
+        assert f.readline().startswith('custom_edit_url: https://github.com/demisto/content/')
     res = process_readme_doc(str(tmp_path), BASE_DIR, f'{BASE_DIR}/test_data/empty-readme.md')
     assert 'no yml file found' in res.error_msg
     process_readme_doc(str(tmp_path), SAMPLE_CONTENT, f'{SAMPLE_CONTENT}/Integrations/SlashNextPhishingIncidentResponse/README.md')
@@ -87,7 +87,7 @@ def test_process_readme_doc_same_dir(tmp_path):
         assert f.readline().startswith('---')
         assert f.readline().startswith(f'id: {res.id}')
         assert f.readline().startswith(f'title: "{res.name}"')
-        assert f.readline().startswith(f'custom_edit_url: https://github.com/demisto/content/')
+        assert f.readline().startswith('custom_edit_url: https://github.com/demisto/content/')
 
 
 def test_process_readme_doc_edl(tmp_path):
@@ -110,7 +110,7 @@ def test_process_code_script(tmp_path):
         assert f.readline().startswith('---')
         assert f.readline().startswith(f'id: {res.id}')
         assert f.readline().startswith(f'title: "{res.name}"')
-        assert f.readline().startswith(f'custom_edit_url: https://github.com/demisto/content/')
+        assert f.readline().startswith('custom_edit_url: https://github.com/demisto/content/')
 
 
 def test_table_doc_info():
@@ -152,7 +152,7 @@ def test_process_release_doc(tmp_path, mdx_server):
         assert f.readline().startswith('---')
         assert f.readline().startswith(f'id: {res.id}')
         assert f.readline().startswith(f'title: "{res.id}"')
-        assert f.readline().startswith(f'custom_edit_url: https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/releases')
+        assert f.readline().startswith('custom_edit_url: https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/releases')
 
 
 def test_process_extra_doc(tmp_path, mdx_server):
@@ -166,4 +166,16 @@ def test_process_extra_doc(tmp_path, mdx_server):
         assert f.readline().startswith('---')
         assert f.readline().startswith(f'id: {res.id}')
         assert f.readline().startswith(f'title: "{res.name}"')
-        assert f.readline().startswith(f'custom_edit_url: https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/integrations')
+        assert f.readline().startswith('custom_edit_url: https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/integrations')
+
+
+def test_get_deprecated_data():
+    res = get_deprecated_data({"deprecated": True}, "Deprecated - We recommend using ServiceNow v2 instead.", "README.md")
+    assert "We recommend using ServiceNow v2 instead" in res
+    assert get_deprecated_data({"deprecated": False}, "stam", "README.md") == ""
+    res = get_deprecated_data({"deprecated": True}, "Deprecated: use Shodan v2 instead. Search engine for Internet-connected devices.", "README.md")
+    assert "use Shodan v2 instead" in res
+    res = get_deprecated_data({"deprecated": True}, "Deprecated. Use The Generic SQL integration instead.", "README.md")
+    assert "Use The Generic SQL integration instead" in res
+    res = get_deprecated_data({}, "Deprecated. Add information about the vulnerability.", "Packs/DeprecatedContent/Playbooks/test-README.md")
+    assert "Add information" not in res

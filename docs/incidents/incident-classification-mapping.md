@@ -36,7 +36,7 @@ When an integration fetches incidents, it populates the rawJSON object in the in
 
    The event attributes are presented on the right side of the screen. Click on the attribute by which you want to classify the incidents. You can navigate between the fetched events to view all of the attributes in the other events and to ensure that you are selecting a viable attribute. In our example, below, we are classifying by the description attribute. 
 
-   You can use filters and transformers to make the selection more exact. For more information, see [INSERT LINK TO filters and transformers doc]
+   You can use filters and transformers to make the selection more exact.
 
 5. Click **Done**.
 
@@ -54,6 +54,316 @@ You should map event attributes to the incident fields so the information is ind
 
 2. In the Mapping Wizard, in the left pane click **Choose data path**.
 
-3. Click the event attribute to which you want to map. You can further manipulate the field using filters and transformers. For more information, see [INSERT LINK TO filters and transformers doc].
+3. Click the event attribute to which you want to map. You can further manipulate the field using filters and transformers.
 
 4. Click **Done**.
+
+## Classifier & Mapper files structure
+
+Classifier and mapper files structure differs before and after Cortex XSOAR version 6.0.
+
+#### Up to Cortex XSOAR version 6.0
+
+The classifier & mapper should be represented in one file, as exported from Cortex XSOAR, with addition of the field `toVersion: 5.9.9`.
+
+The file should be named `classifier-<PACK-NAME>_5_9_9.json`, e.g. `classifier-CortexXDR_5_9_9.json`
+
+#### Cortex XSOAR version 6.0 and above
+
+Cortex XSOAR version 6.0 introduces an improved classification & mapping experience, which includes a mirroring functionality by allowing to map outgoing incidents.
+
+:::note note
+You can set default classifier and/or mapper for an integration by populating the following keys in the integration YAML file with the classifier and/or mapper IDs:
+* For default classifier: `defaultclassifier`
+* For default incoming mapper: `defaultmapperin`
+* For default outgoing mapper: `defaultmapperout`
+:::
+
+Classifier file:
+ - Filename: `classifier-<PACK-NAME>.json`, e.g. `classifier-CortexXDR.json`
+ - File contents:
+ ```json 
+ {
+	"name": string,                 // Usually is <PACK-NAME> - Classifier
+	"type": "classification",
+	"id": string,                   // Usually is <PACK-NAME>
+	"description": string,          // Short description of the classifier
+	"defaultIncidentType": string,  // Default incident type to classify by
+	"keyTypeMap": object,           // Incident type mapping as generated in Cortex XSOAR
+	"transformer": object,          // Incident type transformer as generated in Cortex XSOAR
+	"version": -1,
+	"fromVersion": "6.0.0"
+  }
+ ```
+ 
+ For example:
+  ```json 
+ {
+	"name": "Cortex XDR - Classifier",
+	"type": "classification",
+	"id": "Cortex XDR - IR",
+	"description": "Classifies Cortex XDR incidents.",
+	"defaultIncidentType": "",
+	"keyTypeMap": {
+		"PortScan": "Cortex XDR Port Scan",
+		"XDR Incident": "Cortex XDR Incident"
+	},
+	"transformer": {
+		"complex": {
+			"accessor": "",
+			"filters": [],
+			"root": "description",
+			"transformers": [
+				{
+					"args": {
+						"dt": {
+							"isContext": false,
+							"value": {
+								"complex": null,
+								"simple": ".=val \u0026\u0026 val.toLowerCase().indexOf(\"port scan\") \u003e -1 ? \"PortScan\" : \"XDR Incident\""
+							}
+						}
+					},
+					"operator": "DT"
+				}
+			]
+		},
+		"simple": ""
+	},
+	"version": -1,
+	"fromVersion": "6.0.0"
+  }
+ ```
+ 
+ Incoming mapper file:
+ - Filename: `classifier-mapper-incoming-<PACK-NAME>.json`, e.g. `classifier-mapper-incoming--CortexXDR.json`
+ - File contents:
+  ```json
+ {
+    "name": string,             // Usually is <PACK-NAME> - Incoming Mapper
+    "type": "mapping-incoming",
+    "id": string,               // Usually is <PACK-NAME>-mapper
+    "description": string,      // Short description of the incoming mapper
+	"mapping": {},              // Fields mapping as generated in Cortex XSOAR
+	"version": -1,
+	"fromVersion": "6.0.0"
+  }
+ ```
+ 
+ For example:
+ ```json
+ {
+    "name": "Cortex XDR - Incoming Mapper",
+    "type": "mapping-incoming",
+    "id": "Cortex XDR - IR-mapper",
+    "description": "Maps incoming Cortex XDR incidents fields.",
+	"defaultIncidentType": "",
+	"mapping": {
+		"Cortex XDR Incident": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"XDR Alert Count": {
+					"complex": null,
+					"simple": "alert_count"
+				},
+				"XDR Assigned User Email": {
+					"complex": null,
+					"simple": "assigned_user_mail"
+				},
+				"XDR Assigned User Pretty Name": {
+					"complex": null,
+					"simple": "assigned_user_pretty_name"
+				},
+				"XDR Description": {
+					"complex": null,
+					"simple": "description"
+				},
+				"XDR Detection Time": {
+					"complex": {
+						"accessor": "",
+						"filters": [],
+						"root": "detection_time",
+						"transformers": [
+							{
+								"args": {},
+								"operator": "TimeStampToDate"
+							}
+						]
+					},
+					"simple": ""
+				},
+				"XDR High Severity Alert Count": {
+					"complex": null,
+					"simple": "high_severity_alert_count"
+				},
+				"XDR Host Count": {
+					"complex": null,
+					"simple": "host_count"
+				},
+				"XDR Incident ID": {
+					"complex": null,
+					"simple": "incident_id"
+				},
+				"XDR Low Severity Alert Count": {
+					"complex": null,
+					"simple": "low_severity_alert_count"
+				},
+				"XDR Medium Severity Alert Count": {
+					"complex": null,
+					"simple": "med_severity_alert_count"
+				},
+				"XDR Notes": {
+					"complex": null,
+					"simple": "notes"
+				},
+				"XDR Resolve Comment": {
+					"complex": null,
+					"simple": "resolve_comment"
+				},
+				"XDR Severity": {
+					"complex": null,
+					"simple": "severity"
+				},
+				"XDR Status": {
+					"complex": null,
+					"simple": "status"
+				},
+				"XDR URL": {
+					"complex": null,
+					"simple": "xdr_url"
+				},
+				"XDR User Count": {
+					"complex": null,
+					"simple": "user_count"
+				},
+				"occurred": {
+					"complex": {
+						"accessor": "",
+						"filters": [],
+						"root": "creation_time",
+						"transformers": [
+							{
+								"args": {},
+								"operator": "TimeStampToDate"
+							}
+						]
+					},
+					"simple": ""
+				},
+				"severity": {
+					"complex": null,
+					"simple": "severity"
+				}
+			}
+		},
+		"Cortex XDR Port Scan": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"XDR Alert Count": {
+					"complex": null,
+					"simple": "alert_count"
+				},
+				"XDR Assigned User Email": {
+					"complex": null,
+					"simple": "assigned_user_mail"
+				},
+				"XDR Assigned User Pretty Name": {
+					"complex": null,
+					"simple": "assigned_user_pretty_name"
+				},
+				"XDR Description": {
+					"complex": null,
+					"simple": "description"
+				},
+				"XDR Detection Time": {
+					"complex": {
+						"accessor": "",
+						"filters": [],
+						"root": "detection_time",
+						"transformers": [
+							{
+								"args": {},
+								"operator": "TimeStampToDate"
+							}
+						]
+					},
+					"simple": ""
+				},
+				"XDR High Severity Alert Count": {
+					"complex": null,
+					"simple": "high_severity_alert_count"
+				},
+				"XDR Host Count": {
+					"complex": null,
+					"simple": "host_count"
+				},
+				"XDR Incident ID": {
+					"complex": null,
+					"simple": "incident_id"
+				},
+				"XDR Low Severity Alert Count": {
+					"complex": null,
+					"simple": "low_severity_alert_count"
+				},
+				"XDR Medium Severity Alert Count": {
+					"complex": null,
+					"simple": "med_severity_alert_count"
+				},
+				"XDR Notes": {
+					"complex": null,
+					"simple": "notes"
+				},
+				"XDR Resolve Comment": {
+					"complex": null,
+					"simple": "resolve_comment"
+				},
+				"XDR Severity": {
+					"complex": null,
+					"simple": "severity"
+				},
+				"XDR Status": {
+					"complex": null,
+					"simple": "status"
+				},
+				"XDR URL": {
+					"complex": null,
+					"simple": "xdr_url"
+				},
+				"XDR User Count": {
+					"complex": null,
+					"simple": "user_count"
+				},
+				"occurred": {
+					"complex": {
+						"accessor": "",
+						"filters": [],
+						"root": "creation_time",
+						"transformers": [
+							{
+								"args": {},
+								"operator": "TimeStampToDate"
+							}
+						]
+					},
+					"simple": ""
+				},
+				"severity": {
+					"complex": null,
+					"simple": "severity"
+				}
+			}
+		},
+		"CortextXDRIncident": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"XDR Severity": {
+					"complex": null,
+					"simple": "severity"
+				}
+			}
+		}
+	},
+	"version": -1,
+	"fromVersion": "6.0.0"
+  }
+ ```
