@@ -95,16 +95,16 @@ const sidebars = {
               type: "category",
               label: "Context Standards",
               items: [
-                "integrations/context standards/about-context-standards",
-                "integrations/context standards/mandatory-context-standards",
-                "integrations/context standards/recommended-context-standards",
+                "integrations/about-context-standards",
+                "integrations/mandatory-context-standards",
+                "integrations/recommended-context-standards",
               ]
             },
             {
               type: "category",
               label: "Generic Commands",
               items: [
-                "integrations/generic commands/generic-iam-commands"
+                "integrations/generic-iam-commands"
               ]
             },
             "integrations/dbot",
