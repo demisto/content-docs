@@ -173,8 +173,8 @@ The following is the format for an IP entity
 
 **In YAML**
 ```yaml
-outputs:- 
-contextPath: IP.Address
+outputs:
+- contextPath: IP.Address
   description: IP address
   type: String
 - contextPath: IP.ASN
