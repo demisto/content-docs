@@ -19,7 +19,7 @@ The description file should contain details on how to configure an instance of t
 The file's content can include troubleshooting tips and advanced details for different configuration cases.
 
 :::note 
-This should not be confused with integration README.md which is the [Integration Documentation](https://xsoar.pan.dev/docs/integrations/integration-docs) document.
+This should not be confused with the integration README file, documented [here](../integrations/integration-docs).
 :::
 
 ## Example
