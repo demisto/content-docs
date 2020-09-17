@@ -11,10 +11,6 @@ Documentation is a critical step that assists customers who may use your integra
 2.  If the integration is existing but missing documentation then please create new documentation.
 3.  If the integration is existing and some of the integration has changed. For example, a new command was added, context was changed, or anything else; please update the documentation.
 
-:::note
-The documentation must conform to the [Integration Doc Format](doc-structure).
-:::
-
 :::note 
 This should not be confused with the integration description file, documented [here](../integrations/integration-description).
 :::
