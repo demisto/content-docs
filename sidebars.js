@@ -100,13 +100,6 @@ const sidebars = {
                 "integrations/recommended-context-standards",
               ]
             },
-            {
-              type: "category",
-              label: "Generic Commands",
-              items: [
-                "integrations/generic-iam-commands"
-              ]
-            },
             "integrations/dbot",
             "integrations/docker"            
           ]
@@ -134,6 +127,7 @@ const sidebars = {
             "integrations/feeds",
             "integrations/powershell-code",
             "integrations/fetching-credentials",
+            "integrations/generic-iam-commands",
             "integrations/long-running",
             "integrations/dt",
             "integrations/integration-cache",
