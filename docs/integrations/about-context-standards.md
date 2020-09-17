@@ -24,7 +24,7 @@ The structure should be:
 
 ```
 
-Some standard objects are [Mandatory](../mandatory-context-standards)  and enforced in the code, and some are our [Recommendations](../recommended-context-standards).
+Some standard objects are [Mandatory](mandatory-context-standards)  and enforced in the code, and some are our [Recommendations](recommended-context-standards).
 
 If there is no matching item in the standard, reach out to us to check if your addition merits an update or change of the standard. 
 
