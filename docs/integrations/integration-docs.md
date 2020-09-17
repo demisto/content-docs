@@ -16,7 +16,7 @@ The documentation must conform to the [Integration Doc Format](doc-structure).
 :::
 
 :::note 
-This should not be confused with integration's description which is the [Integration Description File](https://xsoar.pan.dev/docs/integrations/integration-description) document.
+This should not be confused with the integration description, documented [here](../integrations/integration-description).
 :::
 
 
