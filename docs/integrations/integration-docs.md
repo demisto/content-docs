@@ -16,7 +16,7 @@ The documentation must conform to the [Integration Doc Format](doc-structure).
 :::
 
 :::note 
-This should not be confused with the integration description, documented [here](../integrations/integration-description).
+This should not be confused with the integration description file, documented [here](../integrations/integration-description).
 :::
 
 
