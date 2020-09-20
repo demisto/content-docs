@@ -45,19 +45,22 @@ When you configure the integration in Cortex XSOAR, enter those parameters in th
 In addition, make sure to select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
 
 
-## Authorize on behalf of a user (for self-deployed configuration)
-1. To use a self-configured Azure application, you need to add a new Azure App Registration in the Azure Portal. To add the registration, refer to the following [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app).
-2. Make sure the needed permissions are granted for the app registration, e.g for Microsoft graph User: API/Permission name `Directory.AccessAsUser.All` of type `Delegated`.
-3. Copy the following URL and replace the ***TENANT_ID***, ***CLIENT_ID***, ***REDIRECT_URI***, ***SCOPE*** with your own client ID and redirect URI, accordingly.
+### Authorize on behalf of a user
+Some of the Cortex XSOAR-Microsoft integrations (e.g. Azure Sentinel) require authorization on behalf of a user, and not admin consent. For more information about this authorization flow, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/auth-v2-user).
+
+To configure a Microsoft integration which follows this authorization flow with a self deployed Azure application:
+
+1. Make sure the needed permissions are granted for the app registration, e.g for Microsoft graph User: API/Permission name `Directory.AccessAsUser.All` of type `Delegated`.
+2. Copy the following URL and replace the ***TENANT_ID***, ***CLIENT_ID***, ***REDIRECT_URI***, ***SCOPE*** with your own client ID and redirect URI, accordingly.
 ```https://login.microsoftonline.com/TENANT_ID/oauth2/v2.0/authorize?response_type=code&scope=offline_access%20SCOPE&client_id=CLIENT_ID&redirect_uri=REDIRECT_URI```
-the scope for Microsoft Graph User, e.g `directory.accessasuser.all`
-4. Enter the link and you will be prompted to grant Cortex XSOAR permissions for your Azure Service Management. You will be automatically redirected to a link with the following structure:
+For example, for Microsoft Graph User, replace the ***SCOPE*** with `directory.accessasuser.all`.
+3. Enter the link and you will be prompted to grant Cortex XSOAR permissions for your Azure Service Management. You will be automatically redirected to a link with the following structure:
 ```REDIRECT_URI?code=AUTH_CODE&session_state=SESSION_STATE```
-5. Copy the ***AUTH_CODE*** (without the “code=” prefix) and paste it in your instance configuration under the **Authorization code** parameter. 
-6. Enter your client ID in the ***ID*** parameter field. 
-7. Enter your client secret in the ***Key*** parameter field.
-8. Enter your tenant ID in the ***Token*** parameter field.
-9. Enter your redirect URI in the ***Redirect URI*** parameter field.
+4. Copy the ***AUTH_CODE*** (without the "code=" prefix) and paste it in your instance configuration under the **Authorization code** parameter. 
+5. Enter your client ID in the ***ID*** parameter field. 
+6. Enter your client secret in the ***Key*** parameter field.
+7. Enter your tenant ID in the ***Token*** parameter field.
+8. Enter your redirect URI in the ***Redirect URI*** parameter field.
 
 
 ## Revoking Consent
