@@ -50,7 +50,7 @@ Some of the Cortex XSOAR-Microsoft integrations (e.g. Azure Sentinel) require au
 
 To configure a Microsoft integration which follows this authorization flow with a self deployed Azure application:
 
-1. Make sure the needed permissions are granted for the app registration, e.g for Microsoft graph User: API/Permission name `Directory.AccessAsUser.All` of type `Delegated`.
+1. Make sure the needed permissions are granted for the app registration, e.g for Microsoft Graph User: API/Permission name `Directory.AccessAsUser.All` of type `Delegated`.
 2. Copy the following URL and replace the ***TENANT_ID***, ***CLIENT_ID***, ***REDIRECT_URI***, ***SCOPE*** with your own client ID and redirect URI, accordingly.
 ```https://login.microsoftonline.com/TENANT_ID/oauth2/v2.0/authorize?response_type=code&scope=offline_access%20SCOPE&client_id=CLIENT_ID&redirect_uri=REDIRECT_URI```
 For example, for Microsoft Graph User, replace the ***SCOPE*** with `directory.accessasuser.all`.
