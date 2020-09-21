@@ -13,12 +13,12 @@ After you have created your content, you must submit your content for our team t
 
 There are three ways to submit your work:
  - In the majority of the cases and you want to provide a Content Pack that you want to support, you must open a GitHub Pull Request.
- - Starting from version 6.0, Cortex XSOAR supports a [simplified flow](contributing/marketplace) to Contribute directly from the product UI: use this flow only if you are an individual contributor and your Content Pack is going to be community supported.
- - Only if you are providing a Premium (aka Paid) Content Pack, the GitHub process is slightly different and is described [here](integrations/premium_packs).
+ - Starting from version 6.0, Cortex XSOAR supports a [simplified flow](../contributing/marketplace) to Contribute directly from the product UI: use this flow only if you are an individual contributor and your Content Pack is going to be community supported.
+ - Only if you are providing a Premium (aka Paid) Content Pack, the GitHub process is slightly different and is described [here](../integrations/premium_packs).
 
  This document describes the main flow that covers most of the cases and summarizes everything you must do before and after opening a Pull Request on GitHub to contribute your pack.
 
-Before proceeding, sure to check the content contribution [checklist](contributing/checklist) to make sure you have created everything you need.
+Before proceeding, sure to check the content contribution [checklist](../contributing/checklist) to make sure you have created everything you need.
 
 ## Before opening a Pull Request
 

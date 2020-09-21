@@ -17,7 +17,7 @@ On the left sidebar you'll find documentation for all the different things you c
 
 ## Tutorials
 
-Tutorials are detailed  articles that guide you through a specific task, end-to-end. If you're getting started, make sure you check out the one to set up your development environment [here](/tutorials/tut-setup-dev).
+Tutorials are detailed  articles that guide you through a specific task, end-to-end. If you're getting started, make sure you check out the one to set up your development environment [here](tutorials/tut-setup-dev).
 
 ## Reference
 

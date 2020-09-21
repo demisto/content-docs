@@ -80,6 +80,7 @@ const sidebars = {
             "integrations/package-dir",
             "integrations/yaml-file",
             "integrations/parameter-types",
+            "integrations/integration-description",
             "integrations/integration-logo"
           ]
         },
