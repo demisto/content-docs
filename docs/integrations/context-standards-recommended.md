@@ -1,5 +1,5 @@
 ---
-id: recommended-context-standards
+id: context-standards-recommended
 title: Recommended Context Standards
 ---
 

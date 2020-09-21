@@ -1,5 +1,5 @@
 ---
-id: about-context-standards
+id: context-standards-about
 title: About Context Standards
 ---
 

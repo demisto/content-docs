@@ -96,9 +96,18 @@ const sidebars = {
               type: "category",
               label: "Context Standards",
               items: [
-                "integrations/about-context-standards",
-                "integrations/mandatory-context-standards",
-                "integrations/recommended-context-standards",
+                "integrations/context-standards-about",
+                "integrations/context-standards-mandatory",
+                "integrations/context-standards-recommended",
+              ]
+            },
+            {
+              type: "category",
+              label: "Generic Commands",
+              items: [
+                "integrations/generic-commands-about",
+                "integrations/generic-commands-iam",
+                "integrations/generic-commands-reputation",
               ]
             },
             "integrations/dbot",
@@ -128,7 +137,6 @@ const sidebars = {
             "integrations/feeds",
             "integrations/powershell-code",
             "integrations/fetching-credentials",
-            "integrations/generic-iam-commands",
             "integrations/long-running",
             "integrations/dt",
             "integrations/integration-cache",
@@ -156,7 +164,8 @@ const sidebars = {
         "playbooks/playbooks-create-communication-task",
         "playbooks/playbooks-communication-task-customize-message",
         "playbooks/generic-polling",
-        "playbooks/playbooks-field-reference"
+        "playbooks/playbooks-field-reference",
+        "playbooks/playbooks-generic"
       ]
     },
     {

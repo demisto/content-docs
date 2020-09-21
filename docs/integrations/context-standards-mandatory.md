@@ -1,5 +1,5 @@
 ---
-id: mandatory-context-standards
+id: context-standards-mandatory
 title: Mandatory Context Standards
 ---
 
