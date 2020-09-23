@@ -10,16 +10,16 @@ The 2 main functions of the OProxy service is to provide Cortex XSOAR Integratio
 * A well known redirect URI to be used as part of the authorization flow (usually configured as part of the *Application* settings).
 
 ## High Level Authorization Flow
-1. User access the an OProxy url to start the authorization flow (for example: https://oproxy.demisto.ninja/ms-graph-mail-listener).
-2. User is prompted to authenticate to the 3rd Party Service and grantthe requested permissions for the OProxy *Application*.
+1. User accesses an OProxy url to start the authorization flow (for example: https://oproxy.demisto.ninja/ms-graph-mail-listener).
+2. User is prompted to authenticate to the 3rd Party Service and grant the requested permissions for the OProxy *Application*.
 3. OProxy service registers the grant.
 4. **Configuration Settings** (usually: *ID*, *Token* and *Key*) are returned to the user's browser.
 5. User copies the **Configuration Settings** to the Integration instance configuration.
-6. The Integration then may use the copied **Configuration Settings** to communicate directly with the 3rd party service (such as in the case of Slack) or request from OProxy an authentication token to be used to communicate directly with the 3rd party service (such as in MS Graph Integrations).
+6. The Integration then may use the copied **Configuration Settings** to either communicate directly with the 3rd party service (such as in the case of the Slack Integration) or request from OProxy an authentication token to be used to communicate directly with the 3rd party service (such as in the case of MS Graph Integrations).
 
 ## Obtaining an Access Token from OProxy
 
-In cases that the 3rd party service uses temporary access tokens the Integration will fetch via OProxy periodically an access token which it will use to authenticate and communicate directly with the 3rd party service. There is need to fetch via Oproxy as Oproxy controls the *Application* configuration data (usually client id and client secret) needed as part of the request for an Access Token. 
+In cases that the 3rd party service uses temporary access tokens the Integration will fetch via OProxy periodically an access token which it will use to authenticate and communicate directly with the 3rd party service. There is need to obtain the Access Token via Oproxy, as Oproxy controls the *Application* configuration data (usually client id and client secret) needed as part of the request for an Access Token. 
 
 The integration will use the **Configuration Settings** obtained during the authorization flow. The **Configuration Settings** includes the following parameters:
 
