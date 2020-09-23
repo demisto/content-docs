@@ -46,9 +46,9 @@ In addition, make sure to select the ***Use a self-deployed Azure Application***
 
 
 ### Authorize on behalf of a user
-Some of the Cortex XSOAR-Microsoft integrations (e.g. Azure Sentinel) require authorization on behalf of a user, and not admin consent. For more information about this authorization flow, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/auth-v2-user).
+Some of the Cortex XSOAR-Microsoft integrations (e.g., Azure Sentinel) require authorization on behalf of a user (not admin consent). For more information about this authorization flow, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/auth-v2-user).
 
-To configure a Microsoft integration which follows this authorization flow with a self deployed Azure application:
+To configure a Microsoft integration that uses this authorization flow with a self-deployed Azure application:
 
 1. Make sure the needed permissions are granted for the app registration, e.g for Microsoft Graph User: API/Permission name `Directory.AccessAsUser.All` of type `Delegated`.
 2. Copy the following URL and replace the ***TENANT_ID***, ***CLIENT_ID***, ***REDIRECT_URI***, ***SCOPE*** with your own client ID and redirect URI, accordingly.
