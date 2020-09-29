@@ -106,8 +106,7 @@ const sidebars = {
               label: "Generic Commands",
               items: [
                 "integrations/generic-commands-about",
-                "integrations/generic-commands-iam",
-                "integrations/generic-commands-reputation",
+                "integrations/generic-commands-reputation"
               ]
             },
             "integrations/dbot",
