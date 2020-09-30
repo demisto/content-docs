@@ -45,7 +45,7 @@ curl -v --user myuser:mypass https://httpbin.org//basic-auth/myuser/mypass
 
 More info about `curl` is available at [Everything curl](https://ec.haxx.se/).
 
-If you are not able to perform a basic `curl` request from the machine to the target http endpoint, the issue is probably not a problem with the integration/automation but rather with the networking setup of the Server/Engine machine. Make sure to first resolve the networking issue so a basic `curl` command succeeds before continuing to test the integration/automation. Many times this resolves to a firewall, NAT or proxy issue. 
+If you are not able to perform a basic `curl` request from the machine to the target HTTP endpoint, the issue is probably not a problem with the integration/automation but rather with the networking setup of the Server/Engine machine. Make sure to first resolve the networking issue so a basic `curl` command succeeds before continuing to test the integration/automation. Many times this resolves to a firewall, NAT or proxy issue. 
 
 ### Docker Based Networking
 Docker Based integrations/automations are written in Python or Powershell. They can be identified by inspecting the integration/automation settings and under *Language type* will appear **Python/Powershell**. Docker creates its own networking, thus the integrations/automations are using a different networking stack from the Cortex XSOAR Server/Engine. The source IPs for these integrations/automations are different and provided according to the Docker networking configuration.
