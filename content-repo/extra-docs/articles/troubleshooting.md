@@ -50,7 +50,7 @@ If you are not able to perform a basic `curl` request from the machine to the ta
 ### Docker Based Networking
 Docker Based integrations/automations are written in Python or Powershell. They can be identified by inspecting the integration/automation settings and under *Language type* will appear **Python** or **Powershell**. Docker creates its own networking, thus the integrations/automations are using a different networking stack from the Cortex XSOAR Server/Engine. The source IPs for these integrations/automations are different and provided according to the Docker networking configuration.
 
-As with [Host Based Networking](#host-based-networking), for integrations/automations that use http endpoints we recommend testing as a first step with `curl` from within a docker container. This can be done by logging in to the Server/Engine machine via ssh and running the following command:
+As with [Host Based Networking](#host-based-networking), for integrations/automations that use HTTP endpoints we recommend testing as a first step with `curl` from within a docker container. This can be done by logging in to the Server/Engine machine via SSH and running the following command:
 ```bash
 docker run -it --rm demisto/netutils:1.0.0.6138 curl <curl parameters>
 ```
