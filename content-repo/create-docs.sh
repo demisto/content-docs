@@ -21,6 +21,7 @@ if [[ -n "$CONTENT_REPO_DIR" ]]; then
 else
     CONTENT_GIT_DIR=${SCRIPT_DIR}/.content
     if [[ -n "${NETLIFY}" ]]; then
+        echo "================================================="
         echo "Netlify env data:"
         echo "BRANCH=${BRANCH}"
         echo "HEAD=${HEAD}"
@@ -37,6 +38,9 @@ else
         cat /sys/fs/cgroup/memory/memory.limit_in_bytes || echo "Memory limit not available"
         echo "SWAP+MEMORY LIMIT (bytes)"
         cat /sys/fs/cgroup/memory/memory.memsw.limit_in_bytes || echo "Memory+Swap limit not available"
+        echo "Processes:"
+        ps -fel
+        echo "================================================="
     fi
     if [[ -n "${NETLIFY}" && -n "${HEAD}" ]]; then
         CURRENT_BRANCH="${HEAD}"
