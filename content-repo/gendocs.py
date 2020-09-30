@@ -351,7 +351,7 @@ def create_releases(target_dir: str):
     target_sub_dir = f'{target_dir}/{RELEASES_PREFIX}'
     if not os.path.exists(target_sub_dir):
         os.makedirs(target_sub_dir)
-    release_files = glob.glob(f'{releases_dir}/*.md')
+    release_files = glob.glob(f'{releases_dir}/20.*.md')
     doc_infos: List[DocInfo] = []
     success = []
     fail = []
