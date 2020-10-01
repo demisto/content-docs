@@ -32,6 +32,16 @@ Before opening the Pull Request on the Cortex XSOAR [GitHub Repository](https://
 - Pass the linters `demisto-sdk lint`: if you have an Integration or Script, your code must pass the [tests](../tutorials/tut-setup-dev#step-5-run-the-linter-and-unit-tests).
 - Pass the validation `demisto-sdk validate`: make sure you run `demisto-sdk validate -i Packs/YourPackName` and all the checks are passed before opening the Pull Request. If unsure, ask for help on the `#demisto-developers` channel on our [Slack DFIR Community](https://www.demisto.com/community/).
 
+## Open you Pull Request
+
+In order to be able to submit your Pull Request into the demisto/content repo you will need to create a fork of the repo in your own Github account. You can follow the instruction described [here](https://guides.github.com/activities/forking/).
+
+After you have successfully created a forn in your personal repo, you can go ahead an open you Pull Request, use [this article](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) to do so.
+:::note Important Note
+As part of the Pull Request template, you will be asked to fill in the [contribution registration form](https://forms.gle/XDfxU4E61ZwEESSMA), make sure to do so, without it we cannot revirew your contriution/
+:::
+
+
 ## After opening a Pull Request
 
 After opening the Pull Request, make sure that you:
