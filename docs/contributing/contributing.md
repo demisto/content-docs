@@ -38,7 +38,7 @@ In order to be able to submit your Pull Request into the demisto/content repo yo
 
 After you have successfully created a fork in your personal repo, you can go ahead an open your Pull Request, use [this article](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) to do so.
 :::note Important Note
-As part of the Pull Request template, you will be asked to fill in the [contribution registration form](https://forms.gle/XDfxU4E61ZwEESSMA), make sure to do so, without it we cannot revirew your contriution.
+As part of the Pull Request template, you will be asked to fill in the [contribution registration form](https://forms.gle/XDfxU4E61ZwEESSMA), make sure to do so, without it we cannot revirew your contribution.
 :::
 
 
