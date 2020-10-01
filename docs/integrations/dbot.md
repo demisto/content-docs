@@ -35,6 +35,14 @@ Dbot uses an integer to represent the reputation of an indicator.
 | 2 | Suspicious |
 | 3 | Bad |
 
+## Unknown
+Unknown score can be interpeted in two ways: 
+
+1. The vendor returns an "Unknown" score for the indicator.
+2. The vendor returns nothing on the indicator.
+
+In both cases we mark the indicator score as Unknown.
+
 ## Malicious
 If the DBot score is returned as a "3" or "Bad", we need to add to the context that a malicious indicator was found. To do this, we add an additional key to the URL, IP, or File context called "Malicious" as shown below:
 
