@@ -36,7 +36,7 @@ Use the following commands to implement a mirroring integration.
 - `fetch-incidents` - this is the command that fetches new incidents to Cortex XSOAR.
 - `get-remote-data` - this command gets new information about the incidents in the remote system and updates *existing* incidents in Cortex XSOAR. This command is executed every 1 minute for each individual incident. 
 - `update-remote-system` - this command updates the remote system with the information we have in the mirrored incidents within Cortex XSOAR. This command is executed whenever the individual incident is changed in Cortex XSOAR.
-- `get-mapping-fields` - this command pulls the remote schema for the different incident types, and their associated incident fields, from the remote system. This enables users to map XSOAR fields to the 3rd-party integration fields in the outgoing mapper. 
+- `get-mapping-fields` - this command pulls the remote schema for the different incident types, and their associated incident fields, from the remote system. This enables users to map XSOAR fields to the 3rd-party integration fields in the outgoing mapper. This command is being called when using the 'Select Schame' feature in the incoming mapper.
 
 ## How to implement mirroring functions
 You can implement the following functions, using the classes described below, which are globally available through the CommonServerPython file.
