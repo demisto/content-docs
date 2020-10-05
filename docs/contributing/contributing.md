@@ -26,7 +26,7 @@ Before opening the Pull Request on the Cortex XSOAR [GitHub Repository](https://
 
 - Have a [GitHub](https://github.com) account that you'll use to open the Pull Request
 - If you're an XSOAR partner, have your `partner-id` (this should have been communicated to you over the onboarding emails from the Alliance team).
-- Join our our [Slack DFIR Community](https://www.demisto.com/community/), also useful if you have questions (use the `#demisto-developers` channel).
+- Join our our [Slack DFIR Community](https://www.demisto.com/community/), this is the place to ask questions, consult about use-case and raise issues regaridng Cortx XSOAR platform (use the `#demisto-developers` channel).
 - Design Document: we encourage you to prepare a Design Document that describes the capabilities of your Pack. Usually it's a Google Doc shared with you by the Alliances team. Click [here](https://docs.google.com/document/d/1wETtBEKg37PHNU8tYeB56M1LE314ux086z3HFeF_cX0) to see a compiled example of a Design Document.
 - Create a short video to demo your product and your pack, and link it: this will be used by our reviewers to understand what your product does and how the content pack work.
 - Pass the linters `demisto-sdk lint`: if you have an Integration or Script, your code must pass the [tests](../tutorials/tut-setup-dev#step-5-run-the-linter-and-unit-tests).
