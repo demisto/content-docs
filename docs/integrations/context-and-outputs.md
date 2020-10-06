@@ -157,10 +157,10 @@ return_results(results)
 **YAML Definition**
 ```yaml
 outputs:
-- contextPath: PrismaCloud.Alert.id
+- contextPath: PrismaCompute.Alert.id
   description: 'The alert id'
   type: Number
-- contextPath: PrismaCloud.Alert.name
+- contextPath: PrismaCompute.Alert.name
   description: 'The alert name'
   type: String
 ```
@@ -258,7 +258,7 @@ return_results(results)
 
 ```python
 file_entry = fileResult(filename='file.txt', data='file content')
-demisto.results(file_entry)
+return_results(file_entry)
 ```
 
 **YAML Definition**
@@ -302,7 +302,7 @@ outputs:
 
 ```python
 file_entry = fileResult(filename='file.txt', data='file content', file_type=EntryType.ENTRY_INFO_FILE)
-demisto.results(file_entry)
+return_results(file_entry)
 ```
 
 **YAML Definition**
@@ -464,12 +464,10 @@ domain = Common.Domain(
     positive_detections=domain_raw.get('positive_detections'),
     detection_engines=domain_raw.get('detection_engines'),
     sub_domains=domain_raw.get('sub_domains'),
-    whois=Common.WHOIS(
-        domain_status=domain_raw.get('status'),
-        name_servers=domain_raw.get('name_servers'),
-        registrar_name=domain_raw.get('registrar'),
-        expiration_date=domain_raw.get('expiration_date')
-    ),
+    domain_status=domain_raw.get('status'),
+    name_servers=domain_raw.get('name_servers'),
+    registrar_name=domain_raw.get('registrar'),
+    expiration_date=domain_raw.get('expiration_date')
     dbot_score=dbot_score
 )
 
