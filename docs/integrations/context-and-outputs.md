@@ -467,7 +467,7 @@ domain = Common.Domain(
     domain_status=domain_raw.get('status'),
     name_servers=domain_raw.get('name_servers'),
     registrar_name=domain_raw.get('registrar'),
-    expiration_date=domain_raw.get('expiration_date')
+    expiration_date=domain_raw.get('expiration_date'),
     dbot_score=dbot_score
 )
 
