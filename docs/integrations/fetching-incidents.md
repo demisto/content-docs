@@ -100,6 +100,9 @@ demisto.setLastRun({
   'start_time': datetime.now()
 })
 ```
+
+When pulling incidents with fetch-incidents the setLastRun will not execute if there is an error with fetch-incidents.
+
 ### Sending the Incidents to Cortex XSOAR
 When all of the incidents have been created, we return the array of incidents by using the ```demisto.incidents()``` function. This is similar to the ```demisto.results()``` function, but is used exclusively to handle incident objects.
 
@@ -108,6 +111,12 @@ An example of it's usage is below:
 ```python
 # this command will create incidents in Cortex XSOAR
 demisto.incidents(incidents)
+```
+
+If you do not have any incidents to return then just return an empty list to ```demisto.incidents()``` function.
+```python
+# returning an empty list will keep the status as ok but no new incidents are created.
+demisto.incidents([])
 ```
 
 ## Troubleshooting
