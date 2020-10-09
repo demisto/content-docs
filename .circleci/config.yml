@@ -16,8 +16,7 @@ jobs:
             command: |
               echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
               source $BASH_ENV
-              nvm install `cat .nvmrc`
-              nvm use
+              nvm install `cat .nvmrc`              
         - run:
             name: Setup Python
             command: |
@@ -27,10 +26,18 @@ jobs:
         - run:
             name: NPM Build
             command: |
+              nvm use
               node --version
               npm --version
               npm ci
-              npm run build        
+              npm run build
+        - run:
+            name: Deploy to Netlify
+            command: |
+              npm install -g netlify-cli
+              netlify --version
+              netlify deploy -m "CircleCI build: $CIRCLE_BRANCH" -d build
+
 
 workflows:
   build_and_release:
