@@ -25,12 +25,12 @@ jobs:
             pip3 install pipenv
             pipenv install
       - run:
-        name: NPM Install
-        command: |
-          nvm use
-          node --version
-          npm --version
-          npm ci
+          name: NPM Install
+          command: |
+            nvm use
+            node --version
+            npm --version
+            npm ci
       - run:
           name: NPM Build content-repo docs
           command: |
