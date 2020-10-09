@@ -19,6 +19,12 @@ jobs:
               nvm install `cat .nvmrc`
               nvm use
         - run:
+            name: Setup Python
+            command: |
+              pyenv versions
+              pyenv global 3.7.8 3.8.3
+              pip3 install pipenv 
+        - run:
             name: NPM Build
             command: |
               node --version
