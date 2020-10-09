@@ -6,45 +6,79 @@ version: 2.1
 jobs:
   build:
 
-      machine:
-        image: ubuntu-1604:202007-01
+    machine:
+      image: ubuntu-1604:202007-01
 
-      steps:
-        - checkout
-        - run:
-            name: Setup Node
-            command: |
-              echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
-              source $BASH_ENV
-              nvm install `cat .nvmrc`              
-        - run:
-            name: Setup Python
-            command: |
-              pyenv versions
-              pyenv global 3.7.8 3.8.3
-              pip3 install pipenv 
-        - run:
-            name: NPM Build
-            command: |
-              nvm use
-              node --version
-              npm --version
-              npm ci
-              npm run build
-              echo "Build is done. Create tar of the build dir"
-              tar czvf build-site.tar.gz build
-        - store_artifacts:
-            path: build-site.tar.gz             
+    steps:
+      - checkout
+      - run:
+          name: Setup Node
+          command: |
+            echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
+            source $BASH_ENV
+            nvm install `cat .nvmrc`              
+      - run:
+          name: Setup Python
+          command: |
+            pyenv versions
+            pyenv global 3.7.8 3.8.3
+            pip3 install pipenv
+      - run:
+          name: NPM Build
+          command: |
+            nvm use
+            node --version
+            npm --version
+            npm ci
+            npm run build
+            echo "Build is done. Create tar of the build dir"
+            tar czvf build-site.tar.gz build
+      - store_artifacts:
+          path: build-site.tar.gz
+      
+      - persist_to_workspace:
+        # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is 
+        # taken to be the root directory of the workspace.
+        root: /home/circleci/project
+        # Must be relative path from root
+        paths:
+          - build
 
-        - run:
-            name: Deploy to Netlify
-            command: |
-              npm install -g netlify-cli
-              netlify --version
-              netlify deploy -m "CircleCI build: $CIRCLE_BRANCH" -d build --alias="$CIRCLE_BRANCH" --json
+      - run:
+          name: Deploy to Netlify
+          command: |
+            npm install -g netlify-cli
+            netlify --version
+            netlify deploy -m "CircleCI build: $CIRCLE_BRANCH" -d build --alias="$CIRCLE_BRANCH" --json > deploy-info.json
+            cat deploy-info.json | jq      
 
+  deploy:
+    docker:
+      - image: circleci/python:3.7.9-buster-node
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /home/circleci/project
+      - run:
+          name: Setup Python
+          command: |
+            which pipenv && pipenv --version
+            pip3 install pipenv
+      - run:
+          name: Deploy to Netlify
+          command: |
+            npm install -g netlify-cli
+            netlify --version
+            netlify deploy -m "CircleCI build: $CIRCLE_BRANCH" -d build --alias="$CIRCLE_BRANCH" --json > deploy-info.json
+            cat deploy-info.json | jq
 
 workflows:
   build_and_release:
     jobs:
       - build
+      - deploy:
+          requires:
+            - build
+          branches:
+            # only from non-fork
+            only: /^(?!pull\/).*$/
