@@ -79,6 +79,10 @@ jobs:
             netlify --version
             netlify deploy -m "CircleCI build: $CIRCLE_BRANCH" -d build --alias="$CIRCLE_BRANCH" --json > deploy-info.json
             cat deploy-info.json | jq
+      - run:
+          name: Post Comment
+          command: |
+            pipenv run ./content-repo/post_github_comment.py deploy-info.json
 
 workflows:
   build_and_deploy:
