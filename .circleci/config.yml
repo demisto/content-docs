@@ -37,24 +37,17 @@ jobs:
           path: build-site.tar.gz
       
       - persist_to_workspace:
-        # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is 
-        # taken to be the root directory of the workspace.
-        root: /home/circleci/project
-        # Must be relative path from root
-        paths:
-          - build
-
-      - run:
-          name: Deploy to Netlify
-          command: |
-            npm install -g netlify-cli
-            netlify --version
-            netlify deploy -m "CircleCI build: $CIRCLE_BRANCH" -d build --alias="$CIRCLE_BRANCH" --json > deploy-info.json
-            cat deploy-info.json | jq      
+          # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is 
+          # taken to be the root directory of the workspace.
+          root: /home/circleci/project
+          # Must be relative path from root
+          paths:
+            - build 
 
   deploy:
     docker:
       - image: circleci/python:3.7.9-buster-node
+    resource_class: small
     steps:
       - checkout
       - attach_workspace:
@@ -73,7 +66,7 @@ jobs:
             cat deploy-info.json | jq
 
 workflows:
-  build_and_release:
+  build_and_deploy:
     jobs:
       - build
       - deploy:
