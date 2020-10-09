@@ -31,12 +31,17 @@ jobs:
               npm --version
               npm ci
               npm run build
+              echo "Build is done. Create tar of the build dir"
+              tar czvf build-site.tar.gz build
+        - store_artifacts:
+            path: build-site.tar.gz             
+
         - run:
             name: Deploy to Netlify
             command: |
               npm install -g netlify-cli
               netlify --version
-              netlify deploy -m "CircleCI build: $CIRCLE_BRANCH" -d build
+              netlify deploy -m "CircleCI build: $CIRCLE_BRANCH" -d build --alias="$CIRCLE_BRANCH" --json
 
 
 workflows:
