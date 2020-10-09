@@ -1,0 +1,30 @@
+### =============================================================
+### This configuration file is used by CircleCI build server
+### https://circleci.com/docs/config-sample
+### =============================================================
+version: 2.1
+jobs:
+  # using tox
+  build:
+
+      machine:
+        image: ubuntu-1604:202007-01
+
+      steps:
+        - checkout
+        - run:
+            name: Setup Node
+            command: |
+              nvm use              
+        - run:
+            name: NPM Build
+            command: |
+              node --version
+              npm --version
+              npm ci
+              npm run build        
+
+workflows:
+  build_and_release:
+    jobs:
+      - build
