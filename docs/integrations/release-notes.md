@@ -8,7 +8,7 @@ Release notes files help to keep track of the changes made for a specific conten
 To generate a release notes markdown file, first commit the changes to your branch and then run the following command provided by the `demisto-sdk`:
 
 ```bash
-demisto-sdk update-release-notes -p [Changed Pack Name] -u [major|minor|revision]
+demisto-sdk update-release-notes -i [Changed Pack Name] -u [major|minor|revision]
 ```
 
 **Please note:** Changes which have not been committed will not be detected automatically by the `update-release-notes` command.
@@ -20,7 +20,7 @@ changes *after* running the command, you will need to remove the `-u` argument. 
 file for you to fill out.
 
 ```bash
-demisto-sdk update-release-notes -p [Changed Pack Name]
+demisto-sdk update-release-notes -i [Changed Pack Name]
 ```
 
 For more detailed information regarding the `update-release-notes` command in the `demisto-sdk`, please refer to the 
