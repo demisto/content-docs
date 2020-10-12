@@ -1,0 +1,102 @@
+### =============================================================
+### This configuration file is used by CircleCI build server
+### https://circleci.com/docs/config-sample
+### =============================================================
+version: 2.1
+jobs:
+  build:
+
+    machine:
+      image: ubuntu-1604:202007-01
+
+    steps:
+      - checkout
+      - restore_cache:
+          key: npm-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: Setup Node
+          command: |
+            echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
+            source $BASH_ENV
+            nvm install `cat .nvmrc`              
+      - run:
+          name: Setup Python
+          command: |
+            pyenv versions
+            pyenv global 3.7.8 3.8.3
+            pip3 install pipenv
+            pipenv install
+      - run:
+          name: NPM Install
+          command: |
+            nvm use
+            node --version
+            npm --version
+            npm ci
+      - run:
+          name: NPM Build content-repo docs
+          command: |
+            nvm use
+            npm run reference-docs
+      - run:
+          name: NPM Build
+          command: |
+            nvm use            
+            npm run heapstats
+            npm run build-docusaurus
+            echo "Build is done. Create tar of the build dir"
+            tar czf build-site.tar.gz build
+      - store_artifacts:
+          path: build-site.tar.gz
+      - save_cache:
+          key: npm-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - persist_to_workspace:
+          # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is 
+          # taken to be the root directory of the workspace.
+          root: /home/circleci/project
+          # Must be relative path from root
+          paths:
+            - build 
+
+  deploy:
+    docker:
+      - image: circleci/python:3.7.9-buster-node
+    resource_class: small
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /home/circleci/project
+      - run:
+          name: Setup Python
+          command: |            
+            pipenv install
+      - run:
+          name: Deploy to Netlify
+          command: |
+            sudo npm install -g netlify-cli
+            netlify --version
+            DEPLOG_ARG="--alias=$CIRCLE_BRANCH"
+            if [ "$CIRCLE_BRANCH" = "master" ]; then
+              echo "Deploying to prod as CIRCLE_BRANCH is equal to master!"
+              DEPLOG_ARG="--prod"
+            fi
+            netlify deploy -m "CircleCI build: $CIRCLE_BRANCH" -d build $DEPLOG_ARG --json > deploy-info.json
+            cat deploy-info.json | jq
+      - run:
+          name: Post Comment
+          command: |
+            pipenv run ./content-repo/post_github_comment.py deploy-info.json
+
+workflows:
+  build_and_deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              # only from non-fork
+              only: /^(?!pull\/).*$/
