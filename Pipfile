@@ -8,6 +8,7 @@ flake8 = "*"
 pytest = "*"
 autopep8 = "*"
 mypy = "*"
+pytest-mock = "*"
 
 [packages]
 pyyaml = "*"
