@@ -81,10 +81,13 @@ jobs:
           command: |
             sudo npm install -g netlify-cli
             netlify --version
-            DEPLOG_ARG="--alias=$CIRCLE_BRANCH"
             if [ "$CIRCLE_BRANCH" = "master" ]; then
               echo "Deploying to prod as CIRCLE_BRANCH is equal to master!"
               DEPLOG_ARG="--prod"
+            else
+              # Get the PR number from the CIRCLE_PULL_REQUEST env variable which is in the form of:
+              # https://github.com/demisto/content-docs/pull/335
+              DEPLOG_ARG="--alias=pull-request-${CIRCLE_PULL_REQUEST##*/}"
             fi
             netlify deploy -m "CircleCI build: $CIRCLE_BRANCH" -d build $DEPLOG_ARG --json > deploy-info.json
             cat deploy-info.json | jq
