@@ -30,6 +30,9 @@ def get_post_url():
 
 def post_comment(netlify_deploy_file: str):
     post_url = get_post_url()
+    if not post_url:
+        print('Skipping post comment as could not resolve a PR post url!!')
+        return
     with open(netlify_deploy_file, 'r') as f:
         netlify_info = json.load(f)
     deplpy_url = netlify_info['deploy_url']
