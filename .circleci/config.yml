@@ -40,6 +40,7 @@ jobs:
             npm run reference-docs
       - run:
           name: NPM Build
+          no_output_timeout: 40m
           command: |
             nvm use            
             npm run heapstats
@@ -74,6 +75,7 @@ jobs:
             pipenv install
       - run:
           name: Deploy to Netlify
+          no_output_timeout: 30m
           command: |
             sudo npm install -g netlify-cli
             netlify --version
