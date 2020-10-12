@@ -1,0 +1,28 @@
+name: Netlify for Forked PR
+on: status
+  
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump Github context        
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: Checkout
+        if: endsWith(github.event.context, 'ci/circleci: build') && github.event.state == 'success'
+        uses: actions/checkout@v2
+      - name: Setup Python
+        if: endsWith(github.event.context, 'ci/circleci: build') && github.event.state == 'success'
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.7'
+      - name: Run Netlify Deploy
+        if: endsWith(github.event.context, 'ci/circleci: build') && github.event.state == 'success'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "==== $(date): Starting pipenv setup... ===="          
+          pip install pipenv
+          echo "==== $(date): Download build site... ===="
+          echo "==== $(date): Running netlify... ===="          
