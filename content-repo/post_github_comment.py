@@ -17,7 +17,7 @@ def get_post_url():
         post_url = os.environ['CIRCLE_PULL_REQUEST'].replace('github.com', 'api.github.com/repos').replace('pull', 'issues') + "/comments"
     else:
         # try to get from comment
-        last_comment = subprocess.check_output(["git", "log", "-1", "--pretty=%B"])
+        last_comment = subprocess.check_output(["git", "log", "-1", "--pretty=%B"], text=True)
         m = re.search(r"#(\d+)", last_comment, re.MULTILINE)
         if not m:
             print("No issue id found in last commit comment. Ignoring: \n------\n{}\n-------".format(last_comment))
@@ -30,6 +30,9 @@ def get_post_url():
 
 def post_comment(netlify_deploy_file: str):
     post_url = get_post_url()
+    if not post_url:
+        print('Skipping post comment as could not resolve a PR post url!!')
+        return
     with open(netlify_deploy_file, 'r') as f:
         netlify_info = json.load(f)
     deplpy_url = netlify_info['deploy_url']
