@@ -78,6 +78,53 @@ Key | Value
 --- |  ----
 `python.pass.extra.keys` | `--network=host`
 
+After you add the server configuration, run the `/reset_containers` command from the Cortex XSOAR CLI to reset all containers and to begin using the new configuration.
+
 **Notes:**
 * For multi-tenant deployments, you need to add this setting to each tenant.
 * When using engines, you need to add this setting to each engine.
+
+## Debug Mode
+Cortex XSOAR (Server 5.0+) supports running Python integration commands and automation scripts in `debug-mode` from the Cortex XSOAR CLI. When a command is run in `debug-mode` a log file of the command execution will be created and attached to the war room. When encountering an issue which is related to an integration or an automation, make sure to reproduce the command with `debug-mode` and inspect the generated log file. The `debug-mode` log file will contain information not available in the Server logs and can provide additional insights regarding the root cause of the issue. Additionally, some integrations have specific code to include extra debug info when run in `debug-mode`.
+
+### Run a command in `debug-mode`
+In the Cortex XSOAR CLI run the command with all arguments that cause the issue and append the  following argument: `debug-mode=true`. For example: 
+
+```
+!ad-search filter="(cn=Guest)" debug-mode=true
+```
+
+Screenshot of running a command with `debug-mode=true` and the resulting log file (`ad-search.log`):
+![debug-mode-example](../../../docs/doc_imgs/reference/debug-mode-example.png)
+
+### Fetch Incidents in `debug-mode`
+Starting with Cortex XSOAR 6.0 it is possible to run the fetch incidents command from the Cortex XSOAR CLI with `debug-mode=true`. This is done by issuing a command of the form:
+
+```
+!<instance_name>-fetch debug-mode=true
+```
+
+For example for an integration instance name of: `Cortex_XDR_instance_1` run the following from the CLI:
+
+```
+!Cortex_XDR_instance_1-fetch debug-mode=true
+```
+
+Screenshot of running a `fetch` command with `debug-mode=true` and the resulting log file (`fetch-incidents.log`):
+![fetch-incidents-debug](../../../docs/doc_imgs/reference/fetch-incidents-debug.png)
+
+### Test Integration Module in `debug-mode`
+Starting with Cortex XSOAR 6.0 it is possible to run the test integration module command from the Cortex XSOAR CLI with `debug-mode=true`. This is done by issuing a command of the form:
+
+```
+!<instance_name>-test-module debug-mode=true
+```
+
+For example for an integration instance name of: `Cortex_XDR_instance_1` run the following from the CLI:
+
+```
+!Cortex_XDR_instance_1-test-module debug-mode=true
+```
+
+Screenshot of running a `test-module` command with `debug-mode=true` and the resulting log file (`test-module.log`):
+![test-module-debug](../../../docs/doc_imgs/reference/test-module-debug.png)    

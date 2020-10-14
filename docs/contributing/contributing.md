@@ -26,11 +26,21 @@ Before opening the Pull Request on the Cortex XSOAR [GitHub Repository](https://
 
 - Have a [GitHub](https://github.com) account that you'll use to open the Pull Request
 - If you're an XSOAR partner, have your `partner-id` (this should have been communicated to you over the onboarding emails from the Alliance team).
-- Join our our [Slack DFIR Community](https://www.demisto.com/community/), also useful if you have questions (use the `#demisto-developers` channel).
+- Join our our [Slack DFIR Community](https://www.demisto.com/community/), this is the place to ask questions, consult about use-case and raise issues regarding the Cortex XSOAR platform (use the `#demisto-developers` channel).
 - Design Document: we encourage you to prepare a Design Document that describes the capabilities of your Pack. Usually it's a Google Doc shared with you by the Alliances team. Click [here](https://docs.google.com/document/d/1wETtBEKg37PHNU8tYeB56M1LE314ux086z3HFeF_cX0) to see a compiled example of a Design Document.
 - Create a short video to demo your product and your pack, and link it: this will be used by our reviewers to understand what your product does and how the content pack work.
 - Pass the linters `demisto-sdk lint`: if you have an Integration or Script, your code must pass the [tests](../tutorials/tut-setup-dev#step-5-run-the-linter-and-unit-tests).
 - Pass the validation `demisto-sdk validate`: make sure you run `demisto-sdk validate -i Packs/YourPackName` and all the checks are passed before opening the Pull Request. If unsure, ask for help on the `#demisto-developers` channel on our [Slack DFIR Community](https://www.demisto.com/community/).
+
+## Open a Pull Request
+
+In order to be able to submit your Pull Request into the demisto/content repo you will need to create a fork of the repo in your own Github account. You can follow the instruction described [here](https://guides.github.com/activities/forking/).
+
+After you have successfully created a fork in your personal repo, you can go ahead an open your Pull Request, use [this article](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) to do so.
+:::note Important Note
+As part of the Pull Request template, you will be asked to fill in the [contribution registration form](https://forms.gle/XDfxU4E61ZwEESSMA), make sure to do so, without it we cannot revirew your contribution.
+:::
+
 
 ## After opening a Pull Request
 

@@ -50,7 +50,7 @@ The following example shows how we use both **First Run** and the **Query** opti
 
     day_ago = datetime.now() - timedelta(days=1) 
     start_time = day_ago.time()
-    if last_run and last_run.has_key('start_time'):
+    if last_run and 'start_time' in last_run:
         start_time = last_run.get('start_time')
 
     # execute the query and get the events
