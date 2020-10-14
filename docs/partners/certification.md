@@ -11,29 +11,25 @@ Certification is the process by which Cortex XSOAR validates and marks the quali
 
 ## Levels of Certification
 
-When beginning the development process, the Contributor specifies the certification level they intend to achieve, and this will dictate the tasks the Contributor must complete. 
+There are currently two levels of certification for all packs: 
 
 - Not Certified: The Pack has gone through full security testing and basic functionality testing by Palo Alto Networks.
 
-- Certified: The Pack has gone through full security testing and full functionality testing including full coding standards, best practices check, documentation review and a demonstration. Recertification requirements to ensure retention of quality shall apply (see below).
+- Certified: The Pack has gone through full security testing and full functionality testing including full coding standards, best practices check, documentation review and a demonstration.
 
 It is up to Palo Alto Networks at its discretion to mark a piece of content with a specific certification.
 
 
 ## Guidance
 
-All Paid packs <b>must</b> be certified. And if a paid Pack has dependencies on another Pack from the same Partner, that other Pack must also be certified. Since those dependant Packs work together, the whole "solution" must be certified. 
-
-We encourage our Partners to achieve certification as this will up-level the quality of content in our ecosystem. 
+All Partner packs will be certified. Individual contributors may choose to certify their packs, too. 
 
 
 ## Requirements
 
-While we encourage certified Packs, Certification has additional requirements including:
+Certification requirements include:
 
-1. Mutual customers - At least two documented mutual customers requesting the Pack 
-
-1. Full functionality testing — partners must ensure full Pack compatibility with future versions of Cortex XSOAR via a self-certify process. This process shall occur with all major and minor release of Cortex XSOAR (3-4/yr) and include each component of the Pack. 
+1. Full functionality testing — partners must ensure full Pack compatibility with all of Cortex XSOAR via a self-certify process. 
 
 1. Documentation — full documentation for the entire pack reviewed by Palo Alto Networks. 
 
