@@ -22,9 +22,8 @@ What one needs to consider is that since sub-playbooks are used as part of a big
 ![image](https://user-images.githubusercontent.com/43602124/70059047-b61a6300-15e8-11ea-93a7-448f463c6613.png)
 
  - Add your test in the `conf.json` file, located in `content\Tests\conf.json`. You should add an entry that specifies the integrations needed for your test playbook, as well as specify a timeout in seconds if your test is taking a long time to complete and fails due to timeout (usually not needed). Also, specify the minimum version for your test here (fromversion: 5.0.0).  
-- For layouts, you will also need to create a changelog file:  
-![image](https://user-images.githubusercontent.com/43602124/69060394-f0e49e80-0a1f-11ea-8714-437420706633.png)  
-if a changelog file already exists, just add your release-notes to the "Unreleased" part of the file.  
+- For layouts, you will also need to create a release notes file:  
+![image](https://user-images.githubusercontent.com/43602124/69060394-f0e49e80-0a1f-11ea-8714-437420706633.png)
   
 
  ## Pull Request  

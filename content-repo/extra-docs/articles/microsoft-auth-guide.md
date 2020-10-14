@@ -43,3 +43,26 @@ When you configure the integration in Cortex XSOAR, enter those parameters in th
 * Key - Client Secret
 
 In addition, make sure to select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
+
+
+### Authorize on behalf of a user
+Some of the Cortex XSOAR-Microsoft integrations (e.g., Azure Sentinel) require authorization on behalf of a user (not admin consent). For more information about this authorization flow, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/auth-v2-user).
+
+To configure a Microsoft integration that uses this authorization flow with a self-deployed Azure application:
+
+1. Make sure the needed permissions are granted for the app registration, e.g for Microsoft Graph User: API/Permission name `Directory.AccessAsUser.All` of type `Delegated`.
+2. Copy the following URL and replace the ***TENANT_ID***, ***CLIENT_ID***, ***REDIRECT_URI***, ***SCOPE*** with your own client ID and redirect URI, accordingly.
+```https://login.microsoftonline.com/TENANT_ID/oauth2/v2.0/authorize?response_type=code&scope=offline_access%20SCOPE&client_id=CLIENT_ID&redirect_uri=REDIRECT_URI```
+For example, for Microsoft Graph User, replace the ***SCOPE*** with `directory.accessasuser.all`.
+3. Enter the link and you will be prompted to grant Cortex XSOAR permissions for your Azure Service Management. You will be automatically redirected to a link with the following structure:
+```REDIRECT_URI?code=AUTH_CODE&session_state=SESSION_STATE```
+4. Copy the ***AUTH_CODE*** (without the "code=" prefix) and paste it in your instance configuration under the **Authorization code** parameter. 
+5. Enter your client ID in the ***ID*** parameter field. 
+6. Enter your client secret in the ***Key*** parameter field.
+7. Enter your tenant ID in the ***Token*** parameter field.
+8. Enter your redirect URI in the ***Redirect URI*** parameter field.
+
+
+## Revoking Consent
+
+In order to revoke consent to a Cortex XSOAR Microsoft application, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant#revoking-consent). 
