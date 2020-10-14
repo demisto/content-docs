@@ -14,16 +14,16 @@ Cortex XSOAR is an orchestration and automation system used to bring all of the 
 
 ### Incidents
 
-Incidents are generated from third party systems, email, etc., or created manually. Its the combination of a ticket and real time data. Potential security data threat that SOC administrators identify and remediate. There are several incident triggers, including:
+Incidents are generated from 3rd-party systems, email, etc., or created manually. It's the combination of a ticket and real time data. Incidents are potential security data threats that SOC administrators identify and remediate. There are several incident triggers, including:
 
 * SIEM alerts
-* Mail alerts
-* Security alerts from third-party services, such as SIEM, mail boxes, data in CSV format, or from the Cortex XSOAR RESTful API.
+* Email alerts
+* Security alerts from 3rd-party services, such as SIEM, mail boxes, data in CSV format, or from the Cortex XSOAR RESTful API.
 
 Cortex XSOAR includes several out-of-the-box incident types, and users can add custom incident types with custom fields, as necessary. 
 ### Incident Fields
 
-Incident Fields are used for accepting or populating incident data coming from incidents. You create fields for information you know will be coming from 3rd party integrations and in which you want to insert the information. 
+Incident Fields are used for accepting or populating incident data coming from incidents. You create fields for information you know will be coming from 3rd-party integrations and in which you want to insert the information. 
 
 ## Integrations
 
