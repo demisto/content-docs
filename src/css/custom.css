@@ -74,11 +74,6 @@ html[data-theme="dark"] {
   --ifm-footer-background-color: #000;
 }
 
-/* Docs overrides */
-.markdown p {
-  color: var(--ifm-color-gray-800) !important;
-}
-
 blockquote {
   border-left: 10px solid var(--ifm-color-primary) !important;
   border-top: 1px solid var(--ifm-color-primary) !important;

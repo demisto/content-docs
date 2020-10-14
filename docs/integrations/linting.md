@@ -33,6 +33,7 @@ Options:
   --no-flake8                   Do NOT run flake8 linter
   --no-bandit                   Do NOT run bandit linter
   --no-mypy                     Do NOT run mypy static type checking
+  --no-xsoar-linter             Do NOT run XSOAR linter
   --no-vulture                  Do NOT run vulture linter
   --no-pylint                   Do NOT run pylint linter
   --no-test                     Do NOT test (skip pytest)
@@ -58,6 +59,8 @@ HelloWorld - Facts - Lint file /home/sb/dev/demisto/content/Packs/HelloWorld/Int
 HelloWorld - Facts - Lint file /home/sb/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py
 HelloWorld - Flake8 - Start
 HelloWorld - Flake8 - Successfully finished
+HelloWorld - XSOAR Linter - Start
+HelloWorld - XSOAR Linter - Successfully finished
 HelloWorld - Bandit - Start
 HelloWorld - Bandit - Successfully finished
 HelloWorld - Mypy - Start
@@ -87,6 +90,7 @@ HelloWorld - Pytest - Image sha256:ba9f6ede55 - Start
 HelloWorld - Pytest - Image sha256:ba9f6ede55 - exit-code: 0
 HelloWorld - Pytest - Image sha256:ba9f6ede55 - Successfully finished
 Flake8       - [PASS]
+XSOAR linter - [PASS]
 Bandit       - [PASS]
 Mypy         - [PASS]
 Vulture      - [PASS]
@@ -229,3 +233,31 @@ More info at: https://mypy.readthedocs.io/en/latest/index.html
 [Bandit](https://github.com/PyCQA/bandit) is a tool designed to find common security issues in Python code.
 
 We run `bandit` with a confidence level of HIGH. In the rare case that it reports a false positive, you can execlude the code by adding a comment of the sort: `# nosec`. See: https://github.com/PyCQA/bandit#exclusions .
+
+
+## XSOAR Linter
+
+This is a custom linter, based on pylint, whose main purpose is to catch errors regarding Cortex XSOAR code standards. The linter is activated using the pylint load plugins ability. We run this linter only with custom Cortex XSOAR error and warning messages (all other messages are disabled). On rare occasions, you may encounter a scenario in which you need to disable an error or warning message from being returned from by linter. To do this add an inline comment, as shown below, on the line you want to disable the error:
+
+```
+# pylint: disable=<error-name>
+```
+
+For example:
+
+```python
+print('Success!') # pylint: disable=print-exists
+```
+
+It is also possible to `disable` and then `enable` a block of code. The following example is taken from CommonServerPython.py:
+
+```python
+# pylint: disable=sys-exit-exists
+if IS_PY3:
+    pass
+else:
+    sys.exit(1)
+# pylint: enable=sys-exit-exists
+```
+
+**Note**: Pylint can take both the error name and error code when using an inline comment disable message. Please note, that it is best to use the name which is most clear to understand.

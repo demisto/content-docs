@@ -111,7 +111,7 @@ A supported partner pack metadata contents for example:
     "support": "partner",
     "currentVersion": "1.1.0",
     "author": "Partner name",
-    "url": "https://www.<partner>.com",
+    "url": "https://support.<partner>.com",
     "email": "support@<partner>.com",
     "categories": [
         "Deception"
@@ -129,10 +129,31 @@ A supported partner pack metadata contents for example:
 
 
 ### README.md
-The file contains a general explanation for the pack and you are free to add any information relevant for the pack.
+The file contains a general explanation for the pack and you are free to add any information relevant for the pack. For more details refer to the [Pack Documentation](../integrations/pack-docs) page.
 
 ### .secrets-ignore
 This file will be used while running the `demisto-sdk secrets`([explanation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/secrets/README.md)), we will determine the file and will
  use it as a  white list of approved words for your PR.
 
 **Note**: We use `demisto-sdk secrets` as part of our pre-commit hook to check that possible secrets in the PR aren't exposed to a public repository.
+
+### .pack-ignore
+This file allows ignoring linter errors while lint checking and ignoring tests in the test collection.
+
+To add ignored tests/linter errors in a file, first, add the file name to the **.pack-ignore** in this format
+```
+[file:integration-to-ignore.yml]
+```
+
+On the following line add `ignore=` flag, with one or more comma-separated values:
+1. `auto-test` - ignore test file in the build test collection.
+2. `linter code` e.g. IN126 - ignore linter error codes.
+
+#### Example .pack-ignore
+```
+[file:playbook-Special-Test-Not-To-Run-Directly.yml]
+ignore=auto-test
+
+[file:integration-to-ignore.yml]
+ignore=IN126,PA116
+```

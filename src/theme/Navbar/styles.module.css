@@ -17,16 +17,16 @@
   }
 }
 
-@media (max-width: 380px){
-  .navbar__logo {
-    content: url("/img/Cortex-XSoar-black.svg") !important;
-  }
-}
-
 .navbarHideable {
   transition: top 0.2s ease-in-out;
 }
 
 .navbarHidden {
   top: calc(var(--ifm-navbar-height) * -1) !important;
+}
+
+@media (max-width: 380px){
+  .navbar__logo {
+    content: url("/img/Cortex-XSoar-black.svg") !important;
+  }
 }

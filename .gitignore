@@ -33,3 +33,4 @@ static/doc_imgs
 .mypy_cache
 docs/reference
 content-repo/extra-docs/articles/demisto-class.md
+.pytest_cache
