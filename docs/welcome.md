@@ -7,11 +7,11 @@ Welcome to the Cortex XSOAR Developer Hub! You'll be able find a lot of informat
 
 ## About Cortex XSOAR
 
-Cortex XSOAR's security orchestration and automation enables standardized, automated, and coordinated response across your security product stack. Playbooks powered by thousands of security actions make scalable, accelerated incident response a reality. On this site you will learn the ins and out of Cortex XSOAR's development platform so you can begin to create content and integrations.
+Cortex XSOAR's security orchestration and automation enables standardized, automated, and coordinated response across your security product stack. Playbooks powered by thousands of security actions make scalable, accelerated incident response a reality. On this site you will learn the ins and outs of Cortex XSOAR's development platform so you can begin to create content and integrations.
 
 ## Developer Documentation
 
-The Cortex XSOAR Developer Hub is organized in different sections to guide you through the process of creating a successful Cortex XSOAR contribution. Please start with the [Getting Started](integrations/getting-started-guide) section to understand the Cortex XSOAR concepts, the Contribution process and to set up a development environment.
+The Cortex XSOAR Developer Hub is organized in different sections to guide you through the process of creating a successful Cortex XSOAR contribution. Start with the [Getting Started](integrations/getting-started-guide) section to understand the Cortex XSOAR concepts, the Contribution process, and to set up a development environment.
 
 On the left sidebar you'll find documentation for all the different things you can build: start with [Content Packs](integrations/packs-format) that represent the backbone of every contribution then, depending on what you want to create, explore the other sections accordingly: **Integrations & Scripts**, **Playbooks**, **Incidents, Fields & Layouts**.
 
