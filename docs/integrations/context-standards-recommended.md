@@ -12,13 +12,29 @@ The following is the format for a ticket.
     "ID": "STRING, The ID of the ticket.",
     "Creator": "STRING, The user who created the ticket.",
     "Assignee": "STRING, The user assigned to the ticket.",
-    "State": "STRING, The status of the ticket. Can be "closed", "open", or "on hold"."
+    "State": "STRING, The status of the ticket. Can be "closed", "open", or "on hold".",
+    "Description": "STRING The summary of the ticket."
 }
 ```
 
 **In YAML**
 ```yaml
-
+outputs:
+- contextPath: Ticket.ID
+  description: The ID of the ticket.
+  type: String
+- contextPath: Ticket.Creator
+  description: The user who created the ticket.
+  type: String
+- contextPath: Ticket.Assignee
+  description: The user assigned to the ticket.
+  type: String
+- contextPath: Ticket.State
+  description: The status of the ticket. Can be "closed", "open", or "on hold".
+  type: String
+- contextPath: Ticket.Description
+  description: The summary of the ticket.
+  type: String
 ```
 ## Account
 The following is the format for an Account entity.
@@ -159,7 +175,22 @@ The following is the format for an Event.
 
 **In YAML**
 ```yaml
-
+outputs:
+- contextPath: Event.Type
+  description: "The type of event, for example: "ePO", "Protectwise", "DAM"."
+  type: String
+- contextPath: Event.ID
+  description: "The unique identifier of the event"
+  type: String
+- contextPath: Event.Name
+  description: "The name of the event."
+  type: String
+- contextPath: Event.Sensor
+  description: "The sensor that indicated the event."
+  type: String
+- contextPath: Event.Rule
+  description: "The rule that triggered the event."
+  type: String
 ```
 
 ## Service
@@ -176,7 +207,22 @@ The following is the format for a Service.
 
 **In YAML**
 ```yaml
-
+outputs:
+- contextPath: Service.Namee
+  description: "The name of the service."
+  type: String
+- contextPath: Service.BinPath
+  description: "The path of the /bin folder."
+  type: String
+- contextPath: Service.CommandLine
+  description: "The full command line (including arguments)."
+  type: String
+- contextPath: Service.StartType
+  description: "How the service was started."
+  type: String
+- contextPath: Service.State
+  description: "The status of the service."
+  type: String
 ```
 
 ## Process
@@ -200,6 +246,42 @@ The following is the format for a process.
 
 **In YAML**
 ```yaml
-
+outputs:
+- contextPath: Process.Name
+  description: "The name of the process."
+  type: String
+- contextPath: Process.PID
+  description: "The PID of the process."
+  type: String
+- contextPath: Process.Hostname
+  description: "The endpoint on which the process was seen."
+  type: String
+- contextPath: Process.MD5
+  description: "The MD5 hash of the process."
+  type: String
+- contextPath: Process.SHA1
+  description: "The SHA1 hash of the process."
+  type: String
+  - contextPath: Process.CommandLine
+  description: "The full command line (including arguments)."
+  type: String
+- contextPath: Process.Path
+  description: "The file system path to the binary file."
+  type: String
+- contextPath: Process.Start Time
+  description: "The timestamp of the process start time."
+  type: String
+- contextPath: Process.End Time
+  description: "The timestamp of the process end time."
+  type: String
+- contextPath: Process.Parent
+  description: "Parent process objects."
+  type: String
+  - contextPath: Process.Sibling
+  description: "Sibling process objects."
+  type: String
+- contextPath: Process.Child
+  description: "Child process objects."
+  type: String
 ```
 

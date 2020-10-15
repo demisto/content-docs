@@ -4,7 +4,7 @@ title: Mandatory Context Standards
 ---
 
 ## File
-The following is the format for a file.
+The following is the format for a file. File here refers to the file indicator. 
 
 ```json
 "File": {
@@ -630,7 +630,8 @@ The following is the format for an Event.
 ``` 
 
 ## InfoFile
-The following is the expected format for an InfoFile
+The following is the expected format for an InfoFile. InfoFile is a file that we are not interested in it as an idicator but a report file for example.
+
 ```python
 "InfoFile": {
     "Name": "STRING, The file name.",

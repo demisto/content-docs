@@ -9,8 +9,8 @@ title: Generic Playbooks
 |---|---|
 | [Get Original Email - Generic](https://github.com/demisto/content/blob/master/Packs/CommonPlaybooks/Playbooks/Get_Original_Email_-_Generic_README.md)  | Email Gateway |  
 | [Account Enrichment Generic](https://github.com/demisto/content/blob/master/Packs/CommonPlaybooks/Playbooks/playbook-Account_Enrichment_-_Generic_v2.1_README.md)| IAM | 
-|[Block Account](https://github.com/demisto/content/blob/master/Packs/CommonPlaybooks/Playbooks/playbook-Account_Enrichment_-_Generic_v2.1_README.md)| IAM |
-| [Block File Generic](https://github.com/demisto/content/blob/master/Packs/CommonPlaybooks/Playbooks/playbook-Account_Enrichment_-_Generic_v2.1_README.md) | Endpoint |
+|[Block Account](https://github.com/demisto/content/blob/master/Packs/CommonPlaybooks/Playbooks/playbook-Block_Account_-_Generic_README.md)| IAM |
+| [Block File Generic](https://github.com/demisto/content/blob/master/Packs/CommonPlaybooks/Playbooks/playbook-Block_File_-_Generic_v2_README.md) | Endpoint |
 |[Block IP Generic](https://github.com/demisto/content/blob/master/Packs/CommonPlaybooks/Playbooks/playbook-Block_IP_-_Generic_v2_README.md)|Network Security (Firewall)|
 |[Block URL Generic](https://github.com/demisto/content/blob/master/Packs/CommonPlaybooks/Playbooks/playbook-Block_URL_-_Generic_README.md)|Network Security (Firewall)|
 | [Detonate File Generic](https://github.com/demisto/content/blob/master/Packs/CommonPlaybooks/Playbooks/playbook-Detonate_File_-_Generic_README.md) | Sandbox |
