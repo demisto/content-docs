@@ -32,7 +32,6 @@ a _Trust Relationship_ and establishes a trusted relationship between two resour
 More information regarding [Trust Relationships can be found here.](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/edit_trust.html)
 
 ### How XSOAR uses STS to Authenticate
-The following describes the EC2 instance metadata use case. 
 
 Your XSOAR Instance assumes a role using the following process flow:
 
@@ -44,6 +43,12 @@ Your XSOAR Instance assumes a role using the following process flow:
 - Lastly, using the new credentials, your AWS integration will make a request to the AWS Service and return the response.
 
 When this flow is done, the client making the request has the permissions associated with the acquired role.
+
+#### Prerequisites
+
+* Authenticated role (either via the EC2 metadata service or via Access Key and Secret Key) requires minimum permission: _sts:AssumeRole_.
+* Authenticated role requires permission to assume the roles needed by the AWS integrations
+
 
 ### Current Capabilities of AWS Integrations
 
@@ -62,10 +67,6 @@ The following provides instructions for configuring the AWS settings when the Co
 
 Before you can use the AWS integrations in Cortex XSOAR, you need to perform several configuration steps in your AWS environment.
 
-### Prerequisites
-
-* Authenticated role (either via the EC2 metadata service or via Access Key and Secret Key) requires minimum permission: _sts:AssumeRole_.
-* Authenticated role requires permission to assume the roles needed by the AWS integrations
 
 ### Create a Policy allowing to AssumeRole
 
