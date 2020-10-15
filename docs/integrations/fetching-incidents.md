@@ -101,7 +101,7 @@ demisto.setLastRun({
 })
 ```
 
-When pulling incidents with fetch-incidents the setLastRun will not execute if there is an error with fetch-incidents.
+When pulling incidents with ***fetch-incidents*** the ```setLastRun``` will not execute if there is an error with ***fetch-incidents***.
 
 ### Sending the Incidents to Cortex XSOAR
 When all of the incidents have been created, we return the array of incidents by using the ```demisto.incidents()``` function. This is similar to the ```demisto.results()``` function, but is used exclusively to handle incident objects.
@@ -122,4 +122,3 @@ demisto.incidents([])
 ## Troubleshooting
 For troubleshooting fetch-incident execute `!integration_instance_name-fetch` in the Playground, it should return the incidents.
 <img src="../doc_imgs/integrations/70272523-0f34f300-17b1-11ea-89a0-e4e0e359f614.png" width="480"></img>
-
