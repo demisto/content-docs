@@ -106,7 +106,9 @@ The associated incident types appear in the incident field's JSON file under the
 4. Open the exported JSON file in a text editor.
 5. Under the **systemAssociatedTypes** parameter, type a comma-separated list of the new incident types.  
 For example: **"systemAssociatedTypes": ["Access", "Authentication"],**
-6. Now merge the updated JSON file to the GitHub repository.
+6. Under the **associatedTypes** parameter, type a comma-separated list of the new incident types.
+For example: **"associatedTypes": ["Access", "Authentication"],**
+7. Now merge the updated JSON file to the GitHub repository.
 
 ## Troubleshooting Conflicts with Custom Incident Fields
 **Problem**
