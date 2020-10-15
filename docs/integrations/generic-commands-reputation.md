@@ -13,28 +13,81 @@ Every Integration that returns a reputation about an indicator must implement th
 
 ### **file file=**
 
-**Description:** Runs reputation on a File.
+**Description:** Runs reputation on files.
+
+```yaml
+- name: file
+   arguments:
+   - name: file
+     default: true
+     description: List of Files.
+     isArray: true
+```
+
 
 ### **ip ip=**
 
-**Description:** Runs reputation on an IP.
+```yaml
+- name: ip
+   arguments:
+   - name: ip
+     default: true
+     description: List of IPs.
+     isArray: true
+```
+**Description:** Runs reputation on IPs.
 
 ### **url url=**
 
-**Description:** Runs reputation on a URL.
+**Description:** Runs reputation on URLs.
+
+```yaml
+- name: url
+   arguments:
+   - name: url
+     default: true
+     description: List of URLs.
+     isArray: true
+```
 
 ### **domain domain=**
 
-**Description:** Runs reputation on a Domain.
+**Description:** Runs reputation on Domains.
+
+```yaml
+- name: domain
+   arguments:
+   - name: domain
+     default: true
+     description: List of Domains.
+     isArray: true
+```
 
 ### **email email=**
 
-**Description:** Runs reputation on an Email.
+**Description:** Runs reputation on Emails.
+
+```yaml
+- name: email
+   arguments:
+   - name: email
+     default: true
+     description: List of emails.
+     isArray: true
+```
 
 ### **cve cve=**
 
-**Description:** Runs reputation on a CVE.
+**Description:** Runs reputation on CVEs.
 
+```yaml
+- name: cve
+   arguments:
+   - name: cve
+     default: true
+     description: List of CVEs.
+     isArray: true
+```
 
 ## Integrations for reference
 
