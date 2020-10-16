@@ -135,7 +135,7 @@ The following are a few examples of selector methods:
 
 | Example | Result | Description |
 | --- | --- | --- |
-| ```${DBotScore.Vendor(val == 'urlscan.io')} ``` | `urlscan.io` | will return only Vendors that exactly match the Acrobat description. |
+| ```${DBotScore.Vendor(val == 'urlscan.io')} ``` | `urlscan.io` | will return only Vendors that exactly match the urlscan.io description. |
 | ```${URLScan.Certificates.SubjectName( val.indexOf('www') == 0)}``` | `[<span>www.google</span>.com, <span>www.google</span>.de]` | will return any SubjectName that starts with "www" |
 | ```${URLScan.Certificates.SubjectName( val.indexOf('doubleclick') >= 0)}``` | `*.g.doubleclick.net` | will return any SubjectName that contains doubleclick. |
 | ```${URLScan.Country( val.toUpperCase().indexOf('IE') >= 0)}``` | `IE` | will return any Country that contains IE or ie or any mixed case. |

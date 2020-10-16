@@ -17,12 +17,30 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: '3.7'
-      - name: Run Netlify Deploy
+      - name: Download Build
         if: "endsWith(github.event.context, 'ci/circleci: build') && github.event.state == 'success'"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        id: build_download
         run: |
           echo "==== $(date): Starting pipenv setup... ===="          
           pip install pipenv
           echo "==== $(date): Download build site... ===="
-          echo "==== $(date): Running netlify... ===="          
+          pipenv run content-docs/download_site_builid.py -e "$GITHUB_EVENT_PATH"
+      - name: Setup Node
+        if: "steps.build_download.outputs.forked_pr > 0"
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'  
+      - name: Deploy Netlify Build
+        if: "steps.build_download.outputs.forked_pr > 0"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FORKED_PR: ${{ steps.build_download.outputs.forked_pr }}
+        run: |
+          echo "==== $(date): extract build zip... ===="
+          tar xzf build-site.tar.gz
+          echo "==== $(date): Starting netlify install... ===="          
+          npm install -g netlify-cli
+          echo "==== $(date): Netlify deploy... ===="
+          netlify deploy -m "CircleCI forked pr build: $FORKED_PR" -d build --alias=pull-request-$FORKED_PR --json > deploy-info.json
+          cat deploy-info.json | jq
+          PR_NUM=$FORKED_PR pipenv run ./content-repo/post_github_comment.py deploy-info.json
