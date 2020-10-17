@@ -23,6 +23,7 @@ jobs:
         run: |
           echo "==== $(date): Starting pipenv setup... ===="          
           pip install pipenv
+          pipenv install
           echo "==== $(date): Download build site... ===="
           pipenv run ./content-repo/download_site_builid.py -e "$GITHUB_EVENT_PATH"
       - name: Setup Node
