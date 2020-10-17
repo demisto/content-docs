@@ -35,7 +35,7 @@ def download_site_buiild(event_file: str, download_path: str = "build-site.tar.g
         github_event = json.load(f)
     target_url = github_event['target_url']
     print(f'target_url: {target_url}')
-    # target_url is of the form: 
+    # target_url is of the form:
     # https://circleci.com/gh/demisto/content-docs/142?utm_campaign=vcs-integration-link&utm_medium=referral&utm_source=github-build-li
     target_url = target_url.split('?')[0]
     build_num = target_url.split('/')[-1]
