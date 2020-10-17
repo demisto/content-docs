@@ -45,7 +45,7 @@ jobs:
           echo "==== $(date): Starting netlify install... ===="          
           npm install -g netlify-cli
           echo "==== $(date): Netlify deploy... ===="
-          netlify deploy -m "CircleCI forked pr build: $FORKED_PR" -d build --alias=pull-request-$FORKED_PR > deploy-info.json
+          netlify deploy -m "CircleCI forked pr build: $FORKED_PR" -d build --alias=pull-request-$FORKED_PR --json > deploy-info.json
           cat deploy-info.json
           echo "==== $(date): Posting comment to PR ... ===="
           PR_NUM=$FORKED_PR pipenv run ./content-repo/post_github_comment.py deploy-info.json
