@@ -4,6 +4,7 @@ on: status
 jobs:
   check:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Dump Github context        
         env:
@@ -36,6 +37,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FORKED_PR: ${{ steps.build_download.outputs.forked_pr }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         run: |
           echo "==== $(date): extract build zip... ===="
           tar xzf build-site.tar.gz
