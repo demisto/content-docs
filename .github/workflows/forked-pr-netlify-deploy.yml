@@ -24,7 +24,7 @@ jobs:
           echo "==== $(date): Starting pipenv setup... ===="          
           pip install pipenv
           echo "==== $(date): Download build site... ===="
-          pipenv run content-docs/download_site_builid.py -e "$GITHUB_EVENT_PATH"
+          pipenv run ./content-docs/download_site_builid.py -e "$GITHUB_EVENT_PATH"
       - name: Setup Node
         if: "steps.build_download.outputs.forked_pr > 0"
         uses: actions/setup-node@v1
