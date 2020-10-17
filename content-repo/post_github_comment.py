@@ -36,6 +36,9 @@ def post_comment(netlify_deploy_file: str):
     if not post_url:
         print('Skipping post comment as could not resolve a PR post url!!')
         return
+    token = os.getenv('GITHUB_TOKEN')
+    if not token:
+        raise ValueError("Can't post comment. GITHUB_TOKEN env variable is not set")
     with open(netlify_deploy_file, 'r') as f:
         netlify_info = json.load(f)
     deplpy_url = netlify_info['deploy_url']
@@ -50,7 +53,8 @@ def post_comment(netlify_deploy_file: str):
             "The production site of our docs has been updated. You can view it at: https://xsoar.pan.dev"
     print(f'Going to post comment:\n------------\n{message}\n------------\nto url: {post_url}')
     verify = os.getenv('SKIP_SSL_VERIFY') is None
-    res = requests.post(post_url, json={"body": message}, auth=(os.environ['GITHUB_TOKEN'], 'x-oauth-basic'), verify=verify)
+    headers = {'Authorization': 'Bearer ' + token}
+    res = requests.post(post_url, json={"body": message}, headers=headers, verify=verify)
     res.raise_for_status()
 
 
