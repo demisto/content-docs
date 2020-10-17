@@ -35,7 +35,8 @@ def download_site_buiild(event_file: str, download_path: str = "build-site.tar.g
         github_event = json.load(f)
     target_url = github_event['target_url']
     print(f'target_url: {target_url}')
-    # target_url is of the form: https://circleci.com/gh/demisto/content-docs/142?utm_campaign=vcs-integration-link&utm_medium=referral&utm_source=github-build-li
+    # target_url is of the form: 
+    # https://circleci.com/gh/demisto/content-docs/142?utm_campaign=vcs-integration-link&utm_medium=referral&utm_source=github-build-li
     target_url = target_url.split('?')[0]
     build_num = target_url.split('/')[-1]
     print(f'circleci build: {build_num}')
@@ -77,8 +78,8 @@ def main():
     pr = download_site_buiild(args.event)
     if pr:
         # priint so workflow picks up the pr
-        # see: https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-commands-for-github-actions#setting-an-output-parameter 
-        print(f'::set-output name=FORKED_PR::{pr}')
+        # see: https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-commands-for-github-actions#setting-an-output-parameter
+        print(f'::set-output name=forked_pr::{pr}')
 
 
 if __name__ == "__main__":

@@ -1,8 +1,6 @@
 from download_site_builid import download_site_buiild
 import os
 import pytest
-import re
-import json
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
