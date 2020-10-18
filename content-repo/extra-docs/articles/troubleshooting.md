@@ -81,8 +81,10 @@ Key | Value
 After you add the server configuration, run the `/reset_containers` command from the Cortex XSOAR CLI to reset all containers and to begin using the new configuration.
 
 **Notes:**
+
 * For multi-tenant deployments, you need to add this setting to each tenant.
 * When using engines, you need to add this setting to each engine.
+* Python SSL/TLS issues can be debugged using automation [CertificatesTroubleshoot](https://xsoar.pan.dev/docs/reference/scripts/certificates-troubleshoot) which allows decoding certificate in endpoint and the custom certificate deployed in docker-engine if configured.
 
 ## Debug Mode
 Cortex XSOAR (Server 5.0+) supports running Python integration commands and automation scripts in `debug-mode` from the Cortex XSOAR CLI. When a command is run in `debug-mode` a log file of the command execution will be created and attached to the war room. When encountering an issue which is related to an integration or an automation, make sure to reproduce the command with `debug-mode` and inspect the generated log file. The `debug-mode` log file will contain information not available in the Server logs and can provide additional insights regarding the root cause of the issue. Additionally, some integrations have specific code to include extra debug info when run in `debug-mode`.
