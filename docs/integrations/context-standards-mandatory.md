@@ -4,7 +4,7 @@ title: Mandatory Context Standards
 ---
 
 ## File
-The following is the format for a file. File here refers to the file indicator. 
+The following is the format for a file. File here refers to the file indicator or a binary file that could potentially be malicious, and might be checked for reputation or sent to a sandbox. 
 
 ```json
 "File": {
@@ -497,112 +497,6 @@ outputs:
   type: String
 ```
 
-## Account
-The following is the format for an Account entity.
-```python
-"Account": {
-    "Type": "STRING, The account type. The most common value is 'AD', but can be 'LocalOS', 'Google', 'AppleID', ... ",
-    "ID": "STRING, The unique ID for the account (integration specific). For AD accounts this is the Distinguished Name (DN).",
-    "Username": "STRING, The username in the relevant system.",
-    "DisplayName": "STRING, The display name.",
-    "Groups": "STRING, Groups to which the account belongs (integration specific). For example, for AD these are groups of which the account is memberOf.",
-    "Domain": "STRING, The domain of the account.",
-    "OrganizationUnit": "STRING, The Organization Unit (OU) of the account.",
-    "Email": {
-        "Address": "STRING, The email address of the account."
-    },
-    "TelephoneNumber": "STRING, The phone number associated with the account.",
-    "Office": "STRING, The office where the person associated with the account works.",
-    "JobTitle": "STRING, The job title of the account.",
-    "Department": "STRING, The department of the account.",
-    "Country": "STRING, The country associated with the account.",
-    "State": "STRING, The state where the account works.",
-    "City": "STRING, The city associated with the account.",
-    "Street": "STRING, The street associated with the account.",
-    "IsEnabled": "BOOL, Whether the account is enabled or disabled. 'True' means the account is enabled."
-}
-```
-
-**In YAML**
-```yaml
-outputs:
-- contextPath: Account.Type
-  description: The account type. The most common value is 'AD', but can be 'LocalOS', 'Google', 'AppleID'
-  type: String
-- contextPath: Account.ID
-  description: The unique ID for the account (integration specific). For AD accounts this is the Distinguished Name (DN).
-  type: String
-- contextPath: Account.Username
-  description: The username in the relevant system.
-  type: String
-- contextPath: Account.DisplayName
-  description: The display name.
-  type: String
-- contextPath: Account.Groups
-  description: Groups to which the account belongs (integration specific). For example, for AD these are groups of which the account is memberOf.
-  type: String
-- contextPath: Account.Domain
-  description: The domain of the account.
-  type: String
-- contextPath: Account.OrganizationUnit
-  description: The Organization Unit (OU) of the account.
-  type: String
-- contextPath: Account.Email.Address
-  description: The email address of the account.
-  type: String
-- contextPath: Account.TelephoneNumber
-  description: The phone number associated with the account.
-  type: String
-- contextPath: Account.Office
-  description: The office where the person associated with the account works.
-  type: String
-- contextPath: Account.JobTitle
-  description: The job title of the account.
-  type: String
-- contextPath: Account.Department
-  description: The department of the account.
-  type: String
-- contextPath: Account.Country
-  description: The country associated with the account.
-  type: String
-- contextPath: Account.State
-  description: The state where the account works.
-  type: String
-- contextPath: Account.City
-  description: The city associated with the account.
-  type: String
-- contextPath: Account.Street
-  description: The street associated with the account.
-  type: String
-- contextPath: Account.IsEnabled
-  description: Whether the account is enabled or disabled. 'True' means the account is enabled.
-  type: Bool
-```
-
-## Registry Key
-The following is the format for a Registry Key.
-```python
-"RegistryKey": {
-    "Path": "STRING, The path to the registry key",
-    "Name": "STRING, The name of registry key.",
-    "Value": "STRING, The value at the given RegistryKey."
-}
-```
-
-**In YAML**
-```yaml
-outputs:
-- contextPath: RegistryKey.Path
-  description: The path to the registry key
-  type: String
-- contextPath: RegistryKey.Name
-  description: The name of registry key.
-  type: String
-- contextPath: RegistryKey.Value
-  description: The value at the given RegistryKey.
-  type: String
-```
-
 ## Rule
 The following is the format for a Rule.
 ```python
@@ -617,20 +511,8 @@ The following is the format for a Rule.
 
 ```
 
-## Event
-The following is the format for an Event.
-```python
-"Event": {
-    "Type": "STRING, The type of event, for example: "ePO", "Protectwise", "DAM".",
-    "ID": "STRING, The unique identifier of the event.",
-    "Name": "STRING, The name of the event.",
-    "Sensor": "STRING, The sensor that indicated the event.",
-    "Rule": "STRING, The rule that triggered the event."
-}
-``` 
-
 ## InfoFile
-The following is the expected format for an InfoFile. InfoFile is a file that we are not interested in it as an idicator but a report file for example.
+The following is the expected format for an InfoFile. InfoFile is a file that isn't relevant as an indicator and is generally benign. For example, a report file that you are attaching to the incident.
 
 ```python
 "InfoFile": {

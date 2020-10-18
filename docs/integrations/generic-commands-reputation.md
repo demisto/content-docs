@@ -9,7 +9,7 @@ title: Generic Reputation Commands
 XSOAR has an abudance of integrations with reputation providers for example VirusTotal, AlienVault OTX, MISP etc. 
 Every Integration that returns a reputation about an indicator must implement the generic repuation commands and calculate [DBot Score](../dbot)
 
-## Generic reputation commands needs to be supported
+## Generic reputation commands
 
 ### **file file=**
 
