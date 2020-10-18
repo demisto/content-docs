@@ -81,7 +81,6 @@ Key | Value
 After you add the server configuration, run the `/reset_containers` command from the Cortex XSOAR CLI to reset all containers and to begin using the new configuration.
 
 **Notes:**
-
 * For multi-tenant deployments, you need to add this setting to each tenant.
 * When using engines, you need to add this setting to each engine.
 
