@@ -659,7 +659,7 @@ results = CommandResults(
         'Address': '8.8.8.8',
         'ASN': 12345
     },
-    IndicatorsTimeline = timeline
+    indicators_timeline = timeline
 )
 return_results(results)
 ```
