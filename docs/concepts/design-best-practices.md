@@ -78,6 +78,8 @@ Time arguments – When the command supports filtering results by time, use star
 **Backwards compatibility:**
 
 Don’t break it, in XOAR components such as playbooks rely on previous inputs,few workarounds suggestions: keep the old context, add new paths as needed and update the outputs accordingly, if a command needs major changes, deprecate it and create a new one.
+
+
 **limitations:**
 
 Logo must be under 10kb. Make sure to use the company logo ( not the product’s).
