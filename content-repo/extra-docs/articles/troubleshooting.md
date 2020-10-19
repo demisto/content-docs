@@ -84,6 +84,48 @@ After you add the server configuration, run the `/reset_containers` command from
 * For multi-tenant deployments, you need to add this setting to each tenant.
 * When using engines, you need to add this setting to each engine.
 
+
+
+## TLS/SSL Troubleshooting
+
+Examples of common errors indicating that there is an issue with trusting a TLS/SSL networking connection:
+
+* `SSLCertVerificationError`
+* `SSL_CERTIFICATE_VERIFY_FAILED`
+* `SSL: CERTIFICATE_VERIFY_FAILED`
+* `SSLError: certificate verify failed`
+
+These errors are usually as a result of a Server using an untrusted certificate or a proxy (might be transparent) that is doing SSL/TLS termination. 
+
+**Notes**
+
+* Most Integrations provide a configuration option of *Trust any certificate*, which will cause the integration to ignore TLS/SSL certificate validation errors. You can use this option to test the connection and verify that in fact the issue is certificate related.
+* To trust custom certificates in Cortex XSOAR Server or Engines follow the following [instructions](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/docker/configure-python-docker-integrations-to-trust-custom-certificates).
+
+### CertificatesTroubleshoot Automation
+Use the [CertificatesTroubleshoot Automation](https://pull-request-351--demisto-content-docs.netlify.app/docs/reference/scripts/certificates-troubleshoot) to retrieve and decode an endpoint certificate. Additionally, use it to retrieve, decode and validiate the custom certificates deployed in Docker containers.
+
+**Common reasons for TLS/SSL issues and resolutions**
+
+* Enpoint certificate issues:
+  * Expiration date - The certificate has a start and end date which is not valid anymore.
+
+    * Identify: `Endpoint certificate` -> `Genral`-> `NotValidBefore/NotValidAfter`:
+
+    ![image-20201018155224381](../../../docs/doc_imgs/reference/certificate-verification-expire-date.png)
+
+    * Resolution: If the certificate expired, make sure to renew the certificate at the target endpoint.
+
+  * Common name / Alt name -  A certificate signed only for a specific URI, For example, if the certificate is signed for `test.com` and the Integration is accessing the endpoint using `test1.com` the certification validation will fail.
+
+    * Identify: `Endpoint certificate` -> `Subject` -> `CommonName` and `certificate` -> `Extentions` -> `SubjectAlternativeName`:
+
+      ![image-20201018160939173](../../../docs/doc_imgs/reference/certificate-verification-altnames.png)
+
+      ![image-20201018160950403](../../../docs/doc_imgs/reference/certificate-verification-common-name.png)
+
+    * Resolution: If the URI isn't matching the URI endpoint (Regex), Try to access the endpoint with one of the alt names/common names. If the endpoint isn't accessible via trusted names, sign the certificate with the correct common name or apply an additional alt name.
+
 ## Debug Mode
 Cortex XSOAR (Server 5.0+) supports running Python integration commands and automation scripts in `debug-mode` from the Cortex XSOAR CLI. When a command is run in `debug-mode` a log file of the command execution will be created and attached to the war room. When encountering an issue which is related to an integration or an automation, make sure to reproduce the command with `debug-mode` and inspect the generated log file. The `debug-mode` log file will contain information not available in the Server logs and can provide additional insights regarding the root cause of the issue. Additionally, some integrations have specific code to include extra debug info when run in `debug-mode`.
 
