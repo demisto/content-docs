@@ -53,14 +53,17 @@ Prior to acceptance into the program, all partners must complete and sign our Te
 
 ## 3. Take Required Training
 
-We require our Partners to take training classes at the Palo Alto Networks Beacon Learning Center prior to beginning development. The main class is: “[Cortex XSOAR Analyst: Running the Next Generation SOC](https://beacon.paloaltonetworks.com/student/path/642715-cortex-xsoar-analyst-training?sid=31172842&sid_i=2)” (120 minutes)
+We require our Partners to take training classes at the Palo Alto Networks Beacon Learning Center prior to beginning development. 
 
-Create a free account with your business email address and search for that title to enroll instantly. (Note: you must use your business email to ensure accurate reporting and tracking.)
+1. [Cortex XSOAR Analyst: Running the Next Generation SOC](https://beacon.paloaltonetworks.com/student/path/642715-cortex-xsoar-analyst-training?sid=31172842&sid_i=2) (2hrs)
+
+1. [Cortex XSOAR Engineer: Building the Next Generation SOC](https://beacon.paloaltonetworks.com/student/collection/658185/path/721882/activity/721895) (3hrs)
+
+Create a free account with your business email address and search by title to enroll instantly. (Note: you must use your business email to ensure accurate reporting and tracking.)
 
 Additional optional video resources include:
 - [Recorded videos](office-hours) from previous office hours
-- [Cortex XSOAR IT Administrator Training](https://www.paloaltonetworks.com/edu-182)
-- [Demisto Fundamentals Training](https://paloaltonetworks.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=718cf59a-7a30-4e07-ac73-aaee0150d2f8)
+- [Cortex XSOAR IT Administrator Training](https://beacon.paloaltonetworks.com/student/collection/666206/path/715595)
 
 
 ## 4. Identify and Document 
