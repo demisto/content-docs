@@ -93,11 +93,12 @@ incident = {
 
 ### Setting Last Run
 When the last of the events have been retrieved, we need to save the new last run time to the integration context. This timestamp will be used the next time the ```fetch-incidents``` function is run.
-When setting the last run object, it's important to know that the values of the dictionairy must be of type `string`.
+When setting the last run object, it's important to know that the values of the dictionary must be of type `string`.  
+We recommend using the time of the most recently created incident as the new last run.
 
 ```python
 demisto.setLastRun({
-  'start_time': datetime.now()
+    'start_time': timestamp_to_datestring(last_incident['time'])
 })
 ```
 
