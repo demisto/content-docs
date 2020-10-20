@@ -75,7 +75,7 @@ It is possible to add an image placeholder which links to an external video. For
 An example of including a YouTube video can be seen at the [Zoom Feed README](https://github.com/demisto/content/blob/master/Packs/FeedZoom/README.md).
 
 ## Pack Keywords, Tags, Use-cases & Categories
-In order classify packs and make them easier to find, there are a number of pack metadata elements that you can use:
+In order to classify packs and make them easier to find, there are a number of pack metadata elements that you can use:
 - ***Use-case*** -- a name of a situation in which packs can be used - usually the pack name. 
 
  Examples: Impossible Traveler, PCAP Analysis
