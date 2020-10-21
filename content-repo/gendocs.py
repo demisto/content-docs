@@ -214,7 +214,7 @@ def process_release_doc(target_dir: str, release_file: str) -> DocInfo:
         content = f'---\nid: {name}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\nhide_title: true\n---\n\n' + content
         download_msg = "Download"
         packs_download = ""
-        if name > '20.8.0':
+        if name > StrictVersion('20.8.0'):
             # from 20.8.1 we also add a link to the marketplace zips
             download_msg = "Download Content Zip (Cortex XSOAR 5.5 and earlier)"
             packs_download = '* **Download Marketplace Packs (Cortex XSOAR 6.0 and later):** ' + \
