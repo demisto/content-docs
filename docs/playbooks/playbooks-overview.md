@@ -22,7 +22,7 @@ The answers to the above questions will determine what kind of task you will nee
 
 * Conditional tasks - these tasks are used as decision trees in your flow chart. For example, were indicators found. If yes, you can have a task to enrich them, and if not you can proceed to determine that the incident is not malicious. Or, you can use conditional tasks to check if a certain integration is available and enabled in your system. If it is, you can use that integration to perform an action, and if not, you can continue to a different branch in the decision treee.
 
-Condtional tasks can also be used to communicate with users through a single question survey, the answer to which determines how a playbook will proceed. 
+Conditional tasks can also be used to communicate with users through a single question survey, the answer to which determines how a playbook will proceed. 
 
 * Data collection - these tasks are used to interact with users through a survey. The survey resides on an external site that does not require authentication, thereby allowing survey recipients to respond without restriction.
 
