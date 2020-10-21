@@ -107,10 +107,10 @@ Use the [CertificatesTroubleshoot Automation](https://pull-request-351--demisto-
 
 **Common reasons for TLS/SSL issues and resolutions**
 
-* Enpoint certificate issues:
+* Endpoint certificate issues:
   * Expiration date - The certificate has a start and end date which is not valid anymore.
 
-    * Identify: `Endpoint certificate` -> `Genral`-> `NotValidBefore/NotValidAfter`:
+    * Identify: `Endpoint certificate` -> `General`-> `NotValidBefore/NotValidAfter`:
 
     ![image-20201018155224381](../../../docs/doc_imgs/reference/certificate-verification-expire-date.png)
 
