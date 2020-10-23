@@ -121,6 +121,7 @@ https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 # Other
 /docs/reference	/docs/reference/index
 /office-hours https://paloaltonetworks.zoom.us/j/91689983283
+/partner-survey https://docs.google.com/forms/d/e/1FAIpQLSehK06xku8wU1LBA-VYDiC92HLt94KZ9FNbmNEhplATtbiskg/viewform?dods&gxids=7628
 
 # Updated/Superseded articles
 /docs/integrations/doc-structure /docs/integrations/integration-docs
