@@ -60,7 +60,7 @@ When adding or removing indicators, define a message to the indicator timeline. 
 Global Context outputs are important, when an analyst will execute commands/playbooks it will give them the option to receive information from multiple integrated products. Additionally, don’t forget [global context outputs](https://xsoar.pan.dev/docs/integrations/code-conventions#deprecated---demistoresults) for DBot scoring and global indicators.
 
 
-**Commands :**
+**Commands:**
 
 Use the following naming convention for commands: ***PRODUCTNAME-OBJECTNAME-ACTION***. In this structure, this will make it easier for the analyst to find the right object in the UI.
 
