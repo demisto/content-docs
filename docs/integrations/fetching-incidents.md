@@ -58,7 +58,7 @@ The following example shows how we use both **First Run** and the **Query** opti
 ```
 
 ## Fetch Limit 
-Another important parameter is the `Fetch Limit` parameter. Using this parameter the customer can enforce the maximum number of incidents to fetch per fetch command. In order to maintain optimal load on XSOAR we reccomend enforcing a limit of 200 incidents per fetch. Notice that should a customer enter a larger number or a blank parameter the `Test` button should fail.
+An important parameter is the `Fetch Limit` parameter. Using this parameter the customer can enforce the maximum number of incidents to fetch per fetch command. In order to maintain optimal load on XSOAR we recommend enforcing a limit of 200 incidents per fetch. Notice that should a customer enter a larger number or a blank parameter the `Test` button should fail.
 
 
 ## Creating an Incident
