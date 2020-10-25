@@ -57,6 +57,10 @@ The following example shows how we use both **First Run** and the **Query** opti
     events = query_events(query, start_time)
 ```
 
+## Fetch Limit 
+An important parameter is the `Fetch Limit` parameter. Using this parameter the customer can enforce the maximum number of incidents to fetch per fetch command. In order to maintain optimal load on XSOAR we recommend enforcing a limit of 200 incidents per fetch. Notice that should a customer enter a larger number or a blank parameter the `Test` button should fail.
+
+
 ## Creating an Incident
 Incidents are created by building an array of incident objects. These object all must contain the ```name``` of the incident, when the incident ```occurred``` as well as the ```rawJSON``` for the incident.
 
