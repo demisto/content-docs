@@ -73,7 +73,7 @@ Time arguments – When the command supports filtering results by time, use star
 
 Don’t break it! XOSAR components, such as playbooks, rely on previous inputs. Here are a few suggested workarounds to avoid breaking backward compatibility: keep the old context, add new paths as needed and update the outputs accordingly, if a command needs major modifications, deprecate the command and create a new one.
 
-**limitations:**
+**Limitations:**
 
 - Logo must be under 10kb. Make sure to use the company logo ( not the product’s).
 - Context limitation, If the result contains more than 50 entries, limit the context size.
