@@ -358,7 +358,7 @@ results = CommandResults(
     outputs_prefix='Autofocus.IP',
     outputs_key_field='indicator',
     outputs=ip_reputation_from_autofocus,
-    indicators=[ip]
+    indicator=ip
 )
 
 return_results(results)
@@ -475,7 +475,7 @@ results = CommandResults(
     outputs_prefix='Autofocus.Domain',
     outputs_key_field='domain',
     outputs=domain_raw,
-    indicators=[domain]
+    indicator=domain
 )
 
 return_results(results)
@@ -744,7 +744,7 @@ results = CommandResults(
     outputs_prefix='VirusTotal.URL',
     outputs_key_field='url',
     outputs=url_raw_response,
-    indicators=[url]
+    indicator=url
 )
 
 return_results(results)
@@ -873,7 +873,7 @@ results = CommandResults(
     outputs_prefix='VirusTotal.File',
     outputs_key_field='md5',
     outputs=hash_reputation_response,
-    indicators=[file]
+    indicator=file
 )
 
 return_results(results)
@@ -1016,7 +1016,7 @@ results = CommandResults(
     outputs_prefix='CVEMitre.CVE',
     outputs_key_field='id',
     outputs=cve_raw_response,
-    indicators=[cve]
+    indicator=cve
 )
 
 return_results(results)

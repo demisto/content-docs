@@ -647,7 +647,8 @@ This class is used to return outputs. This object represents an entry in warroom
 | outputs           | object | The data to be returned and will be set to context                                                                                                                                         |
 | readable_output    | str   | (Optional) markdown string that will be presented in the warroom, should be human readable -  (HumanReadable) - if not set, readable output will be generated via tableToMarkdown function |
 | raw_response      | object | (Optional) must be dictionary, if not provided then will be equal to outputs.  Usually must be the original raw response from the 3rd party service (originally Contents)                  |
-| indicators        | list   | Must be list of Indicator types, like Common.IP, Common.URL, Common.File, Common.Domain, Common.CVE.                                                                                       |
+| indicators        | list   | DEPRECATED: use 'indicator' instead.                                                                                                                                                       |
+| indicator         | Common.Indicator | single indicator like Common.IP, Common.URL, Common.File, etc.                                                                                                                   |
 | indicators_timeline | IndicatorsTimeline | Must be an IndicatorsTimeline. used by the server to populate an indicator's timeline.                                                                                       |
 
 **Example**
@@ -666,7 +667,7 @@ return_results(results)
 __Note:__ More examples on how to return results, [here](context-and-outputs)
 
 ### return_results
-```return_results()``` calls `demisto.results()`. It accept `CommandResults` object or any object that `demisto.results` 
+```return_results()``` calls `demisto.results()`. It accept either a list or single item of `CommandResults` object or any object that `demisto.results` 
 can accept.
 Use `return_results` to return mainly `CommandResults` object or basic `string`.
 
@@ -685,6 +686,27 @@ return_results(results)
 
 ```python
 return_results('Hello World')
+```
+
+```python
+results = [
+    CommandResults(
+        outputs_prefix='VirusTotal.IP',
+        outputs_key_field='Address',
+        outputs={
+            'Address': '8.8.8.8',
+            'ASN': 12345
+        }
+    ), 
+    CommandResults(
+        outputs_prefix='VirusTotal.IP',
+        outputs_key_field='Address',
+        outputs={
+            'Address': '1.1.1.1',
+            'ASN': 67890
+        }
+    )]
+return_results(results)
 ```
 
 __Note:__ More examples on how to return results, [here](context-and-outputs)
