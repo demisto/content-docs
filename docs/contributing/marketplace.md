@@ -11,47 +11,22 @@ This article walks you through the process of contributing content from the Cort
 
 2. After you contribute the content pack a message displays explaining that your contribution is ready for review, and includes a link to a form you need to fill in to complete your contribution. You will receive an email with a link to the form.
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+3. Completing the form
 
+   #### Creating a New Pack
+   If you are contributing a new pack then complete these steps, otherwise follow the form-filling instructions in [Updating an Existing Pack](#updating-an-existing-pack).
 
-export const firstStep = "In the form, complete the following steps.";
-export const githubLoginStep = "Log in to your GitHub account so you can participate in the review process of the pull request that will be opened for your content pack.";
-export const fillDetailsStep = "Fill in additional details, such as, pack name, author, and description.";
-export const signCLAStep = (
-     <p>
-          Sign the <a href="https://github.com/demisto/content/blob/master/docs/cla.pdf">Palo Alto Networks Contributor License Agreement</a>.
-     </p>
-);
+   1. Fill in additional details, such as, pack name, author, and description.
+   2. Log in to your GitHub account so you can participate in the review process of the pull request that will be opened for your content pack.
+   3. Sign the [Palo Alto Networks Contributor License Agreement](https://github.com/demisto/content/blob/master/docs/cla.pdf).
 
-<ol start="3">
-     <li>
-          <Tabs
-               defaultValue="create-new"
-               values={[
-                    {label: 'Creating A New Pack', value: 'create-new'},
-                    {label: 'Updating an Existing Pack', value: 'update-existing'},
-               ]}>
-               <TabItem value="create-new">
-               {firstStep}
-               <ul>
-                    <li>{fillDetailsStep}</li>
-                    <li>{githubLoginStep}</li>
-                    <li>{signCLAStep}</li>
-               </ul>
-               </TabItem>
-               <TabItem value="update-existing">
-               {firstStep}
-               <ul>
-                    <li>Select <em>Update Existing Pack</em> from the <em>Select Contribution Mode</em> dropdown.<sup><a href="#footnote1">1</a></sup></li>
-                    <li>Select the pack that you wish to update from the <em>Select Existing Pack</em> dropdown.<sup><a href="#footnote2">2</a></sup></li>
-                    <li>{githubLoginStep}</li>
-                    <li>{signCLAStep}</li>
-               </ul>
-               </TabItem>
-          </Tabs>
-     </li>
-</ol>
+   #### Updating an Existing Pack  
+   If your contribution is an update to an existing pack, complete the following steps. (See _[Notes](#notes)_ for more information regarding updating an existing pack.) 
+
+   1. Select _Update Existing Pack_ from the _Select Contribution Mode_ dropdown.
+   2. Select the pack that you wish to update from the _Select Existing Pack_ dropdown.
+   3. Log in to your GitHub account so you can participate in the review process of the pull request that will be opened for your content pack.
+   4. Sign the [Palo Alto Networks Contributor License Agreement](https://github.com/demisto/content/blob/master/docs/cla.pdf).
 
 
 4. After you submit the form you will be redirected to a page that informs you that pack was received and is being processed.  
@@ -66,12 +41,8 @@ export const signCLAStep = (
 8. You can now modify the files changed in the pull request as part of the review process.
 
 
-:::note
-In order to update the content pack that you contributed, you will need to modify the files in the pull request created in GitHub or close the pull request and create a new contribution.
-:::
+## Notes
 
-:::note Updating Existing Content
-<p><a id="footnote1"><em>1</em></a>: The contribution mode selection dropdown will only appear if content items that were part of your contribution were detected as originating from existing sources (for example, you created a new automation in the UI by clicking "Duplicate Automation").</p>
-<p><a id="footnote2"><em>2</em></a>: The pack options when selecting an existing pack to update will be populated by the packs from which the content items of which your content was duplicated from, originally belong to.</p>
-:::
- 
+1. In order to update a content pack that you contributed which is already in the GitHub pull request process, you will need to either modify the files in the pull request created in GitHub directly or close the pull request and create a new contribution including your changes.
+2. The contribution mode selection dropdown will only appear if content items that were part of your contribution were detected as originating from existing sources (for example, you created a new automation in the UI by clicking "Duplicate Automation").
+3. The pack options when selecting an existing pack to update will be populated by the packs from which the content items of which your content was duplicated from, originally belong to.
