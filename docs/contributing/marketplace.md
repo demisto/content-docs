@@ -13,20 +13,22 @@ This article walks you through the process of contributing content from the Cort
 
 3. Completing the form
 
-   #### Creating a New Pack
-   If you are contributing a new pack then complete these steps, otherwise follow the form-filling instructions in [Updating an Existing Pack](#updating-an-existing-pack).
+   1. **Creating a New Pack**  
 
-   1. Fill in additional details, such as, pack name, author, and description.
-   2. Log in to your GitHub account so you can participate in the review process of the pull request that will be opened for your content pack.
-   3. Sign the [Palo Alto Networks Contributor License Agreement](https://github.com/demisto/content/blob/master/docs/cla.pdf).
+          If you are contributing a new pack then complete these steps, otherwise follow the form-filling instructions in _Updating an Existing Pack_.
 
-   #### Updating an Existing Pack  
-   If your contribution is an update to an existing pack, complete the following steps. (See _[Notes](#notes)_ for more information regarding updating an existing pack.) 
+          1. Fill in additional details, such as, pack name, author, and description.
+          2. Log in to your GitHub account so you can participate in the review process of the pull request that will be opened for your content pack.
+          3. Sign the [Palo Alto Networks Contributor License Agreement](https://github.com/demisto/content/blob/master/docs/cla.pdf).
 
-   1. Select _Update Existing Pack_ from the _Select Contribution Mode_ dropdown.
-   2. Select the pack that you wish to update from the _Select Existing Pack_ dropdown.
-   3. Log in to your GitHub account so you can participate in the review process of the pull request that will be opened for your content pack.
-   4. Sign the [Palo Alto Networks Contributor License Agreement](https://github.com/demisto/content/blob/master/docs/cla.pdf).
+   2. **Updating an Existing Pack**
+
+          If your contribution is an update to an existing pack, complete the following steps. (See _[Notes](#notes)_ for more information regarding updating an existing pack.) 
+
+          1. Select _Update Existing Pack_ from the _Select Contribution Mode_ dropdown.
+          2. Select the pack that you wish to update from the _Select Existing Pack_ dropdown.
+          3. Log in to your GitHub account so you can participate in the review process of the pull request that will be opened for your content pack.
+          4. Sign the [Palo Alto Networks Contributor License Agreement](https://github.com/demisto/content/blob/master/docs/cla.pdf).
 
 
 4. After you submit the form you will be redirected to a page that informs you that pack was received and is being processed.  
@@ -45,4 +47,4 @@ This article walks you through the process of contributing content from the Cort
 
 1. In order to update a content pack that you contributed which is already in the GitHub pull request process, you will need to either modify the files in the pull request created in GitHub directly or close the pull request and create a new contribution including your changes.
 2. The contribution mode selection dropdown will only appear if content items that were part of your contribution were detected as originating from existing sources (for example, you created a new automation in the UI by clicking "Duplicate Automation").
-3. The pack options when selecting an existing pack to update will be populated by the packs from which the content items of which your content was duplicated from, originally belong to.
+3. The pack options when selecting an existing pack to update are determined and populated by the content items included in your contribution. For example, if you were to duplicate the `AbuseIPDB` integration and save the duplicate with your changes as `AbuseIPDB_copy` (the default name provided when making a duplicate is appending a suffix of `_copy` to the original's name - note that this is important as it indicates to us that this is potentially a modification of existing content) and include it in your contribution - then the Pack to which the `AbuseIPDB` integration belongs to, `AbuseDB`, will appear in the dropdown as a choice to select for updating.
