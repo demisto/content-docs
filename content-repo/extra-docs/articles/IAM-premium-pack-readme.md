@@ -43,9 +43,9 @@ The following table lists these fields, what they are used for in Cortex XSOAR, 
 | Workday fields  |  How it is Used  | Possible Values |
 | ------------ |---------------| -----|
 | Email address      | A unique identifier for the user. | User's work email address | 
-| Employment status |  Influences the playbook flow that will run on the User Profile incident.  | Active <br> Leave of Absence <br> Terminated
-| Rehired employee  | Used to determine whether the User rehire flow is implemented. | Yes <br> No |
-| Prehire flag | Used in conjunction with the Rehired employee field to enable the User rehire flow. | True <br> False|
+| Employment status |  Influences the playbook flow that will run on the User Profile incident.  | Active <br/> Leave of Absence <br/> Terminated
+| Rehired employee  | Used to determine whether the User rehire flow is implemented. | Yes <br/> No |
+| Prehire flag | Used in conjunction with the Rehired employee field to enable the User rehire flow. | True <br/> False|
 
 - Make sure to obtain the URL where the Workday reports are hosted. Each report has a unique URL, which you enter as one of the integration instance parameters. If you want to fetch multiple reports, each report will require its own integration instance. 
 
