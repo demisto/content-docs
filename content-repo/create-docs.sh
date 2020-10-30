@@ -106,6 +106,8 @@ else
         # use old hash to try to see if bulid passes.
         git checkout b11f4cfe4a3bf567656ef021f3d8f1bf66bcb9f6
     fi
+    echo "Git log:"
+    git log -1
 fi
 
 echo "Content git dir [${CONTENT_GIT_DIR}] size: $(du -sh ${CONTENT_GIT_DIR})"
