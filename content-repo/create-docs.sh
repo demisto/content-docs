@@ -92,7 +92,7 @@ else
         fi
     fi
     cd ${CONTENT_GIT_DIR}
-    if (git branch -a | grep "remotes/origin/${CONTENT_BRANCH}$"); then
+    if [[ "$CONTENT_BRANCH" != "master" ]] && (git branch -a | grep "remotes/origin/${CONTENT_BRANCH}$"); then
         echo "found remote branch: '$CONTENT_BRANCH' will use it for generating docs"
         git checkout $CONTENT_BRANCH
     else
@@ -103,7 +103,11 @@ else
         echo "Couldn't find $CONTENT_BRANCH using master to generate build"
         CONTENT_BRANCH=master
         git checkout master
+        # you can use an old hash to try to see if bulid passes when there is a failure.
+        # git checkout b11f4cfe4a3bf567656ef021f3d8f1bf66bcb9f6
     fi
+    echo "Git log:"
+    git log -1 --no-decorate --no-color
 fi
 
 echo "Content git dir [${CONTENT_GIT_DIR}] size: $(du -sh ${CONTENT_GIT_DIR})"
