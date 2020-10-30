@@ -102,9 +102,9 @@ else
         fi
         echo "Couldn't find $CONTENT_BRANCH using master to generate build"
         CONTENT_BRANCH=master
-        # git checkout master
-        # use old hash to try to see if bulid passes.
-        git checkout b11f4cfe4a3bf567656ef021f3d8f1bf66bcb9f6
+        git checkout master
+        # you can use an old hash to try to see if bulid passes when there is a failure.
+        # git checkout b11f4cfe4a3bf567656ef021f3d8f1bf66bcb9f6
     fi
     echo "Git log:"
     git log -1
