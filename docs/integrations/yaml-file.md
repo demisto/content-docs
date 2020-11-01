@@ -137,7 +137,7 @@ An explanation of these fields is as follows:
 | **arguments: description** | A description of the argument | |
 | **outputs: contextPath** | The dot notation representation of the context | |
 | **outputs: description** | Description of the context item | |
-| **outputs: type** | The type which the context item will be formatted | `Vendor.ObjectType.ObjectDetails` |
+| **outputs: type** | The type which the context item will be formatted | `Product.Entity.EntityDetails` |
 | **description** | A description for the command | |
 | **runonce** | Boolean to indicate if the function runs repeatedly| |
 
