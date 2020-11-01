@@ -31,7 +31,7 @@ Optionally, macOS users can install via [homebrew](https://docs.brew.sh/Homebrew
 ### Docker
 If you would like to write [unit tests](unit-testing) and run them, as we do in our CI process (within docker), you must install docker. See: https://docs.docker.com/install/ for install options.
 
-### Nodejs and NPM
+### Node.js and NPM
 Optional. We use Node.js for validating README documentation files for Integrations, Automations and Playbooks. If you are creating README documentation files, we recommend installing Node.js to be able to validate the files locally. Node.js installation instructions for your target platform are available at: https://nodejs.org/en/download/package-manager/.
 
 ## Setting Up a Development Repository
