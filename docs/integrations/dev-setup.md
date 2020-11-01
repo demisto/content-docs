@@ -32,7 +32,7 @@ Optionally, macOS users can install via [homebrew](https://docs.brew.sh/Homebrew
 If you would like to write [unit tests](unit-testing) and run them, as we do in our CI process (within docker), you must install docker. See: https://docs.docker.com/install/ for install options.
 
 ### Nodejs and NPM
-Optional. We use nodejs for validating README documentation files for Integrations/Automations/Playbooks. If you are creating README documentation files, we recommend installing nodejs to be able to validate the files locally. Nodejs installation instructions for your target platform are available at: https://nodejs.org/en/download/package-manager/.
+Optional. We use Node.js for validating README documentation files for Integrations, Automations and Playbooks. If you are creating README documentation files, we recommend installing Node.js to be able to validate the files locally. Node.js installation instructions for your target platform are available at: https://nodejs.org/en/download/package-manager/.
 
 ## Setting Up a Development Repository
 [Fork](https://guides.github.com/activities/forking/) the Cortex XSOAR Content repository and create a branch for your contribution.
@@ -75,4 +75,3 @@ Cortex XSOAR offers two IDEs for developing:
 * [PyCharm IDE Plugin](../integrations/pycharm-plugin)
 
 You can also use your IDE of choice along with `demisto-sdk`.
-
