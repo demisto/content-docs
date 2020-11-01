@@ -109,7 +109,7 @@ else
         # git checkout b11f4cfe4a3bf567656ef021f3d8f1bf66bcb9f6
     fi
     echo "Git log:"
-    git log -1 --no-decorate --no-color
+    git --no-pager log -1 --no-decorate --no-color | head -10
 fi
 
 echo "Content git dir [${CONTENT_GIT_DIR}] size: $(du -sh ${CONTENT_GIT_DIR})"
