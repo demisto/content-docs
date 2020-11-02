@@ -10,7 +10,13 @@ title: Development Setup
 ### Development OS
 Our recommended OS for development is either macOS or Linux, as we use bash and docker in some of our validation/testing flows.
 
-If you are working on Windows, you can either work with a Linux VM or utilize [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+#### Windows Users
+If you are working on Windows, you can either work with a Linux VM or utilize [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10). 
+
+**Note:** When using WSL2 you may experience performance issues if working on the Windows mounted file system (for example `/mnt/c/`). See the following [WSL issue](https://github.com/microsoft/WSL/issues/4197) for more info. In such cases we recommend using the Linux file system (`ext4` partition) WSL2 provides. Meaning that the local demisto content and the SDK will all be located on the WSL file system and using an editor which supports remote WSL. Editors supporting remote WSL include:
+* VS Code: https://code.visualstudio.com/docs/remote/wsl
+* PyCharm Professional Edition: https://www.jetbrains.com/help/pycharm/using-wsl-as-a-remote-interpreter.html 
+
 
 ### Git
 We use GitHub (as you can see). See: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git for git client install instructions.
@@ -24,6 +30,9 @@ Optionally, macOS users can install via [homebrew](https://docs.brew.sh/Homebrew
 
 ### Docker
 If you would like to write [unit tests](unit-testing) and run them, as we do in our CI process (within docker), you must install docker. See: https://docs.docker.com/install/ for install options.
+
+### Node.js and NPM
+Optional. We use Node.js for validating README documentation files for Integrations, Automations and Playbooks. If you are creating README documentation files, we recommend installing Node.js to be able to validate the files locally. Node.js installation instructions for your target platform are available at: https://nodejs.org/en/download/package-manager/.
 
 ## Setting Up a Development Repository
 [Fork](https://guides.github.com/activities/forking/) the Cortex XSOAR Content repository and create a branch for your contribution.
@@ -66,4 +75,3 @@ Cortex XSOAR offers two IDEs for developing:
 * [PyCharm IDE Plugin](../integrations/pycharm-plugin)
 
 You can also use your IDE of choice along with `demisto-sdk`.
-
