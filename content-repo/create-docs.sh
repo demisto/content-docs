@@ -134,7 +134,7 @@ if [[ ( "$PULL_REQUEST" == "true" || -n "$CI_PULL_REQUEST" ) && "$CONTENT_BRANCH
         DIFF_FILES=$(git diff --name-only  remotes/origin/master...HEAD --)  # so we fail on errors if there is a problem
     fi
     echo -e "Modified files:\n$DIFF_FILES\n-----------"    
-    echo "$DIFF_FILES" | grep -v -E '^docs/|^content-repo/|^static/|^sidebars.js' || MAX_FILES=20    
+    echo "$DIFF_FILES" | grep -v -E '^docs/|^content-repo/extra-docs/|^static/|^sidebars.js' || MAX_FILES=20    
     if [ -n "$MAX_FILES" ]; then
         echo "MAX_FILES set to: $MAX_FILES"
         export MAX_FILES
