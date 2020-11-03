@@ -450,7 +450,8 @@ def main():
         f.write(index_doc_infos(article_doc_infos, ATRICLES_PREFIX))
         f.write("\n\n## Content Release Notes\n\n")
         f.write(index_doc_infos(release_doc_infos, RELEASES_PREFIX, headers=('Name', 'Date')))
-        f.write("\n\nAdditional archived release notes are available [here](https://github.com/demisto/content-docs/tree/master/content-repo/extra-docs/releases).")
+        f.write("\n\nAdditional archived release notes are available"
+                " [here](https://github.com/demisto/content-docs/tree/master/content-repo/extra-docs/releases).")
     integration_items = [f'{integrations_full_prefix}/{d.id}' for d in integration_doc_infos]
     playbook_items = [f'{playbooks_full_prefix}/{d.id}' for d in playbooks_doc_infos]
     script_items = [f'{scripts_full_prefix}/{d.id}' for d in script_doc_infos]
