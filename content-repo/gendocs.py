@@ -19,6 +19,8 @@ from multiprocessing import Pool
 from functools import partial
 import html
 from distutils.version import StrictVersion
+import random
+import dateutil.relativedelta
 
 # override print so we have a timestamp with each print
 org_print = print
@@ -61,6 +63,11 @@ MAX_FAILURES = int(os.getenv('MAX_FAILURES', 10))  # if we have more than this a
 # env vars for faster development
 MAX_FILES = int(os.getenv('MAX_FILES', -1))
 FILE_REGEX = os.getenv('FILE_REGEX')
+
+# initialize the seed according to the PR branch. Used when selecting max files.
+random.seed(os.getenv('CIRCLE_BRANCH'))
+
+MIN_RELEASE_VERSION = StrictVersion((datetime.now() + dateutil.relativedelta.relativedelta(months=-18)).strftime('%y.%-m.0'))
 
 
 def normalize_id(id: str):
@@ -199,9 +206,12 @@ def process_readme_doc(target_dir: str, content_dir: str, readme_file: str) -> D
         sys.stderr.flush()
 
 
-def process_release_doc(target_dir: str, release_file: str) -> DocInfo:
+def process_release_doc(target_dir: str, release_file: str) -> Optional[DocInfo]:
     try:
         name = os.path.splitext(os.path.basename(release_file))[0]
+        if name < MIN_RELEASE_VERSION:
+            print(f'Skipping release notes: {release_file} as it is older than: {MIN_RELEASE_VERSION}')
+            return None
         with open(release_file, 'r', encoding='utf-8') as f:
             content = f.read()
         desc_match = re.search(r'Published on .*', content, re.IGNORECASE)
@@ -315,6 +325,7 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
     print(f'Processing: {len(readme_files)} {prefix} files ...')
     if MAX_FILES > 0:
         print(f'PREVIEW MODE. Truncating file list to: {MAX_FILES}')
+        random.shuffle(readme_files)
         readme_files = readme_files[:MAX_FILES]
     if FILE_REGEX:
         print(f'PREVIEW MODE. Matching only files which match: {FILE_REGEX}')
@@ -360,6 +371,8 @@ def create_releases(target_dir: str):
     sys.stdout.flush()
     sys.stderr.flush()
     for doc_info in POOL.map(partial(process_release_doc, target_sub_dir), release_files):
+        if not doc_info:  # case that we skip a release doc as it is too old
+            continue
         if doc_info.error_msg:
             fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
         else:
@@ -437,6 +450,8 @@ def main():
         f.write(index_doc_infos(article_doc_infos, ATRICLES_PREFIX))
         f.write("\n\n## Content Release Notes\n\n")
         f.write(index_doc_infos(release_doc_infos, RELEASES_PREFIX, headers=('Name', 'Date')))
+        f.write("\n\nAdditional archived release notes are available"
+                " [here](https://github.com/demisto/content-docs/tree/master/content-repo/extra-docs/releases).")
     integration_items = [f'{integrations_full_prefix}/{d.id}' for d in integration_doc_infos]
     playbook_items = [f'{playbooks_full_prefix}/{d.id}' for d in playbooks_doc_infos]
     script_items = [f'{scripts_full_prefix}/{d.id}' for d in script_doc_infos]

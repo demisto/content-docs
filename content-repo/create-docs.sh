@@ -40,6 +40,8 @@ else
     fi
     if [[ -n "${NETLIFY}" && -n "${HEAD}" ]]; then
         CURRENT_BRANCH="${HEAD}"
+    elif [[ -n "${CIRCLE_BRANCH}" ]]; then
+        CURRENT_BRANCH=${CIRCLE_BRANCH}
     else
         CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
     fi
@@ -114,15 +116,23 @@ echo "Content git dir [${CONTENT_GIT_DIR}] size: $(du -sh ${CONTENT_GIT_DIR})"
 
 cd ${SCRIPT_DIR}
 
-if [[ "$PULL_REQUEST" == "true" && "$CONTENT_BRANCH" == "master" ]]; then
-    echo "Checking if only doc files where modified and we can do a limited preview build..."    
-    if [ -z "$CONTENT_DOC_NO_FETCH" ]; then
+if [[ ( "$PULL_REQUEST" == "true" || -n "$CI_PULL_REQUEST" ) && "$CONTENT_BRANCH" == "master" ]]; then
+    echo "Checking if only doc files where modified and we can do a limited preview build..."
+    if [ -n "$CIRCLE_COMPARE_URL" ]; then
+        DIFF_COMPARE=$(echo "$CIRCLE_COMPARE_URL" | sed 's:^.*/compare/::g')    
+        if [ -z "${DIFF_COMPARE}" ]; then
+            echo "Failed: extracting diff compare from CIRCLE_COMPARE_URL: ${CIRCLE_COMPARE_URL}"            
+        else
+            DIFF_FILES=$(git diff --name-only $DIFF_COMPARE --)
+        fi
+    fi
+    if [[ -z "$DIFF_FILES" && -z "$CONTENT_DOC_NO_FETCH" ]]; then
         git remote get-url origin || git remote add origin https://github.com/demisto/content-docs.git
         git remote -v
         git fetch origin
+        echo "HEAD ref $(git rev-parse HEAD). remotes/origin/master ref: $(git rev-parse remotes/origin/master)"
+        DIFF_FILES=$(git diff --name-only  remotes/origin/master...HEAD --)  # so we fail on errors if there is a problem
     fi
-    echo "HEAD ref $(git rev-parse HEAD). remotes/origin/master ref: $(git rev-parse remotes/origin/master)"
-    DIFF_FILES=$(git diff --name-only  remotes/origin/master...HEAD --)  # so we fail on errors if there is a problem
     echo -e "Modified files:\n$DIFF_FILES\n-----------"    
     echo "$DIFF_FILES" | grep -v -E '^docs/|^content-repo/extra-docs/|^static/|^sidebars.js' || MAX_FILES=20    
     if [ -n "$MAX_FILES" ]; then
