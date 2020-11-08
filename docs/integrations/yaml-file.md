@@ -127,19 +127,19 @@ The command section tells Cortex XSOAR what arguments are required for your comm
 ```
 An explanation of these fields is as follows:
 
-| Name | Description |
-| --- | --- |
-| **name** | The name of the command |
-| **arguments: name** | The name of the argument |
-| **arguments: required** | Boolean for if the argument is required |
-| **arguments: default** | Boolean for if the argument is the one chosen when argument values are passed to a command without specifying the command argument's name. Note that only one command argument can be set as the default per command |
-| **arguments: isArray** | Boolean for if the argument accepts a CSV list of input values |
-| **arguments: description** | A description of the argument |
-| **outputs: contextPath** | The dot notation representation of the context |
-| **outputs: description** | Description of the context item |
-| **outputs: type** | The type which the context item will be formatted |
-| **description** | A description for the command |
-| **runonce** | Boolean to indicate if the function runs repeatedly|
+| Name | Description | Standard |
+| --- | --- | ---|
+| **name** | The name of the command | `vendorname-command` |
+| **arguments: name** | The name of the argument | `argumnt_name` |
+| **arguments: required** | Boolean for if the argument is required |  |
+| **arguments: default** | Boolean for if the argument is the one chosen when argument values are passed to a command without specifying the command argument's name. Note that only one command argument can be set as the default per command | |
+| **arguments: isArray** | Boolean for if the argument accepts a CSV list of input values | |
+| **arguments: description** | A description of the argument | |
+| **outputs: contextPath** | The dot notation representation of the context | |
+| **outputs: description** | Description of the context item | |
+| **outputs: type** | The type which the context item will be formatted | `Product.Entity.EntityDetails` |
+| **description** | A description for the command | |
+| **runonce** | Boolean to indicate if the function runs repeatedly| |
 
 ## Version and Tests
 The last section of the YAML file provides Cortex XSOAR with information regarding what version is supported and tests. See the example below:

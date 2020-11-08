@@ -64,6 +64,8 @@ Global Context outputs are important, when an analyst will execute commands/play
 
 Use the following naming convention for commands: ***PRODUCTNAME-OBJECTNAME-ACTION***. In this structure, this will make it easier for the analyst to find the right object in the UI.
 
+Command arguments should be snake case and lower case i.e. ***argument_name***
+
 Polling playbook & check status command – If the command can take more than a few seconds to execute (vulnerability scan, complex query, file detonation in sandbox, etc) make sure to add a [polling playbook](https://xsoar.pan.dev/docs/playbooks/generic-polling). If implemented, do remember to include a “status” command as well.
 
 Time arguments – When the command supports filtering results by time, use start and end time parameters (if supported by UI), and a timeframe parameter, that accepts inputs such as “4 days ago”, “5 minutes ago”, etc.
