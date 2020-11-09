@@ -1,0 +1,27 @@
+---
+id: EmailCommunication
+title: Email Communication
+description: This email communications content pack enables security teams to automate the communication and notification process with end users.
+
+---
+
+
+With this Content Pack, you can use the layout as-is for email communication. It can also be in use for other incident types by adding the email communication layout to the different incident types.
+
+## Before You Start
+
+There are out-of-the-box classification and mapping (for EWS and Gmail) in the pack that map the incident data to custom incident fields.
+Those custom incident fields must be populated with specific values for the scripts to execute.
+
+Suppose an EWS or Gmail instance is already configured for other incident types. In that case, it’s recommended to create a new instance for the email communication type with the associated classification and mapping. 
+
+- Ensure that you have both Mail listener and sender integrations for receiving and sending emails.
+
+
+## Pack Configurations
+
+This pack requires that you configure a pre-process rule to link between the email communications (The email response will be linked to the same incident and will not create a new one). The pre-process rule should be configured:
+Conditions for Incoming Incident - for the incident type (Email Communication).
+Note: If you are using Gmail instance, you should add another condition for the email labels - does not contains “SENT”
+Action - to ‘Run a script‘.
+Choose a script - choose the ‘PreprocessEmail’ script.
