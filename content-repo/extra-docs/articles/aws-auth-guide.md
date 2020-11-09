@@ -32,6 +32,7 @@ a _Trust Relationship_ and establishes a trusted relationship between two resour
 More information regarding [Trust Relationships can be found here.](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/edit_trust.html)
 
 ### How XSOAR uses STS to Authenticate
+
 Your XSOAR Instance assumes a role using the following process flow:
 
 ![XSOAR AWS STS Auth Flow](../../../docs/doc_imgs/integrations/XSOAR_STS_Flow.png)
@@ -42,6 +43,12 @@ Your XSOAR Instance assumes a role using the following process flow:
 - Lastly, using the new credentials, your AWS integration will make a request to the AWS Service and return the response.
 
 When this flow is done, the client making the request has the permissions associated with the acquired role.
+
+#### Prerequisites
+
+* Authenticated role (either via the EC2 metadata service or via Access Key and Secret Key) requires minimum permission: _sts:AssumeRole_.
+* Authenticated role requires permission to assume the roles needed by the AWS integrations
+
 
 ### Current Capabilities of AWS Integrations
 
@@ -54,20 +61,14 @@ This argument is not required but does allow you to use a role other than the de
 Note that every assumed role must have an established trust relationship with your XSOAR instance or the command 
 will indicate an *authentication* issue in the CLI.
 
-## Configure AWS Settings
+## Configuration for using the EC2 Metadata Service (Attached Role)
 
 The following provides instructions for configuring the AWS settings when the Cortex XSOAR server is located within the AWS environment in a local network.  For information about authenticating to AWS when the Cortex XSOAR server is self hosted outside the AWS environment in a remote network, see [AWS Integrations Authentication Self Hosted](#aws-integrations-authentication-self-hosted).
 
 Before you can use the AWS integrations in Cortex XSOAR, you need to perform several configuration steps in your AWS environment.
 
-### Prerequisites
 
-* Authenticated role (either via the EC2 metadata service or via Access Key and Secret Key) requires minimum permission: _sts:AssumeRole_.
-* Authenticated role requires permission to assume the roles needed by the AWS integrations
-
-### Configuration for using the EC2 metadata service (attached role)
-
-#### Create a Policy allowing to AssumeRole
+### Create a Policy allowing to AssumeRole
 
 1.  Log in to the AWS Management Console and access the IAM console.  
     [https://console.aws.amazon.com/iam/](https://console.aws.amazon.com/iam/)
@@ -103,7 +104,7 @@ Before you can use the AWS integrations in Cortex XSOAR, you need to perform sev
 }
 ```
     
-#### Specify the Roles to Assume
+### Specify the Roles to Assume
 
 You can specify which roles are allowed to be assumed by putting the role ARN in the _Resource_ section. These roles 
 are the role ARNs that you would like your AWS XSOAR integrations to assume.
@@ -122,7 +123,7 @@ are the role ARNs that you would like your AWS XSOAR integrations to assume.
 }
 ```
 
-#### Configuring your Assumed Roles
+### Configuring your Assumed Roles
 
 Now that the XSOAR server/engine has the necessary role to begin assuming your other roles, the roles you would like your 
 AWS XSOAR integrations to assume must be configured. These roles need to be configured to know to _trust_ your XSOAR 
@@ -147,7 +148,7 @@ instance. This is done by configuring the following _trust relationship_ in the 
 ```
 
     
-#### Grant Required Permissions
+### Grant Required Permissions
 
 Grant the required permissions to the instance profile. For testing purposes, you can grant all required permissions to the instance profile to simplify the setup.
 
@@ -172,7 +173,7 @@ Grant the required permissions to the instance profile. For testing purposes, yo
 
 For more information, see the [Amazon IAM documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_enable-create.html).
 
-#### Attach a Role to the Instance Profile
+### Attach a Role to the Instance Profile
 
 1.  Log in to the AWS Management Console and access the EC2 console.  
     [https://console.aws.amazon.com/ec2/](https://console.aws.amazon.com/iam/)
@@ -190,7 +191,7 @@ Each integration command has the required permissions documented in the integrat
 
 You can now add and configure the AWS integrations on Cortex XSOAR. See the documentation for each AWS integration.
 
-## AWS Integrations Authentication Self Hosted
+## Configuration using Access Key and Secret Key
 
 The following provides information for authenticating to AWS when the Cortex XSOAR server is self hosted outside the AWS environment in a remote network.
 

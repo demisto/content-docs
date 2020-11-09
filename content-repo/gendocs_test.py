@@ -4,6 +4,8 @@ from gendocs import INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
 from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server
 import os
 import pytest
+from datetime import datetime
+import dateutil.relativedelta
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SAMPLE_CONTENT = f'{BASE_DIR}/test_data/sample-content'
@@ -143,16 +145,25 @@ def test_normalize_id():
 
 
 def test_process_release_doc(tmp_path, mdx_server):
-    release_file = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs/releases/20.4.1.md'
+    last_month = datetime.now() + dateutil.relativedelta.relativedelta(months=-1)
+    version = last_month.strftime('%y.%-m.0')
+    release_file = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs/releases/{version}.md'
     res = process_release_doc(str(tmp_path), release_file)
-    assert res.id == '20.4.1'
+    assert res.id == version
     assert res.description.startswith('Published on')
-    assert res.name == 'Content Release 20.4.1'
+    assert res.name == f'Content Release {version}'
     with open(str(tmp_path / f'{res.id}.md'), 'r') as f:
         assert f.readline().startswith('---')
         assert f.readline().startswith(f'id: {res.id}')
         assert f.readline().startswith(f'title: "{res.id}"')
         assert f.readline().startswith('custom_edit_url: https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/releases')
+
+
+def test_process_release_doc_old(tmp_path, mdx_server):
+    release_file = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs/releases/18.9.1.md'
+    res = process_release_doc(str(tmp_path), release_file)
+    # old file should be ignored
+    assert res is None
 
 
 def test_process_extra_doc(tmp_path, mdx_server):

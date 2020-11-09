@@ -600,6 +600,42 @@ You may also use ```headerTransform``` to convert the existing keys into formatt
  
  <img width="758" src="../doc_imgs/integrations/50575199-fd5d0a00-0e01-11e9-9d54-944eb7c6f287.png"></img>
 
+### IndicatorsTimeline
+The `IndicatorTimeline` is an optional object (available from Server version 5.5.0 and up) . It is only applicable for commands that operate on indicators. It is a dictionary (or list of dictionaries) of the following format:
+When `IndicatorTimeline` data is returned in an entry, the timeline section of the indicator whose value was noted in the timeline data will be updated (and is viewable in the indicator's view page in Cortex XSOAR as can be seen in the attached image).
+
+<img width="758" src="../doc_imgs/integrations/timeline_section.png"></img>
+
+**What value should be used for the `'Category'` field of a `timeline` data object?**  
+Any Cortex XSOAR integration command or automation that returns `timeline` data may include the `'Category'` value.
+If not given, When returning `timeline` data from a Cortex XSOAR integration or automation, the value will be `'Integration Update'` or `'Automation Update'` accordingly.
+
+**So when should one include a timeline object in an entry returned to the war room?**  
+The answer is any time that a command operates on an indicator. A good indicator (pun intended?) of when `timeline` data should be included in an entry is to look and see if the command returns a `DBotScore` or entities as described in our [context standards documentation](../integrations/context-standards) to the entry context. A common case is reputation commands, i.e. `!ip`, `!url`, `!file`, etc. When implementing these commands in integrations, `timeline` data should be included in the returned entry. To see an example of an integration that returns entries with `timeline` data, take a look at our [AbuseIPDB integration](https://github.com/demisto/content/blob/14148b68f5030a64c6fe6f7cf5af4f184e93abad/Packs/AbuseDB/Integrations/AbuseDB/AbuseDB.py#L215).
+
+
+| Arg        | Type   | Description                                                                                                                                                                                |
+|------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| indicators | list   | Expects a list of indicators, if a dict is passed it will be put into a list.                                                                              |
+| category   | str    | Indicator category.
+| message    | str    | Indicator message.                                                                                                                                         |
+
+**Example**
+```python
+timeline = IndicatorsTimeline(
+      indicators=[args.get('ips')],
+      message='Important to note'
+)
+```
+
+```python
+timeline = IndicatorsTimeline(
+      indicators=[args.get('ips')],
+      category='Some category',
+      message='IP was blocked in Checkpoint'
+)
+```
+
 
 ### CommandResults
 This class is used to return outputs. This object represents an entry in warroom.
@@ -609,9 +645,11 @@ This class is used to return outputs. This object represents an entry in warroom
 | outputs_prefix    | str    | Should be identical to the prefix in the yml contextPath in yml file. for example:         CortexXDR.Incident                                                                              |
 | outputs_key_field | str    | Primary key field in the main object. If the command returns Incidents, and of the properties of Incident is incident_id, then outputs_key_field='incident_id'                             |
 | outputs           | object | The data to be returned and will be set to context                                                                                                                                         |
-| readable_output    | str    | (Optional) markdown string that will be presented in the warroom, should be human readable -  (HumanReadable) - if not set, readable output will be generated via tableToMarkdown function |
+| readable_output    | str   | (Optional) markdown string that will be presented in the warroom, should be human readable -  (HumanReadable) - if not set, readable output will be generated via tableToMarkdown function |
 | raw_response      | object | (Optional) must be dictionary, if not provided then will be equal to outputs.  Usually must be the original raw response from the 3rd party service (originally Contents)                  |
-| indicators        | list   | Must be list of Indicator types, like Common.IP, Common.URL, Common.File, Common.Domain, Common.CVE.                                                                                       |
+| indicators        | list   | DEPRECATED: use 'indicator' instead.                                                                                                                                                       |
+| indicator         | Common.Indicator | single indicator like Common.IP, Common.URL, Common.File, etc.                                                                                                                   |
+| indicators_timeline | IndicatorsTimeline | Must be an IndicatorsTimeline. used by the server to populate an indicator's timeline.                                                                                       |
 
 **Example**
 ```python
@@ -621,14 +659,15 @@ results = CommandResults(
     outputs={
         'Address': '8.8.8.8',
         'ASN': 12345
-    }
+    },
+    indicators_timeline = timeline
 )
 return_results(results)
 ```
 __Note:__ More examples on how to return results, [here](context-and-outputs)
 
 ### return_results
-```return_results()``` calls `demisto.results()`. It accept `CommandResults` object or any object that `demisto.results` 
+```return_results()``` calls `demisto.results()`. It accept either a list or single item of `CommandResults` object or any object that `demisto.results` 
 can accept.
 Use `return_results` to return mainly `CommandResults` object or basic `string`.
 
@@ -647,6 +686,27 @@ return_results(results)
 
 ```python
 return_results('Hello World')
+```
+
+```python
+results = [
+    CommandResults(
+        outputs_prefix='VirusTotal.IP',
+        outputs_key_field='Address',
+        outputs={
+            'Address': '8.8.8.8',
+            'ASN': 12345
+        }
+    ), 
+    CommandResults(
+        outputs_prefix='VirusTotal.IP',
+        outputs_key_field='Address',
+        outputs={
+            'Address': '1.1.1.1',
+            'ASN': 67890
+        }
+    )]
+return_results(results)
 ```
 
 __Note:__ More examples on how to return results, [here](context-and-outputs)

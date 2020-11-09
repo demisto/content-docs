@@ -9,6 +9,7 @@ pytest = "*"
 autopep8 = "*"
 mypy = "*"
 pytest-mock = "*"
+requests-mock = "*"
 
 [packages]
 pyyaml = "*"
@@ -16,6 +17,7 @@ inflection = "*"
 beautifulsoup4 = "*"
 requests = "*"
 pydoc-markdown = "*"
+python-dateutil = "*"
 
 [requires]
 python_version = "3.7"

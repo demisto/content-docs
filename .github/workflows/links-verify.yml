@@ -51,6 +51,7 @@ jobs:
         -e 'https://go.demisto.com.*' \
         -e 'https?://maps.google.com.*' \
         -e 'https://demisto.*.atlassian.net.*' \
+        -e 'https://panw-test.oktapreview.com.*' \
         https://xsoar.pan.dev > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
         grep -v -E '^\s+(403|401|x509|lookup|parse|timeout|dialing)' muffet.txt > muffet-clean.out
         echo "Muffet output after 401, 403 and x509 remove:"

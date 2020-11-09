@@ -157,3 +157,10 @@ ignore=auto-test
 [file:integration-to-ignore.yml]
 ignore=IN126,PA116
 ```
+
+### Author_image.png
+This file is optional, and if added the image will be displayed in the Marketplace under **PUBLISHER** when viewing the pack details.
+
+In case file does not exist, the pack author will be displayed in text.
+
+The image size should be up to 4kb and in the dimensions of 120x50.
