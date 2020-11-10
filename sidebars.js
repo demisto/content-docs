@@ -92,7 +92,23 @@ const sidebars = {
             "integrations/code-conventions",
             "integrations/fetching-incidents",
             "integrations/context-and-outputs",
-            "integrations/context-standards",
+            {
+              type: "category",
+              label: "Context Standards",
+              items: [
+                "integrations/context-standards-about",
+                "integrations/context-standards-mandatory",
+                "integrations/context-standards-recommended",
+              ]
+            },
+            {
+              type: "category",
+              label: "Generic Commands",
+              items: [
+                "integrations/generic-commands-about",
+                "integrations/generic-commands-reputation"
+              ]
+            },
             "integrations/dbot",
             "integrations/docker"            
           ]
@@ -147,7 +163,8 @@ const sidebars = {
         "playbooks/playbooks-create-communication-task",
         "playbooks/playbooks-communication-task-customize-message",
         "playbooks/generic-polling",
-        "playbooks/playbooks-field-reference"
+        "playbooks/playbooks-field-reference",
+        "playbooks/playbooks-generic"
       ]
     },
     {

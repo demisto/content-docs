@@ -6,11 +6,11 @@ title: Design Best Practices
 In this section we captured some of the Design Best practices that you should consider when building an integration.
 Remember, it's important to keep it simple - each command/API call at its time.
 If you have any doubts or questions, please reach out to us over Slack.
- 
+
 **Design Best Practices:**
- 
-**Integration categories:** 
- 
+
+**Integration categories:**
+
 Make sure your integration is categorized correctly by choosing one of the following:
 
 Import events as incidents
@@ -79,4 +79,3 @@ Don’t break it! XOSAR components, such as playbooks, rely on previous inputs. 
 
 - Logo must be under 10kb. Make sure to use the company logo ( not the product’s).
 - Context limitation, If the result contains more than 50 entries, limit the context size.
-

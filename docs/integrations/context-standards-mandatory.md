@@ -1,22 +1,12 @@
 ---
-id: context-standards
-title: Context Standards
+id: context-standards-mandatory
+title: Mandatory Context Standards
 ---
 
-Cortex XSOAR organizes incident data in a tree of objects called the *Incident Context*. Any integration commands or scripts that run, will add data into the context at a predefined location. This also applies to commands that run within playbook execution.
-
-When building new integrations the entry context should be returned according to this standard. 
-
-If there is no matching item in the standard, reach out to the architect team to check if your addition merits an update or change of the standard. 
-
-If the data is vendor/tool specific, it can be assigned its own context path.
-
-Below are examples of how each entity should be formed in the entry context.
-
 ## File
-The following is the format for a file.
+The following is the format for a file. File here refers to the file indicator or a binary file that could potentially be malicious, and might be checked for reputation or sent to a sandbox. 
 
-```python
+```json
 "File": {
         "Name": "STRING, The full file name (including file extension).",
         "EntryID": "STRING, The ID for locating the file in the War Room.",
@@ -132,27 +122,10 @@ outputs:
   type: String
 ```
 
-## Report
-The following is the format for a report.
-
-```python
-"Report": {
-        "Name": "STRING, The name of the file or document.",
-        "EntryID": "STRING, The ID of the War Room entry, where the report file/data is located.",
-        "Size": "INT, The size of the report (in bytes).",
-        "Brand": "STRING, The brand of the integration that generated the report.",
-}
-```
-
-**In YAML**
-```yaml
-
-```
-
 ## IP
 The following is the format for an IP entity
 
-```python
+```json
 "IP": {
     "Address": "STRING, IP address",
     "ASN": "STRING, The autonomous system name for the IP address, for example: 'AS8948'.",
@@ -224,23 +197,8 @@ The following is the format for an Endpoint.
     "Model": "STRING, The model of the machine or device.",
     "Memory": "INT, Memory on this endpoint.",
     "Processors": "INT, The number of processors.",
-    "Processor": "STRING, The model of the processor."
-}
-```
-
-**In YAML**
-```yaml
-
-```
-
-## Ticket
-The following is the format for a ticket.
-```python
-"Ticket": {
-    "ID": "STRING, The ID of the ticket.",
-    "Creator": "STRING, The user who created the ticket.",
-    "Assignee": "STRING, The user assigned to the ticket.",
-    "State": "STRING, The status of the ticket. Can be "closed", "open", or "on hold"."
+    "Processor": "STRING, The model of the processor.",
+    "IsIsolated": "BOOLEAN, Whether this endpoint isolated or not."
 }
 ```
 
@@ -251,7 +209,7 @@ The following is the format for a ticket.
 
 ## Email Object
 The following is the format for an Email Object.
-```python
+```json
 "Email": {
     "To": "STRING, The recipient of the email.",
     "From": "STRING, The sender of the email.",
@@ -305,7 +263,7 @@ outputs:
 
 ## Domain
 The following is the format for a Domain. Please note that for WHOIS, the entity is a dictionary nested for the key "WHOIS".
-```python
+```json 
 "Domain": {
     "Name": "STRING, The domain name, for example: 'google.com'.",
     "DNS": "STRING, A list of IP objects resolved by DNS.",
@@ -475,7 +433,7 @@ outputs:
 
 ## URL
 The following is the format for a URL entity.
-```python
+```json
 "URL": {
     "Data": "STRING, The URL",
     "Malicious": {
@@ -539,112 +497,6 @@ outputs:
   type: String
 ```
 
-## Account
-The following is the format for an Account entity.
-```python
-"Account": {
-    "Type": "STRING, The account type. The most common value is 'AD', but can be 'LocalOS', 'Google', 'AppleID', ... ",
-    "ID": "STRING, The unique ID for the account (integration specific). For AD accounts this is the Distinguished Name (DN).",
-    "Username": "STRING, The username in the relevant system.",
-    "DisplayName": "STRING, The display name.",
-    "Groups": "STRING, Groups to which the account belongs (integration specific). For example, for AD these are groups of which the account is memberOf.",
-    "Domain": "STRING, The domain of the account.",
-    "OrganizationUnit": "STRING, The Organization Unit (OU) of the account.",
-    "Email": {
-        "Address": "STRING, The email address of the account."
-    },
-    "TelephoneNumber": "STRING, The phone number associated with the account.",
-    "Office": "STRING, The office where the person associated with the account works.",
-    "JobTitle": "STRING, The job title of the account.",
-    "Department": "STRING, The department of the account.",
-    "Country": "STRING, The country associated with the account.",
-    "State": "STRING, The state where the account works.",
-    "City": "STRING, The city associated with the account.",
-    "Street": "STRING, The street associated with the account.",
-    "IsEnabled": "BOOL, Whether the account is enabled or disabled. 'True' means the account is enabled."
-}
-```
-
-**In YAML**
-```yaml
-outputs:
-- contextPath: Account.Type
-  description: The account type. The most common value is 'AD', but can be 'LocalOS', 'Google', 'AppleID'
-  type: String
-- contextPath: Account.ID
-  description: The unique ID for the account (integration specific). For AD accounts this is the Distinguished Name (DN).
-  type: String
-- contextPath: Account.Username
-  description: The username in the relevant system.
-  type: String
-- contextPath: Account.DisplayName
-  description: The display name.
-  type: String
-- contextPath: Account.Groups
-  description: Groups to which the account belongs (integration specific). For example, for AD these are groups of which the account is memberOf.
-  type: String
-- contextPath: Account.Domain
-  description: The domain of the account.
-  type: String
-- contextPath: Account.OrganizationUnit
-  description: The Organization Unit (OU) of the account.
-  type: String
-- contextPath: Account.Email.Address
-  description: The email address of the account.
-  type: String
-- contextPath: Account.TelephoneNumber
-  description: The phone number associated with the account.
-  type: String
-- contextPath: Account.Office
-  description: The office where the person associated with the account works.
-  type: String
-- contextPath: Account.JobTitle
-  description: The job title of the account.
-  type: String
-- contextPath: Account.Department
-  description: The department of the account.
-  type: String
-- contextPath: Account.Country
-  description: The country associated with the account.
-  type: String
-- contextPath: Account.State
-  description: The state where the account works.
-  type: String
-- contextPath: Account.City
-  description: The city associated with the account.
-  type: String
-- contextPath: Account.Street
-  description: The street associated with the account.
-  type: String
-- contextPath: Account.IsEnabled
-  description: Whether the account is enabled or disabled. 'True' means the account is enabled.
-  type: Bool
-```
-
-## Registry Key
-The following is the format for a Registry Key.
-```python
-"RegistryKey": {
-    "Path": "STRING, The path to the registry key",
-    "Name": "STRING, The name of registry key.",
-    "Value": "STRING, The value at the given RegistryKey."
-}
-```
-
-**In YAML**
-```yaml
-outputs:
-- contextPath: RegistryKey.Path
-  description: The path to the registry key
-  type: String
-- contextPath: RegistryKey.Name
-  description: The name of registry key.
-  type: String
-- contextPath: RegistryKey.Value
-  description: The value at the given RegistryKey.
-  type: String
-```
-
 ## Rule
 The following is the format for a Rule.
 ```python
@@ -659,144 +511,9 @@ The following is the format for a Rule.
 
 ```
 
-## Event
-The following is the format for an Event.
-```python
-"Event": {
-    "Type": "STRING, The type of event, for example: "ePO", "Protectwise", "DAM".",
-    "ID": "STRING, The unique identifier of the event.",
-    "Name": "STRING, The name of the event.",
-    "Sensor": "STRING, The sensor that indicated the event.",
-    "Rule": "STRING, The rule that triggered the event."
-}
-```
-
-**In YAML**
-```yaml
-
-```
-
-## Directory
-The following is the format for a Directory.
-```python
-"Directory": {
-    "Path": "STRING, The directory path. Can be "local" or "UNC".",
-    "Endpoint": "STRING, Whether the directory is found on a specific endpoint."
-}
-```
-
-**In YAML**
-```yaml
-
-```
-
-## Service
-The following is the format for a Service.
-```python
-"Service": {
-    "Name": "STRING, The name of the service.",
-    "BinPath": "STRING, The path of the /bin folder.",
-    "CommandLine": "STRING, The full command line (including arguments).",
-    "StartType": "STRING, How the service was started.",
-    "State": "STRING, The status of the service."
-}
-```
-
-**In YAML**
-```yaml
-
-```
-
-## Process
-The following is the format for a process.
-```python
-"Process": {
-    "Name": "STRING, The name of the process.",
-    "PID": "STRING, The PID of the process.",
-    "Hostname": "STRING, The endpoint on which the process was seen.",
-    "MD5": "STRING, The MD5 hash of the process.",
-    "SHA1": "STRING, The SHA1 hash of the process.",
-    "CommandLine": "STRING, The full command line (including arguments).",
-    "Path": "STRING, The file system path to the binary file.",
-    "Start Time": "DATE, The timestamp of the process start time.",
-    "End Time": "DATE, The timestamp of the process end time.",
-    "Parent": "STRING, Parent process objects.",
-    "Sibling": "LIST, Sibling process objects.",
-    "Child": "LIST, Child process objects."
-}
-```
-
-**In YAML**
-```yaml
-
-```
-
-## Host
-The following is the format for a host.
-```python
-"Host": {
-    "Domain": "STRING, The domain of the host.",
-    "Hostname": "STRING, The name of the host.",
-    "BIOVersion": "STRING, The BIOS version of the host.",
-    "ID": "STRING, The unique ID within the tool retrieving the host.",
-    "DHCPServer": "STRING, The DHCP server.",
-    "IP": "STRING, The IP address of the host.",
-    "MACAddress": "STRING, The MAC address of the host.",
-    "Memory": "STRING, Memory on the host.",
-    "Model": "STRING, The model of the host.",
-    "OS": "STRING, Host OS.",
-    "OSVersion": "STRING, The OS version of the host.",
-    "Processor": "STRING, The processor of the host.",
-    "Processors": "INT, The number of processors that the host is using.'" 
-}
-```
-
-**In YAML**
-```yaml
-outputs:
-- contextPath: Host.Domain
-  description: The domain of the host.
-  type: String
-- contextPath: Host.Hostname
-  description: The name of the host.
-  type: String
-- contextPath: Host.BIOVersion
-  description: The BIOS version of the host.
-  type: String
-- contextPath: Host.ID
-  description: The unique ID within the tool retrieving the host.
-  type: String
-- contextPath: Host.DHCPServer
-  description: The DHCP server.
-  type: String
-- contextPath: Host.IP
-  description: The IP address of the host.
-  type: String
-- contextPath: Host.MACAddress
-  description: The MAC address of the host.
-  type: String
-- contextPath: Host.Memory
-  description: Memory on the host.
-  type: String
-- contextPath: Host.Model
-  description: The model of the host.
-  type: String
-- contextPath: Host.OS
-  description: Host OS.
-  type: String
-- contextPath: Host.OSVersion
-  description: The OS version of the host.
-  type: String
-- contextPath: Host.Processor
-  description: The processor of the host.
-  type: String
-- contextPath: Host.Processors
-  description: The number of processors that the host is using.
-  type: Number
-```
-
 ## InfoFile
-The following is the expected format for an InfoFile
+The following is the expected format for an InfoFile. InfoFile is a file that isn't relevant as an indicator and is generally benign. For example, a report file that you are attaching to the incident.
+
 ```python
 "InfoFile": {
     "Name": "STRING, The file name.",
