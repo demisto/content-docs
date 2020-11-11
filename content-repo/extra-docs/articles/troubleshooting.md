@@ -156,6 +156,9 @@ Screenshot of running a `fetch` command with `debug-mode=true` and the resulting
 ![fetch-incidents-debug](../../../docs/doc_imgs/reference/fetch-incidents-debug.png)
 
 ### Test Integration Module in `debug-mode`
+**Note**: The "Do not use by default" option should be unchecked on the integration instance you are testing. You can uncheck this option by running the 
+`!<instance_name>-test-module debug-mode=true` command.
+
 Starting with Cortex XSOAR 6.0 it is possible to run the test integration module command from the Cortex XSOAR CLI with `debug-mode=true`. This is done by issuing a command of the form:
 
 ```
