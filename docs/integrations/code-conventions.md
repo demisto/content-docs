@@ -210,7 +210,7 @@ These are the best practices for defining the command functions.
 - Each **_command** function should use `Client` class functions.
 - Each **_command** function should be unit testable. This means you should avoid using global functions, such as `demisto.results()`, `return_error()`, or `return_results()`.
 - The **_command** function will receive `client` instance and `args` (`demisto.args()` dictionary).
-- The **_command** function will return an instance of the [CommandResults](https://xsoar.pan.dev/docs/integrations/code-conventions#commandresults) class. 
+- The **_command** function will return an instance of the [CommandResults](code-conventions#commandresults) class. 
 - To return results to the War Room, in the `main` use `return_results(say_hello_command(client, demisto.args()))`.
 ```python
 def say_hello_command(client, args):
@@ -650,6 +650,7 @@ This class is used to return outputs. This object represents an entry in warroom
 | indicators        | list   | DEPRECATED: use 'indicator' instead.                                                                                                                                                       |
 | indicator         | Common.Indicator | single indicator like Common.IP, Common.URL, Common.File, etc.                                                                                                                   |
 | indicators_timeline | IndicatorsTimeline | Must be an IndicatorsTimeline. used by the server to populate an indicator's timeline.                                                                                       |
+| ignore_auto_extract | bool | If set to **True** prevents the built-in [auto-extract](../incidents/incident-auto-extract) from enriching IPs, URLs, files, and other indicators from the result. Default is **False**.  |
 
 **Example**
 ```python
@@ -726,7 +727,7 @@ Will produce an error in the War Room, for example:
 ### DEPRECATED - demisto.results()
 _Note_: Use `return_results` instead
 
-```demisto.results()``` returns entries to the warroom from an integration command or an automation.
+```demisto.results()``` returns entries to the War Room from an integration command or an automation.
 A typical example of returning an entry from an integration command looks as follows:
 ```python
 demisto.results(
@@ -832,21 +833,22 @@ return_outputs(
 
 
 ### AutoExtract
-As part of ```demisto.results()``` there is a field called ```IgnoreAutoExtract```, which prevents the built-in auto-extract tool from enriching IPs, URLs, files, and other indicators from the result. For example:
+As part of ```CommandResults()``` there is an argument called ```ignore_auto_extract```, which prevents the built-in [auto-extract](../incidents/incident-auto-extract) feature from enriching IPs, URLs, files, and other indicators from the result. For example:
 
 ```python
-demisto.results({
-    'Type': entryTypes['note'],
-    'ContentsFormat': formats['text'],
-    'Contents': command_id,
-    'HumanReadable': message,
-    'IgnoreAutoExtract': True,
-    'EntryContext': {
-        'SEPM.Quarantine': context
-    }
-})
+results = CommandResults(
+    outputs_prefix='VirusTotal.IP',
+    outputs_key_field='Address',
+    outputs={
+        'Address': '8.8.8.8',
+        'ASN': 12345
+    },
+    indicators_timeline = timeline,
+    ignore_auto_extract = True
+)
+return_results(results)
 ```
-**Note:** By default, IgnoreAutoExtract is set to ```False```.
+**Note:** By default, ignore_auto_extract is set to ```False```.
 
 ## Quality Examples of Integrations
 * [Google Cloud Functions](https://github.com/demisto/content/tree/master/Packs/GoogleCloudFunctions/Integrations/GoogleCloudFunctions)
