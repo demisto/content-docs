@@ -12,7 +12,7 @@ To get the most benefit out of classification and mapping, make sure that you un
 ## Classification
 Classification determines the type of incident that is created for events ingested from a specific integration.  
 You can classify events in one of two ways:
-* When defining an integration - Select the incident type that is created. When this is configured, it becomes the default incident type. If you do not classify the event through classification and mapping, it will be set as what you have defined here. For information about defining the incident type within the integration settings, see [XSOAR Dev Hub](https://xsoar.pan.dev/docs/reference/index).
+* When defining an integration - Select the incident type that is created. When this is configured, it becomes the default incident type. If you do not classify the event through classification and mapping, it will be set as what you have defined here. For information about defining the incident type within the integration settings, see [Integration Configuration](../integrations/yaml-file#configuration).
 * By setting a classification key - Use the classification engine to determine the incident type. This overrides whatever you configured in the integration settings.
 
 ## Classify using a classification key
@@ -82,7 +82,7 @@ You can set default classifier and/or mapper for an integration by populating th
 Classifier file:
  - Filename: `classifier-<PACK-NAME>.json`, e.g. `classifier-CortexXDR.json`
  - File contents:
- ```json 
+ ```jsonc
  {
 	"name": string,                 // Usually is <PACK-NAME> - Classifier
 	"type": "classification",
@@ -138,7 +138,7 @@ Classifier file:
  Incoming mapper file:
  - Filename: `classifier-mapper-incoming-<PACK-NAME>.json`, e.g. `classifier-mapper-incoming--CortexXDR.json`
  - File contents:
-  ```json
+  ```jsonc
  {
     "name": string,             // Usually is <PACK-NAME> - Incoming Mapper
     "type": "mapping-incoming",
