@@ -42,7 +42,7 @@ Conditions for Incoming Incident - for the incident type (Email Communication).
 Note: If you are using Gmail instance, you should add another condition for the email labels - does not contain “SENT”
 Action - to ‘Run a script. ‘
 Choose a script - choose the ‘PreprocessEmail’ script.
- 
+![Preprocess-rule](https://raw.githubusercontent.com/demisto/content/84e7bc89c8757544804540e6711d4b9aba210ec1/Packs/EmailCommunication/doc_files/pre-process-rule.png)
  
 #### Examples
  
