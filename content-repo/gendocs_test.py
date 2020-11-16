@@ -211,7 +211,7 @@ def test_insert_approved_tags_and_usecases(tmp_path):
     pack_docs = integrations_dir / 'pack-docs.md'
     pack_docs.write_text("""
     ***Use-case***
-    
+
     ***Tags***
     """)
     content_repo_dir = tmp_path / 'content-repo'
