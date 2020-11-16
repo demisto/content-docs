@@ -76,9 +76,9 @@ An example of including a YouTube video can be seen at the [Zoom Feed README](ht
 
 ## Pack Keywords, Tags, Use-cases & Categories
 In order to classify packs and make them easier to find, there are a number of pack metadata elements that you can use:
-- ***Use-case*** -- a name of a situation in which packs can be used - usually the pack name. 
+- ***Use-case*** -- a name of a situation in which packs can be used - usually the pack name. The optional values for use-cases are:
 
-- ***Tags*** -- words from the same semantic field of the use-case. These make it easier to find packs using filters or the search bar, and are visible on the screen to help understand what the pack is and its benefit to users.
+- ***Tags*** -- words from the same semantic field of the use-case. These make it easier to find packs using filters or the search bar, and are visible on the screen to help understand what the pack is and its benefit to users. The optional values for tags are:
 
 - ***Keywords*** -- operate like tags but aren't displayed in the UI.
 
@@ -86,41 +86,40 @@ For example, for a pack related to messaging, you may want to add "msg" as a key
 
 - ***Category*** -- what field/subject the pack relates to, in high level.
 Your pack should fall into one of the existing categories:
-
 <details>
-<summary>Pack Categories</summary>
-
-Analytics & SIEM
-
-Authentication
-
-Breach And Attack Simulation
-
-Case Management
-
-Data Enrichment & Threat Intelligence
-
-Database
-
-Deception
-
-Email Gateway
-
-Endpoint
-
-Forensics & Malware Analysis
-
-IT Services
-
-Messaging
-
-Network Security
-
-Utilities
-
-Vulnerability Management
-
-</details>
+    <summary>Pack Categories</summary>
+    
+    Analytics & SIEM
+    
+    Authentication
+    
+    Breach And Attack Simulation
+    
+    Case Management
+    
+    Data Enrichment & Threat Intelligence
+    
+    Database
+    
+    Deception
+    
+    Email Gateway
+    
+    Endpoint
+    
+    Forensics & Malware Analysis
+    
+    IT Services
+    
+    Messaging
+    
+    Network Security
+    
+    Utilities
+    
+    Vulnerability Management
+    
+    </details>
 
 You may use the above information to customize these elements in the pack metadata file.
 ![image](https://user-images.githubusercontent.com/43602124/90132076-d1dc2880-dd75-11ea-8bee-2c0273e8bfe8.png)
