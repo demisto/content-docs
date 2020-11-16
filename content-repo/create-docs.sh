@@ -150,9 +150,11 @@ mkdir ${TARGET_DIR}/integrations
 mkdir ${TARGET_DIR}/playbooks
 mkdir ${TARGET_DIR}/scripts
 
-echo "Copying CommonServerPython.py and demistomock.py"
+echo "Copying CommonServerPython.py, demistomock.py, approved_tags.json and approved_usecases.json"
 cp ${CONTENT_GIT_DIR}/Packs/Base/Scripts/CommonServerPython/CommonServerPython.py .
 cp ${CONTENT_GIT_DIR}/Tests/demistomock/demistomock.py .
+cp ${CONTENT_GIT_DIR}/Tests/Marketplace/approved_tags.json .
+cp ${CONTENT_GIT_DIR}/Tests/Marketplace/approved_usecases.json .
 
 ARTICLES_DIR=${SCRIPT_DIR}/extra-docs/articles
 DEMISTO_CLASS_OVERVIEW="All Python integrations and scripts have available as part of the runtime the \`demisto\` class object. The object exposes a series of API methods which are used to retrieve and send data to the Cortex XSOAR Server.

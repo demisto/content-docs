@@ -78,11 +78,7 @@ An example of including a YouTube video can be seen at the [Zoom Feed README](ht
 In order to classify packs and make them easier to find, there are a number of pack metadata elements that you can use:
 - ***Use-case*** -- a name of a situation in which packs can be used - usually the pack name. 
 
- Examples: Impossible Traveler, PCAP Analysis
-
 - ***Tags*** -- words from the same semantic field of the use-case. These make it easier to find packs using filters or the search bar, and are visible on the screen to help understand what the pack is and its benefit to users.
-
- Examples: GDPR, PII, TIM
 
 - ***Keywords*** -- operate like tags but aren't displayed in the UI.
 
