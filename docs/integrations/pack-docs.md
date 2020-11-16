@@ -89,21 +89,21 @@ Your pack should fall into one of the approved existing categories:
   <details>
   <summary>Pack Categories</summary>
 
-            * Analytics & SIEM 
-            * Authentication 
-            * Breach And Attack Simulation
-            * Case Management
-            * Data Enrichment & Threat Intelligence
-            * Database
-            * Deception
-            * Email Gateway
-            * Endpoint
-            * Forensics & Malware Analysis
-            * IT Services
-            * Messaging
-            * Network Security
-            * Utilities
-            * Vunerability Management  
+      Analytics & SIEM
+      Authentication 
+      Breach And Attack Simulation
+      Case Management
+      Data Enrichment & Threat Intelligence
+      Database
+      Deception
+      Email Gateway
+      Endpoint
+      Forensics & Malware Analysis
+      IT Services
+      Messaging
+      Network Security
+      Utilities
+      Vunerability Management  
 
   </details>
 
