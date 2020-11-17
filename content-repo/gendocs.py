@@ -417,29 +417,31 @@ def create_articles(target_dir: str):
 def insert_approved_tags_and_usecases():
     with open('approved_usecases.json', 'r') as f:
         approved_usecases = json.loads(f.read()).get('approved_list')
-        approved_usecases_string = '\n\n    '.join(approved_usecases)
+        approved_usecases_string = '\n        '.join(approved_usecases)
     with open('approved_tags.json', 'r') as f:
         approved_tags = json.loads(f.read()).get('approved_list')
-        approved_tags_string = '\n\n    '.join(approved_tags)
+        approved_tags_string = '\n        '.join(approved_tags)
     with open("../docs/integrations/pack-docs.md", "r+") as f:
         pack_docs = f.readlines()
         f.seek(0)
         for line in pack_docs:
             if '***Use-case***' in line:
                 line += f"""
-    <details>
-    <summary>Pack Use-cases</summary>
+  <details>
+  <summary>Pack Use-cases</summary>
 
-    {approved_usecases_string}
-    </details>
+        {approved_usecases_string}
+
+  </details>
 """
             if '***Tags***' in line:
                 line += f"""
-    <details>
-    <summary>Pack Tags</summary>
+  <details>
+  <summary>Pack Tags</summary>
 
-    {approved_tags_string}
-    </details>
+        {approved_tags_string}
+
+  </details>
 """
             f.write(line)
 

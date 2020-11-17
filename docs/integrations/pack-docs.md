@@ -120,57 +120,32 @@ Some packs ship out-of-the-box with XSOAR, and so depending on them is absolutel
 <details>
 <summary>Core Packs</summary>
 
-AccessInvestigation
-
-Active_Directory_Query
-
-AutoFocus
-
-Base
-
-CommonDashboards
-
-CommonPlaybooks
-
-CommonReports
-
-CommonScripts
-
-CommonTypes
-
-CommonWidgets
-
-DefaultPlaybook
-
-DemistoLocking
-
-DemistoRESTAPI
-
-ExportIndicators
-
-FeedTAXII
-
-HelloWorld
-
-ImageOCR
-
-Malware
-
-Phishing
-
-rasterize
-
-TIM_Processing
-
-TIM_SIEM
-
-UrlScan
-
-VirusTotal
-
-WhereIsTheEgg
-
-Whois
+      AccessInvestigation
+      Active_Directory_Query
+      AutoFocus
+      Base
+      CommonDashboard 
+      CommonPlaybooks
+      CommonReports
+      CommonScripts
+      CommonTypes
+      CommonWidgets
+      DefaultPlaybook
+      DemistoLocking
+      DemistoRESTAPI
+      ExportIndicators
+      FeedTAXII
+      HelloWorld
+      ImageOCR
+      Malware
+      Phishing
+      rasterize
+      TIM_Processing
+      TIM_SIEM
+      UrlScan
+      VirusTotal
+      WhereIsTheEgg
+      Whois
 
 </details>
 
