@@ -76,55 +76,36 @@ An example of including a YouTube video can be seen at the [Zoom Feed README](ht
 
 ## Pack Keywords, Tags, Use-cases & Categories
 In order to classify packs and make them easier to find, there are a number of pack metadata elements that you can use:
-- ***Use-case*** -- a name of a situation in which packs can be used - usually the pack name. 
+- ***Use-case*** -- a name of a situation in which packs can be used - usually the pack name. The optional approved values for use-cases are:
 
- Examples: Impossible Traveler, PCAP Analysis
+- ***Tags*** -- words from the same semantic field of the use-case. These make it easier to find packs using filters or the search bar, and are visible on the screen to help understand what the pack is and its benefit to users. The optional approved values for tags are:
 
-- ***Tags*** -- words from the same semantic field of the use-case. These make it easier to find packs using filters or the search bar, and are visible on the screen to help understand what the pack is and its benefit to users.
-
- Examples: GDPR, PII, TIM
-
-- ***Keywords*** -- operate like tags but aren't displayed in the UI.
+- ***Keywords*** -- operate like tags but aren't displayed in the UI. Assists in searching for your pack. You can freely add keywords as you see fit.
 
 For example, for a pack related to messaging, you may want to add "msg" as a keyword so when a user searches for "msg" they will find the pack, but the word "msg" won't display in the UI.
 
 - ***Category*** -- what field/subject the pack relates to, in high level.
-Your pack should fall into one of the existing categories:
+Your pack should fall into one of the approved existing categories:
+  <details>
+  <summary>Pack Categories</summary>
 
-<details>
-<summary>Pack Categories</summary>
+      Analytics & SIEM
+      Authentication 
+      Breach And Attack Simulation
+      Case Management
+      Data Enrichment & Threat Intelligence
+      Database
+      Deception
+      Email Gateway
+      Endpoint
+      Forensics & Malware Analysis
+      IT Services
+      Messaging
+      Network Security
+      Utilities
+      Vunerability Management  
 
-Analytics & SIEM
-
-Authentication
-
-Breach And Attack Simulation
-
-Case Management
-
-Data Enrichment & Threat Intelligence
-
-Database
-
-Deception
-
-Email Gateway
-
-Endpoint
-
-Forensics & Malware Analysis
-
-IT Services
-
-Messaging
-
-Network Security
-
-Utilities
-
-Vulnerability Management
-
-</details>
+  </details>
 
 You may use the above information to customize these elements in the pack metadata file.
 ![image](https://user-images.githubusercontent.com/43602124/90132076-d1dc2880-dd75-11ea-8bee-2c0273e8bfe8.png)
@@ -139,57 +120,32 @@ Some packs ship out-of-the-box with XSOAR, and so depending on them is absolutel
 <details>
 <summary>Core Packs</summary>
 
-AccessInvestigation
-
-Active_Directory_Query
-
-AutoFocus
-
-Base
-
-CommonDashboards
-
-CommonPlaybooks
-
-CommonReports
-
-CommonScripts
-
-CommonTypes
-
-CommonWidgets
-
-DefaultPlaybook
-
-DemistoLocking
-
-DemistoRESTAPI
-
-ExportIndicators
-
-FeedTAXII
-
-HelloWorld
-
-ImageOCR
-
-Malware
-
-Phishing
-
-rasterize
-
-TIM_Processing
-
-TIM_SIEM
-
-UrlScan
-
-VirusTotal
-
-WhereIsTheEgg
-
-Whois
+      AccessInvestigation
+      Active_Directory_Query
+      AutoFocus
+      Base
+      CommonDashboard 
+      CommonPlaybooks
+      CommonReports
+      CommonScripts
+      CommonTypes
+      CommonWidgets
+      DefaultPlaybook
+      DemistoLocking
+      DemistoRESTAPI
+      ExportIndicators
+      FeedTAXII
+      HelloWorld
+      ImageOCR
+      Malware
+      Phishing
+      rasterize
+      TIM_Processing
+      TIM_SIEM
+      UrlScan
+      VirusTotal
+      WhereIsTheEgg
+      Whois
 
 </details>
 

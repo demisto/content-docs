@@ -1,6 +1,8 @@
+import json
+
 from gendocs import INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
     index_doc_infos, DocInfo, gen_html_doc, normalize_id, process_release_doc, process_extra_readme_doc, \
-    INTEGRATIONS_PREFIX, get_deprecated_data
+    INTEGRATIONS_PREFIX, get_deprecated_data, insert_approved_tags_and_usecases
 from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server
 import os
 import pytest
@@ -190,3 +192,55 @@ def test_get_deprecated_data():
     assert "Use The Generic SQL integration instead" in res
     res = get_deprecated_data({}, "Deprecated. Add information about the vulnerability.", "Packs/DeprecatedContent/Playbooks/test-README.md")
     assert "Add information" not in res
+
+
+def test_insert_approved_tags_and_usecases(tmp_path):
+    """
+    Given:
+        - Approved tags and usecases lists
+        - Content docs article
+
+    When:
+        - Inserting approved tags and usecases to the content docs article
+
+    Then:
+        - Ensure the approved tags and use cases are added to the content docs article as expected
+    """
+    integrations_dir = tmp_path / 'docs' / 'integrations'
+    integrations_dir.mkdir(parents=True)
+    pack_docs = integrations_dir / 'pack-docs.md'
+    pack_docs.write_text("""
+    ***Use-case***
+
+    ***Tags***
+    """)
+    content_repo_dir = tmp_path / 'content-repo'
+    content_repo_dir.mkdir()
+    approved_usecases = content_repo_dir / 'approved_usecases.json'
+    approved_usecases.write_text(json.dumps({
+        'approved_list': [
+            'Hunting',
+            'Identity And Access Management'
+        ]
+    }))
+    approved_tags = content_repo_dir / 'approved_tags.json'
+    approved_tags.write_text(json.dumps({
+        'approved_list': [
+            'IoT',
+            'Machine Learning'
+        ]
+    }))
+    os.chdir(str(content_repo_dir))
+    insert_approved_tags_and_usecases()
+    with open(str(pack_docs), 'r') as pack_docs_file:
+        pack_docs_file_content = pack_docs_file.read()
+        assert '***Use-case***' in pack_docs_file_content
+        assert '<details>' in pack_docs_file_content
+        assert '<summary>Pack Use-cases</summary>' in pack_docs_file_content
+        assert 'Hunting' in pack_docs_file_content
+        assert 'Identity And Access Management' in pack_docs_file_content
+        assert '***Tags***' in pack_docs_file_content
+        assert '<summary>Pack Tags</summary>' in pack_docs_file_content
+        assert 'IoT' in pack_docs_file_content
+        assert 'Machine Learning' in pack_docs_file_content
+        assert '</details>' in pack_docs_file_content
