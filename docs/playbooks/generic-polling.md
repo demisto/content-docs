@@ -10,7 +10,7 @@ We can't achieve via integrations or automations due to hardware limitations. On
 ## What it does
 The playbook periodically polls the status of a process being executed on a remote host, and when the host returns that the process execution is done, the playbook finishes execution.
 
-:::Note 
+:::note 
 If the timeout was reached, the playbook will succesfully finish. Make sure to validate the process was completed. 
 :::
 
