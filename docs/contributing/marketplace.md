@@ -13,15 +13,15 @@ This article walks you through the process of contributing content from the Cort
 
 3. Completing the form
 
-   1. **Creating a New Pack**  
+   1. **Create a New Pack**  
 
-          If you are contributing a new pack then complete these steps, otherwise follow the form-filling instructions in _Updating an Existing Pack_.
+          These instructions are only intended for creating a new pack. If you have a pack that you need to update, follow the instructions in the _Update an Existing Pack_ section.
 
           1. Fill in additional details, such as, pack name, author, and description.
           2. Log in to your GitHub account so you can participate in the review process of the pull request that will be opened for your content pack.
           3. Sign the [Palo Alto Networks Contributor License Agreement](https://github.com/demisto/content/blob/master/docs/cla.pdf).
 
-   2. **Updating an Existing Pack**
+   2. **Update an Existing Pack**
 
           If your contribution is an update to an existing pack, complete the following steps. (See _[Notes](#notes)_ for more information regarding updating an existing pack.) 
 
@@ -35,7 +35,7 @@ This article walks you through the process of contributing content from the Cort
 
 5. A GitHub branch will be created in the [xsoar-contrib Content repository fork](https://github.com/xsoar-contrib/content) based on the pull request that will be opened.
 
-6. You will receive an invitation to join the **xsoar-contrib** organization, so the **xsoar-bot** will be able to invite you to a GitHub team and grant you write permissions to the created branch.
+6. You will receive an invitation to join the **xsoar-contrib** organization. Being a member of that repor enables the **xsoar-bot** to invite you to a GitHub team and grant you write permissions to the created branch.
 (Each contributor can only modify files in content packs that they contributed).
 
 7. The pull request is created and a reviewer is assigned.
@@ -45,6 +45,6 @@ This article walks you through the process of contributing content from the Cort
 
 ## Notes
 
-1. In order to update a content pack that you contributed which is already in the GitHub pull request process, you will need to either modify the files in the pull request created in GitHub directly or close the pull request and create a new contribution including your changes.
+1. There are two options for updating a content pack that you contributed and which is already in the GitHub pull request process, you will need to either modify the files directly in the pull request created in GitHub directly or close the pull request and create a new contribution including your changes.
 2. The contribution mode selection dropdown will only appear if content items that were part of your contribution were detected as originating from existing sources (for example, you created a new automation in the UI by clicking "Duplicate Automation").
-3. The pack options when selecting an existing pack to update are determined and populated by the content items included in your contribution. For example, if you were to duplicate the `AbuseIPDB` integration and save the duplicate with your changes as `AbuseIPDB_copy` (the default name provided when making a duplicate is appending a suffix of `_copy` to the original's name - note that this is important as it indicates to us that this is potentially a modification of existing content) and include it in your contribution - then the Pack to which the `AbuseIPDB` integration belongs to, `AbuseIPDB`, will appear in the dropdown as a choice to select for updating.
+3. When updating an existing pack, the pack options are determined and populated by the content items included in your contribution. For example, if you were to duplicate the `AbuseIPDB` integration and save the duplicate with your changes as `AbuseIPDB_copy`. **Note**: the default name applied to duplicated content appends `_copy` to the original name. This is important because it indicates to us that this most likely contains a modification to existing content. In our example, the pack to which the `AbuseIPDB` integration belongs, `AbuseIPDB`, will appear as an option in the dropdown for updating content.
