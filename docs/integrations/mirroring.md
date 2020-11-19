@@ -34,7 +34,8 @@ Use the following commands to implement a mirroring integration.
 *Note that when mirroring both incoming and outgoing data, all the commands are required. For mirroring in only one direction, only some of the commands are required.*
 - `test-module` - this is the command that is run when the `Test` button in the configuration panel of an integration is clicked.
 - `fetch-incidents` - this is the command that fetches new incidents to Cortex XSOAR.
-- `get-remote-data` - this command gets new information about the incidents in the remote system and updates *existing* incidents in Cortex XSOAR. This command is executed every 1 minute for each individual incident. 
+- `get-remote-data` - this command gets new information about the incidents in the remote system and updates *existing* incidents in Cortex XSOAR. If an API rate limit error occures, this method should return the exact error - "API rate limit", so that the sync loop will start from the failed incident.
+This command is executed every 1 minute for each individual incident. 
 - `get-modified-remote-data` - this command queries for incidents that were modified since the last update. If the command is implemented in the integration, the get-remote-data command will only be performed on incidents returned from this command, rather then all existing incidents. This command is executed every 1 minute for each individual integration's instance. 
 - `update-remote-system` - this command updates the remote system with the information we have in the mirrored incidents within Cortex XSOAR. This command is executed whenever the individual incident is changed in Cortex XSOAR.
 - `get-mapping-fields` - this command pulls the remote schema for the different incident types, and their associated incident fields, from the remote system. This enables users to map XSOAR fields to the 3rd-party integration fields in the outgoing mapper. This command is being called when selecting the **Select schema** option in the **Get data** configuration in a classifier or a mapper.
@@ -56,21 +57,25 @@ An example for such a function could be:
 ```python
 def get_remote_data_command(client, args):
     parsed_args = GetRemoteDateArgs(args)
-    new_incident_data: Dict = client.get_incident_data(parsed_args.remote_incident_id, parsed_args.last_update)    new_incident_data: Dict = client.get_incident_data(parsed_args.remote_incident_id, parsed_args.last_update)
-    raw_entries: List[dict] = client.get_incident_entries(parsed_args.remote_incident_id, parsed_args.last_update)
-    parsed_entries = []
-    for entry in raw_entries:
-        parsed_entries.append({       
-            'Type': EntryType.NOTE,
-            'Contents': entry.get('contents'),
-            'ContentsFormat': EntryFormat.TEXT,
-            'Tags': ['tag1', 'tag2'],  # the list of tags to add to the entry
-            'Note': False  # boolean, True for Note, False otherwise
-        })
-    
-    remote_incident_id = new_incident_data['incident_id']
-    new_incident_data['id'] = remote_incident_id
-    return GetRemoteDataResponse(new_incident_data, parsed_entries)
+    try:
+      new_incident_data: Dict = client.get_incident_data(parsed_args.remote_incident_id, parsed_args.last_update)    
+      raw_entries: List[dict] = client.get_incident_entries(parsed_args.remote_incident_id, parsed_args.last_update)
+      parsed_entries = []
+      for entry in raw_entries:
+          parsed_entries.append({       
+              'Type': EntryType.NOTE,
+              'Contents': entry.get('contents'),
+              'ContentsFormat': EntryFormat.TEXT,
+              'Tags': ['tag1', 'tag2'],  # the list of tags to add to the entry
+              'Note': False  # boolean, True for Note, False otherwise
+          })
+
+      remote_incident_id = new_incident_data['incident_id']
+      new_incident_data['id'] = remote_incident_id
+      return GetRemoteDataResponse(new_incident_data, parsed_entries)
+    except Exception as e:
+      if "Rate limit exceeded" in str(e):  # modify this according to the vendor's spesific message
+      return_error("API rate limit")
 ```
 
 ### get-modified-remote-data
