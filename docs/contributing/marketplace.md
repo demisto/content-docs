@@ -31,9 +31,9 @@ This article walks you through the process of contributing content from the Cort
           4. Sign the [Palo Alto Networks Contributor License Agreement](https://github.com/demisto/content/blob/master/docs/cla.pdf).
 
 
-4. After you submit the form you will be redirected to a page that informs you that pack was received and is being processed.  
+4. After you submit the form you will be redirected to a page that informs you that your pack was received and is being processed.  
 
-5. A GitHub branch will be created in the [xsoar-contrib Content repository fork](https://github.com/xsoar-contrib/content) based on the pull request that will be opened.
+5. A GitHub branch will be created in the [xsoar-contrib Content repository fork](https://github.com/xsoar-contrib/content) with the changes from your contribution.
 
 6. You will receive an invitation to join the **xsoar-contrib** organization. Being a member of the organization enables the **xsoar-bot** to invite you to a GitHub team and grant you write permissions to the created branch.
 (Each contributor can only modify files in content packs that they contributed).
