@@ -105,17 +105,20 @@ The following is an example of the flow when adding a field to work with the ILM
 	    - IAM - Rehire User
     1. Click *Save*.
 
+    ![Create Incident Field](../../../docs/doc_imgs/reference/ilm-create-new-incident-field.png "Create Incident Field")
+
 
 
 1. Add an indicator field.
     1. Change the field type to *Indicator*.
-
+     ![Show Indicator Fields](../../../docs/doc_imgs/reference/ilm-toggle-indicators.png "Show Indicator Fields")
     1. Click *New Field*. 
     1. Give the same name as you entered for the Incident field. In this example, we have used Sample-Field-IAM.
     1. Click the *Attributes* tab.
     1. Clear the *Add to all incident types* checkbox.
     1. In the *Add to incident types* drop-down, select the User Profile indicator type. 
     1. Click *Save*. 
+    ![Create Indicator Fields](../../../docs/doc_imgs/reference/ilm-create-indicator-fields.png "Create Indicator Fields")
 
 1. Add the fields to the respective layouts.
     1. Navigate to *Settings -> Advanced -> Layouts*.
@@ -124,7 +127,7 @@ The following is an example of the flow when adding a field to work with the ILM
     1. In the *Library*, click *Fields and Buttons*, and drag the field you added above to the section in the layout in which you want it to appear. In this example, we have added the field to the *Personal and Contact Information* section.
     1. Save the layout. 
     1. Repeat this process for each of the other layouts in which you want the field to appear.
-
+![Add Fields to Layout](../../../docs/doc_imgs/reference/ilm-add-fields-to-layout.png "Add Fields to Layout")
 
 
 1. Map the new field in all of the mappers.
@@ -142,14 +145,14 @@ The following is an example of the flow when adding a field to work with the ILM
         - Workday incoming mapper
         - Okta incoming and outgoing mappers
         - Active Directory incoming and outgoing mappers
-
+![Map Fields](../../../docs/doc_imgs/reference/ilm-map-fields.png "Map Fields")
 
 
 1. Configure the integration instances to use the new mappers.
     1. Navigate to *Settings -> Servers and Services* and select one of the integration instances for this pack. In our example, we are using Workday.
     1. In both *Mapper (incoming)* fields (one located under the *Incident type* field and one located under the *Use system proxy settings* checkbox) select the copy mapper that you created above. In our example, that would be **IAM Sync User - Workday_copy**. 
 
-
+![Attach Mapper to Integration](../../../docs/doc_imgs/reference/ilm-attach-duplicate-mapper-to-integration.png "Attach Mapper to Integration")
 
 
 ### Integrations
