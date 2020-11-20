@@ -110,7 +110,6 @@ The following is an example of the flow when adding a field to work with the ILM
     ![Create Incident Field](../../../docs/doc_imgs/reference/ilm-create-new-incident-field.png "Create Incident Field")
 
 
-
 1. Add an indicator field.
     1. Change the field type to *Indicator*.
 
@@ -132,8 +131,8 @@ The following is an example of the flow when adding a field to work with the ILM
     1. In the *Library*, click *Fields and Buttons*, and drag the field you added above to the section in the layout in which you want it to appear. In this example, we have added the field to the *Personal and Contact Information* section.
     1. Save the layout. 
     1. Repeat this process for each of the other layouts in which you want the field to appear.
-![Add Fields to Layout](../../../docs/doc_imgs/reference/ilm-add-fields-to-layout.png "Add Fields to Layout")
 
+    ![Add Fields to Layout](../../../docs/doc_imgs/reference/ilm-add-fields-to-layout.png "Add Fields to Layout")
 
 1. Map the new field in all of the mappers.
     1. Navigate to *Settings -> Integrations -> Classification and Mapping*.
@@ -150,8 +149,8 @@ The following is an example of the flow when adding a field to work with the ILM
         - Workday incoming mapper
         - Okta incoming and outgoing mappers
         - Active Directory incoming and outgoing mappers
-![Map Fields](../../../docs/doc_imgs/reference/ilm-map-fields.png "Map Fields")
 
+    ![Map Fields](../../../docs/doc_imgs/reference/ilm-map-fields.png "Map Fields")
 
 1. Configure the integration instances to use the new mappers.
     1. Navigate to *Settings -> Servers and Services* and select one of the integration instances for this pack. In our example, we are using Workday.
