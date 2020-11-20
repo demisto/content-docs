@@ -61,7 +61,8 @@ def test_fix_relative_images(tmp_path):
     readme = f'{SAMPLE_CONTENT}/Packs/GoogleCalendar/Integrations/GoogleCalendar/README.md'
     with open(readme, 'r') as f:
         content = f.read()
-    res = fix_relative_images(content, f'{SAMPLE_CONTENT}/Packs/GoogleCalendar/Integrations/GoogleCalendar', 'google-calendar', str(tmp_path), 'relative-test')
+    res = fix_relative_images(content, f'{SAMPLE_CONTENT}/Packs/GoogleCalendar/Integrations/GoogleCalendar',
+                              'google-calendar', str(tmp_path), 'relative-test')
     target_img_name = 'google-calendar-_-__-__-doc_files-add-scope-admin-3.png'
     assert f'relative-test/{target_img_name}' in res
     os.path.isfile(tmp_path / target_img_name)
@@ -83,7 +84,8 @@ def test_findfiles():
 
 
 def test_process_readme_doc(tmp_path):
-    res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, 'integrations', str(tmp_path), "dummy-relative", f'{SAMPLE_CONTENT}/Integrations/DomainTools_Iris/README.md')
+    res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, 'integrations',
+                             str(tmp_path), "dummy-relative", f'{SAMPLE_CONTENT}/Integrations/DomainTools_Iris/README.md')
     assert res.id == 'domain-tools-iris'
     assert res.description
     assert res.name == 'DomainTools Iris'
@@ -99,11 +101,13 @@ def test_process_readme_doc(tmp_path):
     process_readme_doc(str(tmp_path), SAMPLE_CONTENT,
                        'integrations', str(tmp_path), "dummy-relative",
                        f'{SAMPLE_CONTENT}/Integrations/SlashNextPhishingIncidentResponse/README.md')
-    process_readme_doc(str(tmp_path), SAMPLE_CONTENT, 'integrations', str(tmp_path), "dummy-relative", f'{SAMPLE_CONTENT}/Integrations/Gmail/README.md')
+    process_readme_doc(str(tmp_path), SAMPLE_CONTENT, 'integrations',
+                       str(tmp_path), "dummy-relative", f'{SAMPLE_CONTENT}/Integrations/Gmail/README.md')
 
 
 def test_process_readme_doc_same_dir(tmp_path):
-    res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, 'integrations', str(tmp_path), "dummy-relative", f'{SAMPLE_CONTENT}/Integrations/integration-F5_README.md')
+    res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, 'integrations',
+                             str(tmp_path), "dummy-relative", f'{SAMPLE_CONTENT}/Integrations/integration-F5_README.md')
     assert res.id == 'f5-firewall'
     assert res.description
     assert res.name == 'F5 firewall'

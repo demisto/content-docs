@@ -62,7 +62,7 @@ MAX_FAILURES = int(os.getenv('MAX_FAILURES', 10))  # if we have more than this a
 # env vars for faster development
 MAX_FILES = int(os.getenv('MAX_FILES', -1))
 FILE_REGEX = os.getenv('FILE_REGEX')
-EMPTY_FILE_MSG='empty file'
+EMPTY_FILE_MSG = 'empty file'
 
 # initialize the seed according to the PR branch. Used when selecting max files.
 random.seed(os.getenv('CIRCLE_BRANCH'))
