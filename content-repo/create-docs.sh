@@ -142,13 +142,16 @@ if [[ ( "$PULL_REQUEST" == "true" || -n "$CI_PULL_REQUEST" ) && "$CONTENT_BRANCH
 fi
 
 TARGET_DIR=${SCRIPT_DIR}/../docs/reference
-echo "Deleting and creating dir: ${TARGET_DIR}"
+REL_IMGS_DIR=${SCRIPT_DIR}/../docs/doc_imgs/reference/relative
+echo "Deleting and creating dirs: ${TARGET_DIR} and ${REL_IMGS_DIR}"
 rm -rf ${TARGET_DIR}/integrations
 rm -rf ${TARGET_DIR}/playbooks
 rm -rf ${TARGET_DIR}/scripts
+rm -rf ${REL_IMGS_DIR}
 mkdir ${TARGET_DIR}/integrations
 mkdir ${TARGET_DIR}/playbooks
 mkdir ${TARGET_DIR}/scripts
+mkdir ${REL_IMGS_DIR}
 
 echo "Copying CommonServerPython.py, demistomock.py, approved_tags.json and approved_usecases.json"
 cp ${CONTENT_GIT_DIR}/Packs/Base/Scripts/CommonServerPython/CommonServerPython.py .

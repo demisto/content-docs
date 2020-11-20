@@ -1,11 +1,19 @@
+import shutil
 import subprocess
 import re
 import os
 import time
 from typing import Optional
 import requests
+import inflection
 
 MDX_SERVER_PROCESS: Optional[subprocess.Popen] = None
+
+
+def normalize_id(id: str):
+    id = inflection.dasherize(inflection.underscore(id)).replace(' ', '-')
+    # replace all non word carachercters (dash is ok)
+    return re.sub(r'[^\w-]', '', id)
 
 
 def fix_mdx(txt: str) -> str:
@@ -19,6 +27,28 @@ def fix_mdx(txt: str) -> str:
         txt = re.sub(old, new, txt, flags=re.IGNORECASE)
     # remove html comments
     txt = re.sub(r'<\!--.*?-->', '', txt, flags=re.DOTALL)
+    return txt
+
+
+def fix_relative_images(txt: str, base_dir: str, id: str, images_dir: str, relative_images_dir: str) -> str:
+    res = list(re.finditer(r'\!\[.*?\]\((?!http)(.*?)\)', txt))
+    # we use reverse to start from the end so when we replace the links we don't change the indexes of the other replacements
+    res.reverse()
+    for m in res:
+        full_link = m.group(0)
+        img = m.group(1)
+        # check if img exists
+        full_img = f'{base_dir}/{img}'
+        if os.path.isfile(full_img):
+            # replace all dots except last with _ and / with -
+            # see: https://stackoverflow.com/questions/47813099/replace-all-but-last-occurrences-of-a-character-in-a-string-with-pandas
+            name = re.sub(r'\.(?=.*?\.)', '_', img).replace('/', '-')
+            name = f'{id}-{name}'
+            shutil.copy(full_img, f'{images_dir}/{name}')
+            # now replace the reference
+            target_link = f'{relative_images_dir}/{name}'
+            full_link = full_link.replace(img, target_link)
+            txt = txt[:m.start()] + full_link + txt[m.end()+1:]
     return txt
 
 

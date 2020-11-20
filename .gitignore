@@ -34,3 +34,4 @@ static/doc_imgs
 docs/reference
 content-repo/extra-docs/articles/demisto-class.md
 .pytest_cache
+docs/doc_imgs/reference/relative
