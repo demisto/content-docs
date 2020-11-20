@@ -95,9 +95,9 @@ If you want to add fields, follow the steps in the following Example section.
 
 The following is an example of the flow when adding a field to work with the ILM content pack. This does not presume to cover all possible scenarios.
 
-1.  *Add an incident field*
+1.  Add an incident field.
     1. Navigate to Settings -> Advanced -> Fields and click *New Field*.
-    2. Enter the name for the field and click the *Attributes* tab.
+    1. Enter the name for the field and click the *Attributes* tab.
     1. Clear the *Add to all incident types* checkbox.
     1. In the *Add to incident types* drop-down, select the following:
 	    - IAM - Sync User
@@ -108,7 +108,6 @@ The following is an example of the flow when adding a field to work with the ILM
     1. Click *Save*.
 
     ![Create Incident Field](../../../docs/doc_imgs/reference/ilm-create-new-incident-field.png "Create Incident Field")
-
 
 1. Add an indicator field.
     1. Change the field type to *Indicator*.
