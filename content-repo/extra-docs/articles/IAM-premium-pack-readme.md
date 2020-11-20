@@ -111,14 +111,17 @@ The following is an example of the flow when adding a field to work with the ILM
 
 1. Add an indicator field.
     1. Change the field type to *Indicator*.
-     ![Show Indicator Fields](../../../docs/doc_imgs/reference/ilm-toggle-indicators.png "Show Indicator Fields")
+
+       ![Show Indicator Fields](../../../docs/doc_imgs/reference/ilm-toggle-indicators.png "Show Indicator Fields")
+
     1. Click *New Field*. 
     1. Give the same name as you entered for the Incident field. In this example, we have used Sample-Field-IAM.
     1. Click the *Attributes* tab.
     1. Clear the *Add to all incident types* checkbox.
     1. In the *Add to incident types* drop-down, select the User Profile indicator type. 
     1. Click *Save*. 
-    ![Create Indicator Fields](../../../docs/doc_imgs/reference/ilm-create-indicator-fields.png "Create Indicator Fields")
+
+    ![Create Indicator Fields](../../../docs/doc_imgs/reference/ilm-create-indicator-field.png "Create Indicator Fields")
 
 1. Add the fields to the respective layouts.
     1. Navigate to *Settings -> Advanced -> Layouts*.
