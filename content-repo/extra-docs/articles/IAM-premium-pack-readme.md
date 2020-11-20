@@ -81,13 +81,15 @@ The mappers that are provided out-of-the-box work with the assumption that you d
 If you want to add fields, follow the steps in the following Example section. 
 
 1. Add the field to the mappers for the Workday, Okta, and Active Directory integrations. 
-*Note* To change the mappers, you will need to duplicate each mapper. 
 
-Ensure that you are adding the fields to the relevant incident types within each mapper. 
-- for the Workday incoming mapper, add the field to the IAM-Sync-User incident type. 
-- for Okta and Active Directory, add the field to the UserProfile incident type in both the incoming and outgoing mappers.
+   **Note** To change the mappers, you will need to duplicate each mapper. 
 
-1. Reconfigure each integration to use the duplicated mappers you created.
+   Ensure that you are adding the fields to the relevant incident types within each mapper.
+
+   * for the Workday incoming mapper, add the field to the *IAM-Sync-User* incident type.
+   * for Okta and Active Directory, add the field to the *UserProfile* incident type in both the incoming and outgoing mappers.
+
+2. Reconfigure each integration to use the duplicated mappers you created.
 
 #### Example
 
