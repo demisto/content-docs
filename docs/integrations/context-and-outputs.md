@@ -130,7 +130,12 @@ return_results(command_result)
 
 ---
 
-## Context Use Cases 
+## Context Use Cases
+
+:::caution Important Note
+When setting `integration_name` with the vendor value, make sure it matches the name of the integration as defined in the [yml file](yaml-file#basic-information).
+:::
+
 
 ### Return Data (common case)
 ```python
