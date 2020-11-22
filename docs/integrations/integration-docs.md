@@ -46,7 +46,25 @@ If you are connecting to a Server with a self signed certificate, make sure to p
 :::
 
 ## Images
-Images in the documentation should be added to the relevant pack under a `doc_files` or `doc_imgs` directory. All images should be included with absolute URLs. To obtain an absolute URL to an image from GitHub:
+Images in the documentation should be added to the relevant pack under a `doc_files` or `doc_imgs` directory. Images may be included with **absolute** or **relative** URLs.
+
+### Relative Image URLs
+You may use relative URLs to documentation images stored in the `doc_files` or `doc_imgs` directories. To use relative URLs simply link to the image using a relative path such as (if the `doc_imgs` dir is located at the top level Pack directory):
+```
+![Setup Account](./../../doc_imgs/create-account.png)
+```
+Or for example as (if the `doc_imgs` dir is located at the same level as the README.md file):
+```
+![Setup Account](./doc_imgs/create-account.png)
+```
+Make sure to view the README.md file in GitHub's web interface and validate that the images display properly.
+
+**Documentation with Relative URL examples:**
+* Google Calendar: https://github.com/demisto/content/blob/master/Packs/GoogleCalendar/Integrations/GoogleCalendar/README.md
+* G Suite Admin: https://github.com/demisto/content/blob/master/Packs/GSuiteAdmin/Integrations/GSuiteAdmin/README.md
+
+### Absolute Image URLs
+To obtain an absolute URL to an image from GitHub:
 
 * Commit the image and push to GitHub.
 * View the file in the GitHub web interface. 
