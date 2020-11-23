@@ -1,9 +1,9 @@
 import json
 
 from gendocs import INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
-    index_doc_infos, DocInfo, gen_html_doc, normalize_id, process_release_doc, process_extra_readme_doc, \
+    index_doc_infos, DocInfo, gen_html_doc, process_release_doc, process_extra_readme_doc, \
     INTEGRATIONS_PREFIX, get_deprecated_data, insert_approved_tags_and_usecases
-from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server
+from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server, fix_relative_images, normalize_id
 import os
 import pytest
 from datetime import datetime
@@ -57,6 +57,23 @@ def test_fix_mdx():
     assert '<br></br>' in res
 
 
+def test_fix_relative_images(tmp_path):
+    readme = f'{SAMPLE_CONTENT}/Packs/GoogleCalendar/Integrations/GoogleCalendar/README.md'
+    with open(readme, 'r') as f:
+        content = f.read()
+    res = fix_relative_images(content, f'{SAMPLE_CONTENT}/Packs/GoogleCalendar/Integrations/GoogleCalendar',
+                              'google-calendar', str(tmp_path), 'relative-test')
+    target_img_name = 'google-calendar-_-__-__-doc_files-add-scope-admin-3.png'
+    assert f'relative-test/{target_img_name}' in res
+    os.path.isfile(tmp_path / target_img_name)
+    # test a readme that shouldn't change
+    readme = f'{SAMPLE_CONTENT}/Integrations/Gmail/README.md'
+    with open(readme, 'r') as f:
+        content = f.read()
+    res = fix_relative_images(content, f'{SAMPLE_CONTENT}/Integrations/Gmail', 'google-calendar', str(tmp_path), 'relative-test')
+    assert res == content
+
+
 def test_findfiles():
     res = findfiles(INTEGRATION_DOCS_MATCH, SAMPLE_CONTENT)
     assert f'{SAMPLE_CONTENT}/Packs/CortexXDR/Integrations/PaloAltoNetworks_XDR/README.md' in res
@@ -67,7 +84,8 @@ def test_findfiles():
 
 
 def test_process_readme_doc(tmp_path):
-    res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, f'{SAMPLE_CONTENT}/Integrations/DomainTools_Iris/README.md')
+    res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, 'integrations',
+                             str(tmp_path), "dummy-relative", f'{SAMPLE_CONTENT}/Integrations/DomainTools_Iris/README.md')
     assert res.id == 'domain-tools-iris'
     assert res.description
     assert res.name == 'DomainTools Iris'
@@ -76,14 +94,20 @@ def test_process_readme_doc(tmp_path):
         assert f.readline().startswith(f'id: {res.id}')
         assert f.readline().startswith(f'title: "{res.name}"')
         assert f.readline().startswith('custom_edit_url: https://github.com/demisto/content/')
-    res = process_readme_doc(str(tmp_path), BASE_DIR, f'{BASE_DIR}/test_data/empty-readme.md')
+        content = f.read()
+        assert 'dummy-relative' not in content
+    res = process_readme_doc(str(tmp_path), BASE_DIR, 'integrations', str(tmp_path), "dummy-relative", f'{BASE_DIR}/test_data/empty-readme.md')
     assert 'no yml file found' in res.error_msg
-    process_readme_doc(str(tmp_path), SAMPLE_CONTENT, f'{SAMPLE_CONTENT}/Integrations/SlashNextPhishingIncidentResponse/README.md')
-    process_readme_doc(str(tmp_path), SAMPLE_CONTENT, f'{SAMPLE_CONTENT}/Integrations/Gmail/README.md')
+    process_readme_doc(str(tmp_path), SAMPLE_CONTENT,
+                       'integrations', str(tmp_path), "dummy-relative",
+                       f'{SAMPLE_CONTENT}/Integrations/SlashNextPhishingIncidentResponse/README.md')
+    process_readme_doc(str(tmp_path), SAMPLE_CONTENT, 'integrations',
+                       str(tmp_path), "dummy-relative", f'{SAMPLE_CONTENT}/Integrations/Gmail/README.md')
 
 
 def test_process_readme_doc_same_dir(tmp_path):
-    res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, f'{SAMPLE_CONTENT}/Integrations/integration-F5_README.md', )
+    res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, 'integrations',
+                             str(tmp_path), "dummy-relative", f'{SAMPLE_CONTENT}/Integrations/integration-F5_README.md')
     assert res.id == 'f5-firewall'
     assert res.description
     assert res.name == 'F5 firewall'
@@ -92,21 +116,29 @@ def test_process_readme_doc_same_dir(tmp_path):
         assert f.readline().startswith(f'id: {res.id}')
         assert f.readline().startswith(f'title: "{res.name}"')
         assert f.readline().startswith('custom_edit_url: https://github.com/demisto/content/')
+        content = f.read()
+        assert 'dummy-relative' not in content
 
 
 def test_process_readme_doc_edl(tmp_path):
-    res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, f'{SAMPLE_CONTENT}/Integrations/PaloAltoNetworks_PAN_OS_EDL_Management/README.md')
+    res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT,
+                             'integrations', str(tmp_path), "dummy-relative",
+                             f'{SAMPLE_CONTENT}/Integrations/PaloAltoNetworks_PAN_OS_EDL_Management/README.md')
     assert res.name == 'Palo Alto Networks PAN-OS EDL Management'
 
 
 def test_process_readme_doc_playbookl(tmp_path):
-    res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, f'{SAMPLE_CONTENT}/Playbooks/playbook-lost_stolen_device_README.md')
+    res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT,
+                             'integrations', str(tmp_path), "dummy-relative",
+                             f'{SAMPLE_CONTENT}/Playbooks/playbook-lost_stolen_device_README.md')
     assert res.name == 'Lost / Stolen Device Playbook'
     assert 'Initial incident details should be the name of the reporting person' in res.description
 
 
 def test_process_code_script(tmp_path):
-    res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, f'{SAMPLE_CONTENT}/Scripts/script-IsIPInRanges_README.md')
+    res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT,
+                             'integrations', str(tmp_path), "dummy-relative",
+                             f'{SAMPLE_CONTENT}/Scripts/script-IsIPInRanges_README.md')
     assert res.id == 'is-ip-in-ranges'
     assert res.description
     assert res.name == 'IsIPInRanges'
@@ -115,6 +147,8 @@ def test_process_code_script(tmp_path):
         assert f.readline().startswith(f'id: {res.id}')
         assert f.readline().startswith(f'title: "{res.name}"')
         assert f.readline().startswith('custom_edit_url: https://github.com/demisto/content/')
+        content = f.read()
+        assert 'dummy-relative' not in content
 
 
 def test_table_doc_info():
@@ -144,6 +178,7 @@ def test_bad_html():
 def test_normalize_id():
     assert normalize_id("that's not good") == 'thats-not-good'
     assert normalize_id("have i been pwned? v2") == 'have-i-been-pwned-v2'
+    assert normalize_id("path/with/slash/and..-dots") == 'pathwithslashand-dots'
 
 
 def test_process_release_doc(tmp_path, mdx_server):

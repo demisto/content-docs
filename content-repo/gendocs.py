@@ -6,12 +6,11 @@ import os
 import sys
 import glob
 import yaml
-import inflection
 import traceback
 import shutil
 import json
 from bs4 import BeautifulSoup
-from mdx_utils import fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server
+from mdx_utils import fix_mdx, fix_relative_images, start_mdx_server, stop_mdx_server, verify_mdx_server, normalize_id
 from CommonServerPython import tableToMarkdown  # type: ignore
 from typing import List, Optional, Dict, Tuple, Iterator
 from datetime import datetime
@@ -63,17 +62,12 @@ MAX_FAILURES = int(os.getenv('MAX_FAILURES', 10))  # if we have more than this a
 # env vars for faster development
 MAX_FILES = int(os.getenv('MAX_FILES', -1))
 FILE_REGEX = os.getenv('FILE_REGEX')
+EMPTY_FILE_MSG = 'empty file'
 
 # initialize the seed according to the PR branch. Used when selecting max files.
 random.seed(os.getenv('CIRCLE_BRANCH'))
 
 MIN_RELEASE_VERSION = StrictVersion((datetime.now() + dateutil.relativedelta.relativedelta(months=-18)).strftime('%y.%-m.0'))
-
-
-def normalize_id(id: str):
-    id = inflection.dasherize(inflection.underscore(id)).replace(' ', '-')
-    # replace all non word carachercters (dash is ok)
-    return re.sub(r'[^\w-]', '', id)
 
 
 class DocInfo:
@@ -146,7 +140,8 @@ def get_beta_data(yml_data: dict, content: str):
     return ""
 
 
-def process_readme_doc(target_dir: str, content_dir: str, readme_file: str) -> DocInfo:
+def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
+                       imgs_dir: str, relative_images_dir: str, readme_file: str) -> DocInfo:
     try:
         base_dir = os.path.dirname(readme_file)
         if readme_file.endswith('_README.md'):
@@ -176,12 +171,13 @@ def process_readme_doc(target_dir: str, content_dir: str, readme_file: str) -> D
         with open(readme_file, 'r', encoding='utf-8') as f:
             content = f.read()
         if not content.strip():
-            raise ValueError('empty file')
+            raise ValueError(EMPTY_FILE_MSG)
         if is_html_doc(content):
             print(f'{readme_file}: detect html file')
             content = gen_html_doc(content)
         else:
             content = fix_mdx(content)
+            content = fix_relative_images(content, base_dir, f'{prefix}-{id}', imgs_dir, relative_images_dir)
         # check if we have a header
         lines = content.splitlines(True)
         has_header = len(lines) >= 2 and lines[0].startswith('---') and lines[1].startswith('id:')
@@ -308,6 +304,9 @@ POOL = Pool(POOL_SIZE)
 
 
 def process_doc_info(doc_info: DocInfo, success: List[str], fail: List[str], doc_infos: List[DocInfo], seen_docs: Dict[str, DocInfo]):
+    if doc_info.error_msg == EMPTY_FILE_MSG:
+        # ignore empty files
+        return
     if doc_info.error_msg:
         fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
     elif doc_info.id in seen_docs:
@@ -334,6 +333,10 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
     target_sub_dir = f'{target_dir}/{prefix}'
     if not os.path.exists(target_sub_dir):
         os.makedirs(target_sub_dir)
+    relative_imgs_dir = "../../../docs/doc_imgs/reference/relative"
+    imgs_dir = os.path.abspath(f'{target_sub_dir}/{relative_imgs_dir}')
+    if not os.path.exists(imgs_dir):
+        os.makedirs(imgs_dir)
     doc_infos: List[DocInfo] = []
     success: List[str] = []
     fail: List[str] = []
@@ -341,7 +344,7 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
     sys.stdout.flush()
     sys.stderr.flush()
     seen_docs: Dict[str, DocInfo] = {}
-    for doc_info in POOL.map(partial(process_readme_doc, target_sub_dir, content_dir), readme_files):
+    for doc_info in POOL.map(partial(process_readme_doc, target_sub_dir, content_dir, prefix, imgs_dir, relative_imgs_dir), readme_files):
         process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
     for doc_info in process_extra_docs(target_sub_dir, prefix):
         process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
@@ -447,7 +450,8 @@ def insert_approved_tags_and_usecases():
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Generate Content Docs',
+    parser = argparse.ArgumentParser(description='''Generate Content Docs. You should probably not call this script directly.
+See: https://github.com/demisto/content-docs/#generating-reference-docs''',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-t", "--target", help="Target dir to generate docs at.", required=True)
     parser.add_argument("-d", "--dir", help="Content repo dir.", required=True)
@@ -524,7 +528,9 @@ def main():
         json.dump(sidebar, f, indent=4)
     print('Stopping mdx server ...')
     stop_mdx_server()
-    insert_approved_tags_and_usecases()
+    if os.getenv('UPDATE_PACK_DOCS') or os.getenv('CI'):
+        # to avoid cases that in local dev someone might checkin the modifed pack-docs.md we do this only if explicityl asked for or in CI env
+        insert_approved_tags_and_usecases()
 
 
 if __name__ == "__main__":
