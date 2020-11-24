@@ -75,7 +75,7 @@ def get_remote_data_command(client, args):
       return GetRemoteDataResponse(new_incident_data, parsed_entries)
     except Exception as e:
       if "Rate limit exceeded" in str(e):  # modify this according to the vendor's spesific message
-      return_error("API rate limit")
+          return_error("API rate limit")
 ```
 
 ### get-modified-remote-data
