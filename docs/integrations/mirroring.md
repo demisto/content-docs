@@ -204,6 +204,6 @@ Useful fields:
 
 * getMirrorStatistics command - a hidden command that returns mirroring statistics: total mirrored, rate limited, and last run.
 * getSyncMirrorRecords - a hidden command that returns records that hold internal mirroring metadata for each mirrored incident
-* get-remote-data - is runnable through the war room with the relevant arguments and see the results.
-* get-modified-remote-data - is runnable through the war room with the relevant arguments and see the results.
+* get-remote-data - is runnable through the war room if the command is defined in the yml file.
+* get-modified-remote-data - is runnable through the war room if the command is defined in the yml file.
 * get-mapping-fields - is runnable through the war room with no arguments and see the results.
