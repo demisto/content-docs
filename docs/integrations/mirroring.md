@@ -34,7 +34,9 @@ Use the following commands to implement a mirroring integration.
 *Note that when mirroring both incoming and outgoing data, all the commands are required. For mirroring in only one direction, only some of the commands are required.*
 - `test-module` - this is the command that is run when the `Test` button in the configuration panel of an integration is clicked.
 - `fetch-incidents` - this is the command that fetches new incidents to Cortex XSOAR.
-- `get-remote-data` - this command gets new information about the incidents in the remote system and updates *existing* incidents in Cortex XSOAR. This command is executed every 1 minute for each individual incident. 
+- `get-remote-data` - this command gets new information about the incidents in the remote system and updates *existing* incidents in Cortex XSOAR. If an API rate limit error occures, this method should return the exact error - "API rate limit", so that the sync loop will start from the failed incident.
+This command is executed every 1 minute for each individual **incident** fetched by the integration. 
+- `get-modified-remote-data` - available from Cortex XSOAR version 6.1.0. This command queries for incidents that were modified since the last update. If the command is implemented in the integration, the **get-remote-data** command will only be performed on incidents returned from this command, rather than on all existing incidents. This command is executed every 1 minute for each individual **integration's instance**. 
 - `update-remote-system` - this command updates the remote system with the information we have in the mirrored incidents within Cortex XSOAR. This command is executed whenever the individual incident is changed in Cortex XSOAR.
 - `get-mapping-fields` - this command pulls the remote schema for the different incident types, and their associated incident fields, from the remote system. This enables users to map XSOAR fields to the 3rd-party integration fields in the outgoing mapper. This command is being called when selecting the **Select schema** option in the **Get data** configuration in a classifier or a mapper.
 
@@ -55,21 +57,49 @@ An example for such a function could be:
 ```python
 def get_remote_data_command(client, args):
     parsed_args = GetRemoteDateArgs(args)
-    new_incident_data: Dict = client.get_incident_data(parsed_args.remote_incident_id, parsed_args.last_update)    new_incident_data: Dict = client.get_incident_data(parsed_args.remote_incident_id, parsed_args.last_update)
-    raw_entries: List[dict] = client.get_incident_entries(parsed_args.remote_incident_id, parsed_args.last_update)
-    parsed_entries = []
-    for entry in raw_entries:
-        parsed_entries.append({       
-            'Type': EntryType.NOTE,
-            'Contents': entry.get('contents'),
-            'ContentsFormat': EntryFormat.TEXT,
-            'Tags': ['tag1', 'tag2'],  # the list of tags to add to the entry
-            'Note': False  # boolean, True for Note, False otherwise
-        })
+    try:
+      new_incident_data: Dict = client.get_incident_data(parsed_args.remote_incident_id, parsed_args.last_update)    
+      raw_entries: List[dict] = client.get_incident_entries(parsed_args.remote_incident_id, parsed_args.last_update)
+      parsed_entries = []
+      for entry in raw_entries:
+          parsed_entries.append({       
+              'Type': EntryType.NOTE,
+              'Contents': entry.get('contents'),
+              'ContentsFormat': EntryFormat.TEXT,
+              'Tags': ['tag1', 'tag2'],  # the list of tags to add to the entry
+              'Note': False  # boolean, True for Note, False otherwise
+          })
+
+      remote_incident_id = new_incident_data['incident_id']
+      new_incident_data['id'] = remote_incident_id
+      return GetRemoteDataResponse(new_incident_data, parsed_entries)
+    except Exception as e:
+      if "Rate limit exceeded" in str(e):  # modify this according to the vendor's spesific message
+          return_error("API rate limit")
+```
+
+### get-modified-remote-data
+* GetModifiedRemoteDataArgs - this is an object created to maintain all the arguments you receive from the server in order to use this command.
+Arguments explanation:
+  - last_update - Date string representing the local time that the incident was last updated.
+* GetModifiedRemoteDataResponse - this is the object that maintains the format in which you should order the results from this function. You should use return_results on this object to make it work.
+Arguments explanation:
+  - modified_incident_ids - a list of incidents that were modified since the last check, to later run the get-remote-data command on.
+  
+An example for such a function could be:
+```python
+def get_modified_remote_data_command(client, args):
+    remote_args = GetModifiedRemoteDataArgs(args)
+    last_update = remote_args.last_update
+    last_update_utc = dateparser.parse(last_update, settings={'TIMEZONE': 'UTC'})  # convert to utc format
     
-    remote_incident_id = new_incident_data['incident_id']
-    new_incident_data['id'] = remote_incident_id
-    return GetRemoteDataResponse(new_incident_data, parsed_entries)
+    raw_incidents = client.get_incidents(gte_modification_time=last_update_utc, limit=100)
+    modified_incident_ids = list()
+    for raw_incident in raw_incidents:
+        incident_id = raw_incident.get('incident_id')
+        modified_incident_ids.append(incident_id)
+
+    return GetModifiedRemoteDataResponse(modified_incident_ids)
 ```
 
 ### update-remote-system
@@ -174,5 +204,6 @@ Useful fields:
 
 * getMirrorStatistics command - a hidden command that returns mirroring statistics: total mirrored, rate limited, and last run.
 * getSyncMirrorRecords - a hidden command that returns records that hold internal mirroring metadata for each mirrored incident
-* get-remote-data - is runnable through the war room with the relevant arguments and see the results.
+* get-remote-data - is runnable through the war room if the command is defined in the yml file.
+* get-modified-remote-data - is runnable through the war room if the command is defined in the yml file.
 * get-mapping-fields - is runnable through the war room with no arguments and see the results.
