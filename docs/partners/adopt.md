@@ -3,7 +3,7 @@ id: adopt
 title: Adopt-a-Pack 
 ---
 
-The Cortex XSOAR Adopt-a-Pack program provides our technical partners a way ‘take over’ a pack that was originally written by Demisto or Palo Alto Networks. The partner becomes the maintainer and supporter of the pack and receives sevral benefits as outlined below.
+The Cortex XSOAR Adopt-a-Pack program provides our technical partners a way to ‘take over’ a pack that was originally written by Demisto or Palo Alto Networks XSOAR developers. The partner becomes the maintainer and supporter of the pack and receives several benefits as outlined below.
 
 ## Benefits for our Partner
 Adopting a Pack has several advantages for the partner:
