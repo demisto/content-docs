@@ -206,6 +206,7 @@ const sidebars = {
         "partners/why-xsoar",
         "partners/become-a-tech-partner",
         "partners/marketplace",
+        "partners/adopt",
         "partners/certification",
         "partners/office-hours",
         "partners/development-partners"
