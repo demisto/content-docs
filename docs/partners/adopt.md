@@ -17,7 +17,6 @@ Adopting a Pack has several advantages for the partner:
 The process to Adopt-a-Pack is simple:
 - Partner signs the Palo Alto Networks Technology Partnership Agreement. If you've already signed a similar agreement, you will not have to sign again. 
 - Partner notifies Palo Alto Networks that they wish to adopt the pack. *Important:* please notify us so we can work with you. 
-- Partner clones existing pack and updates the pack (improves marketing, adds new commands/APIs, adds playbooks, adds support information, etc.).
-- Partner submits a Pull Request adding their new pack to the Cortex XSOAR Marketplace. Usually we add "v2" to the end of the name. 
-- Palo Alto Networks will mark the original pack as Deprecated and direct customers to the new pack. Palo Alto Networks will still maintain the old pack and support existing customers that do not wish to migrate to the new pack. Maintenance will only include bug fixes and will not include new features or enhancements.
+- If customers are using the existing pack, Partner clones existing pack and updates the cloned pack (improves marketing, adds new commands/APIs, adds playbooks, adds support information, etc.). If the existing pack is not in use, the Partner can edit the existing pack directly. 
+- Partner submits a Pull Request of their pack to the Cortex XSOAR Marketplace. Usually we add "v2" to the end of the name (if cloned). Palo Alto Networks will mark the original pack as Deprecated and direct customers to the new pack. Palo Alto Networks will still maintain the old pack and support existing customers that do not wish to migrate to the new pack. Maintenance will only include bug fixes and will not include new features or enhancements.
 
