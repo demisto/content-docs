@@ -610,7 +610,7 @@ The following is the format for an X509 certificate.
           "Curve": "STRING, Curve of the Public Key for EC keys.",
           "Y": "STRING, The Y parameter for EC keys."
         },
-        "SPKISHA256", "STRING, SHA256 fingerprint of the certificate Subject Public Key Info."
+        "SPKISHA256": "STRING, SHA256 fingerprint of the certificate Subject Public Key Info.",
         "Signature": {
           "Algorithm": "STRING, Algorithm used in the signature of the certificate.",
           "Signature": "STRING, Signature of the certificate."
