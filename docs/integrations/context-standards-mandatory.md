@@ -620,7 +620,7 @@ The following is the format for an X509 certificate.
           "OID": "STRING,  OID of the certificate extension.",
           "Name": "STRING, Name of the certificate extension.",
           "Value": "STRING, Value of the certificate extension."
-        }
+        },
         "Malicious": {
              "Vendor": "STRING, The vendor that reported the certificate as malicious.",
              "Description": "STRING, A description explaining why the certificate was determined to be malicious."
