@@ -576,7 +576,7 @@ The following is the format for a DBot Score entry.
 
 ```
 
-## File
+## Certificate
 The following is the format for an X509 certificate. 
 
 ```json
