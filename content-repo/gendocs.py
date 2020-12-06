@@ -12,7 +12,7 @@ import json
 from bs4 import BeautifulSoup
 from mdx_utils import fix_mdx, fix_relative_images, start_mdx_server, stop_mdx_server, verify_mdx_server, normalize_id
 from CommonServerPython import tableToMarkdown  # type: ignore
-from typing import List, Optional, Dict, Tuple, Iterator
+from typing import List, NamedTuple, Optional, Dict, Tuple, Iterator
 from datetime import datetime
 from multiprocessing import Pool
 from functools import partial
@@ -31,7 +31,10 @@ def timestamped_print(*args, **kwargs):
 
 print = timestamped_print
 
-
+INTEGRATION_YML_MATCH = [
+    "Packs/[^/]+?/Integrations/[^/]+?/.+.yml",
+    "Packs/[^/]+?/Integrations/.+.yml",
+]
 INTEGRATION_DOCS_MATCH = [
     "Integrations/[^/]+?/README.md",
     "Integrations/.+_README.md",
@@ -77,6 +80,12 @@ class DocInfo:
         self.description = description
         self.readme = readme
         self.error_msg = error_msg
+
+
+class DeprecatedInfo(NamedTuple):
+    id: str
+    name: str
+    description: Optional[str] = None
 
 
 def findfiles(match_patterns: List[str], target_dir: str) -> List[str]:
@@ -447,6 +456,33 @@ def insert_approved_tags_and_usecases():
   </details>
 """
             f.write(line)
+
+
+def is_xsoar_supported_pack(pack_dir: str):
+    with open(f'{pack_dir}/pack_metadata.json', 'r') as f:
+        metadata = json.load(f)
+    return 'xsoar' == metadata.get('support')
+
+
+def find_deprecated_integrations(content_dir: str):
+    files = glob.glob(content_dir + '/Packs/*/Integrations/*.yml')
+    files.extend(glob.glob(content_dir + '/Packs/*/Integrations/*/*.yml'))
+    res: List[DeprecatedInfo] = []
+    # go over each file and check if contains deprecated: true
+    for f in files:
+        with open(f, 'r') as fr:
+            content = fr.read()
+            if re.search(r'^deprecated:\s*true', content, re.MULTILINE):
+                pack_dir = re.match(r'.+/Packs/.+?(?=/)', f)
+                if is_xsoar_supported_pack(pack_dir.group(0)):
+                    yml_data = yaml.safe_load(content)
+                    id = yml_data.get('commonfields', {}).get('id') or yml_data['name']
+                    name = yml_data.get('display') or yml_data['name']
+                    desc = yml_data.get('description')
+                    res.append(DeprecatedInfo(id, name, desc))
+                else:
+                    print(f'Skippinng deprecated integration: {f} which is not supported by xsoar')
+    return res
 
 
 def main():

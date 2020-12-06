@@ -2,7 +2,8 @@ import json
 
 from gendocs import INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
     index_doc_infos, DocInfo, gen_html_doc, process_release_doc, process_extra_readme_doc, \
-    INTEGRATIONS_PREFIX, get_deprecated_data, insert_approved_tags_and_usecases
+    INTEGRATIONS_PREFIX, get_deprecated_data, insert_approved_tags_and_usecases, \
+    find_deprecated_integrations
 from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server, fix_relative_images, normalize_id
 import os
 import pytest
@@ -279,3 +280,10 @@ def test_insert_approved_tags_and_usecases(tmp_path):
         assert 'IoT' in pack_docs_file_content
         assert 'Machine Learning' in pack_docs_file_content
         assert '</details>' in pack_docs_file_content
+
+
+def test_find_deprecated_integrations():
+    res = find_deprecated_integrations(SAMPLE_CONTENT)
+    for info in res:
+        assert 'Deprecated' in info.name
+    assert len(res) == 7
