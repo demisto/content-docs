@@ -306,10 +306,9 @@ def process_extra_docs(target_dir: str, prefix: str) -> Iterator[DocInfo]:
         yield process_extra_readme_doc(target_dir, prefix, readme_file)
 
 
-# POOL has to be declared after process_readme_doc so it can find it when doing map
+# POOL_SIZE has to be declared after process_readme_doc so it can find it when doing map
 # multiprocess pool
 POOL_SIZE = 4
-POOL = Pool(POOL_SIZE)
 
 
 def process_doc_info(doc_info: DocInfo, success: List[str], fail: List[str], doc_infos: List[DocInfo], seen_docs: Dict[str, DocInfo]):
@@ -353,8 +352,9 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
     sys.stdout.flush()
     sys.stderr.flush()
     seen_docs: Dict[str, DocInfo] = {}
-    for doc_info in POOL.map(partial(process_readme_doc, target_sub_dir, content_dir, prefix, imgs_dir, relative_imgs_dir), readme_files):
-        process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
+    with Pool(processes=POOL_SIZE) as pool:
+        for doc_info in pool.map(partial(process_readme_doc, target_sub_dir, content_dir, prefix, imgs_dir, relative_imgs_dir), readme_files):
+            process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
     for doc_info in process_extra_docs(target_sub_dir, prefix):
         process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
     org_print(f'\n===========================================\nSuccess {prefix} docs ({len(success)}):')
@@ -382,14 +382,15 @@ def create_releases(target_dir: str):
     # flush before starting multi process
     sys.stdout.flush()
     sys.stderr.flush()
-    for doc_info in POOL.map(partial(process_release_doc, target_sub_dir), release_files):
-        if not doc_info:  # case that we skip a release doc as it is too old
-            continue
-        if doc_info.error_msg:
-            fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
-        else:
-            doc_infos.append(doc_info)
-            success.append(doc_info.readme)
+    with Pool(processes=POOL_SIZE) as pool:
+        for doc_info in pool.map(partial(process_release_doc, target_sub_dir), release_files):
+            if not doc_info:  # case that we skip a release doc as it is too old
+                continue
+            if doc_info.error_msg:
+                fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
+            else:
+                doc_infos.append(doc_info)
+                success.append(doc_info.readme)
     org_print(f'\n===========================================\nSuccess release docs ({len(success)}):')
     for r in sorted(success):
         print(r)
