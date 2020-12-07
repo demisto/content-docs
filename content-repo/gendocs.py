@@ -475,7 +475,7 @@ def find_deprecated_integrations(content_dir: str):
             content = fr.read()
             if re.search(r'^deprecated:\s*true', content, re.MULTILINE):
                 pack_dir = re.match(r'.+/Packs/.+?(?=/)', f)
-                if is_xsoar_supported_pack(pack_dir.group(0)):
+                if is_xsoar_supported_pack(pack_dir.group(0)):  # type: ignore - we know that pack_dir is not None
                     yml_data = yaml.safe_load(content)
                     id = yml_data.get('commonfields', {}).get('id') or yml_data['name']
                     name = yml_data.get('display') or yml_data['name']
