@@ -411,7 +411,7 @@ outputs:
   description: ASSN description
   type: String
 
-# This is standard context output - https://xsoar.pan.dev/docs/integrations/context-standards#ip
+# This is standard context output - https://xsoar.pan.dev/docs/integrations/context-standards-mandatory#ip
 - contextPath: IP.Address
   description: IP address
   type: String
@@ -419,7 +419,7 @@ outputs:
   description: 'The autonomous system name for the IP address, for example: AS8948.'
   type: String
 
-# Reputation commands usually should return DBotScore object - https://xsoar.pan.dev/docs/integrations/context-standards#dbot-score
+# Reputation commands usually should return DBotScore object - https://xsoar.pan.dev/docs/integrations/context-standards-mandatory#dbot-score
 - contextPath: DBotScore.Indicator
   description: The indicator that was tested.
   type: String
@@ -488,7 +488,7 @@ return_results(results)
 
 *YAML Definition*
 ```yaml
-# Reputation commands usually should return DBotScore object - https://xsoar.pan.dev/docs/integrations/context-standards#dbot-score
+# Reputation commands usually should return DBotScore object - https://xsoar.pan.dev/docs/integrations/context-standards-mandatory#dbot-score
 - contextPath: DBotScore.Indicator
   description: The indicator that was tested.
   type: String
@@ -502,7 +502,7 @@ return_results(results)
   description: The actual score.
   type: Number
 
-# This is standard context output - https://xsoar.pan.dev/docs/integrations/context-standards#ip
+# This is standard context output - https://xsoar.pan.dev/docs/integrations/context-standards-mandatory#ip
 - contextPath: Domain.Name
   description: 'The domain name, for example: "google.com".'
   type: String
@@ -757,7 +757,7 @@ return_results(results)
 
 **YAML Definition**
 ```yaml
-# Reputation commands usually should return DBotScore object - https://xsoar.pan.dev/docs/integrations/context-standards#dbot-score
+# Reputation commands usually should return DBotScore object - https://xsoar.pan.dev/docs/integrations/context-standards-mandatory#dbot-score
 outputs:
 - contextPath: DBotScore.Indicator
   description: The indicator that was tested.
@@ -772,7 +772,7 @@ outputs:
   description: The actual score.
   type: Number
 
-# Reputation commands usually should return DBotScore object - https://xsoar.pan.dev/docs/integrations/context-standards#url
+# Reputation commands usually should return DBotScore object - https://xsoar.pan.dev/docs/integrations/context-standards-mandatory#url
 - contextPath: URL.Data
   description: The URL
   type: String
@@ -887,7 +887,7 @@ return_results(results)
 **YAML Definition**
 ```yaml
 outputs:
-# Reputation commands usually should return DBotScore object - https://xsoar.pan.dev/docs/integrations/context-standards#file
+# Reputation commands usually should return DBotScore object - https://xsoar.pan.dev/docs/integrations/context-standards-mandatory#file
 - contextPath: File.Name
   description: The full file name (including file extension).
   type: String
@@ -907,7 +907,7 @@ outputs:
   description: A description explaining why the file was determined to be malicious.
   type: String
   
-# Reputation commands usually should return DBotScore object - https://xsoar.pan.dev/docs/integrations/context-standards#dbot-score
+# Reputation commands usually should return DBotScore object - https://xsoar.pan.dev/docs/integrations/context-standards-mandatory#dbot-score
 - contextPath: DBotScore.Indicator
   description: The indicator that was tested.
   type: String
