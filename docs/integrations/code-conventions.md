@@ -477,7 +477,7 @@ When naming variables use the following convention.
 ## Outputs
 Make sure you read and understand [Context and Outputs](context-and-outputs).
 
-Make sure you follow our [context standards](context-standards) when naming indicator outputs.
+Make sure you follow our [context standards](context-standards-about) when naming indicator outputs.
 
 #### Linking Context
 Wherever possible, we try to link context together. This will prevent a command from overwriting existing data, or from creating duplicate entries in the context. To do this, observe the following:
