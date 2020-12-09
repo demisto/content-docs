@@ -477,7 +477,7 @@ When naming variables use the following convention.
 ## Outputs
 Make sure you read and understand [Context and Outputs](context-and-outputs).
 
-Make sure you follow our [context standards](context-standards) when naming indicator outputs.
+Make sure you follow our [context standards](context-standards-about) when naming indicator outputs.
 
 #### Linking Context
 Wherever possible, we try to link context together. This will prevent a command from overwriting existing data, or from creating duplicate entries in the context. To do this, observe the following:
@@ -611,7 +611,7 @@ Any Cortex XSOAR integration command or automation that returns `timeline` data 
 If not given, When returning `timeline` data from a Cortex XSOAR integration or automation, the value will be `'Integration Update'` or `'Automation Update'` accordingly.
 
 **So when should one include a timeline object in an entry returned to the war room?**  
-The answer is any time that a command operates on an indicator. A good indicator (pun intended?) of when `timeline` data should be included in an entry is to look and see if the command returns a `DBotScore` or entities as described in our [context standards documentation](../integrations/context-standards) to the entry context. A common case is reputation commands, i.e. `!ip`, `!url`, `!file`, etc. When implementing these commands in integrations, `timeline` data should be included in the returned entry. To see an example of an integration that returns entries with `timeline` data, take a look at our [AbuseIPDB integration](https://github.com/demisto/content/blob/14148b68f5030a64c6fe6f7cf5af4f184e93abad/Packs/AbuseDB/Integrations/AbuseDB/AbuseDB.py#L215).
+The answer is any time that a command operates on an indicator. A good indicator (pun intended?) of when `timeline` data should be included in an entry is to look and see if the command returns a `DBotScore` or entities as described in our [context standards documentation](../integrations/context-standards-about) to the entry context. A common case is reputation commands, i.e. `!ip`, `!url`, `!file`, etc. When implementing these commands in integrations, `timeline` data should be included in the returned entry. To see an example of an integration that returns entries with `timeline` data, take a look at our [AbuseIPDB integration](https://github.com/demisto/content/blob/14148b68f5030a64c6fe6f7cf5af4f184e93abad/Packs/AbuseDB/Integrations/AbuseDB/AbuseDB.py#L215).
 
 
 | Arg        | Type   | Description                                                                                                                                                                                |
@@ -765,7 +765,7 @@ The entry is composed of multiple components.
     Any Cortex XSOAR integration command that returns `timeline` data should include the `'Category'` value of `'Integration Update'`. When returning `timeline` data from a Cortex XSOAR automation, the value passed to the `'Category'` field should be `'Automation Update'`.
 
     **So when should one include a timeline object in an entry returned to the war room?**  
-    The answer is any time that a command operates on an indicator. A good indicator (pun intended?) of when `timeline` data should be included in an entry is to look and see if the command returns a `DBotScore` or entities as described in our [context standards documentation](../integrations/context-standards) to the entry context. A common case is reputation commands, i.e. `!ip`, `!url`, `!file`, etc. When implementing these commands in integrations, `timeline` data should be included in the returned entry. To see an example of an integration that returns entries with `timeline` data, take a look at our [AbuseIPDB integration](https://github.com/demisto/content/blob/14148b68f5030a64c6fe6f7cf5af4f184e93abad/Packs/AbuseDB/Integrations/AbuseDB/AbuseDB.py#L215).
+    The answer is any time that a command operates on an indicator. A good indicator (pun intended?) of when `timeline` data should be included in an entry is to look and see if the command returns a `DBotScore` or entities as described in our [context standards documentation](../integrations/context-standards-about) to the entry context. A common case is reputation commands, i.e. `!ip`, `!url`, `!file`, etc. When implementing these commands in integrations, `timeline` data should be included in the returned entry. To see an example of an integration that returns entries with `timeline` data, take a look at our [AbuseIPDB integration](https://github.com/demisto/content/blob/14148b68f5030a64c6fe6f7cf5af4f184e93abad/Packs/AbuseDB/Integrations/AbuseDB/AbuseDB.py#L215).
 
 
 The `EntryType` and `EntryFormat` enum classes are imported from `CommonServerPython` and respectively appear as follows:

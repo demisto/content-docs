@@ -45,7 +45,7 @@ Please read the following guidelines. Following them  will maximize the chances 
     * Make sure your integration follows our [Logo Guidelines](../integrations/integration-logo).
     * Read and follow [Python code conventions](../integrations/code-conventions) (recommended) or [Powershell code conventions](../integrations/powershell-code) (advanced users only).
     * If your integration generates Incidents, follow the [Fetch Incidents](../fetching-incidents) guidelines.
-    * Make sure your commands make proper use of the [Context](../integrations/context-and-outputs), including [Context Standards](../integrations/context-standards) and [DBotScore](../integrations/dbot).
+    * Make sure your commands make proper use of the [Context](../integrations/context-and-outputs), including [Context Standards](../integrations/context-standards-about) and [DBotScore](../integrations/dbot).
     * Run and verify that the various linters we support pass as detailed [here](../integrations/linting).
     * Make sure to create unit tests as documented [here](../integrations/unit-testing)
     * Document your integration and automation as detailed [here](integration-docs).
