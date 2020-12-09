@@ -12,13 +12,13 @@ This Email Communication pack enables security teams to reply to an email as par
 ## Pack Workflow
 When an email is sent to the email address configured in your email integration, your email listener fetches the incoming email in Cortex XSOAR. 
 
-If the email is in response to an existing incident, an 8-digit hash will appear next to the subject of the email, for example <93075875> Incident1.
+If the email is in response to an existing incident, an 8-digit number will appear next to the subject of the email, for example <93075875> Incident1.
 
-The pre-process rule searches for the 8-digit hash in the subject of the email to link to the incident. 
+The pre-process script searches for the 8-digit number in the subject of the email to link to the incident. 
 
-If there is no hash in the subject of the email or if the pre-process rule is unable to locate the hash, a new incident is created and a random 8-digit hash is generated for the incident. 
+If there is no 8-digit number in the subject of the email or if the pre-process rule is unable to locate the 8-digit number, a new incident is created and a random 8-digit number is generated for the incident. 
 
-If there is a hash in the subject of the email, and the pre-process rule is able to locate the incident associated with the hash, the email is added to the existing email thread and not as a separate unlinked email. 
+If there is a 8-digit number in the subject of the email, and the pre-process rule is able to locate the incident associated with the 8-digit number, the email is added to the existing email thread and not as a separate unlinked email. 
 
 You can view the email thread in the War Room or in the incident layout. You can also reply to the email thread in the incident layout. 
 
@@ -33,7 +33,7 @@ The Email Communication content pack includes several content items.
 There are 3 Automations in this pack.
 * [DisplayEmailHtml](https://xsoar.pan.dev/docs/reference/scripts/display-email-html): Displays the original email in HTML format in the incident layout.
 
-* [PreprocessEmail](https://xsoar.pan.dev/docs/reference/scripts/preprocess-email): Pre-process script for Email Communication layout. This script checks if the incoming email contains an Incident ID to link the mail to an existing incident, and tags the email as "email-thread". 
+* [PreprocessEmail](https://xsoar.pan.dev/docs/reference/scripts/preprocess-email): Pre-process script for Email Communication layout. This script checks if the incoming email contains an 8-digit number to link the mail to an existing incident, and tags the email as "email-thread". 
 
 * [SendEmailReply](https://xsoar.pan.dev/docs/reference/scripts/send-email-reply): Sends the email reply. 
 
@@ -74,7 +74,7 @@ You can use the layout as-is for email communication. It can also be used for ne
 | Mail Attachments | Displays the metadata of the email attachments. |  
  ---
 
-> Warning: There is no notification for failed emails/addresses.
+> Note: If an email cannot be sent to a specified address, no notification will appear in Cortex XSOAR.
  
 ## Before You Start
 
