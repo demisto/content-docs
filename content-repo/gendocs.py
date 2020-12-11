@@ -3,6 +3,7 @@
 import argparse
 import re
 import os
+import subprocess
 import sys
 import glob
 import yaml
@@ -86,6 +87,8 @@ class DeprecatedInfo(NamedTuple):
     id: str
     name: str
     description: Optional[str] = None
+    deprecate_date: Optional[datetime] = None
+
 
 
 def findfiles(match_patterns: List[str], target_dir: str) -> List[str]:
@@ -465,6 +468,15 @@ def is_xsoar_supported_pack(pack_dir: str):
     return 'xsoar' == metadata.get('support')
 
 
+def get_blame_date(content_dir: str, file: str, line: int):
+    file_rel = os.path.relpath(file, content_dir)
+    blame_out = subprocess.check_output(['git', 'blame', '-p', '-L', f'{line},+1', file_rel], text=True, cwd=content_dir)
+    auth_date = re.search(r'^author-time\s+(\d+)', blame_out, re.MULTILINE)
+    if not auth_date:
+        raise ValueError(f'author-date not found for blame output of file: [{file}]: {blame_out}')
+    return datetime.utcfromtimestamp(int(auth_date.group(1)))
+
+
 def find_deprecated_integrations(content_dir: str):
     files = glob.glob(content_dir + '/Packs/*/Integrations/*.yml')
     files.extend(glob.glob(content_dir + '/Packs/*/Integrations/*/*.yml'))
@@ -473,14 +485,20 @@ def find_deprecated_integrations(content_dir: str):
     for f in files:
         with open(f, 'r') as fr:
             content = fr.read()
-            if re.search(r'^deprecated:\s*true', content, re.MULTILINE):
+            if dep_search  := re.search(r'^deprecated:\s*true', content, re.MULTILINE):
                 pack_dir = re.match(r'.+/Packs/.+?(?=/)', f)
                 if is_xsoar_supported_pack(pack_dir.group(0)):  # type: ignore[union-attr]
                     yml_data = yaml.safe_load(content)
                     id = yml_data.get('commonfields', {}).get('id') or yml_data['name']
                     name = yml_data.get('display') or yml_data['name']
-                    desc = yml_data.get('description')
-                    res.append(DeprecatedInfo(id, name, desc))
+                    desc = yml_data.get('description')                    
+                    content_to_search = content[:dep_search.regs[0][0]]
+                    lines_search = re.findall(r'\n', content_to_search)
+                    blame_line = 1
+                    if lines_search:
+                        blame_line += len(lines_search)
+                    dep_date = get_blame_date(content_dir, f, blame_line)
+                    res.append(DeprecatedInfo(id, name, desc, dep_date))
                 else:
                     print(f'Skippinng deprecated integration: {f} which is not supported by xsoar')
     return res

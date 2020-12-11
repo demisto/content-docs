@@ -3,7 +3,7 @@ import json
 from gendocs import INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
     index_doc_infos, DocInfo, gen_html_doc, process_release_doc, process_extra_readme_doc, \
     INTEGRATIONS_PREFIX, get_deprecated_data, insert_approved_tags_and_usecases, \
-    find_deprecated_integrations
+    find_deprecated_integrations, get_blame_date
 from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server, fix_relative_images, normalize_id
 import os
 import pytest
@@ -282,8 +282,15 @@ def test_insert_approved_tags_and_usecases(tmp_path):
         assert '</details>' in pack_docs_file_content
 
 
+def test_get_blame_date():
+    res = get_blame_date(SAMPLE_CONTENT, f'{SAMPLE_CONTENT}/Packs/DeprecatedContent/Integrations/integration-AlienVaultOTX.yml', 6)
+    assert res.month == 12
+    assert res.year == 2020
+
+
 def test_find_deprecated_integrations():
     res = find_deprecated_integrations(SAMPLE_CONTENT)
     for info in res:
         assert 'Deprecated' in info.name
+        assert info.deprecate_date.year == 2020
     assert len(res) == 7
