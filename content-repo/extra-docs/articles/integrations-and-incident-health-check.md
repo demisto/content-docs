@@ -25,13 +25,13 @@ This pack contains a parent playbook that calls two sub-playbooks.
  
 In addition to running the sub-playbooks, the parent playbook **JOB - Integrations and Playbooks Health Check** performs the following functions:
 - Send the health check report to the recipients from the playbook inputs.
-- If another health check investigation is open (incident, not a job), the playbook will:
+- If another health check investigation is open (either an incident or a running job), the playbook will:
   - Check if analyst notes were added to the failed integrations and failed incidents grids and **copy** them to the new investigation.
   - Link the old investigation to the new one and close the old investigation due to irrelevance.
-Re-run the health check tests. It is a manual action because you will want to re-run them only after fixing the issues, not before.
+- Re-run the health check tests. It is a manual action because you will want to re-run them only after fixing the issues, not before.
  
 ### Incident Layouts
-The incident type contains two layouts: one for ***failed integration instances** and one for **failed incidents**. 
+The incident type contains two layouts: one for **failed integration instances** and one for **failed incidents**. 
 
  **Failed integrations layout**
 - Total number of failed instances
@@ -78,8 +78,8 @@ The playbooks in the pack use execute scripts to check the system for failed int
 7. Click the **Test** button to make sure that that server and API key are reachable and valid.
 8. Click **Done**.
  
- ### 2. Configure a Mail Sender and Mail Listener Integration  
- The main playbook sends an email notification to specified users, which requires that you first configure the mail integrations. 
+ ### 2. (Optional) Configure a Mail Sender and Mail Listener Integration  
+ The main playbook has the ability to send an email notification to specified users. In order for this function to work you first need to configure the mail integrations. 
 
  **Supported mail integrations**
  
