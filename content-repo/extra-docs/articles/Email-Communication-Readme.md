@@ -172,3 +172,10 @@ Although these integration are not included in the pack, either the Gmail or bot
 - EWS Mail Sender - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/ews-mail-sender)
 - EWS V2 - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/ews-v2)
 
+## Demo Video
+<video controls>
+    <source src="https://github.com/demisto/content-assets/raw/9285feda43d336f68082d4931452bdd9cc38d889/Assets/EmailCommunication/EmailCommunication_demo.mp4"
+            type="video/mp4"/>
+    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/blob/9285feda43d336f68082d4931452bdd9cc38d889/Assets/EmailCommunication/EmailCommunication_demo.mp4
+</video>
+
