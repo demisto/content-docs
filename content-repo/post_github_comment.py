@@ -111,7 +111,7 @@ def post_comment(netlify_deploy_file: str):
             if links:
                 message += '\n\nDetected modified urls:\n'
                 for link in links:
-                    message += f'*  [{link[0]}]({link[1]})\n'    
+                    message += f'*  [{link[0]}]({link[1]})\n'
         except Exception as ex:
             print(f'Failed getting modified file links: {str(ex)}')
             traceback.print_exc()
