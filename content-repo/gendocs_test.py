@@ -3,7 +3,7 @@ import json
 from gendocs import INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
     index_doc_infos, DocInfo, gen_html_doc, process_release_doc, process_extra_readme_doc, \
     INTEGRATIONS_PREFIX, get_deprecated_data, insert_approved_tags_and_usecases, \
-    find_deprecated_integrations, get_blame_date
+    find_deprecated_integrations, get_blame_date, get_deprecated_display_dates
 from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server, fix_relative_images, normalize_id
 import os
 import pytest
@@ -294,3 +294,9 @@ def test_find_deprecated_integrations():
         assert 'Deprecated' in info.name
         assert info.deprecate_date.year == 2020
     assert len(res) == 7
+
+
+def test_get_deprecated_display_dates():
+    (start, end) = get_deprecated_display_dates(datetime(2020, 12, 30))
+    assert start == "Jan 01, 2021"
+    assert end == "Jul 01, 2021"

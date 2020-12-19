@@ -10,17 +10,17 @@ import yaml
 import traceback
 import shutil
 import json
+from dateutil.relativedelta import relativedelta
 from bs4 import BeautifulSoup
 from mdx_utils import fix_mdx, fix_relative_images, start_mdx_server, stop_mdx_server, verify_mdx_server, normalize_id
 from CommonServerPython import tableToMarkdown  # type: ignore
 from typing import List, NamedTuple, Optional, Dict, Tuple, Iterator
-from datetime import datetime
+from datetime import datetime, date
 from multiprocessing import Pool
 from functools import partial
 import html
 from distutils.version import StrictVersion
 import random
-import dateutil.relativedelta
 
 # override print so we have a timestamp with each print
 org_print = print
@@ -71,7 +71,7 @@ EMPTY_FILE_MSG = 'empty file'
 # initialize the seed according to the PR branch. Used when selecting max files.
 random.seed(os.getenv('CIRCLE_BRANCH'))
 
-MIN_RELEASE_VERSION = StrictVersion((datetime.now() + dateutil.relativedelta.relativedelta(months=-18)).strftime('%y.%-m.0'))
+MIN_RELEASE_VERSION = StrictVersion((datetime.now() + relativedelta(months=-18)).strftime('%y.%-m.0'))
 
 
 class DocInfo:
@@ -88,7 +88,6 @@ class DeprecatedInfo(NamedTuple):
     name: str
     description: Optional[str] = None
     deprecate_date: Optional[datetime] = None
-
 
 
 def findfiles(match_patterns: List[str], target_dir: str) -> List[str]:
@@ -477,6 +476,21 @@ def get_blame_date(content_dir: str, file: str, line: int):
     return datetime.utcfromtimestamp(int(auth_date.group(1)))
 
 
+def get_deprecated_display_dates(dep_date: datetime) -> Tuple[str, str]:
+    """Get the deprecation start date. The 1st of the following month.
+
+    Args:
+        dep_date (datetime): The raw dep date
+
+    Returns:
+        tuple of start deprecation and end deprecation
+    """
+    DATE_FRMT = "%b %d, %Y"
+    start = date(day=1, month=dep_date.month, year=dep_date.year) + relativedelta(months=+1)
+    end = start + relativedelta(months=+6)
+    return (datetime.strftime(start, DATE_FRMT), datetime.strftime(end, DATE_FRMT))
+
+
 def find_deprecated_integrations(content_dir: str):
     files = glob.glob(content_dir + '/Packs/*/Integrations/*.yml')
     files.extend(glob.glob(content_dir + '/Packs/*/Integrations/*/*.yml'))
@@ -491,7 +505,7 @@ def find_deprecated_integrations(content_dir: str):
                     yml_data = yaml.safe_load(content)
                     id = yml_data.get('commonfields', {}).get('id') or yml_data['name']
                     name = yml_data.get('display') or yml_data['name']
-                    desc = yml_data.get('description')                    
+                    desc = yml_data.get('description')
                     content_to_search = content[:dep_search.regs[0][0]]
                     lines_search = re.findall(r'\n', content_to_search)
                     blame_line = 1
