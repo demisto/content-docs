@@ -3,6 +3,7 @@
 # Run this file with pipenv. For example pipenv run content-repo/post_github_comment.py
 
 import argparse
+import traceback
 from typing import List, Tuple
 import requests
 import subprocess
@@ -105,11 +106,15 @@ def post_comment(netlify_deploy_file: str):
             "The production site of our docs has been updated. You can view it at: https://xsoar.pan.dev"
     else:
         # add detcted changes
-        links = get_modified_links(deplpy_url)
-        if links:
-            message += '\n\nDetected modified urls:\n'
-            for l in links:
-                message += f'*  [{l[0]}]({l[1]})\n'
+        try:
+            links = get_modified_links(deplpy_url)
+            if links:
+                message += '\n\nDetected modified urls:\n'
+                for link in links:
+                    message += f'*  [{link[0]}]({link[1]})\n'    
+        except Exception as ex:
+            print(f'Failed getting modified file links: {str(ex)}')
+            traceback.print_exc()
     print(f'Going to post comment:\n------------\n{message}\n------------\nto url: {post_url}')
     verify = os.getenv('SKIP_SSL_VERIFY') is None
     headers = {'Authorization': 'Bearer ' + token}
