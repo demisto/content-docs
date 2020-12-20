@@ -2,7 +2,7 @@ import json
 
 from gendocs import INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
     index_doc_infos, DocInfo, gen_html_doc, process_release_doc, process_extra_readme_doc, \
-    INTEGRATIONS_PREFIX, get_deprecated_data, insert_approved_tags_and_usecases
+    INTEGRATIONS_PREFIX, get_deprecated_data, insert_approved_tags_and_usecases, get_fromversion_data
 from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server, fix_relative_images, normalize_id
 import os
 import pytest
@@ -227,6 +227,11 @@ def test_get_deprecated_data():
     assert "Use The Generic SQL integration instead" in res
     res = get_deprecated_data({}, "Deprecated. Add information about the vulnerability.", "Packs/DeprecatedContent/Playbooks/test-README.md")
     assert "Add information" not in res
+
+
+def test_get_fromversion_data():
+    res = get_fromversion_data({'fromversion': '5.0.0'})
+    assert 'Supported versions\nSupported Cortex XSOAR versions: 5.0.0 and later.' in res
 
 
 def test_insert_approved_tags_and_usecases(tmp_path):
