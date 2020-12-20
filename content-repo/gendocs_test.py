@@ -231,7 +231,7 @@ def test_get_deprecated_data():
 
 def test_get_fromversion_data():
     res = get_fromversion_data({'fromversion': '5.0.0'})
-    assert 'Supported versions\nSupported Cortex XSOAR versions: 5.0.0 and later.' in res
+    assert 'Supported Cortex XSOAR versions: 5.0.0 and later.' in res
 
 
 def test_insert_approved_tags_and_usecases(tmp_path):
