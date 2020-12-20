@@ -130,7 +130,7 @@ def get_deprecated_data(yml_data: dict, desc: str, readme_file: str):
 def get_fromversion_data(yml_data: dict):
     from_version = yml_data.get('fromversion')
     if from_version:
-        return f':::info\nSupported Cortex XSOAR versions: {from_version} and later.:::\n\n'
+        return f':::info Supported versions\nSupported Cortex XSOAR versions: {from_version} and later.:::\n\n'
     return ''
 
 
@@ -195,8 +195,8 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
             edit_url = f'https://github.com/demisto/content/blob/{BRANCH}/{readme_repo_path}'
             header = f'---\nid: {id}\ntitle: {json.dumps(doc_info.name)}\ncustom_edit_url: {edit_url}\n---\n\n'
             content = get_deprecated_data(yml_data, desc, readme_file) + content
-            content = get_fromversion_data(yml_data) + content
             content = get_beta_data(yml_data, content) + content
+            content = get_fromversion_data(yml_data) + content
             content = header + content
         verify_mdx_server(content)
         with open(f'{target_dir}/{id}.md', mode='w', encoding='utf-8') as f:  # type: ignore
