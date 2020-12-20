@@ -130,7 +130,7 @@ def get_deprecated_data(yml_data: dict, desc: str, readme_file: str):
 def get_fromversion_data(yml_data: dict):
     from_version = yml_data.get('fromversion')
     if from_version:
-        return f':::info Supported versions\nSupported Cortex XSOAR versions: {from_version} and later.:::\n\n'
+        return f':::info\nSupported Cortex XSOAR versions: {from_version} and later.:::\n\n'
     return ''
 
 
