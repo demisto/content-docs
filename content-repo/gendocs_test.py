@@ -229,11 +229,15 @@ def test_get_deprecated_data():
     assert "Add information" not in res
 
 
-def test_get_fromversion_data():
-    res = get_fromversion_data({'fromversion': '5.5.0'})
-    assert 'Supported Cortex XSOAR versions: 5.5.0 and later.' in res
-    res = get_fromversion_data({'fromversion': '5.0.0'})
-    assert res == ''
+@pytest.mark.parametrize("test_input, expected", [({'fromversion': '5.5.0'},
+                                                   f':::info Supported versions\nSupported '
+                                                   f'Cortex XSOAR versions: 5.5.0 and later.\n:::\n\n'),
+                                                  ({'fromversion': '5.0.0'}, ''),
+                                                  ({}, ''),
+                                                  ({'fromversion': '4.0.0'}, '')])
+def test_get_fromversion_data(test_input, expected):
+    res = get_fromversion_data(test_input)
+    assert res == expected
 
 
 def test_insert_approved_tags_and_usecases(tmp_path):
