@@ -62,8 +62,11 @@ There are 3 interactive sections in which you can specify 1 or more email addres
 
 You can use the layout as-is for email communication. It can also be used for new incident types by adding the **Email Communication** layout to an incident type. See [Add the Email Communication Layout to an Incident Type](#add-the-email-communication-layout-to-an-incident-type) for details. 
  
->**Important:** In order to add CC recipients or an attachment to the email reply, you must select the *Show empty fields* checkbox. 
- 
+>**Important:** 
+- In order to add CC recipients or an attachment to the email reply, you must select the *Show empty fields* checkbox. 
+- You need to customize the *service_mail* parameter in the **Send Reply** button with the mailbox from which emails are sent. See **Customize the Send Reply Button** below.
+
+
 | Layout sections | Description |
 |------------------ | ------------- |
 | Add CC to email | Add 1 or more CC recipients to the email as a comma-separated list of email addresses.  |
@@ -71,14 +74,14 @@ You can use the layout as-is for email communication. It can also be used for ne
 | Attachments | Add attachments to the email reply.  |
 | Email thread | Displays the entire email thread including the original email and all email replies. |  
 | Original Email HTML | Displays in HTML format the original email that opened the incident. |  
-| Mail Attachments | Displays the metadata of the email attachments. |  
+| Mail Attachments | Displays the metadata of the email attachments. Contains the Send Reply button.  |  
  ---
 
 > Note: If an email cannot be sent to a specified address, no notification will appear in Cortex XSOAR.
  
 ## Before You Start
 
-This pack requires that you must have active instances of both a mail listener and mail sender integration in order to send and receive emails. Configure either the [Gmail integration](https://xsoar.pan.dev/docs/reference/integrations/gmail)  or both the [EWS Mail Sender](https://xsoar.pan.dev/docs/reference/integrations/ews-mail-sender) and [EWS V2](https://xsoar.pan.dev/docs/reference/integrations/ews-v2) integrations.
+This pack requires that you must have active instances of both a mail listener and mail sender integration in order to send and receive emails. Configure either the [Gmail integration](https://xsoar.pan.dev/docs/reference/integrations/gmail)  or both the [EWS Mail Sender](https://xsoar.pan.dev/docs/reference/integrations/ews-mail-sender) and [EWS V2](https://xsoar.pan.dev/docs/reference/integrations/ews-v2) integrations. In addition, configure the Demisto REST API integration which requires a Demisto API key.
 
 
 
@@ -154,6 +157,16 @@ To edit a layout, you must duplicate the layout and then edit the copy.
   5. Drag and drop the Email Communication tab on the layout's tabs.
   5. Click **Save**.
 
+
+**Customize the Send Reply Button**  
+You need to customize the *service_mail* parameter in the **Send Reply** button with the mailbox from which emails are sent.
+1. Navigate to **Settings -> Advanced -> Layouts**.
+2. Select the layout you want to edit and click **Duplicate**.
+3. Click the duplicate layout.
+4. Click the **Send Reply** button.
+5. In the **service_mail** field in the Button Settings dialog box, enter the mailbox from which emails are sent.
+5. Click **Save**.
+
 ## Testing the Pack
 After you configure the integrations and the pre-process rule, create an incident type and add the Email Communication layout to an incident type. Now test the pack to ensure that everything was configured correctly.
 1. Send an email to the email address configured in your email listener integration.
@@ -167,10 +180,11 @@ After you configure the integrations and the pre-process rule, create an inciden
 
 ## Integrations
 
-Although these integration are not included in the pack, either the Gmail or both the EWS Mail Sender and EWS V2 integrations are required for the pack to work.  
+Although these integration are not included in the pack, either the Gmail or both the EWS Mail Sender and EWS V2 integrations are required for the pack to work. In addition, configure the Demisto REST API integration.
 - Gmail - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/gmail)
 - EWS Mail Sender - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/ews-mail-sender)
 - EWS V2 - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/ews-v2)
+- Demisto REST API
 
 ## Demo Video
 <video controls>
