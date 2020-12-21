@@ -230,8 +230,8 @@ def test_get_deprecated_data():
 
 
 @pytest.mark.parametrize("test_input, expected", [({'fromversion': '5.5.0'},
-                                                   f':::info Supported versions\nSupported '
-                                                   f'Cortex XSOAR versions: 5.5.0 and later.\n:::\n\n'),
+                                                   ':::info Supported versions\nSupported '
+                                                   'Cortex XSOAR versions: 5.5.0 and later.\n:::\n\n'),
                                                   ({'fromversion': '5.0.0'}, ''),
                                                   ({}, ''),
                                                   ({'fromversion': '4.0.0'}, '')])
