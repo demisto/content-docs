@@ -852,5 +852,5 @@ return_results(results)
 
 ## Quality Examples of Integrations
 * [Google Cloud Functions](https://github.com/demisto/content/tree/master/Packs/GoogleCloudFunctions/Integrations/GoogleCloudFunctions)
-* [Cortex XDR](https://github.com/demisto/content/tree/master/Packs/CortexXDR/Integrations/PaloAltoNetworks_XDR)
+* [Cortex XDR](https://github.com/demisto/content/tree/master/Packs/CortexXDR/Integrations/CortexXDRIR)
 * [Proofpoint TAP v2](https://github.com/demisto/content/tree/master/Packs/ProofpointTAP/Integrations/ProofpointTAP_v2)
