@@ -233,7 +233,7 @@ def test_get_fromversion_data():
     res = get_fromversion_data({'fromversion': '5.5.0'})
     assert 'Supported Cortex XSOAR versions: 5.5.0 and later.' in res
     res = get_fromversion_data({'fromversion': '5.0.0'})
-    assert 'Supported Cortex XSOAR versions: 5.0.0 and later.' not in res
+    assert res == ''
 
 
 def test_insert_approved_tags_and_usecases(tmp_path):
