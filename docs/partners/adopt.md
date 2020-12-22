@@ -15,8 +15,9 @@ Adopting a Pack has several advantages for the partner:
 
 ## Process
 The process to Adopt-a-Pack is simple:
-- Partner signs the Palo Alto Networks Technology Partnership Agreement. If you've already signed a similar agreement, you will not have to sign again. 
-- Partner notifies Palo Alto Networks that they wish to adopt the pack. *Important:* please notify us so we can work with you. 
-- If customers are using the existing pack, Partner clones existing pack and updates the cloned pack (improves marketing, adds new commands/APIs, adds playbooks, adds support information, etc.). If the existing pack is not in use, the Partner can edit the existing pack directly. 
-- Partner submits a Pull Request of their pack to the Cortex XSOAR Marketplace. Usually we add "v2" to the end of the name (if cloned). Palo Alto Networks will mark the original pack as Deprecated and direct customers to the new pack. Palo Alto Networks will still maintain the old pack and support existing customers that do not wish to migrate to the new pack. Maintenance will only include bug fixes and will not include new features or enhancements.
+- Partner signs the Palo Alto Networks Technology Partnership Agreement. If you've already signed a similar agreement, you will not have to sign again. There is no additional legal paperwork to Adopt. 
+- Partner notifies Palo Alto Networks that they wish to adopt the pack. *Important:* you must notify us so we can work with you. 
+- Palo Alto Networks marks the pack as "Transitioning to Partner" for 90 days. During this time, the Partner is able to make changes and updates to the pack, but the primary support will remain with Palo Alto Networks. (If the existing pack is not in use, the transition time can be shortened.) 
+- Partner submits a Pull Request(s) of their pack to the Cortex XSOAR Marketplace in the normal manner updating APIs, marketing information, adding playbooks, etc. 
+- After the 90 day transition period has elapsed, the Partner submits a pull request updating the pack metadata and officially takes over the pack!
 
