@@ -1,22 +1,22 @@
 ---
 id: identity-lifecycle-management
 title: Identity Lifecycle Management (ILM)
-description: This Identity Lifecycle Management (ILM) pack enables you to provision users from Workday into Active Directory and/or Okta by performing CRUD operations. 
+description: This Identity Lifecycle Management (ILM) pack enables you to provision users from Workday into Active Directory and/or Okta by performing management operations like creating, updating and deleting users.
 ---
 
 
-This Identity Lifecycle Management (ILM) pack enables you to provision users from Workday into Active Directory and/or Okta by performing CRUD operations. Read these instructions carefully to first understand the workflows that this pack executes and understand how it must be implemented..
+This Identity Lifecycle Management (ILM) pack enables you to provision users from Workday into Active Directory and/or Okta by performing management operations like creating, updating and deleting users. Read these instructions carefully to first understand the workflows that this pack executes and understand how it must be implemented..
 
 ## Workday Reports
 
-HR uses Workday to manage CRUD operations for employees in the organization. It is standard practice for HR to generate reports for these CRUD operations. For example, running a weekly report that captures all new employees and terminated employees, or a daily report that captures updates to existing employee profiles (e.g., new mailing address or phone number).
+HR uses Workday to manage operations for employees in the organization. It is standard practice for HR to generate reports for these maintenance operations. For example, running a weekly report that captures all new employees and terminated employees, or a daily report that captures updates to existing employee profiles (e.g., new mailing address or phone number).
 
-Cortex XSOAR uses the Workday integration to fetch reports and create XSOAR incidents that correspond to the CRUD operation(s) in the report. For example, if you run a full report that includes 5 new employees, 3 terminated employees, and 10 employee profiles that were updated, 18 unique incidents would be created in XSOAR.
+Cortex XSOAR uses the Workday integration to fetch reports and create XSOAR incidents that correspond to the management operation(s) in the report. For example, if you run a full report that includes 5 new employees, 3 terminated employees, and 10 employee profiles that were updated, 18 unique incidents would be created in XSOAR.
 
 Each report has a unique URL, which you enter in the Workday Report URL instance parameters. If you want to fetch or run associated playbooks on multiple reports, each report will require its own integration instance.
 
 
-The Workday integration creates an IAM-Sync-User incident for each user profile that is in the report.. This incident runs the IAM - Sync User playbook and provisions the user into the rest of the configured integrations. The playbook determines the CRUD (create, read, update, or delete/disable) operations that need to be done according to the data retrieved from the Workday report. 
+The Workday integration creates an IAM-Sync-User incident for each user profile that is in the report.. This incident runs the IAM - Sync User playbook and provisions the user into the rest of the configured integrations. The playbook determines the management (create, read, update, or delete/disable) operations that need to be done according to the data retrieved from the Workday report. 
 For example, if a new employee joins the company, the playbook changes the incident type to IAM-New-Hire, and runs a Create operation across the supported IAM integrations. Similarly, if an employee is terminated in Workday, the playbook changes the incident type to IAM-Terminate-User, and a Disable operation runs in the supported IAM integrations. 
 
 ## Pack Workflows
@@ -37,7 +37,7 @@ The following table shows the supported Workday operations and their correspondi
 
 The logic of the playbooks in the ILM pack, which determine how they execute, is determined by the employment data ingested from the Workday integration.
 
-There are several custom fields that must be populated with specific values in order for the playbooks to execute the correct CRUD operations. If your current Workday instance does not include these fields and values, you will need to add them to the instance
+There are several custom fields that must be populated with specific values in order for the playbooks to execute the correct management operations. If your current Workday instance does not include these fields and values, you will need to add them to the instance
 
 The following table lists these fields, what they are used for in Cortex XSOAR, and the valid values the fields accept.
 
@@ -162,7 +162,7 @@ The following is an example of the flow when adding a field to work with the ILM
 
 1. Workday ILM integration (link to the integration docs).
 *Note* Before running the Workday integration, ensure that you have added the fields in Workday as instructed in Before You Start.
-1. IAM-compatible integrations. These integrations support execution of the generic ILM CRUD operations.
+1. IAM-compatible integrations. These integrations support execution of the generic ILM management operations.
 
     - Workday - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/workday-iam)
     - Active Directory - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/active-directory-query-v2)

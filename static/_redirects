@@ -125,3 +125,6 @@ https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 
 # Updated/Superseded articles
 /docs/integrations/doc-structure /docs/integrations/integration-docs
+
+# Redirect context standards after: https://github.com/demisto/content-docs/pull/299
+/docs/integrations/context-standards /docs/integrations/context-standards-about

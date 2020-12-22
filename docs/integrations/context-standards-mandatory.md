@@ -575,3 +575,161 @@ The following is the format for a DBot Score entry.
   type: Number
 
 ```
+
+## Certificate
+The following is the format for an X509 certificate. 
+
+```json
+"Certificate": {
+        "Name": "STRING, Name (CN or SAN) appearing in the certificate.",
+        "SubjectDN": "STRING,  The Subject Distinguished Name of the certificate. This field includes the Common Name of the certificate.",
+        "PEM": "STRING, Certificate in PEM format.",
+        "IssuerDN": "STRING, The Issuer Distinguished Name of the certificate.",
+        "SerialNumber": "STRING, The Serial Number of the certificate.",
+        "ValidityNotAfter": "DATE, End of certificate validity period.",
+        "ValidityNotBefore": "DATE, Start of certificate validity period.",
+        "SubjectAlternativeName": {
+          "Type": "STRING, Type of the SAN.",
+          "Value": "STRING, Name of the SAN."
+        },
+        "SHA512": "STRING, SHA512 Fingerprint of the certificate in DER format.",
+        "SHA256": "STRING, SHA256 Fingerprint of the certificate in DER format.",
+        "SHA1": "STRING, SHA1 Fingerprint of the certificate in DER format.",
+        "MD5": "STRING, MD5 Fingerprint of the certificate in DER format.",
+        "PublicKey": {
+          "Algorithm": "STRING, Algorithm used for public key of the certificate.",
+          "Length": "NUMBER, Length in bits of the public key of the certificate.",
+          "Modulus": "STRING, Certificate.PublicKey.Modulus",
+          "Exponent": "NUMBER, Exponent of the public key for RSA keys.",
+          "PublicKey": "STRING, The public key for DSA/Unknown keys.",
+          "P": "STRING, The P parameter for DSA keys.",
+          "Q": "STRING, The Q parameter for DSA keys.",
+          "G": "STRING, The G parameter for DSA keys.",
+          "X": "STRING, The X parameter for EC keys.",
+          "Y": "STRING, The Y parameter for EC keys.",
+          "Curve": "STRING, Curve of the Public Key for EC keys.",
+          "Y": "STRING, The Y parameter for EC keys."
+        },
+        "SPKISHA256": "STRING, SHA256 fingerprint of the certificate Subject Public Key Info.",
+        "Signature": {
+          "Algorithm": "STRING, Algorithm used in the signature of the certificate.",
+          "Signature": "STRING, Signature of the certificate."
+        },
+        "Extension": {
+          "Critical": "BOOL, Critical flag of the certificate extension.",
+          "OID": "STRING,  OID of the certificate extension.",
+          "Name": "STRING, Name of the certificate extension.",
+          "Value": "STRING, Value of the certificate extension."
+        },
+        "Malicious": {
+             "Vendor": "STRING, The vendor that reported the certificate as malicious.",
+             "Description": "STRING, A description explaining why the certificate was determined to be malicious."
+        }
+}
+```
+
+**In YAML**
+```yaml
+outputs:
+- contextPath: Certificate.Name
+  description: Name (CN or SAN) appearing in the certificate.
+  type: String
+- contextPath: Certificate.SubjectDN
+  description: |
+    The Subject Distinguished Name of the certificate.
+    This field includes the Common Name of the certificate.
+  type: String
+- contextPath: Certificate.PEM
+  description: Certificate in PEM format.
+  type: String
+- contextPath: Certificate.IssuerDN
+  description: The Issuer Distinguished Name of the certificate.
+  type: String
+- contextPath: Certificate.SerialNumber
+  description: The Serial Number of the certificate.
+  type: String
+- contextPath: Certificate.ValidityNotAfter
+  description: End of certificate validity period.
+  type: Date
+- contextPath: Certificate.ValidityNotBefore
+  description: Start of certificate validity period.
+  type: Date
+- contextPath: Certificate.SubjectAlternativeName.Type
+  description: Type of the SAN.
+  type: String
+- contextPath: Certificate.SubjectAlternativeName.Value
+  description: Name of the SAN.
+  type: String
+- contextPath: Certificate.SHA512
+  description: SHA512 Fingerprint of the certificate in DER format.
+  type: String
+- contextPath: Certificate.SHA256
+  description: SHA256 Fingerprint of the certificate in DER format.
+  type: String
+- contextPath: Certificate.SHA1
+  description: SHA1 Fingerprint of the certificate in DER format.
+  type: String
+- contextPath: Certificate.MD5
+  description: MD5 Fingerprint of the certificate in DER format.
+  type: String
+- contextPath: Certificate.PublicKey.Algorithm
+  description: Algorithm used for public key of the certificate.
+  type: String
+- contextPath: Certificate.PublicKey.Length
+  description: Length in bits of the public key of the certificate.
+  type: Number
+- contextPath: Certificate.PublicKey.Modulus
+  description: Modulus of the public key for RSA keys.
+  type: String
+- contextPath: Certificate.PublicKey.Exponent
+  description: Exponent of the public key for RSA keys.
+  type: Number
+- contextPath: Certificate.PublicKey.PublicKey
+  description: The public key for DSA/Unknown keys.
+  type: String
+- contextPath: Certificate.PublicKey.P
+  description: The P parameter for DSA keys.
+  type: String
+- contextPath: Certificate.PublicKey.Q
+  description: The Q parameter for DSA keys.
+  type: String
+- contextPath: Certificate.PublicKey.G
+  description: The G parameter for DSA keys.
+  type: String
+- contextPath: Certificate.PublicKey.X
+  description: The X parameter for EC keys.
+  type: String
+- contextPath: Certificate.PublicKey.Y
+  description: The Y parameter for EC keys.
+  type: String
+- contextPath: Certificate.PublicKey.Curve
+  description: Curve of the Public Key for EC keys.
+  type: String
+- contextPath: Certificate.SPKISHA256
+  description: SHA256 fingerprint of the certificate Subject Public Key Info.
+  type: String
+- contextPath: Certificate.Signature.Algorithm
+  description: Algorithm used in the signature of the certificate.
+  type: String
+- contextPath: Certificate.Signature.Signature
+  description: Signature of the certificate.
+  type: String
+- contextPath: Certificate.Extension.Critical
+  description: Critical flag of the certificate extension.
+  type: Bool
+- contextPath: Certificate.Extension.OID
+  description: OID of the certificate extension.
+  type: String
+- contextPath: Certificate.Extension.Name
+  description: Name of the certificate extension.
+  type: String
+- contextPath: Certificate.Extension.Value
+  description: Value of the certificate extension.
+  type: Unknown
+- contextPath: Certificate.Malicious.Vendor
+  description: The vendor that reported the file as malicious.
+  type: String
+- contextPath: Certificate.Malicious.Description
+  description: A description explaining why the file was determined to be malicious.
+  type: String  
+```
