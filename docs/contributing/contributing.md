@@ -9,6 +9,8 @@ Contributing allows you to make the content that you build on Cortex XSOAR avail
 
 All the free content (i.e. everything excluding Paid Content Packs) is open source and lives in the Cortex XSOAR [GitHub Repository](https://github.com/demisto/content), with a MIT license.
 
+In order to setup a developing environment that will help you create your content, you can use the [Set Up Your Dev Environment](..tutorials/tut-setup-dev#the-tutorial-starts-here) tutorial. The tutorial contains several parts including an elaborated process, you don't have to complete the entire tutorial you can just use it as a guide and to get real examples.
+
 After you have created your content, you must submit your content for our team to review and approve.
 
 There are three ways to submit your work:
@@ -22,9 +24,10 @@ Before proceeding, sure to check the content contribution [checklist](../contrib
 
 ## Before opening a Pull Request
 
-Before opening the Pull Request on the Cortex XSOAR [GitHub Repository](https://github.com/demisto/content), you need to:
+In order to be able to submit a Pull Request to the Cortex XSOAR [GitHub Repository](https://github.com/demisto/content), you need to:
 
-- Have a [GitHub](https://github.com) account that you'll use to open the Pull Request
+- Have a [GitHub](https://github.com) account that you'll use to create the fork and open the Pull Request.
+- Create a fork of the repo in your own Github account. You can follow the instruction described [GitHub docs](https://guides.github.com/activities/forking/) or follow this steps in the [following tutorial](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-2-fork-the-github-repo).
 - If you're an XSOAR partner, have your `partner-id` (this should have been communicated to you over the onboarding emails from the Alliance team).
 - Join our our [Slack DFIR Community](https://www.demisto.com/community/), this is the place to ask questions, consult about use-case and raise issues regarding the Cortex XSOAR platform (use the `#demisto-developers` channel).
 - Design Document: we encourage you to prepare a Design Document that describes the capabilities of your Pack. Usually it's a Google Doc shared with you by the Alliances team. Click [here](https://docs.google.com/document/d/1wETtBEKg37PHNU8tYeB56M1LE314ux086z3HFeF_cX0) to see a compiled example of a Design Document.
@@ -34,9 +37,11 @@ Before opening the Pull Request on the Cortex XSOAR [GitHub Repository](https://
 
 ## Open a Pull Request
 
-In order to be able to submit your Pull Request into the demisto/content repo you will need to create a fork of the repo in your own Github account. You can follow the instruction described [here](https://guides.github.com/activities/forking/).
+After you have completed all the requirements and ready to open your Pull Request commit and push your work to the a branch you have created in your forked repo. 
 
-After you have successfully created a fork in your personal repo, you can go ahead an open your Pull Request, use [this article](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) to do so.
+Now you can go ahead an open your Pull Request, you can use [this article](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) to do so.
+When creating the pull request make sure to fill in the different section in the pull request template.
+
 :::note Important Note
 As part of the Pull Request template, you will be asked to fill in the [contribution registration form](https://forms.gle/XDfxU4E61ZwEESSMA), make sure to do so, without it we cannot revirew your contribution.
 :::
@@ -49,7 +54,3 @@ After opening the Pull Request, make sure that you:
 - Sign the [CLA](https://github.com/demisto/content/blob/master/docs/cla.pdf): every contributor must sign our Contributor License Agreement in order for their contribution to be added to our content.
 - Monitor your Pull Request on GitHub and be ready for a demo: our Content team will add comments to the Pull Request, asking questions and requesting changes. At some point, we'll ask you to schedule a meeting to see an interactive demo, make sure you have a working installation of Cortex XSOAR with your pack fully configured.
 
-More details on the review process and valdiation steps are availble on [GitHub](https://github.com/demisto/content/blob/master/CONTRIBUTING.md)
-
-### For Certified packs only:
-- Provide us credentials for a test environment: if your Pack includes an integration, we'll need credentials (i.e. API keys) to access a SaaS test/demo environment of your Product from Cortex XSOAR in order to run our nightly build. Please work with your Palo Alto Networks alliance team contact to securely provide such credentials to us.
