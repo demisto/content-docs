@@ -35,7 +35,7 @@ The commit hooks of the repository should automatically run several commands loc
 
 We also have CircleCI jobs that run automatically on your Pull Request after every push that validate the changes and run the same tests to make sure the contribution can be merged and become part of the content: you will see a few [GitHub Status Checks](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-status-checks) that help validate that your pull request is according to our standards.
 
-After you push changes, please come back to the Pull Request and check the status of the build after it's completed. Pay special attentions to the following checks:
+After you push changes, please come back to the Pull Request and check the status of the build after it's completed. Pay special attention to the following checks:
 - ci/circleci: **Run Unit Testing and Lint**
 - ci/circleci: **Run Validations**
 
