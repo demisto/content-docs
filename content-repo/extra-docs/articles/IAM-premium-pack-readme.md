@@ -1,13 +1,24 @@
 ---
 id: identity-lifecycle-management
 title: Identity Lifecycle Management (ILM)
-description: This Identity Lifecycle Management (ILM) pack enables you to provision users from Workday into Active Directory and/or Okta by performing management operations like creating, updating and deleting users.
+description: This Identity Lifecycle Management (ILM) pack enables 2 flows. It enables you to provision users from Workday into Active Directory and/or Okta by performing management operations like creating, updating and deleting users. It also enables you to sync users to applications.
 ---
 
 
-This Identity Lifecycle Management (ILM) pack enables you to provision users from Workday into Active Directory and/or Okta by performing management operations like creating, updating and deleting users. Read these instructions carefully to first understand the workflows that this pack executes and understand how it must be implemented..
+The Identity Lifecycle Management (ILM) pack enables 2 flows. 
+- [User provisioning](#user-provisioning) - Provision users from Workday into Active Directory and/or Okta.
+- [App sync](#app-sync) - Synch users in Okta to applications.
 
-## Workday Reports
+User provisioning can be used by itself, but it is a prerequisite for the app sync flow.
+
+Read the instructions for each flow carefully to first understand the workflows that this pack executes and understand how it must be implemented. 
+
+
+## User Provisioning
+
+ The ILM pack enables you to provision users from Workday into Active Directory and/or Okta by performing management operations like creating, reading, updating and deleting users. 
+
+### Workday Reports
 
 HR uses Workday to manage operations for employees in the organization. It is standard practice for HR to generate reports for these maintenance operations. For example, running a weekly report that captures all new employees and terminated employees, or a daily report that captures updates to existing employee profiles (e.g., new mailing address or phone number).
 
@@ -19,7 +30,7 @@ Each report has a unique URL, which you enter in the Workday Report URL instance
 The Workday integration creates an IAM-Sync-User incident for each user profile that is in the report.. This incident runs the IAM - Sync User playbook and provisions the user into the rest of the configured integrations. The playbook determines the management (create, read, update, or delete/disable) operations that need to be done according to the data retrieved from the Workday report. 
 For example, if a new employee joins the company, the playbook changes the incident type to IAM-New-Hire, and runs a Create operation across the supported IAM integrations. Similarly, if an employee is terminated in Workday, the playbook changes the incident type to IAM-Terminate-User, and a Disable operation runs in the supported IAM integrations. 
 
-## Pack Workflows
+### User Provisioning Workflow
 
 The following table shows the supported Workday operations and their corresponding XSOAR commands, which are executed in the pack playbooks.
 
@@ -33,11 +44,11 @@ The following table shows the supported Workday operations and their correspondi
 | User rehire | iam-enable-user |  
  --- 
 
-## Before You Start
+### Before You Start - User Provisioning
 
 The logic of the playbooks in the ILM pack, which determine how they execute, is determined by the employment data ingested from the Workday integration.
 
-There are several custom fields that must be populated with specific values in order for the playbooks to execute the correct management operations. If your current Workday instance does not include these fields and values, you will need to add them to the instance
+There are several custom fields that must be populated with specific values in order for the playbooks to execute the correct management operations. If your current Workday instance does not include these fields and values, you will need to add them to the instance.
 
 The following table lists these fields, what they are used for in Cortex XSOAR, and the valid values the fields accept.
 
@@ -52,21 +63,22 @@ The following table lists these fields, what they are used for in Cortex XSOAR, 
 
 - Ensure that you have a Mail sender integration for sending email notifications.
 
-## Pack Configurations
+### Pack Configurations
 
-Cortex XSOAR stores all of employee information as User Profile indicators. User Profiles have many fields out-of-the-box, which hold data about the employee. 
+Cortex XSOAR stores all employee information as User Profile indicators. User Profiles have many fields out-of-the-box, which hold data about the employee. 
 
-*Note* The User Profiles are initially created when the Workday integration fetches incidents. User profiles for users that are added to Workday after this initial fetch are created by the IAM-Sync User playbook. 
+**Note:** The User Profiles are initially created when the Workday integration fetches incidents. User profiles for users that are added to Workday after this initial fetch are created by the IAM-Sync User playbook. 
 
 The User Profiles are constantly synchronized with Workday, so that when a change to a user comes from a Workday report, the integration creates an incident, triggering a change in the rest of the apps used in the organization, and updating the User Profile indicator.
 
 This pack requires that you configure the following content items in the order listed.
-Playbook configuration (inputs and outputs)
-Indicator and Incident fields and mappers. You only need to configure these if you are adding custom fields.
-Integration configurations
-### Playbooks
 
-1. IAM - Sync User
+1. Playbook configuration (inputs and outputs)
+2. Indicator and Incident fields and mappers. You only need to configure these if you are adding custom fields.
+3. Integration configurations
+#### Playbooks
+
+IAM - Sync User: 
 Under the inputs for the IAM-Sync- User playbook, make sure you configure values for the ITNotificationEmail and ServiceDeskEmail inputs. 
 
 1. Navigate to *Playbooks* and locate that IAM - Sync User playbook.  
@@ -74,7 +86,7 @@ Under the inputs for the IAM-Sync- User playbook, make sure you configure values
 ITNotificationEmail - used to receive notifications about any errors in the provisioning process.
 ServiceDeskEmail - used to receive initial temporary passwords for new hires to prepare employee laptops, etc.
 
-### Fields and Mappers
+#### Fields and Mappers
 
 The mappers that are provided out-of-the-box work with the assumption that you did not add any fields. 
 
@@ -82,7 +94,7 @@ If you want to add fields, follow the steps in the following Example section.
 
 1. Add the field to the mappers for the Workday, Okta, and Active Directory integrations. 
 
-   **Note** To change the mappers, you will need to duplicate each mapper. 
+   **Note:** To change the mappers, you will need to duplicate each mapper. 
 
    Ensure that you are adding the fields to the relevant incident types within each mapper.
 
@@ -91,7 +103,7 @@ If you want to add fields, follow the steps in the following Example section.
 
 2. Reconfigure each integration to use the duplicated mappers you created.
 
-#### Example
+##### Example
 
 The following is an example of the flow when adding a field to work with the ILM content pack. This does not presume to cover all possible scenarios.
 
@@ -160,10 +172,76 @@ The following is an example of the flow when adding a field to work with the ILM
 
 ### Integrations
 
-1. Workday ILM integration (link to the integration docs).
-*Note* Before running the Workday integration, ensure that you have added the fields in Workday as instructed in Before You Start.
-1. IAM-compatible integrations. These integrations support execution of the generic ILM management operations.
+- Workday ILM integration (link to the integration docs).
+**Note:** Before running the Workday integration, ensure that you have added the fields in Workday as instructed in Before You Start.
+- IAM-compatible integrations. These integrations support execution of the generic ILM management operations.
 
     - Workday - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/workday-iam)
     - Active Directory - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/active-directory-query-v2)
     - Okta - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/okta-iam)
+
+## App Sync
+
+The app-sync feature provides automated app provisioning in applications (such as ServiceNow, GitHub, and Slack) for users created in Okta.
+
+### App Sync Process
+
+The app-sync process starts when a user is assigned to an application in Okta, or when a user is part of a group that was assigned to an application in Okta. 
+
+The **Okta IAM** integration fetches events, such as *application.user_membership.add* and *application.user_membership.remove*, and creates *IAM - App Sync* incidents which run the **IAM - App Sync** playbook. The playbook uses a Cortex XSOAR list that maps Okta App IDs to integration instances in Cortex XSOAR. The playbook determines which instance to sync the user to, and runs either the ***iam-create-user*** or ***iam-disable-user*** command depending on the event type.
+
+### Before You Start
+
+Before using the app-sync feature with Okta, you need to perform the [initial synchronization of users from Workday into XSOAR User Profiles](#user-provisioning).
+
+### Pack Configurations
+
+To trigger the app-sync *IAM App Add* and *IAM App Remove* incident types, you need to configure an [Okta IAM integration](#okta-iam-integration) to fetch incidents. Before enabling the integration, create an [IAM Configuration](#iam-configuration) incident from which to make connections between Okta applications and IAM integration instances. When a user is added to or removed from a connected Okta application, XSOAR will call the relevant management command from its connected IAM instance in XSOAR.
+
+
+#### Okta IAM integration
+Configure the following information in your Okta IAM integration instance.
+
+| Field | Value | Notes |
+| ---- | ----| ----|
+| Classifier | Okta IAM - App Sync | Select this from the drop-down list and not the textbox configuration, where “User Profile - Okta (Incoming)” and “User Profile - Okta (Outgoing)” should be. |
+| Mapper | Okta IAM - App Sync | Select this from the drop-down list and not the textbox configuration, where “User Profile - Okta (Incoming)” and “User Profile - Okta (Outgoing)” should be. |
+| Fetch Query Filter | “eventType eq "application.user_membership.add" or eventType eq "application.user_membership.remove" | This allows Okta to fetch app assignment events (both add and remove events). |
+| Fetches incidents | Select this option. | |
+| Automatically creates a user if not found in the update command | Select this option | |
+
+
+
+
+#### IAM Configuration 
+
+The appsync process requires that you have a mapping of Okta App IDs to Cortex XSOAR integration instance names. This mapping allows you to decide what app assignments trigger the creation or removal of users in which instance.
+
+For example, you may have an Okta App ID “0oau408dvkn96MwHc0h3” and want to map it to the **ServiceNow_Users_Instance1** so that every time a user is assigned to an app that has this App ID, a user will be created in ServiceNow using the generic IAM commands in Cortex XSOAR.
+
+Configuring the app-sync settings is a one-time configuration that you can do using an out-of-the-box dedicated incident type. Create an incident of type **IAM - Configuration** and fill in the Okta App IDs and your Cortex XSOAR integration instance names in the relevant grid field.
+
+![Okta IDs](../../../docs/doc_imgs/reference/iam_configuration.png)
+
+
+You can obtain the Okta App ID from the URL when viewing an app in Okta:
+
+![Okta IDs](../../../docs/doc_imgs/reference/okta_ids.png)
+
+You can obtain the app integration instance name from the integration page in Cortex XSOAR:
+
+![Instance Name](../../../docs/doc_imgs/reference/instance_name.png)
+
+
+By creating this incident and filling the app and instance information, a configuration will be saved in the integration context. This is transparent to the user. Then you will be able to use the ***okta-iam-get-configuration*** command to view the configuration and use it in playbooks at any time. Note that you will have to use the *using* parameter with the correct instance name of Okta in which you made the configuration.
+
+
+#### IAM - App Sync playbook
+This playbook contains error handling tasks where a user is assigned to review the incident if app-sync fails for any reason. You can assign a user to the incident using the playbook inputs. If you want, you can configure the *UserRoleToAssignForFailures*, *UserAssignmentMethod*, and *AssignOnlyOnCall* playbook inputs according to your needs. Otherwise, a user will be randomly assigned.
+
+### Integrations
+
+ Okta IAM - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/okta-iam)
+
+
+
