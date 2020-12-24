@@ -14,7 +14,7 @@ When an email is sent to the email address configured in your email integration,
 
 If the email is in response to an existing incident, an 8-digit number will appear next to the subject of the email, for example <93075875> Incident1.
 
-The pre-process script searches for the 8-digit number in the subject of the email to link to the incident. 
+The pre-process script searches for '#' followed by an incident id, for example, #1234, in the subject of the email to link to the incident. 
 
 If there is no 8-digit number in the subject of the email or if the pre-process rule is unable to locate the 8-digit number, a new incident is created and a random 8-digit number is generated for the incident. 
 
@@ -60,11 +60,11 @@ There are 3 interactive sections in which you can specify 1 or more email addres
 
 ![Layout](https://raw.githubusercontent.com/demisto/content/84e7bc89c8757544804540e6711d4b9aba210ec1/Packs/EmailCommunication/doc_files/Email_Communication_layout.png)
 
-You can use the layout as-is for email communication. It can also be used for new incident types by adding the **Email Communication** layout to an incident type. See [Add the Email Communication Layout to an Incident Type](#add-the-email-communication-layout-to-an-incident-type) for details. 
+You can use the layout as-is for email communication. It can also be used for new email incident types by adding the **Email Communication** layout to an incident type. See [Add the Email Communication Layout to an Incident Type](#add-the-email-communication-layout-to-an-incident-type) for details. 
  
 >**Important:** 
 - In order to add CC recipients or an attachment to the email reply, you must select the *Show empty fields* checkbox. 
-- You need to customize the *service_mail* parameter in the **Send Reply** button with the mailbox from which emails are sent. See **Customize the Send Reply Button** below.
+- You must customize the *service_mail* parameter in the **Send Reply** button with the mailbox from which emails are sent. See [Customize *service_mail* Parameter in the **Send Reply** Button](#customize-*service_mail-parameter-in-the-**send-reply**-button).
 
 
 | Layout sections | Description |
@@ -81,7 +81,7 @@ You can use the layout as-is for email communication. It can also be used for ne
  
 ## Before You Start
 
-This pack requires that you must have active instances of both a mail listener and mail sender integration in order to send and receive emails. Configure either the [Gmail integration](https://xsoar.pan.dev/docs/reference/integrations/gmail)  or both the [EWS Mail Sender](https://xsoar.pan.dev/docs/reference/integrations/ews-mail-sender) and [EWS V2](https://xsoar.pan.dev/docs/reference/integrations/ews-v2) integrations. In addition, configure the Demisto REST API integration which requires a Demisto API key.
+This pack requires that you must have active instances of both a mail listener and mail sender integration in order to send and receive emails, and an active instance of the Demisto REST API integration. Configure either the [Gmail integration](https://xsoar.pan.dev/docs/reference/integrations/gmail)  or both the [EWS Mail Sender](https://xsoar.pan.dev/docs/reference/integrations/ews-mail-sender) and [EWS V2](https://xsoar.pan.dev/docs/reference/integrations/ews-v2) integrations. In addition, configure the Demisto REST API integration which requires a Demisto API key.
 
 
 
@@ -97,9 +97,10 @@ If an EWS or Gmail instance is already configured for other incident types, crea
 
  
 ## Pack Configurations
-To get up and running with this pack: 
-- Create a pre-process rule that will link the emails to an existing incident.
-- Add the Email Communication layout to an incident type.
+To get up and running with this pack, you must do the following: 
+- [Create a pre-process rule that will link the emails to an existing incident](#pre-process-rule).
+- [Add the Email Communication Layout to an Incident Type](#add-the-email-communication-layout-to-an-incident-type).
+- [Customize the *service_mail* Parameter in the **Send Reply** Button](#customize-*service_mail*-parameter-in-the-**send-reply**-button).
 
 ### Pre-Process Rule
  
@@ -158,8 +159,9 @@ To edit a layout, you must duplicate the layout and then edit the copy.
   5. Click **Save**.
 
 
-**Customize the Send Reply Button**  
-You need to customize the *service_mail* parameter in the **Send Reply** button with the mailbox from which emails are sent.
+### Customize *service_mail* Parameter in the **Send Reply** Button 
+You must customize the *service_mail* parameter in the **Send Reply** button with the mailbox from which emails are sent.
+>**Important:** This step is required!
 1. Navigate to **Settings -> Advanced -> Layouts**.
 2. Select the layout you want to edit and click **Duplicate**.
 3. Click the duplicate layout.
