@@ -26,3 +26,6 @@ def test_get_link_for_ref_file():
     (name, url) = get_link_for_ref_file("http://localhost", f"{ROOT_DIR}/content-repo/extra-docs/integrations/syslog.md")
     assert name == "Syslog"
     assert url == "http://localhost/docs/reference/integrations/syslog"
+    (name, url) = get_link_for_ref_file("http://localhost", f"{ROOT_DIR}/content-repo/extra-docs/articles/IAM-premium-pack-readme.md")
+    assert name == "Identity Lifecycle Management (ILM)"
+    assert url == "http://localhost/docs/reference/articles/identity-lifecycle-management"
