@@ -3,9 +3,11 @@ id: conventions
 title: Pull Request Conventions
 ---
 
-If you open a GitHub Pull Request (PR) against the Cortex XSOAR [repository](https://github.com/demisto/content), a reviewer from the Content Team will be assigned and will accompany you in the process of getting your contribution released. We receive lots of contributions and, while our reviewers always stay on top of all the requests, we recommend you to check the PR updates often and, if you think the process is stalled, feel free to "ping" the assigned reviewer by adding a new comment to the PR with a [mention](https://github.blog/2011-03-23-mention-somebody-they-re-notified/) or reach out in the **#demisto-developers** channel on our [Slack Community](https://dfircommunity.slack.com).
+If you open a GitHub Pull Request (PR) against the Cortex XSOAR [repository](https://github.com/demisto/content), a reviewer from the Content Team will be assigned and will accompany you in the process of getting your contribution released.
 
-We value your contributions and want to make sure that your experience is smooth and easy and to reduce the amount of time and effort required to the minimum: in order to achieve it, we kindly ask for your support in following a few guidelines that will help.
+We receive lots of contributions and, while our reviewers always stay on top of all the requests, we recommend you to check the PR updates often and, if you think the process is stalled, feel free to "ping" the assigned reviewer by adding a new comment to the PR with a [mention](https://github.blog/2011-03-23-mention-somebody-they-re-notified/) or reach out in the **#demisto-developers** channel on our [Slack Community](https://dfircommunity.slack.com).
+
+We value your contributions and want to make sure that your experience is smooth and easy and to reduce the amount of time and effort required to the minimum: in order to achieve it, we kindly ask for your support in following a few guidelines that will help us.
 
 ## Pull Request Best Practices
 
@@ -22,7 +24,7 @@ Please use the following guidelines when working on the changes requested by our
 
     ![Pull Request Review Sections](../doc_imgs/contributing/pull_request_review.png)
 
-- When addressing the review's *conversations*, please do **NOT** mark them as resolved: just write **done** in a comment, so the reviewer can better keep track of them:
+- When addressing the review's *conversations*, please do **NOT** mark them as resolved: just write "**done**" in a comment, so the reviewer can better keep track of them:
 
     ![Resolve Conversation](../doc_imgs/contributing/resolve_conversation.png)
 
@@ -43,7 +45,7 @@ Everything should be green:
 
 ![Build Status Green](../doc_imgs/contributing/doc_status_green.png)
 
-If you have an error on a test, clickon the details link to open the CircleCI Build page:
+If you have an error on a test, click on the details link to open the CircleCI Build page:
 
 ![Build Status Red](../doc_imgs/contributing/doc_status_red.png)
 
@@ -51,4 +53,4 @@ Browse to the failed CircleCI section and try to find the error message (usually
 
 ![CircleCI Error](../doc_imgs/contributing/circleci_error.png)
 
-If the error is unclear or you are in doubt, add a comment to the PR to ask the reviewer or post a question in the **#demisto-developers** channel on [Slack](https://dfircommunity.slack.com) .
+If the error is unclear or you are in doubt, add a comment to the PR to ask the reviewer or post a question in the **#demisto-developers** channel on [Slack](https://dfircommunity.slack.com).
