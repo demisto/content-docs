@@ -36,8 +36,8 @@ The commit hooks of the repository should automatically run several commands loc
 We also have CircleCI jobs that run automatically on your Pull Request after every push that validate the changes and run the same tests to make sure the contribution can be merged and become part of the content: you will see a few [GitHub Status Checks](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-status-checks) that help validate that your pull request is according to our standards.
 
 After you push changes, please come back to the Pull Request and check the status of the build after it's completed. Pay special attentions to the following checks:
-- ci/circleci: Run Unit Testing and Lint
-- ci/circleci: Run Validations
+- ci/circleci: **Run Unit Testing and Lint**
+- ci/circleci: **Run Validations**
 
 Everything should be green:
 
@@ -47,7 +47,7 @@ If you have an error on a test, clickon the details link to open the CircleCI Bu
 
 ![Build Status Red](../doc_imgs/contributing/doc_status_red.png)
 
-Browse to the failed CircleCI section and try to find the error message (usually in red): it's often something easy to understand and to fix, as in the following example;
+Browse to the failed CircleCI section and try to find the error message (usually in red). It's often something easy to understand and to fix, as in the following screenshot:
 
 ![CircleCI Error](../doc_imgs/contributing/circleci_error.png)
 
