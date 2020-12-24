@@ -9,7 +9,7 @@ Contributing allows you to make the content that you build on Cortex XSOAR avail
 
 All the free content (i.e. everything excluding Paid Content Packs) is open source and lives in the Cortex XSOAR [GitHub Repository](https://github.com/demisto/content), with a MIT license.
 
-In order to setup a developing environment that will help you create your content, you can use the [Set Up Your Dev Environment](..tutorials/tut-setup-dev#the-tutorial-starts-here) tutorial. The tutorial contains several parts including an elaborated process, you don't have to complete the entire tutorial you can just use it as a guide and to get real examples.
+In order to setup a developing environment that will help you create your content, you can use the [Set Up Your Dev Environment](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#the-tutorial-starts-here) tutorial. The tutorial contains several parts including an elaborated process, you don't have to complete the entire tutorial you can just use it as a guide and to get real examples.
 
 After you have created your content, you must submit your content for our team to review and approve.
 
@@ -27,7 +27,7 @@ Before proceeding, sure to check the content contribution [checklist](../contrib
 In order to be able to submit a Pull Request to the Cortex XSOAR [GitHub Repository](https://github.com/demisto/content), you need to:
 
 - Have a [GitHub](https://github.com) account that you'll use to create the fork and open the Pull Request.
-- Create a fork of the repo in your own Github account. You can follow the instruction described [GitHub docs](https://guides.github.com/activities/forking/) or follow this steps in the [following tutorial](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-2-fork-the-github-repo).
+- Create a fork of the repo in your own Github account. You can follow the instruction described [GitHub docs](https://guides.github.com/activities/forking/) and use the examples from the [Development environment tutorial](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-2-fork-the-github-repo).
 - If you're an XSOAR partner, have your `partner-id` (this should have been communicated to you over the onboarding emails from the Alliance team).
 - Join our our [Slack DFIR Community](https://www.demisto.com/community/), this is the place to ask questions, consult about use-case and raise issues regarding the Cortex XSOAR platform (use the `#demisto-developers` channel).
 - Design Document: we encourage you to prepare a Design Document that describes the capabilities of your Pack. Usually it's a Google Doc shared with you by the Alliances team. Click [here](https://docs.google.com/document/d/1wETtBEKg37PHNU8tYeB56M1LE314ux086z3HFeF_cX0) to see a compiled example of a Design Document.
