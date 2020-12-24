@@ -86,11 +86,16 @@ While it's possible to have multiple integrations in a single Content Pack, we g
 
 If you are planning to create a new Integration that [fetches incidents](../integrations/fetching-incidents) from a third party system, it is recommended that you create a few additional items and add them to your Content Pack:
 - **Incident Types**: Cortex XSOAR ships with a number of out of the box Incident Types, however it is recommended to create one or more Incident Types that are specific to the product you are creating incidents from. More [info](../incidents/incident-types).
+
 - **Incident Fields**: Product-specific fields are important to create a data model that is relevant to the incident type you have created. More [info](../incidents/incident-fields). All of the incident fields should be associated only to the incident type you have created, and their name should be prefixed accordingly to indicate it.
+
 - **Layouts**: As you create new Incident Types with dedicated Fields, it's a good practice to define layouts to visualize them in the Cortex XSOAR UI so that the right data is immediately visible to the analyst. More [info](../incidents/incident-customize-incident-layout).
+
 - A **Classifier**, that is used to determine how an incoming incident retrieved by your integration is associated to a specific Incident type. More [info](../incidents/incident-classification-mapping).
+
 - A **Mapper**: after the incoming incident is associated by the Classifier to an Incident Type, the Mapper determines how the raw data from the incoming incident JSON is mapped to the specific Incident Fields. More [info](../incidents/incident-classification-mapping#map-event-attributes-to-fields).
-- Playbook: we also recommend to create a Playbook, associated with the new Incident Type, that performs some minimal activity such as enrichment or additional triage of the incident. For example, check out the [Handle Hello World Alert](https://xsoar.pan.dev/docs/reference/playbooks/handle-hello-world-alert) playbook.
+
+- **Playbooks**: we also recommend to create a Playbook, associated with the new Incident Type, that performs some minimal activity such as enrichment or additional triage of the incident. For example, check out the [Handle Hello World Alert](https://xsoar.pan.dev/docs/reference/playbooks/handle-hello-world-alert) playbook.
 
 More details about the incident lifecycle in Cortex XSOAR are available [here](../incidents/incident-xsoar-incident-lifecycle).
 
@@ -354,7 +359,9 @@ To avoid reinventing the wheel every time, we provide a number of out-of-the-box
 
 Playbooks are triggered in three different ways:
 - by incidents: determine what XSOAR Incident Types should trigger the playbook. Do they already exist or you need to create a new **Incident Type** as part of your contribution?
+
 - by indicator query: you can trigger Playbooks based on a query on the indicator store. If so, determine what the query is (i.e. all IP indicators retrieved from a particular feed). Are there new **Indicator Types** that must be created as part of the contribution or the out of the box ones suffice?
+
 - as a subplaybook: the playbook is meant to be invoked by a parent one. In this case you need to determine what [Inputs and Outputs](../playbooks/playbooks-inputs-outputs) you want your playbook to support and think about default values.
 
 ### Generic Polling
