@@ -188,6 +188,7 @@ const sidebars = {
       collapsed: true,
       items: [
             "tutorials/tut-setup-dev",
+            "tutorials/tut-design",
             "tutorials/tut-integration-ui"            
         ]
     },
