@@ -45,7 +45,7 @@ def get_modified_files():
 
 def get_front_matter_data(file: str):
     with open(file, "r") as f:
-        head = f.read(256)
+        head = f.read(4096)
     front_matter_match = re.match(r'---\n(.*?)\n---', head, re.DOTALL)
     if not front_matter_match:
         raise ValueError(f'No front matter. Doc file: {file}')
