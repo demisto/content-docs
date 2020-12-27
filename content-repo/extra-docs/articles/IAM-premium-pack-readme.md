@@ -1,3 +1,4 @@
+
 ---
 id: identity-lifecycle-management
 title: Identity Lifecycle Management (ILM)
@@ -73,18 +74,21 @@ The User Profiles are constantly synchronized with Workday, so that when a chang
 
 This pack requires that you configure the following content items in the order listed.
 
-1. Playbook configuration (inputs and outputs)
+1. Playbook configuration (inputs)
 2. Indicator and Incident fields and mappers. You only need to configure these if you are adding custom fields.
 3. Integration configurations
 #### Playbooks
 
 IAM - Sync User: 
-Under the inputs for the IAM-Sync- User playbook, make sure you configure values for the ITNotificationEmail and ServiceDeskEmail inputs. 
+Under the inputs for the IAM - Sync User playbook, make sure you configure values for the ITNotificationEmail and ServiceDeskEmail inputs, as well as the TerminateOnLastDayOfWork, Timezone and DateFormat inputs.
 
 1. Navigate to *Playbooks* and locate that IAM - Sync User playbook.  
 1. Click *Playbook Triggered* and insert values for the following inputs:
 ITNotificationEmail - used to receive notifications about any errors in the provisioning process.
 ServiceDeskEmail - used to receive initial temporary passwords for new hires to prepare employee laptops, etc.
+TerminateOnLastDayOfWork - determines whether termination of employees goes into effect on their last day of work, or on their termination day. By default, employees are terminated on their termination day.
+Timezone - The time zone used when referring to employee termination date, last day of work, hire date and so on. This should be the time zone that is used in the employee Workday reports. The time zone you choose affects the way that the playbooks treat dates for the employee. For example, if your chosen time zone is "America/Los_Angeles" and an employee should be terminated on November 5th at 23:59, then only when it's November 5th and 23:59 in Los Angeles - termination will occur.
+DateFormat - the format in which the dates in employee Workday reports are represented. For example, if employee's hire date appears like this: 06/15/2020, then your value for the DateFormat input should be %m/%d/%Y.
 
 #### Fields and Mappers
 
@@ -188,7 +192,7 @@ The app-sync feature provides automated app provisioning in applications (such a
 
 The app-sync process starts when a user is assigned to an application in Okta, or when a user is part of a group that was assigned to an application in Okta. 
 
-The **Okta IAM** integration fetches events, such as *application.user_membership.add* and *application.user_membership.remove*, and creates *IAM - App Sync* incidents which run the **IAM - App Sync** playbook. The playbook uses a Cortex XSOAR list that maps Okta App IDs to integration instances in Cortex XSOAR. The playbook determines which instance to sync the user to, and runs either the ***iam-create-user*** or ***iam-disable-user*** command depending on the event type.
+The **Okta IAM** integration fetches events, such as *application.user_membership.add* and *application.user_membership.remove*, and creates *IAM - App Sync* incidents which run the **IAM - App Sync** playbook. The playbook uses the integration context (that is transparent to the user) of Okta instance, which maps Okta App IDs to integration instances in Cortex XSOAR, in order to determine which instance to sync the user to. It then runs either the ***iam-create-user*** or ***iam-disable-user*** command, depending on the fetched event type.
 
 ### Before You Start
 
@@ -196,7 +200,7 @@ Before using the app-sync feature with Okta, you need to perform the [initial sy
 
 ### Pack Configurations
 
-To trigger the app-sync *IAM App Add* and *IAM App Remove* incident types, you need to configure an [Okta IAM integration](#okta-iam-integration) to fetch incidents. Before enabling the integration, create an [IAM Configuration](#iam-configuration) incident from which to make connections between Okta applications and IAM integration instances. When a user is added to or removed from a connected Okta application, XSOAR will call the relevant management command from its connected IAM instance in XSOAR.
+To trigger the app-sync *IAM - App Add* and *IAM - App Remove* incident types, you need to configure an [Okta IAM integration](#okta-iam-integration) to fetch incidents. Before enabling the integration, create an [IAM Configuration](#iam-configuration) incident from which to make connections between Okta applications and IAM integration instances. When a user is added to or removed from a connected Okta application, XSOAR will call the relevant management command from its connected IAM instance in XSOAR.
 
 
 #### Okta IAM integration
@@ -215,11 +219,11 @@ Configure the following information in your Okta IAM integration instance.
 
 #### IAM Configuration 
 
-The appsync process requires that you have a mapping of Okta App IDs to Cortex XSOAR integration instance names. This mapping allows you to decide what app assignments trigger the creation or removal of users in which instance.
+The app-sync process requires that you have a mapping of Okta App IDs to Cortex XSOAR integration instance names. This mapping allows you to decide what app assignments trigger the creation or removal of users in which instance.
 
 For example, you may have an Okta App ID “0oau408dvkn96MwHc0h3” and want to map it to the **ServiceNow_Users_Instance1** so that every time a user is assigned to an app that has this App ID, a user will be created in ServiceNow using the generic IAM commands in Cortex XSOAR.
 
-Configuring the app-sync settings is a one-time configuration that you can do using an out-of-the-box dedicated incident type. Create an incident of type **IAM - Configuration** and fill in the Okta App IDs and your Cortex XSOAR integration instance names in the relevant grid field.
+Configuring the app-sync settings is a one-time configuration that you can do using an out-of-the-box dedicated incident type. Create an incident of type **IAM - Configuration** and fill in the Okta App IDs and your Cortex XSOAR integration instance names in the relevant fields.
 
 ![Okta IDs](../../../docs/doc_imgs/reference/iam_configuration.png)
 
@@ -233,7 +237,7 @@ You can obtain the app integration instance name from the integration page in Co
 ![Instance Name](../../../docs/doc_imgs/reference/instance_name.png)
 
 
-By creating this incident and filling the app and instance information, a configuration will be saved in the integration context. This is transparent to the user. Then you will be able to use the ***okta-iam-get-configuration*** command to view the configuration and use it in playbooks at any time. Note that you will have to use the *using* parameter with the correct instance name of Okta in which you made the configuration.
+By creating this incident and filling the app and instance information, a configuration will be saved in the integration context. This is transparent to the user. Then you will be able to use the ***okta-iam-get-configuration*** command to view the configuration and use it in playbooks at any time. Note that when using the aforementioned command, you will have to use the *using* parameter with the correct instance name of Okta in which you made the configuration.
 
 
 #### IAM - App Sync playbook
@@ -242,6 +246,3 @@ This playbook contains error handling tasks where a user is assigned to review t
 ### Integrations
 
  Okta IAM - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/okta-iam)
-
-
-
