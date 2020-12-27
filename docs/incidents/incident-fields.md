@@ -8,7 +8,7 @@ Incident Fields are used for accepting or populating incident data coming from i
 
 Screenshot of the `Search in` options in the Marketplace browsing screen:
 
-<img src="../doc_imgs/incidents/incident-fields-search.png" width="300">
+<img src="../doc_imgs/incidents/incident-fields-search.png" width="300" ></img>
 
 You can set and update all system incident fields using the `setIncident` command, of which each field is a command argument.
 
