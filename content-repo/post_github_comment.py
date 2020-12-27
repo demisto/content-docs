@@ -40,7 +40,7 @@ def get_post_url():
 def get_modified_files():
     files = subprocess.check_output(['git', 'diff', '--name-only', 'origin/master...HEAD', '--', 'docs', 'content-repo/extra-docs/'],
                                     text=True, cwd=ROOT_DIR)
-    return files.splitlines()
+    return [line for line in files.splitlines() if line.lower().endswith('.md')]
 
 
 def get_front_matter_data(file: str):
