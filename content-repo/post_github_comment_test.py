@@ -17,6 +17,9 @@ def test_get_link_for_doc_file():
     (name, url) = get_link_for_doc_file("http://localhost", f"{ROOT_DIR}/docs/integrations/code-conventions.md")
     assert name == "Python Code Conventions"
     assert url == "http://localhost/docs/integrations/code-conventions"
+    (name, url) = get_link_for_doc_file("http://localhost", f"{ROOT_DIR}/docs/incidents/incident-fields.md")
+    assert name == "Working with Incident Fields"
+    assert url == "http://localhost/docs/incidents/incident-fields"
 
 
 def test_get_link_for_ref_file():
