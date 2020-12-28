@@ -40,7 +40,7 @@ def get_post_url():
 def get_modified_files():
     files = subprocess.check_output(['git', 'diff', '--name-only', 'origin/master...HEAD', '--', 'docs', 'content-repo/extra-docs/'],
                                     text=True, cwd=ROOT_DIR)
-    return files.splitlines()
+    return [line for line in files.splitlines() if line.lower().endswith('.md')]
 
 
 def get_front_matter_data(file: str):
@@ -77,10 +77,14 @@ def get_link_for_ref_file(base_url: str, file: str):
 def get_modified_links(base_url: str):
     links: List[Tuple[str, str]] = []
     for f in get_modified_files():
-        if f.startswith('docs'):
-            links.append(get_link_for_doc_file(base_url, f))
-        else:
-            links.append(get_link_for_ref_file(base_url, f))
+        try:
+            if f.startswith('docs'):
+                links.append(get_link_for_doc_file(base_url, f))
+            else:
+                links.append(get_link_for_ref_file(base_url, f))
+        except Exception as ex:
+            print(f'Failed getting modified link for file: {f}. Exception: {str(ex)}')
+            traceback.print_exc()
     return links
 
 
