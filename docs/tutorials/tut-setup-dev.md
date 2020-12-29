@@ -374,7 +374,7 @@ Packages FAIL: 0
 
 Note that the tests run within a Docker container so, if everything worked well, it means that your development environment is up and running correctly!
 
-### Step 6: Create a branch and integration directory
+### Step 6: Create a branch 
 
 The [Git Flow](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests) requires to create a *branch* with your new code, that you will later use to submit a *Pull Request*. This tutorial doesn't mean to be an exhaustive guide on how to use `git`: its purpose is just to make sure that you have all the requirements and tools in place to successfully develop a Cortex XSOAR Integration.
 
@@ -384,12 +384,11 @@ In order to create a branch, use the  `git checkout -b [branch_name]` command, w
 (venv) sb@dddd:~/demisto/content$ git checkout -b my_integration_name
 Switched to a new branch 'my_integration_name'
 ```
-
-Now, use `demisto-sdk` to create a directory under `Packs/<Your pack name>`, named after your product where you will put all your content files later, and add it to the staged changes in `git`.  
+### Step 7: Your integration directory
+Create a directory under `Packs/<Your pack name>` named after your product where you will put all your content files later, and add it to the staged changes in `git`. Make sure you use **PascalCase** in the directory name (i.e. `MyIntegration`). 
 For more description regarding what exactly a pack is please click [here](../integrations/packs-format). 
 
-Make sure you use **PascalCase** in the directory name (i.e. `MyIntegration`), you can create a Pack and an Integration directory using the `demisto-sdk init` command.
-
+You can create a Pack and an Integration directory using the `demisto-sdk init` command.
 An example of creating a pack called `MyNewPack`, with an integration called `MyIntegration`, and with the metadata file created automatically: 
 ```bash
 ➜  content-docs2 git:(add-pack-and-sdk-docs) ✗ demisto-sdk init --pack 
@@ -446,7 +445,7 @@ Finished creating integration: MyNewPack/Integrations/test.
 
 ```
 
-### Step 7: Commit and push
+### Step 8: Commit and push
 
 The last step is to `commit` your changes and `push` them to the *origin* in order to make sure that the pre-commit checks work fine.
 
