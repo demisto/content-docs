@@ -384,7 +384,7 @@ In order to create a branch, use the  `git checkout -b [branch_name]` command, w
 (venv) sb@dddd:~/demisto/content$ git checkout -b my_integration_name
 Switched to a new branch 'my_integration_name'
 ```
-### Step 7: Your integration directory
+### Step 7: Create your integration directory
 Create a directory under `Packs/<Your pack name>` named after your product where you will put all your content files later, and add it to the staged changes in `git`. Make sure you use **PascalCase** in the directory name (i.e. `MyIntegration`). 
 For more description regarding what exactly a pack is please click [here](../integrations/packs-format). 
 
