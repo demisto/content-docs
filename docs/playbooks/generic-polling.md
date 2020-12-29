@@ -57,3 +57,8 @@ The polling is done only once the result is `finished`. The dt filter will retur
 * Does not run from **playground**.
 * Polling command must support list argument.
 ![image](../doc_imgs/playbooks/66293071-7d168880-e8ee-11e9-9d55-e8ae1e09fe0e.png)
+
+## Troubleshooting
+* **Playbook is "stuck" on `Waiting for polling to complete`:** Since generic polling schedule tasks outsode the context of the playbook (not visible in the playbook run), a lot of errors appear only in the War Room. Go to the incident War Room and check for errors or warnings related to GenericPolling tasks.
+* **GenericPolling task is completed but status is still not "finished":** If the timeout was reached, the playbook will succesfully finish even if there are still items that are not completed. Try increasing the timeout value for the GenericPolling task.
+
