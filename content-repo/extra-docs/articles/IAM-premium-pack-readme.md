@@ -80,15 +80,15 @@ This pack requires that you configure the following content items in the order l
 #### Playbooks
 
 IAM - Sync User: 
-Under the inputs for the IAM - Sync User playbook, make sure you configure values for the ITNotificationEmail and ServiceDeskEmail inputs, as well as the TerminateOnLastDayOfWork, Timezone and DateFormat inputs.
+Under the inputs for the IAM - Sync User playbook, make sure you configure values for the ITNotificationEmail and ServiceDeskEmail inputs, as well as the TerminateOnLastDayOfWork, Timezone, and DateFormat inputs.
 
 1. Navigate to *Playbooks* and locate that IAM - Sync User playbook.  
 1. Click *Playbook Triggered* and insert values for the following inputs:
 ITNotificationEmail - used to receive notifications about any errors in the provisioning process.
 ServiceDeskEmail - used to receive initial temporary passwords for new hires to prepare employee laptops, etc.
 TerminateOnLastDayOfWork - determines whether termination of employees goes into effect on their last day of work, or on their termination day. By default, employees are terminated on their termination day.
-Timezone - The time zone used when referring to employee termination date, last day of work, hire date and so on. This should be the time zone that is used in the employee Workday reports. The time zone you choose affects the way that the playbooks treat dates for the employee. For example, if your chosen time zone is "America/Los_Angeles" and an employee should be terminated on November 5th at 23:59, then only when it's November 5th and 23:59 in Los Angeles - termination will occur.
-DateFormat - the format in which the dates in employee Workday reports are represented. For example, if employee's hire date appears like this: 06/15/2020, then your value for the DateFormat input should be %m/%d/%Y.
+Timezone - The time zone used when referring to employee termination date, last day of work, hire date, and so on. This should be the time zone that is used in the employee Workday reports. The time zone you choose affects the way that the playbooks treat dates for the employee. For example, if your chosen time zone is "America/Los_Angeles" and an employee should be terminated on November 5th at 23:59, then only when it's November 5th and 23:59 in Los Angeles will the termination occur.
+DateFormat - the format in which the dates in employee Workday reports are represented. For example, if an employee's hire date appears like this: 06/15/2020, then the value for the DateFormat input should be %m/%d/%Y.
 
 #### Fields and Mappers
 
@@ -192,7 +192,7 @@ The app-sync feature provides automated app provisioning in applications (such a
 
 The app-sync process starts when a user is assigned to an application in Okta, or when a user is part of a group that was assigned to an application in Okta. 
 
-The **Okta IAM** integration fetches events, such as *application.user_membership.add* and *application.user_membership.remove*, and creates *IAM - App Sync* incidents which run the **IAM - App Sync** playbook. The playbook uses the integration context (that is transparent to the user) of Okta instance, which maps Okta App IDs to integration instances in Cortex XSOAR, in order to determine which instance to sync the user to. It then runs either the ***iam-create-user*** or ***iam-disable-user*** command, depending on the fetched event type.
+The **Okta IAM** integration fetches events, such as *application.user_membership.add* and *application.user_membership.remove*, and creates *IAM - App Sync* incidents which run the **IAM - App Sync** playbook. The playbook uses the integration context (that is transparent to the user) of the Okta instance, which maps Okta App IDs to integration instances in Cortex XSOAR, in order to determine which instance to sync the user to. It then runs either the ***iam-create-user*** or ***iam-disable-user*** command, depending on the fetched event type.
 
 ### Before You Start
 
@@ -237,7 +237,7 @@ You can obtain the app integration instance name from the integration page in Co
 ![Instance Name](../../../docs/doc_imgs/reference/instance_name.png)
 
 
-By creating this incident and filling the app and instance information, a configuration will be saved in the integration context. This is transparent to the user. Then you will be able to use the ***okta-iam-get-configuration*** command to view the configuration and use it in playbooks at any time. Note that when using the aforementioned command, you will have to use the *using* parameter with the correct instance name of Okta in which you made the configuration.
+By creating this incident and filling the app and instance information, a configuration will be saved in the integration context. This is transparent to the user. Then you will be able to use the ***okta-iam-get-configuration*** command to view the configuration and use it in playbooks at any time. Note that when using the ***okta-iam-get-configuration*** command, you will have to use the *using* parameter with the correct instance name of Okta in which you made the configuration.
 
 
 #### IAM - App Sync playbook
