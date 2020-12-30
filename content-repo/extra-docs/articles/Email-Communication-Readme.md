@@ -100,7 +100,7 @@ If an EWS or Gmail instance is already configured for other incident types, crea
 To get up and running with this pack, you must do the following: 
 - [Create a pre-process rule that will link the emails to an existing incident](#pre-process-rule).
 - [Add the Email Communication Layout to an Incident Type](#add-the-email-communication-layout-to-an-incident-type).
-- [Customize the *service_mail* Parameter in the **Send Reply** Button](#customize-*service_mail*-parameter-in-the-**send-reply**-button).
+- [Configure the *service_mail* parameter](#configure-the-*service_mail*-parameter).
 
 ### Pre-Process Rule
  
@@ -119,6 +119,8 @@ This pack requires that you configure a pre-process rule to link the email commu
 
 
 ![Preprocess-rule](https://raw.githubusercontent.com/demisto/content/84e7bc89c8757544804540e6711d4b9aba210ec1/Packs/EmailCommunication/doc_files/pre-process-rule.png)
+
+See the [(post-processing script documentation)](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/incidents/incidents-management/post-processing-for-incidents/create-a-post-processing-script.html) for additional information.
  
 ### Add the Email Communication Layout to an Incident Type
  
@@ -159,15 +161,17 @@ To edit a layout, you must duplicate the layout and then edit the copy.
   5. Click **Save**.
 
 
-### Customize *service_mail* Parameter in the **Send Reply** Button 
-You must customize the *service_mail* parameter in the **Send Reply** button with the mailbox from which emails are sent.
+### Configure the *service_mail* Parameter 
+You must configure the *service_mail* parameter.
 >**Important:** This step is required!
-1. Navigate to **Settings -> Advanced -> Layouts**.
-2. Select the layout you want to edit and click **Duplicate**.
-3. Click the duplicate layout.
-4. Click the **Send Reply** button.
-5. In the **service_mail** field in the Button Settings dialog box, enter the mailbox from which emails are sent.
-5. Click **Save**.
+1. Navigate to **Settings -> Advanced -> Automation**.
+2. Select the *SendEmailReply* automation and click the three vertical dots and select the **Detach Automation** option.
+3. Click **Detach** in the message that appears.
+3. In the *Script Setting* dialog box, expand the *Arguments* section. 
+3. Expand the *service_mail* argument and in the **Initial value** field enter the mailbox from which emails are sent.
+4. Click **Save**.
+5. Click the three vertical dots and select the **Reattach Automation** option.
+
 
 ## Testing the Pack
 After you configure the integrations and the pre-process rule, create an incident type and add the Email Communication layout to an incident type. Now test the pack to ensure that everything was configured correctly.
