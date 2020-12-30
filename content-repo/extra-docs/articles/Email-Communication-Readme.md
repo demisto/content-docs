@@ -120,7 +120,7 @@ This pack requires that you configure a pre-process rule to link the email commu
 
 ![Preprocess-rule](https://raw.githubusercontent.com/demisto/content/84e7bc89c8757544804540e6711d4b9aba210ec1/Packs/EmailCommunication/doc_files/pre-process-rule.png)
 
-See the [(post-processing script documentation)](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/incidents/incidents-management/post-processing-for-incidents/create-a-post-processing-script.html) for additional information.
+See [(pre-processing rules)](https://demisto.developers.paloaltonetworks.com/docs/incidents/incident-pre-processing) for additional information.
  
 ### Add the Email Communication Layout to an Incident Type
  
