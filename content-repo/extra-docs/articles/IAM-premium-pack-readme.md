@@ -1,4 +1,3 @@
-
 ---
 id: identity-lifecycle-management
 title: Identity Lifecycle Management (ILM)
