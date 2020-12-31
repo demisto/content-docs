@@ -56,7 +56,7 @@ Another important recommendation about this design phase, is not to necessarily 
 
 Now that you have an idea of what Use Cases you want to create, it's time to determine how they translate into a Cortex XSOAR contribution.
 
-All contributions are grouped in [Content Packs](../concepts/concepts#content-packs): the first think to understand is what you should create and add to your pack.
+All contributions are grouped in [Content Packs](../concepts/concepts#content-packs): the first thing to understand is what you should create and add to your pack.
 
 Depending on whether you are a Palo Alto Networks Technology Partner, an Individual Contributor, a Customer or an Enthusiast and depending on how you want your contribution to appear on the [Cortex XSOAR Marketplace](../partners/marketplace), the thoroughness and complexity of your final product will be different.
 
@@ -129,7 +129,7 @@ As a reference on how to properly fill a Design Document, check out the [Hello W
 
 If your contribution includes an Integration, it is very important to follow the Design Best Practices summarized [here](../concepts/design-best-practices): in this tutorial we will walk you through many of those topics in more detail.
 
-Integrations enable communications with third party APIs: in order for to get them accepted in the Cortex XSOAR Marketplace, they must function correctly, be properly [documented](../integrations/integration-docs) and perform well alongside the rest of the Content.
+Integrations enable communications with third party APIs: in order to get them accepted in the Cortex XSOAR Marketplace, they must function correctly, be properly [documented](../integrations/integration-docs) and perform well alongside the rest of the Content.
 
 ### Integration Design Questions
 
@@ -159,7 +159,7 @@ Even if XSOAR doesn't make any distinction, in this tutorial we group parameters
 These parameters determine how Cortex XSOAR connects to the third party API. 
 
 Usually there are at least two parameters:
- - **url**: the URL Cortex XSOAR should connect to. In case the API is SaaS and the URL is the same for all customers and is not going to change over time, you can omit this parameter and store the URL directly in the code. Some SaaS products need just the name of the tenant instead of the full URL (as they add the common suffix in the code). For example: `customer1.my-test-saas-service.info` and `customer2.my-test-sas-service.info`: in this case the input parameter could just be the name of the tenant (`customer1` or `customer2`).
+ - **url**: the URL Cortex XSOAR should connect to. In case the API is SaaS only and the URL is the same for all customers and is never going to change over time, you can omit this parameter and store the URL directly in the code. Some SaaS products have different urls based on the tenant name, for example `customer1.my-test-saas-service.info` and `customer2.my-test-saas-service.info`: in this case we still recommend to use the full url here and not just the tenant name (i.e. have the clients input `customer1.my-test-saas-service.info` and not just `customer1`).
 
  - **api_key**: usually credentials are needed to authenticate to the API you want to interact with. Many times this is in the form of an API Key, a secure quantity that gets stored in Cortex XSOAR and used in somewhere in your code (i.e. to populate HTTP headers) to craft the requests. Sometimes APIs use different authentication parameters: [credentials](../reference/articles/managing-credentials), tokens, client_id and client_secret combination, and so on. Make sure you capture all the required parameters that will allow a machine-to-machine authentication between Cortex XSOAR and your API.
  
@@ -179,15 +179,19 @@ If your integration [fetches incidents](../integrations/fetching-incidents), you
 
 Many products are very verbose, and can potentially generate lots of alerts of different types, with different level of severity. Each alert could have a status (i.e. `open` or `resolved`) as well as attributes.
 
-SOCs analysts might be interested only in a subset of the incoming Alerts, so when they configure your integration in Cortex XSOAR, they expect to find Parameters that allow them to filter and determine what alerts are going to generate incidents or discarded.
+SOC analysts might be interested only in a subset of the incoming Alerts, so when they configure your integration in Cortex XSOAR, they expect to find Parameters that allow them to filter and determine what alerts are going to generate incidents or discarded.
 
 Common filters for fetching incidents are:
+
  - **Maximum number of incidents per fetch** (parameter name must be: *max_fetch*): it's a good practice to limit the number of incidents you retrieve every time you fetch, in order to avoid overloading XSOAR by running lots of playbooks at the same time. Customers should be allowed to set this value as an integration parameter. Recommended default is 10 to 20, with a maximum 50.
+
  - **Severity**: many SOCs prefer to retrieve from third party systems only incident with specific severities, and do not import the lower severity ones. It's a common practice to let customers choose in the integration settings the severity of the incidents they want to retrieve (either using a multi-select, or a single-select where they specify the lowest severity level they are interested in).
 
  - **Type**: third party products typically generate different types of alerts/events/issues/incidents. Often SOCs are interested only in a specific subset of types they want to handle automatically through Cortex XSOAR. This integration setting should allow the end users to specify what types of alerts they are interested to fetch from the third party platform. If the types are of finite and known cardinality, we recommend to use a multi-select here: if they are not known up-front or change over time, we suggest to use a comma separated text input, with a link in the details to your product documentation where an up-to-date list of those types is presented.
 
-  - **First Fetch** (parameter name mist be: *first_fetch*): when customers configure the integration for the first time, they are usually interested to retrieve incidents that happened in the past. This common setting is used to specify how long back in time they want to go to retrieve incidents the first time. You can check the [HelloWorld](https://github.com/demisto/content/blob/master/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py) integration implementation code for more details.
+ - **First Fetch** (parameter name mist be: *first_fetch*): when customers configure the integration for the first time, they are usually interested to retrieve incidents that happened in the past. This common setting is used to specify how long back in time they want to go to retrieve incidents the first time. You can check the [HelloWorld](https://github.com/demisto/content/blob/master/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py) integration implementation code for more details.
+
+If the API you are integrating with also supports a query interface using free-form text (i.e. a specific query language implemented in the product), you can also add another parameter (usually called **query**) that will give the users more freedom to generate incidents in XSOAR based on a specific query: this gives more freedom to the users and supports more advanced use cases for your integration.
 
 There are additional required parameters for integrations that fetch incidents: you don't need to handle  them in your code, just make sure they are correctly defined in your integration yml file. The updated list is [here](https://github.com/demisto/demisto-sdk/blob/f407ffe9d632c45acce0ce0587efbf8ae89d6db8/demisto_sdk/commands/common/constants.py#L942).
 
@@ -243,19 +247,21 @@ Command arguments should be named using [snake_case](https://medium.com/better-p
 
 When you design your commands and their inputs, you should keep in mind how they are invoked: if a user, either manually or through a playbook, has to provide an input, where do they take that input data from? Something they know because it's obvious? Or the output of another command?
 
-The general design rule is to avoid having the SOC analyst waste time and focus by switching across multiple consoles and retrieve data from many different places. If they need to provide an input value in an XSOAR command, there should be a way to get that information within XSOAR.
+We also recommend to make the argument values consistent to what the user needs to provide in the user interface of the original product you are integrating with, not necessarily what the API requires. For example, if in the product UI  you have 3 options for an argument: `Low`, `Medium` and `High`, but the product API takes corresponding numbers (`1`, `2` and `3`), then your XSOAR integration's command argument should support `Low`, `Medium` and `High` and you should take care of converting them in numbers in your integration code: the user experience of integration should be consistent with what the user is most familiar with (see the [principle of least astonishment](https://en.wikipedia.org/wiki/Principle_of_least_astonishment)).
+
+Another important design rule is to avoid having the SOC analyst waste time and focus by switching across multiple consoles and retrieve data from many different places. If they need to provide an input value in an XSOAR command, there should be a way to get that information within XSOAR.
 
 Let's clarify the concept with an example: imagine that you are designing a command that modifies an existing Firewall policy. For simplicity let's assume you have only two arguments: the id of the policy and the action (allow or deny). The latter argument is obvious: depending on what the user wants to do, they will set the value to `allow` or `deny` (you will use predefined values so the user can only choose between those). But what about the id of the policy? It's probably not something that they know right away: maybe they know the policy name, but you don't want them to switch context and log to a different console to find the id that corresponds to the name. So in this case, you should design your integration to make sure that there is another command that returns the list of all policies and shows their ids, or allows the user to retrieve the id from the name. This way they don't have to switch consoles.
 
 #### Command Outputs
 
 Every automation script and integration command returns several types of outputs:
- - Human Readable: this is shown to the user in the War Room and is typically formatted in a way that is understandable by the SOC analyst. The Human Readable data is usually a subset of the entire information returned by your command.
+ - Human Readable: this is shown to the user in the War Room and is typically formatted in a way that is understandable by the SOC analyst. The Human Readable data is usually a subset of the entire information returned by your command: typically you should show the most relevant data that is also present in the user interface of the product you are integrating with. The ordering is also important: make sure the most relevant fields (and the ones the user is most familiar with) are displayed in the leftmost columns.
  - Context Data: outputs are also saved in a structured way (JSON backed) within an incident, so they can be retrieved later as inputs of other tasks (either within Playbooks or from the CLI). More information [here](../concepts/concepts#context-data).
  - Additional outputs such as images or files.
 
 When you design your outputs, you must make sure that the data is properly formatted for both human consumption and machine consumption. Here are some best practices:
- - Keep Human Readable information to the reasonable minimum (i.e. remove unnecessary data that is not relevant to a human analyst) and present it nicely (we recommend using [tableToMarkdown()](../integrations/code-conventions#tabletomarkdown) to automatically format lists into tables. 
+ - Keep Human Readable information to the reasonable minimum (i.e. remove unnecessary data that is not relevant to a human analyst) and present it nicely (we recommend using [tableToMarkdown()](../integrations/code-conventions#tabletomarkdown) to automatically format lists into tables: the function also supports arguments that allow you to filter and order columns and make the column headers prettier). 
  - Keep Context Data well organized, which means:
    - Return data using a prefix, such as `VendorName.Entitytype`, for example if your Pack is called `HelloWorld` and you are returning a list of hosts, the prefix of the output should be `HelloWorld.Host`.
    - Use the [CommandResults](../integrations/code-conventions#commandresults) class to return data to make sure it's properly formatted, and use the `outputs_key_field` parameter to identify the primary keys.
