@@ -47,7 +47,8 @@ const sidebars = {
           items: [
             "contributing/contributing",
             "contributing/checklist",
-            "contributing/marketplace"
+            "contributing/marketplace",
+            "contributing/conventions"
           ]
         },         
         {
@@ -188,6 +189,7 @@ const sidebars = {
       collapsed: true,
       items: [
             "tutorials/tut-setup-dev",
+            "tutorials/tut-design",
             "tutorials/tut-integration-ui"            
         ]
     },
