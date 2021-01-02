@@ -197,7 +197,7 @@ There are additional required parameters for integrations that fetch incidents: 
 
 #### Fetch Indicators Parameters
 
-If your integration implements a [feed](../integrations/feed), you should define some common parameters, that are used by XSOAR to control how the indicators are handled. You don't need to handle  them in your code, just make sure they are correctly defined in your integration yml file. The updated list is [here](https://github.com/demisto/demisto-sdk/blob/f407ffe9d632c45acce0ce0587efbf8ae89d6db8/demisto_sdk/commands/common/constants.py#L870). 
+If your integration implements a [feed](../integrations/feeds), you should define some common parameters, that are used by XSOAR to control how the indicators are handled. You don't need to handle  them in your code, just make sure they are correctly defined in your integration yml file. The updated list is [here](https://github.com/demisto/demisto-sdk/blob/f407ffe9d632c45acce0ce0587efbf8ae89d6db8/demisto_sdk/commands/common/constants.py#L870). 
 
 #### Other Parameters
 
