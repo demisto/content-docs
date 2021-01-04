@@ -95,7 +95,7 @@ The mappers that are provided out-of-the-box work with the assumption that you d
 
 If you want to add fields, follow the steps in the following Example section. 
 
-1. Add the field to the mappers for the Workday, Okta, and Active Directory integrations. 
+1. Add the field to the mappers for the Workday, Okta, Active Directory and Github integrations. 
 
    **Note:** To change the mappers, you will need to duplicate each mapper. 
 
@@ -103,6 +103,8 @@ If you want to add fields, follow the steps in the following Example section.
 
    * for the Workday incoming mapper, add the field to the *IAM-Sync-User* incident type.
    * for Okta and Active Directory, add the field to the *UserProfile* incident type in both the incoming and outgoing mappers.
+   * for Github the relevant mappers are in the IAM-SCIM pack and can be used in any integrations that uses SCIM.
+
 
 2. Reconfigure each integration to use the duplicated mappers you created.
 
