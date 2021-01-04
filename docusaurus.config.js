@@ -27,7 +27,7 @@ module.exports = {
         src: "/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal.svg",
         srcDark: "/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal-KO.svg"
       },
-      links: [
+      items: [
         {
           to: "/docs/welcome",
           label: "Developer Docs",
@@ -87,29 +87,6 @@ module.exports = {
           className: "header-github-link",
           "aria-label": "GitHub repository",
         },
-      ],
-      sites: [
-        {
-          label: "Products",
-          items: [
-            {
-              href: "https://panos.pan.dev",
-              label: "PAN-OS",
-              logo: "/img/strata_favicon.png"
-            },
-            {
-              href: "https://cortex.pan.dev",
-              label: "Cortex Data Lake",
-              logo: "/img/cortexfavicon.png"
-            },
-            {
-              href: "https://xsoar.pan.dev",
-              label: "Cortex XSOAR",
-              logo: "/img/Cortex-XSOAR-product-green.svg"
-            }
-          ],
-          position: "products"
-        }
       ]
     },
     footer: {
@@ -174,12 +151,41 @@ module.exports = {
     ]
   ],
   plugins: [
-    "@docusaurus/plugin-sitemap",
-    {
-      cacheTime: 600 * 1000, // 600 sec - cache purge period
-      changefreq: "weekly",
-      priority: 0.5
-    }
+    [
+      "@docusaurus/plugin-sitemap",
+      {
+        cacheTime: 600 * 1000, // 600 sec - cache purge period
+        changefreq: "weekly",
+        priority: 0.5
+      }
+    ]
   ],
-  customFields: {}
+  customFields: {
+    sites: [
+      {
+        label: "Products",
+        items: [
+          {
+            href: "https://panos.pan.dev",
+            label: "PAN-OS",
+            logo: "/img/strata_favicon.png"
+          },
+          {
+            href: "https://cortex.pan.dev",
+            label: "Cortex Data Lake",
+            logo: "/img/cortexfavicon.png"
+          },
+          {
+            href: "https://xsoar.pan.dev",
+            label: "Cortex XSOAR",
+            logo: "/img/Cortex-XSOAR-product-green.svg"
+          }
+        ],
+        position: "products"
+      }
+    ],
+  },
+  onBrokenLinks: "warn",
+  onBrokenMarkdownLinks: "warn",
+  onDuplicateRoutes: "warn",
 };
