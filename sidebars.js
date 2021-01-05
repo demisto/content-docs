@@ -126,8 +126,14 @@ const sidebars = {
           ]
         }, 
         {
-          type: "doc",
-          id: "integrations/integration-docs"
+          type: "category",
+          label: "Documentation And Release Notes",
+          collapsed: true,
+          items: [
+            "integrations/integration-docs",
+            "integrations/documentation_best_practices",
+            "integrations/rn_best_practices"
+            ]
         },
         {       
           type: "category",
