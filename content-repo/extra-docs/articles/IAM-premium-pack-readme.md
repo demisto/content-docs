@@ -158,13 +158,15 @@ The following is an example of the flow when adding a field to work with the ILM
     1. Under *Select Instance*, select the instance of the selected source.
     1. Under *Incident Type*, select the relevant incident type, as follows:
         - for the Workday incoming mapper, add the field to the IAM-Sync-User incident type. 
-        - for Okta and Active Directory, add the field to the UserProfile incident type in both the incoming and outgoing mappers.
+        - for Okta, Active Directory, ServiceNow and Github add the field to the UserProfile incident type in both the incoming and outgoing mappers.
     1. Map the field from the layout to the field in schema. For purposes of this example, we have mapped the Sample-Field-IAM field to the employee number.
     1. Repeat this process for each additional field and save the mapper. 
     1.  Repeat this process for all of the mappers. There are 5 in total:
         - Workday incoming mapper
         - Okta incoming and outgoing mappers
         - Active Directory incoming and outgoing mappers
+        - ServiceNow incoming and outgoing mappers
+        - Github that uses the IAM-SCIM incoming and outgoing mappers
 
     ![Map Fields](../../../docs/doc_imgs/reference/ilm-map-fields.png "Map Fields")
 
@@ -184,6 +186,9 @@ The following is an example of the flow when adding a field to work with the ILM
     - Workday - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/workday-iam)
     - Active Directory - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/active-directory-query-v2)
     - Okta - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/okta-iam)
+    - ServiceNow - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/service-now-iam)
+    - Github - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/git-hub-iam)
+
 
 ## App Sync
 
