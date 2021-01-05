@@ -1,6 +1,6 @@
 ---
 id: rn_best_practices
-title: Release Notes - Best Practices
+title: Release Notes - Best Practice
 ---
 
 ## General 

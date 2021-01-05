@@ -1,6 +1,6 @@
 ---
 id: documentation_tips
-title: Documentation - Best Practices
+title: Documentation - Best Practice
 ---
 
 ## New entities descriptions in the RN
