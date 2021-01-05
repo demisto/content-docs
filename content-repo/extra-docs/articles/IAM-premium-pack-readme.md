@@ -224,9 +224,9 @@ The app-sync process requires that you have a mapping of Okta App IDs to Cortex 
 
 For example, you may have an Okta App ID “0oau408dvkn96MwHc0h3” and want to map it to the **ServiceNow_Users_Instance1** so that every time a user is assigned to an app that has this App ID, a user will be created in ServiceNow using the generic IAM commands in Cortex XSOAR.
 
-Configuring the app-sync settings is a one-time configuration that you can do using an out-of-the-box dedicated incident type. Create an incident of type **IAM - Configuration** and fill in the Okta App IDs and your Cortex XSOAR integration instance names in the relevant fields.
+Configuring the app-sync settings is a one-time configuration that you can do using an out-of-the-box dedicated incident type. Create an incident of type **IAM - Configuration**, choose your Okta instance, and fill in the Okta App names and your Cortex XSOAR integration instance names in the relevant fields.
 
-![Okta IDs](../../../docs/doc_imgs/reference/iam_configuration.png)
+![Okta IDs](../../../docs/doc_imgs/reference/ilm-configuration.png)
 
 
 You can obtain the Okta App ID from the URL when viewing an app in Okta:
