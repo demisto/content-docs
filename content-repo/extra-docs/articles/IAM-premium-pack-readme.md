@@ -229,13 +229,9 @@ Configuring the app-sync settings is a one-time configuration that you can do us
 ![Okta IDs](../../../docs/doc_imgs/reference/ilm-configuration.png)
 
 
-You can obtain the Okta App ID from the URL when viewing an app in Okta:
-
-![Okta IDs](../../../docs/doc_imgs/reference/okta_ids.png)
-
 You can obtain the app integration instance name from the integration page in Cortex XSOAR:
 
-![Instance Name](../../../docs/doc_imgs/reference/instance_name.png)
+![Instance Name](../../../docs/doc_imgs/reference/ilm-integration-instance.png)
 
 
 By creating this incident and filling the app and instance information, a configuration will be saved in the integration context. This is transparent to the user. Then you will be able to use the ***okta-iam-get-configuration*** command to view the configuration and use it in playbooks at any time. Note that when using the ***okta-iam-get-configuration*** command, you will have to use the *using* parameter with the correct instance name of Okta in which you made the configuration.
