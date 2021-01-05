@@ -131,7 +131,7 @@ const sidebars = {
           collapsed: true,
           items: [
             "integrations/integration-docs",
-            "integrations/documentation_best_practices",
+            "integrations/documentation_tips",
             "integrations/rn_best_practices"
             ]
         },
