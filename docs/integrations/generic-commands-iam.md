@@ -9,7 +9,11 @@ title: Generic IAM Commands
 IAM integrations generally do not support CRUD (Create, Retrieve, Update, and Disable/Delete) operations for general user accounts or provisioning users. These integrations should adhere to a standard as the workflows can be generalized or completely customized to fit into an organization's environment.
 
 ## Mappers
-In order to properly map between the generic IAM user fields and the data from the integration, we need to define an incoming [Mapper](../incidents/incident-classification-mapping#map-event-attributes-to-fields) 
+In order to properly map between the generic IAM user fields and the data from the integration, we need to define an incoming [Mapper](../incidents/incident-classification-mapping#map-event-attributes-to-fields) for the **get-user** command and an outgoing mapper for the create, update and disable commands. 
+
+The mapper names should be the default values for "mapper-in" and "mapper-out" parameters of the inegration instance. 
+
+For integrations that support the [SCIM](http://www.simplecloud.info/) protcol, you can use the built in SCIM mappers in the IAM-SCIM pack.  
 
 
 ## Generic IAM Commands needs to be supported
@@ -27,18 +31,18 @@ In order to properly map between the generic IAM user fields and the data from t
 **Sample output:**
 ```json
 {
-  "IAM.Vendor.": {
+  "IAM.Vendor": {
     "brand": "Vendor", 
     "instanceName": "Instance name here",
     "success": true,
     "active": true,
-    "id": "Zoom Unique Id here",
+    "id": "Unique Id here",
     "username": "demistotest@paloaltonetworks.com",
     "email": "demistotest@paloaltonetworks.com",
     "errorCode": "null for success response",
     "errorMessage": "null for success response",
     "details": {
-      "Zoom Payload can go as is here in json format": ""
+      "Payload can go as is here in json format": ""
     }
   }
 }
@@ -59,18 +63,18 @@ In order to properly map between the generic IAM user fields and the data from t
 **Sample output:**
 ```json
 {
-  "IAM.Vendor.": {
-    "brand": "Zoom",
+  "IAM.Vendor": {
+    "brand": "Vendor",
     "instanceName": "Instance name here",
     "success": true,
     "active": true,
-    "id": "Zoom Unique Id here",
+    "id": "Unique Id here",
     "username": "demistotest@paloaltonetworks.com",
     "email": "demistotest@paloaltonetworks.com",
     "errorCode": "null for success response",
     "errorMessage": "null for success response",
     "details": {
-      "Zoom Payload can go as is here in json format": ""
+      "Payload can go as is here in json format": ""
     }
   }
 }
@@ -93,18 +97,18 @@ allow-enable: enable this user
 **Sample output:**
 ```json
 {
-  "IAM.Vendor.": {
-    "brand": "Zoom",
+  "IAM.Vendor": {
+    "brand": "Vendor",
     "instanceName": "Instance name here",
     "success": true,
     "active": true,
-    "id": "Zoom Unique Id here",
+    "id": "Unique Id here",
     "username": "demistotest@paloaltonetworks.com",
     "email": "demistotest@paloaltonetworks.com",
     "errorCode": "null for success response",
     "errorMessage": "null for success response",
     "details": {
-      "Zoom Payload can go as is here in json format": ""
+      "Payload can go as is here in json format": ""
     }
   }
 }
@@ -127,18 +131,18 @@ allow-enable: enable this user
 ```json
 
 {
-  "IAM.Vendor.": {
-    "brand": "Zoom",
+  "IAM.Vendor": {
+    "brand": "Vendor",
     "instanceName": "Instance name here",
     "success": true,
     "active": false,
-    "id": "Zoom Unique Id here",
+    "id": "Unique Id here",
     "username": "demistotest@paloaltonetworks.com",
     "email": "demistotest@paloaltonetworks.com",
     "errorCode": "null for success response",
     "errorMessage": "null for success response",
     "details": {
-      "Zoom Payload can go as is here in json format": ""
+      "Payload can go as is here in json format": ""
     }
   }
 }
