@@ -22,13 +22,13 @@ Pretend you need this release note to do your work. A bad RN can easily lead to 
 
 ### Enhancements examples:
 
-- **MISP V2**
+- **MISP V2**  
 You can now filter an event by attribute data fields.
 
-- **WhatIsMyBrowser**
+- **WhatIsMyBrowser**  
 Added support for the *extend-context* argument in the ***ua-parse*** command.
 
-- **Microsoft Graph Mail**  
+- **Microsoft Graph Mail**   
 Added 3 commands.
     - ***msgraph-mail-list-folders***
     - ***msgraph-mail-list-child-folders***
@@ -36,7 +36,7 @@ Added 3 commands.
 
 
 ### Bug fixes examples:
-- **Slack v2**
+- **Slack v2**  
     - Fixed an issue where mirrored investigations contained mismatched user names.
     - Added the **reporter** and **reporter email** labels to incidents that are created by direct messages.
 
