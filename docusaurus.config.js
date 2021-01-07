@@ -86,6 +86,11 @@ module.exports = {
           position: "right"
         },
         {
+          to: "https://start.paloaltonetworks.com/cortex-xsoar-developer-newsletter.html",
+          label: "Newsletter",
+          position: "right"
+        },
+        {
           href: "http://github.com/demisto/content/",
           position: "right",
           className: "header-github-link",
