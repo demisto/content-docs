@@ -569,7 +569,7 @@ In the War Room, this is how a table will appear:
 You may also use ```headerTransform``` to convert the existing keys into formatted headers.
 
 Use the ```url_key``` argument to specify a list of keys whose value in the MD table should be a clickable url. This list may contain keys of inner dicts\list of dicts in the data given to the tableToMarkdown function.
-for example, for the following data:
+For example, for the following data:
 
 ```
 d = {
