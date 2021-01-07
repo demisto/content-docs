@@ -567,7 +567,40 @@ In the War Room, this is how a table will appear:
 <img width="788" src="../doc_imgs/integrations/50571324-46846e00-0db0-11e9-9888-ddd9dc275541.png"></img>
 
 You may also use ```headerTransform``` to convert the existing keys into formatted headers.
+
 Use the ```url_key``` argument to specify a list of keys whose value in the MD table should be a clickable url. This list may contain keys of inner dicts\list of dicts in the data given to the tableToMarkdown function.
+for example, for the following data:
+
+```
+d = {
+  "id": "123",
+  "url1": " https://url1.com",
+  "result": {
+            "files": [
+                    {
+                        "filename": "Screen.jpg",
+                        "url2": "https://url2.com"
+                    }
+                ]
+            },
+   "links": {
+                "url3": "https://url2.com"
+            }
+}
+```
+
+and using ```url_keys=('url1', 'url2', 'url3')``` (note that some of the keys are nested):
+ 
+```python
+
+tableToMarkdown('Data Table', d, headers=('id', 'url1', 'result', 'links'),
+                                          headerTransform=string_to_table_header, url_keys=('url1', 'url2', 'url3'))
+```
+
+The resulted table will be:
+
+![image](https://user-images.githubusercontent.com/72340690/103922604-a25efb80-511c-11eb-9021-c062226b5001.png)
+
 
 ### demisto.command()
 ```demisto.command()``` is typically used to tie a function to a command in Cortex XSOAR, for example:
