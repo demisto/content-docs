@@ -14,7 +14,7 @@ const sidebars = {
       items: [
         {
           type: "doc",
-          id: "integrations/getting-started-guide"    
+          id: "concepts/getting-started-guide"    
         },
         {
           type: "doc",
@@ -35,9 +35,10 @@ const sidebars = {
           label: "Dev Environment",
           collapsed: true,
           items: [
-            "integrations/dev-setup",        
-            "integrations/xsoar-ide",
-            "integrations/pycharm-plugin"
+            "concepts/dev-setup",
+            "concepts/dev-requirements",     
+            "concepts/xsoar-ide",
+            "concepts/pycharm-plugin"
           ]
         },
         {

@@ -5,34 +5,34 @@ title: Development Setup
 
 *Note*: this article is brief, please refer to the end-to-end [Tutorial](../tutorials/tut-setup-dev) for more details.
 
-## Prerequisites
+## Which tools should I use?
 
-### Development OS
-Our recommended OS for development is either macOS or Linux, as we use bash and docker in some of our validation/testing flows.
+As mentioned, you'll need a combination of both the Cortex XSOAR UI and other tools. 
 
-#### Windows Users
-If you are working on Windows, you can either work with a Linux VM or utilize [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10). 
+As a general rule of the thumb, we recommend that you use an external IDE and toolchain when:
+- Working on your [integration code](../integrations/code-conventions) (YourIntegration.py)
+- Working on the [unit test script](../integrations/unit-testing) (YourIntegration_test.py)
+- Working on the [release notes](../integrations/release-notes) and README.md documentation files
+- Running the [linting](../integrations/linting) and testing
 
-**Note:** When using WSL2 you may experience performance issues if working on the Windows mounted file system (for example `/mnt/c/`). See the following [WSL issue](https://github.com/microsoft/WSL/issues/4197) for more info. In such cases we recommend using the Linux file system (`ext4` partition) WSL2 provides. Meaning that the local demisto content and the SDK will all be located on the WSL file system and using an editor which supports remote WSL. Editors supporting remote WSL include:
-* VS Code: https://code.visualstudio.com/docs/remote/wsl
-* PyCharm Professional Edition: https://www.jetbrains.com/help/pycharm/using-wsl-as-a-remote-interpreter.html 
+Instead, you should use the Cortex XSOAR UI when:
+- Creating the [Test Playbooks](../integrations/test-playbooks)
+- Auto-generate the [integration documentation](../integrations/integration-docs)
+- Creating [example playbooks](../playbooks/playbooks) to demonstrate your integration
+- Working on the properties of your integration (parameters, commands, arguments, outputs, etc.)
+- Testing the User Experience
 
+## What IDE should I use?
 
-### Git
-We use GitHub (as you can see). See: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git for git client install instructions.
+When it comes to an External IDE, you should stick to what you're comfortable with.
 
-### Python
-Our repository utilizes mostly Python 3 (3.7 and up).
+We developed a free [plugin](https://plugins.jetbrains.com/plugin/12093-demisto-add-on-for-pycharm) for [PyCharm](https://www.jetbrains.com/pycharm/) that simplifies/automates a few tasks such as:
+- Running unit tests
+- Creating a blank integration or automation script
+- Uploading/Downloading your integration code to/from Cortex XSOAR
+- Running commands directly on Cortex XSOAR
 
-We recommend managing python versions via [pyenv](https://github.com/pyenv/pyenv)
-
-Optionally, macOS users can install via [homebrew](https://docs.brew.sh/Homebrew-and-Python).
-
-### Docker
-If you would like to write [unit tests](unit-testing) and run them, as we do in our CI process (within docker), you must install docker. See: https://docs.docker.com/install/ for install options.
-
-### Node.js and NPM
-Optional. We use Node.js for validating README documentation files for Integrations, Automations and Playbooks. If you are creating README documentation files, we recommend installing Node.js to be able to validate the files locally. Node.js installation instructions for your target platform are available at: https://nodejs.org/en/download/package-manager/.
+However, if you want to a different IDE (Visual Studio Code, Sublime, vi, emacs, etc.) it's totally fine! It just means that some of those tasks must be performed manually. To automate them, you can use the  [demisto-sdk](https://github.com/demisto/demisto-sdk). In this tutorial, we will be using it for unit tests, but more features will come in the future.
 
 ## Setting Up a Development Repository
 [Fork](https://guides.github.com/activities/forking/) the Cortex XSOAR Content repository and create a branch for your contribution.
@@ -71,7 +71,7 @@ If you want more details, please refer to the end-to-end [Tutorial](../tutorials
 ## IDE
 
 Cortex XSOAR offers two IDEs for developing: 
-* [Built-in Platform Cortex XSOAR IDE](../integrations/xsoar-ide) (not recommended for most use cases)
-* [PyCharm IDE Plugin](../integrations/pycharm-plugin)
+* [Built-in Platform Cortex XSOAR IDE](../concepts/xsoar-ide) (not recommended for most use cases)
+* [PyCharm IDE Plugin](../concepts/pycharm-plugin)
 
 You can also use your IDE of choice along with `demisto-sdk`.

@@ -3,40 +3,60 @@ id: getting-started-guide
 title: Getting Started Guide
 ---
 
-This guide will provide you with some pointers to jumpstart your development journey. After reading it, you’ll have a great background for creating content and integrations for the Cortex XSOAR platform.
+This guide will provide you with some pointers to jumpstart your development journey. After reading it, you’ll have a great background for creating content for the Cortex XSOAR platform.
 
 If you have trouble with any of these items, please reach out for help over [Slack](https://start.paloaltonetworks.com/join-our-slack-community) on the `#demisto-developers` channel or via [email](mailto:soar.alliances@paloaltonetworks.com).
-
+ 
 ## Before you start
 
 Cortex XSOAR is a powerful platform that comes with a rich set of features and functionality that allow for a high degree of customization: we therefore recommend that you start by familiarizing yourself with the different aspects of the product:
 
 1. Read and understand Cortex XSOAR [Concepts](../concepts/concepts).
-2. Register to the [Learning Center](http://education.paloaltonetworks.com/learningcenter) and go through the [Product Training](../partners/become-a-tech-partner#3-take-required-training).
-3. Understand the [Contribution](../contributing/contributing) process and the different tiers and support levels (partner vs community support, etc.).
-4. Bookmark the links to the [Cortex XSOAR Developer Hub](https://xsoar.pan.dev/docs/) (this site) and the [Cortex XSOAR Product Documentation Page](https://docs.paloaltonetworks.com/cortex/cortex-xsoar.html).
-4. Access the Palo Alto Networks [DFIR Slack Community](https://start.paloaltonetworks.com/join-our-slack-community) and join the *#demisto-developers* channel.
-5. Obtain and install a copy of Cortex XSOAR. If you are not a Partner, you can obtain the Community Edition [here](https://start.paloaltonetworks.com/sign-up-for-demisto-free-edition). Installation instructions are available [here](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/installation.html).
+1. Register to the [Learning Center](http://education.paloaltonetworks.com/learningcenter) and go through the [Product Training](../partners/become-a-tech-partner#3-take-required-training).
+1. If you want to publish your content to the [XSOAR Marketplace](../partners/marketplace), understand the [Contribution](../contributing/contributing) process and the different tiers and support levels (partner vs community support, etc.).
+1. Bookmark the links to the [Cortex XSOAR Developer Hub](https://xsoar.pan.dev/docs/) (this site) and the [Cortex XSOAR Product Documentation Page](https://docs.paloaltonetworks.com/cortex/cortex-xsoar.html).
+1. Access the Palo Alto Networks [DFIR Slack Community](https://start.paloaltonetworks.com/join-our-slack-community) and join the *#demisto-developers* channel.
+1. Obtain and install a copy of Cortex XSOAR. If you are not a Partner, you can obtain the Community Edition [here](https://start.paloaltonetworks.com/sign-up-for-demisto-free-edition). Installation instructions are available [here](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/installation.html).
 
 ### Other prerequisites (for Integrations and Automations)
 
-If you want to develop more than just Playbooks and you are looking to create Integrations and Automations, you will also need:
+If you want to develop Integrations and Automations, some coding will be required. You will need:
 1. Python (3.7 and above) or Powershell programming experience.
-2. (for Integrations) API or SDK access to your product or solution you want to integrate with.
+1. (for Integrations) API or SDK access to your product or solution you want to integrate with.
 
 ### Technology Partners
 
 If you are a Technology Partner, make sure that you also:
 
 1. Read the [Become a Technology Partner](../partners/become-a-tech-partner) page and follow the steps to sign up and sign the agreements.
-2. Work with the [Cortex XSOAR Alliances Team](mailto:soar.alliances@paloaltonetworks.com) to make sure your use cases have been validated.
+1. Work with the [Cortex XSOAR Alliances Team](mailto:soar.alliances@paloaltonetworks.com) to make sure your use cases have been validated.
 
-## Development Guidelines
+## Developer Profile
 
-Please read the following guidelines. Following them  will maximize the chances for a fast, easy, and effective review process for everyone involved. If something is not clear, please don't hesitate to reach out to us via [Slack](http://go.demisto.com/join-our-slack-community) on the `#demisto-developers` channel.
+This site describes how to create content meant to be published on the XSOAR Marketplace and used by several customers: it means following proper design, development and documentation guidelines to make sure that the content can used in production in large SOCs. While it's always recommended to follow all these guidelines,  some steps, such as the dev environment setup, are mandatory only if you are planning to contribute your content.
+
+This table summarizes some common developer scenarios and reccomendations:
+
+|Who|Contributing?|Integrations/Scripts?|Develop Code With|Contribute With|
+|--:|------------:|--------------------:|-----------------|---------------|
+|End customer<br/>Individual contributor|No|No|N/A|N/A|
+|End customer<br/>Individual contributor|No|Yes|[XSOAR IDE](../concepts/xsoar-ide)|N/A|
+|End customer<br/>Individual contributor|Yes|No|[XSOAR IDE](../concepts/xsoar-ide)|[Cortex XSOAR UI](../contributing/marketplace)|
+|End customer<br/>Individual contributor|Yes|Yes|demisto-sdk/IDE|GitHub|
+|Technology Partner<br/>Palo Alto Networks Employee|Yes|Either way|demisto-sdk/IDE|GitHub|
+
+:::note Important Note
+In general, even if you are not contributing, you are never wrong if you develop following the detailed guidelines below, including setting up the development environment and designing and documenting your content properly.
+:::
+
+If, based on the assumptions above,  you are contributing via GitHub and developing with `demisto-sdk`, keep reading.
+
+## Contributor Guidelines
+
+Please read the following guidelines. Following them will maximize the chances for a fast, easy, and effective review process for everyone involved. If something is not clear, please don't hesitate to reach out to us via [Slack](http://go.demisto.com/join-our-slack-community) on the `#demisto-developers` channel.
 
 1. Begin by designing your contribution: we recommend to follow the [Design](../concepts/design) guidelines to identify what you want to build and make sure it is aligned with our best practices. Also check out the [Design Tutorial](../tutorials/tut-design).
-2. Setup a development environment by following the brief [Dev Setup Guide](dev-setup) or the more detailed [Tutorial](../tutorials/tut-setup-dev). Skip this step only if you are an individual contributor and you want to submit community supported content through the [Cortex XSOAR UI](../contributing/marketplace).
+2. Setup a development environment by following the brief [Dev Setup Guide](dev-setup) or the more detailed [Tutorial](../tutorials/tut-setup-dev).
 3. Review again the [Contribution](../contributing/contributing) process and [Checklist](../contributing/checklist).
 4. Follow the [Content Pack format](packs-format) to build your contribution. [demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md) will help you create it.
 5. Depending on the content entities you need to build, navigate to the specific section of this website for details. If you are creating Integrations and/or Automations, make sure that you:
