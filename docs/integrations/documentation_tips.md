@@ -1,11 +1,11 @@
 ---
 id: documentation_tips
-title: Documentation - Best Practice
+title: Documentation - Best Practices
 ---
 
-## New entities descriptions in the RN
-When a new integration/script/playbook is first released, the release notes are generated automatically with the 'description' field in the entity's yml file.
+This document describes the desired documentation standards in XSOAR content entities, and contains examples that can be very useful when writing documentation.
 
+## Entities Description Field
 ### For playbook and scripts, use the following guideline:
 - Should start with the verb that describes what the entity does.
 - There's a limited space for descriptions, so we don't want to waste space (and time) with words that don't matter. 
@@ -14,26 +14,12 @@ Bad example: The XYZ playbook is a playbook that...
   We should shorten the description to what matters most.  
 Good example: Executes as a sub-playbook and enriches indicators from the list.    
 
-**More examples:**
+**More examples:**  
 
-- **Access Investigation - Generic - NIST**  
-Investigates an access incident by gathering user and IP information, and handling the incident based on the stages in "Handling an incident - Computer Security Incident Handling Guide" by NIST.
-
-- **PAN-OS - Block Domain - External Dynamic List**  
-Blocks domains using Palo Alto Networks Panorama or Firewall External Dynamic Lists.
-
-- **Convert file hash to corresponding hashes**  
-Enables you to get all of the corresponding file hashes for a file even if there is only one hash type available.
-
-- **Tanium - Get Saved Question Result**  
-Uses generic polling to get saved question results.
-
-- **Endpoint Malware Investigation - Generic**  
-This playbook is triggered by a malware incident from an Endpoint type integration. The playbook performs enrichment, detonation, and hunting within the organization, and remediation on the malware.
-
-- **NIST - Handling an Incident Template**  
-This playbook contains the phases to handling an incident as described in the Handling an Incident section of NIST - Computer Security Incident Handling Guide.
-
+- Investigates an access incident by gathering user and IP information, and handling the incident based on the stages in "Handling an incident - Computer Security Incident Handling Guide" by NIST.
+- Blocks domains using Palo Alto Networks Panorama or Firewall External Dynamic Lists.
+- Enables you to get all of the corresponding file hashes for a file even if there is only one hash type available.
+- Uses generic polling to get saved question results.
 
 ### For integrations:  
 The description should summarize all of the currently supported endpoints into a sentence that users can digest.
@@ -41,16 +27,6 @@ The description should summarize all of the currently supported endpoints into a
 **For example:**  
 - Use the *IronDefense* integration to rate alerts, update alert statuses, add comments to alerts, and to report observed bad activity. 
 - Use the *Gmail* integration to send/receive emails, manage user accounts, and listen to specified mailboxes and folders. 
-
-## Detailed Description (<integration_name>_description.md)
-In the detailed description, we want to provide the supported use cases of the integration, and any important things that the customers need to know. Give as much information as you think the user of this integration needs to succeed. Permission levels, credentials, keys, etc.  
-If there are permissions required on the integration level, list them in the description. If commands have separate permissions, mention that fact in the description, but document the required permission on the command level.
-
-**Common cases are:**
-
-- How to get credentials
-- How to get API Key/Secret
-- How to get Applications ID
 
 ## Fetch Incidents/Indicators section
 Common parameters for this section are:

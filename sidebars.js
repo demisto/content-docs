@@ -66,7 +66,7 @@ const sidebars = {
         "integrations/pack-docs",
         "integrations/release-notes",
         "integrations/premium_packs"
-      ]
+        ]
     },
     {
       type: "category",
@@ -124,16 +124,6 @@ const sidebars = {
             "integrations/test-playbooks",
             "integrations/debugging",
           ]
-        }, 
-        {
-          type: "category",
-          label: "Documentation And Release Notes",
-          collapsed: true,
-          items: [
-            "integrations/integration-docs",
-            "integrations/documentation_tips",
-            "integrations/rn_best_practices"
-            ]
         },
         {       
           type: "category",
@@ -188,6 +178,15 @@ const sidebars = {
         "incidents/incident-classification-mapping",
         "incidents/incident-pre-processing"
       ]
+    },
+    {
+      type: "category",
+      label: "Documentation",
+      collapsed: true,
+      items: [
+        "integrations/integration-docs",
+        "integrations/documentation_tips",
+        ]
     },
     {
       type: "category",

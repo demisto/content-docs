@@ -3,7 +3,19 @@ id: integration-description
 title: Integration Description File
 ---
 
-The integration description file is designated to help the XSOAR users to easily configure an instance of the chosen integration.
+
+## General
+The integration description file is designed to provide the supported use cases of the integration, as well as to help XSOAR users to easily configure an instance of the chosen integration.  
+* Give as much information as you think the user of this integration needs to succeed. Permission levels, credentials, keys, etc.  
+* If there are permissions required on the integration level, list them in the description. 
+* If commands have separate permissions, mention that fact in the description, but document the required permission on the command level.
+
+**Common cases are:**
+
+- How to get credentials
+- How to get API Key/Secret
+- How to get Applications ID
+
 
 ## Path
 The description file should be placed along with all of the integration's files. 
