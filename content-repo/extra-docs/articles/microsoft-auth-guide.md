@@ -81,5 +81,5 @@ Click on your resource:
 
 You will be redirected to the next page. At the overview tab you will find your Resource group and Subscription ID:
 
-![Overview](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/resource_group_and_subscription_id.png)
+![Overview](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/subscription_id_resourse_group.png)
 
