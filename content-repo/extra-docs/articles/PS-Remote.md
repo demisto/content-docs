@@ -1,21 +1,22 @@
-WinRM with PS Remote Configuration
+---
+title: Powershell Remoting - Configuration
+description: Overview Of how to configure your Windows enviornment and XSOAR for the Powershell Remoting integration. 
+---
 
-Disclaimer
+## Disclaimer
 
 
 The integration was created and tested on Windows 2016 win server with Powershell version 5.1.14393.3866. Configuration may vary to different windows server versions. Keep in mind that WinRM is entirely a Microsoft feature. We provide this manual “as is”. We highly recommend to perform all actions listed here on test/staging environments prior to implementing on production environments. Also it's important to notice that WinRM has security implications to consider as described here. The integration in its current version works with HTTP using NTLM authentication or HTTPS using basic authentication. PS remoting does encrypt the session event on HTTP however the initial connection is unencrypted while basic authentication is not considered a secure authentication method but since the whole session is encrypted via SSL this compensates for the less secure authentication method.
 
-Network Settings
+## Network Settings
 Your XSOAR server will require access or ports 5985,5986 TCP
 to the hosts to which you want to run the integration on. Take into consideration both the network firewall and the localhost firewall. In case of using the Windows firewall make sure to create a relevant GPO to allow traffic on the relevant ports. The configuration of the windows FW GPO is not in the scope of this article. Same goes for other local host FW agents. For WinRM over HTTPS open port 5986 TCP.
 
-Permissions
+## Permissions
 The user that will be used in order to execute the PS remote commands on the endpoint will require local admin credentials. Potentially more granular permissions can be applied however this was not tested and therefore not in the scope of this article.
 
 
-
-
-Domain Settings
+## Domain Settings
 For Windows 2016 env Active Directory domain perform the following
 
 On your 2016 Domain controller create a new OU (Organizational Unit) and move the computer accounts to the new OU. 
@@ -40,14 +41,14 @@ Select Allow remote server management through WinRM
 Select Enabled
 Provide the IP or the XSOAR server, * is also a valid option but keep in mind that this will allow any address to initiate a WinRM connection to the affected hosts. This setting will enable Powershell remoting to the relevant hosts.
 
-Allow basic Authentication
+### Allow basic Authentication
 Configure this setting only if you are interested in using Basic authentication and not Negotiate.
 From Computer Configuration > Administrative Templates > Windows Remote Management (WinRM) > WinRM Service
 Select Allow Basic Authentication
 Select Enabled
 
 
-WinRM service
+### WinRM service
 
 From Computer Configuration > Policies > Windows Settings > Security Settings > System Services
 Select Windows Remote Management (WS-Management)
@@ -58,36 +59,37 @@ Select Define this Policy and Automatic service startup mode. This setting will 
 
 
 
-Integration Configuration
+## Integration Configuration
 
 Once the GPO has been applied and the settings are in effect. We can configure the integration instance settings and validate if the integration is working.
 
 To configure the integration provide the following settings
 
-Domain:
+### Domain:
 Provide the DNS domain name For example winrm.local. This will allow the integration commands to work for hostnames and not just FQDN.
 
-DNS:
+### DNS:
 Provide the IP address of the DNS server to provide name resolution.
 
-Username:
+### Username:
 Provide the Username with proper administrative privileges on the relevant hosts. If your are using Basic Authentication provide a local user and not a domain user.
 
-Password:
+### Password:
 Provide the password for the user name.
 
-Test Hostname:
-This optional parameter tests if the integration can perform a connection to a host.
+### Test Hostname:
+This optional parameter tests if the integration can perform a connection to a the specified host.
 
-Use SSL
+### Use SSL
 This option enables the PS remote session to be encrypted with SSL. In order to configure your env to use SSL review the relevant section in the appendix. Currently SSL only works with basic authentication.
 
-Authentication Type
+### Authentication Type
 This option selects the authentication method used by the integration. Valid options are Basic which currently requires SSL and Negotiate which currently does not support SSL.
 Testing the integration
 The test button will perform the following. Test network connectivity to the host supplied as the test hostname and attempt to open a PSremote session to the specified host.
-Troubleshooting
-Host Troubleshooting
+
+## Troubleshooting
+### Host Troubleshooting
 One of the common issues with regards to working with WinRM is that the network connectivity was not properly configured. In order to test network connectivity we can check is the host is listening on the relevant port
 For example logon to one of the hosts and run from the command prompt.
 netstat -na 1 | find "5985"
@@ -106,31 +108,31 @@ The result should show that the computer policy updated successfully.
 
 
 
-Workgroup settings
+## Workgroup settings
 It is possible to configure the integration to work in a workgroup (non domain) environment. Network settings and configuration are the same as described in the previous relevant section. To configure the host within the workgroup to accept PS remote connections perform the following settings. For the host that you wish to enable PS remoting. Open the Powershell command prompt as an administrator as an administrator and type Enable-PSRemoting.
 
 
 
 Open a command prompt as an administrator and run the command winrm set winrm/config/client @{TrustedHosts="*"}
 
-XSOAR Troubleshooting
+## XSOAR Troubleshooting
 First of all we provide in the integration settings the test option. From the integration settings provide all the relevant inputs and click on Test
 In case no network connection is available or the host is not resolved or the username/password permissions are not working the following error will be displayed.
 
 
 
-Network connectivity
+### Network connectivity
 Another issue could be network connectivity from the XSOAR to the host. We can troubleshoot this by logging in to the XSOAR CLI and test connectivity by running the following command. sudo tcpdump -i any 'port 5985' This will display the traffic sent to the host. You can also see the raw traffic by running the command sudo tcpdump -i any -nnAs0 port 5985
 
 In case you are not able to get a network connection to the host from XSOAR check the network or host firewall logs and adjust the rules accordingly.
 
 
-Authentication
+### Authentication
 Check the provided username and password by attempting to connect to the tested host locally or via Terminal services. Make sure that you are able to login with the provided credentials. If the login fails verify the username and password or that the user has sufficient privileges on the host. If the password is wrong, reset it in Active Directory.
 
 In case you are using Basic Authentication make sure to provide a local user and and not a domain user.
 
-WinRM Commands Useful Commands
+## WinRM Commands Useful Commands
 For getting the WinRM configuration run on the host winrm get winrm/config
 
 To test the connection status run Test-WSMan -ComputerName <The host name> -Authentication default -Credential <The username to connect with>
@@ -146,8 +148,9 @@ Configure WinRM to use SSL winrm quickconfig -transport:https
 Delete HTTP listener winrm delete winrm/config/Listener?Address=*+Transport=HTTP
 
 Delete HTTPS listener winrm delete winrm/config/Listener?Address=*+Transport=HTTPS
-Appendix
-Configure WinRM over HTTPS For a Domain Environment
+
+## Appendix
+### Configure WinRM over HTTPS For a Domain Environment
 In order to enable PS remote over SSL perform the following
 Certificate Services
 
