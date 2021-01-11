@@ -1,6 +1,6 @@
 ---
 title: Powershell Remoting - Configuration
-description: Overview Of how to configure your Windows enviornment and XSOAR for the Powershell Remoting integration. 
+description: Overview of how to configure your Windows enviornment and XSOAR for the Powershell Remoting integration. 
 ---
 
 ## Disclaimer
