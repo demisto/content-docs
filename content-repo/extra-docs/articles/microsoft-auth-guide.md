@@ -70,16 +70,16 @@ In order to revoke consent to a Cortex XSOAR Microsoft application, refer to the
 ## Azure Integrations Params
 In order to use the Cortex XSOAR Azure application, you need to fill in your subscription ID and resource group name.
 Those can be found at Azure Portal. 
-Go to [Azure Portal Home Page](https://portal.azure.com/#home).
+Go to [Azure Portal Home Page](https://portal.azure.com/#home). Login with your credentials.
 Search for your Azure product, for example SQL Servers: 
 
-[TODO: add first picture]
+![Azure Portal Home Page](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/home_microsoft_azure_portal.png)
 
 Click on your resource:
 
-[TODO: add second picture]
+![Choose your resource](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/choose_your_resource.png)
 
-At the overview tab you will find your Resource group and Subscription ID:
+You will be redirected to the next page. At the overview tab you will find your Resource group and Subscription ID:
 
-[TODO: add third picture]
+![Overview](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/resource_group_and_subscription_id.png)
 
