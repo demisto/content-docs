@@ -1,0 +1,118 @@
+{
+  "$schema": "./deprecated_info.schema.json",
+  "integrations": [
+    {
+      "id": "Amazon Web Services",
+      "note": "Use the AWS - EC2 integration instead."
+    },
+    {
+      "id": "ArcSight ESM",
+      "note": "Use the ArcSight ESM v2 integration instead."
+    },
+    {
+      "id": "jira",
+      "note": "Use the Atlassian Jira v2 integration instead."
+    },
+    {
+      "id": "Azure Compute",
+      "note": "Use the Azure Compute v2 integration instead."
+    },
+    {
+      "id": "Azure Security Center",
+      "note": "Use the Azure Security Center v2 integration instead."
+    },
+    {
+      "id": "FalconIntel",
+      "note": "Useg the CrowdStrike Falcon Intel v2 integration instead."
+    },
+    {
+      "id": "CVE Search",
+      "note": "Use the CVE Search v2 integration instead."
+    },
+    {
+      "id": "CyberArkAIM",
+      "note": "Use the CyberArk AIM v2 integration instead."
+    },
+    {
+      "id": "Cylance Protect",
+      "note": "Use the Cylance Protect v2 integration instead."
+    },
+    {
+      "id": "Cymon",
+      "note": "Service has been discontinued by the vendor."
+    },
+    {
+      "id": "EWS",
+      "note": "Use the EWS v2 or the EWS O365 integrations instead."
+    },
+    {
+      "id": "Feodo Tracker Hashes Feed",
+      "eol_start": "Dec 01, 2020",
+      "note": "EOL by vendor. Feodo Tracker no longer supports this feed."
+    },
+    {
+      "id": "XFE",
+      "note": "Use the IBM X-Force Exchange v2 integration instead."
+    },
+    {
+      "id": "Intezer",
+      "note": "Use the Intezer v2 integration instead."
+    },
+    {
+      "id": "Kenna",
+      "note": "Use the Kenna v2 integration instead."
+    },
+    {
+      "id": "Lastline",
+      "note": "Use the Lastline v2 integration instead."
+    },
+    {
+      "id": "Lockpath KeyLight",
+      "note": "Use the Lockpath KeyLight v2 integration instead."
+    },
+    {
+      "id": "Mimecast",
+      "note": "Use the Mimecast v2 integration instead."
+    },
+    {
+      "id": "Mimecast Authentication",
+      "note": "Use the Mimecast v2 integration instead."
+    },
+    {
+      "id": "MISP",
+      "note": "Use the MISP v2 integration instead."
+    },
+    {
+      "id": "OPSWAT-Metadefender",
+      "note": "Use the OPSWAT-Metadefender v2 integration instead."
+    },
+    {
+      "id": "LightCyber Magna",
+      "note": "Product is EOL. Company was acquired."
+    },
+    {
+      "id": "Palo Alto Minemeld",
+      "note": ""
+    },
+    {
+      "id": "WildFire",
+      "note": "Use the Palo Alto Networks WildFire v2 integration instead."
+    },
+    {
+      "id": "Proofpoint TAP",
+      "note": "Use the Proofpoint TAP v2 integration instead."
+    },
+    {
+      "id": "SafeBreach",
+      "note": "Use the SafeBreach v2 integration instead."
+    },
+    {
+      "id": "Secdo",
+      "note": "Product is EOL. Company was acquired."
+    },
+    {
+      "id": "ThreatConnect",
+      "note": "Use the ThreatConnect v2 integration instead."
+    }
+  ]
+}
