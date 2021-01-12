@@ -1,10 +1,11 @@
 import json
+import re
 
-from gendocs import INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
+from gendocs import DEPRECATED_INFO_FILE, DeprecatedInfo, INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
     index_doc_infos, DocInfo, gen_html_doc, process_release_doc, process_extra_readme_doc, \
     INTEGRATIONS_PREFIX, get_deprecated_data, insert_approved_tags_and_usecases, \
     find_deprecated_integrations, get_blame_date, get_deprecated_display_dates, \
-    get_fromversion_data
+    get_fromversion_data, add_deprected_integrations_info, merge_deprecated_info
 from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server, fix_relative_images, normalize_id
 import os
 import pytest
@@ -221,10 +222,10 @@ def test_process_extra_doc(tmp_path, mdx_server):
 
 def test_get_deprecated_data():
     res = get_deprecated_data({"deprecated": True}, "Deprecated - We recommend using ServiceNow v2 instead.", "README.md")
-    assert "We recommend using ServiceNow v2 instead" in res
+    assert "We recommend using ServiceNow v2 instead." in res
     assert get_deprecated_data({"deprecated": False}, "stam", "README.md") == ""
     res = get_deprecated_data({"deprecated": True}, "Deprecated: use Shodan v2 instead. Search engine for Internet-connected devices.", "README.md")
-    assert "use Shodan v2 instead" in res
+    assert "Use Shodan v2 instead" in res
     res = get_deprecated_data({"deprecated": True}, "Deprecated. Use The Generic SQL integration instead.", "README.md")
     assert "Use The Generic SQL integration instead" in res
     res = get_deprecated_data({}, "Deprecated. Add information about the vulnerability.", "Packs/DeprecatedContent/Playbooks/test-README.md")
@@ -300,12 +301,40 @@ def test_get_blame_date():
     assert res.year == 2020
 
 
+SAMPLE_CONTENT_DEP_INTEGRATIONS_COUNT = 7
+
+
 def test_find_deprecated_integrations():
     res = find_deprecated_integrations(SAMPLE_CONTENT)
     for info in res:
-        assert 'Deprecated' in info.name
-        assert info.deprecate_date.year == 2020
-    assert len(res) == 7
+        assert '2021' in info['maintenance_start']
+    assert len(res) == SAMPLE_CONTENT_DEP_INTEGRATIONS_COUNT
+
+
+def test_add_deprected_integrations_info(tmp_path):
+    deprecated_doc = tmp_path / "deprecated_test.md"
+    deprecated_info = tmp_path / "deprecated_info_test.json"
+    with open(deprecated_info, "wt") as f:
+        json.dump({"integrations": []}, f)
+    add_deprected_integrations_info(SAMPLE_CONTENT, str(deprecated_doc), str(deprecated_info))
+    with open(deprecated_doc, "rt") as f:
+        dep_content = f.read()
+        assert len(re.findall('Maintenance Mode Start Date', dep_content)) == SAMPLE_CONTENT_DEP_INTEGRATIONS_COUNT
+    with open(tmp_path / "deprecated_test.json", 'r') as f:
+        dep_json = json.load(f)
+        assert len(dep_json['integrations']) == SAMPLE_CONTENT_DEP_INTEGRATIONS_COUNT
+
+
+def test_merge_deprecated_info():
+    infos = [
+        DeprecatedInfo(id="mssql", name="test1 name"),
+        DeprecatedInfo(id="test2", name="test2 name")
+    ]
+    res = merge_deprecated_info(infos, DEPRECATED_INFO_FILE)
+    res_map = {i['id']: i for i in res}
+    assert res_map['mssql']['name'] == 'SQL Server'
+    assert res_map['test2']['name'] == "test2 name"
+    assert res_map['slack']['name'] == "Slack"
 
 
 def test_get_deprecated_display_dates():

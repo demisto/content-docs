@@ -2,6 +2,12 @@
   "$schema": "./deprecated_info.schema.json",
   "integrations": [
     {
+      "id": "RSA Archer",
+      "note": "We recommend using RSA Archer v2 instead. To allow adoption and a smooth transition, maintanence mode has been extended to 12 months.",
+      "maintenance_start": "Nov 01, 2020",
+      "eol_start": "Nov 01, 2021"
+    },
+    {
       "id": "Amazon Web Services",
       "note": "Use the AWS - EC2 integration instead."
     },
@@ -113,6 +119,126 @@
     {
       "id": "ThreatConnect",
       "note": "Use the ThreatConnect v2 integration instead."
+    },
+    {
+      "id": "activedir",
+      "name": "Active Directory Query",
+      "description": "Query LDAP directory servers",
+      "maintenance_start": "Apr 01, 2019",
+      "eol_start": "Apr 01, 2020",
+      "note": "Use the Active Directory Query v2 integration instead."
+    },
+    {
+      "id": "carbonblackprotection",
+      "name": "Carbon Black Enterprise Protection",
+      "description": "Carbon Black Enterprise Protection is a next-generation endpoint threat prevention solution to deliver a portfolio of protection policies, real-time visibility across environments, and comprehensive compliance rule sets in a single platform.",
+      "maintenance_start": "May 01, 2019",
+      "eol_start": "May 01, 2020",
+      "note": "Use the VMware Carbon Black App Control v2 integration instead."
+    },
+    {
+      "id": "carbonblack",
+      "name": "Carbon Black Enterprise Response",
+      "description": "Query and response with Carbon black endpoint detection and response",
+      "maintenance_start": "May 01, 2019",
+      "eol_start": "May 01, 2020",
+      "note": "Use the VMware Carbon Black EDR integration instead."
+    },
+    {
+      "id": "crowdstrike-streaming-api",
+      "name": "CrowdStrike Falcon Streaming",
+      "description": "Deprecated - We recommend using CrowdStrike Falcon Streaming v2 instead. The Falcon Streaming API (formerly known as the Falcon Firehose API)",
+      "maintenance_start": "May 01, 2020",
+      "eol_start": "May 01, 2021",
+      "note": "Use the CrowdStrike Falcon Streaming v2 integration instead."
+    },
+    {
+      "id": "cylance",
+      "name": "CylanceINFINITY",
+      "description": "File threat intelligence",
+      "maintenance_start": "Jun 01, 2019",
+      "eol_start": "Aug 01, 2020",
+      "note": "This service has been discontinued for external users by Cylance."
+    },
+    {
+      "id": "elasticsearch",
+      "name": "Elasticsearch",
+      "description": "Deprecated. Use the Elasticsearch v2 integration instead. Search & Analyze Data in Real Time",
+      "maintenance_start": "Sep 01, 2019",
+      "eol_start": "Sep 01, 2020",
+      "note": "Use the Elasticsearch v2 integration instead."
+    },
+    {
+      "id": "kafka",
+      "name": "Kafka",
+      "description": "The Open source distributed streaming platform",
+      "maintenance_start": "Oct 01, 2019",
+      "eol_start": "Oct 01, 2020",
+      "note": "Use the Kafka v2 integration instead."
+    },
+    {
+      "id": "mail-sender",
+      "name": "Mail Sender",
+      "description": "Send e-mail notifications to users",
+      "maintenance_start": "Jun 01, 2019",
+      "eol_start": "Jun 01, 2020",
+      "note": "Use the Mail Sender (New) integration instead."
+    },
+    {
+      "id": "esm",
+      "name": "McAfee ESM",
+      "description": "Run queries and receive alarms from Intel Security ESM up to version 9.X. Does NOT support version 10 and above",
+      "maintenance_start": "Sep 01, 2020",
+      "eol_start": "Sep 01, 2021",
+      "note": "Use the McAfee ESM v2 integration instead."
+    },
+    {
+      "id": "mysql",
+      "name": "MySQL",
+      "description": "Deprecated. Use The Generic SQL integration instead.",
+      "maintenance_start": "May 01, 2020",
+      "eol_start": "May 01, 2021",
+      "note": "Use the Generic SQL integration instead."
+    },
+    {
+      "id": "nexpose",
+      "name": "Nexpose",
+      "description": "Receive vulnerability details",
+      "maintenance_start": "Aug 01, 2019",
+      "eol_start": "Aug 01, 2020",
+      "note": "Use the Rapid7 Nexpose integration instead."
+    },
+    {
+      "id": "pagerduty",
+      "name": "PagerDuty",
+      "description": "Alert and notify users using PagerDuty",
+      "maintenance_start": "Feb 01, 2019",
+      "eol_start": "Feb 01, 2020",
+      "note": "Use the PagerDuty v2 integration instead."
+    },
+    {
+      "id": "Autofocus",
+      "name": "Palo Alto AutoFocus",
+      "description": "Deprecated. Use the Palo Alto Networks AutoFocus v2 integration instead. Palo Alto Networks AutoFocus enables you to distinguish the most important threats from everyday commodity attacks.",
+      "maintenance_start": "Jun 01, 2019",
+      "eol_start": "Jun 01, 2020",
+      "note": "Use the Palo Alto Networks AutoFocus v2 integration instead."
+    },
+    {
+      "id": "slack",
+      "name": "Slack",
+      "description": "Deprecated - We recommend using Slack v2 instead. Send messages and notifications to your Slack Team.",
+      "maintenance_start": "Sep 01, 2019",
+      "eol_start": "Sep 01, 2020",
+      "note": "Use the Slack v2 integration instead."
+    },
+    {
+      "id": "mssql",
+      "name": "SQL Server",
+      "description": "Deprecated. Use The Generic SQL integration instead.",
+      "maintenance_start": "May 01, 2020",
+      "eol_start": "May 01, 2021",
+      "note": "Use the Generic SQL integration instead."
     }
   ]
 }
