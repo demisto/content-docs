@@ -6,7 +6,7 @@ description: Overview of how to configure your Windows enviornment and XSOAR for
 ## Disclaimer
 
 
-The integration was created and tested on Windows 2016 win server with Powershell version 5.1.14393.3866. Configuration may vary to different windows server versions. Keep in mind that WinRM is entirely a Microsoft feature. We provide this manual “as is”. We highly recommend to perform all actions listed here on test/staging environments prior to implementing on production environments. Also it's important to notice that WinRM has security implications to consider as described here. The integration in its current version works with HTTP using NTLM authentication or HTTPS using basic authentication. PS remoting does encrypt the session event on HTTP however the initial connection is unencrypted while basic authentication is not considered a secure authentication method but since the whole session is encrypted via SSL this compensates for the less secure authentication method.
+The integration was created and tested on Windows 2016 win server with Powershell version 5.1.14393.3866. Configuration may vary to different windows server versions. Keep in mind that WinRM is entirely a Microsoft feature. We provide this manual “as is”. We highly recommend to perform all actions listed here on test/staging environments prior to implementing on production environments. Also it's important to notice that WinRM has security implications to consider as described [here](https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/winrmsecurity?view=powershell-7.1). The integration in its current version works with HTTP using NTLM authentication or HTTPS using basic authentication. PS remoting does encrypt the session event on HTTP however the initial connection is unencrypted while basic authentication is not considered a secure authentication method but since the whole session is encrypted via SSL this compensates for the less secure authentication method.
 
 ## Network Settings
 Your XSOAR server will require access or ports 5985,5986 TCP
@@ -130,7 +130,7 @@ In case you are not able to get a network connection to the host from XSOAR chec
 ### Authentication
 Check the provided username and password by attempting to connect to the tested host locally or via Terminal services. Make sure that you are able to login with the provided credentials. If the login fails verify the username and password or that the user has sufficient privileges on the host. If the password is wrong, reset it in Active Directory.
 
-In case you are using Basic Authentication make sure to provide a local user and and not a domain user.
+In case you are using Basic Authentication make sure to provide a local user and not a domain user.
 
 ## WinRM Commands Useful Commands
 For getting the WinRM configuration run on the host winrm get winrm/config
