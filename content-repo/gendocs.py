@@ -560,7 +560,7 @@ def merge_deprecated_info(deprecated_list: List[DeprecatedInfo], deperecated_inf
     merged_list: List[DeprecatedInfo] = []
     for d in deprecated_list:
         if d['id'] in to_merge_map:
-            d = {**d, **to_merge_map[d['id']]}  # type: ignore
+            d = {**d, **to_merge_map[d['id']]}  # type: ignore[misc]
         merged_list.append(d)
     merged_map = {i['id']: i for i in merged_list}
     for k, v in to_merge_map.items():
