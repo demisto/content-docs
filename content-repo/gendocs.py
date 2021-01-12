@@ -135,13 +135,17 @@ def gen_html_doc(txt: str) -> str:
 
 
 def get_extracted_deprecated_note(description: str):
-    regex = r'.*deprecated\s*[\.\-:]\s*(.*?instead.*?\.)'
-    dep_match = re.match(regex, description, re.IGNORECASE)
-    if dep_match:
-        res = dep_match[1]
-        if res[0].islower():
-            res = res[0].capitalize() + res[1:]
-        return res
+    regexs = [
+        r'.*deprecated\s*[\.\-:]\s*(.*?instead.*?\.)',
+        r'.*deprecated\s*[\.\-:]\s*(.*?No available replacement.*?\.)',
+    ]
+    for r in regexs:
+        dep_match = re.match(r, description, re.IGNORECASE)
+        if dep_match:
+            res = dep_match[1]
+            if res[0].islower():
+                res = res[0].capitalize() + res[1:]
+            return res
     return ""
 
 
