@@ -1,26 +1,29 @@
 #!/usr/bin/env python3
 
 import argparse
-import re
+import glob
+import html
+import json
 import os
+import random
+import re
+import shutil
 import subprocess
 import sys
-import glob
-import yaml
 import traceback
-import shutil
-import json
-from dateutil.relativedelta import relativedelta
-from bs4 import BeautifulSoup
-from mdx_utils import fix_mdx, fix_relative_images, start_mdx_server, stop_mdx_server, verify_mdx_server, normalize_id
-from CommonServerPython import tableToMarkdown  # type: ignore
-from typing import List, Optional, Dict, Tuple, Iterator, TypedDict
-from datetime import datetime, date
-from multiprocessing import Pool
-from functools import partial
-import html
+from datetime import datetime
 from distutils.version import StrictVersion
-import random
+from functools import partial
+from multiprocessing import Pool
+from typing import Dict, Iterator, List, Optional, Tuple, TypedDict
+
+import yaml
+from bs4 import BeautifulSoup
+from dateutil.relativedelta import relativedelta
+
+from CommonServerPython import tableToMarkdown  # type: ignore
+from mdx_utils import (fix_mdx, fix_relative_images, normalize_id,
+                       start_mdx_server, stop_mdx_server, verify_mdx_server)
 
 # override print so we have a timestamp with each print
 org_print = print
@@ -582,7 +585,7 @@ def add_deprected_integrations_info(content_dir: str, deperecated_article: str, 
     deperecated_json_file_no_note = deperecated_json_file.replace('.json', '.no_note.json')
     with open(deperecated_json_file_no_note, 'w') as f:
         json.dump({
-            'description': 'Generated machine readable doc of deprecated integrations which do not contain a note about replacement or deprecation reason',
+            'description': 'Generated doc of deprecated integrations which do not contain a note about replacement or deprecation reason',
             'integrations': deperecated_infos_no_note
         }, f, indent=2)
     with open(deperecated_article, "at") as f:
