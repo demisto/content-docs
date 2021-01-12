@@ -108,3 +108,16 @@ workflows:
             branches:
               # only from non-fork
               only: /^(?!pull\/).*$/
+  daily:
+    triggers:
+      - schedule:
+          cron: "0 5 * * *"
+          filters:
+            branches:
+              only:
+                - master                
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
