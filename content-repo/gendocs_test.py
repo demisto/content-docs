@@ -344,7 +344,8 @@ def test_get_deprecated_display_dates():
 
 
 def test_get_extracted_deprecated_note():
-    res = get_extracted_deprecated_note('Human-vetted, Phishing-specific Threat Intelligence from Phishme. Deprecated. Use the Cofense Intelligence integration instead.')
+    res = get_extracted_deprecated_note(
+        'Human-vetted, Phishing-specific Threat Intelligence from Phishme. Deprecated. Use the Cofense Intelligence integration instead.')
     assert res == 'Use the Cofense Intelligence integration instead.'
     res = get_extracted_deprecated_note('Deprecated. Vendor has stopped this service. No available replacement.')
     assert res == 'Vendor has stopped this service. No available replacement.'
