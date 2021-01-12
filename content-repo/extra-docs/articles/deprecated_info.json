@@ -8,6 +8,10 @@
       "eol_start": "Nov 01, 2021"
     },
     {
+      "id": "Phishme Intelligence",
+      "note": "Use the Cofense Intelligence integration instead."      
+    },
+    {
       "id": "Amazon Web Services",
       "note": "Use the AWS - EC2 integration instead."
     },

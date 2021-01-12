@@ -135,7 +135,7 @@ def gen_html_doc(txt: str) -> str:
 
 
 def get_extracted_deprecated_note(description: str):
-    regex = r'deprecated\s*[\.\-:]\s*(.*?instead.*?\.)'
+    regex = r'.*deprecated\s*[\.\-:]\s*(.*?instead.*?\.)'
     dep_match = re.match(regex, description, re.IGNORECASE)
     if dep_match:
         res = dep_match[1]
@@ -565,7 +565,7 @@ def merge_deprecated_info(deprecated_list: List[DeprecatedInfo], deperecated_inf
     return merged_list
 
 
-def add_deprected_integrations_info(content_dir: str, deperecated_article: str, deperecated_info_file: str):
+def add_deprected_integrations_info(content_dir: str, deperecated_article: str, deperecated_info_file: str, assets_dir: str):
     """Will append the deprecated integrations info to the deprecated article
 
     Args:
@@ -575,7 +575,7 @@ def add_deprected_integrations_info(content_dir: str, deperecated_article: str, 
     """
     deprecated_infos = merge_deprecated_info(find_deprecated_integrations(content_dir), deperecated_info_file)
     deprecated_infos = sorted(deprecated_infos, key=lambda d: d['name'].lower())  # sort by name
-    deperecated_json_file = deperecated_article.replace('.md', '.json')
+    deperecated_json_file = f'{assets_dir}/{os.path.basename(deperecated_article.replace(".md", ".json"))}'
     with open(deperecated_json_file, 'w') as f:
         json.dump({
             'description': 'Generated machine readable doc of deprecated integrations',
@@ -595,7 +595,7 @@ def add_deprected_integrations_info(content_dir: str, deperecated_article: str, 
             f.write(f'* **End-of-Life Date:** {d["eol_start"]}\n')
             if d["note"]:
                 f.write(f'* **Note:** {d["note"]}\n')
-        f.write(f'\n\n----\nA machine readable version of this file is available [here]({os.path.basename(deperecated_json_file)}).\n')
+        f.write(f'\n\n----\nA machine readable version of this file is available [here](/assets/{os.path.basename(deperecated_json_file)}).\n')
     org_print("\n===========================================\n")
 
 
@@ -620,7 +620,8 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     script_doc_infos = create_docs(args.dir, args.target, SCRIPTS_DOCS_MATCH, SCRIPTS_PREFIX)
     release_doc_infos = create_releases(args.target)
     article_doc_infos = create_articles(args.target)
-    add_deprected_integrations_info(args.dir, f'{args.target}/{ATRICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE)
+    add_deprected_integrations_info(args.dir, f'{args.target}/{ATRICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE,
+                                    f'{args.target}/../../static/assets')
     index_base = f'{os.path.dirname(os.path.abspath(__file__))}/reference-index.md'
     index_target = args.target + '/index.md'
     shutil.copy(index_base, index_target)

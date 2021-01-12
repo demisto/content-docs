@@ -5,7 +5,7 @@ from gendocs import DEPRECATED_INFO_FILE, DeprecatedInfo, INTEGRATION_DOCS_MATCH
     index_doc_infos, DocInfo, gen_html_doc, process_release_doc, process_extra_readme_doc, \
     INTEGRATIONS_PREFIX, get_deprecated_data, insert_approved_tags_and_usecases, \
     find_deprecated_integrations, get_blame_date, get_deprecated_display_dates, \
-    get_fromversion_data, add_deprected_integrations_info, merge_deprecated_info
+    get_fromversion_data, add_deprected_integrations_info, merge_deprecated_info, get_extracted_deprecated_note
 from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server, fix_relative_images, normalize_id
 import os
 import pytest
@@ -316,7 +316,7 @@ def test_add_deprected_integrations_info(tmp_path):
     deprecated_info = tmp_path / "deprecated_info_test.json"
     with open(deprecated_info, "wt") as f:
         json.dump({"integrations": []}, f)
-    add_deprected_integrations_info(SAMPLE_CONTENT, str(deprecated_doc), str(deprecated_info))
+    add_deprected_integrations_info(SAMPLE_CONTENT, str(deprecated_doc), str(deprecated_info), str(tmp_path))
     with open(deprecated_doc, "rt") as f:
         dep_content = f.read()
         assert len(re.findall('Maintenance Mode Start Date', dep_content)) == SAMPLE_CONTENT_DEP_INTEGRATIONS_COUNT
@@ -341,3 +341,8 @@ def test_get_deprecated_display_dates():
     (start, end) = get_deprecated_display_dates(datetime(2020, 12, 30))
     assert start == "Jan 01, 2021"
     assert end == "Jul 01, 2021"
+
+
+def test_get_extracted_deprecated_note():
+    res = get_extracted_deprecated_note('Human-vetted, Phishing-specific Threat Intelligence from Phishme. Deprecated. Use the Cofense Intelligence integration instead.')
+    assert res == 'Use the Cofense Intelligence integration instead.'
