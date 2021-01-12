@@ -507,7 +507,7 @@ def get_deprecated_display_dates(dep_date: datetime) -> Tuple[str, str]:
         tuple of start deprecation and end deprecation
     """
     DATE_FRMT = "%b %d, %Y"
-    start = date(day=1, month=dep_date.month, year=dep_date.year) + relativedelta(months=+1)
+    start = datetime(day=1, month=dep_date.month, year=dep_date.year) + relativedelta(months=+1)
     end = start + relativedelta(months=+6)
     return (datetime.strftime(start, DATE_FRMT), datetime.strftime(end, DATE_FRMT))
 
@@ -553,7 +553,7 @@ def merge_deprecated_info(deprecated_list: List[DeprecatedInfo], deperecated_inf
     merged_list: List[DeprecatedInfo] = []
     for d in deprecated_list:
         if d['id'] in to_merge_map:
-            d = {**d, **to_merge_map[d['id']]}
+            d = {**d, **to_merge_map[d['id']]}  # type: ignore
         merged_list.append(d)
     merged_map = {i['id']: i for i in merged_list}
     for k, v in to_merge_map.items():
