@@ -5,12 +5,8 @@ title: Getting Started Guide
 
 This guide will provide you with some pointers to jumpstart your development journey. After reading it, you’ll have a great background for creating content for the Cortex XSOAR platform.
 
-<<<<<<< HEAD:docs/concepts/getting-started-guide.md
 If you have trouble with any of these items, please reach out for help over [Slack](https://start.paloaltonetworks.com/join-our-slack-community) on the `#demisto-developers` channel or, if you are/want to be a technology partner, also via [email](mailto:soar.alliances@paloaltonetworks.com).
  
-=======
-
->>>>>>> upstream/master:docs/integrations/getting-started-guide.md
 ## Before you start
 
 Cortex XSOAR is a powerful platform that comes with a rich set of features and functionality that allow for a high degree of customization: we therefore recommend that you start by familiarizing yourself with the different aspects of the product:
