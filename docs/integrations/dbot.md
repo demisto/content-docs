@@ -20,12 +20,11 @@ The DBot score must be at the root level of the context and contain **all** the 
 
 | Key | Meaning | Required
 | --- | --- | --- |
-| Indicator | Can be: IP, SHA1, MD5, SHA256, Email, or Url | Required |
-| Type | Can be: ip, file, email, or url | Required |
+| Indicator | The indicator value | Required |
+| Type | Can be: ip, file, email, url, cve, account, cider, domainglob, certificate, or cryptocurrency | Required |
 | Vendor | This is the vendor reporting the score of the indicator| Required |
 | Score | An int representing the status of the indicator. See Score Types below| Required |
 | Reliability | Reliability of the source providing the intelligence data. See Reliability Levels below| Optional |
-
 
 ## Reliability Level
 The reliability of an intelligence-data source influences the reputation of an indicator and the values for
