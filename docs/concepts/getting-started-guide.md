@@ -40,9 +40,9 @@ The following summarizes some common developer profiles and recommendations on w
 
 |Who|Contributing?|Integrations/Scripts?|Write Code With|Contribute With|
 |--:|------------:|--------------------:|-----------------|---------------|
-|End customer<br/>Individual contributor|No|No|N/A|N/A|
-|End customer<br/>Individual contributor|No|Yes|[XSOAR IDE](../concepts/xsoar-ide)|N/A|
-|End customer<br/>Individual contributor|Yes|No|[XSOAR IDE](../concepts/xsoar-ide)|[Cortex XSOAR UI](../contributing/marketplace)|
+|End customer|No|No|N/A|N/A|
+|End customer|No|Yes|[XSOAR IDE](../concepts/xsoar-ide)|N/A|
+|End customer<br/>Individual contributor|Yes|No|N/A|[Cortex XSOAR UI](../contributing/marketplace)|
 |End customer<br/>Individual contributor|Yes|Yes|demisto-sdk + IDE (Pycharm, VSCode, etc.)|GitHub|
 |Technology Partner<br/>Palo Alto Networks Employee|Yes|Either way|demisto-sdk + IDE (Pycharm, VSCode, etc.)|GitHub|
 

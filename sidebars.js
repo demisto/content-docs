@@ -35,8 +35,8 @@ const sidebars = {
           label: "Dev Environment",
           collapsed: true,
           items: [
-            "concepts/dev-setup",
-            "concepts/dev-requirements",     
+            "concepts/dev-requirements",
+            "concepts/dev-setup",  
             "concepts/xsoar-ide",
             "concepts/pycharm-plugin"
           ]

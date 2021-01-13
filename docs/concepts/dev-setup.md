@@ -52,7 +52,7 @@ If you want more details, please refer to the end-to-end [Tutorial](../tutorials
 ## IDE
 
 Cortex XSOAR offers two IDEs for developing: 
-* [Built-in Platform Cortex XSOAR IDE](../concepts/xsoar-ide) (not recommended for most use cases. Do not use it if you are planning to [contribute])
+* [Built-in Platform Cortex XSOAR IDE](../concepts/xsoar-ide) (not recommended for most use cases. Do not use it if you are planning to [contribute](getting-started-guide#are-you-planning-to-contribute).)
 * [PyCharm IDE Plugin](../concepts/pycharm-plugin)
 
 You can also use your IDE of choice along with `demisto-sdk`, for example Visual Studio Code.

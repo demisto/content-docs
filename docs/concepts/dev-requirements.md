@@ -5,7 +5,7 @@ title: Development Requirements
 
 This article summarizes all the requirements you need to satisfy in order to be able to develop content (including code parts, such as Integrations and Automations) and contribute it to Cortex XSOAR.
 
-Before you read this part, make sure you follow the general [preqreuisites](getting-started-guide#before-you-start).
+Before you read this part, make sure you follow the general [prerequisites](getting-started-guide#before-you-start).
 
 If you are not sure whether you should read this, more details can be found [here](getting-started-guide#are-you-planning-to-contribute).
 
