@@ -35,7 +35,7 @@ jobs:
     - run: npm install
     - uses: actions/setup-python@v1
       with:
-        python-version: '3.7'
+        python-version: '3.8'
     - name: Setup pipenv
       run: |
         pip install pipenv
