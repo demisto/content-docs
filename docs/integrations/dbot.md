@@ -33,12 +33,13 @@ indicator fields when merging indicators.
 The values are case sensitive.
 
 ``` 
-  A: Completely reliable 
-  B: Usually reliable  
-  C: Fairly reliable  
-  D: Not usually reliable  
-  E: Unreliable  
-  F: Reliability cannot be judged  
+  A+ - 3rd party enrichment  
+  A - Completely reliable 
+  B - Usually reliable  
+  C - Fairly reliable  
+  D - Not usually reliable  
+  E - Unreliable  
+  F - Reliability cannot be judged  
  ```
 
 ## Score Types
