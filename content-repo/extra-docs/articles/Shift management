@@ -13,6 +13,20 @@ This pack's purpose is Provide a single interface for all those essential elemen
 
 ## Pack Workflow
 
+The main components of Shift management and handover pack are:
+
+
+Layout
+Shift hanover playbook
+Dashboard
+
+There are two ways to trigger the Shift handover playbook which his results will be displayed in the layout:
+
+Manual incident:
+
+Before creating a new incident make sure to provide all the playbook inputs accordingly to your purpose and your integrated apps.
+After the playbook inputs are set you can create manual incident, make sure to select the “shift handover” in the incident type selection section, then the soc manager should provide his briefing for the the in the “SOC manager briefing” section, if this section will remain empty email will be send to to the SOC manager email that provided as playbook requesting to provide the briefing.
+After the incident was created all the relevant components for shift handover will be displayed under the “Incident info” tab (layout).
 
 
 
@@ -51,6 +65,16 @@ This automation is already part of the shift handover playbook, so once the play
 *[AssignallanalystsOOO](LINK):
 
 This automation is used to assign all analysts to the incident, This automation works with the other Out of Office automations to ensure only available users get assigned.
+
+*[GetOOOusres](LINK):
+
+
+This automation is used to present all the out of office users, in addition it cleans the out of office list (OOO list) for XSOAR users, removing any where the off until day is in the past. 
+
+*[TimeToNextShift](LINK):
+
+This automation is used to present the time until the next shift.
+
 
 
 
