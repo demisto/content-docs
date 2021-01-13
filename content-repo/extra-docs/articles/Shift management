@@ -1,0 +1,90 @@
+---
+id: 
+title: 
+description: 
+
+ 
+---
+Shift management and shift handover are crucial processes of SOC team management.
+This pack's purpose is Provide a single interface for all those essential elements in one place in order to prevent loss of data in the shift handover process.
+
+
+
+
+## Pack Workflow
+
+
+
+
+
+ 
+
+
+## In This Pack
+
+The Shift management and handover content pack includes several content items.
+
+
+
+### Automations
+
+
+* [AssignToNextShiftOOO](LINK): 
+Randomly assigns the incidents to users on call, This is an automation for reassigning a large number of Incidents to the next shift.   
+This automation works with the other Out of Office automations to ensure only available users get assigned.
+Incident Ids should be passed in as a comma separated list.
+
+
+*[AssignAnalystToIncidentOOO](LINK): Assign analyst to incident with consideration of PTO, OOO, or Disabled Users.
+This automation will not assign users that appear in the “OOO list “ (Settings ->     advanced -> lists).
+*[OutOfOffice ](LINK):
+
+This automation is used to add/remove users to the out of office list in XSOAR.
+The OOO list in XSOAR is managing all the out of the office users, users that appear in this list will not be taken in consideration with the automations AssignToNextShiftOOO or AssignAnalystToIncidentOOO.
+
+*[OutOfOfficeListCleanup](LINK):
+
+Cleans the out of office list (OOO list) for XSOAR users, removing any where the off until day is in the past.   
+This automation is already part of the shift handover playbook, so once the playbook will be activated by job or by manual incident the list will be cleaned up.
+
+
+*[AssignallanalystsOOO](LINK):
+
+This automation is used to assign all analysts to the incident, This automation works with the other Out of Office automations to ensure only available users get assigned.
+
+
+
+### Incident Fields
+There is 5 incident field - 
+**Out Off The Office**
+**Shift Manager Briefing**
+**Shift Open Incidents**
+**To Join The Meeting**
+**To Start The Meeting**
+
+### Incident Types
+There is 1 incident type - **Shift handover**.
+
+### Layout
+There is 1 layout - **Shift handover** 
+
+There are 9  sections in shift handover layout wich creating the environment for the handover, the emphasis of this layout is the communication in the shift handover process, online meeting, sending notification in apps, SOC manager briefing and display of open incidents and on-call users should give a solid ground and all the essential elements for improving the communication in the handover process.       
+
+
+
+![Layout](LINK to image)
+
+
+
+
+| Layout sections | Description |
+|------------------ | ------------- |
+| SOC shift manager briefing | SOC manager briefing for the shift could be provided by manual input when the incident is created or by Email if this section will be left empty in the incident creation form.  |
+| Open incidents  | Displays all active incidents. |
+| notification message | Sending notification in the integrated app regarding the shift handover.  |
+| Online meeting | Creating an online meeting in the integrated app for remote shift handover. |  
+| On call team members | Displays all the team members on call. |  
+| Out of the office team members | Displays the out of the office users.  |  
+| Attachments | |Here the SOC manager can attach files that he wants that will be presented in the handover. |
+| To do tasks | 
+ ---
