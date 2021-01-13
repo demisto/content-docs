@@ -11,19 +11,35 @@ DBot is the Cortex XSOAR machine learning bot which ingests information about in
   "Indicator" : "foo@demi.com",
   "Type": "email",
   "Vendor": "JoeSecurity",
-  "Score": 3
+  "Score": 3,
+  "Reliability": "A: Completely reliable"
 } 
 ```
 
-The DBot score must be at the root level of the context and contain **all** of the keys listed below.
+The DBot score must be at the root level of the context and contain **all** the required keys as listed below.
 
-| Key | Meaning |
-| --- | ---|
-| Indicator | Can be: IP, SHA1, MD5, SHA256, Email, or Url |
-| Type | Can be: ip, file, email, or url|
-| Vendor | This is the vendor reporting the score of the indicator|
-| Score | An int representing the status of the indicator. See Score Types below|
+| Key | Meaning | Required
+| --- | --- | --- |
+| Indicator | Can be: IP, SHA1, MD5, SHA256, Email, or Url | Required |
+| Type | Can be: ip, file, email, or url | Required |
+| Vendor | This is the vendor reporting the score of the indicator| Required |
+| Score | An int representing the status of the indicator. See Score Types below| Required |
+| Reliability | Reliability of the source providing the intelligence data. See Reliability Levels below| Optional |
 
+
+## Reliability Level
+The reliability of an intelligence-data source influences the reputation of an indicator and the values for
+indicator fields when merging indicators.  
+The values are case sensitive.
+
+``` 
+  A: Completely reliable 
+  B: Usually reliable  
+  C: Fairly reliable  
+  D: Not usually reliable  
+  E: Unreliable  
+  F: Reliability cannot be judged  
+ ```
 
 ## Score Types
 Dbot uses an integer to represent the reputation of an indicator.
