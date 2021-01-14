@@ -20,9 +20,7 @@ Layout
 Shift hanover playbook
 Dashboard
 
-There are two ways to trigger the Shift handover playbook which his results will be displayed in the layout:
-
-Manual incident:
+There are two ways to trigger the Shift handover playbook:manual incident and job which they results will be displayed in the layout:
 
 Before creating a new incident make sure to provide all the playbook inputs accordingly to your purpose and your integrated apps.
 After the playbook inputs are set you can create manual incident, make sure to select the “shift handover” in the incident type selection section, then the soc manager should provide his briefing for the the in the “SOC manager briefing” section, if this section will remain empty email will be send to to the SOC manager email that provided as playbook requesting to provide the briefing.
