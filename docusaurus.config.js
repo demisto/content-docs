@@ -4,6 +4,27 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+const visit = require("unist-util-visit");
+const path = require("path");
+
+const remarkPlugin = () => {
+  const transformer = (root) => {
+    visit(root, "link", (node) => {
+      if (!node.url) {
+        console.log("empty link", node);
+        node.url = "#";
+      }
+    });
+
+    visit(root, "image", (node) => {
+      if (!node.url) {
+        console.log("empty image", node);
+        node.url = "/img/placeholder.png";
+      }
+    });
+  };
+  return transformer;
+};
 
 module.exports = {
   title: "Cortex XSOAR",
@@ -139,6 +160,7 @@ module.exports = {
           include: ["**/*.md", "**/*.mdx"], // Extensions to include.
           docLayoutComponent: "@theme/DocPage",
           docItemComponent: "@theme/DocItem",
+          beforeDefaultRemarkPlugins: [remarkPlugin],
           remarkPlugins: [],
           rehypePlugins: [],
           showLastUpdateAuthor: false,
