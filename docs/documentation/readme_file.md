@@ -52,13 +52,13 @@ If you are connecting to a Server with a self signed certificate, make sure to p
 Images in the documentation should be added to the relevant pack under a `doc_files` or `doc_imgs` directory. Images may be included with **absolute** or **relative** URLs.
 
 ### Relative Image URLs
-You may use relative URLs to documentation images stored in the `doc_files` or `doc_imgs` directories. To use relative URLs simply link to the image using a relative path such as (if the `doc_imgs` dir is located at the top level Pack directory):
+You may use relative URLs to documentation images stored in the `doc_files` or `doc_imgs` directories. To use relative URLs simply link to the image using a relative path such as (if the `doc_files` dir is located at the top level Pack directory):
 ```
-![Setup Account](./../../doc_imgs/create-account.png)
+![Setup Account](./../../doc_files/create-account.png)
 ```
-Or for example as (if the `doc_imgs` dir is located at the same level as the README.md file):
+Or for example as (if the `doc_files` dir is located at the same level as the README.md file):
 ```
-![Setup Account](./doc_imgs/create-account.png)
+![Setup Account](./doc_files/create-account.png)
 ```
 Make sure to view the README.md file in GitHub's web interface and validate that the images display properly.
 

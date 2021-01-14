@@ -17,7 +17,7 @@ jobs:
         if: "endsWith(github.event.context, 'ci/circleci: build') && github.event.state == 'success'"
         uses: actions/setup-python@v1
         with:
-          python-version: '3.7'
+          python-version: '3.8'
       - name: Download Build
         if: "endsWith(github.event.context, 'ci/circleci: build') && github.event.state == 'success'"
         id: build_download
