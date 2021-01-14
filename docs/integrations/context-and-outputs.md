@@ -1124,7 +1124,6 @@ for ip_reputation in ip_reputations_from_autofocus:
         outputs=ip_reputation,
         indicator=ip
     ))
-}
 
 return_results(command_results_list)
 ```
