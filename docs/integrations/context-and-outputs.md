@@ -1100,7 +1100,7 @@ command_results_list: List[CommandResults] = []
 for ip_reputation in ip_reputations_from_autofocus:
     if ip_reputation['confidence'] >= 90:
         score = Common.DBotScore.BAD
-    if ip_reputation['confidence'] >= 50:
+    elif ip_reputation['confidence'] >= 50:
         score = Common.DBotScore.SUSPICIOUS
     else:
         score = Common.DBotScore.GOOD
