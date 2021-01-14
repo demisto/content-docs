@@ -3,20 +3,30 @@ title: Powershell Remoting - Configuration
 description: Overview of how to configure your Windows enviornment and XSOAR for the Powershell Remoting integration. 
 ---
 
-## Disclaimer
+Powershell Remoting is a built in capability in Windows hosts that enables to connect remotley and in order to execute scripts and Poweshell commands. By using Powershell Remoting the SOC analyst or incident resopnder will be able to connect to the windows host in oder to perform various tasks such as gathering data, remediating the host, move files to and from the host to XSOAR and much more.
+## Pack Workflow
+Follow this article to configure your Windows enviornment and the integration.
 
+After configuring the integration you will be able to perform various tasks on Windows hosts. Including running Powershell commands and script as well as gather forensic data.
 
+## In This Pack
+The Powershell Remoting content pack includes.
+### Integrations
+The Powershell Remoting integration.
+
+## Before You Start
+### Disclaimer
 The integration was created and tested on Windows 2016 win server with Powershell version 5.1.14393.3866. Configuration may vary to different windows server versions. Keep in mind that WinRM is entirely a Microsoft feature. We provide this manual “as is”. We highly recommend to perform all actions listed here on test/staging environments prior to implementing on production environments. Also it's important to notice that WinRM has security implications to consider as described [here](https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/winrmsecurity?view=powershell-7.1). The integration in its current version works with HTTP using NTLM authentication or HTTPS using basic authentication. PS remoting does encrypt the session event on HTTP however the initial connection is unencrypted while basic authentication is not considered a secure authentication method but since the whole session is encrypted via SSL this compensates for the less secure authentication method.
 
-## Network Settings
+### Network Settings
 Your XSOAR server will require access or ports 5985,5986 TCP
 to the hosts to which you want to run the integration on. Take into consideration both the network firewall and the localhost firewall. In case of using the Windows firewall make sure to create a relevant GPO to allow traffic on the relevant ports. The configuration of the windows FW GPO is not in the scope of this article. Same goes for other local host FW agents. For WinRM over HTTPS open port 5986 TCP.
 
-## Permissions
+### Permissions
 The user that will be used in order to execute the PS remote commands on the endpoint will require local admin credentials. Potentially more granular permissions can be applied however this was not tested and therefore not in the scope of this article.
 
 
-## Domain Settings
+### Domain Settings
 For Windows 2016 env Active Directory domain perform the following
 
 On your 2016 Domain controller create a new OU (Organizational Unit) and move the computer accounts to the new OU. 
@@ -30,12 +40,7 @@ GPO settings
 Open the Group Policy Management tool. Right click on the OU for which you want to apply the GPO (where the relevant computer accounts are located) and select Create GPO in this domain and link it here.
 Enable PS Remote
 
-
-
-
-
  
-
 From Computer Configuration > Administrative Templates > Windows Remote Management (WinRM) > WinRM Service
 Select Allow remote server management through WinRM
 Select Enabled
@@ -55,11 +60,12 @@ Select Windows Remote Management (WS-Management)
 
 Select Define this Policy and Automatic service startup mode. This setting will ensure that the WinRM service will be started up automatically on the relevant hosts.
 
+### Workgroup settings
+It is possible to configure the integration to work in a workgroup (non domain) environment. Network settings and configuration are the same as described in the previous relevant section. To configure the host within the workgroup to accept PS remote connections perform the following settings. For the host that you wish to enable PS remoting. Open the Powershell command prompt as an administrator as an administrator and type Enable-PSRemoting.
 
 
-
-
-## Integration Configuration
+## Pack Configurations
+### Integration Configuration
 
 Once the GPO has been applied and the settings are in effect. We can configure the integration instance settings and validate if the integration is working.
 
@@ -88,6 +94,7 @@ This option selects the authentication method used by the integration. Valid opt
 Testing the integration
 The test button will perform the following. Test network connectivity to the host supplied as the test hostname and attempt to open a PSremote session to the specified host.
 
+## Testing the Pack
 ## Troubleshooting
 ### Host Troubleshooting
 One of the common issues with regards to working with WinRM is that the network connectivity was not properly configured. In order to test network connectivity we can check is the host is listening on the relevant port
@@ -106,26 +113,14 @@ In case the GPO does not appear as applied make sure that the computer account i
 
 The result should show that the computer policy updated successfully.
 
-
-
-## Workgroup settings
-It is possible to configure the integration to work in a workgroup (non domain) environment. Network settings and configuration are the same as described in the previous relevant section. To configure the host within the workgroup to accept PS remote connections perform the following settings. For the host that you wish to enable PS remoting. Open the Powershell command prompt as an administrator as an administrator and type Enable-PSRemoting.
-
-
-
-Open a command prompt as an administrator and run the command winrm set winrm/config/client @{TrustedHosts="*"}
-
 ## XSOAR Troubleshooting
 First of all we provide in the integration settings the test option. From the integration settings provide all the relevant inputs and click on Test
 In case no network connection is available or the host is not resolved or the username/password permissions are not working the following error will be displayed.
-
-
 
 ### Network connectivity
 Another issue could be network connectivity from the XSOAR to the host. We can troubleshoot this by logging in to the XSOAR CLI and test connectivity by running the following command. sudo tcpdump -i any 'port 5985' This will display the traffic sent to the host. You can also see the raw traffic by running the command sudo tcpdump -i any -nnAs0 port 5985
 
 In case you are not able to get a network connection to the host from XSOAR check the network or host firewall logs and adjust the rules accordingly.
-
 
 ### Authentication
 Check the provided username and password by attempting to connect to the tested host locally or via Terminal services. Make sure that you are able to login with the provided credentials. If the login fails verify the username and password or that the user has sufficient privileges on the host. If the password is wrong, reset it in Active Directory.
@@ -150,6 +145,8 @@ Delete HTTP listener winrm delete winrm/config/Listener?Address=*+Transport=HTTP
 Delete HTTPS listener winrm delete winrm/config/Listener?Address=*+Transport=HTTPS
 
 ## Appendix
+
+Open a command prompt as an administrator and run the command winrm set winrm/config/client @{TrustedHosts="*"}
 ### Configure WinRM over HTTPS For a Domain Environment
 In order to enable PS remote over SSL perform the following
 Certificate Services
@@ -170,41 +167,21 @@ In the new template click on the General tab. Provide the new template name (for
 
 Click on the Subject Name tab. Select Build from this Active Directory information. For Subject name format select Common Name. Under Include this information in alternate subject name select DNS name and deselect User principal name (UPN).
 
-
 Click on the Security tab. Select the following permissions, Read, Enroll, Autoenroll. Click on OK. Your new template is now saved.
-
-
 
 In the Certification Authority console click on Certificate Templates and New and Certificate Template to Issue
 
 Select your new template and click OK.
 
-GPO
+### GPO
 Open the GPMC (Group Policy Management Console) Create and link a new GPO to your relevant OU.
-
 
 Edit the new GPO and navigate to Computer Configuration > Policies > Windows Settings > Security Settings > Public Key Policies > Certificate Services Client - Auto-Enrollment.
 
-
-
-
-
-
-
-
-
-
-
-
-
 Under Configuration Model select enabled and click the checkbox for Update Certificates that use certificate templates
-
 
 Review the Certification Authority and make sure a certificate was issued for your host
 
-
-
 On the host you wish to configure WinRM with HTTPS open a command prompt as an administrator and type winrm quickconfig -transport:https
-
 
 Since Microsoft doesn't currently have a GPO to set up the HTTPS listener it's possible to create a logon script that contains this command in it. Creation of logon script and deploying it via GPO is not covered in this article.
