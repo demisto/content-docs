@@ -108,5 +108,5 @@ There are 9  sections in shift handover layout wich creating the environment for
 | On call team members | Displays all the team members on call. |  
 | Out of the office team members | Displays the out of the office users.  |  
 | Attachments | |Here the SOC manager can attach files that he wants that will be presented in the handover. |
-| To do tasks | 
- ---
+| To do tasks | In the to do task section you can create a task and assign to them an analyst and even set a due date. |
+| War room entries | | Here you will be able to see all war room entries without leaving the layout tab. | 
