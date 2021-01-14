@@ -1092,7 +1092,7 @@ ip_reputations_from_autofocus = [
       'indicator': '4.4.4.4',
       'asn': '54321',
       'confidence': 73
-    },
+    }
 }
 
 command_results_list: List[CommandResults] = []
@@ -1118,7 +1118,7 @@ for ip_reputation in ip_reputations_from_autofocus:
         dbot_score=dbot_score
     )
 
-    command.results.list.append(CommandResults(
+    command_results_list.append(CommandResults(
         outputs_prefix='Autofocus.IP',
         outputs_key_field='indicator',
         outputs=ip_reputation,
