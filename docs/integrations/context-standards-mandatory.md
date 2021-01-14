@@ -576,7 +576,7 @@ The following is the format for a DBot Score entry.
   type: Number
 - contextPath: DBotScore.Reliability
   description: Reliability of the source providing the intelligence data.
-  type: Number
+  type: String
 
 ```
 
