@@ -307,7 +307,7 @@ SAMPLE_CONTENT_DEP_INTEGRATIONS_COUNT = 7
 def test_find_deprecated_integrations():
     res = find_deprecated_integrations(SAMPLE_CONTENT)
     for info in res:
-        assert '2022' in info['maintenance_start']
+        assert '2021' in info['maintenance_start']
     assert len(res) == SAMPLE_CONTENT_DEP_INTEGRATIONS_COUNT
 
 
