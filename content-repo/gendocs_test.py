@@ -297,8 +297,8 @@ def test_insert_approved_tags_and_usecases(tmp_path):
 
 def test_get_blame_date():
     res = get_blame_date(SAMPLE_CONTENT, f'{SAMPLE_CONTENT}/Packs/DeprecatedContent/Integrations/integration-AlienVaultOTX.yml', 6)
-    assert res.month == 12
-    assert res.year == 2020
+    assert res.month == 1
+    assert res.year == 2021
 
 
 SAMPLE_CONTENT_DEP_INTEGRATIONS_COUNT = 7
