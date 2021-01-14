@@ -1,11 +1,14 @@
 ---
-id: integration-docs
+id: readme_file
 title: README File
 ---
 
 Documentation is a critical step that assists customers who may use your integration/script/playbook by providing insight into how the content entity is supposed to work.  
 From creating custom playbooks, to providing background information to assist in debugging, it is important to ensure that the documentation explains every aspect of the integration. Documentation is maintained as `README.md` per integration/automation/playbook and made available for customers as part of the [reference docs](https://xsoar.pan.dev/docs/reference/index) of the Cortex XSOAR Developer Hub.
 
+:::note
+This document guides you through the generation of the README files from entity YML files. When writing the actual entity descriptions, make sure to follow our [Documentation Best Practices](../documentation/documentation_tips).
+:::
 
 ## Documentation _must_ be generated if:
 1.  If the content entity is new then you are required to create new documentation.
@@ -13,9 +16,8 @@ From creating custom playbooks, to providing background information to assist in
 3.  If the content entity is existing and some of it has changed. For example, a new command was added, context was changed, or anything else; please update the documentation.
 
 :::note 
-This should not be confused with the integration description file, documented [here](../integrations/integration-description).
+The entity README.md file should not be confused with the Content Pack README.md file (documented [here](../documentation/pack-docs)) or the integration description file, documented [here](../documentation/integration-description).
 :::
-
 
 ## Creating Documentation
 Use the `demisto-sdk generate-docs` command to generate documentation for your content entity. Documentation for the command is available [here](https://github.com/demisto/demisto-sdk#generate-docs). 

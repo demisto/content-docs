@@ -1,9 +1,9 @@
 ---
 id: documentation_tips
-title: Documentation - Best Practices
+title: Documentation Best Practices
 ---
 
-This document describes the desired documentation standards in XSOAR content entities, and contains examples that can be very useful when writing documentation.
+This article describes the desired documentation standards in XSOAR content entities, and contains examples that can be very useful when writing documentation.
 
 ## Entities Description Field
 ### For playbook and scripts, use the following guideline:

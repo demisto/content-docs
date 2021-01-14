@@ -1,6 +1,6 @@
 ---
 id: release-notes
-title: Release Notes
+title: Pack Release Notes
 ---
 
 Release notes files help to keep track of the changes made for a specific content entity like an integration or a playbook.

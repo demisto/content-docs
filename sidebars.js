@@ -63,8 +63,8 @@ const sidebars = {
       collapsed: true,
       items: [
         "integrations/packs-format",  
-        "integrations/pack-docs",
-        "integrations/release-notes",
+        "documentation/pack-docs",
+        "documentation/release-notes",
         "integrations/premium_packs"
         ]
     },
@@ -81,8 +81,9 @@ const sidebars = {
             "integrations/package-dir",
             "integrations/yaml-file",
             "integrations/parameter-types",
-            "integrations/integration-description",
-            "integrations/integration-logo"
+            "documentation/integration-description",
+            "integrations/integration-logo",
+            "documentation/readme_file"
           ]
         },
         {       
@@ -161,7 +162,8 @@ const sidebars = {
         "playbooks/playbooks-communication-task-customize-message",
         "playbooks/generic-polling",
         "playbooks/playbooks-field-reference",
-        "playbooks/playbooks-generic"
+        "playbooks/playbooks-generic",
+        "documentation/readme_file"
       ]
     },
     {
@@ -184,8 +186,11 @@ const sidebars = {
       label: "Documentation",
       collapsed: true,
       items: [
-        "integrations/integration-docs",
-        "integrations/documentation_tips",
+        "documentation/pack-docs",
+        "documentation/release-notes",
+        "documentation/readme_file",
+        "documentation/integration-description",
+        "documentation/documentation_tips",
         ]
     },
     {

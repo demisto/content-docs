@@ -128,3 +128,9 @@ https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 
 # Redirect context standards after: https://github.com/demisto/content-docs/pull/299
 /docs/integrations/context-standards /docs/integrations/context-standards-about
+
+# Redirects added for documentation section
+/docs/integrations/release-notes /docs/documentation/release-notes
+/docs/integrations/pack-docs /docs/documentation/pack-docs
+/docs/integrations/integration-docs /docs/documentation/readme_file
+/docs/integrations/integration-description /docs/documentation/integration-description
