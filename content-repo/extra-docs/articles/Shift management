@@ -64,7 +64,7 @@ This automation is already part of the shift handover playbook, so once the play
 
 This automation is used to assign all analysts to the incident, This automation works with the other Out of Office automations to ensure only available users get assigned.
 
-*[GetOOOusres](LINK):
+*[ManageOOOusers](LINK):
 
 
 This automation is used to present all the out of office users, in addition it cleans the out of office list (OOO list) for XSOAR users, removing any where the off until day is in the past. 
@@ -123,3 +123,23 @@ This pack requires that you have an active instance of mail sender integration i
 In addition it is highly recommend to use along with the following messaging and communication apps to gain all the benefits from this pack:
 Zoom - for creating online meetings for remote shift handover.
 Slack/Microsoft Teams - integrate your messaging apps to improve your team communication in the handover process.
+
+
+ ## Testing the Pack
+
+## Important: By providing “Yes” for the playbook input “AssignActiveIncidentsToNextShift”, incidents will be reassigned to the on-call analysts.  
+
+After you configure the integrations, now test the pack to ensure that everything was configured correctly.
+
+1.Go the shift handover playbook and edit the playbook inputs according to your integrated apps data (for example your Slack channel name or the SOC manager email address).
+2. Create a new incident and set shift handover as the incident type and fill the SOC manager briefing section (one word or short sentence will be enough).
+3.Create the incident and open the layout (incident info tab).
+4.Check that SOC manager briefing that you provided is appearing in his section. 
+5. In the shift open incidents section check that in all the active incidents was reassigned to on-call analyst.
+6. If you provided in the playbook inputs all your messaging app (currently supports only Slack and Microsoft Teams) essential details try to press the buttons for creating a channel ,sending notification and closing the channel.
+7. In case you use Zoom and its integration is enabled go to the online meeting section and start meeting and join her.
+8.In the on-call team members section make sure that all on call users appear.
+9.The section OOO teams members will present all the out of the office team, to add/remove users to the OOO list use the ManageOOOusers automation.
+10. Run the ManageOOOusers automation and try to add users to the OOO list, go to settings -> Lists -> OOO list, make sure the users you add to OOO appears in the list.
+11. Create a new incident and set shift handover as the incident type and leave the SOC manager briefing section empty, you should receive email to the SOC manager email that was provided in the playbook input (SOCManagerEmail), when the email received enter the URL in the email and reply (one word or short sentence will be enough), the replied answer should appear in the SOC manager briefing section.
+12. In the same incident that was above (section 11) created to make sure that the users that you set as out of the office are appearing in the OOO teams members.    
