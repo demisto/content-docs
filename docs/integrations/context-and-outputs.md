@@ -341,7 +341,7 @@ ip_reputation_from_autofocus = {
 
 if ip_reputation_from_autofocus['confidence'] >= 90:
     score = Common.DBotScore.BAD
-if ip_reputation_from_autofocus['confidence'] >= 50:
+elif ip_reputation_from_autofocus['confidence'] >= 50:
     score = Common.DBotScore.SUSPICIOUS
 else:
     score = Common.DBotScore.GOOD
