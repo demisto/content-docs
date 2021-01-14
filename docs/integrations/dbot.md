@@ -12,7 +12,7 @@ DBot is the Cortex XSOAR machine learning bot which ingests information about in
   "Type": "email",
   "Vendor": "JoeSecurity",
   "Score": 3,
-  "Reliability": "A: Completely reliable"
+  "Reliability": "A - Completely reliable"
 } 
 ```
 
