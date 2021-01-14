@@ -110,3 +110,11 @@ There are 9  sections in shift handover layout wich creating the environment for
 | Attachments | |Here the SOC manager can attach files that he wants that will be presented in the handover. |
 | To do tasks | In the to do task section you can create a task and assign to them an analyst and even set a due date. |
 | War room entries | | Here you will be able to see all war room entries without leaving the layout tab. | 
+
+
+## Before You Start
+
+This pack requires that you have an active instance of mail sender integration in order to send email for SOC shift manager briefing if it wasn't provided in the incident creation form, in case that that you will not activate instance of mail sender integration the SOC shift manager briefing could be provided only when creating manual incident.     
+In addition it is highly recommend to use along with the following messaging and communication apps to gain all the benefits from this pack:
+Zoom - for creating online meetings for remote shift handover.
+Slack/Microsoft Teams - integrate your messaging apps to improve your team communication in the handover process.
