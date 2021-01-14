@@ -1093,7 +1093,7 @@ ip_reputations_from_autofocus = [
       'asn': '54321',
       'confidence': 73
     }
-}
+]
 
 command_results_list: List[CommandResults] = []
 
