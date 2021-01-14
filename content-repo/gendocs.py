@@ -464,7 +464,7 @@ def insert_approved_tags_and_usecases():
     with open('approved_tags.json', 'r') as f:
         approved_tags = json.loads(f.read()).get('approved_list')
         approved_tags_string = '\n        '.join(approved_tags)
-    with open("../docs/integrations/pack-docs.md", "r+") as f:
+    with open("../docs/documentation/pack-docs.md", "r+") as f:
         pack_docs = f.readlines()
         f.seek(0)
         for line in pack_docs:
