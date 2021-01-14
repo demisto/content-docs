@@ -63,23 +63,24 @@ For example, for Microsoft Graph User, replace the ***SCOPE*** with `directory.a
 8. Enter your redirect URI in the ***Redirect URI*** parameter field.
 
 
-## Revoking Consent
+## Revoke Consent
 
 In order to revoke consent to a Cortex XSOAR Microsoft application, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant#revoking-consent). 
 
-## Azure Integrations Params
-In order to use the Cortex XSOAR Azure application, you need to fill in your subscription ID and resource group name.
-Those can be found at Azure Portal. 
-Go to [Azure Portal Home Page](https://portal.azure.com/#home). Login with your credentials.
-Search for your Azure product, for example SQL Servers: 
+## Azure Integrations Parameters
+In order to use the Cortex XSOAR Azure application, you need to fill in your subscription ID and resource group name, which you can find in the Azure Portal.
+
+1. Log in to the [Azure Portal Home Page](https://portal.azure.com/#home) using your Azure credentials.
+
+2. Search for your Azure product, for example SQL Servers: 
 
 ![Azure Portal Home Page](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/home_microsoft_azure_portal.png)
 
-Click on your resource:
+3. Click on your resource:
 
 ![Choose your resource](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/choose_your_resource.png)
 
-You will be redirected to the next page. At the overview tab you will find your Resource group and Subscription ID:
+After you a redirected to the next page, in the **Overview** tab you will find your Resource group and Subscription ID:
 
 ![Overview](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/subscription_id_resourse_group.png)
 
