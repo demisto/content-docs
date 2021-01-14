@@ -42,23 +42,23 @@ const sidebars = {
           ]
         },
         {
-          type: "category",
-          label: "Contributing",
-          collapsed: true,
-          items: [
-            "contributing/contributing",
-            "contributing/checklist",
-            "contributing/marketplace",
-            "contributing/conventions"
-          ]
-        },         
-        {
           type: "doc",
           id: "concepts/faq"
         },          
       ]
     },
-     {
+    {
+      type: "category",
+      label: "Contributing",
+      collapsed: true,
+      items: [
+        "contributing/contributing",
+        "contributing/checklist",
+        "contributing/marketplace",
+        "contributing/conventions"
+      ]
+    }, 
+    {
       type: "category",
       label: "Content Packs",
       collapsed: true,
