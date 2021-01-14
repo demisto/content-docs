@@ -111,6 +111,11 @@ There are 9  sections in shift handover layout wich creating the environment for
 | To do tasks | In the to do task section you can create a task and assign to them an analyst and even set a due date. |
 | War room entries | | Here you will be able to see all war room entries without leaving the layout tab. | 
 
+### List:
+
+When you will first run the automation “ManageOOOusers” a OOO list will be created, this list will manage the out of the office users.
+Do not delete this list.
+
 
 ## Before You Start
 
