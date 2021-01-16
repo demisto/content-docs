@@ -28,7 +28,7 @@ When an integration fetches incidents, it populates the rawJSON object in the in
 
 3. Load event data using one of the following options: 
 
-  - Pull from *integratioName* - Cortex XSOAR fetches events from the instance (alerts, notifications etc.)
+  - Pull from *integrationName* - Cortex XSOAR fetches events from the instance (alerts, notifications etc.)
   - Upload JSON file - Upload a file containing the rawJSON object from the integration. The file must be uploaded in JSON format.  
   - Skip getting samples - Map the attributes without event data. This is not recommended.
 

@@ -1,6 +1,6 @@
 ---
 id: tut-design
-title: XSOAR Contribution Design Tutorial
+title: Contribution Design
 ---
 
 The design phase is extremely important when building content for Cortex XSOAR that you wish to contribute and make available to all the customer through the Marketplace. While many developers prefer to jump right into the coding phase, there is lot of value in stopping to think about what you want to achieve and how. There are several best practices that you should consider and, by following this tutorial, you should be able to design your contribution in a way that can be reviewed accepted quickly and easily by the XSOAR Content team.
