@@ -142,4 +142,15 @@ After you configure the integrations, now test the pack to ensure that everythin
 9.The section OOO teams members will present all the out of the office team, to add/remove users to the OOO list use the ManageOOOusers automation.
 10. Run the ManageOOOusers automation and try to add users to the OOO list, go to settings -> Lists -> OOO list, make sure the users you add to OOO appears in the list.
 11. Create a new incident and set shift handover as the incident type and leave the SOC manager briefing section empty, you should receive email to the SOC manager email that was provided in the playbook input (SOCManagerEmail), when the email received enter the URL in the email and reply (one word or short sentence will be enough), the replied answer should appear in the SOC manager briefing section.
-12. In the same incident that was above (section 11) created to make sure that the users that you set as out of the office are appearing in the OOO teams members.    
+12. In the same incident that was above (section 11) created to make sure that the users that you set as out of the office are appearing in the OOO teams members.
+
+
+## Integrations
+
+Although these integrations are not included in the pack, either the Gmail or EWS Mail Sender integrations are required for the pack to be able to send to the SOC manager email request to provide a briefing for the team in case it wasn't provided when the incident was created.
+To be able using the messaging apps section in the layout you will be needed to configure them as well:   
+- Gmail - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/gmail)
+- EWS Mail Sender - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/ews-mail-sender)
+- Slack V2 -  [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/slack-v2)
+Microsoft Teams -  [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-teams)
+
