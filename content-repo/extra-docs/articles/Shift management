@@ -125,6 +125,33 @@ Zoom - for creating online meetings for remote shift handover.
 Slack/Microsoft Teams - integrate your messaging apps to improve your team communication in the handover process.
 
 
+## Pack Configuration
+To get up and running with this pack, you must do the following:
+- [Configure Shift Handover Playbook Inputs](#configure-shift-handover-playbook-inputs).
+>**Important:** By configuring *Yes* for the **AssignActiveIncidentsToNextShift** playbook input, incidents will be reassigned to the on-call analysts.  
+
+- [Create a Shift Handover Job](#create-a-shift-handover-job) to create an incident automatically through a scheduled task that runs every time there is a shift change (optional).
+
+
+
+### Create a Shift Handover Job
+Create a shift management handover job if you want an incident to be created automatically through a scheduled task that runs every time there is a shift change.
+
+1. Navigate to **Jobs**.
+2. Click **New Job**.
+3. Select **Time triggered**. 
+4. Configure the following job parameters.
+
+| Parameter | Value |
+| ----| ----|
+| Name | Provide a name for this job. |
+| Type | Shift handover |
+| Playbook | Shift handover |
+| Queue handling | Select **Don't trigger a new job instance**. |
+
+5. Click **Create new job**.
+
+
  ## Testing the Pack
 
 ## Important: By providing “Yes” for the playbook input “AssignActiveIncidentsToNextShift”, incidents will be reassigned to the on-call analysts.  
