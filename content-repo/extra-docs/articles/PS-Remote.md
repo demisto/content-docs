@@ -16,14 +16,14 @@ The Powershell Remoting integration.
 
 ## Before You Start
 ### Disclaimer
-The integration was created and tested on Windows 2016 win server with Powershell version 5.1.14393.3866. Configuration may vary to different windows server versions. Keep in mind that WinRM is entirely a Microsoft feature. We provide this manual “as is”. We highly recommend to perform all actions listed here on test/staging environments prior to implementing on production environments. Also it's important to notice that WinRM has security implications to consider as described [here](https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/winrmsecurity?view=powershell-7.1). The integration in its current version works with HTTP using NTLM authentication or HTTPS using basic authentication. PS remoting does encrypt the session event on HTTP however the initial connection is unencrypted while basic authentication is not considered a secure authentication method but since the whole session is encrypted via SSL this compensates for the less secure authentication method.
+The integration was created and tested on Windows 2016 win server with Powershell version 5.1.14393.3866. Configuration may vary to different windows server versions. Keep in mind that WinRM is entirely a Microsoft feature. We provide this manual “as is”. We highly recommend to perform all actions listed here on test/staging environments prior to implementing on production environments. Also it's important to notice that WinRM has security implications to consider as described [here](https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/winrmsecurity?view=powershell-7.1). The integration in its current version works with HTTP using NTLM authentication or HTTPS using basic authentication. PS remoting does encrypt the session even on HTTP however the initial connection is unencrypted. If you decide to use basic authentication keep in mind it isn`t considered a secure authentication method however since the whole session is encrypted via SSL this compensates for the less secure authentication method.
 
 ### Network Settings
-Your XSOAR server will require access or ports 5985,5986 TCP
+Your XSOAR server will require access on ports 5985,5986 TCP
 to the hosts to which you want to run the integration on. Take into consideration both the network firewall and the localhost firewall. In case of using the Windows firewall make sure to create a relevant GPO to allow traffic on the relevant ports. The configuration of the windows FW GPO is not in the scope of this article. Same goes for other local host FW agents. For WinRM over HTTPS open port 5986 TCP.
 
 ### Permissions
-The user that will be used in order to execute the PS remote commands on the endpoint will require local admin credentials. Potentially more granular permissions can be applied however this was not tested and therefore not in the scope of this article.
+The user that will be used in order to execute the PS remote commands on the endpoint will require local admin credentials. Potentially more granular permissions can be applied however this was not tested and therefore not in the scope of this article. For basic authenticaion make sure to use a local user and not a domain one.
 
 
 ### Domain Settings
@@ -32,13 +32,13 @@ For Windows 2016 env Active Directory domain perform the following
 On your 2016 Domain controller create a new OU (Organizational Unit) and move the computer accounts to the new OU. 
 To do so, open the Active DIrectory Users and Computers tool. Right Click on the Domain, select New and Organizational Unit.
 
-For example
+For example:
 
 Now Drag and drop the computer account to the new OU.
 Keep in mind that you can also use an existing OU. In this article we recommend creating a new OU for testing purposes.
 GPO settings
 Open the Group Policy Management tool. Right click on the OU for which you want to apply the GPO (where the relevant computer accounts are located) and select Create GPO in this domain and link it here.
-Enable PS Remote
+Enable PS Remote.
 
  
 From Computer Configuration > Administrative Templates > Windows Remote Management (WinRM) > WinRM Service
