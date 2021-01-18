@@ -56,7 +56,7 @@ The dashboard **isn't** a real-time, dynamic view, it only displays the results 
 For example, if the job/playbook runs once a day, the dashboard data will be updated once a day (at the same time the playbook is running).
  
 ## How to Use the Pack
-In order to use this pack, you need to configure several integrations and to schedule the main playbook as a recurring job. Although you can run the parent playbook as an incident, the most common way to execute it is as a scheduled job.
+In order to use this pack, you need to configure several integrations and to schedule the main playbook as a recurring job. Although you can run the parent playbook as an incident with the **'Integrations and Incidents Health Check' incident type**, the most common way to execute it is as a scheduled job.
 
 There are several prerequisite requirements that you need to handle before you can start with this pack.
 
