@@ -94,13 +94,17 @@ This option selects the authentication method used by the integration. Valid opt
 Testing the integration
 The test button will perform the following. Test network connectivity to the host supplied as the test hostname and attempt to open a PSremote session to the specified host.
 
-## Testing the Pack
+## Testing the Integration
+The test button will perform the following on the host specified in the Test Hostname parameter.
+* Attempt to resolve the hostname specified.
+* Attempt to test connectivity via ports 5985 or 5986.
+* Attempt to open a PS Remote session to the host.
 ## Troubleshooting
 ### Host Troubleshooting
 One of the common issues with regards to working with WinRM is that the network connectivity was not properly configured. In order to test network connectivity we can check is the host is listening on the relevant port
 For example logon to one of the hosts and run from the command prompt.
 netstat -na 1 | find "5985"
-The result should show that the host is listening on the port
+The result should show that the host is listening on the port.
 
 In case the host is not listening on the port make sure the host actually received the GPO we previously configured.
 From the command line run
@@ -115,13 +119,14 @@ The result should show that the computer policy updated successfully.
 
 ## XSOAR Troubleshooting
 First of all we provide in the integration settings the test option. From the integration settings provide all the relevant inputs and click on Test
-In case no network connection is available or the host is not resolved or the username/password permissions are not working the following error will be displayed.
+In case no network connection is available or the host is not resolved or the username/password permissions are not working the relevant errors will be displayed.
 
 ### Network connectivity
-Another issue could be network connectivity from the XSOAR to the host. We can troubleshoot this by logging in to the XSOAR CLI and test connectivity by running the following command. sudo tcpdump -i any 'port 5985' This will display the traffic sent to the host. You can also see the raw traffic by running the command sudo tcpdump -i any -nnAs0 port 5985
+Another issue could be network connectivity from the XSOAR to the host. We can troubleshoot this by logging in to the XSOAR CLI and test connectivity by running the following command. sudo tcpdump -i any 'port 5985' This will display the traffic sent to the host. You can also see the raw traffic by running the command sudo tcpdump -i any -nnAs0 port 5985. In case you have specified to use SSL replace 5985 with 5986.
 
 In case you are not able to get a network connection to the host from XSOAR check the network or host firewall logs and adjust the rules accordingly.
-
+### Name Resolution
+In case you receive the following error when running the test. Make sure that you have provided a valid DNS server address in the integration settings and that the DNS server has a relevant DNS record for the host you with to resolve.
 ### Authentication
 Check the provided username and password by attempting to connect to the tested host locally or via Terminal services. Make sure that you are able to login with the provided credentials. If the login fails verify the username and password or that the user has sufficient privileges on the host. If the password is wrong, reset it in Active Directory.
 
