@@ -251,3 +251,12 @@ This playbook contains error handling tasks where a user is assigned to review t
  
  
 #### Demo Video
+<video controls>
+    <source src="https://github.com/demisto/content-assets/raw/master/Assets/xsoar.pan.dev/IAM__Full_Demo.mp4"
+            type="video/mp4"/>
+    Sorry, your browser doesn't support embedded videos. You can download the video at: <video controls>
+    <source src="https://github.com/demisto/content-assets/raw/master/Assets/xsoar.pan.dev/IAM__Full_Demo.mp4"
+            type="video/mp4"/>
+    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/blob/7982404664dc68c2035b7c701d093ec026628802/Assets/FeedJSON/Json_generic_feed_demo.mp4 
+</video>
+</video>
