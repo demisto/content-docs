@@ -95,7 +95,7 @@ The mappers that are provided out-of-the-box work with the assumption that you d
 
 If you want to add fields, follow the steps in the following Example section. 
 
-1. Add the field to the mappers for the Workday, Okta, and Active Directory integrations. 
+1. Add the field to the mappers for the Workday, Okta, Active Directory, and GitHub integrations. 
 
    **Note:** To change the mappers, you will need to duplicate each mapper. 
 
@@ -103,6 +103,8 @@ If you want to add fields, follow the steps in the following Example section.
 
    * for the Workday incoming mapper, add the field to the *IAM-Sync-User* incident type.
    * for Okta and Active Directory, add the field to the *UserProfile* incident type in both the incoming and outgoing mappers.
+   * for GitHub, the relevant mappers are in the *IAM-SCIM* pack and can be used in any integrations that uses SCIM.
+
 
 2. Reconfigure each integration to use the duplicated mappers you created.
 
@@ -156,13 +158,15 @@ The following is an example of the flow when adding a field to work with the ILM
     1. Under *Select Instance*, select the instance of the selected source.
     1. Under *Incident Type*, select the relevant incident type, as follows:
         - for the Workday incoming mapper, add the field to the IAM-Sync-User incident type. 
-        - for Okta and Active Directory, add the field to the UserProfile incident type in both the incoming and outgoing mappers.
+        - for Okta, Active Directory, ServiceNow, and GitHub, add the field to the UserProfile incident type in both the incoming and outgoing mappers.
     1. Map the field from the layout to the field in schema. For purposes of this example, we have mapped the Sample-Field-IAM field to the employee number.
     1. Repeat this process for each additional field and save the mapper. 
     1.  Repeat this process for all of the mappers. There are 5 in total:
         - Workday incoming mapper
         - Okta incoming and outgoing mappers
         - Active Directory incoming and outgoing mappers
+        - ServiceNow incoming and outgoing mappers
+        - GitHub that uses the IAM-SCIM incoming and outgoing mappers
 
     ![Map Fields](../../../docs/doc_imgs/reference/ilm-map-fields.png "Map Fields")
 
@@ -182,6 +186,9 @@ The following is an example of the flow when adding a field to work with the ILM
     - Workday - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/workday-iam)
     - Active Directory - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/active-directory-query-v2)
     - Okta - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/okta-iam)
+    - ServiceNow - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/service-now-iam)
+    - GitHub - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/git-hub-iam)
+
 
 ## App Sync
 
@@ -222,18 +229,14 @@ The app-sync process requires that you have a mapping of Okta App IDs to Cortex 
 
 For example, you may have an Okta App ID “0oau408dvkn96MwHc0h3” and want to map it to the **ServiceNow_Users_Instance1** so that every time a user is assigned to an app that has this App ID, a user will be created in ServiceNow using the generic IAM commands in Cortex XSOAR.
 
-Configuring the app-sync settings is a one-time configuration that you can do using an out-of-the-box dedicated incident type. Create an incident of type **IAM - Configuration** and fill in the Okta App IDs and your Cortex XSOAR integration instance names in the relevant fields.
+Configuring the app-sync settings is a one-time configuration that you can do using an out-of-the-box dedicated incident type. Create an incident of type **IAM - Configuration**, choose your Okta instance, and fill in the Okta App names and your Cortex XSOAR integration instance names in the relevant fields.
 
-![Okta IDs](../../../docs/doc_imgs/reference/iam_configuration.png)
+![Okta IDs](../../../docs/doc_imgs/reference/ilm-configuration.png)
 
-
-You can obtain the Okta App ID from the URL when viewing an app in Okta:
-
-![Okta IDs](../../../docs/doc_imgs/reference/okta_ids.png)
 
 You can obtain the app integration instance name from the integration page in Cortex XSOAR:
 
-![Instance Name](../../../docs/doc_imgs/reference/instance_name.png)
+![Instance Name](../../../docs/doc_imgs/reference/ilm-integration-instance.png)
 
 
 By creating this incident and filling the app and instance information, a configuration will be saved in the integration context. This is transparent to the user. Then you will be able to use the ***okta-iam-get-configuration*** command to view the configuration and use it in playbooks at any time. Note that when using the ***okta-iam-get-configuration*** command, you will have to use the *using* parameter with the correct instance name of Okta in which you made the configuration.

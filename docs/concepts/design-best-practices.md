@@ -6,7 +6,7 @@ title: Design Best Practices
 In this section we captured some of the Design Best practices that you should consider when building an integration.
 Remember, it's important to keep it simple - each command/API call at its time.
 
-Follow the [XSOAR Contribution Design Tutorial](../tutorials/tut-design) for more details.
+Follow the [Contribution Design](../tutorials/tut-design) tutorial for more details.
 
 If you have any doubts or questions, please reach out to us over [Slack](https://dfircommunity.slack.com).
 
