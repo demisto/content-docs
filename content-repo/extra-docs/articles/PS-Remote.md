@@ -1,6 +1,6 @@
 ---
-title: Powershell Remoting - Configuration
-description: Overview of how to configure your Windows enviornment and XSOAR for the Powershell Remoting integration. 
+Title: Powershell Remoting - Configuration
+Description: Overview of how to configure your Windows enviornment and XSOAR for the Powershell Remoting integration. 
 ---
 
 Powershell Remoting is a built in capability in Windows hosts that enables to connect remotley and in order to execute scripts and Poweshell commands. By using Powershell Remoting the SOC analyst or incident resopnder will be able to connect to the windows host in oder to perform various tasks such as gathering data, remediating the host, move files to and from the host to XSOAR and much more.
