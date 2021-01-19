@@ -29,10 +29,11 @@ The user that will be used in order to execute the PS remote commands on the end
 ### Domain Settings
 For Windows 2016 env Active Directory domain perform the following
 
-On your 2016 Domain controller create a new OU (Organizational Unit) and move the computer accounts to the new OU. 
-To do so, open the Active DIrectory Users and Computers tool. Right Click on the Domain, select New and Organizational Unit.
+On your 2016 Domain controller create a new OU (Organizational Unit) and move the computer accounts you wish to enable Powershell Remoting on, to the new OU. 
+To do so, open the Active Directory Users and Computers tool. Right Click on the Domain, select New and Organizational Unit.
 
 For example:
+ !["Organizational Unit"](https://raw.githubusercontent.com/demisto/content-docs/1b625fbf790242cfc36ac079e1c3f5e027015d19/docs/doc_imgs/reference/PowershellRemoting/1-OU.JPG "Organizational Unit")
 
 Now Drag and drop the computer account to the new OU.
 Keep in mind that you can also use an existing OU. In this article we recommend creating a new OU for testing purposes.
