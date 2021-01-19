@@ -81,7 +81,7 @@ const sidebars = {
             "integrations/package-dir",
             "integrations/yaml-file",
             "integrations/parameter-types",
-            "documentation/integration-description",
+            "integrations/integration-desc-redir",
             "integrations/integration-logo",
             "integrations/integration-doc-redir"
           ]
