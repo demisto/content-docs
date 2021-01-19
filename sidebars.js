@@ -62,10 +62,10 @@ const sidebars = {
       label: "Content Packs",
       collapsed: true,
       items: [
-        "integrations/packs-format",  
-        "documentation/pack-docs",
-        "documentation/release-notes",
-        "integrations/premium_packs"
+        "packs/packs-format",  
+        "packs/pack-docs-redir",
+        "packs/pack-rn-redir",
+        "packs/premium_packs"
         ]
     },
     {
@@ -83,7 +83,7 @@ const sidebars = {
             "integrations/parameter-types",
             "documentation/integration-description",
             "integrations/integration-logo",
-            "documentation/readme_file"
+            "integrations/integration-doc-redir"
           ]
         },
         {       
@@ -163,7 +163,7 @@ const sidebars = {
         "playbooks/generic-polling",
         "playbooks/playbooks-field-reference",
         "playbooks/playbooks-generic",
-        "documentation/readme_file"
+        "playbooks/playbook-doc-redir"
       ]
     },
     {
