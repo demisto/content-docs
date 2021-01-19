@@ -36,34 +36,43 @@ For example:
  !["Organizational Unit"](https://raw.githubusercontent.com/demisto/content-docs/1b625fbf790242cfc36ac079e1c3f5e027015d19/docs/doc_imgs/reference/PowershellRemoting/1-OU.JPG "Organizational Unit")
 
 Now Drag and drop the computer account to the new OU.
-Keep in mind that you can also use an existing OU. In this article we recommend creating a new OU for testing purposes.
-GPO settings
-Open the Group Policy Management tool. Right click on the OU for which you want to apply the GPO (where the relevant computer accounts are located) and select Create GPO in this domain and link it here.
-Enable PS Remote.
+ !["Organizational Unit"](https://raw.githubusercontent.com/demisto/content-docs/bdf04770e31fc2f821053bfeea7353893480e318/docs/doc_imgs/reference/PowershellRemoting/2-OU.JPG "Organizational Unit")
 
- 
+Keep in mind that you can also use an existing OU. In this article we recommend creating a new OU for testing purposes.
+### GPO settings
+Open the Group Policy Management tool. Right click on the OU for which you want to apply the GPO (where the relevant computer accounts are located) and select Create GPO in this domain and link it here.
+!["Group Policy Management tool"](https://raw.githubusercontent.com/demisto/content-docs/bdf04770e31fc2f821053bfeea7353893480e318/docs/doc_imgs/reference/PowershellRemoting/3-gpo.JPG "Group Policy Management tool")
+
+Provide a name for the new Group Policy Object.
+ !["Group Policy Management Object"](https://raw.githubusercontent.com/demisto/content-docs/bdf04770e31fc2f821053bfeea7353893480e318/docs/doc_imgs/reference/PowershellRemoting/4-gpo.JPG "Group Policy Management Object")
+
+ Right click on the new Group Policy Object and click Edit.
+ !["Group Policy Management Object"]( "Group Policy Management Object")
+ #### Enable PS Remote.
 From Computer Configuration > Administrative Templates > Windows Remote Management (WinRM) > WinRM Service
 Select Allow remote server management through WinRM
 Select Enabled
 Provide the IP or the XSOAR server, * is also a valid option but keep in mind that this will allow any address to initiate a WinRM connection to the affected hosts. This setting will enable Powershell remoting to the relevant hosts.
+ !["Allow remote server management"]( "Allow remote server management")
 
-### Allow basic Authentication
+#### Allow basic Authentication
 Configure this setting only if you are interested in using Basic authentication and not Negotiate.
 From Computer Configuration > Administrative Templates > Windows Remote Management (WinRM) > WinRM Service
 Select Allow Basic Authentication
 Select Enabled
+!["Allow basic Authentication"]( "Allow basic Authentication")
 
-
-### WinRM service
+#### WinRM service
 
 From Computer Configuration > Policies > Windows Settings > Security Settings > System Services
 Select Windows Remote Management (WS-Management)
 
 Select Define this Policy and Automatic service startup mode. This setting will ensure that the WinRM service will be started up automatically on the relevant hosts.
+!["WinRM service"]( "WinRM service")
 
 ### Workgroup settings
 It is possible to configure the integration to work in a workgroup (non domain) environment. Network settings and configuration are the same as described in the previous relevant section. To configure the host within the workgroup to accept PS remote connections perform the following settings. For the host that you wish to enable PS remoting. Open the Powershell command prompt as an administrator as an administrator and type Enable-PSRemoting.
-
+!["Enable-PSRemoting"]( "Enable-PSRemoting")
 
 ## Pack Configurations
 ### Integration Configuration
