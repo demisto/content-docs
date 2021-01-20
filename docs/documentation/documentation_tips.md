@@ -14,7 +14,7 @@ Bad example: The XYZ playbook is a playbook that...
   We should shorten the description to what matters most.  
 Good example: Executes as a sub-playbook and enriches indicators from the list.    
 
-**More examples:**  
+**Additional good examples:**  
 
 - Investigates an access incident by gathering user and IP information, and handling the incident based on the stages in "Handling an incident - Computer Security Incident Handling Guide" by NIST.
 - Blocks domains using Palo Alto Networks Panorama or Firewall External Dynamic Lists.
