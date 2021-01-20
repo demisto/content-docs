@@ -10,9 +10,9 @@ This article describes the desired documentation standards in XSOAR content enti
 - Should start with the verb that describes what the entity does.
 - There's a limited space for descriptions, so we don't want to waste space (and time) with words that don't matter. 
 
-Bad example: The XYZ playbook is a playbook that...
+Bad example: `The XYZ playbook is a playbook that...`    
   We should shorten the description to what matters most.  
-Good example: Executes as a sub-playbook and enriches indicators from the list.    
+Good example: `Executes as a sub-playbook and enriches indicators from the list.`    
 
 **Additional good examples:**  
 
