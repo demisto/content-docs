@@ -47,20 +47,20 @@ Provide a name for the new Group Policy Object.
  !["Group Policy Management Object"](https://raw.githubusercontent.com/demisto/content-docs/bdf04770e31fc2f821053bfeea7353893480e318/docs/doc_imgs/reference/PowershellRemoting/4-gpo.JPG "Group Policy Management Object")
 
  Right click on the new Group Policy Object and click Edit.
- !["Group Policy Management Object"]( "Group Policy Management Object")
+ !["Group Policy Management Object"](https://raw.githubusercontent.com/demisto/content-docs/057a6ef277e847775b6ee401d757a15088f97618/docs/doc_imgs/reference/PowershellRemoting/4_1-gpo.jpg "Group Policy Management Object")
  #### Enable PS Remote.
 From Computer Configuration > Administrative Templates > Windows Remote Management (WinRM) > WinRM Service
 Select Allow remote server management through WinRM
 Select Enabled
 Provide the IP or the XSOAR server, * is also a valid option but keep in mind that this will allow any address to initiate a WinRM connection to the affected hosts. This setting will enable Powershell remoting to the relevant hosts.
- !["Allow remote server management"]( "Allow remote server management")
+ !["Allow remote server management"](https://raw.githubusercontent.com/demisto/content-docs/057a6ef277e847775b6ee401d757a15088f97618/docs/doc_imgs/reference/PowershellRemoting/5-gpo.JPG "Allow remote server management")
 
 #### Allow basic Authentication
 Configure this setting only if you are interested in using Basic authentication and not Negotiate.
 From Computer Configuration > Administrative Templates > Windows Remote Management (WinRM) > WinRM Service
 Select Allow Basic Authentication
 Select Enabled
-!["Allow basic Authentication"]( "Allow basic Authentication")
+!["Allow basic Authentication"](https://raw.githubusercontent.com/demisto/content-docs/057a6ef277e847775b6ee401d757a15088f97618/docs/doc_imgs/reference/PowershellRemoting/6-gpo.JPG "Allow basic Authentication")
 
 #### WinRM service
 
