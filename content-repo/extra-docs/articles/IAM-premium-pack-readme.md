@@ -250,7 +250,7 @@ This playbook contains error handling tasks where a user is assigned to review t
  Okta IAM - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/okta-iam)
  
  
-#### Demo Video
+## Demo Video
 <video controls>
     <source src="https://github.com/demisto/content-assets/raw/master/Assets/xsoar.pan.dev/IAM__Full_Demo.mp4"
             type="video/mp4"/>
