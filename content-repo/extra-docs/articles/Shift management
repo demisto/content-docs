@@ -59,7 +59,21 @@ Removes users from the OOO list whose *off until day* value has passed.
 * [ManageOOOusers](https://xsoar.pan.dev/docs/reference/scripts/manage-ooo-users): Gets all the out of office users. When you  first run the **ManageOOOusers** automation, an OOO list is created. This list manages the out of the office users.
 Important: Do not delete this list!
 
-*[TimeToNextShift](https://xsoar.pan.dev/docs/reference/scripts/time-to-next-shift): Gets the time until the next shift.
+* [TimeToNextShift](https://xsoar.pan.dev/docs/reference/scripts/time-to-next-shift): Gets the time until the next shift.
+
+* [CreateChannelWrapper](https://xsoar.pan.dev/docs/reference/scripts/create-channel-wrapper): Creates a channel in Slack v2 or in Microsoft Teams. If both of them are available, it creates the channel in both Slack v2 and Microsoft Teams.
+
+* [GetNumberofUsersOnCall](https://xsoar.pan.dev/docs/reference/scripts/get-number-of-users-on-call): Retrieves the number of users who are currently on call (on shift).
+
+* [GetOnCallHoursPerUser](https://xsoar.pan.dev/docs/reference/scripts/get-on-call-hours-per-user): Retrieves the number of on call hours per user.
+
+* [GetRolesPerShift](https://xsoar.pan.dev/docs/reference/scripts/get-role-per-shift): Retrieves the roles per shift.
+
+* [GetUsersOOO](https://xsoar.pan.dev/docs/reference/scripts/get-users-ooo): Retrieves users who are currently out of office. The script use the OutOfOfficeListCleanup script to remove users whose off until day is in the past.
+
+* [GetUsersOnCall](https://xsoar.pan.dev/docs/reference/scripts/get-users-on-call): Retrieves users who are on call.
+
+
 
 ### Incident Fields
 There are 5 incident fields.
