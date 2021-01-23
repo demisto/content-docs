@@ -72,8 +72,9 @@ Select Define this Policy and Automatic service startup mode. This setting will 
 !["WinRM service startup"](https://raw.githubusercontent.com/demisto/content-docs/de30769a3caa7d8d880563ff613857c7486fbcbf/docs/doc_imgs/reference/PowershellRemoting/8-gpo.JPG "WinRM service startup")
 
 ### Workgroup settings
-It is possible to configure the Powershell Remoting to work in a workgroup (non domain) environment. Network settings and configuration are the same as described in the previous relevant section. To configure the host within the workgroup to accept PS remote connections perform the following settings. For the host that you wish to enable PS remoting. Open the Powershell command prompt as an administrator and type Enable-PSRemoting.
+It is possible to configure the Powershell Remoting to work in a workgroup (non domain) environment. Network settings and configuration are the same as described in the previous relevant section. To configure the host within the workgroup to accept PS remote connections perform the following settings. For the host that you wish to enable PS remoting. Open the Powershell command prompt as an administrator and type **Enable-PSRemoting**.
 !["Enable-PSRemoting"](https://raw.githubusercontent.com/demisto/content-docs/de30769a3caa7d8d880563ff613857c7486fbcbf/docs/doc_imgs/reference/PowershellRemoting/14-workgroup.JPG "Enable-PSRemoting")
+From the Administrative command line run the command **winrm set winrm/config/client @{TrustedHosts="*"}**
 
 ## Pack Configurations
 ### Integration Configuration
@@ -113,20 +114,21 @@ In case the test fails, an error message will explain at which point an error oc
 ### Host Troubleshooting
 One of the common issues with regards to working with WinRM is that the network connectivity was not properly configured. In order to test network connectivity we can check is the host is listening on the relevant port
 For example logon to one of the hosts and run from the command prompt.
-netstat -na 1 | find "5985"
+**netstat -na 1 | find "5985"**
 or
-netstat -na 1 | find "5986"
+**netstat -na 1 | find "5986"**
 The result should show that the host is listening on the port.
 !["Netstat"](https://raw.githubusercontent.com/demisto/content-docs/de30769a3caa7d8d880563ff613857c7486fbcbf/docs/doc_imgs/reference/PowershellRemoting/9-trouble.JPG "Netstat")
 
 In case the host is not listening on the port make sure the host actually received the GPO we previously configured.
 From the command line run
-gpresult /r -scope computer
+**gpresult /r -scope computer**
 !["gpresult"](https://raw.githubusercontent.com/demisto/content-docs/de30769a3caa7d8d880563ff613857c7486fbcbf/docs/doc_imgs/reference/PowershellRemoting/10-trouble.JPG "gpresult")
 The result should show under Computer settings and the Applied Group Policy Objects the GPO you created should appear as applied.
 !["Applied GPO"](https://raw.githubusercontent.com/demisto/content-docs/de30769a3caa7d8d880563ff613857c7486fbcbf/docs/doc_imgs/reference/PowershellRemoting/10-trouble.JPG "Applied GPO")
 
 In case the GPO does not appear as applied make sure that the computer account is in the correct OU. If not make sure to move the computer account to the correct OU. Regardless if the computer account is in the OU, run from the hosts command line the command gpupdate /force
+!["Gpupdate /force"](https://raw.githubusercontent.com/demisto/content-docs/e017a13b2b37d1107c6cce33cb788163f716230a/docs/doc_imgs/reference/PowershellRemoting/11-trouble.JPG "Gpupdate /force")
 
 The result should show that the computer policy updated successfully.
 
@@ -137,71 +139,88 @@ First of all we provide in the integration settings the test option. From the in
 In case no network connection is available or the host is not resolved or the username/password permissions are not working the relevant errors will be displayed.
 
 ### Name Resolution
-In case you receive the following error when running the test. Make sure that you have provided a valid DNS server address in the integration settings and that the DNS server has a relevant DNS record for the host you with to resolve.
+In case you receive the following error in the integration test. Make sure that you have provided a valid DNS server address in the integration settings and that the DNS server has a relevant DNS record for the host you with to resolve.
+Also make sure your XSOAR has network access on port 53 to the DNS server.
+!["DNS resolve error"](https://raw.githubusercontent.com/demisto/content-docs/e017a13b2b37d1107c6cce33cb788163f716230a/docs/doc_imgs/reference/PowershellRemoting/error1.jpg "DNS resolve error")
 ### Network connectivity
-In case you receive the following error in the integration test.
-
-In case you are not able to get a network connection to the host from XSOAR check the network or host firewall logs and adjust the rules accordingly.
+In case you receive the following error in the integration test. Verify you have network access to the tested host from XSOAR on ports 5985 or 5986 accordingly. Check the network or host firewall logs and adjust the rules accordingly.
+!["Network access error"](https://raw.githubusercontent.com/demisto/content-docs/e017a13b2b37d1107c6cce33cb788163f716230a/docs/doc_imgs/reference/PowershellRemoting/error2.jpg "Network access error")
 ### Authentication
-Check the provided username and password by attempting to connect to the tested host locally or via Terminal services. Make sure that you are able to login with the provided credentials. If the login fails verify the username and password or that the user has sufficient privileges on the host. If the password is wrong, reset it in Active Directory.
+In case you receive the following error in the integration test Check the provided username and password by attempting to connect to the tested host locally or via Terminal services. Make sure that you are able to login with the provided credentials. If the login fails verify the username and password or that the user has sufficient privileges on the host. If the password is wrong, reset it in Active Directory.
+!["Session error"](https://raw.githubusercontent.com/demisto/content-docs/e017a13b2b37d1107c6cce33cb788163f716230a/docs/doc_imgs/reference/PowershellRemoting/error3.jpg "Session error")
 
 In case you are using Basic Authentication make sure to provide a local user and not a domain user.
+Another issue could be related to the Powershell remoting settings. Review the Host Troubleshooting section above accordingly.
 
 ## WinRM Commands Useful Commands
-For getting the WinRM configuration run on the host winrm get winrm/config
+For getting the WinRM configuration run on the host **winrm get winrm/config**
 
-To test the connection status run Test-WSMan -ComputerName <The host name> -Authentication default -Credential <The username to connect with>
+To test the connection status run **Test-WSMan -ComputerName <The host name> -Authentication default -Credential <The username to connect with>**
 
-Perform a connection. Enter-PSSession -ComputerName <The host name>
+Perform a connection. **New-PSSession -ComputerName <The host name>**
 
-Perform a connection with SSL. Enter-PSSession -ComputerName <The host name> -UseSSL
+Perform a connection with SSL. **New-PSSession -ComputerName <The host name> -UseSSL**
 
-Check listener status. WinRM e winrm/config/listener
+Check listener status. **WinRM enumerate  winrm/config/listener**
 
-Configure WinRM to use SSL winrm quickconfig -transport:https
+Configure WinRM to use SSL **winrm quickconfig -transport:https**
 
-Delete HTTP listener winrm delete winrm/config/Listener?Address=*+Transport=HTTP
+Delete HTTP listener **winrm delete winrm/config/Listener?Address=*+Transport=HTTP**
 
-Delete HTTPS listener winrm delete winrm/config/Listener?Address=*+Transport=HTTPS
+Delete HTTPS listener **winrm delete winrm/config/Listener?Address=*+Transport=HTTPS**
 
 ## Appendix
 
-Open a command prompt as an administrator and run the command winrm set winrm/config/client @{TrustedHosts="*"}
 ### Configure WinRM over HTTPS For a Domain Environment
 In order to enable PS remote over SSL perform the following
-Certificate Services
+
+#### Certificate Services
 
 Install a server with the Active Directory Certificate Services role with the Certification Authority sub role (this won't be covered by this article).
 
 
 From your Active Directory Certificate Services server open the Certification Authority tool.
-
+!["CA settings"](https://raw.githubusercontent.com/demisto/content-docs/e017a13b2b37d1107c6cce33cb788163f716230a/docs/doc_imgs/reference/PowershellRemoting/18-cert.JPG "CA settings")
 
 Right click on Certificate Templates and manage
-
+!["CA settings"](https://raw.githubusercontent.com/demisto/content-docs/e017a13b2b37d1107c6cce33cb788163f716230a/docs/doc_imgs/reference/PowershellRemoting/19-cert.JPG "CA settings")
 
 Right click the Web Server template and select Duplicate Template
+!["CA settings"](https://raw.githubusercontent.com/demisto/content-docs/e017a13b2b37d1107c6cce33cb788163f716230a/docs/doc_imgs/reference/PowershellRemoting/20-cert.JPG "CA settings")
 
 In the new template click on the General tab. Provide the new template name (for example WinRM). Select the validity period for the certificate.
-
+!["CA settings"](https://raw.githubusercontent.com/demisto/content-docs/e017a13b2b37d1107c6cce33cb788163f716230a/docs/doc_imgs/reference/PowershellRemoting/21-cert.JPG "CA settings")
 
 Click on the Subject Name tab. Select Build from this Active Directory information. For Subject name format select Common Name. Under Include this information in alternate subject name select DNS name and deselect User principal name (UPN).
+!["CA settings"](https://raw.githubusercontent.com/demisto/content-docs/e017a13b2b37d1107c6cce33cb788163f716230a/docs/doc_imgs/reference/PowershellRemoting/22-cert.JPG "CA settings")
 
 Click on the Security tab. Select the following permissions, Read, Enroll, Autoenroll. Click on OK. Your new template is now saved.
+!["CA settings"](https://raw.githubusercontent.com/demisto/content-docs/e017a13b2b37d1107c6cce33cb788163f716230a/docs/doc_imgs/reference/PowershellRemoting/23-cert.JPG "CA settings")
 
 In the Certification Authority console click on Certificate Templates and New and Certificate Template to Issue
+!["CA settings"](https://raw.githubusercontent.com/demisto/content-docs/e017a13b2b37d1107c6cce33cb788163f716230a/docs/doc_imgs/reference/PowershellRemoting/24-cert.JPG "CA settings")
 
 Select your new template and click OK.
+!["CA settings"](https://raw.githubusercontent.com/demisto/content-docs/e017a13b2b37d1107c6cce33cb788163f716230a/docs/doc_imgs/reference/PowershellRemoting/25-cert.JPG "CA settings")
 
-### GPO
+#### GPO
 Open the GPMC (Group Policy Management Console) Create and link a new GPO to your relevant OU.
+!["Cert GPO"](https://raw.githubusercontent.com/demisto/content-docs/e017a13b2b37d1107c6cce33cb788163f716230a/docs/doc_imgs/reference/PowershellRemoting/26-gpo.JPG "Cert GPO")
 
 Edit the new GPO and navigate to Computer Configuration > Policies > Windows Settings > Security Settings > Public Key Policies > Certificate Services Client - Auto-Enrollment.
+!["Cert GPO"](https://raw.githubusercontent.com/demisto/content-docs/e017a13b2b37d1107c6cce33cb788163f716230a/docs/doc_imgs/reference/PowershellRemoting/27-gpo.JPG "Cert GPO")
 
-Under Configuration Model select enabled and click the checkbox for Update Certificates that use certificate templates
+Under Configuration Model select enabled and click the checkbox for Update Certificates that use certificate templates. To complete click OK.
+!["Cert GPO"](https://raw.githubusercontent.com/demisto/content-docs/e017a13b2b37d1107c6cce33cb788163f716230a/docs/doc_imgs/reference/PowershellRemoting/28-gpo.JPG "Cert GPO")
 
 Review the Certification Authority and make sure a certificate was issued for your host
+!["Issued certificates"](https://raw.githubusercontent.com/demisto/content-docs/e017a13b2b37d1107c6cce33cb788163f716230a/docs/doc_imgs/reference/PowershellRemoting/29-cert.JPG "Issued certificates")
 
-On the host you wish to configure WinRM with HTTPS open a command prompt as an administrator and type winrm quickconfig -transport:https
+On the host you wish to configure WinRM with HTTPS open a command prompt as an administrator and type **winrm quickconfig -transport:https**
+!["Administrator"](https://raw.githubusercontent.com/demisto/content-docs/e017a13b2b37d1107c6cce33cb788163f716230a/docs/doc_imgs/reference/PowershellRemoting/13-workgroup.JPG "Administrator")
+!["Configure HTTPS"](https://raw.githubusercontent.com/demisto/content-docs/e017a13b2b37d1107c6cce33cb788163f716230a/docs/doc_imgs/reference/PowershellRemoting/30-ssl.JPG "Configure HTTPS")
 
 Since Microsoft doesn't currently have a GPO to set up the HTTPS listener it's possible to create a logon script that contains this command in it. Creation of logon script and deploying it via GPO is not covered in this article.
+
+#### Non CA Environment
+In case you do not have a Certificate authority in your environment it is possible to use self signed certificates. The configuration self signed certificates is not in the scope of this article.
