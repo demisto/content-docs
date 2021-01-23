@@ -23,7 +23,9 @@ If you are working on Windows, you can either work with a Linux VM or utilize [W
 Cortex XSOAR content repository has a [MIT License](https://github.com/demisto/content/blob/master/LICENSE).
 
 ### CLA is pending even though I signed the agreement
-The CLA should be signed by all commiters of the branch. The CLA bot will let you know who are the commiters who have not yet signed the agreement by marking them with a red `X`. 
+The CLA should be signed by all commiters of the branch. The CLA bot will let you know who are the commiters who have not yet signed the agreement by marking them with a red `X` like this:
+![](../doc_imgs/integrations/failed_CLA.png)
+
 If the missing user appear under one of your commits (Can be checked by visiting the `Commits` tab in the PR), it probably means that one of your commits was done using the user:
 - Try to log-in with this user and sign the CLA. 
 
