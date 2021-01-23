@@ -68,75 +68,80 @@ From Computer Configuration > Policies > Windows Settings > Security Settings > 
 Select Windows Remote Management (WS-Management)
 
 Select Define this Policy and Automatic service startup mode. This setting will ensure that the WinRM service will be started up automatically on the relevant hosts.
-!["WinRM service"]( "WinRM service")
+!["WinRM service"](https://raw.githubusercontent.com/demisto/content-docs/de30769a3caa7d8d880563ff613857c7486fbcbf/docs/doc_imgs/reference/PowershellRemoting/7-gpo.JPG "WinRM service")
+!["WinRM service startup"](https://raw.githubusercontent.com/demisto/content-docs/de30769a3caa7d8d880563ff613857c7486fbcbf/docs/doc_imgs/reference/PowershellRemoting/8-gpo.JPG "WinRM service startup")
 
 ### Workgroup settings
-It is possible to configure the integration to work in a workgroup (non domain) environment. Network settings and configuration are the same as described in the previous relevant section. To configure the host within the workgroup to accept PS remote connections perform the following settings. For the host that you wish to enable PS remoting. Open the Powershell command prompt as an administrator as an administrator and type Enable-PSRemoting.
-!["Enable-PSRemoting"]( "Enable-PSRemoting")
+It is possible to configure the Powershell Remoting to work in a workgroup (non domain) environment. Network settings and configuration are the same as described in the previous relevant section. To configure the host within the workgroup to accept PS remote connections perform the following settings. For the host that you wish to enable PS remoting. Open the Powershell command prompt as an administrator and type Enable-PSRemoting.
+!["Enable-PSRemoting"](https://raw.githubusercontent.com/demisto/content-docs/de30769a3caa7d8d880563ff613857c7486fbcbf/docs/doc_imgs/reference/PowershellRemoting/14-workgroup.JPG "Enable-PSRemoting")
 
 ## Pack Configurations
 ### Integration Configuration
 
-Once the GPO has been applied and the settings are in effect. We can configure the integration instance settings and validate if the integration is working.
+Once the GPO has been applied or the workgroup settings are in effect. We can configure the integration instance settings and validate if the integration is working.
 
 To configure the integration provide the following settings
 
 ### Domain:
-Provide the DNS domain name For example winrm.local. This will allow the integration commands to work for hostnames and not just FQDN.
+Provide the DNS domain name (suffix) For example winrm.local. This will allow the integration commands to work for hostnames so the user wont have to supply the FQDN of hosts when running the integration commands.
 
 ### DNS:
-Provide the IP address of the DNS server to provide name resolution.
+Provide the IP address of the DNS server to provide name resolution. Make sure your XSOAR machine has access to the DNS server on port 53.
 
 ### Username:
-Provide the Username with proper administrative privileges on the relevant hosts. If your are using Basic Authentication provide a local user and not a domain user.
+Provide the Username with proper administrative privileges on the relevant hosts. If your are using Basic Authentication provide a local user on the hosts and not a domain user.
 
 ### Password:
-Provide the password for the user name.
+Provide the password for the username provided in the previous section.
 
 ### Test Hostname:
-This optional parameter tests if the integration can perform a connection to a the specified host.
+This optional parameter tests if the integration can perform a connection to a the specified hostname.
 
 ### Use SSL
 This option enables the PS remote session to be encrypted with SSL. In order to configure your env to use SSL review the relevant section in the appendix. Currently SSL only works with basic authentication.
 
 ### Authentication Type
 This option selects the authentication method used by the integration. Valid options are Basic which currently requires SSL and Negotiate which currently does not support SSL.
-Testing the integration
-The test button will perform the following. Test network connectivity to the host supplied as the test hostname and attempt to open a PSremote session to the specified host.
-
-## Testing the Integration
+### Testing the Integration
 The test button will perform the following on the host specified in the Test Hostname parameter.
 * Attempt to resolve the hostname specified.
-* Attempt to test connectivity via ports 5985 or 5986.
+* Attempt to test connectivity via ports 5985 or 5986 (depends if SSL is enabled or not)
 * Attempt to open a PS Remote session to the host.
+
+In case the test fails, an error message will explain at which point an error occured. Review the troubleshooting section for further assistance.
 ## Troubleshooting
 ### Host Troubleshooting
 One of the common issues with regards to working with WinRM is that the network connectivity was not properly configured. In order to test network connectivity we can check is the host is listening on the relevant port
 For example logon to one of the hosts and run from the command prompt.
 netstat -na 1 | find "5985"
+or
+netstat -na 1 | find "5986"
 The result should show that the host is listening on the port.
+!["Netstat"](https://raw.githubusercontent.com/demisto/content-docs/de30769a3caa7d8d880563ff613857c7486fbcbf/docs/doc_imgs/reference/PowershellRemoting/9-trouble.JPG "Netstat")
 
 In case the host is not listening on the port make sure the host actually received the GPO we previously configured.
 From the command line run
 gpresult /r -scope computer
+!["gpresult"](https://raw.githubusercontent.com/demisto/content-docs/de30769a3caa7d8d880563ff613857c7486fbcbf/docs/doc_imgs/reference/PowershellRemoting/10-trouble.JPG "gpresult")
 The result should show under Computer settings and the Applied Group Policy Objects the GPO you created should appear as applied.
-
+!["Applied GPO"](https://raw.githubusercontent.com/demisto/content-docs/de30769a3caa7d8d880563ff613857c7486fbcbf/docs/doc_imgs/reference/PowershellRemoting/10-trouble.JPG "Applied GPO")
 
 In case the GPO does not appear as applied make sure that the computer account is in the correct OU. If not make sure to move the computer account to the correct OU. Regardless if the computer account is in the OU, run from the hosts command line the command gpupdate /force
 
-
 The result should show that the computer policy updated successfully.
+
+Keep in mind that port 5985 is for HTTP and port 5986 is for HTTPS. In order to configure HTTPS follow the configuration provided in the appendix section.
 
 ## XSOAR Troubleshooting
 First of all we provide in the integration settings the test option. From the integration settings provide all the relevant inputs and click on Test
 In case no network connection is available or the host is not resolved or the username/password permissions are not working the relevant errors will be displayed.
 
-### Network connectivity
-Another issue could be network connectivity from the XSOAR to the host. We can troubleshoot this by logging in to the XSOAR CLI and test connectivity by running the following command. sudo tcpdump -i any 'port 5985' This will display the traffic sent to the host. You can also see the raw traffic by running the command sudo tcpdump -i any -nnAs0 port 5985. In case you have specified to use SSL replace 5985 with 5986.
-
-In case you are not able to get a network connection to the host from XSOAR check the network or host firewall logs and adjust the rules accordingly.
 ### Name Resolution
 In case you receive the following error when running the test. Make sure that you have provided a valid DNS server address in the integration settings and that the DNS server has a relevant DNS record for the host you with to resolve.
+### Network connectivity
+In case you receive the following error in the integration test.
+
+In case you are not able to get a network connection to the host from XSOAR check the network or host firewall logs and adjust the rules accordingly.
 ### Authentication
 Check the provided username and password by attempting to connect to the tested host locally or via Terminal services. Make sure that you are able to login with the provided credentials. If the login fails verify the username and password or that the user has sufficient privileges on the host. If the password is wrong, reset it in Active Directory.
 
