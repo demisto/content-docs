@@ -73,8 +73,10 @@ Select Define this Policy and Automatic service startup mode. This setting will 
 
 ### Workgroup settings
 It is possible to configure the Powershell Remoting to work in a workgroup (non domain) environment. Network settings and configuration are the same as described in the previous relevant section. To configure the host within the workgroup to accept PS remote connections perform the following settings. For the host that you wish to enable PS remoting. Open the Powershell command prompt as an administrator and type **Enable-PSRemoting**.
+
 !["Enable-PSRemoting"](https://raw.githubusercontent.com/demisto/content-docs/de30769a3caa7d8d880563ff613857c7486fbcbf/docs/doc_imgs/reference/PowershellRemoting/14-workgroup.JPG "Enable-PSRemoting")
 From the Administrative command line run the command **winrm set winrm/config/client @{TrustedHosts="*"}**
+!["Trusted hosts"](https://raw.githubusercontent.com/demisto/content-docs/057a6ef277e847775b6ee401d757a15088f97618/docs/doc_imgs/reference/PowershellRemoting/15-workgroup.JPG "Trusted hosts")
 
 ## Pack Configurations
 ### Integration Configuration
