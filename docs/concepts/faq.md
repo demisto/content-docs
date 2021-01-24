@@ -24,12 +24,12 @@ Cortex XSOAR content repository has a [MIT License](https://github.com/demisto/c
 
 ### CLA is pending even though I signed the agreementd
 The CLA should be signed by all commiters of the branch. The CLA bot will let you know who are the commiters who have not yet signed the agreement by marking them with a red `X` like this:
-![](../doc_imgs/integrations/failed_CLA.png)
+![](../docs/doc_imgs/contributing/failed_CLA.png)
 
-If the missing user appear under one of your commits (Can be checked by visiting the `Commits` tab in the PR), it probably means that one of your commits was done using the user:
-- Try to log-in with this user and sign the CLA. 
-- Try to link your commits, add the email address to your GitHub email settings. 
-- If the missing user is not a real user or named `Root` you will need to open a new branch: 
+If the missing user appear under one of your commits (Can be checked by visiting the `Commits` tab in the PR), it probably means that one of your commits was done using this user. Try the following:
+1. If you have the credentials for the missing user, try to log-in and sign the CLA, then click the `recheck` button at the bottom of the CLA message. 
+2. Try to link your commits: add the email address of the missing user to your GitHub email settings, then click the `recheck` button at the bottom of the CLA message. 
+3. If the missing user is not a real user or named `Root` you will need to open a new branch: 
     - In your local environment - manually copy the code you have edited (most of the time you can copy the entire pack) to another locatoin.
     - Checkout the master branch.
     - Create a new branch.
