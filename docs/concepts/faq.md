@@ -22,7 +22,7 @@ If you are working on Windows, you can either work with a Linux VM or utilize [W
 ### Licensing
 Cortex XSOAR content repository has a [MIT License](https://github.com/demisto/content/blob/master/LICENSE).
 
-### CLA is pending even though I signed the agreementd
+### CLA is pending even though I signed the agreement
 The CLA should be signed by all commiters of the branch. The CLA bot will let you know who are the commiters who have not yet signed the agreement by marking them with a red `X` like this:
 ![](../docs/doc_imgs/contributing/failed_CLA.png)
 
