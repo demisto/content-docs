@@ -1,4 +1,5 @@
 ---
+id: Powershell_Remoting_-_Configuration
 Title: Powershell Remoting - Configuration
 Description: Overview of how to configure your Windows enviornment and XSOAR for the Powershell Remoting integration. 
 ---
