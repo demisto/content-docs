@@ -158,11 +158,11 @@ Another issue could be related to the Powershell remoting settings. Review the H
 ## WinRM Commands Useful Commands
 For getting the WinRM configuration run on the host **winrm get winrm/config**
 
-To test the connection status run **Test-WSMan -ComputerName <The host name> -Authentication default -Credential <The username to connect with>**
+To test the connection status run **Test-WSMan -ComputerName *The host name* -Authentication default -Credential *The username to connect with>***
 
-Perform a connection. **New-PSSession -ComputerName <The host name>**
+Perform a connection. **New-PSSession -ComputerName *The host name***
 
-Perform a connection with SSL. **New-PSSession -ComputerName <The host name> -UseSSL**
+Perform a connection with SSL. **New-PSSession -ComputerName *The host name> -UseSSL***
 
 Check listener status. **WinRM enumerate  winrm/config/listener**
 
