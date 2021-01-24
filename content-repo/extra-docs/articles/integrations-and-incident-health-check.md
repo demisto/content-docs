@@ -107,7 +107,7 @@ Although not required, we recommend that you create a recurring schedule for the
 | Playbook | JOB - Integrations and Playbooks Health Check. This playbook should automatically populate when you select the incident type. If it does not, make sure you select this playbook. |
 
  
-### Troubleshooting
+## Troubleshooting
 The Health Check pack contains serval custom incident fields. 
 For the incident, nor the job will have access to those custom incident fields, The incident type must be configured when creating the incident or the job. 
 The incident type for the pack is "Integrations and Incidents Health Check."
