@@ -105,6 +105,15 @@ There are 9 sections in the *Shift Handover* layout. The emphasis of this layout
 | To-Do tasks | You can create a task and due date and assign it to an analyst. |
 | War Room entries | Displays the information that appears in the War Room in regards to this incident. |
 
+
+### List:
+
+When you first run the **ManageOOOusers** automation, an out-of-office list called OOO List is created. This list manages the out-of-office users.
+Do not delete this list.
+We strongly recommend using the default list name (OOO List). If you change the name of the list, you will need to update the arguments in the *Shift handover* and **Assign Active Incidents to Next Shift V2** playbooks.
+
+
+
 ## Before You Start
 This pack requires that you have an active instance of an mail sender integration in order to send an email to the SOC shift manager to provide a briefing if it wasn't provided in the incident creation form. Configure either the [Gmail integration](https://xsoar.pan.dev/docs/reference/integrations/gmail)  or both the [EWS Mail Sender](https://xsoar.pan.dev/docs/reference/integrations/ews-mail-sender) and [EWS V2](https://xsoar.pan.dev/docs/reference/integrations/ews-v2) integrations. If you do not activate an instance of the mail sender integration, the SOC shift manager briefing can only be provided when creating a manual incident. 
 
