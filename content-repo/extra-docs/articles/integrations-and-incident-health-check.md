@@ -108,9 +108,9 @@ Although not required, we recommend that you create a recurring schedule for the
 
  
 ## Troubleshooting
-The Health Check pack contains serval custom incident fields. 
-For the incident, nor the job will have access to those custom incident fields, The incident type must be configured when creating the incident or the job. 
-The incident type for the pack is "Integrations and Incidents Health Check."
-If no incident type was chosen nor the wrong incident type - the playbook will get the following error:
+The Health Check pack contains serval incident fields.
+When creating a new incident nor a job, the incident type must be  “Integrations and Incidents Health Check.”
+If no incident type was chosen or the wrong incident type, the incident or the job would not have the pack incident fields, layout, etc.'
+Furthermore, the playbook will fail with the following error:
 
 ![griderror](https://raw.githubusercontent.com/demisto/content/92bdacb6680c7f73bbdff36172cf7e0cce9186eb/Packs/IntegrationsAndIncidentsHealthCheck/doc_files/GridErrorMessage.png)
