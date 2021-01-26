@@ -1,6 +1,6 @@
 ---
 id: courses-of-action
-title: Courses of Action
+title: MITRE ATT&CK - Courses of Action
 ---
 
 ## Pack Description
