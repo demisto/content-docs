@@ -135,9 +135,9 @@ An explanation of these fields is as follows:
 | **arguments: default** | Boolean for if the argument is the one chosen when argument values are passed to a command without specifying the command argument's name. Note that only one command argument can be set as the default per command | |
 | **arguments: isArray** | Boolean for if the argument accepts a CSV list of input values | |
 | **arguments: description** | A description of the argument | |
-| **outputs: contextPath** | The dot notation representation of the context | |
+| **outputs: contextPath** | The dot notation representation of the context | `Product.Entity.EntityDetails` |
 | **outputs: description** | Description of the context item | |
-| **outputs: type** | The type which the context item will be formatted | `Product.Entity.EntityDetails` |
+| **outputs: type** | The type which the context item will be formatted | |
 | **description** | A description for the command | |
 | **runonce** | Boolean to indicate if the function runs repeatedly| |
 
