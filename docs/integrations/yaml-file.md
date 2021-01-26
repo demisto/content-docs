@@ -130,26 +130,26 @@ An explanation of these fields is as follows:
 #### Command:
 | Name | Description | Standard |
 | --- | --- | ---|
-| **name** | The name of the command | `vendorname-command` |
-| **description** | A description for the command | |
-| **runonce** | Boolean to indicate if the command runs repeatedly| |
+| **name** | The name of the command. | `vendorname-command` |
+| **description** | A description for the command. | |
+| **runonce** | Boolean. Indicates if the command runs repeatedly. | |
 
 #### Command arguments:
 | Name | Description | Standard |
 | --- | --- | ---|
-| **name** | The name of the argument | `argumnt_name` |
-| **required** | Boolean. Is the argument is required |  |
-| **default** | Boolean. If set to true the user could pass a value for this argument without specifying the argument name. For example if the argument called `ip` is marked as default, running the following: `!ip 1.1.1.1` will equivelent to running `!ip ip=1.1.1.1`. Note that only one argument per command can be set as the default | |
-| **isArray** | Boolean. Does the argument accepts a CSV list of input values. If this is checked the command will run once, instead for each input |
-| **secret** | Boolean. If set to true the argument value will not be printed in war room when the command runs|
-| **description** | A description of the argument | |
+| **name** | The name of the argument. | `argumnt_name` |
+| **required** | Boolean. Is the argument required. |  |
+| **default** | Boolean. If set to true, the user could pass a value for this argument without specifying the argument name. For example if the argument called `ip` is marked as default, running the following: `!ip 1.1.1.1` will be equivelent to running `!ip ip=1.1.1.1`. Note that only one argument per command can be set as the default. | |
+| **isArray** | Boolean. Does the argument accepts a CSV list of input values. If this is set to true, the command will run once, instead for each input. |
+| **secret** | Boolean. If set to true, the argument value will not be printed in war room when the command runs. |
+| **description** | A description of the argument. | |
 
 #### Command outputs:
 | Name | Description | Standard |
 | --- | --- | ---|
-| **contextPath** | The dot notation representation of the context | `Product.Entity.EntityDetails` |
-| **description** | Description of the context item | |
-| **type** | The type which the context item will be formatted | |
+| **contextPath** | The dot notation representation of the context. | `Product.Entity.EntityDetails` |
+| **description** | Description of the context item. | |
+| **type** | The type which the context item will be formatted. | |
 
 ## Version and Tests
 The last section of the YAML file provides Cortex XSOAR with information regarding what version is supported and tests. See the example below:
