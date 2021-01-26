@@ -79,6 +79,10 @@ module.exports = {
               label: "Marketplace"
             },
             {
+              to: "/docs/partners/adopt",
+              label: "Adopt-a-Pack"
+            },
+            {
               to: "/docs/partners/certification",
               label: "Pack Certification"
             },

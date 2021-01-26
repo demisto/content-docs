@@ -37,7 +37,7 @@ All other entity types (Playbooks, Test Playbooks, Incidents/Indicators Fields a
 
 If your pack contains an Integration, the integration directory should contain the following:
 
-- Code file (i.e. `Packs/YourPackName/YourIntegrationName/Integrations/YourIntegrationName.py`): your integration implementation [code](../integrations/code-conventions).
+- Code file (i.e. `Packs/YourPackName/Integrations/YourIntegrationName/YourIntegrationName.py`): your integration implementation [code](../integrations/code-conventions).
 -  YML file (i.e. `Packs/YourPackName/Integrations/YourIntegrationName/YourIntegrationName.yml`): [YML file](../integrations/yaml-file) with integration metadata.
 - Description file (i.e. `Packs/YourPackName/Integrations/YourIntegrationName/YourIntegrationName_description.md`): markdown file with instructions on how a customer can configure the integration instance. It shows up as a snippet when the user clicks the question mark icon in the integration configuration panel. More details [here](../integrations/integration-description).
 - Image file (i.e. `Packs/YourPackName/Integrations/YourIntegrationName/YourIntegrationName_image.png`): the integration [logo](../integrations/integration-logo).

@@ -54,6 +54,12 @@ The polling is done only once the result is `finished`. The dt filter will retur
 
 ## Limitations
 * **Global context** is not supported.
+* **GenericPolling**  doesn't work properly in the Playground, thus, testing should be done within an incident.
 * Does not run from **playground**.
 * Polling command must support list argument.
 ![image](../doc_imgs/playbooks/66293071-7d168880-e8ee-11e9-9d55-e8ae1e09fe0e.png)
+
+## Troubleshooting
+* **Playbook is "stuck" on `Waiting for polling to complete`:** Since generic polling schedules tasks outside the context of the playbook (not visible in the playbook run), a lot of errors appear only in the War Room. Go to the incident War Room and check for errors or warnings related to GenericPolling tasks.
+* **GenericPolling task is completed but status is still not "finished":** If the timeout was reached, the playbook will succesfully finish even if there are still items that are not completed. Try increasing the timeout value for the GenericPolling task.
+* **The integration returnes an ID not found error when running from GenericPolling, however when running manualy, it finishes successfully:** Some products cannot handle consecutive requests for querying an action status right after the request to perform the action itself. After you initiate the action, try adding a `Sleep` task before calling the **GenericPolling** sub-playbook.
