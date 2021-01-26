@@ -16,12 +16,12 @@ As mentioned, you'll need a combination of both the Cortex XSOAR UI and other to
 As a general rule of the thumb, we recommend that you use an external IDE and toolchain when:
 - Working on your [integration code](../integrations/code-conventions) (YourIntegration.py)
 - Working on the [unit test script](../integrations/unit-testing) (YourIntegration_test.py)
-- Working on the [release notes](../integrations/release-notes) and README.md documentation files
+- Working on the [release notes](../documentation/release-notes) and README.md documentation files
 - Running the [linting](../integrations/linting) and testing
 
 Instead, you should use the Cortex XSOAR UI when:
 - Creating the [Test Playbooks](../integrations/test-playbooks)
-- Auto-generate the [integration documentation](../integrations/integration-docs)
+- Auto-generate the [integration documentation](../documentation/readme_file)
 - Creating [example playbooks](../playbooks/playbooks) to demonstrate your integration
 - Working on the properties of your integration (parameters, commands, arguments, outputs, etc.)
 - Testing the User Experience

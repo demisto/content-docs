@@ -40,7 +40,7 @@ Please read the following guidelines. Following them  will maximize the chances 
 1. Begin by designing your contribution: we recommend to follow the [Design](../concepts/design) guidelines to identify what you want to build and make sure it is aligned with our best practices. Also check out the [Design Tutorial](../tutorials/tut-design).
 2. Setup a development environment by following the brief [Dev Setup Guide](dev-setup) or the more detailed [Tutorial](../tutorials/tut-setup-dev). Skip this step only if you are an individual contributor and you want to submit community supported content through the [Cortex XSOAR UI](../contributing/marketplace).
 3. Review again the [Contribution](../contributing/contributing) process and [Checklist](../contributing/checklist).
-4. Follow the [Content Pack format](packs-format) to build your contribution. [demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md) will help you create it.
+4. Follow the [Content Pack format](../packs/packs-format) to build your contribution. [demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md) will help you create it.
 5. Depending on the content entities you need to build, navigate to the specific section of this website for details. If you are creating Integrations and/or Automations, make sure that you:
     * Use the proper  [Directory Structure](../integrations/package-dir). [demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md) will help you create it. If working on existing code, beyond trivial changes, we require converting to this structure as it allows running linting and unit tests and provides a clearer review process.
     * Understand the [YAML file](../integrations/yaml-file) structure and the [Parameter Types](../integrations/parameter-types).
@@ -50,10 +50,10 @@ Please read the following guidelines. Following them  will maximize the chances 
     * Make sure your commands make proper use of the [Context](../integrations/context-and-outputs), including [Context Standards](../integrations/context-standards-about) and [DBotScore](../integrations/dbot).
     * Run and verify that the various linters we support pass as detailed [here](../integrations/linting).
     * Make sure to create unit tests as documented [here](../integrations/unit-testing)
-    * Document your integration and automation as detailed [here](integration-docs).
-6. Make sure your Content Pack is properly [documented](../integrations/pack-docs).
+    * Document your integration and automation as detailed [here](../documentation/readme_file).
+6. Make sure your Content Pack is properly [documented](../documentation/pack-docs).
 7. Validate your content: the validation hook should run automatically every time you `git commit`. You can also run the validation manually by using [demisto-sdk validate](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md). 
-8. As you build newer versions of your Content Pack, document your changes in a relevant release notes file as detailed [here](../integrations/release-notes).
+8. As you build newer versions of your Content Pack, document your changes in a relevant release notes file as detailed [here](../documentation/release-notes).
 
 At this point you should be ready to submit a Pull Request! Check out our [Contributing Checklist](../contributing/checklist), and for more details on the review process, refer to our [Contributing](https://github.com/demisto/content/blob/master/CONTRIBUTING.md) page on GitHub.
 
