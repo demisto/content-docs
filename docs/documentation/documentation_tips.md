@@ -38,7 +38,7 @@ Common parameters for this section are:
 
 - Any other important information for fetching incidents from the service should be added as a parameter.
 
-It’s important to add documentation about the fetch function (especially the first fetch) that is not obvious from looking at the integration. This could be done in the README file or the detailed description.   
+It’s important to add documentation about the fetch function (especially the first fetch) that is not obvious from looking at the integration. This could be done in the [README file](../documentation/readme_file) or the integration [detailed description file](../documentation/integration-description).   
 For example: `By default, the integration will import PagerDuty incidents data as Demisto incidents. All incidents created in the minute prior to the configuration of Fetch Incidents and up to the current time will be imported.`
 
 ## Common Integration Parameters
