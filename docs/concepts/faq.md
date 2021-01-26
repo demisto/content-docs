@@ -26,7 +26,7 @@ Cortex XSOAR content repository has a [MIT License](https://github.com/demisto/c
 The CLA should be signed by all commiters of the branch. The CLA bot will let you know who are the commiters who have not yet signed the agreement by marking them with a red `X` like this:
 ![](../docs/doc_imgs/contributing/failed_CLA.png)
 
-If the missing user appear under one of your commits (Can be checked by visiting the `Commits` tab in the PR), it probably means that one of your commits was done using this user. Try the following:
+If the missing user appears under one of your commits (can be checked by visiting the `Commits` tab in the PR), it probably means that one of your commits was done using this user. Try the following:
 1. If you have the credentials for the missing user, try to log-in and sign the CLA, then click the `recheck` button at the bottom of the CLA message. 
 2. Try to link your commits: add the email address of the missing user to your GitHub email settings, then click the `recheck` button at the bottom of the CLA message. 
 3. If the missing user is not a real user or named `Root` you will need to open a new branch: 
@@ -35,7 +35,7 @@ If the missing user appear under one of your commits (Can be checked by visiting
     - Create a new branch.
     - Paste the code from beofre into your new branch.
     - Commit and push your new branch.
-    - Open a new PullRequest for the new branch. **Don't forget to close the old PR and delete the old branch.**
+    - Open a new Pull Request for the new branch. **Don't forget to close the old PR and delete the old branch.**
 
 For further details visit the [Troubleshooting Guide](https://docs.github.com/en/github/committing-changes-to-your-project/why-are-my-commits-linked-to-the-wrong-user) from Github Docs site.
 
