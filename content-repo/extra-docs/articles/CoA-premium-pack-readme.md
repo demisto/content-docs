@@ -113,3 +113,11 @@ The playbook performs the following tasks:
 * Creates a best practices profile.
 * Applies the profile to policy rules on the PAN-OS firewall or Panorama.
 
+## Demo Video
+<video controls>
+    <source src="https://github.com/demisto/content-assets/raw/master/Assets/MITRECoA/coa_demo.mp4"
+            type="video/mp4"/>
+    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/raw/master/Assets/MITRECoA/coa_demo.mp4 
+</video>
+
+
