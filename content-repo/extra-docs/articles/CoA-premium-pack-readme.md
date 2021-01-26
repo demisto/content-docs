@@ -1,3 +1,9 @@
+---
+id: courses-of-action
+title: Courses of Action
+---
+
+## Pack Description
 This MITRE ATT&CK - Courses of Action pack contains intelligence-driven Courses of Action (COA) defined by Palo Alto Networks Unit 42 team that integrate with MITRE ATT&CK techniques and sub-techniques to automate protection against common known vectors.
 Read these instructions carefully to first understand the workflows that this pack executes and understand how the pack must be configured and implemented.
 # MITRE ATT&CK Tactics and Techniques
