@@ -1,7 +1,7 @@
 ---
-id: 
-title: 
-description: 
+id: Shift_management
+title: Shift Management  
+description: This pack's purpose is to provide a single interface for all those essential elements of Shift management and handover in one place. 
 ---
 
 Shift management and shift handover are crucial processes of SOC team management.
@@ -89,7 +89,7 @@ There is 1 layout - **Shift handover**
 
 There are 9 sections in the *Shift Handover* layout. The emphasis of this layout is the communication for the shift handover process - creating an online meeting, sending a notification in the integration app, displaying the SOC manager briefing, and the display of active incidents, on-call users, and out-of-office users.       
 
-![Layout](LINK to image)
+![Layout](https://raw.githubusercontent.com/demisto/content/a80017bdd6a2c5aba73dd5940dfdcf42f559c655/Packs/ShiftManagement/doc_files/layout.PNG)
 
 | Layout sections | Description |
 |------------------ | ------------- |
