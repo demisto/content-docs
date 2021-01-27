@@ -1,6 +1,6 @@
 ---
 id: tut-design
-title: XSOAR Contribution Design Tutorial
+title: Contribution Design
 ---
 
 The design phase is extremely important when building content for Cortex XSOAR that you wish to contribute and make available to all the customer through the Marketplace. While many developers prefer to jump right into the coding phase, there is lot of value in stopping to think about what you want to achieve and how. There are several best practices that you should consider and, by following this tutorial, you should be able to design your contribution in a way that can be reviewed accepted quickly and easily by the XSOAR Content team.
@@ -129,7 +129,7 @@ As a reference on how to properly fill a Design Document, check out the [Hello W
 
 If your contribution includes an Integration, it is very important to follow the Design Best Practices summarized [here](../concepts/design-best-practices): in this tutorial we will walk you through many of those topics in more detail.
 
-Integrations enable communications with third party APIs: in order to get them accepted in the Cortex XSOAR Marketplace, they must function correctly, be properly [documented](../integrations/integration-docs) and perform well alongside the rest of the Content.
+Integrations enable communications with third party APIs: in order to get them accepted in the Cortex XSOAR Marketplace, they must function correctly, be properly [documented](../documentation/readme_file) and perform well alongside the rest of the Content.
 
 ### Integration Design Questions
 
@@ -346,8 +346,6 @@ For example, XSOAR will correctly parse this:
     }
     ```
 
-
-
 ## Playbook Design
 
 Playbooks are a great solution to automate complex workflows using Cortex XSOAR no-code/low-code Playbook Editor.
@@ -373,3 +371,9 @@ Playbooks are triggered in three different ways:
 ### Generic Polling
 
 If you are building asynchronous tasks (i.e. starting a job and waiting for it to complete before returning the results), you should use the [Generic Polling](../playbooks/generic-polling) mechanism.
+
+## Documentation
+
+To make your content easy find in the Cortex XSOAR Marketplace and properly used by customers, it's really important to document it properly. Make sure to check the [Content Pack Documentation](../documentation/pack-docs) page to understand how.
+
+Integrations, Scripts and Playbooks and their components (i.e. integration commands arguments and outputs) also have descriptions that show up within the product and in this site on the Reference section. We recommend to learn our [Documentation Best Practices](../documentation/documentation_tips) early on so you get familiar with them as you write your design document. 

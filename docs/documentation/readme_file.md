@@ -1,25 +1,28 @@
 ---
-id: integration-docs
-title: Integration Documentation
+id: readme_file
+title: README File
 ---
 
-Documentation is a critical step that assists customers who may use your integration by providing insight into how the integration is supposed to work. From creating custom playbooks, to providing background information to assist in debugging, it is important to ensure that the documentation explains every aspect of the integration. Documentation is maintained as `README.md` per integration/automation/playbook and made available for customers as part of the [reference docs](https://xsoar.pan.dev/docs/reference/index) of the Cortex XSOAR Developer Hub.
+Documentation is a critical step that assists customers who may use your integration/script/playbook by providing insight into how the content entity is supposed to work.  
+From creating custom playbooks, to providing background information to assist in debugging, it is important to ensure that the documentation explains every aspect of the integration. Documentation is maintained as `README.md` per integration/automation/playbook and made available for customers as part of the [reference docs](https://xsoar.pan.dev/docs/reference/index) of the Cortex XSOAR Developer Hub.
 
-
-## Documentation _must_ be generated if:
-1.  If the integration is new then you are required to create new documentation.
-2.  If the integration is existing but missing documentation then please create new documentation.
-3.  If the integration is existing and some of the integration has changed. For example, a new command was added, context was changed, or anything else; please update the documentation.
-
-:::note 
-This should not be confused with the integration description file, documented [here](../integrations/integration-description).
+:::note
+This document guides you through the generation of the README files from entity YML files. When writing the actual entity descriptions, make sure to follow our [Documentation Best Practices](../documentation/documentation_tips).
 :::
 
+## Documentation _must_ be generated if:
+1.  If the content entity is new then you are required to create new documentation.
+2.  If the content entity is existing but missing documentation then please create new documentation.
+3.  If the content entity is existing and some of it has changed. For example, a new command was added, context was changed, or anything else; please update the documentation.
+
+:::note 
+The entity README.md file should not be confused with the Content Pack README.md file (documented [here](../documentation/pack-docs)) or the integration description file, documented [here](../documentation/integration-description).
+:::
 
 ## Creating Documentation
-Use the `demisto-sdk generate-docs` command to generate documentation for your Integration. Documentation for the command is available [here](https://github.com/demisto/demisto-sdk#generate-docs). 
+Use the `demisto-sdk generate-docs` command to generate documentation for your content entity. Documentation for the command is available [here](https://github.com/demisto/demisto-sdk#generate-docs). 
 
-### Command Examples
+### Command Examples - Integration Documentation
 To automatically generate example output (human readable and context), you should create a text file containing command examples, one per line. The command examples should appear the same way they would as in the CLI in Cortex XSOAR, for example `!url url=8.8.8.8`.
 Commands will be executed one at a time, in the order in which they appear in the file. If there are duplicates of a command included in the text file, only the output of the command's first execution  will be included in the generated documentation output. 
 
@@ -32,7 +35,7 @@ Create a `command_examples.txt` file in the same directory as the Integration. M
 A larger example of such a file is available [here](https://github.com/demisto/content/blob/master/Packs/Securonix/Integrations/Securonix/commands_examples.txt).
 
 ### Run `demisto-sdk generate-docs`
-Make sure to set your environment variables: `DEMISTO_BASE_URL` and `DEMISTO_API_KEY` so `demisto-sdk` will be able to connect to the Server to run the commands. Run the `generate-docs` command with an input of the Integration yml file and the `command_examples.txt` file. For example:
+Make sure to set your environment variables: `DEMISTO_BASE_URL` and `DEMISTO_API_KEY` so `demisto-sdk` will be able to connect to the Server to run the commands. Run the `generate-docs` command with an input of the content entity's yml file and the `command_examples.txt` file in case you are documenting an integration. For example:
 ```
 demisto-sdk generate-docs --insecure -e Packs/Nmap/Integrations/Nmap/command_examples.txt -i Packs/Nmap/Integrations/Nmap/Nmap.yml
 Start generating integration documentation...
@@ -49,13 +52,13 @@ If you are connecting to a Server with a self signed certificate, make sure to p
 Images in the documentation should be added to the relevant pack under a `doc_files` or `doc_imgs` directory. Images may be included with **absolute** or **relative** URLs.
 
 ### Relative Image URLs
-You may use relative URLs to documentation images stored in the `doc_files` or `doc_imgs` directories. To use relative URLs simply link to the image using a relative path such as (if the `doc_imgs` dir is located at the top level Pack directory):
+You may use relative URLs to documentation images stored in the `doc_files` or `doc_imgs` directories. To use relative URLs simply link to the image using a relative path such as (if the `doc_files` dir is located at the top level Pack directory):
 ```
-![Setup Account](./../../doc_imgs/create-account.png)
+![Setup Account](./../../doc_files/create-account.png)
 ```
-Or for example as (if the `doc_imgs` dir is located at the same level as the README.md file):
+Or for example as (if the `doc_files` dir is located at the same level as the README.md file):
 ```
-![Setup Account](./doc_imgs/create-account.png)
+![Setup Account](./doc_files/create-account.png)
 ```
 Make sure to view the README.md file in GitHub's web interface and validate that the images display properly.
 
@@ -162,10 +165,10 @@ Example Images:
 
 
 ## Posting Documentation
-The documentation should be posted in the integration/automation script directory as a `README.md` file. If the integration/automation is not in the [Directory Structure](package-dir), name the documentation file the same as the yml file without the `.yml` extension and with an ending of: `_README.md`. For example: [integration-mcafeeDam_README.md](https://github.com/demisto/content/blob/master/Packs/mcafeeDam/Integrations/integration-mcafeeDam_README.md).
+The documentation should be posted in the content entity's directory as a `README.md` file. If the content entity is not in the [Directory Structure](package-dir), name the documentation file the same as the yml file without the `.yml` extension and with an ending of: `_README.md`. For example: [integration-mcafeeDam_README.md](https://github.com/demisto/content/blob/master/Packs/mcafeeDam/Integrations/integration-mcafeeDam_README.md).
 
 ## Documentation Deployment
-Once the PR with the documentation README file is merged in to master, it will trigger an update to the Cortex XSOAR Developer Hub. When the deployment is complete, the documentation will be available at the [reference docs section](https://xsoar.pan.dev/docs/reference/index). If you wish to preview how the documentation looks at the Developer Hub, before merging to master, you can either run locally the `content-docs` project to preview the Reference Docs site locally or create a PR at the [content-docs repo](https://github.com/demisto/content-docs). 
+Once the PR with the documentation README file is merged into master, it will become available as part of the Cortex XSOAR Developer Hub. The site is updated with the latest content on a daily basis. When the deployment is complete, the documentation will be available at the [reference docs section](https://xsoar.pan.dev/docs/reference/index). If you wish to preview how the documentation looks at the Developer Hub, before merging to master, you can either run locally the `content-docs` project to preview the Reference Docs site locally or create a PR at the [content-docs repo](https://github.com/demisto/content-docs). 
 
 ### Preview by Generating Reference Docs Locally (recommended)
 Clone or download the [content-docs repo](https://github.com/demisto/content-docs). Follow the instructions at the project's [README](https://github.com/demisto/content-docs/blob/master/README.md) to run the site locally and generate Reference Docs for the `content` repo you have locally. For example run in the `content-docs` checkout dir:

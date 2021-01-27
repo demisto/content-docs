@@ -15,4 +15,4 @@ We recommend the following process:
 
 After your design is at least 50% complete and you have an idea of what you need to do, start building the content. You can get back to the design to review details later in an continuous process.
 
-Follow the [XSOAR Contribution Design Tutorial](../tutorials/tut-design) for more details.
+Follow the [Contribution Design](../tutorials/tut-design) tutorial for more details.

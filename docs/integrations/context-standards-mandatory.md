@@ -555,7 +555,8 @@ The following is the format for a DBot Score entry.
     "Indicator": "The indicator that was tested.",
     "Type": "The indicator type.",
     "Vendor": "The vendor used to calculate the score.",
-    "Score": "The actual score."
+    "Score": "The actual score.",
+    "Reliability": "Reliability of the source providing the intelligence data."
 }
 ```
 
@@ -573,6 +574,9 @@ The following is the format for a DBot Score entry.
 - contextPath: DBotScore.Score
   description: The actual score.
   type: Number
+- contextPath: DBotScore.Reliability
+  description: Reliability of the source providing the intelligence data.
+  type: String
 
 ```
 

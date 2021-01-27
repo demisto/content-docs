@@ -341,7 +341,7 @@ ip_reputation_from_autofocus = {
 
 if ip_reputation_from_autofocus['confidence'] >= 90:
     score = Common.DBotScore.BAD
-if ip_reputation_from_autofocus['confidence'] >= 50:
+elif ip_reputation_from_autofocus['confidence'] >= 50:
     score = Common.DBotScore.SUSPICIOUS
 else:
     score = Common.DBotScore.GOOD
@@ -1075,6 +1075,147 @@ outputs:
     }
 }
 ```
+
+---
+### Return Multiple Indicators
+
+In case you need to return multiple indicators (i.e. IPs) in the same call, you should return a list of `CommandResults`, as shown in the following example.
+
+```python
+ip_reputations_from_autofocus = [
+    {
+      'indicator': '5.5.5.5',
+      'asn': '12345',
+      'confidence': 95
+    },
+    {
+      'indicator': '4.4.4.4',
+      'asn': '54321',
+      'confidence': 73
+    }
+]
+
+command_results_list: List[CommandResults] = []
+
+for ip_reputation in ip_reputations_from_autofocus:
+    if ip_reputation['confidence'] >= 90:
+        score = Common.DBotScore.BAD
+    elif ip_reputation['confidence'] >= 50:
+        score = Common.DBotScore.SUSPICIOUS
+    else:
+        score = Common.DBotScore.GOOD
+
+    dbot_score = Common.DBotScore(
+        indicator=ip_reputation['indicator'],
+        indicator_type=DBotScoreType.IP,
+        integration_name='Autofocus',
+        score=score
+    )
+
+    ip = Common.IP(
+        ip=ip_reputation['indicator'],
+        asn=ip_reputation['asn'],
+        dbot_score=dbot_score
+    )
+
+    command_results_list.append(CommandResults(
+        outputs_prefix='Autofocus.IP',
+        outputs_key_field='indicator',
+        outputs=ip_reputation,
+        indicator=ip
+    ))
+
+return_results(command_results_list)
+```
+
+**Context Data - The way it is stored in the incident context data**
+```
+{
+    "Autofocus": {
+        "IP": [
+            {
+                "indicator": "5.5.5.5", 
+                "confidence": 95, 
+                "asn": "12345"
+            },
+            {
+                "indicator": "4.4.4.4", 
+                "confidence": 73, 
+                "asn": "54321"
+            }
+        ]
+    }
+    "IP": [
+        {
+            "ASN": "12345", 
+            "Address": "5.5.5.5"
+        },
+        {
+            "ASN": "54321", 
+            "Address": "4.4.4.4"
+        }
+    ], 
+    "DBotScore": [
+        {
+            "Vendor": "Autofocus", 
+            "Indicator": "5.5.5.5", 
+            "Score": 2, 
+            "Type": "ip"
+        },
+        {
+            "Vendor": "Autofocus", 
+            "Indicator": "4.4.4.4", 
+            "Score": 1, 
+            "Type": "ip"
+        }
+    ]
+}
+```
+
+**YAML Definition**
+```yaml
+outputs:
+- contextPath: Autofocus.IP.indicator
+  description: IP address
+  type: String
+- contextPath: Autofocus.IP.condidence
+  description: Indicator condidence between 0-99
+  type: Number
+- contextPath: Autofocus.IP.asn
+  description: ASSN description
+  type: String
+
+# This is standard context output - https://xsoar.pan.dev/docs/integrations/context-standards-mandatory#ip
+- contextPath: IP.Address
+  description: IP address
+  type: String
+- contextPath: IP.ASN
+  description: 'The autonomous system name for the IP address, for example: AS8948.'
+  type: String
+
+# Reputation commands usually should return DBotScore object - https://xsoar.pan.dev/docs/integrations/context-standards-mandatory#dbot-score
+- contextPath: DBotScore.Indicator
+  description: The indicator that was tested.
+  type: String
+- contextPath: DBotScore.Type
+  description: The indicator type.
+  type: String
+- contextPath: DBotScore.Vendor
+  description: The vendor used to calculate the score.
+  type: String
+- contextPath: DBotScore.Score
+  description: The actual score.
+  type: Number
+```
+
+
+
+**Markdown**
+>#### Results
+>|asn|confidence|indicator|
+>|---|---|---|
+>| 12345 | 95 | 5.5.5.5 |
+>| 54321 | 73 | 4.4.4.4 |
 
 ---
 

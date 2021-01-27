@@ -38,7 +38,7 @@ To ease setup, by default for **forked** repositories we don't setup **Python 2*
 
 ### demisto-sdk 
 This is our help tool that will make your lives easier during the contribution process, it will help you generate a 
-[Pack](packs-format). And will help you maintain your files and validate them before committing to the branch. It is installed via our `Boostrap` process. If you prefer to install the `demisto-sdk` manually see instructions [here](https://github.com/demisto/demisto-sdk).
+[Pack](../packs/packs-format). And will help you maintain your files and validate them before committing to the branch. It is installed via our `Boostrap` process. If you prefer to install the `demisto-sdk` manually see instructions [here](https://github.com/demisto/demisto-sdk).
 
 To check the you have the latest version of the sdk run:
 ```

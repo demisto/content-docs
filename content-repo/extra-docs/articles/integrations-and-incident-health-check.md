@@ -103,7 +103,7 @@ Although not required, we recommend that you create a recurring schedule for the
 
 | Parameter Name | Value |
 | ------------- | ----- |
-| Type | Integrations and Playbooks Health Check |
-| Playbook | Integrations and Playbooks Health Check. This playbook should automatically populate when you select the incident type. If it does not, make sure you select this playbook. |
+| Type | Integrations and Incidents Health Check |
+| Playbook | JOB - Integrations and Playbooks Health Check. This playbook should automatically populate when you select the incident type. If it does not, make sure you select this playbook. |
 
  

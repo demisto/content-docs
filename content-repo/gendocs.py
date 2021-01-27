@@ -1,25 +1,29 @@
 #!/usr/bin/env python3
 
 import argparse
-import re
-import os
-import sys
 import glob
-import yaml
-import traceback
-import shutil
-import json
-from bs4 import BeautifulSoup
-from mdx_utils import fix_mdx, fix_relative_images, start_mdx_server, stop_mdx_server, verify_mdx_server, normalize_id
-from CommonServerPython import tableToMarkdown  # type: ignore
-from typing import List, Optional, Dict, Tuple, Iterator
-from datetime import datetime
-from multiprocessing import Pool
-from functools import partial
 import html
-from distutils.version import StrictVersion
+import json
+import os
 import random
-import dateutil.relativedelta
+import re
+import shutil
+import subprocess
+import sys
+import traceback
+from datetime import datetime
+from distutils.version import StrictVersion
+from functools import partial
+from multiprocessing import Pool
+from typing import Dict, Iterator, List, Optional, Tuple, TypedDict
+
+import yaml
+from bs4 import BeautifulSoup
+from dateutil.relativedelta import relativedelta
+
+from CommonServerPython import tableToMarkdown  # type: ignore
+from mdx_utils import (fix_mdx, fix_relative_images, normalize_id,
+                       start_mdx_server, stop_mdx_server, verify_mdx_server)
 
 # override print so we have a timestamp with each print
 org_print = print
@@ -31,7 +35,10 @@ def timestamped_print(*args, **kwargs):
 
 print = timestamped_print
 
-
+INTEGRATION_YML_MATCH = [
+    "Packs/[^/]+?/Integrations/[^/]+?/.+.yml",
+    "Packs/[^/]+?/Integrations/.+.yml",
+]
 INTEGRATION_DOCS_MATCH = [
     "Integrations/[^/]+?/README.md",
     "Integrations/.+_README.md",
@@ -63,11 +70,12 @@ MAX_FAILURES = int(os.getenv('MAX_FAILURES', 10))  # if we have more than this a
 MAX_FILES = int(os.getenv('MAX_FILES', -1))
 FILE_REGEX = os.getenv('FILE_REGEX')
 EMPTY_FILE_MSG = 'empty file'
+DEPRECATED_INFO_FILE = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs/articles/deprecated_info.json'
 
 # initialize the seed according to the PR branch. Used when selecting max files.
 random.seed(os.getenv('CIRCLE_BRANCH'))
 
-MIN_RELEASE_VERSION = StrictVersion((datetime.now() + dateutil.relativedelta.relativedelta(months=-18)).strftime('%y.%-m.0'))
+MIN_RELEASE_VERSION = StrictVersion((datetime.now() + relativedelta(months=-18)).strftime('%y.%-m.0'))
 
 
 class DocInfo:
@@ -77,6 +85,15 @@ class DocInfo:
         self.description = description
         self.readme = readme
         self.error_msg = error_msg
+
+
+class DeprecatedInfo(TypedDict, total=False):
+    id: str
+    name: str
+    description: str
+    maintenance_start: str
+    eol_start: str
+    note: str
 
 
 def findfiles(match_patterns: List[str], target_dir: str) -> List[str]:
@@ -117,12 +134,26 @@ def gen_html_doc(txt: str) -> str:
             '<div dangerouslySetInnerHTML={{__html: txt}} />\n')
 
 
+def get_extracted_deprecated_note(description: str):
+    regexs = [
+        r'.*deprecated\s*[\.\-:]\s*(.*?instead.*?\.)',
+        r'.*deprecated\s*[\.\-:]\s*(.*?No available replacement.*?\.)',
+    ]
+    for r in regexs:
+        dep_match = re.match(r, description, re.IGNORECASE)
+        if dep_match:
+            res = dep_match[1]
+            if res[0].islower():
+                res = res[0].capitalize() + res[1:]
+            return res
+    return ""
+
+
 def get_deprecated_data(yml_data: dict, desc: str, readme_file: str):
     if yml_data.get('deprecated') or 'DeprecatedContent' in readme_file or yml_data.get('hidden'):
-        dep_msg = ""
-        dep_match = re.match(r'deprecated\s*[\.\-:]\s*(.*?)\.', desc, re.IGNORECASE)
-        if dep_match and 'instead' in dep_match[1]:
-            dep_msg = dep_match[1] + '\n'
+        dep_msg = get_extracted_deprecated_note(desc)
+        if dep_msg:
+            dep_msg = dep_msg + '\n'
         return f':::caution Deprecated\n{dep_msg}:::\n\n'
     return ""
 
@@ -305,10 +336,9 @@ def process_extra_docs(target_dir: str, prefix: str) -> Iterator[DocInfo]:
         yield process_extra_readme_doc(target_dir, prefix, readme_file)
 
 
-# POOL has to be declared after process_readme_doc so it can find it when doing map
+# POOL_SIZE has to be declared after process_readme_doc so it can find it when doing map
 # multiprocess pool
 POOL_SIZE = 4
-POOL = Pool(POOL_SIZE)
 
 
 def process_doc_info(doc_info: DocInfo, success: List[str], fail: List[str], doc_infos: List[DocInfo], seen_docs: Dict[str, DocInfo]):
@@ -352,8 +382,9 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
     sys.stdout.flush()
     sys.stderr.flush()
     seen_docs: Dict[str, DocInfo] = {}
-    for doc_info in POOL.map(partial(process_readme_doc, target_sub_dir, content_dir, prefix, imgs_dir, relative_imgs_dir), readme_files):
-        process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
+    with Pool(processes=POOL_SIZE) as pool:
+        for doc_info in pool.map(partial(process_readme_doc, target_sub_dir, content_dir, prefix, imgs_dir, relative_imgs_dir), readme_files):
+            process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
     for doc_info in process_extra_docs(target_sub_dir, prefix):
         process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
     org_print(f'\n===========================================\nSuccess {prefix} docs ({len(success)}):')
@@ -381,14 +412,15 @@ def create_releases(target_dir: str):
     # flush before starting multi process
     sys.stdout.flush()
     sys.stderr.flush()
-    for doc_info in POOL.map(partial(process_release_doc, target_sub_dir), release_files):
-        if not doc_info:  # case that we skip a release doc as it is too old
-            continue
-        if doc_info.error_msg:
-            fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
-        else:
-            doc_infos.append(doc_info)
-            success.append(doc_info.readme)
+    with Pool(processes=POOL_SIZE) as pool:
+        for doc_info in pool.map(partial(process_release_doc, target_sub_dir), release_files):
+            if not doc_info:  # case that we skip a release doc as it is too old
+                continue
+            if doc_info.error_msg:
+                fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
+            else:
+                doc_infos.append(doc_info)
+                success.append(doc_info.readme)
     org_print(f'\n===========================================\nSuccess release docs ({len(success)}):')
     for r in sorted(success):
         print(r)
@@ -432,7 +464,7 @@ def insert_approved_tags_and_usecases():
     with open('approved_tags.json', 'r') as f:
         approved_tags = json.loads(f.read()).get('approved_list')
         approved_tags_string = '\n        '.join(approved_tags)
-    with open("../docs/integrations/pack-docs.md", "r+") as f:
+    with open("../docs/documentation/pack-docs.md", "r+") as f:
         pack_docs = f.readlines()
         f.seek(0)
         for line in pack_docs:
@@ -457,6 +489,120 @@ def insert_approved_tags_and_usecases():
             f.write(line)
 
 
+def is_xsoar_supported_pack(pack_dir: str):
+    with open(f'{pack_dir}/pack_metadata.json', 'r') as f:
+        metadata = json.load(f)
+    return 'xsoar' == metadata.get('support')
+
+
+def get_blame_date(content_dir: str, file: str, line: int):
+    file_rel = os.path.relpath(file, content_dir)
+    blame_out = subprocess.check_output(['git', 'blame', '-p', '-L', f'{line},+1', file_rel], text=True, cwd=content_dir)
+    auth_date = re.search(r'^author-time\s+(\d+)', blame_out, re.MULTILINE)
+    if not auth_date:
+        raise ValueError(f'author-date not found for blame output of file: [{file}]: {blame_out}')
+    return datetime.utcfromtimestamp(int(auth_date.group(1)))
+
+
+def get_deprecated_display_dates(dep_date: datetime) -> Tuple[str, str]:
+    """Get the deprecation start date. The 1st of the following month.
+
+    Args:
+        dep_date (datetime): The raw dep date
+
+    Returns:
+        tuple of start deprecation and end deprecation
+    """
+    DATE_FRMT = "%b %d, %Y"
+    start = datetime(day=1, month=dep_date.month, year=dep_date.year) + relativedelta(months=+1)
+    end = start + relativedelta(months=+6)
+    return (datetime.strftime(start, DATE_FRMT), datetime.strftime(end, DATE_FRMT))
+
+
+def find_deprecated_integrations(content_dir: str):
+    files = glob.glob(content_dir + '/Packs/*/Integrations/*.yml')
+    files.extend(glob.glob(content_dir + '/Packs/*/Integrations/*/*.yml'))
+    res: List[DeprecatedInfo] = []
+    # go over each file and check if contains deprecated: true
+    for f in files:
+        with open(f, 'r') as fr:
+            content = fr.read()
+            if dep_search  := re.search(r'^deprecated:\s*true', content, re.MULTILINE):
+                pack_dir = re.match(r'.+/Packs/.+?(?=/)', f)
+                if is_xsoar_supported_pack(pack_dir.group(0)):  # type: ignore[union-attr]
+                    yml_data = yaml.safe_load(content)
+                    id = yml_data.get('commonfields', {}).get('id') or yml_data['name']
+                    name: str = yml_data.get('display') or yml_data['name']
+                    desc = yml_data.get('description')
+                    content_to_search = content[:dep_search.regs[0][0]]
+                    lines_search = re.findall(r'\n', content_to_search)
+                    blame_line = 1
+                    if lines_search:
+                        blame_line += len(lines_search)
+                    dep_date = get_blame_date(content_dir, f, blame_line)
+                    maintenance_start, eol_start = get_deprecated_display_dates(dep_date)
+                    dep_suffix = "(Deprecated)"
+                    if name.endswith(dep_suffix):
+                        name = name.replace(dep_suffix, "").strip()
+                    info = DeprecatedInfo(id=id, name=name, description=desc, note=get_extracted_deprecated_note(desc),
+                                          maintenance_start=maintenance_start, eol_start=eol_start)
+                    print(f'Adding deprecated integration: [{name}]. Deprecated date: {dep_date}. From file: {f}')
+                    res.append(info)
+                else:
+                    print(f'Skippinng deprecated integration: {f} which is not supported by xsoar')
+    return res
+
+
+def merge_deprecated_info(deprecated_list: List[DeprecatedInfo], deperecated_info_file: str):
+    with open(deperecated_info_file, "rt") as f:
+        to_merge_list: List[DeprecatedInfo] = json.load(f)['integrations']
+    to_merge_map = {i['id']: i for i in to_merge_list}
+    merged_list: List[DeprecatedInfo] = []
+    for d in deprecated_list:
+        if d['id'] in to_merge_map:
+            d = {**d, **to_merge_map[d['id']]}  # type: ignore[misc]
+        merged_list.append(d)
+    merged_map = {i['id']: i for i in merged_list}
+    for k, v in to_merge_map.items():
+        if k not in merged_map:
+            merged_list.append(v)
+    return merged_list
+
+
+def add_deprected_integrations_info(content_dir: str, deperecated_article: str, deperecated_info_file: str, assets_dir: str):
+    """Will append the deprecated integrations info to the deprecated article
+
+    Args:
+        content_dir (str): content dir to search for deprecated integrations
+        deperecated_article (str): deprecated article (md file) to add to
+        deperecated_info_file (str): json file with static deprecated info to merge
+    """
+    deprecated_infos = merge_deprecated_info(find_deprecated_integrations(content_dir), deperecated_info_file)
+    deprecated_infos = sorted(deprecated_infos, key=lambda d: d['name'].lower())  # sort by name
+    deperecated_json_file = f'{assets_dir}/{os.path.basename(deperecated_article.replace(".md", ".json"))}'
+    with open(deperecated_json_file, 'w') as f:
+        json.dump({
+            'description': 'Generated machine readable doc of deprecated integrations',
+            'integrations': deprecated_infos
+        }, f, indent=2)
+    deperecated_infos_no_note = [i for i in deprecated_infos if not i['note']]
+    deperecated_json_file_no_note = deperecated_json_file.replace('.json', '.no_note.json')
+    with open(deperecated_json_file_no_note, 'w') as f:
+        json.dump({
+            'description': 'Generated doc of deprecated integrations which do not contain a note about replacement or deprecation reason',
+            'integrations': deperecated_infos_no_note
+        }, f, indent=2)
+    with open(deperecated_article, "at") as f:
+        for d in deprecated_infos:
+            f.write(f'\n## {d["name"]}\n')
+            f.write(f'* **Maintenance Mode Start Date:** {d["maintenance_start"]}\n')
+            f.write(f'* **End-of-Life Date:** {d["eol_start"]}\n')
+            if d["note"]:
+                f.write(f'* **Note:** {d["note"]}\n')
+        f.write(f'\n\n----\nA machine readable version of this file is available [here](/assets/{os.path.basename(deperecated_json_file)}).\n')
+    org_print("\n===========================================\n")
+
+
 def main():
     parser = argparse.ArgumentParser(description='''Generate Content Docs. You should probably not call this script directly.
 See: https://github.com/demisto/content-docs/#generating-reference-docs''',
@@ -478,6 +624,8 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     script_doc_infos = create_docs(args.dir, args.target, SCRIPTS_DOCS_MATCH, SCRIPTS_PREFIX)
     release_doc_infos = create_releases(args.target)
     article_doc_infos = create_articles(args.target)
+    add_deprected_integrations_info(args.dir, f'{args.target}/{ATRICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE,
+                                    f'{args.target}/../../static/assets')
     index_base = f'{os.path.dirname(os.path.abspath(__file__))}/reference-index.md'
     index_target = args.target + '/index.md'
     shutil.copy(index_base, index_target)

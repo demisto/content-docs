@@ -72,10 +72,10 @@ Please read the following guidelines carefully: following them will maximize the
     * Make sure your commands make proper use of the [Context](../integrations/context-and-outputs), including [Context Standards](../integrations/context-standards-about) and [DBotScore](../integrations/dbot).
     * Run and verify that the various linters we support pass as detailed [here](../integrations/linting).
     * Make sure to create unit tests as documented [here](../integrations/unit-testing)
-    * Document your integration and automation as detailed [here](integration-docs).
-1. Make sure your Content Pack is properly [documented](../integrations/pack-docs).
+    * Document your integration and automation as detailed [here](../documentation/readme_file) and [here](../documentation/documentation_tips).
+1. Make sure your Content Pack is properly [documented](../documentation/pack-docs) and read the [documentation best practices](../documentation/documentation_tips).
 1. Validate your content: the validation hook should run automatically every time you `git commit`. You can also run the validation manually by using [demisto-sdk validate](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md). 
-1. As you build newer versions of your Content Pack, document your changes in a relevant release notes file as detailed [here](../integrations/release-notes).
+1. As you build newer versions of your Content Pack, document your changes in a relevant release notes file as detailed [here](../documentation/release-notes).
 
 At this point you should be ready to submit a Pull Request! Check out again our [Contributing Checklist](../contributing/checklist), and for more details on the review process, refer to our [PR Conventions](../contributing/conventions) document.
 
