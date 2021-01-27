@@ -2,9 +2,8 @@
 id: 
 title: 
 description: 
-
- 
 ---
+
 Shift management and shift handover are crucial processes of SOC team management.
 This pack provides a single interface to communicate all essential elements to prevent loss of data in the shift handover process.
 
@@ -12,20 +11,20 @@ This pack provides a single interface to communicate all essential elements to p
 
 When there is a shift change, a shift management incident is created. This incident can be created automatically through a [shift handover job](#create-a-shift-handover-job) that runs every time there is a shift change, or manually by the SOC manager or one of the analysts.
 
-Before creating a new incident, you must configure the playbook inputs according to your needs and integrated apps. When creating a manual incident, make sure to select the “shift handover” in the incident type selection section.
+Before creating a new incident, you must configure the playbook inputs according to your needs and integrated apps. 
 
-If creating the incident manually, the SOC manager can provide handover information in the *Shift manager briefing* field of the *Create Incident* form. If the SOC manager does not provide this information in the *Create Incident* form, when the incident is created, an email is sent to the SOC manager requesting briefing information. The email address of the SOC manager is configured in the playbook inputs.
+When creating a manual incident, make sure to select *shift handover* in the incident type selection section. The SOC manager can provide handover information in the *Shift manager briefing* field of the *Create Incident* form. If the SOC manager does not provide this information in the *Create Incident* form, then when the incident is created, an email is sent to the SOC manager requesting the briefing information. The email address of the SOC manager is configured in the playbook inputs.
 
-After the incident is created, the Shift Handover playbook runs. The out of office list is updated with the names of the analysts for the incoming shift who are currently unavailable (for example, on PTO). A list of the available analysts is also created along with the list of active incidents. Pending incidents are not included in the list. The available analysts are assigned to the active incidents. 
+After the incident is created, the **Shift Handover** playbook runs. The out-of-office list is updated with the names of the analysts for the incoming shift who are currently unavailable (for example, on PTO). A list of the available analysts is also created along with the list of active incidents. Pending incidents are not included in the list. The available analysts are assigned to the active incidents. 
 
-The Incident info tab of the incident layout is populated with the:
+The *Incident info* tab of the incident layout is populated with the following:
 - List of active incidents and the analysts who are assigned to them.
-- List of OOO analysts.
+- List of out-of-office analysts.
 - SOC manager briefing instructions.
 
 Analysts can retrieve details of their incidents by clicking the incidents assigned to them. Their incident opens in the incident dashboard.
 
-In the incident layout, the SOC manager can create a channel in Slack or Microsoft Teams to send notifications to the analysts about an upcoming briefing session for the shift handover. The manager can start the briefing session in Zoom by clicking *To start the meeting link* in the incident layout. Analysts can join the Zoom session by clicking the *To join the meeting* link in the incident layout.
+In the incident layout, the SOC manager can create a channel in Slack or Microsoft Teams to send notifications to the analysts about an upcoming briefing session for the shift handover. The SOC manager can start the briefing session in Zoom by clicking *To start the meeting* link in the incident layout. Analysts can join the Zoom session by clicking the *To join the meeting* link.
 
 ## In This Pack
 
@@ -34,11 +33,11 @@ The Shift Management content pack includes several content items.
 ### Playbooks
 
 * **Shift handover**
-This is the main playbook of the shift handover. This playbook is used to set up shift handover meetings and provides details of the shift handover. By modifying the playbook inputs you can configure whether to activate the Assign Active Incidents to Next Shift sub-playbook.
+This is the main playbook of the shift handover. This playbook is used to set up shift handover meetings and provides details of the shift handover. By modifying the playbook inputs you can configure whether to activate the **Assign Active Incidents to Next Shift** sub-playbook.
 You can run this playbook as a job a few minutes after the scheduled shift change occurs.
 
 * **Assign Active Incidents to Next Shift**
-This sub-playbook reassigns active incidents to the current users on call. 
+This sub-playbook reassigns active incidents to the current users who are on call. 
 
 * **Set a Shift handover meeting**
 This sub-playbook creates an online meeting in the integrated app for shift handover. Currently this playbook supports Zoom.
@@ -47,29 +46,28 @@ This sub-playbook creates an online meeting in the integrated app for shift hand
 
 * [AssignToNextShiftOOO](https://xsoar.pan.dev/docs/reference/scripts/assign-to-next-shift-ooo): 
 Reassigns the active incidents to the next shift. 
-This automation works with the other Out of Office automations to ensure only available users are assigned.
+This automation works with the other out-of-office automations to ensure only available users are assigned to the active incidents.
 The incident IDs of the active incidents should be passed as a comma-separated list.
 
-* [AssignAnalystToIncidentOOO](https://xsoar.pan.dev/docs/reference/scripts/assign-analyst-to-incident-ooo): Assigns all on-call analysts to the active incidents.
-This automation will not assign users that appear in the *OOO list*. 
+* [AssignAnalystToIncidentOOO](https://xsoar.pan.dev/docs/reference/scripts/assign-analyst-to-incident-ooo): Assigns all on-call analysts to the active incidents. This automation will not assign users who appear in the out-of-office list. 
 
 * [OutOfOfficeListCleanup](https://xsoar.pan.dev/docs/reference/scripts/out-of-office-list-cleanup):
-Removes users from the OOO list whose *off until day* value has passed.   
+Removes users from the out-of-office list whose *off until day* value has passed.   
 
-* [ManageOOOusers](https://xsoar.pan.dev/docs/reference/scripts/manage-ooo-users): Gets all the out of office users. When you  first run the **ManageOOOusers** automation, an OOO list is created. This list manages the out of the office users.
+* [ManageOOOusers](https://xsoar.pan.dev/docs/reference/scripts/manage-ooo-users): Gets all the out-of-office users. When you  first run the **ManageOOOusers** automation, an out-of-office list is created. This list manages the out-of-office users. By default, the name of this list is *OOO List*. We recommend that you use this list. However, if you create a list to use with a different name and if the name of the list does not begin with OOO, this script automatically prefixes OOO to the script name. For example, if you name the out-of-office list *newList*, the script will automatically change the name to *OOO newList*.  
 Important: Do not delete this list!
 
 * [TimeToNextShift](https://xsoar.pan.dev/docs/reference/scripts/time-to-next-shift): Gets the time until the next shift.
 
 * [CreateChannelWrapper](https://xsoar.pan.dev/docs/reference/scripts/create-channel-wrapper): Creates a channel in Slack v2 or in Microsoft Teams. If both of them are available, it creates the channel in both Slack v2 and Microsoft Teams.
 
-* [GetNumberofUsersOnCall](https://xsoar.pan.dev/docs/reference/scripts/get-number-of-users-on-call): Retrieves the number of users who are currently on call (on shift).
+* [GetNumberofUsersOnCall](https://xsoar.pan.dev/docs/reference/scripts/get-number-of-users-on-call): Retrieves the number of users who are currently on call.
 
 * [GetOnCallHoursPerUser](https://xsoar.pan.dev/docs/reference/scripts/get-on-call-hours-per-user): Retrieves the number of on call hours per user.
 
 * [GetRolesPerShift](https://xsoar.pan.dev/docs/reference/scripts/get-role-per-shift): Retrieves the roles per shift.
 
-* [GetUsersOOO](https://xsoar.pan.dev/docs/reference/scripts/get-users-ooo): Retrieves users who are currently out of office. The script use the OutOfOfficeListCleanup script to remove users whose off until day is in the past.
+* [GetUsersOOO](https://xsoar.pan.dev/docs/reference/scripts/get-users-ooo): Retrieves users who are currently out of office. The script use the **OutOfOfficeListCleanup** script to remove users whose *off until day* is in the past.
 
 * [GetUsersOnCall](https://xsoar.pan.dev/docs/reference/scripts/get-users-on-call): Retrieves users who are on call.
 
@@ -89,7 +87,7 @@ There is 1 incident type - **Shift handover**.
 ### Layout
 There is 1 layout - **Shift handover** 
 
-There are 9 sections in the *Shift Handover* layout. The emphasis of this layout is the communication for the shift handover process - creating an online meeting, sending a notification in the integration app, displaying the SOC manager briefing, and the display of active incidents, on-call users, and OOO users.       
+There are 9 sections in the *Shift Handover* layout. The emphasis of this layout is the communication for the shift handover process - creating an online meeting, sending a notification in the integration app, displaying the SOC manager briefing, and the display of active incidents, on-call users, and out-of-office users.       
 
 ![Layout](LINK to image)
 
@@ -100,15 +98,15 @@ There are 9 sections in the *Shift Handover* layout. The emphasis of this layout
 | Messaging apps section | Action buttons to create a channel in the integrated app (Slack or Microsoft Teams), send a notification in the integrated app regarding the shift handover, and close the channel.  |
 | Online meeting section | Links for starting and joining a meeting in Zoom for the remote shift handover. |  
 | On call team members | Displays all team members who are on call. |  
-| OOO team members | Displays a table of the out of the office team members. The table includes the name of the user who is out of the office, the date until when the user is off, and who added the user to the list. |  
+| OOO team members | Displays a table of the out-of-office team members. The table includes the name of the user who is out of the office, the date until when the user is off, and the name of the person who added the user to the list. |  
 | Attachments | The SOC manager can attach files for the shift handover. |
 | To-Do tasks | You can create a task and due date and assign it to an analyst. |
 | War Room entries | Displays the information that appears in the War Room in regards to this incident. |
 
 
-### List:
+### List
 
-When you first run the **ManageOOOusers** automation, an out-of-office list called OOO List is created. This list manages the out-of-office users.
+When you first run the **ManageOOOusers** automation, an out-of-office list called *OOO List* is created. This list manages the out-of-office users.
 Do not delete this list.
 We strongly recommend using the default list name (OOO List). If you change the name of the list, you will need to update the arguments in the *Shift handover* and **Assign Active Incidents to Next Shift V2** playbooks.
 
@@ -176,5 +174,4 @@ To be able using the messaging apps section in the layout you will be needed to 
    - EWS Mail Sender - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/ews-mail-sender)
 - Slack V2 -  [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/slack-v2)
 - Microsoft Teams -  [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-teams)
-
 
