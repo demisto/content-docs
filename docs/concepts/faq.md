@@ -18,7 +18,7 @@ However, if you want to a different IDE (Visual Studio Code, Sublime, vi, emacs,
 You can also write code directly in the [Cortex XSOAR UI](../concepts/xsoar-ide) but is not recommended if you want to reuse the code. Check [here](getting-started-guide#are-you-planning-to-contribute) for details.
 
 :::note
-Please note that IDEs are used only for writing Integrations and Automations, everything else (i.e. Playbooks) should be done in the Cortex XSOAR UI
+Please note that IDEs are used only for writing Integrations and Automations, everything else (i.e. Playbooks/Dashboards/Layouts/etc.) should be done in the Cortex XSOAR UI
 :::
 
 ## Which tools should I use?
@@ -40,7 +40,7 @@ Instead, you should use the Cortex XSOAR UI when:
 
 
 ### Which Python version you support?
-Cortex XSOAR supports both Python2 and Python3. For new contributions we require Python3 (3.7+).
+Cortex XSOAR supports both Python2 and Python3. ew contributions must be developed in Python3 (3.7+).
 
 ### Can I develop in JavaScript?
 Cortex XSOAR supports JavaScript integrations and scripts. Our preferred development language is Python, and all new integrations and scripts should be developed in Python, which also provides a wider set of capabilities compared to the available JavaScript support. Simple scripts may still be developed in JavaScript.

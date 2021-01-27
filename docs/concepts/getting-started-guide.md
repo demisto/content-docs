@@ -7,23 +7,19 @@ This guide will provide you with some pointers to jumpstart your development jou
 
 If you have trouble with any of these items, please reach out for help over [Slack](https://start.paloaltonetworks.com/join-our-slack-community) on the `#demisto-developers` channel or, if you are/want to be a technology partner, also via [email](mailto:soar.alliances@paloaltonetworks.com).
  
-## Before you start
+## Before you start developing
 
 Cortex XSOAR is a powerful platform that comes with a rich set of features and functionality that allow for a high degree of customization: we therefore recommend that you start by familiarizing yourself with the different aspects of the product:
 
 1. Read and understand Cortex XSOAR [Concepts](../concepts/concepts).
+1. Read the [FAQ](../concepts/faq).
 1. Register to the [Learning Center](http://education.paloaltonetworks.com/learningcenter) and go through the [Product Training](../partners/become-a-tech-partner#3-take-required-training).
 1. If you plan to publish your content to the [XSOAR Marketplace](../partners/marketplace) for other customers to use, read about the [Contribution](../contributing/contributing) process and the different tiers and support levels (partner vs community support, etc.).
 1. Bookmark the links to the [Cortex XSOAR Developer Hub](https://xsoar.pan.dev/docs/) (this site) and the [Cortex XSOAR Product Documentation Page](https://docs.paloaltonetworks.com/cortex/cortex-xsoar.html).
 1. Access the Palo Alto Networks [DFIR Slack Community](https://start.paloaltonetworks.com/join-our-slack-community) and join the *#demisto-developers* channel.
 1. Sign up to the [Developer Newsletter](https://start.paloaltonetworks.com/cortex-xsoar-developer-newsletter.html) to receive technical updates on developing and contributing.
 1. Obtain and install a copy of Cortex XSOAR. If you are not a Partner, you can obtain the Community Edition [here](https://start.paloaltonetworks.com/sign-up-for-demisto-free-edition). Installation instructions are available [here](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/installation.html).
-
-### Other prerequisites (for Integrations and Automations)
-
-If you want to develop Integrations and Automations, some coding is required. You will need:
-1. Python (3.7 and above) or Powershell programming experience.
-1. (for Integrations) API or SDK access to your product or solution you want to integrate with.
+1. (only if you are integrating with an external API) Make sure you have API or SDK access to the product or solution you want to integrate with.
 
 ### Technology Partners
 
@@ -34,7 +30,7 @@ If you are or want to become a Technology Partner, make sure that you also:
 
 ## Are you planning to contribute?
 
-This site describes how to create content meant to be published on the XSOAR Marketplace and used by several customers. You must following proper design, development and documentation guidelines to make sure that the content can used in production in large SOCs. While it's always recommended to follow all these guidelines,  some steps, such as the dev environment setup, are mandatory only if you are planning to contribute your content.
+This site will guide you and offer best practices for creating content to be used in the XSOAR platform. For those of you who want to take their content to the next level so that it will be published in the XSOAR marketplace and used by several users worldwide, we offer a full [contribution](../contributing/contributing) guide. We will walk you through proper design, development, and documentation guidelines to enable your content to be used in production environments in large SOCs. While it's always recommended to follow all these guidelines, some steps, such as the dev environment setup, are relevant only if you are planning to contribute your content.
 
 The following summarizes some common developer profiles and recommendations on what tools to use to develop and contribute. If you are not creating Integrations and Automations, no coding is required and you can do most of the work just through the XSOAR UI.
 

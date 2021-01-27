@@ -4,7 +4,7 @@ title: Development Setup
 ---
 
 :::note
-This article is brief: please refer to the end-to-end [Tutorial](../tutorials/tut-setup-dev) for more details.
+This article summarize the steps from the end-to-end [Setup Tutorial](../tutorials/tut-setup-dev): for more details please refer to it.
 :::
 
 Before you read this make sure you read the [Getting Started Guide](getting-started-guide) and the [Development Requirements](dev-requirements) doc.
@@ -33,7 +33,7 @@ After completing, you can activate the newly created virtual env by running:
 ```
 
 :::note
-To ease setup, by default for **forked** repositories we don't setup **Python 2** as part of the virtual env setup. If you require **Python 2** for your automations/integrations (i.e. if you need to modify existing content built with python2) run the `.hooks/bootstrap` script with the environment variable set: `SETUP_PY2=yes`. When run with `SETUP_PY2=yes` set, the virtualenv built contains both Python 2 and 3. `python` and `python2` will point to Python 2 and `python3` to Python 3.
+To ease setup, by default for **forked** repositories we don't setup **Python 2** as part of the virtual env setup. If you require **Python 2** for your automations/integrations (i.e. only if you need to modify existing content written in python2), run the .hooks/bootstrap script with the environment variable set: SETUP_PY2=yes. When run with SETUP_PY2=yes set, the virtualenv built contains both Python 2 and 3. python and python2 will point to Python 2, while python3 to Python 3.
 :::
 
 ### demisto-sdk 

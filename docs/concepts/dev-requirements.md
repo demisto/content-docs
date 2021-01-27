@@ -5,9 +5,9 @@ title: Development Requirements
 
 This article summarizes all the requirements you need to satisfy in order to be able to develop content (including code parts, such as Integrations and Automations) and contribute it to Cortex XSOAR.
 
-Before you read this part, make sure you follow the general [prerequisites](getting-started-guide#before-you-start).
+Before you read this guide, we recommend you familiarize yourself with the [different aspects of the product](../concepts/getting-started-guide#before-you-start).
 
-If you are not sure whether you should read this, more details can be found [here](getting-started-guide#are-you-planning-to-contribute).
+If you are not sure whether you should read this, more details can be found [here](../concepts/getting-started-guide#are-you-planning-to-contribute).
 
 ## Requirements
 
@@ -36,18 +36,18 @@ If you successfully manage to develop and contribute on other platforms (native 
 You will need a **[GitHub](https://github.com)** account, as the contribution process requires you to submit a Pull Request in the [Cortex XSOAR Content Repository](https://github.com/demisto/content). To learn more about Pull Requests and contributing , check out the [Collaborating with issue and pull requests](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests) tutorial on GitHub.
 
 
-And you will need a `git` client on your system (git, GitHub Desktop, SourceTree, etc). In the examples we'll just use the `git` command line client. See: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git for git client install instructions.
+You will also need `git` - a distributed version control system, installed in your development environment. In the examples, we'll use the `git` command-line tool. Visit the [Git - Getting Started Guide](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) for installing instructions.
 
 ### Python
 
-You will need to build your integration using **Python** and, more specifically, Python 3.7+. While some content is built via Javascript and Python 2, we require Python 3.7+ for contributions.
+If you are planning on contributing code, (i.e Integration or Automation) you will need to use **Python** and, more specifically, Python 3.7+. While some content is built via Javascript and Python 2, we require Python 3.7+ for contributions.
 
 :::note
 Note
 You don't need to be a a Python expert to write a good integration, although some intermediate level knowledge is preferred. Just make sure you adhere to our [Code Conventions](../integrations/code-conventions).
 :::
 
-It is also recommended to have a dedicated Python 3 installed on your system: for that purpose, please download and install **[pyenv](https://github.com/pyenv/pyenv)**. It allows to easily manage multiple versions of Python on your system.
+It is also recommended to have a dedicated Python 3 installed on your system: for that purpose, we recommend using **[pyenv](https://github.com/pyenv/pyenv)**. It allows you to easily manage multiple versions of Python on your system.
 
 Optionally, macOS users can install via [homebrew](https://docs.brew.sh/Homebrew-and-Python).
 
@@ -57,7 +57,7 @@ Starting from version 5.5 of Cortex XSOAR, we also support [PowerShell](../integ
 
 ### Docker
 
-If you are writing code (i.e. Integrations and Scripts), you will need to run several linters and [unit tests](unit-testing) to validate your code, as we do in our build process. In this case you must install docker. See: https://docs.docker.com/install/ for install options.
+If you are writing code (i.e. Integrations and Scripts), you will need to run several linters and [unit tests](../integrations/unit-testing) to validate your code, as we do in our build process. In this case, you must install docker. Visit the [docker site installation page](https://docs.docker.com/install/) for installation options.
 
 :::note
 If you're using WSL, you cannot run Docker natively on WSL, but you can install Docker Desktop on Windows and configure WSL to communicate to it using [this](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly) tutorial.
