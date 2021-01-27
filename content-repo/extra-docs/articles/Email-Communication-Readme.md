@@ -177,7 +177,7 @@ To edit a layout, you must duplicate the layout and then edit the copy.
 
 
 ### Configure the *service_mail* Parameter 
-To set a default sender email address, you must configure the *service_mail* parameter in the SendEmailReply script.
+To set a default sender email address, configure the *service_mail* parameter in the SendEmailReply script.
 1. Navigate to **Settings -> Advanced -> Automation**.
 2. Select the *SendEmailReply* automation and click the three vertical dots and select the **Detach Automation** option.
 3. Click **Detach** in the message that appears.
