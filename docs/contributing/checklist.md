@@ -7,15 +7,13 @@ This document includes a checklist that summarizes the list of files that you ne
 
 Keep in mind that content packs can contain multiple types of entities, such as Integrations, Automations (Scripts), Playbooks, Incident Types, Incident Fields, and so on.
 
-Depending on whether your content pack is aiming to be [certified](../partners/certification) or not, there will be different requirements.
-
 
 
 Happy contributing!
 
 ## Content Pack Checklist
 
-No matter what you include in your content pack or whether it's going to be certified, the pack must include the following:
+No matter what you include in your content pack, the pack must include the following:
 
 - Pack Metadata file (i.e. `Packs/YourPackName/pack_metadata.json`) : the information about your content pack. It should be compiled with all the required information, as explained [here](../integrations/packs-format).
 - Pack README (i.e. `Packs/YourPackName/README.md`): the readme of the pack file. More information [here](../documentation/pack-docs).
@@ -45,15 +43,10 @@ If your pack contains an Integration, the integration directory should contain t
 - Command examples file (i.e. `Packs/YourPackName/Integrations/YourIntegrationName/command_examples`): are needed to [autogenerate](../documentation/readme_file#command-examples) the documentation
 - Unit tests file (i.e. `Packs/YourPackName/Integrations/YourIntegrationName/YourIntegrationName_test.py`): must be included to automatically test the code during the review phase. More details [here](../integrations/unit-testing)
 - Unit tests data (i.e. `Packs/YourPackName/Integrations/YourIntegrationName/test_data/*.json`): contain example responses from your product API and are used in [Unit tests](../integrations/unit-testing). [Examples](https://github.com/demisto/content/tree/master/Packs/HelloWorld/Integrations/HelloWorld/test_data) from Hello World.
+- Custom Incident Types, Fields, Classifiers, Mappers and Layouts: **if** your integration has the ability to [*fetch incidents*](../integrations/fetching-incidents), most likely you need to provide custom Incident Types and the related entities. This is usually covered during the Design phase: work with your Palo Alto Networks alliance contact if in doubt.
 
 **Note**: if you use PowerShell and not Python, the extension of the code files will be `.ps1` instead of `.py`.
 
-#### Additional requirements Certified packs
-
-If your integration is going to be [certified](../partners/certification), you also have the following requirements (optional for non-certified):
-
-- Test Playbook (i.e. `Packs/YourPackName/TestPlaybooks/playbook-YourIntegrationName_Test.yml`): required for nightly builds. More information [here](../integrations/test-playbooks). We'll also need access credentials to a test/demo environment against which we can run the Test Playbook every night. For details, please contact the Cortex XSOAR Alliances Team.
-- Custom Incident Types, Fields, Classifiers, Mappers and Layouts: **if** your integration has the ability to [*fetch incidents*](../integrations/fetching-incidents), most likely you need to provide custom Incident Types and the related entities. This is usually covered during the Design phase: work with your Palo Alto Networks alliance contact if in doubt.
 
 ... and of course your adherence to our best practices and [code conventions](../integrations/code-conventions) will be evaluated in a stricter way.
 
@@ -111,12 +104,6 @@ If your pack contains at least an automation script, the automation directory sh
 - Unit tests data files (i.e. `Packs/YourPackName/Scripts/YourScriptName/test_data/*.json`): contain example responses from your product API and are used in [Unit tests](../integrations/unit-testing).
 
 **Note**: if you use PowerShell and not Python, the extension of the code files will be `.ps1` instead of `.py`.
-
-#### Additional requirements Certified packs	
-
-If your integration is going to be *certified*, you also have the following requirements (optional for non-certified):
-
-- Test Playbook (i.e. `Packs/YourPackName/TestPlaybooks/playbook-YourScriptName_Test.yml`): required for nightly builds. More information [here](../integrations/test-playbooks).
 
 ... and of course your adherence to our best practices and [code conventions](../integrations/code-conventions) will be evaluated in a stricter way.
 
