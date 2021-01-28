@@ -7,8 +7,6 @@ This document includes a checklist that summarizes the list of files that you ne
 
 Keep in mind that content packs can contain multiple types of entities, such as Integrations, Automations (Scripts), Playbooks, Incident Types, Incident Fields, and so on.
 
-
-
 Happy contributing!
 
 ## Content Pack Checklist
@@ -126,16 +124,16 @@ If your pack contains at least a custom dashboard, you'll need:
 
 The requirements above are also summarized in the following table:
 
-|               Entity Type |                                                                          Non-certified and certified                                                                          | Certified only  |
+|               Entity Type |                                                                          All Contributions                                                                          | Partner/XSOAR only  |
 |--------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|---------------------------------|
-| Pack                      | <ul><li>Pack metadata</li><li>Pack readme</li><li>Release Notes</li></ul>                                                                                                                       | |
+| Pack                      | <ul><li>Pack metadata</li><li>Pack README file</li><li>Release Notes</li></ul>                                                                                                                       | |
 | Design                    | | <ul><li>Must follow use case guidelines and review the design document with the Alliances team</li></ul> |
-| Integration               | <ul><li>Code file</li><li>YML file</li><li>Description file</li><li>Image file</li><li>README file</li><li>Command examples file</li><li>Unit tests file</li><li>Unit tests data</li></ul> | <ul><li>Test Playbook</li><li>Custom Incidents (if *fetch_incidents* is supported)</li><li>Instance Credentials</li></ul> |
-| Playbook                  | <ul><li>Playbook file</li><li>README file</li><li>Image file</li></ul>                                                                                                                                          |                                 |
+| Integration               | <ul><li>Code file</li><li>YML file</li><li>Description file</li></ul> | <ul><li>Image file</li><li>README file</li><li>Command examples file</li><li>Unit tests file</li><li>Unit tests data</li></ul> |
+| Playbook                  | <ul><li>Playbook file</li></ul>                                                                                                                                          |              <ul><li>README file</li><li>Playbook Image file</li></ul>                   |
 | Incident/Indicator Field  | <ul><li>Incident/Indicator field JSON file</li></ul>                                                                                                                                                             |                                 |
 | Incident/Indicator Type   | <ul><li>Incident/Indicator type JSON file</li></ul>                                                                                                                                                              |                                 |
 | Classifier and Mapper     | <ul><li>Classifier JSON file (for XSOAR 6.0 and above)</li><li>Mapper JSON file (for XSOAR 6.0 and above)</li><li>5.x Classifier JSON file (for XSOAR 5.x)</li></ul>                                                           |                                 |
 | Incident/Indicator Layout | <ul><li>Layout JSON files (for XSOAR 6.0 and above)</li><li>5.x Layout JSON file(for XSOAR 5.x)</li>                                                                                                              </ul>|                                 |
-| Script                    | <ul><li>Code file</li><li>YML file</li><li>README file</li><li>Unit tests file</li><li>Unit tests data</li></ul>                                                                                               | <ul><li>Test Playbook</li></ul>             |
+| Script                    | <ul><li>Code file</li><li>YML file</li><li>README file</li></ul>                                                                                               |   <ul><li>Unit tests file</li><li>Unit tests data</li></ul>           |
 | Widget                    | <ul><li>Widget JSON file</li></ul>                                                                                                                                                                               |                                 |
 | Dashboard                 | <ul><li>Dashboard JSON file</li></ul>                                                                                                                                                                            |                                 |
