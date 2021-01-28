@@ -38,6 +38,8 @@ There is 1 incident type - **Forensic Acquisition And Analysis**. The default pl
 ### Layout
 There is 1 layout - **Forensic Acquisition And Analysis** 
 The Forensics Acquisition tab displayed the acquired forensic artifacts. The Analysis tabs displays the data extracted from the PCAP and the registry file.
+ !["Forensics Acquisition"](https://raw.githubusercontent.com/demisto/content-docs/57b5d0a866f90e378da89625489fe220503b3901/docs/doc_imgs/reference/WindowsForensics/Forensic_acquisition.JPG "Forensics Acquisition")
+ !["Analysis"](https://raw.githubusercontent.com/demisto/content-docs/57b5d0a866f90e378da89625489fe220503b3901/docs/doc_imgs/reference/WindowsForensics/analysis.JPG "Analysis")
 
 ## Before You Start
 This pack requires that you have an active instance of the Powershell Remoting integration enabled for the Forensic acquisition pack. Make sure to configure the Powershell Remoting env as described in the relevant article.
