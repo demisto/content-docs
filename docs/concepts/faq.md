@@ -25,7 +25,7 @@ Please note that IDEs are used only for writing Integrations and Automations, ev
 
 You'll need a combination of both the Cortex XSOAR UI and other tools. 
 
-As a general rule of the thumb, we recommend that you use an external IDE and toolchain when:
+As a general rule of the thumb, we recommend that you use an external IDE paired with demisto-sdk when:
 - Working on your [integration code](../integrations/code-conventions) (YourIntegration.py)
 - Working on the [unit test script](../integrations/unit-testing) (YourIntegration_test.py)
 - Working on the [release notes](../integrations/release-notes) and README.md documentation files
