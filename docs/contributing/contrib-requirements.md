@@ -1,13 +1,13 @@
 ---
-id: dev-requirements
-title: Development Requirements
+id: contrib-requirements
+title: Contribution Requirements
 ---
 
 This article summarizes all the requirements you need to satisfy in order to be able to develop content (including code parts, such as Integrations and Automations) and contribute it to Cortex XSOAR.
 
 Before you read this guide, we recommend you familiarize yourself with the [different aspects of the product](../concepts/getting-started-guide#before-you-start).
 
-If you are not sure whether you should read this, more details can be found [here](../concepts/getting-started-guide#are-you-planning-to-contribute).
+If you are not sure whether you should read this, more details can be found [here](../concepts/getting-started-guide#creating-new-content).
 
 ## Requirements
 

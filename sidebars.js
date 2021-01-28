@@ -32,13 +32,12 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Dev Environment",
+          label: "Developing",
           collapsed: true,
           items: [
-            "concepts/dev-requirements",
-            "concepts/dev-setup",  
             "concepts/xsoar-ide",
-            "concepts/pycharm-plugin"
+            "concepts/pycharm-plugin",
+            "concepts/dev-setup"
           ]
         },
         {
@@ -53,6 +52,7 @@ const sidebars = {
       collapsed: true,
       items: [
         "contributing/contributing",
+        "contributing/contrib-requirements",
         "contributing/checklist",
         "contributing/marketplace",
         "contributing/conventions"
@@ -187,11 +187,11 @@ const sidebars = {
       label: "Documentation",
       collapsed: true,
       items: [
+        "documentation/documentation_tips",
         "documentation/pack-docs",
         "documentation/release-notes",
         "documentation/readme_file",
-        "documentation/integration-description",
-        "documentation/documentation_tips",
+        "documentation/integration-description"
         ]
     },
     {

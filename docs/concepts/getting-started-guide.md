@@ -28,55 +28,23 @@ If you are or want to become a Technology Partner, make sure that you also:
 1. Read the [Become a Technology Partner](../partners/become-a-tech-partner) page and follow the steps to sign up and sign the agreements.
 1. Work with the [Cortex XSOAR Alliances Team](mailto:soar.alliances@paloaltonetworks.com) to make sure your use cases have been validated.
 
-## Are you planning to contribute?
+## Creating New Content
 
-This site will guide you and offer best practices for creating content to be used in the XSOAR platform. For those of you who want to take their content to the next level so that it will be published in the XSOAR marketplace and used by several users worldwide, we offer a full [contribution](../contributing/contributing) guide. We will walk you through proper design, development, and documentation guidelines to enable your content to be used in production environments in large SOCs. While it's always recommended to follow all these guidelines, some steps, such as the dev environment setup, are relevant only if you are planning to contribute your content.
+This site provides guidance and best practices to create production-quality XSOAR content: for those of you who want to take their work to the next level so that it will be published in the XSOAR marketplace and used by several production users worldwide in large SOCs, we offer a full [contribution](../contributing/contributing) guide to walk you through proper design, development, and documentation.
 
-The following summarizes some common developer profiles and recommendations on what tools to use to develop and contribute. If you are not creating Integrations and Automations, no coding is required and you can do most of the work just through the XSOAR UI.
+If you just want to get started and create content for your own benefit or contribute in a "community" supported way, there are no such requirements. The following flowchart summarizes the process of determining what tools you should use depending on what you want to achieve:
 
-|Who|Contributing?|Integrations/Scripts?|Write Code With|Contribute With|
-|--:|------------:|--------------------:|-----------------|---------------|
-|End customer|No|No|N/A|N/A|
-|End customer|No|Yes|[XSOAR IDE](../concepts/xsoar-ide)|N/A|
-|End customer<br/>Individual contributor|Yes|No|N/A|[Cortex XSOAR UI](../contributing/marketplace)|
-|End customer<br/>Individual contributor|Yes|Yes|demisto-sdk + IDE (Pycharm, VSCode, etc.)|GitHub|
-|Technology Partner<br/>Palo Alto Networks Employee|Yes|Either way|demisto-sdk + IDE (Pycharm, VSCode, etc.)|GitHub|
+![Tool Flowchart](../doc_imgs/concepts/tool-flowchart.png)
 
-:::note Important Note
-In general, even if you are not contributing, you are never wrong if you develop following the detailed guidelines below, including setting up the development environment and designing and documenting your content properly.
-:::
+To summarize it in words: if you are *NOT* contributing or your contribution is meant to be *community* supported, you don't need to set up the development environment: just create everything through the [XSOAR IDE](../concepts/xsoar-ide) if you like it; if are writing code (i.e. Integrations and Scripts) and prefer to use a different IDE, check out our [Pycharm plugin](../concepts/pycharm-plugin), but feel free to use any other IDE of your choice. You can also install [demisto-sdk](https://github.com/demisto/demisto-sdk) to upload, download and run code on XSOAR directly from your operating system shell but, again, all of this is optional and is only meant to make your life easier if you are comfortable with IDEs and CLIs.
 
-If, based on the assumptions above,  you are contributing via GitHub and developing with `demisto-sdk` and an IDE, keep reading through the next sectiobn.
+The same concept applies if you are contributing *community* supported content: we don't have strict requirements: you can just use the [XSOAR UI](../contributing/marketplace) to upload your content for review, which will automatically open a GitHub Pull Request behind the scenes to make your life easy. However, nothing prevents you to manually open a Pull Request on GitHub if you feel comfortable with it: in that case refer to the [Contribution Guidelines](../contributing/contributing) for details. 
 
-If you are not planning to contribute and you plan to do everything thorugh the XSOAR UI, feel free to skip to the [XSOAR IDE](xsoar-ide) document and the relevant sections in the lest menu (i.e. Playbooks)
+On the other hand, if you are a Technology Partner or you are creating high quality content that is meant to be properly *supported* and used in production SOCs, you **must** follow the [Contribution Guidelines](../contributing): follow the best practice, write Unit Tests, document your content, install `demisto-sdk` and `docker` and upload your contribution through a GitHub Pull Request.
 
-## Contributor Guidelines
+## Modifying Existing Content
 
-Please read the following guidelines carefully: following them will maximize the chances for a fast, easy, and effective review process for everyone involved. If something is not clear, please don't hesitate to reach out to us via [Slack](http://go.demisto.com/join-our-slack-community) on the `#demisto-developers` channel.
+If want to fix a bug or enhance an existing Integration, Script, Playbook that is currently part of the Cortex XSOAR content repository, we recommend you to copy and modify it directly in the XSOAR UI.
 
-1. Begin by designing your contribution: we recommend to follow the [Design](../concepts/design) guidelines to identify what you want to build and make sure it is aligned with our best practices. Also check out the [Design Tutorial](../tutorials/tut-design).
-1. Make sure you have all the [Development Requirements](dev-requirements) satisfied.
-1. Setup a development environment by following the brief [Dev Setup Guide](dev-setup) or the more detailed [Tutorial](../tutorials/tut-setup-dev).
-1. Review the [Contribution](../contributing/contributing) process and [Checklist](../contributing/checklist).
-1. Follow the [Content Pack format](packs-format) to build your contribution. [demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md) will help you create it.
-1. Depending on the content entities you need to build, navigate to the specific section of this website for details. If you are creating Integrations and/or Automations, make sure that you:
-    * Use the proper  [Directory Structure](../integrations/package-dir). [demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md) will help you create it. If working on existing code, beyond trivial changes, we require converting to this structure as it allows running linting and unit tests and provides a clearer review process.
-    * Understand the [YAML file](../integrations/yaml-file) structure and the [Parameter Types](../integrations/parameter-types).
-    * Make sure your integration follows our [Logo Guidelines](../integrations/integration-logo).
-    * Read and follow [Python code conventions](../integrations/code-conventions) (recommended) or [Powershell code conventions](../integrations/powershell-code) (advanced users only).
-    * If your integration generates Incidents, follow the [Fetch Incidents](../fetching-incidents) guidelines.
-    * Make sure your commands make proper use of the [Context](../integrations/context-and-outputs), including [Context Standards](../integrations/context-standards-about) and [DBotScore](../integrations/dbot).
-    * Run and verify that the various linters we support pass as detailed [here](../integrations/linting).
-    * Make sure to create unit tests as documented [here](../integrations/unit-testing)
-    * Document your integration and automation as detailed [here](../documentation/readme_file) and [here](../documentation/documentation_tips).
-1. Make sure your Content Pack is properly [documented](../documentation/pack-docs) and read the [documentation best practices](../documentation/documentation_tips).
-1. Validate your content: the validation hook should run automatically every time you `git commit`. You can also run the validation manually by using [demisto-sdk validate](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md). 
-1. As you build newer versions of your Content Pack, document your changes in a relevant release notes file as detailed [here](../documentation/release-notes).
+If you want to contribute your change, most of the time using the [XSOAR UI](../contributing/marketplace) to contribute will suffice. However, if the change is significant (i.e. the content you are adding is more than a small code enhancement or bug fix), we still recommend to follow the guidelines suggested in the [#Creating New Content] section.
 
-At this point you should be ready to submit a Pull Request! Check out again our [Contributing Checklist](../contributing/checklist), and for more details on the review process, refer to our [PR Conventions](../contributing/conventions) document.
-
-**Note**: if you are a technology partner, make sure you have reviewed the use cases with your [Cortex XSOAR Alliances Team](mailto:soar.alliances@paloaltonetworks.com) and that you have a *Partner ID* to associate your Pull Request to.
-
-A good working example that summarizes all of the above is the [Hello World Content Pack](https://github.com/demisto/content/tree/master/Packs/HelloWorld) that you can use as a reference. Also check out the [Hello World Design Document](https://docs.google.com/document/d/1wETtBEKg37PHNU8tYeB56M1LE314ux086z3HFeF_cX0).
-
-This guide doesn't cover all the topics: please browse the left sidebar and use the search bar to find what you need, and reach out for help over [Slack](https://start.paloaltonetworks.com/join-our-slack-community) on the `#demisto-developers` channel when in doubt.
