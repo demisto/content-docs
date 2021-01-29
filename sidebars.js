@@ -62,11 +62,11 @@ const sidebars = {
       label: "Content Packs",
       collapsed: true,
       items: [
-        "integrations/packs-format",  
-        "integrations/pack-docs",
-        "integrations/release-notes",
-        "integrations/premium_packs"
-      ]
+        "packs/packs-format",  
+        "packs/pack-docs-redir",
+        "packs/pack-rn-redir",
+        "packs/premium_packs"
+        ]
     },
     {
       type: "category",
@@ -81,8 +81,9 @@ const sidebars = {
             "integrations/package-dir",
             "integrations/yaml-file",
             "integrations/parameter-types",
-            "integrations/integration-description",
-            "integrations/integration-logo"
+            "integrations/integration-desc-redir",
+            "integrations/integration-logo",
+            "integrations/integration-doc-redir"
           ]
         },
         {       
@@ -124,10 +125,6 @@ const sidebars = {
             "integrations/test-playbooks",
             "integrations/debugging",
           ]
-        }, 
-        {
-          type: "doc",
-          id: "integrations/integration-docs"
         },
         {       
           type: "category",
@@ -165,7 +162,8 @@ const sidebars = {
         "playbooks/playbooks-communication-task-customize-message",
         "playbooks/generic-polling",
         "playbooks/playbooks-field-reference",
-        "playbooks/playbooks-generic"
+        "playbooks/playbooks-generic",
+        "playbooks/playbook-doc-redir"
       ]
     },
     {
@@ -182,6 +180,18 @@ const sidebars = {
         "incidents/incident-classification-mapping",
         "incidents/incident-pre-processing"
       ]
+    },
+    {
+      type: "category",
+      label: "Documentation",
+      collapsed: true,
+      items: [
+        "documentation/pack-docs",
+        "documentation/release-notes",
+        "documentation/readme_file",
+        "documentation/integration-description",
+        "documentation/documentation_tips",
+        ]
     },
     {
       type: "category",

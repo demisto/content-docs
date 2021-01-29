@@ -1,6 +1,6 @@
 ---
 id: courses-of-action
-title: Courses of Action
+title: MITRE ATT&CK - Courses of Action
 ---
 
 ## Pack Description
@@ -112,4 +112,12 @@ The playbook performs the following tasks:
 * Checks if the best practices profile set by Cortex XSOAR is enforced. (If not, the playbook allows the user to compare the existing profile with the best practices and decide on the action to take).
 * Creates a best practices profile.
 * Applies the profile to policy rules on the PAN-OS firewall or Panorama.
+
+## Demo Video
+<video controls>
+    <source src="https://github.com/demisto/content-assets/raw/master/Assets/MITRECoA/coa_demo.mp4"
+            type="video/mp4"/>
+    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/raw/master/Assets/MITRECoA/coa_demo.mp4 
+</video>
+
 

@@ -255,9 +255,9 @@ def test_insert_approved_tags_and_usecases(tmp_path):
     Then:
         - Ensure the approved tags and use cases are added to the content docs article as expected
     """
-    integrations_dir = tmp_path / 'docs' / 'integrations'
-    integrations_dir.mkdir(parents=True)
-    pack_docs = integrations_dir / 'pack-docs.md'
+    documentation_dir = tmp_path / 'docs' / 'documentation'
+    documentation_dir.mkdir(parents=True)
+    pack_docs = documentation_dir / 'pack-docs.md'
     pack_docs.write_text("""
     ***Use-case***
 
