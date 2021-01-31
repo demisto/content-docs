@@ -10,6 +10,9 @@ An example mirroring integration can be seen [here](https://github.com/demisto/c
 
 Mirroring integrations are developed the same as other integrations. They provide a few extra configuration parameters and APIs.
 
+:::note 
+Once an incident field is changed manually within XSOAR, it will be marked as "dirty" and will not be updated throughout the life of the incident.
+:::
 
 ## Supported Server Version
 Mirroring is only supported from version 6.0.0 and on.
