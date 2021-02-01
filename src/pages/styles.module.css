@@ -426,3 +426,32 @@
     -webkit-text-fill-color: transparent;
   }
 }
+
+/* Features */
+.features {
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+  display: flex;
+}
+
+.card {
+  max-width: 348px;
+  margin: auto;
+  background-color: var(--ifm-background-color);
+  min-height: 350px;
+  --ifm-global-shadow-lw: 0 0 0 0 !important;
+}
+
+.cardImage {
+  height: 8rem;
+  width: auto;
+  padding: 1rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cardBody {
+  text-align: center;
+}
