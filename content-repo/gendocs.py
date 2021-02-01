@@ -464,7 +464,7 @@ def insert_approved_tags_and_usecases():
     with open('approved_tags.json', 'r') as f:
         approved_tags = json.loads(f.read()).get('approved_list')
         approved_tags_string = '\n        '.join(approved_tags)
-    with open("../docs/integrations/pack-docs.md", "r+") as f:
+    with open("../docs/documentation/pack-docs.md", "r+") as f:
         pack_docs = f.readlines()
         f.seek(0)
         for line in pack_docs:
@@ -599,7 +599,8 @@ def add_deprected_integrations_info(content_dir: str, deperecated_article: str, 
             f.write(f'* **End-of-Life Date:** {d["eol_start"]}\n')
             if d["note"]:
                 f.write(f'* **Note:** {d["note"]}\n')
-        f.write(f'\n\n----\nA machine readable version of this file is available [here](pathname:///assets/{os.path.basename(deperecated_json_file)}).\n')
+        f.write('\n\n----\nA machine readable version of this file'
+                f' is available [here](pathname:///assets/{os.path.basename(deperecated_json_file)}).\n')
     org_print("\n===========================================\n")
 
 
