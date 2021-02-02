@@ -177,14 +177,23 @@ To edit a layout, you must duplicate the layout and then edit the copy.
 
 
 ### Configure the *service_mail* Parameter 
-To set a default sender email address, configure the *service_mail* parameter in the SendEmailReply script.
+The *service_mail* is the email address the emails are sent from; the parameter is optional.
+The 'SendEmailReply' script will use the 'reply-mail' command so all the supported integrations will send the email. 
+>If the *service_mail* empty - and only one mail sender integration is configured, one email will be sent. If serval integrations are configured, an email will be sent from each integration **(not for each instance)** by running the 'reply-mail' command.
+#### Modifying the service_mail parameter usages:
+Send the email from one default email address - If multiple email-sender integrations configured or instances, you can add a *default value* for the parameter to set the default sender email address.
+Send the emails from different sender each time - Especially for MSSPs when the sender address changing per customer, incident type, etc. You can change the parameter from optional to mandatory, so each time clicking on the "send reply," a pop-up will appear to write the service mail.
+		
+#### To configure the service_mail parameter
 1. Navigate to **Settings -> Advanced -> Automation**.
 2. Select the *SendEmailReply* automation and click the three vertical dots and select the **Detach Automation** option.
 3. Click **Detach** in the message that appears.
-3. In the *Script Setting* dialog box, expand the *Arguments* section. 
-3. Expand the *service_mail* argument and in the **Initial value** field enter the mailbox from which emails are sent.
-4. Click **Save**.
-5. Click the three vertical dots and select the **Reattach Automation** option.
+4. In the *Script Setting* dialog box, expand the *Arguments* section. 
+5. Expand the *service_mail* argument and base on the usage:
+A. Send the email from one default email address - in the **Initial value** field, enter the mailbox from which emails are sent.
+B. Send the emails from different sender each time - mark the mandatory checkbox and leave the 'Initial value' empty.
+6. Click **Save**.
+7. Click the three vertical dots and select the **Reattach Automation** option.
 
 
 ## Testing the Pack
