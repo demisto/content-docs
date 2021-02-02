@@ -40,7 +40,7 @@ This article walks you through the process of contributing content from the Cort
 
 7. The pull request is created and a reviewer is assigned.
 
-    The documentation for new packs automatically generated and it contains the starter information for the integration/script/playbook.
+    The documentation for new integration/script/playbook is automatically generated and contains the basic information of it.
     You will now need to review the documentation (README.md) and modify it according to XSOAR standards.
     Visit the [Documentation](https://xsoar.pan.dev/docs/documentation/readme_file) page for more information.
 
