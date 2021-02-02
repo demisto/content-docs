@@ -41,8 +41,9 @@ This article walks you through the process of contributing content from the Cort
 7. The pull request is created and a reviewer is assigned.
 
     The documentation for new integration/script/playbook is automatically generated and contains the basic information of it.
+    The files to be reviewed will be listed at the PR comment
     You will now need to review the documentation (README.md) and modify it according to XSOAR standards.
-    Visit the [Documentation](https://xsoar.pan.dev/docs/documentation/readme_file) page for more information.
+    See the [Documentation article](https://xsoar.pan.dev/docs/documentation/readme_file) for more information.
 
 8. You can now modify the files changed in the pull request as part of the review process.
 
