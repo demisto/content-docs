@@ -11,7 +11,7 @@ An example mirroring integration can be seen [here](https://github.com/demisto/c
 Mirroring integrations are developed the same as other integrations. They provide a few extra configuration parameters and APIs.
 
 :::note 
-Once an incident field is changed manually within XSOAR, it will be marked as "dirty" and will not be updated throughout the life of the incident.
+Once an incident field is changed manually within XSOAR, it will be marked as "dirty" and will not be updated in XSOAR throughout the life of the incident. Furthermore, the field will still be mirrored out in case of any change of the incident in XSOAR.
 :::
 
 ## Supported Server Version
