@@ -30,6 +30,15 @@ For packs that resell 3rd party products, the following illustrates the flow of 
 
 ![paid pack flow](../doc_imgs/partners/PaidPackFlow.png)
 
+### Reporting and Notifications
+
+Marketplace provides robust reporting to Partners on their paid pack activity including both:
+
+1. **Notifications** are sent immediately via email whenever there is activity on the Pack including a new trial, trial end, a new subscription, etc. Each notification will include customer/human information when possible.
+1. **Reports** are sent on the first of each month where there was revenue-related activity in the prior month. The report details dollar roll-ups per pack, each revenue related transaction line item, etc. 
+
+Reporting is not currently available for free packs.
+
 ### Points
 
 The Marketplace transacts in points, rather than dollars, such that one point is valued at US$100. Customers purchase points via their Palo Alto Networks sales channels and subscribe to your content with those points on a monthly basis. We automatically pay you a revenue share also on a monthly basis, with no invoice required!
