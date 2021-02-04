@@ -36,7 +36,7 @@ def fix_relative_images(txt: str, base_dir: str, id: str, images_dir: str, relat
         r"""<img\s+.*?src=["'](?!http)(.*?)["'].*?>""",
     )
     for r in regexes:
-        res = list(re.finditer(r, txt, re.IGNORECASE))    
+        res = list(re.finditer(r, txt, re.IGNORECASE))
         # we use reverse to start from the end so when we replace the links we don't change the indexes of the other replacements
         res.reverse()
         for m in res:
