@@ -53,7 +53,7 @@ def fix_relative_images(txt: str, base_dir: str, id: str, images_dir: str, relat
                 # now replace the reference
                 target_link = f'{relative_images_dir}/{name}'
                 full_link = full_link.replace(img, target_link)
-                txt = txt[:m.start()] + full_link + txt[m.end()+1:]
+                txt = txt[:m.start()] + full_link + txt[m.end():]
     return txt
 
 
