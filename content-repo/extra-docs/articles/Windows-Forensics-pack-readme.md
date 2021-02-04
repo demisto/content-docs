@@ -48,6 +48,8 @@ https://xsoar.pan.dev/docs/reference/articles/powershell_remoting
 ## Testing the Pack
 Once you have configured the Powershell Remoting integration as explained in the relevant article. Provide in the Acquire And Analyze Host Forensics playbook inputs which hosts should we gather the forensic data from. Create a new incident of type Forensic Acquisition And Analysis and review the work plan and layout.
 
-
 ## Integrations
 Although this integration are not included in the pack, the Powershell Remoting integration is required in order to gather the forensic data from hosts although You can use the automations and the analysis playbooks without the configuring the integration.
+
+## Playbooks
+In addition to the playbooks mentioned in the Pack Workflow the pack also contains the PS Remote Get File Sample From Path playbook which enables you to acquire a specified file from a path provided in the playbook inputs.
