@@ -180,11 +180,12 @@ To edit a layout, you must duplicate the layout and then edit the copy.
 The *service_mail* parameter contains the sender's email address. This parameter is optional.
 
 The **SendEmailReply** script runs the ***reply-mail*** command and all the supported integrations send the email. 
-If the *service_mail* parameter is empty and only one mail sender integration is configured, one email will be sent. If several integrations are configured, an email will be sent from each integration (not for each instance).
+If the *service_mail* parameter is empty and only one mail sender integration is configured, an email will be sent from the email address configured in the integration. If several integrations are configured, an email will be sent from each integration (not for each instance).
 
 You can configure the *service_mail* parameter for the following uses:
 - Send the email from one default email address - If multiple email-sender integrations or instances are configured, you can configure the *service_mail* parameter to a default sender email address.
 - Send the emails from a different sender each time - This is particularly useful for MSSPs when the sender address changes per customer, incident type, etc. You can configure the parameter to be *mandatory*, so each time you click **send reply**, a pop-up will appear in which you will need to enter the service_mail email address.
+![EmailCommunication_PopUp](https://raw.githubusercontent.com/demisto/content-docs/9ee7e60da13af63c323b67d3c6673110ded60faa/docs/doc_imgs/reference/EmailCommunication_PopUp.png)
 		
 #### To configure the service_mail parameter
 1. Navigate to **Settings -> Advanced -> Automation**.
@@ -194,6 +195,7 @@ You can configure the *service_mail* parameter for the following uses:
 5. Expand the *service_mail* argument and do one of the following:
    - To send the email from one default email address: In the *Initial value* field, enter the email address from which emails are sent.
    - To send the email from a different sender each time: Mark the *mandatory* checkbox and leave the *Initial value* empty.
+![EmailCommunication_ServuceMailSettings](https://raw.githubusercontent.com/demisto/content-docs/9ee7e60da13af63c323b67d3c6673110ded60faa/docs/doc_imgs/reference/EmailCommunication_ServuceMailSettings.png)
 6. Click **Save**.
 7. Click the three vertical dots and select the **Reattach Automation** option.
 
