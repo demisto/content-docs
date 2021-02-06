@@ -58,7 +58,7 @@ class CommonServerPythonProcessor(SphinxProcessor):
         return_desc = ''
 
         for line in node.docstring.split('\n'):
-            line = line.strip()
+            line = html.escape(line.strip())
 
             if line.startswith("```"):
                 in_codeblock = not in_codeblock
@@ -76,10 +76,10 @@ class CommonServerPythonProcessor(SphinxProcessor):
                     keyword = 'Arguments'
                     param = match.group(1)
                     text = match.group(2)
-                    text = text.strip().replace('<', '\<').replace('>', '\>')
+                    text = text.strip()
 
                     component = components.setdefault(keyword, [])
-                    component.append(html.escape('- `{}` _{}_: {}'.format(param, param_type, text)))
+                    component.append('- `{}` _{}_: {}'.format(param, param_type, text))
                     continue
 
                 match = re.match(r'\s*:(?:return|returns)\s*:(.*)?$', line)
@@ -93,7 +93,7 @@ class CommonServerPythonProcessor(SphinxProcessor):
                     return_type = match.group(1).strip().replace('`', '')
 
                     component = components.setdefault(keyword, [])
-                    component.append(html.escape('- `{}` - {}'.format(return_type, return_desc)))
+                    component.append('- `{}` - {}'.format(return_type, return_desc))
                     continue
 
                 match = re.match('\\s*:(?:raises|raise)\\s+(\\w+)\\s*:(.*)?$', line)
