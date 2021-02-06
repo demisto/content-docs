@@ -75,7 +75,7 @@ class CommonServerPythonProcessor(SphinxProcessor):
                     keyword = 'Arguments'
                     param = match.group(1)
                     text = match.group(2)
-                    text = text.strip()
+                    text = text.strip().replace('<', '\<').replace('>', '\>')
 
                     component = components.setdefault(keyword, [])
                     component.append('- `{}` _{}_: {}'.format(param, param_type, text))
@@ -83,7 +83,7 @@ class CommonServerPythonProcessor(SphinxProcessor):
 
                 match = re.match(r'\s*:(?:return|returns)\s*:(.*)?$', line)
                 if match:
-                    return_desc = match.group(1).strip()
+                    return_desc = match.group(1).strip().replace('<', '\<').replace('>', '\>')
                     continue
 
                 match = re.match(r'\s*:(?:rtype)\s*:(.*)?$', line)
