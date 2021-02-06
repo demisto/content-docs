@@ -18,6 +18,7 @@ beautifulsoup4 = "*"
 requests = "*"
 pydoc-markdown = "*"
 python-dateutil = "*"
+docspec = "*"
 
 [requires]
 python_version = "3.8"

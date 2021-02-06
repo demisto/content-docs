@@ -114,6 +114,7 @@ class CommonServerPythonProcessor(SphinxProcessor):
         generate_sections_markdown(lines, components)
         node.docstring = '\n'.join(lines)
 
+
 def generate_pydoc(
         module: str,
         article_id: str,
