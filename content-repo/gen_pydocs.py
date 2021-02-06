@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
-import html
 import re
-import sys
-from io import StringIO
 from typing import Dict, List, Optional
 
 import docspec
@@ -58,7 +55,7 @@ class CommonServerPythonProcessor(SphinxProcessor):
         return_desc = ''
 
         for line in node.docstring.split('\n'):
-            line = html.escape(line.strip())
+            line = line.strip()
 
             if line.startswith("```"):
                 in_codeblock = not in_codeblock
@@ -142,18 +139,17 @@ def generate_pydoc(
     pydocmd.renderer = DemistoMarkdownRenderer(
         insert_header_anchors=False,
         func_prefix=func_prefix,
-        module_overview=module_overview
+        module_overview=module_overview,
+        escape_html_in_docstring=True,
+        classdef_code_block=False,
+        descriptive_class_title=False,
     )
     loader: PythonLoader = next((ldr for ldr in pydocmd.loaders if isinstance(ldr, PythonLoader)), None)
     loader.modules = [module]
     modules = pydocmd.load_modules()
     pydocmd.process(modules)
 
-    stdout = sys.stdout
-    sys.stdout = tmp_stdout = StringIO()
-    pydocmd.render(modules)
-    sys.stdout = stdout
-    pydoc = tmp_stdout.getvalue()
+    pydoc = pydocmd.renderer.render_to_string(modules)
 
     article_description = f'API reference documentation for {article_title}.'
     content = f'---\nid: {article_id}\ntitle: {article_title}\ndescription: {article_description}\n---\n\n{pydoc}'

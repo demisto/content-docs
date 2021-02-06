@@ -166,8 +166,10 @@ DEMISTO_CLASS_OVERVIEW="All Python integrations and scripts have available as pa
 The \`demisto\` class is a low level API. For many operations we provide a simpler and more robust API as part of the  [Common Server Functions](https://xsoar.pan.dev/docs/integrations/code-conventions#common-server-functions).
 :::"
 DEMISTO_CLASS_DOCS_CMD=("./gen_pydocs.py" "-d" "${ARTICLES_DIR}" "-i" "demisto-class" "-t" "'Demisto Class'" "-m" "demisto" "-p" "demisto." "-o" "'${DEMISTO_CLASS_OVERVIEW}'")
-COMMON_SERVER_PYTHON_DOCS_CMD=("./gen_pydocs.py" "-d" "${ARTICLES_DIR}" "-i" "common-server-python" "-t" "'Common Server Python'" "-m" "CommonServerPython")
+COMMON_SERVER_PYTHON_OVERVIEW="Common functions that will be appended to the code of each integration/script before being executed."
+COMMON_SERVER_PYTHON_DOCS_CMD=("./gen_pydocs.py" "-d" "${ARTICLES_DIR}" "-i" "common-server-python" "-t" "'Common Server Python'" "-m" "CommonServerPython" "-o" "'${COMMON_SERVER_PYTHON_OVERVIEW}'")
 mv demistomock.py demisto.py
+echo "$(tail -n +6 CommonServerPython.py)" > CommonServerPython.py
 
 if [ -z "${NETLIFY}" ]; then
     echo "Not running in netlify. Using pipenv"
