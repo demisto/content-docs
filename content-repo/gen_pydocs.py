@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import html
 import re
 import sys
 from io import StringIO
@@ -78,12 +79,12 @@ class CommonServerPythonProcessor(SphinxProcessor):
                     text = text.strip().replace('<', '\<').replace('>', '\>')
 
                     component = components.setdefault(keyword, [])
-                    component.append('- `{}` _{}_: {}'.format(param, param_type, text))
+                    component.append(html.escape('- `{}` _{}_: {}'.format(param, param_type, text)))
                     continue
 
                 match = re.match(r'\s*:(?:return|returns)\s*:(.*)?$', line)
                 if match:
-                    return_desc = match.group(1).strip().replace('<', '\<').replace('>', '\>')
+                    return_desc = match.group(1).strip()
                     continue
 
                 match = re.match(r'\s*:(?:rtype)\s*:(.*)?$', line)
@@ -92,7 +93,7 @@ class CommonServerPythonProcessor(SphinxProcessor):
                     return_type = match.group(1).strip().replace('`', '')
 
                     component = components.setdefault(keyword, [])
-                    component.append('- `{}` - {}'.format(return_type, return_desc))
+                    component.append(html.escape('- `{}` - {}'.format(return_type, return_desc)))
                     continue
 
                 match = re.match('\\s*:(?:raises|raise)\\s+(\\w+)\\s*:(.*)?$', line)
