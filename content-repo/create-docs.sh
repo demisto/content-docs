@@ -177,7 +177,7 @@ if [ -z "${NETLIFY}" ]; then
     pipenv run "${DEMISTO_CLASS_DOCS_CMD[@]}"
     mv demisto.py demistomock.py
     echo "Generating CommonServerPyton docs..."
-    eval "${COMMON_SERVER_PYTHON_DOCS_CMD[@]}"
+    pipenv "${COMMON_SERVER_PYTHON_DOCS_CMD[@]}"
     echo "Generating docs..."
     pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
 else
