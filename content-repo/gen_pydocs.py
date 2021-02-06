@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 
 import argparse
+import re
 import sys
 from io import StringIO
-from typing import Optional
+from typing import Dict, List, Optional
 
 import docspec
 from nr.databind.core import Field
-from pydoc_markdown import MarkdownRenderer, PydocMarkdown, PythonLoader
+from pydoc_markdown import (MarkdownRenderer, PydocMarkdown, PythonLoader,
+                            SmartProcessor)
+from pydoc_markdown.contrib.processors.sphinx import (
+    SphinxProcessor, generate_sections_markdown)
 
 
 class DemistoMarkdownRenderer(MarkdownRenderer):
@@ -40,6 +44,76 @@ class DemistoMarkdownRenderer(MarkdownRenderer):
             super()._render_header(fp, level, obj)
 
 
+class CommonServerPythonProcessor(SphinxProcessor):
+    def _process(self, node):
+        if not node.docstring:
+            return
+
+        lines = []
+        in_codeblock = False
+        keyword = None
+        components: Dict[str, List[str]] = {}
+        param_type = ''
+        return_desc = ''
+
+        for line in node.docstring.split('\n'):
+            line = line.strip()
+
+            if line.startswith("```"):
+                in_codeblock = not in_codeblock
+
+            line_codeblock = line.startswith('    ')
+
+            if not in_codeblock and not line_codeblock:
+                match = re.match(r'\s*:(?:type)\s+(\w+)\s*:(.*)?$', line)
+                if match:
+                    param_type = match.group(2).strip().replace('`', '')
+                    continue
+
+                match = re.match(r'\s*:(?:arg|argument|param|parameter)\s+(\w+)\s*:(.*)?$', line)
+                if match:
+                    keyword = 'Arguments'
+                    param = match.group(1)
+                    text = match.group(2)
+                    text = text.strip()
+
+                    component = components.setdefault(keyword, [])
+                    component.append('- `{}` _{}_: {}'.format(param, param_type, text))
+                    continue
+
+                match = re.match(r'\s*:(?:return|returns)\s*:(.*)?$', line)
+                if match:
+                    return_desc = match.group(1).strip()
+                    continue
+
+                match = re.match(r'\s*:(?:rtype)\s*:(.*)?$', line)
+                if match:
+                    keyword = 'Returns'
+                    return_type = match.group(1).strip().replace('`', '')
+
+                    component = components.setdefault(keyword, [])
+                    component.append('- `{}` - {}'.format(return_type, return_desc))
+                    continue
+
+                match = re.match('\\s*:(?:raises|raise)\\s+(\\w+)\\s*:(.*)?$', line)
+                if match:
+                    keyword = 'Raises'
+                    exception = match.group(1)
+                    text = match.group(2)
+                    text = text.strip()
+
+                    component = components.setdefault(keyword, [])
+                    component.append('- `{}`: {}'.format(exception, text))
+                    continue
+
+            if keyword is not None:
+                components[keyword].append(line)
+            else:
+                lines.append(line)
+
+        generate_sections_markdown(lines, components)
+        node.docstring = '\n'.join(lines)
+
 def generate_pydoc(
         module: str,
         article_id: str,
@@ -60,7 +134,9 @@ def generate_pydoc(
     Returns:
         None: No data returned.
     """
+    smart_processor = SmartProcessor(sphinx=CommonServerPythonProcessor())
     pydocmd = PydocMarkdown()
+    pydocmd.processors[1] = smart_processor
     pydocmd.renderer = DemistoMarkdownRenderer(
         insert_header_anchors=False,
         func_prefix=func_prefix,
