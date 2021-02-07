@@ -158,6 +158,8 @@ For example for an integration instance name of: `Cortex_XDR_instance_1` run the
 !Cortex_XDR_instance_1-fetch debug-mode=true
 ```
 
+**Note:** if the instance name contains spaces, replace the space with an underscore (`_`).
+
 Screenshot of running a `fetch` command with `debug-mode=true` and the resulting log file (`fetch-incidents.log`):
 ![fetch-incidents-debug](../../../docs/doc_imgs/reference/fetch-incidents-debug.png)
 
@@ -173,6 +175,8 @@ For example for an integration instance name of: `Cortex_XDR_instance_1` run the
 ```
 !Cortex_XDR_instance_1-test-module debug-mode=true
 ```
+
+**Note:** if the instance name contains spaces, replace the space with an underscore (`_`).
 
 Screenshot of running a `test-module` command with `debug-mode=true` and the resulting log file (`test-module.log`):
 ![test-module-debug](../../../docs/doc_imgs/reference/test-module-debug.png)    
