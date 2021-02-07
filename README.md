@@ -49,7 +49,7 @@ Additional env vars that affect the generation of the docs:
   ```bash
   FILE_REGEX=Proofpoint CONTENT_REPO_DIR=~/dev/demisto/content npm run reference-docs
   ```
-* `MAX_FILES`: max files to generate in each category. Set this for faster generation when developing. Note also in CI builds on branches this is automatically set to speed up the preview site if there is only modifications related to docs. For example:
+* `MAX_FILES`: max files to generate in each category. Set this for faster generation when developing. Note also in CI builds on branches this is automatically set to speed up the preview site if there are only modifications related to docs. For example:
   ```bash
   MAX_FILES=10 CONTENT_REPO_DIR=~/dev/demisto/content npm run reference-docs
   ```
@@ -85,4 +85,3 @@ Before merging any PRs, we need all contributors to sign a contributor license a
 When you open a new pull request, a bot will evaluate whether you have signed the CLA. If required, the bot will comment on the pull request, including a link to accept the agreement. The CLA document is also available for review as a [PDF](https://github.com/demisto/content/blob/master/docs/cla.pdf).
 
 If the `license/cla` status check remains on *Pending*, even though all contributors have accepted the CLA, you can recheck the CLA status by visiting the following link (replace **[PRID]** with the ID of your PR): https://cla-assistant.io/check/demisto/content-docs?pullRequest=[PRID] .
-
