@@ -61,7 +61,7 @@ INTEGRATIONS_PREFIX = 'integrations'
 SCRIPTS_PREFIX = 'scripts'
 PLAYBOOKS_PREFIX = 'playbooks'
 RELEASES_PREFIX = 'releases'
-ATRICLES_PREFIX = 'articles'
+ARTICLES_PREFIX = 'articles'
 NO_HTML = '<!-- NOT_HTML_DOC -->'
 YES_HTML = '<!-- HTML_DOC -->'
 BRANCH = os.getenv('HEAD', 'master')
@@ -435,19 +435,19 @@ def create_releases(target_dir: str):
 
 
 def create_articles(target_dir: str):
-    target_sub_dir = f'{target_dir}/{ATRICLES_PREFIX}'
+    target_sub_dir = f'{target_dir}/{ARTICLES_PREFIX}'
     if not os.path.exists(target_sub_dir):
         os.makedirs(target_sub_dir)
     doc_infos: List[DocInfo] = []
     success: List[str] = []
     fail: List[str] = []
     seen_docs: Dict[str, DocInfo] = {}
-    for doc_info in process_extra_docs(target_sub_dir, ATRICLES_PREFIX):
+    for doc_info in process_extra_docs(target_sub_dir, ARTICLES_PREFIX):
         process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
-    org_print(f'\n===========================================\nSuccess {ATRICLES_PREFIX} docs ({len(success)}):')
+    org_print(f'\n===========================================\nSuccess {ARTICLES_PREFIX} docs ({len(success)}):')
     for r in sorted(success):
         print(r)
-    org_print(f'\n===========================================\nFailed {ATRICLES_PREFIX} docs ({len(fail)}):')
+    org_print(f'\n===========================================\nFailed {ARTICLES_PREFIX} docs ({len(fail)}):')
     for r in sorted(fail):
         print(r)
     org_print("\n===========================================\n")
@@ -619,14 +619,14 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     scripts_full_prefix = f'{prefix}/{SCRIPTS_PREFIX}'
     playbooks_full_prefix = f'{prefix}/{PLAYBOOKS_PREFIX}'
     releases_full_prefix = f'{prefix}/{RELEASES_PREFIX}'
-    articles_full_prefix = f'{prefix}/{ATRICLES_PREFIX}'
+    articles_full_prefix = f'{prefix}/{ARTICLES_PREFIX}'
     integration_doc_infos = create_docs(args.dir, args.target, INTEGRATION_DOCS_MATCH, INTEGRATIONS_PREFIX)
     playbooks_doc_infos = create_docs(args.dir, args.target, PLAYBOOKS_DOCS_MATCH, PLAYBOOKS_PREFIX)
     script_doc_infos = create_docs(args.dir, args.target, SCRIPTS_DOCS_MATCH, SCRIPTS_PREFIX)
     release_doc_infos = create_releases(args.target)
     article_doc_infos = create_articles(args.target)
     if os.getenv('SKIP_DEPRECATED') not in ('true', 'yes', '1'):
-        add_deprected_integrations_info(args.dir, f'{args.target}/{ATRICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE,
+        add_deprected_integrations_info(args.dir, f'{args.target}/{ARTICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE,
                                         f'{args.target}/../../static/assets')
     index_base = f'{os.path.dirname(os.path.abspath(__file__))}/reference-index.md'
     index_target = args.target + '/index.md'
@@ -641,7 +641,7 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
         f.write("\n\n## Scripts\n\n")
         f.write(index_doc_infos(script_doc_infos, SCRIPTS_PREFIX))
         f.write("\n\n## Articles\n\n")
-        f.write(index_doc_infos(article_doc_infos, ATRICLES_PREFIX))
+        f.write(index_doc_infos(article_doc_infos, ARTICLES_PREFIX))
         f.write("\n\n## Content Release Notes\n\n")
         f.write(index_doc_infos(release_doc_infos, RELEASES_PREFIX, headers=('Name', 'Date')))
         f.write("\n\nAdditional archived release notes are available"
@@ -684,6 +684,15 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     ]
     with open(f'{args.target}/sidebar.json', 'w') as f:
         json.dump(sidebar, f, indent=4)
+    articles_sidebar = [
+        {
+            "type": "category",
+            "label": "Articles",
+            "items": article_items
+        }
+    ]
+    with open(f'{args.target}/articles-sidebar.json', 'w') as f:
+        json.dump(articles_sidebar, f, indent=4)
     print('Stopping mdx server ...')
     stop_mdx_server()
     if os.getenv('UPDATE_PACK_DOCS') or os.getenv('CI'):

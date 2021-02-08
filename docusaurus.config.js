@@ -56,7 +56,7 @@ module.exports = {
         },
         {
           to: "/docs/tutorials/tut-setup-dev",
-          label: "Tutorials",
+          label: "Articles",
           position: "left"
         },
         {
