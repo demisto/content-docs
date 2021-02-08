@@ -3,22 +3,33 @@ id: contributing
 title: Contributing 
 ---
 
-Thanks for being interested in contributing to Cortex XSOAR. This document describes the Contribution process. If you are not sure whether you should read this, more details can be found [here](getting-started-guide#creating-new-content).
+Thanks for being interested in contributing to Cortex XSOAR. This document describes the Contribution process. If you are not sure whether you should read this, make sure you read the [Getting Started Guide](../concepts/getting-started-guide) first.
 
 Contributing allows you to make the content that you build on Cortex XSOAR available to every client through the  [Marketplace](../partners/marketplace). Content can be either Partner or Community supported, [Free or Paid](../partners/marketplace#pricing).
 
 All the free content (i.e. everything excluding Paid Content Packs) is open source and lives in the Cortex XSOAR [GitHub Repository](https://github.com/demisto/content), with a MIT license.
 
-In order to setup a developing environment that will help you create your content, you can use the [Set Up Your Dev Environment](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#the-tutorial-starts-here) tutorial. The tutorial contains several parts including an elaborated process, you don't have to complete the entire tutorial you can just use it as a guide and to get real examples.
+## Support and requirements
 
-After you have created your content, you must submit your content for our team to review and approve.
+Contributions can be either officially supported (by Palo Alto Networks, a Technology Partner or a developer), or *community* supported: the former means that when a customer has a problem with the content, they will have an email address or web site to reach out to, and they will expect an answer. When the contribution is *community* supported, it's not required to provide support (customers will ask questions on our [Live Community Forum](https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions)) and the quality requirements for the contribution to be accepted will be lower.
+
+## How to contribute
+
+After you have created your content, you must submit your content to Palo Alto Networks: the Cortex XSOAR Content Team will review and approve it before it becomes available to customers.
 
 There are three ways to submit your work:
- 1. Starting from version 6.0, Cortex XSOAR supports a [simplified flow](../contributing/marketplace) to Contribute directly from the product UI: use this flow only if you are an individual contributor and your Content Pack is going to be community supported.
- 1. If you want to provide a Content Pack that you want to support (i.e. if you are a Technology Partner), you must open a GitHub Pull Request.
- 1. Only if you are providing a Premium (aka Paid) Content Pack, the GitHub process is slightly different and is described [here](../integrations/premium_packs).
+ 1. Contribute from the Cortex XSOAR UI [Marketplace](../contributing/marketplace). This flow is simpler and doesn't require to set up a development environment or be familiar with git. However, it is recommended **only** in the following scenarios:
+    - You are an individual contributor, contributing **new** content that is *community supported*.
+    - You are making small changes to **existing** content, even if it's *xsoar* or *partner* supported (usually a bug fix or adding a new command to an Integration).
+ 1. Contribute through a GitHub Pull Request on the public [XSOAR Content Repository](https://github.com/demisto/content). Use this flow in the following scenarios:
+     - You are a Technology Partner or a developer contributing with officially *supported* new content.
+     - Your contribution is big and contains lots of different parts (Integrations, Scripts, Playbooks, Layouts, etc) that is likely to lead to a complex review process.
+     - You are proficient with GitHub.
+ 1. Contribute through a private GitHub repository: this is required if you are providing a **Premium (aka Paid)** Content Pack. The requirements are the same of supported Packs, and the contribution process is described [here](../integrations/premium_packs).
 
- This document describes the main flow that covers cases 2 and 3 and summarizes everything you must do before and after opening a Pull Request on GitHub to contribute your pack.
+This document describes the main flow that covers *supported* contributions and summarizes everything you must do before and after opening a Pull Request on GitHub to contribute your pack.
+
+If you are contributing *community* supported content, feel free to skip the rest of this document (although it's still recommended to read it to be aware of the best practices).
 
 ## Contributor Guidelines
 
@@ -27,7 +38,7 @@ Please read the following guidelines carefully: following them will maximize the
 1. Begin by designing your contribution: we recommend to follow the [Design](../concepts/design) guidelines to identify what you want to build and make sure it is aligned with our best practices. Also check out the [Design Tutorial](../tutorials/tut-design).
 1. Make sure you have all the [Contributing Requirements](../contributing/contrib-requirements) satisfied.
 1. Setup a development environment by following the brief [Dev Setup Guide](dev-setup) or the more detailed [Tutorial](../tutorials/tut-setup-dev).
-1. Review the [Contribution](../contributing/contributing) process and [Checklist](../contributing/checklist).
+1. Review the [Contribution Checklist](../contributing/checklist).
 1. Follow the [Content Pack format](packs-format) to build your contribution. [demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md) will help you create it.
 1. Depending on the content entities you need to build, navigate to the specific section of this website for details. If you are creating Integrations and/or Automations, make sure that you:
     * Use the proper  [Directory Structure](../integrations/package-dir). [demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md) will help you create it. If working on existing code, beyond trivial changes, we require converting to this structure as it allows running linting and unit tests and provides a clearer review process.
