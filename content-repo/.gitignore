@@ -3,3 +3,4 @@ demistomock.py
 !test_data/demistomock.py
 approved_tags.json
 approved_usecases.json
+.content-bucket
