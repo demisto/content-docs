@@ -32,13 +32,13 @@ If you are or want to become a Technology Partner, make sure that you also:
 
 This site provides guidance and best practices to create production-quality XSOAR content: for those of you who want to take their work to the next level so that it will be published in the XSOAR marketplace and used by several production users worldwide in large SOCs, we offer a full contribution [contribution](../contributing/contributing) guide to walk you through proper design, development, and documentation: please read it after this article.
 
-If you just want to get started and create content for your own benefit or contribute in a "community" supported way, there are no such requirements. The following flowchart summarizes the process of determining what tools you should use to create new content, depending on what you want to achieve:
+If you just want to get started and create content for your own benefit or contribute in a *community* supported way, there are no such requirements. The following flowchart summarizes the process of determining what tools you should use to create new content, depending on what you want to achieve:
 
 ![Tool Flowchart](../doc_imgs/concepts/tool-flowchart.png)
 
 To summarize it in words: if you are *NOT* contributing or your contribution is meant to be *community* supported, you don't need to set up the development environment: just create everything through the [XSOAR IDE](../concepts/xsoar-ide) if you like it; if are writing code (i.e. Integrations and Scripts) and prefer to use a different IDE, check out our [Pycharm plugin](../concepts/pycharm-plugin), but feel free to use any other IDE of your choice. You can also install [demisto-sdk](https://github.com/demisto/demisto-sdk) to upload, download and run code on XSOAR directly from your operating system shell but, again, all of this is optional and is only meant to make your life easier if you are comfortable with IDEs and CLIs.
 
-Only if you want a full blown development environment, usually needed for full, supported contributions, proceed to the [Development Setup](../concepts/dev-setup) section.
+Only if you want a full blown development environment, usually needed for full, supported contributions, you will need to set up a full  [Development Environment](../concepts/dev-setup).
 
 ### Modifying Existing Content
 
