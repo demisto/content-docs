@@ -255,37 +255,37 @@ For integrations that support the [SCIM](http://www.simplecloud.info/) protocol,
 
 ## IAMApiModule Script Classes
 
-Every IAM integration imports the [IAMApiModule]() script. This script contains classes which are used in the integration for several purposes.
+Every IAM integration imports the [IAMApiModule](https://github.com/demisto/content/blob/master/Packs/ApiModules/Scripts/IAMApiModule/IAMApiModule.py) script. This script contains classes which are used in the integration for several purposes.
 
 ### IAMCommand
 
-The [IAMCommand]() class implements most of the logic of the CRUD commands. For example, when calling the **iam-update-user** command of an integration, the integration will call the **update_user()** method of this class. The integration **client** object and the command **arguments** will be passed to this method as arguments.
+The [IAMCommand](https://github.com/demisto/content/blob/master/Packs/ApiModules/Scripts/IAMApiModule/IAMApiModule.py#L273) class implements most of the logic of the CRUD commands. For example, when calling the **iam-update-user** command of an integration, the integration will call the **update_user()** method of this class. The integration **client** object and the command **arguments** will be passed to this method as arguments.
 
 ### IAMUserProfile
 
-An object of [IAMUserProfile]() class holds the given user profile data, and allows to perform the data mapping from XSOAR format to the vendor format and vice-versa using the **map_object()** and **update_with_app_data()** class methods.
+An object of the [IAMUserProfile](https://github.com/demisto/content/blob/master/Packs/ApiModules/Scripts/IAMApiModule/IAMApiModule.py#L113) class holds the given user profile data, and allows to perform the data mapping from XSOAR format to the vendor format and vice-versa using the **map_object()** and **update_with_app_data()** class methods.
 
 ### IAMUserAppData
 
-The IAMUserAppData class holds user attributes retrieved from the 3rd-party. The return type of the client class methods.
+The [IAMUserAppData](https://github.com/demisto/content/blob/master/Packs/ApiModules/Scripts/IAMApiModule/IAMApiModule.py#L248) class holds user attributes retrieved from the 3rd-party. The return type of the client class methods.
 
-### IAMErrors 
+### IAMErrors
 
-An enum class for API errors which are not handled by the vendor. For example, some vendors might return an empty response with status code 200 for a GET user API call of a user that does not exist. In this case, we can identify in the code that is not a valid response and pass a custom error enum.
+The [IAMErrors](https://github.com/demisto/content/blob/master/Packs/ApiModules/Scripts/IAMApiModule/IAMApiModule.py#L6) class is an enum class for API errors which are not handled by the vendor. For example, some vendors might return an empty response with status code 200 for a GET user API call of a user that does not exist. In this case, we can identify in the code that is not a valid response and pass a custom error enum.
 
 ### IAMActions
 
-An enum class for all the IAM actions - get, update, create and disable.
+The [IAMActions](https://github.com/demisto/content/blob/master/Packs/ApiModules/Scripts/IAMApiModule/IAMApiModule.py#L16) class is an enum class for all the IAM actions - get, update, create and disable.
 
 ### IAMVendorActionResult
 
-This class is used in IAMUserProfile class to create the outputs from the taken action.
+This class is used in [IAMUserProfile](#iamuserprofile) class to create the outputs from the taken action.
 
 
 ## Integrations for reference
 [HelloIAMWorld](https://github.com/demisto/content/tree/master/Packs/HelloIAMWorld/Integrations/HelloIAMWorld)
+[Slack IAM](https://github.com/demisto/content/tree/master/Packs/Slack/Integrations/Slack_IAM)
 [Okta IAM](https://github.com/demisto/content/tree/master/Packs/Okta/Integrations/Okta_IAM)
-[ServiceNow IAM](https://github.com/demisto/content/tree/master/Packs/ServiceNow/Integrations/ServiceNow_IAM)
 
 
 
