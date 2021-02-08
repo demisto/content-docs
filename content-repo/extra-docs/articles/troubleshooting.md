@@ -5,6 +5,12 @@ description: Common troubleshooting steps for automations and integrations.
 
 This guide provides common troubleshooting steps. When reporting an issue to Cortex XSOAR Support, always include all information obtained from running the following troubleshooting steps.
 
+## Reverting a Pack to a Previous Version
+If you encounter an issue after upgrading a Pack, you can revert to a previous version by going to *Installed Content Packs* -> *Pack Name* -> *Version History* and choosing *Revert to this version*. Sample screenshot:
+![Revert to version](https://user-images.githubusercontent.com/1395797/106351932-0faf1800-62e8-11eb-9433-5c80c632cf33.png)
+
+
+
 ## Network Troubleshooting
 
 Examples of common errors indicating that there probably is a networking issue:

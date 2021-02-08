@@ -14,7 +14,7 @@ You can access the generated website at: https://xsoar.pan.dev/
 
 ## Running the site locally
 ### Node Setup
-We use node 12.x for running the project. It is recommended to use `nvm`. See: https://github.com/nvm-sh/nvm for install instructions. It is recommended to setup `auto use` as specified here: https://github.com/nvm-sh/nvm#calling-nvm-use-automatically-in-a-directory-with-a-nvmrc-file . The root dir of the project contains a proper `.nvmrc` file with the recommended version to use.
+We use node 14.x for running the project. It is recommended to use `nvm`. See: https://github.com/nvm-sh/nvm for install instructions. It is recommended to setup `auto use` as specified here: https://github.com/nvm-sh/nvm#calling-nvm-use-automatically-in-a-directory-with-a-nvmrc-file . The root dir of the project contains a proper `.nvmrc` file with the recommended version to use.
 
 ### Install and Start
 Install all dependencies:
@@ -41,10 +41,23 @@ This task will checkout the content repository and generate the docs. The genera
 When generating the docs the `master` branch of the `content` repo will be used unless there is a matching branch with the same name as the current branch of `content-docs`, that branch will be used. 
 
 If you have the `content` repo checked out locally and you want to use it for generating the reference docs (for example when working on a Content Integration Doc), you can set the path to your `content` repo dir with the environment variable: `CONTENT_REPO_DIR`. For example:
-```
+```bash
  CONTENT_REPO_DIR=~/dev/demisto/content npm run reference-docs
 ```
-
+Additional env vars that affect the generation of the docs:
+* `FILE_REGEX`: specify a regex to select which docs to generate docs for. For example: 
+  ```bash
+  FILE_REGEX=Proofpoint CONTENT_REPO_DIR=~/dev/demisto/content npm run reference-docs
+  ```
+* `MAX_FILES`: max files to generate in each category. Set this for faster generation when developing. Note also in CI builds on branches this is automatically set to speed up the preview site if there are only modifications related to docs. For example:
+  ```bash
+  MAX_FILES=10 CONTENT_REPO_DIR=~/dev/demisto/content npm run reference-docs
+  ```
+* `UPDATE_PACK_DOCS`: set this when you want to update [pack-docs.md](docs/documentation/pack-docs.md) with the supported tags. Make sure NOT to check-in the modified doc.
+* `SKIP_DEPRECATED`: skip calculating and generating deprecated doc. Set this for faster file generation when developing. For example:
+  ```bash
+  SKIP_DEPRECATED=true MAX_FILES=10 CONTENT_REPO_DIR=~/dev/demisto/content npm run reference-docs
+  ```
 ### Generation Code
 Code used for generating content reference docs is written in Python and resides in the `content-repo` folder. To set up a development environment we use [pipenv](https://github.com/pypa/pipenv). Make sure to install pipenv by running: `pip3 install pipenv`. Setup a proper Python env by running:
 ```
@@ -72,4 +85,3 @@ Before merging any PRs, we need all contributors to sign a contributor license a
 When you open a new pull request, a bot will evaluate whether you have signed the CLA. If required, the bot will comment on the pull request, including a link to accept the agreement. The CLA document is also available for review as a [PDF](https://github.com/demisto/content/blob/master/docs/cla.pdf).
 
 If the `license/cla` status check remains on *Pending*, even though all contributors have accepted the CLA, you can recheck the CLA status by visiting the following link (replace **[PRID]** with the ID of your PR): https://cla-assistant.io/check/demisto/content-docs?pullRequest=[PRID] .
-

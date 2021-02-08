@@ -165,7 +165,7 @@ Example Images:
 
 
 ## Posting Documentation
-The documentation should be posted in the content entity's directory as a `README.md` file. If the content entity is not in the [Directory Structure](package-dir), name the documentation file the same as the yml file without the `.yml` extension and with an ending of: `_README.md`. For example: [integration-mcafeeDam_README.md](https://github.com/demisto/content/blob/master/Packs/mcafeeDam/Integrations/integration-mcafeeDam_README.md).
+The documentation should be posted in the content entity's directory as a `README.md` file. If the content entity is not in the [Directory Structure](../integrations/package-dir), name the documentation file the same as the yml file without the `.yml` extension and with an ending of: `_README.md`. For example: [integration-mcafeeDam_README.md](https://github.com/demisto/content/blob/master/Packs/mcafeeDam/Integrations/integration-mcafeeDam_README.md).
 
 ## Documentation Deployment
 Once the PR with the documentation README file is merged into master, it will become available as part of the Cortex XSOAR Developer Hub. The site is updated with the latest content on a daily basis. When the deployment is complete, the documentation will be available at the [reference docs section](https://xsoar.pan.dev/docs/reference/index). If you wish to preview how the documentation looks at the Developer Hub, before merging to master, you can either run locally the `content-docs` project to preview the Reference Docs site locally or create a PR at the [content-docs repo](https://github.com/demisto/content-docs). 

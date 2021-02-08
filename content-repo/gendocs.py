@@ -599,7 +599,8 @@ def add_deprected_integrations_info(content_dir: str, deperecated_article: str, 
             f.write(f'* **End-of-Life Date:** {d["eol_start"]}\n')
             if d["note"]:
                 f.write(f'* **Note:** {d["note"]}\n')
-        f.write(f'\n\n----\nA machine readable version of this file is available [here](/assets/{os.path.basename(deperecated_json_file)}).\n')
+        f.write('\n\n----\nA machine readable version of this file'
+                f' is available [here](pathname:///assets/{os.path.basename(deperecated_json_file)}).\n')
     org_print("\n===========================================\n")
 
 
@@ -624,8 +625,9 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     script_doc_infos = create_docs(args.dir, args.target, SCRIPTS_DOCS_MATCH, SCRIPTS_PREFIX)
     release_doc_infos = create_releases(args.target)
     article_doc_infos = create_articles(args.target)
-    add_deprected_integrations_info(args.dir, f'{args.target}/{ATRICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE,
-                                    f'{args.target}/../../static/assets')
+    if os.getenv('SKIP_DEPRECATED') not in ('true', 'yes', '1'):
+        add_deprected_integrations_info(args.dir, f'{args.target}/{ATRICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE,
+                                        f'{args.target}/../../static/assets')
     index_base = f'{os.path.dirname(os.path.abspath(__file__))}/reference-index.md'
     index_target = args.target + '/index.md'
     shutil.copy(index_base, index_target)

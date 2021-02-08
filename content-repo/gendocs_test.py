@@ -77,6 +77,17 @@ def test_fix_relative_images(tmp_path):
     assert res == content
 
 
+def test_fix_relative_images_html_img(tmp_path):
+    readme = f'{SAMPLE_CONTENT}/Packs/ProofpointServerProtection/Integrations/ProofpointProtectionServerV2/README.md'
+    with open(readme, 'r') as f:
+        content = f.read()
+    res = fix_relative_images(content, f'{SAMPLE_CONTENT}/Packs/ProofpointServerProtection/Integrations/ProofpointProtectionServerV2',
+                              'proofpoint-test', str(tmp_path), 'relative-test')
+    target_img_name = 'proofpoint-test-_-__-__-doc_imgs-api_role.png'
+    assert f'relative-test/{target_img_name}' in res
+    os.path.isfile(tmp_path / target_img_name)
+
+
 def test_findfiles():
     res = findfiles(INTEGRATION_DOCS_MATCH, SAMPLE_CONTENT)
     assert f'{SAMPLE_CONTENT}/Packs/CortexXDR/Integrations/PaloAltoNetworks_XDR/README.md' in res
