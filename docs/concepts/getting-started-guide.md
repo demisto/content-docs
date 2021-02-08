@@ -30,7 +30,7 @@ If you are or want to become a Technology Partner, make sure that you also:
 
 ## Using the right tools
 
-This site provides guidance and best practices to create production-quality XSOAR content: for those of you who want to take their work to the next level so that it will be published in the XSOAR marketplace and used by several production users worldwide in large SOCs, we offer a full contribution [contribution](../contributing/contributing) guide to walk you through proper design, development, and documentation: please read it after this article.
+This site provides guidance and best practices to create production-quality XSOAR content: for those of you who want to take their work to the next level so that it will be published in the XSOAR marketplace and used by several production users worldwide in large SOCs, we offer a full [contribution](../contributing/contributing) guide to walk you through proper design, development, and documentation: please read it after this article.
 
 If you just want to get started and create content for your own benefit or contribute in a *community* supported way, there are no such requirements. The following flowchart summarizes the process of determining what tools you should use to create new content, depending on what you want to achieve:
 

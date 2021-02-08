@@ -21,13 +21,13 @@ After you have created your content, you must submit your content to Palo Alto N
 
 There are three ways to submit your work:
  1. Contribute from the Cortex XSOAR UI [Marketplace](../contributing/marketplace). This flow is simpler and doesn't require to set up a development environment or be familiar with git. However, it is recommended **only** in the following scenarios:
-    - You are an individual contributor, contributing **new** content that is *community supported*.
+    - You are an individual contributor, contributing **new** content that is *community* supported.
     - You are making small changes to **existing** content, even if it's *xsoar* or *partner* supported (usually a bug fix or adding a new command to an Integration).
  1. Contribute through a GitHub Pull Request on the public [XSOAR Content Repository](https://github.com/demisto/content). Use this flow in the following scenarios:
-     - You are a Technology Partner or a developer contributing with officially *supported* new content.
+     - You are a Technology Partner or a developer contributing with *partner* supported new content.
      - Your contribution is big and contains lots of different parts (Integrations, Scripts, Playbooks, Layouts, etc) that is likely to lead to a complex review process.
      - You are proficient with GitHub.
- 1. Contribute through a private GitHub repository: this is required if you are providing a **Premium (aka Paid)** Content Pack. The requirements are the same of supported Packs, and the contribution process is described [here](../integrations/premium_packs).
+ 1. Contribute through a private GitHub repository: this is required if you are providing a **Premium** (aka Paid) Content Pack. The requirements are the same of supported Packs, and the contribution process is described [here](../integrations/premium_packs).
 
 This document describes the main flow that covers *supported* contributions and summarizes everything you must do before and after opening a Pull Request on GitHub to contribute your pack.
 
