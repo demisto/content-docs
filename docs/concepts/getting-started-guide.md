@@ -40,6 +40,8 @@ To summarize it in words: if you are *NOT* contributing or your contribution is 
 
 Only if you want a full blown development environment, usually needed for full, supported contributions, you will need to set up a full  [Development Environment](../concepts/dev-setup).
 
+For more information about the different support levels, check the [official documentation](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/marketplace/marketplace-overview/content-packs-support-types.html).
+
 ### Modifying Existing Content
 
 If you just want to fix a bug or enhance an existing Integration, Script, Playbook that is currently part of the Cortex XSOAR content repository, we recommend you to copy and modify it directly in the XSOAR UI. Consider using Pycharm or another IDE/demisto-sdk only when the change is big. When in doubt, ask a question in our Slack community.
