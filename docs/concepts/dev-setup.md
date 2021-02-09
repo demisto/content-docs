@@ -4,7 +4,7 @@ title: Development Setup
 ---
 
 :::note Important Note
-This article is focused on setting up a development environment that you should use to create and contribute supported new content. If you are not planning to contribute or your contribution will be only community supported, this is not a requirement. For more details, refer to the [Getting Started Guide](../concepts/getting-started-guide#creating-new-content).
+This article is focused on setting up a development environment that you should use to create and contribute supported new content. If you are not planning to contribute or your contribution will be only community supported, this is not a requirement. For more details, refer to the [Getting Started Guide](../concepts/getting-started-guide#using-the-right-tools).
 :::
 
 **This article summarize the steps from the end-to-end [Setup Tutorial](../tutorials/tut-setup-dev): for more details please refer to [it](../tutorials/tut-setup-dev).**
@@ -54,7 +54,7 @@ If you want more details, please refer to the end-to-end [Tutorial](../tutorials
 ## IDE
 
 Cortex XSOAR offers two IDEs for developing: 
-* [Built-in Platform Cortex XSOAR IDE](../concepts/xsoar-ide) (not recommended for complex/advanced use cases. More details [here](getting-started-guide#creating-new-content).)
+* [Built-in Platform Cortex XSOAR IDE](../concepts/xsoar-ide) (not recommended for complex/advanced use cases. More details [here](getting-started-guide#using-the-right-tools).)
 * [PyCharm IDE Plugin](../concepts/pycharm-plugin)
 
 You can also use your IDE of choice along with `demisto-sdk`, for example Visual Studio Code.

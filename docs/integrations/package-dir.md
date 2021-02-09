@@ -1,6 +1,6 @@
 ---
 id: package-dir
-title: Directory Structure
+title: Integration/Script Directory Structure
 ---
 
 Integrations and Automation Scripts in Cortex XSOAR are stored in YAML files that include all the required information (metadata, code, images, etc.). This is what we call the **Unified YAML** file.
