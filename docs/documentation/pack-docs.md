@@ -53,15 +53,20 @@ Here are some templates that can help you get started:
 For larger packs that provide at least one end-to-end use case you should create a detailed README file for the pack that will be displayed in the *Details* tab of the pack in the Marketplace. The `README.md` file should be markdown formatted and placed in the Packs root directory. The file should contain a more detailed overview of the Pack compared to the *Description* section. You are free to add any information you see fit to include about the pack. It is recommended to provide an overview of what the Pack does and how to start working with the Pack.  
 
 ### README structure
+Notes:
 - If the pack is a ***beta*** pack, add the following at the very beginning of the pack README file:
 _Note: This is a beta pack, which lets you implement and test pre-release software. Since the pack is beta, it might contain bugs. Updates to the pack during the beta phase might include non-backward compatible features. We appreciate your feedback on the quality and usability of the pack to help us identify issues, fix them, and continually improve._
-* A short paragraph connecting real-life situations to the pack use cases.
-* A "What does this pack do?" section, explaining point-by-point the capabilities of the pack or the main playbook of the pack.
-* (Optional): a sentence or two detailing the contents of the pack.
-* Mostly relevant for use-case packs that contain multiple playbooks: a reference to the README of the **main playbook** of the pack that contains the playbook logic. Add the following:
+- If the pack is adopted, add the correct text as specified on the [Adopt-a-Pack page](../partners/adopt.md#text-for-the-pack).
+
+Each pack readme should contain:
+1. A short paragraph connecting real-life situations to the pack use cases.
+1. A "What does this pack do?" section, explaining point-by-point the capabilities of the pack or the main playbook of the pack.
+1. (Optional): a sentence or two detailing the contents of the pack.
+1. Mostly relevant for use-case packs that contain multiple playbooks: a reference to the README of the **main playbook** of the pack that contains the playbook logic. Add the following:
 _For more information, visit the Cortex XSOAR Developer Docs_
 Note that "Cortex XSOAR Developer Docs" should link **directly to the readme of the main playbook**. An example of what is linked in the Phishing pack: https://xsoar.pan.dev/docs/reference/playbooks/phishing-investigation---generic-v2
-* For packs that contains playbooks: a youtube video or an image of the main playbook of the pack. The section following the pack image below explains how to add an image.
+1. For packs that contains playbooks: a youtube video or an image of the main playbook of the pack. The section following the pack image below explains how to add an image.
+
 ![image](https://user-images.githubusercontent.com/43602124/88673366-31d59c80-d0f1-11ea-9319-b7d9f2fb8625.png)
 
 ### Images
