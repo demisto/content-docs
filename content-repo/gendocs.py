@@ -594,10 +594,12 @@ def add_deprected_integrations_info(content_dir: str, deperecated_article: str, 
         }, f, indent=2)
     with open(deperecated_article, "at") as f:
         for d in deprecated_infos:
-            f.write(f'\n## {d["name"] if "name" in d else d["id"]}\n')
-            f.write(f'* **Maintenance Mode Start Date:** {d["maintenance_start"] if "maintenance_start" in d else "N/A"}\n')
-            f.write(f'* **End-of-Life Date:** {d["eol_start"] if "eol_start" in d else "N/A"}\n')
-            if d["note"]:
+            f.write(f'\n## {d["name"] if d.get("name") else d["id"]}\n')
+            if d.get("maintenance_start"):
+                f.write(f'* **Maintenance Mode Start Date:** {d["maintenance_start"]}\n')
+            if d.get("eol_start"):
+                f.write(f'* **End-of-Life Date:** {d["eol_start"]}\n')
+            if d.get("note"):
                 f.write(f'* **Note:** {d["note"]}\n')
         f.write('\n\n----\nA machine readable version of this file'
                 f' is available [here](pathname:///assets/{os.path.basename(deperecated_json_file)}).\n')
@@ -630,6 +632,8 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
                                         f'{args.target}/../../static/assets')
     index_base = f'{os.path.dirname(os.path.abspath(__file__))}/reference-index.md'
     index_target = args.target + '/index.md'
+    articles_index_target = args.target + '/articles-index.md'
+    articles_index_base = f'{os.path.dirname(os.path.abspath(__file__))}/articles-index.md'
     shutil.copy(index_base, index_target)
     with open(index_target, 'a', encoding='utf-8') as f:
         if MAX_FILES > 0:
@@ -646,6 +650,11 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
         f.write(index_doc_infos(release_doc_infos, RELEASES_PREFIX, headers=('Name', 'Date')))
         f.write("\n\nAdditional archived release notes are available"
                 " [here](https://github.com/demisto/content-docs/tree/master/content-repo/extra-docs/releases).")
+    with open(articles_index_target, 'a', encoding='utf-8') as f:
+        if MAX_FILES > 0:
+            f.write(f'\n\n# =====<br/>BUILD PREVIEW only {MAX_FILES} files from each category! <br/>=====\n\n')
+        f.write("\n\n## Articles\n\n")
+        f.write(index_doc_infos(article_doc_infos, ARTICLES_PREFIX))
     integration_items = [f'{integrations_full_prefix}/{d.id}' for d in integration_doc_infos]
     playbook_items = [f'{playbooks_full_prefix}/{d.id}' for d in playbooks_doc_infos]
     script_items = [f'{scripts_full_prefix}/{d.id}' for d in script_doc_infos]
@@ -685,6 +694,10 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     with open(f'{args.target}/sidebar.json', 'w') as f:
         json.dump(sidebar, f, indent=4)
     articles_sidebar = [
+        {
+            "type": "doc",
+            "id": f'{prefix}/articles-index'
+        },
         {
             "type": "category",
             "label": "Articles",
