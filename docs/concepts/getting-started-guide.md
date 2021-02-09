@@ -21,7 +21,7 @@ Cortex XSOAR is a powerful platform that comes with a rich set of features and f
 1. Obtain and install a copy of Cortex XSOAR. If you are not a Partner, you can obtain the Community Edition [here](https://start.paloaltonetworks.com/sign-up-for-demisto-free-edition). Installation instructions are available [here](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/installation.html).
 1. (only if you are integrating with an external API) Make sure you have API or SDK access to the product or solution you want to integrate with.
 
-### Technology Partners
+#### Technology Partners
 
 If you are or want to become a Technology Partner, make sure that you also:
 
@@ -32,18 +32,29 @@ If you are or want to become a Technology Partner, make sure that you also:
 
 This site provides guidance and best practices to create production-quality XSOAR content: for those of you who want to take their work to the next level so that it will be published in the XSOAR marketplace and used by several production users worldwide in large SOCs, we offer a full [contribution](../contributing/contributing) guide to walk you through proper design, development, and documentation: please read it after this article.
 
-If you just want to get started and create content for your own benefit or contribute in a *community* supported way, there are no such requirements. The following flowchart summarizes the process of determining what tools you should use to create new content, depending on what you want to achieve:
-
-![Tool Flowchart](../doc_imgs/concepts/tool-flowchart.png)
-
-To summarize it in words: if you are *NOT* contributing or your contribution is meant to be *community* supported, you don't need to set up the development environment: just create everything through the [XSOAR IDE](../concepts/xsoar-ide) if you like it; if are writing code (i.e. Integrations and Scripts) and prefer to use a different IDE, check out our [Pycharm plugin](../concepts/pycharm-plugin), but feel free to use any other IDE of your choice. You can also install [demisto-sdk](https://github.com/demisto/demisto-sdk) to upload, download and run code on XSOAR directly from your operating system shell but, again, all of this is optional and is only meant to make your life easier if you are comfortable with IDEs and CLIs.
-
-Only if you want a full blown development environment, usually needed for full, supported contributions, you will need to set up a full  [Development Environment](../concepts/dev-setup).
+If you just want to get started and create content for your own benefit or contribute in a *community* supported way, there are no such requirements. 
 
 For more information about the different support levels, check the [official documentation](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/marketplace/marketplace-overview/content-packs-support-types.html).
 
+The following flowchart summarizes the process of determining what tools you should use to create new content, depending on what you want to achieve:
+
+![Tool Flowchart](../doc_imgs/concepts/tool-flowchart.png)
+
+#### Simplified Flow
+
+For creating content for local use or contributing community content:
+
+- You are welcome to work straight through the [XSOAR IDE](../concepts/xsoar-ide); if you are writing code (i.e. Integrations and Scripts) and prefer to use a more enhanced IDE, check out our [PyCharm plugin](../concepts/pycharm-plugin).
+- If you decide to work locally, you can also install [demisto-sdk](https://github.com/demisto/demisto-sdk) to upload, download and run code on XSOAR directly from your operating system shell.
+
+#### Full Development Environment
+
+For contributing XSOAR/Partner supported packs:
+
+- Full-blown development environment, usually needed for extensive, supported contributions, you will need to set up a full [Development Environment](../concepts/dev-setup).
+
 ### Modifying Existing Content
 
-If you just want to fix a bug or enhance an existing Integration, Script, Playbook that is currently part of the Cortex XSOAR content repository, we recommend you to copy and modify it directly in the XSOAR UI. Consider using Pycharm or another IDE/demisto-sdk only when the change is big. When in doubt, ask a question in our Slack community.
+If you just want to fix a bug or enhance an existing Integration, Script, Playbook that is currently part of the Cortex XSOAR content repository, we recommend you to copy and modify it directly in the XSOAR UI. Consider using Pycharm or another IDE/demisto-sdk only when the change is big. When in doubt, ask a question in our [Slack Community](https://start.paloaltonetworks.com/join-our-slack-community).
 
 

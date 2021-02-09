@@ -7,15 +7,13 @@ title: Development Setup
 This article is focused on setting up a development environment that you should use to create and contribute supported new content. If you are not planning to contribute or your contribution will be only community supported, this is not a requirement. For more details, refer to the [Getting Started Guide](../concepts/getting-started-guide#creating-new-content).
 :::
 
-:::note
-This article summarize the steps from the end-to-end [Setup Tutorial](../tutorials/tut-setup-dev): for more details please refer to it.
-:::
+**This article summarize the steps from the end-to-end [Setup Tutorial](../tutorials/tut-setup-dev): for more details please refer to [it](../tutorials/tut-setup-dev).**
 
 Before you read this make sure you read the [Getting Started Guide](../concepts/getting-started-guide) and the [Contribution Requirements](../contributing/contrib-requirements) doc.
 
 ## Setting Up a Development Repository
 
-[Fork](https://guides.github.com/activities/forking/) the Cortex XSOAR Content repository and create a branch for your contribution (do not use the `master` or `main` branch).
+[Fork](https://guides.github.com/activities/forking/) the Cortex XSOAR Content repository and create a branch for your contribution (do not work on the `master` or `main` branch).
 
 ### Install Python virtualenv
 
