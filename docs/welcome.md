@@ -17,6 +17,10 @@ On the left sidebar you'll find documentation for all the different things you c
 
 Finally, the **Tutorials** section includes longer end-to-end articles that guide you through a specific process (i.e. design).
 
+## Articles
+
+From the top bar, navigate to the [Articles](reference/articles-index) section to find useful documentation about Cortex XSOAR and its Content. Articles are mostly meant for end users and SOC Engineers.
+
 ## Reference
 
 From the top bar, navigate to the [Reference](reference/index) section to find detailed reference documentation about all the Cortex XSOAR components: Integrations, Scripts, Playbooks, Release Notes, Articles, etc. You can use the search bar on the top right to find anything on this site.

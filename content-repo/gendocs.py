@@ -645,8 +645,6 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
         f.write(index_doc_infos(playbooks_doc_infos, PLAYBOOKS_PREFIX))
         f.write("\n\n## Scripts\n\n")
         f.write(index_doc_infos(script_doc_infos, SCRIPTS_PREFIX))
-        f.write("\n\n## Articles\n\n")
-        f.write(index_doc_infos(article_doc_infos, ARTICLES_PREFIX))
         f.write("\n\n## Content Release Notes\n\n")
         f.write(index_doc_infos(release_doc_infos, RELEASES_PREFIX, headers=('Name', 'Date')))
         f.write("\n\nAdditional archived release notes are available"
@@ -683,11 +681,6 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
         },
         {
             "type": "category",
-            "label": "Articles",
-            "items": article_items
-        },
-        {
-            "type": "category",
             "label": "Content Release Notes",
             "items": release_items
         },
@@ -702,7 +695,8 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
         {
             "type": "category",
             "label": "Articles",
-            "items": article_items
+            "items": article_items,
+            "collapsed": False
         }
     ]
     with open(f'{args.target}/articles-sidebar.json', 'w') as f:
