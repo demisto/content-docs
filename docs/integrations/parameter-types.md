@@ -1,6 +1,6 @@
 ---
 id: parameter-types
-title: Integration Parameter Types
+title: Parameter Types
 ---
 
 Integration Parameter Types are used to configure instances of the integration. When adding a parameter to an integration in Cortex XSOAR, there are numerous types to choose from.
