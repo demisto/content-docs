@@ -635,6 +635,7 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     articles_index_target = args.target + '/articles-index.md'
     articles_index_base = f'{os.path.dirname(os.path.abspath(__file__))}/articles-index.md'
     shutil.copy(index_base, index_target)
+    shutil.copy(articles_index_base, articles_index_target)
     with open(index_target, 'a', encoding='utf-8') as f:
         if MAX_FILES > 0:
             f.write(f'\n\n# =====<br/>BUILD PREVIEW only {MAX_FILES} files from each category! <br/>=====\n\n')
