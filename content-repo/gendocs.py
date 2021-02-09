@@ -578,7 +578,7 @@ def add_deprected_integrations_info(content_dir: str, deperecated_article: str, 
         deperecated_info_file (str): json file with static deprecated info to merge
     """
     deprecated_infos = merge_deprecated_info(find_deprecated_integrations(content_dir), deperecated_info_file)
-    deprecated_infos = sorted(deprecated_infos, key=lambda d: d['name'].lower())  # sort by name
+    deprecated_infos = sorted(deprecated_infos, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
     deperecated_json_file = f'{assets_dir}/{os.path.basename(deperecated_article.replace(".md", ".json"))}'
     with open(deperecated_json_file, 'w') as f:
         json.dump({
@@ -594,9 +594,9 @@ def add_deprected_integrations_info(content_dir: str, deperecated_article: str, 
         }, f, indent=2)
     with open(deperecated_article, "at") as f:
         for d in deprecated_infos:
-            f.write(f'\n## {d["name"]}\n')
-            f.write(f'* **Maintenance Mode Start Date:** {d["maintenance_start"]}\n')
-            f.write(f'* **End-of-Life Date:** {d["eol_start"]}\n')
+            f.write(f'\n## {d["name"] if "name" in d else d["id"]}\n')
+            f.write(f'* **Maintenance Mode Start Date:** {d["maintenance_start"] if "maintenance_start" in d else "N/A"}\n')
+            f.write(f'* **End-of-Life Date:** {d["eol_start"] if "eol_start" in d else "N/A"}\n')
             if d["note"]:
                 f.write(f'* **Note:** {d["note"]}\n')
         f.write('\n\n----\nA machine readable version of this file'
