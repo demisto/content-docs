@@ -1,4 +1,4 @@
-![Content logo](demisto_content_logo.png)
+![Content logo](https://raw.githubusercontent.com/demisto/content/813c5e98d9ebace80d3f4e0ff88734cac6d5b5d5/xsoar_content_logo.png)
 
 [![CircleCI](https://circleci.com/gh/demisto/content-docs.svg?style=svg)](https://circleci.com/gh/demisto/content-docs)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/7f059c11-2192-4c11-8578-a15b32db377d/deploy-status)](https://app.netlify.com/sites/demisto-content-docs/deploys)
