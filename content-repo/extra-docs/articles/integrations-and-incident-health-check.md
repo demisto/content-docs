@@ -114,4 +114,4 @@ Therefore, in order to use this flow the incident type must be be set accordingl
 
 If the incident type “Integrations and Incidents Health Check" is not chosen, fields will not be displayed correctly and the playbook will fail with this error:
 
-![griderror](https://raw.githubusercontent.com/demisto/content/92bdacb6680c7f73bbdff36172cf7e0cce9186eb/Packs/IntegrationsAndIncidentsHealthCheck/doc_files/GridErrorMessage.png)
+![griderror](https://raw.githubusercontent.com/demisto/content-docs/master/docs/doc_imgs/reference/HealthCheck_GridError.png)
