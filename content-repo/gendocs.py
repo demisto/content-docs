@@ -330,9 +330,12 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str) -> 
         return DocInfo('', '', '', readme_file, str(ex).splitlines()[0])
 
 
-def process_extra_docs(target_dir: str, prefix: str) -> Iterator[DocInfo]:
-    md_dir = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs/{prefix}'
-    for readme_file in glob.glob(f'{md_dir}/*.md'):
+def process_extra_docs(target_dir: str, prefix: str, private_packs=False) -> Iterator[DocInfo]:
+    if private_packs:
+        md_dir = f'{os.path.dirname(os.path.abspath(__file__))}/.content-bucket/Packs/*/{prefix}'
+    else:
+        md_dir = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs/{prefix}'
+    for readme_file in glob.glob(f'{md_dir}/*.md', recursive=True):
         yield process_extra_readme_doc(target_dir, prefix, readme_file)
 
 
@@ -387,6 +390,8 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
             process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
     for doc_info in process_extra_docs(target_sub_dir, prefix):
         process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
+    for private_doc_info in process_extra_docs(target_sub_dir, prefix, private_packs=True):
+        process_doc_info(private_doc_info, success, fail, doc_infos, seen_docs)
     org_print(f'\n===========================================\nSuccess {prefix} docs ({len(success)}):')
     for r in sorted(success):
         print(r)
