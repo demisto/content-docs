@@ -231,6 +231,20 @@ def test_process_extra_doc(tmp_path, mdx_server):
         assert f.readline().startswith('custom_edit_url: https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/integrations')
 
 
+def test_process_private_doc(tmp_path, mdx_server):
+    release_file = f'{os.path.dirname(os.path.abspath(__file__))}/.content-bucket/Packs/HelloWorldPremium/Playbooks/' \
+                   f'playbook-HelloWorldPremium_Scan_README.md'
+    res = process_extra_readme_doc(str(tmp_path), INTEGRATIONS_PREFIX, release_file, private_packs=True)
+    assert not res.error_msg
+    assert res.id == 'HelloWorldPremium_Scan'
+    assert res.description.startswith('This Playbook simulates a vulnerability scan')
+    assert res.name == 'HelloWorldPremium_Scan'
+    with open(str(tmp_path / f'{res.id}.md'), 'r') as f:
+        assert f.readline().startswith('---')
+        assert f.readline().startswith(f'id: {res.id}')
+        assert f.readline().startswith(f'title: "{res.name}"')
+
+
 def test_get_deprecated_data():
     res = get_deprecated_data({"deprecated": True}, "Deprecated - We recommend using ServiceNow v2 instead.", "README.md")
     assert "We recommend using ServiceNow v2 instead." in res
