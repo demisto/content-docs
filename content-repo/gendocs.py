@@ -652,7 +652,6 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     with open(articles_index_target, 'a', encoding='utf-8') as f:
         if MAX_FILES > 0:
             f.write(f'\n\n# =====<br/>BUILD PREVIEW only {MAX_FILES} files from each category! <br/>=====\n\n')
-        f.write("\n\n## Articles\n\n")
         f.write(index_doc_infos(article_doc_infos, ARTICLES_PREFIX))
     integration_items = [f'{integrations_full_prefix}/{d.id}' for d in integration_doc_infos]
     playbook_items = [f'{playbooks_full_prefix}/{d.id}' for d in playbooks_doc_infos]
