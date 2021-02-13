@@ -13,7 +13,7 @@ Alerts and notifications are received in near real-time and are not pooled.
 * Verify that your XSOAR server HTTPS endpoint (port 443) has inbound access to Amazon Web Services.
 * Server certificates must be signed by a Certificate Authority (CA) that Amazon supports. For a list of supported CAs that Amazon supports, see the [Amazon documentation](https://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.https.ca.html).
 
-## Configure AWS SNS to Send Notifications to XSOAR
+## Configure AWS SNS to Send Notifications to Cortex XSOAR
 
 1.  Log in to your AWS console and select the SNS service.
 2.  Click **Create topic**.  
@@ -29,3 +29,10 @@ Alerts and notifications are received in near real-time and are not pooled.
     * Click **Create Subscription** and wait a few seconds for the XSOAR server to approve the subscription request.
    
     ![](../../../docs/doc_imgs/reference/aws-sns-mceclip1.png)
+## Configure Classification and Mapping for Incoming AWS SNS Events
+To configure classification and mapping for incoming AWS SNS events:
+* Navigate to **Settings** \> **Classification and Mapping** \> **API Endpoint Mapping**.
+* Select a **Classifier** and  **Mapper (Incoming)** for *Amazon SNS*.
+* Save the settings.
+![API Endpoint Mapping Button](../../../docs/doc_imgs/reference/aws-sns-mapping1.png)
+![AWS SNS Classification and Mapping](../../../docs/doc_imgs/reference/aws-sns-mapping2.png)
