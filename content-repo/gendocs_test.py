@@ -232,13 +232,13 @@ def test_process_extra_doc(tmp_path, mdx_server):
 
 
 def test_process_private_doc(tmp_path, mdx_server):
-    release_file = f'{os.path.dirname(os.path.abspath(__file__))}/.content-bucket/Packs/HelloWorldPremium/Playbooks/' \
-                   f'playbook-HelloWorldPremium_Scan_README.md'
-    res = process_extra_readme_doc(str(tmp_path), INTEGRATIONS_PREFIX, release_file, private_packs=True)
+    readme_file_path = f'{SAMPLE_CONTENT}/Packs/HelloWorldPremium/Playbooks' \
+                       f'/playbook-Handle_Hello_World_Premium_Alert_README.md'
+    res = process_extra_readme_doc(str(tmp_path), 'Playbooks', readme_file_path, private_packs=True)
     assert not res.error_msg
-    assert res.id == 'HelloWorldPremium_Scan'
-    assert res.description.startswith('This Playbook simulates a vulnerability scan')
-    assert res.name == 'HelloWorldPremium_Scan'
+    assert res.id == 'handle-hello-world-premium-alert'
+    assert res.description.startswith('This is a playbook which will handle the alerts')
+    assert res.name == 'Handle Hello World Premium Alert'
     with open(str(tmp_path / f'{res.id}.md'), 'r') as f:
         assert f.readline().startswith('---')
         assert f.readline().startswith(f'id: {res.id}')
