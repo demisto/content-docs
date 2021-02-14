@@ -64,7 +64,7 @@ Arguments explanation:
 An example for such a function could be:
 ```python
 def get_remote_data_command(client, args):
-    parsed_args = GetRemoteDateArgs(args)
+    parsed_args = GetRemoteDataArgs(args)
     try:
       new_incident_data: Dict = client.get_incident_data(parsed_args.remote_incident_id, parsed_args.last_update)    
       raw_entries: List[dict] = client.get_incident_entries(parsed_args.remote_incident_id, parsed_args.last_update)

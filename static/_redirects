@@ -129,10 +129,15 @@ https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 # Redirect context standards after: https://github.com/demisto/content-docs/pull/299
 /docs/integrations/context-standards /docs/integrations/context-standards-about
 
-# Redirects added for packs and documentation section on Jan 20th 2020
+# Redirect after Jan 2021 refreshes
+/docs/integrations/getting-started-guide /docs/concepts/getting-started-guide
+/docs/integrations/dev-setup /docs/concepts/dev-setup
+/docs/integrations/xsoar-ide /docs/concepts/xsoar-ide
+/docs/integrations/pycharm-plugin /docs/concepts/pycharm-plugin
 /docs/integrations/release-notes /docs/documentation/release-notes
 /docs/integrations/pack-docs /docs/documentation/pack-docs
 /docs/integrations/integration-docs /docs/documentation/readme_file
 /docs/integrations/integration-description /docs/documentation/integration-description
 /docs/integrations/packs-format /docs/packs/packs-format
 /docs/integrations/premium_packs /docs/packs/premium_packs
+/docs/concepts/dev-requirements /docs/contributing/dev-requirements

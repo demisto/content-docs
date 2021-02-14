@@ -48,6 +48,8 @@ The following table shows the supported Workday operations and their correspondi
 
 The logic of the playbooks in the ILM pack, which determine how they execute, is determined by the employment data ingested from the Workday integration.
 
+To start working with Workday integration, download ``Workday`` pack from the marketplace and configure the [Workday IAM](https://xsoar.pan.dev/docs/reference/integrations/workday-iam) integration.
+
 There are several custom fields that must be populated with specific values in order for the playbooks to execute the correct management operations. If your current Workday instance does not include these fields and values, you will need to add them to the instance.
 
 The following table lists these fields, what they are used for in Cortex XSOAR, and the valid values the fields accept.
@@ -188,6 +190,8 @@ The following is an example of the flow when adding a field to work with the ILM
     - Okta - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/okta-iam)
     - ServiceNow - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/service-now-iam)
     - GitHub - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/git-hub-iam)
+    - Slack - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/slack-iam)
+    - Salesforce - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/salesforce-iam)
 
 
 ## App Sync

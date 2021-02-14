@@ -1,6 +1,7 @@
 ---
 id: yaml-file
-title: Integration YAML File
+title: Integrations and Scripts Metadata YAML File
+sidebar_label: Metadata YAML File
 ---
 
 All the metadata of your integration is included in the YAML file: think of it as key, value set for your integration. When pushing content for public release, your YAML file must follow certain structural requirements in order to work properly. In this section we will review the various parts of the Cortex XSOAR YAML file. 

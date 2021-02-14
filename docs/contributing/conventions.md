@@ -12,6 +12,9 @@ We value your contributions and want to make sure that your experience is smooth
 ## Pull Request Best Practices
 
 Please use the following guidelines when working on the changes requested by our reviewers:
+
+- Make sure you always create PRs from your own fork using a dedicated branch (do NOT use the master/main branch).
+
 - Use clear and brief messages for your commits ([this article](https://chris.beams.io/posts/git-commit/) has good examples).
 
 - Do **NOT** use force pushes (i.e. `git push --force`): if you end up in a situation where you need to force push, it's probably better to reach to us and ask (in the PR itself or via [Slack](https://dfircommunity.slack.com)).

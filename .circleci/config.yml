@@ -7,7 +7,7 @@ jobs:
   build:
 
     machine:
-      image: ubuntu-1604:202007-01
+      image: ubuntu-2004:202101-01
       resource_class: large
 
     steps:
@@ -24,7 +24,7 @@ jobs:
           name: Setup Python
           command: |
             pyenv versions
-            pyenv global 3.7.8 3.8.3
+            pyenv global 3.9.1
             pip3 install pipenv
             pipenv install
       - run:
@@ -66,7 +66,7 @@ jobs:
 
   deploy:
     docker:
-      - image: circleci/python:3.8.3-buster-node
+      - image: circleci/python:3.9.1-buster-node
     resource_class: small
     steps:
       - checkout
@@ -80,7 +80,8 @@ jobs:
           name: Deploy to Netlify
           no_output_timeout: 30m
           command: |
-            sudo npm install -g netlify-cli
+            npm install netlify-cli
+            export PATH="$PATH:`pwd`/node_modules/.bin"
             netlify --version
             if [ "$CIRCLE_BRANCH" = "master" ]; then
               echo "Deploying to prod as CIRCLE_BRANCH is equal to master!"

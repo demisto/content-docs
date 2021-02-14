@@ -14,7 +14,7 @@ const sidebars = {
       items: [
         {
           type: "doc",
-          id: "integrations/getting-started-guide"    
+          id: "concepts/getting-started-guide"    
         },
         {
           type: "doc",
@@ -32,32 +32,33 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Dev Environment",
+          label: "Developing",
           collapsed: true,
           items: [
-            "integrations/dev-setup",        
-            "integrations/xsoar-ide",
-            "integrations/pycharm-plugin"
+            "concepts/xsoar-ide",
+            "concepts/pycharm-plugin",
+            "concepts/dev-setup"
           ]
         },
-        {
-          type: "category",
-          label: "Contributing",
-          collapsed: true,
-          items: [
-            "contributing/contributing",
-            "contributing/checklist",
-            "contributing/marketplace",
-            "contributing/conventions"
-          ]
-        },         
         {
           type: "doc",
           id: "concepts/faq"
         },          
       ]
     },
-     {
+    {
+      type: "category",
+      label: "Contributing",
+      collapsed: true,
+      items: [
+        "contributing/contributing",
+        "contributing/contrib-requirements",
+        "contributing/checklist",
+        "contributing/marketplace",
+        "contributing/conventions"
+      ]
+    }, 
+    {
       type: "category",
       label: "Content Packs",
       collapsed: true,
@@ -186,11 +187,11 @@ const sidebars = {
       label: "Documentation",
       collapsed: true,
       items: [
+        "documentation/documentation_tips",
         "documentation/pack-docs",
         "documentation/release-notes",
         "documentation/readme_file",
-        "documentation/integration-description",
-        "documentation/documentation_tips",
+        "documentation/integration-description"
         ]
     },
     {
@@ -231,5 +232,8 @@ if (fs.existsSync("docs/reference/sidebar.json")) {
   referenceSideBar = fs.readJSONSync("docs/reference/sidebar.json")
   sidebars["reference"] = referenceSideBar
 }
-
+if (fs.existsSync("docs/reference/articles-sidebar.json")) {
+  articlesSideBar = fs.readJSONSync("docs/reference/articles-sidebar.json")
+  sidebars["articles"] = articlesSideBar
+}
 module.exports = sidebars;
