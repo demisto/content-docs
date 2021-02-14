@@ -169,7 +169,6 @@ cp ${CONTENT_GIT_DIR}/Tests/demistomock/demistomock.py .
 cp ${CONTENT_GIT_DIR}/Tests/Marketplace/approved_tags.json .
 cp ${CONTENT_GIT_DIR}/Tests/Marketplace/approved_usecases.json .
 
-mv demistomock.py demisto.py
 echo "$(tail -n +6 CommonServerPython.py)" > CommonServerPython.py
 
 if [ -z "${NETLIFY}" ]; then
@@ -187,5 +186,3 @@ else
     echo "Generating Demisto class and CommonServerPython docs..."
     ./gen_pydocs.py -t "${TARGET_DIR}"
 fi
-
-mv demisto.py demistomock.py

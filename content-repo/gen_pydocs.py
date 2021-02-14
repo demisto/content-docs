@@ -194,7 +194,9 @@ def main():
     target_sub_dir = f'{args.target_dir}/api'
     if not os.path.exists(target_sub_dir):
         os.makedirs(target_sub_dir)
+    os.rename('demistomock.py', 'demisto.py')
     generate_demisto_class_docs(target_sub_dir)
+    os.rename('demisto.py', 'demistomock.py')
     generate_common_server_python_docs(target_sub_dir)
     api_ref_path = f'{os.path.basename(args.target_dir)}/api'
     sidebar = [
