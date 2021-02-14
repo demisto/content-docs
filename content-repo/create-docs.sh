@@ -169,15 +169,6 @@ cp ${CONTENT_GIT_DIR}/Tests/demistomock/demistomock.py .
 cp ${CONTENT_GIT_DIR}/Tests/Marketplace/approved_tags.json .
 cp ${CONTENT_GIT_DIR}/Tests/Marketplace/approved_usecases.json .
 
-ARTICLES_DIR=${SCRIPT_DIR}/extra-docs/articles
-DEMISTO_CLASS_OVERVIEW="All Python integrations and scripts have available as part of the runtime the \`demisto\` class object. The object exposes a series of API methods which are used to retrieve and send data to the Cortex XSOAR Server.
-
-:::note
-The \`demisto\` class is a low level API. For many operations we provide a simpler and more robust API as part of the  [Common Server Functions](https://xsoar.pan.dev/docs/integrations/code-conventions#common-server-functions).
-:::"
-DEMISTO_CLASS_DOCS_CMD=("./gen_pydocs.py" "-d" "${ARTICLES_DIR}" "-i" "demisto-class" "-t" "'Demisto Class'" "-m" "demisto" "-p" "demisto." "-o" "'${DEMISTO_CLASS_OVERVIEW}'")
-COMMON_SERVER_PYTHON_OVERVIEW="Common functions that will be appended to the code of each integration/script before being executed."
-COMMON_SERVER_PYTHON_DOCS_CMD=("./gen_pydocs.py" "-d" "${ARTICLES_DIR}" "-i" "common-server-python" "-t" "'Common Server Python'" "-m" "CommonServerPython" "-o" "'${COMMON_SERVER_PYTHON_OVERVIEW}'")
 mv demistomock.py demisto.py
 echo "$(tail -n +6 CommonServerPython.py)" > CommonServerPython.py
 
@@ -185,19 +176,16 @@ if [ -z "${NETLIFY}" ]; then
     echo "Not running in netlify. Using pipenv"
     echo "Installing pipenv..."
     pipenv install
-    echo "Generating Demisto class docs..."
-    pipenv run "${DEMISTO_CLASS_DOCS_CMD[@]}"
-    mv demisto.py demistomock.py
-    echo "Generating CommonServerPyton docs..."
-    pipenv run "${COMMON_SERVER_PYTHON_DOCS_CMD[@]}"
     echo "Generating docs..."
     pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
+    echo "Generating Demisto class and CommonServerPython docs..."
+    pipenv run ./gen_pydocs.py -t "${TARGET_DIR}"
+
 else
-    echo "Generating Demisto class docs..."
-    eval "${DEMISTO_CLASS_DOCS_CMD[@]}"
-    mv demisto.py demistomock.py
-    echo "Generating CommonServerPyton docs..."
-    eval "${COMMON_SERVER_PYTHON_DOCS_CMD[@]}"
     echo "Generating docs..."
     ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
+    echo "Generating Demisto class and CommonServerPython docs..."
+    ./gen_pydocs.py -t "${TARGET_DIR}"
 fi
+
+mv demisto.py demistomock.py

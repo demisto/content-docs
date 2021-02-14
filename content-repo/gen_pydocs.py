@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import argparse
+import json
+import os
 import re
 from typing import Dict, List, Optional
 
@@ -13,7 +15,6 @@ from pydoc_markdown.contrib.processors.sphinx import (
 
 
 class DemistoMarkdownRenderer(MarkdownRenderer):
-
     func_prefix = Field(str, default=None)
 
     module_overview = Field(str, default=None)
@@ -118,8 +119,8 @@ def generate_pydoc(
         article_id: str,
         article_title: str,
         target_dir: str,
-        func_prefix: Optional[str],
-        module_overview: Optional[str]
+        module_overview: str,
+        func_prefix: Optional[str] = None,
 ) -> None:
     """
     Args:
@@ -157,17 +158,57 @@ def generate_pydoc(
         f.write(content)
 
 
+def generate_demisto_class_docs(target_dir: str):
+    overview = """All Python integrations and scripts have available as part of the runtime the \`demisto\` class 
+object. The object exposes a series of API methods which are used to retrieve and send data to the Cortex XSOAR Server. 
+
+:::note The \`demisto\` class is a low level API. For many operations we provide a simpler and more robust API as 
+part of the  [Common Server Functions](https://xsoar.pan.dev/docs/integrations/code-conventions#common-server
+-functions). ::: """
+    generate_pydoc(
+        module='demisto',
+        article_id='demisto-class',
+        article_title='Demisto Class',
+        target_dir=target_dir,
+        func_prefix='demisto.',
+        module_overview=overview,
+    )
+
+
+def generate_common_server_python_docs(target_dir: str):
+    overview = "Common functions that will be appended to the code of each integration/script before being executed."
+    generate_pydoc(
+        module='CommonServerPython',
+        article_id='common-server-python',
+        article_title='Common Server Python',
+        target_dir=target_dir,
+        module_overview=overview,
+    )
+
+
 def main():
     parser = argparse.ArgumentParser(description='Generate Content Python Docs',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('-d', '--dir', help='Target directory to generate docs at.', required=True)
-    parser.add_argument('-i', '--article_id', help='Article ID.', required=True)
-    parser.add_argument('-t', '--article_title', help='Article title.', required=True)
-    parser.add_argument('-m', '--module', help='Module to generate docs for.', required=True)
-    parser.add_argument('-p', '--func_prefix', help='Prefix to add to function signature.', required=False)
-    parser.add_argument('-o', '--module_overview', help='Module overview to add to the doc header.', required=False)
+    parser.add_argument('-t', '--target_dir', help='Target directory to generate docs at.', required=True)
     args = parser.parse_args()
-    generate_pydoc(args.module, args.article_id, args.article_title, args.dir, args.func_prefix, args.module_overview)
+    target_sub_dir = f'{args.target_dir}/api'
+    if not os.path.exists(target_sub_dir):
+        os.makedirs(target_sub_dir)
+    generate_demisto_class_docs(target_sub_dir)
+    generate_common_server_python_docs(target_sub_dir)
+    api_ref_path = f'{os.path.basename(args.target_dir)}/api'
+    sidebar = [
+        {
+            "type": "category",
+            "label": "API Reference",
+            "items": [
+                f'{api_ref_path}/demisto-class',
+                f'{api_ref_path}/common-server-python',
+            ]
+        },
+    ]
+    with open(f'{args.target_dir}/sidebar.json', 'w') as f:
+        json.dump(sidebar, f, indent=4)
 
 
 if __name__ == '__main__':
