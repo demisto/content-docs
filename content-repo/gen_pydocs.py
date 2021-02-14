@@ -159,10 +159,10 @@ def generate_pydoc(
 
 
 def generate_demisto_class_docs(target_dir: str):
-    overview = """All Python integrations and scripts have available as part of the runtime the \`demisto\` class 
+    overview = """All Python integrations and scripts have available as part of the runtime the `demisto` class
 object. The object exposes a series of API methods which are used to retrieve and send data to the Cortex XSOAR Server. 
 
-:::note The \`demisto\` class is a low level API. For many operations we provide a simpler and more robust API as 
+:::note The `demisto` class is a low level API. For many operations we provide a simpler and more robust API as
 part of the  [Common Server Functions](https://xsoar.pan.dev/docs/integrations/code-conventions#common-server
 -functions). ::: """
     generate_pydoc(
