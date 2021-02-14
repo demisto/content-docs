@@ -209,8 +209,11 @@ def main():
             ]
         },
     ]
-    with open(f'{args.target_dir}/sidebar.json', 'w') as f:
-        json.dump(sidebar, f, indent=4)
+    with open(f'{args.target_dir}/sidebar.json', 'r+') as f:
+        data = json.load(f)
+        data.extend(sidebar)
+        f.seek(0)
+        json.dump(data, f, indent=4)
 
 
 if __name__ == '__main__':
