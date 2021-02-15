@@ -170,8 +170,7 @@ object. The object exposes a series of API methods which are used to retrieve an
 
 :::note
 The `demisto` class is a low level API. For many operations we provide a simpler and more robust API as
-part of the  [Common Server Functions](https://xsoar.pan.dev/docs/integrations/code-conventions#common-server
--functions).
+part of the [Common Server Functions](https://xsoar.pan.dev/docs/integrations/code-conventions#common-server-functions).
 :::"""
     generate_pydoc(
         module='demisto',
