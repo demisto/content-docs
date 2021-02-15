@@ -98,11 +98,12 @@ jobs:
             fi
             netlify deploy -m "CircleCI build: $CIRCLE_BRANCH" -d build $DEPLOG_ARG --json > deploy-info.json
             cat deploy-info.json | jq
-      - when:
-          name: Post Comment
+      - when:          
           condition: <<parameters.post_comment>>
           steps:
-            - run: pipenv run ./content-repo/post_github_comment.py deploy-info.json
+            - run:
+                name: Post Comment 
+                command: pipenv run ./content-repo/post_github_comment.py deploy-info.json
 
 workflows:
   build_and_deploy:
