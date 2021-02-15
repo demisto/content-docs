@@ -60,7 +60,6 @@ def test_generate_pydoc_demisto_class(tmp_path):
             f.readline()
             f.readline()
             f.readline()
-            f.readline()
             assert f.readline().startswith('## ')
             f.readline()
             assert f.readline().startswith('```python')
