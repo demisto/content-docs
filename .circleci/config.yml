@@ -70,7 +70,7 @@ jobs:
     resource_class: small
     parameters:
       post_comment:
-        description: Indicates if to poost a comment or not (on daily job we skip posting)
+        description: Indicates if to post a comment or not (on daily job we skip posting)
         type: boolean
         default: true
     steps:
