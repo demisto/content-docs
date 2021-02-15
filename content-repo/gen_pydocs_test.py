@@ -1,7 +1,11 @@
-from gen_pydocs import generate_pydoc
+import os
+import sys
+
+from gen_pydocs import (generate_common_server_python_docs,
+                        generate_demisto_class_docs)
 
 
-def test_generate_pydoc(tmp_path):
+def test_generate_pydoc_demisto_class(tmp_path):
     """
     Given:
      - Module demistomock to generate API docs of
@@ -20,8 +24,64 @@ def test_generate_pydoc(tmp_path):
     article_id = 'demisto-class'
     article_title = 'Demisto Class'
     func_prefix = 'demisto.'
-    module_overview = 'Test Overview'
-    generate_pydoc('test_data/demistomock', article_id, article_title, str(tmp_path), func_prefix, module_overview)
+    partial_module_overview = 'All Python integrations and scripts have available as part of the runtime the ' \
+                              '`demisto` class'
+
+    demisto_class = tmp_path / 'demisto.py'
+    with open('./test_data/demistomock.py') as demistomock_file:
+        demisto_class.write_text(demistomock_file.read())
+    os.chdir(str(tmp_path))
+    sys.path.append(str(tmp_path))
+    generate_demisto_class_docs(str(tmp_path))
+    with open(str(tmp_path / f'{article_id}.md'), 'r') as f:
+        assert f.readline().startswith('---')
+        assert f.readline().startswith(f'id: {article_id}')
+        assert f.readline().startswith(f'title: {article_title}')
+        assert f.readline().startswith(f'description: API reference documentation for {article_title}')
+        assert f.readline().startswith('---')
+        f.readline()
+        assert f.readline().startswith(partial_module_overview)
+        f.readline()
+        f.readline()
+        f.readline()
+        f.readline()
+        f.readline()
+        f.readline()
+        f.readline()
+        f.readline()
+        assert f.readline().startswith('## ')
+        f.readline()
+        assert f.readline().startswith('```python')
+        assert f.readline().startswith(func_prefix)
+
+
+def test_generate_pydoc_common_server_python(tmp_path):
+    """
+    Given:
+     - Module CommonServerPython module to generate API docs of
+     - Article ID and title
+     - Function name prefix to add to function signatures
+     - Module overview to add to article header
+
+    When:
+     - Generate CommonServerPython API docs
+
+    Then:
+     - Ensure article header
+     - Ensure overview
+     - Ensure function signature
+    """
+    article_id = 'common-server-python'
+    article_title = 'Common Server Python'
+    module_overview = 'Common functions that will be appended to the code of each integration/script before being ' \
+                      'executed.'
+
+    csp = tmp_path / 'CommonServerPython.py'
+    with open('./test_data/CommonServerPython.py') as csp_file:
+        csp.write_text(csp_file.read())
+    os.chdir(str(tmp_path))
+    sys.path.append(str(tmp_path))
+    generate_common_server_python_docs(str(tmp_path))
     with open(str(tmp_path / f'{article_id}.md'), 'r') as f:
         assert f.readline().startswith('---')
         assert f.readline().startswith(f'id: {article_id}')
@@ -32,6 +92,3 @@ def test_generate_pydoc(tmp_path):
         assert f.readline().startswith(module_overview)
         f.readline()
         assert f.readline().startswith('## ')
-        f.readline()
-        assert f.readline().startswith('```python')
-        assert f.readline().startswith(func_prefix)

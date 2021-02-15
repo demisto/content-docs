@@ -8,8 +8,8 @@ from typing import Dict, List, Optional
 
 import docspec
 from nr.databind.core import Field
-from pydoc_markdown import (MarkdownRenderer, PydocMarkdown, PythonLoader,
-                            SmartProcessor)
+from pydoc_markdown import (FilterProcessor, MarkdownRenderer, PydocMarkdown,
+                            PythonLoader, SmartProcessor)
 from pydoc_markdown.contrib.processors.sphinx import (
     SphinxProcessor, generate_sections_markdown)
 
@@ -34,13 +34,6 @@ class DemistoMarkdownRenderer(MarkdownRenderer):
         if self.func_prefix:
             function_signature = f'{self.func_prefix}{function_signature}'
         return function_signature
-
-    def _render_header(self, fp, level, obj):
-        if isinstance(obj, docspec.Module) and self.module_overview:
-            fp.write(self.module_overview)
-            fp.write('\n\n')
-        else:
-            super()._render_header(fp, level, obj)
 
 
 class CommonServerPythonProcessor(SphinxProcessor):
@@ -114,6 +107,18 @@ class CommonServerPythonProcessor(SphinxProcessor):
         node.docstring = '\n'.join(lines)
 
 
+class IgnoreDocstringProcessor(FilterProcessor):
+    def process(self, modules, _resolver):
+        filtered_modules = []
+        for member in getattr(modules[0], 'members', []):
+            if member.docstring and 'ignore docstring' not in member.docstring:
+                filtered_modules.append(member)
+            else:
+                print(f'Skipping {member}')
+        modules.clear()
+        modules.extend(filtered_modules)
+
+
 def generate_pydoc(
         module: str,
         article_id: str,
@@ -134,9 +139,9 @@ def generate_pydoc(
     Returns:
         None: No data returned.
     """
-    smart_processor = SmartProcessor(sphinx=CommonServerPythonProcessor())
     pydocmd = PydocMarkdown()
-    pydocmd.processors[1] = smart_processor
+    pydocmd.processors[0] = IgnoreDocstringProcessor()
+    pydocmd.processors[1] = SmartProcessor(sphinx=CommonServerPythonProcessor())
     pydocmd.renderer = DemistoMarkdownRenderer(
         insert_header_anchors=False,
         func_prefix=func_prefix,
@@ -144,6 +149,7 @@ def generate_pydoc(
         escape_html_in_docstring=True,
         classdef_code_block=False,
         descriptive_class_title=False,
+        signature_with_decorators=False,
     )
     loader: PythonLoader = next((ldr for ldr in pydocmd.loaders if isinstance(ldr, PythonLoader)), None)
     loader.modules = [module]
@@ -153,7 +159,7 @@ def generate_pydoc(
     pydoc = pydocmd.renderer.render_to_string(modules)
 
     article_description = f'API reference documentation for {article_title}.'
-    content = f'---\nid: {article_id}\ntitle: {article_title}\ndescription: {article_description}\n---\n\n{pydoc}'
+    content = f'---\nid: {article_id}\ntitle: {article_title}\ndescription: {article_description}\n---\n\n{module_overview}\n\n{pydoc}'
     with open(f'{target_dir}/{article_id}.md', mode='w', encoding='utf-8') as f:
         f.write(content)
 
@@ -162,9 +168,11 @@ def generate_demisto_class_docs(target_dir: str):
     overview = """All Python integrations and scripts have available as part of the runtime the `demisto` class
 object. The object exposes a series of API methods which are used to retrieve and send data to the Cortex XSOAR Server.
 
-:::note The `demisto` class is a low level API. For many operations we provide a simpler and more robust API as
+:::note 
+The `demisto` class is a low level API. For many operations we provide a simpler and more robust API as
 part of the  [Common Server Functions](https://xsoar.pan.dev/docs/integrations/code-conventions#common-server
--functions). ::: """
+-functions).
+:::"""
     generate_pydoc(
         module='demisto',
         article_id='demisto-class',
@@ -176,7 +184,7 @@ part of the  [Common Server Functions](https://xsoar.pan.dev/docs/integrations/c
 
 
 def generate_common_server_python_docs(target_dir: str):
-    overview = "Common functions that will be appended to the code of each integration/script before being executed."
+    overview = 'Common functions that will be appended to the code of each integration/script before being executed.'
     generate_pydoc(
         module='CommonServerPython',
         article_id='common-server-python',
