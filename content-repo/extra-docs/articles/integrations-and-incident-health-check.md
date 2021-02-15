@@ -18,12 +18,12 @@ This pack contains a parent playbook that calls two sub-playbooks.
  
 | Playbook | Description | Notes |
 |---------------- | ------------- | ------------- |
-| JOB - Integrations and Playbooks Health Check | This is the pack's parent playbook and is the default playbook for the **Integrations and Incidents Health Check** incident type. You should run this playbook as a scheduled job. The playbook checks the health of all enabled integrations and open incidents | Under the playbook inputs, you can add recipients to send the health check report via email. See below for additional features of this playbook. |
-| Integrations and Playbooks Health Check - Running Scripts | This playbook is executed as part of the **JOB - Integrations and Playbooks Health** parent playbook and is responsible for running scripts that check the system for failed integrations and failed incidents.  | You can run the playbook on its own (not only as a sub-playbook of the parent playbook) to run health checks on enabled integrations and open incidents. |
-| JOB - Integrations and Playbooks Health Check - Lists handling | This playbook is executed as part of the **JOB - Integrations and Playbooks Health** parent playbook and is responsible for creating or updating related XSOAR lists. | - |
+| JOB - Integrations and Incidents Health Check | This is the pack's parent playbook and is the default playbook for the **Integrations and Incidents Health Check** incident type. You should run this playbook as a scheduled job. The playbook checks the health of all enabled integrations and open incidents | Under the playbook inputs, you can add recipients to send the health check report via email. See below for additional features of this playbook. |
+| Integrations and Incidents Health Check - Running Scripts | This playbook is executed as part of the **JOB - Integrations and Incidents Health** parent playbook and is responsible for running scripts that check the system for failed integrations and failed incidents.  | You can run the playbook on its own (not only as a sub-playbook of the parent playbook) to run health checks on enabled integrations and open incidents. |
+| JOB - Integrations and Incidents Health Check - Lists handling | This playbook is executed as part of the **JOB - Integrations and Incidents Health** parent playbook and is responsible for creating or updating related XSOAR lists. | - |
  ---
  
-In addition to running the sub-playbooks, the parent playbook **JOB - Integrations and Playbooks Health Check** performs the following functions:
+In addition to running the sub-playbooks, the parent playbook **JOB - Integrations and Incidents Health Check** performs the following functions:
 - Send the health check report to the recipients from the playbook inputs.
 - If another health check investigation is open (either an incident or a running job), the playbook will:
   - Check if analyst notes were added to the failed integrations and failed incidents grids and **copy** them to the new investigation.
@@ -56,7 +56,7 @@ The dashboard **isn't** a real-time, dynamic view, it only displays the results 
 For example, if the job/playbook runs once a day, the dashboard data will be updated once a day (at the same time the playbook is running).
  
 ## How to Use the Pack
-In order to use this pack, you need to configure several integrations and to schedule the main playbook as a recurring job. Although you can run the parent playbook as an incident, the most common way to execute it is as a scheduled job.
+In order to use this pack, you need to configure several integrations and to schedule the main playbook as a recurring job. Although you can run the parent playbook as an incident with the **'Integrations and Incidents Health Check' incident type**, the most common way to execute it is as a scheduled job.
 
 There are several prerequisite requirements that you need to handle before you can start with this pack.
 
@@ -106,4 +106,13 @@ Although not required, we recommend that you create a recurring schedule for the
 | Type | Integrations and Incidents Health Check |
 | Playbook | JOB - Integrations and Playbooks Health Check. This playbook should automatically populate when you select the incident type. If it does not, make sure you select this playbook. |
 
+
+## Troubleshooting
+The Health Check pack contains serval incident fields which are associated to “Integrations and Incidents Health Check" incident type. 
+
+Therefore, in order to use this flow the incident type must be be set accordingly when creating a new incident or job.
+
+If the incident type “Integrations and Incidents Health Check" is not chosen, fields will not be displayed correctly and the playbook will fail with this error:
+
+![griderror](https://raw.githubusercontent.com/demisto/content-docs/master/docs/doc_imgs/reference/HealthCheck_GridError.png)
  
