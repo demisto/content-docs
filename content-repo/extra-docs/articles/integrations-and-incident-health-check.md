@@ -104,7 +104,18 @@ Although not required, we recommend that you create a recurring schedule for the
 | Parameter Name | Value |
 | ------------- | ----- |
 | Type | Integrations and Incidents Health Check |
-| Playbook | JOB - Integrations and Playbooks Health Check. This playbook should automatically populate when you select the incident type. If it does not, make sure you select this playbook. |
+| Playbook | JOB - Integrations and Incidents Health Check. This playbook should automatically populate when you select the incident type. If it does not, make sure you select this playbook. |
+
+
+
+### 4. Playbook Inputs
+The "JOB - Integrations and Incidents Health Check" playbook contains three inputs that allow you:
+| Playbook Input | Description |
+|---------------- | ------------- |
+| SendHealthCheckReport | This input determines if the health check report should be sent automatically after running the playbook. |
+| EmailReportTo | In case the 'SendHealthCheckReport' input equals to 'True', the email address the report will be sent to.  |
+| This input determines if the investigation should close automatically after the re-run of the scripts.|
+ ---
 
 
 ## Troubleshooting
