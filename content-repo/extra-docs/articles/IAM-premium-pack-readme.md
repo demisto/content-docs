@@ -20,7 +20,7 @@ Read the instructions for each flow carefully to first understand the workflows 
  
  Make sure to install the following packs before proceeding with the configuration process:
  * Workday
- * Active Directory
+ * Active Directory Query
  * Okta
 
 ### Workday Reports
@@ -62,7 +62,7 @@ The following table lists these fields, what they are used for in Cortex XSOAR, 
 | Workday fields  |  How it is Used  | Possible Values |
 | ------------ |---------------| -----|
 | Email address      | A unique identifier for the user. | User's work email address | 
-| Employment status |  Influences the playbook flow that will run on the IAM-Sync incident.  | Active <br/> Leave of Absence <br/> Terminated
+| Employment status |  Influences the playbook flow that will run on the IAM - Sync User incident.  | Active <br/> Leave of Absence <br/> Terminated
 | Rehired employee  | Used to determine whether the User rehire flow is implemented. | Yes <br/> No |
 | Prehire flag | Used in conjunction with the Rehired employee field to enable the User rehire flow. | True <br/> False|
 
