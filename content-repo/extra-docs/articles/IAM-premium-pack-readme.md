@@ -17,11 +17,6 @@ Read the instructions for each flow carefully to first understand the workflows 
 ## User Provisioning
 
  The ILM pack enables you to provision users from Workday into Active Directory and/or Okta by performing management operations like creating, reading, updating and deleting users. 
- 
- Make sure to install the following packs before proceeding with the configuration process:
- * Workday
- * Active Directory Query
- * Okta
 
 ### Workday Reports
 
