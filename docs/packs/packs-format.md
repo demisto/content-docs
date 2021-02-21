@@ -47,7 +47,7 @@ The following fields are populated in the pack metadata:
 | description | String | A short overview of the pack. |
 | support | String | Should be one of the following:<br />1.  xsoar - Supported by Cortex XSOAR.<br />2.  partner - Supported by a Cortex XSOAR partner.<br />3.  developer - Supported by an independent developer/organization.<br />4.  community - Not officialy supported, but available for the community to use.<br /> For `partner` and `developer`, either email address or URL fields must be filled out.  |
 | currentVersion | String | The pack version, in the format of `x.x.x`. On the initial release this should be set to "1.0.0". |
-| author | String | The name of the organization / developer which developed the integration. |
+| author | String | The name of the organization (for partners) or developer (for individual contributions) which developed the integration. |
 | url | String | The URL to which users should refer to in case of support needed regarding the pack. Usually is the organization support URL or the developer GitHub repository. |
 | email | String | The email address to which users should reach out to in case of support needed regarding the pack. |
 | categories | List | The use-case categories which are implemented in the pack. Usually set by the integration, which included in the pack category. Should be one of the following:<br />1. Analytics & SIEM<br />2. Utilities<br />3. Messaging<br />4. Endpoint<br />5. Network Security<br />6. Vulnerability Management<br />7. Case Management<br />8. Forensics & Malware Analysis<br />9. IT Services<br />10. Data Enrichment & Threat Intelligence<br />11. Authentication<br />12. Database<br />13. Deception<br />14. Email Gateway|
