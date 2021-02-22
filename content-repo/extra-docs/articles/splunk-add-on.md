@@ -10,7 +10,7 @@ Supporting Add-on for Cortex XSOAR. This application allows to push incidents in
 
 * In order to use a Splunk Cloud instance, you need to contact Splunk support and ask them to open API access and use the non SAML authentication with it, as stated in this message from Splunk:
   > Use the following URL for Splunk Cloud deployments. If necessary, submit a support case to open port 8089 on your deployment. Please include the IP Addresses/CIDR Ranges you would like to have access from.<br/>
-    https://<deployment-name>.splunkcloud.com:8089
+    https://\<deployment-name\>.splunkcloud.com:8089
   
   For additional information see: https://docs.splunk.com/Documentation/SplunkCloud/latest/RESTTUT/RESTandCloud
 
