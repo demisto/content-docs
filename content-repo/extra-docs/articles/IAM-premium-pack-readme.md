@@ -201,7 +201,7 @@ The following is an example of the flow when adding a field to work with the ILM
     - Salesforce - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/salesforce-iam)
   
     
-> <i>Note:</i> If you choose to run the CRUD commands manually from the CLI, make sure to include the email and username fields in the user profile.
+> <i>Note:</i> If you choose to run the any of the basic management operations, such as create, delete, etc. manually from the CLI, make sure to include the email and username fields in the user profile.
 
 
 ## App Sync
