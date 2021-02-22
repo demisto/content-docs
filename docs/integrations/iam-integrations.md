@@ -14,6 +14,8 @@ Use the **HelloIAMWorld** template to initialize a new IAM integration (replace 
 ```
 demisto-sdk init --integration -n MyIntegration -t HelloIAMWorld
 ```
+**Note:** The HelloIAMWorld template, like any other IAM Integration, imports the [IAMApiModule](#iamapimodule-script-classes) script classes which implement most of the logic of the integration. The changes that need to be made in order to complete the development of the integration will be detailed below.
+
 After executing the above **init** command, a new integration directory named “MyIntegration” will be created under your current working directory. The following files will be generated under “MyIntegration” directory:
 - **MyIntegration.py** - includes a template for the client class. **You must implement all of the class methods.** You may implement non-CRUD commands as well, if needed.
 - **MyIntegration.yml** - unless there are additional commands to implement in the integration, the only changes in the yml file should be: 
@@ -284,7 +286,9 @@ This class is used in [IAMUserProfile](#iamuserprofile) class to create the outp
 
 ## Integrations for reference
 [HelloIAMWorld](https://github.com/demisto/content/tree/master/Packs/HelloIAMWorld/Integrations/HelloIAMWorld)
+
 [Slack IAM](https://github.com/demisto/content/tree/master/Packs/Slack/Integrations/Slack_IAM)
+
 [Okta IAM](https://github.com/demisto/content/tree/master/Packs/Okta/Integrations/Okta_IAM)
 
 
