@@ -95,7 +95,7 @@ Under the inputs for the IAM - Sync User playbook, make sure you configure value
 
 The mappers that are provided out-of-the-box work with the assumption that you did not add any fields. 
 
-If you want to include additional information in the user profile indicator and provision it to your available IAM applications, follow the steps in the following example section. 
+If you want to include additional information in the user profile indicator, and provision it to your available IAM applications, follow the steps in the following example: 
 
 1. Add the field to the mappers for the Workday, Okta, Active Directory, and for any other IAM integration configured. 
 
@@ -115,7 +115,7 @@ If you want to include additional information in the user profile indicator and 
 
 ##### Example
 
-The following is an example of the flow when adding a field to work with the ILM content pack. This does not presume to cover all possible scenarios.
+The following is an example of the flow when adding a field to work with the ILM content pack. This example does not presume to cover all possible scenarios.
 
 1.  Add an incident field.
     1. Navigate to Settings -> Advanced -> Fields and click *New Field*.
@@ -125,7 +125,7 @@ The following is an example of the flow when adding a field to work with the ILM
         - User Profile
 	    - IAM - Sync User
 	    
-	    You may add the following incident types if you would like to display the new field in the incident layout (the new fields will be shown regardless in the User Profile indicator).
+	    You can add the following incident types if you would like to display the new field in the incident layout (the new fields will be shown regardless in the User Profile indicator).
 	    - IAM - New Hire
 	    - IAM - Update User
 	    - IAM - Terminate User
@@ -168,9 +168,9 @@ The following is an example of the flow when adding a field to work with the ILM
     1. Under *Incident Type*, select the relevant incident type, as follows:
         - for the Workday incoming mapper, add the field to the IAM - Sync User incident type. 
         - for Okta, Active Directory, ServiceNow, GitHub and the rest of the IAM integrations, add the field to the UserProfile incident type in both the incoming and outgoing mappers.
-    1. Map the new field you have created to the field in schema. For purposes of this example, we have mapped the Sample-Field-IAM field to the employee number.
+    1. Map the new field you have created to the field in the schema. For purposes of this example, we have mapped the Sample-Field-IAM field to the employee number.
     1. Repeat this process for each additional field and save the mapper. 
-    1.  Repeat this process for all of the mappers. For example:
+    1. Repeat this process for all of the mappers. For example:
         - Workday incoming mapper
         - Okta incoming and outgoing mappers
         - Active Directory incoming and outgoing mappers
