@@ -324,7 +324,7 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
         content = content.replace(front_matter_match[0], '')
 
         if private_packs:
-            content = f'---\nid: {file_id}\ntitle: "{name}"\n---\n\n' + content
+            content = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: null\n---\n\n' + content
         else:
             edit_url = f'https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/{prefix}/{readme_file_name}'
             content = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\n---\n\n' + content
