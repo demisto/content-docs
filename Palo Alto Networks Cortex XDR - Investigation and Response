@@ -1,7 +1,7 @@
 ---
-id: 
-title: 
-description: 
+id: palo-alto-networks-cortex-xdr---investigation-and-response
+title: Palo Alto Networks Cortex XDR - Investigation and Response
+description: Automates Cortex XDR incident response, and includes custom Cortex XDR incident views and layouts to aid analyst investigations.
 ---
 The Palo Alto Networks Cortex XDR - Investigation and Response pack automates Cortex XDR incident response, and includes custom Cortex XDR incident views and layouts to aid analyst investigations.
 
@@ -48,11 +48,11 @@ If no similar incidents are found, or if the analyst does not want to close the 
 
 The [Cortex XDR Alerts Handling](#cortex-xdr-alerts-handling) sub-playbook loops through and checks the category of the alerts. Currently, this sub-playbook handles Malware and Port Scan alerts only. If the category is Malware, the [Cortex XDR - Malware Investigation](#cortex-xdr---malware-investigation) sub-playbook will run. If the category is Port Scan, the [Cortex XDR - Port Scan - Adjusted](#cortex-xdr---port-scan---adjusted) sub-playbook will run. After the Malware or Port Scan sub-playbook runs or if the alert is in any other category, the main playbook will continue to further investigate. It counts the number of alerts in the incident. This information will be displayed in the layout. It then executes the [Cortex XDR device control violations](#cortex-xdr-device-control-violations) sub-playbook. 
 
-Then the [Entity Enrichment Generic v3](https://xsoar.pan.dev/docs/reference/playbooks/entity-enrichment---generic-v3sub-playbook) runs which takes all the entities in the incidents and enriches them with the available products in the environment. The SOC team will then do a manual in-depth analysis of the incident. 
+Then the [Entity Enrichment Generic v3](https://xsoar.pan.dev/docs/reference/playbooks/entity-enrichment---generic-v3) sub-playbook runs which takes all the entities in the incidents and enriches them with the available products in the environment. The SOC team will then do a manual in-depth analysis of the incident. 
 
 You can then choose to optionally run the [Palo Alto Networks - Hunting And Threat Detection](https://xsoar.pan.dev/docs/reference/playbooks/palo-alto-networks---hunting-and-threat-detection) sub-playbook to extract IOCs from the investigation and run them across the organization to check if there are any other compromised accounts or endpoints with the same information that was detected in this alert.
 
-The severity of the incident is calculated by the [Calculate Severity - Generic v2](https://xsoar.pan.dev/docs/reference/playbooks/calculate-severity---generic-v2sub-playbook).
+The severity of the incident is calculated by the [Calculate Severity - Generic v2](https://xsoar.pan.dev/docs/reference/playbooks/calculate-severity---generic-v2) sub-playbook.
 
 Based on the severity, the analyst decides whether to continue to the remediation stage or close the investigation as a false positive. The remediation blocks all the indicators that were extracted from the incident either manually or automatically using the [Block Indicators - Generic v2](https://xsoar.pan.dev/docs/reference/playbooks/block-indicators---generic-v2) sub-playbook.
 
@@ -126,7 +126,7 @@ There are 4 layouts in this pack. The information displayed in the layouts are s
 
 ![XDR Case Info Tab](../../../docs/doc_imgs/reference/XDRLayout.png "XDR Case Info Tab")
 
-#### Cortex XDR Device Control Violations
+#### Cortex XDR Device Control Violations layout
 
 | Layout sections | Description |
 |------------------ | ------------- |
@@ -333,11 +333,11 @@ This Content Pack may require the following additional Content Packs:
 
 
 ## Pack Configurations
-- [Device Control Violations](#device-control-violations)
-- [Query Disconnected Cortex XDR Endpoints](#device-disconnected-cortex-xdr-endpoints)
+- [Device Control Violations Workflow](#device-control-violations-workflow)
+- [Query Disconnected Cortex XDR Endpoints Workflow](#query-disconnected-cortex-xdr-endpoints-workflow)
 
 
-### Device Control Violations
+### Device Control Violations Workflow
 1. Create a job to query for device control violations.  
 
    1. Click **Jobs**. 
@@ -350,7 +350,7 @@ This Content Pack may require the following additional Content Packs:
    
       Note: For detailed information about creating jobs, see [Jobs](https://xsoar.pan.dev/docs/incidents/incident-jobs).
 
-2. Define the inputs for the [JOB - Cortex XDR query endpoint device control violations](https://xsoar.pan.dev/docs/reference/playbooks/JOB-Cortex-XDR-query-endpoint-device-control-violations).
+2. Define the inputs for the [JOB - Cortex XDR query endpoint device control violations](https://xsoar.pan.dev/docs/reference/playbooks/job---cortex-xdr-query-endpoint-device-control-violations).
 
    Note: The scheduled run time and the timestamp playbook input must be identical. If the job recurs every 7 days, the timestamp should be 7 days as well.
 3. To run the response playbook for the violations found, define the inputs for the [Cortex XDR device control violations](https://xsoar.pan.dev/docs/reference/playbooks/Cortex-XDR-device-control-violations).
@@ -358,7 +358,7 @@ This Content Pack may require the following additional Content Packs:
 
 
 
-### Query Disconnected Cortex XDR Endpoints 
+### Query Disconnected Cortex XDR Endpoints Workflow
 1. Create a job to query the disconnected endpoints.
    1. Click **Jobs**. 
    2. Click **New Job**.
