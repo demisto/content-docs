@@ -7,11 +7,16 @@ The Cortex XSOAR Adopt-a-Pack program provides our technical partners a way to �
 
 ## Benefits for our Partner
 Adopting a Pack has several advantages for the partner:
-- The partner directly controls the pack’s roadmap, features and release timing.
-- The partner receives direct feedback from customers in the form of defects and enhancement requests.
-- The partner is added as a reviewer in GitHub so they can see all community updates to that pack.
-- The partner places their name on the pack.
-- The partner can engage in marketing activities with Palo Alto Networks.
+- Directly control the pack’s roadmap, features and release timing.
+- Receive direct feedback from customers in the form of defects and enhancement requests.
+- Added as a reviewer in GitHub to see all community updates to that pack.
+
+### Marketing with Palo Alto Networks
+- Opportunity to place company name and logo on the pack.
+- Add detailed description and marketing to the pack (see yellow box, below) including links, images, company overview, etc. 
+- Engage in marketing activities with Palo Alto Networks (e.g. joint solution blog).
+
+![pack example cyren](../doc_imgs/partners/packexample_cyren.png)
 
 ## Process
 The process to Adopt-a-Pack is simple:
