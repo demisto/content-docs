@@ -188,11 +188,11 @@ The following is an example of the flow when adding a field to work with the ILM
 
 ### Integrations
 
-- Workday ILM integration (link to the integration docs).
-**Note:** Before running the Workday integration, ensure that you have added the fields in Workday as instructed in Before You Start.
+- Workday IAM integration [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/workday-iam).
+
+    **Note:** Before running the Workday integration, ensure that you have added the fields in Workday as instructed in Before You Start.
 - IAM-compatible integrations. These integrations support execution of the generic ILM management operations.
 
-    - Workday - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/workday-iam)
     - Active Directory - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/active-directory-query-v2)
     - Okta - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/okta-iam)
     - ServiceNow - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/service-now-iam)
@@ -201,7 +201,7 @@ The following is an example of the flow when adding a field to work with the ILM
     - Salesforce - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/salesforce-iam)
   
     
-> <i>Note:</i> If you choose to run the any of the basic management operations, such as create, delete, etc. manually from the CLI, make sure to include the email and username fields in the user profile.
+> <i>Note:</i> If you choose to run any of the basic management operations, such as create, delete, etc. manually from the CLI, make sure to include the email and username fields in the user profile.
 
 
 ## App Sync
