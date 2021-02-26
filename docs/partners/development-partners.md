@@ -33,6 +33,14 @@ Crest Data Systems is a leading provider of software integrations and custom sol
 
 → Contact Malhar Shah at [malhar@crestdatasys.com](mailto:malhar@crestdatasys.com)
 
+### Loginsoft Consulting LLC ([www.loginsoft.com](www.loginsoft.com))
+
+![loginsoft_dev_partner](../doc_images/partners/loginsoft_partner.png)
+
+Loginsoft, an IT Consulting company based out of VA, US, supports leading Cybersecurity product companies in Integrations with Threat Intelligence Platforms such as TIP, SOAR and SIEM, Developing Vulnerability Detection Plugins, CVE and Threat Research. Loginsoft's Cyber engineering team provides expertise in Application/Network/IoT Security including Vulnerability Management and Threat hunting. In addition, Loginsoft provides IT engineering support to Fortune companies like Verizon, Discovery, Humana, Customers Bank and so on with Application Development and QA Automation, both onsite and offshore.
+
+→ Contact Sumanth Juturu at [sjuturu@loginsoft.com](mailto:sjuturu@loginsoft.com)
+
 
 ### QMasters ([qmasters.co](https://qmasters.co))
 
