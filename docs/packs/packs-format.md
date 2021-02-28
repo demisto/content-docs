@@ -160,8 +160,9 @@ ignore=IN126,PA116
 ```
 
 ### Author_image.png
-This file is optional, and if added the image will be displayed in the Marketplace under **PUBLISHER** when viewing the pack details.
-
+You may choose to show the your pack author image such thatit will be in the marketplace under the **PUBLISHER** section when viewing the pack details.The image shole be saved in the pack level (content/packs/<MyPackName>/Author_image.png), make sure to stick with this file name, for the image to appear.
+The image size should be up to 4kb and in the dimensions of 120x50.
+ 
 In case file does not exist, the pack author will be displayed in text.
 
-The image size should be up to 4kb and in the dimensions of 120x50.
+
