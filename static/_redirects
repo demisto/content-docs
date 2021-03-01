@@ -6,7 +6,7 @@ https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 /docs	/docs/welcome
 
 # Redirect used by Server link (do NOT delete)
-/start-contributing /docs/welcome
+/start-contributing /docs/contributing/marketplace
 
 # Redirect existing docs
 
