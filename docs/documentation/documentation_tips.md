@@ -43,7 +43,8 @@ For example: `By default, the integration will import PagerDuty incidents data a
 
 ## Common Integration Parameters
 The most commonly used integration parameters:
-| Parameter name | Display name | Notes |
+
+| Parameter name | Display name | Notes 
 |---|---|---|
 | API token/key | API Token/ API Key/ API Secret. |Provided by the third party integration. | |
 | URL | Server URL | |
