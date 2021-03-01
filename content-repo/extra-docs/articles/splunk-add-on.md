@@ -28,20 +28,19 @@ Once executed, the splunk env will be available at http://localhost:8000.
 
 
 ### Configuration
-* In order to use the add-on and create incidents in XSOAR, you must complete the setup of the application. Press "Launch app" action after installing the add-on and provide the following:
-    1) Create a XSOAR instance:
-       Under XSOAR Instances tab, press the "Add" button. Choose an instance name, and fill the XSOAR server URL (including port if needed) and the API key fields. The API key is used for authorization with XSOAR. To generate this parameter, login to Cortex XSOAR and click on Settings → Integration → API Keys.
-    
-       ![splunk-add-on-instances.png](../../../docs/doc_imgs/reference/splunk-add-on-instances.png)
-    2) Set up proxy settings (optional):
-       Under Proxy tab, check the "Enable" checkbox and fill all the proxy parameters needed.
-    3) Choose log level (optional):
-       By default, the logging level is "INFO". You may change the logging level to "DEBUG" if needed.
-    4) Additional Settings (optional):
-       - If you have an SSL certificate, provide its full path under "Location to Certificate" field.
-       - By default, "Validate SSL" is enabled.
-       
-       ![splunk-add-on-config.png](../../../docs/doc_imgs/reference/splunk-add-on-config.png)
+In order to use the add-on and create incidents in XSOAR, you must complete the setup of the application. Press "Launch app" action after installing the add-on and provide the following:
+* Create a XSOAR instance:
+  Under XSOAR Instances tab, press the "Add" button. Choose an instance name, and fill the XSOAR server URL (including port if needed) and the API key fields. The API key is used for authorization with XSOAR. To generate this parameter, login to Cortex XSOAR and click on Settings → Integration → API Keys.
+  
+  ![splunk-add-on-instances.png](../../../docs/doc_imgs/reference/splunk-add-on-instances.png)
+* Set up proxy settings (optional):
+  Under Proxy tab, check the "Enable" checkbox and fill all the proxy parameters needed.
+* Choose log level (optional):
+  By default, the logging level is "INFO". You may change the logging level to "DEBUG" if needed.
+* Additional Settings (optional): If you have an SSL certificate, provide its full path under "Location to Certificate" field.
+  By default, "Validate SSL" is enabled.
+  
+  ![splunk-add-on-config.png](../../../docs/doc_imgs/reference/splunk-add-on-config.png)
 * You must restart Splunk in order to apply changes in the configuration settings.
 
        
@@ -112,15 +111,15 @@ In cases where after associating Create XSOAR Incident with saved searches or co
 
 3. Test the network connectivity in between applications to ensure that there are no connectivity issues. You may try one of the following:
    ```
-   curl -kv https://<DEMISTO_SERVER>:<PORT>
-   telnet <DEMISTO_SERVER> <PORT>
-   wget --no-check-certificate -O - https://<DEMISTO_SERVER>:<PORT>
+   curl -kv https://<XSOAR_SERVER>:<PORT>
+   telnet <XSOAR_SERVER> <PORT>
+   wget --no-check-certificate -O - https://<XSOAR_SERVER>:<PORT>
    ```
 
 4. Test the API key generated in XSOAR.
    ```
-   curl -kv -H "Authorization:<API_KEY>" https://<DEMISTO_SERVER>:<PORT>/user
-   wget --no-check-certificate --header="Authorization: <API_KEY>" -O - https://<DEMISTO_SERVER>:<PORT>/user
+   curl -kv -H "Authorization:<API_KEY>" https://<XSOAR_SERVER>:<PORT>/user
+   wget --no-check-certificate --header="Authorization: <API_KEY>" -O - https://<XSOAR_SERVER>:<PORT>/user
    ```
 
 #### Incident Created with Incorrect Fields
@@ -132,7 +131,7 @@ Splunk has its own trigger conditions using the number of incidents which get pu
 Refer to [Splunk Documentation](https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertTriggerConditions) to understand Splunk Trigger Conditions to limit the incidents. 
 In addition, it is possible to [throttle alerts](https://docs.splunk.com/Documentation/SplunkCloud/latest/Alert/ThrottleAlerts) in Splunk once the saved search returned with positive results, in order to suppress more incident creation.
 
-#### Playbooks not getting invoked on Demisto Enterprise Application
+#### Playbooks not getting invoked on Cortex XSOAR
 Cortex XSOAR allows users to set up different types of incidents and the user can associate different playbooks the each type of incident. So, if after pushing incidents from Splunk, the appropriate playbooks are not being invoked, the following should be checked:
 1. Check if the type of incident which is getting pushed from Splunk has a playbook associated with the Type in XSOAR.
 
