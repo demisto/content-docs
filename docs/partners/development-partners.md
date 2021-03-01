@@ -25,23 +25,34 @@ Our ecosystem of helpful partners is growing. If you are interested in becoming 
 
 
 
-### Crest Data Systems ([www.crestdatasys.com](https://crestdatasys.com))
+### Crest Data Systems
 
 ![crest_dev_partner](../doc_imgs/partners/crest_dev_partner.png)
 
 Crest Data Systems is a leading provider of software integrations and custom solutions in the areas of Data Analytics, Cyber Security, and DevOps based in the San Francisco Bay Area. Crest has built 1,500+ integrations and provided 24x7 managed (CloudOps/SRE and SOC) services for 100+ customers ranging from Fortune 500 corporations to Silicon Valley Startups to help them outperform the competition and stay ahead of the innovation curve.
 
 → Contact Malhar Shah at [malhar@crestdatasys.com](mailto:malhar@crestdatasys.com)
+([www.crestdatasys.com](https://crestdatasys.com))
 
 
-### QMasters ([qmasters.co](https://qmasters.co))
+### Loginsoft Consulting LLC
+
+![loginsoft_dev_partner](../doc_imgs/partners/loginsoft_partner.png)
+
+Loginsoft, an IT Consulting company based out of VA, US, supports leading Cybersecurity product companies in Integrations with Threat Intelligence Platforms such as TIP, SOAR and SIEM, Developing Vulnerability Detection Plugins, CVE and Threat Research. Loginsoft's Cyber engineering team provides expertise in Application/Network/IoT Security including Vulnerability Management and Threat hunting. In addition, Loginsoft provides IT engineering support to Fortune companies like Verizon, Discovery, Humana, Customers Bank and so on with Application Development and QA Automation, both onsite and offshore.
+
+→ Contact Sumanth Juturu at [sjuturu@loginsoft.com](mailto:sjuturu@loginsoft.com)
+([www.loginsoft.com](www.loginsoft.com))
+
+
+### QMasters
 
 ![qmasters_dev_partner](../doc_imgs/partners/qmasters_dev_partner.png)
-
 
 With decades of experience in consulting, project management, IT integration and working with a wide range of companies from many sectors, including the Israeli Government, QMasters addresses ever-growing security demands. QMasters has quickly established itself as a leading Information Security company, both in Israel and internationally, specializing in consulting, implementing and integrating of security products and solutions.
 
 → Contact Gregori Nazrovsky [gregorin@qmasters.co](mailto:gregorin@qmasters.com)
-
+ ([qmasters.co](https://qmasters.co))
+ 
 
 More partners are coming soon! If you are interested in becoming a partner, please [contact us](mailto:soar.alliances@paloaltonetworks.com).
