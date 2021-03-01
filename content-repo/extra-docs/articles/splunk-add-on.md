@@ -8,14 +8,8 @@ Supporting Add-on for Cortex XSOAR. This application allows to push incidents in
 ### Prerequisites
 * Splunk version 7.2 >=
 
-* In order to use a Splunk Cloud instance, you need to contact Splunk support and ask them to open API access and use the non SAML authentication with it, as stated in this message from Splunk:
-  > Use the following URL for Splunk Cloud deployments. If necessary, submit a support case to open port 8089 on your deployment. Please include the IP Addresses/CIDR Ranges you would like to have access from.<br/>
-    https://\<deployment-name\>.splunkcloud.com:8089
-  
-  For additional information see: https://docs.splunk.com/Documentation/SplunkCloud/latest/RESTTUT/RESTandCloud
 
-
-### Prepare a local Splunk Environment
+### Test on a local Splunk Environment
 Run the following command to create a Splunk docker container (replace the `*****` with any 8-character password, containing letters and digits):
 ```
 docker run -d -p "8000:8000" -p "8088:8088" -p "8089:8089" -e "SPLUNK_START_ARGS=--accept-license" -e "SPLUNK_PASSWORD=*****" --name splunk splunk/splunk:latest
@@ -29,7 +23,7 @@ Once executed, the splunk env will be available at http://localhost:8000.
 * Go to "Manage Apps" → Install app from file → upload the latest version of Demisto Add-on for Splunk.
   *Note:* if a version of the app already exists, mark the "Upgrade app" checkbox.
   
-  ![install](https://user-images.githubusercontent.com/38749041/103541256-db406b80-4ea3-11eb-9280-279f50e447f6.gif)
+  ![splunk-add-on-upload.png](../../../docs/doc_imgs/reference/splunk-add-on-upload.png)
 * Restart Splunk and login again.
 
 
@@ -38,7 +32,7 @@ Once executed, the splunk env will be available at http://localhost:8000.
     1) Create a XSOAR instance:
        Under XSOAR Instances tab, press the "Add" button. Choose an instance name, and fill the XSOAR server URL (including port if needed) and the API key fields. The API key is used for authorization with XSOAR. To generate this parameter, login to Cortex XSOAR and click on Settings → Integration → API Keys.
     
-       ![image](https://user-images.githubusercontent.com/38749041/103541473-25c1e800-4ea4-11eb-8868-8cad571ff58c.png)
+       ![splunk-add-on-instances.png](../../../docs/doc_imgs/reference/splunk-add-on-instances.png)
     2) Set up proxy settings (optional):
        Under Proxy tab, check the "Enable" checkbox and fill all the proxy parameters needed.
     3) Choose log level (optional):
@@ -47,14 +41,14 @@ Once executed, the splunk env will be available at http://localhost:8000.
        - If you have an SSL certificate, provide its full path under "Location to Certificate" field.
        - By default, "Validate SSL" is enabled.
        
-       ![image](https://user-images.githubusercontent.com/38749041/103541559-4722d400-4ea4-11eb-8b01-754d9edd570c.png)
+       ![splunk-add-on-config.png](../../../docs/doc_imgs/reference/splunk-add-on-config.png)
 * You must restart Splunk in order to apply changes in the configuration settings.
 
        
 ### Connectivity Test - Create a Custom Alert Action from Saved Searches
 * Upload data to Splunk (any small PDF, CSV or YML file).
 
-  ![alert](https://user-images.githubusercontent.com/38749041/103539271-6d467500-4ea0-11eb-89f9-2a551893800f.gif)
+  ![splunk-add-on-upload-data.png](../../../docs/doc_imgs/reference/splunk-add-on-upload-data.png)
 * When the file is uploaded, click "Start Searching" and save the search as an Alert (on the top-right corner).
   * Complete the Alert settings:
       1. Title
@@ -74,7 +68,7 @@ Once executed, the splunk env will be available at http://localhost:8000.
 
 * Go to the XSOAR server and wait for incidents (one for each event in Splunk).
 
-  ![image](https://user-images.githubusercontent.com/38749041/103539782-52c0cb80-4ea1-11eb-94a3-e284a97b33f3.png)
+  ![splunk-add-on-incidents.png](../../../docs/doc_imgs/reference/splunk-add-on-incidents.png)
 
 * *Note:* Saved Alerts can be found under Search & Reporting → Alerts.
 
@@ -109,8 +103,8 @@ We recommend checking the following logs as an initial step in troubleshooting:
 
 ### Common Issues
 
-#### Splunk Events are not Created in Demisto
-In cases where after associating Create Demisto Incident with saved searches or correlation searches using automated invocation or using ad-hoc invocation from Splunk-ES incident review dashboard, Incidents are not getting created into the Cortex XSOAR, the following criteria should be checked.
+#### Splunk Events are not Created in XSOAR
+In cases where after associating Create XSOAR Incident with saved searches or correlation searches using automated invocation or using ad-hoc invocation from Splunk-ES incident review dashboard, Incidents are not getting created into the Cortex XSOAR, the following criteria should be checked.
 
 1. Check the configuration page. You may need to restart for the modifications to take effect.
 
@@ -118,13 +112,14 @@ In cases where after associating Create Demisto Incident with saved searches or 
 
 3. Test the network connectivity in between applications to ensure that there are no connectivity issues. You may try one of the following:
    ```
-   curl -k https://<DEMISTO_SERVER>:<PORT>/proxyMode
+   curl -kv https://<DEMISTO_SERVER>:<PORT>
    telnet <DEMISTO_SERVER> <PORT>
-   wget --no-check-certificate -O - https://<DEMISTO_SERVER>:<PORT>/proxyMode
+   wget --no-check-certificate -O - https://<DEMISTO_SERVER>:<PORT>
    ```
 
 4. Test the API key generated in XSOAR.
    ```
+   curl -kv -H "Authorization:<API_KEY>" https://<DEMISTO_SERVER>:<PORT>/user
    wget --no-check-certificate --header="Authorization: <API_KEY>" -O - https://<DEMISTO_SERVER>:<PORT>/user
    ```
 
