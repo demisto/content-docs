@@ -42,10 +42,17 @@ This is the contents of the `HelloWorld_description.md` file:
 - You can use the following API Key: `43ea9b2d-4998-43a6-ae91-aba62a26868c`
 ```
 
-To display the integration description, click on the question mark button in the integration configuration panel
+### Cortex XSOAR versions up to 6.0
+To display the integration description in versions of XSOAR up to 6.0, click on the question mark button in the integration configuration panel:
 
 ![](../doc_imgs/integrations/description_question_mark.png)
 
-The content of the description file will be displayed 
+The content of the description file will be displayed:
 
 ![](../doc_imgs/integrations/description.md_example.png)
+
+### Cortex XSOAR versions 6.1 and above
+
+Starting from version 6.1, the content of the description file is shown on the side of the configuration data:
+
+![](../doc_imgs/integrations/integration-config-panel-61.png)
