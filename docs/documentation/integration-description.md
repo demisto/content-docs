@@ -43,7 +43,7 @@ This is the contents of the `HelloWorld_description.md` file:
 ```
 
 ### Cortex XSOAR versions up to 6.0
-To display the integration description in versions of XSOAR up to 6.0, click on the question mark button in the integration configuration panel:
+
 
 ![](../doc_imgs/integrations/description_question_mark.png)
 
