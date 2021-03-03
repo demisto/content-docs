@@ -685,6 +685,7 @@ This class is used to return outputs. This object represents an entry in warroom
 | indicator         | Common.Indicator | single indicator like Common.IP, Common.URL, Common.File, etc.                                                                                                                   |
 | indicators_timeline | IndicatorsTimeline | Must be an IndicatorsTimeline. used by the server to populate an indicator's timeline.                                                                                       |
 | ignore_auto_extract | bool | If set to **True** prevents the built-in [auto-extract](../incidents/incident-auto-extract) from enriching IPs, URLs, files, and other indicators from the result. Default is **False**.  |
+| mark_as_note | bool |  If set to **True** marks the entry as note. Default is **False**. |
 
 **Example**
 ```python
