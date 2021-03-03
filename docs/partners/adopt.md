@@ -20,11 +20,11 @@ Adopting a Pack has several advantages for the partner:
 
 ## Process
 The process to Adopt-a-Pack is simple:
-- Partner signs the Palo Alto Networks Technology Partnership Agreement. If you've already signed a similar agreement, you will not have to sign again. There is no additional legal paperwork to Adopt. 
-- Partner notifies Palo Alto Networks that they wish to adopt the pack. *Important:* you must notify us so we can work with you. 
-- Palo Alto Networks marks the pack as "Transitioning to Partner" for 90 days. During this time, the Partner is able to make changes and updates to the pack, but the primary support will remain with Palo Alto Networks. (If the existing pack is not in use, the transition time can be shortened.) 
-- Partner submits a Pull Request(s) of their pack to the Cortex XSOAR Marketplace in the normal manner updating APIs, marketing information, adding playbooks, etc. 
-- After the 90 day transition period has elapsed, the Partner submits a pull request updating the pack metadata and officially takes over the pack!
+1. Partner signs the Palo Alto Networks Technology Partnership Agreement. If you've already signed our agreement, you will not have to sign again. We may need to send you a statement via email but there is no additional paperwork to Adopt. 
+1. Partner notifies Palo Alto Networks that they wish to adopt the pack. *Important:* you must notify us so we can work with you. 
+1. Partner opens a PR on the pack. The PR must update the readme (per text below) and increment the version number. This starts the 90 day transition period. 
+1. Once that PR is merged, the Partner is able to make changes and updates to the pack via PR(s), but the primary support will remain with Palo Alto Networks. (If the existing pack is not in use, the transition time can be shortened.) 
+1. After the 90 day transition period has elapsed, the Partner submits a pull request updating the readme (per text below), support information, and increments the version number and officially takes over the pack!
 
 ### Text for the Pack
 For partners who received permission for the adoption process, please add the following text to the **top** of the pack readme.md file.
