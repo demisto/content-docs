@@ -18,7 +18,7 @@ This will print the statement in the War Room, where you will be able to see it.
 Keep in mind that this may not appear in the War Room depending on how close the ```demisto.results()``` statement is to the failure. To display the results before an error, you can add ```sys.exit(2)```, which will end the process before the error is returned.
 
 :::note
-Both ```demisto.results()``` and ``sys.exit()``` should not be part of your final code. Make sure you follow the [Code Conventions](../integrations/code-conventions).
+Both ```demisto.results()``` and ```sys.exit()``` should not be part of your final code. Make sure you follow the [Code Conventions](../integrations/code-conventions).
 :::
 
 ## The *Logs* 
