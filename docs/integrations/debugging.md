@@ -3,8 +3,7 @@ id: debugging
 title: Debugging
 ---
 
-Over the course of developing Integrations and Scripts, it is expected that at *some* point your code will cause something to break. In fact, one of the greatest features of Cortex XSOAR is to use machine learning to better time these crashes so they occur on your time off. 
-
+During the development phase of Integrations and Scripts, debugging plays a very important role to understand what is happening behind the scenes when your code exhibits unexpected behavior. There are a few strategies that you can implement to debug code in Cortex XSOAR, described in the folowing sections.
 
 ## Printing to the War Room
 Let's face it, a mountain of ```print``` statements are often useful in figuring out what the issue is. To do this, simply add the following:
@@ -17,6 +16,11 @@ demisto.results(error_msg)
 This will print the statement in the War Room, where you will be able to see it. Just remember to remove these statements so you can maintain the illusion of your bug never happening.
 
 Keep in mind that this may not appear in the War Room depending on how close the ```demisto.results()``` statement is to the failure. To display the results before an error, you can add ```sys.exit(2)```, which will end the process before the error is returned.
+
+:::note
+Both ```demisto.results()``` and ``sys.exit()``` should not be part of your final code. Make sure you follow the [Code Conventions](../integrations/code-conventions).
+:::
+
 ## The *Logs* 
 
 When necessary, you can look in to the server logs to determine the issue. You can use the following in your code to print information to the logs.
