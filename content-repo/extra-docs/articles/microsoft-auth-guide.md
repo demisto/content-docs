@@ -12,7 +12,7 @@ There are 2 application authentication methods available:
 2.  Self-Deployed Application
 
 ## Cortex XSOAR Application
-In this method, you give consent to the Cortex XSOAR multi-tenant application, which is maintained by Cortex XSOAR, to access your data.
+In this method, you grant consent for the Cortex XSOAR multi-tenant application to access your data. The application is maintained by Cortex XSOAR, to access your data.
 Depending on the integration, this requires either admin consent to [get access without a user](https://docs.microsoft.com/en-us/graph/auth-v2-service) or user consent to [get access on behalf of a user](https://docs.microsoft.com/en-us/graph/auth-v2-user).
 **Note**: This method requires that you give consent to all permissions requested by the application.
 
@@ -65,11 +65,11 @@ For example, for Microsoft Graph User, replace the ***SCOPE*** with `directory.a
 
 
 ## Revoking Consent
-In case you want to revoke the consent given to a usage of an application(on behalf of a user or an admin consent), please follow the instructions below:
+If you want to revoke the consent granted to an application (on behalf of a user or an admin consent), see the following instructions:
 
 1. In order to revoke consent to a Cortex XSOAR Microsoft application, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant#revoking-consent).
-2. Click on Access Panel Applications - either for users [link](https://myapplications.microsoft.com/) or for admins [link](https://portal.azure.com/#blade/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/AllApps).
-3. Use the same ID, Token and Key to redo the oProxy flow.
+2. Click **Access Panel Applications**, either for users [link](https://myapplications.microsoft.com/) or for admins [link](https://portal.azure.com/#blade/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/AllApps).
+3. Use the same ID, Token, and Key to redo the oProxy flow.
 
 
 ## Azure Integrations Parameters
