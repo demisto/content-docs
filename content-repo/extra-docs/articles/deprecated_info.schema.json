@@ -1,0 +1,57 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://demisto.com/schemas/deprecated_info.schema.json",
+    "type": "object",
+    "properties": {
+        "integrations": {
+            "description": "Array of deprecated integrations",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Display name of the integration"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "ID of the integration"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "comment": {
+                        "type": "string"
+                    },
+                    "note": {
+                        "type": "string"
+                    },
+                    "maintenance_start": {
+                        "type": "string"
+                    },
+                    "eol_start": {
+                        "type": "string"
+                    }
+                },
+                "defaultSnippets": [
+                    {
+                        "label": "Add Integration",
+                        "description": "Add a deprecated integration",
+                        "body": {
+                            "id": "$1",
+                            "note": "Use the $2 integration instead.",
+                            "maintenance_start": "$3",
+                            "eol_start": "$4"
+                        }
+                    }
+                ],
+                "required": [
+                    "id"                    
+                ]
+            }
+        }
+    },
+    "required": [
+        "integrations"
+    ]
+}

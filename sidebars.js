@@ -14,7 +14,7 @@ const sidebars = {
       items: [
         {
           type: "doc",
-          id: "integrations/getting-started-guide"    
+          id: "concepts/getting-started-guide"    
         },
         {
           type: "doc",
@@ -32,40 +32,42 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Dev Environment",
+          label: "Developing",
           collapsed: true,
           items: [
-            "integrations/dev-setup",        
-            "integrations/xsoar-ide",
-            "integrations/pycharm-plugin"
+            "concepts/xsoar-ide",
+            "concepts/pycharm-plugin",
+            "concepts/dev-setup"
           ]
         },
-        {
-          type: "category",
-          label: "Contributing",
-          collapsed: true,
-          items: [
-            "contributing/contributing",
-            "contributing/checklist",
-            "contributing/marketplace"
-          ]
-        },         
         {
           type: "doc",
           id: "concepts/faq"
         },          
       ]
     },
-     {
+    {
+      type: "category",
+      label: "Contributing",
+      collapsed: true,
+      items: [
+        "contributing/contributing",
+        "contributing/contrib-requirements",
+        "contributing/checklist",        
+        "contributing/conventions",
+        "contributing/marketplace"
+      ]
+    }, 
+    {
       type: "category",
       label: "Content Packs",
       collapsed: true,
       items: [
-        "integrations/packs-format",  
-        "integrations/pack-docs",
-        "integrations/release-notes",
-        "integrations/premium_packs"
-      ]
+        "packs/packs-format",  
+        "packs/pack-docs-redir",
+        "packs/pack-rn-redir",
+        "packs/premium_packs"
+        ]
     },
     {
       type: "category",
@@ -80,8 +82,9 @@ const sidebars = {
             "integrations/package-dir",
             "integrations/yaml-file",
             "integrations/parameter-types",
-            "integrations/integration-description",
-            "integrations/integration-logo"
+            "integrations/integration-desc-redir",
+            "integrations/integration-logo",
+            "integrations/integration-doc-redir"
           ]
         },
         {       
@@ -123,10 +126,6 @@ const sidebars = {
             "integrations/test-playbooks",
             "integrations/debugging",
           ]
-        }, 
-        {
-          type: "doc",
-          id: "integrations/integration-docs"
         },
         {       
           type: "category",
@@ -164,7 +163,8 @@ const sidebars = {
         "playbooks/playbooks-communication-task-customize-message",
         "playbooks/generic-polling",
         "playbooks/playbooks-field-reference",
-        "playbooks/playbooks-generic"
+        "playbooks/playbooks-generic",
+        "playbooks/playbook-doc-redir"
       ]
     },
     {
@@ -184,10 +184,23 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "Documentation",
+      collapsed: true,
+      items: [
+        "documentation/documentation_tips",
+        "documentation/pack-docs",
+        "documentation/release-notes",
+        "documentation/readme_file",
+        "documentation/integration-description"
+        ]
+    },
+    {
+      type: "category",
       label: "Tutorials",
       collapsed: true,
       items: [
             "tutorials/tut-setup-dev",
+            "tutorials/tut-design",
             "tutorials/tut-integration-ui"            
         ]
     },
@@ -206,6 +219,7 @@ const sidebars = {
         "partners/why-xsoar",
         "partners/become-a-tech-partner",
         "partners/marketplace",
+        "partners/adopt",
         "partners/certification",
         "partners/office-hours",
         "partners/development-partners"
@@ -218,5 +232,8 @@ if (fs.existsSync("docs/reference/sidebar.json")) {
   referenceSideBar = fs.readJSONSync("docs/reference/sidebar.json")
   sidebars["reference"] = referenceSideBar
 }
-
+if (fs.existsSync("docs/reference/articles-sidebar.json")) {
+  articlesSideBar = fs.readJSONSync("docs/reference/articles-sidebar.json")
+  sidebars["articles"] = articlesSideBar
+}
 module.exports = sidebars;

@@ -5,6 +5,12 @@ description: Common troubleshooting steps for automations and integrations.
 
 This guide provides common troubleshooting steps. When reporting an issue to Cortex XSOAR Support, always include all information obtained from running the following troubleshooting steps.
 
+## Reverting a Pack to a Previous Version
+If you encounter an issue after upgrading a Pack, you can revert to a previous version by going to *Installed Content Packs* -> *Pack Name* -> *Version History* and choosing *Revert to this version*. Sample screenshot:
+![Revert to version](https://user-images.githubusercontent.com/1395797/106351932-0faf1800-62e8-11eb-9433-5c80c632cf33.png)
+
+
+
 ## Network Troubleshooting
 
 Examples of common errors indicating that there probably is a networking issue:
@@ -103,7 +109,7 @@ These errors are usually as a result of a Server using an untrusted certificate 
 * To trust custom certificates in Cortex XSOAR Server or Engines follow the following [instructions](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/docker/configure-python-docker-integrations-to-trust-custom-certificates).
 
 ### CertificatesTroubleshoot Automation
-Use the [CertificatesTroubleshoot Automation](https://pull-request-351--demisto-content-docs.netlify.app/docs/reference/scripts/certificates-troubleshoot) to retrieve and decode an endpoint certificate. Additionally, use it to retrieve, decode and validiate the custom certificates deployed in Docker containers.
+Use the [CertificatesTroubleshoot Automation](https://xsoar.pan.dev/docs/reference/scripts/certificates-troubleshoot) to retrieve and decode an endpoint certificate. Additionally, use it to retrieve, decode and validiate the custom certificates deployed in Docker containers.
 
 **Common reasons for TLS/SSL issues and resolutions**
 
@@ -152,6 +158,8 @@ For example for an integration instance name of: `Cortex_XDR_instance_1` run the
 !Cortex_XDR_instance_1-fetch debug-mode=true
 ```
 
+**Note:** if the instance name contains spaces, replace the space with an underscore (`_`).
+
 Screenshot of running a `fetch` command with `debug-mode=true` and the resulting log file (`fetch-incidents.log`):
 ![fetch-incidents-debug](../../../docs/doc_imgs/reference/fetch-incidents-debug.png)
 
@@ -167,6 +175,8 @@ For example for an integration instance name of: `Cortex_XDR_instance_1` run the
 ```
 !Cortex_XDR_instance_1-test-module debug-mode=true
 ```
+
+**Note:** if the instance name contains spaces, replace the space with an underscore (`_`).
 
 Screenshot of running a `test-module` command with `debug-mode=true` and the resulting log file (`test-module.log`):
 ![test-module-debug](../../../docs/doc_imgs/reference/test-module-debug.png)    

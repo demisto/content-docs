@@ -11,17 +11,23 @@ Cortex XSOAR's security orchestration and automation enables standardized, autom
 
 ## Developer Documentation
 
-The Cortex XSOAR Developer Hub is organized in different sections to guide you through the process of creating a successful Cortex XSOAR contribution. Start with the [Getting Started](integrations/getting-started-guide) section to understand the Cortex XSOAR concepts, the Contribution process, and to set up a development environment.
+The Cortex XSOAR Developer Hub is organized in different sections to guide you through the process of creating a successful Cortex XSOAR contribution. Start with the [Getting Started](concepts/getting-started-guide) section to understand the Cortex XSOAR concepts, the Contribution process, and to set up a development environment.
 
 On the left sidebar you'll find documentation for all the different things you can build: start with [Content Packs](integrations/packs-format) that represent the backbone of every contribution then, depending on what you want to create, explore the other sections accordingly: **Integrations & Scripts**, **Playbooks**, **Incidents, Fields & Layouts**.
 
-## Tutorials
+Finally, the **Tutorials** section includes longer end-to-end articles that guide you through a specific process (i.e. design).
 
-Tutorials are detailed  articles that guide you through a specific task, end-to-end. If you're getting started, make sure you check out the one to set up your development environment [here](tutorials/tut-setup-dev).
+## Articles
+
+From the top bar, navigate to the [Articles](reference/articles-index) section to find useful documentation about Cortex XSOAR and its Content. Articles are mostly meant for end users and SOC Engineers.
 
 ## Reference
 
 From the top bar, navigate to the [Reference](reference/index) section to find detailed reference documentation about all the Cortex XSOAR components: Integrations, Scripts, Playbooks, Release Notes, Articles, etc. You can use the search bar on the top right to find anything on this site.
+
+## Developer Newsletter
+
+The Cortex XSOAR content is evolving continuously thanks to both our internal teams and many external contributions. To make sure you're always up-to-speed about everything you need to develop content on Cortex XSOAR, including tips and tricks, sign up to the Cortex XSOAR [Developer Newsletter](https://start.paloaltonetworks.com/cortex-xsoar-developer-newsletter.html).
 
 ## Partners
 

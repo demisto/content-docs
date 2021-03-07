@@ -50,14 +50,16 @@ You can disable auto-extract for a specific automation or integration.
 ### Disable for an Automation
 To disable Auto Extract for an automation, add the "IgnoreAutoExtract": True value to the entry return.
 
-`entry = {
+```
+entry = {
                     'Type': entryTypes['note'],
                     'Contents': { 'Echo' : demisto.args()['echo'] },
                     'ContentsFormat': formats['json'],
                     'ReadableContentsFormat': formats['markdown'],
                     'HumanReadable': hr,
                     'IgnoreAutoExtract' : True
-            }`
+            }
+```
 
 
 ### Disable for Integrations

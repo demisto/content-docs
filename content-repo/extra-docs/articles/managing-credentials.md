@@ -11,7 +11,7 @@ There are several ways you can configure credentials for an integration instance
 
 *   Manually enter a username and password when you configure the integration instance.
 *   Use credentials from Cortex XSOAR Credentials.
-*   Use credentials saved in an external credentials vault, e.g., CyberArk, or HashiCorp.
+*   Use credentials saved in an external credentials vault, e.g., [CyberArk](https://xsoar.pan.dev/docs/reference/integrations/cyber-ark-aim-v2), or [HashiCorp](https://xsoar.pan.dev/docs/reference/integrations/hashi-corp-vault).
 
 ## Manually Enter Credentials
 

@@ -81,6 +81,28 @@ Every Feed integration should have the following parameters in the integration Y
 ```
 The `defaultvalue` of the `feedReputation`, `feedReliability`, `feedExpirationPolicy`, and `feedFetchInterval` parameters should be set according to the qualities associated with the feed source for which you are developing a feed integration.
 
+## Incremental Feeds
+Incremental Feeds pull only new or modified indicators that have been sent from the 3rd party vendor. As the determination if the indicator is new or modified happens on the 3rd-party vendor's side, and only indicators that are new or modified are sent to Cortex XSOAR, all indicators coming from these feeds are labeled new or modified.
+
+Examples of incremental feeds usually include feeds that fetch based on a time range. For example, a daily feed which provides new indicators for the last day or a feed which is immutable and provides indicators from a search date onwards.
+
+To indicate to the Cortex XSOAR Server that a feed is incremental add the configuration parameter:  `feedIncremental`. If the user should not be able to modify this setting, set the parameter to **hidden** with a `defaultValue` of **true**. For example:
+```yml
+- additionalinfo: Incremental feeds pull only new or modified indicators that have been sent from the integration. The determination if the indicator is new or modified happens on the 3rd-party vendor's side, so only indicators that are new or modified are sent to Cortex XSOAR. Therefore, all indicators coming from these feeds are labeled new or modified.
+  defaultvalue: 'true'
+  display: Incremental feed
+  hidden: true
+  name: feedIncremental
+  required: false
+  type: 8
+```
+
+If the feed supports both incremental and non-incremental modes, provide the configuration parameter as non-hidden. Thus, a user will be able to modify this settings as is fit. In the feed code inspect the `feedIncremental` parameter to perform the proper fetch logic.
+
+Code examples of Incremental Feeds:
+* [AutoFocus Daily Feed](https://github.com/demisto/content/blob/master/Packs/AutoFocus/Integrations/FeedAutofocusDaily/FeedAutofocusDaily.yml)
+* [DHS Feed](https://github.com/demisto/content/blob/master/Packs/FeedDHS/Integrations/DHS_Feed/DHS_Feed.yml)
+
 ## Commands
 Every Feed Integration will at minimum have three commands:
 - `test-module` - this is the command that is run when the `Test` button in the configuration panel of an integration is clicked.
