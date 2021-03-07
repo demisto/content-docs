@@ -10,6 +10,9 @@ An example mirroring integration can be seen [here](https://github.com/demisto/c
 
 Mirroring integrations are developed the same as other integrations. They provide a few extra configuration parameters and APIs.
 
+:::note 
+Once an incident field is changed manually within XSOAR, it will be marked as "dirty" and will not be updated in XSOAR throughout the life of the incident. It should be noted that in the case outbound mirroring is enabled, any changes to the incident in XSOAR will still be reflected in the external system.
+:::
 
 ## Supported Server Version
 Mirroring is only supported from version 6.0.0 and on.
@@ -61,7 +64,7 @@ Arguments explanation:
 An example for such a function could be:
 ```python
 def get_remote_data_command(client, args):
-    parsed_args = GetRemoteDateArgs(args)
+    parsed_args = GetRemoteDataArgs(args)
     try:
       new_incident_data: Dict = client.get_incident_data(parsed_args.remote_incident_id, parsed_args.last_update)    
       raw_entries: List[dict] = client.get_incident_entries(parsed_args.remote_incident_id, parsed_args.last_update)

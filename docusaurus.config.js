@@ -4,6 +4,27 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+const visit = require("unist-util-visit");
+const path = require("path");
+
+const remarkPlugin = () => {
+  const transformer = (root) => {
+    visit(root, "link", (node) => {
+      if (!node.url) {
+        console.log("empty link", node);
+        node.url = "#";
+      }
+    });
+
+    visit(root, "image", (node) => {
+      if (!node.url) {
+        console.log("empty image", node);
+        node.url = "/img/placeholder.png";
+      }
+    });
+  };
+  return transformer;
+};
 
 module.exports = {
   title: "Cortex XSOAR",
@@ -27,15 +48,15 @@ module.exports = {
         src: "/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal.svg",
         srcDark: "/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal-KO.svg"
       },
-      links: [
+      items: [
         {
           to: "/docs/welcome",
           label: "Developer Docs",
           position: "left"
         },
         {
-          to: "/docs/tutorials/tut-setup-dev",
-          label: "Tutorials",
+          to: "/docs/reference/articles-index",
+          label: "Articles",
           position: "left"
         },
         {
@@ -56,6 +77,10 @@ module.exports = {
             {
               to: "/docs/partners/marketplace",
               label: "Marketplace"
+            },
+            {
+              to: "/docs/partners/adopt",
+              label: "Adopt-a-Pack"
             },
             {
               to: "/docs/partners/certification",
@@ -87,29 +112,6 @@ module.exports = {
           className: "header-github-link",
           "aria-label": "GitHub repository",
         },
-      ],
-      sites: [
-        {
-          label: "Products",
-          items: [
-            {
-              href: "https://panos.pan.dev",
-              label: "PAN-OS",
-              logo: "/img/strata_favicon.png"
-            },
-            {
-              href: "https://cortex.pan.dev",
-              label: "Cortex Data Lake",
-              logo: "/img/cortexfavicon.png"
-            },
-            {
-              href: "https://xsoar.pan.dev",
-              label: "Cortex XSOAR",
-              logo: "/img/Cortex-XSOAR-product-green.svg"
-            }
-          ],
-          position: "products"
-        }
       ]
     },
     footer: {
@@ -162,6 +164,7 @@ module.exports = {
           include: ["**/*.md", "**/*.mdx"], // Extensions to include.
           docLayoutComponent: "@theme/DocPage",
           docItemComponent: "@theme/DocItem",
+          beforeDefaultRemarkPlugins: [remarkPlugin],
           remarkPlugins: [],
           rehypePlugins: [],
           showLastUpdateAuthor: false,
@@ -169,17 +172,41 @@ module.exports = {
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css")
+        },
+        sitemap: {
+          cacheTime: 600 * 1000, // 600 sec - cache purge period
+          changefreq: "weekly",
+          priority: 0.5
         }
       }
     ]
   ],
-  plugins: [
-    "@docusaurus/plugin-sitemap",
-    {
-      cacheTime: 600 * 1000, // 600 sec - cache purge period
-      changefreq: "weekly",
-      priority: 0.5
-    }
-  ],
-  customFields: {}
+  customFields: {
+    sites: [
+      {
+        label: "Products",
+        items: [
+          {
+            href: "https://panos.pan.dev",
+            label: "PAN-OS",
+            logo: "/img/strata_favicon.png"
+          },
+          {
+            href: "https://cortex.pan.dev",
+            label: "Cortex Data Lake",
+            logo: "/img/cortexfavicon.png"
+          },
+          {
+            href: "https://xsoar.pan.dev",
+            label: "Cortex XSOAR",
+            logo: "/img/Cortex-XSOAR-product-green.svg"
+          }
+        ],
+        position: "products"
+      }
+    ],
+  },
+  onBrokenLinks: "warn",
+  onBrokenMarkdownLinks: "warn",
+  onDuplicateRoutes: "warn",
 };

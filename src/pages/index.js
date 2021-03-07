@@ -20,10 +20,10 @@ const features = [
     imageUrl: "img/undraw_pair_programming_njlp.svg",
     description: (
       <>
-        Cortex XSOAR is the most comprehensive SOAR platform in the market today,
-        orchestrating across hundreds of security products to help your SOC
-        customers standardize and automate their processes for faster response
-        times and increased team productivity. 
+        Cortex XSOAR is the most comprehensive SOAR platform in the market
+        today, orchestrating across hundreds of security products to help your
+        SOC customers standardize and automate their processes for faster
+        response times and increased team productivity.
       </>
     ),
     button: (
@@ -47,17 +47,23 @@ const features = [
           Watch Videos
         </Link>
       </div>
-    )
+    ),
   },
   {
     title: <>Why Become a Partner?</>,
     imageUrl: "img/undraw_mind_map_cwng.svg",
     description: (
       <>
-        Join our 400+ <a href="https://www.paloaltonetworks.com/cortex/xsoar-ecosystem" target="_blank">
-              integrations network</a> to increase your reach into some of
-        the largest SOCs in the world. Access over 70,000 customers in 150+
-        locations across multiple industries.
+        Join our 400+{" "}
+        <a
+          href="https://www.paloaltonetworks.com/cortex/xsoar-ecosystem"
+          target="_blank"
+        >
+          integrations network
+        </a>{" "}
+        to increase your reach into some of the largest SOCs in the world.
+        Access over 70,000 customers in 150+ locations across multiple
+        industries.
       </>
     ),
     button: (
@@ -72,7 +78,7 @@ const features = [
           Learn More
         </Link>
       </div>
-    )
+    ),
   },
   {
     title: <>Cortex XSOAR Use Cases</>,
@@ -96,22 +102,24 @@ const features = [
           Learn More
         </Link>
       </div>
-    )
-  }
+    ),
+  },
 ];
 
 function Feature({ imageUrl, title, description, button }) {
   const imgUrl = useBaseUrl(imageUrl);
   return (
     <div className={classnames("col col--4", styles.features)}>
-      {imgUrl && (
-        <div className="text--center">
-          <img className={styles.featureImage} src={imgUrl} alt={title} />
+      <div className={classnames("card shadow--lw", styles.card)}>
+        <div className="card__image">
+          <img src={imgUrl} title={title} className={styles.cardImage} />
         </div>
-      )}
-      <h3>{title}</h3>
-      <p>{description}</p>
-      {button}
+        <div className={(classnames("card__body"), styles.cardBody)}>
+          <h4>{title}</h4>
+          <small>{description}</small>
+        </div>
+        <div className="card__footer">{button}</div>
+      </div>
     </div>
   );
 }
@@ -192,11 +200,15 @@ function Home() {
             <div className="customer-inner">
               Are you a Cortex XSOAR Customer, Developer or Partner?
               <Link to="/docs/welcome"> Get Started Now!</Link>
-              <br /> 
-              Join <b>#demisto-developers</b> on our <a href="https://start.paloaltonetworks.com/join-our-slack-community">Slack community</a> today.
+              <br />
+              Join <b>#demisto-developers</b> on our{" "}
+              <a href="https://start.paloaltonetworks.com/join-our-slack-community">
+                Slack community
+              </a>{" "}
+              today.
             </div>
           </div>
-        </section>     
+        </section>
         <section className={styles.tools}>
           <div className="container">
             <div className="row">
@@ -224,7 +236,7 @@ function Home() {
         <section className={styles.features}>
           <div className="integrations">
             <div className="integrations-inner">
-              See all {" "}
+              See all{" "}
               <a href="https://www.paloaltonetworks.com/cortex/xsoar-ecosystem">
                 existing integrations
               </a>

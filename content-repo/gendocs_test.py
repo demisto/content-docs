@@ -1,8 +1,11 @@
 import json
+import re
 
-from gendocs import INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
+from gendocs import DEPRECATED_INFO_FILE, DeprecatedInfo, INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
     index_doc_infos, DocInfo, gen_html_doc, process_release_doc, process_extra_readme_doc, \
-    INTEGRATIONS_PREFIX, get_deprecated_data, insert_approved_tags_and_usecases
+    INTEGRATIONS_PREFIX, get_deprecated_data, insert_approved_tags_and_usecases, \
+    find_deprecated_integrations, get_blame_date, get_deprecated_display_dates, \
+    get_fromversion_data, add_deprected_integrations_info, merge_deprecated_info, get_extracted_deprecated_note
 from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server, fix_relative_images, normalize_id
 import os
 import pytest
@@ -72,6 +75,17 @@ def test_fix_relative_images(tmp_path):
         content = f.read()
     res = fix_relative_images(content, f'{SAMPLE_CONTENT}/Integrations/Gmail', 'google-calendar', str(tmp_path), 'relative-test')
     assert res == content
+
+
+def test_fix_relative_images_html_img(tmp_path):
+    readme = f'{SAMPLE_CONTENT}/Packs/ProofpointServerProtection/Integrations/ProofpointProtectionServerV2/README.md'
+    with open(readme, 'r') as f:
+        content = f.read()
+    res = fix_relative_images(content, f'{SAMPLE_CONTENT}/Packs/ProofpointServerProtection/Integrations/ProofpointProtectionServerV2',
+                              'proofpoint-test', str(tmp_path), 'relative-test')
+    target_img_name = 'proofpoint-test-_-__-__-doc_imgs-api_role.png'
+    assert f'relative-test/{target_img_name}' in res
+    os.path.isfile(tmp_path / target_img_name)
 
 
 def test_findfiles():
@@ -217,16 +231,41 @@ def test_process_extra_doc(tmp_path, mdx_server):
         assert f.readline().startswith('custom_edit_url: https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/integrations')
 
 
+def test_process_private_doc(tmp_path, mdx_server):
+    readme_file_path = f'{SAMPLE_CONTENT}/Packs/HelloWorldPremium/Playbooks' \
+                       f'/playbook-Handle_Hello_World_Premium_Alert_README.md'
+    res = process_extra_readme_doc(str(tmp_path), 'Playbooks', readme_file_path, private_packs=True)
+    assert not res.error_msg
+    assert res.id == 'handle-hello-world-premium-alert'
+    assert res.description.startswith('This is a playbook which will handle the alerts')
+    assert res.name == 'Handle Hello World Premium Alert'
+    with open(str(tmp_path / f'{res.id}.md'), 'r') as f:
+        assert f.readline().startswith('---')
+        assert f.readline().startswith(f'id: {res.id}')
+        assert f.readline().startswith(f'title: "{res.name}"')
+
+
 def test_get_deprecated_data():
     res = get_deprecated_data({"deprecated": True}, "Deprecated - We recommend using ServiceNow v2 instead.", "README.md")
-    assert "We recommend using ServiceNow v2 instead" in res
+    assert "We recommend using ServiceNow v2 instead." in res
     assert get_deprecated_data({"deprecated": False}, "stam", "README.md") == ""
     res = get_deprecated_data({"deprecated": True}, "Deprecated: use Shodan v2 instead. Search engine for Internet-connected devices.", "README.md")
-    assert "use Shodan v2 instead" in res
+    assert "Use Shodan v2 instead" in res
     res = get_deprecated_data({"deprecated": True}, "Deprecated. Use The Generic SQL integration instead.", "README.md")
     assert "Use The Generic SQL integration instead" in res
     res = get_deprecated_data({}, "Deprecated. Add information about the vulnerability.", "Packs/DeprecatedContent/Playbooks/test-README.md")
     assert "Add information" not in res
+
+
+@pytest.mark.parametrize("test_input, expected", [({'fromversion': '5.5.0'},
+                                                   ':::info Supported versions\nSupported '
+                                                   'Cortex XSOAR versions: 5.5.0 and later.\n:::\n\n'),
+                                                  ({'fromversion': '5.0.0'}, ''),
+                                                  ({}, ''),
+                                                  ({'fromversion': '4.0.0'}, '')])
+def test_get_fromversion_data(test_input, expected):
+    res = get_fromversion_data(test_input)
+    assert res == expected
 
 
 def test_insert_approved_tags_and_usecases(tmp_path):
@@ -241,9 +280,9 @@ def test_insert_approved_tags_and_usecases(tmp_path):
     Then:
         - Ensure the approved tags and use cases are added to the content docs article as expected
     """
-    integrations_dir = tmp_path / 'docs' / 'integrations'
-    integrations_dir.mkdir(parents=True)
-    pack_docs = integrations_dir / 'pack-docs.md'
+    documentation_dir = tmp_path / 'docs' / 'documentation'
+    documentation_dir.mkdir(parents=True)
+    pack_docs = documentation_dir / 'pack-docs.md'
     pack_docs.write_text("""
     ***Use-case***
 
@@ -279,3 +318,59 @@ def test_insert_approved_tags_and_usecases(tmp_path):
         assert 'IoT' in pack_docs_file_content
         assert 'Machine Learning' in pack_docs_file_content
         assert '</details>' in pack_docs_file_content
+
+
+def test_get_blame_date():
+    res = get_blame_date(SAMPLE_CONTENT, f'{SAMPLE_CONTENT}/Packs/DeprecatedContent/Integrations/integration-AlienVaultOTX.yml', 6)
+    assert res.month == 1
+    assert res.year == 2021
+
+
+SAMPLE_CONTENT_DEP_INTEGRATIONS_COUNT = 7
+
+
+def test_find_deprecated_integrations():
+    res = find_deprecated_integrations(SAMPLE_CONTENT)
+    for info in res:
+        assert '2021' in info['maintenance_start']
+    assert len(res) == SAMPLE_CONTENT_DEP_INTEGRATIONS_COUNT
+
+
+def test_add_deprected_integrations_info(tmp_path):
+    deprecated_doc = tmp_path / "deprecated_test.md"
+    deprecated_info = tmp_path / "deprecated_info_test.json"
+    with open(deprecated_info, "wt") as f:
+        json.dump({"integrations": []}, f)
+    add_deprected_integrations_info(SAMPLE_CONTENT, str(deprecated_doc), str(deprecated_info), str(tmp_path))
+    with open(deprecated_doc, "rt") as f:
+        dep_content = f.read()
+        assert len(re.findall('Maintenance Mode Start Date', dep_content)) == SAMPLE_CONTENT_DEP_INTEGRATIONS_COUNT
+    with open(tmp_path / "deprecated_test.json", 'r') as f:
+        dep_json = json.load(f)
+        assert len(dep_json['integrations']) == SAMPLE_CONTENT_DEP_INTEGRATIONS_COUNT
+
+
+def test_merge_deprecated_info():
+    infos = [
+        DeprecatedInfo(id="mssql", name="test1 name"),
+        DeprecatedInfo(id="test2", name="test2 name")
+    ]
+    res = merge_deprecated_info(infos, DEPRECATED_INFO_FILE)
+    res_map = {i['id']: i for i in res}
+    assert res_map['mssql']['name'] == 'SQL Server'
+    assert res_map['test2']['name'] == "test2 name"
+    assert res_map['slack']['name'] == "Slack"
+
+
+def test_get_deprecated_display_dates():
+    (start, end) = get_deprecated_display_dates(datetime(2020, 12, 30))
+    assert start == "Jan 01, 2021"
+    assert end == "Jul 01, 2021"
+
+
+def test_get_extracted_deprecated_note():
+    res = get_extracted_deprecated_note(
+        'Human-vetted, Phishing-specific Threat Intelligence from Phishme. Deprecated. Use the Cofense Intelligence integration instead.')
+    assert res == 'Use the Cofense Intelligence integration instead.'
+    res = get_extracted_deprecated_note('Deprecated. Vendor has stopped this service. No available replacement.')
+    assert res == 'Vendor has stopped this service. No available replacement.'

@@ -1,6 +1,7 @@
 ---
 id: package-dir
-title: Directory Structure
+title: Integrations and Scripts Directory Structure
+sidebar_label: Directory Structure
 ---
 
 Integrations and Automation Scripts in Cortex XSOAR are stored in YAML files that include all the required information (metadata, code, images, etc.). This is what we call the **Unified YAML** file.
@@ -30,17 +31,17 @@ The `Directory Structure` is as follows:
 ```
    
 
-For example, the integration [Palo Alto Networks Cortex XDR](https://github.com/demisto/content/tree/master/Packs/CortexXDR/Integrations/PaloAltoNetworks_XDR) is stored under Integrations directory in a sub-directory named `PaloAltoNetworks_XDR` and contain the following files:
+For example, the integration [Cortex XDR](https://github.com/demisto/content/tree/master/Packs/CortexXDR/Integrations/CortexXDRIR) is stored under Integrations directory in a sub-directory named `CortexXDRIR` and contain the following files:
 
 ```
 .Integrations   
 │
-└─── .PaloAltoNetworks_XDR
-│    ├── PaloAltoNetworks_XDR.py
-│    ├── PaloAltoNetworks_XDR_test.py
-│    ├── PaloAltoNetworks_XDR.yml
-│    ├── PaloAltoNetworks_XDR_image.png
-│    ├── PaloAltoNetworks_XDR_description.md
+└─── .CortexXDRIR
+│    ├── CortexXDRIR.py
+│    ├── CortexXDRIR_test.py
+│    ├── CortexXDRIR.yml
+│    ├── CortexXDRIR_image.png
+│    ├── CortexXDRIR_description.md
 │    ├── README.md
 │    ├── Pipfile
 |    └── Pipfile.lock

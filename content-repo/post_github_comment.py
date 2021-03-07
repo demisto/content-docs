@@ -3,11 +3,17 @@
 # Run this file with pipenv. For example pipenv run content-repo/post_github_comment.py
 
 import argparse
+import traceback
+from typing import List, Tuple
 import requests
 import subprocess
 import os
 import re
 import json
+import yaml
+from mdx_utils import normalize_id
+
+ROOT_DIR = os.path.join(os.path.dirname(__file__), '..')
 
 
 def get_post_url():
@@ -31,6 +37,57 @@ def get_post_url():
     return post_url
 
 
+def get_modified_files():
+    files = subprocess.check_output(['git', 'diff', '--name-only', 'origin/master...HEAD', '--', 'docs', 'content-repo/extra-docs/'],
+                                    text=True, cwd=ROOT_DIR)
+    return [line for line in files.splitlines() if line.lower().endswith('.md')]
+
+
+def get_front_matter_data(file: str):
+    with open(file, "r") as f:
+        head = f.read(4096)
+    front_matter_match = re.match(r'---\n(.*?)\n---', head, re.DOTALL)
+    if not front_matter_match:
+        raise ValueError(f'No front matter. Doc file: {file}')
+    yml_matter = front_matter_match[1]
+    return yaml.safe_load(yml_matter)
+
+
+def get_link_for_doc_file(base_url: str, file: str):
+    yml_data = get_front_matter_data(file)
+    name = yml_data.get('title') or file
+    relative_path = os.path.relpath(file, ROOT_DIR)
+    path = f'{base_url}/{os.path.dirname(relative_path)}/{yml_data["id"]}'
+    return (name, path)
+
+
+def get_link_for_ref_file(base_url: str, file: str):
+    if 'releases' in file:
+        name = os.path.splitext(os.path.basename(file))[0]
+        return (f'Content Release {name}', f'{base_url}/docs/reference/releases/{name}')
+    # articles/integrations
+    yml_data = get_front_matter_data(file)
+    name = yml_data.get('title') or file
+    id = yml_data.get('id') or normalize_id(name)
+    relative_path = os.path.relpath(file, ROOT_DIR).replace('content-repo/extra-docs', 'docs/reference')
+    path = f'{base_url}/{os.path.dirname(relative_path)}/{id}'
+    return (name, path)
+
+
+def get_modified_links(base_url: str):
+    links: List[Tuple[str, str]] = []
+    for f in get_modified_files():
+        try:
+            if f.startswith('docs'):
+                links.append(get_link_for_doc_file(base_url, f))
+            else:
+                links.append(get_link_for_ref_file(base_url, f))
+        except Exception as ex:
+            print(f'Failed getting modified link for file: {f}. Exception: {str(ex)}')
+            traceback.print_exc()
+    return links
+
+
 def post_comment(netlify_deploy_file: str):
     post_url = get_post_url()
     if not post_url:
@@ -51,6 +108,17 @@ def post_comment(netlify_deploy_file: str):
         message = "# Production Site Updated\n\n" \
             "Congratulations! The automatic build has completed succesfully.\n" \
             "The production site of our docs has been updated. You can view it at: https://xsoar.pan.dev"
+    else:
+        # add detcted changes
+        try:
+            links = get_modified_links(deplpy_url)
+            if links:
+                message += '\n\nDetected modified urls:\n'
+                for link in links:
+                    message += f'*  [{link[0]}]({link[1]})\n'
+        except Exception as ex:
+            print(f'Failed getting modified file links: {str(ex)}')
+            traceback.print_exc()
     print(f'Going to post comment:\n------------\n{message}\n------------\nto url: {post_url}')
     verify = os.getenv('SKIP_SSL_VERIFY') is None
     headers = {'Authorization': 'Bearer ' + token}

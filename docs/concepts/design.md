@@ -13,4 +13,6 @@ We recommend the following process:
  3. Follow the [Best Practices](../concepts/design-best-practices) as much as possible.
  4. Compile the Design Document you received from the Cortex XSOAR Alliances Team. Here is an [empty template](https://docs.google.com/document/d/183jIki5hAwADUL7L5PREtjDCZVKQOTmqypeomzSpBZI/edit?usp=sharing) you can use. Ask for a review if you want to make sure it's work. Click [here](https://docs.google.com/document/d/1wETtBEKg37PHNU8tYeB56M1LE314ux086z3HFeF_cX0) to see a compiled example of a Design Document.
 
-After your design is at least 50% complete and you have an idea of what you need to do, start building the content. You can get back to the design to review details later in an interative process.
+After your design is at least 50% complete and you have an idea of what you need to do, start building the content. You can get back to the design to review details later in an continuous process.
+
+Follow the [Contribution Design](../tutorials/tut-design) tutorial for more details.

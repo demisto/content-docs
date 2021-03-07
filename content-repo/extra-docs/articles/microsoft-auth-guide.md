@@ -51,16 +51,17 @@ Some of the Cortex XSOAR-Microsoft integrations (e.g., Azure Sentinel) require a
 To configure a Microsoft integration that uses this authorization flow with a self-deployed Azure application:
 
 1. Make sure the needed permissions are granted for the app registration, e.g for Microsoft Graph User: API/Permission name `Directory.AccessAsUser.All` of type `Delegated`.
-2. Copy the following URL and replace the ***TENANT_ID***, ***CLIENT_ID***, ***REDIRECT_URI***, ***SCOPE*** with your own client ID and redirect URI, accordingly.
+2. The Redirect URI can direct any web application that you wish to receive responses from Azure AD. If you are not sure what to set, you can use `https://localhost`.
+3. Copy the following URL and replace the ***TENANT_ID***, ***CLIENT_ID***, ***REDIRECT_URI***, ***SCOPE*** with your own client ID and redirect URI, accordingly.
 ```https://login.microsoftonline.com/TENANT_ID/oauth2/v2.0/authorize?response_type=code&scope=offline_access%20SCOPE&client_id=CLIENT_ID&redirect_uri=REDIRECT_URI```
 For example, for Microsoft Graph User, replace the ***SCOPE*** with `directory.accessasuser.all`.
-3. Enter the link and you will be prompted to grant Cortex XSOAR permissions for your Azure Service Management. You will be automatically redirected to a link with the following structure:
+4. Enter the link and you will be prompted to grant Cortex XSOAR permissions for your Azure Service Management. You will be automatically redirected to a link with the following structure:
 ```REDIRECT_URI?code=AUTH_CODE&session_state=SESSION_STATE```
-4. Copy the ***AUTH_CODE*** (without the "code=" prefix) and paste it in your instance configuration under the **Authorization code** parameter. 
-5. Enter your client ID in the ***ID*** parameter field. 
-6. Enter your client secret in the ***Key*** parameter field.
-7. Enter your tenant ID in the ***Token*** parameter field.
-8. Enter your redirect URI in the ***Redirect URI*** parameter field.
+5. Copy the ***AUTH_CODE*** (without the "code=" prefix) and paste it in your instance configuration under the **Authorization code** parameter. 
+6. Enter your client ID in the ***ID*** parameter field. 
+7. Enter your client secret in the ***Key*** parameter field.
+8. Enter your tenant ID in the ***Token*** parameter field.
+9. Enter your redirect URI in the ***Redirect URI*** parameter field.
 
 
 ## Revoking Consent
@@ -69,3 +70,21 @@ In case you want to revoke the consent given to a usage of an application(on beh
 1. In order to revoke consent to a Cortex XSOAR Microsoft application, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant#revoking-consent).
 2. Click on Access Panel Applications - either for users [link](https://myapplications.microsoft.com/) or for admins [link](https://portal.azure.com/#blade/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/AllApps).
 3. Use the same ID, Token and Key to redo the oProxy flow.
+
+
+## Azure Integrations Parameters
+In order to use the Cortex XSOAR Azure application, you need to fill in your subscription ID and resource group name, which you can find in the Azure Portal.
+
+1. Log in to the [Azure Portal Home Page](https://portal.azure.com/#home) using your Azure credentials.
+
+2. Search for your Azure product, for example SQL Servers: 
+
+![Azure Portal Home Page](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/home_microsoft_azure_portal.png)
+
+3. Click on your resource:
+
+![Choose your resource](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/choose_your_resource.png)
+
+After you a redirected to the next page, in the **Overview** tab you will find your Resource group and Subscription ID:
+
+![Overview](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/subscription_id_resourse_group.png)
