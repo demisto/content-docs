@@ -64,8 +64,5 @@ For example, for Microsoft Graph User, replace the ***SCOPE*** with `directory.a
 
 
 ## Revoking Consent
-In case you want to revoke the consent given to a usage of an application(on behalf of a user or an admin consent), please follow the instructions below:
+In order to revoke consent to a Cortex XSOAR Microsoft application, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant#revoking-consent).
 
-1. In order to revoke consent to a Cortex XSOAR Microsoft application, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant#revoking-consent).
-2. Click on Access Panel Applications - either for users [link](https://myapplications.microsoft.com/) or for admins [link](https://portal.azure.com/#blade/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/AllApps).
-3. Use the same ID, Token and Key to redo the oProxy flow.
