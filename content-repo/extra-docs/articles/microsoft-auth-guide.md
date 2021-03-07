@@ -12,7 +12,7 @@ There are 2 application authentication methods available:
 2.  Self-Deployed Application
 
 ## Cortex XSOAR Application
-In this method, you give consent to the Cortex XSOAR application, which we created in the Azure Portal, to access your data.
+In this method, you give consent to the Cortex XSOAR multi-tenant application, which is maintained by Cortex XSOAR, to access your data.
 Depending on the integration, this requires either admin consent to [get access without a user](https://docs.microsoft.com/en-us/graph/auth-v2-service) or user consent to [get access on behalf of a user](https://docs.microsoft.com/en-us/graph/auth-v2-user).
 **Note**: This method requires that you give consent to all permissions requested by the application.
 
