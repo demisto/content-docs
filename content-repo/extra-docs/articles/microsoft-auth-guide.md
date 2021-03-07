@@ -84,3 +84,4 @@ In order to use the Cortex XSOAR Azure application, you need to fill in your sub
 After you a redirected to the next page, in the **Overview** tab you will find your Resource group and Subscription ID:
 
 ![Overview](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/subscription_id_resourse_group.png)
+
