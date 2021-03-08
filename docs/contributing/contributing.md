@@ -27,7 +27,7 @@ There are three ways to submit your work:
      - You are a Technology Partner contributing with *partner* supported new content.
      - Your contribution is big and contains lots of different parts (Integrations, Scripts, Playbooks, Layouts, etc) that is likely to lead to a complex review process.
      - You are proficient with GitHub.
- 1. Contribute through a private GitHub repository: this is required if you are providing a **Premium** (aka Paid) Content Pack. The requirements are the same of supported Packs, and the contribution process is described [here](../integrations/premium_packs).
+ 1. Contribute through a private GitHub repository: this is required if you are providing a **Premium** (aka Paid) Content Pack. The requirements are the same of supported Packs, and the contribution process is described [here](../packs/premium_packs).
 
 This document describes the main flow that covers *supported* and free contributions(i.e. item *2.* in the above list) and summarizes everything you must do before and after opening a Pull Request on GitHub to contribute your pack.
 
