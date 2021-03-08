@@ -672,7 +672,7 @@ timeline = IndicatorsTimeline(
 
 
 ### CommandResults
-This class is used to return outputs. This object represents an entry in warroom.
+This class is used to return outputs. This object represents an entry in warroom. A string representation of an object must be parsed into an object before being passed into the field.
 
 | Arg               | Type   | Description                                                                                                                                                                                |
 |-------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
