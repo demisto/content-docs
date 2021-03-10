@@ -96,4 +96,11 @@ This command does not accept any arguments and will list all available Docker Im
 In most cases, if your integration is for public release, we will need to push Docker Files into the dockerfiles repository [located here](https://github.com/demisto/dockerfiles). Pushing into this repository will add the image (after an approval process) to the docker hub Demisto organization. See [README.md](https://github.com/demisto/dockerfiles/blob/master/README.md) for instructions. 
 
 ## Important Notes
-When modifying an existing Docker Image, we need to ensure the change will not disrupt other integrations that may use that same package. Thus, all docker images are created with a unique version tag, which we don't allow overriding. 
+When modifying an existing Docker Image, we need to ensure the change will not disrupt other integrations that may use that same package. Thus, all docker images are created with a unique immutable version tag, which we don't allow overriding. 
+
+## Advanced: Server - Container Communication
+The XSOAR Server launches a docker container by running a python loop script. The Server communicates with the python loop script over stdout and stdin. The Server will pass the relevant integration/script code to the loop script. The script receives the code, executes it and returns a `completed` response to the Server. While the integration/script code is executing, communication is performed over stdout/stdin. The Server may then re-use the container to execute additional integrations/scripts that utilize the same docker container. An simplified example loop script is available for review and testing: [here](https://github.com/demisto/content/blob/master/Utils/_script_docker_python_loop_example.py). For example to use the example loop script to simulate runnning a simple script which sends a log entry to the Server via calling: `demisto.log(...)` run the following:
+```sh
+echo '{"script": "demisto.log(\"this is an example entry log\")", "integration": false, "native": false}' | \
+docker run --rm -i -v `pwd`:/work -w /work demisto/python3:3.8.6.12176 python Utils/_script_docker_python_loop_example.py
+```
