@@ -1,3 +1,8 @@
+---
+id: expanse-pack-readme
+title: Expanse Pack
+description: The Expanse Content Pack for Cortex XSOAR provides full coverage of the Expander and Behavior product capabilities from Expanse to allow SOCs to automate the defense of their company’s attack surface.
+---
 The Expanse Content Pack for Cortex XSOAR provides full coverage of the Expander and Behavior product capabilities from Expanse to allow SOCs to automate the defense of their company’s attack surface. 
 
 The integrations in this pack enable fetching and mirroring of Expanse issues into Cortex XSOAR incidents, and ingestion of indicators (IPs, domains, and certificates) that refer to the corporate network perimeter as discovered by Expanse.
@@ -72,7 +77,7 @@ The Expanse V2 content pack includes several content items.
 ### Dashboards
 - **Expanse Incidents** - Displays information based on incidents created from Expanse issues using the Expanse V2 integration. 
 
-![Expanse Incidents](https://github.com/demisto/content/blob/master/Packs/ExpanseV2/doc_files/Expanse_Incidents_Dashboard.png)
+![Expanse Incidents](../../../docs/doc_imgs/reference/expanse-incident-layout.png)
 
 - **Expanse Perimeter** - Displays information based on the Expanse Feed integration relating to the assets that are discovered. 
 
