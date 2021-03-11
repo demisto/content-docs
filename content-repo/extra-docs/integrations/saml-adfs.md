@@ -119,11 +119,11 @@ Once you finished setting up the ADFS relay trust you are ready to setup the SAM
     * Service Provider Entity ID – Demisto server URL + /saml
     * IDP Metadata URL – ADFS URL+ /federationmetadata/2007-06/federationmetadata.xml
     * IDP SSO URL – ADFS URL+ /adfs/ls/idpinitiatedsignon.aspx
-    * Attribute to get E-mail Address - http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress
-    * Attribute to get username - [http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccountname](http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccountname)
-    * Attribute to get first name - [http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname](http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname)
-    * Attribute to get last name - [http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname](http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname)
-    * Attribute to get groups - [http://schemas.xmlsoap.org/claims/Group](http://schemas.xmlsoap.org/claims/Group)
+    * Attribute to get E-mail Address - `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress`
+    * Attribute to get username - `http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccountname`
+    * Attribute to get first name - `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname`
+    * Attribute to get last name - `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname`
+    * Attribute to get groups - `http://schemas.xmlsoap.org/claims/Group`
     * Default Role (for IdP users without group)– Users can be assigned to default Role at Demisto in case there is no mapping between their AD group membership and Demisto server role.
     * Service Identifier (ADFS) – This is the ADFS relay identifier which Demisto will redirect the user for SSO first login, in our example it will be Demisto.
 
