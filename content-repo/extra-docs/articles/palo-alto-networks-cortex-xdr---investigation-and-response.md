@@ -124,7 +124,7 @@ Enables direct execution of Cortex XDR actions within Cortex XSOAR.
 ### Layouts
 There are 4 layouts in this pack. The information displayed in the layouts are similar with minor changes as detailed below.
 
-![XDR Case Info Tab](../../../docs/doc_imgs/reference/XDRLayout.png "XDR Case Info Tab")
+![XDR Case Info Tab](../../../docs/doc_imgs/reference/XDRLayout.png)
 
 #### Cortex XDR Device Control Violations layout
 
