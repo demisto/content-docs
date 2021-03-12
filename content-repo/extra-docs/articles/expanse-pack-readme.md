@@ -31,7 +31,7 @@ This is achieved by correlating the IP address and FQDN that are found with the 
 
 A report is then generated and appears in the Evidence Board with all of the captured information. 
 
-![Report](https://github.com/demisto/content/blob/master/Packs/ExpanseV2/doc_files/Expanse_Attribution_Report.png)
+![Report](https://raw.githubusercontent.com/demisto/content/master/Packs/ExpanseV2/doc_files/Expanse_Attribution_Report.png)
 
 In the *Shadow IT check* phase, based on the information in the report, the playbook can suggest whether the discovered issue corresponds to an asset that is known to the InfoSec team (i.e., if there are firewall logs present, if the asset is protected by Prisma Cloud, or if it is part of an IP range associated to the company). If there is no evidence that the asset is protected by the organization, the asset is shown as a possible Shadow IT. 
 
