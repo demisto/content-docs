@@ -55,7 +55,6 @@ There are 12 incident fields.
 | Ransomware Recovery Tool | The name of the recovery tool for the ransomware, if available. | 
 | Ransomware Strain | Ransomware ID. |
 | Users | List of the users affected by the ransomware. |
-|
 
 ### Automations
 There are 2 automations in this pack.
@@ -75,7 +74,6 @@ There are 5 sections in the layout to display the information collected about th
 | Ransomware Data Encryption Status | Indication whether data is currently encrypted or not. |
 | Hosts Count | The number of endpoints found encrypted by the ransomware. |
 | War Room updates | War Room note entries. |
-|
 
 ## Before You Start (prereqs)
 In order to use this pack you need to configure an instance of the following integrations. See the documentation for each integration for detailed instructions. 
