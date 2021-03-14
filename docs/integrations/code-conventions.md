@@ -885,7 +885,7 @@ return_results(results)
 ```
 **Note:** By default, ignore_auto_extract is set to ```False```.
 
-### Commands in integration with paging
+### Pagination in integration commands
 When dealing with a command in an integration, including paging mechanism (```page``` and ```page_size``` like arguments) convention is:
 - Add to the command ```page```, ```page_size``` and ```limit``` arguments. Where limit argument indicates how many results/incidents/indicators to retrieve from server starting from offset 0, making the number of needed API calls to achieve that limit, and ```page``` and ```page_size``` will be used the normal paging mechanism of the integration.
 
