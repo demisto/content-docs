@@ -1,6 +1,6 @@
 ---
 id: marketplace
-title: Contributing from Cortex XSOAR UI
+title: Contributing via Cortex XSOAR
 ---
 
 Cortex XSOAR v6.0 introduces a Marketplace which is the central location for installing, exchanging, contributing, and managing all of your content, including playbooks, integrations, automations, fields, layouts, and more. For more information, you can read all about the [Marketplace](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/marketplace/marketplace-overview.html).
@@ -39,6 +39,11 @@ This article walks you through the process of contributing content from the Cort
 (Each contributor can only modify files in content packs that they contributed).
 
 7. The pull request is created and a reviewer is assigned.
+
+    The documentation for new integration/script/playbook is automatically generated and contains the basic information of it.
+    You will now need to review the documentation (README.md) and modify it according to XSOAR standards.
+    The files to be reviewed will be listed at the pull request comment.
+    See the [Documentation article](https://xsoar.pan.dev/docs/documentation/readme_file) for more information.
 
 8. You can now modify the files changed in the pull request as part of the review process.
 
