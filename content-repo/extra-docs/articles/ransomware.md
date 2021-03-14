@@ -1,6 +1,7 @@
 ---
 id: ransomware
 title: Ransomware 
+description: Identify, investigate, and contain the ransomware attack.
 ---
 > **Note**: Post Intrusion Ransomware Investigation is a beta playbook, which lets you implement and test pre-release software. Since the playbook is beta, it might contain bugs. Updates to the pack during the beta phase might include non-backward compatible features. We appreciate your feedback on the quality and usability of the pack to help us identify issues, fix them, and continually improve.
 
@@ -41,7 +42,6 @@ There are 12 incident fields.
 
 | **Incident field** | **Description** |
 |------------------ | ------------- |
-| Hosts | List of the hosts affected by the ransomware. |
 | Ransomware Approximate Number Of Encrypted Endpoints | The number of endpoints found encrypted by the ransomware. |
 | Ransomware Cryptocurrency Address | The ransomware cryptocurrency address. |
 | Ransomware Cryptocurrency Address Type | The type of the ransomware cryptocurrency. |
@@ -52,7 +52,6 @@ There are 12 incident fields.
 | Ransomware Onion Address | The onion service addresses for communication with the ransomware operators group. |
 | Ransomware Recovery Tool | The name of the recovery tool for the ransomware, if available. | 
 | Ransomware Strain | Ransomware ID. |
-| Users | List of the users affected by the ransomware. |
 
 ### Automations
 There are 2 automations in this pack.
