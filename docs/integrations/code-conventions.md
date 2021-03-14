@@ -899,22 +899,25 @@ When working on a command that supports pagination (usually has API parameters l
 When working on integrations that require user credentials (such as username/password, API token/key, etc..) the best practice is to use the `credentials` parameter type.
 example for parameter configuration for integration using username and password:
 In the YML file:
-\```
+```yml
 - display: Username
   name: credentials
   type: 9
   required: true
-\```
-
+```
+In Demisto UI:
+<img width="758" src="../doc_imgs/integrations/credentials_username_password.png"></img>
 
 example for parameter configuration for integration using API token:
-\```
+```yml
 - displaypassword: API Token
   name: credentials
   type: 9
   required: true
   hiddenusername: true
-\```
+```
+In Demisto UI:
+<img width="758" src="../doc_imgs/integrations/credentials_api_token.png"></img>
   
 Using credentials parameter type is always recommended (even when working with API token\key) as it provides the user the flexibility of using the [XSOAR credentials vault](https://xsoar.pan.dev/docs/reference/articles/managing-credentials) feature when configuring the integration for the first time.
 
