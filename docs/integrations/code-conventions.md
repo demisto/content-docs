@@ -908,7 +908,7 @@ In the YML file:
 In Demisto UI:
 <img width="758" src="../doc_imgs/integrations/credentials_username_password.png"></img>
 
-example for parameter configuration for integration using API token:
+Example when using an API Token/Key:
 ```yml
 - displaypassword: API Token
   name: credentials
