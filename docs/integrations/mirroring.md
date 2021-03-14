@@ -92,7 +92,7 @@ Arguments explanation:
   - *last_update* - Date string represents the last time we retrieved modified incidents for this integration.
 * **GetModifiedRemoteDataResponse** - this is the object that maintains the format in which you should order the results from this function. You should use `return_results` on this object to make it work.
 Arguments explanation. **You must provide one of the following:**
-  - *modified_incident_ids* - a list of the IDs of the incidents that were modified since the last check. IDs must be of type string. Later `get-remote-data` command will run on only modified incidents.
+  - *modified_incident_ids* - a list of strings representing incident IDs that were modified since the last check. Later `get-remote-data` command will run on only modified incidents.
   - *modified_incident_entries* - a list of entries containing the full incident data. In this case, `get-remote-data` **will not be called**.
 * **skip update** - in case of failure, in order to notify the server that the command failed and prevent execution of **get-remote-data** commands, return error which contains the string `"skip update"`.
 
