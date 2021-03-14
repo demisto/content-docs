@@ -92,7 +92,7 @@ We recommend your technical team review the docs on this site, and the following
 - Cortex XSOAR [Concepts, and Terminology](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/cortex-xsoar-overview/cortex-xsoar-concepts)
 - Cortex XSOAR [integration video tutorial](https://youtu.be/bDntS6biazI)
 
-Please reach out on Slack if you need any technical assistance or guidance. Follow the [Getting Started Guide](../integrations/getting-started-guide) to understand all the requirements and components.
+Please reach out on Slack if you need any technical assistance or guidance. Follow the [Getting Started Guide](../concepts/getting-started-guide) to understand all the requirements and components.
 
 At a minimum, an integration consists in:
 - The Python code that connects to your product(s)

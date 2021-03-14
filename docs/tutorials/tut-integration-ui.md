@@ -73,7 +73,7 @@ The following is an example of the proxy settings filled out:
 
 ![screen shot 2019-01-08 at 13 38 33](../doc_imgs/tutorials/tut-integration-ui/parameter-proxy.png)
 
->Next we will add the insecure setting called “insecure”. This will also be a boolean. Set the initial value to “false” as well and we will write “Trust any cert”.
+>Next we will add the insecure setting called “insecure”. This will also be a boolean. Set the initial value to “false” as well and we will write "Allow any cert”.
 
 When you are done, it should look like the following:
 
@@ -83,12 +83,11 @@ When you are done, it should look like the following:
 
 This section should look like this:
 
-![screen shot 2019-01-08 at 13 41 34](../doc_imgs/tutorials/tut-integration-ui/parameter-url.png)
+![screen shot 2019-01-08 at 13 41 34](../doc_imgs/tutorials/tut-integration-ui/parameter-api-url.png)
 
 >Lastly, we add “apikey”. This will be “encrypted” and have no default value.
 
-![screen shot 2019-01-08 at 13 42 57](../doc_imgs/tutorials/tut-integration-ui/parameter-url.png)
-
+![screen shot 2019-01-08 at 13 42 57](../doc_imgs/tutorials/tut-integration-ui/parameter-api-key.png)
 We want to make sure that the Display Name is added to the parameter options since it is a chance to explain what the function will do.
 
 ## Command Settings

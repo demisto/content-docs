@@ -5,7 +5,7 @@ title: Cortex XSOAR IDE
 Cortex XSOAR offers a built-in platform IDE which is available through the product's web UI. 
 
 :::note Pro Tip
-We recommend to try out the [PyCharm IDE Plugin](pycharm-plugin). It simplifies third-party integration and script development by enabling users to author Python content for Cortex XSOAR directly in PyCharm. Highly recommended for developing [Python Unit Tests](unit-testing). 
+We recommend to try out the [PyCharm IDE Plugin](pycharm-plugin). It simplifies third-party integration and script development by enabling users to author Python content for Cortex XSOAR directly in PyCharm. Highly recommended for developing [Python Unit Tests](../integrations/unit-testing). 
 :::
 
 
@@ -61,5 +61,5 @@ Arguments are variables for a command that are dynamic and can be changed each t
 * **List Options** - Add options separated by a comma to include a dropdown list of options for the argument.
 
 ## Outputs
-Please [read here](context-and-outputs) to learn more about Outputs and Context.
+Please [read here](../integrations/context-and-outputs) to learn more about Outputs and Context.
 

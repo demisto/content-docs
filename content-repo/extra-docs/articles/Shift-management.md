@@ -54,7 +54,7 @@ The incident IDs of the active incidents should be passed as a comma-separated l
 * [OutOfOfficeListCleanup](https://xsoar.pan.dev/docs/reference/scripts/out-of-office-list-cleanup):
 Removes users from the out-of-office list whose *off until day* value has passed.   
 
-* [ManageOOOusers](https://xsoar.pan.dev/docs/reference/scripts/manage-ooo-users): Gets all the out-of-office users. When you  first run the **ManageOOOusers** automation, an out-of-office list is created. This list manages the out-of-office users. By default, the name of this list is *OOO List*. We recommend that you use this list. However, if you create a list to use with a different name and if the name of the list does not begin with OOO, this script automatically prefixes OOO to the script name. For example, if you name the out-of-office list *newList*, the script will automatically change the name to *OOO newList*.  
+* [ManageOOOusers](https://xsoar.pan.dev/docs/reference/scripts/manage-oo-ousers): Gets all the out-of-office users. When you  first run the **ManageOOOusers** automation, an out-of-office list is created. This list manages the out-of-office users. By default, the name of this list is *OOO List*. We recommend that you use this list. However, if you create a list to use with a different name and if the name of the list does not begin with OOO, this script automatically prefixes OOO to the script name. For example, if you name the out-of-office list *newList*, the script will automatically change the name to *OOO newList*.  
 Important: Do not delete this list!
 
 * [TimeToNextShift](https://xsoar.pan.dev/docs/reference/scripts/time-to-next-shift): Gets the time until the next shift.
@@ -65,7 +65,7 @@ Important: Do not delete this list!
 
 * [GetOnCallHoursPerUser](https://xsoar.pan.dev/docs/reference/scripts/get-on-call-hours-per-user): Retrieves the number of on call hours per user.
 
-* [GetRolesPerShift](https://xsoar.pan.dev/docs/reference/scripts/get-role-per-shift): Retrieves the roles per shift.
+* [GetRolesPerShift](https://xsoar.pan.dev/docs/reference/scripts/get-roles-per-shift): Retrieves the roles per shift.
 
 * [GetUsersOOO](https://xsoar.pan.dev/docs/reference/scripts/get-users-ooo): Retrieves users who are currently out of office. The script use the **OutOfOfficeListCleanup** script to remove users whose *off until day* is in the past.
 
@@ -126,7 +126,7 @@ This pack also requires the following to be configured:
 
 ## Pack Configuration
 To get up and running with this pack, you must do the following:
-- [Configure Shift Handover playbook inputs](https://xsoar.pan.dev/docs/reference/playbooks/).
+- [Configure Shift Handover playbook inputs](https://xsoar.pan.dev/docs/reference/playbooks/shift-handover#playbook-inputs).
 >**Important:** By configuring *Yes* for the **AssignActiveIncidentsToNextShift** playbook input, incidents will be reassigned to the on-call analysts.  
 
 - [Create a Shift Handover Job](#create-a-shift-handover-job) to create an incident automatically through a scheduled task that runs every time there is a shift change (optional).
