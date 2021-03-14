@@ -44,14 +44,20 @@ For example: `By default, the integration will import PagerDuty incidents data a
 ## Common Integration Parameters
 The most commonly used integration parameters:
 
-| Parameter name | Display name |
-|---|---|
-| API token/key | API Token/ API Key/ API Secret. This parameter should match the product. |
-| URL | Server URL |
-| insecure | Trust any certificate (not secure) |
-| proxy |  Use system proxy settings |
-| Threshold | The minimum number/severity/score ... |
-| Limit | The maximum number of... |
+| Parameter name | Display name | Notes 
+|---|---|---|
+| API token/key | API Token/ API Key/ API Secret. |Provided by the third party integration. | |
+| URL | Server URL | |
+| insecure | Trust any certificate (not secure) | When ‘trust any certificate’ is selected, the integration ignores TLS/SSL certificate validation errors. Used to test connection issues or connect to a server without a valid certificate. | |
+| proxy |  Use system proxy settings |Runs the integration instance using the proxy server (HTTP or HTTPS) that you defined in the server configuration.|
+| Threshold | The minimum number/severity/score ... | |
+| Limit | The maximum number of... |   |         
+
+## Parameters found in all integrations:
+| Parameter | Notes 
+|---|---| 
+| Run on Single engine / Run on  Load Balancing Group | Communications between the XSOAR server and the 3rd party service are executed through the selected engine or load balancing group, not directly.|
+| Do not use by default | Use to avoid exceeding API quotas <ul><li>When enabled, commands from this integration will not be available through the CLI, when you run a generic command that uses all available integration commands.</li> <li>To use a command at the CLI from an instance with ‘do not use by default’ enabled, you need to specify the instance with the ‘using’ argument.</li><li>Commands from this integration will still run in Playbooks, unless you have also added the ignore.default.in.playbooks server configuration, set to true.</li><li> If you have multiple instances of this integration, and the ‘do not use by default’ option is selected in one or more of the instances, the setting will apply for all instances of the integration.</li></ul> |
 
 
 ## Common Command Arguments

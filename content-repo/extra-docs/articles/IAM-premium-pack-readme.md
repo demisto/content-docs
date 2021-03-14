@@ -27,8 +27,8 @@ Cortex XSOAR uses the Workday integration to fetch reports and create XSOAR inci
 Each report has a unique URL, which you enter in the Workday Report URL instance parameters. If you want to fetch or run associated playbooks on multiple reports, each report will require its own integration instance.
 
 
-The Workday integration creates an IAM-Sync-User incident for each user profile that is in the report.. This incident runs the IAM - Sync User playbook and provisions the user into the rest of the configured integrations. The playbook determines the management (create, read, update, or delete/disable) operations that need to be done according to the data retrieved from the Workday report. 
-For example, if a new employee joins the company, the playbook changes the incident type to IAM-New-Hire, and runs a Create operation across the supported IAM integrations. Similarly, if an employee is terminated in Workday, the playbook changes the incident type to IAM-Terminate-User, and a Disable operation runs in the supported IAM integrations. 
+The Workday integration creates an IAM - Sync User incident for each user profile that is in the report. This incident runs the IAM - Sync User playbook and provisions the user into the rest of the configured integrations. The playbook determines the management (create, read, update, or delete/disable) operations that need to be done according to the data retrieved from the Workday report. 
+For example, if a new employee joins the company, the playbook changes the incident type to IAM - New Hire, and runs a Create operation across the supported IAM integrations. Similarly, if an employee is terminated in Workday, the playbook changes the incident type to IAM - Terminate User, and a Disable operation runs in the supported IAM integrations. 
 
 ### User Provisioning Workflow
 
@@ -48,6 +48,8 @@ The following table shows the supported Workday operations and their correspondi
 
 The logic of the playbooks in the ILM pack, which determine how they execute, is determined by the employment data ingested from the Workday integration.
 
+To start working with Workday integration, download ``Workday`` pack from the marketplace and configure the [Workday IAM](https://xsoar.pan.dev/docs/reference/integrations/workday-iam) integration.
+
 There are several custom fields that must be populated with specific values in order for the playbooks to execute the correct management operations. If your current Workday instance does not include these fields and values, you will need to add them to the instance.
 
 The following table lists these fields, what they are used for in Cortex XSOAR, and the valid values the fields accept.
@@ -55,13 +57,13 @@ The following table lists these fields, what they are used for in Cortex XSOAR, 
 | Workday fields  |  How it is Used  | Possible Values |
 | ------------ |---------------| -----|
 | Email address      | A unique identifier for the user. | User's work email address | 
-| Employment status |  Influences the playbook flow that will run on the User Profile incident.  | Active <br/> Leave of Absence <br/> Terminated
+| Employment status |  Influences the playbook flow that will run on the IAM - Sync User incident.  | Active <br/> Leave of Absence <br/> Terminated
 | Rehired employee  | Used to determine whether the User rehire flow is implemented. | Yes <br/> No |
 | Prehire flag | Used in conjunction with the Rehired employee field to enable the User rehire flow. | True <br/> False|
 
 - Make sure to obtain the URL where the Workday reports are hosted. Each report has a unique URL, which you enter as one of the integration instance parameters. If you want to fetch multiple reports, each report will require its own integration instance. 
 
-- Ensure that you have a Mail sender integration for sending email notifications.
+- Ensure that you have a **Mail sender** integration for sending email notifications.
 
 ### Pack Configurations
 
@@ -83,26 +85,29 @@ Under the inputs for the IAM - Sync User playbook, make sure you configure value
 
 1. Navigate to *Playbooks* and locate that IAM - Sync User playbook.  
 1. Click *Playbook Triggered* and insert values for the following inputs:
-ITNotificationEmail - used to receive notifications about any errors in the provisioning process.
-ServiceDeskEmail - used to receive initial temporary passwords for new hires to prepare employee laptops, etc.
-TerminateOnLastDayOfWork - determines whether termination of employees goes into effect on their last day of work, or on their termination day. By default, employees are terminated on their termination day.
-Timezone - The time zone used when referring to employee termination date, last day of work, hire date, and so on. This should be the time zone that is used in the employee Workday reports. The time zone you choose affects the way that the playbooks treat dates for the employee. For example, if your chosen time zone is "America/Los_Angeles" and an employee should be terminated on November 5th at 23:59, then only when it's November 5th and 23:59 in Los Angeles will the termination occur.
-DateFormat - the format in which the dates in employee Workday reports are represented. For example, if an employee's hire date appears like this: 06/15/2020, then the value for the DateFormat input should be %m/%d/%Y.
+    1. *ITNotificationEmail* - used to receive notifications about any errors in the provisioning process.
+    2. *ServiceDeskEmail* - used to receive initial temporary passwords for new hires to prepare employee laptops, etc.
+    3. *TerminateOnLastDayOfWork* - determines whether termination of employees goes into effect on their last day of work, or on their termination day. By default, employees are terminated on their termination day.
+    4. *Timezone* - The time zone used when referring to employee termination date, last day of work, hire date, and so on. This should be the time zone that is used in the employee Workday reports. The time zone you choose affects the way that the playbooks treat dates for the employee. For example, if your chosen time zone is "America/Los_Angeles" and an employee should be terminated on November 5th at 23:59, then only when it's November 5th and 23:59 in Los Angeles will the termination occur.
+    5. *DateFormat* - the format in which the dates in employee Workday reports are represented. For example, if an employee's hire date appears like this: 06/15/2020, then the value for the DateFormat input should be %m/%d/%Y.
 
 #### Fields and Mappers
 
 The mappers that are provided out-of-the-box work with the assumption that you did not add any fields. 
 
-If you want to add fields, follow the steps in the following Example section. 
+If you want to include additional information in the user profile indicator, and provision it to your available IAM applications, follow the steps in the following example: 
 
-1. Add the field to the mappers for the Workday, Okta, Active Directory, and GitHub integrations. 
+1. Add the field to the mappers for the Workday, Okta, Active Directory, and for any other IAM integration configured. 
 
    **Note:** To change the mappers, you will need to duplicate each mapper. 
 
    Ensure that you are adding the fields to the relevant incident types within each mapper.
 
-   * for the Workday incoming mapper, add the field to the *IAM-Sync-User* incident type.
+   * for the Workday incoming mapper, add the field to the *IAM - Sync User* incident type.
    * for Okta and Active Directory, add the field to the *UserProfile* incident type in both the incoming and outgoing mappers.
+   
+        > <i>Note:</i> As part of the configuration of the Active Directory mapper, you must map a value to the OU (organizational unit) required field. To do this, create a transformer that maps a user attribute of your choice to an OU value.
+   
    * for GitHub, the relevant mappers are in the *IAM-SCIM* pack and can be used in any integrations that uses SCIM.
 
 
@@ -110,14 +115,17 @@ If you want to add fields, follow the steps in the following Example section.
 
 ##### Example
 
-The following is an example of the flow when adding a field to work with the ILM content pack. This does not presume to cover all possible scenarios.
+The following is an example of the flow when adding a field to work with the ILM content pack. This example does not presume to cover all possible scenarios.
 
 1.  Add an incident field.
     1. Navigate to Settings -> Advanced -> Fields and click *New Field*.
     1. Enter the name for the field and click the *Attributes* tab.
     1. Clear the *Add to all incident types* checkbox.
     1. In the *Add to incident types* drop-down, select the following:
+        - User Profile
 	    - IAM - Sync User
+	    
+	    You can add the following incident types if you would like to display the new field in the incident layout (the new fields will be shown regardless in the User Profile indicator).
 	    - IAM - New Hire
 	    - IAM - Update User
 	    - IAM - Terminate User
@@ -147,6 +155,7 @@ The following is an example of the flow when adding a field to work with the ILM
     1. In the *Library*, click *Fields and Buttons*, and drag the field you added above to the section in the layout in which you want it to appear. In this example, we have added the field to the *Personal and Contact Information* section.
     1. Save the layout. 
     1. Repeat this process for each of the other layouts in which you want the field to appear.
+    1. Go to *Indicator Types*, select the User Profile indicator type, click edit and then change the layout to the new layout you have just created.
 
     ![Add Fields to Layout](../../../docs/doc_imgs/reference/ilm-add-fields-to-layout.png "Add Fields to Layout")
 
@@ -157,11 +166,11 @@ The following is an example of the flow when adding a field to work with the ILM
     1. Under *Get data*, select the source from which you want to retrieve the sample data for mapping.
     1. Under *Select Instance*, select the instance of the selected source.
     1. Under *Incident Type*, select the relevant incident type, as follows:
-        - for the Workday incoming mapper, add the field to the IAM-Sync-User incident type. 
-        - for Okta, Active Directory, ServiceNow, and GitHub, add the field to the UserProfile incident type in both the incoming and outgoing mappers.
-    1. Map the field from the layout to the field in schema. For purposes of this example, we have mapped the Sample-Field-IAM field to the employee number.
+        - for the Workday incoming mapper, add the field to the IAM - Sync User incident type. 
+        - for Okta, Active Directory, ServiceNow, GitHub and the rest of the IAM integrations, add the field to the UserProfile incident type in both the incoming and outgoing mappers.
+    1. Map the new field you have created to the field in the schema. For purposes of this example, we have mapped the Sample-Field-IAM field to the employee number.
     1. Repeat this process for each additional field and save the mapper. 
-    1.  Repeat this process for all of the mappers. There are 5 in total:
+    1. Repeat this process for all of the mappers. For example:
         - Workday incoming mapper
         - Okta incoming and outgoing mappers
         - Active Directory incoming and outgoing mappers
@@ -179,15 +188,20 @@ The following is an example of the flow when adding a field to work with the ILM
 
 ### Integrations
 
-- Workday ILM integration (link to the integration docs).
-**Note:** Before running the Workday integration, ensure that you have added the fields in Workday as instructed in Before You Start.
+- Workday IAM integration [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/workday-iam).
+
+    **Note:** Before running the Workday integration, ensure that you have added the fields in Workday as instructed in Before You Start.
 - IAM-compatible integrations. These integrations support execution of the generic ILM management operations.
 
-    - Workday - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/workday-iam)
     - Active Directory - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/active-directory-query-v2)
     - Okta - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/okta-iam)
     - ServiceNow - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/service-now-iam)
     - GitHub - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/git-hub-iam)
+    - Slack - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/slack-iam)
+    - Salesforce - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/salesforce-iam)
+  
+    
+> <i>Note:</i> If you choose to run any of the basic management operations, such as create, delete, etc. manually from the CLI, make sure to include the email and username fields in the user profile.
 
 
 ## App Sync

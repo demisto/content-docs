@@ -68,6 +68,11 @@ jobs:
     docker:
       - image: circleci/python:3.9.1-buster-node
     resource_class: small
+    parameters:
+      post_comment:
+        description: Indicates if to post a comment or not (on daily job we skip posting)
+        type: boolean
+        default: true
     steps:
       - checkout
       - attach_workspace:
@@ -80,7 +85,8 @@ jobs:
           name: Deploy to Netlify
           no_output_timeout: 30m
           command: |
-            sudo npm install -g netlify-cli
+            npm install netlify-cli
+            export PATH="$PATH:`pwd`/node_modules/.bin"
             netlify --version
             if [ "$CIRCLE_BRANCH" = "master" ]; then
               echo "Deploying to prod as CIRCLE_BRANCH is equal to master!"
@@ -92,10 +98,12 @@ jobs:
             fi
             netlify deploy -m "CircleCI build: $CIRCLE_BRANCH" -d build $DEPLOG_ARG --json > deploy-info.json
             cat deploy-info.json | jq
-      - run:
-          name: Post Comment
-          command: |
-            pipenv run ./content-repo/post_github_comment.py deploy-info.json
+      - when:          
+          condition: <<parameters.post_comment>>
+          steps:
+            - run:
+                name: Post Comment 
+                command: pipenv run ./content-repo/post_github_comment.py deploy-info.json
 
 workflows:
   build_and_deploy:
@@ -119,5 +127,6 @@ workflows:
     jobs:
       - build
       - deploy:
+          post_comment: false
           requires:
             - build
