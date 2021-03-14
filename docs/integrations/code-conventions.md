@@ -886,8 +886,14 @@ return_results(results)
 **Note:** By default, ignore_auto_extract is set to ```False```.
 
 ### Pagination in integration commands
-When dealing with a command in an integration, including paging mechanism (```page``` and ```page_size``` like arguments) convention is:
-- Add to the command ```page```, ```page_size``` and ```limit``` arguments. Where limit argument indicates how many results/incidents/indicators to retrieve from server starting from offset 0, making the number of needed API calls to achieve that limit, and ```page``` and ```page_size``` will be used the normal paging mechanism of the integration.
+When working on a command that supports pagination (usually has API parameters like`page` and/or `page size`) with a maximal page size enforced by the API, our best practice is to create a command to support two different use-cases with these 3 corresponding integer arguments:
+1. `page` 
+2. `page_size` 
+3. `limit` 
+
+**Manual Pagination:** The user wants to control the pagination on its own by using the `page` and `page size` arguments. To achieve this, the command will simply pass the `page` and `page size` values on to the API request.
+
+**Automatic Pagination:** The user does not want to work with pages only with a number of results argument. In this case, the `limit` argument will be used to aggregate results by iterating over the necessary pages from the first page until collecting all the needed results. This implies a pagination loop mechanism will be implemented behind the scenes. For example, if the limit value received is 250 and the maximal page size enforced by the API is 100, the command will need to perform 3 API calls (pages 1,2, and 3) to collect the 250 requested results.
 
 ### Credentials
 When dealing with integrations which require user credentials (such as username/password, API token, etc..) the expected way is to use credentials parameter.
