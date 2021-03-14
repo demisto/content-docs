@@ -896,7 +896,7 @@ When working on a command that supports pagination (usually has API parameters l
 **Automatic Pagination:** The user does not want to work with pages only with a number of results argument. In this case, the `limit` argument will be used to aggregate results by iterating over the necessary pages from the first page until collecting all the needed results. This implies a pagination loop mechanism will be implemented behind the scenes. For example, if the limit value received is 250 and the maximal page size enforced by the API is 100, the command will need to perform 3 API calls (pages 1,2, and 3) to collect the 250 requested results.
 
 ### Credentials
-When dealing with integrations which require user credentials (such as username/password, API token, etc..) the expected way is to use credentials parameter.
+When working on integrations that require user credentials (such as username/password, API token/key, etc..) the best practice is to use the `credentials` parameter type.
 example for parameter configuration for integration using username and password:
 - display: Username
   name: credentials
