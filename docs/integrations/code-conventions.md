@@ -885,6 +885,27 @@ return_results(results)
 ```
 **Note:** By default, ignore_auto_extract is set to ```False```.
 
+### Commands in integration with paging
+When dealing with a command in an integration, including paging mechanism (```page``` and ```page_size``` like arguments) convention is:
+- Add to the command ```page```, ```page_size``` and ```limit``` arguments. Where limit argument indicates how many results/incidents/indicators to retrieve from server starting from offset 0, making the number of needed API calls to achieve that limit, and ```page``` and ```page_size``` will be used the normal paging mechanism of the integration.
+
+### Credentials
+When dealing with integrations which require user credentials (such as username/password, API token, etc..) the expected way is to use credentials parameter.
+example for parameter configuration for integration using username and password:
+- display: Username
+  name: credentials
+  type: 9
+  required: true
+
+example for parameter configuration for integration using API token:
+- displaypassword: API Token
+  name: credentials
+  type: 9
+  required: true
+  hiddenusername: true
+  
+Using parameter type of credentials is needed even for case of API token and not username/password as it provides the user the flexibility of 'switching to credentials' where he could input his credentials instead of his access information.
+
 ## Quality Examples of Integrations
 * [Google Cloud Functions](https://github.com/demisto/content/tree/master/Packs/GoogleCloudFunctions/Integrations/GoogleCloudFunctions)
 * [Cortex XDR](https://github.com/demisto/content/tree/master/Packs/CortexXDR/Integrations/CortexXDRIR)
