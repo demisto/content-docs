@@ -2,9 +2,7 @@
 id: ransomware
 title: Ransomware 
 ---
-:::note
-Post Intrusion Ransomware Investigation is a beta playbook, which lets you implement and test pre-release software. Since the playbook is beta, it might contain bugs. Updates to the pack during the beta phase might include non-backward compatible features. We appreciate your feedback on the quality and usability of the pack to help us identify issues, fix them, and continually improve.
-:::
+> **Note**: Post Intrusion Ransomware Investigation is a beta playbook, which lets you implement and test pre-release software. Since the playbook is beta, it might contain bugs. Updates to the pack during the beta phase might include non-backward compatible features. We appreciate your feedback on the quality and usability of the pack to help us identify issues, fix them, and continually improve.
 
 This pack is used to identify, investigate, and contain ransomware attacks.
 
