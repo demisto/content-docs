@@ -908,11 +908,13 @@ In the YML file:
 
 
 example for parameter configuration for integration using API token:
+\```
 - displaypassword: API Token
   name: credentials
   type: 9
   required: true
   hiddenusername: true
+\```
   
 Using parameter type of credentials is needed even for case of API token and not username/password as it provides the user the flexibility of 'switching to credentials' where he could input his credentials instead of his access information.
 
