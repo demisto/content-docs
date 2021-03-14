@@ -2,6 +2,10 @@
 id: ransomware
 title: Ransomware 
 ---
+:::note
+Post Intrusion Ransomware Investigation is a beta playbook, which lets you implement and test pre-release software. Since the playbook is beta, it might contain bugs. Updates to the pack during the beta phase might include non-backward compatible features. We appreciate your feedback on the quality and usability of the pack to help us identify issues, fix them, and continually improve.
+:::
+
 This pack is used to identify, investigate, and contain ransomware attacks.
 
 
@@ -57,7 +61,7 @@ There are 12 incident fields.
 There are 2 automations in this pack.
 
 - **RansomwareDataEncryptionStatus**: Returns the **Ransomware Data Encryption Status** in the **Post Intrusion Ransomware Investigation** playbook and the **Post Intrusion Ransomware** layout.
-- **RansomwareHostWidget**: Returns the **Ransomware Approximate Number Of Encrypted Endpoints** in a **Post Intrusion Ransomware** incident/layout.
+- **RansomwareHostWidget**: Returns the **Ransomware Approximate Number Of Encrypted Endpoints** in the **Post Intrusion Ransomware** incident/layout.
 
 ### Layout
 There is 1 layout - **Post Intrusion Ransomware**
@@ -86,24 +90,25 @@ You need to perform the following step before you start using the **Post Intrusi
 
 ### Incident Mapping
 
-When using a 3rd party tool to identify and ingest ransomware attacks (such as Palo Alto Networks Cortex XDR), you need to map the **Users** and **Hosts** fields. For more information about mapping, see [Classification & Mapping](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/incidents/classification-and-mapping).
+When using a 3rd party tool to identify and ingest ransomware attacks (such as Palo Alto Networks Cortex XDR), you need to map the **Usernames** and **Hostnames** fields. For more information about mapping, see [Classification & Mapping](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/incidents/classification-and-mapping).
 
-For example, for Palo Alto Networks Cortex XDR the **users** and **hosts** fields should be mapped to XSOAR **Users** and **Hosts** fields, respectively. 
+For example, for Palo Alto Networks Cortex XDR the **users** and **hosts** fields should be mapped to XSOAR **Usernames** and **Hostnames** fields, respectively. 
 
 ## Testing the Pack
 After you install the pack and perform all required prerequisites, test the pack to make sure everything works. There are two ways to test this pack, either manually create an incident or ingest an incident of type **Post Intrusion Ransomware**.
 
 ### Manual Test
 
+The section in the **Post Intrusion Ransomware Investigation** playbook that includes endpoint and account enrichment can't be executed during the manual test. Therefore, the endpoint can't be isolated, nor can the account be disabled. 
+
 1. Create a new incident.
-2. Enter values for the **Users** and **Hosts** fields.
 3. Configure the **Post Intrusion Ransomware Investigation** playbook inputs.
 4. Use the sample ransom note available [here](#Sample-Ransom-Note).
 
 ### Ingestion Test
 
 1. Configure an instance of the integration that you will use to ingest and create incidents of type **Post Intrusion Ransomware**.
-2. Map the corresponding fields from the integration to **Users** and **Hosts**.
+2. Map the corresponding fields from the integration to **Usernames** and **Hostnames**.
 3. Verify that the **Post Intrusion Ransomware Investigation** playbook is the default playbook and configure its inputs.
 4. Start ingesting the incidents.
 
@@ -157,4 +162,3 @@ BTC Wallets
 3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy
 bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq
 ```
-
