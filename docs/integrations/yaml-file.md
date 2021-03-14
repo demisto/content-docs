@@ -38,7 +38,7 @@ detaileddescription: 'The MaxMind GeoIP2 integration allows you to query the Max
   API service and retrieve a JSON of all details. '
 ```
 
-**Note**: You can find all categories options here: https://xsoar.pan.dev/docs/documentation/readme_file
+**Note**: You can find all categories options here: https://xsoar.pan.dev/docs/documentation/pack-docs#pack-keywords-tags-use-cases--categories
 
 The following is an explanation of these fields:
 
