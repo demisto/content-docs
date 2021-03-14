@@ -897,7 +897,7 @@ When working on a command that supports pagination (usually has API parameters l
 
 ### Credentials
 When working on integrations that require user credentials (such as username/password, API token/key, etc..) the best practice is to use the `credentials` parameter type.
-example for parameter configuration for integration using username and password:
+Example when using username and password:
 In the YML file:
 ```yml
 - display: Username
