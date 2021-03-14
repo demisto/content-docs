@@ -53,9 +53,9 @@ const sidebars = {
       items: [
         "contributing/contributing",
         "contributing/contrib-requirements",
-        "contributing/checklist",
-        "contributing/marketplace",
-        "contributing/conventions"
+        "contributing/checklist",        
+        "contributing/conventions",
+        "contributing/marketplace"
       ]
     }, 
     {

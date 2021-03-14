@@ -441,7 +441,8 @@ The following is the format for a URL entity.
         "Description": "STRING, A description of the malicious URL."
     },
     "DetectionEngines": "NUMBER, The total number of engines that checked the indicator.",
-    "PositiveDetections": "NUMBER, The number of engines that positively detected the indicator as malicious."
+    "PositiveDetections": "NUMBER, The number of engines that positively detected the indicator as malicious.",
+    "Category": "STRING, The category associated with the indicator."
 }
 ```
 
@@ -456,6 +457,9 @@ outputs:
   type: String
 - contextPath: URL.PositiveDetections
   description: The number of engines that positively detected the indicator as malicious.
+  type: String
+- contextPath: URL.Category
+  description: The category associated with the indicator.
   type: String
 - contextPath: URL.Malicious.Vendor
   description: The vendor reporting the URL as malicious.
