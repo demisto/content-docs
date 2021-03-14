@@ -60,8 +60,11 @@ PLAYBOOKS_DOCS_MATCH = [
 INTEGRATIONS_PREFIX = 'integrations'
 SCRIPTS_PREFIX = 'scripts'
 PLAYBOOKS_PREFIX = 'playbooks'
+PRIVATE_PACKS_INTEGRATIONS_PREFIX = 'Integrations'
+PRIVATE_PACKS_SCRIPTS_PREFIX = 'Scripts'
+PRIVATE_PACKS_PLAYBOOKS_PREFIX = 'Playbooks'
 RELEASES_PREFIX = 'releases'
-ATRICLES_PREFIX = 'articles'
+ARTICLES_PREFIX = 'articles'
 NO_HTML = '<!-- NOT_HTML_DOC -->'
 YES_HTML = '<!-- HTML_DOC -->'
 BRANCH = os.getenv('HEAD', 'master')
@@ -305,7 +308,7 @@ def index_doc_infos(doc_infos: List[DocInfo], link_prefix: str, headers: Optiona
     return fix_mdx(res)
 
 
-def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str) -> DocInfo:
+def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, private_packs=False) -> DocInfo:
     try:
         with open(readme_file, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -318,9 +321,13 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str) -> 
         file_id = yml_data.get('id') or normalize_id(name)
         desc = yml_data.get('description')
         readme_file_name = os.path.basename(readme_file)
-        edit_url = f'https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/{prefix}/{readme_file_name}'
         content = content.replace(front_matter_match[0], '')
-        content = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\n---\n\n' + content
+
+        if private_packs:
+            content = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: null\n---\n\n' + content
+        else:
+            edit_url = f'https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/{prefix}/{readme_file_name}'
+            content = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\n---\n\n' + content
         verify_mdx_server(content)
         with open(f'{target_dir}/{file_id}.md', mode='w', encoding='utf-8') as f:
             f.write(content)
@@ -330,10 +337,20 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str) -> 
         return DocInfo('', '', '', readme_file, str(ex).splitlines()[0])
 
 
-def process_extra_docs(target_dir: str, prefix: str) -> Iterator[DocInfo]:
-    md_dir = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs/{prefix}'
-    for readme_file in glob.glob(f'{md_dir}/*.md'):
-        yield process_extra_readme_doc(target_dir, prefix, readme_file)
+def process_extra_docs(target_dir: str, prefix: str,
+                       private_packs_prefix='', private_packs=False) -> Iterator[DocInfo]:
+    if private_packs:
+        if private_packs_prefix == PRIVATE_PACKS_PLAYBOOKS_PREFIX:
+            md_dir = f'{os.path.dirname(os.path.abspath(__file__))}/.content-bucket/Packs/*/{private_packs_prefix}/'
+        else:
+            md_dir = f'{os.path.dirname(os.path.abspath(__file__))}/.content-bucket/Packs/*/{private_packs_prefix}/*'
+
+        for readme_file in glob.glob(f'{md_dir}/*.md'):
+            yield process_extra_readme_doc(target_dir, private_packs_prefix, readme_file, private_packs=True)
+    else:
+        md_dir = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs/{prefix}'
+        for readme_file in glob.glob(f'{md_dir}/*.md'):
+            yield process_extra_readme_doc(target_dir, prefix, readme_file)
 
 
 # POOL_SIZE has to be declared after process_readme_doc so it can find it when doing map
@@ -355,7 +372,7 @@ def process_doc_info(doc_info: DocInfo, success: List[str], fail: List[str], doc
         seen_docs[doc_info.id] = doc_info
 
 
-def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix: str):
+def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix: str, private_pack_prefix: str):
     print(f'Using BRANCH: {BRANCH}')
     # Search for readme files
     readme_files = findfiles(regex_list, content_dir)
@@ -387,6 +404,9 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
             process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
     for doc_info in process_extra_docs(target_sub_dir, prefix):
         process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
+    for private_doc_info in process_extra_docs(target_sub_dir, prefix, private_packs=True,
+                                               private_packs_prefix=private_pack_prefix):
+        process_doc_info(private_doc_info, success, fail, doc_infos, seen_docs)
     org_print(f'\n===========================================\nSuccess {prefix} docs ({len(success)}):')
     for r in sorted(success):
         print(r)
@@ -435,19 +455,19 @@ def create_releases(target_dir: str):
 
 
 def create_articles(target_dir: str):
-    target_sub_dir = f'{target_dir}/{ATRICLES_PREFIX}'
+    target_sub_dir = f'{target_dir}/{ARTICLES_PREFIX}'
     if not os.path.exists(target_sub_dir):
         os.makedirs(target_sub_dir)
     doc_infos: List[DocInfo] = []
     success: List[str] = []
     fail: List[str] = []
     seen_docs: Dict[str, DocInfo] = {}
-    for doc_info in process_extra_docs(target_sub_dir, ATRICLES_PREFIX):
+    for doc_info in process_extra_docs(target_sub_dir, ARTICLES_PREFIX):
         process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
-    org_print(f'\n===========================================\nSuccess {ATRICLES_PREFIX} docs ({len(success)}):')
+    org_print(f'\n===========================================\nSuccess {ARTICLES_PREFIX} docs ({len(success)}):')
     for r in sorted(success):
         print(r)
-    org_print(f'\n===========================================\nFailed {ATRICLES_PREFIX} docs ({len(fail)}):')
+    org_print(f'\n===========================================\nFailed {ARTICLES_PREFIX} docs ({len(fail)}):')
     for r in sorted(fail):
         print(r)
     org_print("\n===========================================\n")
@@ -578,7 +598,7 @@ def add_deprected_integrations_info(content_dir: str, deperecated_article: str, 
         deperecated_info_file (str): json file with static deprecated info to merge
     """
     deprecated_infos = merge_deprecated_info(find_deprecated_integrations(content_dir), deperecated_info_file)
-    deprecated_infos = sorted(deprecated_infos, key=lambda d: d['name'].lower())  # sort by name
+    deprecated_infos = sorted(deprecated_infos, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
     deperecated_json_file = f'{assets_dir}/{os.path.basename(deperecated_article.replace(".md", ".json"))}'
     with open(deperecated_json_file, 'w') as f:
         json.dump({
@@ -594,10 +614,12 @@ def add_deprected_integrations_info(content_dir: str, deperecated_article: str, 
         }, f, indent=2)
     with open(deperecated_article, "at") as f:
         for d in deprecated_infos:
-            f.write(f'\n## {d["name"]}\n')
-            f.write(f'* **Maintenance Mode Start Date:** {d["maintenance_start"]}\n')
-            f.write(f'* **End-of-Life Date:** {d["eol_start"]}\n')
-            if d["note"]:
+            f.write(f'\n## {d["name"] if d.get("name") else d["id"]}\n')
+            if d.get("maintenance_start"):
+                f.write(f'* **Maintenance Mode Start Date:** {d["maintenance_start"]}\n')
+            if d.get("eol_start"):
+                f.write(f'* **End-of-Life Date:** {d["eol_start"]}\n')
+            if d.get("note"):
                 f.write(f'* **Note:** {d["note"]}\n')
         f.write('\n\n----\nA machine readable version of this file'
                 f' is available [here](pathname:///assets/{os.path.basename(deperecated_json_file)}).\n')
@@ -619,17 +641,24 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     scripts_full_prefix = f'{prefix}/{SCRIPTS_PREFIX}'
     playbooks_full_prefix = f'{prefix}/{PLAYBOOKS_PREFIX}'
     releases_full_prefix = f'{prefix}/{RELEASES_PREFIX}'
-    articles_full_prefix = f'{prefix}/{ATRICLES_PREFIX}'
-    integration_doc_infos = create_docs(args.dir, args.target, INTEGRATION_DOCS_MATCH, INTEGRATIONS_PREFIX)
-    playbooks_doc_infos = create_docs(args.dir, args.target, PLAYBOOKS_DOCS_MATCH, PLAYBOOKS_PREFIX)
-    script_doc_infos = create_docs(args.dir, args.target, SCRIPTS_DOCS_MATCH, SCRIPTS_PREFIX)
+    articles_full_prefix = f'{prefix}/{ARTICLES_PREFIX}'
+    integration_doc_infos = create_docs(args.dir, args.target, INTEGRATION_DOCS_MATCH, INTEGRATIONS_PREFIX,
+                                        private_pack_prefix=PRIVATE_PACKS_INTEGRATIONS_PREFIX)
+    playbooks_doc_infos = create_docs(args.dir, args.target, PLAYBOOKS_DOCS_MATCH, PLAYBOOKS_PREFIX,
+                                      private_pack_prefix=PRIVATE_PACKS_PLAYBOOKS_PREFIX)
+    script_doc_infos = create_docs(args.dir, args.target, SCRIPTS_DOCS_MATCH, SCRIPTS_PREFIX,
+                                   private_pack_prefix=PRIVATE_PACKS_SCRIPTS_PREFIX)
     release_doc_infos = create_releases(args.target)
     article_doc_infos = create_articles(args.target)
-    add_deprected_integrations_info(args.dir, f'{args.target}/{ATRICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE,
-                                    f'{args.target}/../../static/assets')
+    if os.getenv('SKIP_DEPRECATED') not in ('true', 'yes', '1'):
+        add_deprected_integrations_info(args.dir, f'{args.target}/{ARTICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE,
+                                        f'{args.target}/../../static/assets')
     index_base = f'{os.path.dirname(os.path.abspath(__file__))}/reference-index.md'
     index_target = args.target + '/index.md'
+    articles_index_target = args.target + '/articles-index.md'
+    articles_index_base = f'{os.path.dirname(os.path.abspath(__file__))}/articles-index.md'
     shutil.copy(index_base, index_target)
+    shutil.copy(articles_index_base, articles_index_target)
     with open(index_target, 'a', encoding='utf-8') as f:
         if MAX_FILES > 0:
             f.write(f'\n\n# =====<br/>BUILD PREVIEW only {MAX_FILES} files from each category! <br/>=====\n\n')
@@ -639,12 +668,14 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
         f.write(index_doc_infos(playbooks_doc_infos, PLAYBOOKS_PREFIX))
         f.write("\n\n## Scripts\n\n")
         f.write(index_doc_infos(script_doc_infos, SCRIPTS_PREFIX))
-        f.write("\n\n## Articles\n\n")
-        f.write(index_doc_infos(article_doc_infos, ATRICLES_PREFIX))
         f.write("\n\n## Content Release Notes\n\n")
         f.write(index_doc_infos(release_doc_infos, RELEASES_PREFIX, headers=('Name', 'Date')))
         f.write("\n\nAdditional archived release notes are available"
                 " [here](https://github.com/demisto/content-docs/tree/master/content-repo/extra-docs/releases).")
+    with open(articles_index_target, 'a', encoding='utf-8') as f:
+        if MAX_FILES > 0:
+            f.write(f'\n\n# =====<br/>BUILD PREVIEW only {MAX_FILES} files from each category! <br/>=====\n\n')
+        f.write(index_doc_infos(article_doc_infos, ARTICLES_PREFIX))
     integration_items = [f'{integrations_full_prefix}/{d.id}' for d in integration_doc_infos]
     playbook_items = [f'{playbooks_full_prefix}/{d.id}' for d in playbooks_doc_infos]
     script_items = [f'{scripts_full_prefix}/{d.id}' for d in script_doc_infos]
@@ -672,17 +703,26 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
         },
         {
             "type": "category",
-            "label": "Articles",
-            "items": article_items
-        },
-        {
-            "type": "category",
             "label": "Content Release Notes",
             "items": release_items
         },
     ]
     with open(f'{args.target}/sidebar.json', 'w') as f:
         json.dump(sidebar, f, indent=4)
+    articles_sidebar = [
+        {
+            "type": "doc",
+            "id": f'{prefix}/articles-index'
+        },
+        {
+            "type": "category",
+            "label": "Articles",
+            "items": article_items,
+            "collapsed": False
+        }
+    ]
+    with open(f'{args.target}/articles-sidebar.json', 'w') as f:
+        json.dump(articles_sidebar, f, indent=4)
     print('Stopping mdx server ...')
     stop_mdx_server()
     if os.getenv('UPDATE_PACK_DOCS') or os.getenv('CI'):

@@ -47,7 +47,7 @@ The following fields are populated in the pack metadata:
 | description | String | A short overview of the pack. |
 | support | String | Should be one of the following:<br />1.  xsoar - Supported by Cortex XSOAR.<br />2.  partner - Supported by a Cortex XSOAR partner.<br />3.  developer - Supported by an independent developer/organization.<br />4.  community - Not officialy supported, but available for the community to use.<br /> For `partner` and `developer`, either email address or URL fields must be filled out.  |
 | currentVersion | String | The pack version, in the format of `x.x.x`. On the initial release this should be set to "1.0.0". |
-| author | String | The name of the organization / developer which developed the integration. |
+| author | String | The name of the organization (for partners) or developer (for individual contributions) which developed the integration. |
 | url | String | The URL to which users should refer to in case of support needed regarding the pack. Usually is the organization support URL or the developer GitHub repository. |
 | email | String | The email address to which users should reach out to in case of support needed regarding the pack. |
 | categories | List | The use-case categories which are implemented in the pack. Usually set by the integration, which included in the pack category. Should be one of the following:<br />1. Analytics & SIEM<br />2. Utilities<br />3. Messaging<br />4. Endpoint<br />5. Network Security<br />6. Vulnerability Management<br />7. Case Management<br />8. Forensics & Malware Analysis<br />9. IT Services<br />10. Data Enrichment & Threat Intelligence<br />11. Authentication<br />12. Database<br />13. Deception<br />14. Email Gateway|
@@ -55,6 +55,7 @@ The following fields are populated in the pack metadata:
 | created | String | Pack creation time in ISO 8601 format - YYYY-MM-DDTHH:mm:ssZ, e.g. 2020-01-25T10:00:00Z |
 | useCases | List | Use-cases implemented by the pack. |
 | keywords | List | List of strings by which the pack can be found in Cortex XSOAR marketplace. |
+| eulaLink | String | (Optional - Premium packs only) URL referencing the pack license agreement, will appear under the 'Disclaimer' section in the pack details. Non-premium packs are hosted in the content repo and will be subject to the the [MIT Licelse](https://github.com/demisto/content/blob/master/LICENSE) |
 | dependencies | Dictionary | (Optional) An object that describes the content packs that the pack is dependant on. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | displayedImages | List | (Optional) Images to be displayed in Cortex XSOAR marketplace. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | githubUser | List | (Optional) List of Github usernames to receive notification in the PR in case pack files were modified. |
@@ -159,8 +160,9 @@ ignore=IN126,PA116
 ```
 
 ### Author_image.png
-This file is optional, and if added the image will be displayed in the Marketplace under **PUBLISHER** when viewing the pack details.
-
+You may choose to show the pack author image such that it will be displayed in the marketplace under the **PUBLISHER** section when viewing the pack details. The image should be saved in the pack root level (i.e. content/packs/MyPackName/Author_image.png), make sure to stick with this file name for the image to appear.
+The image size should be up to 4kb and in the dimensions of 120x50.
+ 
 In case file does not exist, the pack author will be displayed in text.
 
-The image size should be up to 4kb and in the dimensions of 120x50.
+

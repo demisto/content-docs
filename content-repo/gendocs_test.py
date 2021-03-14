@@ -77,6 +77,17 @@ def test_fix_relative_images(tmp_path):
     assert res == content
 
 
+def test_fix_relative_images_html_img(tmp_path):
+    readme = f'{SAMPLE_CONTENT}/Packs/ProofpointServerProtection/Integrations/ProofpointProtectionServerV2/README.md'
+    with open(readme, 'r') as f:
+        content = f.read()
+    res = fix_relative_images(content, f'{SAMPLE_CONTENT}/Packs/ProofpointServerProtection/Integrations/ProofpointProtectionServerV2',
+                              'proofpoint-test', str(tmp_path), 'relative-test')
+    target_img_name = 'proofpoint-test-_-__-__-doc_imgs-api_role.png'
+    assert f'relative-test/{target_img_name}' in res
+    os.path.isfile(tmp_path / target_img_name)
+
+
 def test_findfiles():
     res = findfiles(INTEGRATION_DOCS_MATCH, SAMPLE_CONTENT)
     assert f'{SAMPLE_CONTENT}/Packs/CortexXDR/Integrations/PaloAltoNetworks_XDR/README.md' in res
@@ -218,6 +229,20 @@ def test_process_extra_doc(tmp_path, mdx_server):
         assert f.readline().startswith(f'id: {res.id}')
         assert f.readline().startswith(f'title: "{res.name}"')
         assert f.readline().startswith('custom_edit_url: https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/integrations')
+
+
+def test_process_private_doc(tmp_path, mdx_server):
+    readme_file_path = f'{SAMPLE_CONTENT}/Packs/HelloWorldPremium/Playbooks' \
+                       f'/playbook-Handle_Hello_World_Premium_Alert_README.md'
+    res = process_extra_readme_doc(str(tmp_path), 'Playbooks', readme_file_path, private_packs=True)
+    assert not res.error_msg
+    assert res.id == 'handle-hello-world-premium-alert'
+    assert res.description.startswith('This is a playbook which will handle the alerts')
+    assert res.name == 'Handle Hello World Premium Alert'
+    with open(str(tmp_path / f'{res.id}.md'), 'r') as f:
+        assert f.readline().startswith('---')
+        assert f.readline().startswith(f'id: {res.id}')
+        assert f.readline().startswith(f'title: "{res.name}"')
 
 
 def test_get_deprecated_data():

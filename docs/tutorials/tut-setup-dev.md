@@ -7,78 +7,9 @@ Thank you for showing interest in contributing to the Cortex XSOAR content. We h
 
 This tutorial will guide you on how to set up your dev environment to quickly start developing on Cortex XSOAR. While in Cortex XSOAR you can write code directly in the UI, which is awesome, you'll need a proper development environment external to Cortex XSOAR to contribute a full integration.. This is because, in order to build a full fledged integration, you'll need to *lint* your code, run unit tests with *pytest*, create some documentation, submit your changes via *git* and more.
 
-If you've been through this process already and just want a quick reference, you can jump to the [Development Setup](../integrations/dev-setup) page, otherwise keep reading for more details.
+If you've been through this process already and just want a quick reference, you can jump to the [Development Setup](../concepts/dev-setup) page, otherwise keep reading for more details.
 
-## Which tools should I use?
-
-As mentioned, you'll need a combination of both the Cortex XSOAR UI and other tools. 
-
-As a general rule of the thumb, we recommend that you use an external IDE and toolchain when:
-- Working on your [integration code](../integrations/code-conventions) (YourIntegration.py)
-- Working on the [unit test script](../integrations/unit-testing) (YourIntegration_test.py)
-- Working on the [release notes](../documentation/release-notes) and README.md documentation files
-- Running the [linting](../integrations/linting) and testing
-
-Instead, you should use the Cortex XSOAR UI when:
-- Creating the [Test Playbooks](../integrations/test-playbooks)
-- Auto-generate the [integration documentation](../documentation/readme_file)
-- Creating [example playbooks](../playbooks/playbooks) to demonstrate your integration
-- Working on the properties of your integration (parameters, commands, arguments, outputs, etc.)
-- Testing the User Experience
-
-## What IDE should I use?
-
-When it comes to an External IDE, you should stick to what you're comfortable with.
-
-We developed a free [plugin](https://plugins.jetbrains.com/plugin/12093-demisto-add-on-for-pycharm) for [PyCharm](https://www.jetbrains.com/pycharm/) that simplifies/automates a few tasks such as:
-- Running unit tests
-- Creating a blank integration or automation script
-- Uploading/Downloading your integration code to/from Cortex XSOAR
-- Running commands directly on Cortex XSOAR
-
-However, if you want to a different IDE (Visual Studio Code, Sublime, vi, emacs, etc.) it's totally fine! It just means that some of those tasks must be performed manually. To automate them, you can use the  [demisto-sdk](https://github.com/demisto/demisto-sdk). In this tutorial, we will be using it for unit tests, but more features will come in the future.
-
-## Requirements
-
-Here are few requirements to make sure that you an easily build an Cortex XSOAR Integration without running into issues down the road.
-
-### Cortex XSOAR
-
-You need an instance of Cortex XSOAR up and running. You can Sign Up for the [Cortex XSOAR Free Edition](https://start.paloaltonetworks.com/sign-up-for-demisto-free-edition) or, if you're entitled to, contact your Business Development representative to have a non-production license.
-
-### Operating System
-
-So far we've been using the following Operating Systems as development environments for integrations:
-- MacOS
-- Linux
-- Windows (only with WSL - [Windows Subsystem For Linux](https://docs.microsoft.com/en-us/windows/wsl/about))
-
-If you successfully manage to get this work on other platforms (native Windows, OpenBSD, etc.) , please let us know and we'll add it to the tutorial! (click on Report an issue at the bottom of this page).
-
-### Python
-
-You will need to build your integration using **Python** and, more specifically, Python 3.7+. While some content is built via Javascript and Python 2, we require Python 3.7+ for contributions.
-
-**Note**: You don't need to be a a Python expert (I'm not!) to write a good integration, although some intermediate level knowledge is preferred.
-
-It is also recommended to have a dedicated Python 3 installed on your system: for that purpose, please download and install **[pyenv](https://github.com/pyenv/pyenv)**. It allows to easily manage multiple versions of Python on your system.
-
-### GitHub
-
-You will need a **[GitHub](https://github.com)** account, as the contribution process requires you to submit a Pull Request in the [Cortex XSOAR Content Repository](https://github.com/demisto/content). To learn more about Pull Requests and contributing , check out the [Collaborating with issue and pull requests](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests) tutorial on GitHub, as well as our [Content Contribution Guide](https://github.com/demisto/content/blob/master/CONTRIBUTING.md).
-
-And you will need a `git` client on your system (git, GitHub Desktop, SourceTree, etc). In the examples we'll just use the `git` command line client.
-
-### Docker
-
-In order to be able to run linting and tests, you should have **Docker** installed on your machine. This way you can test your code using the same Python environment as the one that will run inside the Cortex XSOAR instance.
-
-*Note* if you're using WSL, you cannot run Docker natively on WSL, but you can install Docker Desktop on Windows and configure WSL to communicate to it using [this](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly) tutorial.
-
-
-## The Tutorial Starts Here
-
-Finally! The tutorial will guide you through the following steps:
+This tutorial will guide you through the following steps:
 
 1. Verify the requirements
 2. Fork the GitHub repo
