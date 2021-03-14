@@ -913,7 +913,7 @@ example for parameter configuration for integration using API token:
 - displaypassword: API Token
   name: credentials
   type: 9
-  required: true
+  required: false
   hiddenusername: true
 ```
 In Demisto UI:
