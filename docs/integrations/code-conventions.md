@@ -886,7 +886,7 @@ return_results(results)
 **Note:** By default, ignore_auto_extract is set to ```False```.
 
 ### Pagination in integration commands
-When working on a command that supports pagination (usually has API parameters like`page` and/or `page size`) with a maximal page size enforced by the API, our best practice is to create a command to support two different use-cases with these 3 corresponding integer arguments:
+When working on a command that supports pagination (usually has API parameters like `page` and/or `page size`) with a maximal page size enforced by the API, our best practice is to create a command that will support two different use-cases with the following 3 integer arguments:
 1. `page` 
 2. `page_size` 
 3. `limit` 
