@@ -212,9 +212,15 @@ The app-sync feature provides automated app provisioning in applications (such a
 
 The app-sync process starts when a user is assigned to an application in Okta, the user has been updated in Okta, or when a user is part of a group that was assigned to an application in Okta. 
 
-The **Okta IAM** integration fetches events, such as *application.user_membership.add*, *application.user_membership.remove* and *user.account.update_profile*. 
-* For the *add* and *remove* events it creates *IAM - App Sync* incidents which run the **IAM - App Sync** playbook. The playbook uses the integration context (that is transparent to the user) of the Okta instance, which maps Okta App IDs to integration instances in Cortex XSOAR, in order to determine which instance to sync the user to. It then runs either the ***iam-create-user*** or ***iam-disable-user*** command, depending on the fetched event type.
-* For the *update* event, it will create *IAM - App Update* incidents which run the **IAM - App Update** playbook. The playbook will update the user profile in all his assigned applications.
+The **Okta IAM** integration fetches the following events from Okta:
+* **application.user_membership.add**
+* **application.user_membership.remove**
+* **user.account.update_profile**
+
+
+For the **application.user_membership.add** and **application.user_membership.remove** events, it creates *IAM - App Sync* incidents which run the **IAM - App Sync** playbook. The playbook uses the [IAM - Configuration](https://xsoar.pan.dev/docs/reference/articles/identity-lifecycle-management#iam-configuration) incident in order to determine which instance to sync the user to. Then it runs either the ***iam-update-user*** or ***iam-disable-user*** command, depending on the fetched event type.
+
+For the **user.account.update_profile** event, it will create *IAM - App Update* incidents which run the **IAM - App Update** playbook. The playbook will update the user profile in every application the user is assigned into in Okta.
 
 ### Before You Start
 
