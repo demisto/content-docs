@@ -210,9 +210,11 @@ The app-sync feature provides automated app provisioning in applications (such a
 
 ### App Sync Process
 
-The app-sync process starts when a user is assigned to an application in Okta, or when a user is part of a group that was assigned to an application in Okta. 
+The app-sync process starts when a user is assigned to an application in Okta, the user has been updated in Okta, or when a user is part of a group that was assigned to an application in Okta. 
 
-The **Okta IAM** integration fetches events, such as *application.user_membership.add* and *application.user_membership.remove*, and creates *IAM - App Sync* incidents which run the **IAM - App Sync** playbook. The playbook uses the integration context (that is transparent to the user) of the Okta instance, which maps Okta App IDs to integration instances in Cortex XSOAR, in order to determine which instance to sync the user to. It then runs either the ***iam-create-user*** or ***iam-disable-user*** command, depending on the fetched event type.
+The **Okta IAM** integration fetches events, such as *application.user_membership.add*, *application.user_membership.remove* and *user.account.update_profile*. 
+* For the *add* and *remove* events it creates *IAM - App Sync* incidents which run the **IAM - App Sync** playbook. The playbook uses the integration context (that is transparent to the user) of the Okta instance, which maps Okta App IDs to integration instances in Cortex XSOAR, in order to determine which instance to sync the user to. It then runs either the ***iam-create-user*** or ***iam-disable-user*** command, depending on the fetched event type.
+* For the *update* event, it will create *IAM - App Update* incidents which run the **IAM - App Update** playbook. The playbook will update the user profile in all his assigned applications.
 
 ### Before You Start
 
@@ -220,7 +222,7 @@ Before using the app-sync feature with Okta, you need to perform the [initial sy
 
 ### Pack Configurations
 
-To trigger the app-sync *IAM - App Add* and *IAM - App Remove* incident types, you need to configure an [Okta IAM integration](#okta-iam-integration) to fetch incidents. Before enabling the integration, create an [IAM Configuration](#iam-configuration) incident from which to make connections between Okta applications and IAM integration instances. When a user is added to or removed from a connected Okta application, XSOAR will call the relevant management command from its connected IAM instance in XSOAR.
+To trigger the app-sync *IAM - App Add*, *IAM - App Remove* and *IAM - App Update* incident types, you need to configure an [Okta IAM integration](#okta-iam-integration) to fetch incidents. Before enabling the integration, create an [IAM Configuration](#iam-configuration) incident from which to make connections between Okta applications and IAM integration instances. When a user is added to or removed from a connected Okta application, XSOAR will call the relevant management command from its connected IAM instance in XSOAR.
 
 
 #### Okta IAM integration
@@ -258,6 +260,8 @@ By creating this incident and filling the app and instance information, a config
 
 #### IAM - App Sync playbook
 This playbook contains error handling tasks where a user is assigned to review the incident if app-sync fails for any reason. You can assign a user to the incident using the playbook inputs. If you want, you can configure the *UserRoleToAssignForFailures*, *UserAssignmentMethod*, and *AssignOnlyOnCall* playbook inputs according to your needs. Otherwise, a user will be randomly assigned.
+
+#### IAM - App Update playbook
 
 ### Integrations
 
