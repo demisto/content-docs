@@ -919,7 +919,7 @@ Example when using an API Token/Key:
 In Demisto UI:
 <img width="758" src="../doc_imgs/integrations/credentials_api_token.png"></img>
   
-Using credentials parameter type is always recommended (even when working with API token\key) as it provides the user the flexibility of using the [XSOAR credentials vault](https://xsoar.pan.dev/docs/reference/articles/managing-credentials) feature when configuring the integration for the first time.
+Using credentials parameter type is always recommended (even when working with API token\key) as it provides the user the flexibility of using the ![XSOAR credentials vault](https://xsoar.pan.dev/docs/reference/articles/managing-credentials) feature when configuring the integration for the first time.
 
 ## Quality Examples of Integrations
 * [Google Cloud Functions](https://github.com/demisto/content/tree/master/Packs/GoogleCloudFunctions/Integrations/GoogleCloudFunctions)
