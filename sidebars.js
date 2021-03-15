@@ -55,6 +55,7 @@ const sidebars = {
         "contributing/contrib-requirements",
         "contributing/checklist",        
         "contributing/conventions",
+        "contributing/docs-contrib",
         "contributing/marketplace"
       ]
     }, 
