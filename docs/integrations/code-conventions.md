@@ -571,7 +571,7 @@ When working on integrations that require user credentials (such as username/pas
   hiddenusername: true
 ```
   
-Using credentials parameter type is always recommended (even when working with API token\key) as it provides the user the flexibility of using the [XSOAR credentials vault](../../content-docs/content-repo/extra-docs/articles/managing-credentials.md) feature when configuring the integration for the first time.
+Using credentials parameter type is always recommended (even when working with API token\key) as it provides the user the flexibility of using the [XSOAR credentials vault](../reference/articles/managing-credentials) feature when configuring the integration for the first time.
 
 
 ## Common Server Functions
