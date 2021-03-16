@@ -2,7 +2,6 @@
 id: get-entries-filter
 title: getEntries Filter
 ---
-# getEntries Filter
 When building a script, you can fetch entries from an incident. If you do not specify the incident id number, the script fetches from the current incident.  You have the option to create a filter to limit the search results. 
 
 | Filter        | Description           | 

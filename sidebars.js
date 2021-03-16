@@ -140,7 +140,8 @@ const sidebars = {
             "integrations/dt",
             "integrations/integration-cache",
             "integrations/mirroring_integration",
-            "integrations/openapi-codegen"
+            "integrations/openapi-codegen",
+            "integrations/get-entries-filter"
           ]
         }
       ]
