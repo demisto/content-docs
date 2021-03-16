@@ -531,6 +531,43 @@ print(formatted_time)
 
 **Note:** If the response returned is in epoch, it is a best practice to convert it to ```%Y-%m-%dT%H:%M:%S```.
 
+## Pagination in integration commands
+When working on a command that supports pagination (usually has API parameters like `page` and/or `page size`) with a maximal page size enforced by the API, our best practice is to create a command that will support two different use-cases with the following 3 integer arguments:
+1. `page` 
+2. `page_size` 
+3. `limit` 
+
+**The two use cases** 
+- **Manual Pagination:** The user wants to control the pagination on its own by using the `page` and `page size` arguments. To achieve this, the command will simply pass the `page` and `page size` values on to the API request.
+- **Automatic Pagination:** The user does not want to work with pages, but only with a number of total results. In this case, the `limit` argument will be used to aggregate results by iterating over the necessary pages from the first page until collecting all the needed results. This implies a pagination loop mechanism will be implemented behind the scenes. For example, if the limit value received is 250 and the maximal page size enforced by the API is 100, the command will need to perform 3 API calls (pages 1,2, and 3) to collect the 250 requested results.
+
+## Credentials
+When working on integrations that require user credentials (such as username/password, API token/key, etc..) the best practice is to use the `credentials` parameter type.
+Example when using username and password:
+In the YML file:
+```yml
+- display: Username
+  name: credentials
+  type: 9
+  required: true
+```
+In Demisto UI:
+<img width="758" src="../doc_imgs/integrations/credentials_username_password.png"></img>
+
+Example when using an API Token/Key:
+```yml
+- displaypassword: API Token
+  name: credentials
+  type: 9
+  required: false
+  hiddenusername: true
+```
+In Demisto UI:
+<img width="758" src="../doc_imgs/integrations/credentials_api_token.png"></img>
+  
+Using credentials parameter type is always recommended (even when working with API token\key) as it provides the user the flexibility of using the ![XSOAR credentials vault](https://xsoar.pan.dev/docs/reference/articles/managing-credentials) feature when configuring the integration for the first time.
+
+
 ## Common Server Functions
 Before writing a function that seems like a workaround for something that should already exist, check the script helper to see if a function already exists. Examples of Common Server Functions are noted below:
 
@@ -884,42 +921,6 @@ results = CommandResults(
 return_results(results)
 ```
 **Note:** By default, ignore_auto_extract is set to ```False```.
-
-### Pagination in integration commands
-When working on a command that supports pagination (usually has API parameters like `page` and/or `page size`) with a maximal page size enforced by the API, our best practice is to create a command that will support two different use-cases with the following 3 integer arguments:
-1. `page` 
-2. `page_size` 
-3. `limit` 
-
-**The two use cases** 
-- **Manual Pagination:** The user wants to control the pagination on its own by using the `page` and `page size` arguments. To achieve this, the command will simply pass the `page` and `page size` values on to the API request.
-- **Automatic Pagination:** The user does not want to work with pages, but only with a number of total results. In this case, the `limit` argument will be used to aggregate results by iterating over the necessary pages from the first page until collecting all the needed results. This implies a pagination loop mechanism will be implemented behind the scenes. For example, if the limit value received is 250 and the maximal page size enforced by the API is 100, the command will need to perform 3 API calls (pages 1,2, and 3) to collect the 250 requested results.
-
-### Credentials
-When working on integrations that require user credentials (such as username/password, API token/key, etc..) the best practice is to use the `credentials` parameter type.
-Example when using username and password:
-In the YML file:
-```yml
-- display: Username
-  name: credentials
-  type: 9
-  required: true
-```
-In Demisto UI:
-<img width="758" src="../doc_imgs/integrations/credentials_username_password.png"></img>
-
-Example when using an API Token/Key:
-```yml
-- displaypassword: API Token
-  name: credentials
-  type: 9
-  required: false
-  hiddenusername: true
-```
-In Demisto UI:
-<img width="758" src="../doc_imgs/integrations/credentials_api_token.png"></img>
-  
-Using credentials parameter type is always recommended (even when working with API token\key) as it provides the user the flexibility of using the ![XSOAR credentials vault](https://xsoar.pan.dev/docs/reference/articles/managing-credentials) feature when configuring the integration for the first time.
 
 ## Quality Examples of Integrations
 * [Google Cloud Functions](https://github.com/demisto/content/tree/master/Packs/GoogleCloudFunctions/Integrations/GoogleCloudFunctions)
