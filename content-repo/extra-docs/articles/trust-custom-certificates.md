@@ -7,17 +7,19 @@ Server initiated communication (for example, downloading a pack from the marketp
  
 1. Add certificate to machine’s trusted ROOT CA Bundle. The location of the CA Bundle depends upon the version of the operating system and the operating configuration.
 
-Examples of certificate bundle paths:
-- "/etc/ssl/certs/ca-certificates.crt", // Debian/Ubuntu/Gentoo etc.
-- "/etc/pki/tls/certs/ca-bundle.crt", // Fedora/RHEL 6
-- "/etc/ssl/ca-bundle.pem", // OpenSUSE
-- "/etc/pki/tls/cacert.pem", // OpenELEC
-- "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem", // CentOS/RHEL 7
-- "/etc/ssl/cert.pem", // Alpine Linux
+Examples of certificate bundle paths:  
 
-Examples of certificate bundle directories:
-- "/etc/ssl/certs", // SLES10/SLES11, https://golang.org/issue/12139
-- "/etc/pki/tls/certs", // Fedora/RHEL
+"/etc/ssl/certs/ca-certificates.crt", // Debian/Ubuntu/Gentoo etc.  
+"/etc/pki/tls/certs/ca-bundle.crt", // Fedora/RHEL 6  
+"/etc/ssl/ca-bundle.pem", // OpenSUSE  
+"/etc/pki/tls/cacert.pem", // OpenELEC  
+"/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem", // CentOS/RHEL 7  
+"/etc/ssl/cert.pem", // Alpine Linux
+
+Examples of certificate bundle directories:  
+
+"/etc/ssl/certs", // SLES10/SLES11, https://golang.org/issue/12139  
+"/etc/pki/tls/certs", // Fedora/RHEL
 
 2. Restart the server.
 
