@@ -64,8 +64,7 @@ SOAR XPERTS is a team of like-minded, highly skilled and determined individuals,
 → Contact Abe Binder [abe@soarxperts.com](mailto:abe@soarxperts.com)
  ([www.soarxperts.com](https://www.soarxperts.com))
 
-<p>
-<br>
+
 If you are interested in becoming a partner, please [contact us](mailto:soar.alliances@paloaltonetworks.com).
 More partners are coming soon! If you are interested in becoming a partner, please [contact us](mailto:soar.alliances@paloaltonetworks.com).
 
