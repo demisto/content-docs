@@ -55,4 +55,14 @@ With decades of experience in consulting, project management, IT integration and
  ([qmasters.co](https://qmasters.co))
  
 
+### SOAR XPERTS
+
+![soar_xperts_partner](../doc_imgs/partners/soar_xperts.png)
+
+SOAR XPERTS is a team of like-minded, highly skilled and determined individuals, all sharing the passion for digitising and automating cybersecurity operations knowledge and best practices. We are NOT another cybersecurity company; we strive that our clients acknowledge us as "customer-first" centric. We specialise in the XSOAR platform and help its community get the most out of their investment in the platform. Our guiding principles are fit for purpose and fair value for money.
+
+→ Contact Abe Binder [abe@soarxperts.com](mailto:abe@soarxperts.com)
+ ([www.soarxperts.com](https://www.soarxperts.com))
+
+
 More partners are coming soon! If you are interested in becoming a partner, please [contact us](mailto:soar.alliances@paloaltonetworks.com).
