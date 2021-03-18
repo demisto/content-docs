@@ -201,13 +201,7 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
         name = yml_data.get('display') or yml_data['name']
         desc = yml_data.get('description') or yml_data.get('comment')
         if desc:
-            word_break = False
-            for word in re.split(r'\s|-', desc):
-                if len(word) > 40:
-                    word_break = True
-            desc = html.escape(desc)
-            if word_break:  # long words tell browser to break in the midle
-                desc = '<span style={{wordBreak: "break-word"}}>' + desc + '</span>'
+            desc = handle_desc_field(desc)
         doc_info = DocInfo(id, name, desc, readme_file)
         with open(readme_file, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -242,6 +236,18 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
     finally:
         sys.stdout.flush()
         sys.stderr.flush()
+
+
+def handle_desc_field(desc: str):
+
+    word_break = False
+    for word in re.split(r'\s|-', desc):
+        if len(word) > 40:
+            word_break = True
+    desc = html.escape(desc)
+    if word_break:  # long words tell browser to break in the midle
+        desc = '<span style={{wordBreak: "break-word"}}>' + desc + '</span>'
+    return desc
 
 
 def process_release_doc(target_dir: str, release_file: str) -> Optional[DocInfo]:
@@ -320,6 +326,8 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
         name = yml_data['title']
         file_id = yml_data.get('id') or normalize_id(name)
         desc = yml_data.get('description')
+        if desc:
+            desc = handle_desc_field(desc)
         readme_file_name = os.path.basename(readme_file)
         content = content.replace(front_matter_match[0], '')
 
