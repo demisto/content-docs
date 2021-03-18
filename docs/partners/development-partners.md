@@ -51,7 +51,7 @@ Loginsoft, an IT Consulting company based out of VA, US, supports leading Cybers
 
 NTT DATA Services is a digital business and IT services leader headquartered in Plano, Texas. We are the largest business unit outside Japan of trusted global innovator NTT DATA Corporation, a top 10 provider and part of the $109B NTT Group. With our consultative approach, we leverage deep industry expertise and leading-edge technologies powered by AI, automation and cloud to create practical and scalable solutions that contribute to society and help clients worldwide. Our global team delivers one of the industry’s most robust and integrated portfolios. This includes consulting, applications, data intelligence and analytics, hybrid infrastructure, workplace, cybersecurity and business process services to help organizations accelerate and sustain value throughout their digital journeys.
 
-→ Contact Phani Nudurupati [Phani.Nudurupati@nttdata.com](Phani.Nudurupati@nttdata.com)
+→ Contact Phani Nudurupati [Phani.Nudurupati@nttdata.com](mailto:Phani.Nudurupati@nttdata.com)
  ([nttdataservices.com](https://nttdataservices.com))
  
  
