@@ -77,7 +77,7 @@ The Expanse V2 content pack includes several content items.
 ### Dashboards
 - **Expanse Incidents** - Displays information based on incidents created from Expanse issues using the Expanse V2 integration. 
 
-![Expanse Incidents](../../../docs/doc_imgs/reference/expanse-incident-layout.png)
+![Expanse Incidents](https://raw.githubusercontent.com/demisto/content/master/Packs/ExpanseV2/doc_files/Expanse_Incidents_Dashboard.png)
 
 - **Expanse Perimeter** - Displays information based on the Expanse Feed integration relating to the assets that are discovered. 
 
