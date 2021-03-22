@@ -38,7 +38,13 @@ The following is the format for a file. File here refers to the file indicator o
         "Malicious": {
              "Vendor": "STRING, The vendor that reported the file as malicious.",
              "Description": "STRING, A description explaining why the file was determined to be malicious."
-        }
+        },
+        "FeedRelatedIndicators": {
+             "value": "STRING, Indicators that are associated with the file.",
+             "type": "STRING, The type of the indicators that are associated with the file",
+             "description": "STRING, The description of the indicators that are associated with the file."
+        },
+        "MalwareFamily": "STRING, The malware family associated with the file"
 }
 ```
 
@@ -96,6 +102,18 @@ outputs:
 - contextPath: File.Tags
   description: (List) Tags of the file.
   type: Unknown
+- contextPath: File.FeedRelatedIndicators.value
+  description: Indicators that are associated with the file.
+  type: String
+- contextPath: File.FeedRelatedIndicators.type
+  description: The type of the indicators that are associated with the file.
+  type: String
+- contextPath: File.FeedRelatedIndicators.description
+  description: The description of the indicators that are associated with the file.
+  type: String
+- contextPath: File.MalwareFamily
+  description: The malware family associated with the file.
+  type: String
 - contextPath: File.Signature.Authentihash
   description: The authentication hash.
   type: String
@@ -140,6 +158,17 @@ The following is the format for an IP entity
     "Malicious":{
         "Vendor": "STRING, The vendor reporting the IP address as malicious.",
         "Description": "STRING, A description explaining why the IP address was reported as malicious."
+    },
+    "Tags": "STRING, Tags of the IP.",
+    "FeedRelatedIndicators": {
+         "value": "STRING, Indicators that are associated with the IP.",
+         "type": "STRING, The type of the indicators that are associated with the IP",
+         "description": "STRING, The description of the indicators that are associated with the IP."
+    },
+    "MalwareFamily": "STRING, The malware family associated with the IP",
+    "Organization": {
+         "Name": "STRING, The organization of the IP.",
+         "Type": "STRING, The organization type of the IP."
     }
 }
 ```
@@ -176,6 +205,27 @@ outputs:
   type: String
 - contextPath: IP.Malicious.Description
   description: A description explaining why the IP address was reported as malicious.
+  type: String
+- contextPath: IP.Tags
+  description: (List) Tags of the IP.
+  type: Unknown
+- contextPath: IP.FeedRelatedIndicators.value
+  description: Indicators that are associated with the IP.
+  type: String
+- contextPath: IP.FeedRelatedIndicators.type
+  description: The type of the indicators that are associated with the IP.
+  type: String
+- contextPath: IP.FeedRelatedIndicators.description
+  description: The description of the indicators that are associated with the IP.
+  type: String
+- contextPath: IP.MalwareFamily
+  description: The malware family associated with the IP.
+  type: String
+- contextPath: IP.Organization.Name
+  description: The organization of the IP.
+  type: String
+- contextPath: IP.Organization.Type
+  description: The organization type of the IP.
   type: String
 
 ```
@@ -288,6 +338,13 @@ The following is the format for a Domain. Please note that for WHOIS, the entity
         "Name": "STRING, The name of the registrant.",
         "Phone": "STRING, The phone number for receiving abuse reports."
     },
+    "Tags": "STRING, Tags of the domain.",
+    "FeedRelatedIndicators": {
+         "value": "STRING, Indicators that are associated with the domain.",
+         "type": "STRING, The type of the indicators that are associated with the domin",
+         "description": "STRING, The description of the indicators that are associated with the domain."
+    },
+    "MalwareFamily": "STRING, The malware family associated with the domain"
     "WHOIS": {
         "DomainStatus": "STRING, The status of the domain.",
         "NameServers": "STRING, A list of name servers, for example: 'ns1.bla.com, ns2.bla.com'.",
@@ -378,6 +435,21 @@ outputs:
 - contextPath: Domain.Registrant.Phone
   description: The phone number for receiving abuse reports.
   type: String
+- contextPath: Domain.Tags
+  description: (List) Tags of the domain.
+  type: Unknown
+- contextPath: Domain.FeedRelatedIndicators.value
+  description: Indicators that are associated with the domain.
+  type: String
+- contextPath: Domain.FeedRelatedIndicators.type
+  description: The type of the indicators that are associated with the domain.
+  type: String
+- contextPath: Domain.FeedRelatedIndicators.description
+  description: The description of the indicators that are associated with the domain.
+  type: String
+- contextPath: Domain.MalwareFamily
+  description: The malware family associated with the domain.
+  type: String
 - contextPath: Domain.WHOIS.DomainStatus
   description: The status of the domain.
   type: String
@@ -443,6 +515,13 @@ The following is the format for a URL entity.
     "DetectionEngines": "NUMBER, The total number of engines that checked the indicator.",
     "PositiveDetections": "NUMBER, The number of engines that positively detected the indicator as malicious.",
     "Category": "STRING, The category associated with the indicator."
+    "Tags": "STRING, Tags of the URL.",
+    "FeedRelatedIndicators": {
+         "value": "STRING, Indicators that are associated with the URL.",
+         "type": "STRING, The type of the indicators that are associated with the URL",
+         "description": "STRING, The description of the indicators that are associated with the URL."
+    },
+    "MalwareFamily": "STRING, The malware family associated with the URL"
 }
 ```
 
@@ -466,6 +545,21 @@ outputs:
   type: String
 - contextPath: URL.Malicious.Description
   description: A description of the malicious URL.
+  type: String
+- contextPath: URL.Tags
+  description: (List) Tags of the URL.
+  type: Unknown
+- contextPath: URL.FeedRelatedIndicators.value
+  description: Indicators that are associated with the URL.
+  type: String
+- contextPath: URL.FeedRelatedIndicators.type
+  description: The type of the indicators that are associated with the URL.
+  type: String
+- contextPath: URL.FeedRelatedIndicators.description
+  description: The description of the indicators that are associated with the URL.
+  type: String
+- contextPath: URL.MalwareFamily
+  description: The malware family associated with the URL.
   type: String
 ```
 
