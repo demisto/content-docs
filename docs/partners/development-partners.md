@@ -45,7 +45,7 @@ Loginsoft, an IT Consulting company based out of VA, US, supports leading Cybers
 ([www.loginsoft.com](https://www.loginsoft.com))
 
 
-### NTT Data Services
+### NTT DATA Services
 
 ![nttdata_dev_partner](../doc_imgs/partners/nttdata_dev_partner.jpg)
 
