@@ -52,7 +52,7 @@ This article walks you through the process of contributing content from the Cort
 
 ## Resubmit a Content Pack
 
-If you have already submitted your contribution and you would like to make changes to the submission, you can do so as follows:
+If you have already submitted your contribution and you would like to make changes to the submission, you can do so by resubmitting the content pack from XSOAR. The resubmission process is very similar to the initial submission, while instead of creating a new pull request, you will update an existing pull request.
 
 1. Create or edit any content items need to be included in your contribution.
 
