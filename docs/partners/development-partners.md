@@ -1,7 +1,7 @@
 ---
 id: development-partners
 title: Development Partners
-image: https://xsoar.pan.dev/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal.svg
+image: https://xsoar.pan.dev/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal_250_white.png
 ---
 
 We’ve been talking with lots of technical partners in the past few months who are excited to join the Cortex XSOAR ecosystem. Many technical partners are able to build their integration in-house with their existing development teams. (Learn [what it takes](become-a-tech-partner) to build an integration.) But there are many partners that are interested in joining our ecosystem but may be resource- or roadmap-constrained; they are unable to commit to building the integration.
