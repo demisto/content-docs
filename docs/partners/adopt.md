@@ -6,10 +6,11 @@ title: Adopt-a-Pack
 The Cortex XSOAR Adopt-a-Pack program provides our technical partners a way to ‘take over’ a pack that was originally written by Demisto or Cortex XSOAR developers. The partner becomes the maintainer and supporter of the pack and receives several benefits as outlined below.
 
 ## Benefits for our Partner
-Adopting a Pack has several advantages for the partner:
-- Directly control the pack’s roadmap, features and release timing.
-- Receive direct feedback from customers in the form of defects and enhancement requests.
-- Added as a reviewer in GitHub to see all community updates to that pack.
+Adopting a pack has several advantages for the partner:
+- Differentiation: deliver unique solutions, commands, use cases, etc. in the pack.
+- Control: Directly set the pack’s roadmap, features and release timing.
+- Feedback: Receive direct input from actual users in the form of defects and enhancement requests.
+- Visibility: See and review all community updates to that pack as a GitHub Reviewer.
 
 ### Marketing with Palo Alto Networks
 - Opportunity to place company name and logo on the pack.
