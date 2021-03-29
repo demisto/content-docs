@@ -1,6 +1,7 @@
 ---
 id: trust-custom-certificates-engines
 title: Configure Engines to Trust Custom Certificates
+description: Replace the self-signed certificate for an engine with a valid CA certificate.
 ---
 Engine initiated communication, Javascript integrations, and native integrations use the built-in set of CA-Signed certificates of the host machine to validate TLS communication.
 You can replace the self-signed certificate for engines with a valid CA certificate.
