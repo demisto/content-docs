@@ -8,7 +8,7 @@ description: Generate XSOAR integration from Postman Collection
 It can happen in 2 steps or 1 step.
 - Two steps - allows more configuration and customization to the code. 
     1. Generate an integration config file. 
-    1. [Generate integration]((../generate_integration/README.md)) from the config file
+    1. [Generate integration]((./generate_integration)) from the config file
 - Single step
     1. Generate integration yml
 

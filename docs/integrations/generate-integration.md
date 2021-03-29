@@ -4,7 +4,7 @@ title: Integration Code Generator
 description: Generate XSOAR Integration from XSOAR integration config file.
 ---
 ## Generate XSOAR Integration from XSOAR integration config file.
-The `generate-integration` command generates XSOAR integration from integration config json file. `postman-codegen` [command](../postman_codegen/README.md) generates the config json file.
+The `generate-integration` command generates XSOAR integration from integration config json file. `postman-codegen` [command](./postman_codegen) generates the config json file.
 
 Options:
 *  **-h, --help**
