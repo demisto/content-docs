@@ -344,7 +344,7 @@ The following is the format for a Domain. Please note that for WHOIS, the entity
          "type": "STRING, The type of the indicators that are associated with the domin",
          "description": "STRING, The description of the indicators that are associated with the domain."
     },
-    "MalwareFamily": "STRING, The malware family associated with the domain"
+    "MalwareFamily": "STRING, The malware family associated with the domain",
     "WHOIS": {
         "DomainStatus": "STRING, The status of the domain.",
         "NameServers": "STRING, A list of name servers, for example: 'ns1.bla.com, ns2.bla.com'.",
@@ -514,7 +514,7 @@ The following is the format for a URL entity.
     },
     "DetectionEngines": "NUMBER, The total number of engines that checked the indicator.",
     "PositiveDetections": "NUMBER, The number of engines that positively detected the indicator as malicious.",
-    "Category": "STRING, The category associated with the indicator."
+    "Category": "STRING, The category associated with the indicator.",
     "Tags": "STRING, Tags of the URL.",
     "FeedRelatedIndicators": {
          "value": "STRING, Indicators that are associated with the URL.",
