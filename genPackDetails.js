@@ -90,6 +90,43 @@ function genPackDetails() {
     }
     marketplace.push(metadata);
   });
+  if (process.env.MAX_PACKS) {
+    console.log(`limiting packs to ${process.env.MAX_PACKS}`);
+    marketplace.slice(1, process.env.MAX_PACKS).map((pack) => {
+      generatePackDetails.runActions({
+        id: pack.id.replace(/-|\s/g, "").replace(".", ""),
+        name: pack.name,
+        description: pack.description.replace(/\\/g, "\\\\"),
+        author: pack.author,
+        currentVersion: pack.currentVersion,
+        versionInfo: pack.versionInfo,
+        authorImage: pack.authorImage != "" ? pack.authorImage : null,
+        readme: pack.readme
+          ? jsStringEscape(pack.readme)
+          : `This pack doesn't have any \`README.md\` content yet. If you'd like to contribute click [here](https://github.com/demisto/content/blob/master/Packs/${pack.id}/README.md).`,
+        support:
+          pack.support == "xsoar"
+            ? "Cortex XSOAR"
+            : capitalizeFirstLetter(pack.support),
+        created: new Date(pack.created).toLocaleString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }),
+        updated: new Date(pack.updated).toLocaleString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }),
+        certification: pack.certification,
+        useCases: pack.useCases,
+        integrations: pack.integrations,
+        contentItems: pack.contentItems,
+        changeLog: pack.changeLog,
+      });
+    });
+    return;
+  }
   marketplace.map((pack) => {
     generatePackDetails.runActions({
       id: pack.id.replace(/-|\s/g, "").replace(".", ""),
