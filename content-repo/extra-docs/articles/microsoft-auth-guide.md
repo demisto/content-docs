@@ -12,7 +12,7 @@ There are 2 application authentication methods available:
 2.  Self-Deployed Application
 
 ## Cortex XSOAR Application
-In this method, you give consent to the Cortex XSOAR application to access your data.
+In this method, you grant consent for the Cortex XSOAR multi-tenant application to access your data. The application is maintained by Cortex XSOAR.
 Depending on the integration, this requires either admin consent to [get access without a user](https://docs.microsoft.com/en-us/graph/auth-v2-service) or user consent to [get access on behalf of a user](https://docs.microsoft.com/en-us/graph/auth-v2-user).
 **Note**: This method requires that you give consent to all permissions requested by the application.
 
@@ -84,4 +84,3 @@ In order to use the Cortex XSOAR Azure application, you need to fill in your sub
 After you a redirected to the next page, in the **Overview** tab you will find your Resource group and Subscription ID:
 
 ![Overview](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/subscription_id_resourse_group.png)
-

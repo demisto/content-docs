@@ -22,8 +22,7 @@ jobs:
         muffet -c 64 --ignore-fragments -b 8192 \
         -e 'https://github.com/demisto/content-docs/.*' \
         -e 'https://github.com/demisto/content/blob/master//Packs/.*' \
-        -e 'https?://192\.168\.\d+\.\d+.*' \
-        -e 'https?://10\.\d+\.\d+\.\d+.*' \
+        -e 'https?://\d+\.\d+\.\d+\.\d+.*' \
         -e 'https://github.com/demisto/content/releases/download/.*' \
         -e 'https://github.com/demisto/content/tree/\d+\.\d+\.\d+' \
         -e 'https?://localhost.*' \
@@ -60,6 +59,11 @@ jobs:
         -e 'https://api.slack.com/scim/v1.*' \
         -e 'https://panwtest.enterprise.slack.com.*' \
         -e 'https://api-console.zoho.com.*' \
+        -e 'https?://.*test.com.*'  \
+        -e 'https://github.com/crestdatasystems/DemistoPrivateContent.*' \
+        -e 'https?://br430.teste.website/.*' \
+        -e 'https://zenshin-talent.us4.list-manage.com.*' \
+        -e 'https://zeustracker.abuse.ch.*' \
         https://xsoar.pan.dev > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
         grep -v -E '^\s+(403|401|x509|lookup|parse|timeout|dial)' muffet.txt > muffet-clean.out
         echo "Muffet output after 401, 403 and x509 remove:"

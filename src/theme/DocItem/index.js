@@ -137,7 +137,7 @@ Thank you for taking the time to help us improve our documentation! Please descr
                 <DocContent />
               </div>
             </article>
-            {(editUrl || lastUpdatedAt || lastUpdatedBy) && (
+            {(editUrl || lastUpdatedAt || lastUpdatedBy || issueUrl) && (
               <div className="margin-vert--xl">
                 <div className="row">
                   <div className="col">

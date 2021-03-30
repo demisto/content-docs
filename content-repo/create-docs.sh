@@ -49,7 +49,7 @@ else
     echo "==== current branch: ${CURRENT_BRANCH} ===="
 
     CONTENT_GIT_URL="https://github.com/demisto/content.git"
-    CONTENT_BRANCH="${CURRENT_BRANCH}"
+    CONTENT_BRANCH="master"
     REQUIRE_BRANCH=false
     if [ -n "${INCOMING_HOOK_BODY}" ]; then
         echo "INCOMING_HOOK_BODY=${INCOMING_HOOK_BODY}"
@@ -102,7 +102,7 @@ else
             echo "ERROR: couldn't find $CONTENT_BRANCH on remote. Aborting..."
             exit 2
         fi
-        echo "Couldn't find $CONTENT_BRANCH using master to generate build"
+        echo "Using content master to generate build"
         CONTENT_BRANCH=master
         git checkout master
         # you can use an old hash to try to see if bulid passes when there is a failure.
