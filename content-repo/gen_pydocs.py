@@ -43,6 +43,10 @@ class DemistoMarkdownRenderer(MarkdownRenderer):
     def _render_header(self, fp, level, obj):
         if '__init__' in obj.name:
             return
+        if type(obj).__name__ == 'Data' and 'Enum' in self._get_parent(obj).docstring:
+            fp.write(f'- {obj.name}')
+            fp.write('\n\n')
+            return
         super()._render_header(fp, level, obj)
 
 
