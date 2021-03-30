@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "reference-docs": "cd content-repo && ./create-docs.sh",
+    "reference-docs": "npm run index && node genPackDetails && cd content-repo && ./create-docs.sh",
     "test": "cd content-repo && pipenv install --dev && pipenv run flake8 *.py && pipenv run mypy gendocs.py && pipenv run pytest -v",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
@@ -13,7 +13,8 @@
     "findorphans": "for i in `cd docs && find . -name '*.md' | cut -d '.' -f2 | cut -d'/' -f2-`; do grep $i sidebars.js 1>/dev/null || echo \"Document not in sidebar: $i\"; done",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
-    "node": "node"
+    "node": "node",
+    "index": "curl https://storage.googleapis.com/marketplace-dist/content/packs/index.zip > index.zip && unzip -o index.zip && rm index.zip"
   },
   "dependencies": {
     "@docusaurus/core": "2.0.0-alpha.70",
@@ -38,7 +39,16 @@
     "react-dom": "^16.13.1",
     "react-particles-js": "2.7.0",
     "react-scroll-up-button": "1.6.4",
-    "replace": "^1.2.0"
+    "react-responsive": "^8.2.0",
+    "react-collapsible": "^2.8.3",
+    "react-select": "^4.2.1",
+    "replace": "^1.2.0",
+    "showdown": "^1.9.1"
+  },
+  "devDependencies": {
+    "js-string-escape": "^1.0.1",
+    "node-plop": "^0.26.2",
+    "plop": "^2.7.4"
   },
   "browserslist": {
     "production": [

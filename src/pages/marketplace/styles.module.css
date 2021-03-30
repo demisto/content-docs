@@ -1,0 +1,333 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.heroBanner {
+  padding: 2rem 0;
+  text-align: left;
+  position: sticky;
+  overflow: hidden;
+  top: 0;
+  z-index: 100;
+}
+
+@media screen and (max-width: 1321px) {
+  .ellipsis {
+    max-width: 295px !important;
+  }
+}
+
+@media screen and (max-width: 966px) {
+  .heroBanner {
+    padding: 1rem;
+  }
+
+  .webflow {
+    padding: 1rem 1.6rem 1.1rem !important;
+  }
+
+  .webflow input {
+    flex-grow: 1;
+    color: var(--ifm-color-info-dark);
+    font-size: 16px !important;
+    line-height: 1rem !important;
+    vertical-align: middle;
+  }
+
+  .searchIcon {
+    font-size: 16px !important;
+    vertical-align: middle;
+  }
+
+  button {
+    font-size: unset !important;
+  }
+}
+
+input {
+  border-style: none;
+  background: transparent;
+  outline: none;
+}
+
+button {
+  padding: 0;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+.webflow {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1109.63px;
+  border-radius: 2px;
+  padding: 0.8rem 1.4rem 1rem;
+}
+
+.webflow::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 999;
+  height: 6px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  background-position: 0% 0%;
+  background: linear-gradient(
+    to right,
+    var(--ifm-color-danger),
+    var(--ifm-color-info),
+    var(--ifm-color-warning),
+    var(--ifm-color-primary),
+    var(--ifm-color-danger),
+    var(--ifm-color-info)
+  );
+  background-size: 500% auto;
+  animation: gradient 3s linear infinite;
+}
+
+.webflow input {
+  flex-grow: 1;
+  color: var(--ifm-color-info-dark);
+  font-size: 1.4rem;
+  line-height: 2rem;
+  vertical-align: middle;
+}
+
+.webflow::-webkit-input-placeholder {
+  color: var(--ifm-color-secondary);
+}
+
+.webflow button {
+  color: var(--ifm-color-secondary);
+  font-size: 2.4rem;
+  line-height: 2.4rem;
+  vertical-align: middle;
+  transition: color 0.25s;
+}
+
+.webflow:hover {
+  color: var(--ifm-color-primary);
+}
+
+.searchIcon {
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+/* Content Packs */
+
+.contentPack {
+  height: 300px;
+  border-radius: 3px;
+  flex-direction: column;
+  position: relative;
+  min-width: 100%;
+}
+
+.packAuthor {
+  padding-left: 1rem;
+}
+
+.packHeader {
+  padding-bottom: 2rem;
+  color: var(--ifm-color-info-dark);
+  font-size: 11px;
+}
+
+.packName {
+  padding-bottom: 2rem;
+}
+
+.packDescription {
+  color: var(--ifm-font-color-base);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 182px;
+  display: block;
+  overflow: hidden;
+}
+
+:global(.card__image) {
+  max-height: 175px;
+  overflow: hidden;
+}
+
+.article {
+  display: block;
+  min-width: 100%;
+}
+
+.article:hover {
+  opacity: 0.5;
+}
+
+.integrations {
+  margin: 2px;
+  display: flex;
+  height: 25px;
+  margin-bottom: 15px;
+}
+
+.integrationImageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 27px;
+  width: 64px;
+  background-color: rgba(255, 255, 255, 0.747);
+  margin-right: 6px;
+  border-radius: 2px;
+}
+
+.integrationImage {
+  max-height: 25px;
+  max-width: 60px;
+}
+
+.cost {
+  color: var(--ifm-color-info-dark);
+  padding-right: 10px;
+  float: right;
+}
+
+.cost::after {
+  content: "";
+  font-family: "Demisto";
+  color: var(--ifm-color-warning);
+}
+
+.free {
+  color: var(--ifm-color-info-dark);
+  padding-right: 10px;
+  float: right;
+}
+
+.downloads {
+  color: var(--ifm-color-info-dark);
+  font-size: smaller;
+  width: 100%;
+  padding-left: 10px;
+}
+
+.footer {
+  padding-top: 1rem;
+  vertical-align: middle;
+}
+
+/* DocPage */
+:root {
+  --doc-sidebar-width: 300px;
+}
+
+:global(.main-docs-wrapper) {
+  display: flex;
+}
+
+.docPage,
+.docMainContainer {
+  display: flex;
+  width: 100%;
+}
+
+@media (min-width: 997px) {
+  .docMainContainer {
+    flex-grow: 1;
+    max-width: calc(100% - var(--doc-sidebar-width));
+  }
+
+  .docMainContainerEnhanced {
+    max-width: none;
+  }
+
+  .docSidebarContainer {
+    width: var(--doc-sidebar-width);
+    margin-top: calc(-1 * var(--ifm-navbar-height));
+    border-right: 1px solid var(--ifm-toc-border-color);
+    will-change: width;
+    transition: width var(--ifm-transition-fast) ease;
+    clip-path: inset(0);
+  }
+
+  .docSidebarContainerHidden {
+    width: 30px;
+    cursor: pointer;
+  }
+
+  .collapsedDocSidebar {
+    position: sticky;
+    top: 0;
+    height: 100%;
+    max-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--ifm-transition-fast) ease;
+  }
+
+  .collapsedDocSidebar:hover,
+  .collapsedDocSidebar:focus {
+    background-color: var(--ifm-color-emphasis-200);
+  }
+
+  .expandSidebarButtonIcon {
+    transform: rotate(0);
+  }
+  html[dir="rtl"] .expandSidebarButtonIcon {
+    transform: rotate(180deg);
+  }
+
+  html[data-theme="dark"] .collapsedDocSidebar:hover,
+  html[data-theme="dark"] .collapsedDocSidebar:focus {
+    background-color: var(--collapse-button-bg-color-dark);
+  }
+
+  .docItemWrapperEnhanced {
+    max-width: calc(var(--ifm-container-width) + var(--doc-sidebar-width));
+  }
+}
+
+@media (max-width: 996px) {
+  .docSidebarContainer {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 997px) and (max-width: 1320px) {
+  .docItemWrapper {
+    max-width: calc(
+      var(--ifm-container-width) - var(--doc-sidebar-width) -
+        var(--ifm-spacing-horizontal) * 2
+    );
+  }
+
+  .docItemWrapperEnhanced {
+    max-width: calc(
+      var(--ifm-container-width) - var(--ifm-spacing-horizontal) * 2
+    );
+  }
+}

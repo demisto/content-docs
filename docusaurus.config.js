@@ -7,6 +7,28 @@
 const visit = require("unist-util-visit");
 const path = require("path");
 
+const globby = require("globby");
+
+function genMetaData() {
+  let marketplace = [];
+  const packs = globby.sync(["./index", "!./index/index.json"], {
+    absolute: false,
+    objectMode: true,
+    deep: 1,
+    onlyDirectories: true,
+  });
+  packs.map((pack) => {
+    const meta = globby.sync([`${pack.path}/metadata.json`], {
+      absolute: true,
+      objectMode: true,
+      deep: 1,
+    });
+    let metadata = require(meta[0].path);
+    marketplace.push(metadata);
+  });
+  return marketplace;
+}
+
 const remarkPlugin = () => {
   const transformer = (root) => {
     visit(root, "link", (node) => {
@@ -62,6 +84,11 @@ module.exports = {
         {
           to: "/docs/reference/index",
           label: "Reference",
+          position: "left"
+        },
+        {
+          to: "/marketplace",
+          label: "Marketplace",
           position: "left"
         },
         {
@@ -205,7 +232,15 @@ module.exports = {
         position: "products"
       }
     ],
+    marketplace: genMetaData(),
   },
+  stylesheets: [
+    {
+      href: "https://use.fontawesome.com/releases/v5.15.0/css/all.css",
+      type: "text/css",
+      rel: "stylesheet",
+    },
+  ],
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   onDuplicateRoutes: "warn",
