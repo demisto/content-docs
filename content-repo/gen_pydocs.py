@@ -216,7 +216,7 @@ def main():
     }
     with open(f'{args.target_dir}/sidebar.json', 'r+') as f:
         data = json.load(f)
-        rn_item_index = next(data.index(item) for item in data if item['label'] == 'Content Release Notes')
+        rn_item_index = next(data.index(item) for item in data if item.get('label') == 'Content Release Notes')
         data.insert(rn_item_index, sidebar)
         f.seek(0)
         json.dump(data, f, indent=4)
