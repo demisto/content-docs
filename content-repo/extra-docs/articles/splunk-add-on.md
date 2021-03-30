@@ -1,6 +1,7 @@
 ---
 id: splunk-add-on
 title: Demisto Add-on for Splunk
+description: Splunk add-on for Cortex XSOAR. This add-on enables you to push incidents from Splunk into Cortex XSOAR, according to configurable trigger parameters.
 ---
 Supporting add-on for Cortex XSOAR. This application enables you to push incidents from Splunk into Cortex XSOAR, according to configurable trigger parameters.
 
