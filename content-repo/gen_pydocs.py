@@ -35,6 +35,16 @@ class DemistoMarkdownRenderer(MarkdownRenderer):
             function_signature = f'{self.func_prefix}{function_signature}'
         return function_signature
 
+    def _render_signature_block(self, fp, obj):
+        if '__init__' in obj.name:
+            return
+        super()._render_signature_block(fp, obj)
+
+    def _render_header(self, fp, level, obj):
+        if '__init__' in obj.name:
+            return
+        super()._render_header(fp, level, obj)
+
 
 class CommonServerPythonProcessor(SphinxProcessor):
     def _process(self, node):
