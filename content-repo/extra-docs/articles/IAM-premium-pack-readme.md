@@ -170,9 +170,9 @@ This playbook contains error handling tasks where a user is assigned to review t
  Okta IAM - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/okta-iam)
  
  
- ### Advanced
+ ## Advanced
 
-#### Fields and Mappers
+### Fields and Mappers
 
 The mappers that are provided out-of-the-box work with the assumption that you did not add any fields. 
 
@@ -194,7 +194,7 @@ If you want to include additional information in the user profile indicator, and
 
 2. Reconfigure each integration to use the duplicated mappers you created.
 
-##### Example
+#### Example
 
 The following is an example of the flow when adding a field to work with the ILM content pack. This example does not presume to cover all possible scenarios.
 
