@@ -82,6 +82,8 @@ class CommonServerPythonProcessor(SphinxProcessor):
                 if match:
                     keyword = 'Returns'
                     return_type = match.group(1).strip().replace('`', '')
+                    if 'None' in return_type:
+                        continue
 
                     component = components.setdefault(keyword, [])
                     component.append('- `{}` - {}'.format(return_type, return_desc))
