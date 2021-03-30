@@ -34,8 +34,7 @@ return (
 
     <main className={clsx("container", "contentPackAlign" )}>
         <Tabs defaultValue="details" values={[ { label: "Details" , value: "details" }, { label: "Content" ,
-            value: "content" }, { label: "Version History" ,
-            value: "versions" }]}>
+            value: "content" }, { label: "Version History" , value: "versions" }]}>
             <TabItem value="details">
                 <div className="row">
                     <div className={clsx("col col--8" )}>
@@ -104,10 +103,10 @@ return (
                         <h5 className="text text--secondary">
                             WORKS WITH THE FOLLOWING INTEGRATIONS:
                         </h5>
-                        <div className="integrations">
+                        <div className="detailsIntegrations">
                             {{#each integrations}}
-                            <div className="integrationImageContainer">
-                                <img className="integrationImage"
+                            <div className="detailsIntegrationImageContainer">
+                                <img className="detailsIntegrationImage"
                                     src="https://storage.googleapis.com/marketplace-dist/{{this.imagePath}}"
                                     title="{{this.name}}"></img>
                             </div>
