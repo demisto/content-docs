@@ -166,6 +166,7 @@ def generate_pydoc(
         classdef_code_block=False,
         descriptive_class_title=False,
         signature_with_decorators=False,
+        signature_class_prefix=True,
     )
     loader: PythonLoader = next((ldr for ldr in pydocmd.loaders if isinstance(ldr, PythonLoader)), None)
     loader.modules = [module]
