@@ -206,19 +206,18 @@ def main():
     os.rename('demisto.py', 'demistomock.py')
     generate_common_server_python_docs(target_sub_dir)
     api_ref_path = f'{os.path.basename(args.target_dir)}/api'
-    sidebar = [
-        {
-            "type": "category",
-            "label": "API Reference",
-            "items": [
-                f'{api_ref_path}/demisto-class',
-                f'{api_ref_path}/common-server-python',
-            ]
-        },
-    ]
+    sidebar = {
+        'type': 'category',
+        'label': 'API Reference',
+        'items': [
+            f'{api_ref_path}/demisto-class',
+            f'{api_ref_path}/common-server-python',
+        ]
+    }
     with open(f'{args.target_dir}/sidebar.json', 'r+') as f:
         data = json.load(f)
-        data.extend(sidebar)
+        rn_item_index = next(data.index(item) for item in data if item['label'] == 'Content Release Notes')
+        data.insert(rn_item_index, sidebar)
         f.seek(0)
         json.dump(data, f, indent=4)
 
