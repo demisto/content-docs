@@ -37,7 +37,7 @@
   --ifm-leading-desktop: 1.5;
   --ifm-list-margin: var(--ifm-leading);
   --ifm-color-secondary: #9292c8;
- font-family: "Demisto", Fallback, sans-serif;
+  font-family: "Demisto", Fallback, sans-serif;
   /* Tables */
   --ifm-table-stripe-background: var(--ifm-background-color);
   --ifm-table-border-width: 0px;
@@ -269,7 +269,7 @@ blockquote {
 }
 
 :target {
-  outline: none
+  outline: none;
 }
 
 html[data-theme="dark"] .docusaurus-highlight-code-line {
@@ -280,8 +280,8 @@ video {
   /* override other styles to make responsive 
     Based on: https://css-tricks.com/fluid-width-video/
   */
-  width: 100%    !important;
-  height: auto   !important;
+  width: 100% !important;
+  height: auto !important;
 }
 
 /* Algolia overrides */
@@ -318,12 +318,11 @@ html[data-theme="dark"] .header-github-link:before {
   display: none !important;
 }
 
-@media (max-width: 380px){
+@media (max-width: 380px) {
   .navbar__logo {
     content: url("/img/Cortex-XSoar-green.svg") !important;
   }
 }
-
 
 /* Center all columns in main wrapper */
 .main-wrapper {
@@ -389,7 +388,7 @@ html[data-theme="dark"] .header-github-link:before {
   margin-left: 10px;
 }
 
-.integrations {
+.detailsIntegrations {
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
@@ -398,7 +397,7 @@ html[data-theme="dark"] .header-github-link:before {
   overflow: auto;
 }
 
-.integrationImageContainer {
+.detailsIntegrationImageContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -411,7 +410,7 @@ html[data-theme="dark"] .header-github-link:before {
   border-radius: 2px;
 }
 
-.integrationImage {
+.detailsIntegrationImage {
   max-height: 25px;
   max-width: 60px;
 }
