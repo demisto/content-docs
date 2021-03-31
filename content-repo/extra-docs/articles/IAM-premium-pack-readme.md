@@ -291,7 +291,7 @@ The following is an example of the flow when adding a field to work with the ILM
 ## Troubleshooting
 
 ##### Why are my new fields not showing in the layout?
-make sure of the following: 
+Make sure of the following: 
 * You've created an incident field **and** an indicator field with the exact same name.
 * The incident fields are associated to the IAM incident types, and the indicator fields are associated to the User Profile indicator type, as described in the Fields and Mappers section. 
 * The fields are mapped in the Workday mapper under all the relevant incident types
@@ -300,13 +300,19 @@ make sure of the following:
 * The incident types were configured to use the new layout that you've created
 
 ##### Why are incidents not being created from Workday?
-This could be due to several reasons:
+There could be several reasons for this:
 * The integration is being run for the first time, at which point only the initial user sync is run - which is when the User Profile indicators are created as described in the "Initial Sync & User Profiles" section.
 * You keep resetting the last run timestamp in the Workday integration while "Sync user profiles on first run" option in the Workday integration configuration is checked. You should not reset the last run timestamp or you should uncheck that option if you've already performed the initial sync.
 * Your Workday report is missing required fields. Please refer to the table in the "Before You Start - User Provisioning" section and make sure that the report holds all of those fields for every employee.
 * Nothing has changed in the Workday report since the initial sync, so there is nothing to provision.
 
 ##### Why are duplicate incidents being created?
-This could be due to several reasons:
+There could be several reasons for this:
 * There were changes to an employee in the Workday report, but the employee's incident in XSOAR failed before updating the User Profile indicator of that employee. As long as there is a discrepancy between the Workday report and the User Profile indicator, the Workday integration will keep trying to update it. Search for the incident of the employee and fix the cause of error. Then - the next incident should complete and no duplicate incidents should follow.
-* 
+* The field is missing in one of the incident types in the Workday mapper
+
+##### Why does user creation fail in Active Directory?
+There could be several reasons for this. Inspect the error message in the Process Details tab to understand why the creation failed. If you cannot determine the cause of the error, make sure that:
+* You've added a transformer script which determines the OU where the user will be created, in the Active Directory outgoing mapper, in the User Profile incident type and schema type, under the "ou" field.
+* You're using LDAPS in the Active Directory (port 636) integration.
+* You've specified a password generation script in the *IAM - Activate User In Active Directory* playbook inputs, under the *PasswordGenerationScriptName*, and that script complies with your domain's password complexity policy.
