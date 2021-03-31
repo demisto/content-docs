@@ -18,8 +18,8 @@ Options:
 The above command generates `integration-VirusTotal.yml` file under `/output/path` directory.
 
 ## Integration config json file
-**Examples**
-[Virus Total config file example]()
+**Example**  
+[URLScan generated config file](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman-codegen/resources/config-urlscanio.json).  
 
 |Field Name|Field Type|Description|Examples|Is Required|
 |----------|----------|-----------|--------|-----------|
@@ -286,4 +286,7 @@ def create_profile(self, name, id):
 ```
 
 
-## Troubleshooting
+## Example files
+[URLScan Postman Collection v2.1](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman-codegen/resources/urlscan.io.postman_collection.json).  
+[URLScan generated config file](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman-codegen/resources/config-urlscanio.json).  
+[URLScan generated integration yml](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman-codegen/resources/integration-urlscanio.yml). 
