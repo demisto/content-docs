@@ -91,100 +91,6 @@ Under the inputs for the IAM - Sync User playbook, make sure you configure value
     4. *Timezone* - The time zone used when referring to employee termination date, last day of work, hire date, and so on. This should be the time zone that is used in the employee Workday reports. The time zone you choose affects the way that the playbooks treat dates for the employee. For example, if your chosen time zone is "America/Los_Angeles" and an employee should be terminated on November 5th at 23:59, then only when it's November 5th and 23:59 in Los Angeles will the termination occur.
     5. *DateFormat* - the format in which the dates in employee Workday reports are represented. For example, if an employee's hire date appears like this: 06/15/2020, then the value for the DateFormat input should be %m/%d/%Y.
 
-#### Fields and Mappers
-
-The mappers that are provided out-of-the-box work with the assumption that you did not add any fields. 
-
-If you want to include additional information in the user profile indicator, and provision it to your available IAM applications, follow the steps in the following example: 
-
-1. Add the field to the mappers for the Workday, Okta, Active Directory, and for any other IAM integration configured. 
-
-   **Note:** To change the mappers, you will need to duplicate each mapper. 
-
-   Ensure that you are adding the fields to the relevant incident types within each mapper.
-
-   * for the Workday incoming mapper, add the field to the *IAM - Sync User* incident type.
-   * for Okta and Active Directory, add the field to the *UserProfile* incident type in both the incoming and outgoing mappers.
-   
-        > <i>Note:</i> As part of the configuration of the Active Directory mapper, you must map a value to the OU (organizational unit) required field. To do this, create a transformer that maps a user attribute of your choice to an OU value.
-   
-   * for GitHub, the relevant mappers are in the *IAM-SCIM* pack and can be used in any integrations that uses SCIM.
-
-
-2. Reconfigure each integration to use the duplicated mappers you created.
-
-##### Example
-
-The following is an example of the flow when adding a field to work with the ILM content pack. This example does not presume to cover all possible scenarios.
-
-1.  Add an incident field.
-    1. Navigate to Settings -> Advanced -> Fields and click *New Field*.
-    1. Enter the name for the field and click the *Attributes* tab.
-    1. Clear the *Add to all incident types* checkbox.
-    1. In the *Add to incident types* drop-down, select the following:
-        - User Profile
-	    - IAM - Sync User
-	    
-	    You can add the following incident types if you would like to display the new field in the incident layout (the new fields will be shown regardless in the User Profile indicator).
-	    - IAM - New Hire
-	    - IAM - Update User
-	    - IAM - Terminate User
-	    - IAM - Rehire User
-    1. Click *Save*.
-
-    ![Create Incident Field](../../../docs/doc_imgs/reference/ilm-create-new-incident-field.png "Create Incident Field")
-
-1. Add an indicator field.
-    1. Change the field type to *Indicator*.
-
-       ![Show Indicator Fields](../../../docs/doc_imgs/reference/ilm-toggle-indicators.png "Show Indicator Fields")
-
-    1. Click *New Field*. 
-    1. Give the same name as you entered for the Incident field. In this example, we have used Sample-Field-IAM.
-    1. Click the *Attributes* tab.
-    1. Clear the *Add to all incident types* checkbox.
-    1. In the *Add to incident types* drop-down, select the User Profile indicator type. 
-    1. Click *Save*. 
-
-    ![Create Indicator Fields](../../../docs/doc_imgs/reference/ilm-create-indicator-field.png "Create Indicator Fields")
-
-1. Add the fields to the respective layouts.
-    1. Navigate to *Settings -> Advanced -> Layouts*.
-    1. Select the layout to which you want to add the field, for example, *User Profile*, and click *Duplicate*.
-    1. Click the User Profile_copy layout.
-    1. In the *Library*, click *Fields and Buttons*, and drag the field you added above to the section in the layout in which you want it to appear. In this example, we have added the field to the *Personal and Contact Information* section.
-    1. Save the layout. 
-    1. Repeat this process for each of the other layouts in which you want the field to appear.
-    1. Go to *Indicator Types*, select the User Profile indicator type, click edit and then change the layout to the new layout you have just created.
-
-    ![Add Fields to Layout](../../../docs/doc_imgs/reference/ilm-add-fields-to-layout.png "Add Fields to Layout")
-
-1. Map the new field in all of the mappers.
-    1. Navigate to *Settings -> Integrations -> Classification and Mapping*.
-    1. Select the mapper to which you want to add the field, for example, *IAM Sync User - Workday*, and click *Duplicate*. 
-    1. Click *IAM Sync User - Workday_copy*.
-    1. Under *Get data*, select the source from which you want to retrieve the sample data for mapping.
-    1. Under *Select Instance*, select the instance of the selected source.
-    1. Under *Incident Type*, select the relevant incident type, as follows:
-        - for the Workday incoming mapper, add the field to the IAM - Sync User incident type. 
-        - for Okta, Active Directory, ServiceNow, GitHub and the rest of the IAM integrations, add the field to the UserProfile incident type in both the incoming and outgoing mappers.
-    1. Map the new field you have created to the field in the schema. For purposes of this example, we have mapped the Sample-Field-IAM field to the employee number.
-    1. Repeat this process for each additional field and save the mapper. 
-    1. Repeat this process for all of the mappers. For example:
-        - Workday incoming mapper
-        - Okta incoming and outgoing mappers
-        - Active Directory incoming and outgoing mappers
-        - ServiceNow incoming and outgoing mappers
-        - GitHub that uses the IAM-SCIM incoming and outgoing mappers
-
-    ![Map Fields](../../../docs/doc_imgs/reference/ilm-map-fields.png "Map Fields")
-
-1. Configure the integration instances to use the new mappers.
-    1. Navigate to *Settings -> Servers and Services* and select one of the integration instances for this pack. In our example, we are using Workday.
-    1. In both *Mapper (incoming)* fields (one located under the *Incident type* field and one located under the *Use system proxy settings* checkbox) select the copy mapper that you created above. In our example, that would be **IAM Sync User - Workday_copy**. 
-
-![Attach Mapper to Integration](../../../docs/doc_imgs/reference/ilm-attach-duplicate-mapper-to-integration.png "Attach Mapper to Integration")
-
 
 ### Integrations
 
@@ -263,6 +169,103 @@ This playbook contains error handling tasks where a user is assigned to review t
 
  Okta IAM - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/okta-iam)
  
+ 
+ ## Advanced
+
+### Fields and Mappers
+
+The mappers that are provided out-of-the-box work with the assumption that you did not add any fields. 
+
+If you want to include additional information in the user profile indicator, and provision it to your available IAM applications, follow the steps in the following example: 
+
+1. Add the field to the mappers for the Workday, Okta, Active Directory, and for any other IAM integration configured. 
+
+   **Note:** To change the mappers, you will need to duplicate each mapper. 
+
+   Ensure that you are adding the fields to the relevant incident types within each mapper.
+
+   * for the Workday incoming mapper, add the field to the *IAM - Sync User* incident type.
+   * for Okta and Active Directory, add the field to the *UserProfile* incident type in both the incoming and outgoing mappers.
+   
+        > <i>Note:</i> As part of the configuration of the Active Directory mapper, you must map a value to the OU (organizational unit) required field. To do this, create a transformer that maps a user attribute of your choice to an OU value.
+   
+   * for GitHub, the relevant mappers are in the *IAM-SCIM* pack and can be used in any integrations that uses SCIM.
+
+
+2. Reconfigure each integration to use the duplicated mappers you created.
+
+#### Example
+
+The following is an example of the flow when adding a field to work with the ILM content pack. This example does not presume to cover all possible scenarios.
+
+1.  Add an incident field.
+    1. Navigate to Settings -> Advanced -> Fields and click *New Field*.
+    1. Enter the name for the field and click the *Attributes* tab.
+    1. Clear the *Add to all incident types* checkbox.
+    1. In the *Add to incident types* drop-down, select the following:
+        - User Profile
+	    - IAM - Sync User
+	    
+	    You can add the following incident types if you would like to display the new field in the incident layout (the new fields will be shown regardless in the User Profile indicator).
+	    - IAM - New Hire
+	    - IAM - Update User
+	    - IAM - Terminate User
+	    - IAM - Rehire User
+    1. Click *Save*.
+
+    ![Create Incident Field](../../../docs/doc_imgs/reference/ilm-create-new-incident-field.png "Create Incident Field")
+
+1. Add an indicator field.
+    1. Change the field type to *Indicator*.
+
+       ![Show Indicator Fields](../../../docs/doc_imgs/reference/ilm-toggle-indicators.png "Show Indicator Fields")
+
+    1. Click *New Field*. 
+    1. Give the same name as you entered for the Incident field. In this example, we have used Sample-Field-IAM.
+    1. Click the *Attributes* tab.
+    1. Clear the *Add to all incident types* checkbox.
+    1. In the *Add to incident types* drop-down, select the User Profile indicator type. 
+    1. Click *Save*. 
+
+    ![Create Indicator Fields](../../../docs/doc_imgs/reference/ilm-create-indicator-field.png "Create Indicator Fields")
+
+1. Add the fields to the respective layouts.
+    1. Navigate to *Settings -> Advanced -> Layouts*.
+    1. Select the layout to which you want to add the field, for example, *User Profile*, and click *Duplicate*.
+    1. Click the User Profile_copy layout.
+    1. In the *Library*, click *Fields and Buttons*, and drag the field you added above to the section in the layout in which you want it to appear. In this example, we have added the field to the *Personal and Contact Information* section.
+    1. Save the layout. 
+    1. Repeat this process for each of the other layouts in which you want the field to appear.
+    1. Go to *Indicator Types*, select the User Profile indicator type, click edit and then change the layout to the new layout you have just created.
+
+    ![Add Fields to Layout](../../../docs/doc_imgs/reference/ilm-add-fields-to-layout.png "Add Fields to Layout")
+
+1. Map the new field in all of the mappers.
+    1. Navigate to *Settings -> Integrations -> Classification and Mapping*.
+    1. Select the mapper to which you want to add the field, for example, *IAM Sync User - Workday*, and click *Duplicate*. 
+    1. Click *IAM Sync User - Workday_copy*.
+    1. Under *Get data*, select the source from which you want to retrieve the sample data for mapping.
+    1. Under *Select Instance*, select the instance of the selected source.
+    1. Under *Incident Type*, select the relevant incident type, as follows:
+        - for the Workday incoming mapper, add the field to the IAM - Sync User incident type. 
+        - for Okta, Active Directory, ServiceNow, GitHub and the rest of the IAM integrations, add the field to the UserProfile incident type in both the incoming and outgoing mappers.
+    1. Map the new field you have created to the field in the schema. For purposes of this example, we have mapped the Sample-Field-IAM field to the employee number.
+    1. Repeat this process for each additional field and save the mapper. 
+    1. Repeat this process for all of the mappers. For example:
+        - Workday incoming mapper
+        - Okta incoming and outgoing mappers
+        - Active Directory incoming and outgoing mappers
+        - ServiceNow incoming and outgoing mappers
+        - GitHub that uses the IAM-SCIM incoming and outgoing mappers
+
+    ![Map Fields](../../../docs/doc_imgs/reference/ilm-map-fields.png "Map Fields")
+
+1. Configure the integration instances to use the new mappers.
+    1. Navigate to *Settings -> Servers and Services* and select one of the integration instances for this pack. In our example, we are using Workday.
+    1. In both *Mapper (incoming)* fields (one located under the *Incident type* field and one located under the *Use system proxy settings* checkbox) select the copy mapper that you created above. In our example, that would be **IAM Sync User - Workday_copy**. 
+
+![Attach Mapper to Integration](../../../docs/doc_imgs/reference/ilm-attach-duplicate-mapper-to-integration.png "Attach Mapper to Integration")
+
  
 ## Demo Video
 <video controls>
