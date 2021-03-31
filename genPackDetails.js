@@ -92,7 +92,7 @@ function genPackDetails() {
   });
   if (process.env.MAX_PACKS) {
     console.log(`limiting packs to ${process.env.MAX_PACKS}`);
-    marketplace.slice(1, process.env.MAX_PACKS).map((pack) => {
+    marketplace.slice(0, process.env.MAX_PACKS).map((pack) => {
       if (pack.contentItems) {
         for (const [key, value] of Object.entries(pack.contentItems)) {
           for (const listItem of value) {
