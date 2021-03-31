@@ -391,6 +391,7 @@ html[data-theme="dark"] .header-github-link:before {
   width: 33%;
   padding: 8px;
   text-align: left;
+  min-width: 24px;
 }
 
 .contentTableColDesc {
