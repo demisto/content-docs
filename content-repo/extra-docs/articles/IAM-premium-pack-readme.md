@@ -286,3 +286,27 @@ The following is an example of the flow when adding a field to work with the ILM
             type="video/mp4"/>
     Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/raw/master/Assets/xsoar.pan.dev/IAM__Full_Demo.mp4 
 </video>
+
+
+## Troubleshooting
+
+##### Why are my new fields not showing in the layout?
+make sure of the following: 
+* You've created an incident field **and** an indicator field with the exact same name.
+* The incident fields are associated to the IAM incident types, and the indicator fields are associated to the User Profile indicator type, as described in the Fields and Mappers section. 
+* The fields are mapped in the Workday mapper under all the relevant incident types
+* The mapper configured in the Workday integration is the correct one.
+* The fields were added to the layout where you want them to appear
+* The incident types were configured to use the new layout that you've created
+
+##### Why are incidents not being created from Workday?
+This could be due to several reasons:
+* The integration is being run for the first time, at which point only the initial user sync is run - which is when the User Profile indicators are created as described in the "Initial Sync & User Profiles" section.
+* You keep resetting the last run timestamp in the Workday integration while "Sync user profiles on first run" option in the Workday integration configuration is checked. You should not reset the last run timestamp or you should uncheck that option if you've already performed the initial sync.
+* Your Workday report is missing required fields. Please refer to the table in the "Before You Start - User Provisioning" section and make sure that the report holds all of those fields for every employee.
+* Nothing has changed in the Workday report since the initial sync, so there is nothing to provision.
+
+##### Why are duplicate incidents being created?
+This could be due to several reasons:
+* There were changes to an employee in the Workday report, but the employee's incident in XSOAR failed before updating the User Profile indicator of that employee. As long as there is a discrepancy between the Workday report and the User Profile indicator, the Workday integration will keep trying to update it. Search for the incident of the employee and fix the cause of error. Then - the next incident should complete and no duplicate incidents should follow.
+* 
