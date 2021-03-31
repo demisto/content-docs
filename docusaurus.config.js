@@ -26,6 +26,10 @@ function genMetaData() {
     let metadata = require(meta[0].path);
     marketplace.push(metadata);
   });
+  if (process.env.MAX_PACKS) {
+    console.log(`limiting packs to ${process.env.MAX_PACKS}`);
+    return marketplace.slice(1, process.env.MAX_PACKS);
+  }
   return marketplace;
 }
 
@@ -60,7 +64,11 @@ module.exports = {
     algolia: {
       apiKey: "f5dfbee43cfa4c5024b10045c6d91461",
       indexName: "demisto",
-      algoliaOptions: { typoTolerance: false, hitsPerPage: 1000, filters: 'type:lvl1 OR type:content' } // Optional, if provided by Algolia
+      algoliaOptions: {
+        typoTolerance: false,
+        hitsPerPage: 1000,
+        filters: "type:lvl1 OR type:content",
+      }, // Optional, if provided by Algolia
     },
     sidebarCollapsible: true,
     navbar: {
@@ -68,70 +76,69 @@ module.exports = {
       logo: {
         alt: "Cortex XSOAR for Developers (Formerly Demisto)",
         src: "/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal.svg",
-        srcDark: "/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal-KO.svg"
+        srcDark: "/img/Cortex_XSoar_logos_RGB_Cortex-Ng-Soar-Horizontal-KO.svg",
       },
       items: [
         {
           to: "/docs/welcome",
           label: "Developer Docs",
-          position: "left"
+          position: "left",
         },
         {
           to: "/docs/reference/articles-index",
           label: "Articles",
-          position: "left"
+          position: "left",
         },
         {
           to: "/docs/reference/index",
           label: "Reference",
-          position: "left"
+          position: "left",
         },
         {
           to: "/marketplace",
           label: "Marketplace",
-          position: "left"
+          position: "left",
         },
         {
           label: "Partners",
           items: [
-            { to: "/docs/partners/why-xsoar",
-             label: "Why Cortex XSOAR?" 
-            },
+            { to: "/docs/partners/why-xsoar", label: "Why Cortex XSOAR?" },
             {
               to: "docs/partners/become-a-tech-partner",
-              label: "Become a Partner"
+              label: "Become a Partner",
             },
             {
               to: "/docs/partners/marketplace",
-              label: "Marketplace"
+              label: "Marketplace",
             },
             {
               to: "/docs/partners/adopt",
-              label: "Adopt-a-Pack"
+              label: "Adopt-a-Pack",
             },
             {
               to: "/docs/partners/certification",
-              label: "Pack Certification"
+              label: "Pack Certification",
             },
             {
               to: "/docs/partners/office-hours",
-              label: "Office Hours"
+              label: "Office Hours",
             },
             {
               to: "/docs/partners/development-partners",
-              label: "Development Partners"
+              label: "Development Partners",
             },
             {
-              to: "https://start.paloaltonetworks.com/become-a-technology-partner",
-              label: "Sign Up Now"
-            }
+              to:
+                "https://start.paloaltonetworks.com/become-a-technology-partner",
+              label: "Sign Up Now",
+            },
           ],
-          position: "right"
+          position: "right",
         },
         {
           href: "https://blog.demisto.com/",
           label: "Blog",
-          position: "right"
+          position: "right",
         },
         {
           href: "http://github.com/demisto/content/",
@@ -139,7 +146,7 @@ module.exports = {
           className: "header-github-link",
           "aria-label": "GitHub repository",
         },
-      ]
+      ],
     },
     footer: {
       style: "dark",
@@ -150,34 +157,34 @@ module.exports = {
             { to: "/docs/welcome", label: "Developer Docs" },
             {
               to: "/docs/partners/become-a-tech-partner",
-              label: "Become a Technology Partner"
-            }
-          ]
+              label: "Become a Technology Partner",
+            },
+          ],
         },
         {
           title: "Social",
           items: [
             {
               label: "Blog",
-              href: "https://blog.demisto.com/"
-            }
-          ]
-        }
+              href: "https://blog.demisto.com/",
+            },
+          ],
+        },
       ],
       logo: {
         alt: "Palo Alto Networks for Developers",
-        src: "/img/PANW_Parent_Brand_Primary_Logo_RGB_KO.svg"
+        src: "/img/PANW_Parent_Brand_Primary_Logo_RGB_KO.svg",
         // href: "https://pan.dev"
       },
-      copyright: `Copyright © ${new Date().getFullYear()} Palo Alto Networks, Inc.`
+      copyright: `Copyright © ${new Date().getFullYear()} Palo Alto Networks, Inc.`,
     },
     announcementBar: {
-      id: 'github_star',
+      id: "github_star",
       content:
         '⭐️ If you like Cortex XSOAR Content, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/demisto/content">GitHub</a>! ⭐',
-      backgroundColor: '#fafbfc',
-      textColor: '#091E42',
-    }
+      backgroundColor: "#fafbfc",
+      textColor: "#091E42",
+    },
   },
   themes: ["@docusaurus/theme-live-codeblock"],
   presets: [
@@ -195,18 +202,18 @@ module.exports = {
           remarkPlugins: [],
           rehypePlugins: [],
           showLastUpdateAuthor: false,
-          showLastUpdateTime: true
+          showLastUpdateTime: true,
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css")
+          customCss: require.resolve("./src/css/custom.css"),
         },
         sitemap: {
           cacheTime: 600 * 1000, // 600 sec - cache purge period
           changefreq: "weekly",
-          priority: 0.5
-        }
-      }
-    ]
+          priority: 0.5,
+        },
+      },
+    ],
   ],
   customFields: {
     sites: [
@@ -216,21 +223,21 @@ module.exports = {
           {
             href: "https://panos.pan.dev",
             label: "PAN-OS",
-            logo: "/img/strata_favicon.png"
+            logo: "/img/strata_favicon.png",
           },
           {
             href: "https://cortex.pan.dev",
             label: "Cortex Data Lake",
-            logo: "/img/cortexfavicon.png"
+            logo: "/img/cortexfavicon.png",
           },
           {
             href: "https://xsoar.pan.dev",
             label: "Cortex XSOAR",
-            logo: "/img/Cortex-XSOAR-product-green.svg"
-          }
+            logo: "/img/Cortex-XSOAR-product-green.svg",
+          },
         ],
-        position: "products"
-      }
+        position: "products",
+      },
     ],
     marketplace: genMetaData(),
   },

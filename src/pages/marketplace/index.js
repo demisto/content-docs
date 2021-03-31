@@ -18,7 +18,7 @@ import Button from "../../theme/Button";
 import MarketplaceSidebar from "../../theme/MarketplaceSidebar";
 import styles from "./styles.module.css";
 
-const TITLE = "🛍️";
+const TITLE = "Palo Alto Networks XSOAR Marketplace";
 const DESCRIPTION = "Palo Alto Networks XSOAR Marketplace";
 
 function capitalizeFirstLetter(string) {
