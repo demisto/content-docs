@@ -382,6 +382,23 @@ html[data-theme="dark"] .header-github-link:before {
   border-bottom: 1px solid var(--ifm-color-secondary-darker);
 }
 
+.contentTable {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.contentTableColName {
+  width: 33%;
+  padding: 8px;
+  text-align: left;
+}
+
+.contentTableColDesc {
+  width: 66%;
+  padding: 8px;
+  text-align: left;
+}
+
 .usecaseBadge {
   color: white;
   margin-bottom: 10px;
