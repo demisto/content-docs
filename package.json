@@ -6,7 +6,7 @@
     "reference-docs": "cd content-repo && ./create-docs.sh",
     "test": "cd content-repo && pipenv install --dev && pipenv run flake8 *.py && pipenv run mypy gendocs.py && pipenv run pytest -v",
     "docusaurus": "docusaurus",
-    "start": "npm run marketplace && docusaurus start",
+    "start": "docusaurus start",
     "heapstats": "node -e 'console.log(\"Node heap stats: \", v8.getHeapStatistics())'",
     "build-docusaurus": "cp -RPv docs/doc_imgs/* static/doc_imgs/ && replace '(\\.\\.)?(/\\.\\.){0,2}(/?\\.\\./docs)?/doc_imgs' '/doc_imgs' docs/* --include='*.md*' --recursive && docusaurus build",
     "build": "npm run reference-docs && npm run heapstats && npm run build-docusaurus",
@@ -14,7 +14,7 @@
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "node": "node",
-    "marketplace":  "npm run index && node genPackDetails",
+    "marketplace-docs": "npm run index && node genPackDetails",
     "index": "curl https://storage.googleapis.com/marketplace-dist/content/packs/index.zip > index.zip && unzip -o index.zip && rm index.zip"
   },
   "dependencies": {
@@ -37,11 +37,11 @@
     "classnames": "2.2.6",
     "copyfiles": "2.1.1",
     "react": "^16.13.1",
+    "react-collapsible": "^2.8.3",
     "react-dom": "^16.13.1",
     "react-particles-js": "2.7.0",
-    "react-scroll-up-button": "1.6.4",
     "react-responsive": "^8.2.0",
-    "react-collapsible": "^2.8.3",
+    "react-scroll-up-button": "1.6.4",
     "react-select": "^4.2.1",
     "replace": "^1.2.0",
     "showdown": "^1.9.1"

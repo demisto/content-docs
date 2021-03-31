@@ -93,6 +93,13 @@ function genPackDetails() {
   if (process.env.MAX_PACKS) {
     console.log(`limiting packs to ${process.env.MAX_PACKS}`);
     marketplace.slice(1, process.env.MAX_PACKS).map((pack) => {
+      if (pack.contentItems) {
+        for (const [key, value] of Object.entries(pack.contentItems)) {
+          for (const listItem of value) {
+            listItem.description = jsStringEscape(listItem.description);
+          }
+        }
+      }
       generatePackDetails.runActions({
         id: pack.id.replace(/-|\s/g, "").replace(".", ""),
         name: pack.name,
@@ -128,6 +135,14 @@ function genPackDetails() {
     return;
   }
   marketplace.map((pack) => {
+    if (pack.contentItems) {
+      for (const [key, value] of Object.entries(pack.contentItems)) {
+        for (const listItem of value) {
+          listItem.description = jsStringEscape(listItem.description);
+        }
+      }
+    }
+    // console.log("contentItems", pack.contentItems);
     generatePackDetails.runActions({
       id: pack.id.replace(/-|\s/g, "").replace(".", ""),
       name: pack.name,

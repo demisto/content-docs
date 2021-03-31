@@ -9,6 +9,8 @@ const TITLE = "{{{name}}}";
 const DESCRIPTION =
 `{{{description}}}`
 
+var Handlebars = require("handlebars");
+console.log('Handlebar', Handlebars);
 var showdown = require("showdown"),
 converter = new showdown.Converter({"tables": true, "ghCodeBlocks": true});
 showdown.setFlavor("github");
@@ -135,25 +137,29 @@ return (
                 </div>
             </TabItem>
             <TabItem value="content">
-                {{#if contentInfo}}
-                {{#each contentInfo}}
+                {{#if contentItems}}
+                {{#each contentItems}}
                 <div className={clsx("row", "version" )}>
                     <div className="col col--8">
                         <div className={clsx("card shadow--md", "contentCard" )}>
-                            <Collapsible trigger="{{@key}}">
+                            <Collapsible trigger="{{@key}}s">
                                 <table className="infoTable">
                                     <thead>
-                                        <tr>
-                                          <th class="tg-0lax">Name</th>
-                                          <th class="tg-0lax">Description</th>
+                                        <tr className="infoTableRow">
+                                          <th >Name</th>
+                                          <th>Description</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {{#each this}}
                                         <tr className="infoTableRow">
-                                            {{#each @values}}
-                                                <td>{{this.name}}</td>
-                                                <td>{{this.description}}</td>
-                                            </tr>
+                                            <td>{{this.name}}</td>
+                                            <td>
+                                                <article dangerouslySetInnerHTML=\{{ __html:
+                                                    converter.makeHtml("{{{this.description}}}"), }}></article>
+                                            </td>
+                                        </tr>
+                                        {{/each}}
                                     </tbody>
                                 </table>
                             </Collapsible>
