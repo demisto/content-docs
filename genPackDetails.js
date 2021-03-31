@@ -32,6 +32,15 @@ function capitalizeFirstLetter(string) {
   }
 }
 
+function reverseReleases(obj) {
+  new_obj = {};
+  rev_obj = Object.keys(obj).reverse();
+  rev_obj.forEach(function (i) {
+    new_obj[i] = obj[i];
+  });
+  return new_obj;
+}
+
 function genPackDetails() {
   let marketplace = [];
   const detailsPages = globby.sync(["./src/pages/marketplace"], {
@@ -129,7 +138,7 @@ function genPackDetails() {
         useCases: pack.useCases,
         integrations: pack.integrations,
         contentItems: pack.contentItems,
-        changeLog: pack.changeLog,
+        changeLog: reverseReleases(pack.changeLog),
       });
     });
     return;
@@ -172,7 +181,7 @@ function genPackDetails() {
       useCases: pack.useCases,
       integrations: pack.integrations,
       contentItems: pack.contentItems,
-      changeLog: pack.changeLog,
+      changeLog: reverseReleases(pack.changeLog),
     });
   });
   return;
