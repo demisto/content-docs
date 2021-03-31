@@ -143,24 +143,27 @@ return (
                     <div className="col col--8">
                         <div className={clsx("card shadow--md", "contentCard" )}>
                             <Collapsible trigger="{{@key}}s">
-                                <table className="infoTable">
+                                <table className="contentTable">
                                     <thead>
                                         <tr className="infoTableRow">
-                                          <th >Name</th>
-                                          <th>Description</th>
+                                            <th className="contentTableColName">Name</th>
+                                            <th className="contentTableColDesc">Description</th>
                                         </tr>
                                     </thead>
+
+                                    {{#each this}}
                                     <tbody>
-                                        {{#each this}}
                                         <tr className="infoTableRow">
-                                            <td>{{this.name}}</td>
-                                            <td>
+                                            <td className="contentTableColName">
+                                                <p>{{this.name}}</p>
+                                            </td>
+                                            <td className="contentTableColDesc">
                                                 <article dangerouslySetInnerHTML=\{{ __html:
                                                     converter.makeHtml("{{{this.description}}}"), }}></article>
                                             </td>
                                         </tr>
-                                        {{/each}}
                                     </tbody>
+                                    {{/each}}
                                 </table>
                             </Collapsible>
                         </div>
