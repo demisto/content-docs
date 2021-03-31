@@ -28,7 +28,7 @@ function genMetaData() {
   });
   if (process.env.MAX_PACKS) {
     console.log(`limiting packs to ${process.env.MAX_PACKS}`);
-    return marketplace.slice(1, process.env.MAX_PACKS);
+    return marketplace.slice(0, process.env.MAX_PACKS);
   }
   return marketplace;
 }
