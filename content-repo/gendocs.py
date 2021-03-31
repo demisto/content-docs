@@ -471,6 +471,8 @@ def create_articles(target_dir: str):
     fail: List[str] = []
     seen_docs: Dict[str, DocInfo] = {}
     for doc_info in process_extra_docs(target_sub_dir, ARTICLES_PREFIX):
+        if not doc_info.description:  # fail the  build if no description for an article
+            raise ValueError(f'Missing description for article: {doc_info.id} ({doc_info.name})')
         process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
     org_print(f'\n===========================================\nSuccess {ARTICLES_PREFIX} docs ({len(success)}):')
     for r in sorted(success):
