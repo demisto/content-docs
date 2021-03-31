@@ -219,6 +219,7 @@ The following is an example of the flow when adding a field to work with the ILM
 	    - IAM - Sync User
 	    
 	    You can add the following incident types if you would like to display the new field in the incident layout (the new fields will be shown regardless in the User Profile indicator).
+	    - IAM - Sync User
 	    - IAM - New Hire
 	    - IAM - Update User
 	    - IAM - Terminate User
@@ -243,7 +244,7 @@ The following is an example of the flow when adding a field to work with the ILM
 
 1. Add the fields to the respective layouts.
     1. Navigate to *Settings -> Advanced -> Layouts*.
-    1. Select the layout to which you want to add the field, for example, *User Profile*, and click *Duplicate*.
+    1. Select the incident or indicator layout to which you want to add the field, for example, *User Profile*, and click *Duplicate*.
     1. Click the User Profile_copy layout.
     1. In the *Library*, click *Fields and Buttons*, and drag the field you added above to the section in the layout in which you want it to appear. In this example, we have added the field to the *Personal and Contact Information* section.
     1. Save the layout. 
@@ -259,7 +260,7 @@ The following is an example of the flow when adding a field to work with the ILM
     1. Under *Get data*, select the source from which you want to retrieve the sample data for mapping.
     1. Under *Select Instance*, select the instance of the selected source.
     1. Under *Incident Type*, select the relevant incident type, as follows:
-        - for the Workday incoming mapper, add the field to the IAM - Sync User incident type. 
+        - for the Workday incoming mapper, add the field to the *IAM - Sync User*, *IAM - New Hire*, *IAM - Rehire User*, *IAM - Update User* and *IAM - Terminate User* incident types. 
         - for Okta, Active Directory, ServiceNow, GitHub and the rest of the IAM integrations, add the field to the UserProfile incident type in both the incoming and outgoing mappers.
     1. Map the new field you have created to the field in the schema. For purposes of this example, we have mapped the Sample-Field-IAM field to the employee number.
     1. Repeat this process for each additional field and save the mapper. 
