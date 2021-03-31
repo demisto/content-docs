@@ -140,10 +140,23 @@ return (
                 {{#each contentInfo}}
                 <div className={clsx("row", "version" )}>
                     <div className="col col--8">
-                        <div className={clsx("card shadow--md", "versionCard" )}>
-                            <Collapsible trigger="{{this.displayName}} ({{this.released}})">
-                                <article dangerouslySetInnerHTML=\{{ __html:
-                                    converter.makeHtml("{{{this.releaseNotes}}}"), }}></article>
+                        <div className={clsx("card shadow--md", "contentCard" )}>
+                            <Collapsible trigger="{{@key}}">
+                                <table className="infoTable">
+                                    <thead>
+                                        <tr>
+                                          <th class="tg-0lax">Name</th>
+                                          <th class="tg-0lax">Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr className="infoTableRow">
+                                            {{#each @values}}
+                                                <td>{{this.name}}</td>
+                                                <td>{{this.description}}</td>
+                                            </tr>
+                                    </tbody>
+                                </table>
                             </Collapsible>
                         </div>
                     </div>

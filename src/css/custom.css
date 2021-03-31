@@ -151,11 +151,6 @@ blockquote {
   margin: -105px 0 0 !important;
 }
 
-.shadow--md {
-  min-height: 250px !important;
-  margin-bottom: 15px;
-}
-
 .stretch {
   display: flex;
   justify-content: center;
