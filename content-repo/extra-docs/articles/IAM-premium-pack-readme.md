@@ -27,8 +27,10 @@ Cortex XSOAR uses the Workday integration to fetch reports and create XSOAR inci
 Each report has a unique URL, which you enter in the Workday Report URL instance parameters. If you want to fetch or run associated playbooks on multiple reports, each report will require its own integration instance.
 
 
-The Workday integration creates an IAM - Sync User incident for each user profile that is in the report. This incident runs the IAM - Sync User playbook and provisions the user into the rest of the configured integrations. The playbook determines the management (create, read, update, or delete/disable) operations that need to be done according to the data retrieved from the Workday report. 
-For example, if a new employee joins the company, the playbook changes the incident type to IAM - New Hire, and runs a Create operation across the supported IAM integrations. Similarly, if an employee is terminated in Workday, the playbook changes the incident type to IAM - Terminate User, and a Disable operation runs in the supported IAM integrations. 
+The Workday integration creates incidents based on employee information included in the report such as the employee's hire date, terminated date (or last day of work), prehire flag and more. Depending on the incident type, the *IAM - Sync User* or *IAM - Activate User in Active Directory* playbook runs and provisions the user into the rest of the configured integrations, or activates the user in Active Directory, respectively.
+The *IAM - Sync User* playbook determines the management (create, read, update, or delete/disable) operations that need to be done according to the data retrieved from the Workday report. 
+For example, if a new employee joins the company, Workday will create an *IAM - New Hire* incident, and the playbook runs a Create operation across the supported IAM integrations. Similarly, if an employee is terminated in Workday, the incident type will be *IAM - Terminate User*, and a Disable operation runs in the supported IAM integrations.
+The *IAM - Activate User In Active Directory* playbook will run when an *IAM - AD User Activation* incident is fetched. This incident is created for new or rehired employees, before the hire date or immediately, depending on the days configured in the Workday integration parameters.
 
 ### User Provisioning Workflow
 
@@ -60,38 +62,39 @@ The following table lists these fields, what they are used for in Cortex XSOAR, 
 | Employment status |  Influences the playbook flow that will run on the IAM - Sync User incident.  | Active <br/> Leave of Absence <br/> Terminated
 | Rehired employee  | Used to determine whether the User rehire flow is implemented. | Yes <br/> No |
 | Prehire flag | Used in conjunction with the Rehired employee field to enable the User rehire flow. | True <br/> False|
+| Hire date | Used to determine when a user will be created for the employee. | Any date format is supported. <br/> The format should match the format chosen in the integration parameter. |
+| Termination date / Last day of work | Used in conjunction with the prehire flag, hire date and rehired employee flags to determine whether a user should be terminated. | Any date format is supported. <br/> The format should match the format chosen in the integration parameter. |
 
 - Make sure to obtain the URL where the Workday reports are hosted. Each report has a unique URL, which you enter as one of the integration instance parameters. If you want to fetch multiple reports, each report will require its own integration instance. 
 
 - Ensure that you have a **Mail sender** integration for sending email notifications.
 
-### Pack Configurations
+### Initial Sync and User Profiles
 
-Cortex XSOAR stores all employee information as User Profile indicators. User Profiles have many fields out-of-the-box, which hold data about the employee. 
+Cortex XSOAR stores all employee information as *User Profile* indicators. User Profiles have many fields out-of-the-box, which hold data about the employee. 
 
-**Note:** The User Profiles are initially created when the Workday integration fetches incidents. User profiles for users that are added to Workday after this initial fetch are created by the IAM-Sync User playbook. 
+**Note:** The User Profiles are initially created when the Workday integration fetches incidents for the first time and the *Sync user profiles on first run* parameter is checked. User Profiles for users that are added to Workday **after** this initial fetch are created by the *IAM - Sync User* playbook. The idea behind this is to sync all existing employees to XSOAR without running incidents for them, as they are already provisioned in the apps used by the organization.
 
 The User Profiles are constantly synchronized with Workday, so that when a change to a user comes from a Workday report, the integration creates an incident, triggering a change in the rest of the apps used in the organization, and updating the User Profile indicator.
+
+### Pack Configurations
 
 This pack requires that you configure the following content items in the order listed.
 
 1. Playbook configuration (inputs)
-2. Indicator and Incident fields and mappers. You only need to configure these if you are adding custom fields.
+2. Indicator and Incident fields and mappers. You only need to configure these if you are adding custom fields which you want to store in XSOAR and/or provision into additional applications.
 3. Integration configurations
 #### Playbooks
 
 IAM - Sync User: 
-Under the inputs for the IAM - Sync User playbook, make sure you configure values for the ITNotificationEmail and ServiceDeskEmail inputs, as well as the TerminateOnLastDayOfWork, Timezone, and DateFormat inputs.
+Under the inputs for the IAM - Sync User playbook, make sure you configure values for the ITNotificationEmail and ServiceDeskEmail inputs.
 
-1. Navigate to *Playbooks* and locate that IAM - Sync User playbook.  
-1. Click *Playbook Triggered* and insert values for the following inputs:
+1. Navigate to *Playbooks* and locate the *IAM - Sync User* and *IAM - Activate User In Active Directory* playbooks.  
+2. Click *Playbook Triggered* and insert values for the following inputs, in both playbooks, where applicable:
     1. *ITNotificationEmail* - used to receive notifications about any errors in the provisioning process.
     2. *ServiceDeskEmail* - used to receive initial temporary passwords for new hires to prepare employee laptops, etc.
-    3. *TerminateOnLastDayOfWork* - determines whether termination of employees goes into effect on their last day of work, or on their termination day. By default, employees are terminated on their termination day.
-    4. *Timezone* - The time zone used when referring to employee termination date, last day of work, hire date, and so on. This should be the time zone that is used in the employee Workday reports. The time zone you choose affects the way that the playbooks treat dates for the employee. For example, if your chosen time zone is "America/Los_Angeles" and an employee should be terminated on November 5th at 23:59, then only when it's November 5th and 23:59 in Los Angeles will the termination occur.
-    5. *DateFormat* - the format in which the dates in employee Workday reports are represented. For example, if an employee's hire date appears like this: 06/15/2020, then the value for the DateFormat input should be %m/%d/%Y.
-
-
+    3. *PasswordGenerationScriptName* - The name of the automation script that will be used to generate a random password for newly created Active Directory users. The default script used for this is GeneratePassword, but depending on your password complexity policy, you may or may not want to use it.
+ 
 ### Integrations
 
 - Workday IAM integration [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/workday-iam).
@@ -112,13 +115,21 @@ Under the inputs for the IAM - Sync User playbook, make sure you configure value
 
 ## App Sync
 
-The app-sync feature provides automated app provisioning in applications (such as ServiceNow, GitHub, and Slack) for users created in Okta.
+The app-sync feature provides automated app provisioning in applications (such as ServiceNow, GitHub, and Slack) for users created in Okta. App-sync consists of 2 main features:
+1. Create/Enable/Disable users in apps to which they are assigned or unassigned fromn through Okta.
+2. Update users in apps when their information changes, either directly through Okta, or indirectly through a change in Workday which in turn updates the information in Okta and then in the rest of the apps.
 
 ### App Sync Process
 
-The app-sync process starts when a user is assigned to an application in Okta, or when a user is part of a group that was assigned to an application in Okta. 
+The app-sync process starts when one of the following scenarios happens:
+1. A user is assigned/unassigned to an application in Okta
+2. A user is part of a group that was assigned/unassigned to an application in Okta.
+3. The user's information changed in Okta, directly or indirectly (through an IAM - Update User incident)
 
-The **Okta IAM** integration fetches events, such as *application.user_membership.add* and *application.user_membership.remove*, and creates *IAM - App Sync* incidents which run the **IAM - App Sync** playbook. The playbook uses the integration context (that is transparent to the user) of the Okta instance, which maps Okta App IDs to integration instances in Cortex XSOAR, in order to determine which instance to sync the user to. It then runs either the ***iam-create-user*** or ***iam-disable-user*** command, depending on the fetched event type.
+The **Okta IAM** integration fetches the following Okta log event types and proceeds with the applicable flow:
+* The *application.user_membership.add* / *application.user_membership.remove* Okta event results in *IAM - App Add* / *IAM - App Remove* incidents respectively, which run the **IAM - App Sync** playbook. The playbook uses the integration context (that is transparent to the user) of the Okta instance, which maps Okta App IDs to integration instances in Cortex XSOAR, in order to determine which instance to sync the user to. It then runs either the ***iam-create-user*** or ***iam-disable-user*** command, depending on the detected incident type.
+
+* The *user.account.update_profile* Okta event results in *IAM - App Update* incidents which run the **IAM - App Update** playbook. The playbook checks which apps the user is assigned to, and maps it to integration instances in Cortex XSOAR in which the user will be updated. The mapping is done using the integration context (that is transparent to the user) of the Okta instance, which maps Okta App IDs to integration instances in Cortex XSOAR, in order to determine which instancea to update the user in. It then runs the ***iam-update-user*** in all of the available instances of the apps to which the user is currently assigned.
 
 ### Before You Start
 
@@ -126,7 +137,7 @@ Before using the app-sync feature with Okta, you need to perform the [initial sy
 
 ### Pack Configurations
 
-To trigger the app-sync *IAM - App Add* and *IAM - App Remove* incident types, you need to configure an [Okta IAM integration](#okta-iam-integration) to fetch incidents. Before enabling the integration, create an [IAM Configuration](#iam-configuration) incident from which to make connections between Okta applications and IAM integration instances. When a user is added to or removed from a connected Okta application, XSOAR will call the relevant management command from its connected IAM instance in XSOAR.
+To trigger the app-sync *IAM - App Add*, *IAM - App Remove* and *IAM - App Update* incident types, you need to configure an [Okta IAM integration](#okta-iam-integration) to fetch incidents. Before enabling the integration, create an [IAM Configuration](#iam-configuration) incident from which to make connections between Okta applications and IAM integration instances. When a user is added to or removed from a connected Okta application, XSOAR will call the relevant management command from its connected IAM instance in XSOAR.
 
 
 #### Okta IAM integration
@@ -136,7 +147,8 @@ Configure the following information in your Okta IAM integration instance.
 | ---- | ----| ----|
 | Classifier | Okta IAM - App Sync | Select this from the drop-down list and not the textbox configuration, where “User Profile - Okta (Incoming)” and “User Profile - Okta (Outgoing)” should be. |
 | Mapper | Okta IAM - App Sync | Select this from the drop-down list and not the textbox configuration, where “User Profile - Okta (Incoming)” and “User Profile - Okta (Outgoing)” should be. |
-| Fetch Query Filter | “eventType eq "application.user_membership.add" or eventType eq "application.user_membership.remove" | This allows Okta to fetch app assignment events (both add and remove events). |
+|Query only application events configured in IAM Configuration | Checked/Unchecked | Select this option to let the integration fetch all supported event types. Unselect this only if you are sure you don't want to fetch specific Okta events.
+| Fetch Query Filter | “eventType eq "application.user_membership.add" or eventType eq "application.user_membership.remove" or eventType eq "user.account.update_profile" | Only fill this if the *Query only application events configured in IAM Configuration* parameter is unchecked. This allows you to specify manually which Okta event types to fetch. |
 | Fetches incidents | Select this option. | |
 | Automatically creates a user if not found in the update command | Select this option | |
 
@@ -159,11 +171,11 @@ You can obtain the app integration instance name from the integration page in Co
 ![Instance Name](../../../docs/doc_imgs/reference/ilm-integration-instance.png)
 
 
-By creating this incident and filling the app and instance information, a configuration will be saved in the integration context. This is transparent to the user. Then you will be able to use the ***okta-iam-get-configuration*** command to view the configuration and use it in playbooks at any time. Note that when using the ***okta-iam-get-configuration*** command, you will have to use the *using* parameter with the correct instance name of Okta in which you made the configuration.
+By creating this incident and filling the app and instance information, a configuration will be saved in the integration context. This is transparent to the user. Once the configuration is set, the playbooks will use it automatically. Additionally, you will be able to use the ***okta-iam-get-configuration*** command to view the configuration at any time. If you ever decide to run the command ***okta-iam-get-configuration*** manually, make sure to use the *using* parameter with the correct instance name of Okta in which you made the configuration to receieve the configuration that you're expecting.
 
 
-#### IAM - App Sync playbook
-This playbook contains error handling tasks where a user is assigned to review the incident if app-sync fails for any reason. You can assign a user to the incident using the playbook inputs. If you want, you can configure the *UserRoleToAssignForFailures*, *UserAssignmentMethod*, and *AssignOnlyOnCall* playbook inputs according to your needs. Otherwise, a user will be randomly assigned.
+#### IAM - App Sync & IAM - App Update playbooks
+These playbooks contain error handling tasks where a user is assigned to review the incident if app-sync fails for any reason. You can assign a user to the incident using the playbook inputs. If you want, you can configure the *UserRoleToAssignForFailures*, *UserAssignmentMethod*, and *AssignOnlyOnCall* playbook inputs according to your needs. Otherwise, a user will be randomly assigned.
 
 ### Integrations
 
