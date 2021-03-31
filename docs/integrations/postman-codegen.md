@@ -7,8 +7,8 @@ description: Generate XSOAR integration from Postman Collection
 `postman-codegen` command generates XSOAR integration from Postman Collection v2.1.
 It can happen in 2 steps or 1 step.
 - Two steps - allows more configuration and customization to the code. 
-    1. Generate an integration config file. 
-    1. [Generate integration]((./generate_integration)) from the config file
+    1. Generate an integration config file.
+    1. Update the config file. Generate integration from the config file. See [here](./generate_integration)
 - Single step
     1. Generate integration yml
 
@@ -63,12 +63,18 @@ Options:
 ### How to run
 - `demisto-sdk postman-codegen -i VirusTotal.collection.json --name 'Virus Total' --command-prefix vt`  
   The above command do the following:
-    - Generate `integration-VirusTotal.yml` file in the current directory.
-    - Sets the name of the integration `Virus Total`.
+    - Sets the name of the integration to `Virus Total`.
     - Sets the commands prefix to `vt` (`vt-get-url`, `vt-scan-url`).
+    - Generates `integration-VirusTotal.yml` file in the current directory.
 
 - `demisto-sdk postman-codegen -i VirusTotal.collection.json --name 'Virus Total' -o /output/path --config-out`  
   The above command do the following:
-    - Generate `config-VirusTotal.json` file under `/output/path` directory.
+    - Generates `config-VirusTotal.json` file under `/output/path` directory.
     - Sets the name of the integration `Virus Total`.
+
+
+### Example files:
+[URLScan Postman Collection v2.1](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman-codegen/resources/urlscan.io.postman_collection.json).  
+[URLScan generated config file](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman-codegen/resources/config-urlscanio.json).  
+[URLScan generated integration yml](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman-codegen/resources/integration-urlscanio.yml).  
 
