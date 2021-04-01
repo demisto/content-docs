@@ -33,8 +33,8 @@ function capitalizeFirstLetter(string) {
 }
 
 function reverseReleases(obj) {
-  new_obj = {};
-  rev_obj = Object.keys(obj).reverse();
+  let new_obj = {};
+  let rev_obj = Object.keys(obj).reverse();
   rev_obj.forEach(function (i) {
     new_obj[i] = obj[i];
   });

@@ -9,8 +9,6 @@ const TITLE = "{{{name}}}";
 const DESCRIPTION =
 `{{{description}}}`
 
-var Handlebars = require("handlebars");
-console.log('Handlebar', Handlebars);
 var showdown = require("showdown"),
 converter = new showdown.Converter({"tables": true, "ghCodeBlocks": true});
 showdown.setFlavor("github");
