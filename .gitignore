@@ -42,3 +42,4 @@ static/assets/deprecated*.json
 /src/pages/marketplace/details
 /index
 .index.zip
+.index.json
