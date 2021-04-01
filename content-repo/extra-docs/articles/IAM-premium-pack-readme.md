@@ -290,7 +290,7 @@ The following is an example of the flow when adding a field to work with the ILM
 
 ## Troubleshooting
 
-##### Why are my new fields not showing in the layout?
+##### Why are my new fields not shown in the layout?
 Make sure of the following: 
 * You've created an incident field **and** an indicator field with the exact same name.
 * The incident fields are associated to the IAM incident types, and the indicator fields are associated to the User Profile indicator type, as described in the Fields and Mappers section. 
