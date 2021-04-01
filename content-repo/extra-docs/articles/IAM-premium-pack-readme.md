@@ -60,8 +60,8 @@ The following table lists these fields, what they are used for in Cortex XSOAR, 
 | ------------ |---------------| -----|
 | Email address      | A unique identifier for the user. | User's work email address | 
 | Employment status |  Influences the playbook flow that will run on the IAM - Sync User incident.  | Active <br/> Leave of Absence <br/> Terminated
-| Rehired employee  | Used to determine whether the User rehire flow is implemented. | Yes <br/> No |
-| Prehire flag | Used in conjunction with the Rehired employee field to enable the User rehire flow. | True <br/> False|
+| Rehired employee  | Used in conjunction with the prehire flag to determine whether a user should be rehired. | Yes <br/> No |
+| Prehire flag | If True, indicates a pre-hire status of the employee (i.e., a future hire or rehire). | True <br/> False|
 | Hire date | Used to determine when a user will be created for the employee. | Any date format is supported. <br/> The format should match the format chosen in the integration parameter. |
 | Termination date / Last day of work | Used in conjunction with the prehire flag, hire date and rehired employee flags to determine whether a user should be terminated. | Any date format is supported. <br/> The format should match the format chosen in the integration parameter. |
 
