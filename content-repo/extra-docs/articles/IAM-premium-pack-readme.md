@@ -43,7 +43,7 @@ The following table shows the supported Workday operations and their correspondi
 | New user hire | iam-create-user |
 | User update | iam-update-user |
 | User termination | iam-disable-user |
-| User rehire | iam-enable-user |  
+| User rehire | iam-update-user |  
  --- 
 
 ### Before You Start - User Provisioning
