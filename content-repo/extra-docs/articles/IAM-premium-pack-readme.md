@@ -116,7 +116,7 @@ Under the inputs for the IAM - Sync User playbook, make sure you configure value
 ## App Sync
 
 The app-sync feature provides automated app provisioning in applications (such as ServiceNow, GitHub, and Slack) for users created in Okta. App-sync consists of 2 main features:
-1. Create/Enable/Disable users in apps to which they are assigned or unassigned fromn through Okta.
+1. Create/Enable/Disable users in apps they are assigned to or unassigned from through Okta.
 2. Update users in apps when their information changes, either directly through Okta, or indirectly through a change in Workday which in turn updates the information in Okta and then in the rest of the apps.
 
 ### App Sync Process
