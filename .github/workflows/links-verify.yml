@@ -64,6 +64,8 @@ jobs:
         -e 'https?://br430.teste.website/.*' \
         -e 'https://zenshin-talent.us4.list-manage.com.*' \
         -e 'https://zeustracker.abuse.ch.*' \
+        -e 'https?://(www\.)?pastebin.com/.*' \
+        -e 'https?://(www\.)?abuse.com.*' \
         https://xsoar.pan.dev > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
         grep -v -E '^\s+(403|401|x509|lookup|parse|timeout|dial)' muffet.txt > muffet-clean.out
         echo "Muffet output after 401, 403 and x509 remove:"
