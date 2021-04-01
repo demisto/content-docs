@@ -217,7 +217,7 @@ The following is an example of the flow when adding a field to work with the ILM
     1. Clear the *Add to all incident types* checkbox.
     1. In the *Add to incident types* drop-down, select the following:
         - User Profile
-	    - IAM - Sync User
+	- IAM - Sync User
 	    
 	    You can also add the following incident types if you would like to display the new field in the incident layout (the new fields will be shown regardless in the User Profile indicator).
 	    - IAM - Sync User
@@ -317,3 +317,6 @@ There could be several reasons for this. Inspect the error message in the Proces
 * You've added a transformer script which determines the OU where the user will be created, in the Active Directory outgoing mapper, in the User Profile incident type and schema type, under the "ou" field.
 * You're using LDAPS in the Active Directory (port 636) integration.
 * You've specified a password generation script in the *IAM - Activate User In Active Directory* playbook inputs, under the *PasswordGenerationScriptName*, and that script complies with your domain's password complexity policy.
+
+##### Why am I seeing unwanted app updates?
+You may have rules configured in Okta which automatically update user information for every new user. If you want to have those updates provisioned to the rest of the apps, you will need to follow the process of adding additional fields under the "Advanced" section.
