@@ -73,7 +73,7 @@ The following table lists these fields, what they are used for in Cortex XSOAR, 
 
 Cortex XSOAR stores all employee information as *User Profile* indicators. User Profiles have many fields out-of-the-box, which hold data about the employee. 
 
-**Note:** The User Profiles are initially created when the Workday integration fetches incidents for the first time and the *Sync user profiles on first run* parameter is checked. User Profiles for users that are added to Workday **after** this initial fetch are created by the *IAM - Sync User* playbook. The idea behind this is to sync all existing employees to XSOAR without running incidents for them, as they are already provisioned in the apps used by the organization.
+**Note:** The User Profiles are initially created without triggering any incident when Workday's *fetch-incident* command is executed for the first time and the *Sync user profiles on first run* parameter is checked. User Profiles for users that are added to Workday **after** this initial fetch are created by the *IAM - Sync User* playbook. The idea behind this is to sync all existing employees to XSOAR without running incidents for them, as they are already provisioned in the apps used by the organization.
 
 The User Profiles are constantly synchronized with Workday, so that when a change to a user comes from a Workday report, the integration creates an incident, triggering a change in the rest of the apps used in the organization, and updating the User Profile indicator.
 
