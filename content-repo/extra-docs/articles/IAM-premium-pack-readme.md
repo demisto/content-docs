@@ -63,7 +63,7 @@ The following table lists these fields, what they are used for in Cortex XSOAR, 
 | Rehired employee  | Used in conjunction with the prehire flag to determine whether a user should be rehired. | Yes <br/> No |
 | Prehire flag | If True, indicates a pre-hire status of the employee (i.e., a future hire or rehire). | True <br/> False|
 | Hire date | Used to determine when a user will be created for the employee. | Any date format is supported. <br/> The format should match the format chosen in the integration parameter. |
-| Termination date / Last day of work | Used in conjunction with the prehire flag, hire date and rehired employee flags to determine whether a user should be terminated. | Any date format is supported. <br/> The format should match the format chosen in the integration parameter. |
+| Termination date / Last day of work | Used in conjunction with the prehire flag to determine whether a user should be terminated. | Any date format is supported. <br/> The format should match the format chosen in the integration parameter. |
 
 - Make sure to obtain the URL where the Workday reports are hosted. Each report has a unique URL, which you enter as one of the integration instance parameters. If you want to fetch multiple reports, each report will require its own integration instance. 
 
