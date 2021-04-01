@@ -49,6 +49,7 @@ function Marketplace() {
   const [useCase, setUseCase] = useState(false);
   const [integration, setIntegration] = useState(false);
   const [category, setCategory] = useState(false);
+  const [tag, setTag] = useState(false);
   const [value, setValue] = useState("");
 
   // Parse URL query params
@@ -61,6 +62,7 @@ function Marketplace() {
     if (!useCase && params.useCase) setUseCase(params.useCase);
     if (!integration && params.integration) setIntegration(params.integration);
     if (!category && params.category) setCategory(params.category);
+    if (!tag && params.tag) setTag(params.tag);
     if (!value && params.q) setValue(params.q);
   }, []);
 
@@ -71,6 +73,7 @@ function Marketplace() {
     ...(useCase && { useCases: useCase }),
     ...(integration && { integrations: integration }),
     ...(category && { categories: category }),
+    ...(tag && { tags: tag }),
     ...(support && { support: support }),
     ...(showNew && { new: showNew }),
     ...(showFeatured && { featured: showFeatured }),
@@ -81,6 +84,8 @@ function Marketplace() {
       if (key == "useCases" && pack[key].includes(useCase)) return true;
 
       if (key == "categories" && pack[key].includes(category)) return true;
+
+      if (key == "tags" && pack[key].includes(tag)) return true;
 
       if (key == "integrations") {
         var match = false;
@@ -240,6 +245,38 @@ function Marketplace() {
     return categories;
   }
 
+  // Generate tags options
+  function generateTags() {
+    const dictionary = {};
+    let tags = [];
+    let combinedTags = [];
+    filteredPacks.map((pack) => {
+      combinedTags.push(pack.tags);
+    });
+    const flattenedTags = () => {
+      var flat = [];
+      for (var i = 0; i < combinedTags.length; i++) {
+        flat = flat.concat(combinedTags[i]);
+      }
+      return flat;
+    };
+    const allTags = flattenedTags();
+    allTags.map((tag) => {
+      dictionary[tag] = {
+        name: tag,
+        count: dictionary[tag] ? dictionary[tag]["count"] + 1 : 1,
+      };
+    });
+    const uniqueTags = new Set(allTags);
+    uniqueTags.forEach((tag) => {
+      tags.push({
+        label: dictionary[tag] ? `${tag} (${dictionary[tag]["count"]})` : tag,
+        value: tag,
+      });
+    });
+    return tags;
+  }
+
   // Generate price options
   function generatePrices() {
     const dictionary = {};
@@ -389,6 +426,13 @@ function Marketplace() {
               label: "Categories",
               action: setCategory,
               options: generateCategories(),
+              state: category,
+            },
+            {
+              type: "select",
+              label: "Tags",
+              action: setTag,
+              options: generateTags(),
               state: category,
             },
           ]}
