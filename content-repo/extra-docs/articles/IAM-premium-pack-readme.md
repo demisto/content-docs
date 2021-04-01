@@ -218,7 +218,7 @@ The following is an example of the flow when adding a field to work with the ILM
         - User Profile
 	    - IAM - Sync User
 	    
-	    You can add the following incident types if you would like to display the new field in the incident layout (the new fields will be shown regardless in the User Profile indicator).
+	    You can also add the following incident types if you would like to display the new field in the incident layout (the new fields will be shown regardless in the User Profile indicator).
 	    - IAM - Sync User
 	    - IAM - New Hire
 	    - IAM - Update User
