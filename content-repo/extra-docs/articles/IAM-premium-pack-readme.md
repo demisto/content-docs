@@ -20,7 +20,7 @@ Read the instructions for each flow carefully to first understand the workflows 
 
 ### Workday Reports
 
-HR uses Workday to manage operations for employees in the organization. It is standard practice for HR to generate reports for these maintenance operations. For example, running a weekly report that captures all new employees and terminated employees, or a daily report that captures updates to existing employee profiles (e.g., new mailing address or phone number).
+HR uses Workday to manage operations for employees in the organization. It is standard practice for HR to generate reports for these maintenance operations. For example, running a weekly report that captures all new and terminated employees, or a daily report that captures updates to existing employee profiles (e.g., new mailing address or phone number).
 
 Cortex XSOAR uses the Workday integration to fetch reports and create XSOAR incidents that correspond to the management operation(s) in the report. For example, if you run a full report that includes 5 new employees, 3 terminated employees, and 10 employee profiles that were updated, 18 unique incidents would be created in XSOAR.
 
@@ -73,7 +73,7 @@ The following table lists these fields, what they are used for in Cortex XSOAR, 
 
 Cortex XSOAR stores all employee information as *User Profile* indicators. User Profiles have many fields out-of-the-box, which hold data about the employee. 
 
-**Note:** The User Profiles are initially created without triggering any incident when Workday's *fetch-incident* command is executed for the first time and the *Sync user profiles on first run* parameter is checked. User Profiles for users that are added to Workday **after** this initial fetch are created by the *IAM - Sync User* playbook. The idea behind this is to sync all existing employees to XSOAR without running incidents for them, as they are already provisioned in the apps used by the organization.
+**Note:** The User Profiles are initially created when Workday's *fetch-incident* command is executed for the first time and the *Sync user profiles on first run* parameter is checked. The profiles are created without triggering an incident. User Profiles for users that are added to Workday **after** this initial fetch are created by the *IAM - Sync User* playbook. This syncs all existing employees to XSOAR without running incidents for them, as they are already provisioned in the apps used by the organization.
 
 The User Profiles are constantly synchronized with Workday, so that when a change to a user comes from a Workday report, the integration creates an incident, triggering a change in the rest of the apps used in the organization, and updating the User Profile indicator.
 
@@ -127,7 +127,7 @@ The app-sync process starts when one of the following scenarios happens:
 3. The user's information changed in Okta, directly or indirectly (through an IAM - Update User incident)
 
 The **Okta IAM** integration fetches the following Okta log event types and proceeds with the applicable flow:
-* The *application.user_membership.add* / *application.user_membership.remove* Okta event results in *IAM - App Add* / *IAM - App Remove* incidents respectively, which run the **IAM - App Sync** playbook. The playbook uses the integration context (that is transparent to the user) of the Okta instance, which maps Okta App IDs to integration instances in Cortex XSOAR, in order to determine which instance to sync the user to. It then runs either the ***iam-update-user*** with the "allow-enable" argument set to True, or ***iam-disable-user*** command, depending on the detected incident type.
+* The *application.user_membership.add* / *application.user_membership.remove* Okta event results in *IAM - App Add* / *IAM - App Remove* incidents respectively, which run the **IAM - App Sync** playbook. The playbook uses the integration context (that is transparent to the user) of the Okta instance, which maps Okta App IDs to integration instances in Cortex XSOAR, in order to determine to which instance to sync the user. It then runs either the ***iam-update-user*** with the "allow-enable" argument set to True, or ***iam-disable-user*** command, depending on the detected incident type.
 **Note:** The behavior for when a user account does not exist in the app is configurable through the relevant integration configuration. For example, if the user does not exist in the app to which they are assigned and the integration's "create if not exists" parameter is unchecked, then the command will be skipped. If the parameter is checked - the account will be created. 
 
 * The *user.account.update_profile* Okta event results in *IAM - App Update* incidents which run the **IAM - App Update** playbook. The playbook checks which apps the user is assigned to, and maps it to integration instances in Cortex XSOAR in which the user will be updated. The mapping is done using the integration context (that is transparent to the user) of the Okta instance, which maps Okta App IDs to integration instances in Cortex XSOAR, in order to determine which instancea to update the user in. It then runs the ***iam-update-user*** in all of the available instances of the apps to which the user is currently assigned.
