@@ -52,17 +52,17 @@ This article walks you through the process of contributing content from the Cort
 
 ## Resubmit a Content Pack
 
-If you have already submitted your contribution and you would like to make changes to the submission, you can do so by resubmitting the content pack from XSOAR. The resubmission process is very similar to the initial submission, while instead of creating a new pull request, you will update an existing pull request.
+If you have already submitted your contribution and you would like to make changes to the submission, you can do so by resubmitting the content pack from XSOAR. The resubmission process is very similar to the initial submission, the difference being you update an existing pull request instead of creating one.
 
 1. Create or edit any content items need to be included in your contribution.
 
 2. Go to **Marketplace** > **Contributions**, select your pack and press "Edit".
 
-3. Add or remove content items from the pack, if needed.
+3. Add or remove content items from the pack, as needed.
 
 4. Press **Save and Contribute** and complete the form as documented [above](#submit-a-content-pack).
  
-   **Note**: Changing the pack name or the email of the contributor at this stage will result creating a new pull request on GitHub, rather than updating the existing one.
+   **Note**: Changing the pack name or the email of the contributor at this stage will result in creating a pull request on GitHub, rather than updating the existing one.
    
    In the form you may include notes describing the essence of the update, or an updated demo video link, which will be displayed in a comment on the pull request after the changes are successfully pushed to GitHub.
 
