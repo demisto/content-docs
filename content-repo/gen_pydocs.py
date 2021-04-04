@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import html
 import json
 import os
 import re
@@ -48,6 +49,25 @@ class DemistoMarkdownRenderer(MarkdownRenderer):
             fp.write('\n\n')
             return
         super()._render_header(fp, level, obj)
+
+    def _render_object(self, fp, level, obj):
+        if not isinstance(obj, docspec.Module) or self.render_module_header:
+            self._render_header(fp, level, obj)
+        url = self.source_linker.get_source_url(obj) if self.source_linker else None
+        source_string = self.source_format.replace('{url}', str(url)) if url else None
+        if source_string and self.source_position == 'before signature':
+            fp.write(source_string + '\n\n')
+        self._render_signature_block(fp, obj)
+        if source_string and self.source_position == 'after signature':
+            fp.write(source_string + '\n\n')
+        if obj.docstring:
+            should_escape = self.escape_html_in_docstring and '>>>' not in obj.docstring
+            docstring = html.escape(obj.docstring) if should_escape else obj.docstring
+            lines = docstring.split('\n')
+            if self.docstrings_as_blockquote:
+                lines = ['> ' + x for x in lines]
+            fp.write('\n'.join(lines))
+            fp.write('\n\n')
 
 
 class CommonServerPythonProcessor(SphinxProcessor):
@@ -114,11 +134,24 @@ class CommonServerPythonProcessor(SphinxProcessor):
                     component.append('- `{}`: {}'.format(exception, text))
                     continue
 
+            stripped_line = line.strip()
+            if stripped_line.endswith('Examples:'):
+                continue
+
+            if stripped_line.startswith('>>>'):
+                keyword = 'Examples'
+
+                component = components.setdefault(keyword, ['```python'])
+                component.append(stripped_line)
+                continue
+
             if keyword is not None:
                 components[keyword].append(line)
             else:
                 lines.append(line)
 
+        if 'Examples' in components:
+            components['Examples'].append('```')
         generate_sections_markdown(lines, components)
         node.docstring = '\n'.join(lines)
 
