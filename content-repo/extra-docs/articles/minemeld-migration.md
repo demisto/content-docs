@@ -282,9 +282,11 @@ When configuring an instance of this integration, we need to provide an `Indicat
 
 So the information we gathered previously, translated to Cortex XSOAR's indicators query syntax would be,
 ```
-type:IP and sourceBrands:"Tor Exit Addresses Feed" and confidence:>75 and trafficlightprotocol:Green
+type:IP and sourceBrands:"Tor Exit Addresses Feed" and aggregatedReliability:"A - Completely reliable"
 ```
 Enter that value for the **Indicator Query**.
+
+Note that if you had set the `Traffic Light Protocol Color` parameter to `GREEN` when originally configuring an instance of the __Tor Exit Addresses Feed__ integration, then you could include the addional filter - `and trafficlightprotocol:Green` - as part of your indicator query.
 
 ![](../../../docs/doc_imgs/tutorials/tut-minemeld-migration/export-indicators-configuration-2.png)
 
