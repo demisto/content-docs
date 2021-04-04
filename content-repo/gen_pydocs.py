@@ -133,6 +133,7 @@ class IgnoreDocstringProcessor(FilterProcessor):
                 print(f'Skipping {member}')
         modules.clear()
         modules.extend(filtered_modules)
+        modules.sort(key=lambda obj: obj.name)
 
 
 def generate_pydoc(
