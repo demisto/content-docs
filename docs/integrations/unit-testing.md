@@ -117,7 +117,7 @@ Sample output:
 ### Multi variables assertion
 Most functions we write have several edge cases. When writing a unit test for this type of function all edge cases need to be tested.
 For example let's examine the following python function:
-```
+```python
 def convert_string_to_type(string: str) -> Union[str, bool, int]:
     """
     Converts the input string to it's object type
@@ -131,7 +131,7 @@ def convert_string_to_type(string: str) -> Union[str, bool, int]:
     return string
 ```
 A naive unit test will be as follows:
-```
+```python
 def test_convert_string_to_type():
     from File import convert_string_to_type
     string = 'true'
@@ -144,7 +144,7 @@ def test_convert_string_to_type():
     assert convert_string_to_type(string) == 'str'
 ```
 The correct way to test this function is using the @pytest.mark.parametrize fixture:
-```
+```python
 @pytest.mark.parametrize('string, output', [('true', True), ('432', 432), ('str', 'str')])
 def test_convert_string_to_type(string, output):
     assert convert_string_to_type(string) == output
@@ -154,23 +154,23 @@ We declare the inputs and outputs in the following format: 'input, output', [(ca
 
 After declaring the variables and assigning their values, you need to assign the variables to the test function. In the example above we assign the variables 'string' and 'output' to the test function.
 
-To read more on parametrize fixtures, visit: https://docs.pytest.org/en/latest/parametrize.html
+To read more on parametrize fixtures, visit: https://docs.pytest.org/en/latest/how-to/parametrize.html
 
 An example of a test using the paramertrize fixture is avialable [here](https://github.com/demisto/content/blob/master/Packs/CommonScripts/Scripts/ExtractDomainFromUrlFormat/ExtractDomainFromUrlFormat_test.py#L7).
 
 ### Testing Exceptions
 If a function is raising an exception in some case we want to test the right exception is raised and that the error message is correct.
 For example, for testing the following function:
-```
+```python
 def function():
     raise ValueError('this is an error msg')
 ```
 We first need to import the raises function from pytest using this line of code:
-```
+```python
 from pytest import raises
 ```
 Then, we test the exception being raised.
-```
+```python
 def test_function():
     from File import function
     with raises(ValueError, match='this is an error msg'):

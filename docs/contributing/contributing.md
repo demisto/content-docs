@@ -3,6 +3,10 @@ id: contributing
 title: Contributing 
 ---
 
+:::note
+This article is focused on contributing Cortex XSOAR Content. If you want to contribute fixes/suggestions to our development and reference Content docs (the site you are currently browsing) go to: [Documentation Contributions](docs-contrib).
+:::
+
 Thanks for being interested in contributing to Cortex XSOAR. This document describes the Contribution process. If you are not sure whether you should read this, make sure you read the [Getting Started Guide](../concepts/getting-started-guide) first.
 
 Contributing allows you to make the content that you build on Cortex XSOAR available to every client through the  [Marketplace](../partners/marketplace). Content can be either Partner or Community supported, [Free or Paid](../partners/marketplace#pricing).

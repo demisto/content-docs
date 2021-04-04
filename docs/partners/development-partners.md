@@ -45,7 +45,17 @@ Loginsoft, an IT Consulting company based out of VA, US, supports leading Cybers
 ([www.loginsoft.com](https://www.loginsoft.com))
 
 
-### QMasters
+### NTT DATA Services
+
+![nttdata_dev_partner](../doc_imgs/partners/nttdata_dev_partner.jpg)
+
+NTT DATA Services is a digital business and IT services leader headquartered in Plano, Texas. We are the largest business unit outside Japan of trusted global innovator NTT DATA Corporation, a top 10 provider and part of the $109B NTT Group. With our consultative approach, we leverage deep industry expertise and leading-edge technologies powered by AI, automation and cloud to create practical and scalable solutions that contribute to society and help clients worldwide. Our global team delivers one of the industry’s most robust and integrated portfolios. This includes consulting, applications, data intelligence and analytics, hybrid infrastructure, workplace, cybersecurity and business process services to help organizations accelerate and sustain value throughout their digital journeys.
+
+→ Contact Phani Nudurupati [Phani.Nudurupati@nttdata.com](mailto:Phani.Nudurupati@nttdata.com)
+ ([nttdataservices.com](https://nttdataservices.com))
+ 
+ 
+ ### QMasters
 
 ![qmasters_dev_partner](../doc_imgs/partners/qmasters_dev_partner.png)
 
@@ -55,4 +65,12 @@ With decades of experience in consulting, project management, IT integration and
  ([qmasters.co](https://qmasters.co))
  
 
-More partners are coming soon! If you are interested in becoming a partner, please [contact us](mailto:soar.alliances@paloaltonetworks.com).
+### SOAR XPERTS
+
+![soar_xperts_partner](../doc_imgs/partners/soar_xperts.png)
+
+SOAR XPERTS is a team of like-minded, highly skilled and determined individuals, all sharing the passion for digitising and automating cybersecurity operations knowledge and best practices. We are NOT another cybersecurity company; we strive that our clients acknowledge us as "customer-first" centric. We specialise in the XSOAR platform and help its community get the most out of their investment in the platform. Our guiding principles are fit for purpose and fair value for money.
+
+→ Contact Abe Binder [abe@soarxperts.com](mailto:abe@soarxperts.com)
+ ([www.soarxperts.com](https://www.soarxperts.com))
+

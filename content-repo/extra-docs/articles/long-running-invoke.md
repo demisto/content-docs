@@ -58,3 +58,7 @@ There is also the option to set a default value that all http long running integ
 You can then also disable specific instances by setting:
 * Name: `instance.execute.external.<instance_name>`
 * Value: `false`
+
+:::note
+The integration instance name used in the URL is case-sensitive.
+:::
