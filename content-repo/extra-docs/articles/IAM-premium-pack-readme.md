@@ -318,5 +318,5 @@ There could be several reasons for this. Inspect the error message in the Proces
 * You're using LDAPS in the Active Directory (port 636) integration.
 * You've specified a password generation script in the *IAM - Activate User In Active Directory* playbook inputs, under the *PasswordGenerationScriptName*, and that script complies with your domain's password complexity policy.
 
-##### Why am I seeing unwanted app updates?
+##### Why am I getting unwanted IAM - App Update incidents?
 You may have rules configured in Okta which automatically update user information for every new user. If you want to have those updates provisioned to the rest of the apps, you will need to follow the process of adding additional fields under the "Advanced" section.
