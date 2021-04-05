@@ -10,7 +10,7 @@ const contentItemTransformer = {
     "automation": "Automations",
     "playbook": "Playbooks",
     "layout": "Layouts",
-    "layoutscontainer": "Layouts"
+    "layoutscontainer": "Layouts",
     "incidenttype": "Incident Types",
     "incidentfield": "Incident Fields",
     "indicatorfield": "Indicator Fields",
@@ -202,7 +202,7 @@ function genPackDetails() {
       }
       pack.contentItems = FixedContentItems
     }
-    console.log("contentItems", FixedContentItems);
+
     generatePackDetails.runActions({
       id: pack.id.replace(/-|\s/g, "").replace(".", ""),
       name: pack.name,
