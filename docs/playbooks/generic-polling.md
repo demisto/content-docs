@@ -49,7 +49,7 @@ Follow these instructions to use the `GenericPolling` playbook.
 * **Possible values returned from polling command**: `starting, running, finished`. 
 * **DT** - We want a list of IDs of the processes that are still running. Let's explain how it's built:
 `Path.To.Object(val.Status !== ‘finished’).ID`
-Get the object that has a status other than ‘running’, then get its ID field.
+Get the object that has a status other than ‘finished’, then get its ID field.
 The polling is done only once the result is `finished`. The dt filter will return an empty result in that case - which triggers the playbook to stop running. 
 
 ## Limitations
