@@ -137,6 +137,7 @@ function genPackDetails() {
           fixedKey = contentItemTransformer[key]
           for (const listItem of value) {
             listItem.description = jsStringEscape(listItem.description);
+            listItem.description = listItem.description.replace("<", "&#60;");
           }
           FixedContentItems[fixedKey] = value
         }
@@ -197,6 +198,7 @@ function genPackDetails() {
         fixedKey = contentItemTransformer[key]
         for (const listItem of value) {
           listItem.description = jsStringEscape(listItem.description);
+          listItem.description = listItem.description.replace("<", "&#60;");
         }
         FixedContentItems[fixedKey] = value
       }
