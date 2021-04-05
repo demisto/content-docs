@@ -5,6 +5,18 @@ const plop = nodePlop(`./plopfile.js`);
 const generatePackDetails = plop.getGenerator("details");
 const jsStringEscape = require("js-string-escape");
 
+const contentItemTransformer = {
+    "integration": "Integrations",
+    "automation": "Automations",
+    "playbook": "Playbooks",
+    "layout": "Layouts",
+    "layoutscontainer": "Layouts"
+    "incidenttype": "Incident Types",
+    "incidentfield": "Incident Fields",
+    "indicatorfield": "Indicator Fields",
+    "classifier": "Classifiers",
+}
+
 const removeDir = function (path) {
   if (fs.existsSync(path)) {
     const files = fs.readdirSync(path);
@@ -116,14 +128,21 @@ function genPackDetails() {
         }
       }
     );
+
     marketplace.slice(0, process.env.MAX_PACKS).map((pack) => {
+
       if (pack.contentItems) {
-        for (const [key, value] of Object.entries(pack.contentItems)) {
+        var FixedContentItems = {};
+        for (var [key, value] of Object.entries(pack.contentItems)) {
+          fixedKey = contentItemTransformer[key]
           for (const listItem of value) {
             listItem.description = jsStringEscape(listItem.description);
           }
+          FixedContentItems[fixedKey] = value
         }
+        pack.contentItems = FixedContentItems
       }
+
       generatePackDetails.runActions({
         id: pack.id.replace(/-|\s/g, "").replace(".", ""),
         name: pack.name,
@@ -171,14 +190,19 @@ function genPackDetails() {
     }
   );
   marketplace.map((pack) => {
+
     if (pack.contentItems) {
-      for (const [key, value] of Object.entries(pack.contentItems)) {
+    var FixedContentItems = {};
+      for (var [key, value] of Object.entries(pack.contentItems)) {
+        fixedKey = contentItemTransformer[key]
         for (const listItem of value) {
           listItem.description = jsStringEscape(listItem.description);
         }
+        FixedContentItems[fixedKey] = value
       }
+      pack.contentItems = FixedContentItems
     }
-    // console.log("contentItems", pack.contentItems);
+    console.log("contentItems", FixedContentItems);
     generatePackDetails.runActions({
       id: pack.id.replace(/-|\s/g, "").replace(".", ""),
       name: pack.name,
