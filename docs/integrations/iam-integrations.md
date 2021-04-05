@@ -128,7 +128,7 @@ Returns information about a user.
 **How to implement**
 
 Complete the **client.get_user()** method, which should retrieve an [IAMUserAppData](#iamuserappdata) object that contains the data of the user in the application.
-Implementation example: [HelloIAMWorld](https://github.com/demisto/content/blob/master/Packs/HelloIAMWorld/Integrations/HelloIAMWorld/HelloIAMWorld.py#L26)
+* [HelloIAMWorld Implementation example](https://github.com/demisto/content/blob/master/Packs/HelloIAMWorld/Integrations/HelloIAMWorld/HelloIAMWorld.py#L26)
 
 
 ### **iam-update-user**
@@ -182,8 +182,8 @@ Updates a user.
 **How to implement**
 
 Complete the **client.update_user()** and **client.enable_user()** methods, each should retrieve an [IAMUserAppData](#iamuserappdata) object that contains the data of the user in the application.
-Implementation example - update: [HelloIAMWorld](https://github.com/demisto/content/blob/master/Packs/HelloIAMWorld/Integrations/HelloIAMWorld/HelloIAMWorld.py#L77)
-Implementation example - enable: [HelloIAMWorld](https://github.com/demisto/content/blob/master/Packs/HelloIAMWorld/Integrations/HelloIAMWorld/HelloIAMWorld.py#L103)
+* [HelloIAMWorld Implementation Example - Update](https://github.com/demisto/content/blob/master/Packs/HelloIAMWorld/Integrations/HelloIAMWorld/HelloIAMWorld.py#L77)
+* [HelloIAMWorld Implementation Example - Enable](https://github.com/demisto/content/blob/master/Packs/HelloIAMWorld/Integrations/HelloIAMWorld/HelloIAMWorld.py#L103)
 
 
 ### **iam-disable-user**
@@ -233,7 +233,7 @@ Disables a user. If the API does not support disabling, deletes the user.
 **How to implement**
 
 Complete the **client.disable_user()** method, which should retrieve an [IAMUserAppData](#iamuserappdata) object that contains the data of the user in the application.
-Implementation example: [HelloIAMWorld](https://github.com/demisto/content/blob/master/Packs/HelloIAMWorld/Integrations/HelloIAMWorld/HelloIAMWorld.py#L119)
+* [HelloIAMWorld Implementation Example](https://github.com/demisto/content/blob/master/Packs/HelloIAMWorld/Integrations/HelloIAMWorld/HelloIAMWorld.py#L119)
 
 
 ### **get-mapping-fields**
@@ -245,7 +245,7 @@ Retrieves a User Profile schema which holds all of the user fields within the ap
 **How to implement**
 
 Complete the **client.get_app_fields()** method, which should retrieve a dictionary of fields and their descriptions.
-Implementation example: [HelloIAMWorld](https://github.com/demisto/content/blob/master/Packs/HelloIAMWorld/Integrations/HelloIAMWorld/HelloIAMWorld.py#L135)
+* [HelloIAMWorld Implementation Example](https://github.com/demisto/content/blob/master/Packs/HelloIAMWorld/Integrations/HelloIAMWorld/HelloIAMWorld.py#L135)
 
 
 ### Additional Methods to Implement
