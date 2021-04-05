@@ -41,4 +41,5 @@ static/assets/deprecated*.json
 # Content pack details pages
 /src/pages/marketplace/details
 /index
-.index.zip
+index.zip
+index.json

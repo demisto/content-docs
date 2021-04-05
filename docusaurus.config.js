@@ -5,33 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 const visit = require("unist-util-visit");
-const path = require("path");
-
-const globby = require("globby");
-
-function genMetaData() {
-  let marketplace = [];
-  const packs = globby.sync(["./index", "!./index/index.json"], {
-    absolute: false,
-    objectMode: true,
-    deep: 1,
-    onlyDirectories: true,
-  });
-  packs.map((pack) => {
-    const meta = globby.sync([`${pack.path}/metadata.json`], {
-      absolute: true,
-      objectMode: true,
-      deep: 1,
-    });
-    let metadata = require(meta[0].path);
-    marketplace.push(metadata);
-  });
-  if (process.env.MAX_PACKS) {
-    console.log(`limiting packs to ${process.env.MAX_PACKS}`);
-    return marketplace.slice(0, process.env.MAX_PACKS);
-  }
-  return marketplace;
-}
+const fs = require("fs");
+const marketplace = JSON.parse(fs.readFileSync("./index.json"));
 
 const remarkPlugin = () => {
   const transformer = (root) => {
@@ -239,7 +214,7 @@ module.exports = {
         position: "products",
       },
     ],
-    marketplace: genMetaData(),
+    marketplace: marketplace,
   },
   stylesheets: [
     {

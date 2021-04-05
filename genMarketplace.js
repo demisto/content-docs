@@ -99,8 +99,23 @@ function genPackDetails() {
     }
     marketplace.push(metadata);
   });
+
   if (process.env.MAX_PACKS) {
     console.log(`limiting packs to ${process.env.MAX_PACKS}`);
+    console.log("writing marketplace metadata to JSON file");
+    const marketplace_json = JSON.stringify(
+      marketplace.slice(0, process.env.MAX_PACKS)
+    );
+    fs.writeFile(
+      "index.json",
+      marketplace_json,
+      "utf8",
+      function readFileCallback(err) {
+        if (err) {
+          console.log(err);
+        }
+      }
+    );
     marketplace.slice(0, process.env.MAX_PACKS).map((pack) => {
       if (pack.contentItems) {
         for (const [key, value] of Object.entries(pack.contentItems)) {
@@ -143,6 +158,18 @@ function genPackDetails() {
     });
     return;
   }
+  console.log("writing marketplace metadata to JSON file");
+  const marketplace_json = JSON.stringify(marketplace);
+  fs.writeFile(
+    "index.json",
+    marketplace_json,
+    "utf8",
+    function readFileCallback(err) {
+      if (err) {
+        console.log(err);
+      }
+    }
+  );
   marketplace.map((pack) => {
     if (pack.contentItems) {
       for (const [key, value] of Object.entries(pack.contentItems)) {

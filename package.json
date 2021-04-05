@@ -14,7 +14,7 @@
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "node": "node",
-    "marketplace-docs": "npm run index && node genPackDetails",
+    "marketplace-docs": "npm run index && node genMarketplace",
     "index": "curl https://storage.googleapis.com/marketplace-dist/content/packs/index.zip > index.zip && unzip -o index.zip && rm index.zip"
   },
   "dependencies": {
