@@ -9,7 +9,7 @@ This article walks you through the process of contributing content from the Cort
 
 ## Submit a Content Pack
 
-1. Contribute your content pack from Cortex XSOAR. For more information, see [Contribute a Content Pack](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/marketplace/content-pack-contributions.html).
+1. Contribute your content pack from Cortex XSOAR. For more information, see [Contribute a Content Pack](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-1/cortex-xsoar-admin/marketplace/content-pack-contributions.html).
 
 2. After you contribute the content pack a message displays explaining that your contribution is ready for review, and includes a link to a form you need to fill in to complete your contribution. You will receive an email with a link to the form.
 
@@ -71,7 +71,7 @@ If you have already submitted your contribution and you would like to make chang
 
 ## Notes
 
-1. In addition to the resubmission option described above, there are other ways to update a content pack that you contributed and is already on a GitHub pull request: you can to either modify the files directly on the pull request, or close the pull request and create a new contribution that includes your changes.
+1. In addition to the resubmission option described above, there are other ways to update a content pack that you contributed and is already on a GitHub pull request: you may either modify the files directly on the pull request, or close the pull request and create a new contribution that includes your changes.
 
 2. The contribution mode selection dropdown will only appear if content items that were part of your contribution were detected as originating from existing sources (for example, you created a new automation in the UI by clicking "Duplicate Automation").
 
