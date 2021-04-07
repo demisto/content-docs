@@ -15,6 +15,8 @@ const contentItemTransformer = {
     "incidentfield": "Incident Fields",
     "indicatorfield": "Indicator Fields",
     "classifier": "Classifiers",
+    "widget": "Widgets",
+    "dashboard": "Dashboards"
 }
 
 const removeDir = function (path) {
@@ -136,8 +138,8 @@ function genPackDetails() {
         for (var [key, value] of Object.entries(pack.contentItems)) {
           fixedKey = contentItemTransformer[key]
           for (const listItem of value) {
-            listItem.description = jsStringEscape(listItem.description);
-            listItem.description = listItem.description.replace("<", "&#60;");
+            listItem.description = listItem.description ? jsStringEscape(listItem.description) : "";
+            listItem.description = listItem.description.replace(/</g, "&#60;");
           }
           FixedContentItems[fixedKey] = value
         }
@@ -154,7 +156,7 @@ function genPackDetails() {
         authorImage: pack.authorImage != "" ? pack.authorImage : null,
         readme: pack.readme
           ? jsStringEscape(pack.readme)
-          : `This pack doesn't have any \`README.md\` content yet. If you'd like to contribute click [here](https://github.com/demisto/content/blob/master/Packs/${pack.id}/README.md).`,
+          : "",
         support:
           pack.support == "xsoar"
             ? "Cortex XSOAR"
@@ -197,8 +199,8 @@ function genPackDetails() {
       for (var [key, value] of Object.entries(pack.contentItems)) {
         fixedKey = contentItemTransformer[key]
         for (const listItem of value) {
-          listItem.description = jsStringEscape(listItem.description);
-          listItem.description = listItem.description.replace("<", "&#60;");
+          listItem.description = listItem.description ? jsStringEscape(listItem.description) : "";
+          listItem.description = listItem.description.replace(/</g, "&#60;");
         }
         FixedContentItems[fixedKey] = value
       }
