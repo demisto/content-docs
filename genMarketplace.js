@@ -87,9 +87,9 @@ function genPackDetails() {
         deep: 1,
       }
     );
-    let metadata = fs.readFileSync(meta[0].path, "utf8");
+    let metadata = require(meta[0].path);
     let readme = meta[2] ? meta[1].path : null;
-    let changeLog = meta[2] ? fs.readFileSync(meta[2].path, "utf8") : fs.readFileSync(meta[1].path, "utf8");
+    let changeLog = meta[2] ? require(meta[2].path) : require(meta[1].path);
     if (changeLog) {
       for (const [key, value] of Object.entries(changeLog)) {
         value.releaseNotes = jsStringEscape(value.releaseNotes);
