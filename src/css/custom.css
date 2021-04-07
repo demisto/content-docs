@@ -438,10 +438,6 @@ html[data-theme="dark"] .header-github-link:before {
   max-width: 60px;
 }
 
-.version {
-  margin-bottom: 1rem;
-}
-
 .versionCard {
   border-radius: 3px;
 }
