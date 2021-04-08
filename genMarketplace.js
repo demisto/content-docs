@@ -137,6 +137,7 @@ function genPackDetails() {
   marketplace.map((pack) => {
     if (pack.contentItems) {
       var FixedContentItems = {};
+      var fixedKey = ""
       for (var [key, value] of Object.entries(pack.contentItems)) {
         fixedKey = contentItemTransformer[key];
         for (const listItem of value) {
