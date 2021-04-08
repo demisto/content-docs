@@ -43,17 +43,14 @@
   --ifm-table-border-width: 0px;
 }
 
-.integrationImageContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 27px;
-  width: 64px;
-  border: 1px solid #eaebeb;
-  margin-right: 8px;
-  margin-bottom: 8px;
-  background-color: #f4f5f5;
-  border-radius: 2px;
+.markdown table tr {
+  border-bottom: 1px solid var(--ifm-color-secondary);
+}
+
+.markdown table tr::after {
+  content: "";
+  display: block;
+  min-width: 268px;
 }
 
 /* Dark mode overrides */
@@ -462,6 +459,19 @@ html[data-theme="dark"] .header-github-link:before {
   margin-bottom: 2rem;
   height: 100vh;
   overflow: auto;
+}
+
+.integrationImageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 27px;
+  width: 64px;
+  border: 1px solid #eaebeb;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  background-color: #f4f5f5;
+  border-radius: 2px;
 }
 
 /* The main container element */
