@@ -36,7 +36,7 @@
   --ifm-line-height-base: 1.5;
   --ifm-leading-desktop: 1.5;
   --ifm-list-margin: var(--ifm-leading);
-  --ifm-color-secondary: #9292c8;
+  --ifm-color-secondary: #768ba1;
   font-family: "Demisto", Fallback, sans-serif;
   /* Tables */
   --ifm-table-stripe-background: var(--ifm-background-color);
@@ -105,6 +105,14 @@ blockquote {
 .alert--success svg {
   fill: #fff;
   stroke: #fff;
+}
+
+.alert--secondary {
+  color: white;
+}
+
+.alert--secondary a {
+  color: white;
 }
 
 /* Hero overrides */
