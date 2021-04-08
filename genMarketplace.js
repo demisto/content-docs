@@ -6,18 +6,18 @@ const generatePackDetails = plop.getGenerator("details");
 const jsStringEscape = require("js-string-escape");
 
 const contentItemTransformer = {
-    "integration": "Integrations",
-    "automation": "Automations",
-    "playbook": "Playbooks",
-    "layout": "Layouts",
-    "layoutscontainer": "Layouts",
-    "incidenttype": "Incident Types",
-    "incidentfield": "Incident Fields",
-    "indicatorfield": "Indicator Fields",
-    "classifier": "Classifiers",
-    "widget": "Widgets",
-    "dashboard": "Dashboards"
-}
+  integration: "Integrations",
+  automation: "Automations",
+  playbook: "Playbooks",
+  layout: "Layouts",
+  layoutscontainer: "Layouts",
+  incidenttype: "Incident Types",
+  incidentfield: "Incident Fields",
+  indicatorfield: "Indicator Fields",
+  classifier: "Classifiers",
+  widget: "Widgets",
+  dashboard: "Dashboards",
+};
 
 const removeDir = function (path) {
   if (fs.existsSync(path)) {
@@ -87,13 +87,15 @@ function genPackDetails() {
         deep: 1,
       }
     );
-    let metadata = require(meta[0].path);
+    let metadata = JSON.parse(fs.readFileSync(meta[0].path));
     let readme = meta[2] ? meta[1].path : null;
-    let changeLog = meta[2] ? require(meta[2].path) : require(meta[1].path);
+    let changeLog = meta[2]
+      ? JSON.parse(fs.readFileSync(meta[2].path, "utf8"))
+      : JSON.parse(fs.readFileSync(meta[1].path, "utf8"));
     if (changeLog) {
-      for (const [key, value] of Object.entries(changeLog)) {
-        value.releaseNotes = jsStringEscape(value.releaseNotes);
-        value.released = new Date(value.released).toLocaleString("en-US", {
+      for (let [_, release] of Object.entries(changeLog)) {
+        release.releaseNotes = jsStringEscape(release.releaseNotes);
+        release.released = new Date(release.released).toLocaleString("en-US", {
           year: "numeric",
           month: "long",
           day: "numeric",
@@ -116,70 +118,9 @@ function genPackDetails() {
 
   if (process.env.MAX_PACKS) {
     console.log(`limiting packs to ${process.env.MAX_PACKS}`);
-    console.log("writing marketplace metadata to JSON file");
-    const marketplace_json = JSON.stringify(
-      marketplace.slice(0, process.env.MAX_PACKS)
-    );
-    fs.writeFile(
-      "index.json",
-      marketplace_json,
-      "utf8",
-      function readFileCallback(err) {
-        if (err) {
-          console.log(err);
-        }
-      }
-    );
-
-    marketplace.slice(0, process.env.MAX_PACKS).map((pack) => {
-
-      if (pack.contentItems) {
-        var FixedContentItems = {};
-        for (var [key, value] of Object.entries(pack.contentItems)) {
-          fixedKey = contentItemTransformer[key]
-          for (const listItem of value) {
-            listItem.description = listItem.description ? jsStringEscape(listItem.description) : "";
-            listItem.description = listItem.description.replace(/</g, "&#60;");
-          }
-          FixedContentItems[fixedKey] = value
-        }
-        pack.contentItems = FixedContentItems
-      }
-
-      generatePackDetails.runActions({
-        id: pack.id.replace(/-|\s/g, "").replace(".", ""),
-        name: pack.name,
-        description: pack.description.replace(/\\/g, "\\\\"),
-        author: pack.author,
-        currentVersion: pack.currentVersion,
-        versionInfo: pack.versionInfo,
-        authorImage: pack.authorImage != "" ? pack.authorImage : null,
-        readme: pack.readme
-          ? jsStringEscape(pack.readme)
-          : "",
-        support:
-          pack.support == "xsoar"
-            ? "Cortex XSOAR"
-            : capitalizeFirstLetter(pack.support),
-        created: new Date(pack.created).toLocaleString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        }),
-        updated: new Date(pack.updated).toLocaleString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        }),
-        certification: pack.certification,
-        useCases: pack.useCases,
-        integrations: pack.integrations,
-        contentItems: pack.contentItems,
-        changeLog: reverseReleases(pack.changeLog),
-      });
-    });
-    return;
+    marketplace = marketplace.slice(0, process.env.MAX_PACKS);
   }
+
   console.log("writing marketplace metadata to JSON file");
   const marketplace_json = JSON.stringify(marketplace);
   fs.writeFile(
@@ -192,23 +133,25 @@ function genPackDetails() {
       }
     }
   );
-  marketplace.map((pack) => {
 
+  marketplace.map((pack) => {
     if (pack.contentItems) {
-    var FixedContentItems = {};
+      var FixedContentItems = {};
       for (var [key, value] of Object.entries(pack.contentItems)) {
-        fixedKey = contentItemTransformer[key]
+        fixedKey = contentItemTransformer[key];
         for (const listItem of value) {
-          listItem.description = listItem.description ? jsStringEscape(listItem.description) : "";
+          listItem.description = listItem.description
+            ? jsStringEscape(listItem.description)
+            : "";
           listItem.description = listItem.description.replace(/</g, "&#60;");
         }
-        FixedContentItems[fixedKey] = value
+        FixedContentItems[fixedKey] = value;
       }
-      pack.contentItems = FixedContentItems
+      pack.contentItems = FixedContentItems;
     }
 
     generatePackDetails.runActions({
-      id: pack.id.replace(/-|\s/g, "").replace(".", ""),
+      id: pack.id ? pack.id.replace(/-|\s/g, "").replace(".", "") : pack.id,
       name: pack.name,
       description: pack.description.replace(/\\/g, "\\\\"),
       author: pack.author,
