@@ -7,21 +7,26 @@ The Cortex XSOAR Adopt-a-Pack program provides our technical partners a way to �
 
 ## Benefits for our Partner
 Adopting a Pack has several advantages for the partner:
-- The partner directly controls the pack’s roadmap, features and release timing.
-- The partner receives direct feedback from customers in the form of defects and enhancement requests.
-- The partner is added as a reviewer in GitHub so they can see all community updates to that pack.
-- The partner places their name on the pack.
-- The partner can engage in marketing activities with Palo Alto Networks.
+- Directly control the pack’s roadmap, features and release timing.
+- Receive direct feedback from customers in the form of defects and enhancement requests.
+- Added as a reviewer in GitHub to see all community updates to that pack.
+
+### Marketing with Palo Alto Networks
+- Opportunity to place company name and logo on the pack.
+- Add detailed description and marketing to the pack (see yellow box, below) including links, images, company overview, etc. 
+- Engage in marketing activities with Palo Alto Networks (e.g. joint solution blog).
+
+![pack example cyren](../doc_imgs/partners/packexample_cyren.png)
 
 ## Process
 The process to Adopt-a-Pack is simple:
-- Partner signs the Palo Alto Networks Technology Partnership Agreement. If you've already signed a similar agreement, you will not have to sign again. There is no additional legal paperwork to Adopt. 
-- Partner notifies Palo Alto Networks that they wish to adopt the pack. *Important:* you must notify us so we can work with you. 
-- Palo Alto Networks marks the pack as "Transitioning to Partner" for 90 days. During this time, the Partner is able to make changes and updates to the pack, but the primary support will remain with Palo Alto Networks. (If the existing pack is not in use, the transition time can be shortened.) 
-- Partner submits a Pull Request(s) of their pack to the Cortex XSOAR Marketplace in the normal manner updating APIs, marketing information, adding playbooks, etc. 
-- After the 90 day transition period has elapsed, the Partner submits a pull request updating the pack metadata and officially takes over the pack!
+1. Partner signs the Palo Alto Networks Technology Partnership Agreement. If you've already signed our agreement, you will not have to sign again. We may need to send you a statement via email but there is no additional paperwork to Adopt. 
+1. Partner notifies Palo Alto Networks that they wish to adopt the pack. *Important:* you must notify us so we can work with you. 
+1. Partner opens a PR on the pack. The PR must update the pack readme and relevant release note both containing the text below, and increment the version number. To increment the version and adjust the release note it is recommended to run `demisto-sdk update-release-notes -i Packs/<MyPack>` which will generate a new release note file and will bump the pack version. More information can be found [here](../documentation/release-notes). This starts the 90 day transition period. 
+1. Once that PR is merged, the Partner is able to make changes and updates to the pack via PR(s), but the primary support will remain with Palo Alto Networks. (If the existing pack is not in use, the transition time can be shortened.) 
+1. After the 90 day transition period has elapsed, the Partner submits a pull request updating the readme (per text below), support information, and increments the version number and officially takes over the pack!
 
 ### Text for the Pack
-For partners who received permission for the adoption process, please add the following text to the **top** of the pack readme.md file.
+For partners who received permission for the adoption process, please add the following text to the **top** of the pack readme.md file and the relevant release note.
 - At the start of the adoption process: `Note: Support for this pack will be moving to the partner around <<Month>>, <<Day>>, <<Year>>.` (Be sure to update the date to 90 days in the future.)
 - At the end of the 90 day period: `Note: Support for this pack moved to the partner on <<Month>>, <<Day>>, <<Year>>. Please contact the partner directly via the support link on the right.` (Be sure to update the date.)

@@ -53,9 +53,10 @@ const sidebars = {
       items: [
         "contributing/contributing",
         "contributing/contrib-requirements",
-        "contributing/checklist",
-        "contributing/marketplace",
-        "contributing/conventions"
+        "contributing/checklist",        
+        "contributing/conventions",
+        "contributing/docs-contrib",
+        "contributing/marketplace"
       ]
     }, 
     {
@@ -133,6 +134,7 @@ const sidebars = {
           collapsed: true,          
           items: [
             "integrations/feeds",
+            "integrations/iam-integrations",
             "integrations/powershell-code",
             "integrations/fetching-credentials",
             "integrations/long-running",

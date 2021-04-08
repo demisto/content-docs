@@ -3,6 +3,10 @@ id: contributing
 title: Contributing 
 ---
 
+:::note
+This article is focused on contributing Cortex XSOAR Content. If you want to contribute fixes/suggestions to our development and reference Content docs (the site you are currently browsing) go to: [Documentation Contributions](docs-contrib).
+:::
+
 Thanks for being interested in contributing to Cortex XSOAR. This document describes the Contribution process. If you are not sure whether you should read this, make sure you read the [Getting Started Guide](../concepts/getting-started-guide) first.
 
 Contributing allows you to make the content that you build on Cortex XSOAR available to every client through the  [Marketplace](../partners/marketplace). Content can be either Partner or Community supported, [Free or Paid](../partners/marketplace#pricing).
@@ -27,7 +31,7 @@ There are three ways to submit your work:
      - You are a Technology Partner contributing with *partner* supported new content.
      - Your contribution is big and contains lots of different parts (Integrations, Scripts, Playbooks, Layouts, etc) that is likely to lead to a complex review process.
      - You are proficient with GitHub.
- 1. Contribute through a private GitHub repository: this is required if you are providing a **Premium** (aka Paid) Content Pack. The requirements are the same of supported Packs, and the contribution process is described [here](../integrations/premium_packs).
+ 1. Contribute through a private GitHub repository: this is required if you are providing a **Premium** (aka Paid) Content Pack. The requirements are the same of supported Packs, and the contribution process is described [here](../packs/premium_packs).
 
 This document describes the main flow that covers *supported* and free contributions(i.e. item *2.* in the above list) and summarizes everything you must do before and after opening a Pull Request on GitHub to contribute your pack.
 

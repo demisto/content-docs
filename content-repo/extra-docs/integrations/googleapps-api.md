@@ -52,9 +52,11 @@ There are several procedures you have to perform in Google before configuring th
 ### Delegate Domain-wide Authority to Your Service Account
 
 1.  Access the [Google Administrator Console](http://admin.google.com/).
-2.  Enter a client name and paste the following into the One or More API Scopes textbox.  
+2.  Enter a client name and paste the following into the `One or More API Scopes` textbox.  
     
+    ```
     https://www.googleapis.com/auth/gmail.settings.basic,https://www.googleapis.com/auth/admin.directory.user,https://www.googleapis.com/auth/admin.directory.device.mobile.action,https://www.googleapis.com/auth/admin.directory.device.mobile.readonly,https://www.googleapis.com/auth/gmail.modify,https://www.googleapis.com/auth/gmail.settings.sharing,https://www.googleapis.com/auth/gmail.send,https://www.googleapis.com/auth/gmail.modify,https://www.googleapis.com/auth/admin.directory.device.chromeos,https://www.googleapis.com/auth/admin.directory.user.readonly,https://www.googleapis.com/auth/admin.directory.user.security,https://www.googleapis.com/auth/admin.directory.rolemanagement,https://www.googleapis.com/auth/admin.directory.rolemanagement.readonly,https://www.googleapis.com/auth/gmail.readonly,https://mail.google.com,https://www.googleapis.com/auth/gmail.compose
+    ```
     
     ![](../../../docs/doc_imgs/reference/gmail-mceclip1-1.png)
     
@@ -64,21 +66,21 @@ There are several procedures you have to perform in Google before configuring th
 |     |     |     |
 | --- | --- | --- |  
 | API Scope | Description | Demisto command |
-| https://mail.google.com | Reads, composes, sends, and permanently deletes all of the user's emails from Gmail. | <ul><li>gmail-get-autoreply</li></ul> |
-| https://www.googleapis.com/auth/   admin.directory.device.chromeos | Views and manages Chrome OS devices' metadata. |<ul><li> googleapps-chrome-device-action</li><li> googleapps-get-chrome-devices-for-user </li><li> googleapps-device-action</li><li> googleapps-get-devices-for-user</li> </ul>|
-| https://www.googleapis.com/auth/   admin.directory.device.mobile.action | Manages mobile devices by performing administrative tasks. |  <ul><li>googleapps-chrome-device-action </li><li> googleapps-get-chrome-devices-for-user  </li><li> googleapps-device-action </li><li> googleapps-get-devices-for-user </li></ul>|
-| https://www.googleapis.com/auth/   admin.directory.device.mobile.readonly | Views the metadata of a mobile device. | <ul><li> googleapps-chrome-device-action </li><li> googleapps-get-chrome-devices-for-user </li><li> googleapps-device-action </li><li> googleapps-get-devices-for-user </li></ul>|
-| https://www.googleapis.com/auth/   admin.directory.rolemanagement | Manages delegated administration roles for the user's domain. | <ul><li> gmail-get-user-role </li><li> gmail-revoke-user-roles </li></ul>|
-| https://www.googleapis.com/auth/   admin.directory.rolemanagement.readonly | Views delegated administration roles for the user's domain. | <ul><li> gmail-get-user-role </li></ul>|
-| https://www.googleapis.com/auth/   admin.directory.user | Enables full user management. | <ul><li> gmail-hide-user </li><li> gmail-set-user-password </li><li> gmail-create-user </li><li> gmail-delete-user </li></ul>|
-| https://www.googleapis.com/auth/   admin.directory.user.readonly | Views users on your domain. | <ul><li> gmail-list-users </li><li> gmail-get-user </li><li> gmail-search-all-mailboxes</li></ul> |
-| https://www.googleapis.com/auth/   admin.directory.user.security | Manages data access permissions for users on your domain. | <ul><li> gmail-get-user-tokens </li></ul>|
-| https://www.googleapis.com/auth/   gmail.compose | Sends a message on behalf of a user. | <ul><li> send-mail </li></ul>|
-| https://www.googleapis.com/auth/   gmail.modify | Views and modifies but not deletes email. | <ul><li> gmail-get-autoreply </li><li> gmail-move-mail </li><li> gmail-move-mail-to-mailbox </li><li> gmail-delete-mail </li></ul>|
-| https://www.googleapis.com/auth/   gmail.readonly | Views email messages and settings. | <ul><li> gmail-get-autoreply </li><li> gmail-search </li><li> gmail-search-all-mailboxes </li><li> gmail-get-mail </li><li> gmail-get-attachments </li><li> gmail-get-thread </li><li> fetch-incidents </li></ul>|
-| https://www.googleapis.com/   auth/gmail.send | Sends an email on behalf of someone else. | <ul><li> send-mail </li></ul>|
-| https://www.googleapis.com/auth/   gmail.settings.basic | Manages basic mail settings. | <ul><li> gmail-get-autoreply </li><li> gmail-set-autoreply </li><li> gmail-add-filter </li><li> gmail-add-delete-filter </li><li> gmail-list-filters </li><li> gmail-remove-filter </li></ul>|
-| https://www.googleapis.com/auth/   gmail.settings.sharing | Manages sensitive email settings, including who can manage emails. | <ul><li> gmail-delegate-user-mailbox </li><li> gmail-remove-delegated-mailbox </li></ul>|
+| `https://mail.google.com` | Reads, composes, sends, and permanently deletes all of the user's emails from Gmail. | <ul><li>gmail-get-autoreply</li></ul> |
+| `https://www.googleapis.com/auth/`<br/>`admin.directory.device.chromeos` | Views and manages Chrome OS devices' metadata. |<ul><li> googleapps-chrome-device-action</li><li> googleapps-get-chrome-devices-for-user </li><li> googleapps-device-action</li><li> googleapps-get-devices-for-user</li> </ul>|
+| `https://www.googleapis.com/auth/`<br/>`admin.directory.device.mobile.action` | Manages mobile devices by performing administrative tasks. |  <ul><li>googleapps-chrome-device-action </li><li> googleapps-get-chrome-devices-for-user  </li><li> googleapps-device-action </li><li> googleapps-get-devices-for-user </li></ul>|
+| `https://www.googleapis.com/auth/`<br/>`admin.directory.device.mobile.readonly` | Views the metadata of a mobile device. | <ul><li> googleapps-chrome-device-action </li><li> googleapps-get-chrome-devices-for-user </li><li> googleapps-device-action </li><li> googleapps-get-devices-for-user </li></ul>|
+| `https://www.googleapis.com/auth/`<br/>`admin.directory.rolemanagement` | Manages delegated administration roles for the user's domain. | <ul><li> gmail-get-user-role </li><li> gmail-revoke-user-roles </li></ul>|
+| `https://www.googleapis.com/auth/`<br/>`admin.directory.rolemanagement.readonly` | Views delegated administration roles for the user's domain. | <ul><li> gmail-get-user-role </li></ul>|
+| `https://www.googleapis.com/auth/`<br/>`admin.directory.user` | Enables full user management. | <ul><li> gmail-hide-user </li><li> gmail-set-user-password </li><li> gmail-create-user </li><li> gmail-delete-user </li></ul>|
+| `https://www.googleapis.com/auth/`<br/>`admin.directory.user.readonly` | Views users on your domain. | <ul><li> gmail-list-users </li><li> gmail-get-user </li><li> gmail-search-all-mailboxes</li></ul> |
+| `https://www.googleapis.com/auth/`<br/>`admin.directory.user.security` | Manages data access permissions for users on your domain. | <ul><li> gmail-get-user-tokens </li></ul>|
+| `https://www.googleapis.com/auth/`<br/>`gamil.compose` | Sends a message on behalf of a user. | <ul><li> send-mail </li></ul>|
+| `https://www.googleapis.com/auth/`<br/>`gamil.modify` | Views and modifies but not deletes email. | <ul><li> gmail-get-autoreply </li><li> gmail-move-mail </li><li> gmail-move-mail-to-mailbox </li><li> gmail-delete-mail </li></ul>|
+| `https://www.googleapis.com/auth/`<br/>`gamil.readonly` | Views email messages and settings. | <ul><li> gmail-get-autoreply </li><li> gmail-search </li><li> gmail-search-all-mailboxes </li><li> gmail-get-mail </li><li> gmail-get-attachments </li><li> gmail-get-thread </li><li> fetch-incidents </li></ul>|
+| `https://www.googleapis.com/auth/`<br/>`gamil.send` | Sends an email on behalf of someone else. | <ul><li> send-mail </li></ul>|
+| `https://www.googleapis.com/auth/`<br/>`gamil.settings.basic` | Manages basic mail settings. | <ul><li> gmail-get-autoreply </li><li> gmail-set-autoreply </li><li> gmail-add-filter </li><li> gmail-add-delete-filter </li><li> gmail-list-filters </li><li> gmail-remove-filter </li></ul>|
+| `https://www.googleapis.com/auth/`<br/>`gamil.settings.sharing` | Manages sensitive email settings, including who can manage emails. | <ul><li> gmail-delegate-user-mailbox </li><li> gmail-remove-delegated-mailbox </li></ul>|
 
 ### Get an Immutable Google Apps ID Parameters
 
