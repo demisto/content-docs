@@ -85,7 +85,7 @@ credentials: list = [get_credentials(credentials_name)]
 
 demisto.credentials(credentials)
 ```
-**Note:** In this scenario it is important to return a list containing only **one** set of credentials per credentials name.
+**Note:** In this scenario it is important to return a list containing only **one** set of credentials.
 
 #### The two scenarios together:
 ```python
