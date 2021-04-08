@@ -4,6 +4,7 @@ const nodePlop = require("node-plop");
 const plop = nodePlop(`./plopfile.js`);
 const generatePackDetails = plop.getGenerator("details");
 const jsStringEscape = require("js-string-escape");
+const { release } = require("os");
 
 const contentItemTransformer = {
   integration: "Integrations",
@@ -93,7 +94,7 @@ function genPackDetails() {
       ? JSON.parse(fs.readFileSync(meta[2].path, "utf8"))
       : JSON.parse(fs.readFileSync(meta[1].path, "utf8"));
     if (changeLog) {
-      for (release in Object.values(changeLog)) {
+      for (let [_, release] of Object.entries(changeLog)) {
         release.releaseNotes = jsStringEscape(release.releaseNotes);
         release.released = new Date(release.released).toLocaleString("en-US", {
           year: "numeric",
