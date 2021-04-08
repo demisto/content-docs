@@ -120,7 +120,7 @@ If your pack contains at least a custom dashboard, you'll need:
 - Dashboard JSON file (i.e. `Packs/YourPackName/Dashboard/dashboard-YourDashboardName.json`): if exported directly from the XSOAR UI, it must be formatted with `demisto-sdk format`.
 
 :::note
-For community contributed content packs, all the content entities in the pack should be available from Cortex XSOAR version 6.0.
+New contributed content packs, should have all their available content entities supported from Cortex XSOAR version 6.0.0.
 For example, in a YAML file (integration/script) the version can be set as described [here](../integrations/yaml-file#version-and-tests).
 :::
 
