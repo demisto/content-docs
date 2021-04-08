@@ -247,9 +247,6 @@ function SelectOne({
         color: "var(--ifm-font-color-base)",
       };
     },
-    singleValue: (styles) => {
-      color: "var(--ifm-font-color-base)";
-    },
   };
 
   if (async) {
