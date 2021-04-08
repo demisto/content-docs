@@ -37,6 +37,12 @@
   --ifm-leading-desktop: 1.5;
   --ifm-list-margin: var(--ifm-leading);
   --ifm-color-secondary: #768ba1;
+  --ifm-color-secondary-dark: #667d95;
+  --ifm-color-secondary-darker: #61768d;
+  --ifm-color-secondary-darkest: #4f6174;
+  --ifm-color-secondary-light: #8799ac;
+  --ifm-color-secondary-lighter: #8fa0b2;
+  --ifm-color-secondary-lightest: #a8b5c3;
   font-family: "Demisto", Fallback, sans-serif;
   /* Tables */
   --ifm-table-stripe-background: var(--ifm-background-color);
