@@ -9,7 +9,7 @@ Cortex XSOAR Marketplace is a digital storefront for discovering, exchanging and
 
 Additionally, Partners have the ability to monetize their content on the Marketplace. You decide the content, the price, and how to best market it, and get a healthy share of the revenue. The customer gets premium content to solve their use case. It's a win-win.
 
-## Packs
+## Packs Introduction
 
 All content on Marketplace is included in a Pack. ([What can be in a pack?](/docs/integrations/packs-format)) When Partners create a pack, they specify the content that is included in that pack. 
 
