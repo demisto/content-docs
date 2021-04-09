@@ -1,0 +1,40 @@
+[
+	{
+		"customer": "MattTest - Community Edition",
+		"validTil": "2021 Apr 07",
+		"permittedUsers": 18,
+		"sig": "WPb7GokcU1qdfzD0b9wO3YcVLoZJqtnRYVAPCUjwKlN9xMCOP5l0yOHmcbDdC4p4NG4SGm9HgBJvhydq+owbEMtWyqSzHzMZ4ITU4rhVGw2ZksH37iMqX47k7gXWYT8MbWyez9tEDsJyVVnplOnDh/d0ZJqVMUGFo+51BDTPkCI=",
+		"sigv2": "Tmz6xoNTa1yu76ym1nPOSkWXVZ8PCasEH4A+xPvp4P8eMqgJIhsko/MzEmPINr2fTrUftZqTxIvS60BML6hNgGwSQ1DARyX+QXP/sghnsWeOMf+5UJlKDxj7IqoF4p6PbvS5KKNjj4wLqhUumNjzJQMZIO9KX+LM2BAHJfOgabs=",
+		"sigv3": "kHFbWu3khzU15FlH3n3UjhWWcvtPLx3hSUFZKVMTh33RHv8k6mm/D5qBmJPPAAWPAqnhzA3oBeN04DH6AvJz6zX7cbmwOQroMeagcg019jGGaNQhWuaTgWGV3+coOACAfInstPjJse+kalT2n0uI+RGsE05x075rLNti80v5jlxHxx5prC7wye22xWfzKHkMiUlcmFb2RInjn1Kx1IF16fvx6j2UjwNck/DpzdRj0QpZ2dMeoVgxfl9GB+YHUOugoDwBZABaTkNzwZzxT8dOHE2Qp/bqRw0aAMFaafzk7kNgDA76Ol9qANHZ7K6h6YrkOw6xKVSQ0kQBL70eeBBCfDsMIbGR6lyd0zEw5w7m9WnQDBPWuODoscfonTK7XZL47kXn5+a2xJ3iFjeS1BBOyV9QYhcHDiYllEc3jjtfmlAHO2nm1AnkYc1JVcub+JXGxs4HpFphHgnB+aVWgcSOQoHOh6FzCBWf5tinXMM8gdYMyB+g3A/KsDkN94GDZvzF/iz2V9SbVALETh+Yv9mGxDBuMjfMs3x52tjsuyFNgmazCnpWIwTMeimmv96Bj0aebbxQ9DYGNOxqyPyO7srhm5Ubal8oaOUDNl+iHiDBGBkEwsowmeCaBD4JTEWlz0Qxfl/thV4VCgM+gNE3gg7k/KXsrpShbWRZK7qW+DxYC2k=",
+		"type": "evaluation",
+		"product": "soar",
+		"id": "CUIDe5d0d8de8670e8c12dc3b2d08a4218b62d0ab461dc03ee98a36021389b4a6873CUID",
+		"customFields": {
+			"accountId": "313028",
+			"accountIdA": "bDI7Qo6hrpBn8ydaXS6fgGGchEtnhnqrkVpmVo/S47c8ecN1OJkWeovDkerqaMqG7lawFnbPRxXT8AcDLZjBxQtEigdTR6kSRzM3b70Pboo3o6y9wMlWNL8AAkYUxKH6jYnOW1E7Ak3QK+n6AfKvUf7E/4a8TzMbCVCNv6HKT0EFf9eFM4VcQNbNmVmRP719YoTLoSatIkM+9tNNbHy296R+6+3tKz/iuqdBKRHw5nyGZ7vW1HhgYrOWGRaLDbADEGK8laQgOF1BYaNS26klpXTeRoUAItgcTzsAcqUy68+tCGoUz1uaP6MrI43NUq0glXRDvWy/0r5Jh+dI1VGKwg==",
+			"accountIdB": "B9h1dvkNGBWirrv3bKbIr9HuOPUmQfg5CZrZ2WwUAwpfIDc/mrbXE1264zPQJH7/LU8RCwWfV+2GghBtZ5SAdwhZkcipyTo5bfNaJOimf77WXNs/wVhjnlg9ltE7fbhPmipzYoglzhypKeKOjjdyVz3C4gIOgrVfsJKIwjV3QrEACvBwLSLkadebHTtps3p+d1sewQdkN42hmDDIl+9lk4KyJL00ylpFSBtkrwvjHUq+WcK7B7MRmLXrH7cIk4S+tPBgf7hojL1QVGtLHmuOR3umHPxknhPXND3LqHRv6tMcg8UAC+M5bgbhiFVyCv+s+dvaul0IDu7fvMHbF49TRQ==",
+			"licenseType": "Community",
+			"ref": "#17215",
+			"serialNumber": "02019097897"
+		}
+	},
+	{
+		"customer": "MattTest - Community Edition",
+		"validTil": "2021 Apr 07",
+		"permittedUsers": 2,
+		"sig": "TCBvtrOrvj/fT7ezaEBGcchpAETBzl6qYBv+xjjXkhRc2ek8lJN1X691x652eqNal5g6AFyZeYxMevd/KPPvNGrzORrQl8nN/MabK7qrqAOwh2+Yfr7dsEt18299LkgJsgVbXGjESbcn47x2zfxMlfH4nrwCmBg7tvwdyl+2Xg4=",
+		"sigv2": "Cgz2ptxfkvTwYQXBELMIN/FLORJ0Lj1uDm2fwBksKdlLCgH2e7Le3NSO8Gx8ZpLtQ+CEMBMoMiagotZBObaa1LLFWEmTQ6wseI++cdg9P0mrRDLQXiE2xJ8xSL1cBjxf/1qpmHkiM6BF6IWYJyzUdUV/aFELJXBhcgzkDi0xM7w=",
+		"sigv3": "xa/Vm9H8zipPvwq0rvMwQJcK9sRx4EAoiX7+6U9XMByxV5RSvctDqP/DA/jT7aT5c1ZXOdzbTrMNCY4Qqj7weerKlrg0IZ+7wDL2YXKSpVxxRoTaRKK0L4GX0LNezU85PMNHOlGQrhWzKSkzRfoFVx6FyUcq5skZyK+aLyWof2tlfsPbFeKEyjqLQaV4pTPGtpXg8hwTuLqut5Y/r0912vJkNDfM3qUrLZ5huPSyZYVOmZ6pM3kCHxiY5E0RFRBsHjGShaMCxejPlqpKZZL75Sapmy3A/PTnarWGw8N8SPEDHszbDeO8N+tBVbv7f1nG9Q824+4+K5H+B/iITon7K6CuFgQbVgTpRM9xwdKSZ82VOjQaGiNDNdD+T8apJg5kUWIJPZZ945X+yxqDnjwMvWRgaHWENKYEkwsCFCCDlIagII2a8Y+Yzf3p8yoahgpXPVfQbCSWciY7qy9qVh+phEg/vz41Vlz4irgRVU4loDKIRDZOfpHDm/nDR+MUGGEFVZYn4sF39zg21V3YLkNANnJEkZP54mjWNKsilmWVx5sEyc+9MTk5nOIgXpzt0VGHiyw4OFJmj36XmW1V0pMhTvVnqhDepLJGcLVOUMj2mTL3BkLqSB4OkWcWY7HrS2A76Osm4KNbUPtqi/DE0k+puzy4yvc4Xb/6IZ0v+Y1CGw8=",
+		"type": "evaluation",
+		"product": "tim",
+		"id": "CUIDe5d0d8de8670e8c12dc3b2d08a4218b62d0ab461dc03ee98a36021389b4a6873CUID",
+		"customFields": {
+			"accountId": "313028",
+			"accountIdA": "Bb0is+UEftIIW5bHgleKeTsMKLhPBd0swFWDE6UtoW3jc1mXx7DDRV0p8uGkvxvcoIQ/OQVx9Egc6cz5lyp7O2t8c81jhWcNL2GqkmERJfxdk4y5Y+hEVnx7rq5FMxJrXDYsXCwTBUKrl2hO/sBxdvyjB4GR04BAiCYCPf8g/cSQcVfahzAN09n3EfX07gVpXss2PEKVZSHfm7zMzBahllxJCKoZi+C0Mevl6te/fOFXezjuZd708VigFAI+Rk0R6xYuSIlPVlF+mdE6dA2yqd3ejM+iiSNUZS9aV/A2F98GZUhFjfmhYpRS/97gT6fYh50RDn7UBZEu1miyMM51AA==",
+			"accountIdB": "HPXZI6NsYTMhK+uScl8Y2jcQn6JJyZ7uwiquFMnJex/X+7fuE3885UocSmN1Wo23YpfUhG/eA5FU2GjnkDsEFYPf0+VJFGqP752kmcuO2QuoeU9of0ORt16ujwWW4a8t1x0cYfmO5BCavo5JIvCARB4Tp4qS7H48Qx8LzZnPW6RC8syox2qIt7uVTW23OdonbhMX8doJd7Ciwl9OhCECCpbz8ONoQZ7RmWHPiwznevnK/Dw1j5iRK4CNrA1knXXTwoBC8MejyEs8SxMdkyhgAmdBO2M8q1hIpXnmEW86VxqI56jzw+5z106BP11MdLlDK2Ik9gDofB11ZB2ZLo+nTw==",
+			"licenseType": "Community",
+			"ref": "#17215",
+			"serialNumber": "02019097897"
+		}
+	}
+]
