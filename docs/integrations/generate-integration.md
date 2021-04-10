@@ -8,12 +8,12 @@ The `generate-integration` command generates XSOAR integration from integration 
 
 Options:
 *  **-h, --help**
-*  **-i, --input**
+*  **-i, --input**  
    Config json file. postman-codegen command generates the config file.
-*  **-o, --output**
+*  **-o, --output**  
    (Optional) The output directory. Default is the current directory.
 
-### How to run
+## How to run
 `demisto-sdk generate-integration -i config-VirusTotal.json -o /output/path`  
 The above command generates `integration-VirusTotal.yml` file under `/output/path` directory.
 
@@ -39,7 +39,7 @@ Supported authentication types:
 
 **API Key as part of the header example**
 
-Generates `apikey` integration parameter.
+Generates `api_key` integration parameter.
 ```
 "auth": {
      "type": "apikey",
@@ -60,7 +60,7 @@ Generates `apikey` integration parameter.
 ---
 **API Key as part of the query example**
 
-Generates `apikey` integration parameter.
+Generates `api_key` integration parameter.
 ```
 "auth": {
      "type": "apikey",
@@ -90,7 +90,7 @@ The command generates `credentials` parameter of type `Authentication`.
 
 **API Token bearer**
 
-The command generates `apikey` integration parameter. The paramater will be passed in `"Authorization": "Bearer TOKEN_HERE"` as part of the request header.
+The command generates `api_key` integration parameter. The paramater will be passed in `"Authorization": "Bearer TOKEN_HERE"` as part of the request header.
 ```
 "auth": {
      "type": "bearer"
@@ -254,12 +254,26 @@ Supported parameter types:
 ```
 
 ## Request Body
-Defines the structure and the format of the request body. In case the request contains a body, this field must be passed. Keys that wrapped with `{}` will be replaced with command args.
-For example in the following example, the request contains a body, and the command must contain both the arguments `name` and `id`
-because in the `body_format` they are passed as `"{name}"` and `{"id"}` and the argument `in_` field must be equal to `body` meaning - `"in_": "body"`.
-This scheme allows the definition of flexible request body formats and passes command arguments and constant values as part of the request body.
+Defines the structure and the format of the request body. `body_format` must contain a value in case the request contains a body. Keys that wrapped with `{}` will be replaced with command args.
+Request example: 
+- `POST` request with body.
+- User creates the command with two arguments, `name` and `id`.
+- In the `body_format` they are passed as `"{name}"` and `{"id"}`.
+
+Request body:
 ```
 {
+   "profile": {
+      "name": "some name",
+      "id": "some id",
+      "status": "created"
+   }
+}
+```
+
+In config file:
+```
+"body_format": {
    "profile": {
       "name": "{name}",
       "id": "{id}",
@@ -267,6 +281,7 @@ This scheme allows the definition of flexible request body formats and passes co
    }
 }
 ```
+
 Will generate code like:
 ```python
 def create_profile(self, name, id):
