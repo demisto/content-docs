@@ -36,24 +36,27 @@
   --ifm-line-height-base: 1.5;
   --ifm-leading-desktop: 1.5;
   --ifm-list-margin: var(--ifm-leading);
-  --ifm-color-secondary: #9292c8;
+  --ifm-color-secondary: #768ba1;
+  --ifm-color-secondary-dark: #667d95;
+  --ifm-color-secondary-darker: #61768d;
+  --ifm-color-secondary-darkest: #4f6174;
+  --ifm-color-secondary-light: #8799ac;
+  --ifm-color-secondary-lighter: #8fa0b2;
+  --ifm-color-secondary-lightest: #a8b5c3;
   font-family: "Demisto", Fallback, sans-serif;
   /* Tables */
   --ifm-table-stripe-background: var(--ifm-background-color);
   --ifm-table-border-width: 0px;
 }
 
-.integrationImageContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 27px;
-  width: 64px;
-  border: 1px solid #eaebeb;
-  margin-right: 8px;
-  margin-bottom: 8px;
-  background-color: #f4f5f5;
-  border-radius: 2px;
+.markdown table tr {
+  border-bottom: 1px solid var(--ifm-color-secondary);
+}
+
+.markdown table tr::after {
+  content: "";
+  display: block;
+  min-width: 268px;
 }
 
 /* Dark mode overrides */
@@ -105,6 +108,14 @@ blockquote {
 .alert--success svg {
   fill: #fff;
   stroke: #fff;
+}
+
+.alert--secondary {
+  color: white;
+}
+
+.alert--secondary a {
+  color: white;
 }
 
 /* Hero overrides */
@@ -454,6 +465,19 @@ html[data-theme="dark"] .header-github-link:before {
   margin-bottom: 2rem;
   height: 100vh;
   overflow: auto;
+}
+
+.integrationImageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 27px;
+  width: 64px;
+  border: 1px solid #eaebeb;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  background-color: #f4f5f5;
+  border-radius: 2px;
 }
 
 /* The main container element */
