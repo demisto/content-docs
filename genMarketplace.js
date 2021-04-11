@@ -161,7 +161,7 @@ function genPackDetails() {
       authorImage: pack.authorImage != "" ? pack.authorImage : null,
       readme: pack.readme
         ? jsStringEscape(pack.readme)
-        : `This pack doesn't have any \`README.md\` content yet. If you'd like to contribute click [here](https://github.com/demisto/content/blob/master/Packs/${pack.id}/README.md).`,
+        : "",
       support:
         pack.support == "xsoar"
           ? "Cortex XSOAR"
