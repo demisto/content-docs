@@ -14,17 +14,17 @@ It can happen in 2 steps or 1 step.
 
 Options:
 *  **-h, --help**
-*  **-i, --input**
+*  **-i, --input**  
     Postman collection 2.1 JSON file
-*  **-o, --output**
+*  **-o, --output**  
    (Optional) The output directory. Default is the current directory.
-*  **-n, --name**
+*  **-n, --name**  
    (Optional) Sets the integration name.
-*  **-op, --output-prefix**
+*  **-op, --output-prefix**  
    (Optional) Sets the global integration output prefix. Default is the integration name without spaces and special characters.
-*  **-cp, --command-prefix**
+*  **-cp, --command-prefix**  
    (Optional) The prefix for every command in the integration. Default is the integration name in lower case.
-*  **--config-out**
+*  **--config-out**  
    (Optional) If passed, generates config json file for further integration customisation.
 
 ### How the command converts Postman collection
@@ -74,7 +74,7 @@ Options:
 
 
 ### Example files:
-[URLScan Postman Collection v2.1](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman-codegen/resources/urlscan.io.postman_collection.json).  
-[URLScan generated config file](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman-codegen/resources/config-urlscanio.json).  
-[URLScan generated integration yml](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman-codegen/resources/integration-urlscanio.yml).  
+[URLScan Postman Collection v2.1](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman_codegen/resources/urlscan.io.postman_collection.json).  
+[URLScan generated config file](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman_codegen/resources/config-urlscanio.json).  
+[URLScan generated integration yml](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman_codegen/resources/integration-urlscanio.yml).  
 
