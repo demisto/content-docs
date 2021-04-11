@@ -19,7 +19,7 @@ The above command generates `integration-VirusTotal.yml` file under `/output/pat
 
 ## Integration config json file
 **Example**  
-[URLScan generated config file](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman-codegen/resources/config-urlscanio.json).  
+[URLScan generated config file](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman_codegen/resources/config-urlscanio.json).  
 
 |Field Name|Field Type|Description|Examples|Is Required|
 |----------|----------|-----------|--------|-----------|
@@ -302,6 +302,6 @@ def create_profile(self, name, id):
 
 
 ## Example files
-[URLScan Postman Collection v2.1](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman-codegen/resources/urlscan.io.postman_collection.json).  
-[URLScan generated config file](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman-codegen/resources/config-urlscanio.json).  
-[URLScan generated integration yml](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman-codegen/resources/integration-urlscanio.yml). 
+[URLScan Postman Collection v2.1](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman_codegen/resources/urlscan.io.postman_collection.json).  
+[URLScan generated config file](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman_codegen/resources/config-urlscanio.json).  
+[URLScan generated integration yml](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman_codegen/resources/integration-urlscanio.yml). 
