@@ -42,7 +42,6 @@ function Marketplace() {
   }, [hiddenSidebar]);
   const marketplace = siteConfig.customFields.marketplace;
   const [showNew, setShowNew] = useState(false);
-  const [showFeatured, setShowFeatured] = useState(false);
   const [price, setPrice] = useState(false);
   const [support, setSupport] = useState(false);
   const [author, setAuthor] = useState(false);
@@ -380,12 +379,6 @@ function Marketplace() {
               action: setShowNew,
               state: showNew,
             },
-            // {
-            //   type: "checkbox",
-            //   label: "Featured",
-            //   action: setShowFeatured,
-            //   state: showFeatured,
-            // },
             {
               type: "select",
               label: "Published By",
