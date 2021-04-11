@@ -139,7 +139,7 @@ function genPackDetails() {
       var FixedContentItems = {};
       var fixedKey = ""
       for (var [key, value] of Object.entries(pack.contentItems)) {
-        const fixedKey = contentItemTransformer[key];
+        fixedKey = contentItemTransformer[key];
         for (const listItem of value) {
           listItem.description = listItem.description
             ? jsStringEscape(listItem.description)
