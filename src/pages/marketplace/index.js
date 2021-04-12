@@ -54,7 +54,6 @@ function Marketplace() {
   // Parse URL query params
   useEffect(() => {
     if (!showNew && params.new) setShowNew(params.new);
-    if (!showFeatured && params.featured) setShowNew(params.featured);
     if (!price && params.price) setPrice(params.price);
     if (!support && params.support) setSupport(params.support);
     if (!author && params.vendor) setAuthor(params.vendor);
@@ -75,7 +74,6 @@ function Marketplace() {
     ...(tag && { tags: tag }),
     ...(support && { support: support }),
     ...(showNew && { new: showNew }),
-    ...(showFeatured && { featured: showFeatured }),
   };
 
   const preFilteredPacks = marketplace.filter((pack) => {
