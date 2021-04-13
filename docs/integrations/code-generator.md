@@ -4,7 +4,7 @@ title: Integration Code Generator
 description: Generate an XSOAR Integration from a json config file
 ---
 
-Use the `demisto-sdk generate-integration` command to generate an XSOAR integration from an integration config json file. The json config file can be generated form a postman collection via the `demisto sdk postman-codegen` [command](./postman-codegen).
+Use the `demisto-sdk generate-integration` command to generate an XSOAR integration from an integration config json file. The json config file can be generated from a postman collection via the `demisto sdk postman-codegen` [command](./postman-codegen).
 
 ## Options
 *  **-h, --help**
