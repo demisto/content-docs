@@ -44,7 +44,28 @@ The following is the format for a file. File here refers to the file indicator o
              "type": "STRING, The type of the indicators that are associated with the file",
              "description": "STRING, The description of the indicators that are associated with the file."
         },
-        "MalwareFamily": "STRING, The malware family associated with the file"
+        "MalwareFamily": "STRING, The malware family associated with the file",
+        "Campaign": "STRING, ",
+        "TrafficLightProtocol": "STRING, ",
+        "CommunityNotes": {
+            "note": "STRING, ",
+            "timestamp": "DATE, ",
+        },
+        "Publications": {
+            "source": "STRING, ",
+            "title": "STRING, ",
+            "link": "STRING, ",
+            "timestamp": "DATE, ",
+        }
+        "Behavior": {
+            "details": "STRING, ",
+            "title": "STRING, ",
+        }
+        "ThreatTypes": "STRING, ",
+        "Imphash": "STRING, ",
+        "Quarantined": "BOOL, ",
+        "Organization": "STRING, ",
+        "AssociatedFileNames": "STRING, ",
 }
 ```
 
@@ -137,6 +158,51 @@ outputs:
   type: String
 - contextPath: File.Malicious.Description
   description: A description explaining why the file was determined to be malicious.
+  type: String
+- contextPath: File.Campaign
+  description: 
+  type: String
+- contextPath: File.TrafficLightProtocol
+  description: 
+  type: String
+- contextPath: File.CommunityNotes.note
+  description: 
+  type: String
+- contextPath: File.CommunityNotes.timestamp
+  description: 
+  type: Date
+- contextPath: File.Publications.source
+  description: 
+  type: String
+- contextPath: File.Publications.title
+  description: 
+  type: String
+- contextPath: File.Publications.link
+  description: 
+  type: String
+- contextPath: File.Publications.timestamp
+  description:
+  type: Date
+- contextPath: File.Behavior.details
+  description: 
+  type: String
+- contextPath: File.Behavior.title
+  description: 
+  type: String
+- contextPath: File.ThreatTypes
+  description: 
+  type: String
+- contextPath: File.Imphash
+  description: 
+  type: String
+- contextPath: File.Quarantined
+  description: 
+  type: Bool
+- contextPath: File.Organization
+  description: 
+  type: String
+- contextPath: File.AssociatedFileNames
+  description: 
   type: String
 ```
 
