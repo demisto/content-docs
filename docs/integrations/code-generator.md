@@ -1,20 +1,22 @@
 ---
 id: code-generator
 title: Integration Code Generator
-description: Generate XSOAR Integration from XSOAR integration config file.
+description: Generate an XSOAR Integration from a json config file
 ---
-## Generate XSOAR Integration from XSOAR integration config file.
-The `generate-integration` command generates XSOAR integration from integration config json file. `postman-codegen` [command](./postman_codegen) generates the config json file.
 
-Options:
+Use the `demisto-sdk generate-integration` command to generate an XSOAR integration from an integration config json file. The json config file can be generated form a postman collection via the `demisto sdk postman-codegen` [command](./postman-codegen).
+
+## Options
 *  **-h, --help**
 *  **-i, --input**  
    Config json file. postman-codegen command generates the config file.
 *  **-o, --output**  
    (Optional) The output directory. Default is the current directory.
 
-## How to run
-`demisto-sdk generate-integration -i config-VirusTotal.json -o /output/path`  
+## Example
+```
+demisto-sdk generate-integration -i config-VirusTotal.json -o /output/path
+```
 The above command generates `integration-VirusTotal.yml` file under `/output/path` directory.
 
 ## Integration config json file
