@@ -235,7 +235,34 @@ The following is the format for an IP entity
     "Organization": {
          "Name": "STRING, The organization of the IP.",
          "Type": "STRING, The organization type of the IP."
+    },
+    "ASOwner": "STRING, ",
+    "Region": "STRING, ",
+    "Port": "STRING, ",
+    "Internal": "STRING, ",
+    "UpdatedDate": "STRING, ",
+    "Registrar": {
+        "Abuse":{
+            "Name": "STRING, ",
+            "Address": "STRING, ",
+            "Country": "STRING, ",
+            "Network": "STRING, ",
+            "Phone": "STRING, ",
+            "Email": "STRING, ",
+    }},
+    "Campaign": "STRING, ",
+    "TrafficLightProtocol": "STRING, ",
+    "CommunityNotes": {
+        "note": "STRING, ",
+        "timestamp": "DATE, ",
+    },
+    "Publications": {
+        "source": "STRING, ",
+        "title": "STRING, ",
+        "link": "STRING, ",
+        "timestamp": "DATE, ",
     }
+    "ThreatTypes": "STRING, ",
 }
 ```
 
@@ -292,6 +319,66 @@ outputs:
   type: String
 - contextPath: IP.Organization.Type
   description: The organization type of the IP.
+  type: String
+- contextPath: IP.ASOwner
+  description: 
+  type: String
+- contextPath: IP.Region
+  description: 
+  type: String
+- contextPath: IP.Port
+  description: 
+  type: String
+- contextPath: IP.Internal
+  description: 
+  type: String
+- contextPath: IP.UpdatedDate
+  description: 
+  type: String
+- contextPath: IP.Registrar.Abuse.Name
+  description: 
+  type: String
+- contextPath: IP.Registrar.Abuse.Address
+  description: 
+  type: String
+- contextPath: IP.Registrar.Abuse.Country
+  description: 
+  type: String
+- contextPath: IP.Registrar.Abuse.Network
+  description: 
+  type: String
+- contextPath: IP.Registrar.Abuse.Phone
+  description: 
+  type: String
+- contextPath: IP.Registrar.Abuse.Email
+  description: 
+  type: String
+- contextPath: IP.Campaign
+  description: 
+  type: String
+- contextPath: IP.TrafficLightProtocol
+  description: 
+  type: String
+- contextPath: IP.CommunityNotes.note
+  description: 
+  type: String
+- contextPath: IP.CommunityNotes.timestamp
+  description: 
+  type: Date
+- contextPath: IP.Publications.source
+  description: 
+  type: String
+- contextPath: IP.Publications.title
+  description: 
+  type: String
+- contextPath: IP.Publications.link
+  description: 
+  type: String
+- contextPath: IP.Publications.timestamp
+  description:
+  type: Date
+- contextPath: IP.ThreatTypes
+  description: 
   type: String
 
 ```
@@ -437,7 +524,34 @@ The following is the format for a Domain. Please note that for WHOIS, the entity
     "Malicious":{
         "Vendor": "STRING, The vendor reporting the domain as malicious.",
         "Description": "STRING, A description explaining why the domain was reported as malicious."
-    }
+    },
+   "DomainIDNName": "STRING, ",
+   "DomainReferringIPs": "STRING, ",
+   "DomainReferringSubnets": "STRING, ",
+   "Port": "STRING, ",
+   "Internal": "STRING, ",
+   "Category": "STRING, ",
+   "Campaign": "STRING, ",
+   "TrafficLightProtocol": "STRING, ",
+   "ThreatTypes": "STRING, ",
+   "Tech": {
+       "Country": "STRING, ",
+       "Name": "STRING, ",
+       "Organization": "STRING, ",
+       "Email": "STRING, "
+   },
+   "CommunityNotes": {
+        "note": "STRING, ",
+        "timestamp": "DATE, ",
+   },
+   "Publications": {
+        "source": "STRING, ",
+        "title": "STRING, ",
+        "link": "STRING, ",
+        "timestamp": "DATE, ",
+   },
+   "Billing": "STRING, ",
+   
 }
 ```
 
@@ -567,6 +681,66 @@ outputs:
 - contextPath: Domain.Malicious.Description
   description: A description explaining why the domain was reported as malicious.
   type: String
+- contextPath: Domain.DomainIDNName
+  description: 
+  type: String
+- contextPath: Domain.DomainReferringIPs
+  description: 
+  type: String
+- contextPath: Domain.DomainReferringSubnets
+  description: 
+  type: String
+- contextPath: Domain.Port
+  description: 
+  type: String
+- contextPath: Domain.Internal
+  description: 
+  type: String
+- contextPath: Domain.Category
+  description: 
+  type: String
+- contextPath: Domain.Campaign
+  description: 
+  type: String
+- contextPath: Domain.TrafficLightProtocol
+  description: 
+  type: String
+- contextPath: Domain.ThreatTypes
+  description: 
+  type: String
+- contextPath: Domain.Tech.Country
+  description: 
+  type: String
+- contextPath: Domain.Tech.Name
+  description: 
+  type: String
+- contextPath: Domain.Tech.Organization
+  description: 
+  type: String
+- contextPath: Domain.Tech.Email
+  description: 
+  type: String
+- contextPath: Domain.CommunityNotes.note
+  description: 
+  type: String
+- contextPath: Domain.CommunityNotes.timestamp
+  description: 
+  type: Date
+- contextPath: Domain.Publications.source
+  description: 
+  type: String
+- contextPath: Domain.Publications.title
+  description: 
+  type: String
+- contextPath: Domain.Publications.link
+  description: 
+  type: String
+- contextPath: Domain.Publications.timestamp
+  description: 
+  type: Date
+- contextPath: Domain.Billing
+  description: 
+  type: String
 ```
 
 ## URL
@@ -587,7 +761,28 @@ The following is the format for a URL entity.
          "type": "STRING, The type of the indicators that are associated with the URL",
          "description": "STRING, The description of the indicators that are associated with the URL."
     },
-    "MalwareFamily": "STRING, The malware family associated with the URL"
+    "MalwareFamily": "STRING, The malware family associated with the URL",
+    "Port": "STRING, ",
+    "Internal": "STRING, ",
+    "Campaign": "STRING, ",
+    "TrafficLightProtocol": "STRING, ",
+    "threat_types": "STRING, ",
+    "ASN": "STRING, ",
+    "ASOwner": "STRING, ",
+    "Geo": {
+      "Country": "STRING, "
+    },
+    "Organization": "STRING, ",
+    "CommunityNotes": {
+        "note": "STRING, ",
+        "timestamp": "DATE, ",
+    },
+    "Publications": {
+        "source": "STRING, ",
+        "title": "STRING, ",
+        "link": "STRING, ",
+        "timestamp": "DATE, ",
+    }
 }
 ```
 
@@ -627,6 +822,51 @@ outputs:
 - contextPath: URL.MalwareFamily
   description: The malware family associated with the URL.
   type: String
+- contextPath: URL.Port
+  description:
+  type: String
+- contextPath: URL.Internal
+  description:
+  type: String
+- contextPath: URL.Campaign
+  description:
+  type: String
+- contextPath: URL.TrafficLightProtocol
+  description:
+  type: String
+- contextPath: URL.ThreatTypes
+  description:
+  type: String
+- contextPath: URL.ASN
+  description:
+  type: String
+- contextPath: URL.ASOwner
+  description:
+  type: String
+- contextPath: URL.GeoCountry
+  description:
+  type: String
+- contextPath: URL.Organization
+  description:
+  type: String
+- contextPath: Domain.CommunityNotes.note
+  description: 
+  type: String
+- contextPath: Domain.CommunityNotes.timestamp
+  description: 
+  type: Date
+- contextPath: Domain.Publications.source
+  description: 
+  type: String
+- contextPath: Domain.Publications.title
+  description: 
+  type: String
+- contextPath: Domain.Publications.link
+  description: 
+  type: String
+- contextPath: Domain.Publications.timestamp
+  description: 
+  type: Date
 ```
 
 ## CVE
