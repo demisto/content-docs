@@ -42,6 +42,8 @@ function Marketplace() {
   }, [hiddenSidebar]);
   const marketplace = siteConfig.customFields.marketplace;
   const [showNew, setShowNew] = useState(false);
+  const [showFeatured, setShowFeatured] = useState(false);
+  const [showPremium, setShowPremium] = useState(false);
   const [price, setPrice] = useState(false);
   const [support, setSupport] = useState(false);
   const [author, setAuthor] = useState(false);
@@ -54,6 +56,8 @@ function Marketplace() {
   // Parse URL query params
   useEffect(() => {
     if (!showNew && params.new) setShowNew(params.new);
+    if (!showFeatured && params.featured) setShowFeatured(params.featured);
+    if (!showPremium && params.premium) setShowPremium(params.premium);
     if (!price && params.price) setPrice(params.price);
     if (!support && params.support) setSupport(params.support);
     if (!author && params.vendor) setAuthor(params.vendor);
@@ -64,48 +68,49 @@ function Marketplace() {
     if (!value && params.q) setValue(params.q);
   }, []);
 
-  const filters = {
+  const singleValueFilters = {
     ...((price == "free" && { price: 0 }) ||
       (price == "premium" && { premium: true })),
     ...(author && { author: author }),
+    ...(support && { support: support }),
+    ...(showPremium && { premium: true }),
+  };
+
+  const arrayValueFilters = {
     ...(useCase && { useCases: useCase }),
-    ...(integration && { integrations: integration }),
     ...(category && { categories: category }),
     ...(tag && { tags: tag }),
-    ...(support && { support: support }),
-    ...(showNew && { new: showNew }),
+    ...(showNew && { tags: "New" }),
+    ...(showFeatured && { tags: "Featured" }),
+  };
+
+  const objectValueFilters = {
+    ...(integration && { integrations: integration }),
   };
 
   const preFilteredPacks = marketplace.filter((pack) => {
-    for (var key in filters) {
-      if (key == "useCases" && pack[key].includes(useCase)) return true;
-
-      if (key == "categories" && pack[key].includes(category)) return true;
-
-      if (key == "tags" && pack[key].includes(tag)) return true;
-
-      if (key == "integrations") {
-        var match = false;
-        pack[key].map((i) => {
-          if (i.name == integration) {
-            match = true;
-          }
-        });
-        if (match) {
-          return true;
-        }
-      }
-
-      if (
-        key == "new" &&
-        (new Date() - new Date(pack.created)) / (1000 * 60 * 60 * 24) < 30
-      ) {
-        return true;
-      }
-      if (key == "featured" && pack.featured == "true") return true;
-
-      if (pack[key] === undefined || pack[key] != filters[key]) return false;
+    for (var key in singleValueFilters) {
+      if (pack[key] === undefined || pack[key] != singleValueFilters[key])
+        return false;
     }
+
+    for (var key in arrayValueFilters) {
+      if (
+        pack[key] === undefined ||
+        !pack[key].includes(arrayValueFilters[key])
+      )
+        return false;
+    }
+
+    for (var key in objectValueFilters) {
+      let match = false;
+      pack[key].map((i) => {
+        if (i.name == objectValueFilters[key]) match = true;
+      });
+
+      if (pack[key] === undefined || !match) return false;
+    }
+
     return true;
   });
 
@@ -378,6 +383,18 @@ function Marketplace() {
               state: showNew,
             },
             {
+              type: "checkbox",
+              label: "Featured",
+              action: setShowFeatured,
+              state: showFeatured,
+            },
+            {
+              type: "checkbox",
+              label: "Premium",
+              action: setShowPremium,
+              state: showPremium,
+            },
+            {
               type: "select",
               label: "Published By",
               action: setSupport,
@@ -424,7 +441,7 @@ function Marketplace() {
               label: "Tags",
               action: setTag,
               options: generateTags(),
-              state: category,
+              state: tag,
             },
           ]}
           path="/marketplace/"
