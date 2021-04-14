@@ -18,7 +18,9 @@ import clsx from "clsx";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Select from "react-select";
 import AsyncSelect from "react-select/async";
+import Toggle from "react-toggle";
 import styles from "./styles.module.css";
+
 const MOBILE_TOGGLE_SIZE = 24;
 
 function usePrevious(value) {
@@ -192,10 +194,9 @@ function Checkbox({
         })}
       >
         <label htmlFor={name}>{label}</label>
-        <input
-          type="checkbox"
+        <Toggle
           id={name}
-          name={name}
+          icons={false}
           checked={state}
           onChange={() => {
             action(!state);
