@@ -80,21 +80,25 @@ function Marketplace() {
     ...(useCase && { useCases: useCase }),
     ...(category && { categories: category }),
     ...(tag && { tags: tag }),
-    ...(showNew && { tags: "New" }),
-    ...(showFeatured && { tags: "Featured" }),
+    ...(showNew && { new: "New" }),
+    ...(showFeatured && { featured: "Featured" }),
   };
 
   const objectValueFilters = {
     ...(integration && { integrations: integration }),
   };
 
-  const preFilteredPacks = marketplace.filter((pack) => {
+  const filteredPacks = marketplace.filter((pack) => {
     for (var key in singleValueFilters) {
       if (pack[key] === undefined || pack[key] != singleValueFilters[key])
         return false;
     }
 
     for (var key in arrayValueFilters) {
+      if (key == "new" && pack.tags.includes(arrayValueFilters[key]))
+        return true;
+      if (key == "featured" && pack.tags.includes(arrayValueFilters[key]))
+        return true;
       if (
         pack[key] === undefined ||
         !pack[key].includes(arrayValueFilters[key])
@@ -110,12 +114,6 @@ function Marketplace() {
 
       if (pack[key] === undefined || !match) return false;
     }
-
-    return true;
-  });
-
-  // Keyword input filter
-  const filteredPacks = preFilteredPacks.filter((pack) => {
     if (!value) return true;
     if (
       pack.name.toLowerCase().includes(value.toLowerCase()) ||
