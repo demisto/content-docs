@@ -331,7 +331,7 @@ html[data-theme="dark"] .header-github-link:before {
 
 @media (max-width: 380px) {
   .navbar__logo {
-    content: url("/img/Cortex-XSoar-green.svg") !important;
+    content: url("/img/Cortex-XSOAR-green.svg") !important;
   }
 }
 
