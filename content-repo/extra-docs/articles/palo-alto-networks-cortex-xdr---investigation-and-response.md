@@ -18,7 +18,7 @@ The playbooks included in this pack help you save time and keep your incidents i
 - Interacts with the analyst to choose a remediation path or close the incident as a false positive based on the gathered information and incident severity.
 - Remediates the incident by blocking malicious indicators and isolating infected endpoints.
 
-The Palo Alto Networks Cortex XDR - Investigation and Response pack enables the following flows. 
+The Palo Alto Networks Cortex XDR - Investigation and Response pack enables the following flows: 
 - [Device Control Violations](#device-control-violations) - Fetch device control violations from XDR and communicate with the user to determine the reason the device was connected.
 - [XDR Incident Handling](#xdr-incident-handling) - Compare incidents in Palo Alto Networks Cortex XDR and Cortex XSOAR, and update the incidents appropriately. 
 
@@ -204,26 +204,29 @@ This layout has two tabs:
 
 
 ### Playbooks
-There are 15 playbooks in this pack.
+There are several playbooks in this pack.
 
-#### Cortex XDR - Check Action Status
+#### [Cortex XDR - Check Action Status](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---check-action-status)
 Checks the action status of an action ID. Enter the action ID of the action whose status you want to know.
 
 
-#### Cortex XDR - Isolate Endpoint
-Accepts an XDR endpoint ID and isolates it using the **Palo Alto Networks Cortex XDR - Investigation and Response** integration.
+#### [Cortex XDR - Isolate Endpoint](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---isolate-endpoint)
+Accepts an XDR endpoint ID and isolates it using the [Palo Alto Networks Cortex XDR - Investigation and Response](https://xsoar.pan.dev/docs/reference/integrations/cortex-xdr---ir) integration.
 
-#### Cortex XDR - Malware Investigation
+#### [Cortex XDR - Unisolate Endpoint](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---unisolate-endpoint)
+Accepts an XDR endpoint ID and unisolates it using the [Palo Alto Networks Cortex XDR - Investigation and Response](https://xsoar.pan.dev/docs/reference/integrations/cortex-xdr---ir) integration.
+
+#### [Cortex XDR - Malware Investigation](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---malware-investigation)
 Investigates a Cortex XDR incident containing  malware alerts. The playbook:
 - Enriches the infected endpoint details.
 - Lets the analyst manually retrieve the malicious file.
 - Performs file detonation.
 
 The playbook is used as a sub-playbook in the following playbooks:
-- **Cortex XDR Incident Handling - v3**
-- **Cortex XDR Alerts Handling**
+- [Cortex XDR Incident Handling - v3](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-incident-handling-v3)
+- [Cortex XDR Alerts Handling](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-alerts-handling)
 
-#### Cortex XDR - Port Scan
+#### [Cortex XDR - Port Scan](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---port-scan)
 Investigates a Cortex XDR incident containing internal port scan alerts. The playbook:
 - Syncs data with Cortex XDR.
 - Enriches the hostname and IP address of the attacking endpoint.
@@ -237,75 +240,90 @@ Investigates a Cortex XDR incident containing internal port scan alerts. The pla
 
 
 The playbook is used as a sub-playbook in the following playbooks:
-- **Cortex XDR Incident Handling - v3**
-- **Cortex XDR Alerts Handling**
+- [Cortex XDR Incident Handling - v3](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-incident-handling-v3)
+- [Cortex XDR Alerts Handling](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-alerts-handling)
 
-#### Cortex XDR - Port Scan - Adjusted
+#### [Cortex XDR - Port Scan - Adjusted](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---port-scan---adjusted)
 Investigates a Cortex XDR incident containing internal port scan alerts. The playbook:
 - Syncs data with Cortex XDR.
 - Notifies management about a compromised host.
 - Escalates the incident in case of lateral movement alert detection.
 
-#### Cortex XDR - quarantine file
+#### [Cortex XDR - quarantine file](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---quarantine-file)
 Accepts file paths, file hashes, and endpoint IDs in order to quarantine a selected file.
 
-#### Cortex XDR - Retrieve File Playbook
+#### [Cortex XDR - Retrieve File Playbook](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---retrieve-file-playbook)
 Retrieves files from selected endpoints. You can retrieve up to 20 files, from no more than 10 endpoints.
 Inputs for this playbook are:
 - A comma-separated list of endpoint IDs.
 - A comma-separated list of file paths for your operating system, either Windows, Linux, or Mac. At least one file path is required.
 
-#### Cortex XDR Alerts Handling
-Loops over every alert in a Cortex XDR incident. It is used as a sub-playbook in the **Cortex XDR incident handling v3** playbook.
+#### [Cortex XDR Alerts Handling](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-alerts-handling)
+Loops over every alert in a Cortex XDR incident. It is used as a sub-playbook in the [Cortex XDR incident handling v3](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-incident-handling-v3) playbook.
 Currently, the supported alert categories are:
 - Malware
 - Port Scan
 
-#### Cortex XDR device control violations
+#### [Cortex XDR device control violations](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-device-control-violations)
 Queries Cortex XDR for device control violations for the specified hosts, IP address, or XDR endpoint ID. It then communicates via email with the involved users to understand the nature of the incident and if the user connected the device. 
 All the collected data is displayed in the XDR device control incident layout.
-This playbook is also used as the response playbook for the **JOB - Cortex XDR query endpoint device control violations** playbook or as a sub-playbook in the **Cortex XDR Incident Handling - v3**. 
+This playbook is also used as the response playbook for the [JOB - Cortex XDR query endpoint device control violations](https://xsoar.pan.dev/docs/reference/playbooks/job---cortex-xdr-query-endpoint-device-control-violations) playbook or as a sub-playbook in the [Cortex XDR Incident Handling - v3](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-incident-handling-v3). 
 
-**JOB - Cortex XDR query endpoint device control violations**
-A job to periodically fetch endpoint device control events and enrich the data associated with the endpoint device control events. It creates an incident if any violations are found.  The **Cortex XDR device control  violations** playbook is the response playbook for the violations found.
+#### [JOB - Cortex XDR query endpoint device control violations](https://xsoar.pan.dev/docs/reference/playbooks/job---cortex-xdr-query-endpoint-device-control-violations)
+A job to periodically fetch endpoint device control events and enrich the data associated with the endpoint device control events. It creates an incident if any violations are found.  The [Cortex XDR device control violations](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-device-control-violations) playbook is the response playbook for the violations found.
 
-#### Cortex XDR disconnected endpoints
+#### [Cortex XDR disconnected endpoints](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-disconnected-endpoints)
 A job to periodically query disconnected Cortex XDR endpoints with a provided last seen time range playbook input.
 The collected data generates a CSV report, including a detailed list of the disconnected endpoints.
 The report will be sent to email addresses provided in the playbook input.
 The playbook includes an incident type with a dedicated layout to visualize the collected data.
 
 
-#### Cortex XDR Incident Handling
+#### [Cortex XDR Incident Handling](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-incident-handling)
 This playbook is triggered by fetching a Palo Alto Networks Cortex XDR incident. 
 Syncs and updates new XDR alerts that construct the incident. It enriches indicators using Threat Intelligence integrations and Palo Alto Networks AutoFocus. The incident's severity is then updated based on the indicators' reputation and an analyst is assigned for manual investigation. If chosen, automated remediation with Palo Alto Networks FireWall is initiated. After a manual review by the SOC analyst, the XDR incident is closed automatically.
 
 *** Note - The **XDRSyncScript** used by this playbook sets data in the XDR incident fields that were released to content from the Cortex XSOAR server version 5.0.0. For Cortex XSOAR versions under 5.0.0, follow the Palo Alto Networks Cortex XDR documentation to upload the new fields manually.
 
-#### Cortex XDR incident handling v2
+#### [Cortex XDR incident handling v2](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-incident-handling-v2)
 This playbook is triggered by fetching a Palo Alto Networks Cortex XDR incident.
 The playbook syncs and updates new XDR alerts that construct the incident and triggers a sub-playbook to handle each alert by type.
 Then, the playbook performs enrichment on the incident's indicators and hunting for related IOCs.
 Based on the severity, it lets the analyst decide whether to continue to the remediation stage or close the investigation as a false positive. 
 After the remediation, if there are no new alerts, the playbook stops the alert sync and closes the XDR incident and investigation.
 
-#### Cortex XDR incident handling v3
+#### [Cortex XDR incident handling v3](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-incident-handling-v3)
 This playbook is triggered by fetching a Palo Alto Networks Cortex XDR incident.
 The playbook syncs and updates new XDR alerts that construct the incident and triggers a sub-playbook to handle each alert by type.
 Then, the playbook performs enrichment on the incident’s indicators and hunts for related IOCs.
 Based on the severity, it lets the analyst decide whether to continue to the remediation stage or close the investigation as a false positive.
 After the remediation, if there are no new alerts, the playbook stops the alert sync and closes the XDR incident and investigation. For performing the bidirectional sync, the playbook uses the incoming and outgoing mirroring feature added in XSOAR version 6.0.0. After the Calculate Severity - Generic v2 sub-playbook’s run, Cortex XSOAR will be treated as the single source of truth for the severity field, and it will sync only from Cortex XSOAR to XDR, so manual changes for the severity field in XDR will not update in the XSOAR incident.
 
-#### Cortex XDR Incident Sync
+#### [Cortex XDR Incident Sync](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-incident-sync)
 Compares incidents in Palo Alto Networks Cortex XDR and Cortex XSOAR, and updates the incidents appropriately. When an incident is updated in Cortex XSOAR, the XDRSyncScript will update the incident in XDR. When an incident is updated in XDR, the XDRSyncScript will update the incident fields in Cortex XSOAR and rerun the current playbook. Do not use this playbook when enabling the incident mirroring feature added in XSOAR version 6.0.0.
 
-#### JOB - Cortex XDR query endpoint device control violations
-A job to periodically query Cortex XDR device control violations according to a given timestamp in a relative date playbook input.
-The collected data, if found, is used to create an incident.
-You can configure the created new incident type in the playbook input and use the XDR Device Control Violations incident type to associate it with the response playbook.
-The job includes an incident type with a dedicated layout to visualize the collected data.
+
+#### [Cortex XDR - Block File](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---block-file)
+Adds files to the Cortex XDR block list with a given file SHA256 playbook input.
+
+#### [Cortex XDR - Delete file](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---delete-file)
+Deletes the specified file and retrieves the results.
+
+#### [Cortex XDR - Execute snippet code script](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---execute-snippet-code-script) 
+Initiates a new endpoint script execution action using the provided snippet code and retrieve the file results. 
+
+#### [Cortex XDR - Run script](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---run-script)
+Initiates a new endpoint script execution action using a provided script unique ID from the Cortex XDR script library.
+
+#### [Cortex XDR - check file existence](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---check-file-existence)
+Checks if the specified file exists.
 
 
+#### [Cortex XDR - execute commands](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---execute-commands)
+Executes specified shell commands.
+
+#### [Cortex XDR - kill process](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---kill-process)
+Kills the specified process.
 
 ## Before You Start
 
