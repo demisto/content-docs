@@ -44,19 +44,6 @@
   --ifm-color-secondary-lighter: #8fa0b2;
   --ifm-color-secondary-lightest: #a8b5c3;
   font-family: "Demisto", Fallback, sans-serif;
-  /* Tables */
-  --ifm-table-stripe-background: var(--ifm-background-color);
-  --ifm-table-border-width: 0px;
-}
-
-.markdown table tr {
-  border-bottom: 1px solid var(--ifm-color-secondary);
-}
-
-.markdown table tr::after {
-  content: "";
-  display: block;
-  min-width: 268px;
 }
 
 /* Dark mode overrides */
