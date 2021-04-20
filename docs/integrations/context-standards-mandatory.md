@@ -44,28 +44,31 @@ The following is the format for a file. File here refers to the file indicator o
              "type": "STRING, The type of the indicators that are associated with the file",
              "description": "STRING, The description of the indicators that are associated with the file."
         },
-        "MalwareFamily": "STRING, The malware family associated with the file",
-        "Campaign": "STRING, ",
-        "TrafficLightProtocol": "STRING, ",
+        "MalwareFamily": "STRING, The malware family associated with the file.",
+        "Campaign": "STRING, The campaign associated with the file.",
+        "TrafficLightProtocol": "STRING, The Traffic Light Protocol (TLP) color that is suitable for the file.",
         "CommunityNotes": {
-            "note": "STRING, ",
-            "timestamp": "DATE, ",
+            "note": "STRING, Notes on the file that were given by the community.",
+            "timestamp": "DATE, The time in which the note was published."
         },
         "Publications": {
-            "source": "STRING, ",
-            "title": "STRING, ",
-            "link": "STRING, ",
-            "timestamp": "DATE, ",
+            "source": "STRING, The source in which the article was published.",
+            "title": "STRING, The name of the article.",
+            "link": "STRING, A link to the original article.",
+            "timestamp": "DATE, The time in which the article was published."
         }
         "Behavior": {
-            "details": "STRING, ",
-            "title": "STRING, ",
+            "details": "STRING, The technical details which are relevant to the behavior.",
+            "title": "STRING, The behavior associated with the file."
         }
-        "ThreatTypes": "STRING, ",
-        "Imphash": "STRING, ",
-        "Quarantined": "BOOL, ",
-        "Organization": "STRING, ",
-        "AssociatedFileNames": "STRING, ",
+        "ThreatTypes": {
+            "threatcategory": "STRING, .",
+            "threatcategoryconfidence": "STRING, ."
+        },
+        "Imphash": "STRING, The Imphash hash of the file.",
+        "Quarantined": "BOOL, Is the file quarantined or not.",
+        "Organization": "STRING, The organization of the file.",
+        "AssociatedFileNames": "STRING, File names that are known as associated to the file."
 }
 ```
 
@@ -160,49 +163,52 @@ outputs:
   description: A description explaining why the file was determined to be malicious.
   type: String
 - contextPath: File.Campaign
-  description: 
+  description: The campaign associated with the file.
   type: String
 - contextPath: File.TrafficLightProtocol
-  description: 
+  description: The Traffic Light Protocol (TLP) color that is suitable for the file.
   type: String
 - contextPath: File.CommunityNotes.note
-  description: 
+  description: Notes on the file that were given by the community.
   type: String
 - contextPath: File.CommunityNotes.timestamp
-  description: 
+  description: The time in which the note was published.
   type: Date
 - contextPath: File.Publications.source
-  description: 
+  description: The source in which the article was published.
   type: String
 - contextPath: File.Publications.title
-  description: 
+  description: The name of the article.
   type: String
 - contextPath: File.Publications.link
-  description: 
+  description: A link to the original article.
   type: String
 - contextPath: File.Publications.timestamp
-  description:
+  description: The time in which the article was published.
   type: Date
 - contextPath: File.Behavior.details
-  description: 
+  description: The technical details which are relevant to the behavior.
   type: String
 - contextPath: File.Behavior.title
+  description: The behavior associated with the file.
+  type: String
+- contextPath: File.ThreatTypes.threatcategory
   description: 
   type: String
-- contextPath: File.ThreatTypes
+- contextPath: File.ThreatTypes.threatcategoryconfidence
   description: 
   type: String
 - contextPath: File.Imphash
-  description: 
+  description: The Imphash hash of the file.
   type: String
 - contextPath: File.Quarantined
-  description: 
+  description: Is the file quarantined or not.
   type: Bool
 - contextPath: File.Organization
-  description: 
+  description: The organization of the file.
   type: String
 - contextPath: File.AssociatedFileNames
-  description: 
+  description: File names that are known as associated to the file.
   type: String
 ```
 
@@ -231,38 +237,41 @@ The following is the format for an IP entity
          "type": "STRING, The type of the indicators that are associated with the IP",
          "description": "STRING, The description of the indicators that are associated with the IP."
     },
-    "MalwareFamily": "STRING, The malware family associated with the IP",
+    "MalwareFamily": "STRING, The malware family associated with the IP.",
     "Organization": {
          "Name": "STRING, The organization of the IP.",
          "Type": "STRING, The organization type of the IP."
     },
-    "ASOwner": "STRING, ",
-    "Region": "STRING, ",
-    "Port": "STRING, ",
-    "Internal": "STRING, ",
-    "UpdatedDate": "STRING, ",
+    "ASOwner": "STRING, The autonomous system owner of the IP.",
+    "Region": "STRING, The region in which the IP is located.",
+    "Port": "STRING, Ports that are associated with the IP.",
+    "Internal": "BOOL, Whether or not the IP is internal or external.",
+    "UpdatedDate": "DATE, The date that the IP was last updated.",
     "Registrar": {
         "Abuse":{
-            "Name": "STRING, ",
-            "Address": "STRING, ",
-            "Country": "STRING, ",
-            "Network": "STRING, ",
-            "Phone": "STRING, ",
-            "Email": "STRING, ",
+            "Name": "STRING, The name of the contact for reporting abuse.",
+            "Address": "STRING, The address of the contact for reporting abuse.",
+            "Country": "STRING, The country of the contact for reporting abuse.",
+            "Network": "STRING, The network of the contact for reporting abuse.",
+            "Phone": "STRING, The phone number of the contact for reporting abuse.",
+            "Email": "STRING, The email address of the contact for reporting abuse.",
     }},
-    "Campaign": "STRING, ",
-    "TrafficLightProtocol": "STRING, ",
+    "Campaign": "STRING, The campaign associated with the IP.",
+    "TrafficLightProtocol": "STRING, The Traffic Light Protocol (TLP) color that is suitable for the IP.",
     "CommunityNotes": {
-        "note": "STRING, ",
-        "timestamp": "DATE, ",
+        "note": "STRING, Notes on the IP that were given by the community.",
+        "timestamp": "DATE, The time in which the note was published."
     },
     "Publications": {
-        "source": "STRING, ",
-        "title": "STRING, ",
-        "link": "STRING, ",
-        "timestamp": "DATE, ",
+        "source": "STRING, The source in which the article was published.",
+        "title": "STRING, The name of the article.",
+        "link": "STRING, A link to the original article.",
+        "timestamp": "DATE, The time in which the article was published."
+    },
+    "ThreatTypes": {
+        "threatcategory": "STRING, .",
+        "threatcategoryconfidence": "STRING, ."
     }
-    "ThreatTypes": "STRING, ",
 }
 ```
 
@@ -321,63 +330,66 @@ outputs:
   description: The organization type of the IP.
   type: String
 - contextPath: IP.ASOwner
-  description: 
+  description: The autonomous system owner of the IP.
   type: String
 - contextPath: IP.Region
-  description: 
+  description: The region in which the IP is located.
   type: String
 - contextPath: IP.Port
-  description: 
+  description: Ports that are associated with the IP.
   type: String
 - contextPath: IP.Internal
-  description: 
-  type: String
+  description: Whether or not the IP is internal or external.
+  type: Bool
 - contextPath: IP.UpdatedDate
-  description: 
-  type: String
+  description: The date that the IP was last updated.
+  type: Date
 - contextPath: IP.Registrar.Abuse.Name
-  description: 
+  description: The name of the contact for reporting abuse.
   type: String
 - contextPath: IP.Registrar.Abuse.Address
-  description: 
+  description: The address of the contact for reporting abuse.
   type: String
 - contextPath: IP.Registrar.Abuse.Country
-  description: 
+  description: The country of the contact for reporting abuse.
   type: String
 - contextPath: IP.Registrar.Abuse.Network
-  description: 
+  description: The network of the contact for reporting abuse.
   type: String
 - contextPath: IP.Registrar.Abuse.Phone
-  description: 
+  description: The phone number of the contact for reporting abuse.
   type: String
 - contextPath: IP.Registrar.Abuse.Email
-  description: 
+  description: The email address of the contact for reporting abuse.
   type: String
 - contextPath: IP.Campaign
-  description: 
+  description: The campaign associated with the IP.
   type: String
 - contextPath: IP.TrafficLightProtocol
-  description: 
+  description: The Traffic Light Protocol (TLP) color that is suitable for the IP.
   type: String
 - contextPath: IP.CommunityNotes.note
-  description: 
+  description: Notes on the IP that were given by the community.
   type: String
 - contextPath: IP.CommunityNotes.timestamp
-  description: 
+  description: The time in which the note was published.
   type: Date
 - contextPath: IP.Publications.source
-  description: 
+  description: The source in which the article was published.
   type: String
 - contextPath: IP.Publications.title
-  description: 
+  description: The name of the article.
   type: String
 - contextPath: IP.Publications.link
-  description: 
+  description: A link to the original article.
   type: String
 - contextPath: IP.Publications.timestamp
-  description:
+  description: The time in which the article was published.
   type: Date
-- contextPath: IP.ThreatTypes
+- contextPath: IP.ThreatTypes.threatcategory
+  description: 
+  type: String
+- contextPath: IP.ThreatTypes.threatcategoryconfidence
   description: 
   type: String
 
@@ -497,7 +509,7 @@ The following is the format for a Domain. Please note that for WHOIS, the entity
          "type": "STRING, The type of the indicators that are associated with the domin",
          "description": "STRING, The description of the indicators that are associated with the domain."
     },
-    "MalwareFamily": "STRING, The malware family associated with the domain",
+    "MalwareFamily": "STRING, The malware family associated with the domain.",
     "WHOIS": {
         "DomainStatus": "STRING, The status of the domain.",
         "NameServers": "STRING, A list of name servers, for example: 'ns1.bla.com, ns2.bla.com'.",
@@ -525,32 +537,38 @@ The following is the format for a Domain. Please note that for WHOIS, the entity
         "Vendor": "STRING, The vendor reporting the domain as malicious.",
         "Description": "STRING, A description explaining why the domain was reported as malicious."
     },
-   "DomainIDNName": "STRING, ",
-   "DomainReferringIPs": "STRING, ",
-   "DomainReferringSubnets": "STRING, ",
-   "Port": "STRING, ",
-   "Internal": "STRING, ",
-   "Category": "STRING, ",
-   "Campaign": "STRING, ",
-   "TrafficLightProtocol": "STRING, ",
-   "ThreatTypes": "STRING, ",
+   "DomainIDNName": "STRING, The internationalized domain name (IDN) of the domain.",
+   "Port": "STRING, Ports that are associated with the domain.",
+   "Internal": "BOOL, Whether or not the domain is internal or external.",
+   "Category": "STRING, The category associated with the indicator.",
+   "Campaign": "STRING, The campaign associated with the domain.",
+   "TrafficLightProtocol": "STRING, The Traffic Light Protocol (TLP) color that is suitable for the domain.",
+   "ThreatTypes": {
+        "threatcategory": "STRING, .",
+        "threatcategoryconfidence": "STRING, ."
+   },
+   "Geo":{
+        "Location": "STRING, The geolocation where the domain address is located, in the format: latitude:longitude.",
+        "Country": "STRING, The country in which the domain address is located.",
+        "Description": "STRING, Additional information about the location."
+   },
    "Tech": {
-       "Country": "STRING, ",
-       "Name": "STRING, ",
-       "Organization": "STRING, ",
-       "Email": "STRING, "
+       "Country": "STRING, The country of the domain technical contact.",
+       "Name": "STRING, The name of the domain technical contact.",
+       "Organization": "STRING, The organization of the domain technical contact.",
+       "Email": "STRING, The email address of the domain technical contact."
    },
    "CommunityNotes": {
-        "note": "STRING, ",
-        "timestamp": "DATE, ",
+        "note": "STRING, Notes on the domain that were given by the community.",
+        "timestamp": "DATE, The time in which the note was published."
    },
    "Publications": {
-        "source": "STRING, ",
-        "title": "STRING, ",
-        "link": "STRING, ",
-        "timestamp": "DATE, ",
+        "source": "STRING, The source in which the article was published.",
+        "title": "STRING, The name of the article.",
+        "link": "STRING, A link to the original article.",
+        "timestamp": "DATE, The time in which the article was published."
    },
-   "Billing": "STRING, ",
+   "Billing": "STRING, The billing address of the domain.",
    
 }
 ```
@@ -682,64 +700,70 @@ outputs:
   description: A description explaining why the domain was reported as malicious.
   type: String
 - contextPath: Domain.DomainIDNName
-  description: 
-  type: String
-- contextPath: Domain.DomainReferringIPs
-  description: 
-  type: String
-- contextPath: Domain.DomainReferringSubnets
-  description: 
+  description: The internationalized domain name (IDN) of the domain.
   type: String
 - contextPath: Domain.Port
-  description: 
+  description: Ports that are associated with the domain.
   type: String
 - contextPath: Domain.Internal
-  description: 
-  type: String
+  description: Whether or not the domain is internal or external.
+  type: Bool
 - contextPath: Domain.Category
-  description: 
+  description: The category associated with the indicator.
   type: String
 - contextPath: Domain.Campaign
-  description: 
+  description: The campaign associated with the domain.
   type: String
 - contextPath: Domain.TrafficLightProtocol
+  description: The Traffic Light Protocol (TLP) color that is suitable for the domain.
+  type: String
+- contextPath: Domain.ThreatTypes.threatcategory
   description: 
   type: String
-- contextPath: Domain.ThreatTypes
+- contextPath: Domain.ThreatTypes.threatcategoryconfidence
   description: 
+  type: String
+- contextPath: Domain.Geo.Location
+  description: 'The geolocation where the domain address is located, in the format: latitude:longitude.'
+  type: String
+- contextPath: Domain.Geo.Country
+  description: The country in which the domain address is located.
+  type: String
+- contextPath: Domain.Geo.Description
+  description: Additional information about the location.
   type: String
 - contextPath: Domain.Tech.Country
-  description: 
+  description: The country of the domain technical contact.
   type: String
 - contextPath: Domain.Tech.Name
-  description: 
+  description: The name of the domain technical contact.
   type: String
 - contextPath: Domain.Tech.Organization
-  description: 
+  description: The organization of the domain technical contact.
   type: String
 - contextPath: Domain.Tech.Email
-  description: 
+  description: The email address of the domain technical contact.
   type: String
 - contextPath: Domain.CommunityNotes.note
-  description: 
+  description: Notes on the domain that were given by the community.
   type: String
 - contextPath: Domain.CommunityNotes.timestamp
-  description: 
+  description: The time in which the note was published.
   type: Date
 - contextPath: Domain.Publications.source
-  description: 
+  description: The source in which the article was published.
   type: String
 - contextPath: Domain.Publications.title
-  description: 
+  description: The name of the article.
   type: String
 - contextPath: Domain.Publications.link
-  description: 
+  description: A link to the original article.
   type: String
 - contextPath: Domain.Publications.timestamp
-  description: 
+  description: The time in which the article was published.
   type: Date
 - contextPath: Domain.Billing
-  description: 
+  description: The billing address of the domain.
   type: String
 ```
 
@@ -761,27 +785,30 @@ The following is the format for a URL entity.
          "type": "STRING, The type of the indicators that are associated with the URL",
          "description": "STRING, The description of the indicators that are associated with the URL."
     },
-    "MalwareFamily": "STRING, The malware family associated with the URL",
-    "Port": "STRING, ",
-    "Internal": "STRING, ",
-    "Campaign": "STRING, ",
-    "TrafficLightProtocol": "STRING, ",
-    "threat_types": "STRING, ",
-    "ASN": "STRING, ",
-    "ASOwner": "STRING, ",
-    "Geo": {
-      "Country": "STRING, "
+    "MalwareFamily": "STRING, The malware family associated with the URL.",
+    "Port": "STRING, Ports that are associated with the URL.",
+    "Internal": "STRING, Whether or not the URL is internal or external.",
+    "Campaign": "STRING, The campaign associated with the URL.",
+    "TrafficLightProtocol": "STRING, The Traffic Light Protocol (TLP) color that is suitable for the URL.",
+    "ThreatTypes": {
+        "threatcategory": "STRING, .",
+        "threatcategoryconfidence": "STRING, ."
     },
-    "Organization": "STRING, ",
+    "ASN": "STRING, The autonomous system name for the URL, for example: 'AS8948'.",
+    "ASOwner": "STRING, The autonomous system owner of the URL.",
+    "Geo": {
+      "Country": "STRING, The country in which the URL is located."
+    },
+    "Organization": "STRING, The organization of the URL.",
     "CommunityNotes": {
-        "note": "STRING, ",
-        "timestamp": "DATE, ",
+        "note": "STRING, Notes on the URL that were given by the community.",
+        "timestamp": "DATE, The time in which the note was published."
     },
     "Publications": {
-        "source": "STRING, ",
-        "title": "STRING, ",
-        "link": "STRING, ",
-        "timestamp": "DATE, ",
+        "source": "STRING, The source in which the article was published.",
+        "title": "STRING, The name of the article.",
+        "link": "STRING, A link to the original article.",
+        "timestamp": "DATE, The time in which the article was published."
     }
 }
 ```
@@ -823,49 +850,52 @@ outputs:
   description: The malware family associated with the URL.
   type: String
 - contextPath: URL.Port
-  description:
+  description: Ports that are associated with the URL.
   type: String
 - contextPath: URL.Internal
-  description:
-  type: String
+  description: Whether or not the URL is internal or external.
+  type: Bool
 - contextPath: URL.Campaign
-  description:
+  description: The campaign associated with the URL.
   type: String
 - contextPath: URL.TrafficLightProtocol
-  description:
+  description: The Traffic Light Protocol (TLP) color that is suitable for the URL.
   type: String
-- contextPath: URL.ThreatTypes
-  description:
+- contextPath: URL.ThreatTypes.threatcategory
+  description: 
+  type: String
+- contextPath: URL.ThreatTypes.threatcategoryconfidence
+  description: 
   type: String
 - contextPath: URL.ASN
-  description:
+  description: "The autonomous system name for the URL, for example: 'AS8948'."
   type: String
 - contextPath: URL.ASOwner
-  description:
+  description:The autonomous system owner of the URL.
   type: String
 - contextPath: URL.GeoCountry
-  description:
+  description: The country in which the URL is located.
   type: String
 - contextPath: URL.Organization
-  description:
+  description:The organization of the URL.
   type: String
-- contextPath: Domain.CommunityNotes.note
-  description: 
+- contextPath: URL.CommunityNotes.note
+  description: Notes on the URL that were given by the community.
   type: String
-- contextPath: Domain.CommunityNotes.timestamp
-  description: 
+- contextPath: URL.CommunityNotes.timestamp
+  description: The time in which the note was published.
   type: Date
-- contextPath: Domain.Publications.source
-  description: 
+- contextPath: URL.Publications.source
+  description: The source in which the article was published.
   type: String
-- contextPath: Domain.Publications.title
-  description: 
+- contextPath: URL.Publications.title
+  description: The name of the article.
   type: String
-- contextPath: Domain.Publications.link
-  description: 
+- contextPath: URL.Publications.link
+  description: A link to the original article.
   type: String
-- contextPath: Domain.Publications.timestamp
-  description: 
+- contextPath: URL.Publications.timestamp
+  description: The time in which the article was published.
   type: Date
 ```
 
