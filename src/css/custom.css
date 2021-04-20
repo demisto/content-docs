@@ -44,19 +44,6 @@
   --ifm-color-secondary-lighter: #8fa0b2;
   --ifm-color-secondary-lightest: #a8b5c3;
   font-family: "Demisto", Fallback, sans-serif;
-  /* Tables */
-  --ifm-table-stripe-background: var(--ifm-background-color);
-  --ifm-table-border-width: 0px;
-}
-
-.markdown table tr {
-  border-bottom: 1px solid var(--ifm-color-secondary);
-}
-
-.markdown table tr::after {
-  content: "";
-  display: block;
-  min-width: 268px;
 }
 
 /* Dark mode overrides */
@@ -608,4 +595,73 @@ html[data-theme="dark"] .header-github-link:before {
 @font-face {
   font-family: "Demisto";
   src: url("/demisto-bundle-1597047141768.woff");
+}
+
+/* Site dropdown menu */
+.panosItem {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.panosItem::before {
+  content: "";
+  background-image: url("/img/strata_favicon.png");
+  background-size: 100% 100%;
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  position: relative;
+  margin-right: 10px;
+}
+
+.cortexItem {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.cortexItem::before {
+  content: "";
+  background-image: url("/img/cortexfavicon.png");
+  background-size: 100% 100%;
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  position: relative;
+  margin-right: 10px;
+}
+
+.xsoarItem {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.xsoarItem::before {
+  content: "";
+  background-image: url("/img/Cortex-XSOAR-product-green.svg");
+  background-size: 100% 100%;
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  position: relative;
+  margin-right: 10px;
+}
+
+.prismaItem {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.prismaItem::before {
+  content: "";
+  background-image: url("/img/prismafavicon.png");
+  background-size: 100% 100%;
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  position: relative;
+  margin-right: 10px;
 }
