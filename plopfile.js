@@ -80,7 +80,7 @@ const config = (plop) => {
       {
         type: "input",
         name: "changeLog",
-        message: "Pack change log",
+        message: "Pack changelog",
       },
     ],
     actions: [

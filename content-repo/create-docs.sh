@@ -140,9 +140,9 @@ if [[ ( "$PULL_REQUEST" == "true" || -n "$CI_PULL_REQUEST" ) && "$CONTENT_BRANCH
         export MAX_FILES
     fi
 
-    echo "$DIFF_FILES" | grep -v -E '^docs/|^content-repo/extra-docs/|^static/|^sidebars.js' || MAX_PACKS=20
+    echo "$DIFF_FILES" | grep -v -E '^src/pages/marketplace/|^genMarketplace.js|^plopfile.js|^static/|^sidebars.js' || MAX_PACKS=20
     if [ -n "MAX_PACKS" ]; then
-        echo "MAX_PACKS set to: MAX_PACKS"
+        echo "MAX_PACKS set to: $MAX_PACKS"
         export MAX_PACKS
     fi
 fi

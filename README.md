@@ -72,10 +72,6 @@ npm run marketplace-docs
 This task will download the packs information from the google cloud bucket and generate the packs docs for the marketplace tab. The generated docs are ignored by `.gitignore` and shouldn't be checked in as they are generated during the build.
 
 Additional env vars that affect the generation of the docs:
-* `FILE_REGEX`: specify a regex to select which docs to generate docs for. For example: 
-  ```bash
-  FILE_REGEX=Proofpoint CONTENT_REPO_DIR=~/dev/demisto/content npm run reference-docs
-  ```
 * `MAX_PACKS`: max packs to generate in the marketplace tab. Set this for faster generation when developing. Note also in CI builds on branches this is automatically set to speed up the preview site if there are only modifications related to docs. For example:
   
   export MAX_PACKS=10 && npm run marketplace-docs
