@@ -110,7 +110,7 @@ Although not required, we recommend that you create a recurring schedule for the
 
 ### 4. Playbook Inputs
 The **JOB - Integrations and Incidents Health Check** playbook contains the following inputs.
-You can go over the playbook inputs and edit them by opening the 'Playbook Triggered' section header of the playbook.
+You can review the playbook inputs and edit them by clicking the 'Playbook Triggered' section header of the playbook.
 
 
 | Playbook Input | Description |
