@@ -69,11 +69,12 @@ Some of the Cortex XSOAR-Microsoft integrations use the [device code flow](https
 To configure a Microsoft integration that uses this authorization flow with a self-deployed Azure application:
 1. Make sure the needed permissions are granted for the app registration.
 2. The Redirect URI can direct any web application that you wish to receive responses from Azure AD. If you are not sure what to set, you can use `https://localhost`.
-3. In the app registration, navigate to **Authentication** > **Advanced Settings**, and enable the mobile and desktop flows.
+3. In **Supported account types**, *Accounts in any organizational directory (Any Azure AD directory - Multitenant)* should be selected.
+4. In the app registration, navigate to **Authentication** > **Advanced Settings**, and enable the mobile and desktop flows.
 
    <img width="600" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/device_code.png" align="middle"></img>
 
-4. Enter your application ID in the ***Application ID*** parameter field.
+5. Enter your application ID in the ***Application ID*** parameter field.
 
 ## Revoke Consent
 
