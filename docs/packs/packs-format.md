@@ -59,7 +59,7 @@ The following fields are populated in the pack metadata:
 | dependencies | Dictionary | (Optional) An object that describes the content packs that the pack is dependant on. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | displayedImages | List | (Optional) Images to be displayed in Cortex XSOAR marketplace. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | githubUser | List | (Optional) List of Github usernames to receive notification in the PR in case pack files were modified. |
-| devEmail | String | (Optional) Email of developer, in order to receive notification in case contributed pack files were modified. |
+| devEmail | List | (Optional) List of emails, to receive notification in case contributed pack files were modified. |
 | certification | String | (Optional) If the pack is certifed the value of this fields should be "certified" |
 
 
@@ -166,4 +166,3 @@ You may choose to show the pack author image such that it will be displayed in t
 The image size should be up to 4kb and in the dimensions of 120x50.
  
 In case file does not exist, the pack author will be displayed in text.
-
