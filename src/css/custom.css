@@ -21,6 +21,11 @@
   --ifm-color-primary-light: #00e070;
   --ifm-color-primary-lighter: #00eb75;
   --ifm-color-primary-lightest: #0aff85;
+  /* Status Colors */
+  --ifm-color-info: #00c0e8;
+  --ifm-color-success: #00cc66;
+  --ifm-color-warning: #ffcb06;
+  --ifm-color-danger: #fa582d;
   --ifm-hero-background-color: #f9f9f9 !important;
   --ifm-link-color: #00cc66;
   --ifm-background-color: #fff;
