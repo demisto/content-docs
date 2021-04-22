@@ -41,7 +41,6 @@ function Marketplace() {
     setHiddenSidebarContainer(!hiddenSidebarContainer);
   }, [hiddenSidebar]);
   const marketplace = siteConfig.customFields.marketplace;
-  const [showNew, setShowNew] = useState(false);
   const [price, setPrice] = useState(false);
   const [support, setSupport] = useState(false);
   const [author, setAuthor] = useState(false);
@@ -53,7 +52,6 @@ function Marketplace() {
 
   // Parse URL query params
   useEffect(() => {
-    if (!showNew && params.new) setShowNew(params.new);
     if (!price && params.price) setPrice(params.price);
     if (!support && params.support) setSupport(params.support);
     if (!author && params.vendor) setAuthor(params.vendor);
@@ -73,7 +71,6 @@ function Marketplace() {
     ...(category && { categories: category }),
     ...(tag && { tags: tag }),
     ...(support && { support: support }),
-    ...(showNew && { new: showNew }),
   };
 
   const preFilteredPacks = marketplace.filter((pack) => {
@@ -96,12 +93,6 @@ function Marketplace() {
         }
       }
 
-      if (
-        key == "new" &&
-        (new Date() - new Date(pack.created)) / (1000 * 60 * 60 * 24) < 30
-      ) {
-        return true;
-      }
       if (key == "featured" && pack.featured == "true") return true;
 
       if (pack[key] === undefined || pack[key] != filters[key]) return false;
@@ -371,12 +362,6 @@ function Marketplace() {
       >
         <MarketplaceSidebar
           sidebar={[
-            {
-              type: "checkbox",
-              label: "New",
-              action: setShowNew,
-              state: showNew,
-            },
             {
               type: "select",
               label: "Published By",
