@@ -403,10 +403,27 @@ html[data-theme="dark"] .header-github-link:before {
   width: 100%;
 }
 
+.contentTable td, th {
+  border: none;
+}
+
+.contentTable tr {
+  border-top: none;
+}
+
+.contentTable tr:nth-child(even) td {
+  background: var(--ifm-background-color);
+}
+
+.contentTableRow {
+  border-bottom: 1px solid var(--ifm-color-secondary-darker);
+}
+
 .contentTableColName {
   width: 33%;
   padding: 8px;
   text-align: left;
+  border: none;
 }
 
 .contentTableColName::after {
@@ -419,6 +436,7 @@ html[data-theme="dark"] .header-github-link:before {
   width: 66%;
   padding: 8px;
   text-align: left;
+  border: none;
 }
 
 .usecaseBadge {
