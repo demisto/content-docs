@@ -393,7 +393,7 @@ function Marketplace() {
             },
             {
               type: "select",
-              label: "Vendor",
+              label: "Author",
               action: setAuthor,
               options: generateAuthors(),
               state: author,
