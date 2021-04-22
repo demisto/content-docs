@@ -21,6 +21,11 @@
   --ifm-color-primary-light: #00e070;
   --ifm-color-primary-lighter: #00eb75;
   --ifm-color-primary-lightest: #0aff85;
+  /* Status Colors */
+  --ifm-color-info: #00c0e8;
+  --ifm-color-success: #00cc66;
+  --ifm-color-warning: #ffcb06;
+  --ifm-color-danger: #fa582d;
   --ifm-hero-background-color: #f9f9f9 !important;
   --ifm-link-color: #00cc66;
   --ifm-background-color: #fff;
@@ -43,7 +48,8 @@
   --ifm-color-secondary-light: #8799ac;
   --ifm-color-secondary-lighter: #8fa0b2;
   --ifm-color-secondary-lightest: #a8b5c3;
-  font-family: "Demisto", Fallback, sans-serif;
+  --ifm-font-family-base: "Montserrat", sans-serif, "Font Awesome 5 Free";
+  --ifm-font-family-monospace: "Roboto Mono", monospace;
 }
 
 /* Dark mode overrides */
@@ -376,6 +382,18 @@ html[data-theme="dark"] .header-github-link:before {
   margin: 0 auto;
 }
 
+.infoTable td, th {
+  border: none;
+}
+
+.infoTable tr {
+  border-top: none;
+}
+
+.infoTable tr:nth-child(even) td {
+  background: var(--ifm-background-color);
+}
+
 .infoTableRow {
   border-bottom: 1px solid var(--ifm-color-secondary-darker);
 }
@@ -385,10 +403,27 @@ html[data-theme="dark"] .header-github-link:before {
   width: 100%;
 }
 
+.contentTable td, th {
+  border: none;
+}
+
+.contentTable tr {
+  border-top: none;
+}
+
+.contentTable tr:nth-child(even) td {
+  background: var(--ifm-background-color);
+}
+
+.contentTableRow {
+  border-bottom: 1px solid var(--ifm-color-secondary-darker);
+}
+
 .contentTableColName {
   width: 33%;
   padding: 8px;
   text-align: left;
+  border: none;
 }
 
 .contentTableColName::after {
@@ -401,6 +436,7 @@ html[data-theme="dark"] .header-github-link:before {
   width: 66%;
   padding: 8px;
   text-align: left;
+  border: none;
 }
 
 .usecaseBadge {
