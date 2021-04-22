@@ -167,7 +167,7 @@ button {
 .ellipsis {
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 182px;
+  max-width: 204px;
   display: block;
   overflow: hidden;
 }
