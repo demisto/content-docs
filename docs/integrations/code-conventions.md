@@ -713,6 +713,34 @@ timeline = IndicatorsTimeline(
 )
 ```
 
+### PollingConfiguration
+The `PollingConfiguration` is an optional object (available from Server version 6.2.0 and up). When provided to a `CommandResults` it transforms its result to a ***polling result***.
+By returning a ***polling result***, the command (or script) indicates to XSOAR that it cannot yet return the full result (likely because it's waiting for a remote process to finish execution).
+XSOAR will set the polling command to run within a number of seconds, as is set in the ***polling result***.
+
+When the time comes for the next command to run, it'll be executed.
+The polling command can return another ***polling result***, that will schedule a next run.
+
+The polling sequence will be done when either one of 3 terminating actions happen:
+
+1. ***Done*** - The polling sequence is done, indicated by an execution without any polling result.
+2. ***Error*** - The command encountered an error, indicated by an error result.
+3. ***Timeout (automatically handled)*** - The polling sequence reached the timeout, in which case a timeout error entry will be returned automatically.
+
+<img width="533" src="../doc_imgs/integrations/polling-command.png"></img>
+
+#### How to Create a Polling Command
+##### YAML Requirements
+* ***Integration***: In the integration yml, under the command root add `polling: true`.
+* ***Script***: In the script yml, in the root of the file add `polling: true`.
+
+##### Class Arguments
+| Arg               | Type   | Description                                                                                                                                                                                |
+|-------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| command                | str    | The command that'll run after next_run_in_seconds has passed.
+| next_run_in_seconds    | int    | How long to wait before executing the command.
+| args                   | dict   | Arguments to use when executing the command.
+| timeout_in_seconds     | int    | Number of seconds until the polling sequence will timeout.
 
 ### CommandResults
 This class is used to return outputs. This object represents an entry in warroom. A string representation of an object must be parsed into an object before being passed into the field.
@@ -729,6 +757,8 @@ This class is used to return outputs. This object represents an entry in warroom
 | indicators_timeline | IndicatorsTimeline | Must be an IndicatorsTimeline. used by the server to populate an indicator's timeline.                                                                                       |
 | ignore_auto_extract | bool | If set to **True** prevents the built-in [auto-extract](../incidents/incident-auto-extract) from enriching IPs, URLs, files, and other indicators from the result. Default is **False**.  |
 | mark_as_note | bool |  If set to **True** marks the entry as note. Default is **False**. |
+| relations | list | |
+| polling_config | Common.PollingConfiguration | manages the way the command result should be polled. |
 
 **Example**
 ```python
@@ -816,7 +846,11 @@ demisto.results(
         'HumanReadable': 'Submitted file is being analyzed.',
         'ReadableContentsFormat': EntryFormat.MARKDOWN,
         'EntryContext': entry_context,
-        'IndicatorTimeline': timeline
+        'IndicatorTimeline': timeline,
+        'PollingCommand': polling_command,        
+        'NextRun': next_run,
+        'Timeout': timeout,
+        'PollingArgs': polling_args
     }
 )
 ```
@@ -828,6 +862,11 @@ The entry is composed of multiple components.
 * The `ReadableContentsFormat` dictates how to format the value passed to the `HumanReadable` field.
 * The `EntryContext` is the dictionary of context outputs for a given command. For more information see [Outputs](#outputs).
 * The `IndicatorTimeline` is an optional field (available from Server version 5.5.0 and up) . It is only applicable for commands that operate on indicators. It is a dictionary (or list of dictionaries) of the following format:
+* The `PollingCommand` is a command that'll run after `NextRun` seconds pass.
+* The `NextRun` is the next run time in seconds for the `PollingCommand`. The `PollingCommand` will be executed after this time has passed.
+* The `Timeout` is the timeout in seconds for a polling sequence. The polling sequence will reach a timeout when this time has passed. However, if a user provided an `execution-timeout`, it'll override the timeout specified by this field.
+* The `PollingArgs` are the arguments that will be used when running the `PollingCommand`.
+
     ```python
     {
         'Value': indicator_value,  # for example, an IP address like '8.8.8.8'
