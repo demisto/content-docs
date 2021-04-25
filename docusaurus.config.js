@@ -5,7 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 const visit = require("unist-util-visit");
-const path = require("path");
+const fs = require("fs");
+const marketplace = JSON.parse(fs.readFileSync("./index.json"));
 
 const remarkPlugin = () => {
   const transformer = (root) => {
@@ -65,11 +66,44 @@ module.exports = {
           position: "left"
         },
         {
+          to: "/marketplace",
+          label: "Marketplace",
+          position: "left"
+        },
+        {
+          label: "Products",
+          items: [
+            {
+              href: "https://panos.pan.dev",
+              label: "PAN-OS",
+              className: "panosItem",
+              target: "_self"
+            },
+            {
+              href: "https://cortex.pan.dev",
+              label: "Cortex Data Lake",
+              className: "cortexItem",
+              target: "_self"
+            },
+            {
+              href: "https://xsoar.pan.dev",
+              label: "Cortex XSOAR",
+              className: "xsoarItem",
+              target: "_self"
+            },
+            {
+              href: "https://prisma.pan.dev",
+              label: "Prisma",
+              className: "prismaItem",
+              target: "_self"
+            },
+          ],
+          position: "right"
+        },
+        {
           label: "Partners",
           items: [
-            { to: "/docs/partners/why-xsoar",
-             label: "Why Cortex XSOAR?" 
-            },
+            { to: "/docs/partners/why-xsoar", label: "Why Cortex XSOAR?" },
             {
               to: "docs/partners/become-a-tech-partner",
               label: "Become a Partner"
@@ -95,9 +129,10 @@ module.exports = {
               label: "Development Partners"
             },
             {
-              to: "https://start.paloaltonetworks.com/become-a-technology-partner",
+              to:
+                "https://start.paloaltonetworks.com/become-a-technology-partner",
               label: "Sign Up Now"
-            }
+            },
           ],
           position: "right"
         },
@@ -110,9 +145,9 @@ module.exports = {
           href: "http://github.com/demisto/content/",
           position: "right",
           className: "header-github-link",
-          "aria-label": "GitHub repository",
+          "aria-label": "GitHub repository"
         },
-      ]
+      ],
     },
     footer: {
       style: "dark",
@@ -125,7 +160,7 @@ module.exports = {
               to: "/docs/partners/become-a-tech-partner",
               label: "Become a Technology Partner"
             }
-          ]
+          ],
         },
         {
           title: "Social",
@@ -134,8 +169,8 @@ module.exports = {
               label: "Blog",
               href: "https://blog.demisto.com/"
             }
-          ]
-        }
+          ],
+        },
       ],
       logo: {
         alt: "Palo Alto Networks for Developers",
@@ -174,39 +209,23 @@ module.exports = {
           customCss: require.resolve("./src/css/custom.css")
         },
         sitemap: {
-          cacheTime: 600 * 1000, // 600 sec - cache purge period
           changefreq: "weekly",
           priority: 0.5
-        }
-      }
-    ]
+        },
+      },
+    ],
   ],
   customFields: {
-    sites: [
-      {
-        label: "Products",
-        items: [
-          {
-            href: "https://panos.pan.dev",
-            label: "PAN-OS",
-            logo: "/img/strata_favicon.png"
-          },
-          {
-            href: "https://cortex.pan.dev",
-            label: "Cortex Data Lake",
-            logo: "/img/cortexfavicon.png"
-          },
-          {
-            href: "https://xsoar.pan.dev",
-            label: "Cortex XSOAR",
-            logo: "/img/Cortex-XSOAR-product-green.svg"
-          }
-        ],
-        position: "products"
-      }
-    ],
+    marketplace: marketplace
   },
+  stylesheets: [
+    {
+      href: "https://use.fontawesome.com/releases/v5.15.0/css/all.css",
+      type: "text/css",
+      rel: "stylesheet"
+    },
+  ],
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
-  onDuplicateRoutes: "warn",
+  onDuplicateRoutes: "warn"
 };

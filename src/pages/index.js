@@ -132,6 +132,7 @@ function Home() {
     <Layout
       title={`${siteConfig.themeConfig.navbar.title}`}
       description="All things related to automation and development with Cortex XSOAR (formerly Demisto)"
+      wrapperClassName="homepage"
     >
       <ScrollUpButton />
 
