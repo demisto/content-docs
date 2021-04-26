@@ -391,12 +391,10 @@ function MarketplaceSidebar({
                 onChange={(e) => search(e.target.value)}
                 autoComplete="false"
               ></input>
-              <button>
-                <i
-                  title="Keyword Search"
-                  className={clsx("fas fa-search", styles.searchIcon)}
-                ></i>
-              </button>
+              <i
+                title="Keyword Search"
+                className={clsx("fas fa-search", styles.searchIcon)}
+              ></i>
             </div>
           </li>
           <br></br>
