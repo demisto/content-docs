@@ -701,3 +701,14 @@ html[data-theme="dark"] .header-github-link:before {
   position: relative;
   margin-right: 10px;
 }
+
+/* Hamburger menu override */
+.menu--responsive svg {
+  display: none;
+}
+
+.menu--responsive button::after {
+  font-family: 'Font Awesome 5 Free';
+  content: '\f0b0';
+}
+
