@@ -358,7 +358,7 @@ function MarketplaceSidebar({
         <button
           aria-label={showResponsiveSidebar ? "Close Menu" : "Open Menu"}
           aria-haspopup="true"
-          className="button button--secondary button--sm menu__button"
+          className="button button--primary button--sm menu__button"
           type="button"
           onClick={() => {
             setShowResponsiveSidebar(!showResponsiveSidebar);
