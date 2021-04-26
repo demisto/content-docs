@@ -122,10 +122,6 @@
 
 /* Search bar */
 @media screen and (max-width: 966px) {
-  .heroBanner {
-    padding: 1rem;
-  }
-
   .webflow {
     padding: 1rem 1.6rem 1.1rem !important;
   }
@@ -141,10 +137,6 @@
   .searchIcon {
     font-size: 16px !important;
     vertical-align: middle;
-  }
-
-  button {
-    font-size: unset !important;
   }
 }
 
@@ -194,15 +186,12 @@ button {
   background-position: 0% 0%;
   background: linear-gradient(
     to right,
-    var(--ifm-color-danger),
-    var(--ifm-color-info),
-    var(--ifm-color-warning),
     var(--ifm-color-primary),
-    var(--ifm-color-danger),
-    var(--ifm-color-info)
+    var(--ifm-color-primary),
+    var(--ifm-color-primary),
+    var(--ifm-color-primary),
+    var(--ifm-color-primary)
   );
-  background-size: 500% auto;
-  animation: gradient 3s linear infinite;
 }
 
 .webflow input {
