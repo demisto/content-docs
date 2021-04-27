@@ -12,7 +12,6 @@ import useScrollPosition from "@theme/hooks/useScrollPosition";
 import useUserPreferencesContext from "@theme/hooks/useUserPreferencesContext";
 import useWindowSize, { windowSizes } from "@theme/hooks/useWindowSize";
 import IconArrow from "@theme/IconArrow";
-import IconMenu from "@theme/IconMenu";
 import Logo from "@theme/Logo";
 import clsx from "clsx";
 import React, { useCallback, useEffect, useRef, useState } from "react";
@@ -374,11 +373,7 @@ function MarketplaceSidebar({
               &times;
             </span>
           ) : (
-            <IconMenu
-              className={styles.sidebarMenuIcon}
-              height={MOBILE_TOGGLE_SIZE}
-              width={MOBILE_TOGGLE_SIZE}
-            />
+            <i className="fas fa-sliders-h"></i>
           )}
         </button>
         <ul className="menu__list">
