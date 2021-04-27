@@ -235,22 +235,22 @@ The following is the format for an Endpoint.
 
 ```python
 "Endpoint": {
-    "Hostname": "STRING, The hostname that is mapped to this endpoint.",
-    "ID": "STRING, The unique ID within the tool retrieving the endpoint.",
-    "IPAddress": "STRING, The IP address of the endpoint.",
-    "Domain": "STRING, The domain of the endpoint.",
-    "MACAddress": "STRING, The MAC address of the endpoint.",
+    "Hostname": "STRING, The endpoint's hostname.",
+    "ID": "STRING, The endpoint's ID.",
+    "IPAddress": "STRING, The endpoint's IP address.",
+    "Domain": "STRING, The endpoint's domain.",
+    "MACAddress": "STRING, The endpoint's MAC address.",
     "DHCPServer": "STRING, The DHCP server of the endpoint.",
-    "OS": "STRING, Endpoint OS.",
-    "OSVersion": "STRING, OS version.",
-    "BIOSVersion": "STRING, BIOS version.",
+    "OS": "STRING, The endpoint's operation system.",
+    "OSVersion": "STRING, The endpoint's operation system version.",
+    "BIOSVersion": "STRING, The endpoint's BIOS version.",
     "Model": "STRING, The model of the machine or device.",
     "Memory": "INT, Memory on this endpoint.",
     "Processors": "INT, The number of processors.",
     "Processor": "STRING, The model of the processor.",
-    "IsIsolated": "STRING, The isolation status.",
-    "Status": "STRING, The status of the endpoint.",
-     "Vendor": "STRING, The name of the integration.",
+    "IsIsolated": "STRING, The endpoint's isolation status.",
+    "Status": "STRING, The endpoint's status.",
+    "Vendor": "STRING, The integration name of the endpoint vendor.",
 
 }
 ```
@@ -259,28 +259,52 @@ The following is the format for an Endpoint.
 ```yaml
     outputs:
     - contextPath: Endpoint.Hostname
-      description: The hostname that is mapped to this endpoint.
+      description: The endpoint's hostname.
       type: String
     - contextPath: Endpoint.OS
-      description: Endpoint OS.
+      description: The endpoint's operation system.
       type: String
     - contextPath: Endpoint.IPAddress
       description: The endpoint's IP address.
       type: String
     - contextPath: Endpoint.ID
-      description: The unique ID within the tool retrieving the endpoint.
+      description: The endpoint's ID.
       type: String
     - contextPath: Endpoint.Status
       description: The endpoint's status.
       type: String
     - contextPath: Endpoint.IsIsolated
-      description: Endpoint isolation status.
+      description: The endpoint's isolation status.
       type: String
     - contextPath: Endpoint.MACAddress
-      description: Endpoint MAC Address.
+      description: The endpoint's MAC address.
       type: String
     - contextPath: Endpoint.Vendor
-      description: Endpoint Vendor, the integration name.
+      description: The integration name of the endpoint vendor.
+      type: String
+    - contextPath: Endpoint.Domain
+      description: The endpoint's domain.
+      type: String
+    - contextPath: Endpoint.DHCPServer
+      description: The DHCP server of the endpoint.
+      type: String
+    - contextPath: Endpoint.OSVersion
+      description: The endpoint's operation system version.
+      type: String
+    - contextPath: Endpoint.BIOSVersion
+      description: The endpoint's BIOS version.
+      type: String
+    - contextPath: Endpoint.Model
+      description: The model of the machine or device.
+      type: String
+    - contextPath: Endpoint.Memory
+      description: Memory on this endpoint.
+      type: Int
+    - contextPath: Endpoint.Processors
+      description: The number of processors.
+      type: Int
+    - contextPath: Endpoint.Processor
+      description: The model of the processor.
       type: String
 ```
 
