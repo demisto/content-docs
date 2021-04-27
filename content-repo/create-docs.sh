@@ -139,6 +139,12 @@ if [[ ( "$PULL_REQUEST" == "true" || -n "$CI_PULL_REQUEST" ) && "$CONTENT_BRANCH
         echo "MAX_FILES set to: $MAX_FILES"
         export MAX_FILES
     fi
+
+    echo "$DIFF_FILES" | grep -v -E '^src/pages/marketplace/|^genMarketplace.js|^plopfile.js|^static/|^sidebars.js' || MAX_PACKS=20
+    if [ -n "MAX_PACKS" ]; then
+        echo "MAX_PACKS set to: $MAX_PACKS"
+        export MAX_PACKS
+    fi
 fi
 
 BUCKET_DIR="${SCRIPT_DIR}/.content-bucket"

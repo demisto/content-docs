@@ -82,6 +82,7 @@ If the missing user appears under one of your commits (can be checked by visitin
     - Paste the code from before into your new branch.
     - Commit and push your new branch.
     - Open a new Pull Request for the new branch. **Don't forget to close the old PR and delete the old branch.**
+4. If the `license/cla` status check remains on *Pending*, even though all contributors have accepted the CLA, you can recheck the CLA status by visiting the following link (replace **[PRID]** with the ID of your PR): https://cla-assistant.io/check/demisto/content?pullRequest=[PRID] .
 
 For further details visit the [Troubleshooting Guide](https://docs.github.com/en/github/committing-changes-to-your-project/why-are-my-commits-linked-to-the-wrong-user) from Github Docs site.
 
