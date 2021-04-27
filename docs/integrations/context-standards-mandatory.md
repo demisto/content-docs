@@ -248,13 +248,40 @@ The following is the format for an Endpoint.
     "Memory": "INT, Memory on this endpoint.",
     "Processors": "INT, The number of processors.",
     "Processor": "STRING, The model of the processor.",
-    "IsIsolated": "BOOLEAN, Whether this endpoint isolated or not."
+    "IsIsolated": "STRING, The isolation status.",
+    "Status": "STRING, The status of the endpoint.",
+     "Vendor": "STRING, The name of the integration.",
+
 }
 ```
 
 **In YAML**
 ```yaml
-
+    outputs:
+    - contextPath: Endpoint.Hostname
+      description: The hostname that is mapped to this endpoint.
+      type: String
+    - contextPath: Endpoint.OS
+      description: Endpoint OS.
+      type: String
+    - contextPath: Endpoint.IPAddress
+      description: The endpoint's IP address.
+      type: String
+    - contextPath: Endpoint.ID
+      description: The unique ID within the tool retrieving the endpoint.
+      type: String
+    - contextPath: Endpoint.Status
+      description: The endpoint's status.
+      type: String
+    - contextPath: Endpoint.IsIsolated
+      description: Endpoint isolation status.
+      type: String
+    - contextPath: Endpoint.MACAddress
+      description: Endpoint MAC Address.
+      type: String
+    - contextPath: Endpoint.Vendor
+      description: Endpoint Vendor, the integration name.
+      type: String
 ```
 
 ## Email Object
