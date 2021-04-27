@@ -18,7 +18,6 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import Select from "react-select";
 import AsyncSelect from "react-select/async";
 import styles from "./styles.module.css";
-const MOBILE_TOGGLE_SIZE = 24;
 
 function usePrevious(value) {
   const ref = useRef(value);
@@ -373,7 +372,7 @@ function MarketplaceSidebar({
               &times;
             </span>
           ) : (
-            <i className="fas fa-sliders-h"></i>
+              <i className={clsx("fas fa-sliders-h", styles.sidebarMenuIcon)}></i>
           )}
         </button>
         <ul className="menu__list">
