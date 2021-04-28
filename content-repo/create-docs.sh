@@ -169,6 +169,7 @@ cp ${CONTENT_GIT_DIR}/Tests/demistomock/demistomock.py .
 cp ${CONTENT_GIT_DIR}/Tests/Marketplace/approved_tags.json .
 cp ${CONTENT_GIT_DIR}/Tests/Marketplace/approved_usecases.json .
 
+# Removing the first lines from CommonServerPython.py which are a description of the script we don't need here
 echo "$(tail -n +6 CommonServerPython.py)" > CommonServerPython.py
 
 if [ -z "${NETLIFY}" ]; then
