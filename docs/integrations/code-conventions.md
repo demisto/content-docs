@@ -713,35 +713,6 @@ timeline = IndicatorsTimeline(
 )
 ```
 
-### PollingConfiguration
-The `PollingConfiguration` is an optional object (available from Server version 6.2.0 and up). When provided to a `CommandResults` it transforms its result to a ***polling result***.
-By returning a ***polling result***, the command (or script) indicates to XSOAR that it cannot yet return the full result (likely because it's waiting for a remote process to finish execution).
-XSOAR will set the polling command to run within a number of seconds, as is set in the ***polling result***.
-
-When the time comes for the next command to run, it'll be executed.
-The polling command can return another ***polling result***, that will schedule a next run.
-
-The polling sequence will be done when either one of 3 terminating actions happen:
-
-1. ***Done*** - The polling sequence is done, indicated by an execution without any polling result.
-2. ***Error*** - The command encountered an error, indicated by an error result.
-3. ***Timeout (automatically handled)*** - The polling sequence reached the timeout, in which case a timeout error entry will be returned automatically.
-
-<img width="533" src="../doc_imgs/integrations/polling-command.png"></img>
-
-#### How to Create a Polling Command
-##### YAML Requirements
-* ***Integration***: In the integration yml, under the command root add `polling: true`.
-* ***Script***: In the script yml, in the root of the file add `polling: true`.
-
-##### Class Arguments
-| Arg               | Type   | Description                                                                                                                                                                                |
-|-------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| command                | str    | The command that'll run after next_run_in_seconds has passed.
-| next_run_in_seconds    | int    | How long to wait before executing the command.
-| args                   | dict   | Arguments to use when executing the command.
-| timeout_in_seconds     | int    | Number of seconds until the polling sequence will timeout.
-
 ### CommandResults
 This class is used to return outputs. This object represents an entry in warroom. A string representation of an object must be parsed into an object before being passed into the field.
 
@@ -757,8 +728,7 @@ This class is used to return outputs. This object represents an entry in warroom
 | indicators_timeline | IndicatorsTimeline | Must be an IndicatorsTimeline. used by the server to populate an indicator's timeline.                                                                                       |
 | ignore_auto_extract | bool | If set to **True** prevents the built-in [auto-extract](../incidents/incident-auto-extract) from enriching IPs, URLs, files, and other indicators from the result. Default is **False**.  |
 | mark_as_note | bool |  If set to **True** marks the entry as note. Default is **False**. |
-| relations | list | |
-| polling_config | Common.PollingConfiguration | manages the way the command result should be polled. |
+| scheduled_command_config | Common.ScheduledCommandConfiguration | manages the way the command result should be polled. |
 
 **Example**
 ```python

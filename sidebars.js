@@ -143,7 +143,8 @@ const sidebars = {
             "integrations/mirroring_integration",
             "integrations/openapi-codegen",
             "integrations/postman-codegen",
-            "integrations/code-generator"
+            "integrations/code-generator",
+            "integrations/scheduled-commands"
           ]
         }
       ]
