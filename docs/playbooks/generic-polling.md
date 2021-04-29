@@ -7,7 +7,7 @@ When working with certain 3rd party products (detonation, scan, search, etc.) oc
 
 We can't achieve via integrations or automations* due to hardware limitations. One method for achieving this is using the `GenericPolling` playbook.
 
-* Starting in XSOAR version 6.2.0 it's possible to implement polling in integrations and automations via [Scheduled Commands](./../integrations/code-conventions).  
+* Starting in XSOAR version 6.2.0 it's possible to implement polling in integrations and automations via [Scheduled Commands](./../integrations/scheduled-commands).  
 
 ## What it does
 The playbook periodically polls the status of a process being executed on a remote host, and when the host returns that the process execution is done, the playbook finishes execution.
