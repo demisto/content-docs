@@ -40,7 +40,7 @@ Note that this method overrides the existing object which is stored, so in order
 
 ### General usage
 ```python
-integration_context: Dict = demisto.get_integration_context()
+integration_context: Dict = get_integration_context()
 demisto.results(integration_context)
 >>> {}
 integration_context_to_set = {'token': 'TOKEN'}
