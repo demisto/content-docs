@@ -62,8 +62,8 @@ The following is the format for a file. File here refers to the file indicator o
             "title": "STRING, The behavior associated with the file."
         }
         "ThreatTypes": {
-            "threatcategory": "STRING, .",
-            "threatcategoryconfidence": "STRING, ."
+        "threatcategory": "STRING, The threat category associated to this indicator by the source vendor. For example, Phishing, Control, TOR, etc.",
+        "threatcategoryconfidence": "STRING, Threat Category Confidence is the confidence level provided by the vendor for the threat type category For example a confidence of 90 for threat type category 'malware' means that the vendor rates that this is 90% confidence of being a malware."
         },
         "Imphash": "STRING, The Imphash hash of the file.",
         "Quarantined": "BOOL, Is the file quarantined or not.",
@@ -193,10 +193,10 @@ outputs:
   description: The behavior associated with the file.
   type: String
 - contextPath: File.ThreatTypes.threatcategory
-  description: 
+  description: The threat category associated to this indicator by the source vendor. For example, Phishing, Control, TOR, etc.
   type: String
 - contextPath: File.ThreatTypes.threatcategoryconfidence
-  description: 
+  description: Threat Category Confidence is the confidence level provided by the vendor for the threat type category For example a confidence of 90 for threat type category 'malware' means that the vendor rates that this is 90% confidence of being a malware.
   type: String
 - contextPath: File.Imphash
   description: The Imphash hash of the file.
@@ -269,8 +269,8 @@ The following is the format for an IP entity
         "timestamp": "DATE, The time in which the article was published."
     },
     "ThreatTypes": {
-        "threatcategory": "STRING, .",
-        "threatcategoryconfidence": "STRING, ."
+        "threatcategory": "STRING, The threat category associated to this indicator by the source vendor. For example, Phishing, Control, TOR, etc.",
+        "threatcategoryconfidence": "STRING, Threat Category Confidence is the confidence level provided by the vendor for the threat type category For example a confidence of 90 for threat type category 'malware' means that the vendor rates that this is 90% confidence of being a malware."
     }
 }
 ```
@@ -387,10 +387,10 @@ outputs:
   description: The time in which the article was published.
   type: Date
 - contextPath: IP.ThreatTypes.threatcategory
-  description: 
+  description: The threat category associated to this indicator by the source vendor. For example, Phishing, Control, TOR, etc.
   type: String
 - contextPath: IP.ThreatTypes.threatcategoryconfidence
-  description: 
+  description: Threat Category Confidence is the confidence level provided by the vendor for the threat type category For example a confidence of 90 for threat type category 'malware' means that the vendor rates that this is 90% confidence of being a malware.
   type: String
 
 ```
@@ -544,8 +544,8 @@ The following is the format for a Domain. Please note that for WHOIS, the entity
    "Campaign": "STRING, The campaign associated with the domain.",
    "TrafficLightProtocol": "STRING, The Traffic Light Protocol (TLP) color that is suitable for the domain.",
    "ThreatTypes": {
-        "threatcategory": "STRING, .",
-        "threatcategoryconfidence": "STRING, ."
+        "threatcategory": "STRING, The threat category associated to this indicator by the source vendor. For example, Phishing, Control, TOR, etc.",
+        "threatcategoryconfidence": "STRING, Threat Category Confidence is the confidence level provided by the vendor for the threat type category For example a confidence of 90 for threat type category 'malware' means that the vendor rates that this is 90% confidence of being a malware."
    },
    "Geo":{
         "Location": "STRING, The geolocation where the domain address is located, in the format: latitude:longitude.",
@@ -718,10 +718,10 @@ outputs:
   description: The Traffic Light Protocol (TLP) color that is suitable for the domain.
   type: String
 - contextPath: Domain.ThreatTypes.threatcategory
-  description: 
+  description: The threat category associated to this indicator by the source vendor. For example, Phishing, Control, TOR, etc.
   type: String
 - contextPath: Domain.ThreatTypes.threatcategoryconfidence
-  description: 
+  description: Threat Category Confidence is the confidence level provided by the vendor for the threat type category For example a confidence of 90 for threat type category 'malware' means that the vendor rates that this is 90% confidence of being a malware.
   type: String
 - contextPath: Domain.Geo.Location
   description: 'The geolocation where the domain address is located, in the format: latitude:longitude.'
@@ -791,8 +791,8 @@ The following is the format for a URL entity.
     "Campaign": "STRING, The campaign associated with the URL.",
     "TrafficLightProtocol": "STRING, The Traffic Light Protocol (TLP) color that is suitable for the URL.",
     "ThreatTypes": {
-        "threatcategory": "STRING, .",
-        "threatcategoryconfidence": "STRING, ."
+        "threatcategory": "STRING, The threat category associated to this indicator by the source vendor. For example, Phishing, Control, TOR, etc.",
+        "threatcategoryconfidence": "STRING, Threat Category Confidence is the confidence level provided by the vendor for the threat type category For example a confidence of 90 for threat type category 'malware' means that the vendor rates that this is 90% confidence of being a malware."
     },
     "ASN": "STRING, The autonomous system name for the URL, for example: 'AS8948'.",
     "ASOwner": "STRING, The autonomous system owner of the URL.",
@@ -862,10 +862,10 @@ outputs:
   description: The Traffic Light Protocol (TLP) color that is suitable for the URL.
   type: String
 - contextPath: URL.ThreatTypes.threatcategory
-  description: 
+  description: The threat category associated to this indicator by the source vendor. For example, Phishing, Control, TOR, etc.
   type: String
 - contextPath: URL.ThreatTypes.threatcategoryconfidence
-  description: 
+  description: Threat Category Confidence is the confidence level provided by the vendor for the threat type category For example a confidence of 90 for threat type category 'malware' means that the vendor rates that this is 90% confidence of being a malware.
   type: String
 - contextPath: URL.ASN
   description: "The autonomous system name for the URL, for example: 'AS8948'."
