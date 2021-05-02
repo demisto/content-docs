@@ -56,14 +56,14 @@ The following is the format for a file. File here refers to the file indicator o
             "title": "STRING, The name of the article.",
             "link": "STRING, A link to the original article.",
             "timestamp": "DATE, The time in which the article was published."
-        }
+        },
         "Behavior": {
             "details": "STRING, The technical details which are relevant to the behavior.",
             "title": "STRING, The behavior associated with the file."
-        }
+        },
         "ThreatTypes": {
-        "threatcategory": "STRING, The threat category associated to this indicator by the source vendor. For example, Phishing, Control, TOR, etc.",
-        "threatcategoryconfidence": "STRING, Threat Category Confidence is the confidence level provided by the vendor for the threat type category For example a confidence of 90 for threat type category 'malware' means that the vendor rates that this is 90% confidence of being a malware."
+            "threatcategory": "STRING, The threat category associated to this indicator by the source vendor. For example, Phishing, Control, TOR, etc.",
+            "threatcategoryconfidence": "STRING, Threat Category Confidence is the confidence level provided by the vendor for the threat type category For example a confidence of 90 for threat type category 'malware' means that the vendor rates that this is 90% confidence of being a malware."
         },
         "Imphash": "STRING, The Imphash hash of the file.",
         "Quarantined": "BOOL, Is the file quarantined or not.",
