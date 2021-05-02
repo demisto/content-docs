@@ -9,7 +9,7 @@ title: Scheduled Commands
 
 It's possible for a command to schedule a future execution for another command with a predetermined `next_run` time, `args` as well as a `timeout`.
 
-Use cases for using a scheduled commands include:
+Use cases for using scheduled commands include:
 1. ***Polling Flow*** - The command cannot return the full result in a single execution (likely because it's waiting for a remote process to finish execution). Scheduled commands enable to set the command to try again later, and return the full result when it can. Example use cases are `Sandbox Detonation` and `Autofocus samples search`.
 2. ***Rate Limiting*** - The command cannot perform the required action because the instance has reached its rate limit. Enable Scheduled commands to try again later in order to check if the rate limit has been removed. If so, the command can be executed.
 3. ***Concurrency*** - The command cannot perform the required action because the instance has reached its concurrent limit. Scheduled commands are enabled to set the command to try again later (preferably with exponential backoff).

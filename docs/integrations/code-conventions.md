@@ -833,7 +833,7 @@ The entry is composed of multiple components.
 * The `EntryContext` is the dictionary of context outputs for a given command. For more information see [Outputs](#outputs).
 * The `IndicatorTimeline` is an optional field (available from Server version 5.5.0 and up) . It is only applicable for commands that operate on indicators. It is a dictionary (or list of dictionaries) of the following format:
 * The `PollingCommand` is a command that will run after the number of `NextRun` seconds pass.
-* The `NextRun` is the next run time in seconds for the `PollingCommand`. The `PollingCommand` will be executed after this time has passed.
+* The `NextRun` argument is the next run time in seconds for the `PollingCommand`. The `PollingCommand` will be executed after this time has passed.
 * The `Timeout` argument is the timeout in seconds for a polling sequence. The polling sequence will reach a timeout when this time has passed. However, if a user has provided an `execution-timeout`, it will override the timeout specified by this field.
 * `PollingArgs` are the arguments that will be used while running the `PollingCommand`.
 
