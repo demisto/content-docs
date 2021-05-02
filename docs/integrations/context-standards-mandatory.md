@@ -3,7 +3,8 @@ id: context-standards-mandatory
 title: Mandatory Context Standards
 ---
 
-This article describes the schema for the system indicators and the DBot Score object. No need to output them in your code, instead use the builtin classes as described in the [Context Use Cases](../integrations/context-and-outputs#context-use-cases) article.
+This article describes the standerd context schema used for the system indicators and the DBot Score object. 
+There is no need to manually output this in your code, instead, use the builtin classes as described in the [Context Use Cases](../integrations/context-and-outputs#context-use-cases) article.
 
 ## File
 The following is the format for a file. File here refers to the file indicator or a binary file that could potentially be malicious, and might be checked for reputation or sent to a sandbox. 
