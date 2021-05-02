@@ -306,24 +306,6 @@ Compares incidents in Palo Alto Networks Cortex XDR and Cortex XSOAR, and update
 #### [Cortex XDR - Block File](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---block-file)
 Adds files to the Cortex XDR block list with a given file SHA256 playbook input.
 
-#### [Cortex XDR - Delete file](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---delete-file)
-Deletes the specified file and retrieves the results.
-
-#### [Cortex XDR - Execute snippet code script](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---execute-snippet-code-script) 
-Initiates a new endpoint script execution action using the provided snippet code and retrieve the file results. 
-
-#### [Cortex XDR - Run script](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---run-script)
-Initiates a new endpoint script execution action using a provided script unique ID from the Cortex XDR script library.
-
-#### [Cortex XDR - check file existence](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---check-file-existence)
-Checks if the specified file exists.
-
-
-#### [Cortex XDR - execute commands](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---execute-commands)
-Executes specified shell commands.
-
-#### [Cortex XDR - kill process](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---kill-process)
-Kills the specified process.
 
 ## Before You Start
 
