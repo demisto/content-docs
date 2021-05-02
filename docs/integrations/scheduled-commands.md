@@ -7,7 +7,7 @@ title: Scheduled Commands
 
 <img width="533" src="../doc_imgs/integrations/polling-command.png"></img>
 
-It's possible for a command to schedule a future execution for another command with a predetermined `next_run` time, `args` as well as a `timeout`.
+It's possible for a command to schedule a future execution for another command.
 
 Use cases for using scheduled commands include:
 1. ***Polling Flow*** - The command cannot return the full result in a single execution (likely because it's waiting for a remote process to finish execution). Scheduled commands enable to set the command to try again later, and return the full result when it can. Example use cases are `Sandbox Detonation` and `Autofocus samples search`.
@@ -20,7 +20,7 @@ Use cases for using scheduled commands include:
 
 For an example, see the Autofocus V2 `autofocus-samples-search` command.
 
-### ScheduleMetadata
+### Common.ScheduledCommandConfiguration
 `ScheduleMetadata` is an optional class that enables scheduling commands via the command results.
 
 #### ScheduleMetadata Class Arguments
