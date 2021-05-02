@@ -728,7 +728,7 @@ This class is used to return outputs. This object represents an entry in warroom
 | indicators_timeline | IndicatorsTimeline | Must be an IndicatorsTimeline. used by the server to populate an indicator's timeline.                                                                                       |
 | ignore_auto_extract | bool | If set to **True** prevents the built-in [auto-extract](../incidents/incident-auto-extract) from enriching IPs, URLs, files, and other indicators from the result. Default is **False**.  |
 | mark_as_note | bool |  If set to **True** marks the entry as note. Default is **False**. |
-| scheduled_command_config | Common.ScheduledCommandConfiguration | manages the way the command result should be polled. |
+| scheduled_command_config | Common.ScheduledCommandConfiguration | Manages the way the command result should be polled. |
 
 **Example**
 ```python
@@ -832,10 +832,10 @@ The entry is composed of multiple components.
 * The `ReadableContentsFormat` dictates how to format the value passed to the `HumanReadable` field.
 * The `EntryContext` is the dictionary of context outputs for a given command. For more information see [Outputs](#outputs).
 * The `IndicatorTimeline` is an optional field (available from Server version 5.5.0 and up) . It is only applicable for commands that operate on indicators. It is a dictionary (or list of dictionaries) of the following format:
-* The `PollingCommand` is a command that'll run after `NextRun` seconds pass.
+* The `PollingCommand` is a command that will run after the number of `NextRun` seconds pass.
 * The `NextRun` is the next run time in seconds for the `PollingCommand`. The `PollingCommand` will be executed after this time has passed.
-* The `Timeout` is the timeout in seconds for a polling sequence. The polling sequence will reach a timeout when this time has passed. However, if a user provided an `execution-timeout`, it'll override the timeout specified by this field.
-* The `PollingArgs` are the arguments that will be used when running the `PollingCommand`.
+* The `Timeout` argument is the timeout in seconds for a polling sequence. The polling sequence will reach a timeout when this time has passed. However, if a user has provided an `execution-timeout`, it will override the timeout specified by this field.
+* `PollingArgs` are the arguments that will be used while running the `PollingCommand`.
 
     ```python
     {
