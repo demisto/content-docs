@@ -3,6 +3,9 @@ id: context-standards-mandatory
 title: Mandatory Context Standards
 ---
 
+This article describes the standerd context schema used for the system indicators and the DBot Score object. 
+There is no need to manually output this in your code, instead, use the builtin classes as described in the [Context Use Cases](../integrations/context-and-outputs#context-use-cases) article.
+
 ## File
 The following is the format for a file. File here refers to the file indicator or a binary file that could potentially be malicious, and might be checked for reputation or sent to a sandbox. 
 
@@ -44,7 +47,31 @@ The following is the format for a file. File here refers to the file indicator o
              "type": "STRING, The type of the indicators that are associated with the file",
              "description": "STRING, The description of the indicators that are associated with the file."
         },
-        "MalwareFamily": "STRING, The malware family associated with the file"
+        "MalwareFamily": "STRING, The malware family associated with the file.",
+        "Campaign": "STRING, The campaign associated with the file.",
+        "TrafficLightProtocol": "STRING, The Traffic Light Protocol (TLP) color that is suitable for the file.",
+        "CommunityNotes": {
+            "note": "STRING, Notes on the file that were given by the community.",
+            "timestamp": "DATE, The time in which the note was published."
+        },
+        "Publications": {
+            "source": "STRING, The source in which the article was published.",
+            "title": "STRING, The name of the article.",
+            "link": "STRING, A link to the original article.",
+            "timestamp": "DATE, The time in which the article was published."
+        },
+        "Behavior": {
+            "details": "STRING, The technical details which are relevant to the behavior.",
+            "title": "STRING, The behavior associated with the file."
+        },
+        "ThreatTypes": {
+            "threatcategory": "STRING, The threat category associated to this indicator by the source vendor. For example, Phishing, Control, TOR, etc.",
+            "threatcategoryconfidence": "STRING, Threat Category Confidence is the confidence level provided by the vendor for the threat type category For example a confidence of 90 for threat type category 'malware' means that the vendor rates that this is 90% confidence of being a malware."
+        },
+        "Imphash": "STRING, The Imphash hash of the file.",
+        "Quarantined": "BOOL, Is the file quarantined or not.",
+        "Organization": "STRING, The organization of the file.",
+        "AssociatedFileNames": "STRING, File names that are known as associated to the file."
 }
 ```
 
@@ -138,6 +165,54 @@ outputs:
 - contextPath: File.Malicious.Description
   description: A description explaining why the file was determined to be malicious.
   type: String
+- contextPath: File.Campaign
+  description: The campaign associated with the file.
+  type: String
+- contextPath: File.TrafficLightProtocol
+  description: The Traffic Light Protocol (TLP) color that is suitable for the file.
+  type: String
+- contextPath: File.CommunityNotes.note
+  description: Notes on the file that were given by the community.
+  type: String
+- contextPath: File.CommunityNotes.timestamp
+  description: The time in which the note was published.
+  type: Date
+- contextPath: File.Publications.source
+  description: The source in which the article was published.
+  type: String
+- contextPath: File.Publications.title
+  description: The name of the article.
+  type: String
+- contextPath: File.Publications.link
+  description: A link to the original article.
+  type: String
+- contextPath: File.Publications.timestamp
+  description: The time in which the article was published.
+  type: Date
+- contextPath: File.Behavior.details
+  description: The technical details which are relevant to the behavior.
+  type: String
+- contextPath: File.Behavior.title
+  description: The behavior associated with the file.
+  type: String
+- contextPath: File.ThreatTypes.threatcategory
+  description: The threat category associated to this indicator by the source vendor. For example, Phishing, Control, TOR, etc.
+  type: String
+- contextPath: File.ThreatTypes.threatcategoryconfidence
+  description: Threat Category Confidence is the confidence level provided by the vendor for the threat type category For example a confidence of 90 for threat type category 'malware' means that the vendor rates that this is 90% confidence of being a malware.
+  type: String
+- contextPath: File.Imphash
+  description: The Imphash hash of the file.
+  type: String
+- contextPath: File.Quarantined
+  description: Is the file quarantined or not.
+  type: Bool
+- contextPath: File.Organization
+  description: The organization of the file.
+  type: String
+- contextPath: File.AssociatedFileNames
+  description: File names that are known as associated to the file.
+  type: String
 ```
 
 ## IP
@@ -165,10 +240,40 @@ The following is the format for an IP entity
          "type": "STRING, The type of the indicators that are associated with the IP",
          "description": "STRING, The description of the indicators that are associated with the IP."
     },
-    "MalwareFamily": "STRING, The malware family associated with the IP",
+    "MalwareFamily": "STRING, The malware family associated with the IP.",
     "Organization": {
          "Name": "STRING, The organization of the IP.",
          "Type": "STRING, The organization type of the IP."
+    },
+    "ASOwner": "STRING, The autonomous system owner of the IP.",
+    "Region": "STRING, The region in which the IP is located.",
+    "Port": "STRING, Ports that are associated with the IP.",
+    "Internal": "BOOL, Whether or not the IP is internal or external.",
+    "UpdatedDate": "DATE, The date that the IP was last updated.",
+    "Registrar": {
+        "Abuse":{
+            "Name": "STRING, The name of the contact for reporting abuse.",
+            "Address": "STRING, The address of the contact for reporting abuse.",
+            "Country": "STRING, The country of the contact for reporting abuse.",
+            "Network": "STRING, The network of the contact for reporting abuse.",
+            "Phone": "STRING, The phone number of the contact for reporting abuse.",
+            "Email": "STRING, The email address of the contact for reporting abuse.",
+    }},
+    "Campaign": "STRING, The campaign associated with the IP.",
+    "TrafficLightProtocol": "STRING, The Traffic Light Protocol (TLP) color that is suitable for the IP.",
+    "CommunityNotes": {
+        "note": "STRING, Notes on the IP that were given by the community.",
+        "timestamp": "DATE, The time in which the note was published."
+    },
+    "Publications": {
+        "source": "STRING, The source in which the article was published.",
+        "title": "STRING, The name of the article.",
+        "link": "STRING, A link to the original article.",
+        "timestamp": "DATE, The time in which the article was published."
+    },
+    "ThreatTypes": {
+        "threatcategory": "STRING, The threat category associated to this indicator by the source vendor. For example, Phishing, Control, TOR, etc.",
+        "threatcategoryconfidence": "STRING, Threat Category Confidence is the confidence level provided by the vendor for the threat type category For example a confidence of 90 for threat type category 'malware' means that the vendor rates that this is 90% confidence of being a malware."
     }
 }
 ```
@@ -227,6 +332,69 @@ outputs:
 - contextPath: IP.Organization.Type
   description: The organization type of the IP.
   type: String
+- contextPath: IP.ASOwner
+  description: The autonomous system owner of the IP.
+  type: String
+- contextPath: IP.Region
+  description: The region in which the IP is located.
+  type: String
+- contextPath: IP.Port
+  description: Ports that are associated with the IP.
+  type: String
+- contextPath: IP.Internal
+  description: Whether or not the IP is internal or external.
+  type: Bool
+- contextPath: IP.UpdatedDate
+  description: The date that the IP was last updated.
+  type: Date
+- contextPath: IP.Registrar.Abuse.Name
+  description: The name of the contact for reporting abuse.
+  type: String
+- contextPath: IP.Registrar.Abuse.Address
+  description: The address of the contact for reporting abuse.
+  type: String
+- contextPath: IP.Registrar.Abuse.Country
+  description: The country of the contact for reporting abuse.
+  type: String
+- contextPath: IP.Registrar.Abuse.Network
+  description: The network of the contact for reporting abuse.
+  type: String
+- contextPath: IP.Registrar.Abuse.Phone
+  description: The phone number of the contact for reporting abuse.
+  type: String
+- contextPath: IP.Registrar.Abuse.Email
+  description: The email address of the contact for reporting abuse.
+  type: String
+- contextPath: IP.Campaign
+  description: The campaign associated with the IP.
+  type: String
+- contextPath: IP.TrafficLightProtocol
+  description: The Traffic Light Protocol (TLP) color that is suitable for the IP.
+  type: String
+- contextPath: IP.CommunityNotes.note
+  description: Notes on the IP that were given by the community.
+  type: String
+- contextPath: IP.CommunityNotes.timestamp
+  description: The time in which the note was published.
+  type: Date
+- contextPath: IP.Publications.source
+  description: The source in which the article was published.
+  type: String
+- contextPath: IP.Publications.title
+  description: The name of the article.
+  type: String
+- contextPath: IP.Publications.link
+  description: A link to the original article.
+  type: String
+- contextPath: IP.Publications.timestamp
+  description: The time in which the article was published.
+  type: Date
+- contextPath: IP.ThreatTypes.threatcategory
+  description: The threat category associated to this indicator by the source vendor. For example, Phishing, Control, TOR, etc.
+  type: String
+- contextPath: IP.ThreatTypes.threatcategoryconfidence
+  description: Threat Category Confidence is the confidence level provided by the vendor for the threat type category For example a confidence of 90 for threat type category 'malware' means that the vendor rates that this is 90% confidence of being a malware.
+  type: String
 
 ```
 
@@ -235,26 +403,77 @@ The following is the format for an Endpoint.
 
 ```python
 "Endpoint": {
-    "Hostname": "STRING, The hostname that is mapped to this endpoint.",
-    "ID": "STRING, The unique ID within the tool retrieving the endpoint.",
-    "IPAddress": "STRING, The IP address of the endpoint.",
-    "Domain": "STRING, The domain of the endpoint.",
-    "MACAddress": "STRING, The MAC address of the endpoint.",
+    "Hostname": "STRING, The endpoint's hostname.",
+    "ID": "STRING, The endpoint's ID.",
+    "IPAddress": "STRING, The endpoint's IP address.",
+    "Domain": "STRING, The endpoint's domain.",
+    "MACAddress": "STRING, The endpoint's MAC address.",
     "DHCPServer": "STRING, The DHCP server of the endpoint.",
-    "OS": "STRING, Endpoint OS.",
-    "OSVersion": "STRING, OS version.",
-    "BIOSVersion": "STRING, BIOS version.",
+    "OS": "STRING, The endpoint's operation system.",
+    "OSVersion": "STRING, The endpoint's operation system version.",
+    "BIOSVersion": "STRING, The endpoint's BIOS version.",
     "Model": "STRING, The model of the machine or device.",
     "Memory": "INT, Memory on this endpoint.",
     "Processors": "INT, The number of processors.",
     "Processor": "STRING, The model of the processor.",
-    "IsIsolated": "BOOLEAN, Whether this endpoint isolated or not."
+    "IsIsolated": "STRING, The endpoint's isolation status.",
+    "Status": "STRING, The endpoint's status.",
+    "Vendor": "STRING, The integration name of the endpoint vendor.",
+
 }
 ```
 
 **In YAML**
 ```yaml
-
+    outputs:
+    - contextPath: Endpoint.Hostname
+      description: The endpoint's hostname.
+      type: String
+    - contextPath: Endpoint.OS
+      description: The endpoint's operation system.
+      type: String
+    - contextPath: Endpoint.IPAddress
+      description: The endpoint's IP address.
+      type: String
+    - contextPath: Endpoint.ID
+      description: The endpoint's ID.
+      type: String
+    - contextPath: Endpoint.Status
+      description: The endpoint's status.
+      type: String
+    - contextPath: Endpoint.IsIsolated
+      description: The endpoint's isolation status.
+      type: String
+    - contextPath: Endpoint.MACAddress
+      description: The endpoint's MAC address.
+      type: String
+    - contextPath: Endpoint.Vendor
+      description: The integration name of the endpoint vendor.
+      type: String
+    - contextPath: Endpoint.Domain
+      description: The endpoint's domain.
+      type: String
+    - contextPath: Endpoint.DHCPServer
+      description: The DHCP server of the endpoint.
+      type: String
+    - contextPath: Endpoint.OSVersion
+      description: The endpoint's operation system version.
+      type: String
+    - contextPath: Endpoint.BIOSVersion
+      description: The endpoint's BIOS version.
+      type: String
+    - contextPath: Endpoint.Model
+      description: The model of the machine or device.
+      type: String
+    - contextPath: Endpoint.Memory
+      description: Memory on this endpoint.
+      type: Int
+    - contextPath: Endpoint.Processors
+      description: The number of processors.
+      type: Int
+    - contextPath: Endpoint.Processor
+      description: The model of the processor.
+      type: String
 ```
 
 ## Email Object
@@ -344,7 +563,7 @@ The following is the format for a Domain. Please note that for WHOIS, the entity
          "type": "STRING, The type of the indicators that are associated with the domin",
          "description": "STRING, The description of the indicators that are associated with the domain."
     },
-    "MalwareFamily": "STRING, The malware family associated with the domain",
+    "MalwareFamily": "STRING, The malware family associated with the domain.",
     "WHOIS": {
         "DomainStatus": "STRING, The status of the domain.",
         "NameServers": "STRING, A list of name servers, for example: 'ns1.bla.com, ns2.bla.com'.",
@@ -371,7 +590,40 @@ The following is the format for a Domain. Please note that for WHOIS, the entity
     "Malicious":{
         "Vendor": "STRING, The vendor reporting the domain as malicious.",
         "Description": "STRING, A description explaining why the domain was reported as malicious."
-    }
+    },
+   "DomainIDNName": "STRING, The internationalized domain name (IDN) of the domain.",
+   "Port": "STRING, Ports that are associated with the domain.",
+   "Internal": "BOOL, Whether or not the domain is internal or external.",
+   "Category": "STRING, The category associated with the indicator.",
+   "Campaign": "STRING, The campaign associated with the domain.",
+   "TrafficLightProtocol": "STRING, The Traffic Light Protocol (TLP) color that is suitable for the domain.",
+   "ThreatTypes": {
+        "threatcategory": "STRING, The threat category associated to this indicator by the source vendor. For example, Phishing, Control, TOR, etc.",
+        "threatcategoryconfidence": "STRING, Threat Category Confidence is the confidence level provided by the vendor for the threat type category For example a confidence of 90 for threat type category 'malware' means that the vendor rates that this is 90% confidence of being a malware."
+   },
+   "Geo":{
+        "Location": "STRING, The geolocation where the domain address is located, in the format: latitude:longitude.",
+        "Country": "STRING, The country in which the domain address is located.",
+        "Description": "STRING, Additional information about the location."
+   },
+   "Tech": {
+       "Country": "STRING, The country of the domain technical contact.",
+       "Name": "STRING, The name of the domain technical contact.",
+       "Organization": "STRING, The organization of the domain technical contact.",
+       "Email": "STRING, The email address of the domain technical contact."
+   },
+   "CommunityNotes": {
+        "note": "STRING, Notes on the domain that were given by the community.",
+        "timestamp": "DATE, The time in which the note was published."
+   },
+   "Publications": {
+        "source": "STRING, The source in which the article was published.",
+        "title": "STRING, The name of the article.",
+        "link": "STRING, A link to the original article.",
+        "timestamp": "DATE, The time in which the article was published."
+   },
+   "Billing": "STRING, The billing address of the domain.",
+   
 }
 ```
 
@@ -501,6 +753,72 @@ outputs:
 - contextPath: Domain.Malicious.Description
   description: A description explaining why the domain was reported as malicious.
   type: String
+- contextPath: Domain.DomainIDNName
+  description: The internationalized domain name (IDN) of the domain.
+  type: String
+- contextPath: Domain.Port
+  description: Ports that are associated with the domain.
+  type: String
+- contextPath: Domain.Internal
+  description: Whether or not the domain is internal or external.
+  type: Bool
+- contextPath: Domain.Category
+  description: The category associated with the indicator.
+  type: String
+- contextPath: Domain.Campaign
+  description: The campaign associated with the domain.
+  type: String
+- contextPath: Domain.TrafficLightProtocol
+  description: The Traffic Light Protocol (TLP) color that is suitable for the domain.
+  type: String
+- contextPath: Domain.ThreatTypes.threatcategory
+  description: The threat category associated to this indicator by the source vendor. For example, Phishing, Control, TOR, etc.
+  type: String
+- contextPath: Domain.ThreatTypes.threatcategoryconfidence
+  description: Threat Category Confidence is the confidence level provided by the vendor for the threat type category For example a confidence of 90 for threat type category 'malware' means that the vendor rates that this is 90% confidence of being a malware.
+  type: String
+- contextPath: Domain.Geo.Location
+  description: 'The geolocation where the domain address is located, in the format: latitude:longitude.'
+  type: String
+- contextPath: Domain.Geo.Country
+  description: The country in which the domain address is located.
+  type: String
+- contextPath: Domain.Geo.Description
+  description: Additional information about the location.
+  type: String
+- contextPath: Domain.Tech.Country
+  description: The country of the domain technical contact.
+  type: String
+- contextPath: Domain.Tech.Name
+  description: The name of the domain technical contact.
+  type: String
+- contextPath: Domain.Tech.Organization
+  description: The organization of the domain technical contact.
+  type: String
+- contextPath: Domain.Tech.Email
+  description: The email address of the domain technical contact.
+  type: String
+- contextPath: Domain.CommunityNotes.note
+  description: Notes on the domain that were given by the community.
+  type: String
+- contextPath: Domain.CommunityNotes.timestamp
+  description: The time in which the note was published.
+  type: Date
+- contextPath: Domain.Publications.source
+  description: The source in which the article was published.
+  type: String
+- contextPath: Domain.Publications.title
+  description: The name of the article.
+  type: String
+- contextPath: Domain.Publications.link
+  description: A link to the original article.
+  type: String
+- contextPath: Domain.Publications.timestamp
+  description: The time in which the article was published.
+  type: Date
+- contextPath: Domain.Billing
+  description: The billing address of the domain.
+  type: String
 ```
 
 ## URL
@@ -521,7 +839,31 @@ The following is the format for a URL entity.
          "type": "STRING, The type of the indicators that are associated with the URL",
          "description": "STRING, The description of the indicators that are associated with the URL."
     },
-    "MalwareFamily": "STRING, The malware family associated with the URL"
+    "MalwareFamily": "STRING, The malware family associated with the URL.",
+    "Port": "STRING, Ports that are associated with the URL.",
+    "Internal": "STRING, Whether or not the URL is internal or external.",
+    "Campaign": "STRING, The campaign associated with the URL.",
+    "TrafficLightProtocol": "STRING, The Traffic Light Protocol (TLP) color that is suitable for the URL.",
+    "ThreatTypes": {
+        "threatcategory": "STRING, The threat category associated to this indicator by the source vendor. For example, Phishing, Control, TOR, etc.",
+        "threatcategoryconfidence": "STRING, Threat Category Confidence is the confidence level provided by the vendor for the threat type category For example a confidence of 90 for threat type category 'malware' means that the vendor rates that this is 90% confidence of being a malware."
+    },
+    "ASN": "STRING, The autonomous system name for the URL, for example: 'AS8948'.",
+    "ASOwner": "STRING, The autonomous system owner of the URL.",
+    "Geo": {
+      "Country": "STRING, The country in which the URL is located."
+    },
+    "Organization": "STRING, The organization of the URL.",
+    "CommunityNotes": {
+        "note": "STRING, Notes on the URL that were given by the community.",
+        "timestamp": "DATE, The time in which the note was published."
+    },
+    "Publications": {
+        "source": "STRING, The source in which the article was published.",
+        "title": "STRING, The name of the article.",
+        "link": "STRING, A link to the original article.",
+        "timestamp": "DATE, The time in which the article was published."
+    }
 }
 ```
 
@@ -561,6 +903,54 @@ outputs:
 - contextPath: URL.MalwareFamily
   description: The malware family associated with the URL.
   type: String
+- contextPath: URL.Port
+  description: Ports that are associated with the URL.
+  type: String
+- contextPath: URL.Internal
+  description: Whether or not the URL is internal or external.
+  type: Bool
+- contextPath: URL.Campaign
+  description: The campaign associated with the URL.
+  type: String
+- contextPath: URL.TrafficLightProtocol
+  description: The Traffic Light Protocol (TLP) color that is suitable for the URL.
+  type: String
+- contextPath: URL.ThreatTypes.threatcategory
+  description: The threat category associated to this indicator by the source vendor. For example, Phishing, Control, TOR, etc.
+  type: String
+- contextPath: URL.ThreatTypes.threatcategoryconfidence
+  description: Threat Category Confidence is the confidence level provided by the vendor for the threat type category For example a confidence of 90 for threat type category 'malware' means that the vendor rates that this is 90% confidence of being a malware.
+  type: String
+- contextPath: URL.ASN
+  description: "The autonomous system name for the URL, for example: 'AS8948'."
+  type: String
+- contextPath: URL.ASOwner
+  description:The autonomous system owner of the URL.
+  type: String
+- contextPath: URL.GeoCountry
+  description: The country in which the URL is located.
+  type: String
+- contextPath: URL.Organization
+  description:The organization of the URL.
+  type: String
+- contextPath: URL.CommunityNotes.note
+  description: Notes on the URL that were given by the community.
+  type: String
+- contextPath: URL.CommunityNotes.timestamp
+  description: The time in which the note was published.
+  type: Date
+- contextPath: URL.Publications.source
+  description: The source in which the article was published.
+  type: String
+- contextPath: URL.Publications.title
+  description: The name of the article.
+  type: String
+- contextPath: URL.Publications.link
+  description: A link to the original article.
+  type: String
+- contextPath: URL.Publications.timestamp
+  description: The time in which the article was published.
+  type: Date
 ```
 
 ## CVE
