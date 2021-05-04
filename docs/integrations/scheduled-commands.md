@@ -9,7 +9,7 @@ title: Scheduled Commands
 
 A command can schedule the future execution of another command.
 
-The playbook will not proceed to the next task until it is done with all scheduled commands, i.e. until there is no future execution scheduled.
+The playbook does not proceed to the next task until it is done with all scheduled commands, i.e. until there is no future execution scheduled.
 When the playbook is waiting for a command execution it does not use a worker, as workers are only used at the time commands are executed.
 
 Use cases for scheduled commands include:
