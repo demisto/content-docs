@@ -715,7 +715,6 @@ timeline = IndicatorsTimeline(
 )
 ```
 
-
 ### CommandResults
 This class is used to return outputs. This object represents an entry in warroom. A string representation of an object must be parsed into an object before being passed into the field.
 
@@ -731,6 +730,7 @@ This class is used to return outputs. This object represents an entry in warroom
 | indicators_timeline | IndicatorsTimeline | Must be an IndicatorsTimeline. used by the server to populate an indicator's timeline.                                                                                       |
 | ignore_auto_extract | bool | If set to **True** prevents the built-in [auto-extract](../incidents/incident-auto-extract) from enriching IPs, URLs, files, and other indicators from the result. Default is **False**.  |
 | mark_as_note | bool |  If set to **True** marks the entry as note. Default is **False**. |
+| scheduled_command | ScheduledCommand | Manages the way the command result should be polled. |
 
 **Example**
 ```python
@@ -818,7 +818,11 @@ demisto.results(
         'HumanReadable': 'Submitted file is being analyzed.',
         'ReadableContentsFormat': EntryFormat.MARKDOWN,
         'EntryContext': entry_context,
-        'IndicatorTimeline': timeline
+        'IndicatorTimeline': timeline,
+        'PollingCommand': polling_command,        
+        'NextRun': next_run,
+        'Timeout': timeout,
+        'PollingArgs': polling_args
     }
 )
 ```
@@ -830,6 +834,11 @@ The entry is composed of multiple components.
 * The `ReadableContentsFormat` dictates how to format the value passed to the `HumanReadable` field.
 * The `EntryContext` is the dictionary of context outputs for a given command. For more information see [Outputs](#outputs).
 * The `IndicatorTimeline` is an optional field (available from Server version 5.5.0 and up) . It is only applicable for commands that operate on indicators. It is a dictionary (or list of dictionaries) of the following format:
+* The `PollingCommand` runs after the time period (in seconds) designated in the `NextRun` argument.
+* The `NextRun` argument is the next run time in seconds for the `PollingCommand`. The `PollingCommand` executes after this time period.
+* The `Timeout` argument is the timeout in seconds for polling sequence command execution. However, if a user has provided an `execution-timeout`, it overrides the timeout specified by this field.
+* `PollingArgs` are the arguments that will be used while running the `PollingCommand`.
+
     ```python
     {
         'Value': indicator_value,  # for example, an IP address like '8.8.8.8'
