@@ -3,21 +3,21 @@ id: scheduled-commands
 title: Scheduled Commands
 ---
 
-### Available from XSOAR version 6.2.0 and above.
+### Available from Cortex XSOAR version 6.2.0 and later.
 
 <img width="533" src="../doc_imgs/integrations/polling-command.png"></img>
 
-It's possible for a command to schedule a future execution for another command.
+A command can schedule the future execution of another command.
 
-The playbook will not proceed to the next task until it is done with all scheduled commands. i.e. until there is no future execution scheduled.
+The playbook will not proceed to the next task until it is done with all scheduled commands, i.e. until there is no future execution scheduled.
 When the playbook is waiting for a command execution it does not use a worker, as workers are only used at the time commands are executed.
 
-Use cases for using scheduled commands include:
-* ***Polling Flow*** - The command cannot return the full result in a single execution (likely because it's waiting for a remote process to finish execution). Scheduled commands enable to set the command to try again later, and return the full result when it can. Example use cases are `Sandbox Detonation` and `Autofocus samples search`.
+Use cases for scheduled commands include:
+* ***Polling Flow*** - The command cannot return the full result in a single execution (possibly because a remote process hasn't finished execution). Scheduled commands enable you to try the command again later, and return the full results when available. Examples include `Sandbox Detonation` and `Autofocus samples search`.
 
 ### YAML Prerequisite
-* ***Integration***: In the integration yml, under the command root add `polling: true`.
-* ***Script***: In the script yml, in the root of the file add `polling: true`.
+* ***Integration***: In the integration yml, under the command root, add `polling: true`.
+* ***Script***: In the script yml, in the root of the file, add `polling: true`.
 
 For an example, see the [Autofocus V2](https://github.com/demisto/content/blob/master/Packs/AutoFocus/Integrations/AutofocusV2/AutofocusV2.py) `autofocus-samples-search` command.
 
@@ -26,25 +26,25 @@ For an example, see the [Autofocus V2](https://github.com/demisto/content/blob/m
 
 | Arg               | Type   | Description                                                                                                                                                                                |
 |-------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| command                        | str    | The command that will run after `next_run_in_seconds` has passed.
+| command                        | str    | The command that runs after `next_run_in_seconds` has passed.
 | next_run_in_seconds            | int    | How long to wait before executing the command.
 | args (optional)                | dict   | Arguments to use when executing the command.
-| timeout_in_seconds (optional)  | int    | Number of seconds until the polling sequence will timeout.
+| timeout_in_seconds (optional)  | int    | Number of seconds until the polling sequence timeouts.
 
-When provided to [CommandResults](./code-conventions#commandresults) it will transform its result into a ***schedule result***.
-When the time comes for the next command to run, it will be executed.
-The scheduled command can return another ***schedule result***, that will schedule another schedule command and so on.
+When provided to [CommandResults](./code-conventions#commandresults) it transforms the result into a ***schedule result***.
+After the `next_run_in_seconds` delay, the command will be executed.
+The scheduled command can return another ***schedule result***, that schedules another scheduled command and so on.
 
 The interval between each run is determined by `next_run_in_seconds`, however it will never be less than 10 seconds.
 
-The schedule sequence will be complete when either one of three terminating actions happen:
+The schedule sequence completes when any one of three terminating actions occur:
 
-1. ***Done*** - The integration will finish a schedule sequence by **not returning** a schedule result. The sequence will continue as long as a schedule result was returned. By returning no schedule result, the sequence will be done.
-2. ***Error*** - The schedule sequence will finish with an error when a command in the sequence returns an error result.
-3. ***Timeout (automatically handled)*** - The schedule sequence will finish execution with a timeout error when the timeout is reached. XSOAR will return the timeout error entry automatically.
+1. ***Done*** - The integration finishes a schedule sequence by **not returning** a schedule result. Otherwise, the sequence continues as long as a schedule result is returned. 
+2. ***Error*** - The schedule sequence finishes with an error when a command in the sequence returns an error result.
+3. ***Timeout (automatically handled)*** - The schedule sequence finishes execution with a timeout error when the timeout is reached. Cortex XSOAR will return the timeout error entry automatically.
 
 #### Code Example
-In the example below, if the `status` is not `complete` then a result with `schedule_config` will be returned which will trigger in 60 seconds a poll for the search. This will be done in the next run as well, and again until its status is complete.
+In the example below, if the `status` is not `complete` then a result with `schedule_config` is returned. After 60 seconds, the result triggers a poll for the search. This is done in the next run as well, and repeats until the status is complete.
 
 ```python
 def search_sessions_with_polling_command(args):
