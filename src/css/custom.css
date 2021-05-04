@@ -50,6 +50,8 @@
   --ifm-color-secondary-lightest: #a8b5c3;
   --ifm-font-family-base: "Montserrat", sans-serif, "Font Awesome 5 Free";
   --ifm-font-family-monospace: "Roboto Mono", monospace;
+
+  --ifm-button-background-color: var(--ifm-color-primary);
 }
 
 /* Dark mode overrides */
@@ -700,4 +702,17 @@ html[data-theme="dark"] .header-github-link:before {
   width: 30px;
   position: relative;
   margin-right: 10px;
+}
+
+/* sidebar menu button overrides */ 
+.menu--responsive button {
+  color: white !important;
+  background-color: var(--ifm-color-primary);
+  border: var(--ifm-color-primary);
+}
+
+.menu--responsive button:active {
+  color: white !important;
+  background-color: var(--ifm-color-primary);
+  border: var(--ifm-color-primary);
 }

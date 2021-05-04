@@ -12,14 +12,12 @@ import useScrollPosition from "@theme/hooks/useScrollPosition";
 import useUserPreferencesContext from "@theme/hooks/useUserPreferencesContext";
 import useWindowSize, { windowSizes } from "@theme/hooks/useWindowSize";
 import IconArrow from "@theme/IconArrow";
-import IconMenu from "@theme/IconMenu";
 import Logo from "@theme/Logo";
 import clsx from "clsx";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Select from "react-select";
 import AsyncSelect from "react-select/async";
 import styles from "./styles.module.css";
-const MOBILE_TOGGLE_SIZE = 24;
 
 function usePrevious(value) {
   const ref = useRef(value);
@@ -358,7 +356,7 @@ function MarketplaceSidebar({
         <button
           aria-label={showResponsiveSidebar ? "Close Menu" : "Open Menu"}
           aria-haspopup="true"
-          className="button button--secondary button--sm menu__button"
+          className="button button--primary button--sm menu__button"
           type="button"
           onClick={() => {
             setShowResponsiveSidebar(!showResponsiveSidebar);
@@ -374,11 +372,7 @@ function MarketplaceSidebar({
               &times;
             </span>
           ) : (
-            <IconMenu
-              className={styles.sidebarMenuIcon}
-              height={MOBILE_TOGGLE_SIZE}
-              width={MOBILE_TOGGLE_SIZE}
-            />
+              <i className={clsx("fas fa-sliders-h", styles.sidebarMenuIcon)}></i>
           )}
         </button>
         <ul className="menu__list">
@@ -391,12 +385,10 @@ function MarketplaceSidebar({
                 onChange={(e) => search(e.target.value)}
                 autoComplete="false"
               ></input>
-              <button>
-                <i
-                  title="Keyword Search"
-                  className={clsx("fas fa-search", styles.searchIcon)}
-                ></i>
-              </button>
+              <i
+                title="Keyword Search"
+                className={clsx("fas fa-search", styles.searchIcon)}
+              ></i>
             </div>
           </li>
           <br></br>
