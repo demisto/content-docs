@@ -58,20 +58,22 @@ def main():
     """
         PARSE AND VALIDATE INTEGRATION PARAMS
     """
-    username = demisto.params().get('credentials').get('identifier')
-    password = demisto.params().get('credentials').get('password')
+    params = demisto.params()
+    username = params.get('credentials', {}).get('identifier')
+    password = params.get('credentials', {}).get('password')
 
     # Remove trailing slash to prevent wrong URL path to service
-    base_url = urljoin(demisto.params()['url'], '/api/v1/suffix')
+    base_url = urljoin(params['url'], '/api/v1/suffix')
 
-    verify_certificate = not demisto.params().get('insecure', False)
+    verify_certificate = not params.get('insecure', False)
 
     # How many time before the first fetch to retrieve incidents
-    first_fetch_time = demisto.params().get('fetch_time', '3 days').strip()
+    first_fetch_time = params.get('fetch_time', '3 days').strip()
 
-    proxy = demisto.params().get('proxy', False)
-
-    demisto.debug(f'Command being called is {demisto.command()}')
+    proxy = params.get('proxy', False)
+    
+    command = demisto.command()
+    demisto.debug(f'Command being called is {command}')
     try:
         client = Client(
             base_url=base_url,
@@ -79,12 +81,12 @@ def main():
             auth=(username, password),
             proxy=proxy)
 
-        if demisto.command() == 'test-module':
+        if command == 'test-module':
             # This is the call made when pressing the integration Test button.
             result = test_module(client)
             return_results(result)
 
-        elif demisto.command() == 'fetch-incidents':
+        elif command == 'fetch-incidents':
             # Set and define the fetch incidents command to run after activated via integration settings.
             next_run, incidents = fetch_incidents(
                 client=client,
@@ -94,12 +96,12 @@ def main():
             demisto.setLastRun(next_run)
             demisto.incidents(incidents)
 
-        elif demisto.command() == 'helloworld-say-hello':
+        elif command == 'helloworld-say-hello':
             return_results(say_hello_command(client, demisto.args()))
 
     # Log exceptions
     except Exception as e:
-        return_error(f'Failed to execute {demisto.command()} command. Error: {str(e)}')
+        return_error(f'Failed to execute {command} command. Error: {str(e)}')
 
 
 if __name__ in ('__main__', '__builtin__', 'builtins'):
