@@ -35,15 +35,15 @@ You'll have to implement it in your integration code. In order to run this code 
 Since the long running container does not run in a scope of an incident, it has no standard place to output results into.
 For that we have dedicated functions to interact with the server:
 * `addEntry` - Adds an entry to a specified incident War Room.
-For more details, see the [API reference](https://xsoar.pan.dev/docs/reference/articles/demisto-class#addentry).
+For more details, see the [API reference](https://xsoar.pan.dev/docs/reference/api/demisto-class#addentry).
 * `createIncidents` - Creates incidents according to a provided JSON.
-For more details, see the [API reference](https://xsoar.pan.dev/docs/reference/articles/demisto-class#createincidents).
+For more details, see the [API reference](https://xsoar.pan.dev/docs/reference/api/demisto-class#createincidents).
 * `findUser` - Find a Cortex XSOAR user by a name or email. Useful for creating incidents.
-For more details, see the [API reference](https://xsoar.pan.dev/docs/reference/articles/demisto-class#finduser).
+For more details, see the [API reference](https://xsoar.pan.dev/docs/reference/api/demisto-class#finduser).
 * `handleEntitlementForUser` - Adds an entry with entitlement to a provided investigation.
-For more details, see the [API reference](https://xsoar.pan.dev/docs/reference/articles/demisto-class#handleentitlementforuser).
+For more details, see the [API reference](https://xsoar.pan.dev/docs/reference/api/demisto-class#handleentitlementforuser).
 * `updateModuleHealth` - Update the instance status. It's a way to reflect the container state to the user.
-For more details, see the [API reference](https://xsoar.pan.dev/docs/reference/articles/demisto-class#updatemodulehealth).
+For more details, see the [API reference](https://xsoar.pan.dev/docs/reference/api/demisto-class#updatemodulehealth).
 
   ![image](../doc_imgs/integrations/66123930-cb284500-e5eb-11e9-804d-6154423e6cee.png)
 * `mirrorInvestigation` - For chat based integrations, mirror a provided Cortex XSOAR investigation to the corresponding chat module.
