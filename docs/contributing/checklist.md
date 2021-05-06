@@ -64,7 +64,10 @@ If your pack contains at least a custom Incident or Indicator field, you'll need
 
 - Incident or Indicator field JSON file (i.e. `Packs/YourPackName/IncidentFields/YourIncidentFieldName.json` or `Packs/YourPackName/IndicatorFields/YourIndicatorFieldName.json`): if exported directly from the XSOAR UI, it must be formatted with `demisto-sdk format`.
 
-*Note*: you will need a single JSON file for each field (individual files are created automatically if you export your content via `demisto-sdk download` or through the `Export Custom Content` option under `Settings` - `About` - `Troubleshooting`).
+:::note
+- You will need a single JSON file for each field (individual files are created automatically if you export your content via `demisto-sdk download` or through the `Export Custom Content` option under `Settings` - `About` - `Troubleshooting`).
+- It is best practice not to associate a field to all types, but only to the relevant ones (e.g., if you added an incident type, for events fetched from a third-party product, and incident fields to contain details of the event, associate those fields only to that incident type).
+:::
 
 ### Incident or Indicator Types
 
