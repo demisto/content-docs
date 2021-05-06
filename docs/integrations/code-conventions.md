@@ -206,6 +206,10 @@ client = Client(
 )
 ```
 
+### HTTP Call Retries
+We do not allow using `sleep` in the code as it might lead to performance issues.
+Instead, you can utilize the retry mechanism implemented in the **BaseClient** by using the `retries` and `backoff_factor` arguments of the `_http_request` function.
+
 ## Command Functions
 These are the best practices for defining the command functions.
 - Each integration command should have a corresponding `_command` function.
