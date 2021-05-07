@@ -308,6 +308,19 @@ function DocSidebarItem(props) {
   }
 }
 
+function useShowAnnouncementBar() {
+  const {isAnnouncementBarClosed} = useUserPreferencesContext();
+  const [showAnnouncementBar, setShowAnnouncementBar] = useState(
+    !isAnnouncementBarClosed,
+  );
+  useScrollPosition(({scrollY}) => {
+    if (!isAnnouncementBarClosed) {
+      setShowAnnouncementBar(scrollY === 0);
+    }
+  });
+  return showAnnouncementBar;
+}
+
 function MarketplaceSidebar({
   path,
   sidebar,
@@ -318,13 +331,12 @@ function MarketplaceSidebar({
   totalPacks,
   totalFilteredPacks,
 }) {
+  const showAnnouncementBar = useShowAnnouncementBar();
   const [showResponsiveSidebar, setShowResponsiveSidebar] = useState(false);
   const {
     navbar: { hideOnScroll },
     hideableSidebar,
   } = useThemeConfig();
-  const { isAnnouncementBarClosed } = useUserPreferencesContext();
-  const { scrollY } = useScrollPosition();
   useLockBodyScroll(showResponsiveSidebar);
   const windowSize = useWindowSize();
   useEffect(() => {
@@ -348,8 +360,7 @@ function MarketplaceSidebar({
           styles.menu,
           {
             "menu--show": showResponsiveSidebar,
-            [styles.menuWithAnnouncementBar]:
-              !isAnnouncementBarClosed && scrollY === 0,
+            [styles.menuWithAnnouncementBar]: showAnnouncementBar
           }
         )}
       >
