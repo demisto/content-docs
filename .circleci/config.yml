@@ -124,8 +124,8 @@ workflows:
   daily:
     triggers:
       - schedule:
-          # should trigger every day at 1:00 & 13:00 UTC (4 hours after each upload-flow run)
-          cron: "0 1,13 * * *"
+          # should trigger every day at 13:00 UTC (4 hours after each upload-flow run)
+          cron: "0 13 * * *"
           filters:
             branches:
               only:
