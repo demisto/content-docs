@@ -67,7 +67,7 @@ To run Office 365 compliance search commands without running Docker, install the
       ***docker run -it demisto/py-ews:2.0 bash***
    2. From inside the Docker container, run:
 
-      ***curl -v https://<Server>/EWS/Exchange.asmx/***
+      ***curl -v https://\<Server>/EWS/Exchange.asmx/***
 3. If Docker cannot curl to the EWS server, restart the Docker service.
 4. If the issue is not resolved, contact Cortex XSOAR customer support.
 
