@@ -182,6 +182,27 @@ Let's review the object key and values.
    * Click the `ADVANCED` tab. 
    * Go to the `Fields` section and filter `indicator` fields.
    * To inspect a specific field - tick the box near the field name and click `Edit`. Note that when inspecting a field, it's `cliname` is listed as `machinename`.
+* `"relationships"` - _optional_. This list should contain a dictionary of values of the relationships. 
+There are two way to create relationships:
+1. As part of creating an indicator.
+2. Creating only relationships without an indicator.
+- For both ways use `demisto.createIndicators` 
+
+Steps to create the relationships:
+1. Create an `EntityRelationship` object with the relationships data. If more then one relationships exists, create a list and append all of the `EntityRelationship` objects to it.
+ - The name of the relationships should be one of the exisitng relationships : https://xsoar.pan.dev/docs/reference/api/common-server-python#relationships
+For more information visit: https://xsoar.pan.dev/docs/reference/api/common-server-python#entityrelationship
+2. Use the `to_indicator()` function of the object to convert each object (or a list of objects) to the required format.
+3. If the relationships is part of an indicator:
+    - Added to the `relationship` key of the indicator the list after running `to_indicator`.
+   If the relationship is not attached to an indicator:
+   - We will need to create a dummy indicator whose value is `$$DummyIndicator$$` and add the relationships key with the list after running `to_indicator`.
+   ```
+   {
+        "value": "$$DummyIndicator$$",
+        "relationships": relationships_list
+    }
+   ```
 
 ![Indicator Fields in Cortex XSOAR](https://raw.githubusercontent.com/demisto/content-docs/b202510c98d7812711b7323ad21e9bcc23e0983d/static/img/Cortex%20XSOAR%20indicator%20fields.png)
 
