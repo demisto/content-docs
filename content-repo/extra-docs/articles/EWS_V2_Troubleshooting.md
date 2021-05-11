@@ -7,7 +7,7 @@ description: The following provides EWS V2 troubleshooting steps to perform befo
 
 Exchange Web Services (EWS) provides the functionality to enable client applications to communicate with the Exchange server. EWS provides access to much of the same data that is made available through Microsoft OfficeOutlook.
 
-To configure the EWS V2 integration, see *Configure EWS v2 on Demisto* in the [Developer Docs](https://xsoar.pan.dev/docs/reference/integrations/ews-v2).
+For information on the EWS V2 integration, see [EWS v2](https://xsoar.pan.dev/docs/reference/integrations/ews-v2).
 
 
 ## Docker Issues
@@ -18,7 +18,7 @@ The following are possible Docker issues that may occur. If you are not running 
 
 ### Not Running Docker 
 
-To run Office 365 compliance search commands without running Docker, install the following python packages:
+To run Office 365 non-compliance search commands without running Docker, install the following python packages:
 - asn1crypto==0.24.0
 - cached-property==1.4.2
 - certifi==2018.4.16
