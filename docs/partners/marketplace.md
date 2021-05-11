@@ -1,6 +1,6 @@
 ---
-id: marketplace 
-title: Marketplace 
+id: paid-packs 
+title: Paid Packs 
 ---
 
 With the release of Cortex XSOAR v.6 in August 2020, we are pleased to announce the industry's first fully integrated marketplace for orchestration content!
