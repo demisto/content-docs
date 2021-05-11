@@ -58,7 +58,7 @@ To run Office 365 compliance search commands without running Docker, install the
       - http://mirror.centos.org/centos/7/extras/x86_64/Packages/pigz-2.3.3-1.el7.centos.x86_64.rpm
       - https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-18.03.1.ce-1.el7.centos.x86_64.rpm (This is the Docker installation rpm.)
    3. Install the rpms one by one in the above order. The installation command is
-       ***sudo yum install -y <rpm_filename>.rpm***.
+       ***sudo yum install -y &lt;rpm_filename&gt;.rpm***.
    4. Run ***sudo usermod -aG docker demisto***.
 2. Get the latest Demisto Docker images by running ***docker pull demisto/py-ews:2.0***. If this command fails, refer to https://support.demisto.com/hc/en-us/articles/360001649634-Docker-Image-Air-Gapped-Installation.
 3. Verify that you can Docker curl to the EWS server.
@@ -120,7 +120,7 @@ If this error occurs, follow the instructions in [How to Install Docker](#how-to
 ### No such folder
 1. Find the desired folder’s name by running
 
-   ***!ews-find-folder target-mailbox=\<target mailbox>***
+   ***!ews-find-folder target-mailbox=&lt;target mailbox&gt;***
 
 2. If the target mailbox folders are shown in a right-to-left-language, copy and paste the folder name(s) directly from the output into the *Name of the folder from which to fetch incidents* field. (The reason for this is RTL languages in Exchange have invisible characters, so simply typing their names in the folder path won’t work. You must copy and paste each filename in the path from the output of !ews-find-folders.)
 2. Verify that the user in the *Authentication* field has access to the target mailbox and the folder.
