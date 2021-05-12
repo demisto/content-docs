@@ -101,7 +101,7 @@ Integrations that have the `create relationships` parameter create relationships
 ```
 
 #### Steps how to create relationships:
-1. Create an `EntityRelationship` object with the relationships data. If more then one relationships exists, create a list and append all of the `EntityRelationship` objects to it.
+1. Create an `EntityRelationship` object with the relationships data. If more than one relationship exists, create a list and append all of the `EntityRelationship` objects to it.
  - The name of the relationships should be one of the exisitng relationships : https://xsoar.pan.dev/docs/reference/api/common-server-python#relationships
    For more information visit: https://xsoar.pan.dev/docs/reference/api/common-server-python#entityrelationship
 2. Use the Common object when creating the indicator and set in the relationships key the list of `EntityRelationship` objects.
