@@ -33,7 +33,7 @@ const features = [
             "button button--outline button--primary button--md",
             styles.getStarted
           )}
-          href="https://www.demisto.com/security-orchestration/"
+          href="https://www.paloaltonetworks.com/cortex/xsoar"
         >
           Learn More
         </Link>
