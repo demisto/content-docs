@@ -189,7 +189,7 @@ There are two way to create relationships:
 - For both ways use `demisto.createIndicators` 
 
 Steps to create the relationships:
-1. Create an `EntityRelationship` object with the relationships data. If more then one relationships exists, create a list and append all of the `EntityRelationship` objects to it.
+1. Create an `EntityRelationship` object with the relationships data. If more than one relationship exists, create a list and append all of the `EntityRelationship` objects to it.
  - The name of the relationships should be one of the exisitng relationships : https://xsoar.pan.dev/docs/reference/api/common-server-python#relationships
 For more information visit: https://xsoar.pan.dev/docs/reference/api/common-server-python#entityrelationship
 2. Use the `to_indicator()` function of the object to convert each object (or a list of objects) to the required format.
