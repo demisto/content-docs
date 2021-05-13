@@ -2,19 +2,19 @@
 id: feeds
 title: Feed Integrations
 ---
-Server version 5.5.0 adds support for Feed Integrations. Feed Integrations allow fetching indicators from feeds, for example TAXII,
+Server version 5.5.0 adds support for Feed integrations. Feed integrations allow fetching indicators from feeds, for example TAXII,
 AutoFocus, Office 365, and so on.
 
-An example Feed Integration can be seen [here](https://github.com/demisto/content/tree/master/Packs/FeedOffice365/Integrations/FeedOffice365).
+An example Feed integration can be seen [here](https://github.com/demisto/content/tree/master/Packs/FeedOffice365/Integrations/FeedOffice365).
 
-Feed Integrations are developed the same as other Integrations. They provide a few extra configuration parameters and APIs.
+Feed integrations are developed the same as other integrations. They provide a few extra configuration parameters and APIs.
 
 
 ## Naming Convention
-Feed Integration names (`id`, `name` and `display` fields) should end with the word **Feed**. This consistent naming convention ensures that users can easily understand what the Integration is used for.
+Feed Integration names (`id`, `name` and `display` fields) should end with the word **Feed**. This consistent naming convention ensures that users can easily understand what the integration is used for.
 
 ## Supported Server Version
-Feed Integration's YAML file _must_ have the following field `fromversion: 5.5.0`. This is because Feed Integrations are only supported from Server version 5.5.0 and onwards.
+A Feed integration's YAML file _must_ have the following field `fromversion: 5.5.0`. This is because Feed integrations are only supported from server version 5.5.0 and onwards.
 
 
 ## Required Parameters
@@ -36,7 +36,7 @@ Every Feed integration should have the following parameters in the integration Y
   - Suspicious
   - Bad
   additionalinfo: Indicators from this integration instance will be marked with this
-    reputation
+    reputation.
 - display: Source Reliability
   name: feedReliability
   defaultvalue: F - Reliability cannot be judged
@@ -49,7 +49,7 @@ Every Feed integration should have the following parameters in the integration Y
   - D - Not usually reliable
   - E - Unreliable
   - F - Reliability cannot be judged
-  additionalinfo: Reliability of the source providing the intelligence data
+  additionalinfo: Reliability of the source providing the intelligence data.
 - display: ""
   name: feedExpirationPolicy
   defaultvalue: indicatorType
@@ -86,7 +86,7 @@ Incremental Feeds pull only new or modified indicators that have been sent from 
 
 Examples of incremental feeds usually include feeds that fetch based on a time range. For example, a daily feed which provides new indicators for the last day or a feed which is immutable and provides indicators from a search date onwards.
 
-To indicate to the Cortex XSOAR Server that a feed is incremental add the configuration parameter:  `feedIncremental`. If the user should not be able to modify this setting, set the parameter to **hidden** with a `defaultValue` of **true**. For example:
+To indicate to the Cortex XSOAR server that a feed is incremental, add the configuration parameter:  `feedIncremental`. If the user is not able to modify this setting, set the parameter to **hidden** with a `defaultValue` of **true**. For example:
 ```yml
 - additionalinfo: Incremental feeds pull only new or modified indicators that have been sent from the integration. The determination if the indicator is new or modified happens on the 3rd-party vendor's side, so only indicators that are new or modified are sent to Cortex XSOAR. Therefore, all indicators coming from these feeds are labeled new or modified.
   defaultvalue: 'true'
@@ -104,13 +104,13 @@ Code examples of Incremental Feeds:
 * [DHS Feed](https://github.com/demisto/content/blob/master/Packs/FeedDHS/Integrations/DHS_Feed/DHS_Feed.yml)
 
 ## Commands
-Every Feed Integration will at minimum have three commands:
+Every Feed integration will at minimum have three commands:
 - `test-module` - this is the command that is run when the `Test` button in the configuration panel of an integration is clicked.
-- `<product-prefix>-get-indicators` - where `<product-prefix>` is replaced by the name of the Product or Vendor source providing the feed. So for example, if you were developing a feed integration for Microsoft Intune this command might be called `msintune-get-indicators`. This command should fetch a limited number of indicators from the feed source and display them in the war room.
-- `fetch-indicators` - this command will initiate a request to the feed endpoint, format the data fetched from the endpoint to conform to Cortex XSOAR's expected input format and create new indicators. If the integration instance is configured to `Fetch indicators`, then this is the command that will be executed at the specified `Feed Fetch Interval`.
+- `<product-prefix>-get-indicators` - where `<product-prefix>` is replaced by the name of the Product or Vendor source providing the feed. So for example, if you were developing a feed integration for Microsoft Intune, this command might be called `msintune-get-indicators`. This command should fetch a limited number of indicators from the feed source and display them in the war room.
+- `fetch-indicators` - this command will initiate a request to the feed endpoint, format the data fetched from the endpoint to conform to Cortex XSOAR's expected input format, and create new indicators. If the integration instance is configured to `Fetch indicators`, then this is the command that will be executed at the specified `Feed Fetch Interval`.
 
 ## API Command: demisto.createIndicators()
-Use the `demisto.createIndicators()` function  when the `fetch-indicators` command is executed. Let's look at an example `main()` from an existing Feed Integration.
+Use the `demisto.createIndicators()` function  when the `fetch-indicators` command is executed. Let's look at an example `main()` from an existing Feed integration.
 ```python
 def main():
     params = demisto.params()
@@ -151,8 +151,8 @@ Indicator Objects passed to `demisto.createIndicators`. Let's look at an example
 }
 ```
 Let's review the object key and values.
-* `"value"` - _required_. The indicator value, e.g. `"8.8.8.8"`.
-* `"type"` - _required_. The indicator type (types as defined in Cortex XSOAR), e.g. `"IP"`. One can use the `FeedIndicatorType` class to populate this field. This class, which is imported from `CommonServerPython` has all of the indicator types that come out of the box with Cortex XSOAR. It appears as follows,
+* `"value"` - _required_. The indicator value, e.g., `"8.8.8.8"`.
+* `"type"` - _required_. The indicator type (types as defined in Cortex XSOAR), e.g., `"IP"`. One can use the `FeedIndicatorType` class to populate this field. This class, which is imported from `CommonServerPython` has all of the indicator types that come out of the box with Cortex XSOAR. It appears as follows,
     ```python
     class FeedIndicatorType(object):
         """Type of Indicator (Reputations), used in TIP integrations"""
@@ -182,7 +182,33 @@ Let's review the object key and values.
    * Click the `ADVANCED` tab. 
    * Go to the `Fields` section and filter `indicator` fields.
    * To inspect a specific field - tick the box near the field name and click `Edit`. Note that when inspecting a field, it's `cliname` is listed as `machinename`.
+* `"relationships"` - _optional_. This list should contain a dictionary of values of the relationships. 
+There are two way to create relationships:
+   1. As part of creating an indicator.
+   2. Creating only relationships without an indicator.
+
+   For both ways use `demisto.createIndicators` 
+
+Steps to create the relationships:
+1. Create an `EntityRelationship` object with the relationships data. If more than one relationship exists, create a list and append all of the `EntityRelationship` objects to it.
+   
+   The name of the relationships should be one of the exisitng relationships : https://xsoar.pan.dev/docs/reference/api/common-server-python#relationships
+
+   For more information, see: https://xsoar.pan.dev/docs/reference/api/common-server-python#entityrelationship
+2. Use the `to_indicator()` function of the object to convert each object (or a list of objects) to the required format.
+3. If the relationships is part of an indicator:
+    
+    - Add to the `relationship` key of the indicator the list after running `to_indicator`.
+
+   If the relationship is not attached to an indicator:
+   - We will need to create a dummy indicator whose value is `$$DummyIndicator$$` and add the relationships key with the list after running `to_indicator`.
+   ```
+   {
+        "value": "$$DummyIndicator$$",
+        "relationships": relationships_list
+    }
+   ```
 
 ![Indicator Fields in Cortex XSOAR](https://raw.githubusercontent.com/demisto/content-docs/b202510c98d7812711b7323ad21e9bcc23e0983d/static/img/Cortex%20XSOAR%20indicator%20fields.png)
 
-*Note:* In indicators of type "File", if you have multiple hash types for the same file (i.e. MD5, SHA256, etc.), you can use the corresponding `"fields"` to associate all hashes to the same object. The supported fields are: `md5`, `sha1`, `sha256`, `sha512`, `ssdeep`. You can use any of the aforementioned hash types as the indicator value for an indicator of type "File".
+*Note:* In indicators of type "File", if you have multiple hash types for the same file (i.e., MD5, SHA256, etc.), you can use the corresponding `"fields"` to associate all hashes to the same object. The supported fields are: `md5`, `sha1`, `sha256`, `sha512`, `ssdeep`. You can use any of the aforementioned hash types as the indicator value for an indicator of type "File".
