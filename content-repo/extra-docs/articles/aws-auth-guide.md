@@ -5,10 +5,12 @@ description: Overview of authentication methods for AWS Integrations in Cortex X
 
 The Cortex XSOAR server can be located within the AWS environment in a local network or  self hosted outside the AWS environment in a remote network.
 
-When the Cortex XSOAR server is located within the AWS environment in a local network, the AWS Integrations provide two options for authenticating to AWS:
+When the Cortex XSOAR server is located within the AWS environment in a local network, the AWS Integrations provide three options for authenticating to AWS:
 * **Access Key and Secret Key**: the integration will use a configured Access Key and Secret Key to authenticate to AWS, which are set as part of the integration configuration parameters as can be seen in the following screen shot of the *AWS - S3* Integration:
   
   <img width="410" src="../../../docs/doc_imgs/reference/aws-s3.png" />
+* **Assume role**: Provide the ARN of the role you want to assume. The integration will use the AWS Security Token Service (STS) to assume the role on your behalf. See below more information about STS.
+
 * **EC2 Instance Metadata**: the integration will use the EC2 instance metadata service to retrieve security credentials. In this scenario there is no need to configure an Access Key and Secret Key. Credential management is taken care of by the EC2 instance metadata service. The integration will fetch from the metadata service temporary credentials for authenticating to AWS. To configure the instance metadata service you will need to attach an instance profile with the required permissions to the Cortex XSOAR server or engine that is running on your AWS environment. More information at: [IAM roles for Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html).
 
 When self hosted outside the AWS environment in a remote network, the AWS Integrations should use:  **Access Key and Secret Key** authentication option.
