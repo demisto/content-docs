@@ -42,6 +42,11 @@ The following is the format for a file. File here refers to the file indicator o
              "Vendor": "STRING, The vendor that reported the file as malicious.",
              "Description": "STRING, A description explaining why the file was determined to be malicious."
         },
+        "EntityA": "STRING, The source of the relationship.",
+        "EntityB": "STRING, The destination of the relationship.",
+        "Relationship": "STRING, The name of the relationship.",
+        "EntityAType": "STRING, The type of the source of the relationship.",
+        "EntityBType": "STRING, The type of the destination of the relationship.",
         "FeedRelatedIndicators": {
              "value": "STRING, Indicators that are associated with the file.",
              "type": "STRING, The type of the indicators that are associated with the file",
@@ -165,6 +170,21 @@ outputs:
 - contextPath: File.Malicious.Description
   description: A description explaining why the file was determined to be malicious.
   type: String
+- contextPath: File.Relationships.EntityA
+  description: The source of the relationship.
+  type: string
+- contextPath: File.Relationships.EntityB
+  description: The destination of the relationship.
+  type: string
+- contextPath: File.Relationships.Relationship
+  description: The name of the relationship.
+  type: string
+- contextPath: File.Relationships.EntityAType
+  description: The type of the source of the relationship.
+  type: string
+- contextPath: File.Relationships.EntityBType
+  description: The type of the destination of the relationship.
+  type: string
 - contextPath: File.Campaign
   description: The campaign associated with the file.
   type: String
@@ -221,6 +241,11 @@ The following is the format for an IP entity
 ```json
 "IP": {
     "Address": "STRING, IP address",
+    "EntityA": "STRING, The source of the relationship.",
+    "EntityB": "STRING, The destination of the relationship.",
+    "Relationship": "STRING, The name of the relationship.",
+    "EntityAType": "STRING, The type of the source of the relationship.",
+    "EntityBType": "STRING, The type of the destination of the relationship.",
     "ASN": "STRING, The autonomous system name for the IP address, for example: 'AS8948'.",
     "Hostname": "STRING, The hostname that is mapped to this IP address.",
     "Geo":{
@@ -284,6 +309,21 @@ outputs:
 - contextPath: IP.Address
   description: IP address
   type: String
+- contextPath: IP.Relationships.EntityA
+  description: The source of the relationship.
+  type: string
+- contextPath: IP.Relationships.EntityB
+  description: The destination of the relationship.
+  type: string
+- contextPath: IP.Relationships.Relationship
+  description: The name of the relationship.
+  type: string
+- contextPath: IP.Relationships.EntityAType
+  description: The type of the source of the relationship.
+  type: string
+- contextPath: IP.Relationships.EntityBType
+  description: The type of the destination of the relationship.
+  type: string
 - contextPath: IP.ASN
   description: 'The autonomous system name for the IP address, for example: "AS8948".'
   type: String
@@ -404,6 +444,11 @@ The following is the format for an Endpoint.
 ```python
 "Endpoint": {
     "Hostname": "STRING, The endpoint's hostname.",
+    "EntityA": "STRING, The source of the relationship.",
+    "EntityB": "STRING, The destination of the relationship.",
+    "Relationship": "STRING, The name of the relationship.",
+    "EntityAType": "STRING, The type of the source of the relationship.",
+    "EntityBType": "STRING, The type of the destination of the relationship.",
     "ID": "STRING, The endpoint's ID.",
     "IPAddress": "STRING, The endpoint's IP address.",
     "Domain": "STRING, The endpoint's domain.",
@@ -429,6 +474,21 @@ The following is the format for an Endpoint.
     - contextPath: Endpoint.Hostname
       description: The endpoint's hostname.
       type: String
+    - contextPath: Endpoint.Relationships.EntityA
+      description: The source of the relationship.
+      type: string
+    - contextPath: Endpoint.Relationships.EntityB
+      description: The destination of the relationship.
+      type: string
+    - contextPath: Endpoint.Relationships.Relationship
+      description: The name of the relationship.
+      type: string
+    - contextPath: Endpoint.Relationships.EntityAType
+      description: The type of the source of the relationship.
+      type: string
+    - contextPath: Endpoint.Relationships.EntityBType
+      description: The type of the destination of the relationship.
+      type: string
     - contextPath: Endpoint.OS
       description: The endpoint's operation system.
       type: String
@@ -484,6 +544,11 @@ The following is the format for an Email Object.
     "From": "STRING, The sender of the email.",
     "CC": "STRING, Email addresses CC'ed to the email.",
     "BCC": "STRING, Email addresses BCC'ed to the email.",
+    "EntityA": "STRING, The source of the relationship.",
+    "EntityB": "STRING, The destination of the relationship.",
+    "Relationship": "STRING, The name of the relationship.",
+    "EntityAType": "STRING, The type of the source of the relationship.",
+    "EntityBType": "STRING, The type of the destination of the relationship.",
     "Format": "STRING, The format of the email.",
     "Body/HTML": "STRING, The HTML version of the email.",
     "Body/Text": "STRING, The plain-text version of the email.",
@@ -513,6 +578,21 @@ outputs:
 - contextPath: Email.Format
   description: The format of the email.
   type: String
+- contextPath: Email.Relationships.EntityA
+  description: The source of the relationship.
+  type: string
+- contextPath: Email.Relationships.EntityB
+  description: The destination of the relationship.
+  type: string
+- contextPath: Email.Relationships.Relationship
+  description: The name of the relationship.
+  type: string
+- contextPath: Email.Relationships.EntityAType
+  description: The type of the source of the relationship.
+  type: string
+- contextPath: Email.Relationships.EntityBType
+  description: The type of the destination of the relationship.
+  type: string
 - contextPath: Email.Body/HTML
   description: The HTML version of the email.
   type: String
@@ -535,6 +615,11 @@ The following is the format for a Domain. Please note that for WHOIS, the entity
 ```json 
 "Domain": {
     "Name": "STRING, The domain name, for example: 'google.com'.",
+    "EntityA": "STRING, The source of the relationship.",
+    "EntityB": "STRING, The destination of the relationship.",
+    "Relationship": "STRING, The name of the relationship.",
+    "EntityAType": "STRING, The type of the source of the relationship.", 
+    "EntityBType": "STRING, The type of the destination of the relationship.",
     "DNS": "STRING, A list of IP objects resolved by DNS.",
     "DetectionEngines": "NUMBER, The total number of engines that checked the indicator.",
     "PositiveDetections": "NUMBER, The number of engines that positively detected the indicator as malicious.",
@@ -633,6 +718,21 @@ outputs:
 - contextPath: Domain.Name
   description: 'The domain name, for example: "google.com".'
   type: String
+- contextPath: Domain.Relationships.EntityA
+  description: The source of the relationship.
+  type: string
+- contextPath: Domain.Relationships.EntityB
+  description: The destination of the relationship.
+  type: string
+- contextPath: Domain.Relationships.Relationship
+  description: The name of the relationship.
+  type: string
+- contextPath: Domain.Relationships.EntityAType
+  description: The type of the source of the relationship.
+  type: string
+- contextPath: Domain.Relationships.EntityBType
+  description: The type of the destination of the relationship.
+  type: string
 - contextPath: Domain.DNS
   description: A list of IP objects resolved by DNS.
   type: String
@@ -826,6 +926,11 @@ The following is the format for a URL entity.
 ```json
 "URL": {
     "Data": "STRING, The URL",
+    "EntityA": "STRING, The source of the relationship.",
+    "EntityB": "STRING, The destination of the relationship.",
+    "Relationship": "STRING, The name of the relationship.",
+    "EntityAType": "STRING, The type of the source of the relationship.",
+    "EntityBType": "STRING, The type of the destination of the relationship.",
     "Malicious": {
         "Vendor": "STRING, The vendor reporting the URL as malicious.",
         "Description": "STRING, A description of the malicious URL."
@@ -873,6 +978,21 @@ outputs:
 - contextPath: URL.Data
   description: The URL
   type: String
+- contextPath: URL.Relationships.EntityA
+  description: The source of the relationship.
+  type: string
+- contextPath: URL.Relationships.EntityB
+  description: The destination of the relationship.
+  type: string
+- contextPath: URL.Relationships.Relationship
+  description: The name of the relationship.
+  type: string
+- contextPath: URL.Relationships.EntityAType
+  description: The type of the source of the relationship.
+  type: string
+- contextPath: URL.Relationships.EntityBType
+  description: The type of the destination of the relationship.
+  type: string
 - contextPath: URL.DetectionEngines
   description: The total number of engines that checked the indicator.
   type: String
@@ -958,6 +1078,11 @@ The following is the format for a CVE.
 ```python
 "CVE": {
     "ID": "STRING, The ID of the CVE, for example: CVE-2015-1653",
+    "EntityA": "STRING, The source of the relationship.",
+    "EntityB": "STRING, The destination of the relationship.",
+    "Relationship": "STRING, The name of the relationship.",
+    "EntityAType": "STRING, The type of the source of the relationship.",
+    "EntityBType": "STRING, The type of the destination of the relationship.",
     "CVSS": "STRING, The CVSS of the CVE, for example: 10.0",
     "Published": "DATE, The timestamp of when the CVE was published.",
     "Modified": "DATE, The timestamp of when the CVE was last modified.",
@@ -971,6 +1096,21 @@ outputs:
 - contextPath: CVE.ID
   description: 'The ID of the CVE, for example: CVE-2015-1653'
   type: String
+- contextPath: CVE.Relationships.EntityA
+  description: The source of the relationship.
+  type: string
+- contextPath: CVE.Relationships.EntityB
+  description: The destination of the relationship.
+  type: string
+- contextPath: CVE.Relationships.Relationship
+  description: The name of the relationship.
+  type: string
+- contextPath: CVE.Relationships.EntityAType
+  description: The type of the source of the relationship.
+  type: string
+- contextPath: CVE.Relationships.EntityBType
+  description: The type of the destination of the relationship.
+  type: string
 - contextPath: CVE.CVSS
   description: 'The CVSS of the CVE, for example: 10.0'
   type: String
