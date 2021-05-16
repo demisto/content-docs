@@ -9,7 +9,7 @@ This article is focused on contributing Cortex XSOAR Content. If you want to con
 
 Thanks for being interested in contributing to Cortex XSOAR. This document describes the Contribution process. If you are not sure whether you should read this, make sure you read the [Getting Started Guide](../concepts/getting-started-guide) first.
 
-Contributing allows you to make the content that you build on Cortex XSOAR available to every client through the  [Marketplace](../partners/marketplace). Content can be either Partner or Community supported, [Free or Paid](../partners/marketplace#pricing).
+Contributing allows you to make the content that you build on Cortex XSOAR available to every client through the  [Marketplace](../partners/paid-packs). Content can be either Partner or Community supported, [Free or Paid](../partners/paid-packs#pricing).
 
 All the free content (i.e. everything excluding Paid Content Packs) is open source and lives in the Cortex XSOAR [GitHub Repository](https://github.com/demisto/content), with a MIT license.
 
