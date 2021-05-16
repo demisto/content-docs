@@ -58,7 +58,7 @@ Now that you have an idea of what Use Cases you want to create, it's time to det
 
 All contributions are grouped in [Content Packs](../concepts/concepts#content-packs): the first thing to understand is what you should create and add to your pack.
 
-Depending on whether you are a Palo Alto Networks Technology Partner, an Individual Contributor, a Customer or an Enthusiast and depending on how you want your contribution to appear on the [Cortex XSOAR Marketplace](../partners/marketplace), the thoroughness and complexity of your final product will be different.
+Depending on whether you are a Palo Alto Networks Technology Partner, an Individual Contributor, a Customer or an Enthusiast and depending on how you want your contribution to appear on the [Cortex XSOAR Marketplace](../partners/paid-packs), the thoroughness and complexity of your final product will be different.
 
 This section summarizes some guidelines to get started.
 
