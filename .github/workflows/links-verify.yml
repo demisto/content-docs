@@ -72,6 +72,9 @@ jobs:
         -e 'https://virustotal.com/vtapi/v2/ip/.*' \
         -e 'https://xsoar.pan.dev/marketplace/details/.*/' \
         -e 'https://s3.*.amazonaws.com/my-bucket/.*' \
+        -e 'https://virustotal.com/vtapi/v2/.*' \
+        -e 'https://github.com/example-user1/.*' \
+        -e 'https://some.ru.*' \
         https://xsoar.pan.dev > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
         grep -v -E '^\s+(403|401|405|x509|lookup|parse|timeout|dial)' muffet.txt > muffet-clean.out
         echo "Muffet output after 401, 403, 405 and x509 remove:"
@@ -80,7 +83,7 @@ jobs:
           echo "muffet failed verification!!!"
           exit 1
         fi
-        echo "All good muffet passed!!!"
+        echo "All good! muffet passed!!!"
     - name: Save artifcats
       if: ${{ always() }}
       uses: actions/upload-artifact@v2
