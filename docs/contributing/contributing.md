@@ -82,7 +82,7 @@ In order to be able to submit a Pull Request to the Cortex XSOAR [GitHub Reposit
 
 ## Open a Pull Request
 
-After you have completed all the requirements and ready to open your Pull Request commit and push your work to the a branch you have created in your forked repo. 
+After you have completed all the requirements and ready to open your Pull Request commit and push your work to the branch you have created in your forked repo. 
 
 Now you can go ahead an open your Pull Request, you can use [this article](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) to do so.
 When creating the pull request make sure to fill in the different section in the pull request template.
