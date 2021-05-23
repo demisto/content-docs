@@ -74,11 +74,11 @@ This will give you a full list of the command's arguments and their descriptions
 
 This guide will give you a short tutorial about the basic SDK commands. Should be noted that there are additional commands and use cases found in the SDK, yet these are the main commands you should know:
 
-#### init
+### init
 
 Use this command to ease the initial creation of a pack, integration or a script.
 
-Here are some examples of how to run the command for some use cases:
+##### Examples and Use Cases:
  - Create a new pack:
     ```buildoutcfg
     demisto-sdk init -n myNewPackName
@@ -108,10 +108,10 @@ Here are some examples of how to run the command for some use cases:
   
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md#init).
 
-#### validate
+### validate
 Use this command to make sure your `.yml` and `.json` files are up to Cortex XSOAR standards.
 
-Here are some examples of how to run the command for some use cases:
+##### Examples and Use Cases:
  - Validate all committed files:
     ```buildoutcfg
     demisto-sdk validate
@@ -171,7 +171,7 @@ The error codes serve two main functions:
 
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md#validate).
 
-#### lint
+### lint
 Use this command to make sure your `.py` and `.ps1` files are up to Cortex XSOAR standards.
 This command runs several libraries to validate your code these include:
  - [Flake8](https://pypi.org/project/flake8/) - Making sure your code is up to PEP8 standards.
@@ -184,7 +184,7 @@ This command runs several libraries to validate your code these include:
 
 At the end of the command a short report will appear with all the error and warnings found, as well as failed and passed unit tests.
 
-Here are some examples of how to run the command for some use cases:
+##### Examples and Use Cases:
  - Run lint on all committed and changed files:
     ```buildoutcfg
     demisto-sdk lint -g
@@ -201,14 +201,14 @@ Here are some examples of how to run the command for some use cases:
  
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/lint/README.md#lint).
 
-#### secrets
+### secrets
 Use this command to find secrets such as emails and IP addresses in your files.
 Cortex XSOAR is an open source product, it's code can be found on a public repository on GitHub and thus it very visible.
 With that there comes a responsibility to identify and eliminate any secrets before they find their way to our repository and even our pull requests.
 
 * Please note **this command is not fool proof and a manual review of the files is still highly recommended**.
 
-Here are some examples of how to run the command for some use cases:
+##### Examples and Use Cases:
  - Detect secrets in your files:
     ```buildoutcfg
     demsito-sdk secrets
@@ -222,13 +222,13 @@ To ignore a specific secret simply enter it to the packs's `.secrets-ignore` fil
 
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/secrets/README.md#secrets).
  
-#### format
+### format
 Use this command to format an XSOAR entity in accordance to Cortex XSOAR standards.
 At times when a file is downloaded from the XSOAR server, it might contain some additional fields which are 
 not required when entering the entity to the `content` repository. The `format` command will remove the unnecessary fields 
 and make any additional fixes needed to the existing fields.
 
-Here are some examples of how to run the command for some use cases:
+##### Examples and Use Cases:
  - Format a specific file:
     ```buildoutcfg
     demisto-sdk format -i Packs/myPack/Integrations/myIntegration/myIntegration.yml
@@ -243,11 +243,11 @@ Here are some examples of how to run the command for some use cases:
 
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/format/README.md#format).
 
-#### upload
+### upload
 Use this command to upload an XSOAR entity to a Cortex XSOAR server. Be sure to setup the `DEMISTO_BASE_URL` 
 and `DEMISTO_API_KEY` prior to running this command in order to establish a connection between `demisto-sdk` and the XSOAR server.
 
-Here are some examples of how to run the command for some use cases:
+##### Examples and Use Cases:
  - Upload an integration to the server:
     ```buildoutcfg
     demisto-sdk upload -i Packs/myPack/Integrations/myIntegration
@@ -263,7 +263,7 @@ Here are some examples of how to run the command for some use cases:
 
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/upload/README.md#upload).
 
-#### download
+### download
 Use this command to download entities from a Cortex XSOAR server to your local repository. Be sure to setup the `DEMISTO_BASE_URL` 
 and `DEMISTO_API_KEY` prior to running this command in order to establish a connection between `demisto-sdk` and the XSOAR server.
 
@@ -275,7 +275,7 @@ local environment to continue with the contribution process.
 - If there are files that exist both in the output directory and are specified in the input, they will be ignored. To override this behavior such that existing files will be merged with their newer version, use the `--force`/`-f` flag.
 - For consistency, it is assumed that for each integration or script the folder containing it will have the same name as the integration/script name with no separators. For example the integration `Test Integration_Full-Name`, will be under `~/.../Packs/TestPack/Integrations/TestIntegrationFullName/`.
 
-Here are some examples of how to run the command for some use cases:
+##### Examples and Use Cases:
  - See which files are accessible for download through the command:
     ```buildoutcfg
     demisto-sdk download -lf
@@ -304,7 +304,7 @@ Here are some examples of how to run the command for some use cases:
   
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/download/README.md#download).
 
-#### update-release-notes
+### update-release-notes
 Use this command to automatically generate release notes for a given pack and update the `pack_metadata.json` version.
 
 Running this command will create a new release notes file under the `ReleaseNotes` directory in the given pack in the form of `X_Y_Z.md` where X_Y_Z is the new pack version.
@@ -330,7 +330,7 @@ After running this command please add the newly created release notes file to `G
 ```
 Further information about how to run this command can be found in [here](../documentation/release-notes.md).
 
-#### generate-docs
+### generate-docs
 Use this command to generate a readme file for your integration, script or playbook.
 
 Running this command will create a new `README.md` file at the same directory as the entity on which it ran, unless otherwise specified using the `-o` flag.
