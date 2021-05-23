@@ -21,8 +21,8 @@ Use cases for scheduled commands include:
 
 For an example, see the [Autofocus V2](https://github.com/demisto/content/blob/master/Packs/AutoFocus/Integrations/AutofocusV2/AutofocusV2.py) `autofocus-samples-search` command.
 
-### ScheduleCommand Class
-`ScheduleCommand` is an optional class that enables scheduling commands via the command results.
+### ScheduledCommand Class
+`ScheduledCommand` is an optional class that enables scheduling commands via the command results.
 
 | Arg               | Type   | Description                                                                                                                                                                                |
 |-------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -47,40 +47,48 @@ The schedule sequence completes when any one of three terminating actions occur:
 In the example below, if the `status` is not `complete` then a result with `schedule_config` is returned. After 60 seconds, the result triggers a poll for the search. This is done in the next run as well, and repeats until the status is complete.
 
 ```python
-def search_sessions_with_polling_command(args):
+def run_polling_command(args: dict, cmd: str, search_function: Callable, results_function: Callable):
     ScheduledCommand.raise_error_if_not_supported()
     interval_in_secs = int(args.get('interval_in_seconds', 60))
     if 'af_cookie' not in args:
         # create new search
-        command_results = search_sessions_command(args)
+        command_results = search_function(args)
         outputs = command_results.outputs
         af_cookie = outputs.get('AFCookie')
         if outputs.get('Status') != 'complete':
             polling_args = {
                 'af_cookie': af_cookie,
                 'interval_in_seconds': interval_in_secs,
-                'polling': True
+                'polling': True,
+                **args
             }
-            schedule_config = ScheduledCommand(command='autofocus-search-sessions',
-                                               next_run_in_seconds=interval_in_secs,
-                                               args=polling_args, timeout_in_seconds=600)
-            command_results.scheduled_command = schedule_config
+            scheduled_command = ScheduledCommand(
+                command=cmd,
+                next_run_in_seconds=interval_in_secs,
+                args=polling_args,
+                timeout_in_seconds=600)
+            command_results.scheduled_command = scheduled_command
+            return command_results
         else:
             # continue to look for search results
             args['af_cookie'] = af_cookie
-    else:
-        # get search status
-        command_results, status = sessions_search_results_command(args)
-        if status != 'complete':
-            # schedule next poll
-            polling_args = {
-                'af_cookie': args.get('af_cookie'),
-                'interval_in_seconds': interval_in_secs,
-                'polling': True
-            }
-            schedule_config = ScheduledCommand(command='autofocus-search-sessions',
-                                               next_run_in_seconds=interval_in_secs,
-                                               args=polling_args, timeout_in_seconds=600)
-            command_results.scheduled_command = schedule_config
+    # get search status
+    command_results, status = results_function(args)
+    if status != 'complete':
+        # schedule next poll
+        polling_args = {
+            'af_cookie': args.get('af_cookie'),
+            'interval_in_seconds': interval_in_secs,
+            'polling': True,
+            **args
+        }
+        scheduled_command = ScheduledCommand(
+            command=cmd,
+            next_run_in_seconds=interval_in_secs,
+            args=polling_args,
+            timeout_in_seconds=600)
+
+        # result with scheduled_command only - no update to the war room
+        command_results = CommandResults(scheduled_command=scheduled_command)
     return command_results
 ```
