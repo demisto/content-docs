@@ -169,7 +169,7 @@ The error codes serve two main functions:
    * Note: **not all error codes are ignorable! Also, it is always preferable to fix the error rather than trying to ignore it!** 
    Please consult with a Cortex XSOAR team before ignoring an error.  
 
-For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md#validate)
+For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md#validate).
 
 #### lint
 Use this command to make sure your `.py` and `.ps1` files are up to Cortex XSOAR standards.
@@ -199,7 +199,7 @@ Here are some examples of how to run the command for some use cases:
    This will run the lint command on the integration found in `Packs/myPack/Integrations/myIntegration/` - please not that the path requested is **to the directory not to the file itself**.
    Also, it should be noted that there are additional flags used to turn off any specific linter like `--no-mypy` and `--no-xsoar-linter`.
  
-For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/lint/README.md#lint)
+For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/lint/README.md#lint).
 
 #### secrets
 Use this command to find secrets such as emails and IP addresses in your files.
@@ -218,13 +218,91 @@ Here are some examples of how to run the command for some use cases:
 
 ##### Ignoring secrets
 At times there is information that might be flagged by the command as a secret and it might be incorrect or that it is a "secret" but we do wish to share it publicly (for example the support email address).
-To ignore a specific secret simply enter it to the packs's `.secrets-ignore` file. 
+To ignore a specific secret simply enter it to the packs's `.secrets-ignore` file.
+
+For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/secrets/README.md#secrets).
  
 #### format
+Use this command to format an XSOAR entity in accordance to Cortex XSOAR standards.
+At times when a file is downloaded from the XSOAR server, it might contain some additional fields which are 
+not required when entering the entity to the `content` repository. The `format` command will remove the unnecessary fields 
+and make any additional fixes needed to the existing fields.
+
+Here are some examples of how to run the command for some use cases:
+ - Format a specific file:
+    ```buildoutcfg
+    demisto-sdk format -i Packs/myPack/Integrations/myIntegration/myIntegration.yml
+    ```
+   This will format the file `Packs/myPack/Integrations/myIntegration/myIntegration.yml` in accordance to Cortex XSOAR standards.
+ 
+ - Format a pack and update script and integration docker images:
+    ```buildoutcfg
+    demisto-sdk format -i Packs/myPack -ud
+    ```
+   This will format all files in `myPack`. It will also update any docker images in integrations and scripts in the pack.
+
+For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/format/README.md#format).
 
 #### upload
+Use this command to upload an XSOAR entity to a Cortex XSOAR server. Be sure to setup the `DEMISTO_BASE_URL` 
+and `DEMISTO_API_KEY` prior to running this command in order to establish a connection between `demisto-sdk` and the XSOAR server.
+
+Here are some examples of how to run the command for some use cases:
+ - Upload an integration to the server:
+    ```buildoutcfg
+    demisto-sdk upload -i Packs/myPack/Integrations/myIntegration
+    ```
+   This will upload the integration found in `Packs/myPack/Integrations/myIntegration` to my preset XSOAR server.
+ 
+ - Upload a pack to the server without certificate validation:
+    ```buildoutcfg
+    demisto-sdk -i Pack/myPack --insecure
+    ```
+   This will iterate over all the content entities in the pack `myPack` and will upload then to the preset XSOAR server 
+   without checking the certification. Note this does not upload the entities as a whole pack but does upload them individually.
+
+For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/upload/README.md#upload).
 
 #### download
+Use this command to download entities from a Cortex XSOAR server to your local repository. Be sure to setup the `DEMISTO_BASE_URL` 
+and `DEMISTO_API_KEY` prior to running this command in order to establish a connection between `demisto-sdk` and the XSOAR server.
+
+This command can become useful when developing within the Cortex XSOAR server itself and downloading the new entities to your 
+local environment to continue with the contribution process.
+
+##### Notes and Limitations
+-  `JavaScript` integrations and scripts are not downloadable using this command.
+- If there are files that exist both in the output directory and are specified in the input, they will be ignored. To override this behavior such that existing files will be merged with their newer version, use the `--force`/`-f` flag.
+- For consistency, it is assumed that for each integration or script the folder containing it will have the same name as the integration/script name with no separators. For example the integration `Test Integration_Full-Name`, will be under `~/.../Packs/TestPack/Integrations/TestIntegrationFullName/`.
+
+Here are some examples of how to run the command for some use cases:
+ - See which files are accessible for download through the command:
+    ```buildoutcfg
+    demisto-sdk download -lf
+    ```
+   This will list all the files which are downloadable using this command from the preset XSOAR server. 
+   Note: do not run the `-lf` flag alongside `-i` or `-o`.
+ 
+ - Download a file to a given pack:
+    ```buildoutcfg
+    demsito-sdk download -i "My Integration" -o Packs/myPack
+    ```
+   This will download the entity named `My Integration` and will place it in the appropriate directory within `myPack`.
+   Do note that if `My Integration` exists in the pack, it will not be downloaded!
+  
+ - Download several files to a given pack and overwrite any file which already exists:
+    ```buildoutcfg
+    demsito-sdk download -i "My Integration" -i myScript -o Packs/myPack -f
+    ```
+   This will download both the `My Integration` and `myScript` entities to `myPack`. If any of the files already exists in the pack it will be overwritten.
+ 
+ - Download all available custom files to a given pack:
+    ```buildoutcfg
+    demisto-sdk download -a -o Packs/myPack
+    ```
+   This will download all accessible files (listed with the `-lf` flag) to the appropriate directories in `myPack`.
+  
+For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/download/README.md#download).
 
 #### update-release-notes
 
