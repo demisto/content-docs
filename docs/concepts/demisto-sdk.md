@@ -305,5 +305,38 @@ Here are some examples of how to run the command for some use cases:
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/download/README.md#download).
 
 #### update-release-notes
+Use this command to automatically generate release notes for a given pack and update the `pack_metadata.json` version.
+
+Running this command will create a new release notes file under the `ReleaseNotes` directory in the given pack in the form of `X_Y_Z.md` where X_Y_Z is the new pack version.
+After running this command please add the newly created release notes file to `GitHub` and add your notes under their respective headlines. For example:
+```buildoutcfg
+
+#### Integrations
+##### Cortex XDR - IOC
+- Fixed an issue where searching more than 10K indicators failed when using ElasticSearch.
+- Updated the Docker image to: *demisto/python3:3.9.4.18682*.
+
+#### Incident Fields
+- **XDR Similar Incidents** - New incident field.
+
+#### Playbooks
+##### Cortex XDR incident handling v3
+- Added a new machine learning script to search for similar incidents by shared incident fields and indicators.
+
+#### Layouts
+##### Cortex XDR Incident
+- Updated layout with a new section for similar incidents.
+
+```
+Further information about how to run this command can be found in [here](../documentation/release-notes.md).
 
 #### generate-docs
+Use this command to generate a readme file for your integration, script or playbook.
+
+Running this command will create a new `README.md` file at the same directory as the entity on which it ran, unless otherwise specified using the `-o` flag.
+To generate command examples be sure to setup the `DEMISTO_BASE_URL` and `DEMISTO_API_KEY` prior to running this command 
+in order to establish a connection between `demisto-sdk` and the XSOAR server as well as create a file containing some command examples to be ran for the documentation.
+
+Further information about how to run this command can be found in [here](../documentation/readme_file.md#creating-documentation).
+
+
