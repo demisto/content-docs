@@ -227,9 +227,9 @@ module.exports = {
   ],
   plugins: [
     [
-       id: 'plugin-sitemap',
       '@docusaurus/plugin-sitemap',
       {
+        id: 'plugin-sitemap',
         changefreq: 'weekly',
         priority: 0.5,
         trailingSlash: false,
