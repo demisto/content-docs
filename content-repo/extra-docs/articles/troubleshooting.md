@@ -176,7 +176,14 @@ For example for an integration instance name of: `Cortex_XDR_instance_1` run the
 !Cortex_XDR_instance_1-test-module debug-mode=true
 ```
 
-**Note:** if the instance name contains spaces, replace the space with an underscore (`_`).
+**Note:** 
+- If the instance name contains spaces, replace the space with an underscore (`_`).
+- The "Do not use by default" checkbox should be unchecked on the integration instance you are testing by running:
+  ```
+  !<instance_name>-test-module debug-mode=true
+  ```
 
 Screenshot of running a `test-module` command with `debug-mode=true` and the resulting log file (`test-module.log`):
-![test-module-debug](../../../docs/doc_imgs/reference/test-module-debug.png)    
+![test-module-debug](../../../docs/doc_imgs/reference/test-module-debug.png)   
+
+
