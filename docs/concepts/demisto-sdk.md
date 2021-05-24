@@ -19,7 +19,7 @@ After running the command the library should install - as a first step we should
 ```buildoutcfg
 demsito-sdk -v
 ```
-This command should print the version that is currently in use. You can check what is the latest released version [here](https://pypi.org/project/demisto-sdk/).
+This command should print the version that is currently in use. You can check what is the latest released version [here](https://pypi.org/project/demisto-sdk/#history).
 
 In you already have the SDK installed and you wish to upgrade the version, run the following command:
 ```buildoutcfg
@@ -385,5 +385,4 @@ Here are a few examples:
     [update-release-notes]
     update_type=minor
     ```
-
 
