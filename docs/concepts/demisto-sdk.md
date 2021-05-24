@@ -112,7 +112,7 @@ Use this command to ease the initial creation of a pack, integration or a script
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md#init).
 
 ### validate
-Use this command to make sure your `.yml` and `.json` files are up to Cortex XSOAR standards.
+Use this command to make sure your `.yml`, `.json` and `.md` files are up to Cortex XSOAR standards.
 
 #### Examples and Use Cases:
  - Validate all committed files:
@@ -158,12 +158,12 @@ For example:
 Packs/CortexXDR/Integrations/CortexXDRIR/CortexXDRIR.yml: [BA100] - The version for our files should always be -1, please update the file.
 ```
 
-At the end of the validation a summery would appear with all the file paths and error codes that were encountered.
+At the end of the validation a summary would appear with all the file paths and error codes that were encountered.
 
 The error codes serve two main functions:
 1. The first two letters are used to identify the type of the error encountered for example: `DO` is a Docker related error, `BC` is backwards compatibility related and `ST` is a yml/json structure error.
     A full list of abbreviations can be found in the full validate documentation linked below.
-2. The error code is used to ignore errors. To ignore an error go to the file's `.pack-ignore` file and input the following structure:
+2. The error code is used to ignore errors. To ignore an error go to the file `.pack-ignore` file and input the following structure:
    ```buildoutcfg
     [file:file_name]
     ignore=<error_code_to_ignore>
@@ -173,8 +173,8 @@ The error codes serve two main functions:
     [file:CortexXDRIR.yml]
     ignore=IN126,IN135
     ```
-   * Note: **not all error codes are ignorable! Also, it is always preferable to fix the error rather than trying to ignore it!** 
-   Please consult with a Cortex XSOAR team before ignoring an error.  
+   * Note: **Not all error codes are ignorable! Also, it is always preferable to fix the error rather than trying to ignore it!** 
+   Please consult with a Cortex XSOAR team member before ignoring an error.  
 
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md#validate).
 
