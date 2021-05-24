@@ -26,7 +26,7 @@ In you already have the SDK installed and you wish to upgrade the version, run t
 pip3 install --upgrade demisto-sdk
 ```
 
-#### Environment Variable Setup 
+### Environment Variable Setup 
 
 Some SDK commands require you to have an interaction with the Cortex XSOAR server. Examples of such interactions 
 include uploading and downloading entities to or from XSOAR, running commands in XSOAR's CLI.
@@ -45,7 +45,7 @@ To use these functions please setup the base URL and API key environment setup l
     export DEMISTO_API_KEY=XXXXXXXXXXXXXXXXXXXXXX
     ```
     
-#### Using the SDK in Private Repositories
+### Using the SDK in Private Repositories
 
 Finally, if you are using a private GitHub repository, some SDK functions require an interaction with Git. To use the SDK you should setup your GitHub token.
 To generate your token on GitHub use [the following guide](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) and then run:
@@ -78,7 +78,7 @@ This guide will give you a short tutorial about the basic SDK commands. Should b
 
 Use this command to ease the initial creation of a pack, integration or a script.
 
-##### Examples and Use Cases:
+#### Examples and Use Cases:
  - Create a new pack:
     ```buildoutcfg
     demisto-sdk init -n myNewPackName
@@ -86,11 +86,13 @@ Use this command to ease the initial creation of a pack, integration or a script
    This will create a new pack under the `Packs` directory with the name `myNewPackName`. 
    After the pack initialization ends the command will give you the option to create a new integration in the pack.
 
+
  - Create a new integration in a specified directory:
     ```buildoutcfg
     demisto-sdk init --integration -n myIntegration -o Packs/myNewPack/Integrations
     ```
   This will create a new integration with the name `myIntegration` under the directory `Packs/myNewPack/Integrations`.
+
 
  - Create a new *feed* integration:
     ```buildoutcfg
@@ -98,7 +100,8 @@ Use this command to ease the initial creation of a pack, integration or a script
     ```
   This will create a new integration named `myFeed` which will be based on the `FeedHelloWorld` integration. The command has several pre-set templates which you can choose as the basis for your integration or script.
   By default the template is the `BaseIntegration` and `BaseScript` but you can also use `HelloWorld`, `HelloIAMWorld`, `FeedHelloWorld` for integrations and `HelloWorldScript` for scripts.
-  These templates have a more robust integration information and examples additionally some are used to create the basic structure for feed and IAM integrations.
+  These templates have a more robust integration information and examples. Additionally some templates are used to create the basic structure for feed and IAM integrations.
+  
   
  - Create a new script:
     ```buildoutcfg
@@ -111,7 +114,7 @@ For additional information see [here](https://github.com/demisto/demisto-sdk/blo
 ### validate
 Use this command to make sure your `.yml` and `.json` files are up to Cortex XSOAR standards.
 
-##### Examples and Use Cases:
+#### Examples and Use Cases:
  - Validate all committed files:
     ```buildoutcfg
     demisto-sdk validate
@@ -119,17 +122,20 @@ Use this command to make sure your `.yml` and `.json` files are up to Cortex XSO
    This command will identify all the files that were **committed** via `git` in your current branch and will run validations on them.
    Do note that this is the variation of the command that runs in our build process, in case of a build failure run this to recreate it locally.
  
+ 
  - Validate all committed and staged files:
     ```buildoutcfg
     demisto-sdk validate -g
     ```
    This command will identify all the files that were **committed and staged** via `git` in your current branch and will run validations on them.
  
+ 
  - Validate a specific file:
     ```buildoutcfg
     demisto-sdk validate -i Packs/myPack/Integrations/myIntegration/myIntegration.yml
     ```
    This will run validation only on the file `Packs/myPack/Integrations/myIntegration/myIntegration.yml`. This variation does not detect the file status via `git` and thus will not check for backwards comparability changes.
+  
   
  - Validate all committed and staged files, print ignored files and errors and debug git:
     ```buildoutcfg
@@ -141,7 +147,7 @@ Use this command to make sure your `.yml` and `.json` files are up to Cortex XSO
     - A report on which files where identified and in what status via `git`.
    This additional information might be helpful in debugging SDK commands or trying to figure out why a file was not validate of some reason.
 
-##### Validate Error Structure and Ignoring Errors
+#### Validate Error Structure and Ignoring Errors
 Each one of our validation errors follows a basic structure to ease it's readability:
 ```buildoutcfg
 File_Path: [Error_Code] - Error Message
@@ -153,9 +159,10 @@ Packs/CortexXDR/Integrations/CortexXDRIR/CortexXDRIR.yml: [BA100] - The version 
 ```
 
 At the end of the validation a summery would appear with all the file paths and error codes that were encountered.
+
 The error codes serve two main functions:
 1. The first two letters are used to identify the type of the error encountered for example: `DO` is a Docker related error, `BC` is backwards compatibility related and `ST` is a yml/json structure error.
-    A full list of abbreviations can be found in the full validate documentation liked below.
+    A full list of abbreviations can be found in the full validate documentation linked below.
 2. The error code is used to ignore errors. To ignore an error go to the file's `.pack-ignore` file and input the following structure:
    ```buildoutcfg
     [file:file_name]
@@ -184,13 +191,14 @@ This command runs several libraries to validate your code these include:
 
 At the end of the command a short report will appear with all the error and warnings found, as well as failed and passed unit tests.
 
-##### Examples and Use Cases:
+#### Examples and Use Cases:
  - Run lint on all committed and changed files:
     ```buildoutcfg
     demisto-sdk lint -g
     ```
    This command will identify all the files that were **committed and staged** via `git` in your current branch and run `lint` on them.
    Do note that this is the variation of the command that runs in our build process, in case of a build failure run this to recreate it locally.
+ 
  
  - Run lint without flake8 on a specific file:
    ```buildoutcfg
@@ -208,7 +216,7 @@ With that there comes a responsibility to identify and eliminate any secrets bef
 
 * Please note **this command is not fool proof and a manual review of the files is still highly recommended**.
 
-##### Examples and Use Cases:
+#### Examples and Use Cases:
  - Detect secrets in your files:
     ```buildoutcfg
     demsito-sdk secrets
@@ -216,7 +224,7 @@ With that there comes a responsibility to identify and eliminate any secrets bef
    This will detect secrets in all your changed files. Please do note that this command can have some false positives 
    and can be made a bit less sensitive by also using the `-ie` flag.
 
-##### Ignoring secrets
+#### Ignoring secrets
 At times there is information that might be flagged by the command as a secret and it might be incorrect or that it is a "secret" but we do wish to share it publicly (for example the support email address).
 To ignore a specific secret simply enter it to the packs's `.secrets-ignore` file.
 
@@ -228,18 +236,19 @@ At times when a file is downloaded from the XSOAR server, it might contain some 
 not required when entering the entity to the `content` repository. The `format` command will remove the unnecessary fields 
 and make any additional fixes needed to the existing fields.
 
-##### Examples and Use Cases:
+#### Examples and Use Cases:
  - Format a specific file:
     ```buildoutcfg
     demisto-sdk format -i Packs/myPack/Integrations/myIntegration/myIntegration.yml
     ```
    This will format the file `Packs/myPack/Integrations/myIntegration/myIntegration.yml` in accordance to Cortex XSOAR standards.
  
- - Format a pack and update script and integration docker images:
+ 
+ - Format a pack and update script and integration Docker images:
     ```buildoutcfg
     demisto-sdk format -i Packs/myPack -ud
     ```
-   This will format all files in `myPack`. It will also update any docker images in integrations and scripts in the pack.
+   This will format all files in `myPack`. It will also update any Docker images in integrations and scripts in the pack.
 
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/format/README.md#format).
 
@@ -247,12 +256,13 @@ For additional information see [here](https://github.com/demisto/demisto-sdk/blo
 Use this command to upload an XSOAR entity to a Cortex XSOAR server. Be sure to setup the `DEMISTO_BASE_URL` 
 and `DEMISTO_API_KEY` prior to running this command in order to establish a connection between `demisto-sdk` and the XSOAR server.
 
-##### Examples and Use Cases:
+#### Examples and Use Cases:
  - Upload an integration to the server:
     ```buildoutcfg
     demisto-sdk upload -i Packs/myPack/Integrations/myIntegration
     ```
    This will upload the integration found in `Packs/myPack/Integrations/myIntegration` to my preset XSOAR server.
+ 
  
  - Upload a pack to the server without certificate validation:
     ```buildoutcfg
@@ -270,18 +280,19 @@ and `DEMISTO_API_KEY` prior to running this command in order to establish a conn
 This command can become useful when developing within the Cortex XSOAR server itself and downloading the new entities to your 
 local environment to continue with the contribution process.
 
-##### Notes and Limitations
+#### Notes and Limitations
 -  `JavaScript` integrations and scripts are not downloadable using this command.
 - If there are files that exist both in the output directory and are specified in the input, they will be ignored. To override this behavior such that existing files will be merged with their newer version, use the `--force`/`-f` flag.
 - For consistency, it is assumed that for each integration or script the folder containing it will have the same name as the integration/script name with no separators. For example the integration `Test Integration_Full-Name`, will be under `~/.../Packs/TestPack/Integrations/TestIntegrationFullName/`.
 
-##### Examples and Use Cases:
- - See which files are accessible for download through the command:
+#### Examples and Use Cases:
+ - See which files are downloadable:
     ```buildoutcfg
     demisto-sdk download -lf
     ```
    This will list all the files which are downloadable using this command from the preset XSOAR server. 
    Note: do not run the `-lf` flag alongside `-i` or `-o`.
+ 
  
  - Download a file to a given pack:
     ```buildoutcfg
@@ -290,11 +301,13 @@ local environment to continue with the contribution process.
    This will download the entity named `My Integration` and will place it in the appropriate directory within `myPack`.
    Do note that if `My Integration` exists in the pack, it will not be downloaded!
   
+  
  - Download several files to a given pack and overwrite any file which already exists:
     ```buildoutcfg
     demsito-sdk download -i "My Integration" -i myScript -o Packs/myPack -f
     ```
    This will download both the `My Integration` and `myScript` entities to `myPack`. If any of the files already exists in the pack it will be overwritten.
+ 
  
  - Download all available custom files to a given pack:
     ```buildoutcfg
