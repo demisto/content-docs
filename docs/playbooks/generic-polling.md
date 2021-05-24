@@ -33,7 +33,7 @@ Follow these instructions to use the `GenericPolling` playbook.
 * **PollingCommandName** - Name of the polling command to run.
 * **PollingCommandArgName** - Argument name of the polling command. The argument should be the name of the process identifier (usually an ID).
 * **dt** - [Cortex XSOAR Transform Language](../integrations/dt) filter to be checked against the polling command result. Polling stops when no results are returned from the DT filter.
-* **Interval** - Interval between each poll (default is one minute).
+* **Interval** - Interval between each poll (default is one minute, maximum is 60 minutes).
 * **Timeout** - The amount of time until the playbook stops waiting for the process to finish. After this time has passed, the playbook finishes its run, even if it didn't receive confirmation that the remote process completed.
 * **Additional polling command arguments** - If the polling command has more than a single argument, add their names via this input, for example: `arg1,arg2,...`. 
 * **AdditionalPollingCommandArgValues** -  If the polling command has more than a single argument, add their values via this input, for example: `value1,value2,...`. 
