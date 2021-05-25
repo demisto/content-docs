@@ -31,7 +31,7 @@ pip3 install --upgrade demisto-sdk
 ### Environment Variable Setup 
 
 Some SDK commands require you to have an interaction with the Cortex XSOAR server. Examples of such interactions 
-include uploading and downloading entities to or from XSOAR, running commands in XSOAR's CLI.
+include uploading and downloading entities to or from XSOAR and running commands in XSOAR's CLI.
 
 To use these functions please setup the base URL and API key environment setup like so:
  1. Get your API key by entering Cortex XSOAR server -> `Settings` -> `Integrations` -> `API Keys` -> `Get Your Key` -> Give your key a name and press `Generate Key`.
@@ -57,7 +57,7 @@ export GITHUB_TOKEN=<token>
 
 ## General CLI Usage
 
-Running SDK commands from the CLI by following this basic structure:
+Run SDK commands from the CLI by following this basic structure:
 ```buildoutcfg
 demisto-sdk <command_name> <command_arguments>
 ``` 
