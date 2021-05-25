@@ -214,7 +214,7 @@ Use this command to find secrets such as emails and IP addresses in your files.
 Cortex XSOAR is an open source product, it's code can be found on a public repository on GitHub and thus it very visible.
 With that there comes a responsibility to identify and eliminate any secrets before they find their way to our repository and even our pull requests.
 
-* Please note **this command is not fool proof and a manual review of the files is still highly recommended**.
+> Please note: **this command is not fool proof and a manual review of the files is still highly recommended**.
 
 #### Examples and Use Cases:
  - Detect secrets in your files:
