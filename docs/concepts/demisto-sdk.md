@@ -74,7 +74,7 @@ This will give you a full list of the command's arguments and their descriptions
 
 ## Commands
 
-This guide will give you a short tutorial about the basic SDK commands. Should be noted that there are additional commands and use cases found in the SDK, yet these are the main commands you should know:
+This guide will give you a short tutorial about the basic SDK commands. It should be noted that there are additional commands and use cases found in the SDK, yet these are the main commands you should know:
 
 ### init
 
