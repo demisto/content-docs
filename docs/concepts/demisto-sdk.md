@@ -11,7 +11,9 @@ basic information about key commands to aid you in the development process. For 
 
 The Demisto SDK library supports python version 3.7 and up. Prior to installation please make sure you have a compatible python version installed.  
 
-To install the Demisto-SDK enter your terminal and run the command:
+If you have followed our development setup [`bootstrap` process](dev-setup.md#bootstrap) there is no need to install the SDK manually as it is installed for you on your `venv`.
+This installation is only required if you are not working with the `bootstrap` or if you are working on a repository which is not part of the Content repository.
+To manually install the Demisto-SDK enter your terminal and run the command:
 ```buildoutcfg
 pip3 install demisto-sdk
 ```
@@ -190,6 +192,8 @@ This command runs several libraries to validate your code these include:
  - PowerShell test and analyze - Code linters for PowerShell.
 
 At the end of the command a short report will appear with all the error and warnings found, as well as failed and passed unit tests.
+
+For additional information please see our documentation about [linting](../integrations/linting.md) and [unit testing](../integrations/unit-testing.md).
 
 #### Examples and Use Cases:
  - Run lint on all committed and changed files:
