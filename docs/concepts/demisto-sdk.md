@@ -9,7 +9,7 @@ basic information about key commands to aid you in the development process. For 
 
 ## Installation and Setup
 
-Demisto-SDK library supports python version 3.7 and up, prior to installation please make sure you have a compatible python version installed.  
+The Demisto SDK library supports python version 3.7 and up. Prior to installation please make sure you have a compatible python version installed.  
 
 To install the Demisto-SDK enter your terminal and run the command:
 ```buildoutcfg
