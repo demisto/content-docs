@@ -11,7 +11,7 @@ An example mirroring integration can be seen [here](https://github.com/demisto/c
 Mirroring integrations are developed the same as other integrations. They provide a few extra configuration parameters and APIs.
 
 :::note 
-Once an incident field is changed manually within XSOAR, it will be marked as "dirty" and will not be updated in XSOAR throughout the life of the incident. It should be noted that in the case outbound mirroring is enabled, any changes to the incident in XSOAR will still be reflected in the external system.
+**For Cortex XSOAR versions 6.1.0 and earlier**: Once an incident field is changed manually within XSOAR, it will be marked as "dirty" and will not be updated by the mirroring process in XSOAR throughout the life of the incident. It should be noted that in the case outbound mirroring is enabled, any changes to the incident in XSOAR will however still be reflected in the external system.
 :::
 
 ## Supported Server Version
