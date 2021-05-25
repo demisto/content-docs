@@ -1,6 +1,6 @@
 ---
 id: demisto-sdk
-title: Demisto-SDK
+title: Demisto SDK
 ---
 The [Demisto SDK](https://github.com/demisto/demisto-sdk) is a python library designed with the purpose of aiding the development process both in 
 validating the entities being developed and in assisting in the interaction between your development setup and Cortex XSOAR.
