@@ -100,7 +100,7 @@ Use this command to ease the initial creation of a pack, integration or a script
     ```buildoutcfg
     demisto-sdk init --integration -n myFeed -t FeedHelloWorld
     ```
-  This will create a new integration named `myFeed` which will be based on the `FeedHelloWorld` integration. The command has several pre-set templates which you can choose as the basis for your integration or script.
+  This will create a new integration named `myFeed` which will be based on the `FeedHelloWorld` integration. The `init` command has several pre-set templates which you can choose as the basis for your integration or script.
   By default the template is the `BaseIntegration` and `BaseScript` but you can also use `HelloWorld`, `HelloIAMWorld`, `FeedHelloWorld` for integrations and `HelloWorldScript` for scripts.
   These templates have a more robust integration information and examples. Additionally some templates are used to create the basic structure for feed and IAM integrations.
   
@@ -208,15 +208,15 @@ For additional information please see our documentation about [linting](../integ
    ```buildoutcfg
    demisto-sdk lint -i Packs/myPack/Integrations/myIntegration/ --no-flake8
     ```
-   This will run the lint command on the integration found in `Packs/myPack/Integrations/myIntegration/` - please not that the path requested is **to the directory not to the file itself**.
-   Also, it should be noted that there are additional flags used to turn off any specific linter like `--no-mypy` and `--no-xsoar-linter`.
+   This will run the lint command on the integration found in `Packs/myPack/Integrations/myIntegration/` - please note that the path requested is **to the directory not to the file itself**.
+   Also, it should be noted that there are additional flags used to turn off any specific linter like `--no-mypy` and `--no-xsoar-linter` etc.
  
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/lint/README.md#lint).
 
 ### secrets
 Use this command to find secrets such as emails and IP addresses in your files.
-Cortex XSOAR is an open source product, it's code can be found on a public repository on GitHub and thus it very visible.
-With that there comes a responsibility to identify and eliminate any secrets before they find their way to our repository and even our pull requests.
+Cortex XSOAR is an open source product, it's code can be found on a public repository on GitHub and thus it is very visible.
+With that there comes a responsibility to identify and eliminate any secrets before they find their way to our repository and even to our pull requests.
 
 > Please note: **this command is not fool proof and a manual review of the files is still highly recommended**.
 
@@ -265,7 +265,7 @@ and `DEMISTO_API_KEY` prior to running this command in order to establish a conn
     ```buildoutcfg
     demisto-sdk upload -i Packs/myPack/Integrations/myIntegration
     ```
-   This will upload the integration found in `Packs/myPack/Integrations/myIntegration` to my preset XSOAR server.
+   This will upload the integration found in `Packs/myPack/Integrations/myIntegration` to the preset XSOAR server.
  
  
  - Upload a pack to the server without certificate validation:
@@ -273,7 +273,7 @@ and `DEMISTO_API_KEY` prior to running this command in order to establish a conn
     demisto-sdk -i Pack/myPack --insecure
     ```
    This will iterate over all the content entities in the pack `myPack` and will upload then to the preset XSOAR server 
-   without checking the certification. Note this does not upload the entities as a whole pack but does upload them individually.
+   without checking the certification. Note that this command does not upload the entities as a whole pack but does upload them individually.
 
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/upload/README.md#upload).
 
@@ -282,10 +282,10 @@ Use this command to download entities from a Cortex XSOAR server to your local r
 and `DEMISTO_API_KEY` prior to running this command in order to establish a connection between `demisto-sdk` and the XSOAR server.
 
 This command can become useful when developing within the Cortex XSOAR server itself and downloading the new entities to your 
-local environment to continue with the contribution process.
+local environment in order to continue with the contribution process.
 
 #### Notes and Limitations
--  `JavaScript` integrations and scripts are not downloadable using this command.
+- `JavaScript` integrations and scripts are not downloadable using this command.
 - If there are files that exist both in the output directory and are specified in the input, they will be ignored. To override this behavior such that existing files will be merged with their newer version, use the `--force`/`-f` flag.
 - For consistency, it is assumed that for each integration or script the folder containing it will have the same name as the integration/script name with no separators. For example the integration `Test Integration_Full-Name`, will be under `~/.../Packs/TestPack/Integrations/TestIntegrationFullName/`.
 
@@ -295,7 +295,7 @@ local environment to continue with the contribution process.
     demisto-sdk download -lf
     ```
    This will list all the files which are downloadable using this command from the preset XSOAR server. 
-   Note: do not run the `-lf` flag alongside `-i` or `-o`.
+   Note: Do not run the `-lf` flag alongside `-i` or `-o`.
  
  
  - Download a file to a given pack:
@@ -303,14 +303,14 @@ local environment to continue with the contribution process.
     demsito-sdk download -i "My Integration" -o Packs/myPack
     ```
    This will download the entity named `My Integration` and will place it in the appropriate directory within `myPack`.
-   Do note that if `My Integration` exists in the pack, it will not be downloaded!
+   Do note that if `My Integration` exist in the pack, it will not be downloaded!
   
   
  - Download several files to a given pack and overwrite any file which already exists:
     ```buildoutcfg
     demsito-sdk download -i "My Integration" -i myScript -o Packs/myPack -f
     ```
-   This will download both the `My Integration` and `myScript` entities to `myPack`. If any of the files already exists in the pack it will be overwritten.
+   This will download both the `My Integration` and `myScript` entities to `myPack`. If any of the files already exist in the pack it will be overwritten.
  
  
  - Download all available custom files to a given pack:
@@ -352,7 +352,7 @@ Use this command to generate a readme file for your integration, script or playb
 
 Running this command will create a new `README.md` file at the same directory as the entity on which it ran, unless otherwise specified using the `-o` flag.
 To generate command examples be sure to setup the `DEMISTO_BASE_URL` and `DEMISTO_API_KEY` prior to running this command 
-in order to establish a connection between `demisto-sdk` and the XSOAR server as well as create a file containing some command examples to be ran for the documentation.
+in order to establish a connection between `demisto-sdk` and the XSOAR server, as well as create a file containing some command examples to be run for the documentation.
 
 Further information about how to run this command can be found in [here](../documentation/readme_file.md#creating-documentation).
 
