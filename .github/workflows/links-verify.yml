@@ -77,6 +77,7 @@ jobs:
         -e 'https://some.ru.*' \
         -e 'https://github.com/demisto/content-docs/issues/new.*' \
         -e 'https://github.com/demisto/content-docs/blob/master/.*\.md' \
+        -e 'https://github.com/demisto/content/blob/master//Packs/.*/README.md' \
         https://xsoar.pan.dev > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
         grep -v -E '^\s+(403|401|405|x509|lookup|parse|timeout|dial)' muffet.txt > muffet-clean.out
         echo "Muffet output after 401, 403, 405 and x509 remove:"
