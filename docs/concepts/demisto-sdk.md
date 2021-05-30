@@ -11,6 +11,7 @@ basic information about key commands to aid you in the development process. For 
 The Demisto SDK library supports Python 3.7 and up. Prior to installation please make sure you have a compatible Python version installed.  
 
 If you have followed our development setup [`bootstrap` process](dev-setup.md#bootstrap) you don't need to install the SDK manually as it is installed for you on your `venv`.
+
 These installation steps are only required if you are not working with the `bootstrap` or if you are working on a repository which is not part of the Content repository.
 To manually install the Demisto-SDK, enter your terminal and run the command:
 ```buildoutcfg
@@ -269,7 +270,7 @@ and the `DEMISTO_API_KEY` prior to running this command in order to establish a 
     ```buildoutcfg
     demisto-sdk -i Pack/myPack --insecure
     ```
-   This iterates over all the content entities in the pack `myPack` and uploads then to the preset XSOAR server 
+   This iterates over all the content entities in the pack `myPack` and uploads them to the preset XSOAR server 
    without checking the certification. Note that this command does not upload the entities as a whole pack but instead uploads them individually.
 
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/upload/README.md#upload).
