@@ -64,12 +64,12 @@ If you are not sure of the available commands, run:
 ```buildoutcfg
 demisto-sdk -h
 ```
-This command will give you a full list of available commands as well as a short description of each command's purpose.
+This command gives you a full list of available commands as well as a short description of each command's purpose.
 If you need the list of arguments available for a command, run:
 ```buildoutcfg
 demisto-sdk <command_name> -h
 ```
-This will give you a full list of the command's arguments and their descriptions. We add new arguments and features regularly, so please feel free to approach us with new ideas and suggestions!
+This gives you a full list of the command's arguments and their descriptions. We add new arguments and features regularly, so please feel free to approach us with new ideas and suggestions!
 
 ## Commands
 
