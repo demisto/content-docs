@@ -44,7 +44,7 @@ The schedule sequence completes when any one of three terminating actions occur:
 3. ***Timeout (automatically handled)*** - The schedule sequence finishes execution with a timeout error when the timeout is reached. Cortex XSOAR will return the timeout error entry automatically.
 
 #### Code Example
-In the example below, if the `status` is not `complete` then a result with `schedule_config` is returned. After 60 seconds, the result triggers a poll for the search. This is done in the next run as well, and repeats until the status is complete.
+In the example below, if the `status` is not `complete` then a result with `scheduled_command` is returned. After `interval_in_seconds` seconds (60 by default), the result schedules a poll for the search status and result. This is done in the next run as well, and repeats until the status is complete.
 
 ```python
 def run_polling_command(args: dict, cmd: str, search_function: Callable, results_function: Callable):
@@ -94,18 +94,19 @@ def run_polling_command(args: dict, cmd: str, search_function: Callable, results
 ```
 
 ### How to use with demisto.executeCommand
-A command or a script that returns ***schedule result*** **will not schedule** a command execution when called via `demisto.executeCommand()`.
+When using `demisto.executeCommand()` a command or a script that returns schedule result **will not schedule** a command execution.
 
-To schedule the command specified in the ***schedule result***, the parent script (the script that called `demisto.executeCommand()`) should return that result via `return_results`.
+To schedule the ***schedule result***, the parent script should return that result via `return_results`.
+Prior to returning the result, it's possible to alter the ***schedule result*** fields `PollingCommand`, `NextRun`, `Timeout` `PollingArgs` (for reference see: [demisto.results](./code-conventions##deprecated---demistoresults)).
 
-Alternatively, it's possible to alter the ***schedule result*** fields to alter the ScheduledCommand: `PollingCommand`, `NextRun`, `Timeout` `PollingArgs` (for reference see: [demisto.results](<./code-conventions#DEPRECATED - demisto.results()>))
-
-For example, given an example command `polling-command`, that can return a ***schedule result*** the executing script can handle it like so:
+#### Code Example
+Given an example command `polling-command`, that can return a ***schedule result***, the parent script can handle it like so:
 ```python
-polling_result = demisto.executeCommand('polling-command', cmd_args)
+cmd_args = {...}
+schedule_result = demisto.executeCommand('polling-command', cmd_args)
 script_results = [
     CommandResults(...),
-    polling_result
+    schedule_result
 ]
 return_results(script_results)
 ```
