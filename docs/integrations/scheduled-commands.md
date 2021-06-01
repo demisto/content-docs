@@ -96,8 +96,8 @@ def run_polling_command(args: dict, cmd: str, search_function: Callable, results
 ### How to use with demisto.executeCommand
 When using `demisto.executeCommand()` a command or a script that returns schedule result **will not schedule** a command execution.
 
-To schedule the ***schedule result***, the parent script should return that result via `return_results`.
-Prior to returning the result, it's possible to alter the ***schedule result*** fields `PollingCommand`, `NextRun`, `Timeout` `PollingArgs` (for reference see: [demisto.results](./code-conventions##deprecated---demistoresults)).
+To schedule the ***schedule result***, the parent script should return that result via `return_results()`.
+Prior to returning the result, it's possible to alter the ***schedule result*** fields `PollingCommand`, `NextRun`, `Timeout` `PollingArgs` (for reference see: [demisto.results](./code-conventions#deprecated---demistoresults)).
 
 #### Code Example
 Given an example command `polling-command`, that can return a ***schedule result***, the parent script can handle it like so:
