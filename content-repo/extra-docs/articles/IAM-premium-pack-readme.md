@@ -130,7 +130,7 @@ The **Okta IAM** integration fetches the following Okta log event types and proc
 * The *application.user_membership.add* / *application.user_membership.remove* Okta event results in *IAM - App Add* / *IAM - App Remove* incidents respectively, which run the **IAM - App Sync** playbook. The playbook uses the integration context (that is transparent to the user) of the Okta instance, which maps Okta App IDs to integration instances in Cortex XSOAR, in order to determine to which instance to sync the user. It then runs either the ***iam-update-user*** with the "allow-enable" argument set to True, or ***iam-disable-user*** command, depending on the detected incident type.
 **Note:** The behavior for when a user account does not exist in the app is configurable through the relevant integration configuration. For example, if the user does not exist in the app to which they are assigned and the integration's "create if not exists" parameter is unchecked, then the command will be skipped. If the parameter is checked - the account will be created. 
 
-* The *user.account.update_profile* Okta event results in *IAM - App Update* incidents which run the **IAM - App Update** playbook. The playbook checks which apps the user is assigned to, and maps it to integration instances in Cortex XSOAR in which the user will be updated. The mapping is done using the integration context (that is transparent to the user) of the Okta instance, which maps Okta App IDs to integration instances in Cortex XSOAR, in order to determine which instancea to update the user in. It then runs the ***iam-update-user*** in all of the available instances of the apps to which the user is currently assigned.
+* The *user.account.update_profile* Okta event results in *IAM - App Update* incidents which run the **IAM - App Update** playbook. The playbook checks which apps the user is assigned to, and maps it to integration instances in Cortex XSOAR in which the user will be updated. The mapping is done using the integration context (that is transparent to the user) of the Okta instance, which maps Okta App IDs to integration instances in Cortex XSOAR, in order to determine which instance to update the user in. It then runs the ***iam-update-user*** in all of the available instances of the apps to which the user is currently assigned.
 
 ### Before You Start
 
@@ -189,18 +189,18 @@ These playbooks contain error handling tasks where a user is assigned to review 
 
 The mappers that are provided out-of-the-box work with the assumption that you did not add any fields. 
 
-If you want to include additional information in the user profile indicator, and provision it to your available IAM applications, follow the steps in the following example: 
+The following provides a general idea of how to include additional information in the user profile indicator, and provision it to your available IAM applications. The [Example](#Example) below provides detailed instructions for adding a field to work with the ILM content pack.
 
 1. Add the field to the mappers for the Workday, Okta, Active Directory, and for any other IAM integration configured. 
 
-   **Note:** To change the mappers, you will need to duplicate each mapper. 
+   **Note:** To change the mappers, you will need to duplicate both the incoming and outgoing mappers. 
 
    Ensure that you are adding the fields to the relevant incident types within each mapper.
 
    * for the Workday incoming mapper, add the field to the *IAM - Sync User* incident type.
    * for Okta and Active Directory, add the field to the *UserProfile* incident type in both the incoming and outgoing mappers.
    
-        > <i>Note:</i> As part of the configuration of the Active Directory mapper, you must map a value to the OU (organizational unit) required field. To do this, create a transformer that maps a user attribute of your choice to an OU value.
+        **Note:** As part of the configuration of the Active Directory mapper, you must map a value to the OU (organizational unit) required field. To do this, create a transformer that maps a user attribute of your choice to an OU value.
    
    * for GitHub, the relevant mappers are in the *IAM-SCIM* pack and can be used in any integrations that uses SCIM.
 
@@ -212,12 +212,12 @@ If you want to include additional information in the user profile indicator, and
 The following is an example of the flow when adding a field to work with the ILM content pack. This example does not presume to cover all possible scenarios.
 
 1.  Add an incident field.
-    1. Navigate to Settings -> Advanced -> Fields and click *New Field*.
+    1. Navigate to **Settings** -> **Advanced** -> **Fields** and click *New Field*.
     1. Enter the name for the field and click the *Attributes* tab.
     1. Clear the *Add to all incident types* checkbox.
     1. In the *Add to incident types* drop-down, select the following:
         - User Profile
-	- IAM - Sync User
+	    - IAM - Sync User
 	    
 	    You can also add the following incident types if you would like to display the new field in the incident layout (the new fields will be shown regardless in the User Profile indicator).
 	    - IAM - New Hire
@@ -257,9 +257,17 @@ The following is an example of the flow when adding a field to work with the ILM
     1. Navigate to *Settings -> Integrations -> Classification and Mapping*.
     1. Select the mapper to which you want to add the field, for example, *IAM Sync User - Workday*, and click *Duplicate*. 
     1. Click *IAM Sync User - Workday_copy*.
-    1. Under *Get data*, select the source from which you want to retrieve the sample data for mapping.
-    1. Under *Select Instance*, select the instance of the selected source.
-    1. Under *Incident Type*, select the relevant incident type, as follows:
+    1. For the incoming mapper:
+       1. In the Playground, run the ***!get-mapping-fields*** command.
+       1. Locate the results for you integration.
+       1. Click **View full JSON in a new tab**.
+       1. Click **Download as a file**. The file will be downloaded to your Downloads folder.
+       1. Copy only the attributes/values of the *User Profile* field of the downloaded JSON file, and save it in a separate JSON file. 
+       1. Under *Get data*, select **Upload JSON** and upload the saved JSON file.
+    1. For the outgoing mapper:
+        1. Under *Get data*, select the source from which you want to retrieve the sample data for mapping.
+        2. Under *Select Instance*, select the instance of the selected source.
+    3. Under *Incident Type*, select the relevant incident type. 
         - for the Workday incoming mapper, add the field to the *IAM - Sync User*, *IAM - New Hire*, *IAM - Rehire User*, *IAM - Update User* and *IAM - Terminate User* incident types. 
         - for Okta, Active Directory, ServiceNow, GitHub and the rest of the IAM integrations, add the field to the UserProfile incident type in both the incoming and outgoing mappers.
     1. Map the new field you have created to the field in the schema. For purposes of this example, we have mapped the Sample-Field-IAM field to the employee number.
@@ -270,7 +278,6 @@ The following is an example of the flow when adding a field to work with the ILM
         - Active Directory incoming and outgoing mappers
         - ServiceNow incoming and outgoing mappers
         - GitHub that uses the IAM-SCIM incoming and outgoing mappers
-
     ![Map Fields](../../../docs/doc_imgs/reference/ilm-map-fields.png "Map Fields")
 
 1. Configure the integration instances to use the new mappers.
