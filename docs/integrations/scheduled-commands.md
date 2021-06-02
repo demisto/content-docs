@@ -103,10 +103,9 @@ Prior to returning the result, it's possible to alter the ***schedule result*** 
 Given an example command `polling-command`, that can return a ***schedule result***, the parent script can handle it like so:
 ```python
 cmd_args = {...}
+script_results = [CommandResults(...)]
 schedule_result = demisto.executeCommand('polling-command', cmd_args)
-script_results = [
-    CommandResults(...),
-    schedule_result
-]
+if schedule_result and not isError(res[0]):
+    script_results.extend(schedule_result)
 return_results(script_results)
 ```
