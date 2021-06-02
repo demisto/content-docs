@@ -166,3 +166,12 @@ You may choose to show the pack author image such that it will be displayed in t
 The image size should be up to 4kb and in the dimensions of 120x50.
  
 In case file does not exist, the pack author will be displayed in text.
+
+
+```
+## Pack Contributors:
+* Contrib1
+* Contrib2
+
+Contributions are welcome and appreciated. For more info, visit our [Contribution Guide](https://xsoar.pan.dev/docs/contributing/contributing).
+```
