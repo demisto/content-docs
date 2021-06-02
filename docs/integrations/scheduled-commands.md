@@ -94,18 +94,47 @@ def run_polling_command(args: dict, cmd: str, search_function: Callable, results
 ```
 
 ### How to use with demisto.executeCommand
-When using `demisto.executeCommand()` a command or a script that returns schedule result **will not schedule** a command execution.
+When using `demisto.executeCommand()` a command or a script that returns schedule result **will not schedule** a command execution. However, its result will contain the schedule metadata.
 
-To schedule the ***schedule result***, the parent script should return that result via `return_results()`.
-Prior to returning the result, it's possible to alter the ***schedule result*** fields `PollingCommand`, `NextRun`, `Timeout` `PollingArgs` (for reference see: [demisto.results](./code-conventions#deprecated---demistoresults)).
+It's recommended to create a new result with `ScheduledCommand` class to schedule a future script execution.
+
+**Advanced users** can extract the schedule metadata, and use it when scheduling the future script execution.
+The schedule metadata fields are: `PollingCommand`, `NextRun`, `Timeout` `PollingArgs` (for reference see: [demisto.results](./code-conventions#deprecated---demistoresults)).
 
 #### Code Example
-Given an example command `polling-command`, that can return a ***schedule result***, the parent script can handle it like so:
+Given the command `autofocus-search-samples`, that may return a ***schedule result*** (if it has `Metadata.polling` in its fields, and `af_cookie` in its `Contents`), or a non-scheduled result, the wrapping script `AutoFocusSearchScript` can handle it like so:
 ```python
-cmd_args = {...}
-script_results = [CommandResults(...)]
-schedule_result = demisto.executeCommand('polling-command', cmd_args)
-if schedule_result and not isError(res[0]):
-    script_results.extend(schedule_result)
+args = demisto.args()
+samples_result = demisto.executeCommand('autofocus-search-samples', **args)
+script_results = []
+if samples_result and not isError(res[0]):
+    if demisto.get(res[0], 'Metadata.polling'):  # result has polling metadata
+        # extract the af_cookie from the results
+        af_cookie = demisto.get(res[0], 'Contents.AFCookie')
+        if not af_cookie:
+            return_error('af_cookie is missing from schedule result.')
+        schedule_args = {
+            'af_cookie': af_cookie,
+            'polling': True
+        }
+        schedule_command = 'AutoFocusSearchScript'
+        # take the timeout and next_run from the polling fields
+        schedule_timeout = demisto.get(res[0], 'Timeout')
+        schedule_next_run = demisto.get(res[0], 'NextRun')
+        scheduled_command = ScheduledCommand(
+            command=schedule_command,
+            next_run_in_seconds=int(schedule_next_run),
+            args=schedule_args,
+            timeout_in_seconds=int(schedule_timeout)
+        )
+        readable_output = "Autofocus search created successfully."
+        script_results.append(CommandResults(
+            readable_output=readable_output,
+            scheduled_command=scheduled_command
+        ))
+    else:
+        readable_output = "Autofocus search is done, see result below."
+        script_results.append(CommandResults(readable_output=readable_output))
+        script_results.extend(samples_result)
 return_results(script_results)
 ```
