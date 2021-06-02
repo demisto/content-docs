@@ -13,7 +13,7 @@ import clsx from "clsx";
 import queryString from "query-string";
 import React, { useCallback, useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import Button from "../../theme/Button";
 import MarketplaceSidebar from "../../theme/MarketplaceSidebar";
 import styles from "./styles.module.css";
@@ -29,6 +29,8 @@ function capitalizeFirstLetter(string) {
 
 function Marketplace() {
   const location = useLocation();
+  const history = useHistory()
+
   const params = queryString.parse(location.search);
   const isBreakpoint = useMediaQuery({ query: "(max-width: 1321px)" });
   const { siteConfig } = useDocusaurusContext();
@@ -54,7 +56,7 @@ function Marketplace() {
   useEffect(() => {
     if (!price && params.price) setPrice(params.price);
     if (!support && params.support) setSupport(params.support);
-    if (!author && params.vendor) setAuthor(params.vendor);
+    if (!author && params.author) setAuthor(params.author);
     if (!useCase && params.useCase) setUseCase(params.useCase);
     if (!integration && params.integration) setIntegration(params.integration);
     if (!category && params.category) setCategory(params.category);
@@ -112,6 +114,38 @@ function Marketplace() {
   });
 
   const totalFilteredPacks = filteredPacks.length;
+//  window.addEventListener( "pageshow", function ( event ) {
+//      var historyTraversal = event.persisted || ( typeof window.performance != "undefined" && window.performance.navigation.type === 2 );
+//      if ( historyTraversal ) {
+//        // Handle page restore.
+//        //alert('refresh');
+//        window.location.reload();
+//      }
+//    });
+    console.log(window.performance.navigation.type);
+//    if(window.performance.navigation.type == 2){
+//        console.log("inside if")
+//       window.location.reload(true);
+//    }
+  // Generate author options
+  function updateQueryParams(paramName, paramValue) {
+     var queryParams = new URLSearchParams(window.location.search);
+
+     if (!paramValue) {
+      queryParams.delete(paramName);
+      history.push({
+        search: queryParams.toString(),
+      })
+     }
+
+    else {
+      queryParams.set(paramName, paramValue);
+      // Replace current querystring with the new one.
+      history.push({
+        search: "?"+queryParams.toString(),
+      })
+    }
+  }
 
   // Generate author options
   function generateAuthors() {
@@ -338,7 +372,6 @@ function Marketplace() {
     });
     return supports;
   }
-
   return (
     <Layout
       title={TITLE}
@@ -365,51 +398,72 @@ function Marketplace() {
             {
               type: "select",
               label: "Published By",
-              action: setSupport,
+              action: ((arg) => {
+               updateQueryParams("support", arg);
+               setSupport(arg);
+               }),
               options: generateSupports(),
               state: support,
             },
             {
               type: "select",
               label: "Price",
-              action: setPrice,
+              action: ((arg) => {
+               updateQueryParams("price", arg);
+               setPrice(arg);
+               }),
               options: generatePrices(),
               state: price,
             },
             {
               type: "select",
               label: "Author",
-              action: setAuthor,
+              action: ((arg) => {
+               updateQueryParams("author", arg);
+               setAuthor(arg);
+               }),
               options: generateAuthors(),
               state: author,
             },
             {
               type: "select",
               label: "Use Cases",
-              action: setUseCase,
+              action: ((arg) => {
+               updateQueryParams("useCase", arg);
+               setUseCase(arg);
+               }),
               options: generateUseCases(),
               state: useCase,
             },
             {
               type: "select",
               label: "Integrations",
-              action: setIntegration,
+              action: ((arg) => {
+               updateQueryParams("integration", arg);
+               setIntegration(arg);
+               }),
               options: generateIntegrations(),
               state: integration,
             },
             {
               type: "select",
               label: "Categories",
-              action: setCategory,
+              action: ((arg) => {
+               updateQueryParams("category", arg);
+               setCategory(arg);
+               }),
               options: generateCategories(),
               state: category,
             },
             {
               type: "select",
               label: "Tags",
-              action: setTag,
+              action: ((arg) => {
+               updateQueryParams("tag", arg);
+               setTag(arg);
+               }),
               options: generateTags(),
-              state: category,
+              state: tag,
             },
           ]}
           path="/marketplace/"
