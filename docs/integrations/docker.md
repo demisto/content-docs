@@ -31,7 +31,7 @@ commonfields:
   id: MyIntegration
   version: -1
 name: MyIntegration
-display: name: MyIntegration
+display: MyIntegration
 script:
  dockerimage: demisto/oauthlib:1.0.0.16907
 autoUpdateDockerImage: true
