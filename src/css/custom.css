@@ -350,7 +350,9 @@ html[data-theme="dark"] .header-github-link:before {
 
 @media (max-width: 1320px) and (min-width: 997px) {
   .container {
-    max-width: calc(var(--ifm-container-width) - 125px - var(--ifm-spacing-horizontal) * 2);
+    max-width: calc(
+      var(--ifm-container-width) - 125px - var(--ifm-spacing-horizontal) * 2
+    );
   }
 }
 
@@ -382,8 +384,7 @@ html[data-theme="dark"] .header-github-link:before {
   margin: 0 auto;
 }
 
-.infoTable td,
-th {
+.infoTable td, th {
   border: none;
 }
 
@@ -404,8 +405,7 @@ th {
   width: 100%;
 }
 
-.contentTable td,
-th {
+.contentTable td, th {
   border: none;
 }
 

@@ -39,7 +39,7 @@ module.exports = {
     algolia: {
       apiKey: "f5dfbee43cfa4c5024b10045c6d91461",
       indexName: "demisto",
-      algoliaOptions: { typoTolerance: false, hitsPerPage: 1000, filters: "type:lvl1 OR type:content" } // Optional, if provided by Algolia
+      algoliaOptions: { typoTolerance: false, hitsPerPage: 1000, filters: 'type:lvl1 OR type:content' } // Optional, if provided by Algolia
     },
     sidebarCollapsible: true,
     navbar: {
@@ -100,7 +100,7 @@ module.exports = {
               label: "Prisma",
               className: "prismaItem",
               target: "_self"
-            }
+            },
           ],
           position: "right"
         },
@@ -137,7 +137,7 @@ module.exports = {
             {
               to: "https://start.paloaltonetworks.com/become-a-technology-partner",
               label: "Sign Up Now"
-            }
+            },
           ],
           position: "right"
         },
@@ -151,8 +151,8 @@ module.exports = {
           position: "right",
           className: "header-github-link",
           "aria-label": "GitHub repository"
-        }
-      ]
+        },
+      ],
     },
     footer: {
       style: "dark",
@@ -165,7 +165,7 @@ module.exports = {
               to: "/docs/partners/become-a-tech-partner",
               label: "Become a Technology Partner"
             }
-          ]
+          ],
         },
         {
           title: "Social",
@@ -174,8 +174,8 @@ module.exports = {
               label: "Blog",
               href: "https://blog.demisto.com/"
             }
-          ]
-        }
+          ],
+        },
       ],
       logo: {
         alt: "Palo Alto Networks for Developers",
@@ -185,11 +185,11 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Palo Alto Networks, Inc.`
     },
     announcementBar: {
-      id: "github_star",
+      id: 'github_star',
       content:
         '⭐️ If you like Cortex XSOAR Content, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/demisto/content">GitHub</a>! ⭐',
-      backgroundColor: "#fafbfc",
-      textColor: "#091E42"
+      backgroundColor: '#fafbfc',
+      textColor: '#091E42'
     }
   },
   themes: ["@docusaurus/theme-live-codeblock"],
@@ -216,9 +216,9 @@ module.exports = {
         sitemap: {
           changefreq: "weekly",
           priority: 0.5
-        }
-      }
-    ]
+        },
+      },
+    ],
   ],
   customFields: {
     marketplace: marketplace
@@ -228,7 +228,7 @@ module.exports = {
       href: "https://use.fontawesome.com/releases/v5.15.0/css/all.css",
       type: "text/css",
       rel: "stylesheet"
-    }
+    },
   ],
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
