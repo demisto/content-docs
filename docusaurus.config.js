@@ -39,7 +39,7 @@ module.exports = {
     algolia: {
       apiKey: "f5dfbee43cfa4c5024b10045c6d91461",
       indexName: "demisto",
-      algoliaOptions: { typoTolerance: false, hitsPerPage: 1000, filters: 'type:lvl1 OR type:content' } // Optional, if provided by Algolia
+      algoliaOptions: { typoTolerance: false, hitsPerPage: 1000, filters: "type:lvl1 OR type:content" } // Optional, if provided by Algolia
     },
     sidebarCollapsible: true,
     navbar: {
@@ -53,17 +53,21 @@ module.exports = {
         {
           to: "/docs/welcome",
           label: "Developer Docs",
-          position: "left"
+          position: "left",
+          activeBaseRegex:
+            "docs(/welcome|/index|/concepts|/contributing|/dashboards|/doc_imgs|/documentation|/incidents|/integrations|/packs|/playbooks|/scripts|/tutorials)"
         },
         {
-          to: "/docs/reference/articles-index",
+          to: "/docs/reference/articles",
           label: "Articles",
-          position: "left"
+          position: "left",
+          activeBaseRegex: "docs/reference/articles"
         },
         {
           to: "/docs/reference/index",
           label: "Reference",
-          position: "left"
+          position: "left",
+          activeBaseRegex: "docs/reference/(index|api|integrations|playbooks|releases|scripts)"
         },
         {
           to: "/marketplace",
@@ -96,12 +100,14 @@ module.exports = {
               label: "Prisma",
               className: "prismaItem",
               target: "_self"
-            },
+            }
           ],
           position: "right"
         },
         {
           label: "Partners",
+          to: "docs/partners/why-xsoar",
+          activeBaseRegex: "docs/partners",
           items: [
             { to: "/docs/partners/why-xsoar", label: "Why Cortex XSOAR?" },
             {
@@ -129,10 +135,9 @@ module.exports = {
               label: "Development Partners"
             },
             {
-              to:
-                "https://start.paloaltonetworks.com/become-a-technology-partner",
+              to: "https://start.paloaltonetworks.com/become-a-technology-partner",
               label: "Sign Up Now"
-            },
+            }
           ],
           position: "right"
         },
@@ -146,8 +151,8 @@ module.exports = {
           position: "right",
           className: "header-github-link",
           "aria-label": "GitHub repository"
-        },
-      ],
+        }
+      ]
     },
     footer: {
       style: "dark",
@@ -160,7 +165,7 @@ module.exports = {
               to: "/docs/partners/become-a-tech-partner",
               label: "Become a Technology Partner"
             }
-          ],
+          ]
         },
         {
           title: "Social",
@@ -169,8 +174,8 @@ module.exports = {
               label: "Blog",
               href: "https://blog.demisto.com/"
             }
-          ],
-        },
+          ]
+        }
       ],
       logo: {
         alt: "Palo Alto Networks for Developers",
@@ -180,11 +185,11 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Palo Alto Networks, Inc.`
     },
     announcementBar: {
-      id: 'github_star',
+      id: "github_star",
       content:
         '⭐️ If you like Cortex XSOAR Content, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/demisto/content">GitHub</a>! ⭐',
-      backgroundColor: '#fafbfc',
-      textColor: '#091E42',
+      backgroundColor: "#fafbfc",
+      textColor: "#091E42"
     }
   },
   themes: ["@docusaurus/theme-live-codeblock"],
@@ -211,9 +216,9 @@ module.exports = {
         sitemap: {
           changefreq: "weekly",
           priority: 0.5
-        },
-      },
-    ],
+        }
+      }
+    ]
   ],
   customFields: {
     marketplace: marketplace
@@ -223,7 +228,7 @@ module.exports = {
       href: "https://use.fontawesome.com/releases/v5.15.0/css/all.css",
       type: "text/css",
       rel: "stylesheet"
-    },
+    }
   ],
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
