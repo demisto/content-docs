@@ -14,11 +14,11 @@ const sidebars = {
       items: [
         {
           type: "doc",
-          id: "concepts/getting-started-guide"    
+          id: "concepts/getting-started-guide"
         },
         {
           type: "doc",
-          id: "concepts/concepts"    
+          id: "concepts/concepts"
         },
         {
           type: "category",
@@ -37,13 +37,14 @@ const sidebars = {
           items: [
             "concepts/xsoar-ide",
             "concepts/pycharm-plugin",
-            "concepts/dev-setup"
+            "concepts/dev-setup",
+            "concepts/demisto-sdk"
           ]
         },
         {
           type: "doc",
           id: "concepts/faq"
-        },          
+        },
       ]
     },
     {
@@ -53,18 +54,18 @@ const sidebars = {
       items: [
         "contributing/contributing",
         "contributing/contrib-requirements",
-        "contributing/checklist",        
+        "contributing/checklist",
         "contributing/conventions",
         "contributing/docs-contrib",
         "contributing/marketplace"
       ]
-    }, 
+    },
     {
       type: "category",
       label: "Content Packs",
       collapsed: true,
       items: [
-        "packs/packs-format",  
+        "packs/packs-format",
         "packs/pack-docs-redir",
         "packs/pack-rn-redir",
         "packs/premium_packs"
@@ -78,7 +79,7 @@ const sidebars = {
         {
           type: "category",
           label: "Components",
-          collapsed: true,          
+          collapsed: true,
           items: [
             "integrations/package-dir",
             "integrations/yaml-file",
@@ -88,10 +89,10 @@ const sidebars = {
             "integrations/integration-doc-redir"
           ]
         },
-        {       
+        {
           type: "category",
           label: "Developing",
-          collapsed: true,          
+          collapsed: true,
           items: [
             "integrations/code-conventions",
             "integrations/fetching-incidents",
@@ -114,13 +115,13 @@ const sidebars = {
               ]
             },
             "integrations/dbot",
-            "integrations/docker"            
+            "integrations/docker"
           ]
-        },        
-        {       
+        },
+        {
           type: "category",
           label: "Testing",
-          collapsed: true,          
+          collapsed: true,
           items: [
             "integrations/linting",
             "integrations/unit-testing",
@@ -128,10 +129,10 @@ const sidebars = {
             "integrations/debugging",
           ]
         },
-        {       
+        {
           type: "category",
           label: "Advanced Topics",
-          collapsed: true,          
+          collapsed: true,
           items: [
             "integrations/feeds",
             "integrations/iam-integrations",
@@ -143,7 +144,8 @@ const sidebars = {
             "integrations/mirroring_integration",
             "integrations/openapi-codegen",
             "integrations/postman-codegen",
-            "integrations/code-generator"
+            "integrations/code-generator",
+            "integrations/scheduled-commands"
           ]
         }
       ]
@@ -205,7 +207,7 @@ const sidebars = {
       items: [
             "tutorials/tut-setup-dev",
             "tutorials/tut-design",
-            "tutorials/tut-integration-ui"            
+            "tutorials/tut-integration-ui"
         ]
     },
     {
@@ -222,7 +224,7 @@ const sidebars = {
       items: [
         "partners/why-xsoar",
         "partners/become-a-tech-partner",
-        "partners/marketplace",
+        "partners/paid-packs",
         "partners/adopt",
         "partners/certification",
         "partners/office-hours",

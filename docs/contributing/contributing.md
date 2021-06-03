@@ -9,7 +9,7 @@ This article is focused on contributing Cortex XSOAR Content. If you want to con
 
 Thanks for being interested in contributing to Cortex XSOAR. This document describes the Contribution process. If you are not sure whether you should read this, make sure you read the [Getting Started Guide](../concepts/getting-started-guide) first.
 
-Contributing allows you to make the content that you build on Cortex XSOAR available to every client through the  [Marketplace](../partners/marketplace). Content can be either Partner or Community supported, [Free or Paid](../partners/marketplace#pricing).
+Contributing allows you to make the content that you build on Cortex XSOAR available to every client through the  [Marketplace](../partners/paid-packs). Content can be either Partner or Community supported, [Free or Paid](../partners/paid-packs#pricing).
 
 All the free content (i.e. everything excluding Paid Content Packs) is open source and lives in the Cortex XSOAR [GitHub Repository](https://github.com/demisto/content), with a MIT license.
 
@@ -82,14 +82,10 @@ In order to be able to submit a Pull Request to the Cortex XSOAR [GitHub Reposit
 
 ## Open a Pull Request
 
-After you have completed all the requirements and ready to open your Pull Request commit and push your work to the a branch you have created in your forked repo. 
+After you have completed all the requirements and are ready to open your Pull Request, commit and push your work to the branch you have created in your forked repo. 
 
 Now you can go ahead an open your Pull Request, you can use [this article](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) to do so.
 When creating the pull request make sure to fill in the different section in the pull request template.
-
-:::note Important Note
-As part of the Pull Request template, you will be asked to fill in the [contribution registration form](https://forms.gle/XDfxU4E61ZwEESSMA), make sure to do so, without it we cannot review your contribution.
-:::
 
 ## After opening a Pull Request
 
@@ -98,5 +94,8 @@ After opening the Pull Request, make sure that you:
 - Sign the [CLA](https://github.com/demisto/content/blob/master/docs/cla.pdf): every contributor must sign our Contributor License Agreement in order for their contribution to be added to our content. In case of CLA issues check out our [FAQs](../concepts/faq#cla-is-pending-even-though-i-signed-the-agreement).
 - Monitor your Pull Request on GitHub and be ready for a demo: our Content team will add comments to the Pull Request, asking questions and requesting changes. At some point, we'll ask you to schedule a meeting to see an interactive demo, make sure you have a working installation of Cortex XSOAR with your pack fully configured.
 
-For more details on how to handle the Pull Request, check out our [Pull Request Conventions](../contributing/conventions).
+:::note Important Note
+As part of the Pull Request template, you will be asked to fill in the [contribution registration form](https://forms.gle/XDfxU4E61ZwEESSMA), make sure to do so, without it we cannot review your contribution.
+:::
 
+For more details on how to handle the Pull Request, check out our [Pull Request Conventions](../contributing/conventions).

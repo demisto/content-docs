@@ -115,8 +115,8 @@ module.exports = {
               label: "Become a Partner"
             },
             {
-              to: "/docs/partners/marketplace",
-              label: "Marketplace"
+              to: "/docs/partners/paid-packs",
+              label: "Paid Packs"
             },
             {
               to: "/docs/partners/adopt",

@@ -1,17 +1,17 @@
 ---
-id: marketplace 
-title: Marketplace 
+id: paid-packs 
+title: Paid Packs 
 ---
 
 With the release of Cortex XSOAR v.6 in August 2020, we are pleased to announce the industry's first fully integrated marketplace for orchestration content!
 
-Cortex XSOAR Marketplace is a digital storefront for discovering, exchanging and contributing security orchestration content centrally within the Cortex XSOAR platform. It enables users to install turnkey content packs to help solve any security use case with content contributed by SecOps experts and the world’s largest SOAR partner community, including you.
+[Cortex XSOAR Marketplace](/marketplace) is a digital storefront for discovering, exchanging and contributing security orchestration content centrally within the Cortex XSOAR platform. It enables users to install turnkey content packs to help solve any security use case with content contributed by SecOps experts and the world’s largest SOAR partner community, including you.
 
 Additionally, Partners have the ability to monetize their content on the Marketplace. You decide the content, the price, and how to best market it, and get a healthy share of the revenue. The customer gets premium content to solve their use case. It's a win-win.
 
 ## Packs
 
-All content on Marketplace is included in a Pack. ([What can be in a pack?](/docs/integrations/packs-format)) When Partners create a pack, they specify the content that is included in that pack. 
+All content on Marketplace is included in a Pack. ([What can be in a pack?](/docs/packs/packs-format#directories)) When Partners create a pack, they specify the content that is included in that pack. 
 
 Packs on Marketplace can be free or paid. Our platform does full dependency checking, too, so a pack can be dependent on, say, a command in another pack. This allows you to build a playbook addressing a full use case across products. Paid Packs are held in your private repository. Free Packs are held in our open source repository. 
 

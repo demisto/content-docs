@@ -67,6 +67,19 @@ jobs:
         -e 'https?://(www\.)?pastebin.com/.*' \
         -e 'https?://(www\.)?abuse.com.*' \
         -e '(?i)https?://(www\.)?google.com/.*' \
+        -e 'https://www.dos.ny.gov/consumerprotection/pdf/infosecbreach03.pdf' \
+        -e 'https://images.nasa.gov' \
+        -e 'https://virustotal.com/vtapi/v2/ip/.*' \
+        -e 'https://xsoar.pan.dev/marketplace/details/.*/' \
+        -e 'https://s3.*.amazonaws.com/my-bucket/.*' \
+        -e 'https://virustotal.com/vtapi/v2/.*' \
+        -e 'https://github.com/example-user1/.*' \
+        -e 'https://some.ru.*' \
+        -e 'https://github.com/demisto/content-docs/issues/new.*' \
+        -e 'https://github.com/demisto/content-docs/blob/master/.*\.md' \
+        -e 'https://github.com/demisto/content-docs/tree/master/.*\.md' \
+        -e 'https://github.com/demisto/content/blob/master//Packs/.*/README.md' \
+        -e 'https://gitlab.com/test-user/.*' \
         https://xsoar.pan.dev > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
         grep -v -E '^\s+(403|401|405|x509|lookup|parse|timeout|dial)' muffet.txt > muffet-clean.out
         echo "Muffet output after 401, 403, 405 and x509 remove:"
@@ -75,7 +88,7 @@ jobs:
           echo "muffet failed verification!!!"
           exit 1
         fi
-        echo "All good muffet passed!!!"
+        echo "All good! muffet passed!!!"
     - name: Save artifcats
       if: ${{ always() }}
       uses: actions/upload-artifact@v2

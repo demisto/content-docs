@@ -21,7 +21,13 @@ curl http://localhost:7000
 
 To access the integration over the listening port via the Cortex XSOAR Server's DNS host, you would use (assuming the configured port is 7000 and HTTP is being used) the url: `http://<cortex_xsoar_dns>:7000`. This requires opening the port to external access. Usually this involves a firewall or security group modification. 
 
-Starting with Cortex XSOAR Server v5.5 there is an option to route the HTTP request via the Cortex XSOAR Server's HTTPS endpoint. This is useful if you would like to avoid opening an additional port (the long running integration's port) on the Cortex XSOAR Server's machine to outside access. 
+Starting with Cortex XSOAR Server v5.5 there is an option to route the HTTP request via the Cortex XSOAR Server's HTTPS endpoint. This is useful if you would like to avoid opening an additional port (the long running integration's port) on the Cortex XSOAR Server's machine to outside access.
+
+The rerouting is through HTTP, and not HTTPS. In this case don't set a certificate in the integration instance configuration.
+
+:::caution
+The integration will be open to the same network the XSOAR Server is accessible. Make sure you are aware of the network risks. Enabling strong authentication is highly recommended if the route is open to the public.
+:::
 
 ## Setup
 To configure a long running integration to be accessed via Cortex XSOAR Server's https endpoint perform the following:
