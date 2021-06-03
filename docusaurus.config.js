@@ -135,7 +135,8 @@ module.exports = {
               label: "Development Partners"
             },
             {
-              to: "https://start.paloaltonetworks.com/become-a-technology-partner",
+              to: 
+                "https://start.paloaltonetworks.com/become-a-technology-partner",
               label: "Sign Up Now"
             },
           ],
@@ -189,7 +190,7 @@ module.exports = {
       content:
         '⭐️ If you like Cortex XSOAR Content, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/demisto/content">GitHub</a>! ⭐',
       backgroundColor: '#fafbfc',
-      textColor: '#091E42'
+      textColor: '#091E42',
     }
   },
   themes: ["@docusaurus/theme-live-codeblock"],
