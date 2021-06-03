@@ -135,7 +135,7 @@ module.exports = {
               label: "Development Partners"
             },
             {
-              to: 
+              to:
                 "https://start.paloaltonetworks.com/become-a-technology-partner",
               label: "Sign Up Now"
             },
