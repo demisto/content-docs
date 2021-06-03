@@ -21,6 +21,28 @@ The selected docker image is configured in the script/integration yaml file unde
 ## Updating Docker Images
 Starting with Demisto 5.0, it is possible to update the docker image of a script/integration. Demisto 4.5 and below doesn't support updating the docker image without creating a new script/integration (v2). To update the docker image for Demisto 5.0 only and still generate a 4.5 version with the original 4.5 docker image, it is possible to add an additional configuration to the script/integration yaml file with the key: `dockerimage45`. This key should contain the docker image to use by Demisto 4.5 and below. When the key is present, the content creator script will generate two unified yaml files: one for Demisto 4.5 and below and one for 5.0 and above. For an example see: [Kafka V2 Integration](https://github.com/demisto/content/blob/master/Packs/Kafka/Integrations/Kafka_V2/Kafka_V2.yml).
 
+## Updating Docker Image Automatically
+Every docker image of demisto/python or demisto/python3 are being updated automatically from time to time when a newer tag is available.
+If you wish to have your docker image of the integration or script and your docker image is not demisto/python or demisto/python3, you can add
+the field 'autoUpdateDockerImage' to the YML field corresponding to the integration or script.
+For example, the following will update the integration 'MyIntegration' docker image:
+```yml
+commonfields:
+  id: MyIntegration
+  version: -1
+name: MyIntegration
+display: name: MyIntegration
+script:
+ dockerimage: demisto/oauthlib:1.0.0.16907
+autoUpdateDockerImage: true
+```
+If you wish to not have your docker image automatically updated, you can set the 'autoUpdateDockerImage' field to false.
+For example, adding the following will not update your docker image automatically:
+```yml
+autoUpdateDockerImage: false
+```
+
+
 # Docker Images 
 
 Palo Alto Networks maintains a large repository of docker images. All docker images are available via docker hub under the Demisto organization: https://hub.docker.com/u/demisto/. Docker image creation process is managed via the open source project [demisto/dockerfiles](https://github.com/demisto/dockerfiles). Before trying to create a new docker image, check if there is one available already. You can search the [repository-info branch](https://github.com/demisto/dockerfiles/blob/repository-info/README.md) which is updated nightly with image metadata and os/python packages used in the images.
