@@ -129,7 +129,7 @@ function Marketplace() {
 //    }
   // Generate author options
   function updateQueryParams(paramName, paramValue) {
-     var queryParams = new URLSearchParams(window.location.search);
+     var queryParams = new URLSearchParams(location.search);
 
      if (!paramValue) {
       queryParams.delete(paramName);
