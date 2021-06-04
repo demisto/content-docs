@@ -125,14 +125,13 @@ function Marketplace() {
 //        window.location.reload();
 //      }
 //    });
-    console.log(window.performance.navigation.type);
 //    if(window.performance.navigation.type == 2){
 //        console.log("inside if")
 //       window.location.reload(true);
 //    }
   // Generate author options
   function updateQueryParams(paramName, paramValue) {
-     var queryParams = new URLSearchParams(window.location.search);
+     var queryParams = new URLSearchParams(location.search);
 
      if (!paramValue) {
       queryParams.delete(paramName);
