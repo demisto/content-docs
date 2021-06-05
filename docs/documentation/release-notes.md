@@ -117,7 +117,7 @@ Pretend you need this release note to do your work. A bad RN can easily lead to 
 ### Entity Styling  
 - Command name: - should be wrapped with three stars - \*\*\*command_name***
 - Packs/Integrations/scripts/playbooks and other content entities (incident fields, dashboards...) - should be wrapped with two stars - \*\*entity_name**
-- Parameters/arguments/functions/outputs names - should be wrapped with one stars - \*entity_name*
+- Parameters/arguments/functions/outputs names - should be wrapped with one star - \*entity_name*
 
 
 ### Examples  
@@ -180,13 +180,13 @@ this, you may comment out the entries by using the following syntax:
 ```
 
 ## demisto-sdk doc-review
-demisto-sdk includes a command to assist with the doc review process. It will check the spelling of the release notes and provide guidance if not using one of our standardized templates. Example usage:
+`demisto-sdk` includes the `doc-review` command to assist with the doc review process. It will check the spelling of the release notes and provide guidance if not using one of our standardized templates. Example usage:
 
 ```
 demisto-sdk doc-review -i Packs/Base/ReleaseNotes/1_11_10.md
 ```
 
-More info is available at the demisto-sdk command [README](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/doc_reviewer/README.md).
+More info is available at the `demisto-sdk doc-review` command [README](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/doc_reviewer/README.md).
 
 ## Common Troubleshooting Tips
 
