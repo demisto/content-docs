@@ -5,7 +5,7 @@ title: Set Up Your Dev Environment
 
 Thank you for showing interest in contributing to the Cortex XSOAR content. We hope this experience will be easy and fun.
 
-This tutorial will guide you on how to set up your dev environment to quickly start developing on Cortex XSOAR. While in Cortex XSOAR you can write code directly in the UI, which is awesome, you'll need a proper development environment external to Cortex XSOAR to contribute a full integration.. This is because, in order to build a full fledged integration, you'll need to *lint* your code, run unit tests with *pytest*, create some documentation, submit your changes via *git* and more.
+This tutorial will guide you on how to set up your dev environment to quickly start developing on Cortex XSOAR. While in Cortex XSOAR you can write code directly in the UI, which is awesome, you'll need a proper development environment external to Cortex XSOAR to contribute a full integration. This is because, in order to build a full fledged integration, you'll need to *lint* your code, run unit tests with *pytest*, create some documentation, submit your changes via *git* and more.
 
 If you've been through this process already and just want a quick reference, you can jump to the [Development Setup](../concepts/dev-setup) page, otherwise keep reading for more details.
 
@@ -39,7 +39,7 @@ Check if your Cortex XSOAR License is correctly installed by navigating to *Sett
 
 #### Operating System
 
-We assume you have an Operating System and that is working :)
+We assume you have an Operating System and that it is working :)
 
 *Note:* if you're using **Windows with WSL**, and your code resides to a shared folder on the Windows tree (i.e. `/mnt/c/code/demisto`), please make sure that the folder is set to be [case sensitive](https://devblogs.microsoft.com/commandline/improved-per-directory-case-sensitivity-support-in-wsl/).
 
@@ -119,7 +119,7 @@ Make sure you're logged on GitHub and navigate to the [Cortex XSOAR Content Repo
 
 ![Fork Repository](../doc_imgs/tutorials/tut-setup-dev/04-fork.png)
 
-Once the fork is complete, copy the your URL:
+Once the fork is complete, copy the URL:
 
 ![Copy GitHub URL](../doc_imgs/tutorials/tut-setup-dev/05-copygithuburl.png)
 
