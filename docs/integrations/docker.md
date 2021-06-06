@@ -29,8 +29,7 @@ Every docker integration that utilizes one of the following images:
 
 Are being updated automatically from time to time when a newer tag is available.
 
-If you wish to have your docker image of the integration or script and your docker image is not demisto/python or demisto/python3, you can add
-the field 'autoUpdateDockerImage' to the YML field corresponding to the integration or script.
+If your integration/script is not using one of the above images, you can still have it updated automatically by adding the `autoUpdateDockerImage`key to the YML file.
 For example, the following will update the integration 'MyIntegration' docker image:
 ```yml
 commonfields:
