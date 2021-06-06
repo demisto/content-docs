@@ -117,18 +117,6 @@ function Marketplace() {
   });
 
   const totalFilteredPacks = filteredPacks.length;
-//  window.addEventListener( "pageshow", function ( event ) {
-//      var historyTraversal = event.persisted || ( typeof window.performance != "undefined" && window.performance.navigation.type === 2 );
-//      if ( historyTraversal ) {
-//        // Handle page restore.
-//        //alert('refresh');
-//        window.location.reload();
-//      }
-//    });
-//    if(window.performance.navigation.type == 2){
-//        console.log("inside if")
-//       window.location.reload(true);
-//    }
   // Generate author options
   function updateQueryParams(paramName, paramValue) {
      var queryParams = new URLSearchParams(location.search);
