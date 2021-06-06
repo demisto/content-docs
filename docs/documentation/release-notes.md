@@ -180,7 +180,7 @@ this, you may comment out the entries by using the following syntax:
 ```
 
 ## demisto-sdk doc-review
-`demisto-sdk` includes the `doc-review` command to assist with the doc review process. It will check the spelling of the release notes and provide guidance if not using one of our standardized templates. Example usage:
+`demisto-sdk` includes the `doc-review` command to assist with the doc review process. It will check the spelling of the release notes and provide guidance if you are not using one of our standardized templates. Example usage:
 
 ```
 demisto-sdk doc-review -i Packs/Base/ReleaseNotes/1_11_10.md
