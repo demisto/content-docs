@@ -22,7 +22,13 @@ The selected docker image is configured in the script/integration yaml file unde
 Starting with Demisto 5.0, it is possible to update the docker image of a script/integration. Demisto 4.5 and below doesn't support updating the docker image without creating a new script/integration (v2). To update the docker image for Demisto 5.0 only and still generate a 4.5 version with the original 4.5 docker image, it is possible to add an additional configuration to the script/integration yaml file with the key: `dockerimage45`. This key should contain the docker image to use by Demisto 4.5 and below. When the key is present, the content creator script will generate two unified yaml files: one for Demisto 4.5 and below and one for 5.0 and above. For an example see: [Kafka V2 Integration](https://github.com/demisto/content/blob/master/Packs/Kafka/Integrations/Kafka_V2/Kafka_V2.yml).
 
 ## Updating Docker Image Automatically
-Every docker image of demisto/python or demisto/python3 are being updated automatically from time to time when a newer tag is available.
+Every docker integration that utilizes one of the following images: 
+
+- `demisto/python`
+- `demisto/python3` 
+
+Are being updated automatically from time to time when a newer tag is available.
+
 If you wish to have your docker image of the integration or script and your docker image is not demisto/python or demisto/python3, you can add
 the field 'autoUpdateDockerImage' to the YML field corresponding to the integration or script.
 For example, the following will update the integration 'MyIntegration' docker image:
