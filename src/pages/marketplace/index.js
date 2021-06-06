@@ -13,7 +13,7 @@ import clsx from "clsx";
 import queryString from "query-string";
 import React, { useCallback, useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import { useLocation, useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import Button from "../../theme/Button";
 import MarketplaceSidebar from "../../theme/MarketplaceSidebar";
 import styles from "./styles.module.css";
@@ -64,46 +64,49 @@ function Marketplace() {
     if (!value && params.q) setValue(params.q);
   }, []);
 
-  const filters = {
+  const singleValueFilters = {
     ...((price == "free" && { price: 0 }) ||
       (price == "premium" && { premium: true })),
     ...(author && { author: author }),
-    ...(useCase && { useCases: useCase }),
-    ...(integration && { integrations: integration }),
-    ...(category && { categories: category }),
-    ...(tag && { tags: tag }),
     ...(support && { support: support }),
   };
 
-  const preFilteredPacks = marketplace.filter((pack) => {
-    for (var key in filters) {
-      if (key == "useCases" && pack[key].includes(useCase)) return true;
+  const arrayValueFilters = {
+    ...(useCase && { useCases: useCase }),
+    ...(category && { categories: category }),
+    ...(tag && { tags: tag }),
+  };
 
-      if (key == "categories" && pack[key].includes(category)) return true;
+  const objectValueFilters = {
+    ...(integration && { integrations: integration }),
+  };
 
-      if (key == "tags" && pack[key].includes(tag)) return true;
-
-      if (key == "integrations") {
-        var match = false;
-        pack[key].map((i) => {
-          if (i.name == integration) {
-            match = true;
-          }
-        });
-        if (match) {
-          return true;
-        }
-      }
-
-      if (key == "featured" && pack.featured == "true") return true;
-
-      if (pack[key] === undefined || pack[key] != filters[key]) return false;
+  const filteredPacks = marketplace.filter((pack) => {
+    for (var key in singleValueFilters) {
+      if (pack[key] === undefined || pack[key] != singleValueFilters[key])
+        return false;
     }
-    return true;
-  });
 
-  // Keyword input filter
-  const filteredPacks = preFilteredPacks.filter((pack) => {
+    for (var key in arrayValueFilters) {
+      if (key == "new" && pack.tags.includes(arrayValueFilters[key]))
+        return true;
+      if (key == "featured" && pack.tags.includes(arrayValueFilters[key]))
+        return true;
+      if (
+        pack[key] === undefined ||
+        !pack[key].includes(arrayValueFilters[key])
+      )
+        return false;
+    }
+
+    for (var key in objectValueFilters) {
+      let match = false;
+      pack[key].map((i) => {
+        if (i.name == objectValueFilters[key]) match = true;
+      });
+
+      if (pack[key] === undefined || !match) return false;
+    }
     if (!value) return true;
     if (
       pack.name.toLowerCase().includes(value.toLowerCase()) ||
@@ -122,7 +125,6 @@ function Marketplace() {
 //        window.location.reload();
 //      }
 //    });
-    console.log(window.performance.navigation.type);
 //    if(window.performance.navigation.type == 2){
 //        console.log("inside if")
 //       window.location.reload(true);
