@@ -117,20 +117,20 @@ function Marketplace() {
   });
 
   const totalFilteredPacks = filteredPacks.length;
-  // Generate author options
+
+  // Update (add/delete) query parameters in the URL
   function updateQueryParams(paramName, paramValue) {
      var queryParams = new URLSearchParams(location.search);
 
-     if (!paramValue) {
+     if (!paramValue) {  // Need to remove query parameters from the URL
       queryParams.delete(paramName);
       history.push({
         search: queryParams.toString(),
       })
      }
 
-    else {
+    else {  // Need to add query parameters to the URL
       queryParams.set(paramName, paramValue);
-      // Replace current querystring with the new one.
       history.push({
         search: "?"+queryParams.toString(),
       })
