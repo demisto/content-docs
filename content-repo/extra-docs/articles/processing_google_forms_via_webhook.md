@@ -20,13 +20,13 @@ For instance, see the following architecture:
 
 3. Create a designated playbook to run when the incident is created.
 
-4. Download the [Generic Webhook Pack](https://xsoar.pan.dev/docs/reference/integrations/generic-webhook) and configure an instance of the integration. For example, you can call the instance: *GenericWebhookForm*.
+4. Download the [Generic Webhook Pack](https://xsoar.pan.dev/marketplace/details/GenericWebhook) and configure an instance of the integration. For example, you can call the instance: *GenericWebhookForm*.
 
 5. Create a Google Apps Script for the selected form. See [Creating a project from Google Docs, Sheets, or Forms](https://developers.google.com/apps-script/guides/projects#creating_a_project_from_google_docs_sheets_or_forms) for more information.
 
-6. Add the `https://www.googleapis.com/auth/script.external_request` scope to your *appsscript.json* file. See [this](https://developers.google.com/apps-script/concepts/scopes) for more information.
+6. Add the `https://www.googleapis.com/auth/script.external_request` scope to your **appsscript.json** file. See [this](https://developers.google.com/apps-script/concepts/scopes) for more information.
 
-7. Add the following generic code to a file in a script editor. (Replace the username, password, and URL with the values from the Generic Webhook integration):
+7. Create a new file in the script editor with the following generic code. (Replace the username, password, and URL with the values from the Generic Webhook integration):
   ```
    function atFormSubmit(e) {
     var formResponse = e.response;
@@ -63,4 +63,4 @@ For instance, see the following architecture:
   8. Add an [on Submit trigger](https://developers.google.com/apps-script/guides/triggers) to the context of the form and choose the *atFormSubmit* function to run when the form is submitted.
   9. You can debug your work in the [Executions Feature](https://developers.google.com/apps-script/guides/v8-runtime?hl=en#view_executions).
 
-That's it, now every form submission will be reflected and managed by your playbook in Contex XSOAR.
+That's it, now every form submission will be reflected and managed by your playbook in Cortex XSOAR.
