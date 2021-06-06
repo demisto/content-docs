@@ -41,7 +41,7 @@ script:
  dockerimage: demisto/oauthlib:1.0.0.16907
 autoUpdateDockerImage: true
 ```
-If you wish to not have your docker image automatically updated, you can set the 'autoUpdateDockerImage' field to false.
+If your integration is using one of the above images and you wish to not have it automatically updated, you can set the 'autoUpdateDockerImage' field to false.
 For example, adding the following will not update your docker image automatically:
 ```yml
 autoUpdateDockerImage: false
