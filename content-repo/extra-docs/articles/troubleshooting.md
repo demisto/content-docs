@@ -187,7 +187,7 @@ Screenshot of running a `test-module` command with `debug-mode=true` and the res
 ## Integration Debug Logs
 Starting with version 6.2, it is possible to create logs for an instance of an integration in order to get debug information for a specific instance over a period of time. 
 
-This mode is especially useful for long running integrations such as EDL or TAXII-Server. Basically it helps troubleshooting when it is not possible to run the desired command in debug-mode from the playground. Either it is a long running integration or the issue occurs from time to time such as with the ***fetch-incidents*** command.
+This mode is especially useful for long running integrations such as EDL or TAXII-Server. It helps troubleshooting when it is not possible to run the desired command in `debug-mode` from the playground. Whether it is a long running integration, or the issue occurs from time to time such as with the ***fetch-incidents*** command.
 
 For example, if you have an integration instance running the ***fetch-incidents*** command, and the integration misses some of the incidents, you may want to get debug level information for each ***fetch-incidents*** command (or any other command executed by this instance) even if the server log level is set to *Info*. If you move the server log level to *Debug*, the server log would contain lots of information that is mostly irrelevant in most cases for integration troubleshooting.
 
@@ -213,4 +213,3 @@ The **Integration-Instance.log** is located in  `/var/log/demisto/`.
 These log level modes are only for the configured instance and do not affect the log for the entire server.
 
 Note that the log level configuration for an integration instance may affect performance of the integration instance, therefore use this feature only for troubleshooting, and set it to Off when you have the required information in the log.
-
