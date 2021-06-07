@@ -88,8 +88,9 @@ Examples of incremental feeds usually include feeds that fetch based on a time r
 
 So, if you do want to write an incremental feed prior 6.2.0, please use `get_feed_last_run` and `set_feed_last_run`, which can be imported from `CommonServerPython`.
 
-`get_feed_last_run` - checks your XSOAR version: prior 6.2.0, this function gets the feed's last run from the `IntegrationContext` using `getIntegrationContext`, and from 6.2.0 and later it gets it from the `lastRun` object, using `getLastRun`. 
-`set_feed_last_run` - checks your XSOAR version: prior 6.2.0, this function sets the feed's last run from the `IntegrationContext` using `setIntegrationContext`, and from 6.2.0 and later it sets it from the `lastRun` object, using `setLastRun`.
+`get_feed_last_run` - it checks your XSOAR version: prior 6.2.0, this function gets the feed's last run from the `IntegrationContext` using `getIntegrationContext`, and from 6.2.0 and later it gets it from the `lastRun` object, using `getLastRun`. 
+
+`set_feed_last_run` - it checks your XSOAR version: prior 6.2.0, this function sets the feed's last run from the `IntegrationContext` using `setIntegrationContext`, and from 6.2.0 and later it sets it from the `lastRun` object, using `setLastRun`.
 
 If you write an incremental feed from 6.2.0 or higher, you can use `setLastRun` and `getLastRun` directly.
 Important Note: `setLastRun` and `getLastRun` work only under the `fetch-indicators` context (and `fetch-incidents` when developing integrations). So you can only use them for implementing a fetch-indicators command (or `fetch-incidents` command).
