@@ -107,10 +107,10 @@ Given the command `autofocus-search-samples`, that may return a ***schedule resu
 args = demisto.args()
 samples_result = demisto.executeCommand('autofocus-search-samples', **args)
 script_results = []
-if samples_result and not isError(res[0]):
-    if demisto.get(res[0], 'Metadata.polling'):  # result has polling metadata
+if samples_result and not isError(samples_result[0]):
+    if demisto.get(samples_result[0], 'Metadata.polling'):  # result has polling metadata
         # extract the af_cookie from the results
-        af_cookie = demisto.get(res[0], 'Contents.AFCookie')
+        af_cookie = demisto.get(samples_result[0], 'Contents.AFCookie')
         if not af_cookie:
             raise ValueError('af_cookie is missing from schedule result.')
         schedule_args = {
@@ -119,8 +119,8 @@ if samples_result and not isError(res[0]):
         }
         schedule_command = 'AutoFocusSearchScript'
         # take the timeout and next_run from the polling fields
-        schedule_timeout = demisto.get(res[0], 'Timeout')
-        schedule_next_run = demisto.get(res[0], 'NextRun')
+        schedule_timeout = demisto.get(samples_result[0], 'Timeout')
+        schedule_next_run = demisto.get(samples_result[0], 'NextRun')
         scheduled_command = ScheduledCommand(
             command=schedule_command,
             next_run_in_seconds=int(schedule_next_run),
