@@ -166,3 +166,17 @@ You may choose to show the pack author image such that it will be displayed in t
 The image size should be up to 4kb and in the dimensions of 120x50.
  
 In case file does not exist, the pack author will be displayed in text.
+
+### CONTRIBUTORS.md
+If you are contributing to an existing pack, you can add a **CONTRIBUTORS.md** file to the pack and list yourself as a contributor for the pack. The file's content will appear in the pack README in XSOAR Marketplace.
+
+#### Example CONTRIBUTORS.md
+```
+### Pack Contributors:
+
+---
+ - Jane Doe
+ - John Smith
+
+Contributions are welcome and appreciated. For more info, visit our [Contribution Guide](https://xsoar.pan.dev/docs/contributing/contributing).
+```
