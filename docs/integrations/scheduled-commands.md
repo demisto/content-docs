@@ -112,7 +112,7 @@ if samples_result and not isError(res[0]):
         # extract the af_cookie from the results
         af_cookie = demisto.get(res[0], 'Contents.AFCookie')
         if not af_cookie:
-            return_error('af_cookie is missing from schedule result.')
+            raise ValueError('af_cookie is missing from schedule result.')
         schedule_args = {
             'af_cookie': af_cookie,
             'polling': True
