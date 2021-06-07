@@ -85,6 +85,12 @@ The `defaultvalue` of the `feedReputation`, `feedReliability`, `feedExpirationPo
 Incremental Feeds pull only new or modified indicators that have been sent from the 3rd party vendor. As the determination if the indicator is new or modified happens on the 3rd-party vendor's side, and only indicators that are new or modified are sent to Cortex XSOAR, all indicators coming from these feeds are labeled new or modified.
 
 Examples of incremental feeds usually include feeds that fetch based on a time range. For example, a daily feed which provides new indicators for the last day or a feed which is immutable and provides indicators from a search date onwards.
+So, if you do want to write an incremental feed prior 6.2.0, please use `get_feed_last_run` and `get_feed_last_run`, which can be imported from `CommonServerPython`.
+`get_feed_last_run` - checks your XSOAR version: prior 6.2.0, this function gets the feed's last run from the `IntegrationContext` using `getIntegrationContext`, and from 6.2.0 and later it gets it from the `lastRun` object, using `getLastRun`. 
+`set_feed_last_run` - checks your XSOAR version: prior 6.2.0, this function sets the feed's last run from the `IntegrationContext` using `setIntegrationContext`, and from 6.2.0 and later it sets it from the `lastRun` object, using `setLastRun`.
+
+If you write an incremental feed from 6.2.0 or higher, you can use `setLastRun` and `getLastRun` directly.
+Important Note: `setLastRun` and `getLastRun` work only under the `fetch-indicators` context (and `fetch-incidents` when developing integrations). So you can only use them for implementing a fetch-indicators command (or `fetch-incidents` command).
 
 To indicate to the Cortex XSOAR server that a feed is incremental, add the configuration parameter:  `feedIncremental`. If the user is not able to modify this setting, set the parameter to **hidden** with a `defaultValue` of **true**. For example:
 ```yml
