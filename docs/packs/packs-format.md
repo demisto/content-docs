@@ -167,7 +167,6 @@ The image size should be up to 4kb and in the dimensions of 120x50.
  
 In case file does not exist, the pack author will be displayed in text.
 
-
 ### CONTRIBUTORS.md
 If you are editing existing pack, you can add **CONTRIBUTORS.md** file to the pack, and add you name. This file's content will appear at the pack description at the Marketplace.
 
