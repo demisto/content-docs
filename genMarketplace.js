@@ -46,6 +46,12 @@ function capitalizeFirstLetter(string) {
   }
 }
 
+function createReadmeLink(string) {
+    baseURL = "https://xsoar.pan.dev/docs/reference/"
+
+    string.split(/(?=[A-Z])/).join(" ").replace(/\s+/g, '-').toLowerCase();
+}
+
 function reverseReleases(obj) {
   let new_obj = {};
   let rev_obj = Object.keys(obj).reverse();
@@ -162,6 +168,9 @@ function genPackDetails() {
       readme: pack.readme
         ? jsStringEscape(pack.readme)
         : "",
+       readmeLink: readme: pack.readme
+        ? creatReadmeLink()
+        : ""
       support:
         pack.support == "xsoar"
           ? "Cortex XSOAR"
