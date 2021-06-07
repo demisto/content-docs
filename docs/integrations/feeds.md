@@ -92,6 +92,10 @@ So, if you do want to write an incremental feed prior 6.2.0, please use `get_fee
 If you write an incremental feed from 6.2.0 or higher, you can use `setLastRun` and `getLastRun` directly.
 Important Note: `setLastRun` and `getLastRun` work only under the `fetch-indicators` context (and `fetch-incidents` when developing integrations). So you can only use them for implementing a fetch-indicators command (or `fetch-incidents` command).
 
+Code examples of `get_feed_last_run` `set_feed_last_run` in Incremental Feeds:
+* [TAXII 2 Feed](https://github.com/demisto/content/blob/master/Packs/FeedTAXII/Integrations/FeedTAXII2/FeedTAXII2.py)
+* [Crowdstrike Falcon Intel Feed](https://github.com/demisto/content/blob/master/Packs/FeedCrowdstrikeFalconIntel/Integrations/FeedCrowdstrikeFalconIntel/FeedCrowdstrikeFalconIntel.py)
+
 To indicate to the Cortex XSOAR server that a feed is incremental, add the configuration parameter:  `feedIncremental`. If the user is not able to modify this setting, set the parameter to **hidden** with a `defaultValue` of **true**. For example:
 ```yml
 - additionalinfo: Incremental feeds pull only new or modified indicators that have been sent from the integration. The determination if the indicator is new or modified happens on the 3rd-party vendor's side, so only indicators that are new or modified are sent to Cortex XSOAR. Therefore, all indicators coming from these feeds are labeled new or modified.
