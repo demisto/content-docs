@@ -12,26 +12,27 @@ For instance, see the following architecture:
 
 <img src="../../../docs/doc_imgs/reference/google-forms-cortex-xsoar.png" width="700"></img>
 
-### To implement the above flow, do the following things:
+## Implementation Flow
 
-#### Generic Webhook Configuration
+### Generic Webhook Configuration
 
-1. Download the [Generic Webhook Pack](https://xsoar.pan.dev/marketplace/details/GenericWebhook) and configure an instance of the integration. For example, you can call the instance: *GenericWebhookForm*.
+1. Download the [Generic Webhook Pack](https://xsoar.pan.dev/marketplace/details/GenericWebhook) and configure an instance of the [Generic Webhook Integration](https://xsoar.pan.dev/docs/reference/integrations/generic-webhook). For example, you can call the instance: *GenericWebhookForm*.
 
    :::note NOTE
-   The webhook integration needs to be accessible from the internet, [this](https://xsoar.pan.dev/docs/reference/articles/long-running-invoke) should assist, or you need to run the webhook integration on an engine which is accessible from the internet.
+   The webhook integration needs to be accessible from the internet. See the following article on how to access the Webhook via [Server's HTTPS Endpoint](https://xsoar.pan.dev/docs/reference/articles/long-running-invoke). If your Server is not accessible, you may need to run the Webhook integration on an engine which is accessible from the internet.
    :::
 
-2. Please configure the Webhook integration with a username & password, as we the attached code is using basic authentication. See [this](https://xsoar.pan.dev/docs/reference/integrations/generic-webhook) for more information.
+2. Please configure the Webhook integration with a username & password, as the attached code is using basic authentication. See the [Integration documentation](https://xsoar.pan.dev/docs/reference/integrations/generic-webhook) for more information.
 
-3. In Cortex XSOAR, create an incident type that represents the Google form use case. Add a layout, mapper, classifier, etc...
+3. In Cortex XSOAR, create an incident type that represents the Google Form use case. Add a layout, mapper, classifier, etc...
 
-   It is recommended to enable the **store_samples** parameter of the Webhook integration to be able to create a mapper.
+   It is recommended to enable the **store_samples** parameter of the Webhook integration to be able to create a mapper. Example of a mapper configuration:
+   
    <img src="../../../docs/doc_imgs/reference/google-forms-mapping.png" width="700"></img>
 
 4. Create a designated playbook to run when the incident is created. 
 
-#### Google Forms Configuration
+### Google Forms Configuration
 
 1. Create a Google form that will provide the information you need.
 
