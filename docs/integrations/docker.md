@@ -29,8 +29,9 @@ Every integration/script that utilizes one of the following docker images:
 
 is updated automatically from time to time whenever a newer tag is available.
 
+## Enabling/Disabling Docker Image Automatic Update
 If your integration/script is not using one of the above images, you can still have it updated automatically by adding the `autoUpdateDockerImage`key to the YML file.
-For example, the following will update the integration 'MyIntegration' docker image:
+For example, the following will update the integration `MyIntegration` docker image:
 ```yml
 commonfields:
   id: MyIntegration
@@ -41,7 +42,7 @@ script:
  dockerimage: demisto/oauthlib:1.0.0.16907
 autoUpdateDockerImage: true
 ```
-If your integration/script uses one of the above images and you wish to not have it automatically updated, you can set the 'autoUpdateDockerImage' field to false.
+If your integration/script uses one of the above images and you wish to not have it automatically updated, you can set the `autoUpdateDockerImage` field to false.
 For example, adding the following will not update your docker image automatically:
 ```yml
 autoUpdateDockerImage: false
