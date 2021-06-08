@@ -189,7 +189,7 @@ These playbooks contain error handling tasks where a user is assigned to review 
 
 The mappers that are provided out-of-the-box work with the assumption that you did not add any fields. 
 
-The following provides a general idea of how to include additional information in the user profile indicator, and provision it to your available IAM applications. The [Example](#Example) below provides detailed instructions for adding a field to work with the ILM content pack.
+The following provides a general idea of how to include additional information in the user profile indicator, and provision it to your available IAM applications. The [Example](#example) below provides detailed instructions for adding a field to work with the ILM content pack.
 
 1. Add the field to the mappers for the Workday, Okta, Active Directory, and for any other IAM integration configured. 
 
