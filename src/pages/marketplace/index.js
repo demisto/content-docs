@@ -64,6 +64,43 @@ function Marketplace() {
     if (!value && params.q) setValue(params.q);
   }, []);
 
+  useEffect(() => {
+    return history.listen(location => {
+      if (history.action === 'POP') {
+        if (location.search) {
+          const params = queryString.parse(location.search);
+          if (params.price == null) setPrice(false);
+          if (params.support == null) setSupport(false);
+          if (params.author == null) setAuthor(false);
+          if (params.useCase == null) setUseCase(false);
+          if (params.integration == null) setIntegration(false);
+          if (params.category == null) setCategory(false);
+          if (params.tag == null) setTag(false);
+          if (params.q == null) setValue(false);
+
+          if (params.price) setPrice(params.price);
+          if (params.support) setSupport(params.support);
+          if (params.author) setAuthor(params.author);
+          if (params.useCase) setUseCase(params.useCase);
+          if (params.integration) setIntegration(params.integration);
+          if (params.category) setCategory(params.category);
+          if (params.tag) setTag(params.tag);
+          if (params.q) setValue(params.q);
+        } else {
+          // Clear all filters
+          setPrice(false)
+          setSupport(false)
+          setAuthor(false)
+          setUseCase(false)
+          setIntegration(false)
+          setCategory(false)
+          setTag(false)
+          setValue("")
+        }
+      }
+    })
+  }, [])
+
   const singleValueFilters = {
     ...((price == "free" && { price: 0 }) ||
       (price == "premium" && { premium: true })),
