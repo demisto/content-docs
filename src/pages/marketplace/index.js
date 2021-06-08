@@ -69,24 +69,18 @@ function Marketplace() {
       if (history.action === 'POP') {
         if (location.search) {
           const params = queryString.parse(location.search);
-          if (params.price == null) setPrice(false);
-          if (params.support == null) setSupport(false);
-          if (params.author == null) setAuthor(false);
-          if (params.useCase == null) setUseCase(false);
-          if (params.integration == null) setIntegration(false);
-          if (params.category == null) setCategory(false);
-          if (params.tag == null) setTag(false);
-          if (params.q == null) setValue(false);
 
-          if (params.price) setPrice(params.price);
-          if (params.support) setSupport(params.support);
-          if (params.author) setAuthor(params.author);
-          if (params.useCase) setUseCase(params.useCase);
-          if (params.integration) setIntegration(params.integration);
-          if (params.category) setCategory(params.category);
-          if (params.tag) setTag(params.tag);
-          if (params.q) setValue(params.q);
+          // set/unset filters based on history.pop
+          params.price == null ? setPrice(false) : setPrice(params.price);
+          params.support == null ? setSupport(false) : setSupport(params.support);
+          params.author == null ? setAuthor(false): setAuthor(params.author);
+          params.useCase == null ? setUseCase(false) : setUseCase(params.useCase);
+          params.integration == null ? setIntegration(false) : setIntegration(params.integration);
+          params.category == null ? setCategory(false) : setCategory(params.category);
+          params.tag == null ? setTag(false) : setTag(params.tag);
+          params.q == null ? setValue(false) : setValue(params.q);
         } else {
+
           // Clear all filters
           setPrice(false)
           setSupport(false)
