@@ -117,7 +117,7 @@ You may use the above information to customize these elements in the pack metada
 ## Pack Dependencies
 ### What are pack dependencies?
 With the introduction of Marketplace in Cortex XSOAR, the user now chooses what content they want to install and use, and that content appears in the form of Content Packs.
-Pack dependencies are the requirement of one content pack, when using another pack. The implication of this is that a userin XSOAR has to install another pack to be able to use the pack they originally wish installed. That situation is generally and preferably avoidable.
+Pack dependencies are the requirement of one content pack, when using another pack. The implication of this is that a user in XSOAR has to install another pack to be able to use the pack they originally wish installed. That situation is generally and preferably avoidable.
 
 Dependencies can be categorized as either optional or required/mandatory. Optional means the pack will **benefit** from the existence of the pack it depends on, while required means the pack **needs**, and **will not work** without the existence of the pack it depends on.
 Some packs ship out-of-the-box with XSOAR, and so depending on them is absolutely fine. Such are the Core packs:
