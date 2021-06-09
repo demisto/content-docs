@@ -4,6 +4,9 @@ const nodePlop = require("node-plop");
 const plop = nodePlop(`./plopfile.js`);
 const generatePackDetails = plop.getGenerator("details");
 const jsStringEscape = require("js-string-escape");
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+var request = new XMLHttpRequest();
+
 
 const contentItemTransformer = {
   integration: "Integrations",
@@ -14,6 +17,7 @@ const contentItemTransformer = {
   incidenttype: "Incident Types",
   incidentfield: "Incident Fields",
   indicatorfield: "Indicator Fields",
+  reputation: "Indicator Types",
   classifier: "Classifiers",
   widget: "Widgets",
   dashboard: "Dashboards",
@@ -46,10 +50,38 @@ function capitalizeFirstLetter(string) {
   }
 }
 
-function createReadmeLink(string) {
-    baseURL = "https://xsoar.pan.dev/docs/reference/"
+function checkUrl(url)
+// Gets a url and performs a GET request to verify it exists
+{
+    request.open( "GET", url);
+    request.send( null );
 
-    string.split(/(?=[A-Z])/).join(" ").replace(/\s+/g, '-').toLowerCase();
+    if (request.status === 404) {
+        return false
+    }
+
+    return true
+}
+
+function createReadmeLink(itemType, itemName) {
+// Creates a README link for the relevant entities (include a check if a README exists in the docs)
+    if (! (['integration', 'automation', 'playbook'].includes(itemType))){
+        return ""
+    }
+
+    var baseURL = "https://xsoar.pan.dev/docs/reference/"
+    // remove support level from the name to create the link
+    itemLinkName = itemName.replace(" (Partner Contribution)", "").replace(" (Developer Contribution)", "")
+    itemLinkName = itemLinkName.split(/(?=[A-Z][a-z])/).join(" ").replace(/\s+/g, '-').toLowerCase();
+    itemLinkName = itemLinkName.replace(/[^\w-]/g,"");
+
+    baseURL = baseURL + itemType + "s/" + itemLinkName
+    if (checkUrl(baseURL)) {
+        return baseURL
+    }
+    else {
+        return ""
+    }
 }
 
 function reverseReleases(obj) {
@@ -151,6 +183,7 @@ function genPackDetails() {
             ? jsStringEscape(listItem.description)
             : "";
           listItem.description = listItem.description.replace(/</g, "&#60;");
+          listItem.docLink = createReadmeLink(key, listItem.name);
         }
         FixedContentItems[fixedKey] = value;
       }
@@ -168,9 +201,6 @@ function genPackDetails() {
       readme: pack.readme
         ? jsStringEscape(pack.readme)
         : "",
-       readmeLink: readme: pack.readme
-        ? creatReadmeLink()
-        : ""
       support:
         pack.support == "xsoar"
           ? "Cortex XSOAR"

@@ -1,18 +1,19 @@
+import os
+import re
 import shutil
 import subprocess
-import re
-import os
 import time
 from typing import Optional
-import requests
+
 import inflection
+import requests
 
 MDX_SERVER_PROCESS: Optional[subprocess.Popen] = None
 
 
 def normalize_id(id: str):
     id = inflection.dasherize(inflection.underscore(id)).replace(' ', '-')
-    # replace all non word carachercters (dash is ok)
+    # replace all non word characters (dash is ok)
     return re.sub(r'[^\w-]', '', id)
 
 
