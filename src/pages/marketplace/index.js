@@ -64,6 +64,37 @@ function Marketplace() {
     if (!value && params.q) setValue(params.q);
   }, []);
 
+  useEffect(() => {
+    return history.listen(location => {
+      if (history.action === 'POP') {
+        if (location.search) {
+          const params = queryString.parse(location.search);
+
+          // set/unset filters based on history.pop
+          params.price == null ? setPrice(false) : setPrice(params.price);
+          params.support == null ? setSupport(false) : setSupport(params.support);
+          params.author == null ? setAuthor(false): setAuthor(params.author);
+          params.useCase == null ? setUseCase(false) : setUseCase(params.useCase);
+          params.integration == null ? setIntegration(false) : setIntegration(params.integration);
+          params.category == null ? setCategory(false) : setCategory(params.category);
+          params.tag == null ? setTag(false) : setTag(params.tag);
+          params.q == null ? setValue(false) : setValue(params.q);
+        } else {
+
+          // Clear all filters
+          setPrice(false)
+          setSupport(false)
+          setAuthor(false)
+          setUseCase(false)
+          setIntegration(false)
+          setCategory(false)
+          setTag(false)
+          setValue("")
+        }
+      }
+    })
+  }, [])
+
   const singleValueFilters = {
     ...((price == "free" && { price: 0 }) ||
       (price == "premium" && { premium: true })),
