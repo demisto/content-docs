@@ -4,8 +4,8 @@ import re
 import os
 import time
 from typing import Optional
-import inflection
 import requests
+import inflection
 
 MDX_SERVER_PROCESS: Optional[subprocess.Popen] = None
 
