@@ -41,7 +41,7 @@ If your pack contains an Integration, the integration directory should contain t
 - Command examples file (i.e. `Packs/YourPackName/Integrations/YourIntegrationName/command_examples`): are needed to [autogenerate](../documentation/readme_file#command-examples) the documentation
 - Unit tests file (i.e. `Packs/YourPackName/Integrations/YourIntegrationName/YourIntegrationName_test.py`): must be included to automatically test the code during the review phase. More details [here](../integrations/unit-testing)
 - Unit tests data (i.e. `Packs/YourPackName/Integrations/YourIntegrationName/test_data/*.json`): contain example responses from your product API and are used in [Unit tests](../integrations/unit-testing). [Examples](https://github.com/demisto/content/tree/master/Packs/HelloWorld/Integrations/HelloWorld/test_data) from Hello World.
-- We do **not** enforce a test to each and every function in the code. We suggest you focus on the important ones and the helper functions.
+- Although we encourage extensive testing, we do **not** enforce a test to each and every function in the code. We suggest you focus on the important ones and the helper functions.
 - Custom Incident Types, Fields, Classifiers, Mappers and Layouts: **if** your integration has the ability to [*fetch incidents*](../integrations/fetching-incidents), most likely you need to provide custom Incident Types and the related entities. This is usually covered during the Design phase: work with your Palo Alto Networks alliance contact if in doubt.
 
 **Note**: if you use PowerShell and not Python, the extension of the code files will be `.ps1` instead of `.py`.
