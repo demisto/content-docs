@@ -11,6 +11,8 @@ There are 2 application authentication methods available:
 1.  Cortex XSOAR Application
 2.  Self-Deployed Application
 
+<b>Note:</b> For the Microsoft Graph Mail Single User integration, you cannot use a "Shared mailbox" regardless of the authentication method used.
+
 ## Cortex XSOAR Application
 In this method, you grant consent for the Cortex XSOAR multi-tenant application to access your data. The application is maintained by Cortex XSOAR.
 Depending on the integration, this requires either admin consent to [get access without a user](https://docs.microsoft.com/en-us/graph/auth-v2-service) or user consent to [get access on behalf of a user](https://docs.microsoft.com/en-us/graph/auth-v2-user).
