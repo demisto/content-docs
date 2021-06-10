@@ -93,6 +93,7 @@ In order save last fetch time or similar information that needed by the incremen
 `set_feed_last_run` - Checks current XSOAR version: prior 6.2.0, this function sets the feed's last run from the `IntegrationContext` using `setIntegrationContext`, and from 6.2.0 and later it sets it from the `lastRun` object, using `setLastRun`.
 
 If the feed is running only on Cortex XSOAR version 6.2.0 or higher(depending on `fromversion` field in the feed .yml file), please use `setLastRun` and `getLastRun` directly.
+
 Important Note: `setLastRun` and `getLastRun` work only under the `fetch-indicators` context (and `fetch-incidents` when developing integrations). So you can only use them for implementing a fetch-indicators command (or `fetch-incidents` command).
 
 Code examples of `get_feed_last_run` `set_feed_last_run` in Incremental Feeds:
