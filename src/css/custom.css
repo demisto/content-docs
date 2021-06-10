@@ -48,7 +48,7 @@
   --ifm-color-secondary-light: #8799ac;
   --ifm-color-secondary-lighter: #8fa0b2;
   --ifm-color-secondary-lightest: #a8b5c3;
-  --ifm-font-family-base: "Montserrat", sans-serif, "Font Awesome 5 Free";
+  --ifm-font-family-base: "Montserrat", sans-serif, "Font Awesome 5 Free", "Demisto";
   --ifm-font-family-monospace: "Roboto Mono", monospace;
 
   --ifm-button-background-color: var(--ifm-color-primary);

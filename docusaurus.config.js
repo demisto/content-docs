@@ -53,17 +53,21 @@ module.exports = {
         {
           to: "/docs/welcome",
           label: "Developer Docs",
-          position: "left"
+          position: "left",
+          activeBaseRegex:
+            "docs(/welcome|/index|/concepts|/contributing|/dashboards|/doc_imgs|/documentation|/incidents|/integrations|/packs|/playbooks|/scripts|/tutorials)"
         },
         {
-          to: "/docs/reference/articles-index",
+          to: "/docs/reference/articles",
           label: "Articles",
-          position: "left"
+          position: "left",
+          activeBaseRegex: "docs/reference/articles"
         },
         {
           to: "/docs/reference/index",
           label: "Reference",
-          position: "left"
+          position: "left",
+          activeBaseRegex: "docs/reference/(index|api|integrations|playbooks|releases|scripts)"
         },
         {
           to: "/marketplace",
@@ -102,6 +106,8 @@ module.exports = {
         },
         {
           label: "Partners",
+          to: "docs/partners/why-xsoar",
+          activeBaseRegex: "docs/partners",
           items: [
             { to: "/docs/partners/why-xsoar", label: "Why Cortex XSOAR?" },
             {

@@ -44,7 +44,7 @@ The schedule sequence completes when any one of three terminating actions occur:
 3. ***Timeout (automatically handled)*** - The schedule sequence finishes execution with a timeout error when the timeout is reached. Cortex XSOAR will return the timeout error entry automatically.
 
 #### Code Example
-In the example below, if the `status` is not `complete` then a result with `schedule_config` is returned. After 60 seconds, the result triggers a poll for the search. This is done in the next run as well, and repeats until the status is complete.
+In the example below, if the `status` is not `complete` then a result with `scheduled_command` is returned. After `interval_in_seconds` seconds (60 by default), the result schedules a poll for the search status and result. This is done in the next run as well, and repeats until the status is complete.
 
 ```python
 def run_polling_command(args: dict, cmd: str, search_function: Callable, results_function: Callable):
@@ -91,4 +91,50 @@ def run_polling_command(args: dict, cmd: str, search_function: Callable, results
         # result with scheduled_command only - no update to the war room
         command_results = CommandResults(scheduled_command=scheduled_command)
     return command_results
+```
+
+### How to use with demisto.executeCommand
+When using `demisto.executeCommand()` a command or a script that returns schedule result **will not schedule** a command execution. However, its result will contain the schedule metadata.
+
+It's recommended to create a new result with `ScheduledCommand` class to schedule a future script execution.
+
+**Advanced users** can extract the schedule metadata, and use it when scheduling the future script execution.
+The schedule metadata fields are: `PollingCommand`, `NextRun`, `Timeout` `PollingArgs` (for reference see: [demisto.results](./code-conventions#deprecated---demistoresults)).
+
+#### Code Example
+Given the command `autofocus-search-samples`, that may return a ***schedule result*** (if it has `Metadata.polling` in its fields, and `af_cookie` in its `Contents`), or a non-scheduled result, the wrapping script `AutoFocusSearchScript` can handle it like so:
+```python
+args = demisto.args()
+samples_result = demisto.executeCommand('autofocus-search-samples', **args)
+script_results = []
+if samples_result and not isError(samples_result[0]):
+    if demisto.get(samples_result[0], 'Metadata.polling'):  # result has polling metadata
+        # extract the af_cookie from the results
+        af_cookie = demisto.get(samples_result[0], 'Contents.AFCookie')
+        if not af_cookie:
+            raise ValueError('af_cookie is missing from schedule result.')
+        schedule_args = {
+            'af_cookie': af_cookie,
+            'polling': True
+        }
+        schedule_command = 'AutoFocusSearchScript'
+        # take the timeout and next_run from the polling fields
+        schedule_timeout = demisto.get(samples_result[0], 'Timeout')
+        schedule_next_run = demisto.get(samples_result[0], 'NextRun')
+        scheduled_command = ScheduledCommand(
+            command=schedule_command,
+            next_run_in_seconds=int(schedule_next_run),
+            args=schedule_args,
+            timeout_in_seconds=int(schedule_timeout)
+        )
+        readable_output = "Autofocus search created successfully."
+        script_results.append(CommandResults(
+            readable_output=readable_output,
+            scheduled_command=scheduled_command
+        ))
+    else:
+        readable_output = "Autofocus search is done, see result below."
+        script_results.append(CommandResults(readable_output=readable_output))
+        script_results.extend(samples_result)
+return_results(script_results)
 ```
