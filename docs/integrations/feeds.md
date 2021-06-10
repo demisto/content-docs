@@ -88,7 +88,7 @@ Examples of incremental feeds usually include feeds that fetch based on a time r
 
 In order save last fetch time or similar information that needed by the incremental feed for the next fetch, for a feed that run on Cortex XSOAR version prior 6.2.0, please use `get_feed_last_run` and `set_feed_last_run`, which can be imported from `CommonServerPython`.
 
-`get_feed_last_run` - it checks your XSOAR version: prior 6.2.0, this function gets the feed's last run from the `IntegrationContext` using `getIntegrationContext`, and from 6.2.0 and later it gets it from the `lastRun` object, using `getLastRun`. 
+`get_feed_last_run` - Checks current XSOAR version: prior 6.2.0, this function gets the feed's last run from the `IntegrationContext` using `getIntegrationContext`, and from 6.2.0 and later it gets it from the `lastRun` object, using `getLastRun`. 
 
 `set_feed_last_run` - it checks your XSOAR version: prior 6.2.0, this function sets the feed's last run from the `IntegrationContext` using `setIntegrationContext`, and from 6.2.0 and later it sets it from the `lastRun` object, using `setLastRun`.
 
