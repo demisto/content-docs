@@ -86,7 +86,7 @@ Incremental Feeds pull only new or modified indicators that have been sent from 
 
 Examples of incremental feeds usually include feeds that fetch based on a time range. For example, a daily feed which provides new indicators for the last day or a feed which is immutable and provides indicators from a search date onwards.
 
-So, if you do want to write an incremental feed prior 6.2.0, please use `get_feed_last_run` and `set_feed_last_run`, which can be imported from `CommonServerPython`.
+In order save last fetch time or similar information that needed by the incremental feed for the next fetch, for a feed that run on Cortex XSOAR version prior 6.2.0, please use `get_feed_last_run` and `set_feed_last_run`, which can be imported from `CommonServerPython`.
 
 `get_feed_last_run` - it checks your XSOAR version: prior 6.2.0, this function gets the feed's last run from the `IntegrationContext` using `getIntegrationContext`, and from 6.2.0 and later it gets it from the `lastRun` object, using `getLastRun`. 
 
