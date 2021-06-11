@@ -20,7 +20,7 @@ Finally, the **Tutorials** section includes longer end-to-end articles that guid
 
 ## Articles
 
-From the top bar, navigate to the [Articles](reference/articles-index) section to find useful documentation about Cortex XSOAR and its Content. Articles are mostly meant for end users and SOC Engineers.
+From the top bar, navigate to the [Articles](reference/articles) section to find useful documentation about Cortex XSOAR and its Content. Articles are mostly meant for end users and SOC Engineers.
 
 ## Reference
 
