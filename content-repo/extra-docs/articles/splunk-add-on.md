@@ -5,7 +5,7 @@ description: Splunk add-on for Cortex XSOAR. This add-on enables you to push inc
 ---
 Supporting add-on for Cortex XSOAR. This application enables you to push incidents from Splunk into Cortex XSOAR, according to configurable trigger parameters.
 
-The add-on is open source. Source code is availabe at: https://github.com/demisto/splunk-app .
+The add-on is open source. Source code is available at: [https://github.com/demisto/splunk-app](https://github.com/demisto/splunk-app).
 
 
 ### Prerequisites
