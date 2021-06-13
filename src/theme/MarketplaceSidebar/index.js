@@ -212,14 +212,6 @@ function SelectOne({
   ...props
 }) {
   const { label, options, action, async, state } = item;
-  var selectedOption = null
-  if (state) {
-    selectedOption = options.filter(obj => {
-      if (obj.value == state) {
-        return obj
-      }
-    })
-  }
   const colourStyles = {
     control: (styles) => {
       return {
@@ -288,13 +280,12 @@ function SelectOne({
     <li className="menu__list-item" key={label}>
       <Select
         options={options}
-        placeholder={selectedOption ? selectedOption.label : `${label} (${options.length})`}
+        placeholder={state ? state : `${label} (${options.length})`}
         onChange={(option) => {
           option ? action(option.value) : action("");
         }}
         isClearable={true}
         styles={colourStyles}
-        value={selectedOption ? selectedOption : null}
       />
     </li>
   );
