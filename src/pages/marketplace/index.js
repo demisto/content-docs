@@ -575,9 +575,7 @@ function Marketplace() {
                           {pack.price == 0 ? (
                             <span className={clsx(styles.free)}>FREE</span>
                           ) : (
-                            <span className={clsx(styles.cost)}>
-                              {pack.price}
-                            </span>
+                            <span className={clsx(styles.free)}>PREMIUM</span>
                           )}
                         </span>
                       </div>
