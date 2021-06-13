@@ -18,10 +18,10 @@ Consists of the following sections:
 
 ### The `Configuration Setup` Incident type
 #### Custom Fields:
-3. `Configuration File Source` - The source of the configuration file.
-3. `Custom Packs Source` - The source of the custom packs.
-1. `Configuration File Path` - The relative path within the repository to the `xsoar_config.json` file. (Optional)
-2. `Branch Name` - The branch from which to fetch the file. Default is the main branch. (Optional)
+1. `Configuration File Source` - The source of the configuration file.
+2. `Custom Packs Source` - The source of the custom packs.
+3. `Configuration File Path` - The relative path within the repository to the `xsoar_config.json` file. (Optional)
+4. `Branch Name` - The branch from which to fetch the file. Default is the main branch. (Optional)
 
 #### Layout:
 ![layout.png](https://raw.githubusercontent.com/demisto/content/aace565faff531f09a42268b897d629981e69b08/Packs/XSOARbuild/docs-files/layout.png)
@@ -30,8 +30,8 @@ Consists of the following sections:
 
 ### The `Configuration Setup` Playbook
 This playbook will manage the entire configuration process and needs to run through a `Configuration Setup` incident type.<br />
-It consists of five sections:
-1. Fetching the configuration file and loading it's content to the machine.
+It consists of five stages:
+1. Fetching the configuration file and loading its content to the machine.
 2. Downloading and installing the custom packs.
 3. Installing marketplace packs.
 4. Configuring lists.
