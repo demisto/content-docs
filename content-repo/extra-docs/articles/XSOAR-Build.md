@@ -48,7 +48,7 @@ It consists of five sections:
 
 #### How to configure the incident/job:
 1. Choose what is the source of the configuration file for the playbook run:
-   1. Attachment - The file is already attached to the incident, and it's information located under the `File` context path.
+   1. Attachment - The file is already attached to the incident, and its information located under the `File` context path.
    2. GitHub - Will use the `GitHub` integration to fetch the configuration file.
 2. Choose what is the source of the custom packs files for the playbook run:
    1. Attachments - The files are already attached to the incident, and their information located under the `File` context path.
