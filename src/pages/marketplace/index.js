@@ -13,7 +13,7 @@ import clsx from "clsx";
 import queryString from "query-string";
 import React, { useCallback, useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import Button from "../../theme/Button";
 import MarketplaceSidebar from "../../theme/MarketplaceSidebar";
 import styles from "./styles.module.css";
@@ -29,6 +29,8 @@ function capitalizeFirstLetter(string) {
 
 function Marketplace() {
   const location = useLocation();
+  const history = useHistory()
+
   const params = queryString.parse(location.search);
   const isBreakpoint = useMediaQuery({ query: "(max-width: 1321px)" });
   const { siteConfig } = useDocusaurusContext();
@@ -54,7 +56,7 @@ function Marketplace() {
   useEffect(() => {
     if (!price && params.price) setPrice(params.price);
     if (!support && params.support) setSupport(params.support);
-    if (!author && params.vendor) setAuthor(params.vendor);
+    if (!author && params.author) setAuthor(params.author);
     if (!useCase && params.useCase) setUseCase(params.useCase);
     if (!integration && params.integration) setIntegration(params.integration);
     if (!category && params.category) setCategory(params.category);
@@ -62,46 +64,80 @@ function Marketplace() {
     if (!value && params.q) setValue(params.q);
   }, []);
 
-  const filters = {
+  useEffect(() => {
+    return history.listen(location => {
+      if (history.action === 'POP') {
+        if (location.search) {
+          const params = queryString.parse(location.search);
+
+          // set/unset filters based on history.pop
+          params.price == null ? setPrice(false) : setPrice(params.price);
+          params.support == null ? setSupport(false) : setSupport(params.support);
+          params.author == null ? setAuthor(false): setAuthor(params.author);
+          params.useCase == null ? setUseCase(false) : setUseCase(params.useCase);
+          params.integration == null ? setIntegration(false) : setIntegration(params.integration);
+          params.category == null ? setCategory(false) : setCategory(params.category);
+          params.tag == null ? setTag(false) : setTag(params.tag);
+          params.q == null ? setValue(false) : setValue(params.q);
+        } else {
+
+          // Clear all filters
+          setPrice(false)
+          setSupport(false)
+          setAuthor(false)
+          setUseCase(false)
+          setIntegration(false)
+          setCategory(false)
+          setTag(false)
+          setValue("")
+        }
+      }
+    })
+  }, [])
+
+  const singleValueFilters = {
     ...((price == "free" && { price: 0 }) ||
       (price == "premium" && { premium: true })),
     ...(author && { author: author }),
-    ...(useCase && { useCases: useCase }),
-    ...(integration && { integrations: integration }),
-    ...(category && { categories: category }),
-    ...(tag && { tags: tag }),
     ...(support && { support: support }),
   };
 
-  const preFilteredPacks = marketplace.filter((pack) => {
-    for (var key in filters) {
-      if (key == "useCases" && pack[key].includes(useCase)) return true;
+  const arrayValueFilters = {
+    ...(useCase && { useCases: useCase }),
+    ...(category && { categories: category }),
+    ...(tag && { tags: tag }),
+  };
 
-      if (key == "categories" && pack[key].includes(category)) return true;
+  const objectValueFilters = {
+    ...(integration && { integrations: integration }),
+  };
 
-      if (key == "tags" && pack[key].includes(tag)) return true;
-
-      if (key == "integrations") {
-        var match = false;
-        pack[key].map((i) => {
-          if (i.name == integration) {
-            match = true;
-          }
-        });
-        if (match) {
-          return true;
-        }
-      }
-
-      if (key == "featured" && pack.featured == "true") return true;
-
-      if (pack[key] === undefined || pack[key] != filters[key]) return false;
+  const filteredPacks = marketplace.filter((pack) => {
+    for (var key in singleValueFilters) {
+      if (pack[key] === undefined || pack[key] != singleValueFilters[key])
+        return false;
     }
-    return true;
-  });
 
-  // Keyword input filter
-  const filteredPacks = preFilteredPacks.filter((pack) => {
+    for (var key in arrayValueFilters) {
+      if (key == "new" && pack.tags.includes(arrayValueFilters[key]))
+        return true;
+      if (key == "featured" && pack.tags.includes(arrayValueFilters[key]))
+        return true;
+      if (
+        pack[key] === undefined ||
+        !pack[key].includes(arrayValueFilters[key])
+      )
+        return false;
+    }
+
+    for (var key in objectValueFilters) {
+      let match = false;
+      pack[key].map((i) => {
+        if (i.name == objectValueFilters[key]) match = true;
+      });
+
+      if (pack[key] === undefined || !match) return false;
+    }
     if (!value) return true;
     if (
       pack.name.toLowerCase().includes(value.toLowerCase()) ||
@@ -112,6 +148,25 @@ function Marketplace() {
   });
 
   const totalFilteredPacks = filteredPacks.length;
+
+  // Update (add/delete) query parameters in the URL
+  function updateQueryParams(paramName, paramValue) {
+     var queryParams = new URLSearchParams(location.search);
+
+     if (!paramValue) {  // Need to remove query parameters from the URL
+      queryParams.delete(paramName);
+      history.push({
+        search: queryParams.toString(),
+      })
+     }
+
+    else {  // Need to add query parameters to the URL
+      queryParams.set(paramName, paramValue);
+      history.push({
+        search: "?"+queryParams.toString(),
+      })
+    }
+  }
 
   // Generate author options
   function generateAuthors() {
@@ -338,7 +393,6 @@ function Marketplace() {
     });
     return supports;
   }
-
   return (
     <Layout
       title={TITLE}
@@ -365,51 +419,72 @@ function Marketplace() {
             {
               type: "select",
               label: "Published By",
-              action: setSupport,
+              action: ((arg) => {
+               updateQueryParams("support", arg);
+               setSupport(arg);
+               }),
               options: generateSupports(),
               state: support,
             },
             {
               type: "select",
               label: "Price",
-              action: setPrice,
+              action: ((arg) => {
+               updateQueryParams("price", arg);
+               setPrice(arg);
+               }),
               options: generatePrices(),
               state: price,
             },
             {
               type: "select",
               label: "Author",
-              action: setAuthor,
+              action: ((arg) => {
+               updateQueryParams("author", arg);
+               setAuthor(arg);
+               }),
               options: generateAuthors(),
               state: author,
             },
             {
               type: "select",
               label: "Use Cases",
-              action: setUseCase,
+              action: ((arg) => {
+               updateQueryParams("useCase", arg);
+               setUseCase(arg);
+               }),
               options: generateUseCases(),
               state: useCase,
             },
             {
               type: "select",
               label: "Integrations",
-              action: setIntegration,
+              action: ((arg) => {
+               updateQueryParams("integration", arg);
+               setIntegration(arg);
+               }),
               options: generateIntegrations(),
               state: integration,
             },
             {
               type: "select",
               label: "Categories",
-              action: setCategory,
+              action: ((arg) => {
+               updateQueryParams("category", arg);
+               setCategory(arg);
+               }),
               options: generateCategories(),
               state: category,
             },
             {
               type: "select",
               label: "Tags",
-              action: setTag,
+              action: ((arg) => {
+               updateQueryParams("tag", arg);
+               setTag(arg);
+               }),
               options: generateTags(),
-              state: category,
+              state: tag,
             },
           ]}
           path="/marketplace/"
