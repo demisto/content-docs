@@ -493,7 +493,8 @@ function Marketplace() {
           }
           onCollapse={toggleSidebar}
           isHidden={hiddenSidebar}
-          search={setValue}
+          setSearchValue={setValue}
+          searchValue={value}
           totalPacks={marketplace.length}
           totalFilteredPacks={totalFilteredPacks}
           updateQueryParams={updateQueryParams}
