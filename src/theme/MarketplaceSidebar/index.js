@@ -323,7 +323,8 @@ function MarketplaceSidebar({
   sidebarCollapsible = true,
   onCollapse,
   isHidden,
-  search,
+  setSearchValue,
+  searchValue,
   totalPacks,
   totalFilteredPacks,
   updateQueryParams
@@ -392,9 +393,10 @@ function MarketplaceSidebar({
                 className={styles.input}
                 type="filter"
                 placeholder="What can we help you automate?"
+                value={searchValue}
                 onChange={e => {
                   updateQueryParams("q", e.target.value);
-                  search(e.target.value);
+                  setSearchValue(e.target.value);
                 }}
                 autoComplete="false"
               ></input>
