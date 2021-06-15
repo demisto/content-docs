@@ -11,6 +11,13 @@ You can generate the integration either as a two step process or a single step.
     1. Generate an integration config file.
     1. Update the config file as needed. Then generate the integration from the config file using the `demisto-sdk generate-integration` [command](./code-generator).
 
+## Tutorial Video:
+<video controls>
+    <source src="https://github.com/demisto/content-assets/raw/master/Assets/PostmanCodegen/postman-codegen-tutorial.mp4"
+            type="video/mp4"/>
+    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/raw/master/Assets/PostmanCodegen/postman-codegen-tutorial.mp4 
+</video>
+
 ## Options
 *  **-h, --help**
 *  **-i, --input**  
