@@ -496,6 +496,7 @@ function Marketplace() {
           search={setValue}
           totalPacks={marketplace.length}
           totalFilteredPacks={totalFilteredPacks}
+          updateQueryParams={updateQueryParams}
         />
 
         {hiddenSidebar && (
