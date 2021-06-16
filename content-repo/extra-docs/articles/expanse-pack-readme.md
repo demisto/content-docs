@@ -282,7 +282,8 @@ You do not need to enable any additional integrations, but if you don't have Pan
 ### Playbooks
 
 The playbooks will work with the default settings out of the box. If you want to modify any of the default setting, see [Handle Expanse Incident](https://xsoar.pan.dev/docs/reference/playbooks/handle-expanse-incident) for a description of the playbook inputs.
-In case you want to use the generic playbook instead of the main playbook, please configure the instance without any classifier and choose **Xpanse Issue - Generic** as the incident type.
+In case you want to use the generic playbook instead of the main playbook, please configure the instance without any classifier and choose **Xpanse Issue - Generic** as the incident type:
+![Xpanse-Generic-Playbook-Instance](../../../docs/doc_imgs/reference/Xpanse/Xpanse-Instance-Generic.png)
 
 ## Troubleshooting
 
