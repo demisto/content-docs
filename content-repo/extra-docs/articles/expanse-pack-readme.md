@@ -106,8 +106,8 @@ The Expanse V2 content pack includes several content items.
 
 
 ### Incident Types
-**Expanse Issue**
-**Xpanse Issue - Generic**
+- **Expanse Issue**
+- **Xpanse Issue - Generic**
 
 
 ### Indicator Fields
