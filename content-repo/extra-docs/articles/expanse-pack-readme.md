@@ -106,7 +106,8 @@ The Expanse V2 content pack includes several content items.
 
 
 ### Incident Types
-**Expanse Issue**
+- **Expanse Issue**
+- **Xpanse Issue - Generic**
 
 
 ### Indicator Fields
@@ -173,7 +174,7 @@ Displays the fields and values for all evidence available for the incident.
 
 
 ### Playbooks
-There are 7 playbooks in this pack.
+There are 8 playbooks in this pack.
 
 #### Expanse Attribution
 Sub-playbook for Handle Expanse Incident playbooks. Given an Expanse Issue IP, Issue Provider, Issue Domain, Issue Port and Issue Protocol, hunts for internal activity related to the detected service. The playbook looks for logs on Splunk, Cortex Data Lake and Panorama. Returns a list of potential owner business units, owner users, devices, and notes. 
@@ -201,6 +202,10 @@ This is the main playbook for handling Expanse incidents.
 
 #### Handle Expanse Incident - Attribution Only
 Shorter version of Handle Expanse Incident playbook with only the Attribution part.
+
+
+#### Xpanse Incident Handling - Generic
+A generic playbook for handling Xpanse issues. The logic behind this playbook is working with an internal exclusions list which will help the analyst to get a decision or, if configured, close incidents automatically.
 
 
 
@@ -276,7 +281,10 @@ You do not need to enable any additional integrations, but if you don't have Pan
 
 ### Playbooks
 
-The playbooks will work with the default settings out of the box. If you want to modify any of the default setting, see [Handle Expanse Incident](https://xsoar.pan.dev/docs/reference/playbooks/handle-expanse-incident) for a description of the playbook inputs. 
+The playbooks will work with the default settings out of the box. If you want to modify any of the default setting, see [Handle Expanse Incident](https://xsoar.pan.dev/docs/reference/playbooks/handle-expanse-incident) for a description of the playbook inputs.
+In case you want to use the generic playbook instead of the main playbook, please configure the instance without any classifier and choose **Xpanse Issue - Generic** as the incident type:
+
+![Xpanse-Generic-Playbook-Instance](../../../docs/doc_imgs/reference/Xpanse/Xpanse-Instance-Generic.png)
 
 ## Troubleshooting
 
