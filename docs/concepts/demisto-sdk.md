@@ -52,7 +52,7 @@ To use these functions set up the base URL and API key:
 Finally, if you are using a private GitHub repository, some SDK functions require an interaction with Git. To use the SDK you should setup your GitHub token.
 To generate your token on GitHub use [the following guide](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) and then run:
 ```buildoutcfg
-export GITHUB_TOKEN=<token>
+export DEMISTO_SDK_GITHUB_TOKEN=<token>
 ```
 
 ## General CLI Usage
