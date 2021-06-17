@@ -1,6 +1,6 @@
 ---
 id: why-xsoar 
-title: Why become a Partner? 
+title: Why become an XSOAR Partner? 
 ---
 
 Why develop your own content for the Cortex XSOAR platform? As the fastest growing SOAR platform on the market, we already have hundreds of packs so customers and prospects get the most out of their security investments. Another advantage? As we show our extensive pack list to prospects, you gain exposure and visibility for addressing use cases encountered in the SOC.
