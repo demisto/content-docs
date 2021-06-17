@@ -38,7 +38,7 @@ There are 3 Automations in this pack.
 * [SendEmailReply](https://xsoar.pan.dev/docs/reference/scripts/send-email-reply): Sends the email reply. 
 
 ### Classifiers
-There are 6 Classifiers in this pack. When you configure an instance of the Gmail integration, EWS V2 integration, or MS Graph Mail integration, use the following classifiers.
+There are 8 Classifiers in this pack. When you configure an instance of the Gmail integration, EWS V2 integration, MS Graph Mail Single User integration, or MS Graph Mail integration, use the following classifiers.
 
 * **EWS - Classifier - Email Communication**:  Classifies EWS email messages.
 * **EWS - Incoming Mapper - Email Communication**:  Maps incoming EWS email message fields. 
@@ -46,6 +46,8 @@ There are 6 Classifiers in this pack. When you configure an instance of the Gmai
 * **Gmail - Incoming Mapper - Email Communication**: Maps incoming Gmail email message fields.
 * **MS Graph Mail - Classifier - Email Communication**:   Classifies MS Graph Mail email messages. 
 * **MS Graph Mail - Incoming Mapper - Email Communication**: Maps incoming MS Graph Mail email message fields.
+* **MS Graph Mail Single User - Classifier - Email Communication**: Classifies MS Graph Mail Single user email messages.
+* **MS Graph Mail Single User - Incoming Mapper - Email Communication**: Maps incoming MS Graph Mail Single user email message fields.
 
 ### Incident Fields
 There is 1 incident field - **Add CC To Email**. 
@@ -83,15 +85,15 @@ You can use the layout as-is for email communication. It can also be used for ne
  
 ## Before You Start
 
-This pack requires that you must have active instances of both a mail listener and mail sender integration in order to send and receive emails, and an active instance of the Demisto REST API integration. Configure either the [Gmail integration](https://xsoar.pan.dev/docs/reference/integrations/gmail) or the [MS Graph Mail integration](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail), or both the [EWS Mail Sender](https://xsoar.pan.dev/docs/reference/integrations/ews-mail-sender) and [EWS V2](https://xsoar.pan.dev/docs/reference/integrations/ews-v2) integrations. In addition, configure the Demisto REST API integration which requires a Demisto API key.
+This pack requires that you must have active instances of both a mail listener and mail sender integration in order to send and receive emails, and an active instance of the Demisto REST API integration. Configure either the [Gmail integration](https://xsoar.pan.dev/docs/reference/integrations/gmail) or [MS Graph Mail Single User integration](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail-single-user) or the [MS Graph Mail integration](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail), or both the [EWS Mail Sender](https://xsoar.pan.dev/docs/reference/integrations/ews-mail-sender) and [EWS V2](https://xsoar.pan.dev/docs/reference/integrations/ews-v2) integrations. In addition, configure the Demisto REST API integration which requires a Demisto API key.
 
 
 
  
-The out-of-the-box classification and mapping (for EWS, Gmail, and MS Graph Mail) in the pack map the incident data to custom incident fields.
+The out-of-the-box classification and mapping (for EWS, Gmail, MS Graph Mail, and MS Graph Mail Single user) in the pack map the incident data to custom incident fields.
 Those custom incident fields are populated with specific values for the Email Communication scripts to execute.
  
-If an EWS, Gmail, or MS Graph Mail instance is already configured for other incident types, create a new instance for the email communication type with the associated classification and mapping. 
+If an EWS, Gmail, MS Graph Mail or MS Graph Mail Single user instance is already configured for other incident types, create a new instance for the email communication type with the associated classification and mapping. 
  
 
  
@@ -216,11 +218,12 @@ After you configure the integrations and the pre-process rule, create an inciden
 
 ## Integrations
 
-Although these integration are not included in the pack, either the Gmail or both the EWS Mail Sender and EWS V2 integrations are required for the pack to work. In addition, configure the Demisto REST API integration.
+Although these integration are not included in the pack, either the Gmail, MS Graph Mail, MS Graph Mail Songle User, EWS Mail Sender, or EWS V2 integrations are required for the pack to work. In addition, configure the Demisto REST API integration.
 - Gmail - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/gmail)
 - EWS Mail Sender - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/ews-mail-sender)
 - EWS V2 - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/ews-v2)
 - MS Graph Mail - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail)
+- MS Graph Mail Single User - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail-single-user)
 - Demisto REST API
 
 ## Demo Video
