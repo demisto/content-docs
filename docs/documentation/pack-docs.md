@@ -108,11 +108,12 @@ Your pack should fall into one of the approved existing categories:
       Messaging
       Network Security
       Utilities
-      Vunerability Management  
+      Vulnerability Management  
 
   </details>
 
 You may use the above information to customize these elements in the pack metadata file.
+
 ![image](https://user-images.githubusercontent.com/43602124/90132076-d1dc2880-dd75-11ea-8bee-2c0273e8bfe8.png)
 ## Pack Dependencies
 ### What are pack dependencies?
