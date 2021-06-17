@@ -37,7 +37,7 @@ _At minimum you will need the following capabilities:_
 - Access to GitHub
 - _Optional_: basic knowledge of Docker, if you want to use your own libraries or pip modules
 
-# Partner Onboarding Process
+# XSOAR Partner Onboarding Process
 
 The following steps explain the process that you need to go through in order to become a Palo Alto Networks Technology Partner with Cortex XSOAR, and start developing content and integrations that can be certified and deployed to customers globally. Please review the following with your team and work with your Cortex XSOAR Technical Alliances contacts to get started.
 
@@ -106,9 +106,9 @@ At a minimum, an integration consists in:
 
 ## 6. Provide our Team with Product Access
 
-As an automation platform, it shouldn’t surprise you that we’ve also automated our integration testing and deployment. We do nightly tests of each integration in order to confirm functionality and, in order to do this, we require access to your product and/or APIs. Preferably, the instance will have all data related to the integration use cases, so they can be tested. E.g. if one of the use cases is ingesting incidents to Cortex XSOAR, the instance should have demo incidents. This access is not used for any other purpose.
+As an automation platform, it shouldn’t surprise you that we’ve also automated our integration testing and deployment. We do nightly tests of each integration in order to confirm functionality and, in order to do this, we request access to your product and/or APIs. Preferably, the instance will have all data related to the integration use cases, so they can be tested. E.g. if one of the use cases is ingesting incidents to Cortex XSOAR, the instance should have demo incidents. This access is not used for any other purpose.
 
-Before submitting the integration, please work with the Palo Alto Networks BD Team to share access
+Before submitting the integration, please work with the Palo Alto Networks BD Team to share access.
 
 ## 7. Submit a GitHub Pull Request
 
