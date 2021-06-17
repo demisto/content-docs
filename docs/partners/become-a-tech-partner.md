@@ -1,6 +1,6 @@
 ---
 id: become-a-tech-partner
-title: Become a Technology Partner
+title: Become an XSOAR Partner
 ---
 
 _Intended Audience:_
