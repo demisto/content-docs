@@ -39,7 +39,7 @@ _At minimum you will need the following capabilities:_
 
 # XSOAR Partner Onboarding Process
 
-The following steps explain the process that you need to go through in order to become a Palo Alto Networks Technology Partner with Cortex XSOAR, and start developing content and integrations that can be certified and deployed to customers globally. Please review the following with your team and work with your Cortex XSOAR Technical Alliances contacts to get started.
+The following steps explain the process that you need to go through in order to become a Palo Alto Networks Technology Partner with Cortex XSOAR, and start developing content and integrations that can be certified and deployed to customers globally. Please review the following with your team and work with your Cortex XSOAR <a href="mailto:soar.alliances@paloaltonetworks.com">Partner Success Team</a> to get started.
 
 ## 1. Sign up as an XSOAR Technology Partner
 
