@@ -346,8 +346,6 @@ function MarketplaceSidebar({
     navbar: { hideOnScroll },
     hideableSidebar,
   } = useThemeConfig();
-  const { isAnnouncementBarClosed } = useUserPreferencesContext();
-  const { scrollY } = useScrollPosition();
   useLockBodyScroll(showResponsiveSidebar);
   const windowSize = useWindowSize();
   useEffect(() => {
