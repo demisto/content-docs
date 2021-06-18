@@ -112,7 +112,7 @@ Before submitting the integration, please work with the Palo Alto Networks BD Te
 
 ## 7. Submit a GitHub Pull Request
 
-Once you have completed development of your content or integration, please submit a *Pull Request* on our GitHub Content Repo. The title of the Pull Request must contain the *Partner ID* we provided earlier.
+Once you have completed development of your content or integration, please [submit a Pull Request](/docs/contributing/contributing) on our GitHub Content Repo. The title of the Pull Request must contain the *Partner ID* we provided earlier.
 
 After the PR is submitted, it will require a review session with the development team. When the review of your integration is complete, check your code into our GitHub repository. Your build will added to be published to our global community. We release content updates every two weeks.
 
