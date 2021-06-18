@@ -7,7 +7,7 @@ With the release of Cortex XSOAR v.6 in August 2020, we are pleased to announce 
 
 [Cortex XSOAR Marketplace](/marketplace) is a digital storefront for discovering, exchanging and contributing security orchestration content centrally within the Cortex XSOAR platform. It enables users to install turnkey content packs to help solve any security use case with content contributed by SecOps experts and the world’s largest SOAR partner community, including you.
 
-Additionally, Partners have the ability to monetize their content on the Marketplace. You decide the content, the price, and how to best market it, and get a healthy share of the revenue. The customer gets premium content to solve their use case. It's a win-win.
+Additionally, Partners have the ability to monetize their content on the Marketplace. You decide the content, the price, and how to best market it, and get a healthy share of the revenue. The customer gets premium content to solve their use case. It's a win-win. See the [business process required](/docs/partners/paid-packs-process) to list paid offerings.
 
 ## Packs
 
@@ -63,4 +63,4 @@ If you are interested in contributing a pack, please [submit your application](h
 
 ## Contact us
 
-Reach out to the [Alliances Team](mailto:soar.alliances@paloaltonetworks.com) to discuss your new or improved listing on our marketplace.
+Reach out to the [Partner Success Team](mailto:soar.alliances@paloaltonetworks.com) to discuss your new or improved listing on our marketplace.
