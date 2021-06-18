@@ -28,7 +28,7 @@ Either way, we'll work with you to define, scope and guide you through the proce
 
 ## 5. Open a Pull Request on Private Repo
 
-In order for us to review the content and add to Marketplace, we must receive a pull request and access as detailed [in or docs](/docs/packs/premium_packs). . 
+In order for us to review the content and add to Marketplace, we must receive a pull request and access as detailed [in our docs](/docs/packs/premium_packs).
 
 -----
 
