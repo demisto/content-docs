@@ -265,7 +265,7 @@ def process_release_doc(target_dir: str, release_file: str) -> Optional[DocInfo]
         edit_url = f'https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/releases/{name}.md'
         #  replace the title to be with one # so it doesn't appear in the TOC
         content = re.sub(r'^## Demisto Content Release Notes', '# Demisto Content Release Notes', content)
-        content = f'---\nid: {name}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\nhide_title: true\n---\n\n' + content
+        content = f'---\nid: {name}\nsidebar_label: "{name}"\ncustom_edit_url: {edit_url}\n---\n\n' + content
         download_msg = "Download"
         packs_download = ""
         if name > StrictVersion('20.8.0'):
@@ -678,6 +678,14 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
         f.write(index_doc_infos(playbooks_doc_infos, PLAYBOOKS_PREFIX))
         f.write("\n\n## Scripts\n\n")
         f.write(index_doc_infos(script_doc_infos, SCRIPTS_PREFIX))
+        f.write("\n\n## API Reference\n\n")
+        api_docs: List[DocInfo] = [
+            DocInfo('demisto-class', 'Demisto Class',
+                    'The object exposes a series of API methods which are used to retrieve and send data to the Cortex XSOAR Server.', ''),
+            DocInfo('common-server-python', 'Common Server Python',
+                    'Common functions that will be appended to the code of each integration/script before being executed.', ''),
+        ]
+        f.write(index_doc_infos(api_docs, 'api'))
         f.write("\n\n## Content Release Notes\n\n")
         f.write(index_doc_infos(release_doc_infos, RELEASES_PREFIX, headers=('Name', 'Date')))
         f.write("\n\nAdditional archived release notes are available"
