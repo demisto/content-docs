@@ -57,10 +57,5 @@ This page is meant as an overview to Marketplace. Please see the [Palo Alto Netw
 
 ## More Information
 
-Marketplace is an in-product experience for our users. Existing partners can simply upgrade their NFR to v.6+ and Marketplace will be included so you can see your pack! Contact the [Alliances Team](mailto:soar.alliances@paloaltonetworks.com) with any questions. 
+If you are interested in contributing a pack, please [submit your application](https://start.paloaltonetworks.com/become-a-technology-partner) today. Contact the [Partner Success Team](mailto:soar.alliances@paloaltonetworks.com) with any questions.  
 
-If you are interested in contributing a pack, please [submit your application](https://start.paloaltonetworks.com/become-a-technology-partner) today. 
-
-## Contact us
-
-Reach out to the [Partner Success Team](mailto:soar.alliances@paloaltonetworks.com) to discuss your new or improved listing on our marketplace.
