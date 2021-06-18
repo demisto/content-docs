@@ -17,7 +17,7 @@ In order for us to pay the revenue share, publishers of paid packs must complete
 
 ## 3. Establish Private Repository
 
-Paid packs are not stored in the XSOAR open source repository but instead in the publisher's own, private GitHub repo. We'll help you set it up. 
+Paid packs are not stored in the XSOAR open source repository but instead in the publisher's own, private GitHub repo. We'll help you [set it up](/packs/premium_packs). 
 
 ## 4. Build Paid Pack(s)
 
@@ -31,4 +31,4 @@ Build the content for the paid packs.
 In order for us to review the content and add to Marketplace, we must receive a pull request and access as detailed on our page. 
 
 
-That's mostly it! If you're interested in submitting premium content on our Marketplace, please contact us today. 
+That's mostly it! If you're interested in submitting premium content on our Marketplace, please <a href="mailto:soar.alliances@paloaltonetworks.com">Contact the Partner Success Team</a> today. 
