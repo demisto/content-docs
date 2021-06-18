@@ -3,7 +3,7 @@ id: paid-packs-process
 title: Paid Packs Process
 ---
 
-The process for submitting a paid pack on XSOAR differs slightly from that of a free pack but our Partner Success Team will help you through the whole way.
+The process for submitting a paid pack on XSOAR differs slightly from that of a free pack but our <a href="mailto:soar.alliances@paloaltonetworks.com">Partner Success Team</a> will help you through the whole way.
 
 ## 1. Sign the Terms & Conditions document
 
