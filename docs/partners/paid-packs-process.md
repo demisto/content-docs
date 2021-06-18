@@ -1,9 +1,9 @@
 ---
-id: paid-pack-process
-title: Paid Pack Process
+id: paid-packs-process
+title: Paid Packs Process
 ---
 
-# Paid Pack Process
+# Paid Packs Process
 
 The process for submitting a paid pack on XSOAR differs slightly from that of a free pack but our Partner Success Team will help you through the whole way.
 
