@@ -323,9 +323,11 @@ function MarketplaceSidebar({
   sidebarCollapsible = true,
   onCollapse,
   isHidden,
-  search,
+  setSearchValue,
+  searchValue,
   totalPacks,
   totalFilteredPacks,
+  updateQueryParams
 }) {
   const [showResponsiveSidebar, setShowResponsiveSidebar] = useState(false);
   const {
@@ -391,7 +393,11 @@ function MarketplaceSidebar({
                 className={styles.input}
                 type="filter"
                 placeholder="What can we help you automate?"
-                onChange={(e) => search(e.target.value)}
+                value={searchValue}
+                onChange={e => {
+                  updateQueryParams("q", e.target.value);
+                  setSearchValue(e.target.value);
+                }}
                 autoComplete="false"
               ></input>
               <i
