@@ -104,22 +104,12 @@ At a minimum, an integration consists in:
 - Ability to test the integration, build test playbooks, and use the integration from the CLI
 - A couple of example playbooks to showcase how your your integration could be used
 
-## 6. Provide our Team with Product Access
-
-As an automation platform, it shouldn’t surprise you that we’ve also automated our integration testing and deployment. We do nightly tests of each integration in order to confirm functionality and, in order to do this, we request access to your product and/or APIs. Preferably, the instance will have all data related to the integration use cases, so they can be tested. E.g. if one of the use cases is ingesting incidents to Cortex XSOAR, the instance should have demo incidents. This access is not used for any other purpose.
-
-Before submitting the integration, please work with the Palo Alto Networks BD Team to share access.
-
-## 7. Submit a GitHub Pull Request
+## 6. Submit a GitHub Pull Request
 
 Once you have completed development of your content or integration, please [submit a Pull Request](/docs/contributing/contributing) on our GitHub Content Repo. You will be required to fill in a contribution form that includes details like your *Partner ID* and some other details.
 
-After the PR is submitted, it will require a review session with the development team. When the review of your integration is complete, check your code into our GitHub repository. Your build will added to be published to our global community. We release content updates every two weeks.
+After the PR is submitted, our development team will conduct a review. When the review of your integration is complete, your build will added to be published to our global community. We release content twice daily to Marketplace customers, and every two weeks for legacy customers.
 
-## 8. Join TSANet
+## 7. Get the Word Out
 
-To have their integrations approved and shipped with the Cortex XSOAR Content, we require our partners to join the industry-standard support framework called TSANet in order to deliver outstanding support to our mutual customers. It’s free when you register under the Palo Alto Networks account and it really streamlines the cross-company processes. [Sign Up For TSANet](https://paloaltonetworks.tsanet.org).
-
-## 9. Get the Word Out
-
-Now that the integration is complete, you'll get the visibility you deserve! Our BD team will connect you to our Marketing team to work together on content, such as Solution Briefs, Blog posts, YouTube videos, etc.
+Now that the integration is complete, you'll get the visibility you deserve! The Partner Success Team will connect you to our Marketing team to work together on content, such as Solution Briefs, Blog posts, YouTube videos, etc.
