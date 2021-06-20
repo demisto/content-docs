@@ -124,6 +124,6 @@ To have their integrations approved and shipped with the Cortex XSOAR Content, w
 
 Now that the integration is complete, you'll get the visibility you deserve! Our BD team will connect you to our Marketing team to work together on content, such as Solution Briefs, Blog posts, YouTube videos, etc.
 
---
+---
 
 Partners who wish to contribute paid packs must follow a few [additional onboarding steps](/docs/partners/paid-packs-process). 
