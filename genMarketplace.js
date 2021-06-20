@@ -5,8 +5,7 @@ const plop = nodePlop(`./plopfile.js`);
 const generatePackDetails = plop.getGenerator("details");
 const jsStringEscape = require("js-string-escape");
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-var request = new XMLHttpRequest();
-
+const fetch = require('node-fetch');
 
 const contentItemTransformer = {
   integration: "Integrations",
@@ -50,38 +49,42 @@ function capitalizeFirstLetter(string) {
   }
 }
 
-function checkUrl(url)
-// Gets a url and performs a GET request to verify it exists
-{
-    request.open( "GET", url);
-    request.send( null );
-
-    if (request.status === 404) {
-        return false
-    }
-
-    return true
-}
-
-function createReadmeLink(itemType, itemName) {
-// Creates a README link for the relevant entities (include a check if a README exists in the docs)
-    if (! (['integration', 'automation', 'playbook'].includes(itemType))){
-        return ""
-    }
-
-    var baseURL = "https://xsoar.pan.dev/docs/reference/"
-    // remove support level from the name to create the link
-    itemLinkName = itemName.replace(" (Partner Contribution)", "").replace(" (Developer Contribution)", "")
-    itemLinkName = itemLinkName.split(/(?=[A-Z][a-z])/).join(" ").replace(/\s+/g, '-').toLowerCase();
-    itemLinkName = itemLinkName.replace(/[^\w-]/g,"");
-
-    baseURL = baseURL + itemType + "s/" + itemLinkName
-    if (checkUrl(baseURL)) {
-        return baseURL
+function checkURLAndModifyLink(url, listItem) {
+  return fetch(url).then((response) => {
+    if (response.ok) {
+      listItem.docLink = url
     }
     else {
-        return ""
+      listItem.docLink = ""
     }
+  }).catch(err => listItem.docLink = "");
+}
+
+function createReadmeLink(listItem, itemType) {
+  // Creates a README link for the relevant entities (include a check if a README exists in the docs)
+  if (!(['integration', 'automation', 'playbook'].includes(itemType))) {
+    return ""
+  }
+
+  itemName = listItem.name;
+
+  var baseURL = "https://xsoar.pan.dev/docs/reference/"
+  // remove support level from the name to create the link
+  itemLinkName = itemName.replace(" (Partner Contribution)", "").replace(" (Developer Contribution)", "").replace(" (beta)", "").replace(" (Beta)", "")
+  itemLinkName = itemLinkName.split(/(?=[A-Z][a-z])/).join(" ").replace(/\s+/g, '-').toLowerCase();
+
+  // replace all non word characters (dash is ok)
+  itemLinkName = itemLinkName.replace(/[^\w-]/g, "");
+
+  if (itemType !== "automation") {
+    baseURL = baseURL + itemType + "s/" + itemLinkName
+  }
+
+  else {
+    baseURL = baseURL + "scripts/" + itemLinkName
+  }
+
+  return checkURLAndModifyLink(baseURL, listItem)
 }
 
 function reverseReleases(obj) {
@@ -172,23 +175,34 @@ function genPackDetails() {
     }
   );
 
-  marketplace.map((pack) => {
-    if (pack.contentItems) {
-      let FixedContentItems = {};
-      let fixedKey = ""
-      for (var [key, value] of Object.entries(pack.contentItems)) {
-        fixedKey = contentItemTransformer[key];
-        for (const listItem of value) {
-          listItem.description = listItem.description
-            ? jsStringEscape(listItem.description)
-            : "";
-          listItem.description = listItem.description.replace(/</g, "&#60;");
-          listItem.docLink = createReadmeLink(key, listItem.name);
+
+  marketplace.forEach(async (pack) => {
+    const parseContentItems = async () => {
+      try {
+        if (pack.contentItems) {
+          let FixedContentItems = {};
+          let fixedKey = ""
+          var promises = []
+          for (var [key, value] of Object.entries(pack.contentItems)) {
+            fixedKey = contentItemTransformer[key];
+            for (var listItem of value) {
+              listItem.description = listItem.description
+                ? jsStringEscape(listItem.description)
+                : "";
+              listItem.description = listItem.description.replace(/</g, "&#60;");
+              promises.push(createReadmeLink(listItem, key));
+            }
+            FixedContentItems[fixedKey] = value;
+          }
+          const data = await Promise.all(promises);
+          pack.contentItems = FixedContentItems;
         }
-        FixedContentItems[fixedKey] = value;
+      } catch (err) {
+        console.log(err);
       }
-      pack.contentItems = FixedContentItems;
     }
+
+    await parseContentItems()
 
     generatePackDetails.runActions({
       id: pack.id ? pack.id.replace(/-|\s/g, "").replace(".", "") : pack.id,
