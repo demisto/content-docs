@@ -21,7 +21,7 @@ Paid packs are not stored in the XSOAR open source repository but instead in the
 
 Build the content for the paid packs. 
 
-- If you're submitting a premium content pack, add the dashboards, playbooks, etc. as you would normally. 
+- If you're submitting a premium content pack, add the dashboards, playbooks, etc. as you would normally, revisit the [Contributor Guidlines](https://xsoar.pan.dev/docs/contributing/contributing#contributor-guidelines) if needed.
 - If you're submitting a premium resell pack, the pack is mostly empty except for some basic metadata files. 
 
 Either way, we'll work with you to define, scope and guide you through the process.
