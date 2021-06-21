@@ -1,6 +1,6 @@
 ---
 id: become-a-tech-partner
-title: Become a Technology Partner
+title: Become an XSOAR Partner
 ---
 
 _Intended Audience:_
@@ -37,11 +37,11 @@ _At minimum you will need the following capabilities:_
 - Access to GitHub
 - _Optional_: basic knowledge of Docker, if you want to use your own libraries or pip modules
 
-# Partner Onboarding Process
+# XSOAR Partner Onboarding Process
 
-The following steps explain the process that you need to go through in order to become a Palo Alto Networks Technology Partner with Cortex XSOAR, and start developing content and integrations that can be certified and deployed to customers globally. Please review the following with your team and work with your Cortex XSOAR Technical Alliances contacts to get started.
+The following steps explain the process that you need to go through in order to become a Palo Alto Networks Technology Partner with Cortex XSOAR, and start developing content and integrations that can be certified and deployed to customers globally. Please review the following with your team and work with your Cortex XSOAR <a href="mailto:soar.alliances@paloaltonetworks.com">Partner Success Team</a> to get started.
 
-## 1. Sign up as a Technology Partner
+## 1. Sign up as an XSOAR Technology Partner
 
 [Submit your application now!](https://start.paloaltonetworks.com/become-a-technology-partner) After your application is approved you’ll receive an email with a few resources to help you get started, and we'll reach out for a follow up.
 <a class="button button--outline button--primary button--lg" href="https://start.paloaltonetworks.com/become-a-technology-partner" target="_blank">Sign Up Now</a>
@@ -104,22 +104,12 @@ At a minimum, an integration consists in:
 - Ability to test the integration, build test playbooks, and use the integration from the CLI
 - A couple of example playbooks to showcase how your your integration could be used
 
-## 6. Provide our Team with Product Access
+## 6. Submit a GitHub Pull Request
 
-As an automation platform, it shouldn’t surprise you that we’ve also automated our integration testing and deployment. We do nightly tests of each integration in order to confirm functionality and, in order to do this, we require access to your product and/or APIs. Preferably, the instance will have all data related to the integration use cases, so they can be tested. E.g. if one of the use cases is ingesting incidents to Cortex XSOAR, the instance should have demo incidents. This access is not used for any other purpose.
+Once you have completed development of your content or integration, please [submit a Pull Request](/docs/contributing/contributing) on our GitHub Content Repo. You will be required to fill in a contribution form that includes details like your *Partner ID* and some other details.
 
-Before submitting the integration, please work with the Palo Alto Networks BD Team to share access
+After the PR is submitted, our development team will conduct a review. When the review of your integration is complete, your build will added to be published to our global community. We release content twice daily to Marketplace customers, and every two weeks for legacy customers.
 
-## 7. Submit a GitHub Pull Request
+## 7. Get the Word Out
 
-Once you have completed development of your content or integration, please submit a *Pull Request* on our GitHub Content Repo. The title of the Pull Request must contain the *Partner ID* we provided earlier.
-
-After the PR is submitted, it will require a review session with the development team. When the review of your integration is complete, check your code into our GitHub repository. Your build will added to be published to our global community. We release content updates every two weeks.
-
-## 8. Join TSANet
-
-To have their integrations approved and shipped with the Cortex XSOAR Content, we require our partners to join the industry-standard support framework called TSANet in order to deliver outstanding support to our mutual customers. It’s free when you register under the Palo Alto Networks account and it really streamlines the cross-company processes. [Sign Up For TSANet](https://paloaltonetworks.tsanet.org).
-
-## 9. Get the Word Out
-
-Now that the integration is complete, you'll get the visibility you deserve! Our BD team will connect you to our Marketing team to work together on content, such as Solution Briefs, Blog posts, YouTube videos, etc.
+Now that the integration is complete, you'll get the visibility you deserve! The Partner Success Team will connect you to our Marketing team to work together on content, such as Solution Briefs, Blog posts, YouTube videos, etc.
