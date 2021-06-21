@@ -7,7 +7,7 @@ The process for submitting a paid pack on XSOAR differs slightly from that of a 
 
 ## 1. Sign the Terms & Conditions Document
 
-All publishers who wish to a contribute paid pack must sign a 2pg additional document that defines a few additional terms to the Technology Partner Agreement (TPA) including taxes, invoicing, revenue share, etc. It will be executed via DocuSign and we do not accept redlines. 
+All publishers who wish to contribute a paid pack on Marketplace must sign a 2pg terms and conditions document that defines a few additional terms to the Technology Partner Agreement (TPA) including taxes, invoicing, revenue share, etc. It will be executed via DocuSign and we do not accept redlines. 
 
 ## 2. Complete Vendor Onboarding
 
