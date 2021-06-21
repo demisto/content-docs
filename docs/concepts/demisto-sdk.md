@@ -6,7 +6,7 @@ The [Demisto SDK](https://github.com/demisto/demisto-sdk) is a Python library de
 This guide will help you get acquainted with the Demisto SDK, including installation and set up and will provide some 
 basic information about key commands to aid you in the development process. For additional information, please see our full [Demisto SDK documentation](https://github.com/demisto/demisto-sdk#demisto-sdk).
 
-Note that in some cases fetching remote files is needed. In case of a private repo and an un-configured `DEMITO_SDK_GITHUB_TOKEN` environment variable, files will be fetched from the remote branch of the local repo.  
+Note that in some cases fetching remote files is needed. In the case of a private repository and an un-configured `DEMITO_SDK_GITHUB_TOKEN` environment variable, files will be fetched from the remote branch of the local repo.  
 
 ## Installation and Setup
 
