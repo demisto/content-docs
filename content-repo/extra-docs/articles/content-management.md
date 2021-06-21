@@ -17,7 +17,7 @@ Consists of the following sections:
 - `lists` - Lists to be created in the machine.
 - `jobs` - Jobs to be created in the machine.
 
-[Example file](https://raw.githubusercontent.com/demisto/content/master/Packs/XSOARbuild/docs-files/xsoar_config.json)
+[Example file](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/docs-files/xsoar_config.json)
 
 ---
 
@@ -29,7 +29,7 @@ Consists of the following sections:
 - `Branch Name` - The branch from which to fetch the file. Default is the main branch. (Optional)
 
 #### Layout:
-![layout.png](https://raw.githubusercontent.com/demisto/content/master/Packs/XSOARbuild/docs-files/layout.png)
+![layout.png](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/docs-files/layout.png)
 
 ---
 
@@ -42,7 +42,7 @@ It consists of five stages:
 4. Configuring lists.
 5. Configuring jobs.
 
-![playbook.png](https://raw.githubusercontent.com/demisto/content/master/Packs/XSOARbuild/docs-files/playbook.png)
+![playbook.png](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/docs-files/playbook.png)
 
 ---
 
