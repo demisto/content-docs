@@ -579,6 +579,8 @@ When working on integrations that require user credentials (such as username/pas
   
 Using credentials parameter type is always recommended (even when working with API token\key) as it provides the user the flexibility of using the [XSOAR credentials vault](../reference/articles/managing-credentials) feature when configuring the integration for the first time.
 
+The ```hiddenusername``` configuration is supported in version 6.0.2 and newer. In earlier versions the username field will be visible.
+
 
 ## Common Server Functions
 Before writing a function that seems like a workaround for something that should already exist, check the script helper to see if a function already exists. Examples of Common Server Functions are noted below:
