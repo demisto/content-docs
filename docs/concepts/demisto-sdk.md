@@ -190,7 +190,7 @@ This command runs several libraries to validate your code,  including:
  - [Vulture](https://pypi.org/project/vulture/) - Finds unused code.
  - [Bandit](https://pypi.org/project/bandit/) - Finds security issues.
  - XSOAR Linter - An internal linter used to identify XSOAR specific restrictions and provide best practice advice for your code.
- - Pylint and Pytest - Used to run your attached unit test (in the `_test.py`) file on the integration/script's Docker.
+ - Pylint and Pytest - Used to run your attached unit test (in the `_test.py`) file on the integration/script's Docker and will report your code coverage.
  - PowerShell test and analyze - Code linters for PowerShell.
 
 At the end of the command a short report appears with all of the error and warnings found, as well as failed and passed unit tests.
