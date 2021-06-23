@@ -43,6 +43,8 @@ Options:
   --test-xml PATH               Path to store pytest xml results
   --failure-report PATH         Path to store failed packs report
   -lp, --log-path PATH          Path to store all levels of logs
+  --no-coverage                 Do NOT run coverage report.
+  --coverage-report PATH        Specify directory for the coverage report files
 ```
 
 **Note**: this script is also used to run pytest. See: [Unit Testing](unit-testing)
@@ -119,6 +121,19 @@ Passed Unit-tests:
 Packages: 1
 Packages PASS: 1
 Packages FAIL: 0
+Packages WARNING (can either PASS or FAIL): 0
+
+[INFO] 
+
+############################
+ unit-tests coverage report
+############################
+Name                                                     Stmts   Miss  Cover
+----------------------------------------------------------------------------
+Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py     277     83    70%
+----------------------------------------------------------------------------
+TOTAL                                                      277     83    70%
+
 ```
 
 ## Flake8

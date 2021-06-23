@@ -106,6 +106,8 @@ Options:
   --test-xml PATH               Path to store pytest xml results
   --failure-report PATH         Path to store failed packs report
   -lp, --log-path PATH          Path to store all levels of logs
+  --no-coverage                 Do NOT run coverage report.
+  --coverage-report PATH        Specify directory for the coverage report files
 ```
 
 Sample output:
