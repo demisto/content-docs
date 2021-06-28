@@ -4,7 +4,6 @@ const nodePlop = require("node-plop");
 const plop = nodePlop(`./plopfile.js`);
 const generatePackDetails = plop.getGenerator("details");
 const jsStringEscape = require("js-string-escape");
-const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const fetch = require('node-fetch');
 const docsLinksfileName = './contentItemsDocsLinks.json';
 const docsLinksJson = require(docsLinksfileName);
@@ -52,18 +51,30 @@ function capitalizeFirstLetter(string) {
 }
 
 function checkURLAndModifyLink(url, listItem) {
-  //  console.log("Performing request for url: " + url)
   return fetch(url).then((response) => {
     if (response.ok) {
-      name = listItem.name;
       listItem.docLink = url;
-      // console.log("Adding ---- " + name + " : " + url + " to json")
-      docsLinksJson[name] = url;
+      docsLinksJson[listItem[name]] = url;
     }
     else {
       listItem.docLink = ""
     }
   }).catch(err => listItem.docLink = "");
+}
+
+function normalizeItemName(itemName) {
+  // Normalizes the name of the content entity according to the 'normalize_id' method in mdx_utils
+
+  // remove support level from the name to create the link
+  var normalizedName = itemName.replace(" (Partner Contribution)", "").replace(" (Developer Contribution)", "").replace(" (beta)", "").replace(" (Beta)", "")
+
+  // split name by upper case letters, replace spaces with dashed and lowercase everything
+  normalizedName = normalizedName.split(/(?=[A-Z][a-z])/).join(" ").replace(/\s+/g, '-').toLowerCase();
+
+  // replace all non word characters (dash is ok)
+  normalizedName = normalizedName.replace(/[^\w-]/g, "");
+
+  return normalizedName
 }
 
 function createReadmeLink(listItem, itemType) {
@@ -72,28 +83,21 @@ function createReadmeLink(listItem, itemType) {
     return ""
   }
 
-  itemName = listItem.name;
-
+  var itemName = listItem.name;
   var baseURL = "https://xsoar.pan.dev/docs/reference/"
-  // remove support level from the name to create the link
-  itemLinkName = itemName.replace(" (Partner Contribution)", "").replace(" (Developer Contribution)", "").replace(" (beta)", "").replace(" (Beta)", "")
-  itemLinkName = itemLinkName.split(/(?=[A-Z][a-z])/).join(" ").replace(/\s+/g, '-').toLowerCase();
 
-  // replace all non word characters (dash is ok)
-  itemLinkName = itemLinkName.replace(/[^\w-]/g, "");
+  var normalizedItemName = normalizeItemName(itemName)
 
   if (itemType !== "automation") {
-    baseURL = baseURL + itemType + "s/" + itemLinkName
+    baseURL = baseURL + itemType + "s/" + normalizedItemName
   }
 
   else {
-    baseURL = baseURL + "scripts/" + itemLinkName
+    baseURL = baseURL + "scripts/" + normalizedItemName
   }
 
   if (docsLinksJson[itemName]) {
-    // console.log("found existing one!!!!")
     listItem.docLink = docsLinksJson[itemName]
-    // console.log("Doc link for " + listItem.name + "is " + listItem.docLink)
     return Promise.resolve();
   }
 
@@ -192,7 +196,6 @@ async function genPackDetails() {
   await Promise.all(marketplace.map(async (pack) => {
     const parseContentItems = async () => {
       try {
-        // console.log("Start with pack " + pack.name)
         if (pack.contentItems) {
           let FixedContentItems = {};
           let fixedKey = ""
@@ -211,7 +214,6 @@ async function genPackDetails() {
           await Promise.all(promises);
           pack.contentItems = FixedContentItems;
         }
-        // console.log("Done with pack " + pack.name)
       } catch (err) {
         console.log(err);
       }
