@@ -6,6 +6,8 @@ const generatePackDetails = plop.getGenerator("details");
 const jsStringEscape = require("js-string-escape");
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const fetch = require('node-fetch');
+const docsLinksfileName = './contentItemsDocsLinks.json';
+const docsLinksJson = require(docsLinksfileName);
 
 const contentItemTransformer = {
   integration: "Integrations",
@@ -50,9 +52,13 @@ function capitalizeFirstLetter(string) {
 }
 
 function checkURLAndModifyLink(url, listItem) {
+  //  console.log("Performing request for url: " + url)
   return fetch(url).then((response) => {
     if (response.ok) {
-      listItem.docLink = url
+      name = listItem.name;
+      listItem.docLink = url;
+      // console.log("Adding ---- " + name + " : " + url + " to json")
+      docsLinksJson[name] = url;
     }
     else {
       listItem.docLink = ""
@@ -84,6 +90,13 @@ function createReadmeLink(listItem, itemType) {
     baseURL = baseURL + "scripts/" + itemLinkName
   }
 
+  if (docsLinksJson[itemName]) {
+    // console.log("found existing one!!!!")
+    listItem.docLink = docsLinksJson[itemName]
+    // console.log("Doc link for " + listItem.name + "is " + listItem.docLink)
+    return Promise.resolve();
+  }
+
   return checkURLAndModifyLink(baseURL, listItem)
 }
 
@@ -96,7 +109,7 @@ function reverseReleases(obj) {
   return new_obj;
 }
 
-function genPackDetails() {
+async function genPackDetails() {
   let marketplace = [];
   const detailsPages = globby.sync(["./src/pages/marketplace"], {
     absolute: false,
@@ -176,9 +189,10 @@ function genPackDetails() {
   );
 
 
-  marketplace.forEach(async (pack) => {
+  await Promise.all(marketplace.map(async (pack) => {
     const parseContentItems = async () => {
       try {
+        // console.log("Start with pack " + pack.name)
         if (pack.contentItems) {
           let FixedContentItems = {};
           let fixedKey = ""
@@ -194,9 +208,10 @@ function genPackDetails() {
             }
             FixedContentItems[fixedKey] = value;
           }
-          const data = await Promise.all(promises);
+          await Promise.all(promises);
           pack.contentItems = FixedContentItems;
         }
+        // console.log("Done with pack " + pack.name)
       } catch (err) {
         console.log(err);
       }
@@ -235,8 +250,12 @@ function genPackDetails() {
       contentItems: pack.contentItems,
       changeLog: reverseReleases(pack.changeLog),
     });
+  }));
+
+  fs.writeFile(docsLinksfileName, JSON.stringify(docsLinksJson), function writeJSON(err) {
+    if (err) return console.log(err);
+    console.log('writing to ' + docsLinksfileName);
   });
-  return;
-}
+};
 
 genPackDetails();
