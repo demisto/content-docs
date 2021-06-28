@@ -56,7 +56,7 @@ There is 1 layout - **Forensic Acquisition And Analysis**
  !["Analysis"](https://raw.githubusercontent.com/demisto/content-docs/57b5d0a866f90e378da89625489fe220503b3901/docs/doc_imgs/reference/WindowsForensics/analysis.JPG "Analysis")
 
 ## Before You Start
-This pack requires that you have an active instance of the PowerShell Remoting integration enabled for the Forensic acquisition pack. Make sure to configure the PowerShell Remoting environment as described in the [PowerShell Remoting](https://xsoar.pan.dev/docs/reference/articles/powershell_remoting) article.
+This pack requires that you have an active instance of the PowerShell Remoting integration enabled for the Forensic acquisition pack. Make sure to configure the PowerShell Remoting environment as described in the [PowerShell Remoting](https://xsoar.pan.dev/docs/reference/articles/Powershell_Remoting_-_Configuration) article.
 
 
 ## Testing the Pack
