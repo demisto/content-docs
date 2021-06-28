@@ -75,6 +75,7 @@ function normalizeItemName(itemName) {
   normalizedName = normalizedName.replace(/[^\w-]/g, "");
 
   return normalizedName
+
 }
 
 function createReadmeLink(listItem, itemType) {
