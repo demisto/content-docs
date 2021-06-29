@@ -16,17 +16,17 @@ If you have any doubts or questions, please reach out to us over [Slack](https:/
 
 Make sure your integration is categorized correctly by choosing one of the following:
 
-Import events as incidents
-Threat Intel Feeds
-Analytics & SIEM
-Authentication
-Data Enrichment & Threat Intelligence
-Database
-Endpoint
-Forensics & Malware Analysis
-Messaging
-Utilities
-Vulnerability Management
+- Import events as incidents
+- Threat Intel Feeds
+- Analytics & SIEM
+- Authentication
+- Data Enrichment & Threat Intelligence
+- Database
+- Endpoint
+- Forensics & Malware Analysis
+- Messaging
+- Utilities
+- Vulnerability Management
 
 Use cases can be helpful for the categorization as well as looking for similar integrations to the one you are working on.
 
