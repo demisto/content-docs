@@ -54,7 +54,6 @@ function checkURLAndModifyLink(url, listItem) {
   return fetch(url).then((response) => {
     if (response.ok) {
       listItem.docLink = url;
-      docsLinksJson[listItem[name]] = url;
     }
     else {
       listItem.docLink = ""
@@ -194,7 +193,7 @@ async function genPackDetails() {
   );
 
 
-  await Promise.all(marketplace.map(async (pack) => {
+  marketplace.map(async (pack) => {
     const parseContentItems = async () => {
       try {
         if (pack.contentItems) {
@@ -253,11 +252,6 @@ async function genPackDetails() {
       contentItems: pack.contentItems,
       changeLog: reverseReleases(pack.changeLog),
     });
-  }));
-
-  fs.writeFile(docsLinksfileName, JSON.stringify(docsLinksJson), function writeJSON(err) {
-    if (err) return console.log(err);
-    console.log('writing to ' + docsLinksfileName);
   });
 };
 
