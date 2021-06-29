@@ -51,6 +51,7 @@ function capitalizeFirstLetter(string) {
 }
 
 function checkURLAndModifyLink(url, listItem) {
+  // Check if a README file exists in the given URL. If so, attach it to the relevant content item.
   return fetch(url).then((response) => {
     if (response.ok) {
       listItem.docLink = url;
@@ -80,23 +81,23 @@ function normalizeItemName(itemName) {
 function createReadmeLink(listItem, itemType) {
   // Creates a README link for the relevant entities (include a check if a README exists in the docs)
   if (!(['integration', 'automation', 'playbook'].includes(itemType))) {
-    return ""
+    return ""; // a README file exists only for those entities.
   }
 
   var itemName = listItem.name;
   var baseURL = "https://xsoar.pan.dev/docs/reference/"
 
-  var normalizedItemName = normalizeItemName(itemName)
+  var normalizedItemName = normalizeItemName(itemName);
 
   if (itemType !== "automation") {
-    baseURL = baseURL + itemType + "s/" + normalizedItemName
+    baseURL = baseURL + itemType + "s/" + normalizedItemName;
   }
 
   else {
-    baseURL = baseURL + "scripts/" + normalizedItemName
+    baseURL = baseURL + "scripts/" + normalizedItemName;
   }
 
-  if (docsLinksJson[itemName]) {
+  if (docsLinksJson[itemName]) { // there is an existing README url for this content item, no need to perform an http request
     listItem.docLink = docsLinksJson[itemName]
     return Promise.resolve();
   }
@@ -113,7 +114,7 @@ function reverseReleases(obj) {
   return new_obj;
 }
 
-async function genPackDetails() {
+function genPackDetails() {
   let marketplace = [];
   const detailsPages = globby.sync(["./src/pages/marketplace"], {
     absolute: false,
