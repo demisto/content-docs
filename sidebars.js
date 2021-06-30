@@ -114,7 +114,14 @@ const sidebars = {
               ]
             },
             "integrations/dbot",
-            "integrations/docker"            
+            "integrations/docker",
+            {
+              type: "category",
+              label: "Builtins",
+              items: [
+                "integrations/get-entries-filter",
+              ]
+            },
           ]
         },        
         {       
@@ -141,7 +148,6 @@ const sidebars = {
             "integrations/integration-cache",
             "integrations/mirroring_integration",
             "integrations/openapi-codegen",
-            "integrations/get-entries-filter"
           ]
         }
       ]
