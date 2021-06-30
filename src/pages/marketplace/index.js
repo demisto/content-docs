@@ -217,7 +217,6 @@ function Marketplace() {
       };
     });
     const uniqueUseCases = new Set(allUseCases.sort());
-    uniqueUseCases = sortSet(uniqueUseCases);
     uniqueUseCases.forEach((useCase) => {
       useCases.push({
         label: dictionary[useCase]
