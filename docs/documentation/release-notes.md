@@ -106,7 +106,7 @@ One should specify in the corresponding release notes file the following changes
   - Fixes for customer bugs
 
 ### General
-- The release notes need to be in simple language and informative.  
+- The release notes need to be in simple language and informative. Think about what is the impact on the user and what they should know about this version.
     - Bad example: `Added the timeout parameter.`  
     - Good example: `Added the timeout parameter, which enables you to define the amount of time (in minutes) that the integration will try to execute commands before it throws an error.`
 
@@ -114,15 +114,15 @@ One should specify in the corresponding release notes file the following changes
 
 Pretend you need this release note to do your work. A bad RN can easily lead to a CS ticket.
 
-### Entities marks in the RN:  
-- Command names - should be wrapped with three stars - \*\*\*command_name***
+### Entity Styling  
+- Command name: - should be wrapped with three stars - \*\*\*command_name***
 - Packs/Integrations/scripts/playbooks and other content entities (incident fields, dashboards...) - should be wrapped with two stars - \*\*entity_name**
-- Parameters/arguments/functions/outputs names - should be wrapped with one stars - \*entity_name*
+- Parameters/arguments/functions/outputs names - should be wrapped with one star - \*entity_name*
 
 
-### Improved Integrations/bug fixes examples  
+### Examples  
 
-**Enhancements examples**:
+#### Enhancement Examples
 
 - **MISP V2**  
 You can now filter an event by attribute data fields.
@@ -137,7 +137,8 @@ Added 3 commands.
     - ***msgraph-mail-create-folder***
 
 
-**Bug fixes examples**:
+#### Bug Fixes Examples
+
 - **Slack v2**  
     - Fixed an issue where mirrored investigations contained mismatched user names.
     - Added the **reporter** and **reporter email** labels to incidents that are created by direct messages.
@@ -150,6 +151,17 @@ Fixed an issue in which the ***qradar-delete-reference-set-value*** command fail
 
 - **GitHub**  
 Improved implementation of the default value for the *fetch_time* parameter.
+
+#### Docker Updates Example
+
+- Updated the Docker image to: *demisto/python3:3.9.1.15759*.
+
+#### General Changes
+
+> **Note:** Use these if the change has no visible impact on the user, but please try to refrain from using these if possible!
+
+- Maintenance and stability enhancements.
+- Documentation and metadata improvements.
 
   
 ## Excluding Items
@@ -166,6 +178,15 @@ this, you may comment out the entries by using the following syntax:
   - Renamed an item. Not necessary to document in release notes.
 -->
 ```
+
+## demisto-sdk doc-review
+`demisto-sdk` includes the `doc-review` command to assist with the doc review process. It will check the spelling of the release notes and provide guidance if you are not using one of our standardized templates. Example usage:
+
+```
+demisto-sdk doc-review -i Packs/Base/ReleaseNotes/1_11_10.md
+```
+
+More info is available at the `demisto-sdk doc-review` command [README](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/doc_reviewer/README.md).
 
 ## Common Troubleshooting Tips
 

@@ -206,7 +206,7 @@ def test_process_release_doc(tmp_path, mdx_server):
     with open(str(tmp_path / f'{res.id}.md'), 'r') as f:
         assert f.readline().startswith('---')
         assert f.readline().startswith(f'id: {res.id}')
-        assert f.readline().startswith(f'title: "{res.id}"')
+        assert f.readline().startswith(f'sidebar_label: "{res.id}"')
         assert f.readline().startswith('custom_edit_url: https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/releases')
 
 

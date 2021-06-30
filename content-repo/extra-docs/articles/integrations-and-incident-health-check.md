@@ -76,7 +76,7 @@ The playbooks in the pack use execute scripts to check the system for failed int
     - Demisto Server URL
     - API key that you generated
 7. Click the **Test** button to make sure that that server and API key are reachable and valid.
-8. Click **Done**.
+8. Click **Save & exit**.
  
  ### 2. (Optional) Configure a Mail Sender and Mail Listener Integration  
  The main playbook has the ability to send an email notification to specified users. In order for this function to work you first need to configure the mail integrations. 
@@ -110,6 +110,8 @@ Although not required, we recommend that you create a recurring schedule for the
 
 ### 4. Playbook Inputs
 The **JOB - Integrations and Incidents Health Check** playbook contains the following inputs.
+You can review the playbook inputs and edit them by clicking the 'Playbook Triggered' section header of the playbook.
+
 
 | Playbook Input | Description |
 |---------------- | ------------- |

@@ -11,7 +11,7 @@ An example mirroring integration can be seen [here](https://github.com/demisto/c
 Mirroring integrations are developed the same as other integrations. They provide a few extra configuration parameters and APIs.
 
 :::note 
-Once an incident field is changed manually within XSOAR, it will be marked as "dirty" and will not be updated in XSOAR throughout the life of the incident. It should be noted that in the case outbound mirroring is enabled, any changes to the incident in XSOAR will still be reflected in the external system.
+**For Cortex XSOAR versions 6.1.0 and earlier**: Once an incident field is changed manually within XSOAR, it will be marked as "dirty" and will not be updated by the mirroring process in XSOAR throughout the life of the incident. It should be noted that in the case outbound mirroring is enabled, any changes to the incident in XSOAR will however still be reflected in the external system.
 :::
 
 ## Supported Server Version
@@ -38,8 +38,9 @@ Use the following commands to implement a mirroring integration.
 - `test-module` - this is the command that is run when the `Test` button in the configuration panel of an integration is clicked.
 - `fetch-incidents` - this is the command that fetches new incidents to Cortex XSOAR.
 - `get-modified-remote-data` - available from Cortex XSOAR version 6.1.0. This command queries for incidents that were modified since the last update. If the command is implemented in the integration, the **get-remote-data** command will only be performed on incidents returned from this command, rather than on all existing incidents. This command is executed every 1 minute for each individual **integration's instance**. 
+If the command is not implemented, make sure to raise `NotImplementedError` so `get-remote-data` will be called instead. If the command fails return an error entry with one of the following sub-strings: `API rate limit` or `skip update` (exact case) to signal to the Server that there is an issue and it should not continue to `get-remote-data`. 
 - `get-remote-data` - this command gets new information about the incidents in the remote system and updates *existing* incidents in Cortex XSOAR. If an API rate limit error occures, this method should an error with substring `"API rate limit"`, so that the sync loop will start from the failed incident.
-This command is executed every 1 minute for each individual **incident** fetched by the integration. 
+This command is executed every 1 minute for each individual **incident** fetched by the integration.
 - `update-remote-system` - this command updates the remote system with the information we have in the mirrored incidents within Cortex XSOAR. This command is executed whenever the individual incident is changed in Cortex XSOAR.
 - `get-mapping-fields` - this command pulls the remote schema for the different incident types, and their associated incident fields, from the remote system. This enables users to map XSOAR fields to the 3rd-party integration fields in the outgoing mapper. This command is being called when selecting the **Select schema** option in the **Get data** configuration in a classifier or a mapper.
 

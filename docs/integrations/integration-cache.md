@@ -21,17 +21,17 @@ Note: the `integrationContext` object cannot be retrieved or set in the `test-mo
 
 The `integrationContext` supports two methods: getter and setter.
 
-Both methods are provided by the `demisto` class.
+Both methods are provided by the `demisto` class which have wrappers in the CommonServerPython script.
 
 If no object is stored, the method will return an empty dictionary.
 
-### The `getIntegrationContext()` Method
+### The `get_integration_context()` Method
 This is the getter the cached object, which returns a key-value dictionary.
 
-### The `setIntegrationContext()` Method
+### The `set_integration_context()` Method
 This is the setter the cached object.
 
-This method takes only one argument - the object to store, which its keys and values must be strings.
+This method takes as argument the the object to store, which its keys and values must be strings.
 
 Note that this method overrides the existing object which is stored, so in order to update a stored object, one should first get it, make the requested changes and then set it.
 
@@ -40,24 +40,24 @@ Note that this method overrides the existing object which is stored, so in order
 
 ### General usage
 ```python
-integration_context: Dict = demisto.getIntegrationContext()
+integration_context: Dict = get_integration_context()
 demisto.results(integration_context)
 >>> {}
 integration_context_to_set = {'token': 'TOKEN'}
-demisto.setIntegrationContext(integration_context_to_set)
-integration_context = demisto.getIntegrationContext()
+set_integration_context(integration_context_to_set)
+integration_context = get_integration_context()
 demisto.results(integration_context['token'])
 >>> "TOKEN"
 integration_context_to_set = {'token': 'NEW-TOKEN'}
-demisto.setIntegrationContext(integration_context_to_set)
-integration_context = demisto.getIntegrationContext()
+set_integration_context(integration_context_to_set)
+integration_context = get_integration_context()
 demisto.results(integration_context['token'])
 >>> "NEW-TOKEN"
 ```
 
 ### Storing token with expiration time
 ```python
-integration_context = demisto.getIntegrationContext()
+integration_context = get_integration_context()
 token = integration_context.get('token')
 valid_until = integration_context.get('valid_until')
 time_now = int(time.time())
@@ -71,9 +71,9 @@ integration_context = {
     'access_token': token,
     'valid_until': time_now + 3600  # Assuming the expiration time is 1 hour
 }
-demisto.setIntegrationContext(integration_context)
+set_integration_context(integration_context)
 ```
 
 ### For more examples, refer to following integrations:
  - [Microsoft Graph](https://github.com/demisto/content/blob/master/Packs/ApiModules/Scripts/MicrosoftApiModule/MicrosoftApiModule.py)
- - [EWS v2](https://github.com/demisto/content/blob/master/Packs/EWS/Integrations/EWSv2/EWSv2.py) 
+ - [ServiceNow](https://github.com/demisto/content/blob/master/Packs/ApiModules/Scripts/ServiceNowApiModule/ServiceNowApiModule.py) 

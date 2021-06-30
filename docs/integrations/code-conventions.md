@@ -58,20 +58,22 @@ def main():
     """
         PARSE AND VALIDATE INTEGRATION PARAMS
     """
-    username = demisto.params().get('credentials').get('identifier')
-    password = demisto.params().get('credentials').get('password')
+    params = demisto.params()
+    username = params.get('credentials', {}).get('identifier')
+    password = params.get('credentials', {}).get('password')
 
     # Remove trailing slash to prevent wrong URL path to service
-    base_url = urljoin(demisto.params()['url'], '/api/v1/suffix')
+    base_url = urljoin(params['url'], '/api/v1/suffix')
 
-    verify_certificate = not demisto.params().get('insecure', False)
+    verify_certificate = not params.get('insecure', False)
 
     # How many time before the first fetch to retrieve incidents
-    first_fetch_time = demisto.params().get('fetch_time', '3 days').strip()
+    first_fetch_time = params.get('fetch_time', '3 days').strip()
 
-    proxy = demisto.params().get('proxy', False)
-
-    demisto.debug(f'Command being called is {demisto.command()}')
+    proxy = params.get('proxy', False)
+    
+    command = demisto.command()
+    demisto.debug(f'Command being called is {command}')
     try:
         client = Client(
             base_url=base_url,
@@ -79,12 +81,12 @@ def main():
             auth=(username, password),
             proxy=proxy)
 
-        if demisto.command() == 'test-module':
+        if command == 'test-module':
             # This is the call made when pressing the integration Test button.
             result = test_module(client)
             return_results(result)
 
-        elif demisto.command() == 'fetch-incidents':
+        elif command == 'fetch-incidents':
             # Set and define the fetch incidents command to run after activated via integration settings.
             next_run, incidents = fetch_incidents(
                 client=client,
@@ -94,12 +96,12 @@ def main():
             demisto.setLastRun(next_run)
             demisto.incidents(incidents)
 
-        elif demisto.command() == 'helloworld-say-hello':
+        elif command == 'helloworld-say-hello':
             return_results(say_hello_command(client, demisto.args()))
 
     # Log exceptions
     except Exception as e:
-        return_error(f'Failed to execute {demisto.command()} command. Error: {str(e)}')
+        return_error(f'Failed to execute {command} command. Error: {str(e)}')
 
 
 if __name__ in ('__main__', '__builtin__', 'builtins'):
@@ -203,6 +205,10 @@ client = Client(
     proxy=proxy
 )
 ```
+
+### HTTP Call Retries
+We do not allow using `sleep` in the code as it might lead to performance issues.
+Instead, you can utilize the retry mechanism implemented in the **BaseClient** by using the `retries` and `backoff_factor` arguments of the `_http_request` function.
 
 ## Command Functions
 These are the best practices for defining the command functions.
@@ -531,6 +537,49 @@ print(formatted_time)
 
 **Note:** If the response returned is in epoch, it is a best practice to convert it to ```%Y-%m-%dT%H:%M:%S```.
 
+## Pagination in integration commands
+When working on a command that supports pagination (usually has API parameters like `page` and/or `page size`) with a maximal page size enforced by the API, our best practice is to create a command that will support two different use-cases with the following 3 integer arguments:
+1. `page` 
+2. `page_size` 
+3. `limit` 
+
+**The two use cases** 
+- **Manual Pagination:** The user wants to control the pagination on its own by using the `page` and `page size` arguments. To achieve this, the command will simply pass the `page` and `page size` values on to the API request.
+- **Automatic Pagination:** The user does not want to work with pages, but only with a number of total results. In this case, the `limit` argument will be used to aggregate results by iterating over the necessary pages from the first page until collecting all the needed results. This implies a pagination loop mechanism will be implemented behind the scenes. For example, if the limit value received is 250 and the maximal page size enforced by the API is 100, the command will need to perform 3 API calls (pages 1,2, and 3) to collect the 250 requested results.
+
+## Credentials
+When working on integrations that require user credentials (such as username/password, API token/key, etc..) the best practice is to use the `credentials` parameter type.
+
+**Using username and password:**
+
+- **In Demisto UI:**
+![image](../doc_imgs/integrations/credentials_username_password.png)
+
+- **In the YML file:**
+```yml
+- display: Username
+  name: credentials
+  type: 9
+  required: true
+```
+
+**Using an API Token/Key:**
+
+- **In Demisto UI:**
+![image](../doc_imgs/integrations/credentials_api_token.png)
+
+- **In the YML file:**
+```yml
+- displaypassword: API Token
+  name: credentials
+  type: 9
+  required: false
+  hiddenusername: true
+```
+  
+Using credentials parameter type is always recommended (even when working with API token\key) as it provides the user the flexibility of using the [XSOAR credentials vault](../reference/articles/managing-credentials) feature when configuring the integration for the first time.
+
+
 ## Common Server Functions
 Before writing a function that seems like a workaround for something that should already exist, check the script helper to see if a function already exists. Examples of Common Server Functions are noted below:
 
@@ -670,7 +719,6 @@ timeline = IndicatorsTimeline(
 )
 ```
 
-
 ### CommandResults
 This class is used to return outputs. This object represents an entry in warroom. A string representation of an object must be parsed into an object before being passed into the field.
 
@@ -686,6 +734,7 @@ This class is used to return outputs. This object represents an entry in warroom
 | indicators_timeline | IndicatorsTimeline | Must be an IndicatorsTimeline. used by the server to populate an indicator's timeline.                                                                                       |
 | ignore_auto_extract | bool | If set to **True** prevents the built-in [auto-extract](../incidents/incident-auto-extract) from enriching IPs, URLs, files, and other indicators from the result. Default is **False**.  |
 | mark_as_note | bool |  If set to **True** marks the entry as note. Default is **False**. |
+| scheduled_command | ScheduledCommand | Manages the way the command result should be polled. |
 
 **Example**
 ```python
@@ -773,7 +822,11 @@ demisto.results(
         'HumanReadable': 'Submitted file is being analyzed.',
         'ReadableContentsFormat': EntryFormat.MARKDOWN,
         'EntryContext': entry_context,
-        'IndicatorTimeline': timeline
+        'IndicatorTimeline': timeline,
+        'PollingCommand': polling_command,        
+        'NextRun': next_run,
+        'Timeout': timeout,
+        'PollingArgs': polling_args
     }
 )
 ```
@@ -785,6 +838,11 @@ The entry is composed of multiple components.
 * The `ReadableContentsFormat` dictates how to format the value passed to the `HumanReadable` field.
 * The `EntryContext` is the dictionary of context outputs for a given command. For more information see [Outputs](#outputs).
 * The `IndicatorTimeline` is an optional field (available from Server version 5.5.0 and up) . It is only applicable for commands that operate on indicators. It is a dictionary (or list of dictionaries) of the following format:
+* The `PollingCommand` runs after the time period (in seconds) designated in the `NextRun` argument.
+* The `NextRun` argument is the next run time in seconds for the `PollingCommand`. The `PollingCommand` executes after this time period.
+* The `Timeout` argument is the timeout in seconds for polling sequence command execution. However, if a user has provided an `execution-timeout`, it overrides the timeout specified by this field.
+* `PollingArgs` are the arguments that will be used while running the `PollingCommand`.
+
     ```python
     {
         'Value': indicator_value,  # for example, an IP address like '8.8.8.8'

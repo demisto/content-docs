@@ -1,6 +1,7 @@
 ---
 id: welcome
 title: Welcome
+slug: /welcome
 ---
 
 Welcome to the Cortex XSOAR Developer Hub! You'll be able find a lot of information on how to create content in Cortex XSOAR. If you see something missing or have any comments, please let us know by using the `Report an issue` button at the bottom of each page. We value your contribution and we strive to give you a great developer experience.
@@ -19,7 +20,7 @@ Finally, the **Tutorials** section includes longer end-to-end articles that guid
 
 ## Articles
 
-From the top bar, navigate to the [Articles](reference/articles-index) section to find useful documentation about Cortex XSOAR and its Content. Articles are mostly meant for end users and SOC Engineers.
+From the top bar, navigate to the [Articles](reference/articles) section to find useful documentation about Cortex XSOAR and its Content. Articles are mostly meant for end users and SOC Engineers.
 
 ## Reference
 

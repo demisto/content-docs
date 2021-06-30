@@ -37,3 +37,9 @@ content-repo/extra-docs/articles/demisto-class.md
 docs/doc_imgs/reference/relative
 static/assets/deprecated*.json
 .python-version
+
+# Content pack details pages
+/src/pages/marketplace/details
+/index
+index.zip
+index.json

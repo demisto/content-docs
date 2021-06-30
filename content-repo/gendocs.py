@@ -201,13 +201,7 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
         name = yml_data.get('display') or yml_data['name']
         desc = yml_data.get('description') or yml_data.get('comment')
         if desc:
-            word_break = False
-            for word in re.split(r'\s|-', desc):
-                if len(word) > 40:
-                    word_break = True
-            desc = html.escape(desc)
-            if word_break:  # long words tell browser to break in the midle
-                desc = '<span style={{wordBreak: "break-word"}}>' + desc + '</span>'
+            desc = handle_desc_field(desc)
         doc_info = DocInfo(id, name, desc, readme_file)
         with open(readme_file, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -244,6 +238,18 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
         sys.stderr.flush()
 
 
+def handle_desc_field(desc: str):
+
+    word_break = False
+    for word in re.split(r'\s|-', desc):
+        if len(word) > 40:
+            word_break = True
+    desc = html.escape(desc)
+    if word_break:  # long words tell browser to break in the midle
+        desc = '<span style={{wordBreak: "break-word"}}>' + desc + '</span>'
+    return desc
+
+
 def process_release_doc(target_dir: str, release_file: str) -> Optional[DocInfo]:
     try:
         name = os.path.splitext(os.path.basename(release_file))[0]
@@ -259,7 +265,7 @@ def process_release_doc(target_dir: str, release_file: str) -> Optional[DocInfo]
         edit_url = f'https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/releases/{name}.md'
         #  replace the title to be with one # so it doesn't appear in the TOC
         content = re.sub(r'^## Demisto Content Release Notes', '# Demisto Content Release Notes', content)
-        content = f'---\nid: {name}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\nhide_title: true\n---\n\n' + content
+        content = f'---\nid: {name}\nsidebar_label: "{name}"\ncustom_edit_url: {edit_url}\n---\n\n' + content
         download_msg = "Download"
         packs_download = ""
         if name > StrictVersion('20.8.0'):
@@ -320,6 +326,8 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
         name = yml_data['title']
         file_id = yml_data.get('id') or normalize_id(name)
         desc = yml_data.get('description')
+        if desc:
+            desc = handle_desc_field(desc)
         readme_file_name = os.path.basename(readme_file)
         content = content.replace(front_matter_match[0], '')
 
@@ -463,6 +471,8 @@ def create_articles(target_dir: str):
     fail: List[str] = []
     seen_docs: Dict[str, DocInfo] = {}
     for doc_info in process_extra_docs(target_sub_dir, ARTICLES_PREFIX):
+        if not doc_info.description:  # fail the  build if no description for an article
+            raise ValueError(f'Missing description for article: {doc_info.id} ({doc_info.name})')
         process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
     org_print(f'\n===========================================\nSuccess {ARTICLES_PREFIX} docs ({len(success)}):')
     for r in sorted(success):
@@ -668,6 +678,14 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
         f.write(index_doc_infos(playbooks_doc_infos, PLAYBOOKS_PREFIX))
         f.write("\n\n## Scripts\n\n")
         f.write(index_doc_infos(script_doc_infos, SCRIPTS_PREFIX))
+        f.write("\n\n## API Reference\n\n")
+        api_docs: List[DocInfo] = [
+            DocInfo('demisto-class', 'Demisto Class',
+                    'The object exposes a series of API methods which are used to retrieve and send data to the Cortex XSOAR Server.', ''),
+            DocInfo('common-server-python', 'Common Server Python',
+                    'Common functions that will be appended to the code of each integration/script before being executed.', ''),
+        ]
+        f.write(index_doc_infos(api_docs, 'api'))
         f.write("\n\n## Content Release Notes\n\n")
         f.write(index_doc_infos(release_doc_infos, RELEASES_PREFIX, headers=('Name', 'Date')))
         f.write("\n\nAdditional archived release notes are available"
@@ -680,6 +698,7 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     playbook_items = [f'{playbooks_full_prefix}/{d.id}' for d in playbooks_doc_infos]
     script_items = [f'{scripts_full_prefix}/{d.id}' for d in script_doc_infos]
     article_items = [f'{articles_full_prefix}/{d.id}' for d in article_doc_infos]
+    article_items.insert(0, f'{prefix}/articles-index')
     release_items = [f'{releases_full_prefix}/{d.id}' for d in release_doc_infos]
     sidebar = [
         {
@@ -709,18 +728,7 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     ]
     with open(f'{args.target}/sidebar.json', 'w') as f:
         json.dump(sidebar, f, indent=4)
-    articles_sidebar = [
-        {
-            "type": "doc",
-            "id": f'{prefix}/articles-index'
-        },
-        {
-            "type": "category",
-            "label": "Articles",
-            "items": article_items,
-            "collapsed": False
-        }
-    ]
+    articles_sidebar = article_items
     with open(f'{args.target}/articles-sidebar.json', 'w') as f:
         json.dump(articles_sidebar, f, indent=4)
     print('Stopping mdx server ...')

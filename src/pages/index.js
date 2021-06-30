@@ -33,7 +33,7 @@ const features = [
             "button button--outline button--primary button--md",
             styles.getStarted
           )}
-          href="https://www.demisto.com/security-orchestration/"
+          href="https://www.paloaltonetworks.com/cortex/xsoar"
         >
           Learn More
         </Link>
@@ -132,6 +132,7 @@ function Home() {
     <Layout
       title={`${siteConfig.themeConfig.navbar.title}`}
       description="All things related to automation and development with Cortex XSOAR (formerly Demisto)"
+      wrapperClassName="homepage"
     >
       <ScrollUpButton />
 
@@ -235,10 +236,9 @@ function Home() {
         </section>
         <section className={styles.features}>
           <div className="integrations">
-            <div className="integrations-inner">
-              See all{" "}
-              <a href="https://www.paloaltonetworks.com/cortex/xsoar-ecosystem">
-                existing integrations
+            <div className="integrations-inner">              
+              <a href="/marketplace">
+                See the Cortex XSOAR Marketplace
               </a>
             </div>
           </div>

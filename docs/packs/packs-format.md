@@ -48,7 +48,7 @@ The following fields are populated in the pack metadata:
 | support | String | Should be one of the following:<br />1.  xsoar - Supported by Cortex XSOAR.<br />2.  partner - Supported by a Cortex XSOAR partner.<br />3.  developer - Supported by an independent developer/organization.<br />4.  community - Not officialy supported, but available for the community to use.<br /> For `partner` and `developer`, either email address or URL fields must be filled out.  |
 | currentVersion | String | The pack version, in the format of `x.x.x`. On the initial release this should be set to "1.0.0". |
 | author | String | The name of the organization (for partners) or developer (for individual contributions) which developed the integration. |
-| url | String | The URL to which users should refer to in case of support needed regarding the pack. Usually is the organization support URL or the developer GitHub repository. |
+| url | String | The URL to which users should refer to in case of support needed regarding the pack. Usually is the organization support URL or the developer GitHub repository. If left empty the default support site presented to users will be the [Live Community](https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions) site.|
 | email | String | The email address to which users should reach out to in case of support needed regarding the pack. |
 | categories | List | The use-case categories which are implemented in the pack. Usually set by the integration, which included in the pack category. Should be one of the following:<br />1. Analytics & SIEM<br />2. Utilities<br />3. Messaging<br />4. Endpoint<br />5. Network Security<br />6. Vulnerability Management<br />7. Case Management<br />8. Forensics & Malware Analysis<br />9. IT Services<br />10. Data Enrichment & Threat Intelligence<br />11. Authentication<br />12. Database<br />13. Deception<br />14. Email Gateway|
 | tags | List | Tags to be attached to the pack on Cortex XSOAR marketplace. |
@@ -59,6 +59,7 @@ The following fields are populated in the pack metadata:
 | dependencies | Dictionary | (Optional) An object that describes the content packs that the pack is dependant on. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | displayedImages | List | (Optional) Images to be displayed in Cortex XSOAR marketplace. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | githubUser | List | (Optional) List of Github usernames to receive notification in the PR in case pack files were modified. |
+| devEmail | List | (Optional) List of emails to receive notification in case contributed pack files were modified. |
 | certification | String | (Optional) If the pack is certifed the value of this fields should be "certified" |
 
 
@@ -114,6 +115,7 @@ A supported partner pack metadata contents for example:
     "author": "Partner name",
     "url": "https://support.<partner>.com",
     "email": "support@<partner>.com",
+    "devEmail": "dev@<partner>.com",
     "categories": [
         "Deception"
     ],
@@ -165,4 +167,16 @@ The image size should be up to 4kb and in the dimensions of 120x50.
  
 In case file does not exist, the pack author will be displayed in text.
 
+### CONTRIBUTORS.md
+If you are contributing to an existing pack, you can add a **CONTRIBUTORS.md** file to the pack and list yourself as a contributor for the pack. The file's content will appear in the pack README in XSOAR Marketplace.
 
+#### Example CONTRIBUTORS.md
+```
+### Pack Contributors:
+
+---
+ - Jane Doe
+ - John Smith
+
+Contributions are welcome and appreciated. For more info, visit our [Contribution Guide](https://xsoar.pan.dev/docs/contributing/contributing).
+```
