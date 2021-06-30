@@ -115,7 +115,14 @@ const sidebars = {
               ]
             },
             "integrations/dbot",
-            "integrations/docker"
+            "integrations/docker",
+            {
+              type: "category",
+              label: "Builtins",
+              items: [
+                "integrations/get-entries-filter",
+              ]
+            },
           ]
         },
         {
