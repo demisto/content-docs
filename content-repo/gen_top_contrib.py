@@ -19,7 +19,7 @@ PR_NUMBER_REGEX = re.compile(r'([0-9]+)')
 URL = 'https://api.github.com'
 HEADERS = {
     'Accept': 'application/vnd.github.v3+json',
-    'Authorization': "Bearer " + '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'
+    'Authorization': "Bearer " + key
 }
 
 
