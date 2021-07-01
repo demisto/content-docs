@@ -9,17 +9,17 @@ from collections import OrderedDict
 
 # Disable insecure warnings
 import urllib3
-from mdx_utils import (fix_mdx, fix_relative_images, normalize_id,
-                       start_mdx_server, stop_mdx_server, verify_mdx_server)
+from mdx_utils import (fix_mdx, start_mdx_server, stop_mdx_server)
 
 urllib3.disable_warnings()
 
 
 PR_NUMBER_REGEX = re.compile(r'([0-9]+)')
+TOKEN = os.getenv('GITHUB_TOKEN')
 URL = 'https://api.github.com'
 HEADERS = {
     'Accept': 'application/vnd.github.v3+json',
-    'Authorization': "Bearer " + key
+    'Authorization': "Bearer " + TOKEN
 }
 
 

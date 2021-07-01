@@ -45,6 +45,9 @@ jobs:
             nvm use
             npm run marketplace-docs
       - run:
+          name: PIPENV Build top contribution page
+          command: pipenv run ./content-repo/gen_top_contrib.py
+      - run:
           name: NPM Build
           no_output_timeout: 40m
           environment:
