@@ -73,7 +73,7 @@ function Marketplace() {
           // set/unset filters based on history.pop
           params.price == null ? setPrice(false) : setPrice(params.price);
           params.support == null ? setSupport(false) : setSupport(params.support);
-          params.author == null ? setAuthor(false): setAuthor(params.author);
+          params.author == null ? setAuthor(false) : setAuthor(params.author);
           params.useCase == null ? setUseCase(false) : setUseCase(params.useCase);
           params.integration == null ? setIntegration(false) : setIntegration(params.integration);
           params.category == null ? setCategory(false) : setCategory(params.category);
@@ -151,19 +151,19 @@ function Marketplace() {
 
   // Update (add/delete) query parameters in the URL
   function updateQueryParams(paramName, paramValue) {
-     var queryParams = new URLSearchParams(location.search);
+    var queryParams = new URLSearchParams(location.search);
 
-     if (!paramValue) {  // Need to remove query parameters from the URL
+    if (!paramValue) {  // Need to remove query parameters from the URL
       queryParams.delete(paramName);
       history.push({
         search: queryParams.toString(),
       })
-     }
+    }
 
     else {  // Need to add query parameters to the URL
       queryParams.set(paramName, paramValue);
       history.push({
-        search: "?"+queryParams.toString(),
+        search: "?" + queryParams.toString(),
       })
     }
   }
@@ -180,7 +180,7 @@ function Marketplace() {
             : 1,
         };
         return pack.author;
-      })
+      }).sort()
     );
     let authors = [];
     uniqueAuthors.forEach((author) => {
@@ -216,7 +216,7 @@ function Marketplace() {
         count: dictionary[useCase] ? dictionary[useCase]["count"] + 1 : 1,
       };
     });
-    const uniqueUseCases = new Set(allUseCases);
+    const uniqueUseCases = new Set(allUseCases.sort());
     uniqueUseCases.forEach((useCase) => {
       useCases.push({
         label: dictionary[useCase]
@@ -244,7 +244,7 @@ function Marketplace() {
         count: dictionary[i] ? dictionary[i]["count"] + 1 : 1,
       };
     });
-    const uniqueIntegrations = new Set(allIntegrations);
+    const uniqueIntegrations = new Set(allIntegrations.sort());
     uniqueIntegrations.forEach((i) => {
       integrations.push({
         label: dictionary[i] ? `${i} (${dictionary[i]["count"]})` : i,
@@ -276,7 +276,7 @@ function Marketplace() {
         count: dictionary[category] ? dictionary[category]["count"] + 1 : 1,
       };
     });
-    const uniqueCategories = new Set(allCategories);
+    const uniqueCategories = new Set(allCategories.sort());
     uniqueCategories.forEach((category) => {
       categories.push({
         label: dictionary[category]
@@ -310,7 +310,7 @@ function Marketplace() {
         count: dictionary[tag] ? dictionary[tag]["count"] + 1 : 1,
       };
     });
-    const uniqueTags = new Set(allTags);
+    const uniqueTags = new Set(allTags.sort());
     uniqueTags.forEach((tag) => {
       tags.push({
         label: dictionary[tag] ? `${tag} (${dictionary[tag]["count"]})` : tag,
@@ -343,7 +343,7 @@ function Marketplace() {
         return "Premium";
       }
     });
-    const uniqueCosts = new Set(costs);
+    const uniqueCosts = new Set(costs.sort());
     uniqueCosts.forEach((cost) => {
       prices.push({
         label: dictionary[cost.toLowerCase()]
@@ -375,8 +375,8 @@ function Marketplace() {
         supports.push({
           label: dictionary[support]
             ? `Cortex ${support.toUpperCase()} (${
-                dictionary[support]["count"]
-              })`
+            dictionary[support]["count"]
+            })`
             : `Cortex ${support.toUpperCase()}`,
           value: support,
         });
@@ -384,8 +384,8 @@ function Marketplace() {
         supports.push({
           label: dictionary[support]
             ? `${capitalizeFirstLetter(support)} (${
-                dictionary[support]["count"]
-              })`
+            dictionary[support]["count"]
+            })`
             : `${capitalizeFirstLetter(support)}`,
           value: support,
         });
@@ -420,9 +420,9 @@ function Marketplace() {
               type: "select",
               label: "Published By",
               action: ((arg) => {
-               updateQueryParams("support", arg);
-               setSupport(arg);
-               }),
+                updateQueryParams("support", arg);
+                setSupport(arg);
+              }),
               options: generateSupports(),
               state: support,
             },
@@ -430,9 +430,9 @@ function Marketplace() {
               type: "select",
               label: "Price",
               action: ((arg) => {
-               updateQueryParams("price", arg);
-               setPrice(arg);
-               }),
+                updateQueryParams("price", arg);
+                setPrice(arg);
+              }),
               options: generatePrices(),
               state: price,
             },
@@ -440,9 +440,9 @@ function Marketplace() {
               type: "select",
               label: "Author",
               action: ((arg) => {
-               updateQueryParams("author", arg);
-               setAuthor(arg);
-               }),
+                updateQueryParams("author", arg);
+                setAuthor(arg);
+              }),
               options: generateAuthors(),
               state: author,
             },
@@ -450,9 +450,9 @@ function Marketplace() {
               type: "select",
               label: "Use Cases",
               action: ((arg) => {
-               updateQueryParams("useCase", arg);
-               setUseCase(arg);
-               }),
+                updateQueryParams("useCase", arg);
+                setUseCase(arg);
+              }),
               options: generateUseCases(),
               state: useCase,
             },
@@ -460,9 +460,9 @@ function Marketplace() {
               type: "select",
               label: "Integrations",
               action: ((arg) => {
-               updateQueryParams("integration", arg);
-               setIntegration(arg);
-               }),
+                updateQueryParams("integration", arg);
+                setIntegration(arg);
+              }),
               options: generateIntegrations(),
               state: integration,
             },
@@ -470,9 +470,9 @@ function Marketplace() {
               type: "select",
               label: "Categories",
               action: ((arg) => {
-               updateQueryParams("category", arg);
-               setCategory(arg);
-               }),
+                updateQueryParams("category", arg);
+                setCategory(arg);
+              }),
               options: generateCategories(),
               state: category,
             },
@@ -480,16 +480,16 @@ function Marketplace() {
               type: "select",
               label: "Tags",
               action: ((arg) => {
-               updateQueryParams("tag", arg);
-               setTag(arg);
-               }),
+                updateQueryParams("tag", arg);
+                setTag(arg);
+              }),
               options: generateTags(),
               state: tag,
             },
           ]}
           path="/marketplace/"
           sidebarCollapsible={
-            siteConfig.themeConfig?.sidebarCollapsible ?? true
+            siteConfig.themeConfig ?.sidebarCollapsible ?? true
           }
           onCollapse={toggleSidebar}
           isHidden={hiddenSidebar}
@@ -562,11 +562,11 @@ function Marketplace() {
                         <i className="certified" title="Certified"></i>
                       </>
                     ) : (
-                      <>
-                        <div className="demistoBadge"></div>
-                        <i className="demisto" title="By Cortex XSOAR"></i>
-                      </>
-                    )}
+                        <>
+                          <div className="demistoBadge"></div>
+                          <i className="demisto" title="By Cortex XSOAR"></i>
+                        </>
+                      )}
                     <div className="card__body">
                       <div className="avatar">
                         <div className="avatar__intro margin-left--none">
@@ -612,35 +612,35 @@ function Marketplace() {
                       <div className={clsx("row", styles.integrations)}>
                         {pack.integrations.length > 3
                           ? pack.integrations.slice(0, 3).map((integration) => {
-                              return (
-                                <div
-                                  className={styles.integrationImageContainer}
-                                  key={integration.name}
-                                >
-                                  <img
-                                    className={clsx(styles.integrationImage)}
-                                    src={`https://storage.googleapis.com/marketplace-dist/${integration.imagePath}`}
-                                    alt={integration.name}
-                                    title={integration.name}
-                                  />
-                                </div>
-                              );
-                            })
+                            return (
+                              <div
+                                className={styles.integrationImageContainer}
+                                key={integration.name}
+                              >
+                                <img
+                                  className={clsx(styles.integrationImage)}
+                                  src={`https://storage.googleapis.com/marketplace-dist/${integration.imagePath}`}
+                                  alt={integration.name}
+                                  title={integration.name}
+                                />
+                              </div>
+                            );
+                          })
                           : pack.integrations.map((integration) => {
-                              return (
-                                <div
-                                  className={styles.integrationImageContainer}
-                                  key={integration.name}
-                                >
-                                  <img
-                                    className={styles.integrationImage}
-                                    src={`https://storage.googleapis.com/marketplace-dist/${integration.imagePath}`}
-                                    alt={integration.name}
-                                    title={integration.name}
-                                  />
-                                </div>
-                              );
-                            })}
+                            return (
+                              <div
+                                className={styles.integrationImageContainer}
+                                key={integration.name}
+                              >
+                                <img
+                                  className={styles.integrationImage}
+                                  src={`https://storage.googleapis.com/marketplace-dist/${integration.imagePath}`}
+                                  alt={integration.name}
+                                  title={integration.name}
+                                />
+                              </div>
+                            );
+                          })}
                       </div>
                       <div className={clsx("row", styles.footer)}>
                         <span className={clsx(styles.downloads)}>
@@ -652,8 +652,8 @@ function Marketplace() {
                           {pack.price == 0 ? (
                             <span className={clsx(styles.free)}>FREE</span>
                           ) : (
-                            <span className={clsx(styles.free)}>PREMIUM</span>
-                          )}
+                              <span className={clsx(styles.free)}>PREMIUM</span>
+                            )}
                         </span>
                       </div>
                     </div>
