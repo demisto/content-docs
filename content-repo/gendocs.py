@@ -35,6 +35,8 @@ def timestamped_print(*args, **kwargs):
 
 print = timestamped_print
 
+
+DOCS_LINKS_JSON = {}
 INTEGRATION_YML_MATCH = [
     "Packs/[^/]+?/Integrations/[^/]+?/.+.yml",
     "Packs/[^/]+?/Integrations/.+.yml",
@@ -378,6 +380,7 @@ def process_doc_info(doc_info: DocInfo, success: List[str], fail: List[str], doc
         doc_infos.append(doc_info)
         success.append(doc_info.readme)
         seen_docs[doc_info.id] = doc_info
+        DOCS_LINKS_JSON[doc_info.name] =
 
 
 def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix: str, private_pack_prefix: str):

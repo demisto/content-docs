@@ -87,6 +87,9 @@ function createReadmeLink(listItem, itemType) {
   var itemName = listItem.name;
   var baseURL = "https://xsoar.pan.dev/docs/reference/"
 
+
+
+
   var normalizedItemName = normalizeItemName(itemName);
 
   if (itemType !== "automation") {
