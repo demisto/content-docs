@@ -1,6 +1,6 @@
 ---
 id: generic-commands-about
-title: Generic Commands
+title: About Generic Commands
 ---
 
 
