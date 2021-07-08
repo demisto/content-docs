@@ -117,6 +117,17 @@ def get_contrib_prs():
     return pr_bodies, inner_prs
 
 
+def get_github_user(user_name):
+    url = f'{URL}/users/{user_name}'
+    res = requests.request('GET', url, headers=HEADERS, verify=False)
+    response = res.json()
+
+    github_avatar = response.get('avatar_url')
+    github_profile = response.get('html_url')
+
+    return github_avatar, github_profile
+
+
 def get_pr_user():
     users = []
     _, inner_prs = get_contrib_prs()
@@ -140,10 +151,22 @@ def get_pr_user():
 
             if not user == 'xsoar-bot':
                 users.append({
-                    'Contributor': f"<img src='{response.get('user').get('avatar_url')}' width='50'/> [{user}]({github_profile})",
+                    'Contributor': f"<img src='{response.get('user').get('avatar_url')}' width='50'/> "
+                                   f"<a href='{github_profile}' target='_blank'>{user}</a>"
                 })
+
+            if user == 'xsoar-bot':
+                pr_body = response.get('body')
+                if 'Contributor' in pr_body:
+                    contributor = re.search(r"(?<=@)[a-zA-z-0-9]+", pr_body)[0].replace('\n', '')
+                    github_avatar, github_profile = get_github_user(contributor)
+                    users.append({
+                        'Contributor': f"<img src='{github_avatar}' width='50'/> "
+                                       f"<a href='{github_profile}' target='_blank'>{contributor}</a>"
+                    })
+
     for user in users:
-        prs = str(users.count(user))
+        prs = users.count(user)
         user.update({'Number of Contributions': prs})
 
     result = {i['Contributor']: i for i in reversed(users)}.values()
