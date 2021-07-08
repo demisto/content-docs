@@ -2,7 +2,7 @@
 ## Phishing Campaign
 
 A phishing campaign is a collection of phishing incidents that originate from the same attacker or that are part of the same organized attack launched against multiple users.
-Since phishing campaigns are actually a number of phishing incidents that are similar to each other, it's important to detect them, create the links between them and look at them as a whole rather than spend time investigating each incident separately.
+Since phishing campaigns are actually a number of phishing incidents that are similar to each other, it's important to detect them, create the links between them and look at them as a whole rather than spend time investigating each incident separately. To see how to set up a phishing incident generally in Cortex XSOAR, go to the [Phishing Use Case Tutorial](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-tutorials/tutorials/phishing-use-case.html).
 
 Phishing Campaigns in XSOAR are detected and managed through the Phishing Campaign Content Pack.
 
