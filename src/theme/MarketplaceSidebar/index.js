@@ -417,6 +417,11 @@ function MarketplaceSidebar({
             Displaying <strong>{totalFilteredPacks} </strong>
             of <strong>{totalPacks}</strong> content packs
           </small>
+          <br></br>
+          <br></br>
+          <div className={styles.contributors}>
+            <a href="marketplace/contributors">Top Contributors</a>
+          </div>
         </ul>
       </div>
       {hideableSidebar && (

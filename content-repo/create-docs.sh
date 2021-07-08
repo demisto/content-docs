@@ -158,8 +158,10 @@ else
 fi
 
 TARGET_DIR=${SCRIPT_DIR}/../docs/reference
-CONTRIB_TARGET_DIR=${SCRIPT_DIR}/../marketplace
+CONTRIB_TARGET_DIR=${SCRIPT_DIR}/../src/pages/marketplace
 REL_IMGS_DIR=${SCRIPT_DIR}/../docs/doc_imgs/reference/relative
+GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 echo "Deleting and creating dirs: ${TARGET_DIR} and ${REL_IMGS_DIR}"
 rm -rf ${TARGET_DIR}/integrations
 rm -rf ${TARGET_DIR}/playbooks
@@ -188,7 +190,7 @@ if [ -z "${NETLIFY}" ]; then
     echo "Generating Demisto class and CommonServerPython docs..."
     pipenv run ./gen_pydocs.py -t "${TARGET_DIR}"
     echo "Generating top contributors page..."
-    pipenv run ./gen_top_contrib.py -t "${CONTRIB_TARGET_DIR}"
+    pipenv run python ./gen_top_contrib.py -t "${CONTRIB_TARGET_DIR}"
 
 else
     echo "Generating docs..."

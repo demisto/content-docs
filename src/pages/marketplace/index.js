@@ -520,7 +520,6 @@ function Marketplace() {
           >
             <IconArrow className={styles.expandSidebarButtonIcon} />
           </div>
-          <a href="https://xsoar.pan.dev/marketplace/top-contributors">Top XSOAR Contributors</a>
         )}
       </div>
 
