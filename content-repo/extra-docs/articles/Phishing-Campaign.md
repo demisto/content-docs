@@ -76,6 +76,10 @@ On the right side, there are dynamic sections showing important key information 
 Scrolling down, there are 2 lists of mutual indicators from the Phishing incidents that make up the campaign, and the Phishing incidents that are linked to the Phishing Campaign:
 ![image](https://user-images.githubusercontent.com/43602124/123635925-ec4fb100-d824-11eb-9599-1428c65a377b.png)
 
+Starting in Cortex XSOAR 6.1, a canvas of the campaign is also supported and can be accessed through the canvas section:
+![image](https://user-images.githubusercontent.com/43602124/125288084-68b6b980-e326-11eb-99c0-19e1b7b6af8c.png)
+
+
 Another tab in the layout of the Phishing Campaign incident is the Campaign Management:
 ![image](https://user-images.githubusercontent.com/43602124/123636568-b232df00-d825-11eb-825f-5d95ba366152.png)
 
