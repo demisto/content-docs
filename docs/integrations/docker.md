@@ -87,7 +87,7 @@ The below example shows the process:
 /docker_image_create name=example_name dependencies=mechanize packages=wget
 ```
 
-This command is creating the docker image called "example_name" and uses the python dependency, Mechanize. You may also specify OS packeages. This example requires wget as a package.
+This command is creating the docker image called "example_name" and uses the python dependency, Mechanize. You may also specify OS packages. This example requires wget as a package.
 
 When the docker image is created, the following dialog box will appear. Once this has occurred, the docker image is ready to use.
 
