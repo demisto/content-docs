@@ -4,7 +4,6 @@ const nodePlop = require("node-plop");
 const plop = nodePlop(`./plopfile.js`);
 const generatePackDetails = plop.getGenerator("details");
 const jsStringEscape = require("js-string-escape");
-const fetch = require('node-fetch');
 const docsLinksfileName = './content-repo/contentItemsDocsLinks.json';
 
 try {
