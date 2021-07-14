@@ -77,7 +77,7 @@ Additional env vars that affect the generation of the docs:
   ```export MAX_PACKS=10 && npm run marketplace-docs```
   
 ```
-NOTE : When running locally, in order to see links from the entities in the marketplace to their correspond README in the reference section, you will need to run the reference-docs script before running the marketplace-docs script.
+NOTE : When running locally, in order to see links from the entities in the marketplace to their corresponding README in the reference section, you will need to run the reference-docs script before running the marketplace-docs script.
 ```
 
 ### Generation Code
