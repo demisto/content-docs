@@ -51,7 +51,9 @@
   "devDependencies": {
     "js-string-escape": "^1.0.1",
     "node-plop": "^0.26.2",
-    "plop": "^2.7.4"
+    "plop": "^2.7.4",
+    "xmlhttprequest": "^1.8.0",
+    "node-fetch": "^2.6.1"
   },
   "browserslist": {
     "production": [

@@ -35,6 +35,9 @@ def timestamped_print(*args, **kwargs):
 
 print = timestamped_print
 
+BASE_URL = "https://xsoar.pan.dev/docs/"
+DOCS_LINKS_JSON = {}
+
 INTEGRATION_YML_MATCH = [
     "Packs/[^/]+?/Integrations/[^/]+?/.+.yml",
     "Packs/[^/]+?/Integrations/.+.yml",
@@ -636,6 +639,52 @@ def add_deprected_integrations_info(content_dir: str, deperecated_article: str, 
     org_print("\n===========================================\n")
 
 
+def normalize_item_name(item_name):
+    """Removes support level from the name which will be used as a key in the json links file
+
+    Args:
+        item_name (str): The item name (display or name field in yml) to edit
+    """
+
+    remove_from_name = [" (Partner Contribution)", " (Developer Contribution)", " (Community Contribution)", " (beta)",
+                        " (Beta)", " (Deprecated)"]
+
+    for item in remove_from_name:
+        item_name = item_name.replace(item, "")
+
+    return item_name
+
+
+def insert_to_dict(doc_name, doc_link):
+    """ Inserts the doc link to the json docs file which will be used in the genMarketplace.js script.
+
+    Args:
+        doc_name (str): The name of the doc to insert to the dict
+        doc_link (str): The suffix of the doc in the site
+    """
+
+    normalized_name = normalize_item_name(doc_name)
+    DOCS_LINKS_JSON[normalized_name] = f'{BASE_URL}{doc_link}'
+
+
+def generate_items(doc_infos, full_prefix):
+    """ Creates a list of '{full_prefix}/{doc.id}' for every doc in the doc_infos list.
+        Handling the insertion of the doc link to the json docs file.
+
+    Args:
+        doc_infos (List[DocInfo]): A list of docInfo objects
+        full_prefix (str): The full prefix of the entities in the doc_infos list
+    """
+    items_list = []
+    for d in doc_infos:
+        doc_link = f'{full_prefix}/{d.id}'
+        items_list.append(doc_link)
+
+        insert_to_dict(d.name, doc_link)
+
+    return items_list
+
+
 def main():
     parser = argparse.ArgumentParser(description='''Generate Content Docs. You should probably not call this script directly.
 See: https://github.com/demisto/content-docs/#generating-reference-docs''',
@@ -694,9 +743,11 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
         if MAX_FILES > 0:
             f.write(f'\n\n# =====<br/>BUILD PREVIEW only {MAX_FILES} files from each category! <br/>=====\n\n')
         f.write(index_doc_infos(article_doc_infos, ARTICLES_PREFIX))
-    integration_items = [f'{integrations_full_prefix}/{d.id}' for d in integration_doc_infos]
-    playbook_items = [f'{playbooks_full_prefix}/{d.id}' for d in playbooks_doc_infos]
-    script_items = [f'{scripts_full_prefix}/{d.id}' for d in script_doc_infos]
+
+    integration_items = generate_items(integration_doc_infos, integrations_full_prefix)
+    playbook_items = generate_items(playbooks_doc_infos, playbooks_full_prefix)
+    script_items = generate_items(script_doc_infos, scripts_full_prefix)
+
     article_items = [f'{articles_full_prefix}/{d.id}' for d in article_doc_infos]
     article_items.insert(0, f'{prefix}/articles-index')
     release_items = [f'{releases_full_prefix}/{d.id}' for d in release_doc_infos]
@@ -736,6 +787,10 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     if os.getenv('UPDATE_PACK_DOCS') or os.getenv('CI'):
         # to avoid cases that in local dev someone might checkin the modifed pack-docs.md we do this only if explicityl asked for or in CI env
         insert_approved_tags_and_usecases()
+
+    print("Writing json links into contentItemsDocsLinks.json")
+    with open('contentItemsDocsLinks.json', 'w') as file:
+        json.dump(DOCS_LINKS_JSON, file)
 
 
 if __name__ == "__main__":
