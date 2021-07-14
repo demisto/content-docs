@@ -5,8 +5,14 @@ const plop = nodePlop(`./plopfile.js`);
 const generatePackDetails = plop.getGenerator("details");
 const jsStringEscape = require("js-string-escape");
 const fetch = require('node-fetch');
-const docsLinksfileName = './contentItemsDocsLinks.json';
-const docsLinksJson = require(docsLinksfileName);
+const docsLinksfileName = './content-repo/contentItemsDocsLinks.json';
+
+try {
+    var docsLinksJson = require(docsLinksfileName);
+}
+catch (exception) { // in case the reference-docs script was not ran before this one, there will be no links from the marketplace to the reference section.
+    var docsLinksJson = {}
+}
 
 const contentItemTransformer = {
   integration: "Integrations",
@@ -50,62 +56,34 @@ function capitalizeFirstLetter(string) {
   }
 }
 
-function checkURLAndModifyLink(url, listItem) {
-  // Check if a README file exists in the given URL. If so, attach it to the relevant content item.
-  return fetch(url).then((response) => {
-    if (response.ok) {
-      listItem.docLink = url;
-    }
-    else {
-      listItem.docLink = ""
-    }
-  }).catch(err => listItem.docLink = "");
-}
-
 function normalizeItemName(itemName) {
-  // Normalizes the name of the content entity according to the 'normalize_id' method in mdx_utils
+  // Removes support level from the name to search the json links file
+    const removeFromName = [" (Partner Contribution)", " (Developer Contribution)", " (Community Contribution)", " (beta)", " (Beta)", " (Deprecated)"]
 
-  // remove support level from the name to create the link
-  var normalizedName = itemName.replace(" (Partner Contribution)", "").replace(" (Developer Contribution)", "").replace(" (beta)", "").replace(" (Beta)", "")
+    for (var item of removeFromName) {
+        itemName = itemName.replace(item, "")
+    }
 
-  // split name by upper case letters, replace spaces with dashed and lowercase everything
-  normalizedName = normalizedName.split(/(?=[A-Z][a-z])/).join(" ").replace(/\s+/g, '-').toLowerCase();
-
-  // replace all non word characters (dash is ok)
-  normalizedName = normalizedName.replace(/[^\w-]/g, "");
-
-  return normalizedName
-
+    return itemName
 }
 
 function createReadmeLink(listItem, itemType) {
-  // Creates a README link for the relevant entities (include a check if a README exists in the docs)
+  // Checks if a readme link for this item exists in the Json file. If not, return an empty string.
+
   if (!(['integration', 'automation', 'playbook'].includes(itemType))) {
     return ""; // a README file exists only for those entities.
   }
 
-  var itemName = listItem.name;
-  var baseURL = "https://xsoar.pan.dev/docs/reference/"
+  var normalizedItemName = normalizeItemName(listItem.name);
 
-
-
-
-  var normalizedItemName = normalizeItemName(itemName);
-
-  if (itemType !== "automation") {
-    baseURL = baseURL + itemType + "s/" + normalizedItemName;
+  if (docsLinksJson[normalizedItemName]) {
+    listItem.docLink = docsLinksJson[normalizedItemName]
+    }
+   else {
+    listItem.docLink = ""
   }
 
-  else {
-    baseURL = baseURL + "scripts/" + normalizedItemName;
-  }
-
-  if (docsLinksJson[itemName]) { // there is an existing README url for this content item, no need to perform an http request
-    listItem.docLink = docsLinksJson[itemName]
-    return Promise.resolve();
-  }
-
-  return checkURLAndModifyLink(baseURL, listItem)
+  return Promise.resolve();
 }
 
 function reverseReleases(obj) {

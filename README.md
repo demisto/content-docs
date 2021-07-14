@@ -74,8 +74,12 @@ This task will download the packs information from the google cloud bucket and g
 Additional env vars that affect the generation of the docs:
 * `MAX_PACKS`: max packs to generate in the marketplace tab. Set this for faster generation when developing. Note also in CI builds on branches this is automatically set to speed up the preview site if there are only modifications related to docs. For example:
   
-  export MAX_PACKS=10 && npm run marketplace-docs
-  ```
+  ```export MAX_PACKS=10 && npm run marketplace-docs```
+  
+```
+NOTE : When running the locally, in order to see links from the entities in the marketplace to their correspond README in the reference section, you will need to run the reference-docs script before running the marketplace-docs script.
+```
+
 ### Generation Code
 Code used for generating content reference docs is written in Python and resides in the `content-repo` folder. To set up a development environment we use [pipenv](https://github.com/pypa/pipenv). Make sure to install pipenv by running: `pip3 install pipenv`. Setup a proper Python env by running:
 ```
