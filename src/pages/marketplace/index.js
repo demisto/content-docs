@@ -610,8 +610,8 @@ function Marketplace() {
                     </div>
                     <div className="card__footer">
                       <div className={clsx("row", styles.integrations)}>
-                        {pack.integrations.length > 3
-                          ? pack.integrations.slice(0, 3).map((integration) => {
+                        {pack.integrations.length > 2
+                          ? pack.integrations.slice(0, 2).map((integration) => {
                             return (
                               <div
                                 className={styles.integrationImageContainer}
