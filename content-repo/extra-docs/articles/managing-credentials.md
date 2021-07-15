@@ -45,7 +45,7 @@ Cortex XSOAR integrates with external credential vaults, which enables you to us
 
 **Sample Credentials Provider Integrations:**
 
-*   [CyberArk AIM](https://xsoar.pan.dev/docs/reference/integrations/cyber-ark-aim)
+*   [CyberArk AIM](https://xsoar.pan.dev/docs/reference/integrations/cyber-ark-aim-v2)
 *   [HashiCorp Vault](https://xsoar.pan.dev/docs/reference/integrations/hashi-corp-vault)
 
 After the integration is configured to fetch credentials, the credentials will be available from the **Credentials** drop-down menu, and for use in automations and playbooks. To use these credentials in an integration, click **Switch to credentials**, and select the necessary credential from the drop-down menu.
