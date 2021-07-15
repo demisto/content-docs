@@ -639,6 +639,14 @@ function Marketplace() {
                                   title={integration.name}
                                 />
                               </div>
+                                   <small
+                            className={clsx(
+                              "avatar__subtitle",
+                              styles.packDescription
+                            )}
+                          >
+                            {pack.description}
+                          </small>
                             );
                           })}
                       </div>
