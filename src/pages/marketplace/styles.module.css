@@ -70,10 +70,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 27px;
-  width: 64px;
+  /* height: 27px;
+  width: 64px; */
   background-color: rgba(255, 255, 255, 0.747);
-  margin-right: 6px;
+  margin-right: auto;
+  margin-left: auto;
   border-radius: 2px;
 }
 
