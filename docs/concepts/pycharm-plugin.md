@@ -46,7 +46,7 @@ There are specific installation instructions depending on your PyCharm version.
 To interact with Cortex XSOAR while working in PyCharm, you need to enter several Cortex XSOAR instance parameters.
 
 1.  Open the project you want to work on in PyCharm. For example, `Cortex XSOAR Content` repository.
-2.  In PyCharm, click **Preferences > Tools > Denmisto Plugin Setup**.
+2.  In PyCharm, click **Preferences > Tools > Demisto Plugin Setup**.
 3.  (MacOS users) When prompted for access to your keychain, select **Allow Always**. This will avoid issues later on.
 4.  Enter your Cortex XSOAR server URL and port, if necessary.  
     If you are working on a dev instance on localhost, use HTTP (not HTTPS), for example: ([http://localhost:8080](http://localhost:8080/)).
