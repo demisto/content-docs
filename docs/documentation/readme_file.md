@@ -48,6 +48,17 @@ Output file was saved to :
 If you are connecting to a Server with a self signed certificate, make sure to pass the `--insecure` option to the `generate-docs` command.
 :::
 
+For additional information you can view the full documentation for the command [here](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/generate_docs#generate-docs).
+
+#### New Versions of Existing Integrations
+In case documentation are being generated for a new version of an existing integration the `generate-docs` command will ask you to enter the path to the old integration .yml file in order to generate a section detailing the changes made in this version.
+You can either enter the old integration path via a prompt in your terminal while the command is running or supplying to the `--old-version` flag like so:
+```
+demsito-sdk generate-docs -i Packs/Nmap/Integrations/NmapV2/NmapV2.yml --old-version Packs/Nmap/Integrations/NmapV1/NmapV1.yml
+``` 
+
+Though not advised, if you do not wish to create the version differences section in the documentation you can run the command with the `--skip-breaking-changes` flag.
+
 ## Images
 Images in the documentation should be added to the relevant pack under a `doc_files` or `doc_imgs` directory. Images may be included with **absolute** or **relative** URLs.
 
