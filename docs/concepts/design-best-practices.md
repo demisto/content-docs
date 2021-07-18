@@ -76,7 +76,7 @@ Time arguments – When the command supports filtering results by time, use star
 
 **Backward compatibility:**
 
-Don’t break it! XOSAR components, such as playbooks, rely on previous inputs. Here are a few suggested workarounds to avoid breaking backward compatibility: keep the old context, add new paths as needed and update the outputs accordingly, if a command needs major modifications, deprecate the command and create a new one.
+Don’t break it! XSOAR components, such as playbooks, rely on previous inputs. Here are a few suggested workarounds to avoid breaking backward compatibility: keep the old context, add new paths as needed and update the outputs accordingly, if a command needs major modifications, deprecate the command and create a new one.
 
 **Limitations:**
 
