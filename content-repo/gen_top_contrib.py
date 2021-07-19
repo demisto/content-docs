@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import argparse
-import collections
 import os
 import re
 import shutil
@@ -10,7 +9,6 @@ import requests
 
 # Disable insecure warnings
 import urllib3
-from CommonServerPython import tableToMarkdown  # type: ignore
 from mdx_utils import (start_mdx_server, stop_mdx_server)
 
 urllib3.disable_warnings()
