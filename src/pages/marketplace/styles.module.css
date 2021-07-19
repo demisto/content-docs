@@ -7,7 +7,7 @@
 
 /* Content Packs */
 .contentPack {
-  height: 300px;
+  height: 236px;
   border-radius: 3px;
   flex-direction: column;
   position: relative;
@@ -40,7 +40,7 @@
 .ellipsis {
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 204px;
+  max-width: 180px;
   display: block;
   overflow: hidden;
 }
