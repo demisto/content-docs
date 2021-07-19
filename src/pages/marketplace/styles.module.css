@@ -206,46 +206,23 @@
 
 
 
-.contribArticle {
-  display: block;
-  width: 100%;
-}
-
 .h1Contrib {
   text-align: center;
   padding-top: 20px;
+  padding-bottom: 20px;
   
-}
-th {
-  color: #00cc66 !important;
-  font-size: 25px;
-}
-
-td {
-  width: 500px;
-  text-align: center; 
-  font-size: 18px;
-  
-}
-
-td a {
-  color: var(--ifm-font-color-base);
 }
 
 .tableContrib {
-  width: 50%;
-  margin-left: auto !important;
-  margin-right: auto !important;
-
-}
-
-tr {
   text-align: center;
+  font-size: 17px;
+  border-spacing: 0;
 }
 
-td img{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.tableContrib img{
+  width: 100px;
+}
 
+.table td {
+  width: 500px;
 }

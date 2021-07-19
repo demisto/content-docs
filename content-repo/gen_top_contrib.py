@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import collections
 import os
 import re
 import shutil
@@ -20,8 +21,20 @@ TOKEN = os.getenv('GITHUB_TOKEN')
 URL = 'https://api.github.com'
 HEADERS = {
     'Accept': 'application/vnd.github.v3+json',
-    'Authorization': "Bearer " + TOKEN
+    'Authorization': "Bearer " + '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'
 }
+
+
+def create_grid(dataset):
+    row_length = 7
+    html_card = ''
+    for i in range(0, len(dataset), row_length):
+        html_card += '<tr>'
+        for element in dataset[i:i+row_length]:
+            html_card += f'\n<td>{element} </td>\n'
+        html_card += '</tr>\n'
+
+    return html_card
 
 
 def get_external_prs(prs):
@@ -151,7 +164,7 @@ def get_pr_user():
 
             if not user == 'xsoar-bot':
                 users.append({
-                    'Contributor': f"<img src='{response.get('user').get('avatar_url')}' width='50'/> "
+                    'Contributor': f"<img src='{response.get('user').get('avatar_url')}'/><br></br> "
                                    f"<a href='{github_profile}' target='_blank'>{user}</a>"
                 })
 
@@ -161,17 +174,21 @@ def get_pr_user():
                     contributor = re.search(r"(?<=@)[a-zA-z-0-9]+", pr_body)[0].replace('\n', '')
                     github_avatar, github_profile = get_github_user(contributor)
                     users.append({
-                        'Contributor': f"<img src='{github_avatar}' width='50'/> "
+                        'Contributor': f"<img src='{github_avatar}'/><br></br> "
                                        f"<a href='{github_profile}' target='_blank'>{contributor}</a>"
                     })
-
     for user in users:
         prs = users.count(user)
         user.update({'Number of Contributions': prs})
 
+    list_users = []
     result = {i['Contributor']: i for i in reversed(users)}.values()
-    new_res = sorted(result, key=lambda k: k['Number of Contributions'], reverse=True)[:10]
-    res = tableToMarkdown('', new_res, headers=['Contributor', 'Number of Contributions'])
+    new_res = sorted(result, key=lambda k: k['Number of Contributions'], reverse=True)
+
+    for user in new_res:
+        user['Contributor'] += f'<br></br>{user["Number of Contributions"]} Contributions'
+        list_users.append(user['Contributor'])
+    res = create_grid(list_users)
 
     return res
 
