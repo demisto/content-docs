@@ -49,7 +49,7 @@ autoUpdateDockerImage: false
 ```
 
 
-# Docker Images 
+## Docker Images 
 
 Palo Alto Networks maintains a large repository of docker images. All docker images are available via docker hub under the Demisto organization: https://hub.docker.com/u/demisto/. Docker image creation process is managed via the open source project [demisto/dockerfiles](https://github.com/demisto/dockerfiles). Before trying to create a new docker image, check if there is one available already. You can search the [repository-info branch](https://github.com/demisto/dockerfiles/blob/repository-info/README.md) which is updated nightly with image metadata and os/python packages used in the images.
 
@@ -57,7 +57,7 @@ Palo Alto Networks maintains a large repository of docker images. All docker ima
 
 If you can not find an existing image, follow through to read below on how to create a docker image for testing and production use.
 
-# Package Requirements
+## Package Requirements
 We cannot just choose any package to be used in our integrations and there are many things to consider before we select a package. 
 * Does this package have known security issues? 
 * Is the package licensed? 
