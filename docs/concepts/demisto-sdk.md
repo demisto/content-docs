@@ -271,10 +271,20 @@ and the `DEMISTO_API_KEY` prior to running this command in order to establish a 
  
  - Upload a pack to the server without certificate validation:
     ```buildoutcfg
-    demisto-sdk -i Pack/myPack --insecure
+    demisto-sdk upload -i Pack/myPack --insecure
     ```
    This iterates over all the content entities in the pack `myPack` and uploads them to the preset XSOAR server 
    without checking the certification. Note that this command does not upload the entities as a whole pack but instead uploads them individually.
+   
+   
+ - Zip and upload a whole pack to the Marketplace:
+    ```buildoutcfg
+    demisto-sdk upload -i Pack/myPack -z
+    ```
+   This will zip, upload and install the pack `myPack` in the preset XSOAR server's Marketplace.
+   
+   **When uploading to the Marketplace, the command will overwrite any pack which already exists in the XSOAR server. 
+   In order to avoid mistakes, a prompt will appear asking you to approve the upload.**
 
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/upload/README.md#upload).
 
