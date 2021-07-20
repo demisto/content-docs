@@ -281,7 +281,8 @@ and the `DEMISTO_API_KEY` prior to running this command in order to establish a 
     ```buildoutcfg
     demisto-sdk upload -i Pack/myPack -z
     ```
-   This will zip the pack `myPack` and uploads it to the marketplace in the preset XSOAR server.
+   This will zip the pack `myPack` and upload it to the marketplace in the preset XSOAR server.
+   If you will try to upload preexisting content it will ask you if you want to overwrite it.
 
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/upload/README.md#upload).
 
