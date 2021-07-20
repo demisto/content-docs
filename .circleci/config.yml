@@ -15,7 +15,7 @@ jobs:
       - run:
           name: Create Date Weekly File
           command: | 
-            date +%Y-%W > date-week.txt
+            date +%Y-%W-v2 > date-week.txt
             echo "Date week: $(cat date-week.txt)"
       - restore_cache:
           key: npm-cache-v2-{{ checksum "package-lock.json" }}
