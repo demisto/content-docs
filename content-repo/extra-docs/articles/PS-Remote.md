@@ -13,7 +13,7 @@ After configuring the integration you will be able to perform various tasks on W
 ## In This Pack
 The PowerShell Remoting content pack includes the following content item.
 ### Integrations
-The [PowerShell Remoting](https://xsoar.pan.dev/docs/reference/integrations/powershell_remoting) integration.
+The [PowerShell Remoting](https://xsoar.pan.dev/docs/reference/integrations/power-shell-remoting) integration.
 
 ## Before You Start
 Disclaimer: The integration was created and tested on Windows Server 2016 with PowerShell version 5.1.14393.3866. This article provides configuration instructions for this environment. Your required configuration may vary if using a different Windows Server version. Keep in mind that WinRM is entirely a Microsoft feature. We highly recommend you perform all actions listed here on test/staging environments prior to implementing on production environments. Also it's important to note that WinRM has security implications to consider as described [here](https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/winrmsecurity?view=powershell-7.1). 
