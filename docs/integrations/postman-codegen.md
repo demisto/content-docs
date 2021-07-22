@@ -48,7 +48,7 @@ You can generate the integration either as a two step process or a single step.
 - Request name converts to command name. Example: **Get Events** -> **get-events**
 - Request url variables converts to command arguments and passed as part of the request url. Example: *https://virustotal.com/vtapi/v2/ip/{{ip}}* -> created **ip** argument -> *https://virustotal.com/vtapi/v2/ip/8.8.8.8*
 - Request query parameters converts to command arguments. Example: *https://virustotal.com/vtapi/v2/ip?resource=8.8.8.8* -> created **resource** argument -> *https://virustotal.com/vtapi/v2/ip?resource=8.8.8.8*
-- Path URL variable converts to command argument and passed as a part of the request URL. Example: *https://virustotal.com/vtapi/v2/ip/:ip* -> creates **ip** argument -> *https://virustotal.com/vtapi/v2/ip/8.8.8.8* if `:ip` path variable equals to 8.8.8.8.
+- Path URL variable converts to command argument and passed as a part of the request URL. Example: *https://virustotal.com/vtapi/v2/ip/:ip* -> creates **ip** argument -> *https://virustotal.com/vtapi/v2/ip/8.8.8.8* if `:ip` path variable equals 8.8.8.8.
 - Request body - each leaf value converts to command argument and **body_format** which will allow further body customisation. Example: `{"key1":"val1","key2":{"key3":"val3"}}` -> created **key1** and **key3** arguments and **body_format** with the following value `{"key1":"{{key1}}","key2":{"key3":"{{key3}}"}}`
 - Response JSON output converts to command outputs.
 
@@ -84,4 +84,3 @@ You can generate the integration either as a two step process or a single step.
 * [URLScan Postman Collection v2.1](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman_codegen/resources/urlscan.io.postman_collection.json)
 * [URLScan generated config file](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman_codegen/resources/config-urlscanio.json)
 * [URLScan generated integration yml](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman_codegen/resources/integration-urlscanio.yml)
-
