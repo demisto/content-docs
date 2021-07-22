@@ -18,7 +18,7 @@ TOKEN = os.getenv('GITHUB_TOKEN')
 URL = 'https://api.github.com'
 HEADERS = {
     'Accept': 'application/vnd.github.v3+json',
-    'Authorization': 'Bearer ' + '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'
+    'Authorization': 'Bearer ' + TOKEN
 }
 
 
