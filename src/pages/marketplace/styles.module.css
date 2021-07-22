@@ -217,12 +217,18 @@
   text-align: center;
   font-size: 17px;
   border-spacing: 0;
+  word-wrap: break-word;
+  table-layout: fixed;
 }
 
 .tableContrib img{
   width: 100px;
 }
 
-.table td {
-  width: 500px;
+.tableContrib td {
+  width: 300px;
+}
+
+.tableContrib a {
+  word-break: break-all !important;
 }

@@ -3,27 +3,33 @@
 import argparse
 import os
 import re
-import shutil
 
 import requests
+import urllib3
 
 # Disable insecure warnings
-import urllib3
-from mdx_utils import (start_mdx_server, stop_mdx_server)
-
 urllib3.disable_warnings()
 
 
 PR_NUMBER_REGEX = re.compile(r'(?<=pull/)([0-9]+)')
+USER_NAME_REGEX = re.compile(r'(?<=@)[a-zA-z-0-9]+')
 TOKEN = os.getenv('GITHUB_TOKEN')
 URL = 'https://api.github.com'
 HEADERS = {
     'Accept': 'application/vnd.github.v3+json',
-    'Authorization': "Bearer " + TOKEN
+    'Authorization': 'Bearer ' + TOKEN
 }
 
 
-def create_grid(dataset):
+def create_grid(dataset: list) -> str:
+    """
+    Create a table grid of the github users
+    Args:
+        dataset (list): The dataset to create the table from, in this case, the list of github users.
+
+    Returns (str): table grid of github users
+
+    """
     row_length = 7
     html_card = ''
     for i in range(0, len(dataset), row_length):
@@ -35,7 +41,7 @@ def create_grid(dataset):
     return html_card
 
 
-def get_external_prs(prs):
+def get_external_prs(prs: list):
     """
     Get the external prs from the internal.
     We are using this to get the contributor github user in get_pr_user command.
@@ -50,17 +56,16 @@ def get_external_prs(prs):
     pr_bodies = []
     for pr in prs:
         pr_body = pr.get('body', '')
-        inner_pr = PR_NUMBER_REGEX.search(pr_body)
-        if inner_pr is not None:
+        if inner_pr := PR_NUMBER_REGEX.search(pr_body):
             pr_bodies.append(pr_body)
             inner_prs.append(inner_pr[0])
 
     return pr_bodies, inner_prs
 
 
-def github_pagination_prs(url: str, params: dict, res):
+def github_pagination_prs(url: str, params: dict, res) -> dict:
     """
-    Paginate throw all the pages in Github according to search query
+    Paginate through all the pages in Github according to search query
     Args:
         url (str): the request url
         params (dict): params for the request
@@ -69,8 +74,7 @@ def github_pagination_prs(url: str, params: dict, res):
     Returns: prs (dict)
     """
     prs = []
-    link = res.headers.get('Link')
-    if link:
+    if link := res.headers.get('Link'):
         links = link.split(',')
         for link in links:
             last_page = link[link.find("<")+1:link.find(">")][-1]
@@ -83,16 +87,21 @@ def github_pagination_prs(url: str, params: dict, res):
     return prs
 
 
-def get_contractors_prs():
+def get_contractors_prs() -> list:
+    """
+    Get all contractors pr numbers and users we want to ignore in the calculation.
+    Returns: The inner pr numbers list of the contractors and the users we want to ignore.
+    """
     url = URL + '/search/issues'
     query = 'type:pr state:closed org:demisto repo:content is:merged base:master ' \
-            'head:contrib/crest head:contrib/qmasters head:contrib/mchasepan'
+            'head:contrib/crest head:contrib/qmasters head:contrib/mchasepan head:contrib/roybi72'
     params = {
         'q': query,
         'per_page': 100,
         'page': 1
     }
     res = requests.request('GET', url, headers=HEADERS, params=params, verify=False)
+    res.raise_for_status()
     prs = res.json().get('items', [])
 
     next_pages_prs = github_pagination_prs(url, params, res)
@@ -104,7 +113,10 @@ def get_contractors_prs():
 
 
 def get_contrib_prs():
-
+    """
+    Get the contributors prs.
+    Returns: The list of inner PRs and a list of the pr bodies.
+    """
     url = URL + '/search/issues'
     query = 'type:pr state:closed org:demisto repo:content is:merged base:master head:contrib/'
     params = {
@@ -113,6 +125,7 @@ def get_contrib_prs():
         'page': 1
     }
     res = requests.request('GET', url, headers=HEADERS, params=params, verify=False)
+    res.raise_for_status()
     prs = res.json().get('items', [])
 
     # Get all the PRs from all pages
@@ -128,18 +141,29 @@ def get_contrib_prs():
     return pr_bodies, inner_prs
 
 
-def get_github_user(user_name):
+def get_github_user(user_name: str):
+    """
+    Get the github user.
+    Args:
+        user_name (str): the github username.
+
+    Returns: The user avatar and its profile.
+
+    """
     url = f'{URL}/users/{user_name}'
     res = requests.request('GET', url, headers=HEADERS, verify=False)
     response = res.json()
-
     github_avatar = response.get('avatar_url')
     github_profile = response.get('html_url')
 
     return github_avatar, github_profile
 
 
-def get_pr_user():
+def get_pr_user() -> list:
+    """
+    Get the PR user from the inner PR.
+    Returns: users list.
+    """
     users = []
     _, inner_prs = get_contrib_prs()
     for pr in inner_prs:
@@ -169,8 +193,12 @@ def get_pr_user():
             if user == 'xsoar-bot':
                 pr_body = response.get('body')
                 if 'Contributor' in pr_body:
-                    contributor = re.search(r"(?<=@)[a-zA-z-0-9]+", pr_body)[0].replace('\n', '')
+                    contributor = USER_NAME_REGEX.search(pr_body)[0].replace('\n', '')
                     github_avatar, github_profile = get_github_user(contributor)
+                    if not github_avatar and not github_profile:
+                        print(f'The user "{contributor}" was not found.')
+                        continue
+
                     users.append({
                         'Contributor': f"<img src='{github_avatar}'/><br></br> "
                                        f"<a href='{github_profile}' target='_blank'>{contributor}</a>"
@@ -186,29 +214,17 @@ def get_pr_user():
     for user in new_res:
         user['Contributor'] += f'<br></br>{user["Number of Contributions"]} Contributions'
         list_users.append(user['Contributor'])
-    res = create_grid(list_users)
 
-    return res
+    return list_users
 
 
 def main():
     parser = argparse.ArgumentParser(description='Generate Top contributors page.',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-t", "--target", help="Target dir to generate docs at.", required=True)
-    args = parser.parse_args()
-    start_mdx_server()
-    contrib_base = f'{os.path.dirname(os.path.abspath(__file__))}/top-contributors.md'
-    if not os.path.exists(contrib_base):
-        os.makedirs(contrib_base)
-    contrib_target = args.target + '/top-contributors.md'
-    shutil.copy(contrib_base, contrib_target)
-    top_table = get_pr_user()
-    with open(contrib_target, 'a', encoding='utf-8') as f:
-        f.write(f'\n {top_table}')
-
-    print('Stopping mdx server ...')
-    stop_mdx_server()
+    users_list = get_pr_user()
+    create_grid(users_list)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
