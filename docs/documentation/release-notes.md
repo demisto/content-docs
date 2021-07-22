@@ -123,7 +123,7 @@ Pretend you need this release note to do your work. A bad RN can easily lead to 
 ### Examples  
 
 #### Enhancement Examples
-
+```markdown
 - **MISP V2**  
 You can now filter an event by attribute data fields.
 
@@ -131,14 +131,14 @@ You can now filter an event by attribute data fields.
 Added support for the *extend-context* argument in the ***ua-parse*** command.
 
 - **Microsoft Graph Mail**   
-Added 3 commands.
+Added 3 commands:
     - ***msgraph-mail-list-folders***
     - ***msgraph-mail-list-child-folders***
     - ***msgraph-mail-create-folder***
-
+```
 
 #### Bug Fixes Examples
-
+```markdown
 - **Slack v2**  
     - Fixed an issue where mirrored investigations contained mismatched user names.
     - Added the **reporter** and **reporter email** labels to incidents that are created by direct messages.
@@ -151,18 +151,18 @@ Fixed an issue in which the ***qradar-delete-reference-set-value*** command fail
 
 - **GitHub**  
 Improved implementation of the default value for the *fetch_time* parameter.
-
+```
 #### Docker Updates Example
-
+```markdown
 - Updated the Docker image to: *demisto/python3:3.9.1.15759*.
-
+```
 #### General Changes
 
 > **Note:** Use these if the change has no visible impact on the user, but please try to refrain from using these if possible!
-
+```markdown
 - Maintenance and stability enhancements.
 - Documentation and metadata improvements.
-
+```
   
 ## Excluding Items
 Release notes are required to contain all items which have been changed included in the generated file. As such, validation 
