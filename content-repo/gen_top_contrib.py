@@ -3,6 +3,7 @@
 import argparse
 import os
 import re
+import shutil
 
 import requests
 import urllib3
@@ -17,7 +18,7 @@ TOKEN = os.getenv('GITHUB_TOKEN')
 URL = 'https://api.github.com'
 HEADERS = {
     'Accept': 'application/vnd.github.v3+json',
-    'Authorization': 'Bearer ' + TOKEN
+    'Authorization': 'Bearer ' + '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'
 }
 
 
@@ -222,8 +223,11 @@ def main():
     parser = argparse.ArgumentParser(description='Generate Top contributors page.',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-t", "--target", help="Target dir to generate docs at.", required=True)
+    args = parser.parse_args()
+    contrib_target = args.target + '/top-contributors.md'
     users_list = get_pr_user()
-    create_grid(users_list)
+    with open(contrib_target, 'a', encoding='utf-8') as f:
+        f.write(f'\n {create_grid(users_list)}')
 
 
 if __name__ == '__main__':
