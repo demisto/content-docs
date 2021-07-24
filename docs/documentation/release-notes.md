@@ -159,6 +159,7 @@ Improved implementation of the default value for the *fetch_time* parameter.
 #### General Changes
 
 > **Note:** Use these if the change has no visible impact on the user, but please try to refrain from using these if possible!
+
 ```markdown
 - Maintenance and stability enhancements.
 - Documentation and metadata improvements.
