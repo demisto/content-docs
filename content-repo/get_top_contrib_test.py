@@ -89,7 +89,9 @@ INNER_PR_RESPONSE = {
                 "site_admin": False
             },
             "html_url": "https://github.com/powershelly/content",
-            "description": "Demisto is now Cortex XSOAR. Automate and orchestrate your Security Operations with Cortex XSOAR's ever-growing Content Repository. Pull Requests are always welcome and highly appreciated! ",
+            "description": "Demisto is now Cortex XSOAR. Automate and orchestrate your Security "
+                           "Operations with Cortex XSOAR's ever-growing Content Repository. "
+                           "Pull Requests are always welcome and highly appreciated! ",
             "fork": False,
             "url": "https://api.github.com/repos/powershelly/content",
             "forks_url": "https://api.github.com/repos/powershelly/content/forks",
@@ -137,7 +139,9 @@ INNER_PR_RESPONSE = {
                 "site_admin": False
             },
             "html_url": "https://github.com/demisto/content",
-            "description": "Demisto is now Cortex XSOAR. Automate and orchestrate your Security Operations with Cortex XSOAR's ever-growing Content Repository. Pull Requests are always welcome and highly appreciated! ",
+            "description": "Demisto is now Cortex XSOAR. Automate and orchestrate your Security Operations with "
+                           "Cortex XSOAR's ever-growing Content Repository. "
+                           "Pull Requests are always welcome and highly appreciated! ",
             "fork": False,
             "url": "https://api.github.com/repos/demisto/content",
             "created_at": "2016-06-06T12:17:02Z",
@@ -263,7 +267,8 @@ def test_get_contrib_prs():
                 "diff_url": "https://github.com/demisto/content/pull/13834.diff",
                 "patch_url": "https://github.com/demisto/content/pull/13834.patch"
             },
-            "body": "## Original External PR\r\n[external pull request](https://github.com/demisto/content/pull/13801)\r\n\r\n## Status\r\n- [ ] In Progress\r\n- [x] Ready\r\n- [ ] In Hold - (Reason for hold)\r\n\r\n"
+            "body": "## Original External PR\r\n[external pull request](https://github.com/demisto/content/pull/13801)"
+                    "\r\n\r\n## Status\r\n- [ ] In Progress\r\n- [x] Ready\r\n- [ ] In Hold - (Reason for hold)\r\n\r\n"
         },
         {
             "url": "https://api.github.com/repos/demisto/content/issues/13829",
@@ -354,7 +359,8 @@ def test_get_contrib_prs():
                 "diff_url": "https://github.com/demisto/content/pull/13829.diff",
                 "patch_url": "https://github.com/demisto/content/pull/13829.patch"
             },
-            "body": "## Original External PR\r\n[external pull request](https://github.com/demisto/content/pull/13614)\r\n\r\n## Contributing to Cortex XSOAR Content",
+            "body": "## Original External PR\r\n[external pull request](https://github.com/demisto/content/pull/13614)"
+                    "\r\n\r\n## Contributing to Cortex XSOAR Content",
         }
     ]
 
@@ -408,8 +414,10 @@ def test_create_grid():
 
     res = create_grid(response)
     expected = '''<tr>
-<td><img src='https://avatars.githubusercontent.com/u/testurl'/><br></br> <a href='https://github.com/powershelly' target='_blank'>powershelly</a><br></br>5 Contributions </td>
+<td><img src='https://avatars.githubusercontent.com/u/testurl'/><br></br> <a href='https://github.com/powershelly' 
+target='_blank'>powershelly</a><br></br>5 Contributions </td>
 
-<td><img src='https://avatars.githubusercontent.com/u/jacksparow'/><br></br> <a href='https://github.com/powershelly' target='_blank'>jacksparow</a><br></br>8 Contributions </td>
+<td><img src='https://avatars.githubusercontent.com/u/jacksparow'/><br></br> <a href='https://github.com/powershelly' 
+target='_blank'>jacksparow</a><br></br>8 Contributions </td>
 </tr>'''
     assert expected in res
