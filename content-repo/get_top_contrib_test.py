@@ -2,7 +2,7 @@
 from gen_top_contrib import get_external_prs, get_contributors_users, get_github_user, create_grid
 
 BASE_URL = 'https://api.github.com'
-INNER_PR_RESPONSE = {
+INNER_PR_RESPONSE = [{
     "url": "https://api.github.com/repos/demisto/content/pulls/13801",
     "id": 694456100,
     "node_id": "MDExOlB1bGxSZXF1ZXN0Njk0NDU2MTAw",
@@ -167,7 +167,7 @@ INNER_PR_RESPONSE = {
         "type": "User",
         "site_admin": False
     }
-}
+}]
 
 
 def test_get_contrib_prs():
@@ -413,11 +413,7 @@ def test_create_grid():
                 ]
 
     res = create_grid(response)
-    expected = '''<tr>
-<td><img src='https://avatars.githubusercontent.com/u/testurl'/><br></br> <a href='https://github.com/powershelly' 
-target='_blank'>powershelly</a><br></br>5 Contributions </td>
+    expected = "<tr>\n<td><img src='https://avatars.githubusercontent.com/u/testurl'/><br></br> " \
+               "<a href='https://github.com/powershelly' target='_blank'>powershelly</a><br></br>5 Contributions </td>"
 
-<td><img src='https://avatars.githubusercontent.com/u/jacksparow'/><br></br> <a href='https://github.com/powershelly' 
-target='_blank'>jacksparow</a><br></br>8 Contributions </td>
-</tr>'''
     assert expected in res
