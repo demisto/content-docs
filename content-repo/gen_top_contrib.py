@@ -63,7 +63,7 @@ def get_external_prs(prs: list):
     return pr_bodies, inner_prs
 
 
-def github_pagination_prs(url: str, params: dict, res) -> dict:
+def github_pagination_prs(url: str, params: dict, res) -> list:
     """
     Paginate through all the pages in Github according to search query
     Args:
@@ -159,12 +159,12 @@ def get_github_user(user_name: str):
     return github_avatar, github_profile
 
 
-def get_pr_user() -> list:
+def get_inner_pr_request() -> dict:
     """
-    Get the PR user from the inner PR.
-    Returns: users list.
+    Get the inner pr information (will be used to get the user).
+    Returns (dict): http response - prs_info.
     """
-    users = []
+    prs_info = {}
     _, inner_prs = get_contrib_prs()
     for pr in inner_prs:
         url = URL + f'/repos/demisto/content/pulls/{pr}'
@@ -181,28 +181,42 @@ def get_pr_user() -> list:
                 print('Error in API call to GitHub Integration [%d] - %s' % (res.status_code, res.reason))
         if res.status_code == 200:
             response = res.json()
-            user = response.get('user').get('login')
-            github_profile = response.get('user').get('html_url')
+            prs_info.update(response)
 
-            if not user == 'xsoar-bot':
-                users.append({
-                    'Contributor': f"<img src='{response.get('user').get('avatar_url')}'/><br></br> "
-                                   f"<a href='{github_profile}' target='_blank'>{user}</a>"
-                })
+    return prs_info
 
-            if user == 'xsoar-bot':
-                pr_body = response.get('body')
-                if 'Contributor' in pr_body:
-                    contributor = USER_NAME_REGEX.search(pr_body)[0].replace('\n', '')
-                    github_avatar, github_profile = get_github_user(contributor)
-                    if not github_avatar and not github_profile:
-                        print(f'The user "{contributor}" was not found.')
-                        continue
 
-                    users.append({
-                        'Contributor': f"<img src='{github_avatar}'/><br></br> "
-                                       f"<a href='{github_profile}' target='_blank'>{contributor}</a>"
-                    })
+def get_contributors_users(response) -> list:
+    """
+    Get the github users from the inner PRs.
+    Args:
+        response (dict): the response of get_inner_pr_request()
+
+    Returns (list): Github users
+
+    """
+    users = []
+    user = response.get('user').get('login')
+    github_profile = response.get('user').get('html_url')
+
+    if not user == 'xsoar-bot':
+        users.append({
+            'Contributor': f"<img src='{response.get('user').get('avatar_url')}'/><br></br> "
+                           f"<a href='{github_profile}' target='_blank'>{user}</a>"
+        })
+
+    if user == 'xsoar-bot':
+        pr_body = response.get('body')
+        if 'Contributor' in pr_body:
+            contributor = USER_NAME_REGEX.search(pr_body)[0].replace('\n', '')
+            github_avatar, github_profile = get_github_user(contributor)
+            if not github_avatar and not github_profile:
+                print(f'The user "{contributor}" was not found.')
+
+            users.append({
+                'Contributor': f"<img src='{github_avatar}'/><br></br> "
+                               f"<a href='{github_profile}' target='_blank'>{contributor}</a>"
+            })
     for user in users:
         prs = users.count(user)
         user.update({'Number of Contributions': prs})
@@ -224,7 +238,8 @@ def main():
     parser.add_argument("-t", "--target", help="Target dir to generate docs at.", required=True)
     args = parser.parse_args()
     contrib_target = args.target + '/top-contributors.md'
-    users_list = get_pr_user()
+    response = get_inner_pr_request()
+    users_list = get_contributors_users(response)
     with open(contrib_target, 'a', encoding='utf-8') as f:
         f.write(f'\n {create_grid(users_list)}')
 
