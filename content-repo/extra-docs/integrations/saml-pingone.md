@@ -24,10 +24,11 @@ Identity Provider | PingOne
 
 There are several steps you need to complete.
 
-1.  [Create PingOne Groups for XSOAR Users](#create-PingOne-groups-for-XSOAR-users)
-2.  [Define the PingOne application for XSOAR authentication](#how-to-create-and-add-users-to-an-PingOne-group)
-3.  [Configure the SAML 2.0 integration in XSOAR](#configure-the-saml-20-integration-in-XSOAR)
-4.  [Map PingOne groups to XSOAR roles](#map-PingOne-groups-to-XSOAR-roles)
+1.  [Create PingOne Groups for XSOAR Users](#create-pingone-groups-for-xsoar-users)
+2.  [Define the PingOne application for XSOAR authentication](#define-the-pingone-application-for-xsoar-authentication)
+3.  [Configure the SAML 2.0 integration in XSOAR](#configure-the-saml-20-integration-in-xsoar)
+4.  [Map PingOne groups to XSOAR roles](#map-pingone-groups-to-xsoar-roles)
+5.  [More references to PingOne's documentation](#more-references-to-pingones-documentation)
 
 ### Create PingOne Groups for XSOAR Users
 
