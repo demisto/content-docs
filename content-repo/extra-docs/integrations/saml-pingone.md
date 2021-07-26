@@ -134,4 +134,5 @@ It is important that when you specify the PingOne group in XSOAR to map to a rol
 
 ### More references to PingOne's documentation:
 - [Managing Users](https://docs.pingidentity.com/bundle/pingone/page/ypu1564020497023-1.html)
+- [Mapping attributes](https://docs.pingidentity.com/bundle/p14c/page/pwv1567784207915.html)  
 - [PingOne and SLO](https://docs.pingidentity.com/bundle/pingone/page/qyg1564020481656.html)
