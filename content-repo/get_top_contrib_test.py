@@ -1,7 +1,6 @@
 
 from gen_top_contrib import get_external_prs, get_contributors_users, get_github_user, create_grid
 
-BASE_URL = 'https://api.github.com'
 INNER_PR_RESPONSE = [{
     "url": "https://api.github.com/repos/demisto/content/pulls/13801",
     "id": 694456100,
@@ -368,7 +367,7 @@ def test_get_contrib_prs():
     assert ['13801', '13614'] == res
 
 
-def test_get_github_user(mocker):
+def test_get_github_user(requests_mock):
     user_response = {
         "login": "jacksparow",
         "id": 987654,
@@ -394,9 +393,9 @@ def test_get_github_user(mocker):
         "updated_at": "2021-07-17T20:25:39Z"
     }
     username = 'jacksparow'
-    mocker.patch('gen_top_contrib.get_github_user', return_value=user_response)
+    requests_mock.get(f'https://api.github.com/users/{username}', json=user_response)
     res = get_github_user(username)
-    assert ('https://avatars.githubusercontent.com/u/1999754?v=4', 'https://github.com/jacksparow') == res
+    assert ('https://avatars.githubusercontent.com/u/4711633?v=4', 'https://github.com/jacksparow') == res
 
 
 def test_get_contribution_users():
