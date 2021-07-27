@@ -228,3 +228,16 @@ button {
   vertical-align: middle;
   line-height: 2.4rem;
 }
+
+.contributors {
+  font-size: 16px;
+  display: block;
+}
+
+.contributors :hover {
+  border-bottom: 1px;
+}
+
+.contributors[a]{
+  color: black !important;
+}
