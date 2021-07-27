@@ -6,6 +6,7 @@ import re
 
 import requests
 from typing import Tuple
+from datetime import datetime
 
 PR_NUMBER_REGEX = re.compile(r'(?<=pull/)([0-9]+)')
 USER_NAME_REGEX = re.compile(r'(?<=@)[a-zA-Z-0-9]+')
@@ -16,6 +17,14 @@ HEADERS = {
     'Authorization': 'Bearer ' + TOKEN
 }
 VERIFY = os.getenv('SKIP_SSL_VERIFY') is None
+
+
+# override print so we have a timestamp with each print
+def timestamped_print(*args, **kwargs):
+    print(datetime.now().strftime("%H:%M:%S.%f"), *args, **kwargs)
+
+
+print = timestamped_print
 
 
 def create_grid(dataset: list) -> str:
