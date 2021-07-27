@@ -21,7 +21,7 @@ VERIFY = os.getenv('SKIP_SSL_VERIFY') is None
 
 # override print so we have a timestamp with each print
 def timestamped_print(*args, **kwargs):
-    print(datetime.now().strftime("%H:%M:%S.%f"), *args, **kwargs)
+    __builtins__.print(datetime.now().strftime("%H:%M:%S.%f"), *args, **kwargs)
 
 
 print = timestamped_print
