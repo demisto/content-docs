@@ -436,9 +436,9 @@ def test_create_grid():
        - Validate that the table was created successfully.
    """
     response = [
-        "<img src='https://avatars.githubusercontent.com/u/testurl'/><br></br> "
+        "<img src='https://avatars.githubusercontent.com/u/testurl'/><br></br> " +
         "<a href='https://github.com/powershelly' target='_blank'>powershelly</a><br></br>5 Contributions",
-        "<img src='https://avatars.githubusercontent.com/u/jacksparow'/><br></br> "
+        "<img src='https://avatars.githubusercontent.com/u/jacksparow'/><br></br> " +
         "<a href='https://github.com/powershelly' target='_blank'>jacksparow</a><br></br>8 Contributions"
     ]
 
