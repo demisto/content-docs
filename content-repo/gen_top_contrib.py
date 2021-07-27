@@ -5,20 +5,17 @@ import os
 import re
 
 import requests
-import urllib3
-
-# Disable insecure warnings
-urllib3.disable_warnings()
-
+from typing import Tuple
 
 PR_NUMBER_REGEX = re.compile(r'(?<=pull/)([0-9]+)')
-USER_NAME_REGEX = re.compile(r'(?<=@)[a-zA-z-0-9]+')
+USER_NAME_REGEX = re.compile(r'(?<=@)[a-zA-Z-0-9]+')
 TOKEN = os.getenv('GITHUB_TOKEN', '')
 URL = 'https://api.github.com'
 HEADERS = {
     'Accept': 'application/vnd.github.v3+json',
     'Authorization': 'Bearer ' + TOKEN
 }
+VERIFY = os.getenv('SKIP_SSL_VERIFY') is None
 
 
 def create_grid(dataset: list) -> str:
@@ -41,7 +38,7 @@ def create_grid(dataset: list) -> str:
     return html_card
 
 
-def get_external_prs(prs: list):
+def get_external_prs(prs: list) -> Tuple[list, list]:
     """
     Get the external prs from the internal.
     We are using this to get the contributor github user in get_pr_user command.
@@ -80,7 +77,8 @@ def github_pagination_prs(url: str, params: dict, res) -> list:
             last_page = link[link.find("<")+1:link.find(">")][-1]
         while params['page'] <= int(last_page):
             params['page'] = params['page'] + 1
-            response = requests.request('GET', url, params=params, headers=HEADERS, verify=False)
+            response = requests.request('GET', url, params=params, headers=HEADERS, verify=VERIFY)
+            response.raise_for_status()
             next_page_prs = response.json().get('items', [])
             prs.extend(next_page_prs)
 
@@ -100,7 +98,7 @@ def get_contractors_prs() -> list:
         'per_page': 100,
         'page': 1
     }
-    res = requests.request('GET', url, headers=HEADERS, params=params, verify=False)
+    res = requests.request('GET', url, headers=HEADERS, params=params, verify=VERIFY)
     res.raise_for_status()
     prs = res.json().get('items', [])
 
@@ -112,7 +110,7 @@ def get_contractors_prs() -> list:
     return inner_prs
 
 
-def get_contrib_prs():
+def get_contrib_prs() -> Tuple[list, list]:
     """
     Get the contributors prs.
     Returns: The list of inner PRs and a list of the pr bodies.
@@ -124,7 +122,7 @@ def get_contrib_prs():
         'per_page': 100,
         'page': 1
     }
-    res = requests.request('GET', url, headers=HEADERS, params=params, verify=False)
+    res = requests.request('GET', url, headers=HEADERS, params=params, verify=VERIFY)
     res.raise_for_status()
     prs = res.json().get('items', [])
 
@@ -141,7 +139,7 @@ def get_contrib_prs():
     return pr_bodies, inner_prs
 
 
-def get_github_user(user_name: str):
+def get_github_user(user_name: str) -> Tuple[str, str]:
     """
     Get the github user.
     Args:
@@ -151,7 +149,7 @@ def get_github_user(user_name: str):
 
     """
     url = f'{URL}/users/{user_name}'
-    res = requests.request('GET', url, headers=HEADERS, verify=False)
+    res = requests.request('GET', url, headers=HEADERS, verify=VERIFY)
     response = res.json()
     github_avatar = response.get('avatar_url')
     github_profile = response.get('html_url')
@@ -168,7 +166,7 @@ def get_inner_pr_request() -> list:
     _, inner_prs = get_contrib_prs()
     for pr in inner_prs:
         url = URL + f'/repos/demisto/content/pulls/{pr}'
-        res = requests.request('GET', url, headers=HEADERS, verify=False)
+        res = requests.request('GET', url, headers=HEADERS, verify=VERIFY)
         if res.status_code == 404:
             print(f'The following PR was not found: {pr}')
             continue

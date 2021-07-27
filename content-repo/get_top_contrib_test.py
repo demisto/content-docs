@@ -368,6 +368,16 @@ def test_get_contrib_prs():
 
 
 def test_get_github_user(requests_mock):
+    """
+    Given:
+        - http response from get_user call to github.
+
+    When:
+        - running the get_github_user function
+
+    Then:
+        - Validate that a tuple of the user avatar and profile returned.
+    """
     user_response = {
         "login": "jacksparow",
         "id": 987654,
@@ -399,17 +409,38 @@ def test_get_github_user(requests_mock):
 
 
 def test_get_contribution_users():
+    """
+    Given:
+        - Mock response data - inner PR response.
+
+    When:
+        - running the get_contributors_users function
+
+    Then:
+        - Validate that contribution user was returned as necessary.
+    """
     res = get_contributors_users(INNER_PR_RESPONSE)
     assert ["<img src='https://avatars.githubusercontent.com/u/testurl'/><br></br> "
             "<a href='https://github.com/powershelly' target='_blank'>powershelly</a><br></br>1 Contributions"] == res
 
 
 def test_create_grid():
-    response = ["<img src='https://avatars.githubusercontent.com/u/testurl'/><br></br> "
-                "<a href='https://github.com/powershelly' target='_blank'>powershelly</a><br></br>5 Contributions",
-                "<img src='https://avatars.githubusercontent.com/u/jacksparow'/><br></br> "
-                "<a href='https://github.com/powershelly' target='_blank'>jacksparow</a><br></br>8 Contributions"
-                ]
+    """
+   Given:
+       - List of users as data to create the table from.
+
+   When:
+       - running the create_grid function
+
+   Then:
+       - Validate that the table was created successfully.
+   """
+    response = [
+        "<img src='https://avatars.githubusercontent.com/u/testurl'/><br></br> "
+        "<a href='https://github.com/powershelly' target='_blank'>powershelly</a><br></br>5 Contributions",
+        "<img src='https://avatars.githubusercontent.com/u/jacksparow'/><br></br> "
+        "<a href='https://github.com/powershelly' target='_blank'>jacksparow</a><br></br>8 Contributions"
+    ]
 
     res = create_grid(response)
     expected = "<tr>\n<td><img src='https://avatars.githubusercontent.com/u/testurl'/><br></br> " \
