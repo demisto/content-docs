@@ -6,13 +6,11 @@ You can authenticate your XSOAR users using SAML 2.0 authentication and PingOne 
 
 ## SAML 2.0 Overview
 
-This definition of SAML 2.0 is taken from the [SAML 2.0 page in Wikipedia](https://en.wikipedia.org/wiki/SAML_2.0).
-
-Security Assertion Markup Language 2.0 (SAML 2.0) is a version of the SAML standard for  exchanging authentication and authorization data between security domains. SAML 2.0 is an  XML-based protocol that uses security tokens containing assertions to pass information  about a principal (usually an end user) between a SAML authority, named an Identity  Provider, and a SAML consumer, named a Service Provider. SAML 2.0 enables web-based  authentication and authorization scenarios including cross-domain single sign-on (SSO),  which helps reduce the administrative overhead of distributing multiple authentication  tokens to the user.
+Security Assertion Markup Language 2.0 (SAML 2.0) is a version of the SAML standard. It uses security tokens for exchanging authentication and authorization data between security domains.
 
 ## Definitions
 
-These parameters are part of the configuration process.
+The following parameters are part of the configuration process.
 
 | **Parameter** | **Value** |
 | --- | --- |
@@ -37,54 +35,32 @@ To authenticate XSOAR users with PingOne, you need to have at least one PingOne 
 *   Create a single PingOne group for all users, for example, XSOAR All Users.
 *   Create a PingOne group for each business unit, for example, XSOAR IT, XSOAR Analysts, XSOAR Admins.
 
-#### How to create and add users to an PingOne group
-
-1.  Log in to PingOne.
-2.  Go to **Users > User Directory > Groups**.
-3.  Click the **Add Group** button, and enter a meaningful name and choose its directory permissions.  
-    The name should enable you to easily identify the users of that group.
-4.  To add user to the group, go to **Users > User Directory > Users**.
-5.  Click the **Edit** button for the user you would like to add to the group.
-6.  Under **Group Memberships** section, click the **Add** button and choose the desired group.
-
-For further information regarding these steps, go to [PingOne Documentation](https://docs.pingidentity.com/bundle/pingone/page/ypu1564020497023-1.html)
+To create and add users to a PingOne group, see [Managing Users in the PingOne Documentation](https://docs.pingidentity.com/bundle/pingone/page/ypu1564020497023-1.html)
 
 ### Define the PingOne application for XSOAR authentication
 
-1.  To create a new application, log in to PingOne and click the **Applications** tab.
-2.  Click the **Add Application** button.
-3.  Click the **New SAML Application** button. 
-    ![SAML-PingOne-New-App.png](../../../docs/doc_imgs/reference/SAML-PingOne/SAML-PingOne-New-App.png)
-4.  Complete the **Application Details**, and click **Continue To Next Step**.
-    ![SAML-PingOne-App-Details.png](../../../docs/doc_imgs/reference/SAML-PingOne/SAML-PingOne-App-Details.png)
-5.  In the **Application Configuration** section, configure the following parameters:  
-      
-    | **Parameter** | **Value** | **Required**
-    | --- | --- | --- |
-    Protocol Version | SAML v 2.0 | True
-    Assertion Consumer Service (ACS) | `https://<_XSOARURL_\>/saml` | True
-    Entity ID | `https://<_XSOARURL_\>/saml` | True
-    Application URL | `https://<_XSOARURL_\>/saml` | False
-    Single Logout Endpoint | `https://<_XSOARURL_\>/saml-logout` | False 
-    Single Logout Binding Type | POST | False
-    Primary Verification Certificate | Your own certificate. For help creating a new certificate go to the [Set Up SAML Logout Article](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/users-and-roles/authenticate-users-with-saml-20/set-up-adfs-as-the-identity-provider-using-saml-20/set-up-saml-logout.html) and follow Step 1. | False
-    Signing | Sign Response | False
+For information, see [Add or update a SAML application](https://docs.pingidentity.com/bundle/pingone/page/xsh1564020480660-1.html) in the PingOne documentation.  
 
-
-6.  In the **SSO Attribute Mapping** section, click the **Continue to Next Step** button.
-7.  In the **Group Access** section, click the **Add** button for each group that you would like to associate to this application.  
-    This is where you define which groups to associate with XSOAR, which will be mapped to XSOAR roles. In this example, we created a group that includes all uses in a single group called _Users_.  
-    ![SAML-PingOne-Group-Access.png](../../../docs/doc_imgs/reference/SAML-PingOne/SAML-PingOne-Group-Access.png)
+In the Application Configuration section, configure the following application parameters:
       
-    
-8.  In the **Review Setup** section, go over the application configuration.
-9.  Click **Finish**.
+| **Parameter** | **Value** | **Required**
+| --- | --- | --- |
+| Protocol Version | SAML v 2.0 | True |
+ |Assertion Consumer Service (ACS) | `https://<_XSOARURL_\>/saml` | True |
+Entity ID | `https://<_XSOARURL_\>/saml` | True
+Application URL | `https://<_XSOARURL_\>/saml` | False
+Single Logout Endpoint | `https://<_XSOARURL_\>/saml-logout` | False 
+Single Logout Binding Type | POST | False
+Primary Verification Certificate | Your own certificate. For help creating a new certificate go to the [Set Up SAML Logout Article](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/users-and-roles/authenticate-users-with-saml-20/set-up-adfs-as-the-identity-provider-using-saml-20/set-up-saml-logout.html) and follow Step 1. | False
+Signing | Sign Response | False
+
+In the **Group Access** section, add each group that you would like to associate to this application. This is where you define which groups to associate with XSOAR, which will be mapped to XSOAR roles. For example, you can create a group that includes all uses in a single group called _Users_.  
+ 
 
 ### Configure the SAML 2.0 Integration in XSOAR
 
 Before you configure an instance of the SAML 2.0 integration in XSOAR, access the PingOne Application Details. The values of several integration parameters are located here, such as Identity Provider Single Sign-On URL.
 
-![SAML-PingOne-Show-App-Details.png](../../../docs/doc_imgs/reference/SAML-PingOne/SAML-PingOne-Show-App-Details.png)
 
 1.  In XSOAR, navigate to **Settings > Integrations > Servers & Services**.
 2.  Search for SAML 2.0.
@@ -108,8 +84,8 @@ Before you configure an instance of the SAML 2.0 integration in XSOAR, access th
     RelayState | | Only used by certain IdPs. If your IdP uses relay state, you need to supply the relay state.
     Sign request and verify response signature | | Method for the IdP to verify the user sign-in request using the IdP vendor certificate.
     IdP public certificate | | Download it from the PingOne UI: ![SAML-PingOne-Download-Public-Cert.png](../../../docs/doc_imgs/reference/SAML-PingOne/SAML-PingOne-Download-Public-Cert.png) 
-    Service Provider public certificate | The `certificate.crt` created in step 5. | Public certificate for your IdP. 
-    Service Provider private key | The `private_unencrypted.key` created in step 5. | Private key for your IdP, in PEM format.
+    Service Provider public certificate | The `certificate.crt`. | Public certificate for your IdP. 
+    Service Provider private key | The `private_unencrypted.key`. | Private key for your IdP, in PEM format.
     ADFS | True | Active Directory Federation Services.
     Compress encode URL (ADFS) | True | Will compress the request sent to PingOne.
     Service Identifier (ADFS) | `https://yourcompany.yourdomain.com/saml` | 
