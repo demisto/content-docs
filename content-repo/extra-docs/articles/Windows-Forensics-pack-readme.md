@@ -40,9 +40,9 @@ There are 8 playbooks in this pack.
 ### Automations
 There are 2 Automations in this pack.
 
-* [Etl2Pcap](https://xsoar.pan.dev/docs/reference/scripts/etl2pcap) - Converts an ETL file to a PCAP format file.
+* [Etl2Pcap](https://xsoar.pan.dev/docs/reference/scripts/etl2-pcap) - Converts an ETL file to a PCAP format file.
 
-* [RegistryParse](https://xsoar.pan.dev/docs/reference/scripts/registryparse) - Parses a registry file for common registry keys of interest or user defined registry paths.
+* [RegistryParse](https://xsoar.pan.dev/docs/reference/scripts/registry-parse) - Parses a registry file for common registry keys of interest or user defined registry paths.
 
 ### Incident Types
 There is 1 incident type.
