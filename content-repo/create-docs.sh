@@ -158,6 +158,7 @@ else
 fi
 
 TARGET_DIR=${SCRIPT_DIR}/../docs/reference
+CONTRIB_TARGET_DIR=${SCRIPT_DIR}/../src/pages/marketplace
 REL_IMGS_DIR=${SCRIPT_DIR}/../docs/doc_imgs/reference/relative
 echo "Deleting and creating dirs: ${TARGET_DIR} and ${REL_IMGS_DIR}"
 rm -rf ${TARGET_DIR}/integrations
@@ -186,10 +187,14 @@ if [ -z "${NETLIFY}" ]; then
     pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
     echo "Generating Demisto class and CommonServerPython docs..."
     pipenv run ./gen_pydocs.py -t "${TARGET_DIR}"
+    echo "Generating top contributors page..."
+    pipenv run python ./gen_top_contrib.py -t "${CONTRIB_TARGET_DIR}"
 
 else
     echo "Generating docs..."
     ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
     echo "Generating Demisto class and CommonServerPython docs..."
     ./gen_pydocs.py -t "${TARGET_DIR}"
+    echo "Generating top contributors page..."
+    ./gen_top_contrib.py -t "${CONTRIB_TARGET_DIR}"
 fi
