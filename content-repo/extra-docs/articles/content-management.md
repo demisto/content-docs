@@ -75,7 +75,7 @@ Consists of the following sections:
 
 ## Building the CI/CD process
 
-### recommneded steps:
+### Recommneded Steps:
 1. Prepare the enviornment and the virtual enviornment to run demisto-sdk on.
 2. Create an ID set for the private repo, and merge it with Content repo's ID set.
 3. Validate the packs' files using the [demisto-sdk validate](https://xsoar.pan.dev/docs/concepts/demisto-sdk#validate) command.
