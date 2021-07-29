@@ -80,9 +80,8 @@ The **Phishing Campaign Incident** layout contains the following additional tabs
   -  **Campaign Canvas**: From Cortex XSOAR v6.1, a canvas of the campaign is supported, which can be accessed through the canvas section:
 ![image](https://user-images.githubusercontent.com/43602124/125288084-68b6b980-e326-11eb-99c0-19e1b7b6af8c.png)
 
-- **Campaign Management**: Enables the analyst to take batch actions: ![image](https://user-images.githubusercontent.com/53567272/126163409-35eaffdb-d006-4a09-94c8-fa9dc7c698f0.png)
+- **Campaign Management**: Enables the analyst to take batch actions: ![image](https://user-images.githubusercontent.com/43602124/127522742-811dceb8-5b8c-4a26-a01b-d2dff272dff4.png)
     The **Campaign Management** tab contains the following sections:
   - **Similar Incidents**: Similar phishing incidents are displayed.  The columns are the same incident fields in the `fieldToDisplay` input in the  `Detect & Manage Phishing Campaign` playbook, so analysts can decide what to see about their related incidents.
-  - **Low Similarity Incidents**: Low similarity phishing incidents are displayed.
   - **Notify Recipients**: Analysts can select which incident,  recipients, etc, to send an email.  The recipients from the incidents are auto-populated in the **Campaign Email To** field. Analysts can write an email and send it to the recipients directly from the layout.
   - **Incident Actions**:  The related incidents can be linked (occurs automatically by default in the playbook), unlinked, closed and reopened.
