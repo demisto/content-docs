@@ -9,6 +9,51 @@ This process encapsulates what you need in order to control your XSOAR machines 
 
 ---
 
+## Building The Repo
+You can visit our [example repo](https://github.com/demisto/content-helloworld-premium) and clone it to use as a base to your repo.
+### The Repo's Structure
+```
+├── .hooks
+│   ├── <your-hooks-here>
+├── Packs
+│   ├── Pack1
+│   │   ├── IncidentFields
+│   │   │   ├── <your-incident-field.json>
+│   │   │   ├── ...
+│   │   ├── IncidentTypes
+│   │   │   ├── <your-incident-type.json>
+│   │   │   ├── ...
+│   │   ├── Layouts
+│   │   │   ├── <your-layout.json>
+│   │   │   ├── ...
+│   │   ├── Playbooks
+│   │   │   ├── <your-playbook.yml>
+│   │   │   ├── ...
+│   │   ├── Scripts
+│   │   │   ├── <your-script>
+│   │   │   │   ├── <your-script.py>
+│   │   │   │   ├── <your-script.yml>
+│   │   │   ├── ...
+│   │   ├── Integrations
+│   │   │   ├── <your-integration>
+│   │   │   │   ├── <your-integration.py>
+│   │   │   │   ├── <your-integration.yml>
+│   │   │   ├── ...
+│   │   ├── ReleaseNotes
+│   │   │   ├── <1_0_1.md>
+│   │   │   ├── <1_0_2.md>
+│   │   │   ├── ...
+│   ├── ...
+├── README.md
+├── xsoar_config.json
+├── .private-repo-settings
+├── .demisto-sdk-conf
+├── requirements.txt
+├── tox.ini
+```
+
+
+
 ### The `xsoar_config.json` File
 The configuration file that defines what will be set up on the machine.<br /> 
 Consists of the following sections:
