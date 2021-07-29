@@ -54,7 +54,7 @@ Single Logout Binding Type | POST | False
 Primary Verification Certificate | Your own certificate. For help creating a new certificate go to the [Set Up SAML Logout Article](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/users-and-roles/authenticate-users-with-saml-20/set-up-adfs-as-the-identity-provider-using-saml-20/set-up-saml-logout.html) and follow Step 1. | False
 Signing | Sign Response | False
 
-In the **Group Access** section, add each group that you would like to associate to this application. This is where you define which groups to associate with XSOAR, which will be mapped to XSOAR roles. For example, you can create a group that includes all uses in a single group called _Users_.  
+In the **Group Access** section, add each group that you would like to associate to this application. This is where you define which groups to associate with XSOAR, which will be mapped to XSOAR roles. For example, you can create a group that includes all users in a single group called _Users_.  
  
 
 ### Configure the SAML 2.0 Integration in XSOAR
