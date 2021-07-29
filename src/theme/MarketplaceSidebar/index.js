@@ -437,7 +437,7 @@ function MarketplaceSidebar({
           <br></br>
           <br></br>
           <div className={styles.contributors}>
-            <a href="marketplace/contributors">Top Contributors</a>
+            <Link to="/marketplace/contributors"> Top Contributors </Link>
           </div>
         </ul>
       </div>
