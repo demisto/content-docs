@@ -17,20 +17,20 @@ The **Phishing Campaign** Content Pack contains the following content:
  - Phishing Campaign incident type
  - Phishing Campaign layout
  - Phishing Campaign incident fields
- - `Detect & Manage Phishing Campaign` playbook
+ - `Detect & Manage Phishing Campaigns` playbook
  - `FindEmailCampaign` automation
 
 The `FindEmailCampaign` automation iterates over previous and existing phishing incidents. By using machine learning, it is able to detect similar phishing incidents. The incidents may be deemed similar if the email subject or email body have textual similarities. The automation outputs the data to the context, which contains details about the incidents that were found to be part of the campaign, as well as populating into incident fields, summary information about the campaign.
 
-The automation can also be customized to meet different criteria (if your email information is mapped into different fields, if your incident type has a different name, or if the similarity by which incidents are searched is too lenient or too strict). It can run to detect phishing campaigns, but to fully utilize it to detect and manage campaigns, use the `Find & Detect Phishing Campaigns` playbook. 
+The automation can also be customized to meet different criteria (if your email information is mapped into different fields, if your incident type has a different name, or if the similarity by which incidents are searched is too lenient or too strict). It can run to detect phishing campaigns, but to fully utilize it to detect and manage campaigns, use the `Detect & Manage Phishing Campaigns` playbook. 
 
-The `Find & Detect Phishing Campaigns` playbook uses the `FindEmailCampaigns` automation to detect phishing campaigns. If incidents belonging to a campaign were detected, the playbook checks whether the incidents are already linked to a Phishing Campaign incident. If so, the currently investigated incident is also added to that campaign. If not, a new Phishing Campaign incident is created, and all similar incidents are linked to it.
+The `Detect & Manage Phishing Campaigns` playbook uses the `FindEmailCampaigns` automation to detect phishing campaigns. If incidents belonging to a campaign were detected, the playbook checks whether the incidents are already linked to a Phishing Campaign incident. If so, the currently investigated incident is also added to that campaign incident. If not, a new Phishing Campaign incident is created, and all similar incidents are linked to it.
 
-In addition, the playbook takes the context and incident fields set by the `FindEmailCampaign` automation, and updates the Phishing Campaign incident with that data, so that it contains the most up to date information about the phishing incidents.
+In addition, since the `FindEmailCampaign` script ran on the current phishing incident, the playbook takes the context and incident fields set by the `FindEmailCampaign` automation, and updates the Phishing Campaign incident with that data too, so that it contains the most up to date information about the phishing incidents.
 
-Finally, the playbook marks all the similar Phishing incidents as incidents belonging to the detected Phishing Campaign incident. It adds the **PartOfCampaign** context key to the context:
+Finally, the playbook marks all the similar Phishing incidents as incidents belonging to the detected Phishing Campaign incident. It sets the **Part Of Campaign** incident field in the phishing incidents, with the ID of the phishing campaign incident:
 
-![image](https://user-images.githubusercontent.com/43602124/123551791-e5b92f00-d77b-11eb-9923-0968691a93fb.png)
+![image](https://user-images.githubusercontent.com/43602124/127866753-93e7ce42-2c11-474e-b492-0fb07dc751db.png)
 
 This context key is used in the phishing incident>Investigation tab>dynamic section, which informs the analyst that the incident is part of a phishing campaign, and provides a quick link to the related campaign:
 
