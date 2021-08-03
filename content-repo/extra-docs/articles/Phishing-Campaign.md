@@ -1,3 +1,10 @@
+---
+id: phishing-campaign
+title: Phishing Campaign
+description: How to detect and manage phishing campaigns in Cortex XSOAR using the Phishing Campaign Content Pack.
+---
+
+
 ## Phishing Campaign
 
 A phishing campaign is a collection of phishing incidents that originate from the same attacker, or as part of the same organized attack launched against multiple users.
