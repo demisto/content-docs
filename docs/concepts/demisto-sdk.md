@@ -22,7 +22,7 @@ pip3 install demisto-sdk
 ```
 After running the command the library should install - as a first step, check what version of the SDK you are using, by running:
 ```buildoutcfg
-demsito-sdk -v
+demisto-sdk -v
 ```
 This command should print the version you are using. You can check the latest released version [here](https://pypi.org/project/demisto-sdk/#history).
 
