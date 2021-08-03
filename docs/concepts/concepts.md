@@ -6,7 +6,7 @@ It is important to familiarize yourself with Cortex XSOAR components, UI termino
 
 ## Content Packs
 
-All Cortex XSOAR content is organized in Packs. Packs are essentially groups of artifacts that implement use cases in the product. Content Packs are created by Palo Alto Networks, Technology Partners, Consulting Companies, MSSPs, Customers and Individual Contributors. Content Packs may include a variety of different components, such as Integrations, Automations, Playbooks, Incident Types, Widgets and [more](../integrations/package-dir). If you want to [contribute](../contributing) the Content entities you created, you should create a Content Pack and submit it for review, in order for it to be added to the Cortex XSOAR Marketplace and become available to customers.
+All Cortex XSOAR content is organized in Packs. Packs are essentially groups of artifacts that implement use cases in the product. Content Packs are created by Palo Alto Networks, Technology Partners, Consulting Companies, MSSPs, Customers and Individual Contributors. Content Packs may include a variety of different components, such as Integrations, Automations, Playbooks, Incident Types, Widgets and [more](../integrations/package-dir). If you want to [contribute](../contributing/contributing) the Content entities you created, you should create a Content Pack and submit it for review, in order for it to be added to the Cortex XSOAR Marketplace and become available to customers.
 
 ## Incident Lifecycle
 
