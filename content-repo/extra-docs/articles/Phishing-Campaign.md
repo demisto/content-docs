@@ -31,11 +31,14 @@ The **Phishing Campaign** content pack contains several content items.
 
 ### Automations ###
 
-**FindEmailCampaign Automation**
+- **FindEmailCampaign Automation**
 
-The **FindEmailCampaign** automation iterates over previous and existing phishing incidents. By using machine learning, it is able to detect similar phishing incidents. The incidents may be deemed similar if the email subject or email body have textual similarities. The automation outputs the data to the context, which contains details about the incidents that were found to be part of the campaign, as well as populating into incident fields, summary information about the campaign.
+  The **FindEmailCampaign** automation iterates over previous and existing phishing incidents. By using machine learning, it is able to detect similar phishing incidents. The incidents may be deemed similar if the email subject or email body have textual similarities. The automation outputs the data to the context, which contains details about the incidents that were found to be part of the campaign, as well as populating into incident fields, summary information about the campaign.
 
-The automation can also be customized to meet different criteria (if your email information is mapped into different fields, if your incident type has a different name, or if the similarity by which incidents are searched is too lenient or too strict). It can run to detect phishing campaigns, but to fully utilize it to detect and manage campaigns, use the **Detect & Manage Phishing Campaigns** playbook. 
+  The automation can also be customized to meet different criteria (if your email information is mapped into different fields, if your incident type has a different name, or if the similarity by which incidents are searched is too lenient or too strict). It can run to detect phishing campaigns, but to fully utilize it to detect and manage campaigns, use the **Detect & Manage Phishing Campaigns** playbook. 
+- **IsIncidentPartOfCampaign Automation**
+ 
+  The **IsIncidentPartOfCampaign** automation takes the list of incidents detected as similar by the **FindEmailCampaign** automation, and checks whether one of them is already linked to a Phishing Campaign incident. If so, it outputs the ID of that incident so that all the similar phishing incidents can be linked to it. This automation finds whether there is an existing campaign incident or whether a new incident needs to be created.
 
 ## Playbooks ##
 
@@ -72,10 +75,7 @@ Phishing Campaign incident type
 - Is Phishing Campaign
 - Part of Campaign
 - Select Campaign Incidents
-  
-## Indicator Fields
-
-Campaign
+ 
 
 ## Layouts
 
@@ -120,7 +120,7 @@ Enables the analyst to take batch actions:
 - Common Playbooks
 - Common Scripts
 - Common Types
-- Phishing Content Pack
+- Phishing
 
 ## Pack Configuration
 
