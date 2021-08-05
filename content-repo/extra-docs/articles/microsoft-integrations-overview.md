@@ -83,12 +83,12 @@ Searching Audit logs from O365 and Azure.
 | Integration 	| Cloud/On-Prem 	| Usage 	| Limitations 	| Auth Method 	|
 |:---:	|:---:	|:---:	|:---:	|:---:	|
 | EWS Mail Sender	| On-Prem 	| Notify user by mail in a playbook<br>Fetches emails as incidents 	| Supports basic authentication only 	| Basic Auth 	|
-| EWS O365 	| Cloud/Hybrid 	|  	| For O365 - Supports OAuth2<br>Only supports admin account that have access to all mailboxes 	| client_credentials<br>Using Oproxy/Self-deployed 	|
+| EWS O365 	| Cloud/Hybrid - [Link](https://docs.microsoft.com/en-us/exchange/exchange-hybrid#hybrid-deployment-example)	|  	| For O365 - Supports OAuth2<br>Only supports admin account that have access to all mailboxes 	| client_credentials<br>Using Oproxy/Self-deployed 	|
 | EWS v2 	| On-Prem + Cloud 	|  	|  	| Basic Auth + NTLM 	|
 | EWS Extension 	|  	| Managing junk rules and search the message trace 	| uses different APIs than EWSv2 	|  	|
 | Exchange Online Powershell V2 module 	| On-Prem 	| Managing mailboxes and permissions 	|  	|  	|
-| O365 Outlook Mail (Using Graph API) 	| Cloud 	|  	|  	| client_credentials<br>Using Oproxy/Self-deployed 	|
-| O365 Outlook Mail Single User<br>(Using Graph API) 	| Cloud 	| Same as O365 Outlook Mail but for a single user. 	|  	| auth_code (on behalf of a user)<br>Using Oproxy/Self-deployed 	|
+| O365 Outlook Mail (Using Graph API) 	| Cloud 	| Managing and Sending mail on behalf a different user that was configured 	|  	| client_credentials<br>Using Oproxy/Self-deployed 	|
+| O365 Outlook Mail Single User<br>(Using Graph API) 	| Cloud 	| 	| Can manage the mailbox of the configured user only 	| auth_code (on behalf of a user)<br>Using Oproxy/Self-deployed 	|
 | Exchange 2016 Compliance Search 	| On-Prem 	| the only module allowing search of messages cross all org 	|  	| Basic Auth 	|
 | O365 Security and Compliance 	| Cloud  	| Search across mailboxes and execute actions on the results. 	| Known limitation in the README’s<br>Restart auth process on  	| device-code (on behalf of a user)  	|
 
