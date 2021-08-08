@@ -28,7 +28,7 @@ Every integration/script that utilizes one of the following docker images:
 - `demisto/python3` 
 
 Is updated automatically from time to time whenever a newer tag is available.
-This happens by an automatic reoccuring job that updates the docker image of the content item by a Pull Request in the content git repository.
+This happens via an automatic reoccurring job that updates the docker image of the content item by a Pull Request in the content git repository.
 Then, the pack is distributed in the marketplace.
 
 ## Enabling/Disabling Docker Image Automatic Update
