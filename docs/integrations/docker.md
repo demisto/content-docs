@@ -29,7 +29,7 @@ Every integration/script that utilizes one of the following docker images:
 
 Is updated automatically from time to time whenever a newer tag is available.
 This happens via an automatic reoccurring job that updates the docker image of the content item by a Pull Request in the content git repository.
-Then, the pack is distributed in the marketplace.
+Finally, the pack is distributed in the marketplace.
 
 ## Enabling/Disabling Docker Image Automatic Update
 If your integration/script is not using one of the above images, you can still have it updated automatically by adding the `autoUpdateDockerImage`key to the YML file.
