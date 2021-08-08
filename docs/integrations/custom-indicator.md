@@ -5,11 +5,14 @@ description: Create a customized indicator
 ---
 
 ## Overview
-**CustomIndicator** is a new type of an indicator, which allows you to create a customized Indicators.
+**CustomIndicator** is a new type of an indicator which allows you to create customized Indicators.
 
 ## CustomIndicator Class
 
-* It is part of the CommonServerPython.py
+* The CustomIndicator can get any custom name for the indicator.
+* Unlike other indicators the CustomIndicator can have any parameters wanted, it can be passed by the params argument, which is a dictionary where the key is the parameter name and the value is the parameter's value.
+* The CustomIndicator can have a custom context  data prefix, which is passed by the prefix_str argument.
+  
 * functions:
     * __init__(self, indicator_type, value, dbot_score, params, prefix_str):
         * Description: Creates the CustomIndicator object.
@@ -64,5 +67,4 @@ description: Create a customized indicator
         outputs_key_field='test_key_field',
         indicator=custom_indicator
     )
-5.
     
