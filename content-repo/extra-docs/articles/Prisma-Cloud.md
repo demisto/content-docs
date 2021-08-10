@@ -107,10 +107,25 @@ The classified and remediated policies are as following:
 | bee0893d-85fb-403f-9ba7-a5269a46d382 |	GCP Kubernetes Engine Misconfiguration |	GCP Kubernetes cluster intra-node visibility disabled |	"With Intranode Visibility, all network traffic in your cluster is seen by the Google Cloud Platform network. This means you can see flow logs for all traffic between Pods, including traffic between Pods on the same node. And you can create firewall rules that apply to all traffic between Pods. This policy checks your cluster's intra-node visibility feature and generates an alert if it's disabled. |"
 
 ## Playbooks
-In the Prisma Cloud pack, there are remediation playbooks for the following Clouds:
-Azure - Link to playbooks docs
-GCP - Link to playbooks docs
-AWS - Link to playbooks docs
+Browse some of the remediation playbooks in the Prisma Cloud pack, remediating policies for the major clouds:
 
+### AWS
+[AWS EC2 Instance Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---aws-ec2-instance-misconfiguration)
+
+[AWS CloudTrail Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---aws-cloud-trail-is-not-enabled-on-the-account)
+
+[AWS IAM Policy Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---aws-iam-policy-misconfiguration)
+
+### Azure
+[Azure Storage Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---azure-storage-misconfiguration)
+
+[Azure SQL Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---azure-sql-misconfiguration)
+
+[Azure Network Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---azure-network-misconfiguration)
+
+[Azure AKS Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---azure-aks-misconfiguration)
+
+### GCP
+[GCP Kubernetes Engine Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---gcp-kubernetes-engine-misconfiguration)
 
 
