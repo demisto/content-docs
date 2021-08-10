@@ -1,6 +1,7 @@
 ---
 id: prisma-cloud
 title: Prisma Cloud
+description: Automate and unify security incident response across your cloud environments, while still giving a degree of control to dedicated cloud teams.
 ---
 
 ## Pack Description
