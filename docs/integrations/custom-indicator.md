@@ -14,6 +14,7 @@ description: Create a customized indicator
 * The CustomIndicator can have a custom context  data prefix, which is passed by the prefix_str argument.
   
 * <u>Functions</u>:
+    
     * init(self, indicator_type, value, dbot_score, params, prefix_str):
         * Description: Creates the CustomIndicator object.
         * Argumets:
@@ -22,9 +23,9 @@ description: Create a customized indicator
             | --- | --- | ---|
             | indicator_type | type name of the indicator.| Str
             | value | Value of the indicator. | Any
-            | DBotScore | If custom indicator has a score then create and set a DBotScore object.| DBotScore
-            | params |  A dictionary containing all the param names and their values.| Dict(Str,Any)
-            | prefix_str | Will be used as the context path prefix.| Str
+            | dbot_score | If custom indicator has a score then create and set a DBotScore object.| DBotScore
+            | data |  A dictionary containing all the param names and their values.| Dict(Str,Any)
+            | context_prefix | Will be used as the context path prefix.| Str
         * Returns: None
     
     * to_context(self):
@@ -45,7 +46,7 @@ description: Create a customized indicator
     )
 2. Create a dictionary containing the parameters needed for the customized indicator.
    ```python    
-    params = {
+    data = {
         'param1': 'value1',
         'param2': 'value2',
     }
@@ -55,8 +56,8 @@ description: Create a customized indicator
         indicator_type='MyCustomIndicator',
         dbot_score=dbot_score,
         value=indicator_value,
-        params=params,
-        prefix_str='custom',
+        data=data,
+        context_prefix='custom',
     )
 4. Return the result of the command
    ```python
@@ -67,4 +68,13 @@ description: Create a customized indicator
         outputs_key_field='test_key_field',
         indicator=custom_indicator
     )
+
+5. You should follow the guides below to add your new indicator type to you XSOAR instance:
+   
+    5.1. Create an indicator type - https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/manage-indicators/understand-indicators/indicator-types/create-an-indicator-type.
     
+    5.2. Create and map indicator fields - https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/manage-indicators/understand-indicators/indicator-fields.
+    
+    5.3. Customize layout for your indicator - https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/manage-indicators/understand-indicators/customize-indicator-view-layouts.
+    
+    5.4. Create a regex in your indicator type, so the indicator will be enriched.
