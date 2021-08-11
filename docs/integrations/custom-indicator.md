@@ -4,7 +4,7 @@ description: Create a customized indicator
 ---
 
 ## Overview
-**CustomIndicator** is a helper class used to achieve the implementation of the custom indicator.
+**CustomIndicator** is a new helpe class which can be used to create a customized indicator.
 ## CustomIndicator Class
 
 * The CustomIndicator class can get any custom name for the indicator.
