@@ -1,35 +1,33 @@
----
 id: custom-indicator
 title: Custom Indicator
 description: Create a customized indicator
 ---
 
 ## Overview
-**CustomIndicator** is a new type of an indicator which allows you to create customized Indicators.
-
+**CustomIndicator** is a helper class used to achieve the implementation of the custom indicator.
 ## CustomIndicator Class
 
-* The CustomIndicator can get any custom name for the indicator.
-* Unlike other indicators the CustomIndicator can have any parameters wanted, it can be passed by the params argument, which is a dictionary where the key is the parameter name and the value is the parameter's value.
-* The CustomIndicator can have a custom context  data prefix, which is passed by the prefix_str argument.
+* The CustomIndicator class can get any custom name for the indicator.
+* Unlike other indicators, the CustomIndicator can have any parameters. It can be passed by the *data* argument, which is a dictionary where the key is the parameter name and the value is the parameter's value.
+* The CustomIndicator can have a custom context data prefix, which is passed by the *prefix_str* argument.
   
 * **Functions**:
     
     * init(self, indicator_type, value, dbot_score, params, prefix_str):
         * Description: Creates the CustomIndicator object.
-        * Argumets:
+        * Arguments:
           
             | argument | Description| type|
             | --- | --- | ---|
-            | indicator_type | type name of the indicator.| Str
+            | indicator_type | The type name of the indicator.| String
             | value | Value of the indicator. | Any
-            | dbot_score | If custom indicator has a score then create and set a DBotScore object.| DBotScore
-            | data |  A dictionary containing all the param names and their values.| Dict(Str,Any)
-            | context_prefix | Will be used as the context path prefix.| Str
+            | dbot_score | If the custom indicator has a score,  create and set a DBotScore object.| DBotScore
+            | data | A dictionary containing all the parameter names and their values.| Dict(Str,Any)
+            | context_prefix | Used as the context path prefix.| Str
         * Returns: None
     
     * to_context(self):
-        * Description: Returns the context of a customized Indicator.
+        * Description: Returns the context of a customized indicator.
         * Arguments: None
         * Returns: Dict(str,Any)
     
@@ -69,12 +67,12 @@ description: Create a customized indicator
         indicator=custom_indicator
     )
 
-5. You should follow the guides below to add your new indicator type to you XSOAR instance:
+5. Follow the guides below to add your new indicator type to your XSOAR instance:
    
-    5.1. Create an indicator type - https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/manage-indicators/understand-indicators/indicator-types/create-an-indicator-type.
+    a.  [Create an indicator type](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/manage-indicators/understand-indicators/indicator-types/create-an-indicator-type).
     
-    5.2. Create and map indicator fields - https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/manage-indicators/understand-indicators/indicator-fields.
+    b. [Create and map indicator fields](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/manage-indicators/understand-indicators/indicator-fields).
     
-    5.3. Customize layout for your indicator - https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/manage-indicators/understand-indicators/customize-indicator-view-layouts.
+    c. [Customize the layout for your indicator](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/manage-indicators/understand-indicators/customize-indicator-view-layouts).
     
-    5.4. Create a regex in your indicator type, so the indicator will be enriched.
+    d. Create a regex in your indicator type, so the indicator will be enriched.
