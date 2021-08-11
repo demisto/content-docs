@@ -13,7 +13,7 @@ description: Create a customized indicator
   
 * **Functions**:
     
-    * init(self, indicator_type, value, dbot_score, params, prefix_str):
+    *       init(self, indicator_type, value, dbot_score, params, prefix_str):
         * Description: Creates the CustomIndicator object.
         * Arguments:
           
@@ -22,14 +22,14 @@ description: Create a customized indicator
             | indicator_type | The type name of the indicator.| String
             | value | Value of the indicator. | Any
             | dbot_score | If the custom indicator has a score,  create and set a DBotScore object.| DBotScore
-            | data | A dictionary containing all the parameter names and their values.| Dict(Str,Any)
-            | context_prefix | Used as the context path prefix.| Str
+            | data | A dictionary containing all the parameter names and their values.| Dict(String,Any)
+            | context_prefix | Used as the context path prefix.| String
         * Returns: None
     
-    * to_context(self):
+    *       to_context(self):
         * Description: Returns the context of a customized indicator.
         * Arguments: None
-        * Returns: Dict(str,Any)
+        * Returns: Dict(String,Any)
     
 ## How To Use
 1. Create a DBotScore object.
