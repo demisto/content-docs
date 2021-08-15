@@ -84,7 +84,7 @@ Consists of the following sections:
 6. Or: Upload zipped packs directly to your machine using the [demisto-sdk upload](https://xsoar.pan.dev/docs/concepts/demisto-sdk#upload) command.
 7. Upload artifacts to your artifact repository.
 
-[Example File]() - This is a GitHub actions YML file that can be used as a template.
+[Example File](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/docs-files/ci-cd.yml) - This is a GitHub actions YML file that can be used as a template.
 
 ---
 
