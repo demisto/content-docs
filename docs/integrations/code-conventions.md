@@ -562,6 +562,21 @@ When working on integrations that require user credentials (such as username/pas
   type: 9
   required: true
 ```
+- **And in the code:**
+```python
+params = demisto.params()
+username = params.get('credentials').get('identifier')
+password = params.get('credentials').get('password')
+```
+- **In demistomock.py:**
+```python
+return {
+        "base_url": "...",
+        "credentials": {"identifier": "<username>",
+                        "password": "<password>"},
+        ...
+    }
+```
 
 **Using an API Token/Key:**
 
