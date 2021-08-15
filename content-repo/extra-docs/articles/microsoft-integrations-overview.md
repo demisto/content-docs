@@ -14,22 +14,22 @@ Review this document to determine the Microsoft integrations you need for your u
 * Remove a pre-approved application. 
 
 
-### [Azure Active Directory Users](https://docs.microsoft.com/en-us/graph/api/resources/users?view=graph-rest-1.0)
+### [Azure Active Directory Users](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-user)
 Manage users in Azure Active Directory and O365.
 
 - List, create, and update users.
 - Terminate sessions.
 - Block users, etc. 
 
-### [Azure Active Directory Groups](https://docs.microsoft.com/en-us/graph/api/resources/groups-overview?view=graph-rest-1.0)
+### [Azure Active Directory Groups](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-groups)
 Manage groups in Azure Active Directory and O365. 
 - List, create, and update groups. 
 - List, add, and remove members. 
 
-### [Azure Active Directory Identity And Access](https://docs.microsoft.com/en-us/graph/api/resources/azure-ad-overview?view=graph-rest-1.0) 
+### [Azure Active Directory Identity And Access](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-identityand-access) 
 Manage Active Directory roles and role members.
 
-### [Azure Active Directory Applications](https://docs.microsoft.com/en-us/graph/api/resources/application?view=graph-rest-1.0) / [Service Principals](https://docs.microsoft.com/en-us/graph/api/resources/serviceprincipal?view=graph-rest-1.0) 
+### [Azure Active Directory Applications / Service Principals](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-applications) 
 Manage applications and service principals. 
 
 ## O365
@@ -41,7 +41,7 @@ Manage applications and service principals.
 * Add a member to an existing team.
 * Schedule an event in the calendar.
 
-### [O365 File Management (Onedrive/Sharepoint/Teams)](https://docs.microsoft.com/en-us/graph/api/resources/onedrive?view=graph-rest-1.0)
+### [O365 File Management (Onedrive/Sharepoint/Teams)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-files)
 Manage files in O365 (OneDrive/SharePoint/Teams).
 - Upload and download files.
 - List drive and folder content.
@@ -60,7 +60,7 @@ Manage teams and team members
 - Create and update teams.
 - Add and remove team members.
 
-### [O365 Outlook Calendar](https://docs.microsoft.com/en-us/graph/api/resources/calendar?view=graph-rest-1.0) 
+### [O365 Outlook Calendar](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-calendar) 
 Manage calendar events.
 
 ### [Microsoft Graph API](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-api) 
@@ -177,9 +177,6 @@ Fetch Indicators from Microsoft Defender.
 Office 365 IP Address and URL feed.
 
 ### Microsoft Intune Indicator Feed
-Indicator feed from Microsoft Intune (Defender for Endpoint).
-
-
-
+ Indicator feed from Microsoft Intune (Defender for Endpoint).
 
 
