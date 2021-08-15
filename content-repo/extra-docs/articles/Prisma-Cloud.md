@@ -4,7 +4,6 @@ title: Prisma Cloud
 description: Automate and unify security incident response across your cloud environments, while still giving a degree of control to dedicated cloud teams.
 ---
 
-## Pack Description
 Automate and unify security incident response across your cloud environments, while still giving a degree of control to dedicated cloud teams.
 Cloud adoption has expanded the threat surface and created disparate ecosystems that hamper visibility into security vulnerabilities across the network.
 In addition, cloud provisioning is often managed by multiple teams, making it hard for security teams to keep pace.
@@ -18,8 +17,85 @@ The playbooks included in this Pack help automate the remediation of alerts gene
 - Track configuration issues across all your Cloud environments.
 - Ensure your Cloud environments are compliant and up to date with the latest compliance standards.
 - Configure your Cloud environments using industry best practices.
+
 As part of this pack, you will also get out-of-the-box Prisma Cloud incident views, segregated alert layouts and playbooks.
 All of these are easily customizable to suit the needs of your organization.
+
+# In this Pack
+## Automations
+- **PrismaCloudAttribution**
+
+Recursively extracts specified fields from a provided list of assets for Prisma Cloud attribution use case.
+
+## Integrations
+The pack contains the Prisma Cloud (RedLock) integration. Read more about the integration in the [Prisma Cloud (RedLock)](https://xsoar.pan.dev/docs/reference/integrations/red-lock) article.
+
+## Playbooks
+The pack contains many playbooks, which are divided to major playbooks, associated to the incident types in the pack, and leading to sub-playbooks that perform remediation on specific Prisma Cloud policy violations.
+
+Browse some of the remediation playbooks in the Prisma Cloud pack, remediating policies for the major clouds:
+
+### AWS
+[AWS EC2 Instance Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---aws-ec2-instance-misconfiguration)
+
+[AWS CloudTrail Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---aws-cloud-trail-is-not-enabled-on-the-account)
+
+[AWS IAM Policy Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---aws-iam-policy-misconfiguration)
+
+### Azure
+[Azure Storage Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---azure-storage-misconfiguration)
+
+[Azure SQL Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---azure-sql-misconfiguration)
+
+[Azure Network Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---azure-network-misconfiguration)
+
+[Azure AKS Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---azure-aks-misconfiguration)
+
+### GCP
+[GCP Kubernetes Engine Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---gcp-kubernetes-engine-misconfiguration)
+
+## Incident types
+- **Prisma Cloud** - All of the alerts that are fetched from the Prisma Cloud integration are being classified and mapped into this generic incident type, unless a specific incident type for this alert is supported.
+- AWS CloudTrail Misconfiguration
+- AWS EC2 Instance Misconfiguration
+- AWS IAM Policy Misconfiguration
+- Azure AKS Misconfiguration
+- Azure Network Misconfiguration
+- Azure SQL Misconfiguration
+- Azure Storage Misconfiguration
+- GCP Compute Engine Misconfiguration
+- GCP Kubernetes Engine Misconfiguration
+
+
+
+## Layouts
+After an incident is fetched from the Prisma Cloud integration, it is automatically classified into one of the incident types in the pack.
+The incident types all have a similar layout containing all relevant data from the Prisma Cloud alert. These incidents enable the analyst to view the incidents workflow and take action.
+
+The Prisma Cloud incidents layout contains the following tabs:
+**Case Info** tab:
+Gives the analyst the basic info of the Prisma Cloud alert:
+
+  ![image](image.png)
+
+ 
+**Investigation** tab:
+
+Gives a more detailed view of the incident, including the violated policy information, the violating resource details, specific alert rules that triggered the incient, and a list of Remediation Actions recommended by the Prisma Cloud team for handling the policy violation.
+
+  ![image](image.png)
+
+# Pack Workflow and configuration
+
+Once you configure the Prisma Cloud integration to fetch incidents, all incidents that will be created in XSOAR will be classified and mapped into the Prisma Cloud generic incident type, unless a specific incident type for this alert is already supported.
+ 
+This incident type will show all of the generic alert information from Prisma Cloud, but will not trigger any playbook.
+ 
+For all other supported incident types, the incident will trigger the parent playbook that is assigned to this incident type.
+Throughout the playbook’s run the analyst will need to make a decision whether they want to use the automatic remediation path, or handle the policy violation manually using the recommendations given in the layout.
+ 
+Each incident type and assigned playbook can remediate several policy violations that are relevant for the use-case, based on the policy ID mapped from the incident.
+
 
 ## Before You Start
 As a part of the Prisma Cloud pack, we have created Out of the Box classification and Mapping, to create incidents for all the Prisma Cloud policies that are supported and remediated through this pack.
@@ -106,26 +182,6 @@ The classified and remediated policies are as following:
 | 50d5ec3b-1710-4ff7-bb09-061c30deef96 |	GCP Kubernetes Engine Misconfiguration |	GCP Kubernetes Engine Clusters have binary authorization disabled |	This policy identifies Google Kubernetes Engine (GKE) clusters that have disabled binary authorization. Binary authorization is a security control that ensures only trusted container images are deployed on GKE clusters. As a best practice, verify images prior to deployment to reduce the risk of running unintended or malicious code in your environment. |
 | bee0893d-85fb-403f-9ba7-a5269a46d382 |	GCP Kubernetes Engine Misconfiguration |	GCP Kubernetes cluster intra-node visibility disabled |	"With Intranode Visibility, all network traffic in your cluster is seen by the Google Cloud Platform network. This means you can see flow logs for all traffic between Pods, including traffic between Pods on the same node. And you can create firewall rules that apply to all traffic between Pods. This policy checks your cluster's intra-node visibility feature and generates an alert if it's disabled. |"
 
-## Playbooks
-Browse some of the remediation playbooks in the Prisma Cloud pack, remediating policies for the major clouds:
 
-### AWS
-[AWS EC2 Instance Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---aws-ec2-instance-misconfiguration)
-
-[AWS CloudTrail Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---aws-cloud-trail-is-not-enabled-on-the-account)
-
-[AWS IAM Policy Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---aws-iam-policy-misconfiguration)
-
-### Azure
-[Azure Storage Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---azure-storage-misconfiguration)
-
-[Azure SQL Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---azure-sql-misconfiguration)
-
-[Azure Network Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---azure-network-misconfiguration)
-
-[Azure AKS Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---azure-aks-misconfiguration)
-
-### GCP
-[GCP Kubernetes Engine Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---gcp-kubernetes-engine-misconfiguration)
 
 
