@@ -244,6 +244,10 @@
       "maintenance_start": "May 01, 2020",
       "eol_start": "May 01, 2021",
       "note": "Use the Generic SQL integration instead."
+    },
+    {
+      "id": "palo_alto_networks_pan_os_edl_management",
+      "note": "Use the Palo Alto Networks PAN-OS EDL Service integration instead. For customers with over 1000 Firewalls, this integration remains fully supported."
     }
   ]
 }
