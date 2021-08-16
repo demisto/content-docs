@@ -6,8 +6,8 @@ description: The following maps all of Microsoft integrations and their use case
 
 
 # Microsoft Azure and O365 Integrations Overview
-Microsoft O365 and Azure are extensive platforms with many different products and functionality. 
-Moreover, the APIs behind them (especially the Microsoft Graph API) are vast and do not fit under one integration. 
+Microsoft O365 and Azure are extensive platforms with many different products and functionality.
+Moreover, the APIs behind them (especially the Microsoft Graph API) are vast and do not fit under one integration.
 
 Review this document to determine the Microsoft integrations you need for your use case.
 
@@ -18,7 +18,7 @@ Review this document to determine the Microsoft integrations you need for your u
 
 * Create users and groups.
 * Remove a member from a group.
-* Remove a pre-approved application. 
+* Remove a pre-approved application.
 
 
 ### [Azure Active Directory Users](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-user)
@@ -26,18 +26,18 @@ Manage users in Azure Active Directory and O365.
 
 - List, create, and update users.
 - Terminate sessions.
-- Block users, etc. 
+- Block users, etc.
 
 ### [Azure Active Directory Groups](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-groups)
-Manage groups in Azure Active Directory and O365. 
-- List, create, and update groups. 
-- List, add, and remove members. 
+Manage groups in Azure Active Directory and O365.
+- List, create, and update groups.
+- List, add, and remove members.
 
-### [Azure Active Directory Identity And Access](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-identityand-access) 
+### [Azure Active Directory Identity And Access](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-identityand-access)
 Manage Active Directory roles and role members.
 
-### [Azure Active Directory Applications / Service Principals](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-applications) 
-Manage applications and service principals. 
+### [Azure Active Directory Applications / Service Principals](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-applications)
+Manage applications and service principals.
 
 ## O365
 
@@ -54,7 +54,7 @@ Manage files in O365 (OneDrive/SharePoint/Teams).
 - List drive and folder content.
 - List SharePoint sites.  
 
-### [Microsoft Teams](https://xsoar.pan.dev/docs/reference/integrations/microsoft-teams) 
+### [Microsoft Teams](https://xsoar.pan.dev/docs/reference/integrations/microsoft-teams)
 Enable communicating and mirroring via Microsoft Teams.
 - Create and update channels.
 - Add users to channel.
@@ -62,27 +62,27 @@ Enable communicating and mirroring via Microsoft Teams.
 - Ring user.
 - Message mirroring.
 
-### [Microsoft Teams Management](https://xsoar.pan.dev/docs/reference/integrations/microsoft-teams-management) 
+### [Microsoft Teams Management](https://xsoar.pan.dev/docs/reference/integrations/microsoft-teams-management)
 Manage teams and team members
 - Create and update teams.
 - Add and remove team members.
 
-### [O365 Outlook Calendar](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-calendar) 
+### [O365 Outlook Calendar](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-calendar)
 Manage calendar events.
 
-### [Microsoft Graph API](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-api) 
+### [Microsoft Graph API](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-api)
 This is a generic integration that supports running any endpoint of MS Graph API.
 Since the API is very vast and not all of the endpoints are implemented, this integration can be used.
 
 
-## Audit Logs 
+## Audit Logs
 
 ### Use Cases:
 * Find failed login events
 * Find publicly shared files events
 * Find security events
 
-### [Microsoft Management Activity](https://xsoar.pan.dev/docs/reference/integrations/microsoft-management-activity-api-o365-azure-events) 
+### [Microsoft Management Activity](https://xsoar.pan.dev/docs/reference/integrations/microsoft-management-activity-api-o365-azure-events)
 Ingest events from O365 (Azure AD, SharePoint, EWS, etc) as incidents.
 
 ### [Microsoft Policy And Compliance - Office365 And Azure Audit Log](https://xsoar.pan.dev/docs/reference/integrations/microsoft-policy-and-compliance-audit-log)
@@ -90,7 +90,7 @@ Search audit logs from O365 and Azure.
 
 -----
 
-## Exchange and EWS 
+## Exchange and EWS
 
 ### Use Cases
 * Find an email message.
@@ -105,10 +105,10 @@ Search audit logs from O365 and Azure.
 | [EWS v2](https://xsoar.pan.dev/docs/reference/integrations/ews-v2) 	| On-Prem + Cloud 	|  	|  	| Basic Auth + NTLM 	|
 | [EWS Extension](https://xsoar.pan.dev/docs/reference/integrations/ews-extension) 	|  	| Manage junk rules and search the message trace. 	| Uses different APIs than EWSv2 	|  	|
 | [Exchange Online Powershell V2 module](https://xsoar.pan.dev/docs/reference/integrations/ews-extension#enable-or-disable-access-to-exchange-online-powershell) 	| On-Prem 	| Manage mailboxes and permissions. 	|  	|  	|
-| [O365 Outlook Mail (Using Graph API)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail) 	| Cloud 	| Manage and send email on behalf of a different user that was configured  	|  	| client_credentials<br>Using Oproxy/Self-deployed. 	|
-| [O365 Outlook Mail Single User (Using Graph API)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail-single-user)	| Cloud 	|  	| Can manage the mailbox of the configured user only  	| auth_code (on behalf of a user)<br>Using Oproxy/Self-deployed.	|
+| [O365 Outlook Mail (Using Graph API)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail) 	| Cloud 	| Manage and send email on behalf of a different user that was configured  	|  	| client_credentials</br>Using Oproxy/Self-deployed. 	|
+| [O365 Outlook Mail Single User (Using Graph API)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail-single-user)	| Cloud 	|  	| Can manage the mailbox of the configured user only  	| auth_code (on behalf of a user)</br>Using Oproxy/Self-deployed.	|
 | [Exchange 2016 Compliance Search](https://xsoar.pan.dev/docs/reference/integrations/exchange-2016-compliance-search) 	| On-Prem 	| The only module that enables searching messages across the entire organization. 	|  	| Basic Auth 	|
-| [O365 Security and Compliance](https://xsoar.pan.dev/docs/reference/integrations/security-and-compliance) 	| Cloud  	| Search across mailboxes and execute actions on the results. 	| Known limitation in the README<br>Restart authentication process on  	| device-code (on behalf of a user). 	|
+| [O365 Security and Compliance](https://xsoar.pan.dev/docs/reference/integrations/security-and-compliance) 	| Cloud  	| Search across mailboxes and execute actions on the results. 	| Known limitation in the README</br>Restart authentication process on  	| device-code (on behalf of a user). 	|
 
 
 ## Azure Cloud
@@ -121,7 +121,7 @@ Search audit logs from O365 and Azure.
 ### [Azure Compute](https://xsoar.pan.dev/docs/reference/integrations/azure-compute-v2)
 Create and manage Azure VMs.
 
-### [Azure Network Security Groups](https://xsoar.pan.dev/docs/reference/integrations/azure-network-security-groups) 
+### [Azure Network Security Groups](https://xsoar.pan.dev/docs/reference/integrations/azure-network-security-groups)
 Manage security groups to filter network traffic to and from Azure resource
 
 ### [Azure Log Analytics](https://xsoar.pan.dev/docs/reference/integrations/azure-log-analytics)
@@ -130,10 +130,10 @@ Enable querying data generated from Azure resources.
 ## Security-focused Integrations
 
 ### Use Cases
-- Ingest security alerts. 
+- Ingest security alerts.
 - Search files in Box.
 - Isolate an endpoint.
-- Wipe a mobile device that has suspicious activity. 
+- Wipe a mobile device that has suspicious activity.
 - Run a critical Windows update on all the endpoints in the organization.  
 
 ### [Azure Security Center](https://xsoar.pan.dev/docs/reference/integrations/azure-security-center-v2)
@@ -142,8 +142,8 @@ Unified Azure security management.
 - Manage auto-provisioning.
 
 ### [Azure Sentinel](https://xsoar.pan.dev/docs/reference/integrations/azure-sentinel)
-Manage the SIEM by Microsoft. 
-- Fetch and manage incidents. 
+Manage the SIEM by Microsoft.
+- Fetch and manage incidents.
 - List entities.
 
 ### [Azure WAF](https://xsoar.pan.dev/docs/reference/integrations/azure-waf)
@@ -151,7 +151,7 @@ Manage the Azure web application firewall.
 
 List, create, and update policies.
 
-### [Microsoft Cloud App Security](https://xsoar.pan.dev/docs/reference/integrations/microsoft-cloud-app-security) 
+### [Microsoft Cloud App Security](https://xsoar.pan.dev/docs/reference/integrations/microsoft-cloud-app-security)
 Microsoft CASB solution.
 - Fetch and manage alerts.
 - Search activity and files in cloud applications.
@@ -159,21 +159,21 @@ Microsoft CASB solution.
 
 |   Integration                      |     Use Cases                                                      |   
 |:-------------:|:------------------------------------------------------:|
-|[Microsoft 365 Defender (Beta)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-365-defender)         |  Fetch incidents on email, collaboration, identity, and device threats. <br>Advanced hunting - querying 30 days of raw data    |   |
-| [Microsoft Defender for Endpoint (Defender ATP)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-defender-advanced-threat-protection) |                                                                Microsoft’s endpoint, detection, and response (EDR). <br>Fetch alerts, run a scan on an endpoint, remediate an endpoint, manage indicators.                                                                |   |
-|            [Microsoft Graph Security](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph)           | Unified gateway to security insights.<br> Fetch alerts from various Microsoft security sources: **Azure ATP**/**Azure Security Center**/**Microsoft CAS**/**Azure Active Directory Identity Protection**/**Azure Sentinel**/**Microsoft Defender for Endpoint (ATP)**  |
+|[Microsoft 365 Defender (Beta)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-365-defender)         |  Fetch incidents on email, collaboration, identity, and device threats. </br>Advanced hunting - querying 30 days of raw data    |   |
+| [Microsoft Defender for Endpoint (Defender ATP)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-defender-advanced-threat-protection) |                                                                Microsoft’s endpoint, detection, and response (EDR). </br>Fetch alerts, run a scan on an endpoint, remediate an endpoint, manage indicators.                                                                |   |
+|            [Microsoft Graph Security](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph)           | Unified gateway to security insights.</br> Fetch alerts from various Microsoft security sources: **Azure ATP**/**Azure Security Center**/**Microsoft CAS**/**Azure Active Directory Identity Protection**/**Azure Sentinel**/**Microsoft Defender for Endpoint (ATP)**  |
 
 
 
-### [Microsoft Endpoint Configuration Manager (SCCM)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-endpoint-configuration-manager) 
-Enable execution of scripts on multiple endpoints. 
+### [Microsoft Endpoint Configuration Manager (SCCM)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-endpoint-configuration-manager)
+Enable execution of scripts on multiple endpoints.
 
-### [Microsoft Graph Device Management (Intune)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-device-management) 
+### [Microsoft Graph Device Management (Intune)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-device-management)
 Manage devices.
 - Lock a device.
 - Wipe a device
-- Locate a device, etc. 
- 
+- Locate a device, etc.
+
 
 ## Feeds
 
@@ -185,5 +185,3 @@ Office 365 IP Address and URL feed.
 
 ### Microsoft Intune Indicator Feed
  Indicator feed from Microsoft Intune (Defender for Endpoint).
-
-
