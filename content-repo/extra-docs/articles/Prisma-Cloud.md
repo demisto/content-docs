@@ -73,17 +73,12 @@ After an incident is fetched from the Prisma Cloud integration, it is automatica
 The incident types all have a similar layout containing all relevant data from the Prisma Cloud alert. These incidents enable the analyst to view the incidents workflow and take action.
 
 The Prisma Cloud incidents layout contains the following tabs:
-**Case Info** tab:
-Gives the analyst the basic info of the Prisma Cloud alert:
 
-  ![image](image.png)
-
+- **Case Info** tab - Gives the analyst the basic info of the Prisma Cloud alert:
+![image](https://user-images.githubusercontent.com/43776787/129566665-3d176386-0532-43e1-bfd3-c9e61c1993f7.png)
  
-**Investigation** tab:
-
-Gives a more detailed view of the incident, including the violated policy information, the violating resource details, specific alert rules that triggered the incient, and a list of Remediation Actions recommended by the Prisma Cloud team for handling the policy violation.
-
-  ![image](image.png)
+- **Investigation** tab - Gives a more detailed view of the incident, including the violated policy information, the violating resource details, specific alert rules that triggered the incient, and a list of Remediation Actions recommended by the Prisma Cloud team for handling the policy violation.
+![image](https://user-images.githubusercontent.com/43776787/129566910-df4c7c1d-f0e8-4432-8a67-26ae6b3e7c67.png)
 
 # Pack Workflow and configuration
 
