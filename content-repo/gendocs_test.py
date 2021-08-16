@@ -375,3 +375,25 @@ def test_get_extracted_deprecated_note():
     assert res == 'Use the Cofense Intelligence integration instead.'
     res = get_extracted_deprecated_note('Deprecated. Vendor has stopped this service. No available replacement.')
     assert res == 'Vendor has stopped this service. No available replacement.'
+
+
+@pytest.mark.parametrize("test_input, expected", [
+    ('Packs/TestPack/Integrations/TestIntegration/README.md',
+     'This Integration is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'),
+    ('Packs/TestPack/Playbooks/TestIntegration/README.md',
+     'This Playbook is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'),
+    ('Packs/TestPack/Scripts/TestIntegration/README.md',
+     'This Script is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n')
+])
+def test_get_pack_link(test_input, expected):
+    """
+        Given:
+            - Readme file path
+
+        When:
+            - Generating readme docs
+
+        Then:
+            - Ensure the link to pack in marketplace generated as expected
+        """
+    assert expected == get_pack_link(test_input)

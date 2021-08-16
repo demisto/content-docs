@@ -191,13 +191,13 @@ def get_pack_link(file_path: str) -> str:
     # the regex extracts pack name from paths, for example: content/Packs/EWSv2 -> EWSv2
     match = re.search(r'Packs[/\\]([^/\\]+)[/\\]?', file_path)
     pack_name = match.group(1) if match else ''
-    # pack_link = f'https://xsoar.pan.dev/marketplace/details/{pack_name}'
+    pack_link = f'https://xsoar.pan.dev/marketplace/details/{pack_name}'
     file_types = [PACKS_SCRIPTS_PREFIX, PACKS_INTEGRATIONS_PREFIX, PACKS_PLAYBOOKS_PREFIX]
     try:
-        file_type = [ft for ft in file_types if ft in file_path][0]
+        file_type = [ft[:-1] for ft in file_types if ft in file_path][0]
     except Exception:
         return ''
-    return f'This {file_type} is part of the **[pack_name](pack_link)** Pack.\n' if file_type and pack_name else ''
+    return f'This {file_type} is part of the **[{pack_name}]({pack_link})** Pack.\n\n' if file_type and pack_name else ''
 
 
 def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
