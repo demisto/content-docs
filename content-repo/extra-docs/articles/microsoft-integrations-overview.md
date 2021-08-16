@@ -1,3 +1,10 @@
+---
+id: MS_Azure_Integrations
+title: Microsoft Azure and O365 Integrations Overview  
+description: The following maps all of Microsoft integrations and their use cases. it also emphasizes the differences between similar integrations.
+---
+
+
 # Microsoft Azure and O365 Integrations Overview
 Microsoft O365 and Azure are extensive platforms with many different products and functionality. 
 Moreover, the APIs behind them (especially the Microsoft Graph API) are vast and do not fit under one integration. 
