@@ -5,7 +5,8 @@ from gendocs import DEPRECATED_INFO_FILE, DeprecatedInfo, INTEGRATION_DOCS_MATCH
     index_doc_infos, DocInfo, gen_html_doc, process_release_doc, process_extra_readme_doc, \
     INTEGRATIONS_PREFIX, get_deprecated_data, insert_approved_tags_and_usecases, \
     find_deprecated_integrations, get_blame_date, get_deprecated_display_dates, \
-    get_fromversion_data, add_deprected_integrations_info, merge_deprecated_info, get_extracted_deprecated_note
+    get_fromversion_data, add_deprected_integrations_info, merge_deprecated_info, get_extracted_deprecated_note, \
+    get_pack_link
 from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server, fix_relative_images, normalize_id
 import os
 import pytest
