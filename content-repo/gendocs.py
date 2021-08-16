@@ -86,6 +86,7 @@ PACKS_INTEGRATIONS_PREFIX = 'Integrations'
 PACKS_SCRIPTS_PREFIX = 'Scripts'
 PACKS_PLAYBOOKS_PREFIX = 'Playbooks'
 
+
 class DocInfo:
     def __init__(self, id: str, name: str, description: str, readme: str, error_msg: Optional[str] = None):
         self.id = id
@@ -188,7 +189,7 @@ def get_beta_data(yml_data: dict, content: str):
 
 def get_pack_link(file_path: str) -> str:
     # the regex extracts pack name from paths, for example: content/Packs/EWSv2 -> EWSv2
-    match = re.search(rf'Packs[/\\]([^/\\]+)[/\\]?', file_path)
+    match = re.search(r'Packs[/\\]([^/\\]+)[/\\]?', file_path)
     pack_name = match.group(1) if match else ''
     pack_link = f'https://xsoar.pan.dev/marketplace/details/{pack_name}'
     file_types = [PACKS_SCRIPTS_PREFIX, PACKS_INTEGRATIONS_PREFIX, PACKS_PLAYBOOKS_PREFIX]
