@@ -82,7 +82,9 @@ DEPRECATED_INFO_FILE = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs
 random.seed(os.getenv('CIRCLE_BRANCH'))
 
 MIN_RELEASE_VERSION = StrictVersion((datetime.now() + relativedelta(months=-18)).strftime('%y.%-m.0'))
-
+PACKS_INTEGRATIONS_PREFIX = 'Integrations'
+PACKS_SCRIPTS_PREFIX = 'Scripts'
+PACKS_PLAYBOOKS_PREFIX = 'Playbooks'
 
 class DocInfo:
     def __init__(self, id: str, name: str, description: str, readme: str, error_msg: Optional[str] = None):
@@ -184,6 +186,19 @@ def get_beta_data(yml_data: dict, content: str):
     return ""
 
 
+def get_pack_link(file_path: str) -> str:
+    # the regex extracts pack name from paths, for example: content/Packs/EWSv2 -> EWSv2
+    match = re.search(rf'Packs[/\\]([^/\\]+)[/\\]?', file_path)
+    pack_name = match.group(1) if match else ''
+    pack_link = f'https://xsoar.pan.dev/marketplace/details/{pack_name}'
+    file_types = [PACKS_SCRIPTS_PREFIX, PACKS_INTEGRATIONS_PREFIX, PACKS_PLAYBOOKS_PREFIX]
+    try:
+        file_type = [ft for ft in file_types if ft in file_path][0]
+    except Exception:
+        return ''
+    return f'This {file_type} is part of the **[{pack_name}]({pack_link})** Pack.\n' if file_type and pack_name else ''
+
+
 def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
                        imgs_dir: str, relative_images_dir: str, readme_file: str) -> DocInfo:
     try:
@@ -225,6 +240,7 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
                 readme_repo_path = readme_repo_path[len(content_dir):]
             edit_url = f'https://github.com/demisto/content/blob/{BRANCH}/{readme_repo_path}'
             header = f'---\nid: {id}\ntitle: {json.dumps(doc_info.name)}\ncustom_edit_url: {edit_url}\n---\n\n'
+            content = get_pack_link(readme_file) + content
             content = get_deprecated_data(yml_data, desc, readme_file) + content
             content = get_beta_data(yml_data, content) + content
             content = get_fromversion_data(yml_data) + content
