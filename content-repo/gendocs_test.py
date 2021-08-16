@@ -380,10 +380,14 @@ def test_get_extracted_deprecated_note():
 @pytest.mark.parametrize("test_input, expected", [
     ('Packs/TestPack/Integrations/TestIntegration/README.md',
      'This Integration is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'),
-    ('Packs/TestPack/Playbooks/TestIntegration/README.md',
+    ('tmp_path/Packs/TestPack/Playbooks/TestIntegration/README.md',
      'This Playbook is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'),
-    ('Packs/TestPack/Scripts/TestIntegration/README.md',
-     'This Script is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n')
+    ('content/Packs/TestPack/Scripts/TestIntegration/README.md',
+     'This Script is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'),
+    ('Packs/Test-Pack/Scripts/TestIntegration/README.md',
+     'This Script is part of the **[Test - Pack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'),
+    ('Packs/Test_Pack/Scripts/TestIntegration/README.md',
+     'This Script is part of the **[Test Pack](https://xsoar.pan.dev/marketplace/details/Test_Pack)** Pack.\n\n')
 ])
 def test_get_pack_link(test_input, expected):
     """

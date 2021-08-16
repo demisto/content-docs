@@ -36,6 +36,7 @@ def timestamped_print(*args, **kwargs):
 print = timestamped_print
 
 BASE_URL = "https://xsoar.pan.dev/docs/"
+MARKETPLACE_URL = "https://xsoar.pan.dev/marketplace/"
 DOCS_LINKS_JSON = {}
 
 INTEGRATION_YML_MATCH = [
@@ -191,13 +192,16 @@ def get_pack_link(file_path: str) -> str:
     # the regex extracts pack name from paths, for example: content/Packs/EWSv2 -> EWSv2
     match = re.search(r'Packs[/\\]([^/\\]+)[/\\]?', file_path)
     pack_name = match.group(1) if match else ''
-    pack_link = f'https://xsoar.pan.dev/marketplace/details/{pack_name}'
+    pack_name_in_link = pack_name.replace('-', '')
+    pack_name_in_docs = pack_name.replace('_', ' ').replace('-', ' - ')
+    pack_link = f'{MARKETPLACE_URL}details/{pack_name_in_link}'
     file_types = [PACKS_SCRIPTS_PREFIX, PACKS_INTEGRATIONS_PREFIX, PACKS_PLAYBOOKS_PREFIX]
     try:
         file_type = [ft[:-1] for ft in file_types if ft in file_path][0]
     except Exception:
         return ''
-    return f'This {file_type} is part of the **[{pack_name}]({pack_link})** Pack.\n\n' if file_type and pack_name else ''
+    return f"This {file_type} is part of the **[{pack_name_in_docs}]({pack_link})** Pack.\n\n" \
+        if file_type and pack_name else ''
 
 
 def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
