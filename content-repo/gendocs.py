@@ -200,7 +200,7 @@ def get_pack_link(file_path: str) -> str:
         file_type = [ft[:-1] for ft in file_types if ft in file_path][0]
     except Exception:
         return ''
-    return f"This {file_type} is part of the **[{pack_name_in_docs}]({pack_link})** Pack.\n\n" \
+    return f"#### This {file_type} is part of the **[{pack_name_in_docs}]({pack_link})** Pack.\n\n" \
         if file_type and pack_name else ''
 
 
@@ -245,10 +245,10 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
                 readme_repo_path = readme_repo_path[len(content_dir):]
             edit_url = f'https://github.com/demisto/content/blob/{BRANCH}/{readme_repo_path}'
             header = f'---\nid: {id}\ntitle: {json.dumps(doc_info.name)}\ncustom_edit_url: {edit_url}\n---\n\n'
-            content = get_pack_link(readme_file) + content
             content = get_deprecated_data(yml_data, desc, readme_file) + content
             content = get_beta_data(yml_data, content) + content
             content = get_fromversion_data(yml_data) + content
+            content = get_pack_link(readme_file) + content
             content = header + content
         verify_mdx_server(content)
         with open(f'{target_dir}/{id}.md', mode='w', encoding='utf-8') as f:  # type: ignore
