@@ -110,7 +110,7 @@ EntityRelationship(
    name='contains',
    entity_a='1.1.1.1',
    entity_a_type='IP',
-   entity_b=2.2.2.2,
+   entity_b='2.2.2.2',
    entity_b_type='IP',
    source_reliability='B - Usually reliable',
    brand='My Integration ID')
