@@ -5,10 +5,15 @@ description: Automate and unify security incident response across your cloud env
 ---
 
 Automate and unify security incident response across your cloud environments, while still giving a degree of control to dedicated cloud teams.
+
 Cloud adoption has expanded the threat surface and created disparate ecosystems that hamper visibility into security vulnerabilities across the network.
+
 In addition, cloud provisioning is often managed by multiple teams, making it hard for security teams to keep pace.
+
 The pack includes playbooks that automate Prisma Cloud alert response and custom incident fields, views and layouts to facilitate analyst investigation.
+
 The remediation playbooks orchestrate across multiple native cloud integrations (AWS, GCP, Azure) to automate actions like changing policies, revoking access, creating new rules etc.
+
 With this content pack, you can significantly reduce the time your Security Analysts/Cloud Operations team spend on Cloud Security alerts and standardize the way you manage misconfiguration incidents.
 
 ## What does this pack do?
@@ -28,7 +33,7 @@ All of these are easily customizable to suit the needs of your organization.
 Recursively extracts specified fields from a provided list of assets for Prisma Cloud attribution use case.
 
 ## Integrations
-The pack contains the Prisma Cloud (RedLock) integration. Read more about the integration in the [Prisma Cloud (RedLock)](https://xsoar.pan.dev/docs/reference/integrations/red-lock) article.
+The pack contains the **Prisma Cloud (RedLock)** integration. Read more about the integration in the [Prisma Cloud (RedLock)](https://xsoar.pan.dev/docs/reference/integrations/red-lock) article.
 
 ## Playbooks
 The pack contains many playbooks, which are divided to major playbooks, associated to the incident types in the pack, and leading to sub-playbooks that perform remediation on specific Prisma Cloud policy violations.
@@ -66,10 +71,9 @@ Browse some of the remediation playbooks in the Prisma Cloud pack, remediating p
 - GCP Compute Engine Misconfiguration
 - GCP Kubernetes Engine Misconfiguration
 
-
-
 ## Layouts
 After an incident is fetched from the Prisma Cloud integration, it is automatically classified into one of the incident types in the pack.
+
 The incident types all have a similar layout containing all relevant data from the Prisma Cloud alert. These incidents enable the analyst to view the incidents workflow and take action.
 
 The Prisma Cloud incidents layout contains the following tabs:
@@ -87,6 +91,7 @@ Once you configure the Prisma Cloud integration to fetch incidents, all incident
 This incident type will show all of the generic alert information from Prisma Cloud, but will not trigger any playbook.
  
 For all other supported incident types, the incident will trigger the parent playbook that is assigned to this incident type.
+
 Throughout the playbook’s run the analyst will need to make a decision whether they want to use the automatic remediation path, or handle the policy violation manually using the recommendations given in the layout.
  
 Each incident type and assigned playbook can remediate several policy violations that are relevant for the use-case, based on the policy ID mapped from the incident.
@@ -94,6 +99,7 @@ Each incident type and assigned playbook can remediate several policy violations
 
 ## Before You Start
 As a part of the Prisma Cloud pack, we have created Out of the Box classification and Mapping, to create incidents for all the Prisma Cloud policies that are supported and remediated through this pack.
+
 The classified and remediated policies are as following:
   
 
