@@ -101,7 +101,7 @@ Search audit logs from O365 and Azure.
 | Integration 	| Cloud/On-Prem 	| Usage 	| Limitations 	| Auth Method 	|
 |:---:	|:---:	|:---:	|:---:	|:---:	|
 | [EWS Mail Sender](https://xsoar.pan.dev/docs/reference/integrations/ews-mail-sender)	| On-Prem 	| Notify user by mail in a playbook.<br>Fetch emails as incidents. 	| Supports basic authentication only 	| Basic Auth 	|
-| [EWS O365](https://xsoar.pan.dev/docs/reference/integrations/ewso365) 	| Cloud/[Hybrid](https://docs.microsoft.com/en-us/exchange/exchange-hybrid#hybrid-deployment-example)	|  	| For O365 - Supports OAuth2.<br>Only supports admin accounts that have access to all mailboxes.| client_credentials<br>Using Oproxy/Self-deployed. 	|
+| [EWS O365](https://xsoar.pan.dev/docs/reference/integrations/ewso365) 	| Cloud/[Hybrid](https://docs.microsoft.com/en-us/exchange/exchange-hybrid#hybrid-deployment-example)	|  	| For O365 - Supports OAuth2.</br>Only supports admin accounts that have access to all mailboxes.| client_credentials</br>Using Oproxy/Self-deployed. 	|
 | [EWS v2](https://xsoar.pan.dev/docs/reference/integrations/ews-v2) 	| On-Prem + Cloud 	|  	|  	| Basic Auth + NTLM 	|
 | [EWS Extension](https://xsoar.pan.dev/docs/reference/integrations/ews-extension) 	|  	| Manage junk rules and search the message trace. 	| Uses different APIs than EWSv2 	|  	|
 | [Exchange Online Powershell V2 module](https://xsoar.pan.dev/docs/reference/integrations/ews-extension#enable-or-disable-access-to-exchange-online-powershell) 	| On-Prem 	| Manage mailboxes and permissions. 	|  	|  	|
