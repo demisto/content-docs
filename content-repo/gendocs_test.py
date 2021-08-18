@@ -97,7 +97,8 @@ def test_findfiles():
     assert f'{SAMPLE_CONTENT}/Integrations/integration-F5_README.md' in res
 
 
-def test_process_readme_doc(tmp_path):
+def test_process_readme_doc(tmp_path, mocker):
+    mocker.patch('gendocs.get_packname_from_metadata', return_value='')
     res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, 'integrations',
                              str(tmp_path), "dummy-relative", f'{SAMPLE_CONTENT}/Integrations/DomainTools_Iris/README.md')
     assert res.id == 'domain-tools-iris'
@@ -119,7 +120,8 @@ def test_process_readme_doc(tmp_path):
                        str(tmp_path), "dummy-relative", f'{SAMPLE_CONTENT}/Integrations/Gmail/README.md')
 
 
-def test_process_readme_doc_same_dir(tmp_path):
+def test_process_readme_doc_same_dir(tmp_path, mocker):
+    mocker.patch('gendocs.get_packname_from_metadata', return_value='')
     res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, 'integrations',
                              str(tmp_path), "dummy-relative", f'{SAMPLE_CONTENT}/Integrations/integration-F5_README.md')
     assert res.id == 'f5-firewall'
@@ -134,14 +136,16 @@ def test_process_readme_doc_same_dir(tmp_path):
         assert 'dummy-relative' not in content
 
 
-def test_process_readme_doc_edl(tmp_path):
+def test_process_readme_doc_edl(tmp_path, mocker):
+    mocker.patch('gendocs.get_packname_from_metadata', return_value='')
     res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT,
                              'integrations', str(tmp_path), "dummy-relative",
                              f'{SAMPLE_CONTENT}/Integrations/PaloAltoNetworks_PAN_OS_EDL_Management/README.md')
     assert res.name == 'Palo Alto Networks PAN-OS EDL Management'
 
 
-def test_process_readme_doc_playbookl(tmp_path):
+def test_process_readme_doc_playbookl(tmp_path, mocker):
+    mocker.patch('gendocs.get_packname_from_metadata', return_value='')
     res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT,
                              'integrations', str(tmp_path), "dummy-relative",
                              f'{SAMPLE_CONTENT}/Playbooks/playbook-lost_stolen_device_README.md')
@@ -149,7 +153,8 @@ def test_process_readme_doc_playbookl(tmp_path):
     assert 'Initial incident details should be the name of the reporting person' in res.description
 
 
-def test_process_code_script(tmp_path):
+def test_process_code_script(tmp_path, mocker):
+    mocker.patch('gendocs.get_packname_from_metadata', return_value='')
     res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT,
                              'integrations', str(tmp_path), "dummy-relative",
                              f'{SAMPLE_CONTENT}/Scripts/script-IsIPInRanges_README.md')
