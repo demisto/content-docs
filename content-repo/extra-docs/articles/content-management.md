@@ -77,12 +77,13 @@ Consists of the following sections:
 
 ### Recommneded Steps:
 1. Prepare the enviornment and the virtual enviornment to run demisto-sdk on.
-2. Create an ID set for the private repo, and merge it with Content repo's ID set.
-3. Validate the packs' files using the [demisto-sdk validate](https://xsoar.pan.dev/docs/concepts/demisto-sdk#validate) command.
-4. Run unit tests and linters on the packs using the [demisto-sdk lint](https://xsoar.pan.dev/docs/concepts/demisto-sdk#lint) command.
-5. Create uploadable pack zips using the [demisto-sdk zip-packs](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/zip_packs) command.
-6. Or: Upload zipped packs directly to your machine using the [demisto-sdk upload](https://xsoar.pan.dev/docs/concepts/demisto-sdk#upload) command.
-7. Upload artifacts to your artifact repository.
+2. Create an ID set for the private repo using the [demisto-sdk create-id-set](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/create_id_set) command.
+3. Merge the ID set with Content repo's ID set using the following command: `demisto-sdk merge-id-sets -i1 <path_to_first_id_set> -i2 <path_to_second_id_set> -o <path_to_output>`.
+4. Validate the packs' files using the [demisto-sdk validate](https://xsoar.pan.dev/docs/concepts/demisto-sdk#validate) command.
+5. Run unit tests and linters on the packs using the [demisto-sdk lint](https://xsoar.pan.dev/docs/concepts/demisto-sdk#lint) command.
+6. Create uploadable pack zips using the [demisto-sdk zip-packs](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/zip_packs) command.
+7. Or: Upload zipped packs directly to your machine using the [demisto-sdk upload](https://xsoar.pan.dev/docs/concepts/demisto-sdk#upload) command.
+8. Upload artifacts to your artifact repository.
 
 [Example File](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/docs-files/ci-cd.yml) - This is a GitHub actions YML file that can be used as a template.
 
