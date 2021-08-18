@@ -1,3 +1,4 @@
+---
 id: custom-indicator
 title: Custom Indicator
 description: Create a customized indicator
