@@ -11,6 +11,9 @@ mypy = "*"
 pytest-mock = "*"
 requests-mock = "*"
 mock = "*"
+types-requests = "*"
+types-PyYAML = "*"
+types-python-dateutil = "*"
 
 [packages]
 pyyaml = "*"
