@@ -1,6 +1,6 @@
 import json
 import re
-
+from mock import mock_open, patch
 from gendocs import DEPRECATED_INFO_FILE, DeprecatedInfo, INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
     index_doc_infos, DocInfo, gen_html_doc, process_release_doc, process_extra_readme_doc, \
     INTEGRATIONS_PREFIX, get_deprecated_data, insert_approved_tags_and_usecases, \
@@ -377,19 +377,24 @@ def test_get_extracted_deprecated_note():
     assert res == 'Vendor has stopped this service. No available replacement.'
 
 
-@pytest.mark.parametrize("test_input, expected", [
+@pytest.mark.parametrize("test_input, expected, metadata_name", [
     ('Packs/TestPack/Integrations/TestIntegration/README.md',
-     '#### This Integration is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'),
+     '#### This Integration is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n',
+     'TestPack'),
     ('tmp_path/Packs/TestPack/Playbooks/TestIntegration/README.md',
-     '#### This Playbook is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'),
+     '#### This Playbook is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n',
+     'TestPack'),
     ('content/Packs/TestPack/Scripts/TestIntegration/README.md',
-     '#### This Script is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'),
+     '#### This Script is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n',
+     'TestPack'),
     ('Packs/Test-Pack/Scripts/TestIntegration/README.md',
-     '#### This Script is part of the **[Test - Pack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'),
+     '#### This Script is part of the **[Test - Pack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n',
+     'Test - Pack'),
     ('Packs/Test_Pack/Scripts/TestIntegration/README.md',
-     '#### This Script is part of the **[Test Pack](https://xsoar.pan.dev/marketplace/details/Test_Pack)** Pack.\n\n')
+     '#### This Script is part of the **[Test Pack](https://xsoar.pan.dev/marketplace/details/Test_Pack)** Pack.\n\n',
+     'Test Pack')
 ])
-def test_get_pack_link(test_input, expected):
+def test_get_pack_link(test_input, expected, mock, metadata_name):
     """
         Given:
             - Readme file path
@@ -400,4 +405,5 @@ def test_get_pack_link(test_input, expected):
         Then:
             - Ensure the link to pack in marketplace generated as expected
         """
-    assert expected == get_pack_link(test_input)
+    with patch("builtins.open", mock_open(read_data=json.dumps({'name': metadata_name}))) as _:
+        assert expected == get_pack_link(test_input)

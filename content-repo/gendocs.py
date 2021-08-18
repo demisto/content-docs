@@ -193,7 +193,15 @@ def get_pack_link(file_path: str) -> str:
     match = re.search(r'Packs[/\\]([^/\\]+)[/\\]?', file_path)
     pack_name = match.group(1) if match else ''
     pack_name_in_link = pack_name.replace('-', '')
-    pack_name_in_docs = pack_name.replace('_', ' ').replace('-', ' - ')
+
+    # the regex extracts pack path, for example: content/Packs/EWSv2/Integrations/I1/README.md -> content/Packs/EWSv2/
+    match = re.match(r'.+/Packs/.+?(?=/)', file_path)
+    pack_dir = match.group(0) if match else ''
+
+    with open(f'{pack_dir}/pack_metadata.json', 'r') as f:
+        metadata = json.load(f)
+    pack_name_in_docs = metadata.get('name')
+
     pack_link = f'{MARKETPLACE_URL}details/{pack_name_in_link}'
     file_types = [PACKS_SCRIPTS_PREFIX, PACKS_INTEGRATIONS_PREFIX, PACKS_PLAYBOOKS_PREFIX]
     try:
@@ -201,7 +209,7 @@ def get_pack_link(file_path: str) -> str:
     except Exception:
         return ''
     return f"#### This {file_type} is part of the **[{pack_name_in_docs}]({pack_link})** Pack.\n\n" \
-        if file_type and pack_name else ''
+        if file_type and pack_name and pack_name_in_docs else ''
 
 
 def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
