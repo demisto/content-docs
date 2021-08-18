@@ -188,6 +188,12 @@ def get_beta_data(yml_data: dict, content: str):
     return ""
 
 
+def get_packname_from_metadata(pack_dir):
+    with open(f'{pack_dir}/pack_metadata.json', 'r') as f:
+        metadata = json.load(f)
+    return metadata.get('name')
+
+
 def get_pack_link(file_path: str) -> str:
     # the regex extracts pack name from paths, for example: content/Packs/EWSv2 -> EWSv2
     match = re.search(r'Packs[/\\]([^/\\]+)[/\\]?', file_path)
@@ -198,9 +204,7 @@ def get_pack_link(file_path: str) -> str:
     match = re.match(r'.+/Packs/.+?(?=/)', file_path)
     pack_dir = match.group(0) if match else ''
 
-    with open(f'{pack_dir}/pack_metadata.json', 'r') as f:
-        metadata = json.load(f)
-    pack_name_in_docs = metadata.get('name')
+    pack_name_in_docs = get_packname_from_metadata(pack_dir)
 
     pack_link = f'{MARKETPLACE_URL}details/{pack_name_in_link}'
     file_types = [PACKS_SCRIPTS_PREFIX, PACKS_INTEGRATIONS_PREFIX, PACKS_PLAYBOOKS_PREFIX]

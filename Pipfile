@@ -10,7 +10,6 @@ autopep8 = "*"
 mypy = "*"
 pytest-mock = "*"
 requests-mock = "*"
-mock = "*"
 
 [packages]
 pyyaml = "*"

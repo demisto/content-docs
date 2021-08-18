@@ -1,6 +1,5 @@
 import json
 import re
-from mock import mock_open, patch
 from gendocs import DEPRECATED_INFO_FILE, DeprecatedInfo, INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
     index_doc_infos, DocInfo, gen_html_doc, process_release_doc, process_extra_readme_doc, \
     INTEGRATIONS_PREFIX, get_deprecated_data, insert_approved_tags_and_usecases, \
@@ -394,7 +393,7 @@ def test_get_extracted_deprecated_note():
      '#### This Script is part of the **[Test Pack](https://xsoar.pan.dev/marketplace/details/Test_Pack)** Pack.\n\n',
      'Test Pack')
 ])
-def test_get_pack_link(test_input, expected, mock, metadata_name):
+def test_get_pack_link(test_input, expected, metadata_name, mocker):
     """
         Given:
             - Readme file path
@@ -405,5 +404,5 @@ def test_get_pack_link(test_input, expected, mock, metadata_name):
         Then:
             - Ensure the link to pack in marketplace generated as expected
         """
-    with patch("builtins.open", mock_open(read_data=json.dumps({'name': metadata_name}))) as _:
-        assert expected == get_pack_link(test_input)
+    mocker.patch('gendocs.get_packname_from_metadata', return_value=metadata_name)
+    assert expected == get_pack_link(test_input)
