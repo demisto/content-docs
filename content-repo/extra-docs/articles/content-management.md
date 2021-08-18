@@ -10,7 +10,7 @@ This process encapsulates what you need in order to control your XSOAR machines 
 ---
 
 ## Building The Repo
-You can visit our [example repo](https://github.com/demisto/content-helloworld-premium) and clone it to use as a base to your repo.
+You can visit our [example repository](https://github.com/demisto/content-helloworld-premium) and clone it to use as a baseline.
 ### The Repo's Structure
 ```
 ├── .hooks
