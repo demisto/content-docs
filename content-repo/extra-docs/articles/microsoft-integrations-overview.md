@@ -85,9 +85,6 @@ Since the API is very vast and not all of the endpoints are implemented, this in
 ### [Microsoft Management Activity](https://xsoar.pan.dev/docs/reference/integrations/microsoft-management-activity-api-o365-azure-events)
 Ingest events from O365 (Azure AD, SharePoint, EWS, etc) as incidents.
 
-### [Microsoft Policy And Compliance - Office365 And Azure Audit Log](https://xsoar.pan.dev/docs/reference/integrations/microsoft-policy-and-compliance-audit-log)
-Search audit logs from O365 and Azure.
-
 -----
 
 ## Exchange and EWS
