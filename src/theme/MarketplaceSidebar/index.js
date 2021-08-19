@@ -441,10 +441,7 @@ function MarketplaceSidebar({
             <Link to="/marketplace/contributors"> Top Contributors </Link>
           </div>
           <br></br>
-          <br></br>
-          <div>
             <Slideshow></Slideshow>
-          </div>
         </ul>
       </div>
       {hideableSidebar && (
