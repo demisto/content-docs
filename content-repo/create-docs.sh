@@ -6,7 +6,7 @@ set -e
 # Script will check out the Demisto content repo and then generate documentation based upon the checkout
 
 SCRIPT_DIR=$(dirname ${BASH_SOURCE})
-CURRENT_DIR=`pwd`
+CURRENT_DIR=$(pwd)
 if [[ "${SCRIPT_DIR}" != /* ]]; then
     SCRIPT_DIR="${CURRENT_DIR}/${SCRIPT_DIR}"
 fi
@@ -67,14 +67,14 @@ else
 
     echo "==== content git url: ${CONTENT_GIT_URL} branch: ${CONTENT_BRANCH} ===="
 
-    if [[ -d ${CONTENT_GIT_DIR} && $(cd ${CONTENT_GIT_DIR}; git remote get-url origin) != "${CONTENT_GIT_URL}" ]]; then
+    if [[ -d ${CONTENT_GIT_DIR} && $(cd "${CONTENT_GIT_DIR}"; git remote get-url origin) != "${CONTENT_GIT_URL}" ]]; then
         echo "Deleting dir: ${CONTENT_GIT_DIR} as remote url dooesn't match ${CONTENT_GIT_URL} ..."
         rm -rf "${CONTENT_GIT_DIR}"
     fi
 
     if [ -n "${NETLIFY}" ]; then
         if [[ -d ${CONTENT_GIT_DIR} ]]; then
-            echo "Content git dir cached size: $(du -sh ${CONTENT_GIT_DIR})"
+            echo "Content git dir cached size: $(du -sh "${CONTENT_GIT_DIR}")"
             echo "Deleting cached content dir..."
             rm -rf "${CONTENT_GIT_DIR}"
         fi
@@ -83,20 +83,20 @@ else
         git config --global user.name "Netlify Dev Docs Build"
     fi
 
-    if [ ! -d ${CONTENT_GIT_DIR} ]; then
+    if [ ! -d "${CONTENT_GIT_DIR}" ]; then
         echo "Cloning content to dir: ${CONTENT_GIT_DIR} ..."
-        git clone ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}
+        git clone --depth 1 -b master "${CONTENT_GIT_URL}" "${CONTENT_GIT_DIR}"
     else
         echo "Content dir: ${CONTENT_GIT_DIR} exists. Skipped clone."
-        if [ -z "${CONTENT_REPO_SKIP_PULL}"]; then        
+        if [ -z "${CONTENT_REPO_SKIP_PULL}" ]; then        
             echo "Doing pull..."
-            (cd ${CONTENT_GIT_DIR}; git pull)
+            (cd "${CONTENT_GIT_DIR}"; git pull)
         fi
     fi
-    cd ${CONTENT_GIT_DIR}
+    cd "${CONTENT_GIT_DIR}"
     if [[ "$CONTENT_BRANCH" != "master" ]] && (git branch -a | grep "remotes/origin/${CONTENT_BRANCH}$"); then
         echo "found remote branch: '$CONTENT_BRANCH' will use it for generating docs"
-        git checkout $CONTENT_BRANCH
+        git checkout "$CONTENT_BRANCH"
     else
         if [[ "${REQUIRE_BRANCH}" == "true" ]]; then
             echo "ERROR: couldn't find $CONTENT_BRANCH on remote. Aborting..."
@@ -112,9 +112,9 @@ else
     git --no-pager log -1 --no-decorate --no-color | head -10
 fi
 
-echo "Content git dir [${CONTENT_GIT_DIR}] size: $(du -sh ${CONTENT_GIT_DIR})"
+echo "Content git dir [${CONTENT_GIT_DIR}] size: $(du -sh "${CONTENT_GIT_DIR}")"
 
-cd ${SCRIPT_DIR}
+cd "${SCRIPT_DIR}"
 
 if [[ ( "$PULL_REQUEST" == "true" || -n "$CI_PULL_REQUEST" ) && "$CONTENT_BRANCH" == "master" ]]; then
     echo "Checking if only doc files where modified and we can do a limited preview build..."
@@ -123,7 +123,7 @@ if [[ ( "$PULL_REQUEST" == "true" || -n "$CI_PULL_REQUEST" ) && "$CONTENT_BRANCH
         if [ -z "${DIFF_COMPARE}" ]; then
             echo "Failed: extracting diff compare from CIRCLE_COMPARE_URL: ${CIRCLE_COMPARE_URL}"            
         else
-            DIFF_FILES=$(git diff --name-only $DIFF_COMPARE --)
+            DIFF_FILES=$(git diff --name-only "$DIFF_COMPARE" --)
         fi
     fi
     if [[ -z "$DIFF_FILES" && -z "$CONTENT_DOC_NO_FETCH" ]]; then
@@ -141,7 +141,7 @@ if [[ ( "$PULL_REQUEST" == "true" || -n "$CI_PULL_REQUEST" ) && "$CONTENT_BRANCH
     fi
 
     echo "$DIFF_FILES" | grep -v -E '^src/pages/marketplace/|^genMarketplace.js|^plopfile.js|^static/|^sidebars.js' || MAX_PACKS=20
-    if [ -n "MAX_PACKS" ]; then
+    if [ -n "$MAX_PACKS" ]; then
         echo "MAX_PACKS set to: $MAX_PACKS"
         export MAX_PACKS
     fi
@@ -161,20 +161,20 @@ TARGET_DIR=${SCRIPT_DIR}/../docs/reference
 CONTRIB_TARGET_DIR=${SCRIPT_DIR}/../src/pages/marketplace
 REL_IMGS_DIR=${SCRIPT_DIR}/../docs/doc_imgs/reference/relative
 echo "Deleting and creating dirs: ${TARGET_DIR} and ${REL_IMGS_DIR}"
-rm -rf ${TARGET_DIR}/integrations
-rm -rf ${TARGET_DIR}/playbooks
-rm -rf ${TARGET_DIR}/scripts
-rm -rf ${REL_IMGS_DIR}
-mkdir ${TARGET_DIR}/integrations
-mkdir ${TARGET_DIR}/playbooks
-mkdir ${TARGET_DIR}/scripts
-mkdir ${REL_IMGS_DIR}
+rm -rf "${TARGET_DIR}/integrations"
+rm -rf "${TARGET_DIR}/playbooks"
+rm -rf "${TARGET_DIR}/scripts"
+rm -rf "${REL_IMGS_DIR}"
+mkdir "${TARGET_DIR}/integrations"
+mkdir "${TARGET_DIR}/playbooks"
+mkdir "${TARGET_DIR}/scripts"
+mkdir "${REL_IMGS_DIR}"
 
 echo "Copying CommonServerPython.py, demistomock.py, approved_tags.json and approved_usecases.json"
-cp ${CONTENT_GIT_DIR}/Packs/Base/Scripts/CommonServerPython/CommonServerPython.py .
-cp ${CONTENT_GIT_DIR}/Tests/demistomock/demistomock.py .
-cp ${CONTENT_GIT_DIR}/Tests/Marketplace/approved_tags.json .
-cp ${CONTENT_GIT_DIR}/Tests/Marketplace/approved_usecases.json .
+cp "${CONTENT_GIT_DIR}/Packs/Base/Scripts/CommonServerPython/CommonServerPython.py" .
+cp "${CONTENT_GIT_DIR}/Tests/demistomock/demistomock.py" .
+cp "${CONTENT_GIT_DIR}/Tests/Marketplace/approved_tags.json" .
+cp "${CONTENT_GIT_DIR}/Tests/Marketplace/approved_usecases.json" .
 
 # Removing the first lines from CommonServerPython.py which are a description of the script we don't need here
 echo "$(tail -n +6 CommonServerPython.py)" > CommonServerPython.py
