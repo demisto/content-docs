@@ -204,7 +204,10 @@ def get_pack_link(file_path: str) -> str:
     match = re.match(r'.+/Packs/.+?(?=/)', file_path)
     pack_dir = match.group(0) if match else ''
 
-    pack_name_in_docs = get_packname_from_metadata(pack_dir)
+    try:
+        pack_name_in_docs = get_packname_from_metadata(pack_dir)
+    except FileNotFoundError:
+        pack_name_in_docs = pack_name.replace('_', ' ').replace('-', ' - ')
 
     pack_link = f'{MARKETPLACE_URL}details/{pack_name_in_link}'
     file_types = [PACKS_SCRIPTS_PREFIX, PACKS_INTEGRATIONS_PREFIX, PACKS_PLAYBOOKS_PREFIX]

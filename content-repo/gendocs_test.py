@@ -6,7 +6,8 @@ from gendocs import DEPRECATED_INFO_FILE, DeprecatedInfo, INTEGRATION_DOCS_MATCH
     find_deprecated_integrations, get_blame_date, get_deprecated_display_dates, \
     get_fromversion_data, add_deprected_integrations_info, merge_deprecated_info, get_extracted_deprecated_note, \
     get_pack_link
-from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server, fix_relative_images, normalize_id
+from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server, fix_relative_images, \
+    normalize_id
 import os
 import pytest
 from datetime import datetime
@@ -73,7 +74,8 @@ def test_fix_relative_images(tmp_path):
     readme = f'{SAMPLE_CONTENT}/Integrations/Gmail/README.md'
     with open(readme, 'r') as f:
         content = f.read()
-    res = fix_relative_images(content, f'{SAMPLE_CONTENT}/Integrations/Gmail', 'google-calendar', str(tmp_path), 'relative-test')
+    res = fix_relative_images(content, f'{SAMPLE_CONTENT}/Integrations/Gmail', 'google-calendar', str(tmp_path),
+                              'relative-test')
     assert res == content
 
 
@@ -81,7 +83,8 @@ def test_fix_relative_images_html_img(tmp_path):
     readme = f'{SAMPLE_CONTENT}/Packs/ProofpointServerProtection/Integrations/ProofpointProtectionServerV2/README.md'
     with open(readme, 'r') as f:
         content = f.read()
-    res = fix_relative_images(content, f'{SAMPLE_CONTENT}/Packs/ProofpointServerProtection/Integrations/ProofpointProtectionServerV2',
+    res = fix_relative_images(content,
+                              f'{SAMPLE_CONTENT}/Packs/ProofpointServerProtection/Integrations/ProofpointProtectionServerV2',
                               'proofpoint-test', str(tmp_path), 'relative-test')
     target_img_name = 'proofpoint-test-_-__-__-doc_imgs-api_role.png'
     assert f'relative-test/{target_img_name}' in res
@@ -100,7 +103,8 @@ def test_findfiles():
 def test_process_readme_doc(tmp_path, mocker):
     mocker.patch('gendocs.get_packname_from_metadata', return_value='')
     res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, 'integrations',
-                             str(tmp_path), "dummy-relative", f'{SAMPLE_CONTENT}/Integrations/DomainTools_Iris/README.md')
+                             str(tmp_path), "dummy-relative",
+                             f'{SAMPLE_CONTENT}/Integrations/DomainTools_Iris/README.md')
     assert res.id == 'domain-tools-iris'
     assert res.description
     assert res.name == 'DomainTools Iris'
@@ -111,7 +115,8 @@ def test_process_readme_doc(tmp_path, mocker):
         assert f.readline().startswith('custom_edit_url: https://github.com/demisto/content/')
         content = f.read()
         assert 'dummy-relative' not in content
-    res = process_readme_doc(str(tmp_path), BASE_DIR, 'integrations', str(tmp_path), "dummy-relative", f'{BASE_DIR}/test_data/empty-readme.md')
+    res = process_readme_doc(str(tmp_path), BASE_DIR, 'integrations', str(tmp_path), "dummy-relative",
+                             f'{BASE_DIR}/test_data/empty-readme.md')
     assert 'no yml file found' in res.error_msg
     process_readme_doc(str(tmp_path), SAMPLE_CONTENT,
                        'integrations', str(tmp_path), "dummy-relative",
@@ -212,7 +217,8 @@ def test_process_release_doc(tmp_path, mdx_server):
         assert f.readline().startswith('---')
         assert f.readline().startswith(f'id: {res.id}')
         assert f.readline().startswith(f'sidebar_label: "{res.id}"')
-        assert f.readline().startswith('custom_edit_url: https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/releases')
+        assert f.readline().startswith(
+            'custom_edit_url: https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/releases')
 
 
 def test_process_release_doc_old(tmp_path, mdx_server):
@@ -233,7 +239,8 @@ def test_process_extra_doc(tmp_path, mdx_server):
         assert f.readline().startswith('---')
         assert f.readline().startswith(f'id: {res.id}')
         assert f.readline().startswith(f'title: "{res.name}"')
-        assert f.readline().startswith('custom_edit_url: https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/integrations')
+        assert f.readline().startswith(
+            'custom_edit_url: https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/integrations')
 
 
 def test_process_private_doc(tmp_path, mdx_server):
@@ -251,14 +258,18 @@ def test_process_private_doc(tmp_path, mdx_server):
 
 
 def test_get_deprecated_data():
-    res = get_deprecated_data({"deprecated": True}, "Deprecated - We recommend using ServiceNow v2 instead.", "README.md")
+    res = get_deprecated_data({"deprecated": True}, "Deprecated - We recommend using ServiceNow v2 instead.",
+                              "README.md")
     assert "We recommend using ServiceNow v2 instead." in res
     assert get_deprecated_data({"deprecated": False}, "stam", "README.md") == ""
-    res = get_deprecated_data({"deprecated": True}, "Deprecated: use Shodan v2 instead. Search engine for Internet-connected devices.", "README.md")
+    res = get_deprecated_data({"deprecated": True},
+                              "Deprecated: use Shodan v2 instead. Search engine for Internet-connected devices.",
+                              "README.md")
     assert "Use Shodan v2 instead" in res
     res = get_deprecated_data({"deprecated": True}, "Deprecated. Use The Generic SQL integration instead.", "README.md")
     assert "Use The Generic SQL integration instead" in res
-    res = get_deprecated_data({}, "Deprecated. Add information about the vulnerability.", "Packs/DeprecatedContent/Playbooks/test-README.md")
+    res = get_deprecated_data({}, "Deprecated. Add information about the vulnerability.",
+                              "Packs/DeprecatedContent/Playbooks/test-README.md")
     assert "Add information" not in res
 
 
@@ -326,7 +337,8 @@ def test_insert_approved_tags_and_usecases(tmp_path):
 
 
 def test_get_blame_date():
-    res = get_blame_date(SAMPLE_CONTENT, f'{SAMPLE_CONTENT}/Packs/DeprecatedContent/Integrations/integration-AlienVaultOTX.yml', 6)
+    res = get_blame_date(SAMPLE_CONTENT,
+                         f'{SAMPLE_CONTENT}/Packs/DeprecatedContent/Integrations/integration-AlienVaultOTX.yml', 6)
     assert res.month == 1
     assert res.year == 2021
 
@@ -410,4 +422,40 @@ def test_get_pack_link(test_input, expected, metadata_name, mocker):
             - Ensure the link to pack in marketplace generated as expected
         """
     mocker.patch('gendocs.get_packname_from_metadata', return_value=metadata_name)
+    assert expected == get_pack_link(test_input)
+
+
+def error_raising_func(pack_dir):
+    raise FileNotFoundError
+
+
+@pytest.mark.parametrize("test_input, expected", [
+    ('Packs/TestPack/Integrations/TestIntegration/README.md',
+     '#### This Integration is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'
+     ),
+    ('tmp_path/Packs/TestPack/Playbooks/TestIntegration/README.md',
+     '#### This Playbook is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'
+     ),
+    ('content/Packs/TestPack/Scripts/TestIntegration/README.md',
+     '#### This Script is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'
+     ),
+    ('Packs/Test-Pack/Scripts/TestIntegration/README.md',
+     '#### This Script is part of the **[Test - Pack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'
+     ),
+    ('Packs/Test_Pack/Scripts/TestIntegration/README.md',
+     '#### This Script is part of the **[Test Pack](https://xsoar.pan.dev/marketplace/details/Test_Pack)** Pack.\n\n'
+     )
+])
+def test_get_pack_link_no_metadata(mocker, test_input, expected):
+    """
+    Given:
+        - Readme file path
+
+    When:
+        - Generating readme docs
+
+    Then:
+        - Ensure the link to pack in marketplace generated as expected
+    """
+    mocker.patch('gendocs.get_packname_from_metadata', side_effect=error_raising_func)
     assert expected == get_pack_link(test_input)
