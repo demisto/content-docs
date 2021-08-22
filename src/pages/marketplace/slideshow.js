@@ -29,7 +29,7 @@ const Slideshow = () => {
        {slideImages.map((slideImage, index)=> (
           <div className="each-slide" key={index}>
             <Link to={slideImage.link}>
-            <img className="lazy" src={slideImage.url} alt="sample" />
+            <img className="slideimg" src={slideImage.url} alt="sample"/>
             </Link>
           </div>
         ))} 
