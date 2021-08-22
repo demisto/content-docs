@@ -219,7 +219,7 @@ def get_pack_link(file_path: str) -> str:
     return f"#### This {file_type} is part of the **[{pack_name_in_docs}]({pack_link})** Pack.\n\n" \
         if file_type and pack_name and pack_name_in_docs \
         else f'Cant generate pack-link : file_type: {file_type}, pack_name: {pack_name}, ' \
-             f'pack_name_in_docs: {pack_name_in_docs}'
+             f'pack_name_in_docs: {pack_name_in_docs}\n\n'
 
 
 def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
