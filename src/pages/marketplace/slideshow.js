@@ -25,15 +25,6 @@ const slideImages = [
   }
 ];
 
-const properties = {
-  duration: 5000,
-  transitionDuration: 500,
-  infinite: true,
-  indicators: true,
-  scale: 0.4,
-  arrows: true
-}
-
 const Slideshow = () => {
   return (
     <div className="slide-container">
