@@ -1,5 +1,5 @@
 ---
-id: integrations-and-incident-health-check
+id: system-diagnostics-and-health-check
 title: Integrations and Incidents Health Check
 description: The Health Check for Integrations and Incidents content pack uses out-of-the-box playbooks, scheduled as a job, to check for, return, and display information about failed integrations and incidents with errors. As part of the playbook run, users will be sent an email notification when failed incidents and/or integrations are discovered.
 ---
