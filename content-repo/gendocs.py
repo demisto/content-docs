@@ -207,7 +207,8 @@ def get_pack_link(file_path: str) -> str:
     try:
         pack_name_in_docs = get_packname_from_metadata(pack_dir)
     except FileNotFoundError:
-        pack_name_in_docs = pack_name.replace('_', ' ').replace('-', ' - ')
+        pack_name_in_docs = pack_name
+        # pack_name_in_docs = pack_name.replace('_', ' ').replace('-', ' - ')
 
     pack_link = f'{MARKETPLACE_URL}details/{pack_name_in_link}'
     file_types = [PACKS_SCRIPTS_PREFIX, PACKS_INTEGRATIONS_PREFIX, PACKS_PLAYBOOKS_PREFIX]
@@ -216,7 +217,9 @@ def get_pack_link(file_path: str) -> str:
     except Exception:
         return ''
     return f"#### This {file_type} is part of the **[{pack_name_in_docs}]({pack_link})** Pack.\n\n" \
-        if file_type and pack_name and pack_name_in_docs else ''
+        if file_type and pack_name and pack_name_in_docs \
+        else f'Cant generate pack-link : file_type: {file_type}, pack_name: {pack_name}, ' \
+             f'pack_name_in_docs: {pack_name_in_docs}'
 
 
 def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
