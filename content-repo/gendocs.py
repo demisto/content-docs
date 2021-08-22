@@ -215,7 +215,7 @@ def get_pack_link(file_path: str) -> str:
     try:
         file_type = [ft[:-1] for ft in file_types if ft in file_path][0]
     except Exception:
-        return ''
+        file_type = ''
     return f"#### This {file_type} is part of the **[{pack_name_in_docs}]({pack_link})** Pack.\n\n" \
         if file_type and pack_name and pack_name_in_docs \
         else f'Cant generate pack-link : file_type: {file_type}, pack_name: {pack_name}, ' \
