@@ -254,7 +254,6 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
         # check if we have a header
         lines = content.splitlines(True)
         has_header = len(lines) >= 2 and lines[0].startswith('---') and lines[1].startswith('id:')
-        print(f'Starting edit readme file: {readme_file}. Has header :{has_header}')
         if not has_header:
             readme_repo_path = readme_file
             if readme_repo_path.startswith(content_dir):
@@ -266,7 +265,6 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
             content = get_fromversion_data(yml_data) + content
             content = get_pack_link(readme_file) + content
             content = header + content
-            print(f'Adding beta, fromversion, link to file: {readme_file}.')
         verify_mdx_server(content)
         with open(f'{target_dir}/{id}.md', mode='w', encoding='utf-8') as f:  # type: ignore
             f.write(content)
@@ -373,10 +371,13 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
         content = content.replace(front_matter_match[0], '')
 
         if private_packs:
-            content = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: null\n---\n\n' + content
+            print(f'Process README Private file: {readme_file}')
+            header = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: null\n---\n\n'
+            content = header + get_pack_link(readme_file) + content
         else:
             edit_url = f'https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/{prefix}/{readme_file_name}'
-            content = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\n---\n\n' + content
+            header = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\n---\n\n'
+            content = header + get_pack_link(readme_file) + content
         verify_mdx_server(content)
         with open(f'{target_dir}/{file_id}.md', mode='w', encoding='utf-8') as f:
             f.write(content)
