@@ -20,6 +20,10 @@ Review this document to determine the Microsoft integrations you need for your u
 * Remove a member from a group.
 * Remove a pre-approved application.
 
+### Playbooks
+* Get Manager Details
+* Active Directory Investigation playbook
+
 
 ### [Azure Active Directory Users](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-user)
 Manage users in Azure Active Directory and O365.
@@ -95,6 +99,14 @@ Ingest events from O365 (Azure AD, SharePoint, EWS, etc) as incidents.
 * Send an email.
 * Modify your Outlook recipient list.
 
+### Playbooks
+
+* Get mails by folder path
+* Security and compliance search
+* O365 Mail Search
+* Process Email
+
+
 | Integration 	| Cloud/On-Prem 	| Usage 	| Limitations 	| Auth Method 	|
 |:---:	|:---:	|:---:	|:---:	|:---:	|
 | [EWS Mail Sender](https://xsoar.pan.dev/docs/reference/integrations/ews-mail-sender)	| On-Prem 	| Notify user by mail in a playbook.<br/>Fetch emails as incidents. 	| Supports basic authentication only 	| Basic Auth 	|
@@ -157,9 +169,8 @@ Microsoft CASB solution.
 |   Integration                      |     Use Cases                                                      |   
 |:-------------:|:------------------------------------------------------:|
 |[Microsoft 365 Defender (Beta)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-365-defender)         |  Fetch incidents on email, collaboration, identity, and device threats. <br/>Advanced hunting - querying 30 days of raw data    |   |
-| [Microsoft Defender for Endpoint (Defender ATP)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-defender-advanced-threat-protection) |                                                                Microsoft’s endpoint, detection, and response (EDR). <br/>Fetch alerts, run a scan on an endpoint, remediate an endpoint, manage indicators.                                                                |   |
+| [Microsoft Defender for Endpoint (Defender ATP)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-defender-advanced-threat-protection) |                                                                Microsoft’s endpoint, detection, and response (EDR). <br/>Fetch alerts, run a scan on an endpoint, remediate an endpoint, manage indicators, get machine action status.                                                                |   |
 |            [Microsoft Graph Security](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph)           | Unified gateway to security insights.<br/> Fetch alerts from various Microsoft security sources: **Azure ATP**/**Azure Security Center**/**Microsoft CAS**/**Azure Active Directory Identity Protection**/**Azure Sentinel**/**Microsoft Defender for Endpoint (ATP)**  |
-
 
 
 ### [Microsoft Endpoint Configuration Manager (SCCM)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-endpoint-configuration-manager)
