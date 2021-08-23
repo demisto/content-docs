@@ -159,7 +159,7 @@ Even if XSOAR doesn't make any distinction, in this tutorial we group parameters
 These parameters determine how Cortex XSOAR connects to the third party API. 
 
 Usually there are at least two parameters:
- - **url**: the URL Cortex XSOAR should connect to. In case the API is SaaS only and the URL is the same for all customers and is never going to change over time, you can omit this parameter and store the URL directly in the code. Some SaaS products have different urls based on the tenant name, for example `customer1.my-test-saas-service.info` and `customer2.my-test-saas-service.info`: in this case we still recommend to use the full url here and not just the tenant name (i.e. have the clients input `customer1.my-test-saas-service.info` and not just `customer1`).
+ - **url**: the URL Cortex XSOAR should connect to. Always expose this parameter even in SaaS applications since SaaS applications can have variations as well (tenant name or federal cloud)
 
  - **api_key**: usually credentials are needed to authenticate to the API you want to interact with. Many times this is in the form of an API Key, a secure quantity that gets stored in Cortex XSOAR and used somewhere in your code (i.e. to populate HTTP headers) to craft the requests. Sometimes APIs use different authentication parameters: [credentials](../reference/articles/managing-credentials), tokens, client_id and client_secret combination, and so on. Make sure you capture all the required parameters that will allow a machine-to-machine authentication between Cortex XSOAR and your API.
  
@@ -191,7 +191,7 @@ Common filters for fetching incidents are:
 
  - **First Fetch** (parameter name must be: *first_fetch*): when customers configure the integration for the first time, they are usually interested to retrieve incidents that happened in the past. This common setting is used to specify how long back in time they want to go to retrieve incidents the first time. You can check the [HelloWorld](https://github.com/demisto/content/blob/master/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py) integration implementation code for more details.
 
-If the API you are integrating with also supports a query interface using free-form text (i.e. a specific query language implemented in the product), you can also add another parameter (usually called **query**) that will give the users more freedom to generate incidents in XSOAR based on a specific query: this gives more freedom to the users and supports more advanced use cases for your integration.
+If the API you are integrating with also supports a query interface using free-form text (i.e. a specific query language implemented in the product), you can also add another parameter (usually called **query**) that will give the users more freedom to generate incidents in XSOAR based on a specific query: this gives more freedom to the users and supports more advanced use cases for your integration. Note that the convention is that the query parameter overrides other parameters such as severity and type since we assume that an advanced user uses the query and he knows what he's doing.
 
 There are additional required parameters for integrations that fetch incidents: you don't need to handle  them in your code, just make sure they are correctly defined in your integration yml file. The updated list is [here](https://github.com/demisto/demisto-sdk/blob/f407ffe9d632c45acce0ce0587efbf8ae89d6db8/demisto_sdk/commands/common/constants.py#L942).
 
@@ -211,10 +211,10 @@ Besides fetching incidents or indicators, your integration is probably mapping s
 
 Every command takes inputs (arguments) and returns outputs.
 
-Command names follow a naming convention that makes it easy for the users to understand what they do: `!vendor-action-object` using [kebab-case](https://medium.com/better-programming/string-case-styles-camel-pascal-snake-and-kebab-case-981407998841). For example, a command of an integration from vendor HelloWorld that performs an update action of an object of type alert, should be named: `!helloworld-update-alert`.
+Command names follow a naming convention that makes it easy for the users to understand what they do: `!vendor-object-action` using [kebab-case](https://medium.com/better-programming/string-case-styles-camel-pascal-snake-and-kebab-case-981407998841). For example, a command of an integration from vendor HelloWorld that performs an update action of an object of type alert, should be named: `!helloworld-alert-update`.
 
 Integration commands are used in two ways inside Cortex XSOAR:
-- In Playbooks: in this case commands become building blocks or tasks of playbooks.
+- In Playbooks: in this case commands become building blocks or tasks of playbooks. 
 - In the CLI: users can manually run commands within an incident using the XSOAR CLI by typing `!commandname` and specifying the arguments.
 
 Customers typically use a combination of both: they use commands to automate processes through the playbooks and, when they are conducting investigations manually they run commands from the CLI to analyze the data.
