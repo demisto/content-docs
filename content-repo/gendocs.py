@@ -207,8 +207,7 @@ def get_pack_link(file_path: str) -> str:
     try:
         pack_name_in_docs = get_packname_from_metadata(pack_dir)
     except FileNotFoundError:
-        pack_name_in_docs = pack_name
-        # pack_name_in_docs = pack_name.replace('_', ' ').replace('-', ' - ')
+        pack_name_in_docs = pack_name.replace('_', ' ').replace('-', ' - ')
 
     pack_link = f'{MARKETPLACE_URL}details/{pack_name_in_link}'
     file_types = [PACKS_SCRIPTS_PREFIX, PACKS_INTEGRATIONS_PREFIX, PACKS_PLAYBOOKS_PREFIX]
@@ -217,9 +216,7 @@ def get_pack_link(file_path: str) -> str:
     except Exception:
         file_type = ''
     return f"#### This {file_type} is part of the **[{pack_name_in_docs}]({pack_link})** Pack.\n\n" \
-        if file_type and pack_name and pack_name_in_docs \
-        else f'Cant generate pack-link : file_type: {file_type}, pack_name: {pack_name}, ' \
-             f'pack_name_in_docs: {pack_name_in_docs}\n\n'
+        if file_type and pack_name and pack_name_in_docs else ''
 
 
 def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
@@ -257,6 +254,7 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
         # check if we have a header
         lines = content.splitlines(True)
         has_header = len(lines) >= 2 and lines[0].startswith('---') and lines[1].startswith('id:')
+        print(f'Starting edit readme file: {readme_file}. Has header :{has_header}')
         if not has_header:
             readme_repo_path = readme_file
             if readme_repo_path.startswith(content_dir):
@@ -268,6 +266,7 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
             content = get_fromversion_data(yml_data) + content
             content = get_pack_link(readme_file) + content
             content = header + content
+            print(f'Adding beta, fromversion, link to file: {readme_file}.')
         verify_mdx_server(content)
         with open(f'{target_dir}/{id}.md', mode='w', encoding='utf-8') as f:  # type: ignore
             f.write(content)

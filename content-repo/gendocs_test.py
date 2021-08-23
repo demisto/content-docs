@@ -146,7 +146,7 @@ def test_process_readme_doc_edl(tmp_path, mocker):
     res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT,
                              'integrations', str(tmp_path), "dummy-relative",
                              f'{SAMPLE_CONTENT}/Integrations/PaloAltoNetworks_PAN_OS_EDL_Management/README.md')
-    # assert res.name == 'Palo Alto Networks PAN-OS EDL Management'
+    assert res.name == 'Palo Alto Networks PAN-OS EDL Management'
 
 
 def test_process_readme_doc_playbookl(tmp_path, mocker):
@@ -458,4 +458,4 @@ def test_get_pack_link_no_metadata(mocker, test_input, expected):
         - Ensure the link to pack in marketplace generated as expected
     """
     mocker.patch('gendocs.get_packname_from_metadata', side_effect=error_raising_func)
-    # assert expected == get_pack_link(test_input)
+    assert expected == get_pack_link(test_input)
