@@ -42,7 +42,7 @@ The **Phishing Campaign** content pack contains several content items.
 
 ## Playbooks ##
 
-[**Detect & Manage Phishing Campaigns**](https://xsoar.pan.dev/docs/reference/playbooks/detect-manage-phishing-campaigns-phishing-investigation)
+[**Detect & Manage Phishing Campaigns**](https://xsoar.pan.dev/docs/reference/playbooks/detect--manage-phishing-campaigns)
 
 The **Detect & Manage Phishing Campaigns** playbook uses the **FindEmailCampaigns** automation to detect phishing campaigns. 
 
@@ -110,7 +110,7 @@ Enables the analyst to take batch actions:
     
 |Layout Section| Description |
 |--|--|
-|Similar Incidents| Similar phishing incidents are displayed.  The columns are the same incident fields in the `fieldToDisplay` input in the [Detect & Manage Phishing Campaign](https://xsoar.pan.dev/docs/reference/playbooks/detect-manage-phishing-campaigns-phishing-investigation) playbook, so analysts can decide what to see about their related incidents.|
+|Similar Incidents| Similar phishing incidents are displayed.  The columns are the same incident fields in the `fieldToDisplay` input in the [Detect & Manage Phishing Campaign](https://xsoar.pan.dev/docs/reference/playbooks/detect--manage-phishing-campaigns) playbook, so analysts can decide what to see about their related incidents.|
 |Notify Recipients| Analysts can select which incident, recipients, etc, to send an email.  The recipients from the incidents are auto-populated in the **Campaign Email To** field. Analysts can write an email and send it to the recipients directly from the layout.|
 |Incident Actions| The related incidents can be linked (occurs automatically by default in the playbook), unlinked, closed and reopened.|
 
@@ -124,4 +124,4 @@ Enables the analyst to take batch actions:
 
 ## Pack Configuration
 
-Customize the playbook by changing the inputs of the  [Detect & Manage Phishing Campaigns](https://xsoar.pan.dev/docs/reference/playbooks/detect-manage-phishing-campaigns-phishing-investigation) playbook. All of the playbook inputs customize the execution of the **FindEmailCampaign** automation.
+Customize the playbook by changing the inputs of the  [Detect & Manage Phishing Campaigns](https://xsoar.pan.dev/docs/reference/playbooks/detect--manage-phishing-campaigns) playbook. All of the playbook inputs customize the execution of the **FindEmailCampaign** automation.
