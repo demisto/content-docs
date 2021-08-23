@@ -42,7 +42,7 @@ The **Phishing Campaign** content pack contains several content items.
 
 ## Playbooks ##
 
-[**Detect & Manage Phishing Campaigns**](https://xsoar.pan.dev/docs/reference/playbooks/detect-manage-phishing-campaigns-phishing-investigation)
+[**Detect & Manage Phishing Campaigns**](https://xsoar.pan.dev/docs/reference/playbooks/detect--manage-phishing-campaigns)
 
 The **Detect & Manage Phishing Campaigns** playbook uses the **FindEmailCampaigns** automation to detect phishing campaigns. 
 
