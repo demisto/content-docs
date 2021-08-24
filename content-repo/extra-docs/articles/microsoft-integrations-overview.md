@@ -16,13 +16,13 @@ Review this document to determine the Microsoft integrations you need for your u
 
 ### Use Cases
 
-* Create users and groups.
-* Remove a member from a group.
-* Remove a pre-approved application.
+- Create users and groups.
+- Remove a member from a group.
+- Remove a pre-approved application.
 
 ### Playbooks
-* Get Manager Details
-* Active Directory Investigation playbook
+- Get Manager Details
+- Active Directory Investigation playbook
 
 
 ### [Azure Active Directory Users](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-user)
@@ -47,10 +47,10 @@ Manage applications and service principals.
 
 ### Use Cases
 
-* Download a file from OneDrive.
-* Send a message via Microsoft Teams.
-* Add a member to an existing team.
-* Schedule an event in the calendar.
+- Download a file from OneDrive.
+- Send a message via Microsoft Teams.
+- Add a member to an existing team.
+- Schedule an event in the calendar.
 
 ### [O365 File Management (Onedrive/Sharepoint/Teams)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-files)
 Manage files in O365 (OneDrive/SharePoint/Teams).
@@ -61,15 +61,15 @@ Manage files in O365 (OneDrive/SharePoint/Teams).
 ### [Microsoft Teams](https://xsoar.pan.dev/docs/reference/integrations/microsoft-teams)
 Enable communicating and mirroring via Microsoft Teams.
 - Create and update channels.
-- Add users to channel.
+- Add users to channel
 - Message users.
 - Ring user.
 - Message mirroring.
 
 ### [Microsoft Teams Management](https://xsoar.pan.dev/docs/reference/integrations/microsoft-teams-management)
 Manage teams and team members
-- Create and update teams.
-- Add and remove team members.
+- Create and update teams
+- Add and remove team members
 
 ### [O365 Outlook Calendar](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-calendar)
 Manage calendar events.
@@ -82,13 +82,13 @@ Since the API is very vast and not all of the endpoints are implemented, this in
 ## Audit Logs
 
 ### Use Cases:
-* Find failed login events
-* Find publicly shared files events
-* Find security events
+- Find failed login events.
+- Find publicly shared files events.
+- Find security events.
 
 ### Playbooks
-* Office 365 and Azure Hunting
-* Office 365 and Azure Configuration Analysis
+- Office 365 and Azure Hunting.
+- Office 365 and Azure Configuration Analysis.
 
 ### [Microsoft Management Activity](https://xsoar.pan.dev/docs/reference/integrations/microsoft-management-activity-api-o365-azure-events)
 Ingest events from O365 (Azure AD, SharePoint, EWS, etc) as incidents.
@@ -98,12 +98,12 @@ Ingest events from O365 (Azure AD, SharePoint, EWS, etc) as incidents.
 ## Exchange and EWS
 
 ### Use Cases
-* Find an email message.
-* Move an email message to a different folder.
-* Send an email.
-* Delete Email
-* Modify your Outlook recipient list.
-* Process Emails
+- Find an email message.
+- Move an email message to a different folder.
+- Send an email.
+- Delete Email.
+- Modify your Outlook recipient list.
+- Process Emails.
 
 | Integration 	| Cloud/On-Prem 	| Usage 	| Limitations 	| Auth Method 	|
 |:---:	|:---:	|:---:	|:---:	|:---:	|
