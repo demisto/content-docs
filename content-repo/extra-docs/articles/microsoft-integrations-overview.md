@@ -21,8 +21,8 @@ Review this document to determine the Microsoft integrations you need for your u
 - Remove a pre-approved application.
 
 ### Playbooks
-- Get Manager Details
-- Active Directory Investigation playbook
+- Get Manager Details.
+- Active Directory Investigation playbook.
 
 
 ### [Azure Active Directory Users](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-user)
@@ -67,9 +67,9 @@ Enable communicating and mirroring via Microsoft Teams.
 - Message mirroring.
 
 ### [Microsoft Teams Management](https://xsoar.pan.dev/docs/reference/integrations/microsoft-teams-management)
-Manage teams and team members
-- Create and update teams
-- Add and remove team members
+Manage teams and team members.
+- Create and update teams.
+- Add and remove team members.
 
 ### [O365 Outlook Calendar](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-calendar)
 Manage calendar events.
@@ -177,7 +177,7 @@ Enable execution of scripts on multiple endpoints.
 ### [Microsoft Graph Device Management (Intune)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-device-management)
 Manage devices.
 - Lock a device.
-- Wipe a device
+- Wipe a device.
 - Locate a device, etc.
 
 
