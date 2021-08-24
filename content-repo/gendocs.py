@@ -373,11 +373,14 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
         if private_packs:
             print(f'Process README Private file: {readme_file}')
             header = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: null\n---\n\n'
-            content = header + get_pack_link(readme_file) + content
         else:
             edit_url = f'https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/{prefix}/{readme_file_name}'
             header = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\n---\n\n'
-            content = header + get_pack_link(readme_file) + content
+        content = get_deprecated_data(yml_data, desc, readme_file) + content
+        content = get_beta_data(yml_data, content) + content
+        content = get_fromversion_data(yml_data) + content
+        content = get_pack_link(readme_file) + content
+        content = header + content
         verify_mdx_server(content)
         with open(f'{target_dir}/{file_id}.md', mode='w', encoding='utf-8') as f:
             f.write(content)
