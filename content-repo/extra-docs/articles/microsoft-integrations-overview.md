@@ -86,6 +86,10 @@ Since the API is very vast and not all of the endpoints are implemented, this in
 * Find publicly shared files events
 * Find security events
 
+### Playbooks
+* Office 365 and Azure Hunting
+* Office 365 and Azure Configuration Analysis
+
 ### [Microsoft Management Activity](https://xsoar.pan.dev/docs/reference/integrations/microsoft-management-activity-api-o365-azure-events)
 Ingest events from O365 (Azure AD, SharePoint, EWS, etc) as incidents.
 
@@ -97,15 +101,9 @@ Ingest events from O365 (Azure AD, SharePoint, EWS, etc) as incidents.
 * Find an email message.
 * Move an email message to a different folder.
 * Send an email.
+* Delete Email
 * Modify your Outlook recipient list.
-
-### Playbooks
-
-* Get mails by folder path
-* Security and compliance search
-* O365 Mail Search
-* Process Email
-
+* Process Emails
 
 | Integration 	| Cloud/On-Prem 	| Usage 	| Limitations 	| Auth Method 	|
 |:---:	|:---:	|:---:	|:---:	|:---:	|
