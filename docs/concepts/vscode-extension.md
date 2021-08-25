@@ -8,8 +8,8 @@ The extension also provides an easy-to-use set of demisto-sdk commands to format
 
 ## Extension Workflow
 
-The extension defines a slightly different workflow than Cortex XSOAR. With the plugin, you can work on your code (whether it is Python, Powershell or Javascript).
-It is uses the excellent [demisto-sdk](./demisto-sdk) python package.
+The extension defines a slightly different workflow than Cortex XSOAR. With the plugin, you can work on your code (whether it is Python, PowerShell or JavaScript).
+It utilizes the excellent [demisto-sdk](./demisto-sdk) python package.
 
 ## Prerequisites
 
@@ -32,7 +32,7 @@ A path to the python interpreter where *demisto-sdk* is installed. If not config
 ### xsoar.autoFindProblems.readProblems
 
 Will auto-run *demisto-sdk lint* and *demisto-sdk validate* when saving your file if this configuration is set to *true*.
-It is recommended to change this configuration to *false* and enable it only for your [content](https://github.com/demisto/demisto-sdk/) repository.
+It is recommended to change this configuration to *false* and enable it only for your [content](https://github.com/demisto/content/) repository.
 
 ## Commands
 
@@ -47,7 +47,7 @@ Notable commands:
 
 Read the [Debugging using your IDE](../integrations/debugging#Debugging%20using%20your%20IDE) section.
 
-## launch.json configuration
+### launch.json configuration
 
 The launch (*.vscode/launch.json*) configuration for running an integration should be as follows:
 
@@ -69,7 +69,7 @@ The launch (*.vscode/launch.json*) configuration for running an integration shou
 
 You can use Run and Debug (⇧⌘D) in VSCode (or click F5 on the python file).
 
-## Non-regular debugging
+## Advanced debugging
 
 If you are developing an integration that relies on packages other than the base packages, Cortex XSOAR recommends that you create a separate environment for that.
 
@@ -100,7 +100,7 @@ You need the following three files in your directory:
 
 * [CommonServerPython.py](https://github.com/demisto/content/tree/master/Packs/Base/Scripts/CommonServerPython)  
 Can be found in *Packs/Base/Scripts/CommonServerPython*.
-* Create an empty file with the name [CommonServerUserPython.py](https://xsoar.pan.dev/docs/reference/scripts/common-server-user-python). 
+* Create an empty file with the name [CommonServerUserPython.py](https://xsoar.pan.dev/docs/reference/scripts/common-server-user-python).
 * [demistomock.py](https://github.com/demisto/content/tree/master/Tests/demistomock)  
 Can be found in *Tests/demistomock*.
 

@@ -55,7 +55,7 @@ Sometimes when printing or using the logs is too confusing or messy you want to 
 ### Python Environment  
 
 Python Environment  
-You need to prepare a python environment with all the base dependencies. It is recommended to use a virtual env tool (like [pipenv](https://pipenv.pypa.io/en/latest/)).
+You need to prepare a python environment with all the base dependencies. It is recommended to use a virtual env tool like [virtuaelenv](../concepts/dev-setup) or [pipenv](https://pipenv.pypa.io/en/latest/).
 The environment requirements can be found in the `dev-requirements-py3.txt`. To install it using pipenv run `pipenv install -r dev-requirements-py3.txt`.
 
 ### Using Demistomock (the demisto object)
