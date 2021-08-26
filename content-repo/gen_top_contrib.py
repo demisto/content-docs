@@ -241,14 +241,14 @@ def get_contributors_users(users_info) -> list:
 
     for user in users:
         prs = users.count(user)
-        user.update({'Number of Contributions': prs})
+        user.update({'Number of Contribution(s)': prs})
 
     list_users = []
     result = {i['Contributor']: i for i in reversed(users)}.values()
-    new_res = sorted(result, key=lambda k: k['Number of Contributions'], reverse=True)
+    new_res = sorted(result, key=lambda k: k['Number of Contribution(s)'], reverse=True)
 
     for user in new_res:
-        user['Contributor'] += f'<br></br>{user["Number of Contributions"]} Contributions'
+        user['Contributor'] += f'<br></br>{user["Number of Contribution(s)"]} Contributions'
         list_users.append(user['Contributor'])
 
     return list_users
