@@ -55,7 +55,7 @@ Prior to acceptance into the program, all partners must complete and sign our Te
 
 We require our Partners to take training classes at the Palo Alto Networks Beacon Learning Center prior to beginning development. 
 
-1. [Cortex XSOAR: Analyst Training](https://beacon.paloaltonetworks.com/student/path/642715-cortex-xsoar-analyst-training?sid=31172842&sid_i=2) (2hrs)
+1. [Cortex XSOAR: Analyst Training](https://beacon.paloaltonetworks.com/student/path/642715-cortex-xsoar-analyst-training?sid=31172842&sid_i=2) (3hrs)
 
 1. [Cortex XSOAR: SOAR Engineer Training](https://beacon.paloaltonetworks.com/student/collection/666206/path/741516) (3hrs)
 
