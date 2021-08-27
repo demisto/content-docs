@@ -18,7 +18,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import Select from "react-select";
 import AsyncSelect from "react-select/async";
 import styles from "./styles.module.css";
-import image from "/src/pages/marketplace/images/TopContributors.png"
+import image from "@site/static/img/TopContributors.png"
 
 function usePrevious(value) {
   const ref = useRef(value);
