@@ -363,8 +363,15 @@ def test_get_contrib_prs():
         }
     ]
 
-    _, res = get_external_prs(mock_response)
-    assert ['13801', '13614'] == res
+    res = get_external_prs(mock_response)
+    expected_output = [{'pr_number': '13801',
+                        'pr_body': '## Original External PR\r\n[external pull request]'
+                                   '(https://github.com/demisto/content/pull/13801)\r\n\r\n## Status\r\n- [ ] In '
+                                   'Progress\r\n- [x] Ready\r\n- [ ] In Hold - (Reason for hold)\r\n\r\n'},
+                       {'pr_number': '13614', 'pr_body': '## Original External PR\r\n[external pull request]'
+                                                         '(https://github.com/demisto/content/pull/13614)\r\n\r\n## '
+                                                         'Contributing to Cortex XSOAR Content'}]
+    assert expected_output == res
 
 
 def test_get_github_user(requests_mock):
@@ -405,7 +412,7 @@ def test_get_github_user(requests_mock):
     username = 'jacksparow'
     requests_mock.get(f'https://api.github.com/users/{username}', json=user_response)
     res = get_github_user(username)
-    assert ('https://avatars.githubusercontent.com/u/4711633?v=4', 'https://github.com/jacksparow') == res
+    assert user_response == res
 
 
 def test_get_contribution_users():
@@ -419,7 +426,19 @@ def test_get_contribution_users():
     Then:
         - Validate that contribution user was returned as necessary.
     """
-    res = get_contributors_users(INNER_PR_RESPONSE)
+
+    user_info = [{
+            "login": "powershelly",
+            "id": 87646651,
+            "node_id": "MDQ6VXNlcjg3NjQ2NjUx",
+            "avatar_url": "https://avatars.githubusercontent.com/u/testurl",
+            "url": "https://api.github.com/users/powershelly",
+            "html_url": "https://github.com/powershelly",
+            "received_events_url": "https://api.github.com/users/powershelly/received_events",
+            "type": "User",
+            "site_admin": False
+    }]
+    res = get_contributors_users(user_info)
     assert ["<img src='https://avatars.githubusercontent.com/u/testurl'/><br></br> "
             "<a href='https://github.com/powershelly' target='_blank'>powershelly</a><br></br>1 Contributions"] == res
 
