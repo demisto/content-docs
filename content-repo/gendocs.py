@@ -36,6 +36,7 @@ def timestamped_print(*args, **kwargs):
 print = timestamped_print
 
 BASE_URL = "https://xsoar.pan.dev/docs/"
+MARKETPLACE_URL = "https://xsoar.pan.dev/marketplace/"
 DOCS_LINKS_JSON = {}
 
 INTEGRATION_YML_MATCH = [
@@ -82,6 +83,9 @@ DEPRECATED_INFO_FILE = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs
 random.seed(os.getenv('CIRCLE_BRANCH'))
 
 MIN_RELEASE_VERSION = StrictVersion((datetime.now() + relativedelta(months=-18)).strftime('%y.%-m.0'))
+PACKS_INTEGRATIONS_PREFIX = 'Integrations'
+PACKS_SCRIPTS_PREFIX = 'Scripts'
+PACKS_PLAYBOOKS_PREFIX = 'Playbooks'
 
 
 class DocInfo:
@@ -184,6 +188,37 @@ def get_beta_data(yml_data: dict, content: str):
     return ""
 
 
+def get_packname_from_metadata(pack_dir):
+    with open(f'{pack_dir}/pack_metadata.json', 'r') as f:
+        metadata = json.load(f)
+    return metadata.get('name')
+
+
+def get_pack_link(file_path: str) -> str:
+    # the regex extracts pack name from paths, for example: content/Packs/EWSv2 -> EWSv2
+    match = re.search(r'Packs[/\\]([^/\\]+)[/\\]?', file_path)
+    pack_name = match.group(1) if match else ''
+    pack_name_in_link = pack_name.replace('-', '')
+
+    # the regex extracts pack path, for example: content/Packs/EWSv2/Integrations/I1/README.md -> content/Packs/EWSv2/
+    match = re.match(r'.+/Packs/.+?(?=/)', file_path)
+    pack_dir = match.group(0) if match else ''
+
+    try:
+        pack_name_in_docs = get_packname_from_metadata(pack_dir)
+    except FileNotFoundError:
+        pack_name_in_docs = pack_name.replace('_', ' ').replace('-', ' - ')
+
+    pack_link = f'{MARKETPLACE_URL}details/{pack_name_in_link}'
+    file_types = [PACKS_SCRIPTS_PREFIX, PACKS_INTEGRATIONS_PREFIX, PACKS_PLAYBOOKS_PREFIX]
+    try:
+        file_type = [ft[:-1] for ft in file_types if ft in file_path][0]
+    except Exception:
+        file_type = ''
+    return f"#### This {file_type} is part of the **[{pack_name_in_docs}]({pack_link})** Pack.\n\n" \
+        if file_type and pack_name and pack_name_in_docs else ''
+
+
 def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
                        imgs_dir: str, relative_images_dir: str, readme_file: str) -> DocInfo:
     try:
@@ -228,6 +263,7 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
             content = get_deprecated_data(yml_data, desc, readme_file) + content
             content = get_beta_data(yml_data, content) + content
             content = get_fromversion_data(yml_data) + content
+            content = get_pack_link(readme_file) + content
             content = header + content
         verify_mdx_server(content)
         with open(f'{target_dir}/{id}.md', mode='w', encoding='utf-8') as f:  # type: ignore
@@ -335,10 +371,16 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
         content = content.replace(front_matter_match[0], '')
 
         if private_packs:
-            content = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: null\n---\n\n' + content
+            print(f'Process README Private file: {readme_file}')
+            header = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: null\n---\n\n'
         else:
             edit_url = f'https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/{prefix}/{readme_file_name}'
-            content = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\n---\n\n' + content
+            header = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\n---\n\n'
+        content = get_deprecated_data(yml_data, desc, readme_file) + content
+        content = get_beta_data(yml_data, content) + content
+        content = get_fromversion_data(yml_data) + content
+        content = get_pack_link(readme_file) + content
+        content = header + content
         verify_mdx_server(content)
         with open(f'{target_dir}/{file_id}.md', mode='w', encoding='utf-8') as f:
             f.write(content)
