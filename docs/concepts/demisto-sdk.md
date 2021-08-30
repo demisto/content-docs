@@ -295,14 +295,14 @@ and the `DEMISTO_API_KEY` prior to running this command in order to establish a 
 #### Examples and Use Cases:
  - Zip a pack:
     ```buildoutcfg
-    demisto-sdk zip-packs -i Campaign -o someDir/zippedPacks
+    demisto-sdk zip-packs -i Campaign -o Packs/Campaign
     ```
-   This will zip the `Campaign` pack into Campaign.zip file in the `someDir/zippedPacks` directory.
+   This will zip the `Campaign` pack into Campaign.zip file in the `Packs/Campaign` directory.
    
    
  - Zip and upload a whole pack to the Marketplace:
     ```buildoutcfg
-    demisto-sdk zip-packs -i Campaign -o someDir/zippedPacks -u
+    demisto-sdk zip-packs -i Campaign -o Packs/Campaign -u
     ```
    This will zip, upload and install the pack `Campaign` in the preset XSOAR server's Marketplace.
    
