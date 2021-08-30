@@ -28,6 +28,6 @@ The process to Adopt-a-Pack is simple:
 1. After the 90 day transition period has elapsed, the Partner submits a pull request updating the readme (per text below), support information, and increments the version number and officially takes over the pack!
 
 ### Text for the Pack
-For partners who received permission for the adoption process, please add the following text to the **top** of the pack readme.md file and the ewly created release note file.
+For partners who received permission for the adoption process, please add the following text to the **top** of the pack readme.md file and the newly created release note file.
 - At the start of the adoption process: `Note: Support for this pack will be moving to the partner around <<Month>>, <<Day>>, <<Year>>.` (Be sure to update the date to 90 days in the future.)
 - At the end of the 90 day period: `Note: Support for this pack moved to the partner on <<Month>>, <<Day>>, <<Year>>. Please contact the partner directly via the support link on the right.` (Be sure to update the date.)
