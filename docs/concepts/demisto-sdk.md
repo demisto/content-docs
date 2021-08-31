@@ -288,6 +288,29 @@ and the `DEMISTO_API_KEY` prior to running this command in order to establish a 
 
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/upload/README.md#upload).
 
+### zip-packs
+Use this command to generate zipped packs and upload them to the Marketplace in Cortex XSOAR. Be sure to set up the `DEMISTO_BASE_URL` 
+and the `DEMISTO_API_KEY` prior to running this command in order to establish a connection between `demisto-sdk` and the XSOAR server.
+
+#### Examples and Use Cases:
+ - Zip a pack:
+    ```buildoutcfg
+    demisto-sdk zip-packs -i Campaign -o Packs/Campaign
+    ```
+   This will zip the `Campaign` pack into Campaign.zip file in the `Packs/Campaign` directory.
+   
+   
+ - Zip and upload a whole pack to the Marketplace:
+    ```buildoutcfg
+    demisto-sdk zip-packs -i Campaign -o Packs/Campaign -u
+    ```
+   This will zip, upload and install the pack `Campaign` in the preset XSOAR server's Marketplace.
+   
+   **When uploading to the Marketplace, the command will overwrite any pack which already exists in the XSOAR server. 
+   In order to avoid mistakes, a prompt will appear asking you to approve the upload.**
+
+For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/zip_packs/README.md#zip-packs).
+
 ### download
 Use this command to download entities from a Cortex XSOAR server to your local repository. Be sure to set up the `DEMISTO_BASE_URL` 
 and the `DEMISTO_API_KEY` prior to running this command in order to establish a connection between `demisto-sdk` and the XSOAR server.
