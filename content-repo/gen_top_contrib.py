@@ -162,8 +162,11 @@ def get_github_user(user_name: str) -> Dict:
     """
     url = f'{URL}/users/{user_name}'
     res = requests.request('GET', url, headers=HEADERS, verify=VERIFY)
-    response = res.json()
-    return response
+    if res.status_code == 404:
+        print(f'The user {user_name} was not found.')
+    else:
+        response = res.json()
+        return response
 
 
 def get_inner_pr_request() -> list:
@@ -179,7 +182,8 @@ def get_inner_pr_request() -> list:
         if 'Contributor' in pr_body:
             contributor = USER_NAME_REGEX.search(pr_body)[0].replace('\n', '')
             user_profile = get_github_user(contributor)
-            users_info.append(user_profile)
+            if user_profile:
+                users_info.append(user_profile)
         else:
             url = URL + f'/repos/demisto/content/pulls/{pr}'
             res = requests.request('GET', url, headers=HEADERS, verify=VERIFY)
