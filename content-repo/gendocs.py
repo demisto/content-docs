@@ -215,6 +215,8 @@ def get_pack_link(file_path: str) -> str:
         file_type = [ft[:-1] for ft in file_types if ft in file_path][0]
     except Exception:
         file_type = ''
+    if 'ApiModules' in pack_name or 'NonSupported' in pack_name:
+        return ''
     return f"#### This {file_type} is part of the **[{pack_name_in_docs}]({pack_link})** Pack.\n\n" \
         if file_type and pack_name and pack_name_in_docs else ''
 
