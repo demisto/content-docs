@@ -189,6 +189,27 @@ demisto-sdk doc-review -i Packs/Base/ReleaseNotes/1_11_10.md
 
 More info is available at the `demisto-sdk doc-review` command [README](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/doc_reviewer/README.md).
 
+## Breaking Changes Version
+In some cases, a new version is introduced which breaks backward compatibility (although we try to avoid it as much as possible, sometimes it is needed).
+From `XSOAR 6.5` and above, there is a support to mark a new version as a **breaking changes version** mechanism.
+
+Marking a version as a **breaking changes version** will pop up a screen to the customer upon installation:
+![image](https://user-images.githubusercontent.com/70005542/132126455-76f493c7-ca0f-4c3e-8a74-f5839d84147c.png)
+
+
+#### How to indicate a new version as a breaking changes version?
+In order to specify the new introduced version as breaking changes, the demisto-sdk update-release-notes command can be run with the -bc flag, for example:
+
+```
+demisto-sdk update-release-notes -i Packs/<Pack Name> -u revision -bc
+```
+Adding the `-bc` flag will:
+- Generate a corresponding configuration JSON file to the new release notes. For example, if the newly created release notes version is 1_1_0.md, a new configuration file 1_1_0.json will be created in the corresponding ReleaseNotes directory.
+- The configuration JSON file will be generated with the following fields:
+  -  `breakingChanges`: Indicates whether version is breaking changes or not, will be created with `true` value upon using `-bc` flag.
+  -  `breakingChangesNotes`: Will contain the text to be displayed to the customer upon installation, as can be seen in above image. If `breakingChangesNotes` is not specified, the default will be to present the whole release notes text to the user upon installation.
+
+
 ## Common Troubleshooting Tips
 
 #### I excluded an item from the release notes file, but it won't pass validation.
