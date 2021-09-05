@@ -45,15 +45,16 @@
     "react-responsive": "^8.2.0",
     "react-scroll-up-button": "1.6.4",
     "react-select": "^4.3.1",
+    "react-slideshow-image": "^3.5.0",
     "replace": "^1.2.0",
     "showdown": "^1.9.1"
   },
   "devDependencies": {
     "js-string-escape": "^1.0.1",
+    "node-fetch": "^2.6.1",
     "node-plop": "^0.26.2",
     "plop": "^2.7.4",
-    "xmlhttprequest": "^1.8.0",
-    "node-fetch": "^2.6.1"
+    "xmlhttprequest": "^1.8.0"
   },
   "browserslist": {
     "production": [
