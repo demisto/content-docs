@@ -191,7 +191,7 @@ More info is available at the `demisto-sdk doc-review` command [README](https://
 
 ## Breaking Changes Version
 In some cases, a new version is introduced which breaks backward compatibility (although we try to avoid it as much as possible, sometimes it is needed).
-From `XSOAR 6.5` and above, there is a support to mark a new version as a **breaking changes version** mechanism.
+From XSOAR version 6.5 and above, there is a support to mark a new version as a **breaking changes version** mechanism.
 
 Marking a version as a **breaking changes version** will pop up a screen to the customer upon installation:
 ![image](https://user-images.githubusercontent.com/70005542/132126455-76f493c7-ca0f-4c3e-8a74-f5839d84147c.png)
