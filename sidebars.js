@@ -37,6 +37,7 @@ const sidebars = {
           items: [
             "concepts/xsoar-ide",
             "concepts/pycharm-plugin",
+            "concepts/vscode-extension",
             "concepts/dev-setup",
             "concepts/demisto-sdk"
           ]

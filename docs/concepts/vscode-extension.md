@@ -80,7 +80,6 @@ In addition, you will need the *CommonServerPython.py*, *CommonServerUserPython.
 Let's say you are developing an integration in *Packs/Pasta/Integrations/Pasta* and your integration requires the *pasta* package.
 You would need to create a pipenv in that root:
 
-
 ```bash
 cd "${CONTENTDIR}/Packs/Pasta/Integrations/Pasta"
 pipenv install -r "${CONTENTDIR}/dev-requirements-py3.txt pasta"
