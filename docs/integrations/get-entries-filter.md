@@ -15,7 +15,7 @@ When building a script, you can fetch entries from an incident. If you do not sp
 | users |   Return entries with the specified users (array).   |   
 | tagsAndOperator     |  Return entries that include all specified tags.   |   
 | fromTime |  Return entries from this time and forward.    |   
-| parentID     | Return entries from this time and backward.    |   
+| parentID     | The ID of the parent entry.    |   
 
 ### Example: Grab all entries that have been marked as a note:
 
