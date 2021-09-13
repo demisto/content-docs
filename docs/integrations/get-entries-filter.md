@@ -8,8 +8,7 @@ When building a script, you can fetch entries from an incident. If you do not sp
 | ------------- |-------------|   
 | pageSize     | The number of entries to return.      |   
 | lastId | Return entries starting from the specified entry ID and backward.     |   
-| firstID     | The number of entries to return.      |   
-| lastId | Return entries starting from the specified entry ID and forward.     |   
+| firstID     | Return entries starting from the specified entry ID and forward.    |    
 | selectedEntryID     | Return entries before and after the specified entry ID.   |   
 | categories |  Return entries with the specified categories (array). {commandAndResults, playbookTaskResult, playbookTaskStartAndDone, playbookErrors, justFound, deleted, incidentInfo, chats, evidence, notes, attachments}    |   
 | tags     |  Return entries with the specified tags (array).     |   
