@@ -557,16 +557,16 @@ function Marketplace() {
                 >
                   <div className={clsx("card shadow--md", styles.contentPack)}>
                     {pack.certification == "certified" ? (
-                      <>
-                        <div className="certifiedBadge"></div>
-                        <i className="certified" title="Certified"></i>
-                      </>
-                    ) : (
                         <>
                           <div className="demistoBadge"></div>
                           <i className="demisto" title="By Cortex XSOAR"></i>
                         </>
-                      )}
+                      ) : (
+                      <>
+                        <div className="certifiedBadge"></div>
+                        <i className="certified" title="Certified"></i>
+                      </>
+                    )}
                     <div className="card__body">
                       <div className="avatar">
                         <div className="avatar__intro margin-left--none">
