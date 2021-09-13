@@ -556,7 +556,7 @@ function Marketplace() {
                   newTab={false}
                 >
                   <div className={clsx("card shadow--md", styles.contentPack)}>
-                    {pack.certification == "certified" ? (
+                    {(pack.certification == "certified" && pack.support == "xsoar") ? (
                         <>
                           <div className="demistoBadge"></div>
                           <i className="demisto" title="By Cortex XSOAR"></i>
