@@ -117,7 +117,7 @@ Pretend you need this release note to do your work. A bad RN can easily lead to 
 ### Entity Styling  
 - Command name: - should be wrapped with three stars - \*\*\*command_name***
 - Packs/Integrations/scripts/playbooks and other content entities (incident fields, dashboards...) - should be wrapped with two stars - \*\*entity_name**
-- Parameters/arguments/functions/outputs names - should be wrapped with one star - \*entity_name*
+- Parameters/arguments/functions/outputs names - should be wrapped with one star - \*parameter_name*
 
 
 ### Examples  
