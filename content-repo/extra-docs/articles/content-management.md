@@ -4,14 +4,68 @@ title: Content Management (Alpha)
 description: This process encapsulates what you need in order to control your XSOAR machines in an automated manner, while providing the ability to manage your own content, in your artifacts server of choice, with your version control system of choice.
 ---
 
-### Purpose
-This process encapsulates what you need in order to control your XSOAR machines in an automated manner, while providing the ability to manage your own content, in your artifacts server of choice, with your version control system of choice.
+The Content Management pack provides a continuous integration/continuous deployment (CI/CD) process for orchestrating your XSOAR machines. This pack enables you to configure an XSOAR machine automatically using a predefined configuration file. It provides you with the ability to manage your own developed XSOAR content, using third party version control systems and artifacts servers. 
 
----
+As part of this pack, you will get an out-of-the-box incident type, fields and layout, and a playbook for managing the entire configuration process.
 
-## Building The Repo
-You can visit our [example repository](https://github.com/demisto/content-helloworld-premium) and clone it to use as a baseline.
-### The Repo's Structure
+
+## What's in this Content Pack
+The Content Management pack includes several content items.
+
+### Automations
+There are 5 automations in this pack.
+- **ConfigurationSetup** - 
+Configuration loader for the Content Management pack.
+- **CustomPackInstaller** - 
+Custom Pack Installer for the Content Management pack.
+- **JobCreator** - Job creator for the Content Management pack.
+- **ListCreator** - List creator for the Content Management pack
+- **MarketplacePackInstaller** - Marketplace pack installer for the Content Management pack.
+
+### Incident Fields
+There are 8 incident fields.
+- **Branch Name** - The branch from which to fetch the file. Default is the main branch. (Optional)
+- **Configuration File Path** - The relative path within the repository to the *xsoar_config.json* file. (Optional)
+- **Configuration File Source** - The source of the configuration file.
+- **Custom Packs Installed** - Custom packs that were installed.
+- **Custom Packs Source** - The source of the custom packs.
+- **Jobs Created** - Jobs that were created.
+- **Lists Created** - Lists that were created.
+- **Marketplace Packs Installed** - Content packs that were installed.
+
+### Incident Type
+There is 1 incident type - **Configuration Setup**.
+
+### Layout
+There is 1 layout - **configuration setup**
+![layout.png](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/docs-files/layout.png)
+
+### Playbook
+There is 1 playbook - **Configuration Setup**
+This playbook will manage the entire configuration process and needs to run through a `Configuration Setup` incident type.<br />
+It consists of five stages:
+1. Fetching the configuration file and loading its content to the machine.
+2. Downloading and installing the custom packs.
+3. Installing Marketplace packs.
+4. Configuring lists.
+5. Configuring jobs.
+![playbook.png](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/docs-files/playbook.png)
+
+## Prerequisites
+
+The following are the prerequisites for using this pack:
+- [Create the Repository](#create-the-repository)
+- [Create the CI/CD process](#create-the-cicd-process)
+- [Create the Structure for the Artifacts Server](#create-the-structure-for-the-artifacts-server)
+
+### Create the Repository
+
+The repository is used to organize your custom content packs and your configuration files.  
+
+You should clone our [example repository](https://github.com/demisto/content-helloworld-premium) to use as a baseline.
+
+The structure of the repository is as follows:
+
 ```
 ├── .hooks
 │   ├── <your-hooks-here>
@@ -59,38 +113,43 @@ You can visit our [example repository](https://github.com/demisto/content-hellow
 │   │   ├── conftest.py               # Can be copied from the Content repo
 ```
 
----
+| Content of repo | Description |
+| --- | ---|
+| .hooks | --- |
+| Packs | Your customized packs that contain your incident fields, incident types, layouts, playbooks, scripts, integrations, and release notes. You can define multiple packs. |
+| README.md | A markdown file that provides a description of the pack. |
+| xsoar_config.json<br/>[Example file](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/docs-files/xsoar_config.json) | The configuration file that defines what packs lists, and jobs will be set up on the machine.<br/> It consists of the following sections:<br/>- *custom_packs* - Your own internal packs to be installed through the build process.<br/>- *marketplace_packs* - Marketplace packs to be installed on the machine.<br/>- *lists* - Lists to be created in the machine.<br/>- *jobs* - Jobs to be created in the machine. |
+| .private-repo-settings | --- |
+| .demisto-sdk-conf | Your custom configuration file for the demisto-sdk commands. For details, click [here](https://xsoar.pan.dev/docs/concepts/demisto-sdk#setting-a-preset-custom-command-configuration). |
+| requirements.txt | Contains a list of all the project’s dependencies. |
+| tox.ini | The command-line driven automated testing tool for Python. |
+| demistomock.py | You can copy this file from the Content repo (content/Tests/demistomock/). |
+| demistomock.ps1 | You can copy this file from the Content repo (/content/Tests/demistomock/).  |
+| CommonServerPython.py | You can copy this file from the Content repo (/content/Packs/Base/Scripts/CommonServerPython/). |
+| CommonServerPowerShell.ps1 | You can copy this file from the Content repo (/content/Packs/Base/Scripts/CommonServerPowerShell/). |              
+| conftest.py | You can copy this file from the Content repo (/content/Tests/scripts/dev_envs/pytest/). |
 
-### The `xsoar_config.json` File
-The configuration file that defines what will be set up on the machine.<br /> 
-Consists of the following sections:
-- `custom_packs` - Your own internal packs to be installed through the build process.
-- `marketplace_packs` - Marketplace packs to be installed on the machine.
-- `lists` - Lists to be created in the machine.
-- `jobs` - Jobs to be created in the machine.
+### Create the CI/CD Process
 
-[Example file](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/docs-files/xsoar_config.json)
+Create a yml file for the CI/CD process. The [Example File](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/docs-files/ci-cd.yml) is a GitHub actions YML file that can be used as a template for creating your CI/CD process.
 
----
 
-## Building the CI/CD process
-
-### Recommneded Steps:
-1. Prepare the enviornment and the virtual enviornment to run demisto-sdk on.
-2. Create an ID set for the private repo using the [demisto-sdk create-id-set](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/create_id_set) command.
-3. Merge the ID set with Content repo's ID set using the following command: `demisto-sdk merge-id-sets -i1 <path_to_first_id_set> -i2 <path_to_second_id_set> -o <path_to_output>`.
+1. Prepare the environment and the virtual environment on which to run the demisto-sdk. 
+2. Create an ID set for the private repository using the [demisto-sdk create-id-set](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/create_id_set) command.
+3. Merge the ID set with the Content repository's ID set using the following command: ***demisto-sdk merge-id-sets -i1 <path_to_private_repo_id__set> -i2 <path_to_content_repo_id_set> -o <path_to_output>***.
 4. Validate the packs' files using the [demisto-sdk validate](https://xsoar.pan.dev/docs/concepts/demisto-sdk#validate) command.
 5. Run unit tests and linters on the packs using the [demisto-sdk lint](https://xsoar.pan.dev/docs/concepts/demisto-sdk#lint) command.
 6. Create uploadable pack zips using the [demisto-sdk zip-packs](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/zip_packs) command.
-7. Or: Upload zipped packs directly to your machine using the [demisto-sdk upload](https://xsoar.pan.dev/docs/concepts/demisto-sdk#upload) command.
-8. Upload artifacts to your artifact repository.
 
-[Example File](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/docs-files/ci-cd.yml) - This is a GitHub actions YML file that can be used as a template.
+   Or 
 
----
+   Upload zipped packs directly to your machine using the [demisto-sdk upload](https://xsoar.pan.dev/docs/concepts/demisto-sdk#upload) command.
+8. Upload the artifacts to your artifact repository.
 
-### Recommended structure for the artifacts Server
-The idea behind the structure is to keep track of all versions in the `production` folder, while having a temporary `builds` folder to test packs before delpoying.
+
+
+### Create the Structure for the Artifacts Server
+This artifacts server structure enables you to keep track of your work. Your versions are saved in the *production* folder. The *builds* folder saves your test packs before your deploy them.
 ```
 ├── builds
 │   ├── <branch-name>
@@ -124,48 +183,43 @@ The idea behind the structure is to keep track of all versions in the `productio
 │   │   ├── ...
 ```
 
----
-## The Contents of the Pack
+## How to Use the Pack
+- [Run the pack manually](#run-the-pack-manually)
+- [Run the pack as a scheduled job](#run-the-pack-as-a-scheduled-job)
 
-### The `Configuration Setup` Incident type
-#### Custom Fields:
-- `Configuration File Source` - The source of the configuration file.
-- `Custom Packs Source` - The source of the custom packs.
-- `Configuration File Path` - The relative path within the repository to the `xsoar_config.json` file. (Optional)
-- `Branch Name` - The branch from which to fetch the file. Default is the main branch. (Optional)
+### Run the Pack Manually
+1. Navigate to **Incidents**.
+2. Click **New Incident**.
+3. Enter a name for the incident.
+4. From the Type drop down list, choose *Configuration Setup*.
+5. (Optional) From the Configuration File Source field in the Configurations section, select the source of the configuration file for the playbook run. If left empty, the master configuration will be used.
+   - Attachment - Attach the file to the incident. It's information is located under the *File* context path.
+   - GitHub - Use the **GitHub** integration will fetch the configuration file. If you select this option, you will also need to enter relative location in the *Configuration File Path* field and the Git branch in the repository to fetch the file from in the *Branch Name* field.
+6. (Optional) From the the Custom Packs Source field in the Configurations section, select the source of the custom packs files for the playbook run.
+   - Attachments - Attach the file to the incident. It's information is located under the *File* context path. 
+   - Google Cloud Storage - Use the *Google Cloud Storage(*) integration to download the files.
+   - HTTP request - Use the *http* script to download the files.
+The playbook will now run automatically.
 
-#### Layout:
-![layout.png](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/docs-files/layout.png)
 
----
+### Run the Pack as a Scheduled Job
+1. Navigate to **Jobs**.
+2. Click **New Job**.
+2. Select if the job is time-triggered or feed-triggered.
+   - Time-triggered jobs run at pre-determined times. You can schedule the job to run at a recurring time or one time at a specific time or date.
+   - Feed-triggered jobs run when a feed has completed an operation.
+3. Enter a name for the job.
+4. From the Type drop down list, choose *Configuration Setup*.
+5. (Optional) From the Configuration File Source field in the Configurations section, select the source of the configuration file for the playbook run. If left empty, the master configuration will be used.
+   - Attachment - Attach the file to the incident. It's information is located under the *File* context path.
+   - GitHub - Use the **GitHub** integration will fetch the configuration file. If you select this option, you will also need to enter relative location in the *Configuration File Path* field and the Git branch in the repository to fetch the file from in the *Branch Name* field.
+6. (Optional) From the the Custom Packs Source field in the Configurations section, select the source of the custom packs files for the playbook run.
+   - Attachments - Attach the file to the incident. It's information is located under the *File* context path. 
+   - Google Cloud Storage - Use the *Google Cloud Storage(*) integration to download the files.
+   - HTTP request - Use the *http* script to download the files.
+The playbook will now run automatically.
+To run the pack as a scheduled job, you will need to set up a new job for a `Configuration Setup` type incident.
 
-### The `Configuration Setup` Playbook
-This playbook will manage the entire configuration process and needs to run through a `Configuration Setup` incident type.<br />
-It consists of five stages:
-1. Fetching the configuration file and loading its content to the machine.
-2. Downloading and installing the custom packs.
-3. Installing Marketplace packs.
-4. Configuring lists.
-5. Configuring jobs.
-
-![playbook.png](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/docs-files/playbook.png)
-
----
-
-### How to use the pack
-#### You can choose either to use the pack manually, or set it up to work as a scheduled job:
--To run the pack manually, you will need to create a new `Configurtaion Setup` type incident.
-- To run the pack as a scheduled job, you will need to set up a new job for a `Configurtaion Setup` type incident.
-
-#### How to configure the incident/job:
-1. Choose the source of the configuration file for the playbook run:
-   - Attachment - The file is already attached to the incident, and its information is located under the `File` context path.
-   - GitHub - Will use the `GitHub` integration to fetch the configuration file.
-2. Choose the source of the custom packs files for the playbook run:
-   - Attachments - The files are already attached to the incident, and their information is located under the `File` context path.
-   - Google Cloud Storage - Will use the `Google Cloud Storage` integration to download the files.
-   - HTTP request - Will use the `http` script to download the files.
-3. If you choose the option to use the `GitHub` integration to fetch the configuration file, you will also need to enter the information regarding its location and branch in the repo by completing the `Configuration File Path` and `Branch Name` fields.
 
 ---
 
