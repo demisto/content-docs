@@ -71,6 +71,7 @@ The playbooks in the pack use execute scripts to check the system for failed int
 2. Click the **Get Your Key**, enter a name for the API key, and click **Generate Key**.
 3. **(IMPORTANT)** Copy and save the API key, you will not be able to access it again.
 4. Go to **Settings > INTEGRATIONS > Servers & Services** and search for **Demisto REST API**.
+    - Note: in Multi Tenant environments the **Demisto REST API** integration should be configured at the parent level and propagated down to the child.
 5. Click **Add instance** and enter the required information.
     - A meaningful name for the integration instance
     - Demisto Server URL

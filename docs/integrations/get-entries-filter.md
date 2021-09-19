@@ -8,15 +8,14 @@ When building a script, you can fetch entries from an incident. If you do not sp
 | ------------- |-------------|   
 | pageSize     | The number of entries to return.      |   
 | lastId | Return entries starting from the specified entry ID and backward.     |   
-| firstID     | The number of entries to return.      |   
-| lastId | Return entries starting from the specified entry ID and forward.     |   
+| firstID     | Return entries starting from the specified entry ID and forward.    |    
 | selectedEntryID     | Return entries before and after the specified entry ID.   |   
 | categories |  Return entries with the specified categories (array). {commandAndResults, playbookTaskResult, playbookTaskStartAndDone, playbookErrors, justFound, deleted, incidentInfo, chats, evidence, notes, attachments}    |   
 | tags     |  Return entries with the specified tags (array).     |   
 | users |   Return entries with the specified users (array).   |   
 | tagsAndOperator     |  Return entries that include all specified tags.   |   
 | fromTime |  Return entries from this time and forward.    |   
-| parentID     | Return entries from this time and backward.    |   
+| parentID     | The ID of the parent entry.    |   
 
 ### Example: Grab all entries that have been marked as a note:
 

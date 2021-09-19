@@ -54,7 +54,7 @@ const features = [
     imageUrl: "img/undraw_mind_map_cwng.svg",
     description: (
       <>
-        Join our 400+{" "}
+        Join our 750+{" "}
         <a
           href="https://www.paloaltonetworks.com/cortex/xsoar-ecosystem"
           target="_blank"
@@ -62,7 +62,7 @@ const features = [
           integrations network
         </a>{" "}
         to increase your reach into some of the largest SOCs in the world.
-        Access over 70,000 customers in 150+ locations across multiple
+        Access over 80,000 customers in 150+ locations across multiple
         industries.
       </>
     ),
