@@ -556,16 +556,17 @@ function Marketplace() {
                   newTab={false}
                 >
                   <div className={clsx("card shadow--md", styles.contentPack)}>
-                    if (pack.support == "xsoar") {(
+                    {(pack.certification == "certified" && pack.support == "xsoar") ? (
                         <>
                           <div className="demistoBadge"></div>
                           <i className="demisto" title="By Cortex XSOAR"></i>
                         </>
-                      )} else if (pack.support == "partner") {(
-                      <>
-                        <div className="certifiedBadge"></div>
-                        <i className="certified" title="Certified"></i>
-                      </>
+                      ) : ((pack.support == "partner") ? (
+                          <>
+                            <div className="certifiedBadge"></div>
+                            <i className="certified" title="Certified"></i>
+                          </>
+                      ) : ()
                     )}
                     <div className="card__body">
                       <div className="avatar">
