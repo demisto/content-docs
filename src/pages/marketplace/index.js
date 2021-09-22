@@ -566,7 +566,11 @@ function Marketplace() {
                             <div className="certifiedBadge"></div>
                             <i className="certified" title="Certified"></i>
                           </>
-                      ) : ()
+                      ) : (
+                          <>
+                          <div></div>
+                          </>
+                      )
                     )}
                     <div className="card__body">
                       <div className="avatar">
