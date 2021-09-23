@@ -53,7 +53,7 @@ jobs:
             npm run marketplace-docs
       - run:
           name: NPM Build
-          no_output_timeout: 60m
+          no_output_timeout: 40m
           environment:
             ALGOLIA_INDEX: demisto
           command: |
