@@ -51,7 +51,7 @@ const features = [
   },
   {
     title: <>Why Become a Partner?</>,
-    imageUrl: "img/undraw_mind_map_cwng.svg",
+    imageUrl: "",
     description: (
       <>
         Join our 750+{" "}
