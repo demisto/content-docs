@@ -91,11 +91,7 @@ Embed the image in the README.md using a Markdown Image Link, such as:
 ```
 ![Playbook Image](https://github.com/demisto/content/raw/2d6e082cfb181f823e5b1446ae71e10537591ea6/Packs/AutoFocus/doc_files/AutoFocusPolling.png)
 ```
-Or if you want more control on the image (for example setting width dimension) you can use the HTML `<img>` tag, such as:
 
-```
-<img width="500" src="https://github.com/demisto/content/raw/2d6e082cfb181f823e5b1446ae71e10537591ea6/Packs/AutoFocus/doc_files/AutoFocusPolling.png" />
-```
 **Screenshot of `Download` button:**
 ![Github Download](../doc_imgs/integrations/github-download-button.png)
 
