@@ -188,8 +188,8 @@ function Home() {
       <main>
         {features && features.length && (
           <section className={styles.features} ref={vertificalsRef}>
-            <div className="container" align="top">
-              <div className="row" align="top">
+            <div className="container" verticle-align="top">
+              <div className="row" verticle-align="top">
                 {features.map((props, idx) => (
                   <Feature key={idx} {...props} />
                 ))}
