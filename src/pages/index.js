@@ -51,7 +51,7 @@ const features = [
   },
   {
     title: <>Why Become a Partner?</>,
-    imageUrl: "https://img.spacergif.org/v1/spacer.gif",
+    imageUrl: "img/spacer.png",
     description: (
       <>
         Join our 750+{" "}
