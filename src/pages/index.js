@@ -51,7 +51,7 @@ const features = [
   },
   {
     title: <>Why Become a Partner?</>,
-    imageUrl: "img/undraw_mind_map_cwng.svg",
+    imageUrl: "img/spacer.png",
     description: (
       <>
         Join our 750+{" "}
@@ -64,7 +64,7 @@ const features = [
         to increase your reach into some of the largest SOCs in the world.
         Access over 80,000 customers in 150+ locations across multiple
         industries.
-        <iframe width='305' height='170' src='https://www.youtube.com/embed/t_CXChnVYyA' title='YouTube video player/' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>
+        <iframe width='305' height='170' src='https://www.youtube.com/embed/t_CXChnVYyA' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>
       </>
     ),
     button: (
