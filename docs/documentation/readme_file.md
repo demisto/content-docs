@@ -96,7 +96,7 @@ Or if you want more control on the image (for example setting width dimension) y
 ```
 <img width="500" src="https://github.com/demisto/content/raw/2d6e082cfb181f823e5b1446ae71e10537591ea6/Packs/AutoFocus/doc_files/AutoFocusPolling.png" />
 ```
-Note: the use of `<img>` tags is not supported in Pack README.md files.
+Note: The use of `<img>` tags is not supported in Content Pack README.md files.
 
 **Screenshot of `Download` button:**
 ![Github Download](../doc_imgs/integrations/github-download-button.png)
