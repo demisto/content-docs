@@ -221,11 +221,20 @@ function Home() {
                 <h3>
                   Our technical partners love working with Palo Alto Networks. Hear why in this quick video with Code42, one of our Premier partners. 
                 </h3>
+                <Link
+                  className={classnames(
+                    "button button--info button--secondary button--lg",
+                    styles.headerButtons
+                  )}
+                  href="https://start.paloaltonetworks.com/become-a-technology-partner"
+                >
+                  Become a Partner
+                </Link>
               </div>
             </div>
           </div>
         </section>
-        <section className={styles.tools}>
+        <section className={styles.features}>
           <div className="container">
             <div className="row">
               <div className="col col--6">
@@ -249,7 +258,7 @@ function Home() {
             </div>
           </div>
         </section>
-        <section className={styles.features}>
+        <section className={styles.tools}>
           <div className="integrations">
             <div className="integrations-inner">              
               <a href="/marketplace">
