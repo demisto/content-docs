@@ -214,9 +214,34 @@ function Home() {
           <div className="container">
             <div className="row">
               <div className="col col--6">
+                <h1>Partner with Cortex XSOAR</h1>
+                <h3>
+                  Our technical partners love working with Palo Alto Networks. Hear why in this quick video with Code42, one of our Premier partners. 
+                </h3>
+                <Link
+                  className={classnames(
+                    "button button--info button--secondary button--lg",
+                    styles.headerButtons
+                  )}
+                  href="https://start.paloaltonetworks.com/become-a-technology-partner"
+                >
+                  Become a Partner
+                </Link>
+              </div>
+              <div className="col col--6">
+               <iframe width='305' height='170' src='https://www.youtube.com/embed/t_CXChnVYyA' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className={styles.features}>
+          <div className="container">
+            <div className="row">
+              <div className="col col--6">
                 <img
                   alt="Cortex XSOAR"
                   src={useBaseUrl("img/undraw_creative_team_r90h.svg")}
+                  width="400"
                 />
               </div>
               <div className="col col--6">
@@ -234,7 +259,7 @@ function Home() {
             </div>
           </div>
         </section>
-        <section className={styles.features}>
+        <section className={styles.tools}>
           <div className="integrations">
             <div className="integrations-inner">              
               <a href="/marketplace">
