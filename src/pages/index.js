@@ -214,9 +214,6 @@ function Home() {
           <div className="container">
             <div className="row">
               <div className="col col--6">
-               <iframe width='305' height='170' src='https://www.youtube.com/embed/t_CXChnVYyA' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>
-              </div>
-              <div className="col col--6">
                 <h1>Partner with Cortex XSOAR</h1>
                 <h3>
                   Our technical partners love working with Palo Alto Networks. Hear why in this quick video with Code42, one of our Premier partners. 
@@ -230,6 +227,9 @@ function Home() {
                 >
                   Become a Partner
                 </Link>
+              </div>
+              <div className="col col--6">
+               <iframe width='305' height='170' src='https://www.youtube.com/embed/t_CXChnVYyA' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>
               </div>
             </div>
           </div>
