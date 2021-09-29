@@ -241,6 +241,7 @@ function Home() {
                 <img
                   alt="Cortex XSOAR"
                   src={useBaseUrl("img/undraw_creative_team_r90h.svg")}
+                  width="400"
                 />
               </div>
               <div className="col col--6">
