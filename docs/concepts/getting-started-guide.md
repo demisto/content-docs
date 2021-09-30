@@ -40,7 +40,7 @@ Check the following summary to determine what tools you should use to create new
 
 For creating content for local use or contributing community content:
 
-- You are welcome to work straight through the [XSOAR IDE](../concepts/xsoar-ide); if you are writing code (i.e. Integrations and Scripts) and prefer to use a more enhanced IDE, check out our [PyCharm plugin](../concepts/pycharm-plugin).
+- You are welcome to work straight through the [XSOAR IDE](../concepts/xsoar-ide); if you are writing code (i.e. Integrations and Scripts) and prefer to use a more enhanced IDE, check out our [Visual Studio Code extension](vscode-extension)).
 - If you decide to work locally, you can also install [demisto-sdk](https://github.com/demisto/demisto-sdk) to upload, download and run code on XSOAR directly from your operating system shell.
 
 #### Full Development Environment
@@ -51,6 +51,4 @@ For contributing XSOAR/Partner supported packs:
 
 ### Modifying Existing Content
 
-If you just want to fix a bug or enhance an existing Integration, Script, Playbook that is currently part of the Cortex XSOAR content repository, we recommend you to copy and modify it directly in the XSOAR UI. Consider using Pycharm or another IDE/demisto-sdk only when the change is big. When in doubt, ask a question in our [Slack Community](https://start.paloaltonetworks.com/join-our-slack-community).
-
-
+If you just want to fix a bug or enhance an existing Integration, Script, Playbook that is currently part of the Cortex XSOAR content repository, we recommend you to copy and modify it directly in the XSOAR UI. Consider using Visual Studio COde or another IDE/demisto-sdk only when the change is big. When in doubt, ask a question in our [Slack Community](https://start.paloaltonetworks.com/join-our-slack-community).
