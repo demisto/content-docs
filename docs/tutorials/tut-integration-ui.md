@@ -21,7 +21,7 @@ If this option is unavailable for you, it means that you do not have the proper 
 
 >*Here we see the Cortex XSOAR IDE. This more than likely looks different than other IDEs you may have previously worked with, So, let’s take a minute and point out what makes it different.*
 
-While the Cortex XSOAR IDE has many features, you may wish to pre-write your code in a standalone IDE such as Pycharm or IntelliJ.
+While the Cortex XSOAR IDE has many features, you may wish to pre-write your code in a standalone IDE such as Visual Studio Code or Pycharm.
 
 ## Script Helper
 

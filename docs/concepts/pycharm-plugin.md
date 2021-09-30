@@ -3,8 +3,8 @@ id: pycharm-plugin
 title: PyCharm IDE Plugin
 ---
 > Starting 1st October, 2021, Cortex XSOAR will no longer be developing nor updating the Pycharm plugin. After this date, the Pycharm plugin only be supported by the community with no official help or resources from Cortex XSOAR.
-
->Use the new [Cortex XSOAR extension for VSCode](./vscode-extension). It feature-full, quicker and easy to use!
+>
+> Use the new [Cortex XSOAR extension for VSCode](./vscode-extension). It feature-full, quicker and easy to use!
 
 The Cortex XSOAR plugin for the PyCharm IDE enables you to design and author scripts and integrations for Cortex XSOAR directly from PyCharm. The plugin adds a sidebar with Automation and Integration Settings, just like the Settings sidebar in the Cortex XSOAR script editor. When writing code, the plugin provides you with auto-complete of Cortex XSOAR and Python functions.
 
