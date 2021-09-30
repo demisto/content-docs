@@ -5,7 +5,7 @@ import os
 import re
 
 import requests
-from typing import Tuple
+from typing import List, Dict
 from datetime import datetime
 
 PR_NUMBER_REGEX = re.compile(r'(?<=pull/)([0-9]+)')
@@ -47,7 +47,7 @@ def create_grid(dataset: list) -> str:
     return html_card
 
 
-def get_external_prs(prs: list) -> Tuple[list, list]:
+def get_external_prs(prs: list) -> List[Dict]:
     """
     Get the external prs from the internal.
     We are using this to get the contributor github user in get_pr_user command.
@@ -55,18 +55,18 @@ def get_external_prs(prs: list) -> Tuple[list, list]:
         prs: list of internal prs.
 
     Returns:
-        inner_prs: list of external prs.
-        pr_bodies: list of external pr bodies.
+        external_prs (List[Dict]): list of the external prs (contains the pr number and its body)
     """
-    inner_prs = []
-    pr_bodies = []
+    external_prs = []
     for pr in prs:
         pr_body = pr.get('body', '')
         if inner_pr := PR_NUMBER_REGEX.search(pr_body):
-            pr_bodies.append(pr_body)
-            inner_prs.append(inner_pr[0])
+            external_prs.append({
+                'pr_number': inner_pr[0],
+                'pr_body': pr_body
+            })
 
-    return pr_bodies, inner_prs
+    return external_prs
 
 
 def github_pagination_prs(url: str, params: dict, res) -> list:
@@ -97,7 +97,7 @@ def github_pagination_prs(url: str, params: dict, res) -> list:
 def get_contractors_prs() -> list:
     """
     Get all contractors pr numbers and users we want to ignore in the calculation.
-    Returns: The inner pr numbers list of the contractors and the users we want to ignore.
+    Returns: The external prs list of the contractors and the users we want to ignore.
     """
     url = URL + '/search/issues'
     query = 'type:pr state:closed org:demisto repo:content is:merged base:master ' \
@@ -114,15 +114,15 @@ def get_contractors_prs() -> list:
     next_pages_prs = github_pagination_prs(url, params, res)
     prs.extend(next_pages_prs)
 
-    _, inner_prs = get_external_prs(prs)
+    external_prs = get_external_prs(prs)
 
-    return inner_prs
+    return external_prs
 
 
-def get_contrib_prs() -> Tuple[list, list]:
+def get_contrib_prs() -> List[Dict]:
     """
     Get the contributors prs.
-    Returns: The list of inner PRs and a list of the pr bodies.
+    Returns: The list of PRs.
     """
     url = URL + '/search/issues'
     query = 'type:pr state:closed org:demisto repo:content is:merged base:master head:contrib/'
@@ -139,16 +139,19 @@ def get_contrib_prs() -> Tuple[list, list]:
     next_pages_prs = github_pagination_prs(url, params, res)
     prs.extend(next_pages_prs)
 
-    pr_bodies, inner_prs = get_external_prs(prs)
+    contrib_prs = get_external_prs(prs)
     contractors_prs = get_contractors_prs()
-    for pr in inner_prs:
-        if pr in contractors_prs:
-            inner_prs.remove(pr)
+    for item in contrib_prs:
+        pr = item.get('pr_number')
+        for external_pr in contractors_prs:
+            pr_number = external_pr.get('pr_number')
+            if pr_number == pr:
+                contrib_prs = [i for i in contrib_prs if not (i['pr_number'] == pr_number)]
 
-    return pr_bodies, inner_prs
+    return contrib_prs
 
 
-def get_github_user(user_name: str) -> Tuple[str, str]:
+def get_github_user(user_name: str) -> Dict:
     """
     Get the github user.
     Args:
@@ -159,11 +162,11 @@ def get_github_user(user_name: str) -> Tuple[str, str]:
     """
     url = f'{URL}/users/{user_name}'
     res = requests.request('GET', url, headers=HEADERS, verify=VERIFY)
-    response = res.json()
-    github_avatar = response.get('avatar_url')
-    github_profile = response.get('html_url')
-
-    return github_avatar, github_profile
+    if res.status_code == 404:
+        print(f'The user {user_name} was not found.')
+    else:
+        response = res.json()
+        return response
 
 
 def get_inner_pr_request() -> list:
@@ -171,53 +174,66 @@ def get_inner_pr_request() -> list:
     Get the inner pr information (will be used to get the user).
     Returns (list): http response - prs_info.
     """
-    prs_info = []
-    _, inner_prs = get_contrib_prs()
-    for pr in inner_prs:
-        url = URL + f'/repos/demisto/content/pulls/{pr}'
-        res = requests.request('GET', url, headers=HEADERS, verify=VERIFY)
-        if res.status_code == 404:
-            print(f'The following PR was not found: {pr}')
-            continue
-        if res.status_code >= 400:
-            try:
-                json_res = res.json()
-                if json_res.get('errors') is None:
-                    print('Error in API call to the GitHub Integration [%d] - %s' % (res.status_code, res.reason))
-            except ValueError:
-                print('Error in API call to GitHub Integration [%d] - %s' % (res.status_code, res.reason))
-        if res.status_code == 200:
-            response = res.json()
-            prs_info.append(response)
-    return prs_info
+    users_info = []
+    external_prs = get_contrib_prs()
+    for item in external_prs:
+        pr_body = item.get('pr_body')
+        pr = item.get('pr_number')
+        if 'Contributor' in pr_body:
+            contributor = USER_NAME_REGEX.search(pr_body)[0].replace('\n', '')
+            user_profile = get_github_user(contributor)
+            if user_profile:
+                users_info.append(user_profile)
+        else:
+            url = URL + f'/repos/demisto/content/pulls/{pr}'
+            res = requests.request('GET', url, headers=HEADERS, verify=VERIFY)
+            if res.status_code == 404:
+                print(f'The following PR was not found: {pr}')
+                continue
+            if res.status_code >= 400:
+                try:
+                    json_res = res.json()
+                    if json_res.get('errors') is None:
+                        print('Error in API call to the GitHub Integration [%d] - %s' % (res.status_code, res.reason))
+                except ValueError:
+                    print('Error in API call to GitHub Integration [%d] - %s' % (res.status_code, res.reason))
+            if res.status_code == 200:
+                response = res.json()
+                user_response = response.get('user')
+                inner_pr_body = response.get('body')
+                user_response.update({'body': inner_pr_body})
+                users_info.append(user_response)
+
+    return users_info
 
 
-def get_contributors_users(prs_info) -> list:
+def get_contributors_users(users_info) -> list:
     """
     Get the github users from the inner PRs.
     Args:
-        prs_info (list): the response of get_inner_pr_request()
+        users_info (list): the response of get_inner_pr_request()
 
     Returns (list): Github users
 
     """
     users = []
-    for item in prs_info:
-        # print(item)
-        user = item.get('user').get('login')
-        github_profile = item.get('user').get('html_url')
+    for item in users_info:
+        user = item.get('login')
+        github_profile = item.get('html_url')
+        pr_body = item.get('body')
 
         if not user == 'xsoar-bot':
             users.append({
-                'Contributor': f"<img src='{item.get('user').get('avatar_url')}'/><br></br> "
+                'Contributor': f"<img src='{item.get('avatar_url')}'/><br></br> "
                                f"<a href='{github_profile}' target='_blank'>{user}</a>"
             })
 
         if user == 'xsoar-bot':
-            pr_body = item.get('body')
             if 'Contributor' in pr_body:
                 contributor = USER_NAME_REGEX.search(pr_body)[0].replace('\n', '')
-                github_avatar, github_profile = get_github_user(contributor)
+                user_info = get_github_user(contributor)
+                github_avatar = user_info.get('avatar_url')
+                github_profile = user_info.get('html_url')
                 if not github_avatar and not github_profile:
                     print(f'The user "{contributor}" was not found.')
                     continue
@@ -229,14 +245,14 @@ def get_contributors_users(prs_info) -> list:
 
     for user in users:
         prs = users.count(user)
-        user.update({'Number of Contributions': prs})
+        user.update({'Number of Contribution(s)': prs})
 
     list_users = []
     result = {i['Contributor']: i for i in reversed(users)}.values()
-    new_res = sorted(result, key=lambda k: k['Number of Contributions'], reverse=True)
+    new_res = sorted(result, key=lambda k: k['Number of Contribution(s)'], reverse=True)
 
     for user in new_res:
-        user['Contributor'] += f'<br></br>{user["Number of Contributions"]} Contributions'
+        user['Contributor'] += f'<br></br>{user["Number of Contribution(s)"]} Contributions'
         list_users.append(user['Contributor'])
 
     return list_users

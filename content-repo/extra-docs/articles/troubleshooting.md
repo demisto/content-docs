@@ -109,7 +109,7 @@ These errors are usually as a result of a Server using an untrusted certificate 
 * To trust custom certificates in Cortex XSOAR Server or Engines follow the following [instructions](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/docker/configure-python-docker-integrations-to-trust-custom-certificates).
 
 ### CertificatesTroubleshoot Automation
-Use the [CertificatesTroubleshoot Automation](https://xsoar.pan.dev/docs/reference/scripts/certificates-troubleshoot) to retrieve and decode an endpoint certificate. Additionally, use it to retrieve, decode and validiate the custom certificates deployed in Docker containers.
+Use the [CertificatesTroubleshoot Automation](https://xsoar.pan.dev/docs/reference/scripts/certificates-troubleshoot) to retrieve and decode an endpoint certificate. Additionally, use it to retrieve, decode and validiate the custom certificates deployed in Docker containers. The automation is part of the [Troubleshoot Pack](https://xsoar.pan.dev/marketplace/details/Troubleshoot).
 
 **Common reasons for TLS/SSL issues and resolutions**
 

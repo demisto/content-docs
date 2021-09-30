@@ -18,6 +18,8 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import Select from "react-select";
 import AsyncSelect from "react-select/async";
 import styles from "./styles.module.css";
+import topContribBanner from "@site/static/img/TopContributors.png"
+import Slideshow from "../../pages/marketplace/slideshow";
 
 function usePrevious(value) {
   const ref = useRef(value);
@@ -437,8 +439,12 @@ function MarketplaceSidebar({
           <br></br>
           <br></br>
           <div className={styles.contributors}>
-            <Link to="/marketplace/contributors"> Top Contributors </Link>
+            <Link to="/marketplace/contributors">
+              <img src={topContribBanner} />
+            </Link>
           </div>
+          <br></br>
+            <Slideshow></Slideshow>
         </ul>
       </div>
       {hideableSidebar && (
