@@ -791,7 +791,6 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
             f.write(f'\n\n# =====<br/>BUILD PREVIEW only {MAX_FILES} files from each category! <br/>=====\n\n')
         f.write(index_doc_infos(article_doc_infos, ARTICLES_PREFIX))
 
-
     integration_items = generate_items(integration_doc_infos, integrations_full_prefix)
     playbook_items = generate_items(playbooks_doc_infos, playbooks_full_prefix)
     script_items = generate_items(script_doc_infos, scripts_full_prefix)
