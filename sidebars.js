@@ -234,6 +234,7 @@ const sidebars = {
         "partners/become-a-tech-partner",
         "partners/paid-packs",
         "partners/adopt",
+        "partners/benefits",
         "partners/certification",
         "partners/office-hours",
         "partners/development-partners"
