@@ -123,6 +123,10 @@ module.exports = {
               label: "Adopt-a-Pack"
             },
             {
+              to: "/docs/partners/benefits",
+              label: "Marketing Benefits"
+            },
+            {
               to: "/docs/partners/certification",
               label: "Pack Certification"
             },
