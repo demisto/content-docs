@@ -28,16 +28,16 @@ Marketplace content is available publicly & inside the product.
 * Customers, SIs, and community edition users can view the Marketplace located directly _inside the product_. From there, they can instantly download and deploy your content.
 
 Our platform ensures both sites stay in sync. 
-[InternalMarketplace_benefits](../doc_imgs/partners/InternalMarketplace_benefits.png)
+![InternalMarketplace_benefits](../doc_imgs/partners/InternalMarketplace_benefits.png)
 Built-in Marketplace within Cortex XSOAR
 
-[ExternalMarketplace_benefits](../doc_imgs/partners/ExternalMarketplace_benefits.png)
+![ExternalMarketplace_benefits](../doc_imgs/partners/ExternalMarketplace_benefits.png)
 Public Marketplace at [xsoar.pan.dev/marketplace](xsoar.pan.dev/marketplace).
 
 ## Ecosystem Webpage
 Cortex XSOAR’s [Ecosystem webpage](https://www.paloaltonetworks.com/cortex/xsoar-ecosystem) is publically accessible and linked directly from the main Cortex XSOAR site. The Ecosystem page has tabs for Featured, New, and Premium content packs to highlight our partners. This is updated often to reflect our ever growing Marketplace! 
 
-[Ecosystem_benefits](../doc_imgs/partners/Ecosystem_benefits.png)
+![Ecosystem_benefits](../doc_imgs/partners/Ecosystem_benefits.png)
 Ecosystem page
 
 ## Solution Brief
@@ -45,25 +45,25 @@ Partners use the Palo Alto Networks logos and branding in their solution brief. 
 
 You can see more solution briefs in our [resource library](https://www.paloaltonetworks.com/resources.html?q=*%3A*&_charset_=UTF-8&fq=PRODUCTS0_DFACET%3Apan%253Aresource-center%252Fproducts0%252Fdemisto&fq=RC_TYPE_DFACET%3Apan%253Aresource-center%252Frc-type%252Fdatasheet).
 
-[JSB_benefits](../doc_imgs/partners/JSB_benefits.png)
+![JSB_benefits](../doc_imgs/partners/JSB_benefits.png)
 First page of a partners' [solution brief](https://www.paloaltonetworks.com/content/dam/pan/en_US/assets/pdf/xsoar-integrations/safebreach-solution-brief.pdf)
 
 ## Blog
 Similar to the solution brief, partners receive access to a detailed template. Marketplace blogs will be hosted and linked on the Cortex XSOAR [website](https://www.paloaltonetworks.com/blog/security-operations/).
 
-[Blog_Benefits](../doc_imgs/partners/Blog_Benefits.png)
+![Blog_Benefits](../doc_imgs/partners/Blog_Benefits.png)
 [Sample blog post](https://www.paloaltonetworks.com/blog/security-operations/siem-splunk-qradar-xsoar/)
 
 ## Newsletter 
 Partner contributed packs are included in the monthly newsletter sent out to the XSOAR install base. Additionally, two packs are chosen to be highlighted at the top for extra visibility. 
 
-[newsletter_benefits](../doc_imgs/partners/Newsletter_benefits.png)
+![newsletter_benefits](../doc_imgs/partners/Newsletter_benefits.png)
 Snapshot of our newsletter. [Register Now!](https://start.paloaltonetworks.com/cortex-xsoar-whats-soaring-newsletter.html)
 
 ## Press Release
 Similar to the solution brief & blog, partners receive access to a detailed template that speeds approvals when releasing on the partner's paper. Take a look at the [press release from SecurityAdvisor.](https://www.businesswire.com/news/home/20210426005118/en/SecurityAdvisor-Joins-Palo-Alto-Networks-Cortex-XSOAR-Marketplace)
 
-[Pressrelease_benefits](../doc_imgs/partners/PressRelease_benefits.png)
+![Pressrelease_benefits](../doc_imgs/partners/PressRelease_benefits.png)
 Press Release with SecurityAdvisor. 
 
 ## Webinar
@@ -71,7 +71,7 @@ The Marketplace program features two partners each month in the Top Use Cases we
 
  Partners can also host additional webinars featuring joint customers. 
 
-[Webinar_benefits](../doc_imgs/partners/Webinar_benefits.png)
+![Webinar_benefits](../doc_imgs/partners/Webinar_benefits.png)
 Webinar registration 
 
 ## Sponsorships / Events
@@ -79,6 +79,6 @@ A select group of XSOAR partners may be invited to sponsor Palo Alto Networks ev
 
 Partners may also request  Palo Alto Networks attendance at  their events, including using our  branding and speakers. 
 
-[SKO_benefits](../doc_imgs/partners/SKO_benefits.png)
+![SKO_benefits](../doc_imgs/partners/SKO_benefits.png)
 
 Join XSOAR’s Alliances Program today!! If your team has any questions or additional marketing ideas they want to propose, please email _soar.alliances@paloaltonetworks.com_
