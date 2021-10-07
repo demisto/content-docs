@@ -236,6 +236,7 @@ To ignore a specific secret, enter it to the packs's `.secrets-ignore` file.
 For example:
 ```text
 https://myurl.com
+https://my2ndUrl.com
 ```
 
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/secrets/README.md#secrets).
