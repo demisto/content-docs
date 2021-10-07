@@ -232,7 +232,10 @@ You have a responsibility to identify and eliminate any secrets before they get 
 
 #### Ignoring secrets
 At times there is information that might be flagged incorrectly by the command as a secret. Or it may be "secret" but we wish to share it publicly (for example the support email address).
-To ignore a specific secret, enter it to the packs's `.secrets-ignore` file.
+To ignore a specific secret, enter it to the packs's `.secrets-ignore` file. Like this:
+```text
+https://myurl.com
+```
 
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/secrets/README.md#secrets).
  
