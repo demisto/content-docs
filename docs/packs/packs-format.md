@@ -164,8 +164,16 @@ ignore=IN126,PA116
 ### Author_image.png
 You may choose to show the pack author image such that it will be displayed in the marketplace under the **PUBLISHER** section when viewing the pack details. The image should be saved in the pack root level (i.e. content/packs/MyPackName/Author_image.png), make sure to stick with this file name for the image to appear.
 The image size should be up to 4kb and in the dimensions of 120x50.
+
+For Partners, this image is **mandatory** and is validated during the build. If the file is missing, a validation will fail with the following error:
+
+```bash
+- Issues with unique files in pack: $PACK_NAME
+  Packs/$PACK_NAME/Author_image.png: [IM109] - Partners must provide a non-empty author image under the path Packs/$PACK_NAME/Author_image.png
+
+```
  
-In case file does not exist, the pack author will be displayed in text.
+In case file does not exist, the pack author name will be displayed in text.
 
 ### CONTRIBUTORS.md
 If you are contributing to an existing pack, you can add a **CONTRIBUTORS.md** file to the pack and list yourself as a contributor for the pack. The file's content will appear in the pack README in XSOAR Marketplace.
