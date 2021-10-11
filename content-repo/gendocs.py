@@ -746,7 +746,7 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     playbooks_full_prefix = f'{prefix}/{PLAYBOOKS_PREFIX}'
     releases_full_prefix = f'{prefix}/{RELEASES_PREFIX}'
     articles_full_prefix = f'{prefix}/{ARTICLES_PREFIX}'
-    packs_articles_full_prefix = f'{prefix}/{PACKS_ARTICLES_PREFIX}'
+    packs_articles_full_prefix = f'{prefix}/{PACKS_PREFIX}'
     integration_doc_infos = create_docs(args.dir, args.target, INTEGRATION_DOCS_MATCH, INTEGRATIONS_PREFIX,
                                         private_pack_prefix=PRIVATE_PACKS_INTEGRATIONS_PREFIX)
     playbooks_doc_infos = create_docs(args.dir, args.target, PLAYBOOKS_DOCS_MATCH, PLAYBOOKS_PREFIX,
@@ -755,7 +755,7 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
                                    private_pack_prefix=PRIVATE_PACKS_SCRIPTS_PREFIX)
     release_doc_infos = create_releases(args.target)
     article_doc_infos = create_articles(args.target, ARTICLES_PREFIX)
-    packs_articles_doc_infos = create_articles(args.target, PACKS_ARTICLES_PREFIX)
+    packs_articles_doc_infos = create_articles(args.target, PACKS_PREFIX)
     if os.getenv('SKIP_DEPRECATED') not in ('true', 'yes', '1'):
         add_deprected_integrations_info(args.dir, f'{args.target}/{ARTICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE,
                                         f'{args.target}/../../static/assets')
