@@ -69,6 +69,7 @@ PRIVATE_PACKS_SCRIPTS_PREFIX = 'Scripts'
 PRIVATE_PACKS_PLAYBOOKS_PREFIX = 'Playbooks'
 RELEASES_PREFIX = 'releases'
 ARTICLES_PREFIX = 'articles'
+PACKS_PREFIX = 'packs'
 NO_HTML = '<!-- NOT_HTML_DOC -->'
 YES_HTML = '<!-- HTML_DOC -->'
 BRANCH = os.getenv('HEAD', 'master')
@@ -509,22 +510,22 @@ def create_releases(target_dir: str):
     return sorted(doc_infos, key=lambda d: StrictVersion(d.name.lower().partition('content release ')[2]), reverse=True)
 
 
-def create_articles(target_dir: str):
-    target_sub_dir = f'{target_dir}/{ARTICLES_PREFIX}'
+def create_articles(target_dir: str, prefix: str):
+    target_sub_dir = f'{target_dir}/{prefix}'
     if not os.path.exists(target_sub_dir):
         os.makedirs(target_sub_dir)
     doc_infos: List[DocInfo] = []
     success: List[str] = []
     fail: List[str] = []
     seen_docs: Dict[str, DocInfo] = {}
-    for doc_info in process_extra_docs(target_sub_dir, ARTICLES_PREFIX):
+    for doc_info in process_extra_docs(target_sub_dir, prefix):
         if not doc_info.description:  # fail the  build if no description for an article
             raise ValueError(f'Missing description for article: {doc_info.id} ({doc_info.name})')
         process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
-    org_print(f'\n===========================================\nSuccess {ARTICLES_PREFIX} docs ({len(success)}):')
+    org_print(f'\n===========================================\nSuccess {prefix} docs ({len(success)}):')
     for r in sorted(success):
         print(r)
-    org_print(f'\n===========================================\nFailed {ARTICLES_PREFIX} docs ({len(fail)}):')
+    org_print(f'\n===========================================\nFailed {prefix} docs ({len(fail)}):')
     for r in sorted(fail):
         print(r)
     org_print("\n===========================================\n")
@@ -745,6 +746,7 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     playbooks_full_prefix = f'{prefix}/{PLAYBOOKS_PREFIX}'
     releases_full_prefix = f'{prefix}/{RELEASES_PREFIX}'
     articles_full_prefix = f'{prefix}/{ARTICLES_PREFIX}'
+    packs_articles_full_prefix = f'{prefix}/{PACKS_PREFIX}'
     integration_doc_infos = create_docs(args.dir, args.target, INTEGRATION_DOCS_MATCH, INTEGRATIONS_PREFIX,
                                         private_pack_prefix=PRIVATE_PACKS_INTEGRATIONS_PREFIX)
     playbooks_doc_infos = create_docs(args.dir, args.target, PLAYBOOKS_DOCS_MATCH, PLAYBOOKS_PREFIX,
@@ -752,7 +754,8 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     script_doc_infos = create_docs(args.dir, args.target, SCRIPTS_DOCS_MATCH, SCRIPTS_PREFIX,
                                    private_pack_prefix=PRIVATE_PACKS_SCRIPTS_PREFIX)
     release_doc_infos = create_releases(args.target)
-    article_doc_infos = create_articles(args.target)
+    article_doc_infos = create_articles(args.target, ARTICLES_PREFIX)
+    packs_articles_doc_infos = create_articles(args.target, PACKS_PREFIX)
     if os.getenv('SKIP_DEPRECATED') not in ('true', 'yes', '1'):
         add_deprected_integrations_info(args.dir, f'{args.target}/{ARTICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE,
                                         f'{args.target}/../../static/assets')
@@ -791,6 +794,7 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     integration_items = generate_items(integration_doc_infos, integrations_full_prefix)
     playbook_items = generate_items(playbooks_doc_infos, playbooks_full_prefix)
     script_items = generate_items(script_doc_infos, scripts_full_prefix)
+    packs_articles_items = [f'{packs_articles_full_prefix}/{d.id}' for d in packs_articles_doc_infos]
 
     article_items = [f'{articles_full_prefix}/{d.id}' for d in article_doc_infos]
     article_items.insert(0, f'{prefix}/articles-index')
@@ -799,6 +803,11 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
         {
             "type": "doc",
             "id": f'{prefix}/index'
+        },
+        {
+            "type": "category",
+            "label": "Packs",
+            "items": packs_articles_items
         },
         {
             "type": "category",
