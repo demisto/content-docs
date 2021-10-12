@@ -96,10 +96,14 @@ def post_comment(netlify_deploy_file: str):
     token = os.getenv('GITHUB_TOKEN')
     if not token:
         raise ValueError("Can't post comment. GITHUB_TOKEN env variable is not set")
+
+    # handle Netlify deployment message
     if netlify_deploy_file.endswith(".json"):
         with open(netlify_deploy_file, 'r') as f:
             netlify_info = json.load(f)
         deploy_url = netlify_info['deploy_url']
+
+    # handle Firebase deployment message
     else:
         with open(netlify_deploy_file, 'r') as f:
             if matched_url := re.search("https://xsoar-pan-dev--pull-request-.*web.app", f.read()):
