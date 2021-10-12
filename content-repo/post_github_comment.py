@@ -102,7 +102,10 @@ def post_comment(netlify_deploy_file: str):
         deploy_url = netlify_info['deploy_url']
     else:
         with open(netlify_deploy_file, 'r') as f:
-            deploy_url = re.search("https://xsoar-pan-dev--pull-request-.*web.app", f.read()).group(0)
+            if matched_url := re.search("https://xsoar-pan-dev--pull-request-.*web.app", f.read()):
+                deploy_url = matched_url.group(0)
+            else:
+                raise ValueError("Can't post comment. Deployment was unsuccessfull: \n" + f.read())
 
     # preview message
     message = "# Preview Site Available\n\n" \
