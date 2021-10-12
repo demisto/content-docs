@@ -106,6 +106,7 @@ jobs:
           no_output_timeout: 30m
           command: |
             npm install netlify-cli
+            npm install firebase-tools
             export PATH="$PATH:`pwd`/node_modules/.bin"
             netlify --version
             if [ "$CIRCLE_BRANCH" = "master" ]; then
