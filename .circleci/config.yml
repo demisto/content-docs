@@ -121,7 +121,6 @@ jobs:
             cat deploy-info.json | jq
 
             firebase deploy --only hosting
-#           firebase hosting:channel:deploy live --only xsoar.pan.dev
             firebase hosting:channel:deploy "pull-request-${CIRCLE_PULL_REQUEST##*/}" --only xsoar.pan.dev > deploy-info2.json
             cat deploy-info2.json | jq
       - when:          
