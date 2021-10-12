@@ -96,13 +96,18 @@ def post_comment(netlify_deploy_file: str):
     token = os.getenv('GITHUB_TOKEN')
     if not token:
         raise ValueError("Can't post comment. GITHUB_TOKEN env variable is not set")
-    with open(netlify_deploy_file, 'r') as f:
-        netlify_info = json.load(f)
-    deplpy_url = netlify_info['deploy_url']
+    if netlify_deploy_file.endswith(".json"):
+        with open(netlify_deploy_file, 'r') as f:
+            netlify_info = json.load(f)
+        deploy_url = netlify_info['deploy_url']
+    else:
+        with open(netlify_deploy_file, 'r') as f:
+            deploy_url = re.search("https://xsoar-pan-dev--pull-request-.*web.app", f.read()).group(0)
+
     # preview message
     message = "# Preview Site Available\n\n" \
         "Congratulations! The automatic build has completed succesfully.\n" \
-        f"A preview site is available at: {deplpy_url}\n\n---\n" \
+        f"A preview site is available at: {deploy_url}\n\n---\n" \
         "**Important:** Make sure to inspect your changes at the preview site."
     if os.getenv('CIRCLE_BRANCH') == 'master':
         message = "# Production Site Updated\n\n" \
@@ -111,7 +116,7 @@ def post_comment(netlify_deploy_file: str):
     else:
         # add detcted changes
         try:
-            links = get_modified_links(deplpy_url)
+            links = get_modified_links(deploy_url)
             if links:
                 message += '\n\nDetected modified urls:\n'
                 for link in links:

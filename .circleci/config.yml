@@ -122,14 +122,17 @@ jobs:
             cat deploy-info.json | jq
 
             firebase deploy --only hosting
-            firebase hosting:channel:deploy "pull-request-${CIRCLE_PULL_REQUEST##*/}" --only xsoar.pan.dev > deploy-info2.json
-            cat deploy-info2.json | jq
+            firebase hosting:channel:deploy "pull-request-${CIRCLE_PULL_REQUEST##*/}" --only xsoar.pan.dev > deploy-info-firebase.txt
+
       - when:          
           condition: <<parameters.post_comment>>
           steps:
             - run:
-                name: Post Comment 
+                name: Post Comment Netlify
                 command: pipenv run ./content-repo/post_github_comment.py deploy-info.json
+            - run:
+                name: Post Comment FireBase
+                command: pipenv run ./content-repo/post_github_comment.py deploy-info-firebase.txt
 
 workflows:
   build_and_deploy:
