@@ -1,0 +1,22 @@
+{
+  "hosting": {
+    "headers": [
+      {
+        "source": "/service-worker.js",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ]
+      }
+    ],
+    "public": "build",
+    "target": "xsoar.pan.dev",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
