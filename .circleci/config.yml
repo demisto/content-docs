@@ -112,17 +112,21 @@ jobs:
             if [ "$CIRCLE_BRANCH" = "master" ]; then
               echo "Deploying to prod as CIRCLE_BRANCH is equal to master!"
               DEPLOG_ARG="--prod"
+
+              # FireBase produstion deployment
+              firebase deploy --only hosting > deploy-info-firebase.txt
             else
               # Get the PR number from the CIRCLE_PULL_REQUEST env variable which is in the form of:
               # https://github.com/demisto/content-docs/pull/335
               DEPLOG_ARG="--alias=pull-request-${CIRCLE_PULL_REQUEST##*/}"
+
+              # FireBase preview deployment
+              firebase hosting:channel:deploy "pull-request-${CIRCLE_PULL_REQUEST##*/}" --only xsoar.pan.dev > deploy-info-firebase.txt
             fi
 
+            # Netlify Deployment
             netlify deploy -m "CircleCI build: $CIRCLE_BRANCH" -d build $DEPLOG_ARG --json > deploy-info.json
             cat deploy-info.json | jq
-
-            firebase deploy --only hosting
-            firebase hosting:channel:deploy "pull-request-${CIRCLE_PULL_REQUEST##*/}" --only xsoar.pan.dev > deploy-info-firebase.txt
 
       - when:          
           condition: <<parameters.post_comment>>

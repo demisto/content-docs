@@ -109,7 +109,7 @@ def post_comment(netlify_deploy_file: str):
             if matched_url := re.search("https://xsoar-pan-dev--pull-request-.*web.app", f.read()):
                 deploy_url = matched_url.group(0)
             else:
-                raise ValueError("Can't post comment. Deployment was unsuccessfull: \n" + f.read())
+                raise ValueError("Can't post comment. Deployment was unsuccessful: \n" + f.read())
 
     # preview message
     message = "# Preview Site Available\n\n" \
@@ -118,7 +118,7 @@ def post_comment(netlify_deploy_file: str):
         "**Important:** Make sure to inspect your changes at the preview site."
     if os.getenv('CIRCLE_BRANCH') == 'master':
         message = "# Production Site Updated\n\n" \
-            "Congratulations! The automatic build has completed succesfully.\n" \
+            "Congratulations! The automatic build has completed successfully.\n" \
             "The production site of our docs has been updated. You can view it at: https://xsoar.pan.dev"
     else:
         # add detcted changes
