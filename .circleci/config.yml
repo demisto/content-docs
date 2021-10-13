@@ -113,14 +113,14 @@ jobs:
               echo "Deploying to prod as CIRCLE_BRANCH is equal to master!"
               DEPLOG_ARG="--prod"
 
-              # FireBase produstion deployment
+              # Firebase production deployment
               firebase deploy --only hosting > deploy-info-firebase.txt
             else
               # Get the PR number from the CIRCLE_PULL_REQUEST env variable which is in the form of:
               # https://github.com/demisto/content-docs/pull/335
               DEPLOG_ARG="--alias=pull-request-${CIRCLE_PULL_REQUEST##*/}"
 
-              # FireBase preview deployment
+              # Firebase preview deployment
               firebase hosting:channel:deploy "pull-request-${CIRCLE_PULL_REQUEST##*/}" --only xsoar.pan.dev > deploy-info-firebase.txt
             fi
 
