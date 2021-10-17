@@ -37,6 +37,12 @@ Recursively extracts specified fields from a provided list of assets for Prisma 
 ## Integrations
 The pack contains the **Prisma Cloud (RedLock)** integration. Read more about the integration in the [Prisma Cloud (RedLock)](https://xsoar.pan.dev/docs/reference/integrations/red-lock) article.
 
+## Classifiers & Mappers
+- **Prisma Cloud - Classifier** - Classifies incoming Prisma Cloud events, that are being created through the 'fetch incidents' command in the Prisma Cloud integration.
+- **Prisma Cloud - Incoming Mapper** - Maps incoming Prisma Cloud event fields, that are being created through the 'fetch incidents' command in the Prisma Cloud integration.
+- **Prisma Cloud App - Classifier** - Classifies incoming Prisma Cloud events, that are being pushed into XSOAR through the Prisma Cloud App add-on.
+- **Prisma Cloud App - Incoming Mapper** - Maps incoming Prisma Cloud event fields, that are being pushed into XSOAR through the Prisma Cloud App add-on.
+
 ## Playbooks
 The pack contains many playbooks, including major playbooks associated with the incident types in the pack, and also sub-playbooks that perform remediation on specific Prisma Cloud policy violations.
 
