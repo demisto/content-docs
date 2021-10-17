@@ -97,6 +97,7 @@ def post_comment(netlify_deploy_file: str):
     if not token:
         raise ValueError("Can't post comment. GITHUB_TOKEN env variable is not set")
 
+    host = "Netlify"
     # handle Netlify deployment message
     if netlify_deploy_file.endswith(".json"):
         with open(netlify_deploy_file, 'r') as f:
@@ -108,11 +109,12 @@ def post_comment(netlify_deploy_file: str):
         with open(netlify_deploy_file, 'r') as f:
             if matched_url := re.search("https://xsoar-pan-dev--pull-request-.*web.app", f.read()):
                 deploy_url = matched_url.group(0)
+                host = "Firebase"
             else:
                 raise ValueError("Can't post comment. Deployment was unsuccessful: \n" + f.read())
 
     # preview message
-    message = "# Preview Site Available\n\n" \
+    message = f"# {host} Preview Site Available\n\n" \
         "Congratulations! The automatic build has completed succesfully.\n" \
         f"A preview site is available at: {deploy_url}\n\n---\n" \
         "**Important:** Make sure to inspect your changes at the preview site."
