@@ -106,22 +106,16 @@ jobs:
           no_output_timeout: 30m
           command: |
             npm install netlify-cli
-            npm install firebase-tools
             export PATH="$PATH:`pwd`/node_modules/.bin"
             netlify --version
             if [ "$CIRCLE_BRANCH" = "master" ]; then
               echo "Deploying to prod as CIRCLE_BRANCH is equal to master!"
               DEPLOG_ARG="--prod"
 
-              # Firebase production deployment
-              firebase deploy --only hosting > deploy-info-firebase.txt
             else
               # Get the PR number from the CIRCLE_PULL_REQUEST env variable which is in the form of:
               # https://github.com/demisto/content-docs/pull/335
               DEPLOG_ARG="--alias=pull-request-${CIRCLE_PULL_REQUEST##*/}"
-
-              # Firebase preview deployment
-              firebase hosting:channel:deploy "pull-request-${CIRCLE_PULL_REQUEST##*/}" --only xsoar.pan.dev > deploy-info-firebase.txt
             fi
 
             # Netlify Deployment
