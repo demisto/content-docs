@@ -50,17 +50,17 @@ jobs:
           echo "==== $(date): Posting comment to PR ... ===="
           PR_NUM=$FORKED_PR pipenv run ./content-repo/post_github_comment.py deploy-info.json
       - name: Deploy Firebase Build
-          if: "steps.build_download.outputs.forked_pr > 0"
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            FORKED_PR: ${{ steps.build_download.outputs.forked_pr }}
-          run: |
-            echo "==== $(date): extract build zip... ===="
-            tar xzf build-site.tar.gz
-            echo "==== $(date): Starting Firebase install... ===="
-            npm install firebase-tools
-            echo "==== $(date): Firebase deploy... ===="
-            firebase hosting:channel:deploy "pull-request-${$FORKED_PR##*/}" --only xsoar.pan.dev < deploy-info-firebase.txt
-            cat deploy-info-firebase.txt
-            echo "==== $(date): Posting comment to PR ... ===="
-            PR_NUM=$FORKED_PR pipenv run ./content-repo/post_github_comment.py deploy-info-firebase.txt
+        if: "steps.build_download.outputs.forked_pr > 0"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FORKED_PR: ${{ steps.build_download.outputs.forked_pr }}
+        run: |
+          echo "==== $(date): extract build zip... ===="
+          tar xzf build-site.tar.gz
+          echo "==== $(date): Starting Firebase install... ===="
+          npm install firebase-tools
+          echo "==== $(date): Firebase deploy... ===="
+          firebase hosting:channel:deploy "pull-request-${$FORKED_PR##*/}" --only xsoar.pan.dev < deploy-info-firebase.txt
+          cat deploy-info-firebase.txt
+          echo "==== $(date): Posting comment to PR ... ===="
+          PR_NUM=$FORKED_PR pipenv run ./content-repo/post_github_comment.py deploy-info-firebase.txt
