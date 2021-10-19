@@ -18,16 +18,8 @@ What one needs to consider is that since sub-playbooks are used as part of a big
 - In order to contribute your newly created playbooks, they have to be exported via the "Export" button in playbook view mode:  
 ![image](https://user-images.githubusercontent.com/43602124/69058801-07d5c180-0a1d-11ea-8bd0-9dfd874b51b5.png)  
  - The playbook will be exported as a YML file. Use demisto-sdk command `demisto-sdk format -i <path to playbook yml>` against the YML file. The command will modify some fields in the file to normalize it with the rest of the playbooks in our content, and will output a file with the prefix `playbook-` in the filename. That is the file you have to use from now on.  
- - If your playbook has a test playbook, copy the ID of the test playbook and declare it as the test playbook of your playbook, like so:  
-![image](https://user-images.githubusercontent.com/43602124/70059047-b61a6300-15e8-11ea-93a7-448f463c6613.png)
-
- - Add your test in the `conf.json` file, located in `content\Tests\conf.json`. You should add an entry that specifies the integrations needed for your test playbook, as well as specify a timeout in seconds if your test is taking a long time to complete and fails due to timeout (usually not needed). Also, specify the minimum version for your test here (fromversion: 5.0.0).  
-- For layouts, you will also need to create a release notes file:  
-![image](https://user-images.githubusercontent.com/43602124/69060394-f0e49e80-0a1f-11ea-8714-437420706633.png)
-  
 
  ## Pull Request  
-- Remember to include all files relevant to your use-case in the PR. That includes scripts, incident fields, layouts, incident types (if any were created and are used), integrations, playbooks and test playbooks.  
 - Your playbooks will only be reviewed after finalizing the code-review stage.  
 - We will review your playbooks and comment for any needed changes.  
   
