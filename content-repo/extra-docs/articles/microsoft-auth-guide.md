@@ -63,6 +63,18 @@ For example, for Microsoft Graph User, replace the ***SCOPE*** with `directory.a
 8. Enter your tenant ID in the ***Token*** parameter field.
 9. Enter your redirect URI in the ***Redirect URI*** parameter field.
 
+#### Using National Cloud
+The Cortex XSOAR-Microsoft integrations support the deployment of national clouds through the self-deployed
+ authorization flow. For more information about Microsoft National Clouds please refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/deployments).
+ In order to use a national cloud the following changes should be applied to the [Authorize on behalf of a user](https://xsoar.pan.dev/docs/reference/articles/microsoft-integrations---authentication#authorize-on-behalf-of-a-user) flow:
+1. In the instance configuration, change the `Host URL` parameter to the host address that corresponds to the
+ national cloud you are using. For example, see [Azure Active Directory Users - National Clouds](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-user), for the supported cloud endpoints in this integration.
+2. In step 3, replace the worldwide login address (i.e. `https://login.microsoftonline.com`) with the login address that corresponds to the national cloud in use:
+    * For Azure AD for US Government users: `https://login.microsoftonline.us` 
+    * For Azure AD Germany users: `https://login.microsoftonline.de` 
+    * For Azure AD China operated by 21Vianet users: `https://login.chinacloudapi.cn` 
+
+
 ### Device Code Flow
 Some of the Cortex XSOAR-Microsoft integrations use the [device code flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code).
 
