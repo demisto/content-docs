@@ -1,10 +1,10 @@
 ---
-id: content-management
-title: Content Management (Alpha)
+id: xsoar-ci-cd
+title: XSOAR CI/CD (Beta)
 description: This process encapsulates what you need in order to control your XSOAR machines in an automated manner, while providing the ability to manage your own content, in your artifacts server of choice, with your version control system of choice.
 ---
 ​
-The XSOAR CI/CD content pack is intended to help security engineers develop, test, implement, and maintain their content in a smooth and secure process. It allows you to create your content alongside other members of your security team, and merge that content to ensure you have not overwritten work done by someone else, or vice versa. In addition, you can manage your content in a single, yet separate, repository with the out-of-the-box content provided by Cortex XSOAR. Also, you can track the versioning of your content to support rolling back, if necessary.
+The XSOAR CI/CD content pack is intended to help security engineers develop, test, review, implement, and maintain their content in a smooth and secure process. It allows you to create your content alongside other members of your security team, and merge that content to ensure you have not overwritten work done by someone else, or vice versa. In addition, you can manage your content in a single, yet separate, repository with the out-of-the-box content provided by Cortex XSOAR. Also, you can track the versioning of your content to support rolling back, if necessary.
 ​
 For example, you can implement unit tests, make sure that the content that you have created is compatible with your integrations, etc.
 ​
@@ -24,17 +24,17 @@ The CI/CD process works as follows:
 ​
 ​
 ## What's in this Content Pack
-The Content Management pack includes several content items.
+The XSOAR CI/CD pack includes several content items.
 ​
 ### Automations
 There are 5 automations in this pack.
 - **ConfigurationSetup** - 
-Configuration loader for the Content Management pack.
+Configuration loader for the XSOAR CI/CD pack.
 - **CustomPackInstaller** - 
-Custom Pack Installer for the Content Management pack.
-- **JobCreator** - Job creator for the Content Management pack.
-- **ListCreator** - List creator for the Content Management pack
-- **MarketplacePackInstaller** - Marketplace pack installer for the Content Management pack.
+Custom Pack Installer for the XSOAR CI/CD pack.
+- **JobCreator** - Job creator for the XSOAR CI/CD pack.
+- **ListCreator** - List creator for the XSOAR CI/CD pack
+- **MarketplacePackInstaller** - Marketplace pack installer for the XSOAR CI/CD pack.
 ​
 ### Incident Fields
 There are 8 incident fields.
@@ -158,7 +158,7 @@ Create a yml file for the CI/CD process. The [Example File](https://raw.githubus
    Or 
 ​
    Upload zipped packs directly to your machine using the [demisto-sdk upload](https://xsoar.pan.dev/docs/concepts/demisto-sdk#upload) command.
-8. Upload the artifacts to your artifact repository.
+7. Upload the artifacts to your artifact repository.
 ​
 ​
 ​
