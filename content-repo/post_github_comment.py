@@ -96,22 +96,36 @@ def post_comment(netlify_deploy_file: str):
     token = os.getenv('GITHUB_TOKEN')
     if not token:
         raise ValueError("Can't post comment. GITHUB_TOKEN env variable is not set")
-    with open(netlify_deploy_file, 'r') as f:
-        netlify_info = json.load(f)
-    deplpy_url = netlify_info['deploy_url']
+
+    host = "Netlify"
+    # handle Netlify deployment message
+    if netlify_deploy_file.endswith(".json"):
+        with open(netlify_deploy_file, 'r') as f:
+            netlify_info = json.load(f)
+        deploy_url = netlify_info['deploy_url']
+
+    # handle Firebase deployment message
+    else:
+        with open(netlify_deploy_file, 'r') as f:
+            if matched_url := re.search("https://xsoar-pan-dev--pull-request-.*web.app", f.read()):
+                deploy_url = matched_url.group(0)
+                host = "Firebase"
+            else:
+                raise ValueError("Can't post comment. Deployment was unsuccessful: \n" + f.read())
+
     # preview message
-    message = "# Preview Site Available\n\n" \
+    message = f"# {host} Preview Site Available\n\n" \
         "Congratulations! The automatic build has completed succesfully.\n" \
-        f"A preview site is available at: {deplpy_url}\n\n---\n" \
+        f"A preview site is available at: {deploy_url}\n\n---\n" \
         "**Important:** Make sure to inspect your changes at the preview site."
     if os.getenv('CIRCLE_BRANCH') == 'master':
         message = "# Production Site Updated\n\n" \
-            "Congratulations! The automatic build has completed succesfully.\n" \
+            "Congratulations! The automatic build has completed successfully.\n" \
             "The production site of our docs has been updated. You can view it at: https://xsoar.pan.dev"
     else:
         # add detcted changes
         try:
-            links = get_modified_links(deplpy_url)
+            links = get_modified_links(deploy_url)
             if links:
                 message += '\n\nDetected modified urls:\n'
                 for link in links:
