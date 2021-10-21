@@ -58,7 +58,11 @@ jobs:
           echo "==== $(date): extract build zip... ===="
           tar xzf build-site.tar.gz
           echo "==== $(date): Starting Firebase install... ===="
+
+          echo $FIREBASE_JSON_KEY > "$HOME"/gcloud.json
           npm install firebase-tools
+          export GOOGLE_APPLICATION_CREDENTIALS="$HOME"/gcloud.json
+
           echo "==== $(date): Firebase deploy... ===="
           firebase hosting:channel:deploy "pull-request-${$FORKED_PR##*/}" --only xsoar.pan.dev < deploy-info-firebase.txt
           cat deploy-info-firebase.txt
