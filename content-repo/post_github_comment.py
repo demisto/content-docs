@@ -97,6 +97,7 @@ def post_comment(deploy_info_file: str):
     if not token:
         raise ValueError("Can't post comment. GITHUB_TOKEN env variable is not set")
 
+    deploy_url = ""
     host = "Netlify"
     # handle Netlify deployment message
     if deploy_info_file.endswith(".json"):
@@ -120,7 +121,7 @@ def post_comment(deploy_info_file: str):
         # TODO - revert url to "https://xsoar.pan.dev" after the migration
         url = "https://xsoar.pan.dev" if host == "Netlify" else "https://xsoar-pan-dev.web.app"
 
-        message = f"#{host} Production Site Updated\n\n" \
+        message = f"# {host} Production Site Updated\n\n" \
             "Congratulations! The automatic build has completed successfully.\n" \
             f"The production site of our docs has been updated. You can view it at: {url}"
     else:
