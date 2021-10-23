@@ -13,7 +13,7 @@ In order to work with unit testing, the integration or automation script needs t
 
 To run locally the unit tests we want to setup a virtual environment with all required dependencies (both runtime and development). To achieve this we use [Pipenv](https://pipenv.readthedocs.io/en/latest/).
 
-Our recommended way to setup an integration into the [package (directory) structure](package-dir) is to use: `demisto-sdk split-yml`. See full command documentation [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/split_yml/README.md).
+Our recommended way to setup an integration into the [package (directory) structure](package-dir) is to use: `demisto-sdk split`. See full command documentation [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/split/README.md).
 
 Manual Setup:
 
