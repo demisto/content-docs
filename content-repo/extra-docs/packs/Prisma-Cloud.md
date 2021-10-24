@@ -6,15 +6,15 @@ description: Automate and unify security incident response across your cloud env
 
 
 
-Automate and unify security incident response across your cloud environments, while still providing a degree of control to dedicated cloud teams.
+Automate and unify security incident response across your cloud environments while providing control to dedicated cloud teams.
 
 Cloud adoption has expanded the threat surface and created disparate ecosystems that hamper visibility into security vulnerabilities across the network.
 
-In addition, cloud provisioning is often managed by multiple teams, making it difficult for security teams to keep pace.
+In addition, multiple teams often manage cloud provisioning, making it difficult for security teams to monitor.
 
-This pack includes playbooks that automate Prisma Cloud alert response and also includes custom incident fields, views and layouts to facilitate analyst investigation.
+This pack includes playbooks that automate Prisma Cloud alert response and also includes custom incident fields, views, and layouts to facilitate analyst investigation.
 
-The remediation playbooks orchestrate across multiple native cloud integrations (AWS, GCP, Azure) to automate actions such as changing policies, revoking access, creating new rules, etc.
+The remediation playbooks orchestrate across multiple native cloud integrations (AWS, GCP, Azure) to automate actions such as changing policies, revoking access, and creating new rules.
 
 With this content pack, you can significantly reduce the time your Security Analysts/Cloud Operations team spends on Cloud Security alerts and standardize the way you manage misconfiguration incidents.
 
@@ -25,7 +25,7 @@ The playbooks included in this pack help automate the remediation of alerts gene
 - Ensure your Cloud environments are compliant and up to date with the latest compliance standards.
 - Configure your Cloud environments using industry best practices.
 
-As part of this pack, you  also get out-of-the-box Prisma Cloud incident views, segregated alert layouts and playbooks.
+As part of this pack, you  also get out-of-the-box Prisma Cloud incident views, segregated alert layouts, and playbooks.
 All of these are easily customizable to suit the needs of your organization.
 
 # In this Pack
@@ -38,15 +38,15 @@ Recursively extracts specified fields from a provided list of assets for Prisma 
 The pack contains the **Prisma Cloud (RedLock)** integration. Read more about the integration in the [Prisma Cloud (RedLock)](https://xsoar.pan.dev/docs/reference/integrations/red-lock) article.
 
 ## Classifiers & Mappers
-- **Prisma Cloud - Classifier** - Classifies incoming Prisma Cloud events, that are being created through the 'fetch incidents' command in the Prisma Cloud integration.
-- **Prisma Cloud - Incoming Mapper** - Maps incoming Prisma Cloud event fields, that are being created through the 'fetch incidents' command in the Prisma Cloud integration.
-- **Prisma Cloud App - Classifier** - Classifies incoming Prisma Cloud events, that are being pushed into XSOAR through the Prisma Cloud App add-on.
-- **Prisma Cloud App - Incoming Mapper** - Maps incoming Prisma Cloud event fields, that are being pushed into XSOAR through the Prisma Cloud App add-on.
+- **Prisma Cloud - Classifier** - Classifies incoming Prisma Cloud events that are created through the 'fetch incidents' command in the Prisma Cloud integration.
+- **Prisma Cloud - Incoming Mapper** - Maps incoming Prisma Cloud event fields that are created through the 'fetch incidents' command in the Prisma Cloud integration.
+- **Prisma Cloud App - Classifier** - Classifies incoming Prisma Cloud events that are pushed into Cortex XSOAR through the Prisma Cloud App add-on.
+- **Prisma Cloud App - Incoming Mapper** - Maps incoming Prisma Cloud event fields that are pushed into Cortex XSOAR through the Prisma Cloud App add-on.
 
 ## Playbooks
 The pack contains many playbooks, including major playbooks associated with the incident types in the pack, and also sub-playbooks that perform remediation on specific Prisma Cloud policy violations.
 
-Some of the remediation playbooks in the Prisma Cloud pack, which contain remediation policies for the major cloud providers:
+Some of the remediation playbooks in the Prisma Cloud pack containing remediation policies for the major cloud providers:
 
 ### AWS
 - [AWS EC2 Instance Misconfiguration](https://xsoar.pan.dev/docs/reference/playbooks/prisma-cloud-remediation---aws-ec2-instance-misconfiguration)
@@ -86,7 +86,7 @@ The incident types all have a similar layout containing all relevant data from t
 
 The Prisma Cloud incident layout contains the following tabs:
 
-- **Case Info** tab - Provides the analyst basic information for  the Prisma Cloud alert:
+- **Case Info** tab - Provides basic information for the Prisma Cloud alert:
 ![image](https://user-images.githubusercontent.com/43776787/129566665-3d176386-0532-43e1-bfd3-c9e61c1993f7.png)
  
 - **Investigation** tab - Provides a more detailed view of the incident, including the violated policy information, the violating resource details, specific alert rules that triggered the incident, and a list of remediation actions recommended by the Prisma Cloud team for handling the policy violation.
@@ -94,11 +94,11 @@ The Prisma Cloud incident layout contains the following tabs:
 
 # Pack Workflow and Configuration
 
-Once you configure the Prisma Cloud integration to fetch incidents, all incidents that are  created in Cortex XSOAR are classified and mapped into the Prisma Cloud generic incident type, unless a specific incident type for this alert is already supported.
+Once you configure the Prisma Cloud integration to fetch incidents, all incidents that are created in Cortex XSOAR are classified and mapped into the Prisma Cloud generic incident type, unless a specific incident type for this alert is already supported.
  
-This incident type  shows all of the generic alert information from Prisma Cloud, but does not trigger any playbook.
+This incident type shows all of the generic alert information from Prisma Cloud, but does not trigger any playbook.
  
-For all other supported incident types, the incident  triggers the parent playbook that is assigned with this incident type.
+For all other supported incident types, the incident triggers the parent playbook that is assigned with this incident type.
 
 The analyst decides whether to use the automatic remediation path in the playbook, or to handle the policy violation manually using the recommendations given in the layout.
  
@@ -106,7 +106,7 @@ Each incident type and assigned playbook can remediate several policy violations
 
 
 ## Before You Start
-As a part of the Prisma Cloud pack, we have created out-of-the-box classification and mapping, to create incidents for all of the Prisma Cloud policies that are supported and remediated through this pack.
+As a part of the Prisma Cloud pack, we have created out-of-the-box classification and mapping to create incidents for all of the Prisma Cloud policies that are supported and remediated through this pack.
 
 The classification and remediation policies are:
   
