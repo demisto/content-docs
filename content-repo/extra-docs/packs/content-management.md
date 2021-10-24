@@ -76,7 +76,7 @@ The following are the prerequisites for using this pack:
 ​
 The repository is used to organize your custom content packs and your configuration files.  
 ​
-You should clone our [example repository](https://github.com/demisto/content-helloworld-premium) to use as a baseline.
+You should clone our [example repository](https://github.com/demisto/content-ci-cd-template) to use as a baseline.
 ​
 The structure of the repository is as follows:
 ​
@@ -127,6 +127,7 @@ The structure of the repository is as follows:
 │   │   ├── conftest.py               # Can be copied from the Content repo
 ```
 ​
+
 | Content of repo | Description |
 | --- | ---|
 | .hooks | --- |
