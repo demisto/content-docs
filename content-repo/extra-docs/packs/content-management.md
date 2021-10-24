@@ -198,8 +198,8 @@ This artifacts server structure enables you to keep track of your work. Your ver
 ```
 ​
 ## How to Use the Pack
-- [Run the pack manually](#run-the-pack-manually)
-- [Run the pack as a scheduled job](#run-the-pack-as-a-scheduled-job)
+- [Run the playbook manually](#run-the-playbook-manually)
+- [Run the playbook as a scheduled job](#run-the-playbook-as-a-scheduled-job)
 ​
 ### Run the Pack Manually
 1. Navigate to **Incidents**.
