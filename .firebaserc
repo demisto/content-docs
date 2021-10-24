@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "pan-dev-f1b58"
+  },
+  "targets": {
+    "pan-dev-f1b58": {
+      "hosting": {
+        "xsoar.pan.dev": [
+          "xsoar-pan-dev"
+        ]
+      }
+    }
+  }
+}
