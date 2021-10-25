@@ -8,7 +8,7 @@ The XSOAR CI/CD content pack is intended to help security engineers develop, tes
 ​
 For example, you can implement unit tests, make sure that the content that you have created is compatible with your integrations, etc.
 ​
-The pack is used to make sure that content that is developed is implemented in your environmentm while making certain that changes you make to your content does not break existing flows. This enables you to develop and implement with confidence that and security.
+The pack is used to make sure that content that is developed is implemented in your environment while making certain that changes you make to your content does not break existing flows. This enables you to develop and implement with confidence that and security.
 ​
 The CI/CD process works as follows:
 ​
