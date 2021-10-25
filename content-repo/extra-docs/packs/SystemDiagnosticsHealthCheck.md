@@ -1,16 +1,13 @@
 ---
 id: system-diagnostics-and-health-check
 title: System Diagnostics and Health Check
-description: The XSOAR Health Check pack automatically reviewing the current server and content for issues and best practices. The pack goal is to identify potential issues and remediate them before they become a real issue.
+description: The System Diagnostics and Health Check pack automatically reviews the current server and content for issues and best practices. The pack enables you to identify potential issues and remediate them before they escalate.
 ---
  
 
 ## What's in this Content Pack?
- The XSOAR Health Check pack automatically reviewing the current server and content for issues and best practices. 
-The pack goal is to identify potential issues and remediate them before they become a real issue.
-
-This pack includes several content items that enable you to retrieve and view data about your system status and content configuration. It is automatically reviewing the current server and content for issues and suggest best practices procedures.
-The out-of-the-box items can easily customizable to fit your specific threasholds.
+This pack includes several content items that enable you to retrieve and view data about your system status and content configuration. The pack automatically reviews the current server and content for issues and suggests best practices.
+The out-of-the-box items can be easily customized to fit your specific thresholds.
 - [Playbooks](#Playbooks)
 - [Incident Layouts](#Incident-Layouts)
 
@@ -20,42 +17,23 @@ This pack contains a parent playbook that calls two sub-playbooks.
  
 | Playbook | Description | Notes |
 |---------------- | ------------- | ------------- |
-| HealthCheck | This is the pack's main playbook and is the default playbook for the **System Diagnostics and Health Check** incident type. You should run this playbook as a manual incident. The playbook collects the data from all other subplaybooks and tasks and save it into XSOAR fields | Under the playbook inputs, you can define if custom thresholds are required change ```ChangeThresholdsRequired``` to ```true```. To change the predefined values it is required to change ```Set Threasholds``` task. |
-| Health Check - Collect Log Bundle | This playbook is executed as part of the **HealthCheck** parent playbook and is responsible creating Log Bundle | - | 
-| Health Check - Log Analysis Read All files | This playbook is executed as part of the **HealthCheck** parent playbook and is responsible for parsing the extracted files from Log Bundle. | - |
+| HealthCheck | Healthcheck is the pack's main playbook. Healthcheck is the default playbook for the *System Diagnostics and Health Check* incident type. Run this playbook as a manual incident. The playbook collects data from the sub-playbooks and tasks and saves the data into XSOAR fields | Under the playbook inputs, you can define if custom thresholds are required, by changing *ChangeThresholdsRequired* to *true*. To change the predefined values, edit the *Set Thresholds* task. |
+| Health Check - Collect Log Bundle | This playbook is executed as part of the **HealthCheck** parent playbook and is responsible for creating the Log Bundle | - | 
+| Health Check - Log Analysis Read All files | This playbook is executed as part of the **HealthCheck** parent playbook and is responsible for parsing the extracted files from the Log Bundle. | - |
 
  ---     
 ### Incident-Layouts
-The incident type contains single layout: **System Diagnostics and Health Check**. 
-
- **System Diagnostics and Health Check**
-- System Overview
-- Packs & Integrations
-- Hardware Resources
-- Actionable Items
- 
-## How to Use the Pack
-In order to use this pack, you need to configure **"Demisto REST API"** Integration Instance with **Admin** user
-
-For **Multi-Tenants Deployment**
-
-1. Create API Key on Main Tenant 
-2. Propogate the instance to All tenants or to the required tenant using the labels. in the instance settings define as URL https://127.0.0.1
-make sure not to define the tenant name in the URL.
-
-There are several prerequisite requirements that you need to handle before you can start with this pack.
+The incident type contains one layout: **System Diagnostics and Health Check**. 
 
 ### Before You Start
 
-There are several items that you must install and configure before you start using this pack.
+### Demisto REST API Integration
+The playbooks in this pack execute scripts to collect and parse information from the local system. The scripts require the **Demisto REST API** integration.
 
-### 1. Demisto REST API Integration
-The playbooks in the pack use execute scripts to collect and parse from information from the local system. The scripts require that you install the **Demisto REST API** integration and configure an integration instance.
-
-1. Login with **Admin** user
+1. Log in to Cortex XSOAR as the **Admin** user.
 2. In Cortex XSOAR, go to **Settings > INTEGRATIONS > API Keys**.
-3. Click the **Get Your Key**, enter a name for the API key, and click **Generate Key**.
-4. **(IMPORTANT)** Copy and save the API key, you will not be able to access it again.
+3. Click **Get Your Key**, enter a name for the API key, and click **Generate Key**.
+4. **(IMPORTANT)** Copy and save the API key. You will not be able to access it again.
 5. Go to **Settings > INTEGRATIONS > Servers & Services** and search for **Demisto REST API**.
 6. Click **Add instance** and enter the required information.
     - A meaningful name for the integration instance
@@ -64,27 +42,26 @@ The playbooks in the pack use execute scripts to collect and parse from informat
 7. Click the **Test** button to make sure that that server and API key are reachable and valid.
 8. Click **Save & exit**.
 
-For **Multi-Tenants Deployment**
+For **Multi-Tenant Deployments**
 
-1. Create API Key on Main Tenant 
-2. Propogate the instance to All tenants or to the required tenant using the labels. in the instance settings define as URL https://127.0.0.1
-make sure not to define the tenant name in the URL.
+1. Create an API Key on the Main Account. 
+2. Propagate the instance to either all tenants or to some tenants using propagation labels. When defining the URL in the instance settings, use https://127.0.0.1 and do not include the tenant name in the URL.
 
- 
-### 2. Start playbook by creatint manual incident
-Now you need to run the main 'HealthCheck' playbook as an mew incident by creating new **System Diagnostics and Health Check** incident.
+## How to Use the Pack
 
+### 1. Start the playbook by creating a manual incident
+Run the main **HealthCheck** playbook by creating a new *System Diagnostics and Health Check* incident.
 
-### 3. Playbook Inputs
+### 2. Playbook Inputs
 
-We advice not to change the default threasholds value, in case it is needed
-The **HealthCheck** playbook contains the following inputs.
+We recommend not changing the default thresholds value, unless you have a specific use case requiring a change.
 You can review the playbook inputs and edit them by clicking the 'Playbook Triggered' section header of the playbook.
+The **HealthCheck** playbook contains the following inputs.
 
 
 | Playbook Input | Description |
 |---------------- | ------------- |
-| ChangeThresholdsRequired | This input determines if the health check detections should be triggered by custom values change to **true** to enable it|
+| ChangeThresholdsRequired | This playbook input determines if the health check detections should be triggered by custom values. Change to *true* to enable.|
  ---
 
 
