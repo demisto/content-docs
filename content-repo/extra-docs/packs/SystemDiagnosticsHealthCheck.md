@@ -17,7 +17,7 @@ This pack contains a parent playbook that calls two sub-playbooks.
  
 | Playbook | Description | Notes |
 |---------------- | ------------- | ------------- |
-| HealthCheck | Healthcheck is the pack's main playbook. Healthcheck is the default playbook for the *System Diagnostics and Health Check* incident type. Run this playbook as a manual incident. The playbook collects data from the sub-playbooks and tasks and saves the data into XSOAR fields | Under the playbook inputs, you can define if custom thresholds are required, by changing *ChangeThresholdsRequired* to *true*. To change the predefined values, edit the *Set Thresholds* task. |
+| HealthCheck | Healthcheck is the pack's main playbook. Healthcheck is the default playbook for the *System Diagnostics and Health Check* incident type. Run this playbook as a manual incident. The playbook collects data from the sub-playbooks and tasks and saves the data into XSOAR fields | Under the playbook inputs, you can define if custom thresholds are required, by changing *ChangeThresholdsRequired* to **true**. To change the predefined values, edit the *Set Thresholds* task. |
 | Health Check - Collect Log Bundle | This playbook is executed as part of the **HealthCheck** parent playbook and is responsible for creating the Log Bundle | - | 
 | Health Check - Log Analysis Read All files | This playbook is executed as part of the **HealthCheck** parent playbook and is responsible for parsing the extracted files from the Log Bundle. | - |
 
@@ -61,7 +61,7 @@ The **HealthCheck** playbook contains the following inputs.
 
 | Playbook Input | Description |
 |---------------- | ------------- |
-| ChangeThresholdsRequired | This playbook input determines if the health check detections should be triggered by custom values. Change to *true* to enable.|
+| ChangeThresholdsRequired | This playbook input determines if the health check detections should be triggered by custom values. Change to **true** to enable.|
  ---
 
 
