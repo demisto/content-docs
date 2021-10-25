@@ -1,5 +1,5 @@
 ---
-id: xsoar-ci-cd
+id: content-management
 title: XSOAR CI/CD (Beta)
 description: This process encapsulates what you need in order to control your XSOAR machines in an automated manner, while providing the ability to manage your own content, in your artifacts server of choice, with your version control system of choice.
 ---
