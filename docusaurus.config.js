@@ -231,6 +231,14 @@ module.exports = {
       rel: "stylesheet"
     },
   ],
+  plugins: [
+    [
+      require.resolve("./docusaurus-plugin-gtm/index.js"),
+      {
+        gtm: "GTM-KWZSPLM", //GTM-XXXXXX
+      },
+    ]
+  ],
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   onDuplicateRoutes: "warn"
