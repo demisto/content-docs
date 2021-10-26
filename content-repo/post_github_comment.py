@@ -88,7 +88,7 @@ def get_modified_links(base_url: str):
     return links
 
 
-def post_comment(netlify_deploy_file: str):
+def post_comment(deploy_info_file: str):
     post_url = get_post_url()
     if not post_url:
         print('Skipping post comment as could not resolve a PR post url!!')
@@ -96,22 +96,38 @@ def post_comment(netlify_deploy_file: str):
     token = os.getenv('GITHUB_TOKEN')
     if not token:
         raise ValueError("Can't post comment. GITHUB_TOKEN env variable is not set")
-    with open(netlify_deploy_file, 'r') as f:
-        netlify_info = json.load(f)
-    deplpy_url = netlify_info['deploy_url']
+
+    deploy_url = ""
+    host = "Netlify"
+    # handle Netlify deployment message
+    if deploy_info_file.endswith(".json"):
+        with open(deploy_info_file, 'r') as f:
+            netlify_info = json.load(f)
+        deploy_url = netlify_info['deploy_url']
+
+    # handle Firebase deployment message
+    else:
+        host = "Firebase"
+        with open(deploy_info_file, 'r') as f:
+            if matched_url := re.search("https://xsoar-pan-dev--pull-request-.*web.app", f.read()):
+                deploy_url = matched_url.group(0)
+
     # preview message
-    message = "# Preview Site Available\n\n" \
+    message = f"# {host} Preview Site Available\n\n" \
         "Congratulations! The automatic build has completed succesfully.\n" \
-        f"A preview site is available at: {deplpy_url}\n\n---\n" \
+        f"A preview site is available at: {deploy_url}\n\n---\n" \
         "**Important:** Make sure to inspect your changes at the preview site."
     if os.getenv('CIRCLE_BRANCH') == 'master':
-        message = "# Production Site Updated\n\n" \
-            "Congratulations! The automatic build has completed succesfully.\n" \
-            "The production site of our docs has been updated. You can view it at: https://xsoar.pan.dev"
+        # TODO - revert url to "https://xsoar.pan.dev" after the migration
+        url = "https://xsoar.pan.dev" if host == "Netlify" else "https://xsoar-pan-dev.web.app"
+
+        message = f"# {host} Production Site Updated\n\n" \
+            "Congratulations! The automatic build has completed successfully.\n" \
+            f"The production site of our docs has been updated. You can view it at: {url}"
     else:
         # add detcted changes
         try:
-            links = get_modified_links(deplpy_url)
+            links = get_modified_links(deploy_url)
             if links:
                 message += '\n\nDetected modified urls:\n'
                 for link in links:
@@ -137,12 +153,13 @@ SKIP_SSL_VERIFY: if set will skip ssl verification (used for testing behind GP)
     """
     parser = argparse.ArgumentParser(description=desc,
                                      formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument("netlify_deploy_json", help="The netlify deploy json file. For example: deploy-info.json")
+    parser.add_argument("deploy_info_file",
+                        help="The deploy file. For example: deploy-info.json / deploy-info-firebase.txt")
     args = parser.parse_args()
     if not os.getenv('GITHUB_TOKEN'):
         print("No github key set. Will not post a message!")
         return
-    post_comment(args.netlify_deploy_json)
+    post_comment(args.deploy_info_file)
 
 
 if __name__ == "__main__":
