@@ -87,7 +87,7 @@ demisto.credentials(credentials)
 ```
 **Note:** In this scenario it is important to return a list containing up to **one** set of credentials.
 
-**Note #2** When searching for credential entity in the Cardential screen, `fetch-credentials` command is running behind the scene with the value to search. Therefore, it is important to return empty list in case no match has been found. Raising exception will fail the credential page from loading.
+**Note:** When searching for credential entity in the Cardential screen, `fetch-credentials` command is running behind the scene with the value to search. Therefore, it is important to return empty list in case no match has been found. Raising exception will fail the credential page from loading.
 
 #### The two scenarios together:
 ```python
