@@ -71,7 +71,7 @@ The Marketplace program features two partners each month in the Top Use Cases we
 
  Partners can also host additional webinars featuring joint customers. 
 
-![Webinar_benefits](../doc_imgs/partners/Webinar_benefits copy.png)
+![Webinar_benefits](../doc_imgs/partners/Webinar_benefits_copy.png)
 Webinar registration 
 
 ## Sponsorships / Events
