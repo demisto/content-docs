@@ -1,7 +1,7 @@
 
 ---
-id: Phishing Alerts Investigation
-title: Phishing Alerts Investigation
+id: Phishing Alerts
+title: Phishing Alerts
 description: The Phishing Alerts content pack uses out-of-the-box playbooks, to handle phishing alerts received by either your Email Security Gateway or SIEM products. 
 ---
 
@@ -90,7 +90,7 @@ To use the **Phishing Alerts Investigation** playbook we strongly recommend that
 * Email Subject
 * Email Headers
 * Email Message ID (The original email message id and not the internal product id)
-* Email Queue ID
+* Email Internal Message ID (The product ID given to the message)
 * Email Source Domain (Optional)
 * Detection URL (Optional)
 * Occurred
@@ -117,7 +117,7 @@ Repeat steps 1-6 as seen under "Email Security Gateway Mapping"
 * Email Subject
 * Email Headers (Optional)
 * Email Message ID (The original email message id and not the internal product id)
-* Email Queue ID (If exists)
+* Email Internal Message ID (The product ID given to the message)
 * Email Source Domain (Optional)
 * Detection URL (Optional)
 * Occurred
