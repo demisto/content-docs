@@ -92,6 +92,7 @@ To use the **Phishing Alerts Investigation** playbook we strongly recommend that
 * Email Message ID (The original email message id and not the internal product id)
 * Email Queue ID
 * Email Source Domain (Optional)
+* Detection URL (Optional)
 * Occurred
 * Severity
 * UUID (For the product internal message/alert id)
@@ -118,6 +119,7 @@ Repeat steps 1-6 as seen under "Email Security Gateway Mapping"
 * Email Message ID (The original email message id and not the internal product id)
 * Email Queue ID (If exists)
 * Email Source Domain (Optional)
+* Detection URL (Optional)
 * Occurred
 * Severity (Taken from the product or post SIEM calculation)
 * UUID (For the product internal message/alert id)
