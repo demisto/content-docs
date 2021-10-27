@@ -85,9 +85,9 @@ credentials: list = [get_credentials(credentials_name)]
 
 demisto.credentials(credentials)
 ```
-**Note:** In this scenario it is important to return a list containing up to **one** set of credentials.
-
-**Note:** When searching for credential entity in the credentials screen, `fetch-credentials` command is running behind the scene with the value to search. Therefore, it is important to return empty list in case no match has been found. Raising exception will fail the credentials page loading.
+:::Important Note
+When working with a specific credentials name (the `identifier` key), it is important to **always** return a list containing up to **one** set of credentials. In other words, it is important to catch errors that are part of this flow, and instead of raising them, return an empty list. If no list or a list with more than one element will be returned, the `credentials` tab will fail to load.
+:::
 
 #### The two scenarios together:
 ```python
