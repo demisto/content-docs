@@ -1,6 +1,6 @@
 ---
-id: integrations-and-incident-health-check
-title: Integrations and Incidents Health Check
+id: Phishing-Alerts
+title: Phishing Alerts
 description: The Phishing Alerts content pack uses out-of-the-box playbooks, to handle phishing alerts recieved by either your Email Security Gateway or SIEM products. 
 ---
 
