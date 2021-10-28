@@ -85,7 +85,7 @@ credentials: list = [get_credentials(credentials_name)]
 
 demisto.credentials(credentials)
 ```
-:::Important Note
+:::note Important Note
 When working with a specific credentials name (the `identifier` key), it is important to **always** return a list containing up to **one** set of credentials. In other words, it is important to catch errors that are part of this flow, and instead of raising them, return an empty list. If no list or a list with more than one element will be returned, the `credentials` tab will fail to load.
 :::
 
