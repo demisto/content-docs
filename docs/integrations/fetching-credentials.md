@@ -81,7 +81,11 @@ In order to extract the specific credentials name use the `identifier` argument 
 ```python
 args: dict = demisto.args()
 credentials_name: str = args.get('identifier')
-credentials: list = [get_credentials(credentials_name)]
+try:
+    credentials: list = [get_credentials(credentials_name)]
+except Exception as e:
+    demisto.debug(f"Could not fetch credentials: {creds_name}. Error: {e}")
+    credentials = []
 
 demisto.credentials(credentials)
 ```
