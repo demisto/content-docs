@@ -97,7 +97,11 @@ credentials_str = params.get('credential_names')
 credentials_names_from_configuration = argToList(credentials_str)  # argToList is a wrapper to safely execute the str.split() function
 credentials_name: str = args.get('identifier')
 if credentials_name:
-    credentials: list = [get_credentials(credentials_name)]
+    try:
+        credentials: list = [get_credentials(credentials_name)]
+    except Exception as e:
+        demisto.debug(f"Could not fetch credentials: {creds_name}. Error: {e}")
+        credentials = []
 else:
     credentials = []
     for credentials_name in credentials_names_from_configuration:
