@@ -117,10 +117,8 @@ def post_comment(deploy_info_file: str):
         f"A preview site is available at: {deploy_url}\n\n---\n" \
         "**Important:** Make sure to inspect your changes at the preview site."
     if os.getenv('CIRCLE_BRANCH') == 'master':
-        # TODO - revert url to "https://xsoar.pan.dev" after the migration
-        # url = "https://xsoar.pan.dev" if host == "Netlify" else "https://xsoar-pan-dev.web.app"
 
-        message = f"# Production Site Updated\n\n" \
+        message = "# Production Site Updated\n\n" \
             "Congratulations! The automatic build has completed successfully.\n" \
             "The production site of our docs has been updated. You can view it at: https://xsoar.pan.dev"
     else:
