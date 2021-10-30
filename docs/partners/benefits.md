@@ -63,9 +63,8 @@ Snapshot of our newsletter. [Register Now!](https://start.paloaltonetworks.com/c
 ## Press Release
 Similar to the solution brief & blog, partners receive access to a detailed template that speeds approvals when releasing on the partner's paper. Take a look at the [press release from SecurityAdvisor.](https://www.businesswire.com/news/home/20210426005118/en/SecurityAdvisor-Joins-Palo-Alto-Networks-Cortex-XSOAR-Marketplace)
 
-<img src="../doc_imgs/partners/PressRelease_benefits.png"/>
-
-![Pressrelease_benefits](../doc_imgs/partners/PressRelease_benefits.png)
+<img src="../doc_imgs/partners/PressRelease_benefits.png" style="width: 50%;"/>
+<br>
 Press Release with SecurityAdvisor. 
 
 ## Webinar
