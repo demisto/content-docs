@@ -9,7 +9,6 @@ import requests
 import subprocess
 import os
 import re
-import json
 import yaml
 from mdx_utils import normalize_id
 
@@ -123,7 +122,7 @@ def post_comment(deploy_info_file: str):
 
         message = f"# Production Site Updated\n\n" \
             "Congratulations! The automatic build has completed successfully.\n" \
-            f"The production site of our docs has been updated. You can view it at: https://xsoar.pan.dev"
+            "The production site of our docs has been updated. You can view it at: https://xsoar.pan.dev"
     else:
         # add detcted changes
         try:
