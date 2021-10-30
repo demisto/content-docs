@@ -98,32 +98,32 @@ def post_comment(deploy_info_file: str):
         raise ValueError("Can't post comment. GITHUB_TOKEN env variable is not set")
 
     deploy_url = ""
-    host = "Netlify"
-    # handle Netlify deployment message
-    if deploy_info_file.endswith(".json"):
-        with open(deploy_info_file, 'r') as f:
-            netlify_info = json.load(f)
-        deploy_url = netlify_info['deploy_url']
-
-    # handle Firebase deployment message
-    else:
-        host = "Firebase"
-        with open(deploy_info_file, 'r') as f:
-            if matched_url := re.search("https://xsoar-pan-dev--pull-request-.*web.app", f.read()):
-                deploy_url = matched_url.group(0)
+    # host = "Netlify"
+    # # handle Netlify deployment message
+    # if deploy_info_file.endswith(".json"):
+    #     with open(deploy_info_file, 'r') as f:
+    #         netlify_info = json.load(f)
+    #     deploy_url = netlify_info['deploy_url']
+    #
+    # # handle Firebase deployment message
+    # else:
+    # host = "Firebase"
+    with open(deploy_info_file, 'r') as f:
+        if matched_url := re.search("https://xsoar-pan-dev--pull-request-.*web.app", f.read()):
+            deploy_url = matched_url.group(0)
 
     # preview message
-    message = f"# {host} Preview Site Available\n\n" \
-        "Congratulations! The automatic build has completed succesfully.\n" \
+    message = f"# Preview Site Available\n\n" \
+        "Congratulations! The automatic build has completed successfully.\n" \
         f"A preview site is available at: {deploy_url}\n\n---\n" \
         "**Important:** Make sure to inspect your changes at the preview site."
     if os.getenv('CIRCLE_BRANCH') == 'master':
         # TODO - revert url to "https://xsoar.pan.dev" after the migration
-        url = "https://xsoar.pan.dev" if host == "Netlify" else "https://xsoar-pan-dev.web.app"
+        # url = "https://xsoar.pan.dev" if host == "Netlify" else "https://xsoar-pan-dev.web.app"
 
-        message = f"# {host} Production Site Updated\n\n" \
+        message = f"# Production Site Updated\n\n" \
             "Congratulations! The automatic build has completed successfully.\n" \
-            f"The production site of our docs has been updated. You can view it at: {url}"
+            f"The production site of our docs has been updated. You can view it at: https://xsoar.pan.dev"
     else:
         # add detcted changes
         try:
@@ -154,7 +154,7 @@ SKIP_SSL_VERIFY: if set will skip ssl verification (used for testing behind GP)
     parser = argparse.ArgumentParser(description=desc,
                                      formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument("deploy_info_file",
-                        help="The deploy file. For example: deploy-info.json / deploy-info-firebase.txt")
+                        help="The deploy file. For example: deploy-info-firebase.txt")
     args = parser.parse_args()
     if not os.getenv('GITHUB_TOKEN'):
         print("No github key set. Will not post a message!")
