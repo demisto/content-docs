@@ -61,6 +61,7 @@ The following fields are populated in the pack metadata:
 | githubUser | List | (Optional) List of Github usernames to receive notification in the PR in case pack files were modified. |
 | devEmail | List | (Optional) List of emails to receive notification in case contributed pack files were modified. |
 | certification | String | (Optional) If the pack is certifed the value of this fields should be "certified" |
+| itemPrefix | String | (Optional) String to overwrite pack fields prefix. You can specify an alternative string instead of the default pack name enforced by the validation process.
 
 
 Pack metadata contents for example:
