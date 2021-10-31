@@ -20,9 +20,7 @@ if [[ -n "$CONTENT_REPO_DIR" ]]; then
     echo "================================="
 else
     CONTENT_GIT_DIR=${SCRIPT_DIR}/.content
-    if [[ -n "${HEAD}" ]]; then
-        CURRENT_BRANCH="${HEAD}"
-    elif [[ -n "${CIRCLE_BRANCH}" ]]; then
+    if [[ -n "${CIRCLE_BRANCH}" ]]; then
         CURRENT_BRANCH=${CIRCLE_BRANCH}
     else
         CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
