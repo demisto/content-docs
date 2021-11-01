@@ -1,7 +1,7 @@
 ---
 id: Phishing-Alerts
 title: Phishing Alerts
-description: The Phishing Alerts content pack uses out-of-the-box playbooks to handle phishing alerts received by either your Email Security Gateway or through your SIEM. 
+description: The Phishing Alerts content pack uses out-of-the-box playbooks to handle phishing alerts received by either your Email Security Gateway or your SIEM. 
 ---
 
  # Phishing Alerts #
