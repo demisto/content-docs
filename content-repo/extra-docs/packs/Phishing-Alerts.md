@@ -14,9 +14,6 @@ Email Security Gateways produce a high amount of phishing alerts, which are diff
 The **Phishing Alets** content pack contains several content items.
  
 This content items enable you retrieve, process and analyze email files and manage phishing alerts . The out-of-the-box items are robust enough to get started with, but are easily customizable to fit your specific requirements.
-- [Playbooks](#Playbooks)
-- [Incident Layouts](#Incident-Layouts)
-- [Dashboards & Lists](#Dashboards-and-Lists)
 
 
 ### Playbooks
