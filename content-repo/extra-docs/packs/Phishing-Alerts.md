@@ -59,7 +59,7 @@ The main playbook in this pack relies on Email Security Gateways or SIEM phishin
 Optional Email Security Gateway products:
 * FireEye Email Security (EX)
 * Proofpoint TAP
-* Agari Phishing Protection
+* Agari Phishing Defense
 * Mimecast
 
 Optional SIEM products:
@@ -172,7 +172,7 @@ There is one important input you should pay attention to:
 
 | **Name** | **Description** |**Notes** 
 | --- | --- | --- | 
-| EmailBrand | When this value supplied, only the relevant playbook will run.<br/>Possible values:<br/>- Gmail<br/>- EWS v2<br/>- MicrosoftGraphMail<br/>- EmailSecurityGateway<br/><br/>Choosing the EmailSecurityGateway value will execute the following if enabled:<br/>    - FireEye EX \(Email Security\)<br/>    - Proofpoint TAP<br/>    - Agari Phishing Protection<br/>    - Mimecast<br/><br/>If none of the above values is supplied, all of the playbooks will run. | This input will set the way the original email file will be retrieved. <br/>If you would like to retrieve the email (eml/msg) file directly from your Email Security Gateway, you should use the **EmailSecurityGateway** value as input, otherwise, if you would like to retrieve the email file from your **Email Service Provider**, please choose one of the relevant providers values as input.
+| EmailBrand | When this value supplied, only the relevant playbook will run.<br/>Possible values:<br/>- Gmail<br/>- EWS v2<br/>- MicrosoftGraphMail<br/>- EmailSecurityGateway<br/><br/>Choosing the EmailSecurityGateway value will execute the following if enabled:<br/>    - FireEye EX \(Email Security\)<br/>    - Proofpoint TAP<br/>    - Agari Phishing Defense<br/>    - Mimecast<br/><br/>If none of the above values is supplied, all of the playbooks will run. | This input will set the way the original email file will be retrieved. <br/>If you would like to retrieve the email (eml/msg) file directly from your Email Security Gateway, you should use the **EmailSecurityGateway** value as input, otherwise, if you would like to retrieve the email file from your **Email Service Provider**, please choose one of the relevant providers values as input.
 
 
 ## Pre-Process Rule
