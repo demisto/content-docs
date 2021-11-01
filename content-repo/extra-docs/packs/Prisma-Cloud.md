@@ -40,8 +40,8 @@ The pack contains the **Prisma Cloud (RedLock)** integration. Read more about th
 ## Classifiers & Mappers
 - **Prisma Cloud - Classifier** - Classifies incoming Prisma Cloud events that are created through the 'fetch incidents' command in the Prisma Cloud integration.
 - **Prisma Cloud - Incoming Mapper** - Maps incoming Prisma Cloud event fields that are created through the 'fetch incidents' command in the Prisma Cloud integration.
-- **Prisma Cloud App - Classifier** - Classifies incoming Prisma Cloud events that are pushed into Cortex XSOAR through the Prisma Cloud App add-on.
-- **Prisma Cloud App - Incoming Mapper** - Maps incoming Prisma Cloud event fields that are pushed into Cortex XSOAR through the Prisma Cloud App add-on.
+- **Prisma Cloud App - Classifier** - Classifies incoming Prisma Cloud events that are pushed into Cortex XSOAR through the Prisma Cloud App add-on (Meaning Prisma Cloud incidents are pushed to XSOAR through the Prisma Cloud add-on and not by fetch incidents).
+- **Prisma Cloud App - Incoming Mapper** - Maps incoming Prisma Cloud event fields that are pushed into Cortex XSOAR through the Prisma Cloud App add-on. (Meaning Prisma Cloud incidents are pushed to XSOAR through the Prisma Cloud add-on and not by fetch incidents).
 
 ## Playbooks
 The pack contains many playbooks, including major playbooks associated with the incident types in the pack, and also sub-playbooks that perform remediation on specific Prisma Cloud policy violations.
