@@ -20,27 +20,7 @@ if [[ -n "$CONTENT_REPO_DIR" ]]; then
     echo "================================="
 else
     CONTENT_GIT_DIR=${SCRIPT_DIR}/.content
-    if [[ -n "${NETLIFY}" ]]; then
-        echo "Netlify env data:"
-        echo "BRANCH=${BRANCH}"
-        echo "HEAD=${HEAD}"
-        echo "COMMIT_REF=${COMMIT_REF}"
-        echo "PULL_REQUEST=${PULL_REQUEST}"
-        echo "REVIEW_ID=${REVIEW_ID}"
-        echo "DEPLOY_PRIME_URL=${DEPLOY_PRIME_URL}"
-        echo "DEPLOY_URL=${DEPLOY_URL}"
-        echo "CPU QUOTA"
-        cat /sys/fs/cgroup/cpu/cpu.cfs_quota_us || echo "CPU Quota not available"
-        echo "CPU COUNT"
-        nproc || echo "nproc not available"
-        echo "MEMORY LIMIT (bytes)"
-        cat /sys/fs/cgroup/memory/memory.limit_in_bytes || echo "Memory limit not available"
-        echo "SWAP+MEMORY LIMIT (bytes)"
-        cat /sys/fs/cgroup/memory/memory.memsw.limit_in_bytes || echo "Memory+Swap limit not available"
-    fi
-    if [[ -n "${NETLIFY}" && -n "${HEAD}" ]]; then
-        CURRENT_BRANCH="${HEAD}"
-    elif [[ -n "${CIRCLE_BRANCH}" ]]; then
+    if [[ -n "${CIRCLE_BRANCH}" ]]; then
         CURRENT_BRANCH=${CIRCLE_BRANCH}
     else
         CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -70,17 +50,6 @@ else
     if [[ -d ${CONTENT_GIT_DIR} && $(cd ${CONTENT_GIT_DIR}; git remote get-url origin) != "${CONTENT_GIT_URL}" ]]; then
         echo "Deleting dir: ${CONTENT_GIT_DIR} as remote url dooesn't match ${CONTENT_GIT_URL} ..."
         rm -rf "${CONTENT_GIT_DIR}"
-    fi
-
-    if [ -n "${NETLIFY}" ]; then
-        if [[ -d ${CONTENT_GIT_DIR} ]]; then
-            echo "Content git dir cached size: $(du -sh ${CONTENT_GIT_DIR})"
-            echo "Deleting cached content dir..."
-            rm -rf "${CONTENT_GIT_DIR}"
-        fi
-        echo "Setting git config"
-        git config --global user.email "netlifybuild@demisto.com"
-        git config --global user.name "Netlify Dev Docs Build"
     fi
 
     if [ ! -d ${CONTENT_GIT_DIR} ]; then
@@ -179,22 +148,12 @@ cp ${CONTENT_GIT_DIR}/Tests/Marketplace/approved_usecases.json .
 # Removing the first lines from CommonServerPython.py which are a description of the script we don't need here
 echo "$(tail -n +6 CommonServerPython.py)" > CommonServerPython.py
 
-if [ -z "${NETLIFY}" ]; then
-    echo "Not running in netlify. Using pipenv"
-    echo "Installing pipenv..."
-    pipenv install
-    echo "Generating docs..."
-    pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
-    echo "Generating Demisto class and CommonServerPython docs..."
-    pipenv run ./gen_pydocs.py -t "${TARGET_DIR}"
-    echo "Generating top contributors page..."
-    pipenv run python ./gen_top_contrib.py -t "${CONTRIB_TARGET_DIR}"
+echo "Installing pipenv..."
+pipenv install
+echo "Generating docs..."
+pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
+echo "Generating Demisto class and CommonServerPython docs..."
+pipenv run ./gen_pydocs.py -t "${TARGET_DIR}"
+echo "Generating top contributors page..."
+pipenv run python ./gen_top_contrib.py -t "${CONTRIB_TARGET_DIR}"
 
-else
-    echo "Generating docs..."
-    ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
-    echo "Generating Demisto class and CommonServerPython docs..."
-    ./gen_pydocs.py -t "${TARGET_DIR}"
-    echo "Generating top contributors page..."
-    ./gen_top_contrib.py -t "${CONTRIB_TARGET_DIR}"
-fi
