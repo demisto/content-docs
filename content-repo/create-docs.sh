@@ -154,6 +154,10 @@ echo "Generating docs..."
 pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
 echo "Generating Demisto class and CommonServerPython docs..."
 pipenv run ./gen_pydocs.py -t "${TARGET_DIR}"
-echo "Generating top contributors page..."
-pipenv run python ./gen_top_contrib.py -t "${CONTRIB_TARGET_DIR}"
-
+if [[ $CIRCLE_BRANCH =~ pull/[0-9]+ ]]; then
+    echo "Skipping, Should not run on contributor's branch."
+    exit 0
+else
+    echo "Generating top contributors page..."
+    pipenv run python ./gen_top_contrib.py -t "${CONTRIB_TARGET_DIR}"
+fi
