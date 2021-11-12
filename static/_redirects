@@ -144,3 +144,7 @@ https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 /docs/integrations/packs-format /docs/packs/packs-format
 /docs/integrations/premium_packs /docs/packs/premium_packs
 /docs/concepts/dev-requirements /docs/contributing/dev-requirements
+
+# Marketplace Private Offers
+/private-offer-learn-more /
+/request-private-offer /
