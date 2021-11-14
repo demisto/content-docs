@@ -15,7 +15,8 @@ It utilizes the excellent [demisto-sdk](./demisto-sdk) python package.
 
 * Python 3.7 and up.
 * [Python for VSCode](https://marketplace.visualstudio.com/items?itemName=ms-python.python).
-* Install [demisto-sdk](../concepts/demisto-sdk#installation-and-setup). It is highly recommended to install it on a virtual environment such as [pipenv](https://pipenv.pypa.io/en/latest/).
+* Setup the [content repository](../concepts/dev-setup)
+* Install [demisto-sdk](../concepts/demisto-sdk#installation-and-setup). Don't forget to [setup the required environment variables](../concepts/demisto-sdk#environment-variable-setup). It is highly recommended to install it on a virtual environment such as [pipenv](https://pipenv.pypa.io/en/latest/).
 
 ## Install the Visual Studio Code extension
 
