@@ -238,8 +238,7 @@ Under the inputs for the IAM - Sync User playbook, make sure you configure value
 1. Navigate to *Playbooks* and locate the *IAM - Sync User* and *IAM - Activate User In Active Directory* playbooks.  
 2. Click *Playbook Triggered* and insert values for the following inputs, in both playbooks, where applicable:
     1. *ITNotificationEmail* - used to receive notifications about any errors in the provisioning process.
-    2. *ServiceDeskEmail* - used to receive initial temporary passwords for new hires to prepare employee laptops, etc.
-    3. *PasswordGenerationScriptName* - The name of the automation script that will be used to generate a random password for newly created Active Directory users. The default script used for this is GeneratePassword, but depending on your password complexity policy, you may or may not want to use it.
+    2. *PasswordGenerationScriptName* - The name of the automation script that will be used to generate a random password for newly created Active Directory users. The default script used for this is GeneratePassword, but depending on your password complexity policy, you may or may not want to use it.
  
 ### Integrations
 
