@@ -240,6 +240,23 @@ Under the inputs for the IAM - Sync User playbook, make sure you configure value
     1. *ITNotificationEmail* - used to receive notifications about any errors in the provisioning process.
     2. *PasswordGenerationScriptName* - The name of the automation script that will be used to generate a random password for newly created Active Directory users. The default script used for this is GeneratePassword, but depending on your password complexity policy, you may or may not want to use it.
  
+IAM - Activate User In Active Directory:
+Configure all of the playbook inputs according to the descriptions.
+
+IAM - Create User In Active Directory:
+Configure the ManagerEmailHTMLList, ServiceDeskEmailHTMLList, ADNotificationEmails, PasswordGenerationScriptName, ServiceDeskEmail and SendEmail inputs.
+**Do not change or delete** the CreatedIndicator, indicator, SuccessfulVendors and sAMAccountName, as they are already configured to work in places where this playbook is used as a subplaybook.
+
+IAM - Deactivate User In Active Directory:
+Configure the ITNotificationEmail playbook input.
+
+IAM - Group Membership Sync:
+Configure all of the desired playbook inputs according to the descriptions.
+
+IAM - Send Provisioning Notification Email:
+configure the NotificationEmailHTMLList input if you wish to use custom HTML templates for notifications about users that were provisioned successfully in the different applications.
+
+
 ### Integrations
 
 - Workday IAM integration [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/workday-iam).
