@@ -50,7 +50,7 @@ Case Management/Ticketing Integration Example: [ServiceNow](https://xsoar.pan.de
   - Search for former scan results about an object (This way you can get information about a sample without uploading it yourself).
   - Enrich information and scoring for the object.
 - Add/Search for indicators in the system.
-- Whitelist/ Blacklist indicators.
+- Add indicators to allow list / block list.
 - Calculate DBot Score for indicators.
 
 Data Enrichment & Threat Intelligence Integration Example: [VirusTotal](https://xsoar.pan.dev/docs/reference/integrations/virus-total)
@@ -74,8 +74,8 @@ Email Gateway Integration Example: [MimeCast](https://xsoar.pan.dev/docs/referen
 - Get event details (from specified incident)
 - Quarantine File
 - Isolate and contain endpoints
-- Update Indicators (Network, hashes, etc.) by policy (can be block, monitor) – Black list
-- White list indicators
+- Update Indicators (Network, hashes, etc.) by policy (can be block, monitor) – Block list
+- Add indicators to allow list
 - Search for indicators in the system (Seen indicators and related incidents/events)
 - Download file (based on hash, path)
 - Trigger scans on specified hosts
