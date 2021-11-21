@@ -63,9 +63,8 @@ Snapshot of our newsletter. [Register Now!](https://start.paloaltonetworks.com/c
 ## Press Release
 Similar to the solution brief & blog, partners receive access to a detailed template that speeds approvals when releasing on the partner's paper. Take a look at the [press release from SecurityAdvisor.](https://www.businesswire.com/news/home/20210426005118/en/SecurityAdvisor-Joins-Palo-Alto-Networks-Cortex-XSOAR-Marketplace)
 
-<img src="../doc_imgs/partners/PressRelease_benefits.png"/>
-<br>
-Press Release with SecurityAdvisor. 
+<img src="../doc_imgs/partners/PressRelease_benefits.png" width="50%"/><img/>
+
 
 ## Webinar
 The Marketplace program features two partners each month in the Top Use Cases webinar. This hour-long webinar allows partners to present their products and content packs including a demo and a Q&A session for customer and prospect participation. Check out the webinars we’ve done so far on [our site!](https://register.paloaltonetworks.com/cortexxsoartopusecaseswebinarseries)
