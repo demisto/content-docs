@@ -1015,7 +1015,7 @@ tasks:
       id: 338b43c9-b630-4501-88c8-12ee2929609d
       version: -1
       description: ""
-      name: Remove the device's MAC address from any whitelists
+      name: Remove the device's MAC address from any allow lists
       issystemtask: true
       iscommand: false
       brand: ""
@@ -1036,7 +1036,7 @@ tasks:
     task:
       id: c3235bb8-65cb-4636-8bdc-5672b358fdcc
       version: -1
-      name: Blacklist the stolen device in WiFi and NAC
+      name: Block list the stolen device in WiFi and NAC
       description: Ensure that the thief cannot use the device to infiltrate our network.
       issystemtask: true
       iscommand: false

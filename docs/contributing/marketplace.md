@@ -80,3 +80,4 @@ If you have already submitted your contribution and you would like to make chang
 ## Known Limitations
 
 1. Updating JavaScript integrations/scripts in an existing pack is not supported.
+2. Resubmit changes to an existing content pack is not supported.
