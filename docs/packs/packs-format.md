@@ -55,12 +55,14 @@ The following fields are populated in the pack metadata:
 | created | String | Pack creation time in ISO 8601 format - YYYY-MM-DDTHH:mm:ssZ, e.g. 2020-01-25T10:00:00Z |
 | useCases | List | Use-cases implemented by the pack. |
 | keywords | List | List of strings by which the pack can be found in Cortex XSOAR marketplace. |
-| eulaLink | String | (Optional - Premium packs only) URL referencing the pack license agreement, will appear under the 'Disclaimer' section in the pack details. Non-premium packs are hosted in our open source content repo and will be subject to an [MIT License](https://github.com/demisto/content/blob/master/LICENSE) |
+| eulaLink | String | (Optional - Premium packs only) URL referencing the pack license agreement, will appear under the 'Disclaimer' section in the pack details. Non-premium packs are hosted in our open source content repo and will be subject to an [MIT License](https://github.com/demisto/content/blob/master/LICENSE). |
+| price | String | (Optional - Premium packs only) The pack price in Palo Alto [points](https://xsoar.pan.dev/docs/partners/paid-packs/#points). |
 | dependencies | Dictionary | (Optional) An object that describes the content packs that the pack is dependant on. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | displayedImages | List | (Optional) Images to be displayed in Cortex XSOAR marketplace. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | githubUser | List | (Optional) List of Github usernames to receive notification in the PR in case pack files were modified. |
 | devEmail | List | (Optional) List of emails to receive notification in case contributed pack files were modified. |
 | certification | String | (Optional) If the pack is certifed the value of this fields should be "certified" |
+| itemPrefix | String | (Optional) String to overwrite pack fields prefix. You can specify an alternative string instead of the default pack name enforced by the validation process.
 
 
 Pack metadata contents for example:
@@ -136,7 +138,7 @@ The file contains a general explanation for the pack and you are free to add any
 
 ### .secrets-ignore
 This file will be used while running the `demisto-sdk secrets`([explanation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/secrets/README.md)), we will determine the file and will
- use it as a  white list of approved words for your PR.
+ use it as an allow list of approved words for your PR.
 
 **Note**: We use `demisto-sdk secrets` as part of our pre-commit hook to check that possible secrets in the PR aren't exposed to a public repository.
 
