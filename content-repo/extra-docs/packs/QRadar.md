@@ -59,9 +59,6 @@ notifying the SOC, enriching the data for indicators and users, running an addit
 * **QRadar Indicator Hunting V2**
 This playbook enables searching QRadar for indicators such as IP, URL/Domain, and file hashes. It provides outputs such as detected users, host names and IP addresses. You can configure which fields to search in QRadar or use free text searches.
 
-**TBD**
-* **QRadar Build Query and Search**
-
 
 ### Automations
 
@@ -79,11 +76,6 @@ This script prints the assets fetched from the offense in a table format.
 
 * [QRadarPrintEvents](https://xsoar.pan.dev/docs/reference/scripts/q-radar-print-events):
 This script prints the events fetched from the offense in a table format.
-
-**TBD**
-* [CreateQRadarQuey](XXX):
-This script creates a QRadar AQL query based on the inputs provided by the user, such as which values to search and in which fields. The script can handle complex queries, including multiple sub conditions using the OR operator and main conditions utilizing the AND operator. Searches can be done with an exact or partial match and using exact field name or free text searches.
-
 
 ### Incident Fields
 
