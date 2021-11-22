@@ -19,10 +19,14 @@ Paid packs are not stored in the XSOAR open source repository but instead in the
 
 ## 4. Build Paid Pack(s)
 
-Build the content for the paid packs. 
+Build the content for the paid Packs. 
 
-- If you're submitting a premium content pack, add the dashboards, playbooks, etc. as you would normally. Revisit the [Contributor Guidlines](https://xsoar.pan.dev/docs/contributing/contributing#contributor-guidelines) if needed.
-- If you're submitting a premium resell pack, the pack is mostly empty except for some basic metadata files. 
+- If you're submitting a premium content Pack, add the dashboards, playbooks, etc. as you would normally. Revisit the [Contributor Guidelines](https://xsoar.pan.dev/docs/contributing/contributing#contributor-guidelines) if needed.
+- If you're submitting a premium resell Pack, the pack is mostly empty except for the following files: 
+  *   [`Author_image.png`](https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng)
+  *   [`README.md`](https://xsoar.pan.dev/docs/packs/packs-format#readmemd) 
+  *   [`pack_metadata.json`](https://xsoar.pan.dev/docs/packs/packs-format#pack_metadatajson)
+- If another Pack is necessary in order to use the premium content or resell Pack you're submitting, make sure to create a [Pack dependency](https://xsoar.pan.dev/docs/documentation/pack-docs#pack-dependencies) between both Packs.
 
 Either way, we'll work with you to define, scope and guide you through the process.
 
