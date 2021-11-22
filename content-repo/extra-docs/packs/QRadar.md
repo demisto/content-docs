@@ -109,7 +109,7 @@ There is 1 layout - **QRadar Generic***
 
 There are 3 custom tabs in the *QRadar Generic* layout. This layout displays offense data so the user does not need to use the QRadar console. It includes a summary of the offense, logs, and asset details.   
 
-![Layout](./docs/doc_imgs/reference/QRadar/QRadar_offense_summary.png)
+![Layout](.//docs/doc_imgs/reference/QRadar/QRadar_offense_summary.png)
 
 | Layout sections | Description |
 |------------------ | ------------- |
