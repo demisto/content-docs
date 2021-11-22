@@ -49,7 +49,7 @@ This basic playbook receives an AQL query as an input and executes it on the QRa
 
 * **QRadar - Get Offense Logs**
 This playbook can fetch a larger number of offense logs than the limit specified in the integration instance default settings.
-For QRadar v2 and v3 the integration can fetch offense log events according to the specified limit defined in the instance settings. This playbook enables you to define an additional search to query a larger number of logs. For example, the integration is configured to fetch 20 events but you can run this playbook to fetch 100 events.
+Notice that the integration can fetch offense log events according to the specified limit defined in the instance settings. This playbook enables you to define an additional search to query a larger number of logs. For example, the integration is configured to fetch 20 events but you can run this playbook to fetch 100 events.
 Default playbook inputs use QRadar incident fields such as idoffense and starttime. These fields can be replaced but need to point to relevant offense ID and starttime fields. 
 
 * **QRadar Generic**
