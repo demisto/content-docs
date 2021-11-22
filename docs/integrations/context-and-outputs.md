@@ -1077,6 +1077,93 @@ outputs:
 ```
 
 ---
+### Return Custom Indicators
+For more information, see [CustomIndicatorDemo](https://xsoar.pan.dev/docs/reference/integrations/custom-indicator-demo#this-integration-is-part-of-the-developer-tools-pack) for a usage example of the CustomIndicator helper class.
+
+```python
+ score = Common.DBotScore.GOOD
+ indicator_value = 'custom_value'
+ dbot_score = Common.DBotScore(
+     indicator=indicator_value,
+     indicator_type=DBotScoreType.CUSTOM,
+     integration_name='DummyIntegration',
+     score=score
+ )
+ data = {
+     'param1': 'value1',
+     'param2': 'value2',
+ }
+ custom_indicator = Common.CustomIndicator(
+     indicator_type='MyCustomIndicator',
+     dbot_score=dbot_score,
+     value=indicator_value,
+     data=data,
+     context_prefix='custom',
+ )
+ return CommandResults(
+     readable_output='custom_value',
+     outputs=result,
+     outputs_prefix='Demo.Result',
+     outputs_key_field='test_key_field',
+     indicator=custom_indicator
+ )
+ ```
+
+**Context Data - The way it is stored in the incident context data**
+```
+{
+    DBotScore
+    [
+        {
+            "Indicator": "custom_value",
+            "Score": 1,
+            "Type": "MyCustomIndicator",
+            "Vendor": "CustomIndicatorDemo"
+        }
+    ]
+    Demo.Result
+    {
+        "dummy": "test"
+    }
+    custom
+    [
+        {
+            "value": "custom_value",
+            "param1": "value1",
+            "param2": "value2"
+        }
+    ]
+}
+```
+**YAML Definition**
+```yaml
+   outputs:
+    - contextPath: Demo.Result.dummy
+      description: The command's output
+      type: String
+    - contextPath: custom.param1
+      description: custom data field of the indicator
+      type: String
+    - contextPath: custom.param2
+      description: custom data field of the indicator
+      type: String
+    - contextPath: custom.value
+      description: value of the indicator
+      type: String
+    - contextPath: DBotScore.Indicator
+      description: The indicator value
+      type: String
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Number
+```
+---
 ### Return Multiple Indicators
 
 In case you need to return multiple indicators (i.e. IPs) in the same call, you should return a list of `CommandResults`, as shown in the following example.
