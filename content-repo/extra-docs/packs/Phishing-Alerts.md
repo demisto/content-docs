@@ -54,18 +54,35 @@ To use this pack, you need to configure several integrations and map and classif
 There are several items that you must install and configure before you start using this pack.
 
 #### 1. Configure the integration 
- You need to configure the integration which fetches phishing alerts. In this content pack, the main playbook uses Email Security Gateways or SIEM phishing alerts. You must configure either one of them to use this content pack.
+You need to configure both the integration which fetches phishing alerts and the one that holds the original email or a copy of that email. 
 
-Email Security Gateway products:
-* FireEye Email Security (EX)
-* Proofpoint TAP
-* Agari Phishing Defense
-* Mimecast
+**In oder to fetch incident you should use:**
+* Email Security Gateway
+* SIEM phishing alert
 
-SIEM products:
-* Splunk ES
-* QRadar
+**In order to retreive the original email (eml/msg) file you should use:**
+* Email Security Gateway
+* Email Service Provider
+
+**The following are the currently supported products for each phase:** 
  
+ **Email Security Gateway products:** 
+ * FireEye Email Security (EX)
+ * Proofpoint TAP + Proofpoint Protection Server
+ * Agari Phishing Defense + Email Service Provider
+ * Mimecast
+
+**SIEM products:**
+ * Splunk ES + Source 
+ * QRadar
+
+**Email Service Providers:**
+ * EWS v2
+ * Microsoft Graph Mail
+ * Gmail
+
+**Note: If the Email Security Gateway doesn't hold a copy of the original email, you have to configure the Email Service Provider as well.**
+
  ### 2. Classification and Mapping  
 
 To use the **Phishing Alerts Investigation** playbook you need to map the playbook for the relevant integration. If using a SIEM you also need to map the classifier.
@@ -87,11 +104,11 @@ To use the **Phishing Alerts Investigation** playbook you need to map the playbo
       * Email Subject
       * Email Headers
       * Email Message ID (The original email message id and not the internal product id)
+      * Email Internal Message ID (For the product internal message/alert id)
       * Email Queue ID
       * Email Source Domain (Optional)
       * Occurred
-      * Severity
-      * UUID (For the product internal message/alert id) <br/> For information about creating a mapper, see [Create a Mapper](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/incidents/classification-and-mapping/create-a-mapper.html).
+      * Severity <br/> For information about creating a mapper, see [Create a Mapper](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/incidents/classification-and-mapping/create-a-mapper.html).
 
    8. Click **Save Version**.
 
