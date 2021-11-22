@@ -83,7 +83,7 @@ You need to configure both the integration which fetches phishing alerts and the
 
 **Note: If the Email Security Gateway doesn't hold a copy of the original email, you have to configure the Email Service Provider as well.**
 
- ### 2. Classification and Mapping  
+#### 2. Classification and Mapping  
 
 To use the **Phishing Alerts Investigation** playbook you need to map the playbook for the relevant integration. If using a SIEM you also need to map the classifier.
 
