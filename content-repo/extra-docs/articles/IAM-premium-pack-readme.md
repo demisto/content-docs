@@ -8,9 +8,9 @@ description: This Identity Lifecycle Management (ILM) pack automates user provis
 
 The Identity Lifecycle Management (ILM) pack enables 4 flows. 
 - [User provisioning](#user-provisioning) - provision users from an HR system (Workday) into all supported applications used by the organization.
-- [App sync](#app-sync) - sync users to applications based on app assignments in Okta.
 - [Group sync](#group-sync) - sync user memberships in groups to applications based on group creations in Okta.
 - [Group membership update](#group-membership-update) - update user permissions in applications based on their group memberships in Okta.
+- [App sync](#app-sync) - sync users to applications based on app assignments in Okta.
 
 User provisioning can be used by itself, but it is a prerequisite for the App Sync, Group Sync, and Group Membership Update flows.
 
@@ -101,7 +101,9 @@ Unless a new change in the report is detected for such users, we don’t process
 
 ### Playbooks
 
-> <i>Note:</i> The playbooks provision user information into different applications. The integration instances used for those applications, and the exact action taken when provisioning those users is determined by a Cortex XSOAR list named *app-provisioning-settings*. This list needs to be created by the user before beginning the provisioning process. The list allows specifying which actions can happen on each instance, and whether every new employee should have a new user on that instance or it’s reserved to a group of select members. The list also allows specifying emails that should be notified about users being created, enabled and so on, in a certain instance.
+#### General Info - app-provisioning-settings List
+
+The playbooks provision user information into different applications. The integration instances used for those applications, and the exact action taken when provisioning those users is determined by a Cortex XSOAR list named *app-provisioning-settings*. This list needs to be created by the user before beginning the provisioning process. The list allows specifying which actions can happen on each instance, and whether every new employee should have a new user on that instance or it’s reserved to a group of select members. The list also allows specifying emails that should be notified about users being created, enabled and so on, in a certain instance.
 The structure of the list should be in JSON format. For example:
 [
   {
@@ -296,27 +298,6 @@ Configure the *NotificationEmailHTMLList* input if you want to use custom HTML t
 > <i>Note:</i> If you choose to run any of the basic management operations, such as create, delete, etc. manually from the CLI, make sure to include the email and username fields in the user profile.
 
 
-## App Sync
-
-The app-sync feature provides automated app provisioning in applications (such as ServiceNow, GitHub, and Slack) for users created in Okta. App-sync consists of 2 main features:
-- Create/Enable/Disable users in apps they are assigned to or unassigned from through Okta.
-- Update users in apps when their information changes, either directly through Okta, or indirectly through a change in Workday which in turn updates the information in Okta and then in the rest of the apps.
-
-### App Sync Process
-
-The app-sync process starts when one of the following scenarios happens:
-- A user is assigned/unassigned to an application in Okta.
-- A user is part of a group that was assigned/unassigned to an application in Okta.
-- The user's information changed in Okta, directly or indirectly (through an IAM - Update User incident).
-
-The **Okta IAM** integration fetches the following Okta log event types and proceeds with the applicable flow:
-* The *application.user_membership.add* / *application.user_membership.remove* Okta event results in *IAM - App Add* / *IAM - App Remove* incidents respectively, which run the **IAM - App Sync** playbook. The playbook uses the integration context (that is transparent to the user) of the Okta instance, which maps Okta App IDs to integration instances in Cortex XSOAR, in order to determine to which instance to sync the user. It then runs either the ***iam-update-user*** command with the *allow-enable* argument set to *True*, or the ***iam-disable-user*** command, depending on the detected incident type.
-> <i>Note:</i>  The behavior for when a user account does not exist in the app is configurable through the relevant integration configuration. For example, if the user does not exist in the app to which they are assigned and the integration's *create if not exists* parameter is unchecked, then the command will be skipped. If the parameter is checked,- the account will be created. 
-
-* The *user.account.update_profile* Okta event results in *IAM - App Update* incidents which run the **IAM - App Update** playbook. The playbook checks which apps the user is assigned to, and maps it to integration instances in Cortex XSOAR in which the user will be updated. The mapping is done using the integration context (that is transparent to the user) of the Okta instance, which maps Okta App IDs to integration instances in Cortex XSOAR, in order to determine which instance to update the user in. It then runs the ***iam-update-user*** command in all of the available instances of the apps to which the user is currently assigned.
-
-Both the **IAM - App Sync** and **IAM - App Update** playbooks also update the applications that the user is assigned to in the User Profile indicator. To properly update the field and avoid race conditions, the playbooks use the Demisto Lock integration which gets a lock before updating the field, and releases the lock afterwards. This is used to allow only one incident to update the field at a time.
-
 
 ## Group Sync
 
@@ -377,16 +358,31 @@ The Group Membership Update process starts when a scenario of this type happens:
 A user is added to the “Admins” group of the Smartsheet app in Okta → an *IAM - Group Membership Update* incident is created → the user receives the same permissions in the Smartsheet application itself.
 
 When an *IAM - Group Membership Update* is fetched from Okta, the **IAM - Group Membership Update** playbook runs.
-The playbook uses a Cortex XSOAR list called *app-provisioning-settings* that the user should create and configure.
+The playbook uses a Cortex XSOAR list called *app-provisioning-settings* that the user should create and configure. See [General Info - app-provisioning-settings List](#general-info---app-provisioning-settings-list) for information.
 It then fetches the current app assignments of the user in Okta. Then, in order to determine in which integration instance the user permissions need to be updated, the playbook looks for the instance name which corresponds to the Okta App ID in which the user has had their permissions change.
 Afterwards, the playbook gets the User Profile indicator of the user and extends it with the additional information of the app. After asking for admin approval via email, the playbook either updates the new user information in the app, or continues without doing anything.
 If the update fails for any reason, a user is assigned to the incident and an error is raised intentionally to stop the playbook execution and allow the user to fix the issue.
 
-??Shirley - there is not much to say here aobut Group Membership Update other than that they need to configure the `app-provisioning-settings` list - the explanation about that list is somewhere in the beginning of the User Provisioning process. So we need to somehow link to those instructions from here.
-Below this, I'm adding App-Sync which should be the main title for the other sections that follow. However I'm a bit confused as to how to organize this because we have 2 parts about the app-sync process and we need to merge them.
-Everything up to the "Advanced" section belongs to App-Sync process.
+## App Sync
 
-## App-Sync Process
+The app-sync feature provides automated app provisioning in applications (such as ServiceNow, GitHub, and Slack) for users created in Okta. App-sync consists of 2 main features:
+- Create/Enable/Disable users in apps they are assigned to or unassigned from through Okta.
+- Update users in apps when their information changes, either directly through Okta, or indirectly through a change in Workday which in turn updates the information in Okta and then in the rest of the apps.
+
+### App Sync Process
+
+The app-sync process starts when one of the following scenarios happens:
+- A user is assigned/unassigned to an application in Okta.
+- A user is part of a group that was assigned/unassigned to an application in Okta.
+- The user's information changed in Okta, directly or indirectly (through an IAM - Update User incident).
+
+The **Okta IAM** integration fetches the following Okta log event types and proceeds with the applicable flow:
+* The *application.user_membership.add* / *application.user_membership.remove* Okta event results in *IAM - App Add* / *IAM - App Remove* incidents respectively, which run the **IAM - App Sync** playbook. The playbook uses the integration context (that is transparent to the user) of the Okta instance, which maps Okta App IDs to integration instances in Cortex XSOAR, in order to determine to which instance to sync the user. It then runs either the ***iam-update-user*** command with the *allow-enable* argument set to *True*, or the ***iam-disable-user*** command, depending on the detected incident type.
+> <i>Note:</i>  The behavior for when a user account does not exist in the app is configurable through the relevant integration configuration. For example, if the user does not exist in the app to which they are assigned and the integration's *create if not exists* parameter is unchecked, then the command will be skipped. If the parameter is checked,- the account will be created. 
+
+* The *user.account.update_profile* Okta event results in *IAM - App Update* incidents which run the **IAM - App Update** playbook. The playbook checks which apps the user is assigned to, and maps it to integration instances in Cortex XSOAR in which the user will be updated. The mapping is done using the integration context (that is transparent to the user) of the Okta instance, which maps Okta App IDs to integration instances in Cortex XSOAR, in order to determine which instance to update the user in. It then runs the ***iam-update-user*** command in all of the available instances of the apps to which the user is currently assigned.
+
+Both the **IAM - App Sync** and **IAM - App Update** playbooks also update the applications that the user is assigned to in the User Profile indicator. To properly update the field and avoid race conditions, the playbooks use the Demisto Lock integration which gets a lock before updating the field, and releases the lock afterwards. This is used to allow only one incident to update the field at a time.
 
 
 ### Before You Start
@@ -440,7 +436,7 @@ These playbooks contain error handling tasks where a user is assigned to review 
  Okta IAM - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/okta-iam)
  
  
- ## Advanced
+## Advanced
 
 ### Playbooks
 Throughout the playbooks, different advanced mechanisms are used to deal with edge-cases and to reflect certain data to the Workday integration which prevents excessive incidents from being generated. For example, when incidents fail or wait for user input, since Workday detects that the User Profile was not fully synced, it attempts to sync the data again, as the HR system report shows different information from that of the User Profile indicator. Although the Workday integration has a deduplication mechanism of itself, some cases are still not covered in it and require the playbooks to make some adjustments. Another example is Orphan Users where the incident fails for any reason in the middle of the termination process. Since the HR system report holds no record for that user, its normal deduplication mechanism of not creating additional users that had no new changes in the report does not work.
