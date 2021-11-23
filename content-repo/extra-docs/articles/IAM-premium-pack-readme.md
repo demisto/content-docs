@@ -192,7 +192,8 @@ The activation process starts by checking whether the hire date of the employee 
 If the user should be activated, the playbook enables the user by using the ***iam-update-user*** command with the *allow-enable* argument set to *True*. If the user was enabled successfully, a welcome email is sent to them and to their manager (configured in the HR system report), and the User Profile’s AD Account Status is set to *Enabled* to signify that the user is now enabled in Active Directory.
 
 #### IAM - Deactivate User In Active Directory
-??Ido - add info here
+
+The playbook disables users in Active Directory. This is playbook is used when the user should only be disabled in Active Directory, but not go through a full termination process. For example - when a user is hired and then have their hire date postponed, they would have to be deactivated in Active Directory temporarily until being activated again. The playbook also updates the User Profile indicator's "AD Account Status" to "Pending" to ensure that in the the user will be reactivated.
 
 #### IAM - Send Provisioning Notification Email**
 
