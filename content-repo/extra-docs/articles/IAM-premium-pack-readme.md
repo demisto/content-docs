@@ -382,6 +382,11 @@ It then fetches the current app assignments of the user in Okta. Then, in order 
 Afterwards, the playbook gets the User Profile indicator of the user and extends it with the additional information of the app. After asking for admin approval via email, the playbook either updates the new user information in the app, or continues without doing anything.
 If the update fails for any reason, a user is assigned to the incident and an error is raised intentionally to stop the playbook execution and allow the user to fix the issue.
 
+??Shirley - there is not much to say here aobut Group Membership Update other than that they need to configure the `app-provisioning-settings` list - the explanation about that list is somewhere in the beginning of the User Provisioning process. So we need to somehow link to those instructions from here.
+Below this, I'm adding App-Sync which should be the main title for the other sections that follow. However I'm a bit confused as to how to organize this because we have 2 parts about the app-sync process and we need to merge them
+
+## App-Sync Process
+
 
 ### Before You Start
 
