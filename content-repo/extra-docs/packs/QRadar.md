@@ -7,13 +7,14 @@ description: This pack contains all the content objects you need to interact wit
 Use this pack's content to ingest offenses from your QRadar system and to run playbooks that perform searches and add indicators to reference sets.
 Although we recommend enabling the integration to fetch offenses from QRadar, you can use the integration even without fetching since this pack has content such as playbooks that are not related to offenses.
 
+Prior to start using the pack we recommend for you to review this detailed [article](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-tutorials/tutorials/ingest-incidents-from-a-siem.html) which covers how to configure the integration to fetch incident and get familiarized with working with the generic playbook and incident layout.
 
 ## Pack Workflow
 
 
 ### Fetch Workflow
 Configure XSOAR to fetch incidents/offenses from QRadar to make the most of your integration.
-Configure your QRadar integration as described in this [article](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-tutorials/tutorials/ingest-incidents-from-a-siem.html). 
+Configure your QRadar integration as described in the [article](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-tutorials/tutorials/ingest-incidents-from-a-siem.html). 
 You can use the default settings such as the default incident type and playbook, or create a classifier to use additional incident types and playbooks.
 
 A sample fetch flow is:
