@@ -3,6 +3,9 @@ id: tim-edl
 title: Add Indicators to SIEM
 description: This article walks you through setting up a playbook to take indicators from a threat intel feed, enrich the indicators, and push them to your SIEM.
 ---
+
+## This is a demo for the meetup! ##
+
 This article walks you through setting up a playbook to take indicators from a threat intel feed, enrich the indicators, and push them to your SIEM.
 
 1. Define a threat intel feed to ingest indicators to your system.
