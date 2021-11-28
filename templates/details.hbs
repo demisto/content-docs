@@ -22,12 +22,13 @@ return (
     <br/>
         <div className="container">
             <h1 className="hero__title">{TITLE}</h1>
+            <a class="button button--outline button--primary button--lg" href="https://storage.googleapis.com/marketplace-dist/content/packs/{{id}}/{{currentVersion}}/{{id}}.zip" target="_blank">Download</a>
         </div>
     </div>
 
     <main className={clsx("container", "contentPackAlign" )}>
         <Tabs defaultValue="details" values={[ { label: "Details" , value: "details" }, { label: "Content" ,
-            value: "content" }, { label: "Version History" , value: "versions" }, { label: "Download", value: "download"}]}>
+            value: "content" }, { label: "Version History" , value: "versions" }]}>
             <TabItem value="details">
                 <div className="row">
                     <div className={clsx("col col--8" )}>
@@ -175,10 +176,6 @@ return (
                 </div>
                 {{/each}}
                 {{/if}}
-            </TabItem>
-            <TabItem value="download">
-                <div className={clsx("row", "version" )}>
-                </div>
             </TabItem>
         </Tabs>
     </main>
