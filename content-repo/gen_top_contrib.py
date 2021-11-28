@@ -14,8 +14,9 @@ TOKEN = os.getenv('GITHUB_TOKEN', '')
 URL = 'https://api.github.com'
 HEADERS = {
     'Accept': 'application/vnd.github.v3+json',
-    'Authorization': 'Bearer ' + TOKEN
 }
+if TOKEN:
+    HEADERS['Authorization'] = 'Bearer ' + TOKEN
 VERIFY = os.getenv('SKIP_SSL_VERIFY') is None
 
 
