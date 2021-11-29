@@ -83,7 +83,7 @@ Then the playbook enriches information about the user who connected to the envir
 
 Then the playbook validates that the access key type is AKIA (which marks this as a user key). If the access key is AKIA, queries are run to retrieve the last 100 API calls made with the access key and retrieve actions performed by the user in the last 7 days. This information shows who made the call, and provides information about the IP address and data about which user was used in the request, what operation was performed, the status of the operation and on what resource it was executed.
 
-Not the investigation starts.
+Now the investigation starts.
 First the playbook checks if there were new IP addresses that were found on the XQL queries that did not appear in the original alert and enriches them.
 Then the analyst manually reviews the results of the XQL queries from the previous steps to determine if this is a true positive event. The analyst investigates the operation performed by the access key and the user. The analyst examines the executed operations, by who it was executed, on which resource, and the operation status.
 
