@@ -85,7 +85,7 @@ Then the playbook validates that the access key type is AKIA (which marks this a
 
 Now the investigation starts.
 First the playbook checks if there were new IP addresses that were found on the XQL queries that did not appear in the original alert and enriches them.
-Then the analyst manually reviews the results of the XQL queries from the previous steps to determine if this is a true positive event. The analyst investigates the operation performed by the access key and the user. The analyst examines the executed operations, by who it was executed, on which resource, and the operation status.
+Then the analyst manually reviews the results of the XQL queries from the previous steps to determine if this is a true positive event. The analyst investigates the operations performed by the access key and the user. The analyst examines the executed operations, by who it was executed, on which resource, and the operation status.
 
 The analyst looks at any persistence, for example, a new user or key creation or for any lateral movement operations. For example, an operation can be = AsumeRole.
 As an extra validation step, it is recommended to query the user and/or the user’s manager regarding the investigated suspicious activity.
