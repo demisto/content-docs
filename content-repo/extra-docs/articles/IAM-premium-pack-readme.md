@@ -28,6 +28,29 @@ Cortex XSOAR uses the Workday integration to fetch report updates and create XSO
 
 Each report has a unique URL, which you enter in the Workday Report URL instance parameters. If you want to fetch or run associated playbooks on multiple reports, each report will require its own integration instance.
 
+### Before You Start
+
+The logic of the playbooks in the ILM pack, which controls how they execute, is determined by the employment data ingested from the Workday integration.
+
+To start working with the **Workday** integration, download the **Workday** pack from Marketplace and configure the [Workday IAM](https://xsoar.pan.dev/docs/reference/integrations/workday-iam) integration.
+
+There are several custom fields that must be populated with specific values in order for the playbooks to execute the correct management operations. If your current Workday instance does not include these fields and values, you will need to add them to the instance.
+
+The following table lists these fields, what they are used for in Cortex XSOAR, and the valid values the fields accept.
+
+| Workday fields  |  How it is Used  | Possible Values |
+| ------------ |---------------| -----|
+| Email address      | A unique identifier for the user. | User's work email address | 
+| Employment status |  Influences the playbook flow that will run on the IAM - Sync User incident.  | Active <br/> Leave of Absence <br/> Terminated
+| Rehired employee  | Used in conjunction with the prehire flag to determine whether a user should be rehired. | Yes <br/> No |
+| Prehire flag | If True, indicates a pre-hire status of the employee (i.e., a future hire or rehire). | True <br/> False|
+| Hire date | Used to determine when a user will be created for the employee. | Any date format is supported. <br/> The format should match the format chosen in the integration parameter. |
+| Termination date / Last day of work | Used in conjunction with the prehire flag to determine whether a user should be terminated. | Any date format is supported. <br/> The format should match the format chosen in the integration parameter. |
+
+- Make sure to obtain the URL where the Workday reports are hosted. Each report has a unique URL, which you enter as one of the integration instance parameters. If you want to fetch multiple reports, each report will require its own integration instance. 
+
+- Ensure that you have a **Mail sender** integration for sending email notifications.
+
 ### Fetch Incidents with Workday IAM Integration
 
 Workday IAM integration creates incidents based on employee information included in the report such as the employee's hire date, termination date (or last day of work), prehire flag and more. Depending on the incident type, the *IAM - Sync User*, *IAM - Activate User In Active Directory* or *IAM - Deactivate User In Active Directory* playbook runs provisions and manages the employee users in all of the applications used by the organization, respectively.
@@ -36,22 +59,22 @@ We use the ***fetch-incidents*** command to detect changes in the report identif
 
 #### Fetching Samples
 Marking the *Fetch Samples* parameter will enable creating sample incidents for the first 5 entries from the report. Use this option to see how fields are mapped through *IAM Sync User - Workday* Incoming Mapper Editor for preliminary preparation for use, or in order to test the whole provisioning flow.
-> <i>Note:</i> Avoid using the *Fetch Samples* parameter with a report containing real employee information.
+> <i>Note:</i> Avoid using the <b>Fetch Samples</b> parameter with a report containing real employee information.
 
 #### First Sync
-If *Sync user profiles on first run* parameter is checked, then in the first fetch, no incidents will be created, but only the User Profile indicators representing the active users in the report will be synced to XSOAR.
+If the *Sync user profiles on first run* parameter is checked, then in the first fetch, no incidents will be created, but only the User Profile indicators representing the active users in the report will be synced to XSOAR.
 
 #### Workday Report Processing Cycle
 After the first sync, the fetch command will start the report processing cycle:
 
 At every first fetch of the cycle, the entire report entries are collected and stored in the *Last Run* object.
 On each subsequent run of the command, a certain amount of entries will be processed (based on the *Fetch Limit* and the *Percentage of entries to process per fetch* parameters), and only the remaining entries will be stored for the next runs, until we finish processing all of the entries in the report. The processed entries, if containing changes, will cause incidents to be created, in one of the following types:
-[IAM - New Hire](#iam---new-hire)
-[IAM - AD User Activation](#iam---ad-user-activation) 
-[IAM - Terminate User](#iam---terminate-user)
-[IAM - AD User Deactivation](#iam---ad-user-activation)
-[IAM - Rehire User](#iam---rehire-user)
-[IAM - Update User](#iam---update-user)
+1. [IAM - New Hire](#iam---new-hire)
+2. [IAM - AD User Activation](#iam---ad-user-activation) 
+3. [IAM - Terminate User](#iam---terminate-user)
+4. [IAM - AD User Deactivation](#iam---ad-user-activation)
+5. [IAM - Rehire User](#iam---rehire-user)
+6. [IAM - Update User](#iam---update-user)
 
 When no more entries are left to process, we detect Orphan Users (i.e., active User Profile indicators with no corresponding Workday report entry) by collecting all User Profiles of employees with a non-disabled *AD Account Status*, from whom there is no record in Workday report. For all those users, an *IAM - Terminate User* incident is triggered.
 
@@ -65,7 +88,7 @@ An employee in a Workday report is considered active when all of the following a
 - They have a future deactivation date (either *Termination Date* or *Last Day of Work*, determined by the *Deactivation date field* parameter).
 
 ##### Partial Name Match
-When a new hire is detected and its display name is already used by another User Profile, a *mergeduserprofile* attribute is added to the user profile and is later used in the *IAM - Sync User* playbook.
+When a new hire is detected and its display name is already used by another User Profile, a [*mergeduserprofile*](#merged-user-profile) attribute is added to the user profile and is later used in the *IAM - Sync User* playbook.
 
 #### IAM - AD User Activation
 This incident type is detected for an active employee synced to XSOAR with an *AD Account Status* field “Pending” who reached Y days before their hire date. (Y is determined by the *Number of days before hire date to enable Active Directory account* parameter.)
@@ -90,9 +113,9 @@ Whenever an update event is detected, an *olduserdata* attribute is added to the
 
 
 ### Important User Profile Indicator Fields
-- *AD Account Status* - can be “Enabled”, “Disabled” or “Pending” (after sync date but before activation date).
-- *Is Processed* - indicates whether there is an active incident for this user profile. Only report entries of employees whose user profile’s *Is Process* field value is False, are processed (unless a new change in the report was detected).
-- *Is Temporary User* - in the **IAM - Sync User** playbook, there are cases where a temporary User Profile is created and only after a manual action is taken (an admin approval) we decide whether to keep the User Profile or remove it. This field indicates those user profiles.
+- [*AD Account Status*](#ad-account-status) - can be “Enabled”, “Disabled” or “Pending” (after sync date but before activation date).
+- [*Is Processed*](#is-processed-indicator-field) - indicates whether there is an active incident for this user profile. Only report entries of employees whose user profile’s *Is Processed* field value is False, are processed (unless a new change in the report was detected).
+- [*Is Temporary User*](#temporary-user-profiles) - in the **IAM - Sync User** playbook, there are cases where a temporary User Profile is created and only after a manual action is taken (an admin approval) we decide whether to keep the User Profile or remove it. This field indicates those user profiles.
 Unless a new change in the report is detected for such users, we don’t process them until a decision is made.
 - *Source Priority* and *Source of Truth* fields - for Workday, defaults to “1” and “Workday”. Whenever there is an additional source of truth, the source with the lower Source Priority value gets the higher priority.
 - *Conversion Hire* - a boolean field indicating whether this User Profile was originally mastered by another source of truth. When an employee is a conversion hire, even if their AD Account Status is “Enabled” and their Hire Date is in more than Y days (Y determined by the *Number of days before hire date to enable Active Directory account* parameter), we will not trigger an AD Deactivation incident for them.
@@ -104,6 +127,7 @@ Unless a new change in the report is detected for such users, we don’t process
 
 The playbooks provision user information into different applications. The integration instances used for those applications, and the exact action taken when provisioning those users is determined by a Cortex XSOAR list named *app-provisioning-settings*. This list needs to be created by the user before beginning the provisioning process. The list allows specifying which actions can happen on each instance, and whether every new employee should have a new user on that instance or it’s reserved to a group of select members. The list also allows specifying emails that should be notified about users being created, enabled and so on, in a certain instance.
 The structure of the list should be in JSON format. For example:
+```
 [
   {
     "instance_name": "ExceedLMS",
@@ -126,7 +150,7 @@ The structure of the list should be in JSON format. For example:
     "disable_user_email_notification_ids": "test1@paloaltonetworks.com,test2@paloaltonetworks.com"
   }
 ]
-
+```
 
 #### IAM - Sync User
 
@@ -196,7 +220,7 @@ If the user should be activated, the playbook enables the user by using the ***i
 
 The playbook disables users in Active Directory. This is playbook is used when the user should only be disabled in Active Directory, but not go through a full termination process. For example - when a user is hired and then have their hire date postponed, they would have to be deactivated in Active Directory temporarily until being activated again. The playbook also updates the User Profile indicator's "AD Account Status" to "Pending" to ensure that in the the user will be reactivated.
 
-#### IAM - Send Provisioning Notification Email**
+#### IAM - Send Provisioning Notification Email
 
 Allows sending email notifications using a custom HTML template configured in an XSOAR list, for every user provisioned successfully. The recipients of the email are configured in the  *app-provisioning-settings*. This playbook is used in the **IAM - New Hire**, **IAM - Update User**, **IAM - Terminate User**, and **IAM - Rehire User** playbooks. This playbook is used in a loop to notify the correct stakeholder separately about every instance.
 
@@ -207,34 +231,11 @@ Sends an email notification to the email configured in the playbook inputs for e
 #### IAM - Custom User Sync, IAM - Custom Pre-provisioning, IAM - Custom Post-provisioning
 Playbooks used as placeholders to allow the user to create custom steps before, during, or after the provisioning process, while being able to keep the existing system playbooks locked, thus being able to receive future updates.
 
-### Before You Start - User Provisioning
-
-The logic of the playbooks in the ILM pack, which controls how they execute, is determined by the employment data ingested from the Workday integration.
-
-To start working with the **Workday** integration, download the **Workday** pack from Marketplace and configure the [Workday IAM](https://xsoar.pan.dev/docs/reference/integrations/workday-iam) integration.
-
-There are several custom fields that must be populated with specific values in order for the playbooks to execute the correct management operations. If your current Workday instance does not include these fields and values, you will need to add them to the instance.
-
-The following table lists these fields, what they are used for in Cortex XSOAR, and the valid values the fields accept.
-
-| Workday fields  |  How it is Used  | Possible Values |
-| ------------ |---------------| -----|
-| Email address      | A unique identifier for the user. | User's work email address | 
-| Employment status |  Influences the playbook flow that will run on the IAM - Sync User incident.  | Active <br/> Leave of Absence <br/> Terminated
-| Rehired employee  | Used in conjunction with the prehire flag to determine whether a user should be rehired. | Yes <br/> No |
-| Prehire flag | If True, indicates a pre-hire status of the employee (i.e., a future hire or rehire). | True <br/> False|
-| Hire date | Used to determine when a user will be created for the employee. | Any date format is supported. <br/> The format should match the format chosen in the integration parameter. |
-| Termination date / Last day of work | Used in conjunction with the prehire flag to determine whether a user should be terminated. | Any date format is supported. <br/> The format should match the format chosen in the integration parameter. |
-
-- Make sure to obtain the URL where the Workday reports are hosted. Each report has a unique URL, which you enter as one of the integration instance parameters. If you want to fetch multiple reports, each report will require its own integration instance. 
-
-- Ensure that you have a **Mail sender** integration for sending email notifications.
-
 ### Initial Sync and User Profiles
 
 Cortex XSOAR stores all employee information as *User Profile* indicators. User Profiles have many fields out-of-the-box, which hold data about the employee. 
 
-> <i>Note:</i> The User Profiles are initially created when Workday's ***fetch-incident*** command is executed for the first time and the *Sync user profiles on first run* parameter is checked. The profiles are created without triggering an incident. User Profiles for users that are added to Workday **after** this initial fetch are created by the **IAM - Sync User** playbook. This syncs all existing employees to XSOAR without running incidents for them, as they are already provisioned in the apps used by the organization.
+> <i>Note:</i> The User Profiles are initially created when Workday's <b><i>fetch-incident</i></b> command is executed for the first time and the <i>Sync user profiles on first run</i> parameter is checked. The profiles are created without triggering an incident. User Profiles for users that are added to Workday <b>after</b> this initial fetch are created by the <b><i>IAM - Sync User</i></b> playbook. This syncs all existing employees to XSOAR without running incidents for them, as they are already provisioned in the apps used by the organization.
 
 The User Profiles are constantly synchronized with Workday, so that when a change to a user comes from a Workday report, the integration creates an incident, triggering a change in the rest of the apps used in the organization, and updating the User Profile indicator.
 
@@ -278,14 +279,12 @@ Configure all of the desired playbook inputs according to the descriptions.
 
 Configure the *NotificationEmailHTMLList* input if you want to use custom HTML templates for notifications about users that were provisioned successfully in the different applications.
 
-
 ### Integrations
 
 - Workday IAM integration [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/workday-iam).
 
- > <i>Note:</i> Before running the Workday integration, ensure that you have added the fields in Workday as instructed in [Before You Start](#before-you-start).
-- IAM-compatible integrations. These integrations support execution of the generic ILM management operations.
-
+ > <i>Note:</i> Before running the Workday integration, ensure that you have added the fields in Workday as instructed in <a href="#before-you-start">Before You Start</a>.
+- IAM-compatible integrations. The following are examples of integrations support execution of the generic ILM management operations.
     - Active Directory - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/active-directory-query-v2)
     - Okta - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/okta-iam)
     - ServiceNow - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/service-now-iam)
@@ -303,7 +302,7 @@ Configure the *NotificationEmailHTMLList* input if you want to use custom HTML t
 This flow allows syncing user memberships in groups to applications based on group creations in Okta.
 
 ### Prerequisites
-1. In Okta IAM *Fetch Query Filter* parameter, specify the "group.user_membership.add" and "group.user_membership.remove" event types, as well as all the relevant Okta group IDs. Example:
+1. In Okta IAM *Fetch Query Filter* parameter, specify the *group.user_membership.add* and *group.user_membership.remove* event types, as well as all the relevant Okta group IDs. Example:
 ```
 (eventType eq "group.user_membership.add" or eventType eq "group.user_membership.remove") and (target.id eq "00gfg6oa3f5GGUxTjLP0h7" or target.id eq "00g12il5v3GaoeRgD0h8")
 ```
@@ -339,10 +338,10 @@ When an incident running the **IAM - App Group Sync Trigger** playbook is trigge
 
 ### Supported Integrations
 
- Okta IAM - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/okta-iam)
- Slack IAM - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/slack-iam)
- Oracle IAM - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/oracle-iam)
- AWS IAM - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/aws---iam)
+ 1. Okta IAM - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/okta-iam)
+ 2. Slack IAM - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/slack-iam)
+ 3. Oracle IAM - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/oracle-iam)
+ 4. AWS IAM - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/aws---iam)
 
 
 
@@ -362,11 +361,17 @@ It then fetches the current app assignments of the user in Okta. Then, in order 
 Afterwards, the playbook gets the User Profile indicator of the user and extends it with the additional information of the app. After asking for admin approval via email, the playbook either updates the new user information in the app, or continues without doing anything.
 If the update fails for any reason, a user is assigned to the incident and an error is raised intentionally to stop the playbook execution and allow the user to fix the issue.
 
+
+
 ## App Sync
 
 The app-sync feature provides automated app provisioning in applications (such as ServiceNow, GitHub, and Slack) for users created in Okta. App-sync consists of 2 main features:
 - Create/Enable/Disable users in apps they are assigned to or unassigned from through Okta.
 - Update users in apps when their information changes, either directly through Okta, or indirectly through a change in Workday which in turn updates the information in Okta and then in the rest of the apps.
+
+### Before You Start
+
+Before using the app-sync feature with Okta, you must perform the [initial synchronization of users from Workday into XSOAR User Profiles](#user-provisioning).
 
 ### App Sync Process
 
@@ -377,16 +382,11 @@ The app-sync process starts when one of the following scenarios happens:
 
 The **Okta IAM** integration fetches the following Okta log event types and proceeds with the applicable flow:
 * The *application.user_membership.add* / *application.user_membership.remove* Okta event results in *IAM - App Add* / *IAM - App Remove* incidents respectively, which run the **IAM - App Sync** playbook. The playbook uses the integration context (that is transparent to the user) of the Okta instance, which maps Okta App IDs to integration instances in Cortex XSOAR, in order to determine to which instance to sync the user. It then runs either the ***iam-update-user*** command with the *allow-enable* argument set to *True*, or the ***iam-disable-user*** command, depending on the detected incident type.
-> <i>Note:</i>  The behavior for when a user account does not exist in the app is configurable through the relevant integration configuration. For example, if the user does not exist in the app to which they are assigned and the integration's *create if not exists* parameter is unchecked, then the command will be skipped. If the parameter is checked,- the account will be created. 
+> <i>Note:</i>  The behavior for when a user account does not exist in the app is configurable through the relevant integration configuration. For example, if the user does not exist in the app to which they are assigned and the integration's <i>create if not exists</i> parameter is unchecked, then the command will be skipped. If the parameter is checked,- the account will be created. 
 
 * The *user.account.update_profile* Okta event results in *IAM - App Update* incidents which run the **IAM - App Update** playbook. The playbook checks which apps the user is assigned to, and maps it to integration instances in Cortex XSOAR in which the user will be updated. The mapping is done using the integration context (that is transparent to the user) of the Okta instance, which maps Okta App IDs to integration instances in Cortex XSOAR, in order to determine which instance to update the user in. It then runs the ***iam-update-user*** command in all of the available instances of the apps to which the user is currently assigned.
 
 Both the **IAM - App Sync** and **IAM - App Update** playbooks also update the applications that the user is assigned to in the User Profile indicator. To properly update the field and avoid race conditions, the playbooks use the Demisto Lock integration which gets a lock before updating the field, and releases the lock afterwards. This is used to allow only one incident to update the field at a time.
-
-
-### Before You Start
-
-Before using the app-sync feature with Okta, you need to perform the [initial synchronization of users from Workday into XSOAR User Profiles](#user-provisioning).
 
 ### Pack Configurations
 
@@ -584,7 +584,7 @@ Make sure of the following:
 There could be several reasons for this:
 * The integration is being run for the first time, at which point only the initial user sync is run - which is when the User Profile indicators are created as described in the "Initial Sync & User Profiles" section.
 * You keep resetting the last run timestamp in the Workday integration while "Sync user profiles on first run" option in the Workday integration configuration is checked. You should not reset the last run timestamp or you should uncheck that option if you've already performed the initial sync.
-* Your Workday report is missing required fields. Please refer to the table in the "Before You Start - User Provisioning" section and make sure that the report holds all of those fields for every employee.
+* Your Workday report is missing required fields. Please refer to the table in the [Before You Start](#before-you-start) section and make sure that the report holds all of those fields for every employee.
 * Nothing has changed in the Workday report since the initial sync, so there is nothing to provision.
 
 ##### Why are duplicate incidents being created?
