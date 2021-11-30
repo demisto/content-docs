@@ -95,7 +95,7 @@ Now that we are starting to ingest incidents from QRadar, we need to classify th
 
 4. We drag the values, for example, Access on RDP port and Access by honeypot user to the Access incident types. 
 
-   We'll place Multiple Login Failures for the Same User under authentication, and Blacklisted hash detected in use under Malware.
+   We'll place Multiple Login Failures for the Same User under authentication, and block listed hash detected in use under Malware.
 
    Ido port scan will go under Network and DJM will be left untouched. Since we didn't provide any incident time for DJM, it will default to the incident type configured in the instance.
 
