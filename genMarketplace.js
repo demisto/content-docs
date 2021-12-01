@@ -85,36 +85,41 @@ function createReadmeLink(listItem, itemType) {
   return Promise.resolve();
 }
 
-function collectChainedMandatoryDependencies(packName) {
-  return {};
-  // TODO: Implement
-}
-
 function travelDependenciesJson(firstLvlDepsJson, depsJson, startKey) {
   // Travels over the dependencies json to create a flat depdendencies map for each entry starting with startKey
 
   if (startKey in depsJson === false) {
     depsJson[startKey] = {...firstLvlDepsJson[startKey]};
-    mandatoryPacks = depsJson[startKey]['mandatory'];
-    for (var depKey in mandatoryPacks) {
-      if (depsJson[depKey] === undefined) {
-        travelDependenciesJson(firstLvlDepsJson, depsJson, depKey);
-      }
-      // fill mandatory sub-dependecies in root
-      subPackMandatoryPacks = depsJson[depKey]['mandatory']
-      for (var subDepKey in subPackMandatoryPacks) {
-        mandatoryPacks[subDepKey] = {
+    travelDependenciesByType(depsJson, startKey, firstLvlDepsJson, 'mandatory');
+    travelDependenciesByType(depsJson, startKey, firstLvlDepsJson, 'optional');
+  }
+}
+
+function travelDependenciesByType(depsJson, startKey, firstLvlDepsJson, dependencyType) {
+  dependencyPacks = depsJson[startKey][dependencyType];
+  for (var depKey in dependencyPacks) {
+    if (depsJson[depKey] === undefined) {
+      travelDependenciesJson(firstLvlDepsJson, depsJson, depKey);
+    }
+    // fill mandatory sub-dependecies in root
+    subPackMandatoryPacks = depsJson[depKey]['mandatory'];
+    if (dependencyType === 'optional') {  // mandatory deps of optional go under special key
+      dependencyPacks[depKey]['mandatory'] = {};
+      jsonToUpdate = dependencyPacks[depKey]['mandatory'];
+    } else {
+      jsonToUpdate = dependencyPacks;
+    }
+    for (var subDepKey in subPackMandatoryPacks) {
+      if (subDepKey !== startKey) {
+        if (depsJson[subDepKey] === undefined) {
+          // in case subDepKey wasn't yet traveled
+          travelDependenciesJson(firstLvlDepsJson, depsJson, subDepKey);
+        }
+        jsonToUpdate[subDepKey] = {
           version: depsJson[subDepKey].version
-        }
-        subMandatories = collectChainedMandatoryDependencies(subDepKey);
-        for (var key in subMandatories) {
-          mandatoryPacks[subDepKey] = {
-            version: depsJson[key].version
-          }
-        }
+        };
       }
     }
-    // TODO: Complete optional packs
   }
 }
 
