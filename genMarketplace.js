@@ -85,7 +85,7 @@ function createReadmeLink(listItem, itemType) {
   return Promise.resolve();
 }
 
-function travelDependenciesJson(firstLvlDepsJson, depsJson, startKey) {
+function travelDependenciesJson(firstLvlDepsJson, depsJson, startKey, packsTravelled) {
   /* Travels over the dependencies json to create a depdendencies map for each entry starting with startKey like so:
   {
     startKey: {
@@ -102,21 +102,26 @@ function travelDependenciesJson(firstLvlDepsJson, depsJson, startKey) {
   }
   */
 
-  if (startKey in depsJson === false) {
-    depsJson[startKey] = {...firstLvlDepsJson[startKey]};
-    travelDependenciesByType(depsJson, startKey, firstLvlDepsJson, 'mandatory');
-    travelDependenciesByType(depsJson, startKey, firstLvlDepsJson, 'optional');
+  if (startKey in packsTravelled === false) {
+    packsTravelled[startKey] = true;
+    travelDependenciesByType(depsJson, startKey, firstLvlDepsJson, 'mandatory', packsTravelled);
+    travelDependenciesByType(depsJson, startKey, firstLvlDepsJson, 'optional', packsTravelled);
   }
 }
 
-function travelDependenciesByType(depsJson, startKey, firstLvlDepsJson, dependencyType) {
-  // Travels over the dependencies json of a given Pack dependency type, while collecting all sub-dependecy mandatory packs
+function travelDependenciesByType(depsJson, startKey, firstLvlDepsJson, dependencyType, packsTravelled) {
+  // Travel over the dependencies json of a given Pack dependency type, while collecting all sub-dependecy mandatory packs
+  
+  if (startKey in depsJson === false) {
+    depsJson[startKey] = {...firstLvlDepsJson[startKey]};
+  }
 
   dependencyPacks = depsJson[startKey][dependencyType];
   for (var depKey in depsJson[startKey][dependencyType]) {
-    if (depsJson[depKey] === undefined) {
-      travelDependenciesJson(firstLvlDepsJson, depsJson, depKey);
+    if (packsTravelled[depKey] === undefined) {
+      travelDependenciesJson(firstLvlDepsJson, depsJson, depKey, packsTravelled);
     }
+    
     // fill mandatory sub-dependecies
     if (dependencyType === 'optional') {  // mandatory deps of optional go under special key
       depsJson[startKey][dependencyType][depKey]['mandatory'] = {};
@@ -125,17 +130,45 @@ function travelDependenciesByType(depsJson, startKey, firstLvlDepsJson, dependen
       jsonToUpdate = depsJson[startKey][dependencyType];
     }
     for (var subDepKey in depsJson[depKey]['mandatory']) {
-      if (subDepKey !== startKey && depsJson[startKey]['mandatory'][subDepKey] === undefined) {  // skip startKey && skip key if it's already in root's mandatory
-        if (depsJson[subDepKey] === undefined) {
-          // in case subDepKey wasn't yet traveled
-          travelDependenciesJson(firstLvlDepsJson, depsJson, subDepKey);
+      // skip if subDepKey is startKey or if subDepKey is already in node's collected mandatory
+      if (subDepKey !== startKey && (depsJson[startKey]['mandatory'][subDepKey] === undefined) ) {
+        if (packsTravelled[subDepKey] === undefined) {
+          // subDepKey wasn't yet traveled
+          travelDependenciesJson(firstLvlDepsJson, depsJson, subDepKey, packsTravelled);
         }
-        jsonToUpdate[subDepKey] = {
-          version: depsJson[subDepKey].version
-        };
+        // collect subDepKey chained mandatory dependecies (subDepKey incl.)
+        chainDepMandatoryPacks = getMandatoryChainDependencies(subDepKey, depsJson);
+        for (var chainKey in chainDepMandatoryPacks) {
+          jsonToUpdate[chainKey] = {version: depsJson[chainKey].version}
+        }
       }
     }
   }
+}
+
+function getMandatoryChainDependencies(packName, depsJson, exclusionSet) {
+  // collects all mandatory chained dependecies, while skipping over keys it collected along the way
+
+  res = {};
+  if (packName in depsJson === false) {  // sanity
+    return res;
+  }
+  if (exclusionSet === undefined) {
+    exclusionSet = new Set(packName);
+  }
+
+  for (var depKey in depsJson[packName]['mandatory']) {
+    // prevent iterating over a key that was already iterated
+    if (!exclusionSet.has(depKey)) {
+      exclusionSet.add(depKey);
+      res = {
+        ...res, 
+        ...getMandatoryChainDependencies(depKey, depsJson, exclusionSet)
+      };
+      res[packName] = {version: depsJson[packName].version};
+    }
+  }
+  return res
 }
 
 function reverseReleases(obj) {
@@ -150,8 +183,9 @@ function reverseReleases(obj) {
 function genPackDetails() {
   let marketplace = [];
   let idToVersion = {};
-  let firstLeveldepsMap = {};  // map of dependencies per pack ID (first level)
-  const fullDepsJson = {};
+  const firstLeveldepsMap = {};  // map of dependencies per pack ID (first level)
+  const fullDepsJson = {};  // map of dependencies per pack ID (all levels)
+  const packsTravelled = {};  // map of packs that were fully travelled while creating fullDepsJson
   const detailsPages = globby.sync(["./src/pages/marketplace"], {
     absolute: false,
     objectMode: true,
@@ -286,7 +320,7 @@ function genPackDetails() {
     try {
       if (pack.dependencies) {
         if (pack.id in fullDepsJson === false) {
-          travelDependenciesJson(firstLeveldepsMap, fullDepsJson, pack.id)
+          travelDependenciesJson(firstLeveldepsMap, fullDepsJson, pack.id, packsTravelled)
         }
       }
     } catch (err) {
