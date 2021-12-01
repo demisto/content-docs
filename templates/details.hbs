@@ -22,7 +22,7 @@ return (
     <br/>
         <div className="container">
             <h1 className="hero__title">{TITLE}</h1>
-            <a class="button button--outline button--primary button--lg" href="https://storage.googleapis.com/marketplace-dist/content/packs/{{id}}/{{currentVersion}}/{{id}}.zip" target="_blank">Download</a>
+            <a className="button button--outline button--primary button--lg" href="https://storage.googleapis.com/marketplace-dist/content/packs/{{id}}/{{currentVersion}}/{{id}}.zip" target="_blank">Download</a>
         </div>
     </div>
 
@@ -170,6 +170,7 @@ return (
                             <Collapsible trigger="{{this.displayName}} ({{this.released}})">
                                 <article dangerouslySetInnerHTML=\{{ __html:
                                     converter.makeHtml("{{{this.releaseNotes}}}"), }}></article>
+                                <a className="button button--outline button--primary button--lg" href="https://storage.googleapis.com/marketplace-dist/content/packs/{{this.id}}/{{this.displayName}}/{{this.id}}.zip" target="_blank">Download</a>
                             </Collapsible>
                         </div>
                     </div>

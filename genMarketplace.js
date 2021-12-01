@@ -85,6 +85,39 @@ function createReadmeLink(listItem, itemType) {
   return Promise.resolve();
 }
 
+function collectChainedMandatoryDependencies(packName) {
+  return {};
+  // TODO: Implement
+}
+
+function travelDependenciesJson(firstLvlDepsJson, depsJson, startKey) {
+  // Travels over the dependencies json to create a flat depdendencies map for each entry starting with startKey
+
+  if (startKey in depsJson === false) {
+    depsJson[startKey] = {...firstLvlDepsJson[startKey]};
+    mandatoryPacks = depsJson[startKey]['mandatory'];
+    for (var depKey in mandatoryPacks) {
+      if (depsJson[depKey] === undefined) {
+        travelDependenciesJson(firstLvlDepsJson, depsJson, depKey);
+      }
+      // fill mandatory sub-dependecies in root
+      subPackMandatoryPacks = depsJson[depKey]['mandatory']
+      for (var subDepKey in subPackMandatoryPacks) {
+        mandatoryPacks[subDepKey] = {
+          version: depsJson[subDepKey].version
+        }
+        subMandatories = collectChainedMandatoryDependencies(subDepKey);
+        for (var key in subMandatories) {
+          mandatoryPacks[subDepKey] = {
+            version: depsJson[key].version
+          }
+        }
+      }
+    }
+    // TODO: Complete optional packs
+  }
+}
+
 function reverseReleases(obj) {
   let new_obj = {};
   let rev_obj = Object.keys(obj).reverse();
@@ -96,6 +129,9 @@ function reverseReleases(obj) {
 
 function genPackDetails() {
   let marketplace = [];
+  let idToVersion = {};
+  let firstLeveldepsMap = {};  // map of dependencies per pack ID (first level)
+  const fullDepsJson = {};
   const detailsPages = globby.sync(["./src/pages/marketplace"], {
     absolute: false,
     objectMode: true,
@@ -152,8 +188,32 @@ function genPackDetails() {
     } else {
       console.log("no README.md for", metadata.name);
     }
+    idToVersion[metadata.id] = metadata.currentVersion;
     marketplace.push(metadata);
   });
+
+  marketplace.map((metadata) => {
+    if (metadata.dependencies) {
+      let dependenciesJson = {
+        mandatory: {},
+        optional: {},
+        version: metadata.currentVersion
+      };
+      for (var depId in metadata.dependencies) {
+        let dependency = metadata.dependencies[depId]
+        if (dependency.mandatory) {
+          dependenciesJson["mandatory"][depId] = {
+            version: idToVersion[depId]
+          };
+        } else {
+          dependenciesJson["optional"][depId] = {
+            version: idToVersion[depId]
+          };
+        }
+      }
+      firstLeveldepsMap[metadata.id] = dependenciesJson;
+    }
+  })
 
   if (process.env.MAX_PACKS) {
     console.log(`limiting packs to ${process.env.MAX_PACKS}`);
@@ -200,8 +260,21 @@ function genPackDetails() {
       }
     }
 
-    await parseContentItems()
+    const parsePackDependencies = async () => {
+      try {
+        if (pack.dependencies) {
+          if (pack.id in fullDepsJson === false) {
+            travelDependenciesJson(firstLeveldepsMap, fullDepsJson, pack.id)
+          }
+        }
+      } catch (err) {
+        console.log(err);
+      }
+      Promise.resolve();
+    }
 
+    await parseContentItems();
+    await parsePackDependencies();
     generatePackDetails.runActions({
       id: pack.id ? pack.id.replace(/-|\s/g, "").replace(".", "") : pack.id,
       name: pack.name,
@@ -232,6 +305,7 @@ function genPackDetails() {
       integrations: pack.integrations,
       contentItems: pack.contentItems,
       changeLog: reverseReleases(pack.changeLog),
+      dependencies: pack.dependencies
     });
   });
 };

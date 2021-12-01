@@ -1,0 +1,1 @@
+{"storage":"boltdb","index_type":"scorch","config":{"bolt_timeout":"1m0s","initialMmapSize":0,"scorchPersisterOptions":{"PersisterNapTimeMSec":2000,"PersisterNapUnderNumFiles":1000},"unsafe_batch":true}}
