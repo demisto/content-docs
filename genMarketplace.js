@@ -86,7 +86,21 @@ function createReadmeLink(listItem, itemType) {
 }
 
 function travelDependenciesJson(firstLvlDepsJson, depsJson, startKey) {
-  // Travels over the dependencies json to create a flat depdendencies map for each entry starting with startKey
+  /* Travels over the dependencies json to create a depdendencies map for each entry starting with startKey like so:
+  {
+    startKey: {
+      mandatory: {
+        packName: {
+          version: version
+        }
+      },
+      optional: {
+        version: version,
+        mandatory: {...}
+      }
+    }
+  }
+  */
 
   if (startKey in depsJson === false) {
     depsJson[startKey] = {...firstLvlDepsJson[startKey]};
@@ -96,21 +110,22 @@ function travelDependenciesJson(firstLvlDepsJson, depsJson, startKey) {
 }
 
 function travelDependenciesByType(depsJson, startKey, firstLvlDepsJson, dependencyType) {
+  // Travels over the dependencies json of a given Pack dependency type, while collecting all sub-dependecy mandatory packs
+
   dependencyPacks = depsJson[startKey][dependencyType];
-  for (var depKey in dependencyPacks) {
+  for (var depKey in depsJson[startKey][dependencyType]) {
     if (depsJson[depKey] === undefined) {
       travelDependenciesJson(firstLvlDepsJson, depsJson, depKey);
     }
-    // fill mandatory sub-dependecies in root
-    subPackMandatoryPacks = depsJson[depKey]['mandatory'];
+    // fill mandatory sub-dependecies
     if (dependencyType === 'optional') {  // mandatory deps of optional go under special key
-      dependencyPacks[depKey]['mandatory'] = {};
-      jsonToUpdate = dependencyPacks[depKey]['mandatory'];
+      depsJson[startKey][dependencyType][depKey]['mandatory'] = {};
+      jsonToUpdate = depsJson[startKey][dependencyType][depKey]['mandatory'];
     } else {
-      jsonToUpdate = dependencyPacks;
+      jsonToUpdate = depsJson[startKey][dependencyType];
     }
-    for (var subDepKey in subPackMandatoryPacks) {
-      if (subDepKey !== startKey) {
+    for (var subDepKey in depsJson[depKey]['mandatory']) {
+      if (subDepKey !== startKey && depsJson[startKey]['mandatory'][subDepKey] === undefined) {  // skip startKey && skip key if it's already in root's mandatory
         if (depsJson[subDepKey] === undefined) {
           // in case subDepKey wasn't yet traveled
           travelDependenciesJson(firstLvlDepsJson, depsJson, subDepKey);
@@ -212,7 +227,8 @@ function genPackDetails() {
           };
         } else {
           dependenciesJson["optional"][depId] = {
-            version: idToVersion[depId]
+            version: idToVersion[depId],
+            mandatory: {}
           };
         }
       }
@@ -265,21 +281,18 @@ function genPackDetails() {
       }
     }
 
-    const parsePackDependencies = async () => {
-      try {
-        if (pack.dependencies) {
-          if (pack.id in fullDepsJson === false) {
-            travelDependenciesJson(firstLeveldepsMap, fullDepsJson, pack.id)
-          }
-        }
-      } catch (err) {
-        console.log(err);
-      }
-      Promise.resolve();
-    }
-
     await parseContentItems();
-    await parsePackDependencies();
+
+    try {
+      if (pack.dependencies) {
+        if (pack.id in fullDepsJson === false) {
+          travelDependenciesJson(firstLeveldepsMap, fullDepsJson, pack.id)
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    
     generatePackDetails.runActions({
       id: pack.id ? pack.id.replace(/-|\s/g, "").replace(".", "") : pack.id,
       name: pack.name,
