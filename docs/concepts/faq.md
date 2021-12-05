@@ -60,7 +60,7 @@ The preferred development language is Python, which provides a wider set of capa
 
 Cortex XSOAR supports PowerShell integrations and scripts. However at the moment the amount of content written in PowerShell is minimal, so we recommend PowerShell only for advanced users as you won't find many examples to look at.
 
-### Javasript
+### JavaScript
 
 Cortex XSOAR supports JavaScript integrations and scripts but mainly to support older content, new contributed integrations and scripts must be developed in Python.
 

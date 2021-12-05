@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "trailingSlash": false,
     "headers": [
       {
         "source": "/service-worker.js",
@@ -492,6 +493,16 @@
       {
           "source": "/docs/concepts/dev-requirements",
           "destination": "/docs/contributing/dev-requirements",
+          "type": 301
+      },
+      {
+          "source": "/request-private-offer",
+          "destination": "/",
+          "type": 301
+      },
+      {
+          "source": "/private-offer-learn-more",
+          "destination": "/",
           "type": 301
       }
     ]

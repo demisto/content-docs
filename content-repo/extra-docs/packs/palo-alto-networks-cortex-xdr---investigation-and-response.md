@@ -21,6 +21,8 @@ The playbooks included in this pack help you save time and keep your incidents i
 The Palo Alto Networks Cortex XDR - Investigation and Response pack enables the following flows: 
 - [Device Control Violations](#device-control-violations) - Fetch device control violations from XDR and communicate with the user to determine the reason the device was connected.
 - [XDR Incident Handling](#xdr-incident-handling) - Compare incidents in Palo Alto Networks Cortex XDR and Cortex XSOAR, and update the incidents appropriately. 
+- [AWS IAM User Access Investigation](#aws-iam-user-access-investigation) - Investigates and responds to Cortex XDR Cloud alerts where an AWS IAM user's access key is used suspiciously to access the cloud environment. 
+
 
  
 
@@ -62,6 +64,40 @@ After the remediation, if there are no new alerts, the playbook stops the alert 
 
 ### Syn Indicators between Cortex XSOAR and Cortex XDR
 The [Cortex XDR - IOCs](https://xsoar.pan.dev/docs/reference/integrations/cortex-xdr---ioc) feed integration syncs indicators between Cortex XSOAR and Cortex XDR. The integration syncs indicators according to the defined fetch interval. At each interval, the integration pushes new and modified indicators defined in the Sync Query from Cortex XSOAR to Cortex XDR. Additionally, the integration checks if there are manual modifications of indicators on Cortex XDR and syncs back to Cortex XSOAR. Once per day, the integration performs a complete sync which also removes indicators that have been deleted or expired in Cortex XSOAR, from Cortex XDR.
+
+## AWS IAM User Access Investigation
+The [AWS IAM user access investigation](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---aws-iam-user-access-investigation) playbook investigates and responds to Cortex XDR Cloud alerts where an AWS IAM user's access key is used suspiciously to access the cloud environment. 
+
+The playbook fetches data from the incident and then retrieves additional cloud alert data that was not available in the incident. It then checks if the alerts are one of the following XCLOUD supported alerts: 
+- Penetration testing tool attempt
+- Penetration testing tool activity
+- Suspicious API call from a Tor exit node.
+
+If the alert is not one of the supported alerts, the playbook ends.
+Otherwise, the incident type is set to XCLOUD and the playbook starts to collect additional information pertaining to the alert.
+
+First the source IP addresses are enriched. These are the IP addresses that are used to connect to the environment. 
+
+Then the playbook enriches information about the user who connected to the environment through the AWS IAM integration using the [AWS IAM - User enrichment](https://xsoar.pan.dev/docs/reference/playbooks/aws-iam---user-enrichment) sub-playbook. The sub-playbook lists the user access keys and retrieves information about the IAM user, including the user's creation date, path, unique ID, and ARN.  From this, it can be seen if these user keys are active and the analyst can block these keys later in the investigation if they are causing malicious activities.
+
+
+Then the playbook validates that the access key type is AKIA (which marks this as a user key). If the access key is AKIA, queries are run to retrieve the last 100 API calls made with the access key and retrieve actions performed by the user in the last 7 days. This information shows who made the call, and provides information about the IP address and data about which user was used in the request, what operation was performed, the status of the operation and on what resource it was executed.
+
+Now the investigation starts.
+First the playbook checks if there were new IP addresses that were found on the XQL queries that did not appear in the original alert and enriches them.
+Then the analyst manually reviews the results of the XQL queries from the previous steps to determine if this is a true positive event. The analyst investigates the operations performed by the access key and the user. The analyst examines the executed operations, by who it was executed, on which resource, and the operation status.
+
+The analyst looks at any persistence, for example, a new user or key creation or for any lateral movement operations. For example, an operation can be = AsumeRole.
+As an extra validation step, it is recommended to query the user and/or the user’s manager regarding the investigated suspicious activity.
+
+Based on this investigation, the analyst manually decides if the alert is a false or true positive.  If false, the playbook ends.
+Otherwise the remediation steps begin
+The IP address is checked to see if it is a Tor IP. If it is not a Tor IP, the IP is blocked (either manually or automatically) and the analyst can tag the indicator for EDL.
+The compromised IAM access keys are deactivated.
+The analyst manually checks if the user has an AWS login profile and deletes it.
+
+
+
  
 
 
@@ -84,6 +120,7 @@ The Palo Alto Networks Cortex XDR - Investigation and Response content pack incl
 - **Cortex XDR Disconnected endpoints**
 - **Cortex XDR Incident**
 - **Cortex XDR Port Scan**
+- **Cortex XDR - XCLOUD**
 
 ### Incident Fields
 - **LastMirroredInTime**
@@ -122,7 +159,7 @@ Syncs indicators between Cortex XSOAR and Cortex XDR.
 Enables direct execution of Cortex XDR actions within Cortex XSOAR.
 
 ### Layouts
-There are 4 layouts in this pack. The information displayed in the layouts are similar with minor changes as detailed below.
+There are 5 layouts in this pack. The information displayed in the layouts are similar with minor changes as detailed below.
 
 ![XDR Case Info Tab](../../../docs/doc_imgs/reference/XDRLayout.png)
 
@@ -202,6 +239,34 @@ This layout has two tabs:
 | Linked Incidents | Displays the incidents that were linked to the current incident. |
 | Closing Information | Displays the information that the analyst reported about closing the incident. |
 
+#### Cortex XDR - XCLOUD layout
+This layout has two tabs:
+
+##### Incident Info Tab
+
+| Layout sections | Description |
+|------------------ | ------------- |
+|Incident Information | Displays XDR basic information that includes: XDR Description, XDR Incident ID, XDR URL, XDR Alert Category, XDR Alert Name, Created, XDR Host Count, XDR User Count, XDR Alert Count, XDR High Severity Alert Count, XDR Medium Severity Alert Count, and XDR Low Severity Count. | 
+| Case Details | Displays the following information associated with the incident: Type, Severity, Source Brand, Source Instance, and Playbook. |
+| Alert Severity | Displays the alert severity in the XDR incident. |
+| Cloud Provider | Displays the host's cloud provider. |
+| Users Count | Color-coded field that displays the number of users affected by the incident. The color indication is as follows: green - 0 users, orange - 1-3 users, red - 4 or more users. |
+| Work Plan | Information regarding the playbook tasks from the Work Plan. You can view details by clicking the Tasks Pane or Work Plan links.  |
+| Team Members | Displays a list of the analysts who worked on this incident. |
+| Linked Incidents | Displays any incident that is linked to the current incident. |
+| Notes | Comments entered by the user regarding the incident. |
+| Mirroring Information | Displays general mirroring information for this incident, including Mirror Instance, Mirror Direction, Mirror External ID, Mirror Last Sync, Mirror Tags, and Incoming Mirror Error. |
+| Closing Information | Displays the information that the analyst reported about closing the incident. |
+
+##### Alert Info Tab
+
+| Layout sections | Description |
+|------------------ | ------------- |
+| XDR Alerts | Displays alert information including: Alert ID, Detection Timestamp, Severity, Name, Category, Action, Action Pretty, Description, Host IP, Host Name, User Name, MITRE ATTACK TACTIC, and MITRE ATTACK TECHNIQUE. |
+| Original Alert Additional Information | Displays the following information: Alert Full Description, Detection Module, Vendor, Provider, Log Name, Event Type, Caller IP, Caller IP Geo Location, Resource Type, Identity Name, Operation Name, Operation Status, and User Agent. |
+| Identity Information | Displays the following information: Name, Type, Sub Type, Uuid, Provider, and Access Keys. |
+| Remediation Actions Information | Displays the Inactive Access keys, and the Deleted Login Profiles. |
+| Indicators | Displays the following information: Type, Value, Verdict, First Seen, Last Seen, Source Time Stamp Related Incidents, Source Brands, Source Instances, Expiration Status, and Expiration. |
 
 ### Playbooks
 There are several playbooks in this pack.
@@ -324,6 +389,17 @@ Executes specified shell commands.
 
 #### [Cortex XDR - kill process](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---kill-process)
 Kills the specified process.
+
+
+
+#### [Cortex XDR - AWS IAM user access investigation](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---aws-iam-user-access-investigation)
+Investigates and responds to Cortex XDR Cloud alerts where an AWS IAM user`s access key is used suspiciously to access the cloud environment. 
+
+The following alerts are supported for AWS environments:
+- Penetration testing tool attempt
+- Penetration testing tool activity
+- Suspicious API call from a Tor exit node
+
 
 
 ## Before You Start

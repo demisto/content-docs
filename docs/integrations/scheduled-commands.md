@@ -19,7 +19,7 @@ Use cases for scheduled commands include:
 * ***Integration***: In the integration yml, under the command root, add `polling: true`.
 * ***Script***: In the script yml, in the root of the file, add `polling: true`.
 
-For an example, see the [Autofocus V2](https://github.com/demisto/content/blob/master/Packs/AutoFocus/Integrations/AutofocusV2/AutofocusV2.py) `autofocus-samples-search` command.
+For an example, see the [Autofocus V2](https://github.com/demisto/content/blob/master/Packs/AutoFocus/Integrations/AutofocusV2/AutofocusV2.yml) `autofocus-samples-search` command.
 
 ### ScheduledCommand Class
 `ScheduledCommand` is an optional class that enables scheduling commands via the command results.
