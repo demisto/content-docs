@@ -7,31 +7,34 @@ Cortex XSOAR v6.0 introduces a Marketplace which is the central location for ins
 
 This article walks you through the process of contributing content from the Cortex XSOAR Server to the Marketplace. This flow is meant to ease and speed up the contribution process for individual contributors who are not fully familiar with GitHub and how the Pull Request process works. Technology Partners should not use this flow and submit their Packs via a [GitHub Pull Request](checklist#pull-request-checklist).  
 
-## Submit a Content Pack
+## Submit a Contribution
 
-1. Contribute your content pack from Cortex XSOAR. For more information, see [Contribute a Content Pack](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-1/cortex-xsoar-admin/marketplace/content-pack-contributions.html).
+1. Contribute your content entity from Cortex XSOAR. For more information, see [Contribute a Content Pack](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-1/cortex-xsoar-admin/marketplace/content-pack-contributions.html).
 
-2. After you contribute the content pack a message displays explaining that your contribution is ready for review, and includes a link to a form you need to fill in to complete your contribution. You will receive an email with a link to the form.
+2. After you contribute the content entity a message displays explaining that your contribution is ready for review, and includes a link to a form you need to fill in to complete your contribution. You will receive an email with a link to the form.
 
 3. Completing the form
 
-   1. **Create a New Pack**  
+   ### **Contribute a New Pack**  
 
-          These instructions are only intended for creating a new pack. If you have a pack that you need to update, follow the instructions in the _Update an Existing Pack_ section.
-
-          1. Fill in additional details, such as, pack name, author, and description.
-          2. Log in to your GitHub account so you can participate in the review process of the pull request that will be opened for your content pack.
-          3. Sign the [Palo Alto Networks Contributor License Agreement](https://github.com/demisto/content/blob/master/docs/cla.pdf).
-
-   2. **Update an Existing Pack**
-
-          If your contribution is an update to an existing pack, complete the following steps. (See _[Notes](#notes)_ for more information regarding updating an existing pack.) 
-
-          1. Select _Update Existing Pack_ from the _Select Contribution Mode_ dropdown.
-          2. Select the pack that you wish to update from the _Select Existing Pack_ dropdown.
+      These instructions are only intended for creating a new pack. If you have a pack that you need to update, follow the instructions in the _Contribute to an Existing Pack_ section.
+      
+          1. Select "Create New Pack" from the "Select Contribution Mode" dropdown.
+          2. Fill in additional details, such as, pack name, author, and description.
           3. Log in to your GitHub account so you can participate in the review process of the pull request that will be opened for your content pack.
           4. Sign the [Palo Alto Networks Contributor License Agreement](https://github.com/demisto/content/blob/master/docs/cla.pdf).
 
+   ### **Contribute to an Existing Pack**
+   You can contribute new entities or update existing entities for an existing pack.
+   
+         1. Select "Update Existing Pack" from the "Select Contribution Mode" dropdown.
+         2. Select the pack that you wish to update from the "Select Existing Pack" dropdown.
+         3. Log in to your GitHub account so you can participate in the review process of the pull request that will be opened for your content pack.
+         4. Sign the [Palo Alto Networks Contributor License Agreement](https://github.com/demisto/content/blob/master/docs/cla.pdf).
+
+   
+	_Contribute to an existing content entity_: Duplicate the entity you want to contribute to. For example, if you want to update the `AbuseIPDB` integration, you need to duplicate it  and save the duplicate with your changes as `AbuseIPDB_copy`.
+	
 
 4. After you submit the form you will be redirected to a page that informs you that your pack was received and is being processed.  
 
@@ -50,37 +53,28 @@ This article walks you through the process of contributing content from the Cort
 8. You can now modify the files changed in the pull request as part of the review process.
 
 
-## Resubmit a Content Pack
+## Resubmit a Contribution
 
 If you have already submitted your contribution and you would like to make changes to the submission, you can do so by resubmitting the content pack from XSOAR. The resubmission process is very similar to the initial submission, the difference being you update an existing pull request instead of creating one.
+      
+      1. Create or edit any content items need to be included in your contribution.
 
-1. Create or edit any content items need to be included in your contribution.
+      2. Go to **Marketplace** > **Contributions**, select your pack and press "Edit".
 
-2. Go to **Marketplace** > **Contributions**, select your pack and press "Edit".
+      3. Add or remove content items from the pack, as needed.
 
-3. Add or remove content items from the pack, as needed.
+      4. Press **Save and Contribute** and complete the form as documented [above](#submit-a-content-pack).
 
-4. Press **Save and Contribute** and complete the form as documented [above](#submit-a-content-pack).
+         **Note**: Changing the pack name or the email of the contributor at this stage will result in creating a pull request on GitHub, rather than updating the existing one.
+
+         In the form you may include notes describing the essence of the update, or an updated demo video link, which will be displayed in a comment on the pull request after the changes are successfully pushed to GitHub.
+
+      5. Once the changes are pushed to your branch, you will receive an notification via email.
+
+
+In addition, there are other ways to update a content pack that you contributed and is already on a GitHub pull request: you may either modify the files directly on the pull request, or close the pull request and create a new contribution that includes your changes.
+
  
-   **Note**: Changing the pack name or the email of the contributor at this stage will result in creating a pull request on GitHub, rather than updating the existing one.
-   
-   In the form you may include notes describing the essence of the update, or an updated demo video link, which will be displayed in a comment on the pull request after the changes are successfully pushed to GitHub.
-
-5. Once the changes are pushed to your branch, you will receive an notification via email.
-
-
-## Notes
-
-1. In addition to the resubmission option described above, there are other ways to update a content pack that you contributed and is already on a GitHub pull request: you may either modify the files directly on the pull request, or close the pull request and create a new contribution that includes your changes.
-
-2. The contribution mode selection dropdown will always appear and will be divided into two sections:
-Suggested packs - If content items that were part of your contribution were detected as originating from existing sources (for example, you created a new automation in the UI by clicking "Duplicate Automation")
-All packs- A list of all existing packs.
-
-3. When updating an existing pack, the suggested pack options are determined and populated by the content items included in your contribution. For example, if you were to duplicate the `AbuseIPDB` integration and save the duplicate with your changes as `AbuseIPDB_copy`. **Note**: the default name applied to duplicated content appends `_copy` to the original name. This is important because it indicates to us that this most likely contains a modification to existing content. In our example, the pack to which the `AbuseIPDB` integration belongs, `AbuseIPDB`, will appear as an option in the dropdown for updating content.
-
-4. **New**: Contribute new content entities to an existing pack through Marketplace is now supported.
-
 ## Known Limitations
 
 1. Updating JavaScript integrations/scripts in an existing pack is not supported.
