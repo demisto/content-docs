@@ -4,6 +4,7 @@ import Tabs from "@theme/Tabs";
 import clsx from "clsx";
 import React from "react";
 import Collapsible from "react-collapsible";
+import JsZip from 'jszip';
 
 const TITLE = "{{{name}}}";
 const DESCRIPTION =
@@ -15,6 +16,22 @@ showdown.setFlavor("github");
 const README =
 "{{{readme}}}"
 
+const handleDownload = (url, filename) => {
+  var xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
+
+  xhr.addEventListener("readystatechange", function() {
+  if(this.readyState === 4) {
+      console.log(this.responseText);
+  }
+  });
+
+  xhr.open("GET", "https://storage.googleapis.com/marketplace-dist/content/packs/index.zip");
+
+  xhr.send();
+}
+
+
 function {{id}}() {
 return (
 <Layout title={TITLE} description={DESCRIPTION} wrapperClassName="contentPack">
@@ -23,6 +40,7 @@ return (
         <div className="container">
             <h1 className="hero__title">{TITLE}</h1>
             <a className="button button--outline button--primary button--lg" href="https://storage.googleapis.com/marketplace-dist/content/packs/{{id}}/{{currentVersion}}/{{id}}.zip" target="_blank">Download</a>
+            <a className="button button--outline button--primary button--lg" href="#" onClick={handleDownload("https://storage.googleapis.com/marketplace-dist/content/packs/{{id}}/{{currentVersion}}/{{id}}.zip", "test.zip")}>Download With Dependencies</a>
         </div>
     </div>
 

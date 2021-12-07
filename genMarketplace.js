@@ -137,8 +137,7 @@ function travelDependenciesByType(depsJson, startKey, firstLvlDepsJson, dependen
           travelDependenciesJson(firstLvlDepsJson, depsJson, subDepKey, packsTravelled);
         }
         // collect subDepKey chained mandatory dependecies (subDepKey incl.)
-        chainDepMandatoryPacks = getMandatoryChainDependencies(subDepKey, depsJson);
-        for (var chainKey in chainDepMandatoryPacks) {
+        for (var chainKey in getMandatoryChainDependencies(subDepKey, depsJson)) {
           jsonToUpdate[chainKey] = {version: depsJson[chainKey].version}
         }
       }
@@ -357,7 +356,7 @@ function genPackDetails() {
       integrations: pack.integrations,
       contentItems: pack.contentItems,
       changeLog: reverseReleases(pack.changeLog),
-      dependencies: pack.dependencies
+      dependencies: fullDepsJson[pack.id]
     });
   });
 };
