@@ -67,7 +67,8 @@ For example, for Microsoft Graph User, replace the ***SCOPE*** with `directory.a
 Some of the Cortex XSOAR-Microsoft integrations support the deployment of national clouds through the self-deployed
  authorization flow. For more information about Microsoft National Clouds, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/deployments).
  Currently, the following integration supports national clouds:
- * O365 Outlook Mail (Using Graph API)
+ * O365 Outlook Mail (Using Graph API)  
+ 
 In order to use a national cloud, change the *URL* parameter to the corresponding address of the national cloud you are using. For example, see [O365 Outlook Mail (Using Graph API) - National Clouds](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail#using-national-cloud), for the supported cloud endpoints in this integration.
 
 ### Device Code Flow
