@@ -68,17 +68,8 @@ Some of the Cortex XSOAR-Microsoft integrations support the deployment of nation
  authorization flow. For more information about Microsoft National Clouds please refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/deployments).
  Currently, the following integrations support national clouds:
  * O365 Outlook Mail (Using Graph API)
- * O365 Outlook Calendar
- * Azure Active Directory Users
  
- In order to use a national cloud the following changes should be applied to the [Authorize on behalf of a user](https://xsoar.pan.dev/docs/reference/articles/microsoft-integrations---authentication#authorize-on-behalf-of-a-user) flow:
-1. In the instance configuration, change the `URL` parameter to the corresponding address of the national cloud you are using. For example, see [O365 Outlook Mail (Using Graph API) - National Clouds](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail#using-national-cloud), for the supported cloud endpoints in this integration.
-2. In step 3, replace the worldwide login address (i.e. `https://login.microsoftonline.com`) with the login address that corresponds to the national cloud in use:
-    * For Azure AD for US Government users: `https://login.microsoftonline.us` 
-    * For Azure AD Germany users: `https://login.microsoftonline.de` 
-    * For Azure AD China operated by 21Vianet users: `https://login.chinacloudapi.cn`
-
-The rest of the authentication process is identical to the Self-Deployed authorization flow. 
+ In order to use a national cloud, change the `URL` parameter to the corresponding address of the national cloud you are using. For example, see [O365 Outlook Mail (Using Graph API) - National Clouds](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail#using-national-cloud), for the supported cloud endpoints in this integration.
 
 
 ### Device Code Flow
