@@ -103,7 +103,7 @@ After you a redirected to the next page, in the **Overview** tab you will find y
 1. In Microsoft Azure portal, create a new app registration.
    1. Select Azure Active Directory> App registrations> New registration. 
    ![app](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/app-reg.png)
-   1. In the **Redirect URI (optional)** field select **Web** and type a name (you can enter an arbitrary name). In this example we use *https<nolink>://xsoar.*
+   1. In the **Redirect URI (optional)** field select **Web** and type a name (you can enter an arbitrary name). In this example we use *https\<nolink\>://xsoar.*
        ![reg-app](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/reg-app.png)
    1. Click **Register.**
    
@@ -131,10 +131,10 @@ After you a redirected to the next page, in the **Overview** tab you will find y
      - User.Read - Delegated
 4. Get the authorization code.
 
-    1. Type the following in a browser: `https://login.microsoftonline.com/<tenant_id>/oauth2/v2.0/authorize?response_type=code&scope=offline_access%20directory.accessasuser.all&client_id=*<client_id>*&redirect_uri=https%3A%2F%2Fxsoar`
+    1. Type the following in a browser: `https://login.microsoftonline.com/\<tenant_id\>/oauth2/v2.0/authorize?response_type=code&scope=offline_access%20directory.accessasuser.all&client_id=*\<client_id\>*&redirect_uri=https%3A%2F%2Fxsoar`
     
     Replace `tenant_id` and `client-id` with the tenant ID that was generated in step 1.iv.  
-    The URI is the *https<nolink>://xsoar*.
+    The URI is the *https\<nolink\>://xsoar*.
 
     This prompts the admin user to sign in and grant the app the appropriate permissions:    ![app-perm](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/app-perm.png)
 
