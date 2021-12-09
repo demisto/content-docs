@@ -33,15 +33,14 @@ This article walks you through the process of contributing content from the Cort
          4. Sign the [Palo Alto Networks Contributor License Agreement](https://github.com/demisto/content/blob/master/docs/cla.pdf).
 
    
-	_Contribute to an existing content entity_: Duplicate the entity you want to contribute to. For example, if you want to update the `AbuseIPDB` integration, you need to duplicate it  and save the duplicate with your changes as `AbuseIPDB_copy`.
+	_Contribute an update to an existing content entity_: Duplicate the entity you want to update. For example, if you want to update the `AbuseIPDB` integration, you need to duplicate it  and save the duplicate with your changes as `AbuseIPDB_copy`.
 	
 
-4. After you submit the form you will be redirected to a page that informs you that your pack was received and is being processed.  
+4. After you submit the form you will be redirected to a page that informs you that your contribution was received and is being processed.  
 
 5. A GitHub branch will be created in the [xsoar-contrib Content repository fork](https://github.com/xsoar-contrib/content) with the changes from your contribution.
 
 6. You will receive an invitation to join the **xsoar-contrib** organization. Being a member of the organization enables the **xsoar-bot** to invite you to a GitHub team and grant you write permissions to the created branch.
-(Each contributor can only modify files in content packs that they contributed).
 
 7. The pull request is created and a reviewer is assigned.
 
@@ -57,7 +56,7 @@ This article walks you through the process of contributing content from the Cort
 
 If you have already submitted your contribution and you would like to make changes to the submission, you can do so by resubmitting the content pack from XSOAR. The resubmission process is very similar to the initial submission, the difference being you update an existing pull request instead of creating one.
       
-      1. Create or edit any content items need to be included in your contribution.
+      1. Create or edit any content items that need to be included in your contribution.
 
       2. Go to **Marketplace** > **Contributions**, select your pack and press "Edit".
 
@@ -69,7 +68,7 @@ If you have already submitted your contribution and you would like to make chang
 
          In the form you may include notes describing the essence of the update, or an updated demo video link, which will be displayed in a comment on the pull request after the changes are successfully pushed to GitHub.
 
-      5. Once the changes are pushed to your branch, you will receive an notification via email.
+      5. Once the changes are pushed to your branch, you will receive a notification via email.
 
 
 In addition, there are other ways to update a content pack that you contributed and is already on a GitHub pull request: you may either modify the files directly on the pull request, or close the pull request and create a new contribution that includes your changes.
