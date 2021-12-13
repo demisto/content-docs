@@ -1084,7 +1084,7 @@ outputs:
 
 ---
 ### Return Custom Indicators
-For a usage example of the CustomIndicator helper class, see [CustomIndicatorDemo](https://github.com/demisto/content/blob/2ae363a31f9ead0fce09d3c8b36bc02b7b21d89c/Packs/DeveloperTools/Integrations/CustomIndicatorDemo/CustomIndicatorDemo.py#L60) .
+For more information, see [CustomIndicatorDemo](https://xsoar.pan.dev/docs/reference/integrations/custom-indicator-demo#this-integration-is-part-of-the-developer-tools-pack). For a usage example of the CustomIndicator helper class, see [CustomIndicatorDemo](https://github.com/demisto/content/blob/2ae363a31f9ead0fce09d3c8b36bc02b7b21d89c/Packs/DeveloperTools/Integrations/CustomIndicatorDemo/CustomIndicatorDemo.py#L60) .
 
 ```python
  score = Common.DBotScore.GOOD
@@ -1171,7 +1171,7 @@ For a usage example of the CustomIndicator helper class, see [CustomIndicatorDem
 ```
 ---
 ### Return Multiple Indicators
-For an integration usage example of how the code implements a generic indicator reputation command which supports most indicator types, see [MispV3](https://github.com/demisto/content/blob/b5342c522d44aec8f31f4ee0fc8ad269ac970903/Packs/MISP/Integrations/MISPV3/MISPV3.py#L578).
+For an integration usage example of how the code implements the indicator reputation command, see [MispV3](https://github.com/demisto/content/blob/b5342c522d44aec8f31f4ee0fc8ad269ac970903/Packs/MISP/Integrations/MISPV3/MISPV3.py#L578).
 In case you need to return multiple indicators (i.e. IPs) in the same call, you should return a list of `CommandResults`, as shown in the following example.
 
 ```python
