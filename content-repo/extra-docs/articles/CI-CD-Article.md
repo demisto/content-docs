@@ -299,19 +299,19 @@ After installing the demisto-sdk, you need to set up a repository. You can then 
  If using an artifact server, open the folder in the artifact server. The hierarchy should appear similar to this:
         
     ├── builds
-    │   ├── <branch-name>
+    │   ├── branch-name
     │   │   ├── packs
-    │   │   │   ├── <pack1>
+    │   │   │   ├── pack1
     │   │   │   │   ├── 1.0.0
     │   │   │   │   │   ├── pack1.zip
-    │   │   │   ├── <pack2>
+    │   │   │   ├── pack2
     │   │   │   │   ├── 1.0.1
     │   │   │   │   │   ├── pack2.zip
     │   │   │   ├── 
     │   ├── 
     ├── production
     │   ├── packs
-    │   │   ├── <pack1>
+    │   │   ├── pack1
     │   │   │   ├── 1.0.0
     │   │   │   │   │   ├── pack1.zip
     │   │   │   ├── 1.0.1
@@ -319,7 +319,7 @@ After installing the demisto-sdk, you need to set up a repository. You can then 
     │   │   │   ├── 1.1.0
     │   │   │   │   │   ├── pack1.zip
     │   │   │   ├── 
-    │   │   ├── <pack2>
+    │   │   ├── pack2
     │   │   │   ├── 1.0.0
     │   │   │   │   │   ├── pack2.zip
     │   │   │   ├── 1.0.1
