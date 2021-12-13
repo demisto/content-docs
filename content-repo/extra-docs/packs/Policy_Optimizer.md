@@ -60,6 +60,7 @@ _**Unused Applications tab**_ -  Shows firewall rules with unused applications f
 To run the use-cases in this pack, you need to:
 
 1) Create an incident and choose the type “Policy Optimizer”.
+
 2) In the incident creation form, choose the use-cases(one or more)  you would like to trigger:
 
 - Manage Rules with Unused Applications
