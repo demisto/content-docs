@@ -307,8 +307,8 @@ After installing the demisto-sdk, you need to set up a repository. You can then 
     │   │   │   ├── <pack2>
     │   │   │   │   ├── 1.0.1
     │   │   │   │   │   ├── pack2.zip
-    │   │   │   ├── …
-    │   ├── …
+    │   │   │   ├── 
+    │   ├── 
     ├── production
     │   ├── packs
     │   │   ├── <pack1>
@@ -318,7 +318,7 @@ After installing the demisto-sdk, you need to set up a repository. You can then 
     │   │   │   │   │   ├── pack1.zip
     │   │   │   ├── 1.1.0
     │   │   │   │   │   ├── pack1.zip
-    │   │   │   ├── …
+    │   │   │   ├── 
     │   │   ├── <pack2>
     │   │   │   ├── 1.0.0
     │   │   │   │   │   ├── pack2.zip
@@ -326,8 +326,8 @@ After installing the demisto-sdk, you need to set up a repository. You can then 
     │   │   │   │   │   ├── pack2.zip
     │   │   │   ├── 1.0.2
     │   │   │   │   │   ├── pack2.zip
-    │   │   │   ├── …
-    │   │   ├── ...
+    │   │   │   ├── 
+    │   │   ├──
         
  Add the content to Cortex XSOAR.
  - (Non-artifact server). In the Marketplace, install the custom content packs. 
