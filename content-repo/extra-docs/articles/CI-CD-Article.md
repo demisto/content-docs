@@ -1,6 +1,12 @@
+---
+id: xsoar-ci-cd
+title: XSOAR CI/CD
+description: In Cortex XSOAR you can develop and test your content on other machines, before using it in a production environment.
+---
+
 CI/CD in Cortex XSOAR
 
-In Cortex XSOAR you can develop and test your content on other machines, before using it in a  production environment. You can do this by using one of the following options:
+In Cortex XSOAR you can develop and test your content on other machines, before using it in a production environment. You can do this by using one of the following options:
  
  - [Remote Repositories via the UI](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/remote-repository/remote-repositories-overview.html): 
 Enables you to work in separate repositories for development and production environments, which is set up in Cortex XSOAR. Cortex XSOAR content updates are only delivered to the development environment. When content is ready, push the content to the production environment via a Git repository. In your production environment, you pull the content as you would all other content updates.   
