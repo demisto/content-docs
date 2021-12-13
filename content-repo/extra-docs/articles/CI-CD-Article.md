@@ -4,8 +4,6 @@ title: XSOAR CI/CD
 description: In Cortex XSOAR you can develop and test your content on other machines, before using it in a production environment.
 ---
 
-CI/CD in Cortex XSOAR
-
 In Cortex XSOAR you can develop and test your content on other machines, before using it in a production environment. You can do this by using one of the following options:
  
  - [Remote Repositories via the UI](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/remote-repository/remote-repositories-overview.html): 
@@ -218,10 +216,10 @@ After installing the demisto-sdk, you need to set up a repository. You can then 
     7.5 Open a Pull Request for other developers to review.
     CI/CD checks the changes - validations, lints, etc. If it requires approval you have to wait before being able to merge. The validation is done according to the hooks in your repository. When you push the pull request, the CI/CD process runs automatically.
 
-    8. (Artifact Server only) Configure the the bucket_upload.py file
+ 8. (Artifact Server only) Configure the the bucket_upload.py file
     Update the bucket name, main bucket path and format file before pushing any content from your Git repository. The artifact server is based on Google Cloud Storage. If using a different storage provider, you need to update the bucket_upload.py file. Contact Customer Support if you need to change this.
-
-    9. Configure the xsoar_config.json file.
+    
+ 9. Configure the xsoar_config.json file.
     The configuration file defines how content packs, lists and jobs are set up on the production machine. It consists of the following sections
      - custom_packs - Your custom content packs, which are installed through the build process.
      - marketplace_packs - Marketplace packs to be installed on the machine.
@@ -230,7 +228,7 @@ After installing the demisto-sdk, you need to set up a repository. You can then 
 
     Custom Packs
     After you create the branch for each pack in step 4, you need to add the ID and URL for each Content Pack. You need to do one of the following:
-     - For a non-artifact server you need to change the URL to the name of the Pack in this format using a local URL. “Url”: “Packs/<name of the pack>/<name.zip”. If you want to change the version you need to change it in the branch repository and not in this file.
+     - For a non-artifact server you need to change the URL to the name of the Pack in this format using a local URL. "Url": "Packs\<name of the pack>\.zip”. If you want to change the version you need to change it in the branch repository and not in this file.
      - If using an artifact server you need to update the version in the URL. This enables you to have version control. If there was an error in a Content Pack you can change the version number to an earlier version in your repository. 
 
     Marketplace Content Packs
@@ -296,55 +294,54 @@ After installing the demisto-sdk, you need to set up a repository. You can then 
         ├── xsoar_config.json
         ```
         
-    Deployment
-    If using an artifact server, open the folder in the artifact server. The hierarchy should appear similar to this:
+ Deployment
+ 
+ If using an artifact server, open the folder in the artifact server. The hierarchy should appear similar to this:
         
-        ```
-        ├── builds
-        │   ├── <branch-name>
-        │   │   ├── packs
-        │   │   │   ├── <pack1>
-        │   │   │   │   ├── 1.0.0
-        │   │   │   │   │   ├── pack1.zip
-        │   │   │   ├── <pack2>
-        │   │   │   │   ├── 1.0.1
-        │   │   │   │   │   ├── pack2.zip
-        │   │   │   ├── …
-        │   ├── …
-        ├── production
-        │   ├── packs
-        │   │   ├── <pack1>
-        │   │   │   ├── 1.0.0
-        │   │   │   │   │   ├── pack1.zip
-        │   │   │   ├── 1.0.1
-        │   │   │   │   │   ├── pack1.zip
-        │   │   │   ├── 1.1.0
-        │   │   │   │   │   ├── pack1.zip
-        │   │   │   ├── …
-        │   │   ├── <pack2>
-        │   │   │   ├── 1.0.0
-        │   │   │   │   │   ├── pack2.zip
-        │   │   │   ├── 1.0.1
-        │   │   │   │   │   ├── pack2.zip
-        │   │   │   ├── 1.0.2
-        │   │   │   │   │   ├── pack2.zip
-        │   │   │   ├── …
-        │   │   ├── ...
-        ```
+    ├── builds
+    │   ├── <branch-name>
+    │   │   ├── packs
+    │   │   │   ├── <pack1>
+    │   │   │   │   ├── 1.0.0
+    │   │   │   │   │   ├── pack1.zip
+    │   │   │   ├── <pack2>
+    │   │   │   │   ├── 1.0.1
+    │   │   │   │   │   ├── pack2.zip
+    │   │   │   ├── …
+    │   ├── …
+    ├── production
+    │   ├── packs
+    │   │   ├── <pack1>
+    │   │   │   ├── 1.0.0
+    │   │   │   │   │   ├── pack1.zip
+    │   │   │   ├── 1.0.1
+    │   │   │   │   │   ├── pack1.zip
+    │   │   │   ├── 1.1.0
+    │   │   │   │   │   ├── pack1.zip
+    │   │   │   ├── …
+    │   │   ├── <pack2>
+    │   │   │   ├── 1.0.0
+    │   │   │   │   │   ├── pack2.zip
+    │   │   │   ├── 1.0.1
+    │   │   │   │   │   ├── pack2.zip
+    │   │   │   ├── 1.0.2
+    │   │   │   │   │   ├── pack2.zip
+    │   │   │   ├── …
+    │   │   ├── ...
         
-    1. Add the content to Cortex XSOAR.
-         - (Non-artifact server). In the Marketplace, install the custom content packs. 
-            NOTE: The content.pack.verify server configuration must be set to false (imports custom Content Packs that are not provided by Cortex XSOAR).
+ Add the content to Cortex XSOAR.
+ - (Non-artifact server). In the Marketplace, install the custom content packs. 
+    NOTE: The content.pack.verify server configuration must be set to false (imports custom Content Packs that are not provided by Cortex XSOAR).
 
-         - (Artifact Server) Do the following:
-            a. If using Google Cloud Services, download the Google Cloud Storage Content Pack and set up the integration instance. If using another storage application you need to download the appropriate Content Pack such as AWS. 
-            b. Do one of the following:
-                Download the XSOAR CI/CD Content Pack. The Content Pack includes the Configuration Setup playbook, the configuration setup layout, incident fields,  automations, etc. The playbook runs via a job every 3 hours.
-                The playbook fetches the configuration file and loads the contents to the machine. It downloads, and installs the custom content packs and configures lists and jobs if part of the content packs.
-                NOTE: The XSOAR CI/CD Content Pack uses either Google Cloud Storage or HTTP requests to fetch the content packs. If running a different storage provider, you need to download the integration (such as AWS - S3). You need to either create or duplicate the configuration setup incident field and add AWS at the source. You also need to update the Configuration Set_up playbook by adding a task at the same level as Google Cloud Storage.
+ - (Artifact Server) Do the following:
+    a. If using Google Cloud Services, download the Google Cloud Storage Content Pack and set up the integration instance. If using another storage application you need to download the appropriate Content Pack such as AWS. 
+    b. Do one of the following:
+        Download the XSOAR CI/CD Content Pack. The Content Pack includes the Configuration Setup playbook, the configuration setup layout, incident fields,  automations, etc. The playbook runs via a job every 3 hours.
+        The playbook fetches the configuration file and loads the contents to the machine. It downloads, and installs the custom content packs and configures lists and jobs if part of the content packs.
+        NOTE: The XSOAR CI/CD Content Pack uses either Google Cloud Storage or HTTP requests to fetch the content packs. If running a different storage provider, you need to download the integration (such as AWS - S3). You need to either create or duplicate the configuration setup incident field and add AWS at the source. You also need to update the Configuration Set_up playbook by adding a task at the same level as Google Cloud Storage.
 
-                Run the Content Manually.
-                Run a job - The content automatically appears in Cortex XSOAR without having to install in the Marketplace.
+    Run the Content Manually,
+    Or run a job - The content automatically appears in Cortex XSOAR without having to install in the Marketplace.
 
 
 CI/CD FAQs
