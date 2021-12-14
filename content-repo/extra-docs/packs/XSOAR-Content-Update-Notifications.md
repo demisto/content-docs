@@ -15,7 +15,8 @@ Automate your content update process for marketplace packs.
 - The playbook contains an auto-update flow that allows users to decide whether they want to install all updates that were found.
 
 # In this Pack
-##Automations
+
+## Automations
 **_ListInstalledContentPacks_** - This script will show all installed content packs and whether they have an update.
 
 **_FormatContentData_** - This script formats the value given input from a JSON list into a table.
