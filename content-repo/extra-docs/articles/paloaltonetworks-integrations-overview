@@ -124,7 +124,11 @@ provides cloud-based, centralized log storage and aggregation for your on premis
 ## Feeds
 
 ### Use Cases:
-Fetch Indicators from Palo Alto Netowrks services.
+Fetch Indicators from Palo Alto Networks services.
+
+### [Unit42 ATOMs Feed](https://xsoar.pan.dev/docs/reference/integrations/unit42v2-feed)
+Unit42 feed of published IOCs, which contains known malicious indicators.
+
 
 ### [Prisma Access Egress IP feed](https://xsoar.pan.dev/docs/reference/integrations/prisma-access-egress-ip-feed)
 Dynamically retrieve and allow IPs Prisma Access uses to egress traffic to the internet and SaaS apps.
