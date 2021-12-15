@@ -649,11 +649,6 @@ function Marketplace() {
                       </div>
                       <div className={clsx("row", styles.footer)}>
                         <span className={clsx(styles.downloads)}>
-                          {pack.downloads < 100 && "<100 installs"}
-                          {pack.downloads > 100 &&
-                            pack.downloads < 1000 &&
-                            `${pack.downloads} installs`}
-                          {pack.downloads > 1000 && "1K+ installs"}
                           {pack.price == 0 ? (
                             <span className={clsx(styles.free)}>FREE</span>
                           ) : (
