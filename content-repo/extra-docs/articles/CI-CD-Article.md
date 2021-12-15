@@ -212,7 +212,8 @@ After installing the `demisto-sdk`, you need to set up a repository. You can the
     `Demisto-sdk upload -i Packs/mypack`
     
     **NOTE:** Remember to update the the `DEMISTO_BASE_URL` and `DEMISTO_API_KEY`, if required. 
-    For example, to upload an integration, type `demisto-sdk upload -i Packs/CICDExample -i CICDExample`
+    For example, to upload an integration, type `demisto-sdk upload -i Packs/CICDExample -i CICDExample` 
+    
     7.5 **Generate a README for your integration, script, or playbook.**
     
     Run the following command:
