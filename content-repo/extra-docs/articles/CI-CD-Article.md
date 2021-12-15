@@ -163,8 +163,8 @@ After installing the `demisto-sdk`, you need to set up a repository. You can the
         
     ![pack_example.png](../../../docs/doc_imgs/reference/XSOAR-CICD/pack_example.png) 
     
-    <br/> The content pack contains the following content:
-        
+    **The content pack contains the following content:**
+
     | Content | Description |
     | ------- | ----------- |
     | `Classifiers` | Contains the classifiers in JSON format. |
@@ -197,8 +197,8 @@ After installing the `demisto-sdk`, you need to set up a repository. You can the
     For example, to add an `CICDExample` integration to the CICDExample Content Pack, type:
         `demisto-sdk download -o Packs/CICDExample -i CICDExample`
         
-    The `CICDExample` integration file appears in the `Integrations` folder, which separates the content into Python and YML files together with a `README.md`. <br/>
-    ![cicd_integration.png](https://github.com/demisto/content-docs/blob/CICDArticle/docs/doc_imgs/reference/XSOAR-CICD/cicd_integration.png)
+    The `CICDExample` integration file appears in the `Integrations` folder, which separates the content into Python and YML files together with a `README.md`.
+    ![cicd_integration.png](../../../docs/doc_imgs/reference/XSOAR-CICD/cicd_integration.png)
      
      **NOTE:** For Automations and integrations, the content needs to be split. If downloading directly from the development server use the `demisto-sdk split` command. 
 
@@ -224,7 +224,7 @@ After installing the `demisto-sdk`, you need to set up a repository. You can the
         
 	CI/CD checks the changes - validations, lints, etc. If it requires approval you have to wait before being able to merge. The validation is done according to the hooks in your repository. When you push the pull request, the CI/CD process runs automatically. <br/>
 
-    ![github_notsuccess.png](https://github.com/demisto/content-docs/blob/CICDArticle/docs/doc_imgs/reference/XSOAR-CICD/github_notsuccess.png)
+    ![github_notsuccess.png](../../../docs/doc_imgs/reference/XSOAR-CICD/github_notsuccess.png)
 
  8. **(Artifact Server only) Configure the the `bucket_upload.py` file.**
  
