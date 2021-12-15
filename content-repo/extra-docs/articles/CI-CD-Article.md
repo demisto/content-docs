@@ -60,14 +60,14 @@ Before you start using CI/CD, consider the following:
 ### Artifact Server
 When you have finished creating custom content packs, you can either upload the content to the server direct, or upload to an artifact server. It enables you to maintain and control version deployment and rollbacks so you can keep track of your work. The versions are saved in the artifact server.
 
-![artifacts_server.png](https://github.com/demisto/content-docs/blob/CICDArticle/docs/doc_imgs/reference/XSOAR-CICD/artifacts_server.png)
+![artifacts_server.png](../../../docs/doc_imgs/reference/XSOAR-CICD/artifacts_server.png)
 
 Although you can choose your own artifact repository, (such as AWS, GCP, Git, FTP server, etc) by default, the CI/CD process uses Google Cloud Storage. You need to install the [Google Cloud Storage Content Pack](https://xsoar.pan.dev/docs/reference/integrations/google-cloud-storage) and configure the integration. If using another storage provider, such as AWS you need to install the relevant Content Pack and set up the integrations as necessary.
 
 ### Without an Artifact Server
 You can deploy your content without the need for an artifact server. If you do not use an artifact server, the `demisto-sdk upload` command, uploads the content pack directly to the Marketplace. When content is pushed to master, the content is automatically deployed to the server.
 
-![without_artifacts_server.png](https://github.com/demisto/content-docs/blob/CICDArticle/docs/doc_imgs/reference/XSOAR-CICD/without_artifacts_server.png)
+![without_artifacts_server.png](../../../docs/doc_imgs/reference/XSOAR-CICD/without_artifacts_server.png)
 
 By default the CI/CD process uses an artifact server. You can change this in the config.yml file, as referred to in step 5 in Set up the CI/CD process below.
 
@@ -161,7 +161,7 @@ After installing the `demisto-sdk`, you need to set up a repository. You can the
     Run the `demisto-sdk init` command. The `init` command automatically generates the content pack structure. <br/> Follow the on-screen instructions by typing the name of the Content Pack, metadata, description, type of Pack, category, author, email address,tags, integration, etc.
     The Pack appears in the repository with the required folders. You can delete those items that are not needed.  In this example, we create a new pack called CICDExample. 
         
-    ![pack_example.png](https://github.com/demisto/content-docs/blob/CICDArticle/docs/doc_imgs/reference/XSOAR-CICD/pack_example.png) 
+    ![pack_example.png](../../../docs/doc_imgs/reference/XSOAR-CICD/pack_example.png) 
         <br/> The content pack contains the following content:
         
     | Content | Description |
@@ -245,7 +245,7 @@ After installing the `demisto-sdk`, you need to set up a repository. You can the
     After you create the branch for each pack in step 4, you need to add the `ID` and `URL` for each Content Pack. You need to do one of the following:
      - For a non-artifact server you need to change the `URL` to the name of the Pack in this format using a local URL. `"Url": "Packs\name of the pack\.zip”`. If you want to change the version you need to change it in the branch repository and not in this file.
      - If using an artifact server you need to update the version in the `URL`. This enables you to have version control. If there was an error in a content pack you can change the version number to an earlier version in your repository. <br/>
-    ![config_json.png](https://github.com/demisto/content-docs/blob/CICDArticle/docs/doc_imgs/reference/XSOAR-CICD/config_json.png)
+    ![config_json.png](../../../docs/doc_imgs/reference/XSOAR-CICD/config_json.png)
 
     **Marketplace Content Packs**
     
@@ -255,7 +255,7 @@ After installing the `demisto-sdk`, you need to set up a repository. You can the
 10.   **When all the changes are validated and successful, merge the changes to the master repository.**
     	The content is either pushed to the artifact server or to Cortex XSOAR directly. <br/>
 
-        ![github_success.png](https://github.com/demisto/content-docs/blob/CICDArticle/docs/doc_imgs/reference/XSOAR-CICD/github_success.png)
+        ![github_success.png](../../../docs/doc_imgs/reference/XSOAR-CICD/github_success.png)
 
     	In the Master Repository, ensure that the repository is in a structure similar to this:
     
@@ -368,7 +368,7 @@ If you are using an artifact server you can either use the [XSOAR CI/CD Content 
    The Content Pack includes the Configuration Setup playbook, the configuration setup layout, incident fields,  automations, etc. The playbook runs via a job every 3 hours. The playbook fetches the configuration file and loads the contents to the machine. It downloads, and installs the custom content packs and configures lists and jobs if part of the content packs.
  **NOTE**: The XSOAR CI/CD Content Pack uses either Google Cloud Storage or HTTP requests to fetch the content packs. If running a different storage provider, you need to download the integration (such as AWS - S3). You need to either create or duplicate the **Configuration Setup** incident field and add the provider (such as AWS) as the source. You also need to update the **Configuration Set_up** playbook by adding a task at the same level as Google Cloud Storage. <br/>
 
- 	![cicd_playbook.png](https://github.com/demisto/content-docs/blob/CICDArticle/docs/doc_imgs/reference/XSOAR-CICD/cicd_playbook.png)
+ 	![cicd_playbook.png](../../../docs/doc_imgs/reference/XSOAR-CICD/cicd_playbook.png)
 3. Run a job.        
 4. If not using the XSOAR CI/CD Content Pack, install content manually.
 	
@@ -392,11 +392,3 @@ The content appears in Cortex XSOAR without having to install in the Marketplace
 4. **Can I take all the current marketplace packs and turn it into the configuration format?**
     
     Yes, that is supported.
-
-
-
-
-
-
- 
-
