@@ -162,6 +162,7 @@ After installing the `demisto-sdk`, you need to set up a repository. You can the
     The Pack appears in the repository with the required folders. You can delete those items that are not needed.  In this example, we create a new pack called CICDExample. 
         
     ![pack_example.png](../../../docs/doc_imgs/reference/XSOAR-CICD/pack_example.png) 
+    
     <br/> The content pack contains the following content:
         
     | Content | Description |
@@ -196,9 +197,8 @@ After installing the `demisto-sdk`, you need to set up a repository. You can the
     For example, to add an `CICDExample` integration to the CICDExample Content Pack, type:
         `demisto-sdk download -o Packs/CICDExample -i CICDExample`
         
-        
     The `CICDExample` integration file appears in the `Integrations` folder, which separates the content into Python and YML files together with a `README.md`. <br/>
-   ![cicd_integration.png](https://github.com/demisto/content-docs/blob/CICDArticle/docs/doc_imgs/reference/XSOAR-CICD/cicd_integration.png)
+    ![cicd_integration.png](https://github.com/demisto/content-docs/blob/CICDArticle/docs/doc_imgs/reference/XSOAR-CICD/cicd_integration.png)
      
      **NOTE:** For Automations and integrations, the content needs to be split. If downloading directly from the development server use the `demisto-sdk split` command. 
 
@@ -224,7 +224,7 @@ After installing the `demisto-sdk`, you need to set up a repository. You can the
         
 	CI/CD checks the changes - validations, lints, etc. If it requires approval you have to wait before being able to merge. The validation is done according to the hooks in your repository. When you push the pull request, the CI/CD process runs automatically. <br/>
 
-   ![github_notsuccess.png](https://github.com/demisto/content-docs/blob/CICDArticle/docs/doc_imgs/reference/XSOAR-CICD/github_notsuccess.png)
+    ![github_notsuccess.png](https://github.com/demisto/content-docs/blob/CICDArticle/docs/doc_imgs/reference/XSOAR-CICD/github_notsuccess.png)
 
  8. **(Artifact Server only) Configure the the `bucket_upload.py` file.**
  
@@ -367,8 +367,8 @@ If you are using an artifact server you can either use the [XSOAR CI/CD Content 
 2. Download the [XSOAR CI/CD Content Pack](https://xsoar.pan.dev/docs/reference/packs/content-management).
    The Content Pack includes the Configuration Setup playbook, the configuration setup layout, incident fields,  automations, etc. The playbook runs via a job every 3 hours. The playbook fetches the configuration file and loads the contents to the machine. It downloads, and installs the custom content packs and configures lists and jobs if part of the content packs.
  **NOTE**: The XSOAR CI/CD Content Pack uses either Google Cloud Storage or HTTP requests to fetch the content packs. If running a different storage provider, you need to download the integration (such as AWS - S3). You need to either create or duplicate the **Configuration Setup** incident field and add the provider (such as AWS) as the source. You also need to update the **Configuration Set_up** playbook by adding a task at the same level as Google Cloud Storage. <br/>
+ ![cicd_playbook.png](../../../docs/doc_imgs/reference/XSOAR-CICD/cicd_playbook.png)
 
-![cicd_playbook.png](../../../docs/doc_imgs/reference/XSOAR-CICD/cicd_playbook.png)
 3. Run a job.        
 4. If not using the XSOAR CI/CD Content Pack, install content manually.
 	
