@@ -12,7 +12,7 @@ Moreover, the APIs behind them are vast and do not fit under one integration.
 Review this document to determine the Palo Alto Networks integrations you need to fulfil your use cases.
 
 
-## [PAN-OS](https://xsoar.pan.dev/marketplace/details/PANOS)
+## [Palo Alto Networks PAN-OS](https://xsoar.pan.dev/marketplace/details/PANOS)
 
 ### Use Cases
 - Create and manage custom security rules in Palo Alto Networks PAN-OS.
@@ -28,14 +28,13 @@ Review this document to determine the Palo Alto Networks integrations you need t
 - [PAN-OS Commit COnfiguration](https://xsoar.pan.dev/docs/reference/playbooks/pan-os-commit-configuration)
 
 
-## [PAN-OS EDL Management](https://xsoar.pan.dev/marketplace/details/PaloAltoNetworks_PAN_OS_EDL_Management)
+## [Palo Alto Networks PAN-OS EDL Service](https://xsoar.pan.dev/marketplace/details/EDL)
 
 ### Use Cases
-- Manage and edit files located on a remote web server via SSH using integration context as Single Source of Truth.
+- This integration provides External Dynamic List (EDL) as a service for the system indicators (Outbound feed).
 
 ### Playbooks
-- [PAN-OS EDL Setup v3](https://xsoar.pan.dev/docs/reference/playbooks/pan-os-edl-setup-v3)
-- [PAN-OS - Block IP and URL - External Dynamic List v2](https://xsoar.pan.dev/docs/reference/playbooks/pan-os---block-ip-and-url---external-dynamic-list-v2)
+- [PAN-OS EDL Service Configuration](https://xsoar.pan.dev/docs/reference/playbooks/pan-os-edl-service-configuration)
 
 
 ## [Palo Alto Networks BPA](https://xsoar.pan.dev/marketplace/details/BPA)
