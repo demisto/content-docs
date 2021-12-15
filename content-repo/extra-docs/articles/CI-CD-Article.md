@@ -162,8 +162,7 @@ After installing the `demisto-sdk`, you need to set up a repository. You can the
     The Pack appears in the repository with the required folders. You can delete those items that are not needed.  In this example, we create a new pack called CICDExample. 
         
     ![pack_example.png](../../../docs/doc_imgs/reference/XSOAR-CICD/pack_example.png) 
-    
-    **The content pack contains the following content:**
+    The content pack contains the following content:
 
     | Content | Description |
     | ------- | ----------- |
