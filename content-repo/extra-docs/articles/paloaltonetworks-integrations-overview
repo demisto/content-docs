@@ -9,7 +9,7 @@ description: The following maps the Palo Alto Networks Integrations and their us
 Palo Alto Networks is a portfolio company with many different products and functionalities.
 Moreover, the APIs behind them are vast and do not fit under one integration.
 
-Review this document to determine the Palo Alto Networks integrations you need to fulfil your use cases.
+Review this document to determine the Palo Alto Networks integrations you need for your use cases.
 
 
 ## [Palo Alto Networks PAN-OS](https://xsoar.pan.dev/marketplace/details/PANOS)
@@ -31,22 +31,22 @@ Review this document to determine the Palo Alto Networks integrations you need t
 ## [Palo Alto Networks PAN-OS EDL Service](https://xsoar.pan.dev/marketplace/details/EDL)
 
 ### Use Cases
-- This integration provides External Dynamic List (EDL) as a service for the system indicators (Outbound feed).
+This integration provides an External Dynamic List (EDL) as a service for the system indicators (Outbound feed).
 
 ### Playbooks
-- [PAN-OS EDL Service Configuration](https://xsoar.pan.dev/docs/reference/playbooks/pan-os-edl-service-configuration)
+[PAN-OS EDL Service Configuration](https://xsoar.pan.dev/docs/reference/playbooks/pan-os-edl-service-configuration)
 
 
 ## [Palo Alto Networks BPA](https://xsoar.pan.dev/marketplace/details/BPA)
 
 ### Use Cases
-- Analyzes NGFW and Panorama configurations and compares them to the best practices.
+Analyzes NGFW and Panorama configurations and compares them to the best practices.
 
 ### Playbooks
-- [https://xsoar.pan.dev/docs/reference/playbooks/run-panorama-best-practice-assessment](https://xsoar.pan.dev/docs/reference/playbooks/run-panorama-best-practice-assessment)
+[Run Panorama Best Practice Assessment](https://xsoar.pan.dev/docs/reference/playbooks/run-panorama-best-practice-assessment)
 
 
-## [AutoFocus](https://xsoar.pan.dev/marketplace/details/AutoFocus
+## [AutoFocus](https://xsoar.pan.dev/marketplace/details/AutoFocus)
 
 ### Use Cases
 - Query samples, sessions.
@@ -55,34 +55,34 @@ Review this document to determine the Palo Alto Networks integrations you need t
 - Get tag details.
 
 ### Playbooks
-- [Autofocus Query Samples, Sessions and Tags](https://xsoar.pan.dev/docs/reference/playbooks/autofocus-query-samples-sessions-and-tags)
+[Autofocus Query Samples, Sessions and Tags](https://xsoar.pan.dev/docs/reference/playbooks/autofocus-query-samples-sessions-and-tags)
 
 
 ## [Palo Alto Networks WildFire](https://xsoar.pan.dev/marketplace/details/Palo_Alto_Networks_WildFire)
 
 ### Use Cases
-- Send a File sample to WildFire.
+- Send a file sample to WildFire.
 - Upload a file hosted on a website to WildFire.
 - Submit a webpage to WildFire.
-- Get a report regarding the sent samples using file hash.
-- Get sample file from WildFire.
-- Get verdict regarding multiple hashes (up to 500) using the wildfire-get-verdicts command.
+- Get a report regarding the sent samples using the file hash.
+- Get a sample file from WildFire.
+- Get the verdict regarding multiple hashes (up to 500) using the ***wildfire-get-verdicts*** command.
 
 
-## (Palo Alto Networks Threat Vault](https://xsoar.pan.dev/marketplace/details/PaloAltoNetworks_Threat_Vault)
+## [Palo Alto Networks Threat Vault](https://xsoar.pan.dev/marketplace/details/PaloAltoNetworks_Threat_Vault)
 
 ### Use Cases
-- Use the Palo Alto Networks Threat Vault to research the latest threats (vulnerabilities/exploits, viruses, and spyware) that Palo Alto Networks next-generation firewalls can detect and prevent.
+Use the Palo Alto Networks Threat Vault to research the latest threats (vulnerabilities/exploits, viruses, and spyware) that Palo Alto Networks next-generation firewalls can detect and prevent.
 
 
 ## [Cortex Xpanse](https://xsoar.pan.dev/marketplace/details/ExpanseV2)
 
 ### Use Cases
-- Automate Attack Surface Management to identify Internet assets and quickly remediate misconfigurations.
-- Collect Expanse Issues and bi-directionally mirror them.
+- Automate Attack Surface Management to identify internet assets and quickly remediate misconfigurations.
+- Collect Expanse issues and bi-directionally mirror them.
 
 
-## [Cortex XDR](Palo Alto Networks Cortex XDR - Investigation and Response)
+## [Cortex XDR](https://xsoar.pan.dev/marketplace/details/CortexXDR)
 
 ### Use Cases
 - Syncs and updates Cortex XDR incidents.
@@ -102,16 +102,16 @@ Review this document to determine the Palo Alto Networks integrations you need t
 ## [Cortex Data Lake](https://xsoar.pan.dev/marketplace/details/CortexDataLake)
 
 ### Use cases
-provides cloud-based, centralized log storage and aggregation for your on premise, virtual (private cloud and public cloud) firewalls, for Prisma Access, and for cloud-delivered services such as Cortex XDR.
+Provides cloud-based, centralized log storage and aggregation for your on-premise, virtual (private cloud and public cloud) firewalls, for Prisma Access and for cloud-delivered services such as Cortex XDR.
 
 
 ## [Prisma Access](https://xsoar.pan.dev/marketplace/details/PrismaAccess)
 
 ### Use Cases
-- Force logout a specific user from Prisma Access
-- List currently active users
-- Run a Prisma Access query (e.g. getGPaaSLast90DaysUniqueUsers)
-- Run a custom CLI command
+- Force logout of a specific user from Prisma Access.
+- List currently active users.
+- Run a Prisma Access query (e.g., getGPaaSLast90DaysUniqueUsers).
+- Run a custom CLI command.
 
 
 ### Playbooks
@@ -123,7 +123,7 @@ provides cloud-based, centralized log storage and aggregation for your on premis
 ## Feeds
 
 ### Use Cases:
-Fetch Indicators from Palo Alto Networks services.
+Fetch indicators from Palo Alto Networks services.
 
 ### [Unit42 ATOMs Feed](https://xsoar.pan.dev/docs/reference/integrations/unit42v2-feed)
 Unit42 feed of published IOCs, which contains known malicious indicators.
@@ -135,10 +135,10 @@ Fetch a list of threat intel objects, including Campaigns, Threat Actors, Malwar
 Dynamically retrieve and allow IPs Prisma Access uses to egress traffic to the internet and SaaS apps.
 
 ### [Expanse Expander Feed](https://xsoar.pan.dev/docs/reference/integrations/feed-expanse)
-Use this feed to retrieve the discovered IPs/Domains/Certificates from Expanse Expander asset database.
+Use this feed to retrieve the discovered IPs/Domains/Certificates from the Expanse Expander asset database.
 
 ### [AutoFocus Feed](https://xsoar.pan.dev/docs/reference/integrations/auto-focus-feed)
-Use the AutoFocus Feeds integration to fetch indicators from AutoFocus. This Feed supports the AutoFocus Custom Feed and the AutoFocus Samples Feed.
+Use the AutoFocus Feeds integration to fetch indicators from AutoFocus. This feed supports the AutoFocus Custom Feed and the AutoFocus Samples Feed.
 
 ### [AutoFocus Daily Feed](https://xsoar.pan.dev/docs/reference/integrations/auto-focus-daily-feed)
 Use the AutoFocus Daily feed to export threat intelligence data produced by AutoFocus and connected services.
