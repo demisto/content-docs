@@ -128,6 +128,8 @@ Fetch Indicators from Palo Alto Networks services.
 ### [Unit42 ATOMs Feed](https://xsoar.pan.dev/docs/reference/integrations/unit42v2-feed)
 Unit42 feed of published IOCs, which contains known malicious indicators.
 
+### [Unit 42 Intel Objects Feed](https://xsoar.pan.dev/marketplace/details/Unit42Intel)
+Fetch a list of threat intel objects, including Campaigns, Threat Actors, Malware and Attack Patterns, provided by Palo Alto Network's Unit 42 threat researchers.
 
 ### [Prisma Access Egress IP feed](https://xsoar.pan.dev/docs/reference/integrations/prisma-access-egress-ip-feed)
 Dynamically retrieve and allow IPs Prisma Access uses to egress traffic to the internet and SaaS apps.
