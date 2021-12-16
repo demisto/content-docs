@@ -332,6 +332,7 @@ outputs:
 ---
 
 ### Return IP reputation
+For an integration usage example of how the code implements the indicator reputation command, see [AutofocusV2 integration](https://github.com/demisto/content/blob/master/Packs/AutoFocus/Integrations/AutofocusV2/AutofocusV2.py#L1381).  
 ```python
 ip_reputation_from_autofocus = {
     'indicator': '5.5.5.5',
@@ -445,6 +446,7 @@ outputs:
 ---
 
 ### Return Domain reputation
+For an integration usage example of how the code implements the indicator reputation command, see [AutofocusV2 integration](https://github.com/demisto/content/blob/master/Packs/AutoFocus/Integrations/AutofocusV2/AutofocusV2.py#L1443).  
 ```python
 domain_raw = get_domain_from_autofocus('google.com')
 
@@ -718,6 +720,8 @@ return_results(results)
 ---
 
 ### Return URL reputation
+For an integration usage example of how the code implements the indicator reputation command, see [AutofocusV2 integration](https://github.com/demisto/content/blob/master/Packs/AutoFocus/Integrations/AutofocusV2/AutofocusV2.py#L1521).
+
 ```python
 url_arg = 'https://www.ynetto.co.il'
 url_raw_response = {
@@ -836,6 +840,7 @@ outputs:
 ---
 
 ### Return File/Hash reputation
+For an integration usage example of how the code implements the indicator reputation command, see [AutofocusV2 integration](https://github.com/demisto/content/blob/master/Packs/AutoFocus/Integrations/AutofocusV2/AutofocusV2.py#L1584) or [CrowdsrikeMalquery](https://github.com/demisto/content/blob/master/Packs/CrowdStrikeMalquery/Integrations/CrowdStrikeMalquery/CrowdStrikeMalquery.py#L292).
 ```python
 md5 = '9498ff82a64ff445398c8426ed63ea5b'
 hash_reputation_response = {
@@ -991,6 +996,7 @@ outputs:
 ---
 
 ### Return CVE reputation
+For an integration usage example of how the code implements the indicator reputation command, see [CVESearchV2](https://github.com/demisto/content/blob/master/Packs/CVESearch/Integrations/CVESearchV2/CVESearchV2.py#L136).
 ```python
 cve_arg = 'CVE-2015-1653'
 
@@ -1078,7 +1084,7 @@ outputs:
 
 ---
 ### Return Custom Indicators
-For more information, see [CustomIndicatorDemo](https://xsoar.pan.dev/docs/reference/integrations/custom-indicator-demo#this-integration-is-part-of-the-developer-tools-pack) for a usage example of the CustomIndicator helper class.
+For more information, see [CustomIndicatorDemo](https://xsoar.pan.dev/docs/reference/integrations/custom-indicator-demo#this-integration-is-part-of-the-developer-tools-pack). For a usage example of the CustomIndicator helper class, see [CustomIndicatorDemo](https://github.com/demisto/content/blob/2ae363a31f9ead0fce09d3c8b36bc02b7b21d89c/Packs/DeveloperTools/Integrations/CustomIndicatorDemo/CustomIndicatorDemo.py#L60) .
 
 ```python
  score = Common.DBotScore.GOOD
@@ -1165,7 +1171,7 @@ For more information, see [CustomIndicatorDemo](https://xsoar.pan.dev/docs/refer
 ```
 ---
 ### Return Multiple Indicators
-
+For an integration usage example of how the code implements the indicator reputation command, see [MispV3](https://github.com/demisto/content/blob/b5342c522d44aec8f31f4ee0fc8ad269ac970903/Packs/MISP/Integrations/MISPV3/MISPV3.py#L578).
 In case you need to return multiple indicators (i.e. IPs) in the same call, you should return a list of `CommandResults`, as shown in the following example.
 
 ```python
