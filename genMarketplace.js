@@ -105,7 +105,9 @@ function travelDependenciesJson(firstLvlDepsJson, depsJson, startKey, packsTrave
   if (startKey in packsTravelled === false) {
     packsTravelled[startKey] = true;
     travelDependenciesByType(depsJson, startKey, firstLvlDepsJson, 'mandatory', packsTravelled);
+    depsJson[startKey]['mandatoryCount'] = Object.keys(depsJson[startKey]['mandatory']).length;
     travelDependenciesByType(depsJson, startKey, firstLvlDepsJson, 'optional', packsTravelled);
+    depsJson[startKey]['optionalCount'] = Object.keys(depsJson[startKey]['optional']).length;
   }
 }
 
@@ -138,7 +140,10 @@ function travelDependenciesByType(depsJson, startKey, firstLvlDepsJson, dependen
         }
         // collect subDepKey chained mandatory dependecies (subDepKey incl.)
         for (var chainKey in getMandatoryChainDependencies(subDepKey, depsJson)) {
-          jsonToUpdate[chainKey] = {version: depsJson[chainKey].version}
+          jsonToUpdate[chainKey] = {
+            version: depsJson[chainKey].version,
+            support: depsJson[chainKey].support === "xsoar" ? "Cortex XSOAR" : capitalizeFirstLetter(depsJson[chainKey].support)
+          }
         }
       }
     }
@@ -162,9 +167,8 @@ function getMandatoryChainDependencies(packName, depsJson, exclusionSet) {
       exclusionSet.add(depKey);
       res = {
         ...res, 
-        ...getMandatoryChainDependencies(depKey, depsJson, exclusionSet)
-      };
-      res[packName] = {version: depsJson[packName].version};
+        ...getMandatoryChainDependencies(depKey, depsJson, exclusionSet)};
+        res[packName] = {version: depsJson[packName].version};
     }
   }
   return res
@@ -181,7 +185,7 @@ function reverseReleases(obj) {
 
 function genPackDetails() {
   let marketplace = [];
-  let idToVersion = {};
+  let idToPackMetadata = {};
   const firstLeveldepsMap = {};  // map of dependencies per pack ID (first level)
   const fullDepsJson = {};  // map of dependencies per pack ID (all levels)
   const packsTravelled = {};  // map of packs that were fully travelled while creating fullDepsJson
@@ -227,7 +231,8 @@ function genPackDetails() {
           year: "numeric",
           month: "long",
           day: "numeric",
-        });
+        }),
+        release.version = release.displayName.split(' ')[0];
       }
     }
     metadata.changeLog = changeLog;
@@ -241,7 +246,10 @@ function genPackDetails() {
     } else {
       console.log("no README.md for", metadata.name);
     }
-    idToVersion[metadata.id] = metadata.currentVersion;
+    idToPackMetadata[metadata.id] = {
+      version: metadata.currentVersion,
+      support: metadata.support == "xsoar" ? "Cortex XSOAR" : capitalizeFirstLetter(metadata.support)
+    };
     marketplace.push(metadata);
   });
 
@@ -250,17 +258,20 @@ function genPackDetails() {
       let dependenciesJson = {
         mandatory: {},
         optional: {},
-        version: metadata.currentVersion
+        version: metadata.currentVersion,
+        support: metadata.support
       };
       for (var depId in metadata.dependencies) {
         let dependency = metadata.dependencies[depId]
         if (dependency.mandatory) {
           dependenciesJson["mandatory"][depId] = {
-            version: idToVersion[depId]
+            version: idToPackMetadata[depId].version,
+            support: idToPackMetadata[depId].support
           };
         } else {
           dependenciesJson["optional"][depId] = {
-            version: idToVersion[depId],
+            version: idToPackMetadata[depId].version,
+            support: idToPackMetadata[depId].support,
             mandatory: {}
           };
         }

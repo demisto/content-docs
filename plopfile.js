@@ -82,6 +82,11 @@ const config = (plop) => {
         name: "changeLog",
         message: "Pack changelog",
       },
+      {
+        type: "list",
+        name: "dependencies",
+        message: "Pack dependencies",
+      },
     ],
     actions: [
       {
