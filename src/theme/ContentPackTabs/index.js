@@ -116,10 +116,13 @@ function ContentPackTabs(props) {
             {label}
           </li>
         ))}
-        <li className={clsx('tabs__item', styles.tabItem)}>
-          <a className={clsx("download", "button button--primary button--outline button--md" )}
+        <li className={clsx('tabs__item', styles.tabItem, styles.downloadTabItem, styles.noAnimation)}>
+          <a className={clsx("button button--primary button--outline button--md" )}
             href={downloadUrl}
-            target="_blank">Download</a>
+            target="_blank"
+            title="To ensure proper installation, automatically download all other content packs that are required by this pack. ">
+              Download With Dependencies
+          </a>
         </li>
       </ul>
 

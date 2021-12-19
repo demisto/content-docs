@@ -104,33 +104,26 @@ function travelDependenciesJson(firstLvlDepsJson, depsJson, startKey, packsTrave
 
   if (startKey in packsTravelled === false) {
     packsTravelled[startKey] = true;
-    travelDependenciesByType(depsJson, startKey, firstLvlDepsJson, 'mandatory', packsTravelled);
+    travelDependencies(depsJson, startKey, firstLvlDepsJson, packsTravelled);
     depsJson[startKey]['mandatoryCount'] = Object.keys(depsJson[startKey]['mandatory']).length;
-    travelDependenciesByType(depsJson, startKey, firstLvlDepsJson, 'optional', packsTravelled);
     depsJson[startKey]['optionalCount'] = Object.keys(depsJson[startKey]['optional']).length;
   }
 }
 
-function travelDependenciesByType(depsJson, startKey, firstLvlDepsJson, dependencyType, packsTravelled) {
+function travelDependencies(depsJson, startKey, firstLvlDepsJson, packsTravelled) {
   // Travel over the dependencies json of a given Pack dependency type, while collecting all sub-dependecy mandatory packs
   
   if (startKey in depsJson === false) {
     depsJson[startKey] = {...firstLvlDepsJson[startKey]};
   }
 
-  dependencyPacks = depsJson[startKey][dependencyType];
-  for (var depKey in depsJson[startKey][dependencyType]) {
+  dependencyPacks = depsJson[startKey]['mandatory'];
+  for (var depKey in depsJson[startKey]['mandatory']) {
     if (packsTravelled[depKey] === undefined) {
       travelDependenciesJson(firstLvlDepsJson, depsJson, depKey, packsTravelled);
     }
     
     // fill mandatory sub-dependecies
-    if (dependencyType === 'optional') {  // mandatory deps of optional go under special key
-      depsJson[startKey][dependencyType][depKey]['mandatory'] = {};
-      jsonToUpdate = depsJson[startKey][dependencyType][depKey]['mandatory'];
-    } else {
-      jsonToUpdate = depsJson[startKey][dependencyType];
-    }
     for (var subDepKey in depsJson[depKey]['mandatory']) {
       // skip if subDepKey is startKey or if subDepKey is already in node's collected mandatory
       if (subDepKey !== startKey && (depsJson[startKey]['mandatory'][subDepKey] === undefined) ) {
@@ -140,7 +133,7 @@ function travelDependenciesByType(depsJson, startKey, firstLvlDepsJson, dependen
         }
         // collect subDepKey chained mandatory dependecies (subDepKey incl.)
         for (var chainKey in getMandatoryChainDependencies(subDepKey, depsJson)) {
-          jsonToUpdate[chainKey] = {
+          depsJson[startKey]['mandatory'][chainKey] = {
             version: depsJson[chainKey].version,
             support: depsJson[chainKey].support === "xsoar" ? "Cortex XSOAR" : capitalizeFirstLetter(depsJson[chainKey].support)
           }
@@ -248,7 +241,7 @@ function genPackDetails() {
     }
     idToPackMetadata[metadata.id] = {
       version: metadata.currentVersion,
-      support: metadata.support == "xsoar" ? "Cortex XSOAR" : capitalizeFirstLetter(metadata.support)
+      support: metadata.support === "xsoar" ? "Cortex XSOAR" : capitalizeFirstLetter(metadata.support)
     };
     marketplace.push(metadata);
   });
@@ -348,10 +341,7 @@ function genPackDetails() {
       readme: pack.readme
         ? jsStringEscape(pack.readme)
         : "",
-      support:
-        pack.support == "xsoar"
-          ? "Cortex XSOAR"
-          : capitalizeFirstLetter(pack.support),
+      support: pack.support,
       created: new Date(pack.created).toLocaleString("en-US", {
         year: "numeric",
         month: "long",

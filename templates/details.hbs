@@ -233,7 +233,7 @@ return (
                             <Collapsible trigger="{{this.displayName}} ({{this.released}})">
                                 <article dangerouslySetInnerHTML=\{{ __html:
                                     converter.makeHtml("{{{this.releaseNotes}}}"), }}></article>
-                                <a className="button button--outline button--primary button--md" href="https://storage.googleapis.com/marketplace-dist/content/packs/{{../id}}/{{this.version}}/{{../id}}.zip" target="_blank">Download</a>
+                                <a className="button button--outline button--primary button--md" href="https://storage.googleapis.com/marketplace-dist/content/packs/{{../id}}/{{../id}}_with_dependencies.zip" target="_blank" title="Warning: Downloading this pack without its required dependencies may result in failed installation.">Download</a>
                             </Collapsible>
                         </div>
                     </div>

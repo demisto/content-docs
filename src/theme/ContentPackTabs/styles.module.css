@@ -21,3 +21,13 @@
     background-color: rgba(0, 0, 0, 0);
   }
 }
+
+.noAnimation:hover {
+  background-color: unset;
+}
+
+.downloadTabItem {
+  margin-left: 179px;
+  padding-bottom: 5px;
+  padding-top: 10px;
+}
