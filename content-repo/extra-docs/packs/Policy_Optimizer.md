@@ -64,9 +64,9 @@ To run the use-cases in this pack, you need to:
 
 2) In the incident creation form, select the use-cases (one or more) you want to trigger:
 
-	- Manage Rules with Unused Applications
-	- Manage Unused Rules
-	- Add Applications to Policy Rules
+- Manage Rules with Unused Applications
+- Manage Unused Rules
+- Add Applications to Policy Rules
 
 After creating the incident, the playbooks are triggered and you can see all the statistics of the selected use-case(s), and manage them using the playbook tasks.
 
