@@ -192,7 +192,7 @@ def get_beta_data(yml_data: dict, content: str):
 def get_packname_from_metadata(pack_dir):
     with open(f'{pack_dir}/pack_metadata.json', 'r') as f:
         metadata = json.load(f)
-    return metadata.get('name')
+    return metadata.get('name') if not metadata.get("hidden", False) else None
 
 
 def get_pack_link(file_path: str) -> str:
@@ -218,6 +218,10 @@ def get_pack_link(file_path: str) -> str:
         file_type = ''
     if 'ApiModules' in pack_name or 'NonSupported' in pack_name:
         return ''
+
+    if not pack_name_in_docs:  # this pack is hidden, don't add a link
+        return f"#### This {file_type} is part of the **{pack_name_in_docs}** Pack.\n\n" \
+            if file_type and pack_name and pack_name_in_docs else ''
     return f"#### This {file_type} is part of the **[{pack_name_in_docs}]({pack_link})** Pack.\n\n" \
         if file_type and pack_name and pack_name_in_docs else ''
 
