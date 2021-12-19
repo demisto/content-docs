@@ -1,6 +1,6 @@
 import Layout from "@theme/Layout";
 import TabItem from "@theme/TabItem";
-import Tabs from "@theme/Tabs";
+import ContentPackTabs from "../../../../theme/ContentPackTabs";
 import clsx from "clsx";
 import React from "react";
 import Collapsible from "react-collapsible";
@@ -27,9 +27,8 @@ return (
     </div>
 
     <main className={clsx("container", "contentPackAlign" )}>
-        <Tabs defaultValue="details" values={[ { label: "Details" , value: "details" }, { label: "Content" ,
-            value: "content" }, { label: "Depndencies" , value: "dependencies" }, { label: "Version History" , value: "versions" }]}>
-            <a className="button button--outline button--primary button--md" href="https://marketplace-dist.storage.googleapis.com/content/packs/{{id}}/{{currentVersion}}/{{id}}.zip" target="_blank">Download</a>
+        <ContentPackTabs defaultValue="details" downloadUrl="https://marketplace-dist.storage.googleapis.com/content/packs/{{id}}/{{currentVersion}}/{{id}}.zip"
+        values={[ { label: "Details" , value: "details" }, { label: "Content" , value: "content" }, { label: "Dependencies" , value: "dependencies" }, { label: "Version History" , value: "versions" }]}>
             <TabItem value="details">
                 <div className="row">
                     <div className={clsx("col col--8" )}>
@@ -242,7 +241,7 @@ return (
                 {{/each}}
                 {{/if}}
             </TabItem>
-        </Tabs>
+        </ContentPackTabs>
     </main>
 </Layout>
 );
