@@ -40,12 +40,10 @@ Cortex XSOAR’s [Ecosystem webpage](https://www.paloaltonetworks.com/cortex/xso
 ![Ecosystem_benefits](../doc_imgs/partners/Ecosystem_benefits.png)
 Ecosystem page
 
+| Ecosystem Webpage |  |
+|--- |---|
+| <img src="../doc_imgs/partners/Ecosystem_benefits.png" width="100px;"/> | Cortex XSOAR’s [Ecosystem webpage](https://www.paloaltonetworks.com/cortex/xsoar-ecosystem) is publically accessible and linked directly from the main Cortex XSOAR site. The Ecosystem page has tabs for Featured, New, and Premium content packs to highlight our partners. This is updated often to reflect our ever growing Marketplace! | 
 
-| Ecosystem Webpage | |
-| ----------- | ----------- |
-|
-![Ecosystem_benefits](../doc_imgs/partners/Ecosystem_benefits.png)| Cortex XSOAR’s [Ecosystem webpage](https://www.paloaltonetworks.com/cortex/xsoar-ecosystem) is publically accessible and linked directly from the main Cortex XSOAR site. The Ecosystem page has tabs for Featured, New, and Premium content packs to highlight our partners. This is updated often to reflect our ever growing Marketplace! |
-|   |    |
 
 ## Solution Brief
 Partners use the Palo Alto Networks logos and branding in their solution brief. After the review process completes, all assets are hosted and made available from the Palo Alto Networks website. 
