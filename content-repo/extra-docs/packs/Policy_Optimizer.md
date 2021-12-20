@@ -7,7 +7,7 @@ description: Automate your AppID Adoption by using the PAN-OS Policy Optimizer i
 Automate your AppID Adoption by using the PAN-OS Policy Optimizer integration and playbooks together with your Palo Alto Networks Next-Generation Firewall or Panorama.
 
 ## What Does This Pack Do?
-The Policy Optimizer integration in this content pack enables you to gain visibility into and control usage of Security policy rules.
+The Policy Optimizer integration in this content pack enables you to gain visibility into and control usage of security policy rules.
 
 The playbooks in this pack also help you automate the following procedures to reduce the attack surface and safely enable applications on your network.
 
@@ -35,11 +35,11 @@ This content pack contains the following playbooks: (LINK TO PLAYBOOK DOCS)
 
 - **Policy Optimizer - Manage Port Based Rules** - This playbook migrates port-based rules to application-based allow rules to reduce the attack surface and safely enable applications on your network.
 
-- **Policy Optimizer - Manage Rules with Unused Applications** - This playbook helps identify and remove unused applications from Security policy rules. If you have application-based Security policy rules that allow a large number of applications, you can remove unused applications (applications never seen on the rules) from those rules to allow only applications actually seen in the rule’s traffic. This strengthens your security posture by reducing the attack surface.
+- **Policy Optimizer - Manage Rules with Unused Applications** - This playbook helps identify and remove unused applications from security policy rules. If you have application-based security policy rules that allow a large number of applications, you can remove unused applications (applications never seen on the rules) from those rules to allow only applications actually seen in the rule’s traffic. This strengthens your security posture by reducing the attack surface.
 
 - **Policy Optimizer - Manage Unused Rules** - This playbook helps identify and remove unused rules that do not pass traffic in your environment.
 
-- **Policy Optimizer - Add Applications to Policy Rules** - This playbook edits rules with unused applications or rules that are port based, and adds an application to the rule. It is used in PAN-OS - Policy Optimizer playbooks and includes communication tasks to get a rule name and the application to edit from the user.
+- **Policy Optimizer - Add Applications to Policy Rules** - This playbook edits rules with unused applications or rules that are port based, and adds an application to the rule. It includes communication tasks to get a rule name and the application to edit from the user.
 
 ## Incident Types
 **Policy Optimizer** - The incident type that triggers the **Policy Optimizer - Generic** playbook. Creating this incident lets you select which of the **PAN-OS Policy Optimizer** use-cases you want to trigger (Multi-select option).
@@ -64,9 +64,9 @@ To run the use-cases in this pack, you need to:
 
 2) In the incident creation form, select the use-cases (one or more) you want to trigger:
 
-- Manage Rules with Unused Applications
-- Manage Unused Rules
-- Add Applications to Policy Rules
+    - Manage Rules with Unused Applications
+    - Manage Unused Rules
+    - Add Applications to Policy Rules
 
 After creating the incident, the playbooks are triggered and you can see all the statistics of the selected use-case(s), and manage them using the playbook tasks.
 
