@@ -40,9 +40,11 @@ Cortex XSOAR’s [Ecosystem webpage](https://www.paloaltonetworks.com/cortex/xso
 ![Ecosystem_benefits](../doc_imgs/partners/Ecosystem_benefits.png)
 Ecosystem page
 
-| Ecosystem Webpage |  |
+## Ecosystem Webpage
+
+|  |  |
 |--- |---|
-| <img src="../doc_imgs/partners/Ecosystem_benefits.png" width="100px;"/> | Cortex XSOAR’s [Ecosystem webpage](https://www.paloaltonetworks.com/cortex/xsoar-ecosystem) is publically accessible and linked directly from the main Cortex XSOAR site. The Ecosystem page has tabs for Featured, New, and Premium content packs to highlight our partners. This is updated often to reflect our ever growing Marketplace! | 
+| <img src="../doc_imgs/partners/Ecosystem_benefits.png" width="200px;"/> | Cortex XSOAR’s [Ecosystem webpage](https://www.paloaltonetworks.com/cortex/xsoar-ecosystem) is publically accessible and linked directly from the main Cortex XSOAR site. The Ecosystem page has tabs for Featured, New, and Premium content packs to highlight our partners. This is updated often to reflect our ever growing Marketplace! | 
 
 
 ## Solution Brief
