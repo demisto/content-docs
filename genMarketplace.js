@@ -264,8 +264,7 @@ function genPackDetails() {
         } else {
           dependenciesJson["optional"][depId] = {
             version: idToPackMetadata[depId].version,
-            support: idToPackMetadata[depId].support,
-            mandatory: {}
+            support: idToPackMetadata[depId].support
           };
         }
       }
@@ -341,7 +340,10 @@ function genPackDetails() {
       readme: pack.readme
         ? jsStringEscape(pack.readme)
         : "",
-      support: pack.support,
+      support:
+        pack.support == "xsoar"
+          ? "Cortex XSOAR"
+          : capitalizeFirstLetter(pack.support),
       created: new Date(pack.created).toLocaleString("en-US", {
         year: "numeric",
         month: "long",
