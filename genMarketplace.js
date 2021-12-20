@@ -85,7 +85,7 @@ function createReadmeLink(listItem, itemType) {
   return Promise.resolve();
 }
 
-function travelDependenciesJson(firstLvlDepsJson, depsJson, startKey, packsTravelled) {
+function travelDependenciesJson(firstLvlDepsJson, depsJson, startKey) {
   /* Travels over the dependencies json to create a depdendencies map for each entry starting with startKey like so:
   {
     startKey: {
@@ -95,22 +95,25 @@ function travelDependenciesJson(firstLvlDepsJson, depsJson, startKey, packsTrave
         }
       },
       optional: {
-        version: version,
-        mandatory: {...}
-      }
+        packName: {
+          version: version
+        }
+      },
+      version: "...",
+      "mandatoryCount": ...,
+      "optionalCount": ...
     }
   }
   */
 
-  if (startKey in packsTravelled === false) {
-    packsTravelled[startKey] = true;
-    travelDependencies(depsJson, startKey, firstLvlDepsJson, packsTravelled);
+  if (startKey in depsJson === false) {
+    travelDependencies(depsJson, startKey, firstLvlDepsJson);
     depsJson[startKey]['mandatoryCount'] = Object.keys(depsJson[startKey]['mandatory']).length;
     depsJson[startKey]['optionalCount'] = Object.keys(depsJson[startKey]['optional']).length;
   }
 }
 
-function travelDependencies(depsJson, startKey, firstLvlDepsJson, packsTravelled) {
+function travelDependencies(depsJson, startKey, firstLvlDepsJson) {
   // Travel over the dependencies json of a given Pack dependency type, while collecting all sub-dependecy mandatory packs
   
   if (startKey in depsJson === false) {
@@ -119,17 +122,17 @@ function travelDependencies(depsJson, startKey, firstLvlDepsJson, packsTravelled
 
   dependencyPacks = depsJson[startKey]['mandatory'];
   for (var depKey in depsJson[startKey]['mandatory']) {
-    if (packsTravelled[depKey] === undefined) {
-      travelDependenciesJson(firstLvlDepsJson, depsJson, depKey, packsTravelled);
+    if (depsJson[depKey] === undefined) {
+      travelDependenciesJson(firstLvlDepsJson, depsJson, depKey);
     }
     
     // fill mandatory sub-dependecies
     for (var subDepKey in depsJson[depKey]['mandatory']) {
       // skip if subDepKey is startKey or if subDepKey is already in node's collected mandatory
       if (subDepKey !== startKey && (depsJson[startKey]['mandatory'][subDepKey] === undefined) ) {
-        if (packsTravelled[subDepKey] === undefined) {
+        if (depsJson[subDepKey] === undefined) {
           // subDepKey wasn't yet traveled
-          travelDependenciesJson(firstLvlDepsJson, depsJson, subDepKey, packsTravelled);
+          travelDependenciesJson(firstLvlDepsJson, depsJson, subDepKey);
         }
         // collect subDepKey chained mandatory dependecies (subDepKey incl.)
         for (var chainKey in getMandatoryChainDependencies(subDepKey, depsJson)) {
@@ -181,7 +184,6 @@ function genPackDetails() {
   let idToPackMetadata = {};
   const firstLeveldepsMap = {};  // map of dependencies per pack ID (first level)
   const fullDepsJson = {};  // map of dependencies per pack ID (all levels)
-  const packsTravelled = {};  // map of packs that were fully travelled while creating fullDepsJson
   const detailsPages = globby.sync(["./src/pages/marketplace"], {
     absolute: false,
     objectMode: true,
@@ -322,7 +324,7 @@ function genPackDetails() {
     try {
       if (pack.dependencies) {
         if (pack.id in fullDepsJson === false) {
-          travelDependenciesJson(firstLeveldepsMap, fullDepsJson, pack.id, packsTravelled)
+          travelDependenciesJson(firstLeveldepsMap, fullDepsJson, pack.id)
         }
       }
     } catch (err) {
