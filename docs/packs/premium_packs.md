@@ -11,7 +11,7 @@ In this document we explain step-by-step how to develop paid content for the XSO
 1. After you finish the work on the pack you should invite the `xsoar-bot` user as a collaborator to your repository so that we will be able to review your contribution and add it to our build system.
 For more information, see [how to invite collaborators to a personal repo](https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/inviting-collaborators-to-a-personal-repository).
 1. Send the details of the pack to your point of contact, and they will link your contribution to our system.
-1. After we receieve your pack, it enters the ***Review Phase***, in which we review your pull request and provide feedback/comments. In parallel to the review, we perform an internal validation process for your pack. In order to approve your pull request, the following criteria must be satisfied:
+1. After we receive your pack, it enters the ***Review Phase***, in which we review your pull request and provide feedback/comments. In parallel to the review, we perform an internal validation process for your pack. In order to approve your pull request, the following criteria must be satisfied:
    - Pull request build must pass.
    - Implement all feedback/comments that we provide in the pull request.
    - Internal validation process must pass. If the validation process fails, we will update you and explain why it failed.
