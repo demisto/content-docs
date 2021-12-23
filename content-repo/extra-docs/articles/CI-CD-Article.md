@@ -4,90 +4,55 @@ title: XSOAR CI/CD
 description: Develop and test your content using CI/CD, before using it in a production environment.
 ---
 
-In Cortex XSOAR, you can develop and test your content on other machines, before using it in a production environment. You can do this by using one of the following options:
+In Cortex XSOAR, you can develop and test your content on other machines, before using it in a production environment. You can do this by using [the remote repository feature in the UI](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-5/cortex-xsoar-admin/remote-repository/remote-repositories-overview.html) or using the CI/CD process.
+	   
  
- - **Using the Remote Repository feature in Cortex XSOAR**
-
-	Enables you to work in separate repositories for development and production environments, which is set up in Cortex XSOAR. Cortex XSOAR content updates are delivered only to the development environment. When content is ready, push the content to the production environment via a Git repository. In your production environment, you pull the content as you would all other content updates.   
-You should use this remote repository feature for non-complex and minimal content (such as one developer building on a local machine). For more information, see [Remote Repositories via the UI](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-5/cortex-xsoar-admin/remote-repository/remote-repositories-overview.html).
- - **Using the CI/CD process**  
-Use CI/CD to develop and maintain your own custom content for more complex content development. Instead of building and maintaining your code on the Cortex XSOAR development environment, you can build from your own repository and utilize third party tools (like Gitlab, Jenkins, etc), build servers, artifact servers, etc. You can also add to your development and testing process version control, code review, distributed developing environments, automatic testing, etc. CI/CD has 2 major advantages over using the remote repository feature in Cortex XSOAR.
-    - Control your code base with a multi-branch approach. Multiple developers can work on different branches. You can have code reviews, issue pull requests, etc.
-    - Use CI/CD solutions (like Gitlab, Jenkins, etc) as part of your testing and deployment. You also have the ability to run automatic testing.
-
-    **NOTE:** To use this process you need to have a Git repository. Github, Gitlab and Bitbucket are currently supported.
-
 ## The CI/CD process
+The CI/CD process helps you develop and maintain content for complex content development using the full functionality of a Git repository, enabling you to run unit tests, code reviews, run test playbooks, etc. Instead of building and maintaining code on a Cortex XSOAR development environment, you can build content from your own repository, build servers, and utilize third party tools (like CircleCI, Jenkins, etc). You can also use version control, undertake code reviews, do lint and validations, use automatic testing, run tests on development machines, etc. 
+
+
+
+The process is designed for more advanced users who have an understanding of CI/CD concepts and have a number of developers who work on local machines. The remote repository feature in the UI is designed for less complex content (one or two developers working on a local machine).  
+
+
+
+
+CI/CD has the following advantages over using the remote repository feature in Cortex XSOAR:
+- Controls the code base with a multi-branch approach. Multiple developers can work on different branches. You can have code reviews, issue pull requests, etc.
+- Use CI/CD solutions (like CircleCI, Jenkins, etc) as part of your testing (including running test playbooks) and deployment. You also have the ability to run automatic testing.
+
+**NOTE:** To use this process you need to have a Git repository. Github, Gitlab and Bitbucket are currently supported.
 
 The CI/CD process involves the following stages:
- - **Development**: Includes creating a repository, configuration steps, how to deploy, etc.
- - **Deployment**:  Enables you to push content either directly to the server or via an artifact server, such as Google Cloud Storage. 
+- [Development](#development)
+- [Testing/staging](#testingstaging)
+- [Depoloyment](#deployment)
 
-    If using an artifact server, you need to download and install the [XSOAR CI/CD](https://xsoar.pan.dev/docs/reference/packs/content-management) Content Pack, which enables you to monitor, install content packs via a Playbook, incident type, etc. If not using an artifact server, users can directly install content packs in the  Marketplace.  The CI/CD process uses `demisto-sdk` to download, upload, validate, and create content, etc.
-
-### demisto-sdk
-
-The [demisto-sdk](https://xsoar.pan.dev/docs/concepts/demisto-sdk) aids the development process to validate entities being developed and to assist in the interaction between your development setup and Cortex XSOAR. It is required to develop and deploy custom content packs and enables you to do the following:
- - Create Content Packs
- - Upload and download custom content packs
- - Generate documents
- - Validate content
- - Generate zipped Content Packs
- - Generate outputs (JSON)
- - Generate test playbooks
- - Run and test integrations
-For a full list of the commands and arguments, see [demisto-sdk-commands](https://github.com/demisto/demisto-sdk#commands). 
-
-### Migration
-
-If you currently use the existing remote repository feature in Cortex XSOAR and now want to use the CI/CD process, you can download the content from your development machine using the `demisto-sdk download` command. 
-
-To add content from your test environment, type the following command to add to the content pack:
-<br/> `demisto-sdk download -o address of the pack folder -i name of the content`
-<br/> **NOTE:** Ensure that the `DEMISTO_BASE_URL` and `DEMISTO_API_KEY` are set to the server environment that you want to download.
-
-If you have a lot of content, downloading can take a substantial amount of time, as it creates separate folders for each pack. It is recommended to create one folder with a general name and then separate them into branch repositories.
+For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
 
 
+ ### Development
+ 
+ In the development stage, [set up the CI/CD process](#setup-the-cicd-development-process) by creating or cloning a Git repository based on the [CI/CD template repository](https://github.com/demisto/content-ci-cd-template). You can then create and maintain your custom content with the built-in functionality of [demisto-sdk](https://xsoar.pan.dev/docs/concepts/demisto-sdk). The CI/CD process uses `demisto-sdk` to develop and deploy custom content packs. It downloads, uploads, validates, creates content, migrates content from a Cortex XSOAR server, etc. It also supports content pack structure generation, auto validation of custom content including running linters on the code, and generation of content pack documentation, etc. For a full list of features, commands, and arguments, see [demisto-sdk-commands](https://github.com/demisto/demisto-sdk#commands).
 
-### Development
-Before you start using CI/CD, consider the following:
+ **NOTE**: Playbook development is undertaken on the Cortex XSOAR server, which you can download to your machine.
 
- - Whether you are going to use an artifact server to deploy your content (includes content versioning, rollback, etc).
- - Whether you will deploy the content directly to a server.
- - When you want to deploy.  By default, deploy occurs when content is pushed from a branch repository to a master repository.
+ #### Setup the CI/CD Development Process
+ 
+ Before you begin, download and install the `demisto-sdk` on your machine.  
+ 
+ Ensure that the `DEMISTO_BASE_URL` and `DEMISTO_API_KEY` are set to the server environment that you want to use. For example, if you want to upload content directly to the server without using an artifact server you need to point the server to this environment. When working on a branch and you want to download/upload to a development environment, ensure that the `demisto-sdk` points to the development server.
+ 1. **Create the CI/CD Repository.**
 
-### Artifact Server
-When you have finished creating custom content packs, you can either upload the content to the server direct, or upload to an artifact server. It enables you to maintain and control version deployment and rollbacks so you can keep track of your work. The versions are saved in the artifact server.
-
-![artifacts_server.png](../../../docs/doc_imgs/reference/XSOAR-CICD/artifacts_server.png)
-
-Although you can choose your own artifact repository, (such as AWS, GCP, Git, FTP server, etc) by default, the CI/CD process uses Google Cloud Storage. You need to install the [Google Cloud Storage Content Pack](https://xsoar.pan.dev/docs/reference/integrations/google-cloud-storage) and configure the integration. If using another storage provider, such as AWS you need to install the relevant Content Pack and set up the integrations as necessary.
-
-### Without an Artifact Server
-You can deploy your content without the need for an artifact server. If you do not use an artifact server, the `demisto-sdk upload` command, uploads the content pack directly to the Marketplace. When content is pushed to master, the content is automatically deployed to the server.
-
-![without_artifacts_server.png](../../../docs/doc_imgs/reference/XSOAR-CICD/without_artifacts_server.png)
-
-By default the CI/CD process uses an artifact server. You can change this in the config.yml file, as referred to in step 5 in Set up the CI/CD process below.
-
-### Set up the CI/CD Process
-After installing the `demisto-sdk`, you need to set up a repository. You can then create branches to work on the content packs. When validated, deploy the content.  
- 1. **Download and install the `demisto-sdk`.**
-    
-    Download, install and configure the `demisto-sdk` on your machine. 
-    Ensure that the `DEMISTO_BASE_URL` and `DEMISTO_API_KEY` are set to the server environment that you want to use. For example, if you want to upload content directly to the server without using an artifact server you need to point the server to this environment. When working on a branch and you want to download/upload to a development environment, the `demisto-sdk` should point to the development server.
- 2. **Set up the CI/CD Repository.**
-
-    After you have installed the `demisto-sdk` you need to create or clone a Git repository (such as Github, Gitlab, bitbucket,etc) in accordance with the hierarchical structure set out in this [repository](https://github.com/demisto/content-ci-cd-template) to use, as your base. The `demisto-sdk` connects to this Git repository or a general repository and then automatically connects to Cortex XSOAR servers with the API, to ensure that it validates Cortex XSOAR content.
+    Create or clone a Git repository (such as Github, Gitlab, bitbucket,etc). Use [CI/CD template repository](https://github.com/demisto/content-ci-cd-template) as your base structure. The `demisto-sdk` connects to this Git repository and then automatically connects to Cortex XSOAR servers using the API, to ensure that it validates Cortex XSOAR content.
     The repository contains the following content:
     
     | Content | Description |
     | ------- | ----------- |
-    | `config.yml` | The CI/CD configuration file (in the `.github\workflows` folder), which validates the content pack, creates an ID set, runs tests, etc. You need to update the file with your repository and whether you want to use an artifact server.  For more information, see step 5 below. |
+    | `config.yml` | The CI/CD configuration file (in the `.github\workflows` folder), which validates the content pack, creates an ID set, runs tests, etc. When you want to deploy your content, you need to update the file with your repository and whether you want to use an artifact server.  For more information, see Configuring the config.yml file in [Deployment](#deployment). |
     | `pre-commit` | Within the `.hooks` folder, the pre-commit file uses the Git rebase interactive tool for manual control of your history revision process. |
     | `.vsc code` | Used when using VSC as your IDE. |
-    | `build_related_scripts` | Contains the CI/CD scripts. The `Update build_related_scripts/bucket_upload.py` script enables you to upload to Google Cloud Storage (artifact server).  You  need to update the name of the bucket list when uploading the Google Cloud Storage. <br/> NOTE: If using another storage application such AWS, you need to replace Google Cloud Storage. Contact Customer Support to assist with this. <br/> The `get_modified_packs` script enables you to get the latest version of the content pack before merging. |
+    | `build_related_scripts` | Contains the CI/CD scripts. The `Update build_related_scripts/bucket_upload.py` script enables you to upload to Google Cloud Storage (artifact server).  Before deploying your content, you need to update the name of the bucket list when uploading the Google Cloud Storage. For more information, see Configure the the bucket_upload.py file in [Deployment](#deployment). <br/> **NOTE**: If using another storage application such AWS, you need to replace Google Cloud Storage. Contact Customer Support to assist with this. <br/> The `get_modified_packs` script enables you to get the latest version of the content pack before merging. |
     | `dev_envs/pytest`| A folder that contains the `conftest.py`, which validates python files. |
     | `.demisto-sdk-conf`| The custom configuration file for the `demisto-sdk` commands. For more information, see [Setting a preset custom command configuration](https://xsoar.pan.dev/docs/concepts/demisto-sdk#setting-a-preset-custom-command-configuration). |
     | `.gitignore` | Specifies intentionally untracked files that Git should ignore. |
@@ -101,65 +66,39 @@ After installing the `demisto-sdk`, you need to set up a repository. You can the
     | `tox.ini` | The command-line driven automated testing tool for Python. |
     | `xsoar_config.json` | The configuration file that defines what packs lists, and jobs will be set up on the machine. Update this when you are ready to deploy. See step 10 below. |
 
- 3. **(Optional) Set up the repository to work with an IDE.**
+ 2. **(Optional) Set up the repository to work with an IDE.**
     
     For example if working with GitHub via VSC, download Git desktop and then Configure VSC.  Ensure that you enable Git in your IDE tool (Code>Preferences>Settings).
- 4. **Create branches for content.**
+ 3. **Create branches for content.**
     
-    Create content on separate branches for content packs. Different developers are able to create content independently, which makes it easier to review content, create pull requests, test the content on a machine, etc. 
- 5. **Configure the `config.yml` file.**
-
-    When you clone the repository, a [config.yml](https://github.com/demisto/content-ci-cd-template/blob/master/.github/workflows/config.yml) file is included in the repository (`github\workflows` folder). This file runs various commands and validates the content before you push the content. For example, it validates Content Packs, runs unit tests and linters and creates and uploads Content Pack zips. 
-    
-    5.1.  Update the repository details under `steps`:
-    
-    ```
-    steps:
-      - name: XSOAR CI/CD master checkout
-        uses: actions/checkout@v2
-        with:
-          repository: your/repository
-          path: repository
-          fetch-depth: 0
-    ```
-    For example:
-    ```
-        repository: demisto/content-ci-cd-template
-        path: content-ci-cd-template
-    ```
-    
-    5.2. If not using an artifact server, replace the following section:
-    
-            # ========= UPLOAD TO ARTIFACTS SERVER OPTION =========
-            # TODO: Upload to the artifacts server of your choice.
-            # Create a file with the service account data
-            # use the bucket_upload script to upload your packs to google cloud storage
-            python $GITHUB_WORKSPACE/repository/build_related_scripts/bucket_upload.py --service_account $GITHUB_WORKSPACE/service_account.json --packs_directory $NEW_PACKS_FOLDER --branch_name $BRANCH_NAME
-            # Delete the service account file
-            rm $GITHUB_WORKSPACE/service_account.json
-    
-    To:
-
-            # ========= UPLOAD DIRECTLY TO YOUR XSOAR MACHINE (WHEN MERGING TO MAIN REPO) =========
-            if [ $BRANCH_NAME != master ]; then
-              CONFIG_FILE=$(cat xsoar_config.json)
-              MARKETPLACE_PACKS_LIST=$(cat $CONFIG_FILE | jq -r '.marketplace_packs')
-              # Upload Custom Packs
-              demisto-sdk upload --input-config-file /xsoar_config.json
-              # Upload MarketPlace Packs
-              python3 build_related_scripts/MarketPlaceInstallerFromCICD.py --marketplace-packs-list $MARKETPLACE_PACKS_LIST
-
-    **NOTE:** If not using an artifact server, in Cortex XSOAR, ensure that the server configuration (Settings>ABOUT>Troubleshooting)  `content.pack.verify` is set to `false` (enables you to import custom Content Packs that are not provided by Cortex XSOAR).
+    Create content on separate branches for content packs. Different developers are able to create content independently, which makes it easier to review content, create pull requests, test the content on a machine, etc.
  
- 6. **Review the lint validations in the `demisto-sdk-conf` file.**
+ 
+ 4. **(Optional) Migrate custom content in Cortex XSOAR to Git Repository**.
 
- 7. **Create Content.**
- 	In a branch that has been created in step 4 above, create either new content or download content from a development environment.
+    You can migrate all custom content or separate items of content.
+    **NOTE:** Ensure that the `DEMISTO_BASE_URL` and `DEMISTO_API_KEY` are set to the server environment that you want to download. 
+  - **Migrate all custom content**
+    If you currently use the existing remote repository feature in Cortex XSOAR and now want to use the CI/CD process, download the content from your development machine using the `demisto-sdk download` command. For example, to download content from your remote repository to your repository created in step 1, run the following command: 
+    <br/> `demisto-sdk download -o address_of_the_pack_folder -i name_of_the_content`
 
-    7.1 **Create New Content.**
+    If you have a lot of content, downloading can take a substantial amount of time, as it creates separate folders for each pack. It is recommended to create one folder with a general name and then separate them into branch repositories.
+
+- **Migrate some custom content**
+  If you want to migrate some custom content like an integration,  run the download command by specifying the content. For example, to add an `CICDExample` integration to the *CICDExample* Content Pack, run the following command:
+        `demisto-sdk download -o Packs/CICDExample -i CICDExample`
+        The `CICDExample` integration file appears in the `Integrations` folder, which separates the content into Python and YML files together with a `README.md`.
     
-    Run the `demisto-sdk init` command. The `init` command automatically generates the content pack structure. <br/> Follow the on-screen instructions by typing the name of the Content Pack, metadata, description, type of Pack, category, author, email address,tags, integration, etc.
-    The Pack appears in the repository with the required folders. You can delete those items that are not needed.  In this example, we create a new pack called CICDExample. 
+    ![cicd_integration.png](../../../docs/doc_imgs/reference/XSOAR-CICD/cicd_integration.png)
+     
+     **NOTE:**  You can download directly from the development server. If downloading Automations and integrations, you need to use the `demisto-sdk split` command to split the content into the correct format.
+
+ 
+5. **Create New Content.**
+ 	In a branch that has been created in step 3 above, create new content, by running the following command:
+     `demisto-sdk init` 
+     <br/> The `init` command automatically generates the content pack structure. <br/> Follow the on-screen instructions by typing the name of the Content Pack, metadata, description, type of Pack, category, author, email address,tags, integration, etc.
+    The Pack appears in the repository with the required folders. You can delete those items that are not needed.  In this example, we create a new content pack, called *CICDExample*. 
         
     ![pack_example.png](../../../docs/doc_imgs/reference/XSOAR-CICD/pack_example.png) 
     The content pack contains the following content:
@@ -186,50 +125,146 @@ After installing the `demisto-sdk`, you need to set up a repository. You can the
     | `doc_files` | Contains images in PNG format. |
     | `pack_metadata.json` |  Metadata about the content pack. For example, name, version, description. Every time it changes, you should update the version |
 
-	7.2 **Download content.** 
-    
-    If you develop custom content via the UI, run the `demisto-sdk download` command to download it to a branch or develop custom content. Ensure that the `DEMISTO_BASE_URL` and `DEMISTO_API_KEY` are set to the server environment that you want to download. 
-    
-    Type the following command to add to an existing content pack in your repository:
-        `demisto.sdk download -o address of the folder -i name of the content`
-        
-    For example, to add an `CICDExample` integration to the CICDExample Content Pack, type:
-        `demisto-sdk download -o Packs/CICDExample -i CICDExample`
-        
-    The `CICDExample` integration file appears in the `Integrations` folder, which separates the content into Python and YML files together with a `README.md`.
-    ![cicd_integration.png](../../../docs/doc_imgs/reference/XSOAR-CICD/cicd_integration.png)
-     
-     **NOTE:** For Automations and integrations, the content needs to be split. If downloading directly from the development server use the `demisto-sdk split` command. 
-
-    7.3 **Add any additional files that are required.**
-        
-	You might want to add a `Release Notes`, `secrets-ignore`, or `pack ignore` folders. You can see how the Content hierarchy appears in the [Hello World](https://github.com/demisto/content/tree/master/Packs/HelloWorld) Content Pack. 
 	
-    7.4 **(Optional): Upload content to a test environment:**
-    
-    Upload content to the testing server by using the following command:
-    `Demisto-sdk upload -i Packs/mypack`
-    
-    **NOTE:** Remember to update the the `DEMISTO_BASE_URL` and `DEMISTO_API_KEY`, if required. 
-    For example, to upload an integration, type `demisto-sdk upload -i Packs/CICDExample -i CICDExample` 
-    
-    7.5 **Generate a README for your integration, script, or playbook.**
+6. **Add any additional files that are required.**
+        
+    You might want to add a `Release Notes`, `secrets-ignore`, or `pack ignore` folders. You can see how the Content hierarchy appears in the [Hello World](https://github.com/demisto/content/tree/master/Packs/HelloWorld) Content Pack.
+
+
+7. **Generate a README for your integration, script, or playbook.**
     
     Run the following command:
         `Demisto-sdk generate-docs --insecure -e directory`
-        For more information, see [creating documentation](https://xsoar.pan.dev/docs/documentation/readme_file#creating-documentation). 
+        For more information, see [creating documentation](https://xsoar.pan.dev/docs/documentation/readme_file#creating-documentation).   
+    
+    
+   
 
-    7.6 **Open a Pull Request for other developers to review.**
+
+## Testing/Staging
+
+In testing/staging proceess, you can do the following:
+
+- Utilize 3rd party CI/CD Solutions, such as Circle CI, Jenkins, etc.
+- Run validations and automated tests from a testing server as part of a build process.
+- Run test playbooks.
+   
+
+
+#### To test Content:
+
+Before you begin, ensure that you have installed the following:
+- Your CI/CD solution (such as CircleCI).
+- Docker, or applications like Mypy, Flake8, pylint, pytest, etc., for validations and lint commands.  
+
+1. **Review the lint validations in the `demisto-sdk-conf` file.**
+    
+2. **(Optional): Upload the content to a test staging environment**.
+    
+    Run the following command:
+    `Demisto-sdk upload -i Packs/mypack`
+    For example, to upload an integration, type `demisto-sdk upload -i Packs/CICDExample -i CICDExample` 
+    **NOTE:** Update the `DEMISTO_BASE_URL` and `DEMISTO_API_KEY`, if required. 
+    
+3. **Test the content and run test playbooks, as required**.
+
+3. **Open a Pull Request for other developers to review.**
         
-	CI/CD checks the changes - validations, lints, etc. If it requires approval you have to wait before being able to merge. The validation is done according to the hooks in your repository. When you push the pull request, the CI/CD process runs automatically. <br/>
+    Using your CI/CD solution, it checks the changes - validations, lints, etc. If it requires approval, you have to wait before being able to merge. The validation is done according to the hooks in your repository. When you create the pull request, the CI/CD process runs automatically. <br/>
+
 
     ![github_notsuccess.png](../../../docs/doc_imgs/reference/XSOAR-CICD/github_notsuccess.png)
+  
 
- 8. **(Artifact Server only) Configure the the `bucket_upload.py` file.**
+
+After the testing has completed successfully, you are now ready to deploy content.
+
+
+
+ ## Deployment
  
- 	Update the bucket name, main bucket path and format file before pushing any content from your Git repository. The artifact server is based on Google Cloud Storage. <br/> If using a different storage provider, you need to update the `bucket_upload.py` file with the required artifact server information. Contact Customer Support if you need to change this.
+
+In  the deployment stage, you can do the following: 
+- Control both custom and out-of-the-box content packs deployment into production.
+- Deploy via an artifact server or directly to the Cortex XSOAR production server.
+
+By default, deployment occurs when content is pushed from a branch repository to a master repository. Before deployment, you need to consider whether to deploy via an artifact server.
+
+ 
+ ### Artifact Server
+
+An artifact server such as Google Cloud Services, enables you to  maintain and control version deployment and rollbacks, so you can keep track of your work. Each content pack version is saved in separate folders in the artifact server. You can use the [XSOAR CI/CD](https://xsoar.pan.dev/docs/reference/packs/content-management) Content Pack, to fetch the content from the artifact server to the Cortex XSOAR server. The content pack enables you to monitor, install content packs via a Playbook, incident type, etc. 
+
+
+
+![artifacts_server.png](../../../docs/doc_imgs/reference/XSOAR-CICD/artifacts_server.png)
+
+Although you can choose your own artifact repository, (such as AWS, GCP, Git, FTP server, etc) by default, the CI/CD process uses Google Cloud Storage. You need to install the [Google Cloud Storage Content Pack](https://xsoar.pan.dev/docs/reference/integrations/google-cloud-storage) and configure the integration. If using another storage provider, such as AWS you need to install the relevant Content Pack and set up the integrations as necessary.
+
+The main advantage of the artifact server is version control and rollback. You update the xsoar_config.json file with any version change, rather than having to update the repository.
+
+
+
+### Without an Artifact Server
+You can deploy your content without the need for an artifact server. If you do not use an artifact server, the `demisto-sdk upload` command, uploads the content pack directly to the Marketplace. When content is pushed to master, the content is automatically deployed to the server.
+
+![without_artifacts_server.png](../../../docs/doc_imgs/reference/XSOAR-CICD/without_artifacts_server.png)
+
+By default the CI/CD process uses an artifact server. You can need to update this in the config.yml file.
+
+
+Although you do not have the flexibility of version control and rollback, it is relatively easy to set up, as you do not need to configure the artifact server and you do not an integration or set up the XSOAR CI/CD Content Pack. The user can decide whether to install from the Marketplace. 
+
+#### To deploy content:
+  
+1. **Configure the `config.yml` file.**
+
+    When you clone the repository, a [config.yml](https://github.com/demisto/content-ci-cd-template/blob/master/.github/workflows/config.yml) file is included in the repository (`github\workflows` folder). 
     
- 9. **Configure the `xsoar_config.json` file.**
+    1.1 Update the repository details under `steps`:
+    
+    ```
+    steps:
+      - name: XSOAR CI/CD master checkout
+        uses: actions/checkout@v2
+        with:
+          repository: your/repository
+          path: repository
+          fetch-depth: 0
+    ```
+    For example:
+    ```
+        repository: demisto/content-ci-cd-template
+        path: content-ci-cd-template
+    ```
+    
+   1.2 If not using an artifact server, replace the following section:
+    
+            # ========= UPLOAD TO ARTIFACTS SERVER OPTION =========
+            # TODO: Upload to the artifacts server of your choice.
+            # Create a file with the service account data
+            # use the bucket_upload script to upload your packs to google cloud storage
+            python $GITHUB_WORKSPACE/repository/build_related_scripts/bucket_upload.py --service_account $GITHUB_WORKSPACE/service_account.json --packs_directory $NEW_PACKS_FOLDER --branch_name $BRANCH_NAME
+            # Delete the service account file
+            rm $GITHUB_WORKSPACE/service_account.json
+    
+    With:
+
+            # ========= UPLOAD DIRECTLY TO YOUR XSOAR MACHINE (WHEN MERGING TO MAIN REPO) =========
+            if [ $BRANCH_NAME != master ]; then
+              CONFIG_FILE=$(cat xsoar_config.json)
+              MARKETPLACE_PACKS_LIST=$(cat $CONFIG_FILE | jq -r '.marketplace_packs')
+              # Upload Custom Packs
+              demisto-sdk upload --input-config-file /xsoar_config.json
+              # Upload MarketPlace Packs
+              python3 build_related_scripts/MarketPlaceInstallerFromCICD.py --marketplace-packs-list $MARKETPLACE_PACKS_LIST
+
+    
+ 
+2. **(Artifact Server only) Configure the the `bucket_upload.py` file.**
+   <br/> Update the bucket name, main bucket path and format file before pushing any content from your Git repository. The artifact server is based on Google Cloud Storage. <br/> If using a different storage provider, you need to update the `bucket_upload.py` file with the required artifact server information. Contact Customer Support if you need to change this.
+    
+3. **Configure the `xsoar_config.json` file.**
     
     The `xsoar_config.json` file defines how content packs, lists, and jobs are set up on the production machine. It consists of the following sections:
     | Content | Description |
@@ -239,24 +274,23 @@ After installing the `demisto-sdk`, you need to set up a repository. You can the
     | `lists`| Lists that are created in the machine.|
     | `jobs` | Jobs that are created in the machine.|
 
-    **Custom Packs**
+    3.1 **Update the ID and URLs for each custom content pack.**
     
-    After you create the branch for each pack in step 4, you need to add the `ID` and `URL` for each Content Pack. You need to do one of the following:
-     - For a non-artifact server you need to change the `URL` to the name of the Pack in this format using a local URL. `"Url": "Packs\name of the pack\.zip”`. If you want to change the version you need to change it in the branch repository and not in this file.
-     - If using an artifact server you need to update the version in the `URL`. This enables you to have version control. If there was an error in a content pack you can change the version number to an earlier version in your repository. <br/>
+    For a non-artifact server, change the `URL` to the name of the Pack in the following format (using a local URL):
+     `"Url": "Packs\name of the pack\.zip”` 
+     <br/> **NOTE:** If you want to change the version you need to change it in the branch repository and not in this file.
+    If using an artifact server, update the version in the `URL`. This enables you to have version control. If there was an error in a content pack you can change the version number to an earlier version in your repository. <br/>
     ![config_json.png](../../../docs/doc_imgs/reference/XSOAR-CICD/config_json.png)
 
-    **Marketplace Content Packs**
+    3.2 **(Optional) Update Marketplace Content Packs**.
     
-    You can also add any Marketplace Content Packs. You can decide which Content Packs to update. You have the option to deploy from here with the latest version. If you have a lot of out of the box content, use the `demisto-sdk xsoar-config-file ---add-all-marketplace-packs`, command which automatically adds all the installed out of the box Content Packs to the configuration file.
-    The content is uploaded to the artifacts server or directly to the machine.
+    You can also add any Marketplace Content Packs to update. You have the option to deploy from here with the latest version. If you have a lot of out-of-the-box content, use the `demisto-sdk xsoar-config-file ---add-all-marketplace-packs`, command which automatically adds all the installed out of the box Content Packs to the configuration file.
+   
 
-10.   **When all the changes are validated and successful, merge the changes to the master repository.**
-    	The content is either pushed to the artifact server or to Cortex XSOAR directly. <br/>
-
-        ![github_success.png](../../../docs/doc_imgs/reference/XSOAR-CICD/github_success.png)
-
-    	In the Master Repository, ensure that the repository is in a structure similar to this:
+5.    **Check that all the changes are validated and are successful.**
+<br/> The Git repository should look similar to this:
+![github_success.png](../../../docs/doc_imgs/reference/XSOAR-CICD/github_success.png)
+<br/> In the Master Repository, ensure that the repository is in a structure similar to this:
     
 ````
 
@@ -313,11 +347,13 @@ After installing the `demisto-sdk`, you need to set up a repository. You can the
         ├── xsoar_config.json
  
  ````
-        
- ## Deployment
  
+5. **Merge the changes to the master repository.**
+   
+   The content is uploaded to the artifacts server or directly to the machine.
  If using an artifact server, open the folder in the artifact server. The hierarchy should appear similar to this:
-        
+ 
+ ````
     ├── builds
     │   ├── branch-name
     │   │   ├── packs
@@ -348,28 +384,28 @@ After installing the `demisto-sdk`, you need to set up a repository. You can the
     │   │   │   │   │   ├── pack2.zip
     │   │   │   ├── 
     │   │   ├──
-        
- ### Add the content to Cortex XSOAR
- 
-Adding content depends on whether you are using an artifact server.
 
-**Non-Artifact Server**
+ ````
 
-If you are not using an artifact server, in the Marketplace, install the custom content packs.   
-**NOTE:** The `content.pack.verify` server configuration must be set to `false` (imports custom Content Packs that are not provided by Cortex XSOAR).
+6. **(Non-artifact server) Install the content to Cortex XSOAR**.
+<br/> In Cortex XSOAR go to Marketplace and install the custom content packs. 
+Ensure that the server configuration (Settings>ABOUT>Troubleshooting)  `content.pack.verify` is set to `false` (enables you to import custom Content Packs that are not provided by Cortex XSOAR). 
 
-**Using an Artifact server**
-
-If you are using an artifact server you can either use the [XSOAR CI/CD Content Pack](https://xsoar.pan.dev/docs/reference/packs/content-management) or download content manually. For details how to install the content, see  [How to Use the CI/CD Content Pack](https://xsoar.pan.dev/docs/reference/packs/content-management#how-to-use-the-pack).
-
-1. If using Google Cloud Services, download the [Google Cloud Storage Content Pack](https://xsoar.pan.dev/docs/reference/integrations/google-cloud-storage) and set up the integration instance. If using another storage application you need to download the appropriate Content Pack such as AWS. 
-2. Download the [XSOAR CI/CD Content Pack](https://xsoar.pan.dev/docs/reference/packs/content-management).
-   The Content Pack includes the Configuration Setup playbook, the configuration setup layout, incident fields,  automations, etc. The playbook runs via a job every 3 hours. The playbook fetches the configuration file and loads the contents to the machine. It downloads, and installs the custom content packs and configures lists and jobs if part of the content packs.
- **NOTE**: The XSOAR CI/CD Content Pack uses either Google Cloud Storage or HTTP requests to fetch the content packs. If running a different storage provider, you need to download the integration (such as AWS - S3). You need to either create or duplicate the **Configuration Setup** incident field and add the provider (such as AWS) as the source. You also need to update the **Configuration Set_up** playbook by adding a task at the same level as Google Cloud Storage. <br/>
+7. **(Artifact Server) Add the content to Cortex XSOAR.**
+    <br/> You can either use the [XSOAR CI/CD Content Pack](https://xsoar.pan.dev/docs/reference/packs/content-management) or download content manually. If using Google Cloud Services, download the [Google Cloud Storage Content Pack](https://xsoar.pan.dev/docs/reference/integrations/google-cloud-storage) and set up the integration instance. If using another storage application you need to download the appropriate Content Pack such as AWS. 
+   - Download the [XSOAR CI/CD Content Pack](https://xsoar.pan.dev/docs/reference/packs/content-management).
+   <br/> The Content Pack includes the Configuration Setup playbook, the configuration setup layout, incident fields,  automations, etc. The playbook runs via a job every 3 hours. The playbook fetches the configuration file and loads the contents to the machine. It downloads, and installs the custom content packs and configures lists and jobs if part of the content packs.
+   The XSOAR CI/CD Content Pack uses either Google Cloud Storage or HTTP requests to fetch the content packs. If running a different storage provider, you need to download the integration (such as AWS - S3). You need to either create or duplicate the **Configuration Setup** incident field and add the provider (such as AWS) as the source. You also need to update the **Configuration Set_up** playbook by adding a task at the same level as Google Cloud Storage. <br/>
  ![cicd_playbook.png](../../../docs/doc_imgs/reference/XSOAR-CICD/cicd_playbook.png)
+   **NOTE**: For Multi-tenant you cannot run the playbook, as its not possible to create incidents or playbooks on the Main account. You can do one of the following:
+     - Upload the content via the CI/CD Build (it may still support the version control if you store all the versions locally. If using an artifact server, contact Customer support to upload via URL).
+     - Run a job on a tenant and execute the commands on the Main Account. Installation occurs via Demisto REST API so you can configure it on the Main Account URL.
 
-3. Run a job.        
-4. If not using the XSOAR CI/CD Content Pack, install content manually.
+
+   - If not using the XSOAR CI/CD Content Pack, install content manually. For example, if using Google Cloud Services integration run the `gcd-download-file` command. 
+
+8. Run a job.        
+   
 	
 The content appears in Cortex XSOAR without having to install in the Marketplace.
 
@@ -391,3 +427,6 @@ The content appears in Cortex XSOAR without having to install in the Marketplace
 4. **Can I take all the current marketplace packs and turn it into the configuration format?**
     
     Yes, that is supported.
+
+
+
