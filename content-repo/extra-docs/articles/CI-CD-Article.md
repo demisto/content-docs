@@ -199,6 +199,10 @@ An artifact server such as Google Cloud Services, enables you to  maintain and c
 
 ![artifacts_server.png](../../../docs/doc_imgs/reference/XSOAR-CICD/artifacts_server.png)
 
+ **NOTE**: For Multi-tenant you cannot run the playbook in the XSOAR CI/CD Content Pack, as its not possible to create incidents or playbooks on the Main account. You can do one of the following:
+ - Upload the content via the CI/CD Build (it may still support the version control if you store all the versions locally. If using an artifact server, contact Customer support to upload via URL).
+ - Run a job on a tenant and execute the commands on the Main Account. Installation occurs via Demisto REST API so you can configure it on the Main Account URL.
+
 Although you can choose your own artifact repository, (such as AWS, GCP, Git, FTP server, etc) by default, the CI/CD process uses Google Cloud Storage. You need to install the [Google Cloud Storage Content Pack](https://xsoar.pan.dev/docs/reference/integrations/google-cloud-storage) and configure the integration. If using another storage provider, such as AWS you need to install the relevant Content Pack and set up the integrations as necessary.
 
 The main advantage of the artifact server is version control and rollback. You update the xsoar_config.json file with any version change, rather than having to update the repository.
@@ -397,11 +401,7 @@ Ensure that the server configuration (Settings>ABOUT>Troubleshooting)  `content.
    <br/> The Content Pack includes the Configuration Setup playbook, the configuration setup layout, incident fields,  automations, etc. The playbook runs via a job every 3 hours. The playbook fetches the configuration file and loads the contents to the machine. It downloads, and installs the custom content packs and configures lists and jobs if part of the content packs.
    The XSOAR CI/CD Content Pack uses either Google Cloud Storage or HTTP requests to fetch the content packs. If running a different storage provider, you need to download the integration (such as AWS - S3). You need to either create or duplicate the **Configuration Setup** incident field and add the provider (such as AWS) as the source. You also need to update the **Configuration Set_up** playbook by adding a task at the same level as Google Cloud Storage. <br/>
  ![cicd_playbook.png](../../../docs/doc_imgs/reference/XSOAR-CICD/cicd_playbook.png)
-   **NOTE**: For Multi-tenant you cannot run the playbook, as its not possible to create incidents or playbooks on the Main account. You can do one of the following:
-     - Upload the content via the CI/CD Build (it may still support the version control if you store all the versions locally. If using an artifact server, contact Customer support to upload via URL).
-     - Run a job on a tenant and execute the commands on the Main Account. Installation occurs via Demisto REST API so you can configure it on the Main Account URL.
-
-
+  
    - If not using the XSOAR CI/CD Content Pack, install content manually. For example, if using Google Cloud Services integration run the `gcd-download-file` command. 
 
 8. Run a job.        
