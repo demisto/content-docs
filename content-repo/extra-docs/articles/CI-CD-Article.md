@@ -44,7 +44,7 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
  Ensure that the `DEMISTO_BASE_URL` and `DEMISTO_API_KEY` are set to the server environment that you want to use. For example, if you want to upload content directly to the server without using an artifact server you need to point the server to this environment. When working on a branch and you want to download/upload to a development environment, ensure that the `demisto-sdk` points to the development server.
  1. **Create the CI/CD Repository.**
 
-    Create or clone a Git repository (such as Github, Gitlab, bitbucket,etc). Use [CI/CD template repository](https://github.com/demisto/content-ci-cd-template) as your base structure. The `demisto-sdk` connects to this Git repository and then automatically connects to Cortex XSOAR servers using the API, to ensure that it validates Cortex XSOAR content.
+    Create or fork a Git repository (such as Github, Gitlab, bitbucket,etc). Use [CI/CD template repository](https://github.com/demisto/content-ci-cd-template) as your base structure. The `demisto-sdk` connects to this Git repository and then automatically connects to Cortex XSOAR servers using the API, to ensure that it validates Cortex XSOAR content.
     The repository contains the following content:
     
     | Content | Description |
@@ -172,7 +172,6 @@ Before you begin, ensure that you have installed the following:
         
     Using your CI/CD solution, it checks the changes - validations, lints, etc. If it requires approval, you have to wait before being able to merge. The validation is done according to the hooks in your repository. When you create the pull request, the CI/CD process runs automatically. <br/>
 
-
     ![github_notsuccess.png](../../../docs/doc_imgs/reference/XSOAR-CICD/github_notsuccess.png)
   
 
@@ -223,7 +222,7 @@ Although you do not have the flexibility of version control and rollback, it is 
   
 1. **Configure the `config.yml` file.**
 
-    When you clone the repository, a [config.yml](https://github.com/demisto/content-ci-cd-template/blob/master/.github/workflows/config.yml) file is included in the repository (`github\workflows` folder). 
+    When you fork the repository, a [config.yml](https://github.com/demisto/content-ci-cd-template/blob/master/.github/workflows/config.yml) file is included in the repository (`github\workflows` folder). 
     
     1.1 Update the repository details under `steps`:
     
@@ -271,6 +270,7 @@ Although you do not have the flexibility of version control and rollback, it is 
 3. **Configure the `xsoar_config.json` file.**
     
     The `xsoar_config.json` file defines how content packs, lists, and jobs are set up on the production machine. It consists of the following sections:
+    
     | Content | Description |
     | ------- | ----------- | 
     |`custom_packs`| Custom content packs, which are installed through the build process.|
@@ -284,16 +284,19 @@ Although you do not have the flexibility of version control and rollback, it is 
      `"Url": "Packs\name of the pack\.zip”` 
      <br/> **NOTE:** If you want to change the version you need to change it in the branch repository and not in this file.
     If using an artifact server, update the version in the `URL`. This enables you to have version control. If there was an error in a content pack you can change the version number to an earlier version in your repository. <br/>
+    
     ![config_json.png](../../../docs/doc_imgs/reference/XSOAR-CICD/config_json.png)
 
     3.2 **(Optional) Update Marketplace Content Packs**.
     
-    You can also add any Marketplace Content Packs to update. You have the option to deploy from here with the latest version. If you have a lot of out-of-the-box content, use the `demisto-sdk xsoar-config-file ---add-all-marketplace-packs`, command which automatically adds all the installed out of the box Content Packs to the configuration file.
+    You can also add any Marketplace Content Packs to update. You have the option to deploy from here with the latest version. If you have a lot of out-of-the-box content, use the `demisto-sdk xsoar-config-file --add-all-marketplace-packs`, command which automatically adds all the installed out of the box Content Packs to the configuration file.
    
 
 5.    **Check that all the changes are validated and are successful.**
 <br/> The Git repository should look similar to this:
+
 ![github_success.png](../../../docs/doc_imgs/reference/XSOAR-CICD/github_success.png)
+
 <br/> In the Master Repository, ensure that the repository is in a structure similar to this:
     
 ````
@@ -396,10 +399,11 @@ Although you do not have the flexibility of version control and rollback, it is 
 Ensure that the server configuration (Settings>ABOUT>Troubleshooting)  `content.pack.verify` is set to `false` (enables you to import custom Content Packs that are not provided by Cortex XSOAR). 
 
 7. **(Artifact Server) Add the content to Cortex XSOAR.**
-    <br/> You can either use the [XSOAR CI/CD Content Pack](https://xsoar.pan.dev/docs/reference/packs/content-management) or download content manually. If using Google Cloud Services, download the [Google Cloud Storage Content Pack](https://xsoar.pan.dev/docs/reference/integrations/google-cloud-storage) and set up the integration instance. If using another storage application you need to download the appropriate Content Pack such as AWS. 
+   You can either use the [XSOAR CI/CD Content Pack](https://xsoar.pan.dev/docs/reference/packs/content-management) or download content manually. If using Google Cloud Services, download the [Google Cloud Storage Content Pack](https://xsoar.pan.dev/docs/reference/integrations/google-cloud-storage) and set up the integration instance. If using another storage application you need to download the appropriate Content Pack such as AWS. 
    - Download the [XSOAR CI/CD Content Pack](https://xsoar.pan.dev/docs/reference/packs/content-management).
-   <br/> The Content Pack includes the Configuration Setup playbook, the configuration setup layout, incident fields,  automations, etc. The playbook runs via a job every 3 hours. The playbook fetches the configuration file and loads the contents to the machine. It downloads, and installs the custom content packs and configures lists and jobs if part of the content packs.
-   The XSOAR CI/CD Content Pack uses either Google Cloud Storage or HTTP requests to fetch the content packs. If running a different storage provider, you need to download the integration (such as AWS - S3). You need to either create or duplicate the **Configuration Setup** incident field and add the provider (such as AWS) as the source. You also need to update the **Configuration Set_up** playbook by adding a task at the same level as Google Cloud Storage. <br/>
+   The Content Pack includes the Configuration Setup playbook, the configuration setup layout, incident fields,  automations, etc. The playbook runs via a job every 3 hours. The playbook fetches the configuration file and loads the contents to the machine. It downloads, and installs the custom content packs and configures lists and jobs if part of the content packs.
+   The XSOAR CI/CD Content Pack uses either Google Cloud Storage or HTTP requests to fetch the content packs. If running a different storage provider, you need to download the integration (such as AWS - S3). You need to either create or duplicate the **Configuration Setup** incident field and add the provider (such as AWS) as the source. You also need to update the **Configuration Set_up** playbook by adding a task at the same level as Google Cloud Storage.
+ 
  ![cicd_playbook.png](../../../docs/doc_imgs/reference/XSOAR-CICD/cicd_playbook.png)
   
    - If not using the XSOAR CI/CD Content Pack, install content manually. For example, if using Google Cloud Services integration run the `gcd-download-file` command. 
