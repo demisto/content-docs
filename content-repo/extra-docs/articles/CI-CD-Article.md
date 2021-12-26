@@ -101,6 +101,7 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
     The Pack appears in the repository with the required folders. You can delete those items that are not needed.  In this example, we create a new content pack, called *CICDExample*. 
         
     ![pack_example.png](../../../docs/doc_imgs/reference/XSOAR-CICD/pack_example.png) 
+    
     The content pack contains the following content:
 
     | Content | Description |
@@ -355,10 +356,12 @@ Although you do not have the flexibility of version control and rollback, it is 
  
  ````
  
+ 
 5. **Merge the changes to the master repository.**
    
    The content is uploaded to the artifacts server or directly to the machine.
  If using an artifact server, open the folder in the artifact server. The hierarchy should appear similar to this:
+ 
  
  ````
     ├── builds
@@ -393,6 +396,7 @@ Although you do not have the flexibility of version control and rollback, it is 
     │   │   ├──
 
  ````
+
 
 6. **(Non-artifact server) Install the content to Cortex XSOAR**.
 <br/> In Cortex XSOAR go to Marketplace and install the custom content packs. 
