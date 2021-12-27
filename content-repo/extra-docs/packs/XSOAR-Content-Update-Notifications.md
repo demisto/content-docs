@@ -30,7 +30,7 @@ Scripts from other packs that are used in the process:
 **_MarketplacePackInstaller_** - From the “Content Installation” pack.
 
 ## Playbooks
-**Content Update Manager** - Use this playbook to check if there are any content updates available for chosen installed content packs, and notify users via e-mail or Slack. The playbook contains an auto-update flow that allows users to decide whether they want to install all updates that were found. See more about the playbook here [LINK TO DOCS]
+**Content Update Manager** - Use this playbook to check if there are any content updates available for chosen installed content packs, and notify users via e-mail or Slack. The playbook contains an auto-update flow that allows users to decide whether they want to install all updates that were found. See more about the playbook [here](https://xsoar.pan.dev/docs/reference/playbooks/content-update-manager).
 
 ## Incident types
 **Content Update Manager** - The incident type that triggers the `Content Update Manager` playbook. Creating this incident will let you choose the preferred notification method (Slack or email), and the packs you want to check using the playbook.
