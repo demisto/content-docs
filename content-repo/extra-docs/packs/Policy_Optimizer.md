@@ -29,17 +29,17 @@ The playbooks in this pack also help you automate the following procedures to re
 This content pack contains the [PAN-OS Policy Optimizer integration](https://xsoar.pan.dev/docs/reference/integrations/pan-os-policy-optimizer).
 
 ## Playbooks
-This content pack contains the following playbooks: (LINK TO PLAYBOOK DOCS)
+This content pack contains the following playbooks:
 
-- **Policy Optimizer - Generic** - This playbook is triggered by the **Policy Optimizer** incident type, and can execute any of the following sub-playbooks.
+- **Policy Optimizer - Generic** - This playbook is triggered by the **Policy Optimizer** incident type, and can execute any of the following sub-playbooks. Read more about the playbook [here](https://xsoar.pan.dev/docs/reference/integrations/policy-optimizer---generic).
 
-- **Policy Optimizer - Manage Port Based Rules** - This playbook migrates port-based rules to application-based allow rules to reduce the attack surface and safely enable applications on your network.
+- **Policy Optimizer - Manage Port Based Rules** - This playbook migrates port-based rules to application-based allow rules to reduce the attack surface and safely enable applications on your network. Read more about the playbook [here](https://xsoar.pan.dev/docs/reference/integrations/policy-optimizer---manage-port-based-rules).
 
-- **Policy Optimizer - Manage Rules with Unused Applications** - This playbook helps identify and remove unused applications from security policy rules. If you have application-based security policy rules that allow a large number of applications, you can remove unused applications (applications never seen on the rules) from those rules to allow only applications actually seen in the rule’s traffic. This strengthens your security posture by reducing the attack surface.
+- **Policy Optimizer - Manage Rules with Unused Applications** - This playbook helps identify and remove unused applications from security policy rules. If you have application-based security policy rules that allow a large number of applications, you can remove unused applications (applications never seen on the rules) from those rules to allow only applications actually seen in the rule’s traffic. This strengthens your security posture by reducing the attack surface. Read more about the playbook [here](https://xsoar.pan.dev/docs/reference/integrations/policy-optimizer---manage-rules-with-unused-applications).
 
-- **Policy Optimizer - Manage Unused Rules** - This playbook helps identify and remove unused rules that do not pass traffic in your environment.
+- **Policy Optimizer - Manage Unused Rules** - This playbook helps identify and remove unused rules that do not pass traffic in your environment. Read more about the playbook [here](https://xsoar.pan.dev/docs/reference/integrations/policy-optimizer---manage-unused-rules).
 
-- **Policy Optimizer - Add Applications to Policy Rules** - This playbook edits rules with unused applications or rules that are port based, and adds an application to the rule. It includes communication tasks to get a rule name and the application to edit from the user.
+- **Policy Optimizer - Add Applications to Policy Rules** - This playbook edits rules with unused applications or rules that are port based, and adds an application to the rule. It includes communication tasks to get a rule name and the application to edit from the user. Read more about the playbook [here](https://xsoar.pan.dev/docs/reference/integrations/policy-optimizer---add-applications-to-policy-rules).
 
 ## Incident Types
 **Policy Optimizer** - The incident type that triggers the **Policy Optimizer - Generic** playbook. Creating this incident lets you select which of the **PAN-OS Policy Optimizer** use-cases you want to trigger (Multi-select option).
