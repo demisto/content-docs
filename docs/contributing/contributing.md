@@ -45,7 +45,7 @@ Please read the following guidelines carefully: following them will maximize the
 1. Make sure you have all the [Contributing Requirements](../contributing/contrib-requirements) satisfied.
 1. Setup a development environment by following the brief [Dev Setup Guide](../concepts/dev-setup) or the more detailed [Tutorial](../tutorials/tut-setup-dev).
 1. Follow the [Content Pack Structure](../packs/packs-format) to build your contribution. [demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md) will help you create it.
-1. If you are updating an **existing** content pack, make sure your it is updated with the latest version available in the marketplace before proceeding.
+1. If you are updating an **existing** content pack, make sure it is updated with the latest version available in the marketplace before proceeding.
 1. Depending on the content entities you need to build, navigate to the specific section of this website for details. If you are creating Integrations and/or Scripts (aka Automations), make sure that you:
     * Use the proper  [Integration/Script Directory Structure](../integrations/package-dir). [demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md) will help you create it. If working on existing code, beyond trivial changes, we require converting to this structure as it allows running linting and unit tests and provides a clearer review process.
     * Understand the [YAML file](../integrations/yaml-file) structure and the [Parameter Types](../integrations/parameter-types).
