@@ -19,10 +19,11 @@ Paid packs are not stored in the XSOAR open source repository but instead in the
 
 ## 4. Build Paid Pack(s)
 
-Build the content for the paid packs. 
+Build the content for the paid packs. Customers can subscribe to Paid Packs on a monthly basis or through Private Offer. To learn more about Private Offer check out our FAQ.
 
 - If you're submitting a premium content pack, add the dashboards, playbooks, etc. as you would normally. Revisit the [Contributor Guidlines](https://xsoar.pan.dev/docs/contributing/contributing#contributor-guidelines) if needed.
-- If you're submitting a premium resell pack, the pack is mostly empty except for some basic metadata files. 
+- If you're submitting a premium resell pack, the pack is mostly empty except for some basic metadata files.
+- If you would like to update your Paid Pack to be available through Private Offer, please follow the steps listed here.
 
 Either way, we'll work with you to define, scope and guide you through the process.
 
