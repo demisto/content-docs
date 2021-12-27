@@ -56,7 +56,7 @@ There are several items that you must install and configure before you start usi
 #### 1. Configure the integration 
 You need to configure both the integration which fetches phishing alerts and the one that holds the original email or a copy of that email. 
 
-**In oder to fetch incident you should use:**
+**In order to fetch incident you should use:**
 * Email Security Gateway
 * SIEM phishing alert
 
@@ -67,13 +67,14 @@ You need to configure both the integration which fetches phishing alerts and the
 **The following are the currently supported products for each phase:** 
  
  **Email Security Gateway products:** 
- * FireEye Email Security (EX)
- * Proofpoint TAP + Proofpoint Protection Server
- * Agari Phishing Defense + Email Service Provider
- * Mimecast
+ * FireEye Email Security (EX) (Fetching alerts + Retrieving email files)
+ * FireEye Central Management (CM) (Fetching alerts) + FireEye Email Security (EX) (Retrieving email files)
+ * Proofpoint TAP (Fetching alerts) + Proofpoint Protection Server (Retrieving email files)
+ * Agari Phishing Defense (Fetching alerts) + Email Service Provider (Retrieving email files)
+ * Mimecast (Fetching alerts + Retrieving email files)
 
 **SIEM products:**
- * Splunk ES + Source 
+ * Splunk ES 
  * QRadar
 
 **Email Service Providers:**
