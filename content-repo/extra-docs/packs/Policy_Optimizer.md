@@ -72,8 +72,8 @@ After creating the incident, the playbooks are triggered and you can see all the
 
 ## Before You Start
 Configure the playbook inputs for the **Policy Optimizer - Generic** playbook for your specific needs:
-- _**Slack_user**_- Slack user to notify about unused rules.
+- _**Slack_user**_- Slack user to notify about the different misconfigurartions.
 
-- _**Email_address**_ - User email address to notify about unused rules.
+- _**Email_address**_ - User email address to notify about the different misconfigurartions.
 
 - _**Auto_commit**_ - Specifies whether you want to auto-commit the configuration for the PAN-OS policy changes automatically (Yes/No).
