@@ -51,6 +51,18 @@ Marketplace provides robust reporting to Partners on their paid pack activity in
 
 Reporting is not currently available for free packs.
 
+### Marketplace Listing Best Practices
+
+To get the most out of your investment in developing a premium pack for the largest SOAR digital storefront, we recommend following the [Pack Documentation](https://xsoar.pan.dev/docs/documentation/pack-docs) guidelines when creating XSOAR  Marketplace content. Pack listings that clearly articulate the business benefits and SOAR value proposition have gotten the most Marketplace interest. Here are some recommendations to make your listing stand out:
+* Well defined use cases
+* Partner integration + XSOAR joint value proposition
+* Images highlighting use cases, integration
+* 2 minute integration overview video (image links to external video)
+* Demo video of integration - (image links to external video)
+* For partners reselling their product:
+  * 2 minute product overview video (image links to external video)
+  * Demo video of implementation and integration with XSOAR, inclusive of product activation (image links to external video)
+
 ## Program Details
 
 This page is meant as an overview to Marketplace. Please see the [Palo Alto Networks Cortex XSOAR Partner Program Guide](https://xsoar.pan.dev/program-guide) for details on the program. 
