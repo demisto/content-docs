@@ -24,7 +24,7 @@ configuration:
   - 'False'
   required: false
   type: 15
-- display: Whitelist names e.g.(wlWhiteListIPv4,wlWhiteListDomain,Unmalicious)
+- display: Allow list names e.g.(wlWhiteListIPv4,wlWhiteListDomain,Unmalicious)
   name: whitelist
   required: false
   type: 0
