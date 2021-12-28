@@ -60,7 +60,7 @@ You need to configure both the integration which fetches phishing alerts and the
 * Email Security Gateway
 * SIEM phishing alert
 
-**In order to retreive the original email (eml/msg) file you should use:**
+**In order to retrieve the original email (eml/msg) file you should use:**
 * Email Security Gateway
 * Email Service Provider
 
