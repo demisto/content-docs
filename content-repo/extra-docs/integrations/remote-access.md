@@ -3,7 +3,8 @@ title: Remote Access (Deprecated)
 description: File transfer and execute commands via ssh, on remote machines.
 ---
 
-
+:::caution Deprecated
+Use the Remote Access v2 integration instead.:::
 
 This integration enables Cortex XSOAR to access and run commands on a terminal in a remote location (via SSH). For example this could be used to connect to a remote machine and search for malicious files.
 
