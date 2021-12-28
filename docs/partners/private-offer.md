@@ -3,7 +3,7 @@ id: private-offer
 title: Private Offer
 ---
 
-The Cortex XSOAR Marketplace has been successfully giving partners a vehicle in which to drive the value of their technology for over a year now. Partners develop turn-key content packs that span playbooks, dashboards, and reports and customers can subscribe to with a single click.
+The Cortex XSOAR Marketplace has been successfully giving partners a vehicle in which to drive the value of their technology for over a year now. Partners develop turn-key content packs that span playbooks, dashboards, and reports that customers can subscribe to with a single click.
 
 To take Marketplace to the next level by offering customers purchasing flexibility and giving Partners the option of ARR, the XSOAR Marketplace now supports **Private Offer!**
 
@@ -15,7 +15,7 @@ Private Offer enables Cortex XSOAR customers to subscribe to premium content pac
 * Simplify the acquisition process by using Palo Alto Networks paper 
 * Develop a new channel for generating revenue
 
-Partner Benefits:
+**Partner Benefits:**
 * Streamlined acquisition and activation process assures Marketplace points are being spent on the Partner’s products.
 * ARR model for predictable revenue stream.
 * Longer terms mean higher dollar values for the partner
@@ -32,7 +32,9 @@ To ensure as seamless an experience as possible for customers and partners alike
 Requests can also be initiated through Partner sales teams or the Cortex sales teams. We highly recommend that your teams promote your XSOAR packs to ensure customers/prospects know you have a premium offering in the XSOAR Marketplace. If an opportunity is identified, email the details of the request to __xsoar.privateoffer@paloaltoneworks.com__. 
 
 Here is an overview of the Private Offer process when initiated by a Partner:
-![PrivateOfferPartnerSalesProcessFlow](../doc_imgs/partners/PrivateOfferPartnerSalesProcessFlow.png)
+![NewPrivateOfferPartnerSalesProcessFlow](../doc_imgs/partners/NewPrivateOfferPartnerSalesProcessFlow.png)
+
+<img src="../doc_imgs/partners/NewPrivateOfferPartnerSalesProcessFlow.png" width="200px;"/>
 
 ## Private Offer Listing Designation 
 Let customers know your XSOAR Marketplace Premium content pack is available for Private Offer! For partners who elect to participate in Private Offer, the UI will be updated to advertise and drive attention to your pack listing as shown below:
@@ -44,15 +46,13 @@ For Partners interested in having their premium content available for Private Of
 To create your Private Offer listing, follow the [Premium Packs setup](https://xsoar.pan.dev/docs/packs/premium_packs) and then follow these steps to add the Private Offer button:
 
 <details>
-  <summary>For more info</summary>
-
-  For Partners interested in having their premium content available for Private Offer on the XSOAR Marketplace, follow the [Premium Packs setup](https://xsoar.pan.dev/docs/packs/premium_packs) and then follow these steps to add the Private Offer designation:
+  <summary>Click here for detailed steps to add Private Offer to a Content Pack</summary>
   
-1. In your pack directory navigate to your [Pack Readme](https://xsoar.pan.dev/docs/documentation/pack-docs#pack-readme) (`Packs/<MyPack>/README.md`).
+1. In your pack directory to your [Pack Readme](https://xsoar.pan.dev/docs/documentation/pack-docs#pack-readme) (`Packs/<MyPack>/README.md`).
 2. In top of the README file copy and paste the following Markdown text:
 ```markdown
 [![image](https://raw.githubusercontent.com/demisto/content/master/Images/request_private_offer_button.png)](https://xsoar.pan.dev/request-private-offer)
-[Learn about private offer](https://xsoar.pan.dev/private-offer-learn-more)
+[Learn about Private Offer](https://xsoar.pan.dev/private-offer-learn-more)
 ```
 **Make sure to copy the text exactly as it is.**
 </details>
@@ -69,7 +69,7 @@ The Cortex seller will be the main point of contact and lead the customer throug
 ## Private Offer Agreement 
 The Agreement details the terms and conditions for delivering Partner content to a specific Customer through the XSOAR Marketplace. The Agreement represents a binding contract between the Partner and Palo Alto Networks [(see sample here)](../doc_imgs/partners/PrivateOfferTermsAgreementSample.pdf).
 
-After the terms of the deal have been set and approved by the Partner, the XSOAR Partner Success Team (PST) will send the Partner a Private Offer Agreement via DocuSign. Once the Agreement is executed by the Partner, the rest of the process can continue. 
+After the terms of the deal have been set and approved by the Partner, the XSOAR PST will send the Partner a Private Offer Agreement via DocuSign. Once the Agreement is executed by the Partner, the rest of the process can continue. 
 
 ## Enabling Cortex Sales to sell Partner Solutions
 We are invested in the success of the XSOAR Marketplace and want to help maximize our Partner’s efforts and investment in developing premium content available for Private Offer. 
@@ -80,7 +80,7 @@ On an ongoing basis, we will be running internal enablement sessions to ensure s
 * Please send completed playbooks and JSBs to the XSOAR PST for review: __xsoar.privateoffer@paloaltonetworks.com__.
 
 ## Ways to promote your Private Offer solution(s)
-* Write a blog post [template here](https://docs.google.com/document/d/1JfvHdLiWsHkU4TybFyvY1bHJQTc008ED9zVZvY9beGY/edit?usp=sharing)
+* Write a blog post [template here](https://docs.google.com/document/d/1amTRiQ2fl_wUNvfF8M4MP939PlK2x-nyCQLqzjsV_eg/edit?usp=sharing)
 * Enable your sales teams
 * Include Cortex XSOAR in your materials
 * Tweet about the offering
