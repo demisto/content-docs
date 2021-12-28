@@ -1,5 +1,6 @@
 ---
 title: Remote Access (Deprecated)
+id: remote-access
 description: File transfer and execute commands via ssh, on remote machines.
 ---
 
