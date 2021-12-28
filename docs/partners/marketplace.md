@@ -42,15 +42,6 @@ With the new pack display model, Partners have much more real estate and flexibi
 
 ![pack example cyren](../doc_imgs/partners/packexample_cyren.png)
 
-### Reporting and Notifications
-
-Marketplace provides robust reporting to Partners on their paid pack activity including both:
-
-1. **Notifications** are sent immediately via email whenever there is activity on the Pack including a new trial, trial end, a new subscription, etc. Each notification will include customer/human information when possible.
-1. **Reports** are sent on the first of each month where there was revenue-related activity in the prior month. The report details dollar roll-ups per pack, each revenue related transaction line item, etc. 
-
-Reporting is not currently available for free packs.
-
 ### Marketplace Listing Best Practices
 
 To get the most out of your investment in developing a premium pack for the largest SOAR digital storefront, we recommend following the [Pack Documentation](https://xsoar.pan.dev/docs/documentation/pack-docs) guidelines when creating XSOAR  Marketplace content. Pack listings that clearly articulate the business benefits and SOAR value proposition have gotten the most Marketplace interest. Here are some recommendations to make your listing stand out:
@@ -62,6 +53,15 @@ To get the most out of your investment in developing a premium pack for the larg
 * For partners reselling their product:
   * 2 minute product overview video (image links to external video)
   * Demo video of implementation and integration with XSOAR, inclusive of product activation (image links to external video)
+
+### Reporting and Notifications
+
+Marketplace provides robust reporting to Partners on their paid pack activity including both:
+
+1. **Notifications** are sent immediately via email whenever there is activity on the Pack including a new trial, trial end, a new subscription, etc. Each notification will include customer/human information when possible.
+1. **Reports** are sent on the first of each month where there was revenue-related activity in the prior month. The report details dollar roll-ups per pack, each revenue related transaction line item, etc. 
+
+Reporting is not currently available for free packs.
 
 ## Program Details
 
