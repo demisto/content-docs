@@ -66,18 +66,19 @@ You need to configure both the integration which fetches phishing alerts and the
 
 **The following are the currently supported products for each phase:** 
  
- **Email Security Gateway products:** 
- * FireEye Email Security (EX) (Fetching alerts + Retrieving email files)
- * FireEye Central Management (CM) (Fetching alerts) + FireEye Email Security (EX) (Retrieving email files)
- * Proofpoint TAP (Fetching alerts) + Proofpoint Protection Server (Retrieving email files)
- * Agari Phishing Defense (Fetching alerts) + Email Service Provider (Retrieving email files)
- * Mimecast (Fetching alerts + Retrieving email files)
+ **Email Security Gateway products:** [Fetch alerts/Retrieve email files]
+ * FireEye Email Security (EX) (Fetch alerts + Retrieve email files)
+ * FireEye Central Management (CM) (Fetch alerts)
+ * Proofpoint TAP (Fetch alerts)
+ * Proofpoint Protection Server (Retrieve email files)
+ * Agari Phishing Defense (Fetch alerts)
+ * Mimecast (Fetch alerts + Retrieve email files)
 
-**SIEM products:**
+**SIEM products:** [Fetch alerts]
  * Splunk ES 
  * QRadar
 
-**Email Service Providers:**
+**Email Service Providers:** [Retrieve email files]
  * EWS v2
  * Microsoft Graph Mail
  * Gmail
