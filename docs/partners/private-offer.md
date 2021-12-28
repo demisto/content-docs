@@ -67,7 +67,7 @@ The Cortex seller will be the main point of contact and lead the customer throug
 **Have a Private Offer Opportunity?** Please email the details of the request to: __xsoar.privateoffer@paloaltoneworks.com__.
 
 ## Private Offer Agreement 
-The Agreement details the terms and conditions for delivering Partner content to a specific Customer through the XSOAR Marketplace. The Agreement represents a binding contract between the Partner and Palo Alto Networks (see sample here) (HYPERLINK THIS).
+The Agreement details the terms and conditions for delivering Partner content to a specific Customer through the XSOAR Marketplace. The Agreement represents a binding contract between the Partner and Palo Alto Networks [(see sample here)](../doc_imgs/partners/PrivateOfferTermsAgreementSample.pdf).
 
 After the terms of the deal have been set and approved by the Partner, the XSOAR Partner Success Team (PST) will send the Partner a Private Offer Agreement via DocuSign. Once the Agreement is executed by the Partner, the rest of the process can continue. 
 
