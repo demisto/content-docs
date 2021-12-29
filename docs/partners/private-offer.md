@@ -15,7 +15,7 @@ Private Offer enables Cortex XSOAR customers to subscribe to premium content pac
 * Simplify the acquisition process by using Palo Alto Networks paper 
 * Develop a new channel for generating revenue
 
-## Partner Benefits:
+# Partner Benefits:
 * Streamlined acquisition and activation process assures Marketplace points are being spent on the Partner’s products.
 * ARR model for predictable revenue stream.
 * Longer terms mean higher dollar values for the partner
@@ -44,16 +44,17 @@ For Partners interested in having their premium content available for Private Of
 To create your Private Offer listing, follow the [Premium Packs setup](https://xsoar.pan.dev/docs/packs/premium_packs) and then follow these steps to add the Private Offer button:
 
 <details>
-  <summary>Click here for detailed steps to add Private Offer to a Content Pack</summary>
-  
-1. In your pack directory to your [Pack Readme](https://xsoar.pan.dev/docs/documentation/pack-docs#pack-readme) (`Packs/MY_PACK/README.md`).
+<summary>Click here for detailed steps to add Private Offer to a Content Pack</summary>
+
+1. In your pack directory navigate to your [Pack Readme](https://xsoar.pan.dev/docs/documentation/pack-docs#pack-readme) (`Packs/My_Pack/README.md`).
 2. In top of the README file copy and paste the following Markdown text:
 ```markdown
 [![image](https://raw.githubusercontent.com/demisto/content/master/Images/request_private_offer_button.png)](https://xsoar.pan.dev/request-private-offer)
-[Learn about Private Offer](https://xsoar.pan.dev/private-offer-learn-more)
-```
+[Learn about private offer](https://xsoar.pan.dev/private-offer-learn-more)
+ ```
 **Make sure to copy the text exactly as it is.**
 </details>
+
 
 Contact xsoar.privateoffer@paloaltonetworks.com for help. 
 
