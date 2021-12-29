@@ -112,6 +112,7 @@ def get_modified_remote_data_command(client, args):
 
     return GetModifiedRemoteDataResponse(modified_incident_ids)
 ```
+* **Last Mirror Run (Available from 6.6)** - get_last_mirror_run() is the function (in CommonServerPython) that retrieves the previous mirror run data that was set. Setting is done with the set_last_mirror_run() function (in CommonServerPython). Storing and getting this data (a dictionay) enables us controling the lastUpdate timestamp from the integration or any other data we want to save between the mirror runs.
 
 ### update-remote-system
 * **UpdateRemoteSystemArgs** - this is an object created to maintain all the arguments you receive from the server in order to use this command.
