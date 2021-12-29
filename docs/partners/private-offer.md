@@ -29,19 +29,17 @@ Private Offer enables Cortex XSOAR customers to subscribe to premium content pac
 ## How does Private Offer work? 
 To ensure as seamless an experience as possible for customers and partners alike, we have created a simplified process for Private Offer. XSOAR Customers have the ability to request a Private Offer directly within the XSOAR Marketplace user interface by clicking on ![PrivateOfferButton](../doc_imgs/partners/PrivateOfferButton.png) button in participating premium pack listings. Customers then complete a simple [form](https://docs.google.com/forms/d/1vb5Rfrf_hhRoxCXs7_Q3Q6eAv6dIKL2ruuYyEhS3XLE/viewform?ts=618407de&edit_requested=true) to submit their Private Offer request. Partners who choose to participate in Private Offer will simply add the button to their pack listing. 
 
-Requests can also be initiated through Partner sales teams or the Cortex sales teams. We highly recommend that your teams promote your XSOAR packs to ensure customers/prospects know you have a premium offering in the XSOAR Marketplace. If an opportunity is identified, email the details of the request to __xsoar.privateoffer@paloaltoneworks.com__. 
+Requests can also be initiated through Partner sales teams or the Cortex sales teams. We highly recommend that your teams promote your XSOAR packs to ensure customers/prospects know you have a premium offering in the XSOAR Marketplace. If an opportunity is identified, email the details of the request to xsoar.privateoffer@paloaltoneworks.com. 
 
 Here is an overview of the Private Offer process when initiated by a Partner:
-![NewPrivateOfferPartnerSalesProcessFlow](../doc_imgs/partners/NewPrivateOfferPartnerSalesProcessFlow.png)
-
-<img src="../doc_imgs/partners/NewPrivateOfferPartnerSalesProcessFlow.png" width="200px;"/>
+<img src="../doc_imgs/partners/NewPrivateOfferPartnerSalesProcessFlow.png" width="400px;"/>
 
 ## Private Offer Listing Designation 
 Let customers know your XSOAR Marketplace Premium content pack is available for Private Offer! For partners who elect to participate in Private Offer, the UI will be updated to advertise and drive attention to your pack listing as shown below:
 
 ![PrivateOffer-greenarrow](../doc_imgs/partners/PrivateOffer-greenarrow.png)
 
-For Partners interested in having their premium content available for Private Offer on the XSOAR Marketplace, please contact the XSOAR Partner Success Team (PST) at __xsoar.privateoffer@paloaltonetworks.com__ to ensure your solution is added to our internal enablement content.  
+For Partners interested in having their premium content available for Private Offer on the XSOAR Marketplace, please contact the XSOAR Partner Success Team (PST) at xsoar.privateoffer@paloaltonetworks.com to ensure your solution is added to our internal enablement content.  
 
 To create your Private Offer listing, follow the [Premium Packs setup](https://xsoar.pan.dev/docs/packs/premium_packs) and then follow these steps to add the Private Offer button:
 
@@ -57,14 +55,14 @@ To create your Private Offer listing, follow the [Premium Packs setup](https://x
 **Make sure to copy the text exactly as it is.**
 </details>
 
-Contact __xsoar.privateoffer@paloaltonetworks.com__ for help. 
+Contact xsoar.privateoffer@paloaltonetworks.com for help. 
 
 ## Working with the Palo Alto Networks Sellers
 Whether the Private Offer is initiated by the customer or the Partner sales rep, alignment with the Cortex seller during the Private Offer process will be instrumental in ensuring a seamless and successful customer sales experience.
 
 The Cortex seller will be the main point of contact and lead the customer through the sales cycle and Private Offer process. To ensure the customer’s requirements are being met with the proposed solution, the Cortex seller will engage with the Partner sales team as needed for technical validation, demos, etc. They will also work closely with the Partner business team for guidance and approval on the requested offer terms. 
 
-**Have a Private Offer Opportunity?** Please email the details of the request to: __xsoar.privateoffer@paloaltoneworks.com__.
+**Have a Private Offer Opportunity?** Please email the details of the request to: xsoar.privateoffer@paloaltoneworks.com.
 
 ## Private Offer Agreement 
 The Agreement details the terms and conditions for delivering Partner content to a specific Customer through the XSOAR Marketplace. The Agreement represents a binding contract between the Partner and Palo Alto Networks [(see sample here)](../doc_imgs/partners/PrivateOfferTermsAgreementSample.pdf).
@@ -77,7 +75,7 @@ We are invested in the success of the XSOAR Marketplace and want to help maximiz
 On an ongoing basis, we will be running internal enablement sessions to ensure sales understands the value Partner solutions add to a customer’s XSOAR investment. To aid in enabling our sellers to promote and sell your solution we recommend creating the following:
 * [Sales playbook](https://docs.google.com/presentation/d/1WMrFTYoN-wc8BEwFnTnetNG4-lPP3wAiD8g-W0gSMbI/edit?usp=sharing) (e.g. cheat sheet) to highlight Partner solution, value prop and use cases.
 * [Joint Solution Brief](https://docs.google.com/document/d/1Hk2fCSHd6dKAQo0eEUyBx8y1oSK4j-17AcaV-pQRnf4/edit?usp=sharing) (JSB)
-* Please send completed playbooks and JSBs to the XSOAR PST for review: __xsoar.privateoffer@paloaltonetworks.com__.
+* Please send completed playbooks and JSBs to the XSOAR PST for review: xsoar.privateoffer@paloaltonetworks.com.
 
 ## Ways to promote your Private Offer solution(s)
 * Write a blog post [template here](https://docs.google.com/document/d/1amTRiQ2fl_wUNvfF8M4MP939PlK2x-nyCQLqzjsV_eg/edit?usp=sharing)
@@ -88,4 +86,4 @@ On an ongoing basis, we will be running internal enablement sessions to ensure s
 *must adhere to Palo Alto Networks branding and logo [usage guidelines](https://www.paloaltonetworks.com/company/brand.html).
 
 ## Still have questions? 
-For more information about Private Offer, please review our [Partner FAQ](https://docs.google.com/document/d/1kUFQPKmuiJuFHNtrg6RHg4cEMeAkjGsDNPXK9Etf4eY/edit#heading=h.pe5n8bsuhdc) (restricted access). For questions or help, please contact the [Partner Success Team](mailto:xsoar.privateoffer@paloaltonetworks.com). 
+For more information about Private Offer, please review our [Partner FAQ](https://docs.google.com/document/d/1kUFQPKmuiJuFHNtrg6RHg4cEMeAkjGsDNPXK9Etf4eY/edit#heading=h.pe5n8bsuhdc)(restricted access). For questions or help, please contact the XSOAR PST at xsoar.privateoffer@paloaltonetworks.com. 
