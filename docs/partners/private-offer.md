@@ -15,7 +15,7 @@ Private Offer enables Cortex XSOAR customers to subscribe to premium content pac
 * Simplify the acquisition process by using Palo Alto Networks paper 
 * Develop a new channel for generating revenue
 
-# Partner Benefits:
+### Partner Benefits:
 * Streamlined acquisition and activation process assures Marketplace points are being spent on the Partner’s products.
 * ARR model for predictable revenue stream.
 * Longer terms mean higher dollar values for the partner
@@ -41,7 +41,7 @@ Let customers know your XSOAR Marketplace Premium content pack is available for 
 
 For Partners interested in having their premium content available for Private Offer on the XSOAR Marketplace, please contact the XSOAR Partner Success Team (PST) at xsoar.privateoffer@paloaltonetworks.com to ensure your solution is added to our internal enablement content.  
 
-# Private Offer Listing Designation Steps
+### Private Offer Listing Designation Steps
 To create your Private Offer listing, follow the [Premium Packs setup](https://xsoar.pan.dev/docs/packs/premium_packs) and then follow these steps to add the Private Offer button:
 
 <details>
