@@ -23,9 +23,10 @@ Build the content for the paid packs. Customers can subscribe to Paid Packs on a
 
 - If you're submitting a premium content pack, add the dashboards, playbooks, etc. as you would normally. Revisit the [Contributor Guidlines](https://xsoar.pan.dev/docs/contributing/contributing#contributor-guidelines) if needed.
 - If you're submitting a premium resell pack, the pack is mostly empty except for some basic metadata files.
-- If you would like to update your Paid Pack to be available through Private Offer, please follow the steps listed here.
 
 Either way, we'll work with you to define, scope and guide you through the process.
+
+If you would like to update your Paid Pack to be available through Private Offer, please follow the steps listed [here](https://xsoar.pan.dev/request-private-offer).
 
 ## 5. Open a Pull Request on Private Repo
 
