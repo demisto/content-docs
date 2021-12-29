@@ -234,7 +234,7 @@ def test_process_extra_doc(tmp_path, mdx_server):
     assert not res.error_msg
     assert res.id == 'remote-access'
     assert res.description.startswith('File transfer and execute commands')
-    assert res.name == 'Remote Access'
+    assert res.name == 'Remote Access (Deprecated)'
     with open(str(tmp_path / f'{res.id}.md'), 'r') as f:
         assert f.readline().startswith('---')
         assert f.readline().startswith(f'id: {res.id}')

@@ -40,7 +40,7 @@ def test_get_link_for_ref_file():
     assert name == "Content Release 20.12.0"
     assert url == "http://localhost/docs/reference/releases/20.12.0"
     (name, url) = get_link_for_ref_file("http://localhost", f"{ROOT_DIR}/content-repo/extra-docs/integrations/syslog.md")
-    assert name == "Syslog"
+    assert name == "Syslog (Deprecated)"
     assert url == "http://localhost/docs/reference/integrations/syslog"
     (name, url) = get_link_for_ref_file("http://localhost", f"{ROOT_DIR}/content-repo/extra-docs/articles/IAM-premium-pack-readme.md")
     assert name == "Identity Lifecycle Management (ILM)"
