@@ -3,7 +3,7 @@ id: paid-packs
 title: Paid Packs 
 ---
 
-With the release of Cortex XSOAR v.6 in August 2020, we are pleased to announce the industry's first fully integrated marketplace for orchestration content!
+Cortex XSOAR is the industry's only fully integrated marketplace for orchestration content!
 
 [Cortex XSOAR Marketplace](/marketplace) is a digital storefront for discovering, exchanging and contributing security orchestration content centrally within the Cortex XSOAR platform. It enables users to install turnkey content packs to help solve any security use case with content contributed by SecOps experts and the world’s largest SOAR partner community, including you.
 
