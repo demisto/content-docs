@@ -85,7 +85,6 @@ On an ongoing basis, we will be running internal enablement sessions to ensure s
 * Include Cortex XSOAR in your materials
 * Tweet about the offering
 
-*must adhere to Palo Alto Networks branding and logo [usage guidelines](https://www.paloaltonetworks.com/company/brand.html).
 
 ## Still Have Questions? 
 For more information about Private Offer, please review our [Partner FAQ](https://docs.google.com/document/d/1kUFQPKmuiJuFHNtrg6RHg4cEMeAkjGsDNPXK9Etf4eY/edit#heading=h.pe5n8bsuhdc) (restricted access). For questions or help, please contact the XSOAR PST at xsoar.privateoffer@paloaltonetworks.com. 
