@@ -23,7 +23,7 @@ All integrations must be free. We always want to encourage our mutual customers 
 
 That said, premium packs generally fall into one of two types:
 
-1. Packs with **premium content** can consist of any other element(s) including complex playbooks, detailed automation scripts, dashboards that appeal to a specific user type, etc. This adds additional value on top of a free pack. For example, a UEBA partner may offer a free pack with the integration and a basic playbook, but offer the complex full playbook in a 2nd paid pack. 
+1. Packs with **premium content** can consist of any other element(s) including complex playbooks, detailed automation scripts, dashboards that appeal to a specific user type, etc. This adds additional value on top of a free pack. For example, a UEBA partner may offer a free pack with the integration and a basic playbook, but offer the complex full playbook in a 2nd premium pack. 
 1. Packs that **resell 3rd party products** essentially use XSOAR Marketplace as a transaction tier to enable delivery of a full SaaS product key. We have partners who sell access to intel feeds, training seats, etc. Anything that can be delivered via an API key can be listed on Marketplace. For example, a threat intel vendor may offer a free pack with the integration and a basic playbook. In order to access the actual threat feed, the customer must either contact the vendor, contract and procure directly, or... the customer simply clicks Subscribe in our marketplace and gets access to the data. Much easier. 
 
 For packs that resell 3rd party products, the following illustrates the flow of subscription:
@@ -56,7 +56,7 @@ To get the most out of your investment in developing a premium pack for the larg
 
 ### Reporting and Notifications
 
-Marketplace provides robust reporting to Partners on their paid pack activity including both:
+Marketplace provides robust reporting to Partners on their premium pack activity including both:
 
 1. **Notifications** are sent immediately via email whenever there is activity on the Pack including a new trial, trial end, a new subscription, etc. Each notification will include customer/human information when possible.
 1. **Reports** are sent on the first of each month where there was revenue-related activity in the prior month. The report details dollar roll-ups per pack, each revenue related transaction line item, etc. 
