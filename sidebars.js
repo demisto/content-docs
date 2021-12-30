@@ -233,6 +233,7 @@ const sidebars = {
         "partners/why-xsoar",
         "partners/become-a-tech-partner",
         "partners/premium-packs",
+        "partners/private-offer",
         "partners/adopt",
         "partners/certification",
         "partners/office-hours",
