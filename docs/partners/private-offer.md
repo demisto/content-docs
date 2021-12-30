@@ -64,7 +64,7 @@ Whether the Private Offer is initiated by the customer or the Partner sales rep,
 
 The Cortex seller will be the main point of contact and lead the customer through the sales cycle and Private Offer process. To ensure the customer’s requirements are being met with the proposed solution, the Cortex seller will engage with the Partner sales team as needed for technical validation, demos, etc. They will also work closely with the Partner business team for guidance and approval on the requested offer terms. 
 
-**Have a Private Offer Opportunity?** Please email the details of the request to xsoar.privateoffer@paloaltoneworks.com.
+**Have a Private Offer Opportunity?** Please email the details of the request to xsoar.privateoffer@paloaltonetworks.com.
 
 ## Private Offer Agreement 
 The Agreement details the terms and conditions for delivering Partner content to a specific Customer through the XSOAR Marketplace. The Agreement represents a binding contract between the Partner and Palo Alto Networks ([see sample](../doc_imgs/partners/PrivateOfferTermsAgreementSample.pdf)).
