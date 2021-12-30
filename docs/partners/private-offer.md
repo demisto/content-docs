@@ -51,7 +51,7 @@ To create your Private Offer listing, follow the [Premium Packs setup](https://x
 2. In top of the README file copy and paste the following Markdown text:
 ```markdown
 [![image](https://raw.githubusercontent.com/demisto/content/master/Images/request_private_offer_button.png)](https://xsoar.pan.dev/request-private-offer)
-[Learn about private offer](https://xsoar.pan.dev/private-offer-learn-more)
+[Learn about Private Offer](https://xsoar.pan.dev/private-offer-learn-more)
  ```
 **Make sure to copy the text exactly as it is.**
 </details>
