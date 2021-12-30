@@ -29,7 +29,7 @@ Private Offer enables Cortex XSOAR customers to subscribe to premium content pac
 ## How Does Private Offer Work? 
 To ensure as seamless an experience as possible for both you and our customers, we have created a simplified process for Private Offer. XSOAR Customers have the ability to request a Private Offer directly within the XSOAR Marketplace user interface by clicking on ![PrivateOfferButton](../doc_imgs/partners/PrivateOfferButton.png) button in participating premium pack listings. Customers then complete a simple [form](https://xsoar.pan.dev/request-private-offer) to submit their Private Offer request. If you choose to participate in Private Offer, you will just need to add the button to your pack listing. 
 
-Requests can also be initiated through Partner sales teams or the Cortex sales teams. We highly recommend that your teams promote your XSOAR packs to ensure customers/prospects know you have a premium offering in the XSOAR Marketplace. If an opportunity is identified, email the details of the request to xsoar.privateoffer@paloaltoneworks.com. 
+Requests can also be initiated through your sales teams or our Cortex sales teams. We highly recommend that your teams promote your XSOAR packs to ensure customers/prospects know you have a premium offering in the XSOAR Marketplace. If an opportunity is identified, email the details of the request to xsoar.privateoffer@paloaltonetworks.com. 
 
 Here is an overview of the Private Offer process when initiated by a Partner:
 <img src="../doc_imgs/partners/NewPrivateOfferPartnerSalesProcessFlow.png" width="600px;"/>
