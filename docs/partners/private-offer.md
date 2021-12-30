@@ -80,7 +80,7 @@ On an ongoing basis, we will be running internal enablement sessions to ensure s
 * Please send completed playbooks and JSBs to the XSOAR PST for review: xsoar.privateoffer@paloaltonetworks.com.
 
 ## Ways to Promote Your Private Offer Solution(s)
-* Write a blog post [(template here)](https://docs.google.com/document/d/1amTRiQ2fl_wUNvfF8M4MP939PlK2x-nyCQLqzjsV_eg/edit?usp=sharing)
+* Write a blog post [(template here)](https://docs.google.com/document/d/1amTRiQ2fl_wUNvfF8M4MP939PlK2x-nyCQLqzjsV_eg/edit?usp=sharing) - prior to posting, please send draft for review to xsoar.privateoffer@paloaltonetworks.com
 * Enable your sales teams
 * Highlight the value prop of your Cortex XSOAR solution and partnership on your website
 * Tweet about the offering
