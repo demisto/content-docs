@@ -35,7 +35,7 @@ Here is an overview of the Private Offer process when initiated by a Partner:
 <img src="../doc_imgs/partners/NewPrivateOfferPartnerSalesProcessFlow.png" width="600px;"/>
 
 ## Private Offer Listing Designation 
-Let customers know your XSOAR Marketplace Premium content pack is available for Private Offer! For partners who elect to participate in Private Offer, the UI will be updated to advertise and drive attention to your pack listing as shown below:
+Let customers know your XSOAR Marketplace premium pack is available for Private Offer! For partners who elect to participate in Private Offer, the UI will be updated to advertise and drive attention to your pack listing as shown below:
 
 ![PrivateOffer-greenarrow](../doc_imgs/partners/PrivateOffer-greenarrow.png)
 
