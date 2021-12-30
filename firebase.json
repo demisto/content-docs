@@ -497,7 +497,7 @@
       },
       {
           "source": "/request-private-offer",
-          "destination": "/",
+          "destination": "https://docs.google.com/forms/d/e/1FAIpQLScxTnY_RZQAFpJWurqOQzTJDaq5KcrGVKvfJUffo3i8QD89pw/viewform",
           "type": 301
       },
       {
