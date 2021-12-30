@@ -72,7 +72,7 @@ The Agreement details the terms and conditions for delivering Partner content to
 After the terms of the deal have been set and approved by your team, the XSOAR PST will send you a Private Offer Agreement via DocuSign. Once the Agreement is executed by your Signatory, the rest of the process can continue. 
 
 ## Enabling Cortex Sales to Sell Partner Solutions
-We are invested in the success of the XSOAR Marketplace and want to help maximize our Partner’s efforts and investment in developing premium content available for Private Offer. 
+We are invested in the success of the XSOAR Marketplace and want to help maximize your efforts and investment in developing premium content available for Private Offer. 
 
 On an ongoing basis, we will be running internal enablement sessions to ensure sales understands the value Partner solutions add to a customer’s XSOAR investment. To aid in enabling our sellers to promote and sell your solution we recommend creating the following:
 * [Sales playbook](https://docs.google.com/presentation/d/1WMrFTYoN-wc8BEwFnTnetNG4-lPP3wAiD8g-W0gSMbI/edit?usp=sharing) (e.g. cheat sheet) to highlight Partner solution, value prop and use cases.
