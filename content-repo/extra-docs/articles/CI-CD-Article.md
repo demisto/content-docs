@@ -292,15 +292,15 @@ Although you do not have the flexibility of version control and rollback, it is 
     
     You can also add any Marketplace Content Packs to update. You have the option to deploy from here with the latest version. If you have a lot of out-of-the-box content, use the `demisto-sdk xsoar-config-file --add-all-marketplace-packs`, command which automatically adds all the installed out of the box Content Packs to the configuration file.
    
-4.    **Check that all the changes are validated and are successful.**
-<br/> The Git repository should look similar to this:
+4. **Check that all the changes are validated and are successful.**
+    <br/> The Git repository should look similar to this:
 
-![github_success.png](../../../docs/doc_imgs/reference/XSOAR-CICD/github_success.png)
+    ![github_success.png](../../../docs/doc_imgs/reference/XSOAR-CICD/github_success.png)
 
-In the Master Repository, ensure that the repository is in a structure similar to this:
+    In the Master Repository, ensure that the repository is in a structure similar to this:
     
- ````
-	├── .github\workflows
+    ````
+    ├── .github\workflows
         │   ├── config.yml
         ├── .hooks
         │   ├── (your-hooks-here)
@@ -352,14 +352,14 @@ In the Master Repository, ensure that the repository is in a structure similar t
         ├── tox.ini
         ├── xsoar_config.json
 
- ````
+    ````
 
 5. **Merge the changes to the master repository.**
    
     The content is uploaded to the artifacts server or directly to the machine.
     If using an artifact server, open the folder in the artifact server. The hierarchy should appear similar to this:
 
- ````
+    ````
     ├── builds
     │   ├── branch-name
     │   │   ├── packs
@@ -391,11 +391,11 @@ In the Master Repository, ensure that the repository is in a structure similar t
     │   │   │   ├── 
     │   │   ├──
 
- ````
+    ````
 
 6. **(Non-artifact server) Install the content to Cortex XSOAR**.
-<br/> In Cortex XSOAR go to Marketplace and install the custom content packs. 
-Ensure that the server configuration (Settings>ABOUT>Troubleshooting)  `content.pack.verify` is set to `false` (enables you to import custom Content Packs that are not provided by Cortex XSOAR). 
+    
+    In Cortex XSOAR go to Installed Packs and see your custom content packs. 
 
 7. **(Artifact Server) Add the content to Cortex XSOAR.**
    You can either use the [XSOAR CI/CD Content Pack](https://xsoar.pan.dev/docs/reference/packs/content-management) or download content manually. If using Google Cloud Services, download the [Google Cloud Storage Content Pack](https://xsoar.pan.dev/docs/reference/integrations/google-cloud-storage) and set up the integration instance. If using another storage application you need to download the appropriate Content Pack such as AWS. 
@@ -403,7 +403,7 @@ Ensure that the server configuration (Settings>ABOUT>Troubleshooting)  `content.
    The Content Pack includes the Configuration Setup playbook, the configuration setup layout, incident fields,  automations, etc. The playbook can run via a job or manually. The playbook fetches the configuration file and loads the contents to the machine. It downloads, and installs the custom content packs and configures lists and jobs if part of the content packs.
    The XSOAR CI/CD Content Pack uses either Google Cloud Storage or HTTP requests to fetch the content packs. If running a different storage provider, you need to download the integration (such as AWS - S3). You need to either create or duplicate the **Configuration Setup** incident field and add the provider (such as AWS) as the source. You also need to update the **Configuration Set_up** playbook by adding a task at the same level as Google Cloud Storage.
  
- ![cicd_playbook.png](../../../docs/doc_imgs/reference/XSOAR-CICD/cicd_playbook.png)
+   ![cicd_playbook.png](../../../docs/doc_imgs/reference/XSOAR-CICD/cicd_playbook.png)
   
    - If not using the XSOAR CI/CD Content Pack, install content manually. For example, if using Google Cloud Services integration run the `gcd-download-file` command.
 
