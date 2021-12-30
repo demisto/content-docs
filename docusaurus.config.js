@@ -119,6 +119,10 @@ module.exports = {
               label: "Premium Packs"
             },
             {
+              to: "/docs/partners/private-offer",
+              label: "Private Offer"
+            },
+            {
               to: "/docs/partners/adopt",
               label: "Adopt-a-Pack"
             },
