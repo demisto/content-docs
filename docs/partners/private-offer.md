@@ -3,7 +3,7 @@ id: private-offer
 title: Private Offer
 ---
 
-The Cortex XSOAR Marketplace has been successfully giving partners a vehicle in which to drive the value of their technology for over a year now. Partners develop turn-key content packs that span playbooks, dashboards, and reports that customers can subscribe to with a single click.
+The Cortex XSOAR Marketplace has been successfully giving partners a vehicle in which to drive the value of their technology for over a year now. Partners develop turn-key premium content packs that span playbooks, dashboards, and reports that customers can subscribe to with a single click.
 
 To take Marketplace to the next level by offering customers purchasing flexibility and giving Partners the option of ARR, the XSOAR Marketplace now supports **Private Offer!**
 
