@@ -13,7 +13,7 @@ Additionally, Partners have the ability to monetize their content on the Marketp
 
 All content on Marketplace is included in a Pack. [(What can be in a pack?)](https://xsoar.pan.dev/docs/packs/packs-format#directories) When Partners create a pack, they specify the content that is included in that pack.
 
-Packs on Marketplace can be free or premium. Our platform does full dependency checking too, so a pack can be dependent on, say, a command in another pack. This allows you to build a playbook addressing a full use case across products. Premium Packs are held in your private repository. Free Packs are held in our open source repository.
+Packs on Marketplace can be free or premium. Our platform does full dependency checking too, so a pack can be dependent on, say, a command in another pack. This allows you to build a playbook addressing a full use case across products. Premium packs are held in your private repository. Free packs are held in our open source repository.
 
 If you previously had a Demisto or Cortex XSOAR integration, it has been converted to a pack format and added to Marketplace for you.
 
