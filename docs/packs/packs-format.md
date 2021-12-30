@@ -178,7 +178,7 @@ For Partners, this image is **mandatory** and is validated during the build. If 
 In case file does not exist, the pack author name will be displayed in text.
 
 ### CONTRIBUTORS.md
-If you are contributing to an existing pack, you can add a **CONTRIBUTORS.md** file to the pack and list yourself as a contributor for the pack. The file's content will appear in the pack README in XSOAR Marketplace.
+If you are contributing to an existing pack, you can add a **CONTRIBUTORS.md** file to the pack and list yourself as a contributor for the pack in the mentioned list. The file should have the follwoing structure and will appear in the pack details in the XSOAR Marketplace.
 
 #### Example CONTRIBUTORS.md
 ```
