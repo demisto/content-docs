@@ -19,7 +19,7 @@ Premium packs are not stored in the XSOAR open source repository but instead in 
 
 ## 4. Build Premium Pack(s)
 
-Build the content for the premium packs. Customers can subscribe to Premium Packs on a monthly basis or through [**Private Offer**](https://xsoar.pan.dev/request-private-offer). 
+Build the content for the premium packs. Customers can subscribe to Premium Packs on a monthly basis or through [**Private Offer**](https://xsoar.pan.dev/private-offer). 
 
 - If you're submitting a premium content pack, add the dashboards, playbooks, etc. as you would normally. Revisit the [Contributor Guidlines](https://xsoar.pan.dev/docs/contributing/contributing#contributor-guidelines) if needed.
 - If you're submitting a premium resell pack, the pack is mostly empty except for some basic metadata files.
