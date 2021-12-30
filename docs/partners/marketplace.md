@@ -1,27 +1,27 @@
 ---
-id: paid-packs 
-title: Paid Packs 
+id: premium-packs 
+title: Premium Packs 
 ---
 
 Cortex XSOAR is the industry's only fully integrated marketplace for orchestration content!
 
 [Cortex XSOAR Marketplace](/marketplace) is a digital storefront for discovering, exchanging and contributing security orchestration content centrally within the Cortex XSOAR platform. It enables users to install turnkey content packs to help solve any security use case with content contributed by SecOps experts and the world’s largest SOAR partner community, including you.
 
-Additionally, Partners have the ability to monetize their content on the Marketplace. You decide the content, the price, and how to best market it, and get a healthy share of the revenue. The customer gets premium content to solve their use case. It's a win-win. Partners who wish to contribute paid packs must follow a few [additional onboarding steps](/docs/partners/premium-packs-process). 
+Additionally, Partners have the ability to monetize their content on the Marketplace. You decide the content, the price, and how to best market it, and get a healthy share of the revenue. The customer gets premium content to solve their use case. It's a win-win. Partners who wish to contribute premium packs must follow a few [additional onboarding steps](/docs/partners/premium-packs-process). 
 
 ## Packs
 
 All content on Marketplace is included in a Pack. ([What can be in a pack?](/docs/packs/packs-format#directories)) When Partners create a pack, they specify the content that is included in that pack. 
 
-Packs on Marketplace can be free or paid. Our platform does full dependency checking, too, so a pack can be dependent on, say, a command in another pack. This allows you to build a playbook addressing a full use case across products. Paid Packs are held in your private repository. Free Packs are held in our open source repository. 
+Packs on Marketplace can be free or premium. Our platform does full dependency checking, too, so a pack can be dependent on, say, a command in another pack. This allows you to build a playbook addressing a full use case across products. Premium Packs are held in your private repository. Free Packs are held in our open source repository. 
 
 If you previously had a Demisto or Cortex XSOAR integration, it has been converted to a pack format and added to Marketplace for you.
 
-### What Can Be Paid?
+### What Can Be in a Premium Pack?
 
 All integrations must be free. We always want to encourage our mutual customers to connect our systems such that 1+1=3. 
 
-That said, paid packs generally fall into one of two types:
+That said, premium packs generally fall into one of two types:
 
 1. Packs with **premium content** can consist of any other element(s) including complex playbooks, detailed automation scripts, dashboards that appeal to a specific user type, etc. This adds additional value on top of a free pack. For example, a UEBA partner may offer a free pack with the integration and a basic playbook, but offer the complex full playbook in a 2nd paid pack. 
 1. Packs that **resell 3rd party products** essentially use XSOAR Marketplace as a transaction tier to enable delivery of a full SaaS product key. We have partners who sell access to intel feeds, training seats, etc. Anything that can be delivered via an API key can be listed on Marketplace. For example, a threat intel vendor may offer a free pack with the integration and a basic playbook. In order to access the actual threat feed, the customer must either contact the vendor, contract and procure directly, or... the customer simply clicks Subscribe in our marketplace and gets access to the data. Much easier. 
@@ -34,7 +34,7 @@ For packs that resell 3rd party products, the following illustrates the flow of 
 
 The Marketplace transacts in points, rather than dollars, such that one point is valued at US$100. Customers purchase points via their Palo Alto Networks sales channels and subscribe to your content with those points on a monthly basis. We automatically pay you a revenue share also on a monthly basis, with no invoice required!
 
-The Partner sets the price of the pack in points per month. Marketplace transacts exclusively monthly for all paid packs. 
+The Partner sets the price of the pack in points per month. Marketplace transacts exclusively monthly for all premium packs. 
 
 ### Show Your Pack
 
