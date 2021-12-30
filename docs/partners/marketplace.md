@@ -31,8 +31,8 @@ That said, premium packs generally fall into one of two types:
 The Marketplace transacts in points, rather than dollars, such that one point is valued at US$100. The Partner sets the price of the pack in points per month and customers purchase points via their Palo Alto Networks sales channel to subscribe to your content. 
 
 The XSOAR Marketplace supports two subscription models to give customers purchasing flexibility and you more options to help them address new use cases by integrating key SecOps solutions through their XSOAR deployment: 
-**Monthly** - Customer subscribes to your premium pack and the subscription automatically renews on a monthly basis.  We automatically pay you a revenue share, also on a monthly basis, with no invoice required!
-**Private Offer:** Customer subscribes to your premium content for a mutually agreed upon term length and price. We automatically pay you a revenue share, up front, for the full contracted term!  
+- **Monthly** - Customer subscribes to your premium pack and the subscription automatically renews on a monthly basis.  We automatically pay you a revenue share, also on a monthly basis, with no invoice required!
+ -**Private Offer:** Customer subscribes to your premium content for a mutually agreed upon term length and price. We automatically pay you a revenue share, up front, for the full contracted term!  
 
 Learn more about [Private Offer](https://xsoar.pan.dev/docs/partners/private-offer)
 
