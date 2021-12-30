@@ -84,6 +84,9 @@ On an ongoing basis, we will be running internal enablement sessions to ensure s
 * Enable your sales teams
 * Highlight the value prop of your Cortex XSOAR solution and partnership on your website
 * Tweet about the offering
+*  Get the word out to your customers (see email template)
+* Do a webinar
+* Post about it on LinkedIn
 
 
 ## Still Have Questions? 
