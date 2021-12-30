@@ -69,7 +69,7 @@ The Cortex seller will be the main point of contact and lead the customer throug
 ## Private Offer Agreement 
 The Agreement details the terms and conditions for delivering Partner content to a specific Customer through the XSOAR Marketplace. The Agreement represents a binding contract between the Partner and Palo Alto Networks ([see sample](../doc_imgs/partners/PrivateOfferTermsAgreementSample.pdf)).
 
-After the terms of the deal have been set and approved by the Partner, the XSOAR PST will send the Partner a Private Offer Agreement via DocuSign. Once the Agreement is executed by the Partner, the rest of the process can continue. 
+After the terms of the deal have been set and approved by your team, the XSOAR PST will send you a Private Offer Agreement via DocuSign. Once the Agreement is executed by your Signatory, the rest of the process can continue. 
 
 ## Enabling Cortex Sales to Sell Partner Solutions
 We are invested in the success of the XSOAR Marketplace and want to help maximize our Partner’s efforts and investment in developing premium content available for Private Offer. 
