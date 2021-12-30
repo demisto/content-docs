@@ -32,7 +32,7 @@ The Marketplace transacts in points, rather than dollars, such that one point is
 
 The XSOAR Marketplace supports two subscription models to give customers purchasing flexibility and you more options to help them address new use cases by integrating key SecOps solutions through their XSOAR deployment: 
 - **Monthly** - Customer subscribes to your premium pack and the subscription automatically renews on a monthly basis.  We automatically pay you a revenue share, also on a monthly basis, with no invoice required!
- -**Private Offer:** Customer subscribes to your premium content for a mutually agreed upon term length and price. We automatically pay you a revenue share, up front, for the full contracted term!  
+- **Private Offer:** Customer subscribes to your premium content for a mutually agreed upon term length and price. We automatically pay you a revenue share, up front, for the full contracted term!  
 
 Learn more about [Private Offer](https://xsoar.pan.dev/docs/partners/private-offer)
 
