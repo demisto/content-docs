@@ -26,7 +26,8 @@ Build the content for the premium packs. Customers can subscribe to Premium Pack
 
 Either way, we'll work with you to define, scope and guide you through the process.
 
-To update your Premium Pack to be available through Private Offer, please follow these [steps](https://xsoar.pan.dev/request-private-offer).
+To update your Premium Pack to be available through Private Offer, please follow these [steps](https://xsoar.pan.dev/docs/partners/private-offer#private-offer-listing-designation-steps).
+
 
 ## 5. Open a Pull Request on Private Repo
 
