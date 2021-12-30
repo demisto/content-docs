@@ -62,7 +62,7 @@ Contact xsoar.privateoffer@paloaltonetworks.com for help.
 ## Working with the Palo Alto Networks Sellers
 Whether the Private Offer is initiated by the customer or your sales rep, alignment with the Cortex seller during the Private Offer process will be instrumental in ensuring a seamless and successful customer sales experience.
 
-The Cortex seller will be the main point of contact and lead the customer through the sales cycle and Private Offer process. To ensure the customer’s requirements are being met with the proposed solution, the Cortex seller will engage with the Partner sales team as needed for technical validation, demos, etc. They will also work closely with the Partner business team for guidance and approval on the requested offer terms. 
+The Cortex seller will be the main point of contact and lead the customer through the sales cycle and Private Offer process. To ensure the customer’s requirements are being met with the proposed solution, the Cortex seller will engage with your sales team as needed for technical validation, demos, etc. They will also work closely with your business team for guidance and approval on the requested offer terms. 
 
 **Have a Private Offer Opportunity?** Please email the details of the request to xsoar.privateoffer@paloaltonetworks.com.
 
