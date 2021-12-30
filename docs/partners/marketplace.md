@@ -36,7 +36,7 @@ The XSOAR Marketplace supports two subscription models to give customers purchas
 
 Learn more about [Private Offer](https://xsoar.pan.dev/docs/partners/private-offer)
 
-For packs that resell 3rd party products, the following illustrates the flow of subscription:
+For packs that resell 3rd party products, the following illustrates the subscription flow:
 ![Subscribingto3rdpartycontent](../doc_imgs/partners/Subscribingto3rdpartycontent.png)
 
 
