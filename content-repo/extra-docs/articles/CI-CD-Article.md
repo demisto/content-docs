@@ -200,9 +200,7 @@ An artifact server such as Google Cloud Services, enables you to  maintain and c
 
 ![artifacts_server.png](../../../docs/doc_imgs/reference/XSOAR-CICD/artifacts_server.png)
 
- **NOTE**: For Multi-tenant you cannot run the playbook in the XSOAR CI/CD Content Pack, as its not possible to create incidents or playbooks on the Main account. You can do one of the following:
- - Upload the content via the CI/CD Build (it may still support the version control if you store all the versions locally. If using an artifact server, contact Customer support to upload via URL).
- - Run a job on a tenant and execute the commands on the Main Account. Installation occurs via Demisto REST API so you can configure it on the Main Account URL.
+ **NOTE**: For Multi-tenant you cannot run the playbook in the XSOAR CI/CD Content Pack, as its not possible to create incidents or playbooks on the Main account. Instead you  can upload the content via the CI/CD Build.
 
 Although you can choose your own artifact repository, (such as AWS, GCP, Git, FTP server, etc) by default, the CI/CD process uses Google Cloud Storage. You need to install the [Google Cloud Storage Content Pack](https://xsoar.pan.dev/docs/reference/integrations/google-cloud-storage) and configure the integration. If using another storage provider, such as AWS you need to install the relevant Content Pack and set up the integrations as necessary.
 
