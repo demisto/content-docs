@@ -116,5 +116,5 @@ Now that the integration is complete, you'll get the visibility you deserve! The
 
 ---
 
-Partners who wish to contribute paid packs must follow a few [additional onboarding steps](/docs/partners/paid-packs-process). 
+Partners who wish to contribute paid packs must follow a few [additional onboarding steps](/docs/partners/premium-packs-process). 
 

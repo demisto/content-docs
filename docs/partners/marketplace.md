@@ -5,7 +5,7 @@ title: Premium Packs
 
 Cortex XSOAR is the industry's only fully integrated marketplace for orchestration content!
 
-[Cortex XSOAR Marketplace](https://xsoar-pan-dev--pull-request-897-12bgy2h2.web.app/marketplace) is a digital storefront for discovering, exchanging and contributing security orchestration content centrally within the Cortex XSOAR platform. It enables users to install turnkey content packs to help solve any security use case with content contributed by SecOps experts and the world’s largest SOAR partner community, including you.
+[Cortex XSOAR Marketplace](/marketplace) is a digital storefront for discovering, exchanging and contributing security orchestration content centrally within the Cortex XSOAR platform. It enables users to install turnkey content packs to help solve any security use case with content contributed by SecOps experts and the world’s largest SOAR partner community, including you.
 
 Additionally, Partners have the ability to monetize their content on the Marketplace. You decide the content, the price, how to best market it, and get a healthy share of the revenue. The customer gets premium content to solve their use case. It's a win-win. Partners who wish to contribute premium packs must follow a few [additional onboarding steps](https://xsoar.pan.dev/docs/partners/premium-packs-process) and can now take advantage of [Private Offers](https://xsoar.pan.dev/docs/partners/private-offer)! 
 

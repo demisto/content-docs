@@ -3,7 +3,7 @@ id: premium_packs
 title: Premium Packs setup
 ---
 
-In this document we explain step-by-step how to develop paid content for the XSOAR Marketplace. Learn about [paid packs overview](/docs/partners/paid-packs) and the [business process required](/docs/partners/paid-packs-process).
+In this document we explain step-by-step how to develop paid content for the XSOAR Marketplace. Learn about [paid packs overview](/docs/partners/premium-packs) and the [business process required](/docs/partners/premium-packs-process).
 
 1. Duplicate the [demisto/content-external-template](https://github.com/demisto/content-external-template) repository by clicking **Use this template** and select to create it as a private repository under your user.  
 <img src="../doc_imgs/integrations/demisto_content-external-template.png" width="800"></img>  
