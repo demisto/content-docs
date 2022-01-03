@@ -5,6 +5,7 @@ on:
   push:
     branches:
     - master
+    - slack-notifier-addition
 
 jobs:
   build:
@@ -56,3 +57,10 @@ jobs:
       run: |
         cd content-repo
         pipenv run pytest -v
+    - name: Slack Notifier
+      if: always()
+      env:
+        SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+      run: |
+        JOB_STATUS=${{ job.status }}
+        python3 ./build_utils/slack_notifier.py ${JOB_STATUS}
