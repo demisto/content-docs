@@ -128,7 +128,7 @@ def get_modified_remote_data_command(client, args):
         modified_incident_ids.append(incident_id)
         last_mirror_incident_id = incident_id
     
-    # here it is an example for storing the last update to be noe and the last incident id that was handled
+    # an example for storing the last update to be now and the last incident id that was handled but we can use it in any other way
     set_last_mirror_run({"last_update": datetime.datetime.now(datetime.timezone.utc), "last_incident_id": last_mirror_incident_id})
     return GetModifiedRemoteDataResponse(modified_incident_ids)
 ```
