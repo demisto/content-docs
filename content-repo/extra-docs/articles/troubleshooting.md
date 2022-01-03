@@ -97,13 +97,16 @@ In case you encounter a *ReadTimeout* error, such as `ReadTimeout: HTTPSConnecti
 
 Starting from Base Content Pack version 1.17.6, we support controlling the read timeout value via server advanced coninguration, as follows:
 * System wide
-Key | Value
---- |  ----
-`python.pass.extra.keys` | `--env=REQUESTS_TIMEOUT=<TIMEOUT>`
+
+  Key | Value
+  --- |  ----
+  `python.pass.extra.keys` | `--env=REQUESTS_TIMEOUT=<TIMEOUT>`
+
 * Per Integration
-Key | Value
---- |  ----
-`python.pass.extra.keys` | `--env=REQUESTS_TIMEOUT.<INTEGRATION-ID>=<TIMEOUT>`
+
+  Key | Value
+  --- |  ----
+  `python.pass.extra.keys` | `--env=REQUESTS_TIMEOUT.<INTEGRATION-ID>=<TIMEOUT>`
 
 Examples: 
 
