@@ -427,7 +427,7 @@
       },
       {
           "source": "/docs/partners/marketplace",
-          "destination": "/docs/partners/paid-packs",
+          "destination": "/docs/partners/premium-packs",
           "type": 301
       },
       {
