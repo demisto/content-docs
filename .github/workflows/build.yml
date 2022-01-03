@@ -62,5 +62,6 @@ jobs:
       env:
         SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
       run: |
+        pip install slackclient
         JOB_STATUS=${{ job.status }}
         python3 ./build_utils/slack_notifier.py ${JOB_STATUS}
