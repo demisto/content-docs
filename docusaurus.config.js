@@ -115,8 +115,12 @@ module.exports = {
               label: "Become a Partner"
             },
             {
-              to: "/docs/partners/paid-packs",
-              label: "Paid Packs"
+              to: "/docs/partners/premium-packs",
+              label: "Premium Packs"
+            },
+            {
+              to: "/docs/partners/private-offer",
+              label: "Private Offer"
             },
             {
               to: "/docs/partners/adopt",

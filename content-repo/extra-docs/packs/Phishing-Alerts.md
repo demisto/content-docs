@@ -8,6 +8,7 @@ description: The Phishing Alerts content pack uses out-of-the-box playbooks to h
 
 Email Security Gateways produce a high amount of phishing alerts, which differ according to type, severity, and handling process. It is important to address these alerts to identify campaigns, analyze their IoCs, and protect the organization from any malicious payload that was delivered within them.
 
+`Note`: For the Phishing use case, see the [Phishing Investigation - Generic v3 playbook](https://xsoar.pan.dev/docs/reference/playbooks/phishing---generic-v3).
 
 ## In This Pack ##
 
@@ -30,7 +31,7 @@ This content pack contains a playbook and two sub-playbooks.
 
 The **Phishing Alerts** incident type.
 
-### Incident Layouts
+## Incident Layouts
 The **Phishing Alerts** incident type includes the **Phishing Alerts Layout**.
 
 The **Phishing Alerts Layout** contains one **Investigation** tab, with the following sections:
@@ -53,7 +54,7 @@ To use this pack, you need to configure several integrations and map and classif
 
 There are several items that you must install and configure before you start using this pack.
 
-#### 1. Configure the integration 
+### 1. Configure the integration 
 You need to configure both the integration which fetches phishing alerts and the one that holds the original email or a copy of that email. 
 
 **In order to fetch incident you should use:**
@@ -85,7 +86,7 @@ You need to configure both the integration which fetches phishing alerts and the
 
 **Note: If the Email Security Gateway doesn't hold a copy of the original email, you have to configure the Email Service Provider as well.**
 
-#### 2. Classification and Mapping  
+### 2. Classification and Mapping  
 
 To use the **Phishing Alerts Investigation** playbook you need to map the playbook for the relevant integration. If using a SIEM you also need to map the classifier.
 
