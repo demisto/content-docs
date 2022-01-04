@@ -154,8 +154,7 @@ workflows:
           filters:
             branches:
               only:
-#                - master
-                - slack-notifier-addition
+                - master
     jobs:
       - build
       - deploy:
