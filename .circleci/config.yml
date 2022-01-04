@@ -13,10 +13,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: EXIT
-          command:
-            exit 1
-      - run:
           name: Create Date Weekly File
           command: | 
             date +%Y-%W-v3 > date-week.txt
@@ -38,6 +34,10 @@ jobs:
             pyenv global 3.9.1
             pip3 install pipenv==2021.5.29
             pipenv install
+      - run:
+          name: EXIT
+          command:
+            exit 1
       - run:
           name: NPM Install
           command: |
