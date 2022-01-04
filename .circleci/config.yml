@@ -90,8 +90,9 @@ jobs:
       - run:
           name: Notify Slack
           command: |
-            pip install slack
-            pip install slackclient
+            which python
+            pipenv install slack
+            pipenv install slackclient
             python3 ./build_utils/slack_notifier.py ${SLACK_TOKEN}
           when: on_fail
 
