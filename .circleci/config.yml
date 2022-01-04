@@ -91,9 +91,9 @@ jobs:
           name: Notify Slack
           command: |
             which python
-            pip install slack
-            pip install slackclient
-            python ./build_utils/slack_notifier.py ${SLACK_TOKEN}
+            pipenv install slack
+            pipenv install slackclient
+            pipenv run python ./build_utils/slack_notifier.py ${SLACK_TOKEN}
           when: on_fail
 
   deploy:
