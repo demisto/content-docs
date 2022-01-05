@@ -18,6 +18,7 @@ beautifulsoup4 = "*"
 requests = "*"
 pydoc-markdown = "*"
 python-dateutil = "*"
+slack = "*"
 slack_sdk = "3.11.2"
 slackclient = "==2.9.3"
 
