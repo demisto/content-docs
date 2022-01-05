@@ -112,6 +112,26 @@ def get_modified_remote_data_command(client, args):
 
     return GetModifiedRemoteDataResponse(modified_incident_ids)
 ```
+* **Last Mirror Run (Available from 6.6)** - [get_last_mirror_run()](https://xsoar.pan.dev/docs/reference/api/common-server-python#get_last_mirror_run) retrieves the previous mirror run data that was set. You can set last run of the mirror using [set_last_mirror_run()](https://xsoar.pan.dev/docs/reference/api/common-server-python#set_last_mirror_run). Storing and getting this data (a dictionary) enables you to control the lastUpdate timestamp from the integration or any other data you want to save between mirror runs.
+ 
+  An example for such a function could be:
+```python
+def get_modified_remote_data_command(client, args):
+    last_update = get_last_mirror_run().get("last_update")
+    last_mirror_incident_id = get_last_mirror_run().get("last_incident_id")
+    last_update_utc = dateparser.parse(last_update, settings={'TIMEZONE': 'UTC'})  # convert to utc format
+    
+    raw_incidents = client.get_incidents(gte_modification_time=last_update_utc, limit=100)
+    modified_incident_ids = list()
+    for raw_incident in raw_incidents:
+        incident_id = raw_incident.get('incident_id')
+        modified_incident_ids.append(incident_id)
+        last_mirror_incident_id = incident_id
+    
+    # Following is an example for storing the last update to be now and the last incident ID that was handled but we can use it in any other way
+    set_last_mirror_run({"last_update": datetime.datetime.now(datetime.timezone.utc), "last_incident_id": last_mirror_incident_id})
+    return GetModifiedRemoteDataResponse(modified_incident_ids)
+```
 
 ### update-remote-system
 * **UpdateRemoteSystemArgs** - this is an object created to maintain all the arguments you receive from the server in order to use this command.
