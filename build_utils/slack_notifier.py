@@ -25,7 +25,7 @@ def create_slack_notifier(slack_token, build_url, failed_job_name):
 
 def options_handler():
     parser = argparse.ArgumentParser(description='Parser for slack_notifier args')
-    parser.add_argument('-u', '--url', help='The circle-ci url', default='')
+    parser.add_argument('-u', '--build_url', help='The circle-ci url', default='')
     parser.add_argument('-j', '--failed_job', help='The failed job name', required=True)
     parser.add_argument('-s', '--slack_token', help='The token for slack', required=True)
     options = parser.parse_args()
@@ -38,7 +38,7 @@ def main():
 
     slack_token = options.slack_token
     build_url = options.build_url
-    failed_job_name = options.failed_job_name
+    failed_job_name = options.failed_job
     print("failed_job_name")
     print(failed_job_name)
     if not slack_token:
