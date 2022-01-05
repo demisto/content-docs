@@ -37,7 +37,8 @@ module.exports = {
   projectName: "content-docs", // Usually your repo name.
   themeConfig: {
     algolia: {
-      apiKey: "f5dfbee43cfa4c5024b10045c6d91461",
+      apiKey: "74349c31456061cb5e9cb8e9d9992b89",
+      appId: "HRXQIDA6WM",
       indexName: "demisto",
       algoliaOptions: { typoTolerance: false, hitsPerPage: 1000, filters: 'type:lvl1 OR type:content' } // Optional, if provided by Algolia
     },
