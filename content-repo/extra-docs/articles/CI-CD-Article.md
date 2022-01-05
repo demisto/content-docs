@@ -137,7 +137,26 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
     
     Run the following command:
         `Demisto-sdk generate-docs --insecure -e directory`
-        For more information, see [creating documentation](https://xsoar.pan.dev/docs/documentation/readme_file#creating-documentation).   
+        For more information, see [creating documentation](https://xsoar.pan.dev/docs/documentation/readme_file#creating-documentation).
+
+8. **(Optional) Run SDK Validate and SDK Lint on your changes**
+
+    To check that your code is valid you can run the demisto-sdk validate command and the demisto-sdk lint command on your code.
+    **Troubleshooting:** in case that you get a-lot of errors from the validate/lint commands don't be panic you can control the validations that you want to ignore:
+    For example: the `BA111` - Problematic fields names error, or `IN135` or `IN145` - Integration params issues, you can add it to the `.pack-ignore` file in your pack like this:
+    ```
+        [file:some_playbook.yml]
+         ignore=BA111
+   
+        [file:some_integration.yml]
+         ignore=IN135,IN145
+    ```
+    For example: the `DOXXX` - Docker Images errors you can add `--no-docker-checks` flag to your validate command 
+    or add `no_docker_checks` to the `.demisto-sdk-conf` repo file like this:
+    ```
+       [validate]
+       no-docker-checks=true
+    ```
     
     
    
