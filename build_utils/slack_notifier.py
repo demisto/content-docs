@@ -14,7 +14,7 @@ def create_slack_notifier(slack_token, build_url, failed_job_name):
             username="Content-Docs CircleCI",
             attachments=[{
                 'color': 'danger',
-                'title': f'Content Docs {failed_job_name.upper()} - Failure',
+                'title': f'Content Docs {failed_job_name.title()} - Failure',
                 'title_link': build_url,
             }]
         )
