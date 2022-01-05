@@ -20,7 +20,7 @@ pydoc-markdown = "*"
 python-dateutil = "*"
 slack = "*"
 slack_sdk = "3.11.2"
-slackclient = "==2.9.3"
+slackclient = "==1.3.2"
 
 [requires]
 python_version = "3.9"
