@@ -90,7 +90,7 @@ jobs:
       - run:
           name: Notify Slack
           command: |
-            pipenv run python ./build_utils/slack_notifier.py ${SLACK_TOKEN} ${CIRCLE_BUILD_URL} ${CIRCLE_JOB}
+            pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB"
           when: on_fail
 
   deploy:

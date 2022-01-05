@@ -1,5 +1,3 @@
-import os
-import sys
 import argparse
 
 from slack_sdk import WebClient
@@ -7,7 +5,7 @@ from slack_sdk.errors import SlackApiError
 
 
 def create_slack_notifier(slack_token, build_url, failed_job_name):
-    print("Sending Slack messages to #dmst-dummy")
+    print("Sending Slack messages to #dmst-content-team")
     try:
         slack_client = WebClient(token=slack_token)
         slack_client.chat_postMessage(
@@ -25,10 +23,24 @@ def create_slack_notifier(slack_token, build_url, failed_job_name):
         assert e.response["error"]
 
 
+def options_handler():
+    parser = argparse.ArgumentParser(description='Parser for slack_notifier args')
+    parser.add_argument('-u', '--url', help='The circle-ci url', default='')
+    parser.add_argument('-j', '--failed_job', help='The failed job name', required=True)
+    parser.add_argument('-s', '--slack_token', help='The token for slack', required=True)
+    options = parser.parse_args()
+
+    return options
+
+
 def main():
-    slack_token = sys.argv[1]
-    build_url = sys.argv[2]
-    failed_job_name = sys.argv[3]
+    options = options_handler()
+
+    slack_token = options.slack_token
+    build_url = options.build_url
+    failed_job_name = options.failed_job_name
+    print("failed_job_name")
+    print(failed_job_name)
     if not slack_token:
         print('Error: Slack token is not configured')
         exit(1)
