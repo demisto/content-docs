@@ -110,6 +110,11 @@ jobs:
           name: Setup Python
           command: |            
             pipenv install
+
+      - run:
+          name: EXIT
+          command:
+            exit 1
       - run:
           name: Deploy to Firebase
           no_output_timeout: 30m
@@ -136,6 +141,13 @@ jobs:
                 name: Post Comment Firebase
                 command: pipenv run ./content-repo/post_github_comment.py deploy-info-firebase.txt
 
+      - run:
+          name: Notify Slack
+          command: |
+            pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB"
+          when: on_fail
+
+
 workflows:
   build_and_deploy:
     jobs:
@@ -143,11 +155,11 @@ workflows:
       - deploy:
           requires:
             - build
-          filters:
-            branches:
-              # only from non-fork
-              only: /^(?!pull\/).*$/
-                - slack-notifier-addition
+#          filters:
+#            branches:
+#              # only from non-fork
+#              only: /^(?!pull\/).*$/
+
   daily:
     triggers:
       - schedule:
