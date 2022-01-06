@@ -15,13 +15,14 @@ from pydoc_markdown.contrib.processors.sphinx import (
     SphinxProcessor, generate_sections_markdown)
 
 
+@dataclasses.dataclass
 class DemistoMarkdownRenderer(MarkdownRenderer):
-    func_prefix = dataclasses.field(default_factory=None)
+    func_prefix: str = dataclasses.field(default_factory=None)
 
-    module_overview = dataclasses.field(default_factory=None)
+    module_overview: str = dataclasses.field(default_factory=None)
 
     # Overriding header levels from MarkdownRenderer to Function header to level 2
-    header_level_by_type = dataclasses.field(default_factory={
+    header_level_by_type: {int} = dataclasses.field(default_factory=lambda: {
         'Module': 1,
         'Class': 2,
         'Method': 4,
