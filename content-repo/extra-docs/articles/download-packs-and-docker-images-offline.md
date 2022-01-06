@@ -4,6 +4,7 @@ title: Download Content Packs and Docker Images Offline
 description: The download_packs_and_docker_images.py script enables you to download content packs and Docker images to your computer when working offline.
 ---
 
+
 The **download_packs_and_docker_images.py** script enables offline users to download content packs and the content pack's latest Docker images to their computer and upload these packs and images to their Cortex XSOAR environment. 
 
 
