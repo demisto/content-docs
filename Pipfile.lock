@@ -117,26 +117,6 @@
             "index": "pypi",
             "version": "==0.5.1"
         },
-        "nr.collections": {
-            "hashes": [
-                "sha256:ddf38cd6379cac546ce7abdadf024fc01cca75540e11b1d5f1aa701a33817f1c"
-            ],
-            "version": "==0.0.1"
-        },
-        "nr.databind.core": {
-            "hashes": [
-                "sha256:854a0a0551a0aa5a5acedaa547af930bdaca331bc705b3f26732f6b913491572",
-                "sha256:87fe32d7d8dd91b878a25cd144d056435107ca56a8db7be3030f765334075f77"
-            ],
-            "version": "==0.0.22"
-        },
-        "nr.databind.json": {
-            "hashes": [
-                "sha256:27c7a7a69f6f703a0c616b898950fdb53a51b39cf9874d412ebc12dea574f20e",
-                "sha256:3765fd581c2ca2ee249ccfd460be0f472cc2bc9e5305e2f415d587a5e27c3b86"
-            ],
-            "version": "==0.0.14"
-        },
         "nr.fs": {
             "hashes": [
                 "sha256:64108c168ea2e8077fdf5f0c5417459d1a145fe34cb305fe90faeb75b4e8b421",

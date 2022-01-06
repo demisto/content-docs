@@ -7,8 +7,8 @@ import os
 import re
 from typing import Dict, List, Optional
 
+import dataclasses
 import docspec
-from nr.databind.core import Field
 from pydoc_markdown import (FilterProcessor, MarkdownRenderer, PydocMarkdown,
                             PythonLoader, SmartProcessor)
 from pydoc_markdown.contrib.processors.sphinx import (
@@ -16,12 +16,12 @@ from pydoc_markdown.contrib.processors.sphinx import (
 
 
 class DemistoMarkdownRenderer(MarkdownRenderer):
-    func_prefix = Field(str, default=None)
+    func_prefix = dataclasses.field(default_factory=None)
 
-    module_overview = Field(str, default=None)
+    module_overview = dataclasses.field(default_factory=None)
 
     # Overriding header levels from MarkdownRenderer to Function header to level 2
-    header_level_by_type = Field({int}, default={
+    header_level_by_type = dataclasses.field(default_factory={
         'Module': 1,
         'Class': 2,
         'Method': 4,
