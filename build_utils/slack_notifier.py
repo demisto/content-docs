@@ -69,7 +69,7 @@ def main():
     if not slack_token:
         print('Error: Slack token is not configured')
         exit(1)
-    get_circle_failed_steps(ci_token=ci_token, build_number=build_number)
+    print(get_circle_failed_steps(ci_token=ci_token, build_number=build_number))
 
     create_slack_notifier(slack_token=slack_token, build_url=build_url, failed_job_name=failed_job_name)
 
