@@ -1,4 +1,5 @@
 ---
+id: download-packs-offline
 title: Download Content Packs and Docker Images Offline
 description: The download_packs_and_docker_images.py script enables you to download content packs and Docker images to your computer when working offline.
 ---
