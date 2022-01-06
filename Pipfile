@@ -18,9 +18,10 @@ inflection = "*"
 beautifulsoup4 = "*"
 requests = "*"
 types-requests = "*"
-pydoc-markdown = "*"
+pydoc-markdown = "==3.10.0"
 python-dateutil = "*"
 types-python-dateutil = "*"
+slack_sdk = "*"
 
 [requires]
 python_version = "3.9"
