@@ -141,10 +141,10 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
 
 8. **(Optional) Run SDK Validate and SDK Lint on your changes**
 
-    Run demisto-sdk format command to set all your changes as expected.
-    To check that your code is valid you can run the demisto-sdk validate command and the demisto-sdk lint command on your code.
-    **Troubleshooting:** in case that you get a-lot of errors from the validate/lint commands don't be panic you can control the validations that you want to ignore:
-    For example: the `BA111` - Problematic fields names error, or `IN135` or `IN145` - Integration params issues, you can add it to the `.pack-ignore` file in your pack like this:
+    Run the `demisto-sdk format` command, which ensures that your new or modified files comply with Cortex XSOAR's standard. 
+    To check that your code is valid, run the `demisto-sdk validate` command and the `demisto-sdk lint` command on your code.<br/>
+    **Troubleshooting:** If you receive many errors from the validate/lint commands, it is not a major issue, as you can control the [validations](https://xsoar.pan.dev/docs/concepts/demisto-sdk#validate) you want to ignore.
+    For example, if you receive the `BA111` - Problematic fields names error, or the `IN135` or `IN145` - Integration params issues, you can add it to the `.pack-ignore` file in your pack like this:
     ```
         [file:some_playbook.yml]
          ignore=BA111
@@ -152,8 +152,8 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
         [file:some_integration.yml]
          ignore=IN135,IN145
     ```
-    For example: the `DOXXX` - Docker Images errors you can add `--no-docker-checks` flag to your validate command 
-    or add `no_docker_checks` to the `.demisto-sdk-conf` repo file like this:
+    For the `DOXXX` - Docker Images errors, you can add `--no-docker-checks` flag to your validate command 
+    or add `no_docker_checks` to the `.demisto-sdk-conf` repository file like this:
     ```
        [validate]
        no-docker-checks=true
