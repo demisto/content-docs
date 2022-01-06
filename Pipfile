@@ -16,7 +16,7 @@ pyyaml = "*"
 inflection = "*"
 beautifulsoup4 = "*"
 requests = "*"
-pydoc-markdown = "*"
+pydoc-markdown = "==3.10.0"
 python-dateutil = "*"
 slack_sdk = "*"
 
