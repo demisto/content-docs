@@ -1,7 +1,7 @@
 ---
 id: Change Management
 title: Change Management 
-description: The firewall change management is a complex and delicate process that needs to be performed with extreme caution due to the consequences that can be caused due to a mistake,
+description: The firewall change management is a complex and delicate process that needs to be performed with extreme caution due to the consequences that can be caused due to a mistake.
 If you use Pan-Os or Panorama as your enterprise firewall and Jira or ServiceNow as your enterprise ticking this pack will assist you perform a well coordinated and documented process.
 
 ---
