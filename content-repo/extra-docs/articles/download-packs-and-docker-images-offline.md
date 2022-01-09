@@ -21,7 +21,7 @@ The following are the options for running the script:
 | Options | Description | Required |
 | ----- | ------| ----- |
 | -h, --help | Displays a list of options and descriptions. | Optional |
-| -p &lt;names of packs&gt;, --pack \<names of packs> | Comma-separated list of pack names as they appear in https://xsoar.pan.dev/marketplace. | Required |
+| -p &lt;names of packs&gt;, --pack &lt;names of packs&gt; | Comma-separated list of pack names as they appear in https://xsoar.pan.dev/marketplace. | Required |
 | -o &lt;output path&gt;, --output_path &lt;output path&gt; | The path where the files will be downloaded to. | Optional |
 | -sp, --skip_packs | Don't download packs. | Optional |
 | -sd, --skip_docker | Don't download Docker images. | Optional |
