@@ -5,7 +5,7 @@ description: The download_packs_and_docker_images script enables you to download
 ---
 
 
-The **download_packs_and_docker_images.py** script enables offline users to download content packs and the content pack's latest Docker images to their computer and upload these packs and images to their Cortex XSOAR environment. 
+The **download_packs_and_docker_images** script enables offline users to download content packs and the content pack's latest Docker images to their computer and upload these packs and images to their Cortex XSOAR environment. 
 
 
 To run the script, indicate which packs to download by entering the names of the packs exactly as they appear in https://xsoar.pan.dev/marketplace.	If you enter an incorrect pack name, the script will display an error message and skip that pack. 
@@ -13,7 +13,7 @@ To run the script, indicate which packs to download by entering the names of the
 The script downloads the content packs you want and the pack's Docker images as zip files to the output path you provide. If you do not provide a an output path, it will download the files to the folder from which you ran the script. You can then upload these packs and images to your Cortex XSOAR environment.
 
 
-The **download_packs_and_docker_images.py** script is located in the *utils* folder in the GIT Content repository
+The **download_packs_and_docker_images** script is located in the *utils* folder in the GIT Content repository
 
 
 The following are the options for running the script:
@@ -21,8 +21,8 @@ The following are the options for running the script:
 | Options | Description | Required |
 | ----- | ------| ----- |
 | -h, --help | Displays a list of options and descriptions. | Optional |
-| -p &lt;names of packs&gt;, --pack &lt;names of packs&gt; | Comma-separated list of pack names as they appear in https://xsoar.pan.dev/marketplace. | Required |
-| -o &lt;output path&gt;, --output_path &lt;output path&gt; | The path where the files will be downloaded to. | Optional |
+| -p \<names of packs>, --pack \<names of packs> | Comma-separated list of pack names as they appear in https://xsoar.pan.dev/marketplace. | Required |
+| -o \<output path>, --output_path \<output path> | The path where the files will be downloaded to. | Optional |
 | -sp, --skip_packs | Don't download packs. | Optional |
 | -sd, --skip_docker | Don't download Docker images. | Optional |
 | --insecure | Skip certificate validation. | Optional |
@@ -42,7 +42,7 @@ If downloading Docker images:
 
 2. Run the download script by typing the following with a comma-separated list of names of the packs to download:
 
-   ***python3 &lt;path to the script&gt; -p &lt;name of the packs&gt;***
+   ***python3 \<path to the script> -p \<name of the packs>***
 
    For example:
 ***python3 ./utils/download_packs_and_docker_images.py -p "AWS - IAM,Cybereason"***
@@ -55,9 +55,5 @@ If downloading Docker images:
    1. Expand the Docker zip file.
    2. Run the following command for each of the docker images:
 
-      ***docker load -i &lt;path to the docker tar file&gt;***
-
-
-
-
+      ***docker load -i \<path to the docker tar file>***
 
