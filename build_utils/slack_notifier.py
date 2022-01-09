@@ -26,9 +26,12 @@ def get_circle_failed_steps(ci_token, build_number):
     return failed_steps_list
 
 
-def create_slack_notifier(slack_token, build_url, failed_job_name):
+def create_slack_notifier(slack_token, build_url, failed_job_name, ci_token, build_number):
     print("Sending Slack messages to #dmst-content-team")
+    steps_fields = []
     try:
+        if failed_entities := get_circle_failed_steps(ci_token=ci_token, build_number=build_number):
+            steps_fields = get_entities_fields(f'Failed Steps - ({len(failed_entities)})', failed_entities)
         slack_client = WebClient(token=slack_token)
         slack_client.chat_postMessage(
             channel='dan-test-channel',
@@ -38,10 +41,28 @@ def create_slack_notifier(slack_token, build_url, failed_job_name):
                 'color': 'danger',
                 'title': f'Content Docs {failed_job_name.title()} - Failure',
                 'title_link': build_url,
+                'fields': steps_fields
             }]
         )
     except SlackApiError as e:
         assert e.response["error"]
+
+
+def get_entities_fields(entity_title: str, entities: List[str]) -> List[Dict]:
+    """
+    Builds an entity from given entity title and entities list
+    Args:
+        entity_title (str): Title of the entity.
+        entities (List[str]): List of the entities.
+
+    Returns:
+        (List[Dict]): List of dict containing the entity. List is needed because it is the expected format by Slack API.
+    """
+    return [{
+        "title": f'{entity_title}',
+        "value": '\n'.join(entities),
+        "short": False
+    }]
 
 
 def options_handler():
@@ -58,7 +79,6 @@ def options_handler():
 
 def main():
     options = options_handler()
-
     slack_token = options.slack_token
     build_url = options.build_url
     failed_job_name = options.failed_job
@@ -69,9 +89,8 @@ def main():
     if not slack_token:
         print('Error: Slack token is not configured')
         exit(1)
-    print(get_circle_failed_steps(ci_token=ci_token, build_number=build_number))
 
-    create_slack_notifier(slack_token=slack_token, build_url=build_url, failed_job_name=failed_job_name)
+    create_slack_notifier(slack_token=slack_token, build_url=build_url, failed_job_name=failed_job_name, ci_token=ci_token, build_number=build_number)
 
 
 if __name__ == '__main__':
