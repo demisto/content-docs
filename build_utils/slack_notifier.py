@@ -3,6 +3,7 @@ import argparse
 from circleci.api import Api as circle_api
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
+from typing import List, Dict
 
 
 def get_circle_failed_steps(ci_token, build_number):
