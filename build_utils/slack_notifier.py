@@ -27,8 +27,10 @@ def get_circle_failed_steps(ci_token, build_number):
     return failed_steps_list
 
 
-def create_slack_notifier(slack_token, build_url, failed_job_name, ci_token, build_number):
+def create_slack_notifier(slack_token, build_url, failed_job_name, ci_token, build_number, workflow_status):
     print("Sending Slack messages to #dmst-content-team")
+    color = 'good' if workflow_status == "Success" else 'danger'
+
     steps_fields = []
     try:
         if failed_entities := get_circle_failed_steps(ci_token=ci_token, build_number=build_number):
@@ -39,8 +41,8 @@ def create_slack_notifier(slack_token, build_url, failed_job_name, ci_token, bui
             as_user=False,
             username="Content-Docs CircleCI",
             attachments=[{
-                'color': 'danger',
-                'title': f'Content Docs {failed_job_name.title()} - Failure',
+                'color': color,
+                'title': f'Content Docs {failed_job_name.title()} - {workflow_status}',
                 'title_link': build_url,
                 'fields': steps_fields
             }]
@@ -70,7 +72,8 @@ def options_handler():
     parser = argparse.ArgumentParser(description='Parser for slack_notifier args')
     parser.add_argument('-u', '--build_url', help='The circle-ci url', default='')
     parser.add_argument('-j', '--failed_job', help='The failed job name', required=True)
-    parser.add_argument('-s', '--slack_token', help='The token for slack', required=True)
+    parser.add_argument('-t', '--slack_token', help='The token for slack', required=True)
+    parser.add_argument('-s', '--status', help='The workflow status', required=True)
     parser.add_argument('-b', '--build_number', help='The build number', required=True)
     parser.add_argument('-c', '--ci_token', help='The token for circleci/gitlab', required=True)
     options = parser.parse_args()
@@ -85,13 +88,14 @@ def main():
     failed_job_name = options.failed_job
     ci_token = options.ci_token
     build_number = options.build_number
-    print("build_number")
-    print(build_number)
+    workflow_status = options.status
+
     if not slack_token:
         print('Error: Slack token is not configured')
         exit(1)
 
-    create_slack_notifier(slack_token=slack_token, build_url=build_url, failed_job_name=failed_job_name, ci_token=ci_token, build_number=build_number)
+    create_slack_notifier(slack_token=slack_token, build_url=build_url, failed_job_name=failed_job_name, ci_token=ci_token, build_number=build_number,
+                          workflow_status=workflow_status)
 
 
 if __name__ == '__main__':

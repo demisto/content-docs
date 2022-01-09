@@ -34,10 +34,10 @@ jobs:
             pyenv global 3.9.1
             pip3 install pipenv==2021.5.29
             pipenv install
-      - run:
-          name: EXIT
-          command:
-            exit 1
+#      - run:
+#          name: EXIT
+#          command:
+#            exit 1
       - run:
           name: NPM Install
           command: |
@@ -90,8 +90,13 @@ jobs:
       - run:
           name: Notify Slack
           command: |
-            pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
+            pipenv run python ./build_utils/slack_notifier.py -t "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN -s "Failure"
           when: on_fail
+      - run:
+          name: Notify Slack
+          command: |
+            pipenv run python ./build_utils/slack_notifier.py -t "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN" -s "Success"
+          when: on_success
 
   deploy:
     docker:
