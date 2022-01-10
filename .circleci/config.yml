@@ -5,8 +5,7 @@
 version: 2.1
 jobs:
   build:
-    environment:
-      SLACK_BRANCH_NAME: 'slack-notifier-addition'
+
     machine:
       image: ubuntu-2004:202101-01
       resource_class: large
@@ -87,19 +86,15 @@ jobs:
       - run:
           name: Notify Slack
           command: |
-            pipenv run python ./build_utils/slack_notifier.py -t "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN" -s "Failure"
-          when:
-            and:
-              - on_fail
-              - "$CIRCLE_BRANCH" == $SLACK_BRANCH_NAME
+            if [ "$CIRCLE_BRANCH" == "slack-notifier-addition"  ]; then
+              pipenv run python ./build_utils/slack_notifier.py -t "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN" -s "Failure"
+          when: on_fail
       - run:
           name: Notify Slack
           command: |
-            pipenv run python ./build_utils/slack_notifier.py -t "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN" -s "Success"
-          when:
-            and:
-              - on_success
-              - "$CIRCLE_BRANCH" == $SLACK_BRANCH_NAME
+            if [ "$CIRCLE_BRANCH" == "slack-notifier-addition"  ]; then
+              pipenv run python ./build_utils/slack_notifier.py -t "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN" -s "Success"
+          when: on_success
 
   deploy:
     docker:
@@ -110,8 +105,6 @@ jobs:
         description: Indicates if to post a comment or not (on daily job we skip posting)
         type: boolean
         default: true
-    environment:
-      SLACK_BRANCH_NAME: 'slack-notifier-addition'
     steps:
       - checkout
       - attach_workspace:
@@ -149,19 +142,15 @@ jobs:
       - run:
           name: Notify Slack
           command: |
-            pipenv run python ./build_utils/slack_notifier.py -t "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN" -s "Failure"
-          when:
-            and:
-              - on_fail
-              - "$CIRCLE_BRANCH" == $SLACK_BRANCH_NAME
+            if [ "$CIRCLE_BRANCH" == "slack-notifier-addition"  ]; then
+              pipenv run python ./build_utils/slack_notifier.py -t "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN" -s "Failure"
+          when: on_fail
       - run:
           name: Notify Slack
           command: |
-            pipenv run python ./build_utils/slack_notifier.py -t "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN" -s "Success"
+            if [ "$CIRCLE_BRANCH" == "slack-notifier-addition"  ]; then
+              pipenv run python ./build_utils/slack_notifier.py -t "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN" -s "Success"
           when: on_success
-            and:
-            - on_success
-            - "$CIRCLE_BRANCH" == $SLACK_BRANCH_NAME
 
 
 workflows:
