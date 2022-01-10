@@ -5,7 +5,8 @@
 version: 2.1
 jobs:
   build:
-
+    environment:
+      SLACK_BRANCH_NAME: 'slack-notifier-addition'
     machine:
       image: ubuntu-2004:202101-01
       resource_class: large
@@ -34,10 +35,6 @@ jobs:
             pyenv global 3.9.1
             pip3 install pipenv==2021.5.29
             pipenv install
-#      - run:
-#          name: EXIT
-#          command:
-#            exit 1
       - run:
           name: NPM Install
           command: |
@@ -55,48 +52,54 @@ jobs:
           command: |
             nvm use
             npm run marketplace-docs
-#      - run:
-#          name: NPM Build
-#          no_output_timeout: 80m
-#          environment:
-#            ALGOLIA_INDEX: demisto
-#          command: |
-#            nvm use
-#            npm run heapstats
-#            npm run build-docusaurus
-#            echo "Build is done. Create tar of the build dir"
-#            tar czf build-site.tar.gz build
-#      - store_artifacts:
-#          path: build-site.tar.gz
-#      - when:
-#          condition:
-#            equal: [ master, << pipeline.git.branch >> ]
-#          steps:
-#            - save_cache:
-#                key: npm-cache-v4-{{ checksum "package-lock.json" }}
-#                paths:
-#                  - ~/.npm
-#            - save_cache:
-#                key: node-cache-v4-{{ checksum "date-week.txt" }}
-#                paths:
-#                  - node_modules/.cache
-#      - persist_to_workspace:
-#          # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
-#          # taken to be the root directory of the workspace.
-#          root: /home/circleci/project
-#          # Must be relative path from root
-#          paths:
-#            - build
+      - run:
+          name: NPM Build
+          no_output_timeout: 80m
+          environment:
+            ALGOLIA_INDEX: demisto
+          command: |
+            nvm use
+            npm run heapstats
+            npm run build-docusaurus
+            echo "Build is done. Create tar of the build dir"
+            tar czf build-site.tar.gz build
+      - store_artifacts:
+          path: build-site.tar.gz
+      - when:
+          condition:
+            equal: [ master, << pipeline.git.branch >> ]
+          steps:
+            - save_cache:
+                key: npm-cache-v4-{{ checksum "package-lock.json" }}
+                paths:
+                  - ~/.npm
+            - save_cache:
+                key: node-cache-v4-{{ checksum "date-week.txt" }}
+                paths:
+                  - node_modules/.cache
+      - persist_to_workspace:
+          # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
+          # taken to be the root directory of the workspace.
+          root: /home/circleci/project
+          # Must be relative path from root
+          paths:
+            - build
       - run:
           name: Notify Slack
           command: |
             pipenv run python ./build_utils/slack_notifier.py -t "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN" -s "Failure"
-          when: on_fail
+          when:
+            and:
+              on_fail
+              "$CIRCLE_BRANCH" == $SLACK_BRANCH_NAME
       - run:
           name: Notify Slack
           command: |
             pipenv run python ./build_utils/slack_notifier.py -t "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN" -s "Success"
           when: on_success
+            and:
+              on_success
+              "$CIRCLE_BRANCH" == $SLACK_BRANCH_NAME
 
   deploy:
     docker:
@@ -107,6 +110,8 @@ jobs:
         description: Indicates if to post a comment or not (on daily job we skip posting)
         type: boolean
         default: true
+    environment:
+      SLACK_BRANCH_NAME: 'slack-notifier-addition'
     steps:
       - checkout
       - attach_workspace:
@@ -115,11 +120,6 @@ jobs:
           name: Setup Python
           command: |            
             pipenv install
-
-      - run:
-          name: EXIT
-          command:
-            exit 1
       - run:
           name: Deploy to Firebase
           no_output_timeout: 30m
@@ -150,12 +150,18 @@ jobs:
           name: Notify Slack
           command: |
             pipenv run python ./build_utils/slack_notifier.py -t "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN" -s "Failure"
-          when: on_fail
+          when:
+            and:
+              on_fail
+              "$CIRCLE_BRANCH" == $SLACK_BRANCH_NAME
       - run:
           name: Notify Slack
           command: |
             pipenv run python ./build_utils/slack_notifier.py -t "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN" -s "Success"
           when: on_success
+            and:
+              on_success
+              "$CIRCLE_BRANCH" == $SLACK_BRANCH_NAME
 
 
 workflows:
@@ -165,16 +171,16 @@ workflows:
       - deploy:
           requires:
             - build
-#          filters:
-#            branches:
-#              # only from non-fork
-#              only: /^(?!pull\/).*$/
+          filters:
+            branches:
+              # only from non-fork
+              only: /^(?!pull\/).*$/
 
   daily:
     triggers:
       - schedule:
-          # should trigger every day at 13:00 UTC (4 hours after each upload-flow run)
-          cron: "0 13 * * *"
+          # should trigger every day at 4:00 UTC (4 hours after 12 AM upload-flow run)
+          cron: "0 4 * * *"
           filters:
             branches:
               only:
