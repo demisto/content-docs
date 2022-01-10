@@ -56,7 +56,7 @@ To create your Private Offer listing, follow the [Premium Packs setup](https://x
    ```
   **Make sure to copy the text exactly as it is.**
 
- - #### Tag the pack as private offer
+ - #### Tag the pack as Private Offer
    1. In your pack directory navigate to your [Pack Metadata](https://xsoar.pan.dev/docs/packs/packs-format#pack_metadatajson) (`Packs/My_Pack/pack_metadata.json`).
    2. Add/update the `tags` key of the metadata.json to include the `Private Offer`:
    ```json
