@@ -51,49 +51,49 @@ jobs:
           command: |
             nvm use
             npm run marketplace-docs
-#      - run:
-#          name: NPM Build
-#          no_output_timeout: 80m
-#          environment:
-#            ALGOLIA_INDEX: demisto
-#          command: |
-#            nvm use
-#            npm run heapstats
-#            npm run build-docusaurus
-#            echo "Build is done. Create tar of the build dir"
-#            tar czf build-site.tar.gz build
-#      - store_artifacts:
-#          path: build-site.tar.gz
-#      - when:
-#          condition:
-#            equal: [ master, << pipeline.git.branch >> ]
-#          steps:
-#            - save_cache:
-#                key: npm-cache-v4-{{ checksum "package-lock.json" }}
-#                paths:
-#                  - ~/.npm
-#            - save_cache:
-#                key: node-cache-v4-{{ checksum "date-week.txt" }}
-#                paths:
-#                  - node_modules/.cache
-#      - persist_to_workspace:
-#          # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
-#          # taken to be the root directory of the workspace.
-#          root: /home/circleci/project
-#          # Must be relative path from root
-#          paths:
-#            - build
+      - run:
+          name: NPM Build
+          no_output_timeout: 80m
+          environment:
+            ALGOLIA_INDEX: demisto
+          command: |
+            nvm use
+            npm run heapstats
+            npm run build-docusaurus
+            echo "Build is done. Create tar of the build dir"
+            tar czf build-site.tar.gz build
+      - store_artifacts:
+          path: build-site.tar.gz
+      - when:
+          condition:
+            equal: [ master, << pipeline.git.branch >> ]
+          steps:
+            - save_cache:
+                key: npm-cache-v4-{{ checksum "package-lock.json" }}
+                paths:
+                  - ~/.npm
+            - save_cache:
+                key: node-cache-v4-{{ checksum "date-week.txt" }}
+                paths:
+                  - node_modules/.cache
+      - persist_to_workspace:
+          # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
+          # taken to be the root directory of the workspace.
+          root: /home/circleci/project
+          # Must be relative path from root
+          paths:
+            - build
       - run:
           name: Notify Slack
           command: |
-            if [ "$CIRCLE_BRANCH" == "slack-notifier-addition"  ]; then
+            if [ "$CIRCLE_BRANCH" == "master"  ]; then
               pipenv run python ./build_utils/slack_notifier.py -t "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN" -s "Failure"
             fi
           when: on_fail
       - run:
           name: Notify Slack
           command: |
-            if [ "$CIRCLE_BRANCH" == "slack-notifier-addition"  ]; then
+            if [ "$CIRCLE_BRANCH" == "master"  ]; then
               pipenv run python ./build_utils/slack_notifier.py -t "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN" -s "Success"
             fi
           when: on_success
@@ -144,14 +144,14 @@ jobs:
       - run:
           name: Notify Slack
           command: |
-            if [ "$CIRCLE_BRANCH" == "slack-notifier-addition"  ]; then
+            if [ "$CIRCLE_BRANCH" == "master"  ]; then
               pipenv run python ./build_utils/slack_notifier.py -t "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN" -s "Failure"
             fi
           when: on_fail
       - run:
           name: Notify Slack
           command: |
-            if [ "$CIRCLE_BRANCH" == "slack-notifier-addition"  ]; then
+            if [ "$CIRCLE_BRANCH" == "master"  ]; then
               pipenv run python ./build_utils/slack_notifier.py -t "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN" -s "Success"
             fi
           when: on_success
