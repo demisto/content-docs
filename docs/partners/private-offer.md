@@ -46,8 +46,9 @@ To create your Private Offer listing, follow the [Premium Packs setup](https://x
 
 <details>
 <summary>Click here for detailed steps to add Private Offer to your premium pack</summary>
- 
- 
+
+<br/>
+
 #### Adding the "request private offer" button to your pack details
   1. In your pack directory navigate to your [Pack Readme](https://xsoar.pan.dev/docs/documentation/pack-docs#pack-readme) (`Packs/My_Pack/README.md`).
   2. Copy the following Markdown text (exactly as it is) ans paste it in top of the README:
