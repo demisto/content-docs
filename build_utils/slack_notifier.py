@@ -37,7 +37,7 @@ def create_slack_notifier(slack_token, build_url, failed_job_name, ci_token, bui
             steps_fields = get_entities_fields(f'Failed Steps - ({len(failed_entities)})', failed_entities)
         slack_client = WebClient(token=slack_token)
         slack_client.chat_postMessage(
-            channel='dan-test-channel',
+            channel='dmst-content-team',
             as_user=False,
             username="Content-Docs CircleCI",
             attachments=[{
