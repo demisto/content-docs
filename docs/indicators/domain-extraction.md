@@ -6,13 +6,13 @@ title: Domain Extraction
 The Cortex XSOAR Domain indicator type is built using regex and a formatting script.
 In this documentation, we will elaborate on the Domain indicator components and what output you should expect when extracting indicators of type Domain.
 
-## Domain Indicator Components
+## Domain Extraction Components
 
 There are two components when extracting Domain indicators:
-Regex
+Regular Expression
 Formatting script
 
-### Regex
+### Regular Expression
 
 When text is given, a Domain regex will try to catch a valid Domain based on the following characteristics:
 - A Domain with ASCII and non-ASCII characters
