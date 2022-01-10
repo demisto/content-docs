@@ -32,7 +32,7 @@ To ensure as seamless an experience as possible for both you and our customers, 
 Requests can also be initiated through your sales teams or our Cortex sales teams. We highly recommend that your teams promote your XSOAR packs to ensure customers/prospects know you have a premium offering in the XSOAR Marketplace. If an opportunity is identified, email the details of the request to xsoar.privateoffer@paloaltonetworks.com . 
 
 Here is an overview of the Private Offer process when initiated by a Partner:
-<img src="../doc_imgs/partners/NewPrivateOfferPartnerSalesProcessFlow.png" width="600px;"/>
+<img src="../doc_imgs/partners/PrivateOfferPartnerSalesProcessFlowV2.png" width="600px;"/>
 
 ## Private Offer Listing Designation 
 Let customers know your XSOAR Marketplace premium pack is available for Private Offer! For partners who elect to participate in Private Offer, the UI will be updated to advertise and drive attention to your pack listing as shown below:
