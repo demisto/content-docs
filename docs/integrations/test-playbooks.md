@@ -3,11 +3,13 @@ id: test-playbooks
 title: Test Playbooks
 ---
 
+
 We use Test Playbooks to test our integrations and automation scripts. The Test Playbooks provide full *End to End* testing. For testing small units of code, use [Unit Testing](unit-testing). 
+Tests are run using our CI framework. They are run both as part of the build process and on a nightly basis. 
 
-Tests are run using our CI framework. They are run both as part of the build process and on a nightly basis. If you are a contributor, during the initial PR, Test Playbooks will not run but they will be used as part of the review process. Once the PR is merged into a `contrib/*` branch by one of the team members and credentials (if needed) are provided to Cortex XSOAR, the test playbooks will be run as part of our CI framework. 
-
-**Note:** Test Playbooks are required as part of the PR acceptance review process. For simple Scripts that have unit tests, a test playbook is optional.
+:::note
+The content team will automatically run Test Playbooks for packs that are not supported by XSOAR
+:::
 
 A Test Playbook consists of several steps, including testing commands, verifying the results, and closing the investigation.
 
@@ -98,27 +100,6 @@ id: IPInfo-Test
 version: -1
 name: IPInfo-Test
 ```
-
-## Adding Tests to conf.json
-In order to associate integrations with a test plabyook we mange a `conf.json` file (at the root of the repository). The conf.json file is located in the **Tests** directory.
-
-The following is an example of a correct conf.json entry for an integration:
-```yml
-        {
-            "integrations": "Forcepoint",
-            "playbookID": "forcepoint test",
-            "timeout": 500,
-            "nightly": true
-        },
-```
-The following table describes the fields:
-
-|Name|Description|
-|---|---|
-| **integrations** | The ID of the integration that you are testing. |
-| **playbookID** | The ID of the test playbook that you are running. |
-| **timeout** | The time in seconds to extend the timeout to (optional). |
-| **nightly** | Boolean that indicates if the test should be part of **only** the nightly tests (optional). |
 
 
 ## Resources
