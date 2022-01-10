@@ -22,7 +22,7 @@ When text is given, a URL regex will try to catch a valid URL based on the follo
    - FTP
    - HXXP (obfuscated HTTP)
    - HXXPS (obfuscated HTTPS)
-- A URL with non-ASCII characters
+- A URL with ASCII or non-ASCII characters
 - Escaped and Unescaped URLs
 - URL with or without query parameters
 
