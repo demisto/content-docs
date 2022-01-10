@@ -7,13 +7,13 @@ title: URL Extraction
 The Cortex XSOAR URL indicator type is built using regex and a formatting script.
 The following describes the URL indicator components and what output you should expect when extracting indicators of type URL.
 
-## URL Indicator Components
+## URL Extraction Components
 
 There are two components when extracting URL indicators:
-- Regex
+- Regular Expression 
 - Formatting script
 
-### Regex
+### Regular Expression
 
 When text is given, a URL regex will try to catch a valid URL based on the following characteristics:
 - A URL prefixed by one of the following protocols:
