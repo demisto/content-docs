@@ -48,6 +48,16 @@ When you configure SAML 2.0, you need to map several attributes from your IdP to
 | Sign request and verify response signature | Method for the IdP to verify the user sign-in request using the IdP vendor certificate. |
 | Identity Provider public certificate | Public certificate for your IdP . |
 | Identity Provider private key | Private key for your IdP, in PEM format (required for single logout) . |
+| Service Provider public certificate | Public certificate for the service provider. |
+| Service Provider Private key (pem format) | Private certkeyificate for the service provider. |
+| Do not validate server certificate (insecure) | whether to verify the server certificate or not. |
+| Use system proxy settings | Wether to use proxy settings or not. |
+| ADFS | Whether to use ADFS server. |
+| Compress encode URL (ADFS) | Check mandatory for ADFS encoding. |
+| Service Identifier (ADFS)| | The ADFS relay identifier which XSOAR will redirect the user for SSO first login. |
 | Identity Provider Single Logout URL | URL that users are sent to after logging out of the SAML session. |
 | Single Logout Service Endpoint | Logout service with which SAML communicates. |
 | Do not map SAML groups to Demisto roles | SAML groups will not be mapped to Demisto roles |
+| Single logout - specify Name ID Format | Wether to use the Name ID format. |
+| Name ID | | Defines the name identifier formats supported by the identity provider. |
+| Use this instance for external authentication only | By checking this box you are limiting this instance to authenticate external (non-XSOAR) users when they enter to answer a survey sent via a communication task.
