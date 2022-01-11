@@ -3,29 +3,29 @@ id: domain-extraction
 title: Domain Extraction
 ---
 
-The Cortex XSOAR Domain indicator type is built using regex and a formatting script.
+The Cortex XSOAR Domain indicator type is built using regular expression and a formatting script.
 In this documentation, we will elaborate on the Domain indicator components and what output you should expect when extracting indicators of type Domain.
 
 ## Domain Extraction Components
 
 There are two components when extracting Domain indicators:
-Regular Expression
-Formatting script
+- regular expression
+- formatting script
 
 ### Regular Expression
 
-When text is given, a Domain regex will try to catch a valid Domain based on the following characteristics:
+When text is given, a Domain regular expression will try to catch a valid Domain based on the following characteristics:
 - A Domain with ASCII and non-ASCII characters
 - An Escaped and Unescaped Domains
 
-The regex can extract Domains from one of the following:
-- Explicit Domain
+The regular expression can extract Domains from one of the following:
+- Explicit domain
 - URL
-- Email Address
+- Email address
 
 ### Formatting Script
 
-After extracting the Domain using regex, an ‘ExtractDomainAndFQDNFromUrlAndEmail’ formatting script iterates on each given Domain and does the following:
+After extracting the Domain using regular expression, an ‘ExtractDomainAndFQDNFromUrlAndEmail’ formatting script iterates on each given Domain and does the following:
 
 1. Replaces "[.]" with ".".
 	
