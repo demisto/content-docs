@@ -9,14 +9,14 @@ In this documentation, we will elaborate on the Domain indicator components and 
 ## Domain Extraction Components
 
 There are two components when extracting Domain indicators:
-- regular expression
-- formatting script
+- Regular expression
+- Formatting script
 
 ### Regular Expression
 
 When text is given, a Domain regular expression will try to catch a valid Domain based on the following characteristics:
 - A Domain with ASCII and non-ASCII characters
-- An Escaped and Unescaped Domains
+- Escaped and unescaped Domains
 
 The regular expression can extract Domains from one of the following:
 - Explicit domain
