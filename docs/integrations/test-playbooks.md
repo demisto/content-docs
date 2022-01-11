@@ -8,7 +8,7 @@ We use Test Playbooks to test our integrations and automation scripts. The Test 
 Tests are run using our CI framework. They are run both as part of the build process and on a nightly basis. 
 
 :::note
-The content team will automatically run Test Playbooks for packs that are not supported by XSOAR
+By default the content team will not run Test Playbooks for packs that are not supported by XSOAR.
 :::
 
 A Test Playbook consists of several steps, including testing commands, verifying the results, and closing the investigation.
@@ -101,6 +101,8 @@ version: -1
 name: IPInfo-Test
 ```
 
+## Adding Tests to conf.json
+In order to associate integrations with a test plabyook we mange a `conf.json` file (at the root of the repository). The conf.json file is located in the **Tests** directory.
 
 ## Resources
 * [Example of a Test Playbook](https://github.com/demisto/content/blob/master/Packs/Carbon_Black_Enterprise_Response/TestPlaybooks/playbook-Carbon_Black_Response_Test.yml)
