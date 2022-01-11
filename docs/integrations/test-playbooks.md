@@ -3,13 +3,12 @@ id: test-playbooks
 title: Test Playbooks
 ---
 
+:::note
+By default, Test Playbooks will not run in the CI for packs that are not supported by Cortex XSOAR. Hence, adding a test playbook as described in the following article is not required, unless specifically requested by XSOAR.
+:::
 
 We use Test Playbooks to test our integrations and automation scripts. The Test Playbooks provide full *End to End* testing. For testing small units of code, use [Unit Testing](unit-testing). 
 Tests are run using our CI framework. They are run both as part of the build process and on a nightly basis. 
-
-:::note
-By default the content team will not run Test Playbooks for packs that are not supported by XSOAR.
-:::
 
 A Test Playbook consists of several steps, including testing commands, verifying the results, and closing the investigation.
 
@@ -103,6 +102,24 @@ name: IPInfo-Test
 
 ## Adding Tests to conf.json
 In order to associate integrations with a test plabyook we mange a `conf.json` file (at the root of the repository). The conf.json file is located in the **Tests** directory.
+
+The following is an example of a correct conf.json entry for an integration:
+```yml
+        {
+            "integrations": "Forcepoint",
+            "playbookID": "forcepoint test",
+            "timeout": 500,
+            "nightly": true
+        },
+```
+The following table describes the fields:
+
+|Name|Description|
+|---|---|
+| **integrations** | The ID of the integration that you are testing. |
+| **playbookID** | The ID of the test playbook that you are running. |
+| **timeout** | The time in seconds to extend the timeout to (optional). |
+| **nightly** | Boolean that indicates if the test should be part of **only** the nightly tests (optional). |
 
 ## Resources
 * [Example of a Test Playbook](https://github.com/demisto/content/blob/master/Packs/Carbon_Black_Enterprise_Response/TestPlaybooks/playbook-Carbon_Black_Response_Test.yml)
