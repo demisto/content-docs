@@ -10,8 +10,8 @@ The following describes the URL indicator components and what output you should 
 ## URL Extraction Components
 
 There are two components when extracting URL indicators:
-- regular expression
-- formatting script
+- Regular expression
+- Formatting script
 
 ### Regular Expression
 
@@ -24,7 +24,7 @@ When text is given, a URL regular expression will try to catch a valid URL based
    - hxxp (obfuscated hxxp)
    - hxxps (obfuscated hxxps)
 - A URL with ASCII or non-ASCII characters
-- Escaped and Unescaped URLs
+- Escaped and unescaped URLs
 - URL with or without query parameters
 
 ### Formatting Script
