@@ -4,7 +4,7 @@ title: Test Playbooks
 ---
 
 :::note
-By default, Test Playbooks will not run in the CI for packs that are not supported by Cortex XSOAR. Hence, adding a test playbook as described in the following article is not required, unless specifically requested by XSOAR.
+By default, Test Playbooks will not run in the CI for packs that are not supported by Cortex XSOAR. Hence, adding a test playbook as described in this article is not required, unless specifically requested by Cortex XSOAR.
 :::
 
 We use Test Playbooks to test our integrations and automation scripts. The Test Playbooks provide full *End to End* testing. For testing small units of code, use [Unit Testing](unit-testing). 
