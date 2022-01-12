@@ -3,11 +3,12 @@ id: test-playbooks
 title: Test Playbooks
 ---
 
+:::note
+By default, Test Playbooks will not run in the CI for packs that are not supported by Cortex XSOAR. Hence, adding a test playbook as described in this article is not required, unless specifically requested by Cortex XSOAR.
+:::
+
 We use Test Playbooks to test our integrations and automation scripts. The Test Playbooks provide full *End to End* testing. For testing small units of code, use [Unit Testing](unit-testing). 
-
-Tests are run using our CI framework. They are run both as part of the build process and on a nightly basis. If you are a contributor, during the initial PR, Test Playbooks will not run but they will be used as part of the review process. Once the PR is merged into a `contrib/*` branch by one of the team members and credentials (if needed) are provided to Cortex XSOAR, the test playbooks will be run as part of our CI framework. 
-
-**Note:** Test Playbooks are required as part of the PR acceptance review process. For simple Scripts that have unit tests, a test playbook is optional.
+Tests are run using our CI framework. They are run both as part of the build process and on a nightly basis. 
 
 A Test Playbook consists of several steps, including testing commands, verifying the results, and closing the investigation.
 
@@ -119,7 +120,6 @@ The following table describes the fields:
 | **playbookID** | The ID of the test playbook that you are running. |
 | **timeout** | The time in seconds to extend the timeout to (optional). |
 | **nightly** | Boolean that indicates if the test should be part of **only** the nightly tests (optional). |
-
 
 ## Resources
 * [Example of a Test Playbook](https://github.com/demisto/content/blob/master/Packs/Carbon_Black_Enterprise_Response/TestPlaybooks/playbook-Carbon_Black_Response_Test.yml)

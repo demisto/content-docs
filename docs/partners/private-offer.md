@@ -32,7 +32,7 @@ To ensure as seamless an experience as possible for both you and our customers, 
 Requests can also be initiated through your sales teams or our Cortex sales teams. We highly recommend that your teams promote your XSOAR packs to ensure customers/prospects know you have a premium offering in the XSOAR Marketplace. If an opportunity is identified, email the details of the request to xsoar.privateoffer@paloaltonetworks.com . 
 
 Here is an overview of the Private Offer process when initiated by a Partner:
-<img src="../doc_imgs/partners/NewPrivateOfferPartnerSalesProcessFlow.png" width="600px;"/>
+<img src="../doc_imgs/partners/PrivateOfferPartnerSalesProcessFlowV2.png" width="600px;"/>
 
 ## Private Offer Listing Designation 
 Let customers know your XSOAR Marketplace premium pack is available for Private Offer! For partners who elect to participate in Private Offer, the UI will be updated to advertise and drive attention to your pack listing as shown below:
@@ -47,13 +47,28 @@ To create your Private Offer listing, follow the [Premium Packs setup](https://x
 <details>
 <summary>Click here for detailed steps to add Private Offer to your premium pack</summary>
 
-1. In your pack directory navigate to your [Pack Readme](https://xsoar.pan.dev/docs/documentation/pack-docs#pack-readme) (`Packs/My_Pack/README.md`).
-2. In top of the README file copy and paste the following Markdown text:
-```markdown
-[![image](https://raw.githubusercontent.com/demisto/content/master/Images/request_private_offer_button.png)](https://xsoar.pan.dev/request-private-offer)
-[Learn about Private Offer](https://xsoar.pan.dev/private-offer-learn-more)
- ```
-**Make sure to copy the text exactly as it is.**
+<br/>
+
+#### Adding the "request private offer" button to your pack details
+  1. In your pack directory navigate to your [Pack Readme](https://xsoar.pan.dev/docs/documentation/pack-docs#pack-readme) (`Packs/My_Pack/README.md`).
+  2. Copy the following Markdown text (exactly as it is) ans paste it in top of the README:
+  ```markdown
+  [![image](https://raw.githubusercontent.com/demisto/content/master/Images/request_private_offer_button.png)](https://xsoar.pan.dev/request-private-offer)
+  [Learn about Private Offer](https://xsoar.pan.dev/private-offer-learn-more)
+   ```
+
+#### Tag the pack as Private Offer
+   1. In your pack directory navigate to your [Pack Metadata](https://xsoar.pan.dev/docs/packs/packs-format#pack_metadatajson) (`Packs/My_Pack/pack_metadata.json`).
+   2. Add/update the `tags` key of the metadata.json to include the `Private Offer`:
+   ```json
+   {
+   "tags": [
+          "Private Offer"
+      ]
+   }
+   ```
+ 
+ 
 </details>
 
 
