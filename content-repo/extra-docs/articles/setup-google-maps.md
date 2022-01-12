@@ -41,4 +41,8 @@ You need to set up Google Maps in Cortex XSOAR before using either the `ShowLoca
 
 5. In the **Threat Intel** page, select a relevant indicator that has a value for the **Geo Location** field. The map should be shown in the section that you created.
     <br/> ![googlemaps](../../../docs/doc_imgs/reference/google-maps-map.png)
-      <br/> If you do not have an indicator that has a value for the **Geo Location** field to test the indicator, edit the indicator and in the **Geo Location** field, type `6.1287,1.2215`.
+6. If you do not have an indicator that has a value for the **Geo Location** field, to test the indicator, do the following:
+   1.  Go to **Settings>OBJECTS SETUP>Incident Fields>Indicators** and search for **Geo Location**. 
+   2.  Click Edit **Geo Location** and select the indicator type where you want the field to appear.
+   3.  Go to **Threat Intel** page, select the indicator and then click **Edit** 
+   4.  In the **Geo Location** field, type `6.1287,1.2215`.
