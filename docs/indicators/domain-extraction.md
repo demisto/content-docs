@@ -4,7 +4,7 @@ title: Domain Extraction
 ---
 
 The Cortex XSOAR Domain indicator type is built using regular expression and a formatting script.
-In this documentation, we will elaborate on the Domain indicator components and what output you should expect when extracting indicators of type Domain.
+In this documentation, we will elaborate on the Domain extraction components and what output you should expect when extracting indicators of type Domain.
 
 ## Domain Extraction Components
 
