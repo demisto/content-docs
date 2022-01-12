@@ -5,7 +5,7 @@ title: URL Extraction
 
 
 The Cortex XSOAR URL indicator type is built using regular expression and a formatting script.
-The following describes the URL indicator components and what output you should expect when extracting indicators of type URL.
+The following describes the URL extraction components and what output you should expect when extracting indicators of type URL.
 
 ## URL Extraction Components
 
