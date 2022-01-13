@@ -29,18 +29,18 @@ You need to set up Google Maps in Cortex XSOAR before using either the `ShowLoca
    4. In the **General Purpose Dynamic Section**, click **Edit button>Edit section settings**.
    5. Edit the name as required. <br/> In this example, we will call it `General Purpose Dynamic Section - ShowLocationOnMap`.
    6. In the **Automation Script** field, select **ShowLocationOnMap**.
-    <br/> ![ShowLocatioOnMap](../../../docs/doc_imgs/reference/google-maps-gen-purpose.png).
+    <br/> ![ShowLocatioOnMap](../../../docs/doc_imgs/reference/google-maps-gen-purpose.png "Gen Purpose").
    7. Click **OK**.
 
 4. Add the indicator layout to an indicator type.
    1. Go to **Settings>OBJECTS SETUP>Indicators**.
    2. Select the indicator type and click **Edit**.
    3. In the **Layout** section select the layout you added in step 3.
-   <br/> ![google-maps-indicator-type](../../../docs/doc_imgs/reference/google-maps-indicator-type.png)
+   <br/> ![google-maps-indicator-type](../../../docs/doc_imgs/reference/google-maps-indicator-type.png "Indicator Type")
    4. Click **Save**.
 
 5. In the **Threat Intel** page, select a relevant indicator that has a value for the **Geo Location** field. The map should be shown in the section that you created.
-    <br/> ![googlemaps](../../../docs/doc_imgs/reference/google-maps-map.png)
+    <br/> ![googlemaps](../../../docs/doc_imgs/reference/google-maps-map.png "Maps")
 6. If you do not have an indicator that has a value for the **Geo Location** field, to test the indicator, do the following:
    1.  Go to **Settings>OBJECTS SETUP>Incident Fields>Indicators** and search for **Geo Location**. 
    2.  Click Edit **Geo Location** and select the indicator type where you want the field to appear.
