@@ -21,8 +21,8 @@ You need to set up Google Maps in Cortex XSOAR before using either the `ShowLoca
       | ----|----- | 
       | `UI.google.api.key`| `Maps JavaScript API key` (copied from step 1.4 above)|
     1. Click **Save**.
-        <br/> You can now run the `ShowOnMap` automation in Cortex XSOAR. For example in the CLI type, `!ShowOnMap lat=6.1287 lng=1.2215`. 
-        For an example, see [How to Display a Geo-location Using Google Maps in the War Room](https://knowledgebase.paloaltonetworks.com/KCSArticleDetail?id=kA14u000000oMOUCA2&lang=en_US%E2%80%A9)
+        You can now run the `ShowOnMap` automation in Cortex XSOAR. For example in the CLI type, `!ShowOnMap lat=6.1287 lng=1.2215`. <br/>
+        For more information, see [How to Display a Geo-location Using Google Maps in the War Room](https://knowledgebase.paloaltonetworks.com/KCSArticleDetail?id=kA14u000000oMOUCA2&lang=en_US%E2%80%A9).
 3. (ShowLocationOnMap automation only) [Customize an  indicator layout](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-5/cortex-xsoar-admin/manage-indicators/understand-indicators/customize-indicator-view-layouts/customize-an-indicator-type-layout.html).
    1. If using an out-of-the box layout, such as IP, duplicate/detach the layout.
    2. Edit the layout.
