@@ -31,7 +31,7 @@ After extracting the domain using a regular expression, an **ExtractDomainAndFQD
 	
 	For example:
  
-	www[.]evil.com --> www.evil.com
+	`www[.]evil.com --> www.evil.com`
 
 2. Validate the Top-Level-Domain to avoid file extension false positives.
 	
@@ -43,15 +43,15 @@ After extracting the domain using a regular expression, an **ExtractDomainAndFQD
 
 The following are some of the most common domain structures that Cortex XSOAR supports:
 
-- test.com
-- www.test.com
-- xn--t1e2s3t4.com
-- www.xn--t1e2s3t4.com
-- www.test.co.uk
-- test.co.uk
-- subtest.test.com
-- www.test.test.com
-- ötest.com
-- testö.com
-- www.testö.com
-- www.teöst.com
+- `test.com`
+- `www.test.com`
+- `xn--t1e2s3t4.com`
+- `www.xn--t1e2s3t4.com`
+- `www.test.co.uk`
+- `test.co.uk`
+- `subtest.test.com`
+- `www.test.test.com`
+- `ötest.com`
+- `testö.com`
+- `www.testö.com`
+- `www.teöst.com`
