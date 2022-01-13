@@ -21,8 +21,8 @@ When text is given, a URL regular expression will try to catch a valid URL based
    - https
    - ftp
    - ftps
-   - hxxp (obfuscated hxxp)
-   - hxxps (obfuscated hxxps)
+   - hxxp (defanged hxxp)
+   - hxxps (defanged hxxps)
 - A URL with ASCII or non-ASCII characters
 - Escaped and unescaped URLs
 - URL with or without query parameters
