@@ -144,6 +144,7 @@ This file will be used while running the `demisto-sdk secrets`([explanation](htt
 
 ### .pack-ignore
 This file allows ignoring linter errors while lint checking and ignoring tests in the test collection.
+It also allows ignoring spelling mistakes while running the `demisto-sdk doc-review`([explanation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/doc-review/README.md)) 
 
 To add ignored tests/linter errors in a file, first, add the file name to the **.pack-ignore** in this format
 ```
@@ -154,6 +155,8 @@ On the following line add `ignore=` flag, with one or more comma-separated value
 1. `auto-test` - ignore test file in the build test collection.
 2. `linter code` e.g. IN126 - ignore linter error codes.
 
+To add known words in a file, first, add the `[known_words]` section in a new line and in the following lines add the words, one for each line.
+
 #### Example .pack-ignore
 ```
 [file:playbook-Special-Test-Not-To-Run-Directly.yml]
@@ -161,6 +164,10 @@ ignore=auto-test
 
 [file:integration-to-ignore.yml]
 ignore=IN126,PA116
+
+[known_words]
+specialcommandname
+specialscriptname
 ```
 
 ### Author_image.png
