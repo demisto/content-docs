@@ -117,13 +117,13 @@ Pretend you need this release note to do your work. A bad RN can easily lead to 
 ### Entity Styling  
 - Command name: - should be wrapped with three stars - \*\*\*command_name***
 - Packs/Integrations/scripts/playbooks and other content entities (incident fields, dashboards...) - should be wrapped with two stars - \*\*entity_name**
-- Parameters/arguments/functions/outputs names - should be wrapped with one star - \*entity_name*
+- Parameters/arguments/functions/outputs names - should be wrapped with one star - \*parameter_name*
 
 
 ### Examples  
 
 #### Enhancement Examples
-
+```markdown
 - **MISP V2**  
 You can now filter an event by attribute data fields.
 
@@ -131,14 +131,14 @@ You can now filter an event by attribute data fields.
 Added support for the *extend-context* argument in the ***ua-parse*** command.
 
 - **Microsoft Graph Mail**   
-Added 3 commands.
+Added 3 commands:
     - ***msgraph-mail-list-folders***
     - ***msgraph-mail-list-child-folders***
     - ***msgraph-mail-create-folder***
-
+```
 
 #### Bug Fixes Examples
-
+```markdown
 - **Slack v2**  
     - Fixed an issue where mirrored investigations contained mismatched user names.
     - Added the **reporter** and **reporter email** labels to incidents that are created by direct messages.
@@ -151,18 +151,19 @@ Fixed an issue in which the ***qradar-delete-reference-set-value*** command fail
 
 - **GitHub**  
 Improved implementation of the default value for the *fetch_time* parameter.
-
+```
 #### Docker Updates Example
-
+```markdown
 - Updated the Docker image to: *demisto/python3:3.9.1.15759*.
-
+```
 #### General Changes
 
 > **Note:** Use these if the change has no visible impact on the user, but please try to refrain from using these if possible!
 
+```markdown
 - Maintenance and stability enhancements.
 - Documentation and metadata improvements.
-
+```
   
 ## Excluding Items
 Release notes are required to contain all items which have been changed included in the generated file. As such, validation 
@@ -187,6 +188,27 @@ demisto-sdk doc-review -i Packs/Base/ReleaseNotes/1_11_10.md
 ```
 
 More info is available at the `demisto-sdk doc-review` command [README](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/doc_reviewer/README.md).
+
+## Breaking Changes Version
+In some cases, a new version is introduced which breaks backward compatibility (although we try to avoid it as much as possible, sometimes it is needed).
+From XSOAR version 6.5 and above, there is a support to mark a new version as a **breaking changes version** mechanism.
+
+Marking a version as a **breaking changes version** will pop up a screen to the customer upon installation:
+![image](../doc_imgs/integrations/bc_alert_example.png)
+
+
+#### How to indicate a new version as a breaking changes version?
+In order to specify the new introduced version as breaking changes, the demisto-sdk update-release-notes command can be run with the -bc flag, for example:
+
+```
+demisto-sdk update-release-notes -i Packs/<Pack Name> -u revision -bc
+```
+Adding the `-bc` flag will:
+- Generate a corresponding configuration JSON file to the new release notes. For example, if the newly created release notes version is 1_1_0.md, a new configuration file 1_1_0.json will be created in the corresponding ReleaseNotes directory.
+- The configuration JSON file will be generated with the following fields:
+  -  `breakingChanges`: Indicates whether version is breaking changes or not, will be created with `true` value upon using `-bc` flag.
+  -  `breakingChangesNotes`: Will contain the text to be displayed to the customer upon installation, as can be seen in above image. If `breakingChangesNotes` is not specified, the default will be to present the whole release notes text to the user upon installation.
+
 
 ## Common Troubleshooting Tips
 

@@ -244,6 +244,26 @@
       "maintenance_start": "May 01, 2020",
       "eol_start": "May 01, 2021",
       "note": "Use the Generic SQL integration instead."
+    },
+    {
+      "id": "remoteaccess",
+      "name": "Remote Access",
+      "description": "Deprecated. Use the Remote Access v2 integration instead.",
+      "maintenance_start": "Jan 01, 2022",
+      "eol_start": "Jan 01, 2023",
+      "note": "Use the Remote Access v2 integration instead."
+    },
+    {
+      "id": "syslog",
+      "name": "Syslog",
+      "description": "Deprecated. Use the Syslog v2 integration instead.",
+      "maintenance_start": "Jan 01, 2022",
+      "eol_start": "Jan 01, 2023",
+      "note": "Use the Syslog v2 integration instead."
+    },
+    {
+      "id": "palo_alto_networks_pan_os_edl_management",
+      "note": "Use the Palo Alto Networks PAN-OS EDL Service integration instead. For customers with over 1000 Firewalls, this integration remains fully supported."
     }
   ]
 }

@@ -55,12 +55,14 @@ The following fields are populated in the pack metadata:
 | created | String | Pack creation time in ISO 8601 format - YYYY-MM-DDTHH:mm:ssZ, e.g. 2020-01-25T10:00:00Z |
 | useCases | List | Use-cases implemented by the pack. |
 | keywords | List | List of strings by which the pack can be found in Cortex XSOAR marketplace. |
-| eulaLink | String | (Optional - Premium packs only) URL referencing the pack license agreement, will appear under the 'Disclaimer' section in the pack details. Non-premium packs are hosted in the content repo and will be subject to the the [MIT Licelse](https://github.com/demisto/content/blob/master/LICENSE) |
+| eulaLink | String | (Optional - Premium packs only) URL referencing the pack license agreement, will appear under the 'Disclaimer' section in the pack details. Non-premium packs are hosted in our open source content repo and will be subject to an [MIT License](https://github.com/demisto/content/blob/master/LICENSE). |
+| price | String | (Optional - Premium packs only) The pack price in Palo Alto [points](https://xsoar.pan.dev/docs/partners/premium-packs/#points). |
 | dependencies | Dictionary | (Optional) An object that describes the content packs that the pack is dependant on. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | displayedImages | List | (Optional) Images to be displayed in Cortex XSOAR marketplace. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | githubUser | List | (Optional) List of Github usernames to receive notification in the PR in case pack files were modified. |
 | devEmail | List | (Optional) List of emails to receive notification in case contributed pack files were modified. |
 | certification | String | (Optional) If the pack is certifed the value of this fields should be "certified" |
+| itemPrefix | String | (Optional) String to overwrite pack fields prefix. You can specify an alternative string instead of the default pack name enforced by the validation process.
 
 
 Pack metadata contents for example:
@@ -136,7 +138,7 @@ The file contains a general explanation for the pack and you are free to add any
 
 ### .secrets-ignore
 This file will be used while running the `demisto-sdk secrets`([explanation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/secrets/README.md)), we will determine the file and will
- use it as a  white list of approved words for your PR.
+ use it as an allow list of approved words for your PR.
 
 **Note**: We use `demisto-sdk secrets` as part of our pre-commit hook to check that possible secrets in the PR aren't exposed to a public repository.
 
@@ -164,11 +166,19 @@ ignore=IN126,PA116
 ### Author_image.png
 You may choose to show the pack author image such that it will be displayed in the marketplace under the **PUBLISHER** section when viewing the pack details. The image should be saved in the pack root level (i.e. content/packs/MyPackName/Author_image.png), make sure to stick with this file name for the image to appear.
 The image size should be up to 4kb and in the dimensions of 120x50.
+
+For Partners, this image is **mandatory** and is validated during the build. If the file is missing, a validation will fail with the following error:
+
+```bash
+- Issues with unique files in pack: $PACK_NAME
+  Packs/$PACK_NAME/Author_image.png: [IM109] - Partners must provide a non-empty author image under the path Packs/$PACK_NAME/Author_image.png
+
+```
  
-In case file does not exist, the pack author will be displayed in text.
+In case file does not exist, the pack author name will be displayed in text.
 
 ### CONTRIBUTORS.md
-If you are contributing to an existing pack, you can add a **CONTRIBUTORS.md** file to the pack and list yourself as a contributor for the pack. The file's content will appear in the pack README in XSOAR Marketplace.
+If you are contributing to an existing pack, you can add a **CONTRIBUTORS.md** file to the pack and list yourself as a contributor for the pack in the mentioned list. The file should have the follwoing structure and will appear in the pack details in the XSOAR Marketplace.
 
 #### Example CONTRIBUTORS.md
 ```

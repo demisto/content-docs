@@ -1,7 +1,6 @@
 ![Content logo](https://raw.githubusercontent.com/demisto/content/813c5e98d9ebace80d3f4e0ff88734cac6d5b5d5/xsoar_content_logo.png)
 
 [![CircleCI](https://circleci.com/gh/demisto/content-docs.svg?style=svg)](https://circleci.com/gh/demisto/content-docs)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7f059c11-2192-4c11-8578-a15b32db377d/deploy-status)](https://app.netlify.com/sites/demisto-content-docs/deploys)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/demisto/content-docs.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/demisto/content-docs/context:javascript) 
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/demisto/content-docs.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/demisto/content-docs/context:python)
 
@@ -74,8 +73,12 @@ This task will download the packs information from the google cloud bucket and g
 Additional env vars that affect the generation of the docs:
 * `MAX_PACKS`: max packs to generate in the marketplace tab. Set this for faster generation when developing. Note also in CI builds on branches this is automatically set to speed up the preview site if there are only modifications related to docs. For example:
   
-  export MAX_PACKS=10 && npm run marketplace-docs
-  ```
+  ```export MAX_PACKS=10 && npm run marketplace-docs```
+  
+```
+NOTE : When running locally, in order to see links from the entities in the marketplace to their corresponding README in the reference section, you will need to run the reference-docs script before running the marketplace-docs script.
+```
+
 ### Generation Code
 Code used for generating content reference docs is written in Python and resides in the `content-repo` folder. To set up a development environment we use [pipenv](https://github.com/pypa/pipenv). Make sure to install pipenv by running: `pip3 install pipenv`. Setup a proper Python env by running:
 ```

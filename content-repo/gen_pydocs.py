@@ -265,6 +265,8 @@ def main():
             f'{api_ref_path}/common-server-python',
         ]
     }
+    # IMPORTANT: if you add additional API items edit the reference index page at gendocs.py
+    # See: https://github.com/demisto/content-docs/blob/5e58290cad5a70d7217264ad31dafe388dd5f5a9/content-repo/gendocs.py#L682
     with open(f'{args.target_dir}/sidebar.json', 'r+') as f:
         data = json.load(f)
         rn_item_index = next(data.index(item) for item in data if item.get('label') == 'Content Release Notes')

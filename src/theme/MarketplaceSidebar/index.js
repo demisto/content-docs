@@ -18,6 +18,8 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import Select from "react-select";
 import AsyncSelect from "react-select/async";
 import styles from "./styles.module.css";
+import topContribBanner from "@site/static/img/TopContributors.png"
+import Slideshow from "../../pages/marketplace/slideshow";
 
 function usePrevious(value) {
   const ref = useRef(value);
@@ -317,23 +319,37 @@ function DocSidebarItem(props) {
   }
 }
 
+function useShowAnnouncementBar() {
+  const {isAnnouncementBarClosed} = useUserPreferencesContext();
+  const [showAnnouncementBar, setShowAnnouncementBar] = useState(
+    !isAnnouncementBarClosed,
+  );
+  useScrollPosition(({scrollY}) => {
+    if (!isAnnouncementBarClosed) {
+      setShowAnnouncementBar(scrollY === 0);
+    }
+  });
+  return showAnnouncementBar;
+}
+
 function MarketplaceSidebar({
   path,
   sidebar,
   sidebarCollapsible = true,
   onCollapse,
   isHidden,
-  search,
+  setSearchValue,
+  searchValue,
   totalPacks,
   totalFilteredPacks,
+  updateQueryParams
 }) {
+  const showAnnouncementBar = useShowAnnouncementBar();
   const [showResponsiveSidebar, setShowResponsiveSidebar] = useState(false);
   const {
     navbar: { hideOnScroll },
     hideableSidebar,
   } = useThemeConfig();
-  const { isAnnouncementBarClosed } = useUserPreferencesContext();
-  const { scrollY } = useScrollPosition();
   useLockBodyScroll(showResponsiveSidebar);
   const windowSize = useWindowSize();
   useEffect(() => {
@@ -357,8 +373,7 @@ function MarketplaceSidebar({
           styles.menu,
           {
             "menu--show": showResponsiveSidebar,
-            [styles.menuWithAnnouncementBar]:
-              !isAnnouncementBarClosed && scrollY === 0,
+            [styles.menuWithAnnouncementBar]: showAnnouncementBar              
           }
         )}
       >
@@ -391,7 +406,11 @@ function MarketplaceSidebar({
                 className={styles.input}
                 type="filter"
                 placeholder="What can we help you automate?"
-                onChange={(e) => search(e.target.value)}
+                value={searchValue}
+                onChange={e => {
+                  updateQueryParams("q", e.target.value);
+                  setSearchValue(e.target.value);
+                }}
                 autoComplete="false"
               ></input>
               <i
@@ -417,6 +436,15 @@ function MarketplaceSidebar({
             Displaying <strong>{totalFilteredPacks} </strong>
             of <strong>{totalPacks}</strong> content packs
           </small>
+          <br></br>
+          <br></br>
+          <div className={styles.contributors}>
+            <Link to="/marketplace/contributors">
+              <img src={topContribBanner} />
+            </Link>
+          </div>
+          <br></br>
+            <Slideshow></Slideshow>
         </ul>
       </div>
       {hideableSidebar && (

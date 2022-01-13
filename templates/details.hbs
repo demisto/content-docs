@@ -18,19 +18,12 @@ const README =
 function {{id}}() {
 return (
 <Layout title={TITLE} description={DESCRIPTION} wrapperClassName="contentPack">
-    <div className={clsx("hero hero--dark", "contentPackHero" )}>
+    <div>
+    <br/>
         <div className="container">
             <h1 className="hero__title">{TITLE}</h1>
         </div>
     </div>
-    <ul className={clsx("breadcrumbs", "contentPackAlign" )}>
-        <li className="breadcrumbs__item">
-            <a className="breadcrumbs__link" href="/marketplace">
-                Marketplace
-            </a>
-        </li>
-        <li className="breadcrumbs__item">{TITLE}</li>
-    </ul>
 
     <main className={clsx("container", "contentPackAlign" )}>
         <Tabs defaultValue="details" values={[ { label: "Details" , value: "details" }, { label: "Content" ,
@@ -39,14 +32,6 @@ return (
                 <div className="row">
                     <div className={clsx("col col--8" )}>
                         <div className={clsx("card shadow--md", "readme" )}>
-                            <div className="card__header">
-                                <h1>
-                                    {TITLE}
-                                    <span className="text text--secondary">
-                                        <small> {{currentVersion}} {{versionInfo}}</small>
-                                    </span>
-                                </h1>
-                            </div>
                             <div className="card__body">
                                 <p>{DESCRIPTION}</p>
                                 <article dangerouslySetInnerHTML=\{{ __html: converter.makeHtml(README), }}></article>
@@ -154,7 +139,11 @@ return (
                                     <tbody>
                                         <tr className="infoTableRow">
                                             <td className="contentTableColName">
-                                                <p>{{this.name}}</p>
+                                                {{#if this.docLink}}
+                                                    <a href="{{this.docLink}}"> {{this.name}} </a>
+                                                {{else}}
+                                                    <p>{{this.name}}</p>
+                                                {{/if}}
                                             </td>
                                             <td className="contentTableColDesc">
                                                 <article dangerouslySetInnerHTML=\{{ __html:

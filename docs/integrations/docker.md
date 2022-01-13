@@ -21,13 +21,15 @@ The selected docker image is configured in the script/integration yaml file unde
 ## Updating Docker Images
 Starting with Demisto 5.0, it is possible to update the docker image of a script/integration. Demisto 4.5 and below doesn't support updating the docker image without creating a new script/integration (v2). To update the docker image for Demisto 5.0 only and still generate a 4.5 version with the original 4.5 docker image, it is possible to add an additional configuration to the script/integration yaml file with the key: `dockerimage45`. This key should contain the docker image to use by Demisto 4.5 and below. When the key is present, the content creator script will generate two unified yaml files: one for Demisto 4.5 and below and one for 5.0 and above. For an example see: [Kafka V2 Integration](https://github.com/demisto/content/blob/master/Packs/Kafka/Integrations/Kafka_V2/Kafka_V2.yml).
 
-## Updating Docker Image Automatically
+## Updating Docker Image Automatically via Pull Request
 Every integration/script that utilizes one of the following docker images: 
 
 - `demisto/python`
 - `demisto/python3` 
 
-is updated automatically from time to time whenever a newer tag is available.
+Is updated automatically from time to time whenever a newer tag is available.
+This happens via an automatic reoccurring job that updates the docker image of the content item by a Pull Request in the content git repository.
+Finally, the pack is distributed in the marketplace.
 
 ## Enabling/Disabling Docker Image Automatic Update
 If your integration/script is not using one of the above images, you can still have it updated automatically by adding the `autoUpdateDockerImage`key to the YML file.
@@ -49,15 +51,15 @@ autoUpdateDockerImage: false
 ```
 
 
-# Docker Images 
+## Docker Images 
 
-Palo Alto Networks maintains a large repository of docker images. All docker images are available via docker hub under the Demisto organization: https://hub.docker.com/u/demisto/. Docker image creation process is managed via the open source project [demisto/dockerfiles](https://github.com/demisto/dockerfiles). Before trying to create a new docker image, check if there is one available already. You can search the [repository-info branch](https://github.com/demisto/dockerfiles/blob/repository-info/README.md) which is updated nightly with image metadata and os/python packages used in the images.
+Palo Alto Networks maintains a large repository of docker images. All docker images are available via docker hub under the Demisto organization: https://hub.docker.com/u/demisto/. Docker image creation process is managed via the open source project [demisto/dockerfiles](https://github.com/demisto/dockerfiles). Before trying to create a new docker image, check if there is one available already. You can search the [dockerfiles-info repository](https://github.com/demisto/dockerfiles-info/blob/master/README.md) which is updated nightly with image metadata and os/python packages used in the images.
 
 **Important:** For security reasons, we cannot accept images which are not part of the docker hub Palo Alto Networks (Demisto) organization. 
 
 If you can not find an existing image, follow through to read below on how to create a docker image for testing and production use.
 
-# Package Requirements
+## Package Requirements
 We cannot just choose any package to be used in our integrations and there are many things to consider before we select a package. 
 * Does this package have known security issues? 
 * Is the package licensed? 
@@ -87,7 +89,7 @@ The below example shows the process:
 /docker_image_create name=example_name dependencies=mechanize packages=wget
 ```
 
-This command is creating the docker image called "example_name" and uses the python dependency, Mechanize. You may also specify OS packeages. This example requires wget as a package.
+This command is creating the docker image called "example_name" and uses the python dependency, Mechanize. You may also specify OS packages. This example requires wget as a package.
 
 When the docker image is created, the following dialog box will appear. Once this has occurred, the docker image is ready to use.
 

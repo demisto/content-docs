@@ -34,7 +34,7 @@ jobs:
         key: ${{ runner.os }}-pip-${{ hashFiles('**/Pipfile.lock') }}
         restore-keys: |
           ${{ runner.os }}-pip-
-    - run: npm install
+    - run: npm ci
     - uses: actions/setup-python@v1
       with:
         python-version: '3.9'

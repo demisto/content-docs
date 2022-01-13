@@ -1,6 +1,6 @@
 ---
 id: why-xsoar 
-title: Why become a Partner? 
+title: Why Partner with XSOAR? 
 ---
 
 Why develop your own content for the Cortex XSOAR platform? As the fastest growing SOAR platform on the market, we already have hundreds of packs so customers and prospects get the most out of their security investments. Another advantage? As we show our extensive pack list to prospects, you gain exposure and visibility for addressing use cases encountered in the SOC.
@@ -16,7 +16,7 @@ Here are a few of the benefits:
 
 1. Gain visibility and new revenue opportunities for your products and services.
 1. Extend your product functionality to better enable incident investigation and response.
-1. Monetize your pack on our [Marketplace](/docs/partners/paid-packs).
+1. [Monetize your pack](/docs/partners/premium-packs) on our [Marketplace](/marketplace).
 1. Establish deeper relationships with partners by creating new SOAR use cases that complement your integrations.
 1. Enabling security orchestration best practices for your customers.
 

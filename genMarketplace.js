@@ -4,6 +4,14 @@ const nodePlop = require("node-plop");
 const plop = nodePlop(`./plopfile.js`);
 const generatePackDetails = plop.getGenerator("details");
 const jsStringEscape = require("js-string-escape");
+const docsLinksfileName = './content-repo/contentItemsDocsLinks.json';
+
+try {
+    var docsLinksJson = require(docsLinksfileName);
+}
+catch (exception) { // in case the reference-docs script was not ran before this one, there will be no links from the marketplace to the reference section.
+    var docsLinksJson = {}
+}
 
 const contentItemTransformer = {
   integration: "Integrations",
@@ -14,6 +22,7 @@ const contentItemTransformer = {
   incidenttype: "Incident Types",
   incidentfield: "Incident Fields",
   indicatorfield: "Indicator Fields",
+  reputation: "Indicator Types",
   classifier: "Classifiers",
   widget: "Widgets",
   dashboard: "Dashboards",
@@ -44,6 +53,36 @@ function capitalizeFirstLetter(string) {
   if (typeof string === "string") {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+}
+
+function normalizeItemName(itemName) {
+  // Removes support level from the name to search the json links file
+    const removeFromName = [" (Partner Contribution)", " (Developer Contribution)", " (Community Contribution)", " (beta)", " (Beta)", " (Deprecated)"]
+
+    for (var item of removeFromName) {
+        itemName = itemName.replace(item, "")
+    }
+
+    return itemName
+}
+
+function createReadmeLink(listItem, itemType) {
+  // Checks if a readme link for this item exists in the Json file. If not, return an empty string.
+
+  if (!(['integration', 'automation', 'playbook'].includes(itemType))) {
+    return ""; // a README file exists only for those entities.
+  }
+
+  var normalizedItemName = normalizeItemName(listItem.name);
+
+  if (docsLinksJson[normalizedItemName]) {
+    listItem.docLink = docsLinksJson[normalizedItemName]
+    }
+   else {
+    listItem.docLink = ""
+  }
+
+  return Promise.resolve();
 }
 
 function reverseReleases(obj) {
@@ -134,22 +173,34 @@ function genPackDetails() {
     }
   );
 
-  marketplace.map((pack) => {
-    if (pack.contentItems) {
-      let FixedContentItems = {};
-      let fixedKey = ""
-      for (var [key, value] of Object.entries(pack.contentItems)) {
-        fixedKey = contentItemTransformer[key];
-        for (const listItem of value) {
-          listItem.description = listItem.description
-            ? jsStringEscape(listItem.description)
-            : "";
-          listItem.description = listItem.description.replace(/</g, "&#60;");
+
+  marketplace.map(async (pack) => {
+    const parseContentItems = async () => {
+      try {
+        if (pack.contentItems) {
+          let FixedContentItems = {};
+          let fixedKey = ""
+          var promises = []
+          for (var [key, value] of Object.entries(pack.contentItems)) {
+            fixedKey = contentItemTransformer[key];
+            for (var listItem of value) {
+              listItem.description = listItem.description
+                ? jsStringEscape(listItem.description)
+                : "";
+              listItem.description = listItem.description.replace(/</g, "&#60;");
+              promises.push(createReadmeLink(listItem, key));
+            }
+            FixedContentItems[fixedKey] = value;
+          }
+          await Promise.all(promises);
+          pack.contentItems = FixedContentItems;
         }
-        FixedContentItems[fixedKey] = value;
+      } catch (err) {
+        console.log(err);
       }
-      pack.contentItems = FixedContentItems;
     }
+
+    await parseContentItems()
 
     generatePackDetails.runActions({
       id: pack.id ? pack.id.replace(/-|\s/g, "").replace(".", "") : pack.id,
@@ -183,7 +234,6 @@ function genPackDetails() {
       changeLog: reverseReleases(pack.changeLog),
     });
   });
-  return;
-}
+};
 
 genPackDetails();

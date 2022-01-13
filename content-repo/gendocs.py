@@ -35,6 +35,10 @@ def timestamped_print(*args, **kwargs):
 
 print = timestamped_print
 
+BASE_URL = "https://xsoar.pan.dev/docs/"
+MARKETPLACE_URL = "https://xsoar.pan.dev/marketplace/"
+DOCS_LINKS_JSON = {}
+
 INTEGRATION_YML_MATCH = [
     "Packs/[^/]+?/Integrations/[^/]+?/.+.yml",
     "Packs/[^/]+?/Integrations/.+.yml",
@@ -65,10 +69,11 @@ PRIVATE_PACKS_SCRIPTS_PREFIX = 'Scripts'
 PRIVATE_PACKS_PLAYBOOKS_PREFIX = 'Playbooks'
 RELEASES_PREFIX = 'releases'
 ARTICLES_PREFIX = 'articles'
+PACKS_PREFIX = 'packs'
 NO_HTML = '<!-- NOT_HTML_DOC -->'
 YES_HTML = '<!-- HTML_DOC -->'
 BRANCH = os.getenv('HEAD', 'master')
-MAX_FAILURES = int(os.getenv('MAX_FAILURES', 10))  # if we have more than this amount in a single category we fail the build
+MAX_FAILURES = int(os.getenv('MAX_FAILURES', 15))  # if we have more than this amount in a single category we fail the build
 # env vars for faster development
 MAX_FILES = int(os.getenv('MAX_FILES', -1))
 FILE_REGEX = os.getenv('FILE_REGEX')
@@ -79,6 +84,9 @@ DEPRECATED_INFO_FILE = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs
 random.seed(os.getenv('CIRCLE_BRANCH'))
 
 MIN_RELEASE_VERSION = StrictVersion((datetime.now() + relativedelta(months=-18)).strftime('%y.%-m.0'))
+PACKS_INTEGRATIONS_PREFIX = 'Integrations'
+PACKS_SCRIPTS_PREFIX = 'Scripts'
+PACKS_PLAYBOOKS_PREFIX = 'Playbooks'
 
 
 class DocInfo:
@@ -181,6 +189,45 @@ def get_beta_data(yml_data: dict, content: str):
     return ""
 
 
+def get_packname_from_metadata(pack_dir):
+    with open(f'{pack_dir}/pack_metadata.json', 'r') as f:
+        metadata = json.load(f)
+        is_pack_hidden = metadata.get("hidden", False)
+    return metadata.get('name'), is_pack_hidden
+
+
+def get_pack_link(file_path: str) -> str:
+    # the regex extracts pack name from paths, for example: content/Packs/EWSv2 -> EWSv2
+    match = re.search(r'Packs[/\\]([^/\\]+)[/\\]?', file_path)
+    pack_name = match.group(1) if match else ''
+    pack_name_in_link = pack_name.replace('-', '')
+
+    # the regex extracts pack path, for example: content/Packs/EWSv2/Integrations/I1/README.md -> content/Packs/EWSv2/
+    match = re.match(r'.+/Packs/.+?(?=/)', file_path)
+    pack_dir = match.group(0) if match else ''
+    is_pack_hidden = False
+
+    try:
+        pack_name_in_docs, is_pack_hidden = get_packname_from_metadata(pack_dir)
+    except FileNotFoundError:
+        pack_name_in_docs = pack_name.replace('_', ' ').replace('-', ' - ')
+
+    pack_link = f'{MARKETPLACE_URL}details/{pack_name_in_link}'
+    file_types = [PACKS_SCRIPTS_PREFIX, PACKS_INTEGRATIONS_PREFIX, PACKS_PLAYBOOKS_PREFIX]
+    try:
+        file_type = [ft[:-1] for ft in file_types if ft in file_path][0]
+    except Exception:
+        file_type = ''
+    if 'ApiModules' in pack_name or 'NonSupported' in pack_name:
+        return ''
+
+    if is_pack_hidden:  # this pack is hidden, don't add a link
+        return f"#### This {file_type} is part of the **{pack_name_in_docs}** Pack.\n\n" \
+            if file_type and pack_name and pack_name_in_docs else ''
+    return f"#### This {file_type} is part of the **[{pack_name_in_docs}]({pack_link})** Pack.\n\n" \
+        if file_type and pack_name and pack_name_in_docs else ''
+
+
 def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
                        imgs_dir: str, relative_images_dir: str, readme_file: str) -> DocInfo:
     try:
@@ -225,6 +272,7 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
             content = get_deprecated_data(yml_data, desc, readme_file) + content
             content = get_beta_data(yml_data, content) + content
             content = get_fromversion_data(yml_data) + content
+            content = get_pack_link(readme_file) + content
             content = header + content
         verify_mdx_server(content)
         with open(f'{target_dir}/{id}.md', mode='w', encoding='utf-8') as f:  # type: ignore
@@ -265,7 +313,7 @@ def process_release_doc(target_dir: str, release_file: str) -> Optional[DocInfo]
         edit_url = f'https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/releases/{name}.md'
         #  replace the title to be with one # so it doesn't appear in the TOC
         content = re.sub(r'^## Demisto Content Release Notes', '# Demisto Content Release Notes', content)
-        content = f'---\nid: {name}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\nhide_title: true\n---\n\n' + content
+        content = f'---\nid: {name}\nsidebar_label: "{name}"\ncustom_edit_url: {edit_url}\n---\n\n' + content
         download_msg = "Download"
         packs_download = ""
         if name > StrictVersion('20.8.0'):
@@ -332,10 +380,16 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
         content = content.replace(front_matter_match[0], '')
 
         if private_packs:
-            content = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: null\n---\n\n' + content
+            print(f'Process README Private file: {readme_file}')
+            header = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: null\n---\n\n'
         else:
             edit_url = f'https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/{prefix}/{readme_file_name}'
-            content = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\n---\n\n' + content
+            header = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\n---\n\n'
+        content = get_deprecated_data(yml_data, desc, readme_file) + content
+        content = get_beta_data(yml_data, content) + content
+        content = get_fromversion_data(yml_data) + content
+        content = get_pack_link(readme_file) + content
+        content = header + content
         verify_mdx_server(content)
         with open(f'{target_dir}/{file_id}.md', mode='w', encoding='utf-8') as f:
             f.write(content)
@@ -462,22 +516,22 @@ def create_releases(target_dir: str):
     return sorted(doc_infos, key=lambda d: StrictVersion(d.name.lower().partition('content release ')[2]), reverse=True)
 
 
-def create_articles(target_dir: str):
-    target_sub_dir = f'{target_dir}/{ARTICLES_PREFIX}'
+def create_articles(target_dir: str, prefix: str):
+    target_sub_dir = f'{target_dir}/{prefix}'
     if not os.path.exists(target_sub_dir):
         os.makedirs(target_sub_dir)
     doc_infos: List[DocInfo] = []
     success: List[str] = []
     fail: List[str] = []
     seen_docs: Dict[str, DocInfo] = {}
-    for doc_info in process_extra_docs(target_sub_dir, ARTICLES_PREFIX):
+    for doc_info in process_extra_docs(target_sub_dir, prefix):
         if not doc_info.description:  # fail the  build if no description for an article
             raise ValueError(f'Missing description for article: {doc_info.id} ({doc_info.name})')
         process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
-    org_print(f'\n===========================================\nSuccess {ARTICLES_PREFIX} docs ({len(success)}):')
+    org_print(f'\n===========================================\nSuccess {prefix} docs ({len(success)}):')
     for r in sorted(success):
         print(r)
-    org_print(f'\n===========================================\nFailed {ARTICLES_PREFIX} docs ({len(fail)}):')
+    org_print(f'\n===========================================\nFailed {prefix} docs ({len(fail)}):')
     for r in sorted(fail):
         print(r)
     org_print("\n===========================================\n")
@@ -636,6 +690,52 @@ def add_deprected_integrations_info(content_dir: str, deperecated_article: str, 
     org_print("\n===========================================\n")
 
 
+def normalize_item_name(item_name):
+    """Removes support level from the name which will be used as a key in the json links file
+
+    Args:
+        item_name (str): The item name (display or name field in yml) to edit
+    """
+
+    remove_from_name = [" (Partner Contribution)", " (Developer Contribution)", " (Community Contribution)", " (beta)",
+                        " (Beta)", " (Deprecated)"]
+
+    for item in remove_from_name:
+        item_name = item_name.replace(item, "")
+
+    return item_name
+
+
+def insert_to_dict(doc_name, doc_link):
+    """ Inserts the doc link to the json docs file which will be used in the genMarketplace.js script.
+
+    Args:
+        doc_name (str): The name of the doc to insert to the dict
+        doc_link (str): The suffix of the doc in the site
+    """
+
+    normalized_name = normalize_item_name(doc_name)
+    DOCS_LINKS_JSON[normalized_name] = f'{BASE_URL}{doc_link}'
+
+
+def generate_items(doc_infos, full_prefix):
+    """ Creates a list of '{full_prefix}/{doc.id}' for every doc in the doc_infos list.
+        Handling the insertion of the doc link to the json docs file.
+
+    Args:
+        doc_infos (List[DocInfo]): A list of docInfo objects
+        full_prefix (str): The full prefix of the entities in the doc_infos list
+    """
+    items_list = []
+    for d in doc_infos:
+        doc_link = f'{full_prefix}/{d.id}'
+        items_list.append(doc_link)
+
+        insert_to_dict(d.name, doc_link)
+
+    return items_list
+
+
 def main():
     parser = argparse.ArgumentParser(description='''Generate Content Docs. You should probably not call this script directly.
 See: https://github.com/demisto/content-docs/#generating-reference-docs''',
@@ -652,6 +752,7 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     playbooks_full_prefix = f'{prefix}/{PLAYBOOKS_PREFIX}'
     releases_full_prefix = f'{prefix}/{RELEASES_PREFIX}'
     articles_full_prefix = f'{prefix}/{ARTICLES_PREFIX}'
+    packs_articles_full_prefix = f'{prefix}/{PACKS_PREFIX}'
     integration_doc_infos = create_docs(args.dir, args.target, INTEGRATION_DOCS_MATCH, INTEGRATIONS_PREFIX,
                                         private_pack_prefix=PRIVATE_PACKS_INTEGRATIONS_PREFIX)
     playbooks_doc_infos = create_docs(args.dir, args.target, PLAYBOOKS_DOCS_MATCH, PLAYBOOKS_PREFIX,
@@ -659,7 +760,8 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     script_doc_infos = create_docs(args.dir, args.target, SCRIPTS_DOCS_MATCH, SCRIPTS_PREFIX,
                                    private_pack_prefix=PRIVATE_PACKS_SCRIPTS_PREFIX)
     release_doc_infos = create_releases(args.target)
-    article_doc_infos = create_articles(args.target)
+    article_doc_infos = create_articles(args.target, ARTICLES_PREFIX)
+    packs_articles_doc_infos = create_articles(args.target, PACKS_PREFIX)
     if os.getenv('SKIP_DEPRECATED') not in ('true', 'yes', '1'):
         add_deprected_integrations_info(args.dir, f'{args.target}/{ARTICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE,
                                         f'{args.target}/../../static/assets')
@@ -678,6 +780,14 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
         f.write(index_doc_infos(playbooks_doc_infos, PLAYBOOKS_PREFIX))
         f.write("\n\n## Scripts\n\n")
         f.write(index_doc_infos(script_doc_infos, SCRIPTS_PREFIX))
+        f.write("\n\n## API Reference\n\n")
+        api_docs: List[DocInfo] = [
+            DocInfo('demisto-class', 'Demisto Class',
+                    'The object exposes a series of API methods which are used to retrieve and send data to the Cortex XSOAR Server.', ''),
+            DocInfo('common-server-python', 'Common Server Python',
+                    'Common functions that will be appended to the code of each integration/script before being executed.', ''),
+        ]
+        f.write(index_doc_infos(api_docs, 'api'))
         f.write("\n\n## Content Release Notes\n\n")
         f.write(index_doc_infos(release_doc_infos, RELEASES_PREFIX, headers=('Name', 'Date')))
         f.write("\n\nAdditional archived release notes are available"
@@ -686,9 +796,12 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
         if MAX_FILES > 0:
             f.write(f'\n\n# =====<br/>BUILD PREVIEW only {MAX_FILES} files from each category! <br/>=====\n\n')
         f.write(index_doc_infos(article_doc_infos, ARTICLES_PREFIX))
-    integration_items = [f'{integrations_full_prefix}/{d.id}' for d in integration_doc_infos]
-    playbook_items = [f'{playbooks_full_prefix}/{d.id}' for d in playbooks_doc_infos]
-    script_items = [f'{scripts_full_prefix}/{d.id}' for d in script_doc_infos]
+
+    integration_items = generate_items(integration_doc_infos, integrations_full_prefix)
+    playbook_items = generate_items(playbooks_doc_infos, playbooks_full_prefix)
+    script_items = generate_items(script_doc_infos, scripts_full_prefix)
+    packs_articles_items = [f'{packs_articles_full_prefix}/{d.id}' for d in packs_articles_doc_infos]
+
     article_items = [f'{articles_full_prefix}/{d.id}' for d in article_doc_infos]
     article_items.insert(0, f'{prefix}/articles-index')
     release_items = [f'{releases_full_prefix}/{d.id}' for d in release_doc_infos]
@@ -696,6 +809,11 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
         {
             "type": "doc",
             "id": f'{prefix}/index'
+        },
+        {
+            "type": "category",
+            "label": "Packs",
+            "items": packs_articles_items
         },
         {
             "type": "category",
@@ -728,6 +846,10 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     if os.getenv('UPDATE_PACK_DOCS') or os.getenv('CI'):
         # to avoid cases that in local dev someone might checkin the modifed pack-docs.md we do this only if explicityl asked for or in CI env
         insert_approved_tags_and_usecases()
+
+    print("Writing json links into contentItemsDocsLinks.json")
+    with open('contentItemsDocsLinks.json', 'w') as file:
+        json.dump(DOCS_LINKS_JSON, file)
 
 
 if __name__ == "__main__":

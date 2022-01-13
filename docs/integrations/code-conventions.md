@@ -562,6 +562,21 @@ When working on integrations that require user credentials (such as username/pas
   type: 9
   required: true
 ```
+- **And in the code:**
+```python
+params = demisto.params()
+username = params.get('credentials').get('identifier')
+password = params.get('credentials').get('password')
+```
+- **In demistomock.py:**
+```python
+return {
+        "base_url": "...",
+        "credentials": {"identifier": "<username>",
+                        "password": "<password>"},
+        ...
+    }
+```
 
 **Using an API Token/Key:**
 
@@ -578,6 +593,8 @@ When working on integrations that require user credentials (such as username/pas
 ```
   
 Using credentials parameter type is always recommended (even when working with API token\key) as it provides the user the flexibility of using the [XSOAR credentials vault](../reference/articles/managing-credentials) feature when configuring the integration for the first time.
+
+The ```hiddenusername``` configuration key is supported from XSOAR version 6.0.2 and newer. In earlier versions the username field will be visible so we recommend letting the user know this is not mandatory. 
 
 
 ## Common Server Functions
@@ -617,7 +634,7 @@ In the War Room, this is how a table will appear:
 
 You may also use ```headerTransform``` to convert the existing keys into formatted headers.
 
-Use the ```url_key``` argument to specify a list of keys whose value in the MD table should be a clickable url. This list may contain keys of inner dicts\list of dicts in the data given to the tableToMarkdown function.
+Use the ```url_keys``` argument to specify a list of keys whose value in the MD table should be a clickable url. This list may contain keys of inner dicts\list of dicts in the data given to the tableToMarkdown function.
 For example, for the following data:
 
 ```

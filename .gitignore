@@ -11,6 +11,7 @@
 # generated files
 .docusaurus
 .cache-loader
+content-repo/contentItemsDocsLinks.json
 
 # production
 /build

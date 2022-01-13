@@ -145,6 +145,7 @@ An explanation of these fields is as follows:
 | **default** | Boolean. If set to true, the user could pass a value for this argument without specifying the argument name. For example if the argument called `ip` is marked as default, running the following: `!ip 1.1.1.1` will be equivelent to running `!ip ip=1.1.1.1`. Note that only one argument per command can be set as the default. | |
 | **isArray** | Boolean. Does the argument accepts a CSV list of input values. If this is set to true, the command will run once, instead for each input. |
 | **secret** | Boolean. If set to true, the argument value will not be printed in war room when the command runs. |
+| **execution** | Boolean. If set to true, the command will be marked as `Potentially harmful`. |
 | **description** | A description of the argument. | |
 
 #### Command outputs:

@@ -6,6 +6,7 @@ function requestHandler(req, res) {
     if (req.method != 'POST') {
         res.statusCode = 405
         res.end('Only POST is supported')
+        return
     }
     let body = ''
     req.setEncoding('utf8');

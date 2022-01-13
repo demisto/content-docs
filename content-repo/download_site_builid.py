@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Runs as part of the Forked PR Netlify Deploy flow (see: .github/workflows/forked-pr-netlify-deploy.yml)
+# Runs as part of the Forked PR Deploy flow (see: .github/workflows/forked-pr-deploy.yml)
 # Expecets to recieve the Github pull_request event file
 
 import json

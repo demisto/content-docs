@@ -5,11 +5,10 @@ title: Cortex XSOAR IDE
 Cortex XSOAR offers a built-in platform IDE which is available through the product's web UI. 
 
 :::note Pro Tip
-We recommend to try out the [PyCharm IDE Plugin](pycharm-plugin). It simplifies third-party integration and script development by enabling users to author Python content for Cortex XSOAR directly in PyCharm. Highly recommended for developing [Python Unit Tests](../integrations/unit-testing). 
+We recommend to try out the [Visual Studio Code extension](vscode-extension). It simplifies third-party integration and script development by enabling users to author Python content for Cortex XSOAR directly in Visual Studio COde. Highly recommended for developing [Python Unit Tests](../integrations/unit-testing).
 :::
 
-
-It is important to take a moment and familiarize yourself with the Cortex XSOAR IDE as it may work differently than other IDEs you are familiar with. Some key differences between the Cortex XSOAR IDE and, for example PyCharm, is the absence of an interpreter.
+It is important to take a moment and familiarize yourself with the Cortex XSOAR IDE as it may work differently than other IDEs you are familiar with. Some key differences between the Cortex XSOAR IDE and, for example Visual Studio Code, is the absence of an interpreter.
 
 ## The Script Helper
 Cortex XSOAR is equipped with a script helper which is accessible via the button below:
