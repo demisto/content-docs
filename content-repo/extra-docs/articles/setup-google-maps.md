@@ -4,13 +4,13 @@ title: Set up Google Maps in Cortex XSOAR to use map automations
 description: How to set up Google Maps in Cortex XSOAR to use map automations.
 ---
 
-You need to set up Google Maps in Cortex XSOAR before using either the `ShowLocationOnMap` or the `ShowLocationOnMap` automation. To use Google Maps, you need to create a Google Cloud Plaform project that has [billing enabled](https://developers.google.com/maps/documentation/javascript/cloud-setup#billing). After creating the project, you need to enable the Maps JavaScript API and then create an API key for the project. You then need to add the API key to Cortex XSOAR. If using the `ShowLocationOnMap` automation, to view the map, you also need to add the automation to a indicator layout.  
+You need to set up Google Maps in Cortex XSOAR before using either the `ShowLocationOnMap` or the `ShowOnMap` automation. To use Google Maps, you need to create a Google Cloud Plaform project that has [billing enabled](https://developers.google.com/maps/documentation/javascript/cloud-setup#billing). After creating the project, you need to enable the Maps JavaScript API and then create an API key for the project. You then need to add the API key to Cortex XSOAR. If using the `ShowLocationOnMap` automation, to view the map, you also need to add the automation to a indicator layout.  
 
 
 1. In **Google Cloud Platform**, do the following:
    1. Create a [Google Cloud Project](https://developers.google.com/maps/documentation/javascript/cloud-setup).
    2. Enable APIs and Services (**API & Services>Dashboard**> **ENABLE APIS AND SERVICES**).
-   3. Enable **Maps JavaScriptAPI**.
+   3. Enable **Maps JavaScript API**.
    4. Create the [Maps JavaScript API key](https://developers.google.com/maps/documentation/javascript/get-api-key#creating-api-keys) ( **Credentials**> **CREATE CREDENTIALS>API key**).
    6. Copy the Maps JavaScript API key.
 2. Add the Maps JavaScript API key to Cortex XSOAR.
@@ -25,9 +25,9 @@ You need to set up Google Maps in Cortex XSOAR before using either the `ShowLoca
 3. (`ShowLocationOnMap` automation only) [Customize an  indicator layout](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-5/cortex-xsoar-admin/manage-indicators/understand-indicators/customize-indicator-view-layouts/customize-an-indicator-type-layout.html).
    1. If using an out-of-the box layout, such as IP, duplicate/detach the layout.
    2. Edit the layout.
-   3. Drop and drag the **General Purpose Dynamic Section** onto the indicator page.
+   3. Drag and drop the **General Purpose Dynamic Section** onto the indicator page.
    4. In the **General Purpose Dynamic Section**, click **Edit button>Edit section settings**.
-   5. Edit the name as required. <br/> In this example, we will call it `General Purpose Dynamic Section - ShowLocationOnMap-Sample-Layout`.
+   5. Edit the name as required. <br/> In this example, we will call it `General Purpose Dynamic Section - ShowLocationOnMap`.
    6. In the **Automation Script** field, select **ShowLocationOnMap**.
     <br/> ![ShowLocatioOnMap](../../../docs/doc_imgs/reference/google-maps-gen-purpose.png).
    7. Click **OK**.
