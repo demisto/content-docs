@@ -28,8 +28,8 @@ You need to set up Google Maps in Cortex XSOAR before using either the `ShowLoca
    3. Drag and drop the **General Purpose Dynamic Section** onto the indicator page.
    4. In the **General Purpose Dynamic Section**, click **Edit button>Edit section settings**.
    5. Edit the name as required. <br/> In this example, we will call it `General Purpose Dynamic Section - ShowLocationOnMap`.
-   6. In the **Automation Script** field, select **ShowLocationOnMap**.
-     ![ShowLocatioOnMap](../../../docs/doc_imgs/reference/google-maps-gen-purpose.png "Gen Purpose").
+   6. In the **Automation Script** field, select **ShowLocationOnMap**. <br/>
+     ![ShowLocatioOnMap](../../../docs/doc_imgs/reference/google-maps-gen-purpose.png).
    7. Click **OK**.
 
 4. Add the indicator layout to an indicator type.
