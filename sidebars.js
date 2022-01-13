@@ -201,7 +201,8 @@ const sidebars = {
       label: "Indicators, Fields & Layouts",
       collapsed: true,
       items: [
-        "indicators/url-extraction"
+        "indicators/url-extraction",
+        "indicators/domain-extraction"
       ]
     },
     {
