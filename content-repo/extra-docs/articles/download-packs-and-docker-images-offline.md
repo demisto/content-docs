@@ -8,7 +8,7 @@ description: The download_packs_and_docker_images script enables you to download
 The **download_packs_and_docker_images** script enables offline users to download content packs and the content pack's latest Docker images to their computer and upload these packs and images to their Cortex XSOAR environment. 
 
 
-To run the script, indicate which packs to download by entering the names of the packs exactly as they appear in https://xsoar.pan.dev/marketplace. If you enter an incorrect pack name, the script will display an error message and skip that pack. 
+To run the script, indicate which packs to download by entering the names of the packs exactly as they appear in https://xsoar.pan.dev/marketplace. If you enter an incorrect pack name, the script will display an error message and skip that pack. You can also enter a file that contains the names of the packs. 
 
 The script downloads the content packs you want and the pack's Docker images as zip files to the output path you provide. If you do not provide a an output path, it will download the files to the folder from which you ran the script. You can then upload these packs and images to your Cortex XSOAR environment.
 
