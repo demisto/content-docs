@@ -54,7 +54,7 @@ When configuring SAML 2.0, you need to map several attributes from your IdP to C
 | Use system proxy settings | Whether to use proxy settings. |
 | ADFS | Whether to use the ADFS server. |
 | Compress encode URL (ADFS) | Check mandatory for ADFS encoding. |
-| Service Identifier (ADFS)| | The ADFS relay identifier to which Cortex XSOAR redirects the user for SSO first login. |
+| Service Identifier (ADFS) | The ADFS relay identifier to which Cortex XSOAR redirects the user for SSO first login. |
 | Identity Provider Single Logout URL | URL that users are sent to after logging out of the SAML session. |
 | Single Logout Service Endpoint | Logout service with which SAML communicates. |
 | Do not map SAML groups to Demisto roles | SAML groups will not be mapped to Cortex XSOAR roles. |
