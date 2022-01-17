@@ -198,6 +198,15 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "Indicators, Fields & Layouts",
+      collapsed: true,
+      items: [
+        "indicators/url-extraction",
+        "indicators/domain-extraction"
+      ]
+    },
+    {
+      type: "category",
       label: "Documentation",
       collapsed: true,
       items: [
