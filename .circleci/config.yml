@@ -10,6 +10,12 @@ jobs:
       image: ubuntu-2004:202101-01
       resource_class: large
 
+    parameters:
+      slack_notify:
+        description: Indicates whether to send a slack notification or not (on daily job we send notification)
+        type: boolean
+        default: false
+
     steps:
       - checkout
       - run:
@@ -83,13 +89,16 @@ jobs:
           # Must be relative path from root
           paths:
             - build
-      - run:
-          name: Notify Slack
-          command: |
-            if [ "$CIRCLE_BRANCH" == "master" ]; then
-              pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
-            fi
-          when: always
+      - when:
+          condition:
+            and:
+              - <<parameters.slack_notify>>
+              - equal: [ master, << pipeline.git.branch >> ]
+          steps:
+            - run:
+                name: Notify Slack
+                command: |
+                  pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
 
   deploy:
     docker:
@@ -100,6 +109,10 @@ jobs:
         description: Indicates if to post a comment or not (on daily job we skip posting)
         type: boolean
         default: true
+      slack_notify:
+        description: Indicates whether to send a slack notification or not (on daily job we send notification)
+        type: boolean
+        default: false
     steps:
       - checkout
       - attach_workspace:
@@ -134,13 +147,16 @@ jobs:
                 name: Post Comment Firebase
                 command: pipenv run ./content-repo/post_github_comment.py deploy-info-firebase.txt
 
-      - run:
-          name: Notify Slack
-          command: |
-            if [ "$CIRCLE_BRANCH" == "master" ]; then
-              pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
-            fi
-          when: always
+      - when:
+          condition:
+            and:
+              - <<parameters.slack_notify>>
+              - equal: [ master, << pipeline.git.branch >> ]
+          steps:
+            - run:
+                name: Notify Slack
+                command: |
+                  pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
 
 
 workflows:
@@ -165,8 +181,10 @@ workflows:
               only:
                 - master
     jobs:
-      - build
+      - build:
+          slack_notify: true
       - deploy:
           post_comment: false
+          slack_notify: true
           requires:
             - build

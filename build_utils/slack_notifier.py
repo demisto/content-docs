@@ -5,8 +5,20 @@ from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 from typing import List, Dict
 
+SLACK_CHANNEL = '#dmst-content-team'
 
-def get_circle_failed_steps(ci_token, build_number):
+
+def get_circle_failed_steps(ci_token: str, build_number: int) -> List[str]:
+    """
+    Get the circle ci failed steps if there are any.
+
+    Args:
+        ci_token (str): The circle-ci token.
+        build_number (int): The build number.
+
+    Returns:
+        (List[str]): List of failed steps in the given build. Returns empty list if not failed steps were found.
+    """
     failed_steps_list = []
     circle_client = circle_api(ci_token)
     vcs_type = 'github'
@@ -27,8 +39,19 @@ def get_circle_failed_steps(ci_token, build_number):
     return failed_steps_list
 
 
-def create_slack_notifier(slack_token, build_url, failed_job_name, ci_token, build_number):
-    print("Sending Slack messages to #dmst-content-team")
+def create_slack_notifier(slack_token: str, build_url: str, failed_job_name: str, ci_token: str, build_number: int):
+    """
+        Sends a build report via slack.
+
+        Args:
+            slack_token (str): The slack token.
+            build_url (str): The build URL.
+            failed_job_name (str): The failed job name.
+            ci_token (str): The circle-ci token.
+            build_number (int): The build number.
+    """
+
+    print(f"Sending Slack messages to {SLACK_CHANNEL}")
 
     steps_fields = []
     try:
@@ -44,7 +67,7 @@ def create_slack_notifier(slack_token, build_url, failed_job_name, ci_token, bui
 
         slack_client = WebClient(token=slack_token)
         slack_client.chat_postMessage(
-            channel='dmst-content-team',
+            channel=SLACK_CHANNEL,
             as_user=False,
             username="Content-Docs CircleCI",
             attachments=[{
