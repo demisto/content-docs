@@ -137,6 +137,8 @@ Vulnerability Management Integration Example: [Tenable.io](https://xsoar.pan.dev
 ## IAM (Identity and Access Management)
 
 **Top Use Cases:**
-- Create/update/delete users.
-- Block user/Force change password
-- Managing access to resources and applications.
+- Create, update and delete users.
+- Manage user groups.
+- Block users, Force change of passwords.
+- Manage access to resources and applications.
+- Create, update and delete roles.
