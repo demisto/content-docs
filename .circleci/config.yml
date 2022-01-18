@@ -92,21 +92,13 @@ jobs:
           # Must be relative path from root
           paths:
             - build
-      - when:
-          condition: <<parameters.slack_notify>>
-          steps:
-            - run:
-                name: Notify Slack
-                command: |
-                  pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
-
-#      - run:
-#          name: Notify Slack
-#          when: always
-#          command: |
-#            if [ <<parameters.slack_notify>> ]
-#              pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
-#            fi
+      - run:
+          name: Notify Slack
+          when: always
+          command: |
+            if [ <<parameters.slack_notify>> ]
+              pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
+            fi
 
   deploy:
     docker:
@@ -155,14 +147,13 @@ jobs:
                 name: Post Comment Firebase
                 command: pipenv run ./content-repo/post_github_comment.py deploy-info-firebase.txt
 
-      - when:
-          condition: <<parameters.slack_notify>>
-          steps:
-            - run:
-                name: Notify Slack
-                command: |
-                  pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
-
+      - run:
+          name: Notify Slack
+          when: always
+          command: |
+            if [ <<parameters.slack_notify>> ]
+              pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
+            fi
 
 workflows:
   build_and_deploy:
