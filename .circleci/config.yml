@@ -90,10 +90,7 @@ jobs:
           paths:
             - build
       - when:
-          condition:
-            and:
-              - <<parameters.slack_notify>>
-              - equal: [ master, << pipeline.git.branch >> ]
+          condition: <<parameters.slack_notify>>
           steps:
             - run:
                 name: Notify Slack
@@ -148,10 +145,7 @@ jobs:
                 command: pipenv run ./content-repo/post_github_comment.py deploy-info-firebase.txt
 
       - when:
-          condition:
-            and:
-              - <<parameters.slack_notify>>
-              - equal: [ master, << pipeline.git.branch >> ]
+          condition: <<parameters.slack_notify>>
           steps:
             - run:
                 name: Notify Slack
