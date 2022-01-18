@@ -95,7 +95,7 @@ jobs:
       - when:
           and:
             - <<parameters.slack_notify>>
-            or:
+            - or:
               - on_success
               - on_fail
           steps:
@@ -154,7 +154,7 @@ jobs:
       - when:
           and:
             - <<parameters.slack_notify>>
-            or:
+            - or:
               - on_success
               - on_fail
           steps:
