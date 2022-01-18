@@ -155,8 +155,8 @@ jobs:
           and:
             - <<parameters.slack_notify>>
             - or:
-              - on_success
-              - on_fail
+                - on_success
+                - on_fail
           steps:
             - run:
                 name: Notify Slack
