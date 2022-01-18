@@ -92,14 +92,13 @@ jobs:
           # Must be relative path from root
           paths:
             - build
-      - when:
-          condition:
-            and:
-              - <<parameters.slack_notify>>
-              - on_fail
+      - when: always
           steps:
             - run:
                 name: Notify Slack
+                when:
+                  condition:
+                    <<parameters.slack_notify>>
                 command: |
                   pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
 
@@ -150,16 +149,12 @@ jobs:
                 name: Post Comment Firebase
                 command: pipenv run ./content-repo/post_github_comment.py deploy-info-firebase.txt
 
-      - when:
-          condition:
-            and:
-              - <<parameters.slack_notify>>
-              - or:
-                  - on_success
-                  - on_fail
+      - when: always
           steps:
             - run:
                 name: Notify Slack
+                condition:
+                  <<parameters.slack_notify>>
                 command: |
                   pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
 
