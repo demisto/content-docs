@@ -126,15 +126,19 @@ Network Security (IPS/IDS) Integration Example: [ProtectWise](https://xsoar.pan.
 **Top Use Cases:**
 - Enrich asset – get vulnerability information for an asset (or a group of assets) in the organization.
 - Generate/Trigger a scan on specified assets.
+- Generate scheduled scans.
 - Get a scan report including vulnerability information for a specified scan and export it.
 - Get details for a specified vulnerability.
-- Scan assets for a specific vulnerability.
+- Scan assets that have a specific vulnerability.
+- Get hosts latest vulnerability.
 
 Vulnerability Management Integration Example: [Tenable.io](https://xsoar.pan.dev/docs/reference/integrations/tenableio)
 
 ## IAM (Identity and Access Management)
 
 **Top Use Cases:**
-- Create/update/delete users.
-- Block user/Force change password
-- Managing access to resources and applications.
+- Create, update and delete users.
+- Manage user groups.
+- Block users, Force change of passwords.
+- Manage access to resources and applications.
+- Create, update and delete roles.
