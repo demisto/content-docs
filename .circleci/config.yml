@@ -41,6 +41,10 @@ jobs:
             pip3 install pipenv==2021.5.29
             pipenv install
       - run:
+          name: EXIT
+          command:
+            exit 1
+      - run:
           name: NPM Install
           command: |
             nvm use
@@ -57,10 +61,6 @@ jobs:
           command: |
             nvm use
             npm run marketplace-docs
-      - run:
-          name: EXIT
-          command:
-            exit 1
       - run:
           name: NPM Build
           no_output_timeout: 80m
@@ -98,7 +98,7 @@ jobs:
           when: always
           command: |
             echo <<parameters.slack_notify>>
-            if [ <<parameters.slack_notify>> ]; then
+            if [ $<<parameters.slack_notify>> ]; then
               pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
             fi
 
@@ -153,7 +153,7 @@ jobs:
           name: Notify Slack
           when: always
           command: |
-            if [ <<parameters.slack_notify>> ]; then
+            if [ $<<parameters.slack_notify>> ]; then
               pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
             fi
 
