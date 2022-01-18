@@ -48,6 +48,9 @@ jobs:
             npm --version
             npm ci
       - run:
+          name: EXIT
+          command: exit 1
+      - run:
           name: NPM Build content-repo docs
           command: |
             nvm use
@@ -156,7 +159,8 @@ jobs:
 workflows:
   build_and_deploy:
     jobs:
-      - build
+      - build:
+          slack_notify: true
       - deploy:
           requires:
             - build
