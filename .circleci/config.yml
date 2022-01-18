@@ -93,11 +93,12 @@ jobs:
           paths:
             - build
       - when:
-          and:
-            - <<parameters.slack_notify>>
-            - or:
-              - on_success
-              - on_fail
+          condition:
+            and:
+              - <<parameters.slack_notify>>
+              - or:
+                - on_success
+                - on_fail
           steps:
             - run:
                 name: Notify Slack
@@ -152,11 +153,12 @@ jobs:
                 command: pipenv run ./content-repo/post_github_comment.py deploy-info-firebase.txt
 
       - when:
-          and:
-            - <<parameters.slack_notify>>
-            - or:
-                - on_success
-                - on_fail
+          condition:
+            and:
+              - <<parameters.slack_notify>>
+              - or:
+                  - on_success
+                  - on_fail
           steps:
             - run:
                 name: Notify Slack
