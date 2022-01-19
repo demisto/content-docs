@@ -149,3 +149,12 @@ Cortex XSOAR allows users to set up different types of incidents and the user ca
 * In the case of a self-signed certificate, make sure that the whole certificate chain exist. Each of root, intermediate, and client certificate is required.
 
 * When checking SSL certificate validity by pinging, ping to the server domain. SSL certificates are signed on server domain rather than its IP.
+
+#### Splunk Common Information Model (CIM) issues
+* If Splunk CIM is installed make sure it's version match the installed Splunk version. 
+* A common error caused by incompatible version might look as the following:
+  ```
+    12-28-2021 13:45:13.807 -0800 ERROR sendmodalert - action=create_xsoar_incident STDERR - NameError: name 'basestring' is not defined
+    12-28-2021 13:45:13.807 -0800 ERROR sendmodalert - action=create_xsoar_incident STDERR - if isinstance(self.sid, basestring) and 'scheduler' in self.sid:
+    12-28-2021 13:45:13.807 -0800 ERROR sendmodalert - action=create_xsoar_incident STDERR - File "/opt/splunk/etc/apps/Splunk_SA_CIM/lib/cim_actions.py", line 157, in init
+  ```
