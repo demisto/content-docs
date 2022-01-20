@@ -295,7 +295,7 @@ After you configure all the relevant settings that are mentioned above, Palo Alt
 - Only a Panorama instance can edit Panorama rules. 
 - Only a PAN-OS instance can edit PAN-OS rules.
 
-- **PanoramaSecurityPolicyMatchWrapper** is a wrapper script for the ***panorama-security-policy-match*** command. The command receives multiple values for the *source*, *destination* and *destination-port* arguments and performs the policy match for each combination of the inputs. (Available from Cortex XSOAR 6.1.0).
+- **PanoramaSecurityPolicyMatchWrapper** is a wrapper script for the ***panorama-security-policy-match*** command. The script receives multiple values for the *source*, *destination* and *destination-port* arguments and performs the policy match for each combination of the inputs. (Available from Cortex XSOAR 6.1.0).
 For each input combination, the **PanoramaSecurityPolicyMatchWrapper** script creates a unique API call to verify which policy matches the inputs. For example, for the inputs:
 Source:192.168.1.1,192.168.1.2  Destination:8.8.8.8, the script will create 3 API calls.
 The default limit is 500 calls. You can modify the limit using the *limit* argument. 
