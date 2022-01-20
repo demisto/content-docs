@@ -282,13 +282,19 @@ You have a responsibility to identify and eliminate any secrets before they get 
 #### Ignoring secrets
 
 At times there is information that might be flagged incorrectly by the command as a secret. Or it may be "secret" but we wish to share it publicly (for example the support email address).
-To ignore a specific secret, enter it to the packs's `.secrets-ignore` file.
+
+- To ignore a specific secret, add it into the packs's `.secrets-ignore` file.
 For example:
 
-```text
-https://myurl.com
-https://my2ndUrl.com
-```
+    ```bash
+    echo https://myurl.com >> ./Packs/$PACK_NAME/.secrets-ignore
+    ```
+
+- To ignore a complete file, push the file path (relative to the `content` repo root) to the `.files` array in `./Tests/secrets_white_list.json`:
+
+    ```bash
+    jq ' .files |= . + ["/path/to/asset"]' ./Tests/secrets_white_list.json > ./Tests/secrets_white_list.json.bak && mv ./Tests/secrets_white_list.json.bak ./Tests/secrets_white_list.json
+    ```
 
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/secrets/README.md#secrets).
 
