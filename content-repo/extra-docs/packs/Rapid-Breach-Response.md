@@ -1,74 +1,62 @@
 ---
 id: Rapid Breach Response
 title: Rapid Breach Response Layout
-description: Communication across and between departments is a vital component of collecting information, and managing and remediating security events. The Email Communication content pack enables security teams to automate and streamline the communication and notification process with users across your organization via email.
+description: Analyzing trending cyber attack risk is a vital component of managing and remediating security events. The Rapid Breach Response Layout content pack enables security teams to automate and streamline trending cyber attack risk analysis with dedicated playbooks for each scenario.
  
 ---
-This Rapid Breach Response pack enables security teams to quickly evaluate the risk of trending cyber-attacks using dedicated playbooks for each scenario, such as Hafnium - Exchange 0-day Exploits, SolarStorm and PrintNightmare.
-
-
+This content pack enables security teams to quickly evaluate trending cyber attack risk using dedicated playbooks for each scenario, such as Hafnium - Exchange 0-day Exploits, SolarStorm, and PrintNightmare.
 
 
 ## Pack Workflow
-The first step in most Rapid Breach Response playbooks is collecting indicators. The source of the indicators can be blogs, advisories and any other source which considered highly reliable.
-Indicators can be in the form of text, rules and signatures.
-The following step will be to extract, create and tag the indicators from the data collected.
-After we are done with the data collection and indicator extraction we execute the new Rapid Breach Response layout playbook named ‘Set RapidBreachResponse Incident Info’, where we provide the following:
-The link of the sites from which the data has been collected.
-The playbook description.
-The Indicators for numerical representation.
-Upon completion of the collection and processing of the information, a Threat Hunting phase is being executed where we try to find indicators of compromise related to the attack in the customer organization. The following are the main tasks being executed in the TH phase:
-PANW Hunting.
-Cortex XDR signatures and XQL hunting.
-SIEM hunting.
-Advanced Hunting based on the attack patterns.
-IOCs hunt using Endpoint Detection and Response.
+### Collect indicators.
+The first step in most Rapid Breach Response playbooks is collecting indicators. Indicator sources can be blogs, advisories, or any other highly reliable reference. Indicator format can be text, rules, and signatures.
+### Extract, create, and tag the indicators.
+After completing data collection and indicator extraction, execute the new **Set RapidBreachResponse Incident Info** playbook, which provides:
+- Links to sites from which the data was collected
+- The playbook description
+- The indicators for numerical representation
+### Execute threat hunting.
+After completing information collection and processing, execute threat hunting to find indicators of compromise (IOC) related to the attack in the customer organization. This includes the following tasks:
+- PANW Hunting
+- Cortex XDR signatures and XQL hunting
+- SIEM hunting
+- Advanced Hunting based on attack patterns
+- IOC hunt using Endpoint Detection and Response
 
 
 ## In This Pack
-The Rapid Breach Response content pack includes several content items.
+The Rapid Breach Response Layout content pack includes several content items.
 
 ### Automations - Dynamic Sections
-There are 8 Dynamic Sections in this pack.
+The following new dynamic sections are available from Cortex XSOAR 6.0.0.
 
-New: RapidBreachResponse-RemainingTasksCount-Widget
+- **RapidBreachResponse-RemainingTasksCount-Widget** - Shows the updated number of remaining tasks. 
  
- * Rapid Breach Response dynamic section, will show the updated number of remaining tasks. (Available from Cortex XSOAR 6.0.0). 
+- **RapidBreachResponse-RemediationTasksCount-Widget** - Shows the updated number of remediation tasks.
  
-New: RapidBreachResponse-RemediationTasksCount-Widget
+- **RapidBreachResponse-CompletedTasksCount-Widget** - Shows the updated number of completed tasks.
  
- * Rapid Breach Response dynamic section, will show the updated number of remediation tasks. (Available from Cortex XSOAR 6.0.0).
+- **RapidBreachResponse-MitigationTasksCount-Widget** - Shows the updated number of mitigation tasks.
  
-New: RapidBreachResponse-CompletedTasksCount-Widget
+- **RapidBreachResponse-TotalTasksCount-Widget** - Shows the updated number of tasks to complete.
  
- * Rapid Breach Response dynamic section, will show the updated number of completed tasks. (Available from Cortex XSOAR 6.0.0).
+- **RapidBreachResponse-HuntingTasksCount-Widget** - Shows the updated number of hunting tasks.
  
-New: RapidBreachResponse-MitigationTasksCount-Widget
-
- * Rapid Breach Response dynamic section, will show the updated number of mitigation tasks. (Available from Cortex XSOAR 6.0.0).
+- **RapidBreachResponse-EradicationTasksCount-Widget** - Shows the updated number of eradication tasks.
  
-New: RapidBreachResponse-TotalTasksCount-Widget
-
- * Rapid Breach Response dynamic section, will show the updated number of tasks to complete. (Available from Cortex XSOAR 6.0.0).
- 
-New: RapidBreachResponse-HuntingTasksCount-Widget
-
- * Rapid Breach Response dynamic section, will show the updated number of hunting tasks. (Available from Cortex XSOAR 6.0.0).
- 
-New: RapidBreachResponse-EradicationTasksCount-Widget
-
- * Rapid Breach Response dynamic section, will show the updated number of eradication tasks. (Available from Cortex XSOAR 6.0.0).
- 
-New: RapidBreachResponse-TotalIndicatorCount-Widget
-
- * Rapid Breach Response dynamic section, will show the updated number of indicators found. (Available from Cortex XSOAR 6.0.0).
+- **RapidBreachResponse-TotalIndicatorCount-Widget** - Shows the updated number of indicators found.
 
 ### Playbooks
-There is 1 playbook - **Rapid Breach Response - Set Incident Info**.
-This playbook is responsible for setting up the Rapid Breach Response Incident Info tab. (Available from Cortex XSOAR 6.0.0).
+- **Rapid Breach Response - Set Incident Info**<br/>
+    This playbook sets up the Rapid Breach Response Incident Info tab. (Available from Cortex XSOAR 6.0.0).
+- **Set RapidBreachResponse Incident Info**<br/>
+    This playbook presents the following information in the layout:
+    - Playbook description - The playbook description should be provided also as an input for the layout processing and provided as an input to the **Set RapidBreachResponse Incident Info** sub-playbook.
+    - Source Of indicators - The collected indicator sources are provided using the **ParseHTMLIndicators** script output.
+    - Count Total Indicators - The total number of collected indicators. The input should take all indicators and use **Unique** and then **Count** transformers.
+
 
 ### Incident Fields
-There are 10 incident field - 
 
 - **Remaining Task Count**
 - **Total Task Count**
@@ -82,72 +70,46 @@ There are 10 incident field -
 - **Remediation Task Count**
 
 ### Incident Types
-There is 1 incident type - **Rapid Breach Response**.
+**Rapid Breach Response**
 
 ### Layout
-There is 1 layout - **Rapid Breach Response** 
 
-The layout has 3 main tabs:
-Incident Info
-IR Procedures
-Hunting Results
+The **Rapid Breach Response** layout has 3 main tabs:
+- Incident Info
+- IR Procedures
+- Hunting Results
 
-Incident Info
+#### Incident Info
 
-The incident info tab will provide the analyst with the following information:
-Case details.
-The number of indicators collected.
-Playbook description
-The indicators with each section for each type (File, IP, Domain, URL and CVE).
-Signatures files:
-Yara
-Sigma
-Source of indicators in a link format.
-
-The main goal is to give the analyst all the relevant information to understand the characteristics and scope of the attack.
+The Incident Info tab provides the analyst with all the relevant information to understand the characteristics and scope of the attack:
+- Case details
+- The number of indicators collected
+- Playbook description
+- The indicators with a section for each type (File, IP, Domain, URL, and CVE)
+- Signatures files:
+    - Yara
+    - Sigma
+- Source of indicators in a link format
 
 
+#### IR Procedures
 
+The IR Procedures tab tracks all the incident response tasks available in the playbook.
+The layout consists of dynamic sections, including:
+- The total number of tasks
+- Remaining tasks
+- Completed tasks
+- IR Tracking - The main section where an analyst or a manager can view task name, status, completion time and a link to the relevant task to track the playbook execution. This section is built dynamically based on the following playbook header names, which take every task (excluding skipped and conditional) available under them.
+    - Threat Hunting
+    - Mitigation
+    - Remediation
+    - Eradication
 
+    If the header is not used in the playbook or it doesn't have the required task type, the layout shows ‘No tasks found’.
 
-IR Procedures
+#### Hunting Results
 
-The IR Procedures tab goal is to track all the incident response tasks available in the playbook.
-The layout tab is build using Dynamic Sections, 7 of them are numerical for the representation of the total number of tasks, Remaining Tasks and Completed tasks.
-The main section is the ‘IR Tracking’, where an analyst or a manager can view the tasks name, status, completion time and a link to pivot to the relevant task in goal to keep track of the playbook execution.
- 
- 
-The ‘IR Tracking’ section is built dynamically based on the following specific playbook headers name, which will take every task (excluding skipped and conditional) available under them.
-These are the names of the headers the script is looking for:
-Threat Hunting
-Mitigation
-Remediation
-Eradication
-
-In cases where the header wasn’t being used in the playbook or it doesn’t has the required tasks type, the layout will show ‘No tasks found’.
-
-Hunting Results
-
-The Hunting Results tab has 3 sections which will provide the analyst with the following:
-The raw results of the SIEM hunting if executed.
-The raw results of Panorama and Cortex Data Lake.
-Threat hunting results based on unified fields for PANW, Splunk and QRadar.
-
-
-
-
- 
-## Set RapidBreachResponse Incident Info Playbook
-
-This playbook is part of the Rapid Breach Response pack and is responsible for presenting the following within the layout:
-Playbook description
-The playbook description should be provided also as an input for the layout processing.
-
-And provided as an input to the ‘Set RapidBreachResponse Incident Info’ sub-playbook.
-
-Source Of Indicators
-The source of indicators collected is provided using the ‘ParseHTMLIndicators’ script output.
-
-
-Count Total Indicators
-The total number of indicators collected. The input should take all indicators and use Unique and then Count transformers.
+The Hunting Results tab has 3 sections which provide the analyst with:
+- The raw results of the SIEM hunting if executed
+- The raw results of Panorama and Cortex Data Lake
+- Threat hunting results based on unified fields for PANW, Splunk, and QRadar
