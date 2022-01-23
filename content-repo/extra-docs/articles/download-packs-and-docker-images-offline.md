@@ -13,7 +13,9 @@ To run the script, indicate which packs to download by entering the names of the
 The script downloads the content packs you want and the pack's Docker images as zip files to the output path you provide. If you do not provide a an output path, it will download the files to the folder from which you ran the script. You can then upload these packs and images to your Cortex XSOAR environment.
 
 
-The **download_packs_and_docker_images.py** script is located in the *utils* folder in the GIT Content repository
+The **download_packs_and_docker_images.py** script is located in the *utils* folder in the GIT Content repository. If you do not have access to the GIT Content repository, you can download the script from [here](https://xsoar.pan.dev/docs/reference/articles/download-packs-offline).
+
+*Note: If the provided **download_packs_and_docker_images.py** script does not exactly fit your environment or needs, use the script as an example and edit it as needed.*
 
 
 The following are the options for running the script:
