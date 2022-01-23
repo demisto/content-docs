@@ -176,11 +176,11 @@ workflows:
 #                - master
     jobs:
       - build:
-          name: Nightly Build
+          name: nightly build
           slack_notify: true
       - deploy:
-          name: Nightly Deploy
+          name: nightly deploy
           post_comment: false
           slack_notify: true
           requires:
-            - Nightly Build
+            - nightly build
