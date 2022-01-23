@@ -31,7 +31,7 @@ The first step in most Rapid Breach Response playbooks is collecting indicators.
 After completing data collection and indicator extraction, execute the new **Set RapidBreachResponse Incident Info** playbook, which provides:
 - Links to sites from which the data was collected
 - The playbook description
-- The indicators for numerical representation
+- The total number of indicators extracted
 ### Execute threat hunting.
 After completing information collection and processing, execute threat hunting to find indicators of compromise (IOC) related to the attack in the customer organization. This includes the following tasks:
 - PANW Hunting
