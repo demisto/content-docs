@@ -5,7 +5,6 @@
 version: 2.1
 jobs:
   build:
-    name: Build
     machine:
       image: ubuntu-2004:202101-01
       resource_class: large
@@ -101,7 +100,6 @@ jobs:
     docker:
       - image: circleci/python:3.9.1-buster-node
     resource_class: small
-    name: Deploy
     parameters:
       post_comment:
         description: Indicates if to post a comment or not (on daily job we skip posting)
@@ -157,8 +155,10 @@ workflows:
   build_and_deploy:
     jobs:
       - build:
+          name: push-build
           slack_notify: true
       - deploy:
+          name: push-deploy
           requires:
             - build
           slack_notify: true
@@ -178,8 +178,10 @@ workflows:
                 - master
     jobs:
       - build:
+          name: nightly-build
           slack_notify: true
       - deploy:
+          name: nightly-deploy
           post_comment: false
           slack_notify: true
           requires:
