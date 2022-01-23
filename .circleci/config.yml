@@ -5,16 +5,21 @@
 version: 2.1
 jobs:
   build:
-
     machine:
       image: ubuntu-2004:202101-01
       resource_class: large
+
+    parameters:
+      slack_notify:
+        description: Indicates whether to send a slack notification or not (on daily job we send notification)
+        type: boolean
+        default: false
 
     steps:
       - checkout
       - run:
           name: Create Date Weekly File
-          command: | 
+          command: |
             date +%Y-%W-v4 > date-week.txt
             echo "Date week: $(cat date-week.txt)"
       - restore_cache:
@@ -57,7 +62,7 @@ jobs:
           environment:
             ALGOLIA_INDEX: demisto
           command: |
-            nvm use            
+            nvm use
             npm run heapstats
             npm run build-docusaurus
             echo "Build is done. Create tar of the build dir"
@@ -77,12 +82,19 @@ jobs:
                 paths:
                   - node_modules/.cache
       - persist_to_workspace:
-          # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is 
+          # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
           # taken to be the root directory of the workspace.
           root: /home/circleci/project
           # Must be relative path from root
           paths:
-            - build 
+            - build
+      - run:
+          name: Notify Slack
+          when: always
+          command: |
+            if [ "<<parameters.slack_notify>>" = "true" ]; then
+              pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
+            fi
 
   deploy:
     docker:
@@ -93,6 +105,10 @@ jobs:
         description: Indicates if to post a comment or not (on daily job we skip posting)
         type: boolean
         default: true
+      slack_notify:
+        description: Indicates whether to send a slack notification or not (on daily job we send notification)
+        type: boolean
+        default: false
     steps:
       - checkout
       - attach_workspace:
@@ -127,6 +143,14 @@ jobs:
                 name: Post Comment Firebase
                 command: pipenv run ./content-repo/post_github_comment.py deploy-info-firebase.txt
 
+      - run:
+          name: Notify Slack
+          when: always
+          command: |
+            if [ "<<parameters.slack_notify>>" = "true" ]; then
+              pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -j "$CIRCLE_JOB" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
+            fi
+
 workflows:
   build_and_deploy:
     jobs:
@@ -138,18 +162,23 @@ workflows:
             branches:
               # only from non-fork
               only: /^(?!pull\/).*$/
+
   daily:
     triggers:
       - schedule:
-          # should trigger every day at 13:00 UTC (4 hours after each upload-flow run)
-          cron: "0 13 * * *"
+          # should trigger every day at 4:00 UTC (4 hours after 12 AM upload-flow run)
+          cron: "0 4 * * *"
           filters:
             branches:
               only:
-                - master                
+                - master
     jobs:
-      - build
+      - build:
+          name: nightly build
+          slack_notify: true
       - deploy:
+          name: nightly deploy
           post_comment: false
+          slack_notify: true
           requires:
-            - build
+            - nightly build
