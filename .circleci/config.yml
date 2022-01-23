@@ -160,7 +160,7 @@ workflows:
       - deploy:
           name: push-deploy
           requires:
-            - build
+            - push-build
           slack_notify: true
           filters:
             branches:
@@ -185,4 +185,4 @@ workflows:
           post_comment: false
           slack_notify: true
           requires:
-            - build
+            - nightly-build
