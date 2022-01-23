@@ -6,6 +6,23 @@ description: Analyzing trending cyber attack risk is a vital component of managi
 ---
 This content pack enables security teams to quickly evaluate trending cyber attack risk using dedicated playbooks for each scenario, such as Hafnium - Exchange 0-day Exploits, SolarStorm, and PrintNightmare.
 
+## Pack Requirements
+You must install and configure **Demisto Rest API** before you start using this pack.
+
+### Demisto REST API Integration
+The playbooks main IR Tracking dynamic-section is built using the server Rest API and is vital for the layout functionality. The scripts require that you install the **Demisto REST API** integration and configure an integration instance.
+
+1. In Cortex XSOAR, go to **Settings > INTEGRATIONS > API Keys**.
+2. Click the **Get Your Key**, enter a name for the API key, and click **Generate Key**.
+3. **(IMPORTANT)** Copy and save the API key, you will not be able to access it again.
+4. Go to **Settings > INTEGRATIONS > Servers & Services** and search for **Demisto REST API**.
+    - Note: in Multi Tenant environments the **Demisto REST API** integration should be configured at the parent level and propagated down to the child.
+5. Click **Add instance** and enter the required information.
+    - A meaningful name for the integration instance
+    - Demisto Server URL
+    - API key that you generated
+7. Click the **Test** button to make sure that that server and API key are reachable and valid.
+8. Click **Save & exit**.
 
 ## Pack Workflow
 ### Collect indicators.
