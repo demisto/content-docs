@@ -52,7 +52,7 @@ jobs:
       - name: Deploy Firebase Build
         if: "steps.build_download.outputs.forked_pr > 0"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN_01_22 }}
           FORKED_PR: ${{ steps.build_download.outputs.forked_pr }}
         run: |
           echo "==== $(date): extract build zip... ===="

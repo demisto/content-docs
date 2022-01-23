@@ -92,7 +92,7 @@ def post_comment(deploy_info_file: str):
     if not post_url:
         print('Skipping post comment as could not resolve a PR post url!!')
         return
-    token = os.getenv('GITHUB_TOKEN')
+    token = os.getenv('GITHUB_TOKEN_01_22')
     if not token:
         raise ValueError("Can't post comment. GITHUB_TOKEN env variable is not set")
 
@@ -143,7 +143,7 @@ SKIP_SSL_VERIFY: if set will skip ssl verification (used for testing behind GP)
     parser.add_argument("deploy_info_file",
                         help="The deploy file. For example: deploy-info-firebase.txt")
     args = parser.parse_args()
-    if not os.getenv('GITHUB_TOKEN'):
+    if not os.getenv('GITHUB_TOKEN_01_22'):
         print("No github key set. Will not post a message!")
         return
     post_comment(args.deploy_info_file)

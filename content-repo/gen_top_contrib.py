@@ -10,7 +10,7 @@ from datetime import datetime
 
 PR_NUMBER_REGEX = re.compile(r'(?<=pull/)([0-9]+)')
 USER_NAME_REGEX = re.compile(r'(?<=@)[a-zA-Z-0-9]+')
-TOKEN = os.getenv('GITHUB_TOKEN', '')
+TOKEN = os.getenv('GITHUB_TOKEN_01_22', '')
 URL = 'https://api.github.com'
 HEADERS = {
     'Accept': 'application/vnd.github.v3+json',
