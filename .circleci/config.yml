@@ -158,7 +158,7 @@ workflows:
           slack_notify: true
       - deploy:
           requires:
-            - push-build
+            - build
           slack_notify: true
           filters:
             branches:
@@ -183,4 +183,4 @@ workflows:
           post_comment: false
           slack_notify: true
           requires:
-            - nightly-build
+            - Nightly Build
