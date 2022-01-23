@@ -5,7 +5,7 @@
 version: 2.1
 jobs:
   build:
-
+    name: Build
     machine:
       image: ubuntu-2004:202101-01
       resource_class: large
@@ -20,7 +20,7 @@ jobs:
       - checkout
       - run:
           name: Create Date Weekly File
-          command: | 
+          command: |
             date +%Y-%W-v4 > date-week.txt
             echo "Date week: $(cat date-week.txt)"
       - restore_cache:
@@ -101,6 +101,7 @@ jobs:
     docker:
       - image: circleci/python:3.9.1-buster-node
     resource_class: small
+    name: Deploy
     parameters:
       post_comment:
         description: Indicates if to post a comment or not (on daily job we skip posting)
@@ -155,10 +156,12 @@ jobs:
 workflows:
   build_and_deploy:
     jobs:
-      - build
+      - build:
+          slack_notify: true
       - deploy:
           requires:
             - build
+          slack_notify: true
           filters:
             branches:
               # only from non-fork
