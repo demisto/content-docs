@@ -40,10 +40,6 @@ jobs:
             pip3 install pipenv==2021.5.29
             pipenv install
       - run:
-          name: Exit
-          command: |
-            exit 1
-      - run:
           name: NPM Install
           command: |
             nvm use
@@ -121,6 +117,10 @@ jobs:
           name: Setup Python
           command: |            
             pipenv install
+      - run:
+          name: Exit
+          command: |
+            exit 1
       - run:
           name: Deploy to Firebase
           no_output_timeout: 30m
