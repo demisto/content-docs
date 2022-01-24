@@ -111,7 +111,7 @@ The Incident Info tab provides the analyst with all the relevant information to 
     - Yara
     - Sigma
 - Source of indicators in a link format
-
+![image](https://raw.githubusercontent.com/demisto/content-docs/456ed4f4796529c77f4d5903419145263e0b6c00/docs/doc_imgs/reference/RapidBreachResponseLayout/Incident_Info.png)
 
 #### IR Procedures
 
@@ -127,10 +127,12 @@ The layout consists of dynamic sections, including:
     - Eradication
 
     If the header is not used in the playbook or it doesn't have the required task type, the layout shows ‘No tasks found’.
-
+![image](https://raw.githubusercontent.com/demisto/content-docs/456ed4f4796529c77f4d5903419145263e0b6c00/docs/doc_imgs/reference/RapidBreachResponseLayout/IR_Procedures.png)
+  
 #### Hunting Results
 
 The Hunting Results tab has 3 sections which provide the analyst with:
 - The raw results of the SIEM hunting if executed
 - The raw results of Panorama and Cortex Data Lake
 - Threat hunting results based on unified fields for PANW, Splunk, and QRadar
+![image](https://raw.githubusercontent.com/demisto/content-docs/456ed4f4796529c77f4d5903419145263e0b6c00/docs/doc_imgs/reference/RapidBreachResponseLayout/Hunting_Results.png)
