@@ -95,7 +95,7 @@ The Hunting Results tab has 3 sections which provide the analyst with:
 - The raw results of Panorama and Cortex Data Lake
 - Threat hunting results based on unified fields for PANW, Splunk, and QRadar
 
-![image](https://raw.githubusercontent.com/demisto/content-docs/456ed4f4796529c77f4d5903419145263e0b6c00/docs/doc_imgs/reference/RapidBreachResponseLayout/Hunting_Results.png)
+![image](https://raw.githubusercontent.com/demisto/content-docs/4da8f27ab1863b7100396bdfa2d2bb6671886a45/docs/doc_imgs/reference/RapidBreachResponseLayout/Hunting_Results.png)
 
 ### Automations - Dynamic Sections
 The following new dynamic sections are available from Cortex XSOAR 6.0.0.
