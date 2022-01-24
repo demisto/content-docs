@@ -154,10 +154,8 @@ jobs:
 workflows:
   build_and_deploy:
     jobs:
-      - build:
-          slack_notify: true
+      - build
       - deploy:
-          slack_notify: true
           requires:
             - build
           filters:
