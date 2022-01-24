@@ -50,6 +50,53 @@ These include the following tasks:
 ## In This Pack
 The Rapid Breach Response Layout content pack includes several content items.
 
+### Layout
+
+The **Rapid Breach Response** layout has 3 main tabs:
+- Incident Info
+- IR Procedures
+- Hunting Results
+
+#### Incident Info
+
+The Incident Info tab provides the analyst with all the relevant information to understand the characteristics and scope of the attack:
+- Case details
+- The number of indicators collected
+- Playbook description
+- The indicators with a section for each type (File, IP, Domain, URL, and CVE)
+- Signatures files:
+    - Yara
+    - Sigma
+- The links the indicators were fetched from
+
+![image](https://raw.githubusercontent.com/demisto/content-docs/456ed4f4796529c77f4d5903419145263e0b6c00/docs/doc_imgs/reference/RapidBreachResponseLayout/Incident_Info.png)
+
+#### IR Procedures
+
+The IR Procedures tab tracks all the incident response tasks available in the playbook.
+The layout consists of dynamic sections, including:
+- The total number of tasks
+- Remaining tasks
+- Completed tasks
+- IR Tracking - The main section where an analyst or a manager can view task name, status, completion time and a link to the relevant task to track the playbook execution. This section is built dynamically and takes every task (excluding skipped and conditional) available under the following playbook header names:
+    - Threat Hunting
+    - Mitigation
+    - Remediation
+    - Eradication
+    
+If the header is not used in the playbook or it doesn't have the required task type, the layout shows ‘No tasks found’.
+
+![image](https://raw.githubusercontent.com/demisto/content-docs/456ed4f4796529c77f4d5903419145263e0b6c00/docs/doc_imgs/reference/RapidBreachResponseLayout/IR_Procedures.png)
+  
+#### Hunting Results
+
+The Hunting Results tab has 3 sections which provide the analyst with:
+- The raw results of the SIEM hunting if executed
+- The raw results of Panorama and Cortex Data Lake
+- Threat hunting results based on unified fields for PANW, Splunk, and QRadar
+
+![image](https://raw.githubusercontent.com/demisto/content-docs/456ed4f4796529c77f4d5903419145263e0b6c00/docs/doc_imgs/reference/RapidBreachResponseLayout/Hunting_Results.png)
+
 ### Automations - Dynamic Sections
 The following new dynamic sections are available from Cortex XSOAR 6.0.0.
 
@@ -92,47 +139,3 @@ The following new dynamic sections are available from Cortex XSOAR 6.0.0.
 
 ### Incident Types
 **Rapid Breach Response**
-
-### Layout
-
-The **Rapid Breach Response** layout has 3 main tabs:
-- Incident Info
-- IR Procedures
-- Hunting Results
-
-#### Incident Info
-
-The Incident Info tab provides the analyst with all the relevant information to understand the characteristics and scope of the attack:
-- Case details
-- The number of indicators collected
-- Playbook description
-- The indicators with a section for each type (File, IP, Domain, URL, and CVE)
-- Signatures files:
-    - Yara
-    - Sigma
-- Source of indicators in a link format
-![image](https://raw.githubusercontent.com/demisto/content-docs/456ed4f4796529c77f4d5903419145263e0b6c00/docs/doc_imgs/reference/RapidBreachResponseLayout/Incident_Info.png)
-
-#### IR Procedures
-
-The IR Procedures tab tracks all the incident response tasks available in the playbook.
-The layout consists of dynamic sections, including:
-- The total number of tasks
-- Remaining tasks
-- Completed tasks
-- IR Tracking - The main section where an analyst or a manager can view task name, status, completion time and a link to the relevant task to track the playbook execution. This section is built dynamically and takes every task (excluding skipped and conditional) available under the following playbook header names:
-    - Threat Hunting
-    - Mitigation
-    - Remediation
-    - Eradication
-
-    If the header is not used in the playbook or it doesn't have the required task type, the layout shows ‘No tasks found’.
-![image](https://raw.githubusercontent.com/demisto/content-docs/456ed4f4796529c77f4d5903419145263e0b6c00/docs/doc_imgs/reference/RapidBreachResponseLayout/IR_Procedures.png)
-  
-#### Hunting Results
-
-The Hunting Results tab has 3 sections which provide the analyst with:
-- The raw results of the SIEM hunting if executed
-- The raw results of Panorama and Cortex Data Lake
-- Threat hunting results based on unified fields for PANW, Splunk, and QRadar
-![image](https://raw.githubusercontent.com/demisto/content-docs/456ed4f4796529c77f4d5903419145263e0b6c00/docs/doc_imgs/reference/RapidBreachResponseLayout/Hunting_Results.png)
