@@ -41,11 +41,10 @@ After completing information collection and processing, execute threat hunting t
 - Advanced Hunting based on attack patterns
 - IOC hunt using Endpoint Detection and Response
 ### Remediate and Eradicate the Threats
-With the results of Indicators collection and hunting a remediation and eradication phases are executed.
-These include the following tasks:
-- Containment using Block Indicators or Endpoint Isolation in most cases
+With the results of indicator collection and threat hunting, remediation and eradication tasks are executed which include:
+- Containment using in most cases Block Indicators or Endpoint Isolation
 - Mitigation using the detection rules downloaded at phase 1 and any other recommended technique
-- Eradication such as removing/quarantine the malicious files, validating compromised machines are patched and more
+- Eradication, including removing/quarantining malicious files and validating compromised machines are patched
 
 ## In This Pack
 The Rapid Breach Response Layout content pack includes several content items.
@@ -117,11 +116,11 @@ The following new dynamic sections are available from Cortex XSOAR 6.0.0.
 - **RapidBreachResponse-TotalIndicatorCount-Widget** - Shows the updated number of indicators found.
 
 ### Playbooks
-- **Rapid Breach Response - Set Incident Info**<br/>
-    This playbook presents the following information in the layout:
-    - The Playbook description - The playbook description should be provided also as an input for the layout processing and provided as an input to the **Set RapidBreachResponse Incident Info** sub-playbook.
-    - The Source of the indicators - The collected indicator sources are provided using the **ParseHTMLIndicators** script output.
-    - The Sum of Total Indicators collected - The total number of collected indicators. The input should take all indicators and use **Unique** and then **Count** transformers.
+**Rapid Breach Response - Set Incident Info**<br/>
+This playbook presents the following information in the layout:
+- The Playbook description - The playbook description should be provided also as an input for the layout processing and provided as an input to the **Set RapidBreachResponse Incident Info** sub-playbook.
+- The Source of the indicators - The collected indicator sources are provided using the **ParseHTMLIndicators** script output.
+- The Sum of Total Indicators collected - The total number of collected indicators. The input should take all indicators and use **Unique** and then **Count** transformers.
 
 
 ### Incident Fields
