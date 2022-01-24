@@ -1,7 +1,7 @@
 ---
 id: Rapid Breach Response
-title: Rapid Breach Response Layout
-description: Analyzing cyber attacks risk is a vital component of managing and remediating security events. The Rapid Breach Response Layout content pack enables security teams to automate and streamline cyber attacks risk analysis with dedicated playbooks for each scenario.
+title: Rapid Breach Response Pack
+description: Analyzing cyber attacks risk is a vital component of managing and remediating security events. The Rapid Breach Response Layout content pack enables security teams to automate and streamline cyber attacks risk analysis with a dedicated playbook for each scenario.
  
 ---
 This content pack enables security teams to quickly evaluate cyber attack risk using dedicated playbooks for each scenario, such as Hafnium - Exchange 0-day Exploits, SolarStorm, and PrintNightmare.
