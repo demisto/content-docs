@@ -6,11 +6,11 @@ If you use PAN-OS or Panorama as your enterprise firewall and Jira or ServiceNow
 
 ---
 
-Change management for firewalls is a process in enterprises and organizations that enables users to change a specific network behavior. For example, if a user in an organization can’t reach an application because the firewall is blocking it, the user can raise an issue for the relevant network team to allow this traffic. 
-
-Note: The firewall change management is a complex and delicate process that needs to be performed with extreme caution due to consequences that can occur due to a mistake.
+Change management is a process in enterprises and organizations that enables users to change a specific network behavior. For example, if a user in an organization can’t reach an application because the firewall is blocking it, the user can raise an issue for the relevant network team to allow this traffic. 
 
 If you use PAN-OS or Panorama as your enterprise firewall and Jira or ServiceNow as your enterprise ticketing system, this pack will assist you to perform a well coordinated and documented process.
+
+Note: Change management is a complex and delicate process that needs to be performed with extreme caution due to consequences that can occur due to a mistake.
 
 
 
@@ -25,18 +25,22 @@ The following are the possible playbook triggers:
 
 ### Jira 
 
-1. To trigger the **Change Management for FW** playbook via Jira, you need to create a new project in the Jira UI, or adjust your existing Jira project that uses the change management process to contain the following custom fields:
+1. To trigger the **Change Management** playbook via Jira, you need to create a new project in the Jira UI, or adjust your existing Jira project that uses the change management process to contain the following custom fields.
 
-- Request Summary - Details
-- Request Description - Description
-- Destination Port - Dst Ports
-- FW policy action - Policy Actions
-- FW Source Zone - Source Networks
-- FW Destination Zone - Destination Networks
-- IP Protocol - Protocol
-- FW Service - Protocol names
-- Request DST - Source IPs
-- Request SRC - Destination IPs
+*Note: The suggested fields names in Jira are optional. The fields to map in XSOAR are mandatory.* 
+
+| **Field to create in Jira** | **Fields to map in XSOAR** |
+| --- | --- |
+| Change request summary | Details |
+| Change request description | Description |
+| Destination Port | Dst Ports |
+| FW policy action | Policy Actions |
+| FW Source Zone | Source Networks |
+| FW Destination Zone | Destination Networks |
+| IP Protocol | Protocol |
+| FW Service | Protocol names |
+| Request IP DST | Source IPs |
+| Request IP SRC | Destination IPs |
 
 To create a project in Jira, see https://support.atlassian.com/jira-software-cloud/docs/create-a-new-project/.
 To create custom fields in a Jira project, see https://support.atlassian.com/jira-cloud-administration/docs/create-a-custom-field/.
@@ -63,7 +67,7 @@ To create custom fields in a Jira project, see https://support.atlassian.com/jir
 
 
 
-9. Search for the values that you previously recorded and map them accordingly. For example, if the value of *Request SRC* was 1.1.1.1 in Jira, search for it in the JSON and map it to the relevant field. Repeat this for all the custom fields.
+9. Load the incident JSON file and search for the values that you previously recorded and map them accordingly. For example, if the value of *Request IP SRC* was 1.1.1.1 in Jira, search for it in the JSON file and map it to the relevant field. Repeat this for all the custom fields.
 
 {map fields screenshot here}
 
@@ -75,7 +79,7 @@ To create custom fields in a Jira project, see https://support.atlassian.com/jir
 
    {instance setting screenshot here}
 
-   3. For the outgoing mapper, select the default **classifier-mapper-outgoing-Jira mapper**.
+   3. For the outgoing mapper, select the default **classifier-mapper-outgoing-Jira**.
    4. In the Query section, enter a query to ensure the only change management incidents are fetched. (In the example below, *cm* is the detected project for change management.)
 
    {query screenshot here}
@@ -89,16 +93,22 @@ To create custom fields in a Jira project, see https://support.atlassian.com/jir
 
 
 1. In *Form design* and *Layout design* in ServiceNow, edit your incident form to contain the following custom fields. See https://docs.servicenow.com/bundle/rome-it-service-management/page/product/change-management/task/t_CreateCustomField.html for details.
-- Request Summary - Details
-- Request Description - Description
-- Destination Port - Dst Ports
-- FW policy action - Policy Actions
-- FW Source Zone - Source Networks
-- FW Destination Zone - Destination Networks
-- IP Protocol - Protocol
-- FW Service - Protocol names
-- Request DST - Source IPs
-- Request SRC - Destination IPs
+
+*Note: The suggested fields names in ServiceNow are optional. The fields to map in XSOAR are mandatory.* 
+
+| **Field to create in Jira** | **Fields to map in XSOAR** |
+| --- | --- |
+| Change request summary | Details |
+| Change request description | Description |
+| Destination Port | Dst Ports |
+| FW policy action | Policy Actions |
+| FW Source Zone | Source Networks |
+| FW Destination Zone | Destination Networks |
+| IP Protocol | Protocol |
+| FW Service | Protocol names |
+| Request IP DST | Source IPs |
+| Request IP SRC | Destination IPs |
+
 2. Create a ServiceNow incident that will be used for mapping the custom fields in Cortex XSOAR.
 3. Record the values of these fields to use later.
 4. In Cortex XSOAR, fetch this specific incident. You can use the Query in the integration settings (in JQL).
@@ -107,14 +117,14 @@ To create custom fields in a Jira project, see https://support.atlassian.com/jir
 
 {SNOW incidents screenshot here}
 
-7. Search for the values that you previously recorded and map them accordingly. For example, if the value of Request SRC was 1.1.1.1 in Jira, search for it in the JSON and map it to the relevant field. Repeat this for all the custom fields.
+7. Load the incident JSON file and search for the values that you previously recorded and map them accordingly. For example, if the value of Request IP SRC was 1.1.1.1 in Jira, search for it in the JSON file and map it to the relevant field. Repeat this for all the custom fields.
 
 {mapping screenshot here}
 
 8. Create an instance of the **ServiceNow v2 ** integration.
    1. Select **FW change management** as the incident type.
    2. Select the mapper that was created above.
-   3. For the outgoing mapper, select the default **ServiceNow - Outgoing Mapper **.
+   3. For the outgoing mapper, select the default **ServiceNow - Outgoing Mapper**.
 
 {SNOW instance setting screenshot here}
 
@@ -128,7 +138,7 @@ To create custom fields in a Jira project, see https://support.atlassian.com/jir
 
 ## Pack Workflow
 
-After the playbook is triggered, the relevant logs are queried based on the parameters in the change request. The purpose of this action is to provide information to assist in deciding whether to approve or reject the request. If a ticketing system integration (ServiceNow or Jira)  is available, the logs are uploaded to the issue/incident and are linked to the Cortex XSOAR incident.
+After the playbook is triggered, the relevant logs are queried based on the parameters in the change request. The purpose of this action is to provide information to assist in deciding whether to approve or reject the request. If a ticketing system integration (ServiceNow or Jira) is available, the logs are uploaded to the issue/incident and are linked to the Cortex XSOAR incident.
 An email is sent to the security team asking them to approve or reject the change request. 
 
 If the request is rejected, the issue/incident is closed with the relevant comments and the incident in Cortex XSOAR is closed.   
@@ -151,19 +161,16 @@ If the user chooses to edit the existing rule, the **PAN-OS edit existing policy
 
 After the execution of this playbook and the change in the policy, the request owner is required to validate the change. After the validation phase is completed, the issue/ticket is closed.
 
-
-## Workflow documentation
+## Workflow Documentation
 
 As part of this pack’s workflow, all important decisions made during the change management are documented in Cortex XSOAR and mirrored to the issue\ticket in the ticketing system.
-
 
 ## What’s in this Content Pack?
   
 ### Playbooks
-
 There are 5 playbooks in this pack.
 
-- **Change Management for FW**
+- **Change Management**
 
    This is the main playbook in the Change Management pack. This playbook can be triggered by 2 different options: 
    - ServiceNow
@@ -183,8 +190,7 @@ There are 5 playbooks in this pack.
 
    This playbook automates the process of creating or editing a policy.
 
-   The first task in the playbook checks if there is a security policy that matches the playbook inputs. If there is no security policy that matches the playbook inputs, a new policy will be created. If there is a security policy that matches the playbook inputs, the user will have the option to modify the existing policy or create a new hardened policy.   
-
+   The first task in the playbook checks if there is a security policy that matches the playbook inputs. If there is no security policy that matches the playbook inputs, a new policy is created. If there is a security policy that matches the playbook inputs, the user has the option to modify the existing policy or create a new hardened policy.   
 
 - **PAN-OS edit existing policy**
 
@@ -198,8 +204,6 @@ There are 5 incident fields in this pack.
 - Policy Actions
 - Protocol Names
 - Security Policy Match
-
-
 
 ### Incident Types
 
@@ -280,8 +284,8 @@ This pack requires that you have an active instance of an email sender integrati
 
 To get up and running with this pack:
 
-- In your relevant Panorama/PAN-OS instance for Change Management, set the **Firewall Change Management** as the incident type.  
-- Configure the **Change Management for FW** playbook inputs (link to the playbook readme)
+- In your relevant Panorama/PAN-OS instance for Change Management, set the **FW Change Management** as the incident type.  
+- Configure the **Change Management** playbook inputs (https://xsoar.pan.dev/docs/reference/playbooks/change-management)
 - Follow the steps in the [Playbook Triggers](#playbook-triggers) for the Jira or ServiceNow integration.
 - Usage of an email sender integration is highly recommended for the pack workflow. 
 
