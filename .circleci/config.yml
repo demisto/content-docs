@@ -118,10 +118,6 @@ jobs:
           command: |            
             pipenv install
       - run:
-          name: Exit
-          command: |
-            exit 1
-      - run:
           name: Deploy to Firebase
           no_output_timeout: 30m
           command: |
