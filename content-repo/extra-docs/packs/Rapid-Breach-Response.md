@@ -25,22 +25,27 @@ The IR Tracking dynamic section is built using the server Rest API and is vital 
 7. Click **Test** to make sure that that server and API key are reachable and valid.
 8. Click **Save & exit**.
 
-## Pack Workflow
-### Collect indicators.
+## Playbook Workflow
+### Collect indicators
 The first step in most Rapid Breach Response playbooks is collecting indicators. Indicator sources can be blogs, advisories, or any other highly reliable reference. Indicator format can be text, rules, and signatures.
-### Extract, create, and tag the indicators.
+### Extract, create, and tag the indicators
 After completing data collection and indicator extraction, execute the new **Set RapidBreachResponse Incident Info** playbook, which provides:
 - Links to sites from which the data was collected
 - The playbook description
 - The total number of indicators extracted
-### Execute threat hunting.
+### Execute threat hunting
 After completing information collection and processing, execute threat hunting to find indicators of compromise (IOC) related to the attack in the customer organization. This includes the following tasks:
 - PANW Hunting
 - Cortex XDR signatures and XQL hunting
 - SIEM hunting
 - Advanced Hunting based on attack patterns
 - IOC hunt using Endpoint Detection and Response
-
+### Remediate and Eradicate the Threats
+With the results of Indicators collection and hunting a remediation and eradication phases are executed.
+These include the following tasks:
+- Containment using Block Indicators or Endpoint Isolation in most cases
+- Mitigation using the detection rules downloaded at phase 1 and any other recommended technique
+- Eradication such as removing/quarantine the malicious files, validating compromised machines are patched and more
 
 ## In This Pack
 The Rapid Breach Response Layout content pack includes several content items.
@@ -66,12 +71,10 @@ The following new dynamic sections are available from Cortex XSOAR 6.0.0.
 
 ### Playbooks
 - **Rapid Breach Response - Set Incident Info**<br/>
-    This playbook sets up the Rapid Breach Response Incident Info tab. (Available from Cortex XSOAR 6.0.0).
-- **Set RapidBreachResponse Incident Info**<br/>
     This playbook presents the following information in the layout:
-    - Playbook description - The playbook description should be provided also as an input for the layout processing and provided as an input to the **Set RapidBreachResponse Incident Info** sub-playbook.
-    - Source Of indicators - The collected indicator sources are provided using the **ParseHTMLIndicators** script output.
-    - Count Total Indicators - The total number of collected indicators. The input should take all indicators and use **Unique** and then **Count** transformers.
+    - The Playbook description - The playbook description should be provided also as an input for the layout processing and provided as an input to the **Set RapidBreachResponse Incident Info** sub-playbook.
+    - The Source of the indicators - The collected indicator sources are provided using the **ParseHTMLIndicators** script output.
+    - The Sum of Total Indicators collected - The total number of collected indicators. The input should take all indicators and use **Unique** and then **Count** transformers.
 
 
 ### Incident Fields
