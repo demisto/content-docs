@@ -5,7 +5,7 @@ from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 from typing import List, Dict
 
-SLACK_CHANNEL = '#dmst-content-team'
+SLACK_CHANNEL = '#dan-test-channel'
 
 
 def get_circle_failed_steps(ci_token: str, build_number: int) -> List[str]:
@@ -39,14 +39,13 @@ def get_circle_failed_steps(ci_token: str, build_number: int) -> List[str]:
     return failed_steps_list
 
 
-def create_slack_notifier(slack_token: str, build_url: str, failed_job_name: str, ci_token: str, build_number: int):
+def create_slack_notifier(slack_token: str, build_url: str, ci_token: str, build_number: int):
     """
         Sends a build report via slack.
 
         Args:
             slack_token (str): The slack token.
             build_url (str): The build URL.
-            failed_job_name (str): The failed job name.
             ci_token (str): The circle-ci token.
             build_number (int): The build number.
     """
@@ -72,7 +71,7 @@ def create_slack_notifier(slack_token: str, build_url: str, failed_job_name: str
             username="Content-Docs CircleCI",
             attachments=[{
                 'color': color,
-                'title': f'Content Docs {failed_job_name.title()} - {workflow_status}',
+                'title': f'Content Docs Nightly Build - {workflow_status}',
                 'title_link': build_url,
                 'fields': steps_fields
             }]
@@ -101,7 +100,6 @@ def get_entities_fields(entity_title: str, entities: List[str]) -> List[Dict]:
 def options_handler():
     parser = argparse.ArgumentParser(description='Parser for slack_notifier args')
     parser.add_argument('-u', '--build_url', help='The circle-ci url', default='')
-    parser.add_argument('-j', '--failed_job', help='The failed job name', required=True)
     parser.add_argument('-s', '--slack_token', help='The token for slack', required=True)
     parser.add_argument('-b', '--build_number', help='The build number', required=True)
     parser.add_argument('-c', '--ci_token', help='The token for circleci/gitlab', required=True)
@@ -114,7 +112,6 @@ def main():
     options = options_handler()
     slack_token = options.slack_token
     build_url = options.build_url
-    failed_job_name = options.failed_job
     ci_token = options.ci_token
     build_number = options.build_number
 
@@ -122,7 +119,7 @@ def main():
         print('Error: Slack token is not configured')
         exit(1)
 
-    create_slack_notifier(slack_token=slack_token, build_url=build_url, failed_job_name=failed_job_name, ci_token=ci_token, build_number=build_number)
+    create_slack_notifier(slack_token=slack_token, build_url=build_url, ci_token=ci_token, build_number=build_number)
 
 
 if __name__ == '__main__':
