@@ -1,6 +1,6 @@
 ---
 id: Rapid-Breach-Response
-title: Rapid Breach Response
+title: Rapid Breach Response pack
 description: Analyzing cyber attacks risk is a vital component of managing and remediating security events. The Rapid Breach Response Layout content pack enables security teams to automate and streamline cyber attacks risk analysis with a dedicated playbook for each scenario.
  
 ---
