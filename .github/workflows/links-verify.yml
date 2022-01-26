@@ -87,29 +87,29 @@ jobs:
         -e 'https://www.soarxperts.com.*' \
         -e 'https://xsoar.pan.dev/marketplace/contributors' \
         -e 'https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/postman_codegen/resources/urlscan.io.postman_collection.json' \
-        -e https://api.opsgenie.com \
-        -e https://analyze.intezer.com/api/ \
-        -e https://api.prismacloud.io/ \
-        -e https://tap-api-v2.proofpoint.com \
-        -e https://acme-v02.api.letsencrypt.org/acme/authz-v3/12345678901 \
-        -e https://acme-v02.api.letsencrypt.org/acme/chall-v3/12345678901/4cF9Tg \
-        -e https://acme-v02.api.letsencrypt.org/acme/chall-v3/12345678901/J6Svyw \
-        -e https://acme-v02.api.letsencrypt.org/acme/chall-v3/12345678901/Phy50Q \
-        -e https://acme-v02.api.letsencrypt.org/acme/order/123456789/12345678901 \
-        -e https://somejira.atlassian.net/rest/api/latest/issue/10044 \
-        -e https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json \
-        -e (following redirect https://notification.ba.com/LinkExpired) https://notification.ba.com/LinkTracking?id=17174577&url=https://r-%E2%81%A0gk8.online?e= \
-        -e (following redirect https://www.djjimmykennedy.com/) http://www.djjimmykennedy.com \
-        -e (following redirect http://communities.vmware.com/community/vmtn/vsphere/automationtools?view=overview) http://www.vmware.com/go/sysadmintools \
-        -e https://index.docker.io/v1/ \
-        -e https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc%22 \
-        -e https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz%22 \
-        -e https://unofficial-builds.nodejs.org/download/release/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH-musl.tar.xz%22 \
-        -e (following redirect https://github.com/yarnpkg/yarn/releases/download/v$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz%22) https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz%22 \
-        -e (following redirect https://github.com/yarnpkg/yarn/releases/download/v$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz.asc%22) https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz.asc%22 \
-        -e https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json \
-        -e (following redirect https://gen.xyz/) http://www.xyz.com \
-        -e https://live.edgescan.com/api.wsdl \
+        -e 'https://api.opsgenie.com' \
+        -e 'https://analyze.intezer.com/api/' \
+        -e 'https://api.prismacloud.io/' \
+        -e 'https://tap-api-v2.proofpoint.com' \
+        -e 'https://acme-v02.api.letsencrypt.org/acme/authz-v3/12345678901' \
+        -e 'https://acme-v02.api.letsencrypt.org/acme/chall-v3/12345678901/4cF9Tg' \
+        -e 'https://acme-v02.api.letsencrypt.org/acme/chall-v3/12345678901/J6Svyw' \
+        -e 'https://acme-v02.api.letsencrypt.org/acme/chall-v3/12345678901/Phy50Q' \
+        -e 'https://acme-v02.api.letsencrypt.org/acme/order/123456789/12345678901' \
+        -e 'https://somejira.atlassian.net/rest/api/latest/issue/10044' \
+        -e 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json' \
+        -e 'https://notification.ba.com/LinkTracking?id=17174577&url=https://r-%E2%81%A0gk8.online?e=' \
+        -e 'http://www.djjimmykennedy.com' \
+        -e 'http://www.vmware.com/go/sysadmintools' \
+        -e 'https://index.docker.io/v1/' \
+        -e 'https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc%22' \
+        -e 'https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz%22' \
+        -e 'https://unofficial-builds.nodejs.org/download/release/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH-musl.tar.xz%22' \
+        -e 'https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz%22' \
+        -e 'https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz.asc%22' \
+        -e 'https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json' \
+        -e 'http://www.xyz.com \
+        -e 'https://live.edgescan.com/api.wsdl \
         https://xsoar.pan.dev > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
         grep -v -E '^\s+(403|401|405|x509|lookup|parse|timeout|dial)' muffet.txt > muffet-clean.out
         echo "Muffet output after 401, 403, 405 and x509 remove:"
