@@ -21,7 +21,7 @@ CI/CD has the following advantages over using the remote repository feature in C
 - Controls the code base with a multi-branch approach. Multiple developers can work on different branches. You can have code reviews, issue pull requests, etc.
 - Use CI/CD solutions (like CircleCI, Jenkins, etc) as part of your testing (including running test playbooks) and deployment. You also have the ability to run automatic testing.
 
-**NOTE:** To use this process you need to have a Git repository. Github, Gitlab and Bitbucket are currently supported.
+**NOTE:** To use this process you need to have a Git repository. GitHub, GitLab and Bitbucket are currently supported.
 
 The CI/CD process involves the following stages:
 - [Development](#development)
@@ -31,7 +31,7 @@ The CI/CD process involves the following stages:
 For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
 
 
- ### Development
+ ## Development
  
  In the development stage, [set up the CI/CD process](#setup-the-cicd-development-process) by creating or cloning a Git repository based on the [CI/CD template repository](https://github.com/demisto/content-ci-cd-template). You can then create and maintain your custom content with the built-in functionality of [demisto-sdk](https://xsoar.pan.dev/docs/concepts/demisto-sdk). The CI/CD process uses `demisto-sdk` to develop and deploy custom content packs. It downloads, uploads, validates, creates content, migrates content from a Cortex XSOAR server, etc. It also supports content pack structure generation, auto validation of custom content including running linters on the code, and generation of content pack documentation, etc. For a full list of features, commands, and arguments, see [demisto-sdk-commands](https://github.com/demisto/demisto-sdk#commands).
 
@@ -42,15 +42,15 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
  Ensure that the `DEMISTO_BASE_URL` and `DEMISTO_API_KEY` are set to the server environment that you want to use. For example, if you want to upload content directly to the server without using an artifact server you need to point the server to this environment. When working on a branch and you want to download/upload to a development environment, ensure that the `demisto-sdk` points to the development server.
  1. **Create the CI/CD Repository.**
 
-    Create or fork a Git repository (such as Github, Gitlab, bitbucket,etc). Use [CI/CD template repository](https://github.com/demisto/content-ci-cd-template) as your base structure. The `demisto-sdk` connects to this Git repository and then automatically connects to Cortex XSOAR servers using the API, to ensure that it validates Cortex XSOAR content.
+    Create or fork a Git repository (such as GitHub, GitLab, Bitbucket,etc). Use [CI/CD template repository](https://github.com/demisto/content-ci-cd-template) as your base structure. The `demisto-sdk` connects to this Git repository and then automatically connects to Cortex XSOAR servers using the API, to ensure that it validates Cortex XSOAR content.
     The repository contains the following content:
     
     | Content | Description |
     | ------- | ----------- |
     | `config.yml` | The CI/CD configuration file (in the `.github\workflows` folder), which validates the content pack, creates an ID set, runs tests, etc. When you want to deploy your content, you need to update the file with your repository and whether you want to use an artifact server.  For more information, see Configuring the config.yml file in [Deployment](#deployment). |
     | `pre-commit` | Within the `.hooks` folder, the pre-commit file uses the Git rebase interactive tool for manual control of your history revision process. |
-    | `.vsc code` | Used when using VSC as your IDE. |
-    | `build_related_scripts` | Contains the CI/CD scripts. The `Update build_related_scripts/bucket_upload.py` script enables you to upload to Google Cloud Storage (artifact server).  Before deploying your content, you need to update the name of the bucket list when uploading the Google Cloud Storage. For more information, see Configure the the bucket_upload.py file in [Deployment](#deployment). <br/> **NOTE**: If using another storage application such AWS, you need to replace Google Cloud Storage. Contact Customer Support to assist with this. <br/> The `get_modified_packs` script enables you to get the latest version of the content pack before merging. |
+    | `.vscode` | Used when using VSC as your IDE. |
+    | `build_related_scripts` | Contains the CI/CD scripts. The `build_related_scripts/bucket_upload.py` script enables you to upload to Google Cloud Storage (artifact server).  Before deploying your content, you need to update the name of the bucket list when uploading the Google Cloud Storage. For more information, see Configure the the bucket_upload.py file in [Deployment](#deployment). <br/> **NOTE**: If using another storage application such AWS, you need to replace Google Cloud Storage. Contact Customer Support to assist with this. <br/> The `get_modified_packs.py` script enables you to get the latest version of the content pack before merging. |
     | `dev_envs/pytest`| A folder that contains the `conftest.py`, which validates python files. |
     | `.demisto-sdk-conf`| The custom configuration file for the `demisto-sdk` commands. For more information, see [Setting a preset custom command configuration](https://xsoar.pan.dev/docs/concepts/demisto-sdk#setting-a-preset-custom-command-configuration). |
     | `.gitignore` | Specifies intentionally untracked files that Git should ignore. |
@@ -62,7 +62,7 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
     | `demistomock.py` | Enables you to debug Python Script. For more information about the demistomock files see [Debugging using demistomock the demisto-object](https://xsoar.pan.dev/docs/integrations/debugging#using-demistomock-the-demisto-object). |
     | `requirements.txt` | Contains a list of all the project’s dependencies. |
     | `tox.ini` | The command-line driven automated testing tool for Python. |
-    | `xsoar_config.json` | The configuration file that defines what packs lists, and jobs will be set up on the machine. Update this when you are ready to deploy. See step 10 below. |
+    | `xsoar_config.json` | The configuration file that defines what packs lists, and jobs will be set up on the machine. Update this when you are ready to deploy. See step 3 under **Deployment** below. |
 
  2. **(Optional) Set up the repository to work with an IDE.**
     
@@ -130,13 +130,13 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
 	
 6. **Add any additional files that are required.**
         
-    You might want to add a `Release Notes`, `secrets-ignore`, or `pack ignore` folders. You can see how the Content hierarchy appears in the [Hello World](https://github.com/demisto/content/tree/master/Packs/HelloWorld) Content Pack.
+    You might want to add a `Release Notes`, `.secrets-ignore`, or `.pack-ignore` files/folders. You can see how the Content hierarchy appears in the [Hello World](https://github.com/demisto/content/tree/master/Packs/HelloWorld) Content Pack.
 
 
 7. **Generate a README for your integration, script, or playbook.**
     
     Run the following command:
-        `Demisto-sdk generate-docs --insecure -e directory`
+        `demisto-sdk generate-docs --insecure -e directory`
         For more information, see [creating documentation](https://xsoar.pan.dev/docs/documentation/readme_file#creating-documentation).
 
 8. **(Optional) Run SDK Validate and SDK Lint on your changes**
@@ -167,7 +167,7 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
 
 In testing/staging proceess, you can do the following:
 
-- Utilize 3rd party CI/CD Solutions, such as Circle CI, Jenkins, etc.
+- Utilize 3rd party CI/CD Solutions, such as CircleCI, Jenkins, etc.
 - Run validations and automated tests from a testing server as part of a build process.
 - Run test playbooks.
    
@@ -179,7 +179,7 @@ Before you begin, ensure that you have installed the following:
 - Your CI/CD solution (such as CircleCI).
 - Docker, or applications like Mypy, Flake8, pylint, pytest, etc., for validations and lint commands.  
 
-1. **Review the lint and the validate in the `demisto-sdk-conf` file.**
+1. **Review the lint and the validate in the `.demisto-sdk-conf` file.**
     
 2. **(Optional): Upload the content to a test staging environment**.
     
@@ -224,7 +224,7 @@ An artifact server such as Google Cloud Services, enables you to  maintain and c
 
 Although you can choose your own artifact repository, (such as AWS, GCP, Git, FTP server, etc) by default, the CI/CD process uses Google Cloud Storage. You need to install the [Google Cloud Storage Content Pack](https://xsoar.pan.dev/docs/reference/integrations/google-cloud-storage) and configure the integration. If using another storage provider, such as AWS you need to install the relevant Content Pack and set up the integrations as necessary.
 
-The main advantage of the artifact server is version control and rollback. You update the xsoar_config.json file with any version change, rather than having to update the repository.
+The main advantage of the artifact server is version control and rollback. You update the `xsoar_config.json` file with any version change, rather than having to update the repository.
 
 
 
@@ -283,7 +283,10 @@ Although you do not have the flexibility of version control and rollback, it is 
               python3 build_related_scripts/MarketPlaceInstallerFromCICD.py --marketplace-packs-list $MARKETPLACE_PACKS_LIST
 
 2. **(Artifact Server only) Configure the the `bucket_upload.py` file.**
-   <br/> Update the bucket name, main bucket path and format file before pushing any content from your Git repository. The artifact server is based on Google Cloud Storage. <br/> If using a different storage provider, you need to update the `bucket_upload.py` file with the required artifact server information. Contact Customer Support if you need to change this.
+   
+   Update the bucket name, main bucket path and format file before pushing any content from your Git repository. The artifact server is based on Google Cloud Storage.
+   
+   If using a different storage provider, you need to update the `bucket_upload.py` file with the required artifact server information. Contact Customer Support if you need to change this.
     
 3. **Configure the `xsoar_config.json` file.**
     
@@ -432,9 +435,9 @@ Although you do not have the flexibility of version control and rollback, it is 
 
     This feature is an alternative for the Dev/Prod environment. Instead of building and maintaining your code on a development Cortex XSOAR platform, you can do so from your own chosen git repository and utilize 3rd party tools like CI/CD infrastructures, build servers, artifact servers and more. This adds to your development and testing process. These multiple powerful tools do not exist with the Cortex XSOAR UI feature like Version control, code review, distributed developing environments, automatic testing, etc.
 
-2. **Do I need to have Github in order to use this pack?**
+2. **Do I need to have GitHub in order to use this pack?**
 
-    You need a Git repository, but the choice is yours. We currently support Github/Gitlab/Bitbucket.
+    You need a Git repository, but the choice is yours. We currently support GitHub/GitLab/Bitbucket.
 
 3. **How does it work with propagation tags and/or in a multi-tenant environment?**
 
