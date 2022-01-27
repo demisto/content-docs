@@ -5,497 +5,395 @@ title: Create an Integration
 
 ## Welcome
 
->*First and foremost, I want to welcome you to the Palo Alto Networks team. We are excited to have you and we look forward to working with you. Please note that this tutorial assumes that you have a working instance of Cortex XSOAR.<br/><br/>**Note**: To keep things minimal, not all code in the tutorial follows our code conventions. Please see: [Code Conventions](../integrations/code-conventions) document to learn more about our coding standards. Please also note that the code samples are in Python 2 and some sections may not be fully compatible with Python 3.*
-
-The code we will be writing will be available in segments as we go along, as well as in it's entirety at the end.
-
-## Navigating to BYOI
-
-![byoi](../doc_imgs/tutorials/tut-integration-ui/navigate-byoi.png)
-
->*This is the Settings dashboard and it is where we configure and create new integrations. To start, let’s click this blue button that says BYOI, or Bring Your Own Integration.*
-
-If this option is unavailable for you, it means that you do not have the proper permissions required for this tutorial. Please reach out to your Admin for assistance.
+This guide walks you through the process of creating an integration for Cortex XSOAR. This tutorial assumes you have a working instance of Cortex XSOAR and programming experience with Python. <br/><br/>**Note**: As an introductory guide, not all code in the tutorial strictly follows our code conventions. Please see 
+[Code Conventions](../integrations/code-conventions) to learn more about our coding standards.
 
 ## The Cortex XSOAR IDE
 
->*Here we see the Cortex XSOAR IDE. This more than likely looks different than other IDEs you may have previously worked with, So, let’s take a minute and point out what makes it different.*
+You have the option to develop integrations using the Cortex XSOAR IDE or a standalone IDE such as Visual Studio (if you use Visual Studio, refer to the [Cortex XSOAR extension for Visual Studio Code](../concepts/vscode-extension)). For this tutorial, we use the Cortex XSOAR IDE, which includes access to Script Helper (a library of many common server functions within Cortex XSOAR), as well as a graphical user interface for editing integration settings, commands, and arguments.  
 
-While the Cortex XSOAR IDE has many features, you may wish to pre-write your code in a standalone IDE such as Visual Studio Code or Pycharm.
+## CommonServerPython &  CommonServerUserPython
+The [CommonServerPython (CSP)](../reference/api/common-server-python) and [CommonServerUserPython (CSUP)](../reference/scripts/common-server-user-python) scripts are implicitly imported at the beginning of every Python script in Cortex XSOAR. CSP is imported first, enabling you to create your own common methods in CSUP to use across scripts and integrations. Note that CSP and CSUP can’t be attached to integrations you create, so any changes you implement are not available for other users. 
+
 
 ## Script Helper
 
-![scripthelper](../doc_imgs/tutorials/tut-integration-ui/script-helper-screen.png)
+![scripthelper](../doc_imgs/tutorials/tut-integration-ui/cortex-xsoar-ide.png )
 
->*One of the greatest tools you will have while creating your integration is the Script Helper. The script helper is a library of all of the different common server functions within Cortex XSOAR. If you want to format a table, manipulate data, or post something to the war room; more often than not, there is a function for it here.*
+In many cases, there is already an existing script for common server functions. With the **Script Helper**, you can easily find tools to format a table, manipulate data, post to the war room, etc. If a function you want to create seems like it could be used in many different scripts, there’s a good chance it already exists in Script Helper. If you do create a new function that you believe would be useful across many scripts, we encourage you to contribute that function to [CommonServerPython](https://github.com/demisto/content/blob/master/Packs/Base/Scripts/CommonServerPython/CommonServerPython.py) scripts.
 
-The script helper assists you in many functions. Generally if a function you created seems trivial, or you ask yourself "Why did I need to write that?" chances are it exists in the script helper. If not, let someone know! If you have come up with a brilliantly simple way to do something, it probably is needed and should be added to the common server functions.
+## Navigate to BYOI (Bring Your Own Integration)
 
-## Integration Settings
+![byoi](../doc_imgs/tutorials/tut-integration-ui/byoi.png)
 
->*We are going to create an English to Yoda translator today.*
+Go to **Settings > Integrations**. Click the blue button **BYOI** in the top right corner, and the built-in Cortex XSOAR IDE will open. If you don’t see this button, it means you don’t have the correct permissions required for creating new integrations. Please reach out to your admin for assistance. 
 
-This is meant to be a very simple integration that calls on an API much in the same way that other integrations work. While some things may seem silly, the function of calling an API, transforming data, and posting it to the war room, are all universal within Cortex XSOAR.
 
-We use the Yoda-Speak translate API available at [FunTranslations](https://funtranslations.com/api/yoda)
+## Define Integration Settings
 
-![basic_settings](../doc_imgs/tutorials/tut-integration-ui/yoda-speak.png)
+As an example, we are going to create an English to Yoda translator, which translates normal English into the way Yoda, the Star Wars character, speaks. This is a simple integration that lets us explore important aspects of integration development. With our integration, we can try  calling an API, parsing data, and posting it to the war room.  We will use the Yoda-Speak translate API available at [FunTranslations](https://funtranslations.com/api/yoda).
 
->In the basic section, we have the ability to name an integration, add a description of it, and tell customers what type of integration it is. I’m going to name ours “Yoda Speak” and for the description, let’s put “Creating an Integration, we are”. Now since this is a Utility, we will select “Utilities” as the type.
+When you click on the **BYOI** button, you enter the Cortex XSOAR IDE. By default, the HelloWorld integration template is loaded. We will replace the default **HelloWorld** integration with our **Yoda Speak** integration. 
 
-The description should include basic details about the integration, common troubleshooting steps, and (if needed) how to set up the instance.
+To begin, replace the **HelloWorld** integration name with **Yoda Speak**. For the next part of this tutorial, you will replace the existing **HelloWorld** integration settings with our new **Yoda Speak** settings and delete unused parameters or arguments. 
 
-![fetches_incidents](../doc_imgs/tutorials/tut-integration-ui/fetch-incidents.png)
+Behind the scenes, the settings you enter here are saved in a YAML file, which you can export and import. To learn more about Cortex XSOAR Integration YAML files, see [Integrations and Scripts Metadata YAML File](../integrations/yaml-file).
 
->If you notice, we also have a checkbox for “Fetches Incidents”. This setting tells Cortex XSOAR that our integration has a command called “fetch-incidents” and will need to run periodically. This feature is what makes Cortex XSOAR so incredibly useful for our customers since it ingests events and turns them into Incidents in Cortex XSOAR.
+### Basic Integration Settings
 
-You can read about the fetching-incidents process [here](../integrations/fetching-incidents). For simple APIs that return enrichment data, this may not be necessary, but for SEIMs, or other tools which report incidents, the fetch function is an absolute necessity.
+In the Basic section, we name the integration, add a description, choose a category, and set several additional options. 
 
->Since we are just translating something today, we don’t need to use this, but we will cover this in depth in another video. The last part is the logo. When we create an integration that is open to the public, we need to use an image that looks good. We recommend an image no larger than 10KB and in the PNG format. I have one ready that we will use, so I will drag it into the box.
+- **Integration Name** - Our integration will be called **Yoda Speak**.   
+- **Description** - The description would normally include basic information about the integration, common troubleshooting steps, and any required setup instructions. For the purposes of this tutorial, however, let's enter **Creating an Integration, we are**.  
+- **Category** - Select **Utilities** for the category. See full list of available [categories](../concepts/design-best-practices).
+- **Logo** - The logo should be no larger than 10KB, have a transparent background, and be in PNG format. You can drag and drop the logo here, or click the box to open the file browser and select the file for upload. 
 
-![drag logo](../doc_imgs/tutorials/tut-integration-ui/drag-logo.png)
+![integration-settings](../doc_imgs/tutorials/tut-integration-ui/integration-settings-image.png )
 
-You may also choose to navigate to the PNG file by clicking the box to open the file browser.
+**Note**: The **Fetches incidents** checkbox tells Cortex XSOAR that the integration runs periodically to ingest events and create incidents in Cortex XSOAR. Our **Yoda Speak** integration does not need to fetch incidents, so make sure this checkbox is empty. While we don’t need this feature for our **Yoda Speak** integration, [fetching incidents](../integrations/fetching-incidents) is an essential part of many integrations. There are additional options available here - external schema support, [can sync mirror in, can sync mirror out](../integrations/mirroring_integration), and [long running integration](../integrations/long-running), but these are less commonly used. 
 
-## Parameters
+### Parameters
 
->Next, we have the parameters section. This is where we add our global variables to the configuration for the integration.
+The next section lets you set parameters that can be used across all commands in the integration. Some common parameters include the API key used for communicating with the product, your username, whether to use proxy, etc.
 
-![screen shot 2019-01-08 at 13 35 55](../doc_imgs/tutorials/tut-integration-ui/parameters-screen.png)
+For the **Yoda Speak** integration, we want to include the API key and proxy settings, and to allow for insecure requests. We also include a URL parameter, which tells the integration where to send requests. For each parameter, we include a display name that tells the user what the value is used for.
 
-Parameters are global variables which means that every command can/will use these configurable options in order to run. Some common parameters are API keys, Usernames, Endpoints, and Proxy options.
+Enter the following values for the apikey parameter:
 
->Since we are using an API for this integration, we need to set up the proxy settings, allow for insecure requests, and if we use an API key, get that ready as well.
+| API Key Parameter Settings  |  |
+| ------------- |:-------------:|
+| Parameter name    |apikey     |
+| Type dropdown      |Authentication     |
+| Mandatory      | not selected     |
+| Display password      |API Key
 
->We will call the first one, “proxy” and give it the Boolean type. The initial value we are going to set as “false” and for the display name we will write “Use system proxy”. 
+For the **Yoda Speak** integration, the free service does not require an API key, and allows up to 60 API calls a day with up to 5 calls an hour. If you require more API calls, FunTranslations offers a paid service that you can access with an API key.  In this case, we provide the option for users with a paid subscription to enter their API key, but we don’t make it mandatory.  The Authentication parameter type enables you to use Cortex XSOAR’s built-in credential management system to save and use the API key, and ensures that the API key is not displayed to the user and is not stored in logs. 
 
-The following is an example of the proxy settings filled out:
+**Note:** Many integrations that connect to third party services require an API key for authentication, which is sent with every request to the third party service. Since it’s used by every command that performs an API call, we add it as a global parameter and not an argument. 
 
-![screen shot 2019-01-08 at 13 38 33](../doc_imgs/tutorials/tut-integration-ui/parameter-proxy.png)
+![apikey](../doc_imgs/tutorials/tut-integration-ui/apikey_param.png) 
+ 
+Enter the following values for the url parameter:
 
->Next we will add the insecure setting called “insecure”. This will also be a boolean. Set the initial value to “false” as well and we will write "Allow any cert”.
+| URL Parameter Settings  |  |
+| ------------- |:-------------:|
+| Parameter name    |url     |
+| Type dropdown      |Short Text      |
+| Mandatory      | selected ✓     |
+| Initial value      |https://api.funtranslations.com/translate/     |
+| Display name     | API URL     |
 
-When you are done, it should look like the following:
+**Note:** In some cases, the URL parameter may be used for third party services that allow you to connect to more than one server, such as servers in different geographic regions, for example https://login.example.de or https://login.example.com.
 
-![screen shot 2019-01-08 at 13 41 01](../doc_imgs/tutorials/tut-integration-ui/parameter-insecure.png)
+![url](../doc_imgs/tutorials/tut-integration-ui/url.png)
 
->We will also add “url”. This will be a “short text” and needs to be required. For the default value, let’s use the API endpoint and write “API url” for the description.
+Enter the following values for the insecure parameter:
 
-This section should look like this:
+| Insecure Parameter Settings  |  |
+| ------------- |:-------------:|
+| Parameter name|insecure     |
+| Type dropdown |Boolean     |
+| Initial value |false    |
+| Display name  | Trust any certificate (not secure)    |- 
 
-![screen shot 2019-01-08 at 13 41 34](../doc_imgs/tutorials/tut-integration-ui/parameter-api-url.png)
+When **Trust any certificate** is set to **True**, the integration ignores TLS/SSL certificate validation errors. Use this to test connection issues or connect to a service while ignoring SSL certificate validity. We do not recommend setting this option to true in a production environment. 
 
->Lastly, we add “apikey”. This will be “encrypted” and have no default value.
+![insecure](../doc_imgs/tutorials/tut-integration-ui/insecure.png)
 
-![screen shot 2019-01-08 at 13 42 57](../doc_imgs/tutorials/tut-integration-ui/parameter-api-key.png)
-We want to make sure that the Display Name is added to the parameter options since it is a chance to explain what the function will do.
+Enter the following values for the proxy parameter:
 
-## Command Settings
 
->We are now ready for our main command. Before we start coding, let’s configure it in the settings. Let’s open up settings and go to commands. Click Add command, and lets name this “yoda-speak-translate”.
+| Proxy Parameter Settings  |  |
+| ------------- |:-------------:|
+| Parameter name|proxy     |
+| Type dropdown |Boolean     |
+| Initial value |false    |
+| Display name  | Use system proxy settings |
 
-Command names should follow the convention "brand-function". For example, Virus Total has a function to add a comment to a scan. That function looks like this: ```vt-comments-add```. There are some cases where a command name will be different than the code conventions. An example of this is where a integration may share the same command as other integrations as part of an enrichment command such as ```!ip ip=8.8.8.8```. This command can trigger many different integrations to fire which of course, we plan for.
+When **Use system proxy settings** is set to **True**, the , integration runs using the proxy server (HTTP or HTTPS)  defined in the server configuration. In most cases, a proxy is not required.
 
-![screen shot 2019-01-08 at 13 45 00](../doc_imgs/tutorials/tut-integration-ui/command-yoda-speak.png)
+![proxy](../doc_imgs/tutorials/tut-integration-ui/proxy.png)
 
->It will take the argument “Text”. Let’s also mark this as mandatory and for the description write “Text to translate”
+### Command Settings
 
-![screen shot 2019-01-08 at 13 48 43](../doc_imgs/tutorials/tut-integration-ui/command-args.png)
+We are now ready to add a command. Before we start coding, we can configure the command in the Integration Settings.
+1. Click **+Add command.**
+2. For Command name, enter ***yoda-speak-translate***. 
+3. For the description, enter **Translates a text from English to Yoda**. 
 
-Arguments are similar to Parameters in that they are configurable by a user, but unlike parameters, arguments are single use only and specific to only one command. **Arguments are not shared with other commands and must be present for each command.**
+![command-name](../doc_imgs/tutorials/tut-integration-ui/command-name.png )
 
->For outputs, lets make it so that we can see the translation in the context by adding “YodaSpeak.TheForce.Translation” to the context path. We name it this way to follow the Cortex XSOAR Context Convention of “Brandname.Object.Property“. For description we will write “Translation, this is” with the type set as “string”
+**Note:** Command names should follow “brand-function” name formatting convention. For example, VirusTotal has a command that adds a comment to a scan, named ***vt-comments-add***. An exception to this rule is that when creating commands that enrich indicators, the commands should be named according to the indicator: ***!ip***, ***!domain***, etc. This naming convention allows commands from multiple integrations to be run together to enrich an indicator. For example, running ***!ip ip=8.8.8.8*** can trigger multiple integrations that gather information about the IP address. For more information, see [Generic Reputation Commands](../integrations/generic-commands-reputation).
 
-![screen shot 2019-01-08 at 13 53 36](../doc_imgs/tutorials/tut-integration-ui/outputs-screen.png)
+***Arguments***
 
-Context is incredibly important as it allows information to become part of the incident. When you have information stored in the context, you can begin to run playbooks and other integrations on the same incident.
+We want to translate English text to Yoda-style text, so we add an argument called *text*. Users can provide a different text string on every call. The argument is mandatory, since the command can’t run if there’s nothing to translate.
 
->Now we are ready to write some code. Let's start with our imports. I’m going to be using JSON, Collections, as well as Requests. 
+![argument](../doc_imgs/tutorials/tut-integration-ui/argument-text.png)
 
-```python
-import requests
-import json
-import collections
-```
-These packages are part of the standard Cortex XSOAR docker image. If you would like to use python libraries that are not part of the standard Cortex XSOAR image, you can create your own image. To learn how to do so, [visit this page](../integrations/docker)
+**Note:** Unlike parameters, arguments are specific to each command. 
 
->This part allows us to ignore certificate warnings and is part of the “insecure” setting.
+***Outputs***
 
-```python
-# disable insecure warnings
-requests.packages.urllib3.disable_warnings()
-```
+In Cortex XSOAR, the [context](../integrations/context-and-outputs) is a JSON object that is created for each incident and stores results from integration commands and automation scripts. Context is important because it enables you to add information to an incident and run playbooks and integrations utilizing that information. 
 
-This applies to the "insecure" parameter we created earlier and helps the OS from displaying the "Insecure" dialog box commonly present when accessing an insecure resource.
+To write the translation to context, we can add an output to the ***yoda-speak-translate*** command. The naming convention for the context path is *Brandname.Object.Property*, so we will add *YodaSpeak.TheForce.Translation* as the context path. For a description, enter **Translation this is**. Select type *String*.
 
->First, I am going to add some of our global variables. Notice how they are all named in all caps. This is part of our [Code Conventions](../integrations/code-conventions) and is used to distinguish them from “Arguments” which are not capitalized. I can use parameters in any command within the integration which is why we call them “Global”
+![outputs](../doc_imgs/tutorials/tut-integration-ui/outputs.png)
 
-```python
-BASE_URL = demisto.params().get('url')
-INSECURE = demisto.params().get('insecure')
-PROXY = demisto.params().get('proxy')
-API_KEY = demisto.params().get('apikey')
-URL_SUFFIX = 'yoda'
-if not demisto.params().get('proxy', False):
-    del os.environ['HTTP_PROXY']
-    del os.environ['HTTPS_PROXY']
-    del os.environ['http_proxy']
-    del os.environ['https_proxy']
-```
 
-These are the same Parameters we created earlier. See the connection between the settings and global variables here?
+## Integration Code
 
-![params](../doc_imgs/tutorials/tut-integration-ui/50829961-de54ff80-134e-11e9-8a85-d5b1bb24e246.png)
+Once we've finished adding our parameters, command,  argument, and outputs, we can write the integration code.
 
->Next, I put in our execution block. This part tells Cortex XSOAR that when a command is called in the war room or a playbook, which specific function we need to run.
+**NOTE:** The sample code uses standard Python error handling mechanisms, such as *try*. For more information about errors and exceptions in Python, see the [Python documentation](https://docs.python.org/3/tutorial/errors.html).
+In our integration code, we raise exceptions when errors occur. The convention is to have a main try/except block on *main()*, that catches errors and calls *return_error*.
 
-```python
-''' EXECUTION '''
-LOG('command is %s' % (demisto.command(), ))
-try:
-    if demisto.command() == 'yoda-speak-translate':
-        translate_command()
-except Exception, e:
-    demisto.debug('The Senate? I am the Senate!')
-    LOG(e.message)
-    LOG.print_log()
-    return_error(e.message)
-```
+The *return_error* function ensures that playbooks calling these functions will fail and stop, alerting the user to a problem. In integrations and automations, we refrain from calling *return_error* in other places in the code.
 
-It's important to wrap the execution block in a "try catch" as per the code standards. This bloack is what will hold every command that our integration is capable of. Even including the ```fetch incidents``` command and the ```test``` command.
+### Import
 
->For example, when someone types ```!yoda-speak-translate```, We want the translate command to fire. So underneath the command, I will add the ```translate_command``` function. Let’s open back up the settings menu and connect some dots.
+To begin, we have the option to import Python libraries, so that their commands are available for our integration. Every integration runs inside a Docker image, and our standard Docker image includes most of the common packages, such as JSON and collections. In our **Yoda Speak** integration, we don’t need to import any libraries, as it only uses the *BaseClient* class, implicitly imported from *CommonServerPython*.
+
+**NOTE:** When working within a traditional IDE, such as PyCharm, Visual Studio Code, etc., we recommend [importing the following](../integrations/debugging#debugging-using-your-ide) at the top of your code, for debugging purposes.
 
 ```python
-def translate_command():
-```
-
->Here in commands, we see the command name we put in earlier. This part of our code, glues together the configuration with the actual code.
-
-![commands](../doc_imgs/tutorials/tut-integration-ui/50830395-5cfe6c80-1350-11e9-9284-0e30836cf885.png)
-
-The command name has to be the exact same as the name entered in the execution block. 
-
->Next we need our translate command and translate functions. The translate command function is where we will handle our context, pass arguments, and build a human readable output. We need a way to take an input from the war room so we can translate it. So I will create an Argument called “Text”. This is the same argument name we wrote in the settings menu.
-
-```python
-def translate_command():
-    text = demisto.args().get('text')
+import demistomock as demisto
+from CommonServerPython import * 
+from CommonServerUserPython import * 
 ```
 
->We will pass this argument back to our translate function as a variable.
+If you want to use Python libraries that are not included in the standard Cortex XSOAR Docker image, you can [create a customized Docker image](../integrations/docker).
 
-This is part of the Cortex XSOAR Code Convention which states that arguments are to reside only within the command function. This ensures that if other commands need to use the same code, that the arguments are always available.
+### Disable Secure Warnings
+
+Next we prevent Python from raising a warning when accessing resources insecurely.
 
 ```python
-'''MAIN FUNCTIONS'''
-def translate(text):
+requests.packages.urllib3.disable_warnings() # pylint: disable=no-member
+```
+ Since we created the insecure parameter that allows the integration to ignore TLS/SSL certificate validation errors, we also need to disable the warning.
+
+### Create the Class Client
+
+```python
+class Client(BaseClient):
+    def __init__(self, api_key: str, base_url: str, proxy: bool, verify: bool):
+       super().__init__(base_url=base_url, proxy=proxy, verify=verify)
+       self.api_key = api_key
+        if self.api_key:
+	self._headers = {'X-Funtranslations-Api-Secret': self.api_key}
+ 
+     def translate(self, text: str):
+	 return self._http_request(method='POST', url_suffix='yoda', data={'text': text}, resp_type='json',  ok_codes=(200,))
 ```
 
->Let’s work on the translate function. This is where we make our API calls, handle any business logic, and do any filtering of results. This function will accept the “Text” variable we created earlier and will return the response from the API.
+The Client is an object that communicates with the API. We create a class called *Client*.
+When a Client object is created, it instantiates a parent *BaseClient* using the params we have set up (whether to use proxy, whether to allow insecure connections, and the base URL). If the user provided values to the *api_key* parameter, the Client sets the headers it will use accordingly. 
 
-The main function should handle all major aspects of the command and return the data needed. It is the job of the ```translate_command``` function to prepare the data for import into Cortex XSOAR.
+**Note:** When using the [Yoda Speak API](https://funtranslations.com/api/yoda) with an API key, the API key  is passed as a header.
 
-```python
-'''MAIN FUNCTIONS'''
-def translate(text):
-    query = { 'text': text }
-    search = json.dumps(query)
-    r = http_request('POST', URL_SUFFIX, search)
-    return r
-```
+The number of methods our [Client class](../integrations/code-conventions#client-class) has usually matches the number of commands in our integration. The **Yoda Speak** integration only has the translation command, so our Client object should have a matching method to the API request which returns its result.	
 
->I’m going to add a helper function up here to handle the API call.
-
-Try to separate the functions as best as possible. We don't like having duplicate code, so if necessary, create helper functions as needed.
+### Create the test_module 
 
 ```python
-'''HELPER FUNCTIONS'''
-def http_request(method, URL_SUFFIX, json=None):
-    if method is 'GET':
-        headers = {}
-    elif method is 'POST':
-        if not API_KEY:
-            headers = {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
+def test_module(client: Client) -> str:
+    """
+    Tests API connectivity and authentication'
+    Returning 'ok' indicates that connection to the service is successful.
+    Raises exceptions if something goes wrong.
+    """
+
+    try:
+        response = client.translate('I have the high ground!')
+
+        success = demisto.get(response, 'success.total')  # Safe access to response['success']['total']
+        if success != 1:
+            return f'Unexpected result from the service: success={success} (expected success=1)'
+
+        return 'ok'
+
+    except Exception as e:
+        exception_text = str(e).lower()
+        if 'forbidden' in exception_text or 'authorization' in exception_text:
+            return 'Authorization Error: make sure API Key is correctly set'
         else:
-            headers = {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'X-FunTranslations-Api-Secret': API_KEY
-            }
-    r = requests.request(
-        method,
-        BASE_URL + URL_SUFFIX,
-        data=json,
-        headers=headers,
-        verify=INSECURE
-    )
-    if r.status_code is not 200:
-        return_error('Error in API call [%d] - %s' % (r.status_code, r.reason))
-    return r.json()
+            raise e
 ```
 
->Since this function could fail on a bad API call, we need to handle the errors. Typically we would raise an error, but this wouldn’t give us much information other than the stack trace. So we will use a function from the script helper called “return_error” and pass along the error message that way.
+The *test_module* function is run whenever the **Test** integration button is clicked in the integration instance settings. The *test_module* function sends a hardcoded preset string (here, it’s **I have the high ground**) to the Yoda-Speak translate API to test API connectivity and authentication. There are three possible results:
 
-This follows the Cortex XSOAR Code Convention which states that we do not "Raise" errors. The reason behind this is that if the function were to fail, a user would only see the stack trace and not the error itself.
+- HTTP response code is 200, which means the request is successful. We return the string **ok** per the convention for a successful test. 
+- The request is not successful and the problem is related to authorization: **Authorization Error: make sure API Key is correctly set**.
+- The request is not successful for any other reason: The error text is displayed. 
 
-![screen shot 2019-01-08 at 14 53 36](../doc_imgs/tutorials/tut-integration-ui/50831927-37c02d00-1355-11e9-89eb-f58507f46027.png)
-
->I’ll also add in a function to make nested keys accessible here. This will help with formatting our data.
+### Create the Translate Command
 
 ```python
-# Allows nested keys to be accessible
-def makehash():
-    return collections.defaultdict(makehash)
+def translate_command(client: Client, text: str) -> CommandResults:
+    if not text:
+        raise DemistoException('the text argument cannot be empty.')
+
+    response = client.translate(text)
+    translated = demisto.get(response, 'contents.translated')
+
+    if translated is None:
+        raise DemistoException('Translation failed: the response from server did not include `translated`.',
+                               res=response)
+
+    outputs = {Phrase: {'Original': text,
+                            'Translation': translated}}
+
+    return CommandResults(outputs_prefix='YodaSpeak',
+                          outputs_key_field=’Phrase.Original',
+                          outputs=outputs,
+                          raw_response=response,
+                          readable_output=tableToMarkdown(name='Yoda Says...', t=outputs))
+
 ```
 
+The *translate_command* function uses the client that is provided as an argument for the function and it calls translate using the text provided. The client is created outside of the function (in *main()*). The function performs several steps.
 
->Now that we have data to work with, let's return to the command function and format the results.  Here we are opening two dictionaries. One for the human readable and another for the context. 
+1. Confirms that there is a non-empty string to translate. If the string input is empty, it raises an exception. 
+2. Tells the Client to send the appropriate API call. If the translation fails (due to an API rate limit, authentication or connection error, etc.), an exception is raised. 
+3. If the translation succeeds, we want to return it to Cortex XSOAR. To do that, we use a class called *CommandResult* (which is declared in CSP). We supply it with the following arguments: 
+    - *outputs*: We create a dictionary called *outputs* where both the original text and the translation are stored. 
+    - *outputs_prefix*:  The first level of the output in the context data. It usually matches the name of the integration or service. 
+    - *raw_response*: The argument used to attach the raw response received from the service, which can be useful when debugging unexpected behaviors. 
+    - *outputs_key_field*: Since we can run the translation command multiple times, and possibly receive different results for the same string of text, the system needs to know where to update or append each result. In this example we tell the system that *Phrase.Original* is the key that represents the original text we translated, so that the next time the command is run on the same string of text, the translated values will update. Learn more about storing results as [context data](../concepts/concepts#context-data).
+    - *readable_output*: This is what users see in their War Room when calling the command, so it should be formatted. We can use the *tableToMarkdown* function (from CSP) to turn the JSON into a user-friendly table. We provide *tableToMarkdown* with both the JSON values and a title for the table. **Note:** The Script Helper provides an easy way to insert common functions into your code. If you click on the **Script Helper** button and search for the *tableToMarkdown* command, you have the option to insert it directly into the code with placeholders for its *name* (title) and *t* (JSON) arguments.
 
-We will use the ```makehash()``` helper function for this part.
+### Create the Main Function
+
+Everything actually runs within main. We pull in the integration parameters, arguments, and the translate command. The parameters are assigned to variables. Notice that the parameters are the same ones we set up in the integration settings earlier. 
 
 ```python
-def translate_command():
-    text = demisto.args().get('text')
-    contxt = makehash()
-    human_readable = makehash()
-    res = translate(text)
-    contents = res['contents']
+def main() -> None:
+    params = demisto.params()
+    args = demisto.args()
+    command = demisto.command()
+
+    api_key = params.get('api_key',{}).get(‘password’)
+    base_url = params.get('url')
+    verify = not params.get('insecure', False)
+    proxy = params.get('proxy', False)
 ```
 
->Let's create a table out of the human_readable dictionary so the translation will look nice in the war room. Go to the Script Helper and let’s select tableToMarkdown. Click “Copy to Script”. We will call this table “Yoda says…” and give the function our dictionary.
-
-tableToMarkdown accepts many different variables which can be used to transform data, remove null, and create custom headers. Learn more about this [command here](../integrations/code-conventions#tabletomarkdown)
+When the function runs, the command will be logged for debugging purposes. 
 
 ```python
-    ec = {'YodaSpeak.TheForce(val.Original && val.Original == obj.Original)': contxt}
-    demisto.results({
-        'Type': entryTypes['note'],
-        'ContentsFormat': formats['markdown'],
-        'Contents': res,
-        'HumanReadable': tableToMarkdown('Yoda Says...', human_readable),
-        'EntryContext': ec
-    })
+demisto.debug(f'Command being called is {command}')
 ```
 
->For the Context, we can make sure we only update new information by adding this part.
-
-
-
-The ```val.Original && val.Original == obj.Original``` part works to update entries within the context. So using the example, the value of the context key "Original" is matched where the value of our context object is equal.
-
->Okay, it looks like we are done with our translate code, but let’s also add a test function so we can see if the integration fails. I’ll add another command in the execution block called “test-module”. You don’t need to add a command for this in the settings since it is a built in command. Since the test command does not accept arguments, we need to create a text string for the translate function to test. So I will create one here and pass it to the translate command. Since we already handled errors in this command, I don’t have to do anything special. Lastly, we return “ok”. This lets Cortex XSOAR know that the integration is working correctly.
-
-When we test an integration, we are testing for the health of the connection. Customers and users alike will usually test their integration before heading to the war room to start working. To test the health of this integration we test that the HTTP status code returns as 200.
+We now create a Client using the given parameters. The Client is defined.
 
 ```python
-    elif demisto.command() == 'test-module':
-        text = 'I have the high ground!'
-        translate(text)
-        demisto.results('ok')
-```
-
-
->Looks like we are ready to test this out. 
-
-Your final code should look like the following:
-```python
-import requests
-import json
-import collections
-# disable insecure warnings
-requests.packages.urllib3.disable_warnings()
-
-
-PROXY = demisto.params().get('proxy')
-INSECURE = demisto.params().get('insecure')
-BASE_URL = demisto.params().get('url')
-API_KEY = demisto.params().get('apikey')
-URL_SUFFIX = 'yoda'
-if not demisto.params().get('proxy', False):
-    del os.environ['HTTP_PROXY']
-    del os.environ['HTTPS_PROXY']
-    del os.environ['http_proxy']
-    del os.environ['https_proxy']
-
-
-'''HELPER FUNCTIONS'''
-def http_request(method, URL_SUFFIX, json=None):
-    if method is 'GET':
-        headers = {}
-    elif method is 'POST':
-        if not API_KEY:
-            headers = {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        else:
-            headers = {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'X-FunTranslations-Api-Secret': API_KEY
-            }
-    r = requests.request(
-        method,
-        BASE_URL + URL_SUFFIX,
-        data=json,
-        headers=headers,
-        verify=INSECURE
-    )
-    if r.status_code is not 200:
-        return_error('Error in API call [%d] - %s' % (r.status_code, r.reason))
-    return r.json()
-
-
-# Allows nested keys to be accesible
-def makehash():
-    return collections.defaultdict(makehash)
-
-
-'''MAIN FUNCTIONS'''
-def translate(text):
-    query = { 'text': text }
-    search = json.dumps(query)
-    r = http_request('POST', URL_SUFFIX, search)
-    return r
-
-
-def translate_command():
-    text = demisto.args().get('text')
-    contxt = makehash()
-    human_readable = makehash()
-    res = translate(text)
-    contents = res['contents']
-    if 'translated' in contents:
-        human_readable['Original'] = text
-        human_readable['Translation'] = contents['translated']
-        contxt['Original'] = text
-        contxt['Translation'] = contents['translated']
-    ec = {'YodaSpeak.TheForce(val.Original && val.Original == obj.Original)': contxt}
-    demisto.results({
-        'Type': entryTypes['note'],
-        'ContentsFormat': formats['markdown'],
-        'Contents': res,
-        'HumanReadable': tableToMarkdown('Yoda Says...', human_readable),
-        'EntryContext': ec
-    })
-
-
-''' EXECUTION '''
-LOG('command is %s' % (demisto.command(), ))
 try:
-    if demisto.command() == 'yoda-speak-translate':
-        translate_command()
-    elif demisto.command() == 'test-module':
-        text = 'I have the high ground!'
-        translate(text)
-        demisto.results('ok')
-except Exception, e:
-    demisto.debug('The Senate? I am the Senate!')
-    LOG(e.message)
-    LOG.print_log()
-    return_error(e.message)
+        client = Client(api_key=api_key, base_url=base_url, verify=verify, proxy=proxy)
 ```
 
->Click the save button and then the “X”. 
+There are two possible commands that can be passed to the *main* function in our integration.  
 
-In some cases, if you had the integration open in two different tabs, you may run into an error where the changes will not be saved. The only current solution for this is to copy and save the playbook on your clipboard, close both tabs, and then open only one tab.
+```python
+ if command == 'test-module':
+            # This is the call made when clicking the integration Test button.
+            return_results(test_module(client))
 
+        elif command == 'yoda-speak-translate':
+            return_results(translate_command(client, **args))
 
->Now we will search for Yoda and click “add instance”. 
+        else:
+            raise NotImplementedError(f"command {command} is not implemented.")
+```
 
-![add instance](../doc_imgs/tutorials/tut-integration-ui/50833113-e74ace80-1358-11e9-8969-b82959356bd9.png)
+- ***test-module***
+If the command name is ***test-module***, it means the user has clicked the integration test button while setting up or editing an integration instance. **NOTE:** We did not explicitly create a command called ***test-module***. It is a built-in command.
+<br /><br />When returning **ok**, the user is shown a green **Success** message. If any value other than **ok** is returned, an error is displayed. Make sure you return errors that help the user understand what to change in the integration settings in order to fix connection issues. 
 
-
-
->We don’t need a proxy, or insecure, so we will leave them on their defaults. I do have an apikey, but since we marked the type as “Encrypted” it displays as stars here. Lastly, the url.
-
-<img width="393" alt="screen shot 2019-01-08 at 15 21 36" src="../doc_imgs/tutorials/tut-integration-ui/50833193-1eb97b00-1359-11e9-9d00-bf46fa52c37f.png"></img>
-
-
->Remember the test function we put into our integration? Lets hit “test” and see if it works. 
-
-![test](../doc_imgs/tutorials/tut-integration-ui/50833314-70620580-1359-11e9-99cd-704f59dc67d3.png)
-
->Opps, looks like it failed since we entered the url incorrectly. Lets test it again. Perfect. Looks like it's working. 
-
-![screen shot 2019-01-08 at 17 26 40](../doc_imgs/tutorials/tut-integration-ui/50840340-efac0500-136a-11e9-9432-dc3457d7cfd1.png)
-
->Click done and let’s head to the war room. Type ```!yoda-speak-translate``` and lets enter “Hello, My name is Andrew. We are learning about integrations”
-
-<img width="979" alt="screen shot 2019-01-08 at 15 25 26" src="../doc_imgs/tutorials/tut-integration-ui/50833385-a7381b80-1359-11e9-9c3a-3b376a993d2c.png"></img>
+- ***yoda-speak-translate***
+This is the primary command for our integration and lets us translate strings of text.
 
 
->Perfect! Looks like it works. Here we see our table that we created.
+There is also an *else* option - this returns an error if someone tries to run a command that was created in the YAML  file but does not exist in the Python (PY) file. For example, if you added a command ***yoda-interpret*** in the integration settings, but did not add it to this file, and then tried to run that command, you would see **Yoda-interpret is not implemented**.
 
-<img width="1339" alt="screen shot 2019-01-08 at 15 26 28" src="../doc_imgs/tutorials/tut-integration-ui/50833437-cfc01580-1359-11e9-9880-1a53562542dc.png"></img>
+### Log Errors
 
+```python
+# Log exceptions and return errors
+    except Exception as e:
+        demisto.error(traceback.format_exc())  # print the traceback
+        return_error("\n".join(("Failed to execute {command} command.",
+                                "Error:",
+                                str(e))))
+```
+If any errors occur during the execution of our code, show those errors to the user and also return an error.
 
->Let’s also see the context. 
-
-![context](../doc_imgs/tutorials/tut-integration-ui/50840432-37cb2780-136b-11e9-8c2a-c56fa87a57b9.png)
-
-
->Notice how “YodaSpeak” is the root for “The Force”? If the translation would change the next time we fire the command, it will update the translation field here.
-
-<img width="516" alt="screen shot 2019-01-08 at 15 27 24" src="../doc_imgs/tutorials/tut-integration-ui/50833475-ebc3b700-1359-11e9-96f5-2f45c3eff27e.png"></img>
-
->But what is an integration without a playbook? Let’s make one real quick. Click “Playbooks” and click the blue button that says “New playbook”.
-
-![playbook_menu](../doc_imgs/tutorials/tut-integration-ui/50833581-5248d500-135a-11e9-941f-bd27964168d8.png)
-
->We will call this one “Yoda Speak”. In the task library, search for “Yoda” and we should see our integration. Select it and click “Add” where it says “yoda-speak-translate”.
-
-<img width="537" alt="screen shot 2019-01-08 at 15 32 15" src="../doc_imgs/tutorials/tut-integration-ui/50833654-9b008e00-135a-11e9-9e08-f1d51f1dc52a.png"></img>
-
-
->I want this playbook to translate the details field in an incident into yoda speak, so for “text” we will click the brackets right here. 
-
-![brackets](../doc_imgs/tutorials/tut-integration-ui/50833717-d69b5800-135a-11e9-85f5-81b6a1dd1e8c.png)
-
->Next select incident details and click on “Details”.
-
-![details](../doc_imgs/tutorials/tut-integration-ui/50833826-24b05b80-135b-11e9-8d18-3ee1d52301c1.png)
-
->Go ahead and click “Close” and “OK”.
-
-This saves your changes. If you do not click close and okay, your changes will not be saved in the playbook.
-
->Now let’s have the playbook print the translation in the war room. In the task library search for “print” under “Utilities”.
-
-![print_add](../doc_imgs/tutorials/tut-integration-ui/50833982-8b357980-135b-11e9-9d0e-0d85834e3c65.png)
-
->For the value click the brackets. Notice how we have an entry here for the yoda speak translation? If we click it, we can select the translation context that we specified in the integration settings.
-
-![print_settings](../doc_imgs/tutorials/tut-integration-ui/50834106-e1a2b800-135b-11e9-892f-a00c74b949f6.png)
-
->Click “Close” and “OK”. Lastly, hit the save button and click the “X”.
-
-Again we must commit our changes to the playbook.
-
-We need to connect the two tasks together. Do so by dragging an arrow from the bottom of the translate task to the top of the print task.
-
-![connect](../doc_imgs/tutorials/tut-integration-ui/50840624-94c6dd80-136b-11e9-832e-0a745b2d754a.png)
+### Start at Main
+```python
+if __name__ in ('__main__', '__builtin__', 'builtins'):
+    main()
+```
+This line tells the system where to start running our code. By convention, we call the main function *main*.
 
 
->Let’s see it in action. Click “Incidents” and then press the blue button that says “New Incident”.
+## Test the Integration
 
-![incidents](../doc_imgs/tutorials/tut-integration-ui/50834260-3cd4aa80-135c-11e9-80f7-39d80d55d7e9.png)
+Go to **Settings > Integrations**, and search for **Yoda**. Click on **Add instance**. 
 
->I’m going to name this “That’s no moon… It’s a Space station!” and for the details, lets type “The prequel movies are more entertaining than the new Disney movies”. 
+![yoda-utility](../doc_imgs/tutorials/tut-integration-ui/yoda-utility.png)
 
-You also need to select which playbook to attach to the incident. In this case, we would attach the "yodaspeak" playbook.
+We will not enter an API key, but will instead use the free option with a limited number of API calls. To test connectivity, click on the **Test** button. If the connection is successful, you will see **Success** and the date/time displayed. Click **Save & Exit**.  
 
-<img width="1350" alt="screen shot 2019-01-08 at 15 46 39" src="../doc_imgs/tutorials/tut-integration-ui/50834429-a6ed4f80-135c-11e9-9029-40c130be7371.png"></img>
+![yoda-instance](../doc_imgs/tutorials/tut-integration-ui/yoda-instance.png)
 
->Click “Create new Incident” and select the incident we just created. Navigate to “work plan” and we can see that our playbook worked!
+**NOTE:** If you have an integration open in two different tabs, you may encounter an error where your changes aren’t saved. In this case, take a screenshot of your changes, close both tabs, and then reopen one tab. Enter your changes again and save.
 
-![screen shot 2019-01-08 at 16 09 53](../doc_imgs/tutorials/tut-integration-ui/50835627-e49fa780-135f-11e9-8c96-8c3e138d6a9b.png)
+To test the integration, create a new incident. At the CLI, enter ***!yoda-speak-translate*** and the argument *Hello, my name is John Smith. We are learning about integrations.* (or any other string in English, of course!)
+
+![yoda-cli](../doc_imgs/tutorials/tut-integration-ui/yoda-command-cli.png)
+
+In the War Room, you can see the table we created with the *tableToMarkdown* function, with the results. 
+
+![yoda-results](../doc_imgs/tutorials/tut-integration-ui/translation-results.png)
+
+Let’s view the same translation in the context.
+
+*YodaSpeak* is the root for *The Force*. If the translation changes the next time we run the command, the translation field will be updated. 
+
+![yoda-context](../doc_imgs/tutorials/tut-integration-ui/translationcontext.png)
+
+You can see the real power of integrations when you include them in a playbook. Go to the Playbooks page and click **+New Playbook**. We’ll name it **Yoda Speak**, and the playbook will translate the details field in an incident into Yoda Speak. In the task library, search for **yoda** and click **Add**. You can see there is a field for *text*, which is a required argument. While we could just type our text here, we instead want to pull that string from incident details. Click on the curly brackets, then **Incident details**, **Details**. Click **OK**. 
+
+![yoda-source](../doc_imgs/tutorials/tut-integration-ui/source-text.png)
+
+To print the translation to the War Room, we add a print task. In the task library, search for **print** and add the *Print* task found under utilities. Once again, we want to pull our text from the incident, so click on the curly brackets. Our options now include yoda-speak-translate. Under ***yoda-speak-translate***, choose *Translation* and click **OK**.
+
+![yoda-print](../doc_imgs/tutorials/tut-integration-ui/print-task.png)
+
+We will now connect the tasks in our playbook. Use your cursor to create lines between **Playbook Triggered** and **yoda-speak-translate** and between **yoda-speak-translate** and **Print**.
+
+![connect-tasks](../doc_imgs/tutorials/tut-integration-ui/connect-tasks.png)
+
+Save the playbook.
+
+To test our new playbook, go to the **Incidents** page and create a new incident. In the details section, enter the text for translation: *The prequel movies are more entertaining than the new Disney movies*. Assign the **Yoda Speak** playbook, and click **Create new incident**.
+
+![new-incident](../doc_imgs/tutorials/tut-integration-ui/new-incident.png)
+
+Now select the incident we just created from the incident list. Go to the **Work Plan** page and you can see that our playbook executed successfully.
+
+![playbook-complete](../doc_imgs/tutorials/tut-integration-ui/playbook-complete.png)
+
+## We’re Done!	
+
+Our example integration is now complete, and we can use it throughout Cortex XSOAR.
+
+Real world integrations are usually more complex than our example. Like any code, integrations require maintenance and can be extended over time with new features, commands etc.
+
+To ensure integrations perform as expected, packs can have [unit tests](../integrations/unit-testing), as well as [test playbooks](../integrations/test-playbooks). Learn more about [contributing content](../contributing/contributing). 
+
 
 ## Resources
 
-* [YodaSpeak Integration](https://github.com/demisto/content-docs/tree/master/tutorial/integration-Yoda_Speak.yml)
-* [YodaSpeak Playbook](https://github.com/demisto/content-docs/tree/master/tutorial/playbook-Yoda_Speak.yml)
+The [YodaSpeak Pack](https://github.com/demisto/content/tree/master/docs/tutorial-integration/YodaSpeak) is available on GitHub. The pack contains the standard pack file structure and can be viewed as a resource when creating new integrations. 
