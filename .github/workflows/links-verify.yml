@@ -86,13 +86,16 @@ jobs:
         -e 'https://raw.githubusercontent.com/demisto/hello-world/.*' \
         -e 'https://www.soarxperts.com.*' \
         -e 'https://xsoar.pan.dev/marketplace/contributors' \
+        -e 'http://' \
         -e 'http://1.1.1.1:80' \
         -e 'http://165.227.14.8/?NDU2MDgz' \
+        -e 'http://172.27.102.6/' \
         -e 'http://185.189.149.164/adobe_update.exe' \
         -e 'http://192.168.1.15/files/very_bad_ip2.txt' \
-        -e 'http://Google.com' \
+        -e 'http://194.147.35.172/mikey.mpsl' \
         -e 'http://Google.com' \
         -e 'http://abuse.com' \
+        -e 'http://aka.ms/LA-Usage' \
         -e 'http://aka.ms/azdev2019.1patch' \
         -e 'http://archive.apache.org/dist/httpd/httpd-2.4.34.tar.gz' \
         -e 'http://as1687.awmdm.com/API/mdm/devices/12345678-1234-1234-1234-123456789ABC' \
@@ -835,9 +838,10 @@ jobs:
         -e 'http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-3477' \
         -e 'http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-3478' \
         -e 'http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-3479' \
+        -e 'http://docs.oasis-open.org/cti/taxii/v2.0/cs01/taxii-v2.0-cs01.html' \
+        -e 'http://docs.python.org/2/library/re.html' \
         -e 'http://dummy.com/ctt?kn=3' \
         -e 'http://dummy.com/servlet/MailView?ms=MTE4NDM1ODgS1' \
-        -e 'http://example.com' \
         -e 'http://example.com' \
         -e 'http://example.com/?a=1' \
         -e 'http://example.com/?goal=0_1dfca2ec74-7d92b78da0-133981889' \
@@ -849,6 +853,7 @@ jobs:
         -e 'http://example.com/cancel' \
         -e 'http://example.com/clickme' \
         -e 'http://example.com/cmd_get/cmd_get.jsp' \
+        -e 'http://example.com/compliance' \
         -e 'http://example.com/downloads/7tt_setup.exe' \
         -e 'http://example.com/evil.ps1' \
         -e 'http://example.com/files.lst.bz2' \
@@ -872,6 +877,7 @@ jobs:
         -e 'http://example.com/music-videos' \
         -e 'http://example.com/ns/leafref' \
         -e 'http://example.com/page.php' \
+        -e 'http://example.com/path/sha256sum.txt' \
         -e 'http://example.com/player?id=123' \
         -e 'http://example.com/z1vey0sjjfm' \
         -e 'http://example.example.org' \
@@ -885,13 +891,29 @@ jobs:
         -e 'http://juice.edgebank.com' \
         -e 'http://links.mkt3337.com/ctt?kn=3' \
         -e 'http://localhost' \
+        -e 'http://localhost:8088/iiq/scim/v2/Accounts/8a8080824df45873014df45bd97500ca' \
+        -e 'http://localhost:8088/iiq/scim/v2/Accounts/8a8080824df45873014df45c164601d8' \
+        -e 'http://localhost:8088/iiq/scim/v2/Accounts/8a8080824df45873014df45d012705ae' \
+        -e 'http://localhost:8088/iiq/scim/v2/Accounts/8a8080824df45873014df45da06308b0' \
+        -e 'http://localhost:8088/iiq/scim/v2/Applications/8a8080824df44d48014df4542d7402aa' \
+        -e 'http://localhost:8088/iiq/scim/v2/Applications/8a8080824df44d48014df45440d502cf' \
+        -e 'http://localhost:8088/iiq/scim/v2/Applications/8a8080824df44d48014df45444c002da' \
+        -e 'http://localhost:8088/iiq/scim/v2/Roles/8a8080824df45873014df45f8b1810e6' \
+        -e 'http://localhost:8088/iiq/scim/v2/Users/8a8080824df44d48014df44def7100dd' \
+        -e 'http://localhost:8088/iiq/scim/v2/Users/8a8080824df45873014df45bb503000d' \
+        -e 'http://localhost:8088/iiq/scim/v2/Users/8a8080824df45873014df45bbbb9002b' \
+        -e 'http://localhost:8088/iiq/scim/v2/Users/8a8080824df45873014df45bc8480065' \
+        -e 'http://localhost:8088/iiq/scim/v2/Users/8a8080824df45873014df45bcfab008d' \
         -e 'http://malicious.com' \
         -e 'http://malicious1.com' \
         -e 'http://malicious2.com' \
         -e 'http://nakedsecurity.sophos.com/2011/06/15/usb-autorun-malware-on-the-wane' \
-        -e 'http://ocsp.example.com' \
+        -e 'http://nu4vs0m.u5jkzm4r.i2wd30t.bpbp9c7d.b7ni2cio.auz8x15h.freshoff.eu' \
         -e 'http://ocsp.example.com' \
         -e 'http://ocsp.godaddy.com' \
+        -e 'http://partnerweb.vmware.com/programs/guestOS/guest-os-customization-matrix.pdf' \
+        -e 'http://pytz.sourceforge.net/' \
+        -e 'http://repo1.maven.org/maven2.' \
         -e 'http://schemas.datacontract.org/2004/07/SolarWinds.Orion.Core.Alerting.Plugins.Conditions.Dynamic' \
         -e 'http://schemas.datacontract.org/2004/07/SolarWinds.Orion.Core.Models.Alerting' \
         -e 'http://schemas.microsoft.com/2003/10/Serialization/Arrays' \
@@ -900,13 +922,14 @@ jobs:
         -e 'http://sitesafety.trendmicro.com' \
         -e 'http://some.ru' \
         -e 'http://stage.api.edgebank.com' \
+        -e 'http://structuredsight.com/2014/10/26/im-out-of-range-youre-out-of-range/' \
         -e 'http://support.google.com/legal' \
         -e 'http://support.microsoft.com/?kbid=3171021' \
         -e 'http://support.microsoft.com/?kbid=3176936' \
         -e 'http://supportcenter-ee.com/banks/bank.barclays.co.uk' \
         -e 'http://tamymakeup.com/myclassapp/Rt' \
         -e 'http://test.com' \
-        -e 'http://test.com' \
+        -e 'http://test.com/' \
         -e 'http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL' \
         -e 'http://twitter.com/nygul/index.php?r=gate' \
         -e 'http://twitter.com/pidoras6' \
@@ -924,6 +947,7 @@ jobs:
         -e 'http://www.cisco.com/tac' \
         -e 'http://www.cisco.com/techsupport' \
         -e 'http://www.cisco.com/wwl/export/crypto/tool/stqrg.html' \
+        -e 'http://www.demisto.com.' \
         -e 'http://www.dulys.co.zw' \
         -e 'http://www.example.com' \
         -e 'http://www.exploit-db.com/exploits/39996' \
@@ -938,7 +962,9 @@ jobs:
         -e 'http://www.geektime.co.il/wp-content/uploads/2016/09' \
         -e 'http://www.gnu.org/licenses/gpl.html.' \
         -e 'http://www.google.com' \
+        -e 'http://www.google3.com.' \
         -e 'http://www.icann.org/epp' \
+        -e 'http://www.infiltrated.net/' \
         -e 'http://www.itool.group/cp5' \
         -e 'http://www.malicious.com' \
         -e 'http://www.malicious1.com' \
@@ -954,7 +980,12 @@ jobs:
         -e 'http://www.test.com' \
         -e 'http://www.w3.org/2001/XMLSchema' \
         -e 'http://www.w3.org/2001/XMLSchema-instance' \
+        -e 'http://zero.webappsecurity.com:80' \
+        -e 'https://' \
+        -e 'https://.' \
+        -e 'https://192.168.0.1' \
         -e 'https://192.168.0.1/api/console/do/sem/offensesummary?appName=Sem' \
+        -e 'https://192.168.0.1:4443' \
         -e 'https://390115-12353212-gh.circle-artifacts.com/0/artifacts/debug_log.log' \
         -e 'https://390115-12353212-gh.circle-artifacts.com/0/artifacts/env.json' \
         -e 'https://52.6.192.223/carbon/admin/index.jsp' \
@@ -964,6 +995,7 @@ jobs:
         -e 'https://FireEyeEX/emps/eanalysis?e_id=12' \
         -e 'https://FireEyeEX/emps/eanalysis?e_id=16' \
         -e 'https://FireEyeEX/emps/eanalysis?e_id=9' \
+        -e 'https://Linkshadow_IP/' \
         -e 'https://about.censys.io' \
         -e 'https://about.gitlab.com/releases/2021/01/07/security-release-gitlab-13-7-2-released' \
         -e 'https://about.gitlab.com/releases/2021/03/04/security-release-gitlab-13-9-2-released' \
@@ -1086,6 +1118,8 @@ jobs:
         -e 'https://acme-staging-v02.api.letsencrypt.org/acme/new-nonce' \
         -e 'https://acme-staging-v02.api.letsencrypt.org/acme/new-order' \
         -e 'https://acme-staging-v02.api.letsencrypt.org/acme/revoke-cert' \
+        -e 'https://acme-staging.api.letsencrypt.org/directory.' \
+        -e 'https://acme-v01.api.letsencrypt.org/directory' \
         -e 'https://acme-v02.api.letsencrypt.org/acme/acct/123456789' \
         -e 'https://acme-v02.api.letsencrypt.org/acme/authz-v3/12345678901' \
         -e 'https://acme-v02.api.letsencrypt.org/acme/chall-v3/12345678901/4cF9Tg' \
@@ -1093,7 +1127,9 @@ jobs:
         -e 'https://acme-v02.api.letsencrypt.org/acme/chall-v3/12345678901/Phy50Q' \
         -e 'https://acme-v02.api.letsencrypt.org/acme/finalize/123456789/12345678901' \
         -e 'https://acme-v02.api.letsencrypt.org/acme/order/123456789/12345678901' \
+        -e 'https://acme-v02.api.letsencrypt.org/directory' \
         -e 'https://admin.example.com' \
+        -e 'https://admin.zscalertwo.net' \
         -e 'https://aix.software.ibm.com/aix/efixes/security/openssl_advisory32.asc' \
         -e 'https://aka.ms/azdev2019.1.1patch10' \
         -e 'https://aka.ms/azdev2019.1.1patch8' \
@@ -1111,11 +1147,17 @@ jobs:
         -e 'https://alas.aws.amazon.com/ALAS-2021-1491.html' \
         -e 'https://alas.aws.amazon.com/ALAS-2021-1492.html' \
         -e 'https://alas.aws.amazon.com/ALAS-2021-1493.html' \
+        -e 'https://api-wootuno-1606049077.us-west-2.elb.amazonaws.com:443/wpad.dat' \
         -e 'https://api.abnormalplatform.com/v1/cases/1234/actions/61e76395-40d3-4d78-b6a8-8b17634d0f5b' \
         -e 'https://api.abnormalplatform.com/v1/threats/184712ab-6d8b-47b3-89d3-a314efef79e2/actions/a33a212a-89ff-461f-be34-ea52aff44a73' \
         -e 'https://api.atlassian.com/scim/directory/315e79ae-404a-4061-8a88-df91c8c7db34/Users/247b915a-9d6c-4cd5-b5a5-071b1b3abc2e' \
         -e 'https://api.atlassian.com/scim/directory/315e79ae-404a-4061-8a88-df91c8c7db34/Users/550364dd-1c1e-4953-bffc-418fce013c2e' \
         -e 'https://api.bitsighttech.com/ratings/v1/companies/a940bb61-33c4-42c9-9231-c8194c305db3/sparkline?size=small' \
+        -e 'https://api.buypass.com/acme/directory' \
+        -e 'https://api.crowdstrike.com' \
+        -e 'https://api.docs.prismacloud.io/api/cloud/api-urls' \
+        -e 'https://api.docs.prismacloud.io/api/cloud/cspm/search/' \
+        -e 'https://api.github.com/graphql' \
         -e 'https://api.github.com/repos/content-bot/hello-world/releases/48262112' \
         -e 'https://api.github.com/repos/content-bot/hello-world/releases/48262112/assets' \
         -e 'https://api.github.com/repos/demisto/content/contents/Packs/BitcoinAbuse/Integrations/BitcoinAbuse/BitcoinAbuse.py?ref=master' \
@@ -1220,6 +1262,8 @@ jobs:
         -e 'https://api.stademo.com/api/v1/tenants/HNISOUTHA4/users/CNlM6Pyq7nADXA4rWyUAAATc?isUid=true' \
         -e 'https://api.stademo.com/api/v1/tenants/HNISOUTHA4/users/CNlM6rvB9uQDXA4rWyUAAATc?isUid=true' \
         -e 'https://api.test.com/static/new/index.html' \
+        -e 'https://api.trustar.co' \
+        -e 'https://api.xforce.ibmcloud.com' \
         -e 'https://apis.com/messages/7852dc68-34fb-11eb-bf90-f6ba445dac4f' \
         -e 'https://apis.com/messages/785d91a8-34fb-11eb-bf90-f6ba445dac4f' \
         -e 'https://app.box.com/api/avatar/large/14342567114' \
@@ -1235,10 +1279,16 @@ jobs:
         -e 'https://app.lansweeper.com/api-demo-data/asset/MTI3My1Bc3NldC0wZGYzZGRiYS0zNzA3LTQ0ZWUtOWI0My1jMTkxOTQ1NmZkYTE=/summary' \
         -e 'https://app.lansweeper.com/api-demo-data/asset/ODk3LUFzc2V0LTBkZjNkZGJhLTM3MDctNDRlZS05YjQzLWMxOTE5NDU2ZmRhMQ==/summary' \
         -e 'https://app.query.ai/login' \
+        -e 'https://apps.paloaltonetworks.com' \
+        -e 'https://article-example.com' \
         -e 'https://assets.gitlab-static.net/uploads/-/system/user/avatar/5773551/avatar.png' \
+        -e 'https://atacenter.contoso.com' \
+        -e 'https://attack.mitre.org/tactics/TA0024/' \
+        -e 'https://attack.mitre.org/techniques/T1346/' \
         -e 'https://avatars.githubusercontent.com/u/55035720?v=4' \
         -e 'https://avatars.githubusercontent.com/u/70005542?v=4' \
         -e 'https://awslambda-us-west-2-tasks.s3.us-west-2.amazonaws.com/snapshots/123456789012/test_echo-f4e5b684-10bb-4341-9701-2ec77a3a9455?versionId=EkrCKdR3NiLj4WMGnl4FW7Emnp2LwVj9' \
+        -e 'https://azure.microsoft.com/en-us/pricing/details/app-service/linux/' \
         -e 'https://base_url/avatar/04501192ea3453723d1336c6520ce2c' \
         -e 'https://base_url/avatar/1d3226029e424011bffde2f' \
         -e 'https://base_url/avatar/5d9c68c6c50ed3d02a2fcf54f63993b' \
@@ -1249,6 +1299,8 @@ jobs:
         -e 'https://bit.ly' \
         -e 'https://blog.jetbrains.com/blog/2021/02/03/jetbrains-security-bulletin-q4-2020' \
         -e 'https://blogs.sap.com/2016/03/08/sap-security-patch-day-march-2016' \
+        -e 'https://bonus.ly/api/v1/' \
+        -e 'https://boto3.amazonaws.com/v1/documentation/api/latest/guide/retries.html' \
         -e 'https://bt.group-ib.com/api/v2/osi/git_leak/ead0d8ae9f2347789941ebacde88ad2e3b1ef691/file/bWFpbi0zOTFkYjVkNWYxN2FiNmNiYmJmN2MzNWQxZjRkMDc2Y2I0YzgzMGYwOTdiMmE5ZWRkZDJkZjdiMDY1MDcwOWE3' \
         -e 'https://bt.group-ib.com/api/v2/osi/git_leak/ead0d8ae9f2347789941ebacde88ad2e3b1ef691/file/cmV2aXNpb24tZmlsZS0zOTFkYjVkNWYxN2FiNmNiYmJmN2MzNWQxZjRkMDc2Y2I0YzgzMGYwOTdiMmE5ZWRkZDJkZjdiMDY1MDcwOWE3' \
         -e 'https://bt.group-ib.com/api/v2/osi/git_leak/ead0d8ae9f2347789941ebacde88ad2e3b1ef691/file/cmV2aXNpb24tZmlsZURpZmYtMzkxZGI1ZDVmMTdhYjZjYmJiZjdjMzVkMWY0ZDA3NmNiNGM4MzBmMDk3YjJhOWVkZGQyZGY3YjA2NTA3MDlhNw==' \
@@ -1270,19 +1322,27 @@ jobs:
         -e 'https://bt.group-ib.com/suspicious/tor?searchValue=id:11.11.1.1' \
         -e 'https://bt.group-ib.com/targeted_malware/Cobalt' \
         -e 'https://bugs.python.org/issue41944' \
+        -e 'https://cdc-file-storage-production-us-east-1.s3.amazonaws.com/4a/71/4d/98/ce/40/f5/f3/57/7c/30/6a/66/cb/4a/6b/1f/f3/fd/01/04/7c/7f/45/81/f8/55/8f/0b/cd/f5/fa/4a714d98ce40f5f3577c306a66cb4a6b1ff3fd01047c7f4581f8558f0bcdf5fa.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256' \
         -e 'https://chocolatey.org/api/v2' \
+        -e 'https://chocolatey.org/docs/chocolatey-configuration' \
         -e 'https://chromereleases.googleblog.com/2021/03/stable-channel-update-for-desktop_30.html' \
         -e 'https://chromereleases.googleblog.com/2021/04/stable-channel-update-for-desktop.html' \
         -e 'https://chromereleases.googleblog.com/2021/04/stable-channel-update-for-desktop_14.html' \
         -e 'https://chromereleases.googleblog.com/2021/04/stable-channel-update-for-desktop_20.html' \
         -e 'https://cloanfiwhugwxuasvjgh-dot-level-elevator-279110.nw.r.appspot.com%23example' \
+        -e 'https://cloud.entrust.net/EntrustCloud/documentation/cms-api-2.1.0.yaml.' \
+        -e 'https://cloud.google.com/compute/docs/reference/latest/instanceGroupManagers' \
+        -e 'https://cloud.google.com/compute/docs/regions-zones' \
         -e 'https://cloud.vmray.com/user/sample/view?id=3902238' \
         -e 'https://cloud.vmray.com/user/sample/view?id=3902285' \
+        -e 'https://cloud.vmray.com/user/sample/view?id=5948' \
         -e 'https://cloud.vmray.com/user/sample/view?id=6822' \
         -e 'https://cloudbilling.googleapis.com' \
         -e 'https://cloudredirector.example.com' \
+        -e 'https://code.vmware.com/apis/358/doc/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html' \
         -e 'https://cofense.com' \
         -e 'https://cofense.com/project/uhap-video' \
+        -e 'https://community.buypass.com/t/63d4ay/buypass-go-ssl-endpoints' \
         -e 'https://community.letsencrypt.org/t/adding-random-entries-to-the-directory/33417' \
         -e 'https://community.pt.com/article/d0bf5d18' \
         -e 'https://community.pt.com/intel-profiles/apt33' \
@@ -1299,11 +1359,27 @@ jobs:
         -e 'https://community.pt.com/search/1.1.1.1/services' \
         -e 'https://community.pt.com/search/1.1.1.1/trackers' \
         -e 'https://community.riskiq.com/article/12e123b1' \
+        -e 'https://company.service-now.com/' \
+        -e 'https://company.works.com/' \
+        -e 'https://coralogix-esapi.coralogix.com:9443' \
+        -e 'https://cortexXSOARMainAccount:8443/acc_MyTenant' \
+        -e 'https://cryptography.io/' \
+        -e 'https://customerportal.darktrace.com/product-guides/main/api-deviceinfo-request.' \
         -e 'https://cwa.mx/himalaya/ziqqbxu4f7cwsordfxkihmhwfcc' \
+        -e 'https://dateparser.readthedocs.io/en/latest/' \
+        -e 'https://demisto.blueliv.com/api/v2' \
         -e 'https://demisto.com' \
+        -e 'https://demisto.com.' \
         -e 'https://demisto1.app.opsgenie.com/incident/detail/4ba53100-30dc-47a6-992a-a96df4d1ba20' \
         -e 'https://demisto1.app.opsgenie.com/teams/dashboard/51d69df8-c40b-439e-9808-e1a78e54f91b/main' \
         -e 'https://demisto1.app.opsgenie.com/teams/dashboard/fbbc3f9a-12f4-4794-9938-7e0a85a06f8b/main' \
+        -e 'https://demistodev.atlassian.net/rest/api/2/attachment/13456' \
+        -e 'https://demistodev.atlassian.net/rest/api/2/issue/15572/comment/13779' \
+        -e 'https://demistodev.atlassian.net/rest/api/latest/issue/10986' \
+        -e 'https://demistodev.atlassian.net/rest/api/latest/issue/12658' \
+        -e 'https://demistodev.atlassian.net/rest/api/latest/issue/15572' \
+        -e 'https://demistodev.atlassian.net/rest/api/latest/issue/15576' \
+        -e 'https://demistodev.atlassian.net/rest/api/latest/issue/DEM-5415/remotelink/13722' \
         -e 'https://desktop.docker.com/mac/stable/49427/Docker.dmg' \
         -e 'https://dev.azure.com/xsoar-organization/_api/_common/identityImage?id=XXXX' \
         -e 'https://dev.azure.com/xsoar-organization/_apis/GraphProfile/MemberAvatars/aad.NWYyZWMzNTctMjgzMS03M2I4LTk1NWYtMmRkZGM2OWVmMzg3' \
@@ -1336,6 +1412,9 @@ jobs:
         -e 'https://dev.azure.com/xsoar-organization/xsoar-project/_build/results?buildId=1154' \
         -e 'https://dev.azure.com/xsoar-organization/xsoar/_git/test2803' \
         -e 'https://dev.azure.com/xsoar-organization/xsoar/_git/xsoar' \
+        -e 'https://developer.atlassian.com/cloud/confluence/rest/api-group-content/' \
+        -e 'https://developer.atlassian.com/cloud/confluence/rest/api-group-space/' \
+        -e 'https://developer.carbonblack.com/resources/query_overview.pdf.' \
         -e 'https://developer.huaweicloud.com/ict/en/site-euleros/euleros/security-advisories/EulerOS-SA-2021-1311' \
         -e 'https://developer.huaweicloud.com/ict/en/site-euleros/euleros/security-advisories/EulerOS-SA-2021-1365' \
         -e 'https://developer.huaweicloud.com/ict/en/site-euleros/euleros/security-advisories/EulerOS-SA-2021-1368' \
@@ -1345,19 +1424,85 @@ jobs:
         -e 'https://developer.joomla.org/security-centre/849-20210309-core-inadequate-filtering-of-form-contents-could-allow-to-overwrite-the-author-field.html' \
         -e 'https://developer.joomla.org/security-centre/850-20210401-core-escape-xss-in-logo-parameter-error-pages.html' \
         -e 'https://developer.joomla.org/security-centre/851-20210402-core-inadequate-filters-on-module-layout-settings.html' \
+        -e 'https://developer.okta.com/docs/api/getting_started/design_principles' \
+        -e 'https://developers.facebook.com/docs/threat-exchange/reference/apis/indicator-type/v2.9.' \
+        -e 'https://developers.google.com/admin-sdk/directory/v1/guides/search-users' \
+        -e 'https://developers.google.com/gdata/docs/2.0/basics' \
+        -e 'https://developers.virustotal.com/v3.0/reference' \
         -e 'https://dns.google' \
+        -e 'https://docs.ansible.com/ansible/faq.html' \
+        -e 'https://docs.aws.amazon.com/console/securityhub/standards-cis-1.8/remediation' \
+        -e 'https://docs.axonius.com/docs/saved-queries-devices' \
+        -e 'https://docs.axonius.com/docs/saved-queries-users' \
         -e 'https://docs.docker.com/docker-for-mac/release-notes' \
+        -e 'https://docs.docker.com/swarm/swarm-api/' \
+        -e 'https://docs.github.com/en/github/searching-for-information-on-github/searching-code' \
+        -e 'https://docs.google.com/DOCUMENT_ID/edit?disco=THREAD_ID' \
         -e 'https://docs.hackerone.com/hackers/quality-reports.html' \
+        -e 'https://docs.microfocus.com/SM/9.41/Codeless/Content/Resources/PDF_PD/HP_Service_Manager_Web_Services_codeless.pdf.' \
+        -e 'https://docs.microsoft.com/bs-latn-ba/azure/search/search-query-odata-filter.' \
+        -e 'https://docs.microsoft.com/en-us/Exchange/policy-and-compliance/ediscovery/assign-permissions?view=exchserver-2019' \
+        -e 'https://docs.microsoft.com/en-us/azure/app-service/app-service-web-overview' \
+        -e 'https://docs.microsoft.com/en-us/azure/kusto/query/functions/user-defined-functions' \
+        -e 'https://docs.microsoft.com/en-us/azure/kusto/query/functions/user-defined-functions.' \
+        -e 'https://docs.microsoft.com/en-us/azure/traffic-manager/quickstart-create-traffic-manager-profile' \
+        -e 'https://docs.microsoft.com/en-us/azure/virtual-machines/extensions/overview' \
+        -e 'https://docs.microsoft.com/en-us/azure/virtual-machines/linux/cloudinit-prepare-custom-image' \
+        -e 'https://docs.microsoft.com/en-us/azure/virtual-machines/linux/using-cloud-init' \
+        -e 'https://docs.microsoft.com/en-us/azure/virtual-machines/windows/disks-types' \
+        -e 'https://docs.microsoft.com/en-us/cloud-app-security/api-activities' \
+        -e 'https://docs.microsoft.com/en-us/cloud-app-security/api-alerts' \
         -e 'https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnotes-security' \
+        -e 'https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.fileversioninfo?redirectedfrom=MSDN' \
+        -e 'https://docs.microsoft.com/en-us/exchange/client-developer/exchange-web-services/delegate-access-and-ews-in-exchange' \
+        -e 'https://docs.microsoft.com/en-us/exchange/client-developer/exchange-web-services/how-to-configure-impersonation' \
+        -e 'https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-beta.' \
+        -e 'https://docs.microsoft.com/en-us/graph/query-parameters.' \
+        -e 'https://docs.microsoft.com/en-us/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance?view=o365-worldwide' \
+        -e 'https://docs.microsoft.com/en-us/office/office-365-management-api/office-365-management-activity-api-schema' \
+        -e 'https://docs.microsoft.com/en-us/office365/securitycompliance/permissions-in-the-security-and-compliance-center' \
+        -e 'https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/jj129382' \
+        -e 'https://docs.microsoft.com/en-us/rest/api/appservice/webapps/createorupdate' \
+        -e 'https://docs.microsoft.com/en-us/rest/api/azure/devops/memberentitlementmanagement/user-entitlements/add?view=azure-devops-rest-6.1' \
+        -e 'https://docs.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata' \
+        -e 'https://docs.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-shares--directories--files--and-metadata.' \
+        -e 'https://docs.microsoft.com/en-us/rest/api/storageservices/naming-queues-and-metadata.' \
+        -e 'https://docs.microsoft.com/en-us/rest/api/storageservices/querying-tables-and-entities' \
+        -e 'https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-the-table-service-data-model.' \
+        -e 'https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions?view=sql-server-ver15.' \
+        -e 'https://docs.microsoft.com/en-us/windows/desktop/api/wincred/ns-wincred-_credentiala' \
+        -e 'https://docs.microsoft.com/en-us/windows/win32/adsi/search-filter-syntax' \
+        -e 'https://docs.oasis-open.org/cti/taxii/v2.1/os/taxii-v2.1-os.html' \
         -e 'https://docs.openshift.com/container-platform/4.6/updating/updating-cluster' \
         -e 'https://docs.openshift.com/container-platform/4.7/updating/updating-cluster' \
         -e 'https://docs.openshift.com/container-platform/4.7/updating/updating-cluster-between-minor.html' \
+        -e 'https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-rql-reference/rql-reference/rql-examples.' \
+        -e 'https://docs.python.org/2/library/tempfile.html' \
+        -e 'https://docs.rapid7.com/insightidr/build-a-query/' \
+        -e 'https://docs.rundeck.com/docs/api/rundeck-api.html' \
+        -e 'https://docs.securitytrails.com/docs/how-to-use-the-dsl' \
+        -e 'https://docs.securitytrails.com/reference' \
+        -e 'https://docs.sendgrid.com/for-developers/sending-email/getting-started-email-activity-api' \
+        -e 'https://docs.servicenow.com/bundle/istanbul-servicenow-platform/page/use/common-ui-elements/reference/r_OpAvailableFiltersQueries.html' \
+        -e 'https://docs.servicenow.com/bundle/paris-servicenow-platform/page/use/common-ui-elements/reference/r_OpAvailableFiltersQueries.html' \
+        -e 'https://docs.splunk.com/Documentation/CIM/4.18.0/User/Overview' \
+        -e 'https://docs.splunk.com/Documentation/Splunk/8.0.3/RESTREF/RESTkvstore' \
+        -e 'https://docs.splunk.com/Documentation/SplunkCloud/8.1.2101/Security/CreateAuthTokens' \
+        -e 'https://docs.trendmicro.com/en-us/enterprise/cloud-app-security-integration-api-online-help/supported-cloud-app-_001/threat-mitigation-ap/take-actions-on-user/assigning-the-user-a.aspx.' \
+        -e 'https://docs.vmware.com/en/VMware-vSphere/6.0/com.vmware.vsphere.security.doc/GUID-ED56F3C4-77D0-49E3-88B6-B99B8B437B62.html' \
+        -e 'https://domain.salesforce.com/' \
+        -e 'https://domain.service-now.com' \
+        -e 'https://domain.zimperium.com' \
         -e 'https://domains.markmonitor.com/whois' \
         -e 'https://domains.markmonitor.com/whois/google.com' \
         -e 'https://domains.markmonitor.com/whois/paloaltonetworks.com' \
         -e 'https://downloads.joomla.org' \
+        -e 'https://dropmefiles.com/TgvuH' \
         -e 'https://dummy-chronicle/ruleDetections?ruleId=ru_746bd6d6-6b84-4007-b74c-ec90c7306a71' \
         -e 'https://edgeasset.edgescan.com' \
+        -e 'https://emailrep.io' \
+        -e 'https://endaceprobe-1/vision2/data/files/b20e43e6-2cf7-1af2-3665-01016cb2daba/stream?format=pcap' \
+        -e 'https://endaceprobe-1/vision2/pivotintovision/?datasources=tag:rotation-file' \
         -e 'https://example-my.sharepoint.com' \
         -e 'https://example-my.sharepoint.com/personal/avishai_example_onmicrosoft_com/Documents/20170813_125133.jpg.txt' \
         -e 'https://example-my.sharepoint.com/personal/avishai_example_onmicrosoft_com/Documents/20180726150700.JPG.txt' \
@@ -1366,7 +1511,6 @@ jobs:
         -e 'https://example-my.sharepoint.com/personal/avishai_example_onmicrosoft_com/Documents/WhatsApp%20Image%202020-08-02%20at%2011.04.46.jpeg.txt' \
         -e 'https://example.com' \
         -e 'https://example.com...' \
-        -e 'https://example.com' \
         -e 'https://example.com/?firstName=John' \
         -e 'https://example.com/app/uploads/2021/02/image_602cf5656e71a-150x150.jpg' \
         -e 'https://example.com/blackhole' \
@@ -1380,9 +1524,19 @@ jobs:
         -e 'https://example.com/route/that/will/404' \
         -e 'https://example.com/something.html' \
         -e 'https://example.com/wp-content/plugins/wp-ticket/assets/ext/zebraform/process.php?form=f' \
+        -e 'https://example.iot.paloaltonetworks.com' \
+        -e 'https://example.net' \
+        -e 'https://example.net/taxii' \
+        -e 'https://example.net:1234' \
         -e 'https://example.portal.cloudappsecurity.com' \
+        -e 'https://exchange.xforce.ibmcloud.com/api/doc/?' \
         -e 'https://facebook.com/cofense' \
+        -e 'https://falcon.crowdstrike.com/login/?next=%2Fsupport%2Fdocumentation%2F45%2Ffalcon-query-language-fql%3F' \
+        -e 'https://falcon.crowdstrike.com/support/documentation/2/query-api-reference' \
+        -e 'https://falcon.crowdstrike.com/support/documentation/45/falcon-query-language-fql' \
         -e 'https://fedeploycheck.fireeye.com/appliance-test/alert.html' \
+        -e 'https://fqdn:port' \
+        -e 'https://freebirddemo.dev.ccs.thatcompany.net' \
         -e 'https://github.com/Al1ex/CVE-2021-21975' \
         -e 'https://github.com/DFIRnotes/rules/blob/master/CAP_HookExKeylogger.yar' \
         -e 'https://github.com/GuayoyoCyber/CVE-2021-21975/blob/main/cve-2021-21975.nse' \
@@ -1391,6 +1545,7 @@ jobs:
         -e 'https://github.com/advanced-threat-research/Yara-Rules' \
         -e 'https://github.com/avboy1337/1195777-chrome0day' \
         -e 'https://github.com/brpandey/active-merchant-sample-gateway-adapter/blob/b18b7faa10e1b4a6b6347b95933ce92ada600a17/test/fixtures.yml' \
+        -e 'https://github.com/carbonblack/cbapi/blob/master/client_apis/docs/query_overview.pdf.' \
         -e 'https://github.com/content-bot' \
         -e 'https://github.com/content-bot/hello-world/releases/tag/untagged-e106615f0216817665d8' \
         -e 'https://github.com/demisto/content/blob/master/Packs/BitcoinAbuse/Integrations/BitcoinAbuse/BitcoinAbuse.py' \
@@ -1401,6 +1556,7 @@ jobs:
         -e 'https://github.com/demisto/content/blob/master/Packs/BitcoinAbuse/Integrations/BitcoinAbuse/Pipfile' \
         -e 'https://github.com/demisto/content/blob/master/Packs/BitcoinAbuse/Integrations/BitcoinAbuse/Pipfile.lock' \
         -e 'https://github.com/demisto/content/blob/master/Packs/BitcoinAbuse/Integrations/BitcoinAbuse/README.md' \
+        -e 'https://github.com/demisto/content/raw/3322c5933388f2ea9c52dc9fe31a5feb52bc1050/Packs/IBMResilientSystems/doc_files/support_field_types.png' \
         -e 'https://github.com/demisto/content/tree/master/Packs/BitcoinAbuse/Integrations/BitcoinAbuse' \
         -e 'https://github.com/demisto/content/tree/master/Packs/BitcoinAbuse/Integrations/BitcoinAbuse/test_data' \
         -e 'https://github.com/demisto/demisto-sdk' \
@@ -1412,9 +1568,17 @@ jobs:
         -e 'https://github.com/dockhippie/redis.git' \
         -e 'https://github.com/elastic/elasticsearch' \
         -e 'https://github.com/erocarrera/pefile' \
+        -e 'https://github.com/example-user1/content/pull/14' \
+        -e 'https://github.com/example-user1/content/pull/15' \
+        -e 'https://github.com/example-user1/content/pull/16' \
+        -e 'https://github.com/example-user1/content/pull/18' \
+        -e 'https://github.com/letsencrypt/Pebble' \
         -e 'https://github.com/owncloud-docker/server.git' \
         -e 'https://github.com/r4j0x00/exploits/tree/master/chrome-0day' \
         -e 'https://github.com/tomneeman151293' \
+        -e 'https://github.com/username.keys' \
+        -e 'https://github.com/vmware/pyvmomi/blob/master/docs/vim/vApp/PropertyInfo.rst' \
+        -e 'https://gitlab.com/api/v4' \
         -e 'https://gitlab.com/api/v4/projects/18044686' \
         -e 'https://gitlab.com/api/v4/projects/18044686/events' \
         -e 'https://gitlab.com/api/v4/projects/18044686/issues' \
@@ -1453,16 +1617,23 @@ jobs:
         -e 'https://gitlab.com/test-user/moon/-/tree/vulnerable' \
         -e 'https://gitlab.com/testuser' \
         -e 'https://go.microsoft.com/fwlink/?linkid=2135034' \
+        -e 'https://go.microsoft.com/fwlink/?linkid=37020' \
+        -e 'https://golang.org/doc/install/source' \
         -e 'https://google.com' \
         -e 'https://google.com/?gws_rd=ssl' \
         -e 'https://graph.microsoft.com/v1.0' \
+        -e 'https://help.github.com/en/articles/about-pull-requests' \
+        -e 'https://help.github.com/en/articles/searching-issues-and-pull-requests.' \
         -e 'https://help.kusto.windows.net' \
         -e 'https://help.kusto.windows.net:443' \
+        -e 'https://help.rapid7.com/insightvm/en-us/api/index.html' \
         -e 'https://help.salesforce.com/articleView?id=000357424' \
         -e 'https://help.salesforce.com/articleView?id=000357453' \
         -e 'https://help.salesforce.com/articleView?id=000357454' \
+        -e 'https://help.symantec.com/api-doc/atp_2.2/EN_US/' \
         -e 'https://helpx.adobe.com/security/products/photoshop/apsb21-28.html' \
         -e 'https://helpx.adobe.com/security/products/robohelp/apsb21-20.html' \
+        -e 'https://huntbox.group-ib.com' \
         -e 'https://icann.org/epp' \
         -e 'https://index.docker.io/v1' \
         -e 'https://jira.atlassian.com/browse/CONFSERVER-61622' \
@@ -1476,14 +1647,25 @@ jobs:
         -e 'https://jira.atlassian.com/browse/JRASERVER-72272' \
         -e 'https://juice.edgebank.com' \
         -e 'https://kb.juniper.net/InfoCenter/index?page=content' \
+        -e 'https://kb.vmware.com/s/article/2145518' \
+        -e 'https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/' \
+        -e 'https://kubernetes.io/docs/concepts/services-networking/service/' \
+        -e 'https://kubernetes.io/docs/tasks/run-application/update-api-object-kubectl-patch/' \
         -e 'https://launchpad.net/ubuntu' \
         -e 'https://letsencrypt.org/docs/staging-environment' \
+        -e 'https://letsencrypt.org/docs/staging-environment/' \
         -e 'https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf' \
         -e 'https://lgsecurity.lge.com/security_updates_mobile.html' \
+        -e 'https://lgtm.com/admin/help/adding-repository-providers' \
+        -e 'https://lgtm.com/admin/help/defining-worker-labels' \
+        -e 'https://lgtm.com/api/v1.0' \
         -e 'https://lgtm.com/api/v1.0/analyses/ef0e7bd0421cb2cc2e9cb7ab5ce3cba109ee2a95' \
         -e 'https://lgtm.com/api/v1.0/codereviews/cccab75368f5e896c17f5155f759bad72fdb6adf' \
         -e 'https://lgtm.com/api/v1.0/projects?limit=10' \
         -e 'https://lgtm.com/api/v1.0/queryjobs/1877941903313451628' \
+        -e 'https://lgtm.com/help/lgtm/analysis-faqs' \
+        -e 'https://lgtm.com/help/lgtm/api/api-v1' \
+        -e 'https://lgtm.com/help/lgtm/file-classification' \
         -e 'https://lgtm.com/projects/g/BanManagement/BanManager' \
         -e 'https://lgtm.com/projects/g/FountainJS/fountain-generator' \
         -e 'https://lgtm.com/projects/g/TooTallNate/plist.js' \
@@ -1655,9 +1837,27 @@ jobs:
         -e 'https://live.edgescan.com/api.wsdl' \
         -e 'https://localhost/mgmt/tm/ltm/node' \
         -e 'https://localhost/mgmt/tm/ltm/pool' \
+        -e 'https://localhost:8088.' \
         -e 'https://magento.com/security/patches/magento-2.3.2-2.2.9-and-2.1.18-security-update-13' \
         -e 'https://magento.com/tech-resources/download?_ga=2.48007079.18249196.1609397868-1531796080.1609397868' \
+        -e 'https://mail.google.com' \
         -e 'https://mobile.twitter.com/signup' \
+        -e 'https://msdn.microsoft.com/en-us/library/dd374073.aspx' \
+        -e 'https://msdn.microsoft.com/en-us/library/ee693615.aspx' \
+        -e 'https://msdn.microsoft.com/en-us/library/hs600312%28v=vs.110%29.aspx' \
+        -e 'https://msdn.microsoft.com/en-us/library/ms912391.aspx' \
+        -e 'https://msdn.microsoft.com/en-us/library/system.globalization.cultureinfo.aspx' \
+        -e 'https://msdn.microsoft.com/en-us/library/system.security.accesscontrol.filesystemrights.aspx' \
+        -e 'https://msdn.microsoft.com/en-us/library/system.security.accesscontrol.inheritanceflags.aspx' \
+        -e 'https://msdn.microsoft.com/en-us/library/system.security.accesscontrol.propagationflags.aspx' \
+        -e 'https://msdn.microsoft.com/en-us/library/system.security.accesscontrol.registryrights.aspx' \
+        -e 'https://msdn.microsoft.com/en-us/library/system.security.cryptography.x509certificates.x509keystorageflags.aspx' \
+        -e 'https://msdn.microsoft.com/en-us/library/system.text.encoding%28v=vs.110%29.aspx' \
+        -e 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa379572.aspx' \
+        -e 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa380128' \
+        -e 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa380129.aspx' \
+        -e 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa383512.aspx' \
+        -e 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa383868.aspx' \
         -e 'https://msrc.microsoft.com/update-guide/en-US/vulnerability/ADV990001' \
         -e 'https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2021-27064' \
         -e 'https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2021-28448' \
@@ -1680,6 +1880,7 @@ jobs:
         -e 'https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-28459' \
         -e 'https://ncguyixqhjhoifmwcgjg-dot-level-elevator-279110.nw.r.appspot.com%23example' \
         -e 'https://nodejs.org/dist/v' \
+        -e 'https://notification.ba.com/LinkTracking?id=17174577' \
         -e 'https://nvd.nist.gov/vuln/detail/CVE-2018-1000517' \
         -e 'https://nvd.nist.gov/vuln/detail/CVE-2018-20679' \
         -e 'https://nvd.nist.gov/vuln/detail/CVE-2020-1910' \
@@ -1691,10 +1892,39 @@ jobs:
         -e 'https://nvd.nist.gov/vuln/detail/CVE-2021-21301' \
         -e 'https://nvd.nist.gov/vuln/detail/CVE-2021-27189' \
         -e 'https://nvd.nist.gov/vuln/detail/CVE-2021-27351' \
+        -e 'https://op1static.oktacdn.com/fs/bcg/4/gfskliw1i51ScX6pf0h7' \
+        -e 'https://op1static.oktacdn.com/fs/bcg/4/gfsnda403rf16Qe790h7' \
+        -e 'https://org.api.identitynow.com' \
+        -e 'https://outlook.office365.com/owa/?ItemID=' \
         -e 'https://paloaltonetworks.com' \
+        -e 'https://panw-test.oktapreview.com/api/v1/meta/schemas/user/osc8zfz6plq7b0r830h7' \
+        -e 'https://panw-test.oktapreview.com/api/v1/meta/types/user/oty8zfz6plq7b0r830h7' \
+        -e 'https://panw-test.oktapreview.com/api/v1/users/00uujxnbh3uJw4tWA0h7' \
+        -e 'https://panw-test.oktapreview.com/api/v1/users/00uujxnbh3uJw4tWA0h7/lifecycle/deactivate' \
+        -e 'https://panw-test.oktapreview.com/api/v1/users/00uujxnbh3uJw4tWA0h7/lifecycle/reactivate' \
+        -e 'https://panw-test.oktapreview.com/api/v1/users/00uujxnbh3uJw4tWA0h7/lifecycle/reset_password' \
+        -e 'https://panw-test.oktapreview.com/api/v1/users/00uujxnbh3uJw4tWA0h7/lifecycle/suspend' \
         -e 'https://panwtest.enterprise.slack.com/team/powershelly10' \
         -e 'https://panwtest.enterprise.slack.com/team/powershelly12' \
         -e 'https://panwtest.enterprise.slack.com/team/testuser15' \
+        -e 'https://partner.analystplatform.com/indicators/1527155' \
+        -e 'https://partner.analystplatform.com/indicators/1637756' \
+        -e 'https://partner.analystplatform.com/indicators/2043650' \
+        -e 'https://partner.analystplatform.com/indicators/2623838' \
+        -e 'https://partner.analystplatform.com/indicators/2699554' \
+        -e 'https://partner.analystplatform.com/indicators/2885382' \
+        -e 'https://partner.analystplatform.com/indicators/51469' \
+        -e 'https://partner.analystplatform.com/indicators/90548' \
+        -e 'https://partner.analystplatform.com/indicators/95267' \
+        -e 'https://partner.cloud.analyst1.com/indicators/1527155' \
+        -e 'https://partner.cloud.analyst1.com/indicators/1637756' \
+        -e 'https://partner.cloud.analyst1.com/indicators/2043650' \
+        -e 'https://partner.cloud.analyst1.com/indicators/2623838' \
+        -e 'https://partner.cloud.analyst1.com/indicators/2699554' \
+        -e 'https://partner.cloud.analyst1.com/indicators/2885382' \
+        -e 'https://partner.cloud.analyst1.com/indicators/51469' \
+        -e 'https://partner.cloud.analyst1.com/indicators/90548' \
+        -e 'https://partner.cloud.analyst1.com/indicators/95267' \
         -e 'https://people.canonical.com' \
         -e 'https://phisher.example.com' \
         -e 'https://pierrekim.github.io/blog/2021-01-12-fiberhome-ont-0day-vulnerabilities.html' \
@@ -1719,6 +1949,11 @@ jobs:
         -e 'https://portal.msrc.microsoft.com/en-us/security-guidance/advisory/CVE-2021-28466' \
         -e 'https://portal.msrc.microsoft.com/en-us/security-guidance/advisory/CVE-2021-28468' \
         -e 'https://prod-iab12.gamma.ai/dashboard/slack/monitor/violationId/999' \
+        -e 'https://profilephoto/' \
+        -e 'https://pypi.org/project/pyOpenSSL/' \
+        -e 'https://qualysguard.qg2.apps.qualys.com/fim/help/search/language.htm.' \
+        -e 'https://r-' \
+        -e 'https://r-gk8.online/main/main.php' \
         -e 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json' \
         -e 'https://raw.githubusercontent.com/demisto/content/master/Packs/BitcoinAbuse/Integrations/BitcoinAbuse/BitcoinAbuse.py' \
         -e 'https://raw.githubusercontent.com/demisto/content/master/Packs/BitcoinAbuse/Integrations/BitcoinAbuse/BitcoinAbuse.yml' \
@@ -1728,6 +1963,7 @@ jobs:
         -e 'https://raw.githubusercontent.com/demisto/content/master/Packs/BitcoinAbuse/Integrations/BitcoinAbuse/Pipfile' \
         -e 'https://raw.githubusercontent.com/demisto/content/master/Packs/BitcoinAbuse/Integrations/BitcoinAbuse/Pipfile.lock' \
         -e 'https://raw.githubusercontent.com/demisto/content/master/Packs/BitcoinAbuse/Integrations/BitcoinAbuse/README.md' \
+        -e 'https://raw.githubusercontent.com/demisto/hello-world/master/index/README.md' \
         -e 'https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json' \
         -e 'https://rdap.arin.net/registry/entity/ABUSE5250-ARIN' \
         -e 'https://rdap.arin.net/registry/entity/GOGL' \
@@ -1741,15 +1977,19 @@ jobs:
         -e 'https://s3.amazonaws.com/ssc-static/grades/factor_b.svg' \
         -e 'https://s3.amazonaws.com/ssc-static/grades/factor_c.svg' \
         -e 'https://s3.amazonaws.com/ssc-static/grades/factor_f.svg' \
+        -e 'https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key' \
         -e 'https://secure.gravatar.com/avatar/17de069a77ac9bf8c47f0c9a4893f598.jpg?s=192' \
         -e 'https://secure.gravatar.com/avatar/5f359e3923fc928897380e3e90cb980e.jpg?s=192' \
         -e 'https://secure.gravatar.com/avatar/bcecfc2b23ff4a3962520685ccf046cc?s=80' \
         -e 'https://secure.gravatar.com/avatar/e14bda84be03871922c78d0d03caa901.jpg?s=192' \
         -e 'https://secure.gravatar.com/avatar/fd996be0107aa697f0ca5753aa7b5d1f?s=80' \
         -e 'https://security.samsungmobile.com/securityUpdate.smsb' \
+        -e 'https://securityadvisories.paloaltonetworks.com/Home/Detail/91' \
+        -e 'https://sepio' \
         -e 'https://server_url/-/jobs/6054872' \
         -e 'https://server_url/-/jobs/6054873' \
         -e 'https://server_url/-/pipelines/1254426' \
+        -e 'https://serverurl:9000' \
         -e 'https://service.bitsighttech.com/app/company/a940bb61-33c4-42c9-9231-c8194c305db3/compromised-systems/?filter=Botnet%20Infections' \
         -e 'https://service.bitsighttech.com/app/company/a940bb61-33c4-42c9-9231-c8194c305db3/compromised-systems/?filter=Malware%20Servers' \
         -e 'https://service.bitsighttech.com/app/company/a940bb61-33c4-42c9-9231-c8194c305db3/compromised-systems/?filter=Potentially%20Exploited' \
@@ -1776,17 +2016,22 @@ jobs:
         -e 'https://simplesamlphp.org/security/201907-01' \
         -e 'https://simplesamlphp.org/security/201911-01' \
         -e 'https://simplesamlphp.org/security/201911-02' \
+        -e 'https://soar.monstersofhack.com' \
         -e 'https://softwaresupport.softwaregrp.com/doc/KM03792443' \
         -e 'https://some-url' \
         -e 'https://some.ru' \
         -e 'https://some.ru/id:-6009637a1135cd001ef46e21:' \
+        -e 'https://somejira.atlassian.net/rest/api/latest/issue/10044' \
         -e 'https://source.android.com/security/bulletin/2021-04-01' \
         -e 'https://source.android.com/security/bulletin/pixel/2021-04-01' \
         -e 'https://stage.auth.api.edgebank.com' \
+        -e 'https://station.trustar.co' \
         -e 'https://support.apple.com/en-in/HT212256' \
         -e 'https://support.apple.com/en-in/HT212257' \
         -e 'https://support.apple.com/en-us/HT212223' \
         -e 'https://support.citrix.com/article/CTX280451' \
+        -e 'https://support.google.com/mail/answer/10957?hl=en' \
+        -e 'https://support.google.com/mail/answer/7190?hl=en' \
         -e 'https://support.hpe.com/hpesc/public/docDisplay?docId=emr_na-c05111017' \
         -e 'https://support.hpe.com/hpesc/public/docDisplay?docLocale=en_US' \
         -e 'https://support.microfocus.com/downloads/swgrp.html' \
@@ -1850,13 +2095,15 @@ jobs:
         -e 'https://support.microsoft.com/kb/4504735' \
         -e 'https://support.microsoft.com/kb/4504738' \
         -e 'https://support.microsoft.com/kb/4504739' \
+        -e 'https://synapse.vertex.link' \
         -e 'https://talosintelligence.com/vulnerability_reports/TALOS-2021-1227' \
         -e 'https://talosintelligence.com/vulnerability_reports/TALOS-2021-1232' \
         -e 'https://talosintelligence.com/vulnerability_reports/TALOS-2021-1244' \
         -e 'https://tap.group-ib.com/api/api/v2/web/attacks/phishing_kit/044f3f2cb599228c1882884eb77eb073f68a25f2/file/95b61a1df152012abb79c3951ed98680e0bd917bbcf1d440e76b66a120292c76' \
         -e 'https://tdm.socprime.com/tdm/info/jFbYfF51ECXh' \
+        -e 'https://technet.microsoft.com/en-us/library/dd349804.aspx' \
         -e 'https://test.com' \
-        -e 'https://test.com' \
+        -e 'https://test.confluera.com' \
         -e 'https://test.identity.oraclecloud.com:443/admin/v1/Apps/123456' \
         -e 'https://test.identity.oraclecloud.com:443/admin/v1/Users/123456' \
         -e 'https://test/vhds/testvm10.vhd' \
@@ -1898,6 +2145,12 @@ jobs:
         -e 'https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sbss-ipv6-dos-3bLk6vA' \
         -e 'https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-vmanage-YuTVWqy' \
         -e 'https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-xr-cmdinj-vsKGherc' \
+        -e 'https://tools.ietf.org/html/rfc2986' \
+        -e 'https://tools.ietf.org/html/rfc3986' \
+        -e 'https://tools.ietf.org/html/rfc4648' \
+        -e 'https://tools.ietf.org/html/rfc5280' \
+        -e 'https://tools.ietf.org/html/rfc7633' \
+        -e 'https://tools.ietf.org/html/rfc8555' \
         -e 'https://trello.com/b/L6eBwR31/moxsoar' \
         -e 'https://trello.com/b/RqO8rfpZ/devel' \
         -e 'https://trello.com/b/WGwDIdS4/xsoar' \
@@ -2131,9 +2384,12 @@ jobs:
         -e 'https://twitter.com/z0x55g' \
         -e 'https://unofficial-builds.nodejs.org/download/release/v' \
         -e 'https://uploads.github.com/repos/content-bot/hello-world/releases/48262112/assets' \
+        -e 'https://url.com' \
         -e 'https://urldefense.proofpoint.com/v2/url?u=http-3A__links.mkt3337.com_ctt-3Fkn-3D3-26ms-3DMzQ3OTg3MDQS1-26r-3DMzkxNzk3NDkwMDA0S0-26b-3D0-26j-3DMTMwMjA1ODYzNQS2-26mt-3D1-26rt-3D0' \
         -e 'https://urlhaus-api.abuse.ch/v1/download/254ca6a7a7ef7f17d9884c4a86f88b5d5fd8fe5341c0996eaaf1d4bcb3b2337b' \
         -e 'https://urlhaus.abuse.ch/url/example' \
+        -e 'https://us-cert.cisa.gov/tlp' \
+        -e 'https://us-cert.cisa.gov/tlp.' \
         -e 'https://us.api.insight.rapid7.com/log_search/management/logs/7efaf894-cf8a-4ed2-9495-77395bf2e5a6' \
         -e 'https://us.api.insight.rapid7.com/log_search/management/logs/7efaf894-cf8a-4ed2-9495-77395bf2e5a6/topkeys' \
         -e 'https://us.api.insight.rapid7.com/log_search/management/logs/82b2969c-8597-41a3-9e2a-4bce4d0f6ab6' \
@@ -2194,6 +2450,12 @@ jobs:
         -e 'https://us.api.insight.rapid7.com/log_search/query/context/3237203267267014656?per_page=50' \
         -e 'https://us.api.insight.rapid7.com/log_search/query/context/3237203842254422016?per_page=50' \
         -e 'https://us.api.insight.rapid7.com/log_search/query/context/3237203842254426112?per_page=50' \
+        -e 'https://us.devo.com/alerts/alertsGlobe.json' \
+        -e 'https://us.devo.com/alerts/view.json' \
+        -e 'https://us.devo.com/domain/notification.json' \
+        -e 'https://us.devo.com/generic/storedSearchAction.streamjson' \
+        -e 'https://us.devo.com/lxcWidgets/lxcWidget.json' \
+        -e 'https://us.devo.com/welcome' \
         -e 'https://usn.ubuntu.com/4561-2' \
         -e 'https://usn.ubuntu.com/4719-1' \
         -e 'https://usn.ubuntu.com/4887-1' \
@@ -2211,18 +2473,26 @@ jobs:
         -e 'https://usn.ubuntu.com/4906-1' \
         -e 'https://usn.ubuntu.com/4911-1' \
         -e 'https://usn.ubuntu.com/4912-1' \
+        -e 'https://v2.developer.pagerduty.com/v2/page/api-reference' \
         -e 'https://ven03941.service-now.com/api/now/cmdb/instance/cmdb_ci/829e953a0ad3370200af63483498b1ea' \
         -e 'https://ven03941.service-now.com/api/now/table/alm_asset/60decc3f1b9c2410042611b4bd4bcb7f' \
         -e 'https://ven03941.service-now.com/api/now/table/alm_asset/964098b3db50641026fca015ca9619a8' \
         -e 'https://ven03941.service-now.com/api/now/table/cmdb_model/4ed329e3db27901026fca015ca9619fc' \
         -e 'https://ven03941.service-now.com/api/now/table/cmdb_rel_type/cb5592603751200032ff8c00dfbe5d17' \
         -e 'https://ven03941.service-now.com/api/now/table/sys_user_group/global' \
+        -e 'https://viz.greynoise.io/ip/45.83.65.120' \
+        -e 'https://viz.greynoise.io/ip/45.83.66.18' \
+        -e 'https://viz.greynoise.io/ip/71.6.135.131' \
+        -e 'https://viz.greynoise.io/riot/8.8.8.8' \
         -e 'https://vssps.dev.azure.com/xsoar-organization/_apis/Graph/MembershipStates/aad.NWYyZWMzNTctMjgzMS03M2I4LTk1NWYtMmRkZGM2OWVmMzg3' \
         -e 'https://vssps.dev.azure.com/xsoar-organization/_apis/Graph/Memberships/aad.NWYyZWMzNTctMjgzMS03M2I4LTk1NWYtMmRkZGM2OWVmMzg3' \
         -e 'https://vssps.dev.azure.com/xsoar-organization/_apis/Graph/StorageKeys/aad.NWYyZWMzNTctMjgzMS03M2I4LTk1NWYtMmRkZGM2OWVmMzg3' \
         -e 'https://vssps.dev.azure.com/xsoar-organization/_apis/Graph/Users/aad.NWYyZWMzNTctMjgzMS03M2I4LTk1NWYtMmRkZGM2OWVmMzg3' \
         -e 'https://vssps.visualstudio.com/XXXX/_apis/Identities/XXXX' \
+        -e 'https://vulners.com/api/v3/archive/collection/?type=debian' \
+        -e 'https://vxsuz5.manage.trendmicro.com' \
         -e 'https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2021-27152' \
+        -e 'https://webapi.coralogix.com' \
         -e 'https://whois.arin.net/rest/net/NET-8-8-8-0-1' \
         -e 'https://whois.arin.net/rest/org/GOGL' \
         -e 'https://whois.arin.net/rest/poc/ABUSE5250-ARIN' \
@@ -2235,33 +2505,97 @@ jobs:
         -e 'https://www.box.com/files/0/f/114948778953/1/f_675197556380' \
         -e 'https://www.carbonblack.com/cbfeeds/processbanningevents_feed.xhtml' \
         -e 'https://www.chiark.greenend.org.uk' \
+        -e 'https://www.circl.lu/doc/misp/categories-and-types/' \
+        -e 'https://www.demisto.com' \
+        -e 'https://www.demisto.com.' \
+        -e 'https://www.eicar.org/download/eicar_com.zip' \
         -e 'https://www.elastic.co/guide/en/elasticsearch/reference/index.html' \
         -e 'https://www.elastic.co/products/elasticsearch' \
+        -e 'https://www.entrustdatacard.com/products/categories/ssl-certificates' \
         -e 'https://www.example.com/file/72820698de9b69166ab226b99ccf70f3f58345b88246f7d5e4e589c21dd44435/analysis/1547876224' \
         -e 'https://www.example.com/file/a0ccb310c7ec618ab516be8b95923254a6724b1a03696ec6dbb6e47c60321391/analysis/1547845755' \
         -e 'https://www.fortiguard.com/psirt/FG-IR-19-037' \
         -e 'https://www.foxitsoftware.com/support/security-bulletins.html' \
+        -e 'https://www.gnu.org/software/wget/manual/html_node/Proxies.html' \
         -e 'https://www.google.com' \
         -e 'https://www.google.com/contact' \
+        -e 'https://www.googleapis.com/auth/admin.directory.rolemanagement' \
+        -e 'https://www.googleapis.com/auth/admin.directory.rolemanagement.readonly' \
+        -e 'https://www.googleapis.com/auth/admin.directory.user' \
+        -e 'https://www.googleapis.com/auth/admin.directory.user.readonly' \
+        -e 'https://www.googleapis.com/auth/admin.directory.user.security' \
+        -e 'https://www.googleapis.com/auth/gmail.compose' \
+        -e 'https://www.googleapis.com/auth/gmail.modify' \
+        -e 'https://www.googleapis.com/auth/gmail.readonly' \
+        -e 'https://www.googleapis.com/auth/gmail.send' \
+        -e 'https://www.googleapis.com/auth/gmail.settings.basic' \
+        -e 'https://www.googleapis.com/auth/gmail.settings.sharing' \
         -e 'https://www.googleapis.com/compute/v1/projects/demo/global/networks/default' \
+        -e 'https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard' \
+        -e 'https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk' \
+        -e 'https://www.greynoise.io/viz/ip/66.249.68.82' \
+        -e 'https://www.greynoise.io/viz/riot/66.249.68.82' \
         -e 'https://www.hacker101.com/sessions/good_reports' \
         -e 'https://www.hackerone.com/disclosure-guidelines' \
+        -e 'https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml' \
         -e 'https://www.iana.org/domains/example' \
+        -e 'https://www.ibm.com/docs/en/qradar-common?topic=endpoints-get-siemlocal-destination-addresses' \
+        -e 'https://www.ibm.com/docs/en/qradar-common?topic=endpoints-get-siemlocal-destination-addresses.' \
+        -e 'https://www.ibm.com/docs/en/qradar-common?topic=endpoints-get-siemsource-addresses' \
+        -e 'https://www.ibm.com/docs/en/qsip/7.3.2?topic=qradar-ariel-query-language-aql' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi.doc/c_rest_api_filtering.html.' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--analytics-rule_groups-GET.html.' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--ariel-saved_searches-GET.html.' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--asset_model-assets-GET.html.' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--config-domain_management-domains-GET.html.' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--config-event_sources-custom_properties-regex_properties-GET.html.' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--config-event_sources-log_source_management-log_sources-GET.html.' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--reference_data-maps-bulk_load-name-POST.html.' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--reference_data-sets-GET.html.' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--reference_data-sets-POST.html.' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--reference_data-sets-name-POST.html.' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--services-geolocations-GET.html.' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--siem-offense_closing_reasons-GET.html.' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--siem-offenses-GET.html.' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--siem-offenses-offense_id-POST.html.' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--siem-offenses-offense_id-notes-GET.html.' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--siem-offenses-offense_id-notes-POST.html.' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi150.doc/15.0--analytics-rules-GET.html.' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SSKMKU/com.ibm.qradar.doc_cloud/9.1--asset_model-assets-GET.html' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SSKMKU/com.ibm.qradar.doc_cloud/9.1--siem-offense_closing_reasons-GET.html' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SSKMKU/com.ibm.qradar.doc_cloud/9.1--siem-offenses-GET.html' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SSKMKU/com.ibm.qradar.doc_cloud/9.1--siem-offenses-offense_id-GET.html' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SSKMKU/com.ibm.qradar.doc_cloud/9.1--siem-offenses-offense_id-POST.html' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SSKMKU/com.ibm.qradar.doc_cloud/9.1--siem-offenses-offense_id-notes-POST.html' \
+        -e 'https://www.ibm.com/support/knowledgecenter/SSKMKU/com.ibm.qradar.doc_cloud/9.1--siem-offenses-offense_id-notes-note_id-GET.html' \
+        -e 'https://www.ibm.com/support/knowledgecenter/en/SS42VS_7.3.1/com.ibm.qradar.doc/c_rest_api_filtering.html' \
         -e 'https://www.ibm.com/support/pages/node/6403297' \
         -e 'https://www.icann.org/epp' \
         -e 'https://www.icann.org/resources/pages/epp-status-codes' \
         -e 'https://www.icann.org/wicf' \
+        -e 'https://www.ietf.org/rfc/rfc3339.txt' \
+        -e 'https://www.iis.net/configreference/system.applicationhost/applicationpools/add' \
         -e 'https://www.instagram.com/cofense' \
         -e 'https://www.jenkins.io/security/advisory/2021-02-24' \
         -e 'https://www.jenkins.io/security/advisory/2021-04-07' \
+        -e 'https://www.kernel.org/doc/Documentation/cgroup-v1/cpusets.txt' \
         -e 'https://www.markmonitor.com' \
+        -e 'https://www.misp-project.org/objects.html' \
+        -e 'https://www.mockapi.com/zones/' \
+        -e 'https://www.mockapi.com/zones//instanceGroups/mock_instance-grp' \
+        -e 'https://www.mockapi.com/zones//instanceGroups/test01' \
+        -e 'https://www.mockapi.com/zones//machineTypes/mock-machine' \
+        -e 'https://www.mockapi.com/zones/europe-west2-c' \
+        -e 'https://www.mockapi.com/zones/europe-west2-c/diskTypes/pd-standard' \
+        -e 'https://www.mockapi.com/zones/instances/mock-disk' \
         -e 'https://www.mozilla.org/en-US/security/advisories/mfsa2020-48' \
         -e 'https://www.mozilla.org/en-US/security/advisories/mfsa2021-07' \
         -e 'https://www.mozilla.org/en-US/security/advisories/mfsa2021-10' \
         -e 'https://www.mozilla.org/en-US/security/advisories/mfsa2021-13' \
-        -e 'https://www.mozilla.org/en-US/security/advisories/mfsa2021-13' \
         -e 'https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/images/297755main_GPN-2001-000009_full.jpg' \
         -e 'https://www.npmjs.com/package/netmask' \
+        -e 'https://www.nutanix.dev/reference/prism_element/v2/api/hosts/get-hosts-gethosts' \
+        -e 'https://www.nutanix.dev/reference/prism_element/v2/api/vms/get-vms-getvms/' \
         -e 'https://www.oracle.com/security-alerts/cpuoct2020.html' \
         -e 'https://www.paloaltonetworks.com/documentation/81/best-practices/best-practices-data-center/data-center-best-practice-security-policy/log-and-monitor-data-center-traffic/what-data-center-traffic-to-log-and-monitor' \
         -e 'https://www.paloaltonetworks.com/documentation/81/best-practices/best-practices-internet-gateway/best-practice-internet-gateway-security-policy/define-the-initial-internet-gateway-security-policy' \
@@ -2274,7 +2608,6 @@ jobs:
         -e 'https://www.redhat.com/en/about/red-hat-end-user-license-agreements' \
         -e 'https://www.seamonkey-project.org/releases/seamonkey2.53.7' \
         -e 'https://www.test.com' \
-        -e 'https://www.test.com' \
         -e 'https://www.themuse.com/profiles/cofense' \
         -e 'https://www.threatcrowd.org/domain.php?domain=example.com' \
         -e 'https://www.threatcrowd.org/email.php?email=example' \
@@ -2285,6 +2618,7 @@ jobs:
         -e 'https://www.threathq.com/apiv1/t3/malware/125002/html' \
         -e 'https://www.threathq.com/apiv1/t3/malware/158959/html' \
         -e 'https://www.threathq.com/apiv1/t3/malware/55110/html' \
+        -e 'https://www.threathq.com/p42/search/default?m=218956' \
         -e 'https://www.threathq.com/p42/search/default?m=55110' \
         -e 'https://www.videolan.org/security/sa1107.html' \
         -e 'https://www.videolan.org/security/sa1801.html' \
@@ -2319,8 +2653,10 @@ jobs:
         -e 'https://www.virustotal.com/api/v3/zip_files/5548746369433600' \
         -e 'https://www.virustotal.com/api/v3/zip_files/6268237216776192' \
         -e 'https://www.virustotal.com/gui/file/013cd8ffff502cba3b413a480d7f42f353b03388e764b8705de56d6ee7fefbba/details' \
+        -e 'https://www.virustotal.com/gui/file/0e59531d9ebf1d695cb41c1afd443c22bfaef56dafa636c2cf157deb19b679fe/details' \
         -e 'https://www.virustotal.com/gui/url/0f115db062b7c0dd030b16878c99dea5c354b49dc37b38eb8846179c7783e9d7/detection/u-0f115db062b7c0dd030b16878c99dea5c354b49dc37b38eb8846179c7783e9d7-1618315592' \
         -e 'https://www.vmware.com/security/advisories/VMSA-2021-0004.html' \
+        -e 'https://www.wireshark.org/docs/man-pages/wireshark-filter.html' \
         -e 'https://xmcyber.example.com' \
         -e 'https://xsoar-bd.atlassian.net/wiki' \
         -e 'https://xsoar-bd.atlassian.net/wiki/rest/api/content/16711835' \
@@ -2393,378 +2729,22 @@ jobs:
         -e 'https://xsoar-test-vault.vault.azure.net/secrets/test-cer-1/CERTIFICATE_VERSION' \
         -e 'https://xsoar-test-vault.vault.azure.net/secrets/test-sec-1/SECRET_VERSION' \
         -e 'https://xsoar-test-vault.vault.azure.net/secrets/test-sec-10/SECRET_VERSION' \
+        -e 'https://xsoar.pan.dev/docs/integrations/get-entries-filter' \
         -e 'https://xsoar.test.com' \
         -e 'https://xsoartest.staging.cirrotester.com/cloud_assets/61099dbe6b544e38fa3cc9b8' \
         -e 'https://xsoartest.staging.cirrotester.com/cloud_assets/61099dc26b544e38fa3ce06d' \
         -e 'https://xsoartest.staging.cirrotester.com/data_policies/6109a5d0e64152534b240f48' \
         -e 'https://yarnpkg.com/downloads' \
-        -e 'https://yygelbbkauxnbcqliovy-dot-level-elevator-279110.nw.r.appspot.com%23example' \
-        -e 'http://' \
-        -e 'http://172.27.102.6/' \
-        -e 'http://194.147.35.172/mikey.mpsl' \
-        -e 'http://aka.ms/LA-Usage' \
-        -e 'http://docs.oasis-open.org/cti/taxii/v2.0/cs01/taxii-v2.0-cs01.html' \
-        -e 'http://docs.python.org/2/library/re.html' \
-        -e 'http://example.com' \
-        -e 'http://example.com/compliance' \
-        -e 'http://example.com/path/sha256sum.txt' \
-        -e 'http://localhost:8088/iiq/scim/v2/Accounts/8a8080824df45873014df45bd97500ca' \
-        -e 'http://localhost:8088/iiq/scim/v2/Accounts/8a8080824df45873014df45c164601d8' \
-        -e 'http://localhost:8088/iiq/scim/v2/Accounts/8a8080824df45873014df45d012705ae' \
-        -e 'http://localhost:8088/iiq/scim/v2/Accounts/8a8080824df45873014df45da06308b0' \
-        -e 'http://localhost:8088/iiq/scim/v2/Applications/8a8080824df44d48014df4542d7402aa' \
-        -e 'http://localhost:8088/iiq/scim/v2/Applications/8a8080824df44d48014df45440d502cf' \
-        -e 'http://localhost:8088/iiq/scim/v2/Applications/8a8080824df44d48014df45444c002da' \
-        -e 'http://localhost:8088/iiq/scim/v2/Roles/8a8080824df45873014df45f8b1810e6' \
-        -e 'http://localhost:8088/iiq/scim/v2/Users/8a8080824df44d48014df44def7100dd' \
-        -e 'http://localhost:8088/iiq/scim/v2/Users/8a8080824df45873014df45bb503000d' \
-        -e 'http://localhost:8088/iiq/scim/v2/Users/8a8080824df45873014df45bbbb9002b' \
-        -e 'http://localhost:8088/iiq/scim/v2/Users/8a8080824df45873014df45bc8480065' \
-        -e 'http://localhost:8088/iiq/scim/v2/Users/8a8080824df45873014df45bcfab008d' \
-        -e 'http://nu4vs0m.u5jkzm4r.i2wd30t.bpbp9c7d.b7ni2cio.auz8x15h.freshoff.eu' \
-        -e 'http://partnerweb.vmware.com/programs/guestOS/guest-os-customization-matrix.pdf' \
-        -e 'http://pytz.sourceforge.net/' \
-        -e 'http://repo1.maven.org/maven2.' \
-        -e 'http://structuredsight.com/2014/10/26/im-out-of-range-youre-out-of-range/' \
-        -e 'http://test.com/' \
-        -e 'http://www.demisto.com.' \
-        -e 'http://www.google3.com.' \
-        -e 'http://www.infiltrated.net/' \
-        -e 'http://zero.webappsecurity.com:80' \
-        -e 'https://' \
-        -e 'https://.' \
-        -e 'https://192.168.0.1' \
-        -e 'https://192.168.0.1:4443' \
-        -e 'https://8.8.8.8' \
-        -e 'https://Linkshadow_IP/' \
-        -e 'https://acme-staging.api.letsencrypt.org/directory.' \
-        -e 'https://acme-v01.api.letsencrypt.org/directory' \
-        -e 'https://acme-v02.api.letsencrypt.org/directory' \
-        -e 'https://admin.zscalertwo.net' \
-        -e 'https://api-wootuno-1606049077.us-west-2.elb.amazonaws.com:443/wpad.dat' \
-        -e 'https://api.buypass.com/acme/directory' \
-        -e 'https://api.crowdstrike.com' \
-        -e 'https://api.docs.prismacloud.io/api/cloud/api-urls' \
-        -e 'https://api.docs.prismacloud.io/api/cloud/cspm/search/' \
-        -e 'https://api.github.com/graphql' \
-        -e 'https://api.slack.com/scim/v1/Users/U01KHS7J7U1' \
-        -e 'https://api.trustar.co' \
-        -e 'https://api.xforce.ibmcloud.com' \
-        -e 'https://apps.paloaltonetworks.com' \
-        -e 'https://article-example.com' \
-        -e 'https://atacenter.contoso.com' \
-        -e 'https://attack.mitre.org/tactics/TA0024/' \
-        -e 'https://attack.mitre.org/techniques/T1346/' \
-        -e 'https://azure.microsoft.com/en-us/pricing/details/app-service/linux/' \
-        -e 'https://bonus.ly/api/v1/' \
-        -e 'https://boto3.amazonaws.com/v1/documentation/api/latest/guide/retries.html' \
-        -e 'https://cdc-file-storage-production-us-east-1.s3.amazonaws.com/4a/71/4d/98/ce/40/f5/f3/57/7c/30/6a/66/cb/4a/6b/1f/f3/fd/01/04/7c/7f/45/81/f8/55/8f/0b/cd/f5/fa/4a714d98ce40f5f3577c306a66cb4a6b1ff3fd01047c7f4581f8558f0bcdf5fa.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256' \
-        -e 'https://chocolatey.org/docs/chocolatey-configuration' \
-        -e 'https://cloud.entrust.net/EntrustCloud/documentation/cms-api-2.1.0.yaml.' \
-        -e 'https://cloud.google.com/compute/docs/reference/latest/instanceGroupManagers' \
-        -e 'https://cloud.google.com/compute/docs/regions-zones' \
-        -e 'https://cloud.vmray.com/user/sample/view?id=3902238' \
-        -e 'https://cloud.vmray.com/user/sample/view?id=3902285' \
-        -e 'https://cloud.vmray.com/user/sample/view?id=5948' \
-        -e 'https://code.vmware.com/apis/358/doc/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html' \
-        -e 'https://community.buypass.com/t/63d4ay/buypass-go-ssl-endpoints' \
-        -e 'https://company.service-now.com/' \
-        -e 'https://company.works.com/' \
-        -e 'https://coralogix-esapi.coralogix.com:9443' \
-        -e 'https://cortexXSOARMainAccount:8443/acc_MyTenant' \
-        -e 'https://cryptography.io/' \
-        -e 'https://customerportal.darktrace.com/product-guides/main/api-deviceinfo-request.' \
-        -e 'https://dateparser.readthedocs.io/en/latest/' \
-        -e 'https://demisto.blueliv.com/api/v2' \
-        -e 'https://demisto.com' \
-        -e 'https://demisto.com.' \
-        -e 'https://demistodev.atlassian.net/rest/api/2/attachment/13456' \
-        -e 'https://demistodev.atlassian.net/rest/api/2/issue/15572/comment/13779' \
-        -e 'https://demistodev.atlassian.net/rest/api/latest/issue/10986' \
-        -e 'https://demistodev.atlassian.net/rest/api/latest/issue/12658' \
-        -e 'https://demistodev.atlassian.net/rest/api/latest/issue/15572' \
-        -e 'https://demistodev.atlassian.net/rest/api/latest/issue/15576' \
-        -e 'https://demistodev.atlassian.net/rest/api/latest/issue/DEM-5415/remotelink/13722' \
-        -e 'https://developer.atlassian.com/cloud/confluence/rest/api-group-content/' \
-        -e 'https://developer.atlassian.com/cloud/confluence/rest/api-group-space/' \
-        -e 'https://developer.carbonblack.com/resources/query_overview.pdf.' \
-        -e 'https://developer.okta.com/docs/api/getting_started/design_principles' \
-        -e 'https://developers.facebook.com/docs/threat-exchange/reference/apis/indicator-type/v2.9.' \
-        -e 'https://developers.google.com/admin-sdk/directory/v1/guides/search-users' \
-        -e 'https://developers.google.com/gdata/docs/2.0/basics' \
-        -e 'https://developers.virustotal.com/v3.0/reference' \
-        -e 'https://docs.ansible.com/ansible/faq.html' \
-        -e 'https://docs.aws.amazon.com/console/securityhub/standards-cis-1.8/remediation' \
-        -e 'https://docs.axonius.com/docs/saved-queries-devices' \
-        -e 'https://docs.axonius.com/docs/saved-queries-users' \
-        -e 'https://docs.docker.com/swarm/swarm-api/' \
-        -e 'https://docs.github.com/en/github/searching-for-information-on-github/searching-code' \
-        -e 'https://docs.google.com/DOCUMENT_ID/edit?disco=THREAD_ID' \
-        -e 'https://docs.microfocus.com/SM/9.41/Codeless/Content/Resources/PDF_PD/HP_Service_Manager_Web_Services_codeless.pdf.' \
-        -e 'https://docs.microsoft.com/bs-latn-ba/azure/search/search-query-odata-filter.' \
-        -e 'https://docs.microsoft.com/en-us/Exchange/policy-and-compliance/ediscovery/assign-permissions?view=exchserver-2019' \
-        -e 'https://docs.microsoft.com/en-us/azure/app-service/app-service-web-overview' \
-        -e 'https://docs.microsoft.com/en-us/azure/kusto/query/functions/user-defined-functions' \
-        -e 'https://docs.microsoft.com/en-us/azure/kusto/query/functions/user-defined-functions.' \
-        -e 'https://docs.microsoft.com/en-us/azure/traffic-manager/quickstart-create-traffic-manager-profile' \
-        -e 'https://docs.microsoft.com/en-us/azure/virtual-machines/extensions/overview' \
-        -e 'https://docs.microsoft.com/en-us/azure/virtual-machines/linux/cloudinit-prepare-custom-image' \
-        -e 'https://docs.microsoft.com/en-us/azure/virtual-machines/linux/using-cloud-init' \
-        -e 'https://docs.microsoft.com/en-us/azure/virtual-machines/windows/disks-types' \
-        -e 'https://docs.microsoft.com/en-us/cloud-app-security/api-activities' \
-        -e 'https://docs.microsoft.com/en-us/cloud-app-security/api-alerts' \
-        -e 'https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.fileversioninfo?redirectedfrom=MSDN' \
-        -e 'https://docs.microsoft.com/en-us/exchange/client-developer/exchange-web-services/delegate-access-and-ews-in-exchange' \
-        -e 'https://docs.microsoft.com/en-us/exchange/client-developer/exchange-web-services/how-to-configure-impersonation' \
-        -e 'https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-beta.' \
-        -e 'https://docs.microsoft.com/en-us/graph/query-parameters.' \
-        -e 'https://docs.microsoft.com/en-us/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance?view=o365-worldwide' \
-        -e 'https://docs.microsoft.com/en-us/office/office-365-management-api/office-365-management-activity-api-schema' \
-        -e 'https://docs.microsoft.com/en-us/office365/securitycompliance/permissions-in-the-security-and-compliance-center' \
-        -e 'https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/jj129382' \
-        -e 'https://docs.microsoft.com/en-us/rest/api/appservice/webapps/createorupdate' \
-        -e 'https://docs.microsoft.com/en-us/rest/api/azure/devops/memberentitlementmanagement/user-entitlements/add?view=azure-devops-rest-6.1' \
-        -e 'https://docs.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata' \
-        -e 'https://docs.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-shares--directories--files--and-metadata.' \
-        -e 'https://docs.microsoft.com/en-us/rest/api/storageservices/naming-queues-and-metadata.' \
-        -e 'https://docs.microsoft.com/en-us/rest/api/storageservices/querying-tables-and-entities' \
-        -e 'https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-the-table-service-data-model.' \
-        -e 'https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions?view=sql-server-ver15.' \
-        -e 'https://docs.microsoft.com/en-us/windows/desktop/api/wincred/ns-wincred-_credentiala' \
-        -e 'https://docs.microsoft.com/en-us/windows/win32/adsi/search-filter-syntax' \
-        -e 'https://docs.oasis-open.org/cti/taxii/v2.1/os/taxii-v2.1-os.html' \
-        -e 'https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-rql-reference/rql-reference/rql-examples.' \
-        -e 'https://docs.python.org/2/library/tempfile.html' \
-        -e 'https://docs.rapid7.com/insightidr/build-a-query/' \
-        -e 'https://docs.rundeck.com/docs/api/rundeck-api.html' \
-        -e 'https://docs.securitytrails.com/docs/how-to-use-the-dsl' \
-        -e 'https://docs.securitytrails.com/reference' \
-        -e 'https://docs.sendgrid.com/for-developers/sending-email/getting-started-email-activity-api' \
-        -e 'https://docs.servicenow.com/bundle/istanbul-servicenow-platform/page/use/common-ui-elements/reference/r_OpAvailableFiltersQueries.html' \
-        -e 'https://docs.servicenow.com/bundle/paris-servicenow-platform/page/use/common-ui-elements/reference/r_OpAvailableFiltersQueries.html' \
-        -e 'https://docs.splunk.com/Documentation/CIM/4.18.0/User/Overview' \
-        -e 'https://docs.splunk.com/Documentation/Splunk/8.0.3/RESTREF/RESTkvstore' \
-        -e 'https://docs.splunk.com/Documentation/SplunkCloud/8.1.2101/Security/CreateAuthTokens' \
-        -e 'https://docs.trendmicro.com/en-us/enterprise/cloud-app-security-integration-api-online-help/supported-cloud-app-_001/threat-mitigation-ap/take-actions-on-user/assigning-the-user-a.aspx.' \
-        -e 'https://docs.vmware.com/en/VMware-vSphere/6.0/com.vmware.vsphere.security.doc/GUID-ED56F3C4-77D0-49E3-88B6-B99B8B437B62.html' \
-        -e 'https://domain.salesforce.com/' \
-        -e 'https://domain.service-now.com' \
-        -e 'https://domain.zimperium.com' \
-        -e 'https://dropmefiles.com/TgvuH' \
-        -e 'https://emailrep.io' \
-        -e 'https://endaceprobe-1/vision2/data/files/b20e43e6-2cf7-1af2-3665-01016cb2daba/stream?format=pcap' \
-        -e 'https://endaceprobe-1/vision2/pivotintovision/?datasources=tag:rotation-file' \
-        -e 'https://example.com' \
-        -e 'https://example.iot.paloaltonetworks.com' \
-        -e 'https://example.net' \
-        -e 'https://example.net/taxii' \
-        -e 'https://example.net:1234' \
-        -e 'https://exchange.xforce.ibmcloud.com/api/doc/?' \
-        -e 'https://falcon.crowdstrike.com/login/?next=%2Fsupport%2Fdocumentation%2F45%2Ffalcon-query-language-fql%3F' \
-        -e 'https://falcon.crowdstrike.com/support/documentation/2/query-api-reference' \
-        -e 'https://falcon.crowdstrike.com/support/documentation/45/falcon-query-language-fql' \
-        -e 'https://fqdn:port' \
-        -e 'https://freebirddemo.dev.ccs.thatcompany.net' \
-        -e 'https://github.com/carbonblack/cbapi/blob/master/client_apis/docs/query_overview.pdf.' \
-        -e 'https://github.com/demisto/content/raw/3322c5933388f2ea9c52dc9fe31a5feb52bc1050/Packs/IBMResilientSystems/doc_files/support_field_types.png' \
-        -e 'https://github.com/example-user1/content/pull/14' \
-        -e 'https://github.com/example-user1/content/pull/15' \
-        -e 'https://github.com/example-user1/content/pull/16' \
-        -e 'https://github.com/example-user1/content/pull/18' \
-        -e 'https://github.com/letsencrypt/Pebble' \
-        -e 'https://github.com/username.keys' \
-        -e 'https://github.com/vmware/pyvmomi/blob/master/docs/vim/vApp/PropertyInfo.rst' \
-        -e 'https://gitlab.com/api/v4' \
-        -e 'https://go.microsoft.com/fwlink/?linkid=37020' \
-        -e 'https://golang.org/doc/install/source' \
-        -e 'https://google.com' \
-        -e 'https://help.github.com/en/articles/about-pull-requests' \
-        -e 'https://help.github.com/en/articles/searching-issues-and-pull-requests.' \
-        -e 'https://help.rapid7.com/insightvm/en-us/api/index.html' \
-        -e 'https://help.symantec.com/api-doc/atp_2.2/EN_US/' \
-        -e 'https://huntbox.group-ib.com' \
-        -e 'https://kb.vmware.com/s/article/2145518' \
-        -e 'https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/' \
-        -e 'https://kubernetes.io/docs/concepts/services-networking/service/' \
-        -e 'https://kubernetes.io/docs/tasks/run-application/update-api-object-kubectl-patch/' \
-        -e 'https://letsencrypt.org/docs/staging-environment/' \
-        -e 'https://lgtm.com/admin/help/adding-repository-providers' \
-        -e 'https://lgtm.com/admin/help/defining-worker-labels' \
-        -e 'https://lgtm.com/api/v1.0' \
-        -e 'https://lgtm.com/help/lgtm/analysis-faqs' \
-        -e 'https://lgtm.com/help/lgtm/api/api-v1' \
-        -e 'https://lgtm.com/help/lgtm/file-classification' \
-        -e 'https://localhost:8088.' \
-        -e 'https://mail.google.com' \
-        -e 'https://msdn.microsoft.com/en-us/library/dd374073.aspx' \
-        -e 'https://msdn.microsoft.com/en-us/library/ee693615.aspx' \
-        -e 'https://msdn.microsoft.com/en-us/library/hs600312%28v=vs.110%29.aspx' \
-        -e 'https://msdn.microsoft.com/en-us/library/ms912391.aspx' \
-        -e 'https://msdn.microsoft.com/en-us/library/system.globalization.cultureinfo.aspx' \
-        -e 'https://msdn.microsoft.com/en-us/library/system.security.accesscontrol.filesystemrights.aspx' \
-        -e 'https://msdn.microsoft.com/en-us/library/system.security.accesscontrol.inheritanceflags.aspx' \
-        -e 'https://msdn.microsoft.com/en-us/library/system.security.accesscontrol.propagationflags.aspx' \
-        -e 'https://msdn.microsoft.com/en-us/library/system.security.accesscontrol.registryrights.aspx' \
-        -e 'https://msdn.microsoft.com/en-us/library/system.security.cryptography.x509certificates.x509keystorageflags.aspx' \
-        -e 'https://msdn.microsoft.com/en-us/library/system.text.encoding%28v=vs.110%29.aspx' \
-        -e 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa379572.aspx' \
-        -e 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa380128' \
-        -e 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa380129.aspx' \
-        -e 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa383512.aspx' \
-        -e 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa383868.aspx' \
-        -e 'https://notification.ba.com/LinkTracking?id=17174577' \
-        -e 'https://op1static.oktacdn.com/fs/bcg/4/gfskliw1i51ScX6pf0h7' \
-        -e 'https://op1static.oktacdn.com/fs/bcg/4/gfsnda403rf16Qe790h7' \
-        -e 'https://org.api.identitynow.com' \
-        -e 'https://outlook.office365.com/owa/?ItemID=' \
-        -e 'https://panw-test.oktapreview.com/api/v1/meta/schemas/user/osc8zfz6plq7b0r830h7' \
-        -e 'https://panw-test.oktapreview.com/api/v1/meta/types/user/oty8zfz6plq7b0r830h7' \
-        -e 'https://panw-test.oktapreview.com/api/v1/users/00uujxnbh3uJw4tWA0h7' \
-        -e 'https://panw-test.oktapreview.com/api/v1/users/00uujxnbh3uJw4tWA0h7/lifecycle/deactivate' \
-        -e 'https://panw-test.oktapreview.com/api/v1/users/00uujxnbh3uJw4tWA0h7/lifecycle/reactivate' \
-        -e 'https://panw-test.oktapreview.com/api/v1/users/00uujxnbh3uJw4tWA0h7/lifecycle/reset_password' \
-        -e 'https://panw-test.oktapreview.com/api/v1/users/00uujxnbh3uJw4tWA0h7/lifecycle/suspend' \
-        -e 'https://panwtest.enterprise.slack.com/team/powershelly10' \
-        -e 'https://partner.analystplatform.com/indicators/1527155' \
-        -e 'https://partner.analystplatform.com/indicators/1637756' \
-        -e 'https://partner.analystplatform.com/indicators/2043650' \
-        -e 'https://partner.analystplatform.com/indicators/2623838' \
-        -e 'https://partner.analystplatform.com/indicators/2699554' \
-        -e 'https://partner.analystplatform.com/indicators/2885382' \
-        -e 'https://partner.analystplatform.com/indicators/51469' \
-        -e 'https://partner.analystplatform.com/indicators/90548' \
-        -e 'https://partner.analystplatform.com/indicators/95267' \
-        -e 'https://partner.cloud.analyst1.com/indicators/1527155' \
-        -e 'https://partner.cloud.analyst1.com/indicators/1637756' \
-        -e 'https://partner.cloud.analyst1.com/indicators/2043650' \
-        -e 'https://partner.cloud.analyst1.com/indicators/2623838' \
-        -e 'https://partner.cloud.analyst1.com/indicators/2699554' \
-        -e 'https://partner.cloud.analyst1.com/indicators/2885382' \
-        -e 'https://partner.cloud.analyst1.com/indicators/51469' \
-        -e 'https://partner.cloud.analyst1.com/indicators/90548' \
-        -e 'https://partner.cloud.analyst1.com/indicators/95267' \
-        -e 'https://profilephoto/' \
-        -e 'https://pypi.org/project/pyOpenSSL/' \
-        -e 'https://qualysguard.qg2.apps.qualys.com/fim/help/search/language.htm.' \
-        -e 'https://r-' \
-        -e 'https://r-gk8.online/main/main.php' \
-        -e 'https://raw.githubusercontent.com/demisto/hello-world/master/index/README.md' \
-        -e 'https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key' \
-        -e 'https://secure.gravatar.com/avatar/e14bda84be03871922c78d0d03caa901.jpg?s=192' \
-        -e 'https://securityadvisories.paloaltonetworks.com/Home/Detail/91' \
-        -e 'https://sepio' \
-        -e 'https://serverurl:9000' \
-        -e 'https://soar.monstersofhack.com' \
-        -e 'https://somejira.atlassian.net/rest/api/latest/issue/10044' \
-        -e 'https://station.trustar.co' \
-        -e 'https://support.google.com/mail/answer/10957?hl=en' \
-        -e 'https://support.google.com/mail/answer/7190?hl=en' \
-        -e 'https://synapse.vertex.link' \
-        -e 'https://technet.microsoft.com/en-us/library/dd349804.aspx' \
-        -e 'https://test.confluera.com' \
-        -e 'https://tools.ietf.org/html/rfc2986' \
-        -e 'https://tools.ietf.org/html/rfc3986' \
-        -e 'https://tools.ietf.org/html/rfc4648' \
-        -e 'https://tools.ietf.org/html/rfc5280' \
-        -e 'https://tools.ietf.org/html/rfc7633' \
-        -e 'https://tools.ietf.org/html/rfc8555' \
-        -e 'https://url.com' \
-        -e 'https://us-cert.cisa.gov/tlp' \
-        -e 'https://us-cert.cisa.gov/tlp.' \
-        -e 'https://us.devo.com/alerts/alertsGlobe.json' \
-        -e 'https://us.devo.com/alerts/view.json' \
-        -e 'https://us.devo.com/domain/notification.json' \
-        -e 'https://us.devo.com/generic/storedSearchAction.streamjson' \
-        -e 'https://us.devo.com/lxcWidgets/lxcWidget.json' \
-        -e 'https://us.devo.com/welcome' \
-        -e 'https://v2.developer.pagerduty.com/v2/page/api-reference' \
-        -e 'https://ven03941.service-now.com/api/now/table/sys_user_group/global' \
-        -e 'https://viz.greynoise.io/ip/45.83.65.120' \
-        -e 'https://viz.greynoise.io/ip/45.83.66.18' \
-        -e 'https://viz.greynoise.io/ip/71.6.135.131' \
-        -e 'https://viz.greynoise.io/riot/8.8.8.8' \
-        -e 'https://vulners.com/api/v3/archive/collection/?type=debian' \
-        -e 'https://vxsuz5.manage.trendmicro.com' \
-        -e 'https://webapi.coralogix.com' \
-        -e 'https://www.circl.lu/doc/misp/categories-and-types/' \
-        -e 'https://www.demisto.com' \
-        -e 'https://www.demisto.com.' \
-        -e 'https://www.eicar.org/download/eicar_com.zip' \
-        -e 'https://www.entrustdatacard.com/products/categories/ssl-certificates' \
-        -e 'https://www.gnu.org/software/wget/manual/html_node/Proxies.html' \
-        -e 'https://www.googleapis.com/auth/admin.directory.rolemanagement' \
-        -e 'https://www.googleapis.com/auth/admin.directory.rolemanagement.readonly' \
-        -e 'https://www.googleapis.com/auth/admin.directory.user' \
-        -e 'https://www.googleapis.com/auth/admin.directory.user.readonly' \
-        -e 'https://www.googleapis.com/auth/admin.directory.user.security' \
-        -e 'https://www.googleapis.com/auth/gmail.compose' \
-        -e 'https://www.googleapis.com/auth/gmail.modify' \
-        -e 'https://www.googleapis.com/auth/gmail.readonly' \
-        -e 'https://www.googleapis.com/auth/gmail.send' \
-        -e 'https://www.googleapis.com/auth/gmail.settings.basic' \
-        -e 'https://www.googleapis.com/auth/gmail.settings.sharing' \
-        -e 'https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard' \
-        -e 'https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk' \
-        -e 'https://www.greynoise.io/viz/ip/66.249.68.82' \
-        -e 'https://www.greynoise.io/viz/riot/66.249.68.82' \
-        -e 'https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml' \
-        -e 'https://www.ibm.com/docs/en/qradar-common?topic=endpoints-get-siemlocal-destination-addresses' \
-        -e 'https://www.ibm.com/docs/en/qradar-common?topic=endpoints-get-siemlocal-destination-addresses.' \
-        -e 'https://www.ibm.com/docs/en/qradar-common?topic=endpoints-get-siemsource-addresses' \
-        -e 'https://www.ibm.com/docs/en/qsip/7.3.2?topic=qradar-ariel-query-language-aql' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi.doc/c_rest_api_filtering.html.' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--analytics-rule_groups-GET.html.' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--ariel-saved_searches-GET.html.' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--asset_model-assets-GET.html.' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--config-domain_management-domains-GET.html.' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--config-event_sources-custom_properties-regex_properties-GET.html.' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--config-event_sources-log_source_management-log_sources-GET.html.' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--reference_data-maps-bulk_load-name-POST.html.' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--reference_data-sets-GET.html.' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--reference_data-sets-POST.html.' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--reference_data-sets-name-POST.html.' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--services-geolocations-GET.html.' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--siem-offense_closing_reasons-GET.html.' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--siem-offenses-GET.html.' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--siem-offenses-offense_id-POST.html.' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--siem-offenses-offense_id-notes-GET.html.' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi140.doc/14.0--siem-offenses-offense_id-notes-POST.html.' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SS42VS_SHR/com.ibm.qradarapi150.doc/15.0--analytics-rules-GET.html.' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SSKMKU/com.ibm.qradar.doc_cloud/9.1--asset_model-assets-GET.html' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SSKMKU/com.ibm.qradar.doc_cloud/9.1--siem-offense_closing_reasons-GET.html' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SSKMKU/com.ibm.qradar.doc_cloud/9.1--siem-offenses-GET.html' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SSKMKU/com.ibm.qradar.doc_cloud/9.1--siem-offenses-offense_id-GET.html' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SSKMKU/com.ibm.qradar.doc_cloud/9.1--siem-offenses-offense_id-POST.html' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SSKMKU/com.ibm.qradar.doc_cloud/9.1--siem-offenses-offense_id-notes-POST.html' \
-        -e 'https://www.ibm.com/support/knowledgecenter/SSKMKU/com.ibm.qradar.doc_cloud/9.1--siem-offenses-offense_id-notes-note_id-GET.html' \
-        -e 'https://www.ibm.com/support/knowledgecenter/en/SS42VS_7.3.1/com.ibm.qradar.doc/c_rest_api_filtering.html' \
-        -e 'https://www.ietf.org/rfc/rfc3339.txt' \
-        -e 'https://www.iis.net/configreference/system.applicationhost/applicationpools/add' \
-        -e 'https://www.kernel.org/doc/Documentation/cgroup-v1/cpusets.txt' \
-        -e 'https://www.misp-project.org/objects.html' \
-        -e 'https://www.mockapi.com/zones/' \
-        -e 'https://www.mockapi.com/zones//instanceGroups/mock_instance-grp' \
-        -e 'https://www.mockapi.com/zones//instanceGroups/test01' \
-        -e 'https://www.mockapi.com/zones//machineTypes/mock-machine' \
-        -e 'https://www.mockapi.com/zones/europe-west2-c' \
-        -e 'https://www.mockapi.com/zones/europe-west2-c/diskTypes/pd-standard' \
-        -e 'https://www.mockapi.com/zones/instances/mock-disk' \
-        -e 'https://www.nutanix.dev/reference/prism_element/v2/api/hosts/get-hosts-gethosts' \
-        -e 'https://www.nutanix.dev/reference/prism_element/v2/api/vms/get-vms-getvms/' \
-        -e 'https://www.test.com' \
-        -e 'https://www.threathq.com/p42/search/default?m=218956' \
-        -e 'https://www.virustotal.com/gui/file/0e59531d9ebf1d695cb41c1afd443c22bfaef56dafa636c2cf157deb19b679fe/details' \
-        -e 'https://www.wireshark.org/docs/man-pages/wireshark-filter.html' \
-        -e 'https://xsoar.pan.dev/docs/integrations/get-entries-filter' \
         -e 'https://yourdomain.okta.com' \
         -e 'https://yourdomain.okta.com/api/v1/users/00uclpjidYi0h7' \
         -e 'https://yourdomain.okta.com/api/v1/users/00ufufhqits3y78Ju0h7' \
         -e 'https://yourdomain.okta.com/api/v1/users/00uppjeleqJQ2kkN80h7' \
         -e 'https://yourdomain.okta.com/api/v1/users/00uqk1qesl3k0SRbH0h7' \
         -e 'https://yourorg.safebreach.com' \
-        https://xsoar-pan-dev--pull-request-953-4rymfyr5.web.app > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
-        grep -v -E '^\s+(401|403|405|429|x509|lookup|parse|timeout|dial)' muffet.txt > muffet-clean.out
-        echo "Muffet output after 401, 403, 405, 429 and x509 remove:"
+        -e 'https://yygelbbkauxnbcqliovy-dot-level-elevator-279110.nw.r.appspot.com%23example' \
+        https://xsoar.pan.dev > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
+        grep -v -E '^\s+(403|401|405|x509|lookup|parse|timeout|dial)' muffet.txt > muffet-clean.out
+        echo "Muffet output after 401, 403, 405 and x509 remove:"
         cat muffet-clean.out
         if [ -n "$(grep -v '^https'  muffet-clean.out)" ]; then
           echo "muffet failed verification!!!"
