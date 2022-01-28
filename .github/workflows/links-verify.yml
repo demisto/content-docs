@@ -110,6 +110,23 @@ jobs:
         -e 'https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json' \
         -e 'http://www.xyz.com \
         -e 'https://live.edgescan.com/api.wsdl \
+        -e 'https://live.edgescan.com/api.wsdl' \
+        -e 'https://api.twitter.com/1.1/search/tweets.json' \
+        -e 'www.xyz.com' \
+        -e 'https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc%22' \
+        -e 'https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz%22' \
+        -e 'https://unofficial-builds.nodejs.org/download/release/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH-musl.tar.xz%22' \
+        -e 'https://www.elastic.co/guide/en/elasticsearch/reference/index.html%22' \
+        -e 'https://www.elastic.co/products/elasticsearch%22' \
+        -e 'https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz%22' \
+        -e 'https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz.asc%22' \
+        -e 'https://docs.google.com/DOCUMENT_ID/edit?disco=THREAD_ID%22' \
+        -e 'https://390115-12353212-gh.circle-artifacts.com/0/artifacts/debug_log.log' \
+        -e 'https://390115-12353212-gh.circle-artifacts.com/0/artifacts/env.json' \
+        -e 'https://github.com/username.keys' \
+        -e 'https://securelist.com/the-darkhotel-apt/66779'' \
+        -e 'https://etp.us.fireeye.com' \
+
         https://xsoar-pan-dev--pull-request-953-4rymfyr5.web.app > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
         grep -v -E '^\s+(401|403|405|429|x509|lookup|parse|timeout|dial)' muffet.txt > muffet-clean.out
         echo "Muffet output after 401, 403, 405, 429 and x509 remove:"
