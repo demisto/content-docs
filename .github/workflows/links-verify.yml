@@ -2742,7 +2742,7 @@ jobs:
         -e 'https://yourdomain.okta.com/api/v1/users/00uqk1qesl3k0SRbH0h7' \
         -e 'https://yourorg.safebreach.com' \
         -e 'https://yygelbbkauxnbcqliovy-dot-level-elevator-279110.nw.r.appspot.com%23example' \
-        https://xsoar.pan.dev > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
+        https://xsoar-pan-dev--pull-request-953-4rymfyr5.web.app > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
         grep -v -E '^\s+(403|401|405|x509|lookup|parse|timeout|dial)' muffet.txt > muffet-clean.out
         echo "Muffet output after 401, 403, 405 and x509 remove:"
         cat muffet-clean.out
