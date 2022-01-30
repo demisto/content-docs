@@ -13,7 +13,7 @@ This guide walks you through the process of creating an integration for Cortex X
 You have the option to develop integrations using the Cortex XSOAR IDE or a standalone IDE such as Visual Studio (if you use Visual Studio, refer to the [Cortex XSOAR extension for Visual Studio Code](../concepts/vscode-extension)). For this tutorial, we use the Cortex XSOAR IDE, which includes access to Script Helper (a library of many common server functions within Cortex XSOAR), as well as a graphical user interface for editing integration settings, commands, and arguments.  
 
 ## CommonServerPython &  CommonServerUserPython
-The [CommonServerPython (CSP)](../reference/api/common-server-python) and [CommonServerUserPython (CSUP)](../reference/scripts/common-server-user-python) scripts are implicitly imported at the beginning of every Python script in Cortex XSOAR. CSP is imported first, enabling you to create your own common methods in CSUP to use across scripts and integrations. Note that CSP and CSUP can’t be attached to integrations you create, so any changes you implement are not available for other users. 
+The [CommonServerPython (CSP)](../reference/api/common-server-python) and [CommonServerUserPython (CSUP)](https://xsoar.pan.dev/docs/reference/scripts/common-server-user-python) scripts are implicitly imported at the beginning of every Python script in Cortex XSOAR. CSP is imported first, enabling you to create your own common methods in CSUP to use across scripts and integrations. Note that CSP and CSUP can’t be attached to integrations you create, so any changes you implement are not available for other users. 
 
 
 ## Script Helper
