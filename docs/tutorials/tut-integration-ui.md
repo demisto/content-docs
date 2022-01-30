@@ -180,9 +180,11 @@ requests.packages.urllib3.disable_warnings() # pylint: disable=no-member
 class Client(BaseClient):
     def __init__(self, api_key: str, base_url: str, proxy: bool, verify: bool):
        super().__init__(base_url=base_url, proxy=proxy, verify=verify)
+       
        self.api_key = api_key
-        if self.api_key:
-	self._headers = {'X-Funtranslations-Api-Secret': self.api_key}
+       
+	if self.api_key:
+	    self._headers = {'X-Funtranslations-Api-Secret': self.api_key}
  
      def translate(self, text: str):
 	 return self._http_request(method='POST', url_suffix='yoda', data={'text': text}, resp_type='json',  ok_codes=(200,))
