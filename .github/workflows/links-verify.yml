@@ -22,6 +22,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         fetch-depth: 0
         ref: 'master'
+      run: |
+        - du -sh *
     - name: Setup muffet
       run: 'go get -u github.com/raviqqe/muffet'
     - name: Verify Links
