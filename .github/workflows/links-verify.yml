@@ -34,7 +34,7 @@ jobs:
       run: |
         ls
         cd content
-        find Packs/* -name 'README.md' | xargs sed -n '/^## Commands/,/^## /p' | grep -Eoi '(http|https)://[a-zA-Z0-9./?=_%:-]*' | sort -u > out.txt
+        find Packs/* -name 'README.md' | xargs sed -n '/^## Commands/,/^## /p' | grep -EIoi '(http|https)://[a-zA-Z0-9./?=_%:-]*' | sort -u > out.txt
         sed -i -e 's/^/-e "/' out.txt
         sed -i -e 's/$/"/' out.txt
         cat ../content-docs/urls_ignore.txt >> out.txt
