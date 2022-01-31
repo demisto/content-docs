@@ -19,7 +19,7 @@ jobs:
       with:
         repository: demisto/content
         path: content
-        token: ${{ secrets.CONTENT_BOT_ACCESS_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         fetch-depth: 0
         ref: 'master'
     - name: Setup muffet
