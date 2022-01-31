@@ -35,8 +35,10 @@ jobs:
         ls
         cd content
         find Packs/* -name 'README.md' | xargs sed -n '/^## Commands/,/^## /p' | grep -Eoi '(http|https)://[a-zA-Z0-9./?=_%:-]*' | sort -u > out.txt
-        sed -i -e 's/^/-e /' out.txt
+        sed -i -e 's/^/-e "/' out.txt
+        sed -i -e 's/$/"/' out.txt
         cat ../content-docs/urls_ignore.txt >> out.txt
+        sort -u out.txt
         cat out.txt
 #    - name: Setup muffet
 #      run: 'go get -u github.com/raviqqe/muffet'
