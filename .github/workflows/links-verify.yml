@@ -25,7 +25,9 @@ jobs:
     - name: Run du sh
       run: |
         cd content
-        find Packs/* -name 'README.md' | xargs sed -n '/^## Commands/,/^## /p' | grep -Eoi '(http|https)://[a-zA-Z0-9./?=_%:-]*' | sort -u | >> out.txt
+        find Packs/* -name 'README.md' | xargs sed -n '/^## Commands/,/^## /p' | grep -Eoi '(http|https)://[a-zA-Z0-9./?=_%:-]*' | sort -u > out.txt
+        cat out.txt
+        sed -i -e 's/^/-e /' out.txt
         cat out.txt
 #    - name: Setup muffet
 #      run: 'go get -u github.com/raviqqe/muffet'
