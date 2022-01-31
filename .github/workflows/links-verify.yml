@@ -9,11 +9,11 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
-    - name: Set up Go 1.13
-      uses: actions/setup-go@v2
-      with:
-        go-version: 1.13.11
-      id: go
+#    - name: Set up Go 1.13
+#      uses: actions/setup-go@v2
+#      with:
+#        go-version: 1.13.11
+#      id: go
     - name: content checkout
       uses: actions/checkout@v2.4.0  # https://github.com/marketplace/actions/checkout
       with:
@@ -25,7 +25,8 @@ jobs:
     - name: Run du sh
       run: |
         cd content
-        find Packs/* -name 'README.md' | xargs sed -n '/^## Commands/,/^## /p' | grep -Eoi '(http|https)://[a-zA-Z0-9./?=_%:-]*' | sort -u
+        find Packs/* -name 'README.md' | xargs sed -n '/^## Commands/,/^## /p' | grep -Eoi '(http|https)://[a-zA-Z0-9./?=_%:-]*' | sort -u | >> out.txt
+        cat out.txt
 #    - name: Setup muffet
 #      run: 'go get -u github.com/raviqqe/muffet'
 #    - name: Verify Links
