@@ -19,15 +19,15 @@ jobs:
     - name: Verify Links
       run: |
         muffet --version
-#        muffet `< out.txt` -c 16 --ignore-fragments -b 8192 \
-#        https://xsoar.pan.dev > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
-#        grep -v -E '^\s+(401|403|405|429|x509|lookup|parse|timeout|dial)' muffet.txt > muffet-clean.out
-#        echo "Muffet output after 401, 403, 405, 429 and x509 remove:"
-#        cat muffet-clean.out
-#        if [ -n "$(grep -v '^https'  muffet-clean.out)" ]; then
-#          echo "muffet failed verification!!!"
-#          exit 1
-#        fi
+        muffet `< out.txt` -c 16 --ignore-fragments -b 8192 \
+        https://xsoar.pan.dev > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
+        grep -v -E '^\s+(401|403|405|429|x509|lookup|parse|timeout|dial)' muffet.txt > muffet-clean.out
+        echo "Muffet output after 401, 403, 405, 429 and x509 remove:"
+        cat muffet-clean.out
+        if [ -n "$(grep -v '^https'  muffet-clean.out)" ]; then
+          echo "muffet failed verification!!!"
+          exit 1
+        fi
         echo "All good! muffet passed!!!"
     - name: Save artifcats
       if: ${{ always() }}
