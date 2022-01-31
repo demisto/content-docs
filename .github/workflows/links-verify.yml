@@ -24,9 +24,10 @@ jobs:
         ref: 'master'
     - name: Run du sh
       run: |
-        echo "Hello World"
-    - name: Setup muffet
-      run: 'go get -u github.com/raviqqe/muffet'
+        cd content
+        echo du sh *
+#    - name: Setup muffet
+#      run: 'go get -u github.com/raviqqe/muffet'
 #    - name: Verify Links
 #      run: |
 #        muffet --version
@@ -106,9 +107,9 @@ jobs:
 #          exit 1
 #        fi
 #        echo "All good! muffet passed!!!"
-    - name: Save artifcats
-      if: ${{ always() }}
-      uses: actions/upload-artifact@v2
-      with:
-        name: log-artifacts
-        path: muffet.txt
+#    - name: Save artifcats
+#      if: ${{ always() }}
+#      uses: actions/upload-artifact@v2
+#      with:
+#        name: log-artifacts
+#        path: muffet.txt
