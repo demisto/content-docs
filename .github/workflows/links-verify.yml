@@ -25,14 +25,14 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         fetch-depth: 0
         ref: 'Fix_broken_links'
-    - name: Run du sh
+    - name: create ignore url files
       run: |
         ls
         cd content
-        find Packs/* -name 'README.md' | xargs sed -n '/^## Commands/,/^## /p' | grep -EIoi '(http|https)://[a-zA-Z0-9./?=_%:-]*' | sort -u > out.txt
+        find contentPacks/* -name 'README.md' | xargs sed -n '/^## Commands/,/^## /p' | grep -EIoi '(http|https)://[a-zA-Z0-9./?=_%:-]*' | sort -u > out.txt
         sed -i -e 's/^/-e "/' out.txt
         sed -i -e 's/$/"/' out.txt
-        cat ../content-docs/urls_ignore.txt >> out.txt
+        cat content-docs/urls_ignore.txt >> out.txt
         sort -u out.txt
         cat out.txt
     - name: Set up Go 1.13
@@ -45,6 +45,15 @@ jobs:
     - name: Verify Links
       run: |
         muffet --version
+        muffet $(< out.txt) -c 16 --ignore-fragments -b 8192 \
+        https://xsoar.pan.dev > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
+        grep -v -E '^\s+(401|403|405|429|x509|lookup|parse|timeout|dial)' muffet.txt > muffet-clean.out
+        echo "Muffet output after 401, 403, 405, 429 and x509 remove:"
+        cat muffet-clean.out
+        if [ -n "$(grep -v '^https'  muffet-clean.out)" ]; then
+          echo "muffet failed verification!!!"
+          exit 1
+        fi
         echo "All good! muffet passed!!!"
     - name: Save artifcats
       if: ${{ always() }}
