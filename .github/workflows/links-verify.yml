@@ -24,7 +24,7 @@ jobs:
         ref: 'master'
     - name: Run du sh
       run: |
-        - echo "Hello World"
+        echo "Hello World"
     - name: Setup muffet
       run: 'go get -u github.com/raviqqe/muffet'
 #    - name: Verify Links
