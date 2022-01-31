@@ -22,6 +22,14 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         fetch-depth: 0
         ref: 'master'
+    - name: content-docs checkout
+      uses: actions/checkout@v2.4.0  # https://github.com/marketplace/actions/checkout
+      with:
+        repository: demisto/content-docs
+        path: content-docs
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+        ref: 'master'
     - name: Run du sh
       run: |
         ls
