@@ -154,8 +154,8 @@ echo "Generating docs..."
 pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
 echo "Generating Demisto class and CommonServerPython docs..."
 pipenv run ./gen_pydocs.py -t "${TARGET_DIR}"
-if [[ $CIRCLE_BRANCH =~ pull/[0-9]+ ]]; then
-    echo "Skipping, should not run on contributor's branch."
+if [[ "$CONTENT_BRANCH" != "master" ]]; then
+    echo "Skipping top contributors page generation, should run only on master."
     exit 0
 else
     echo "Generating top contributors page..."
