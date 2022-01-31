@@ -9,32 +9,6 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
-    - name: content checkout
-      uses: actions/checkout@v2.4.0  # https://github.com/marketplace/actions/checkout
-      with:
-        repository: demisto/content
-        path: content
-        token: ${{ secrets.GITHUB_TOKEN }}
-        fetch-depth: 0
-        ref: 'master'
-    - name: content-docs checkout
-      uses: actions/checkout@v2.4.0  # https://github.com/marketplace/actions/checkout
-      with:
-        repository: demisto/content-docs
-        path: content-docs
-        token: ${{ secrets.GITHUB_TOKEN }}
-        fetch-depth: 0
-        ref: 'Fix_broken_links'
-    - name: Run du sh
-      run: |
-        ls
-        cd content
-        find Packs/* -name 'README.md' | xargs sed -n '/^## Commands/,/^## /p' | grep -EIoi '(http|https)://[a-zA-Z0-9./?=_%:-]*' | sort -u > out.txt
-        sed -i -e 's/^/-e "/' out.txt
-        sed -i -e 's/$/"/' out.txt
-        cat ../content-docs/urls_ignore.txt >> out.txt
-        sort -u out.txt
-        cat out.txt
     - name: Set up Go 1.13
       uses: actions/setup-go@v2
       with:
