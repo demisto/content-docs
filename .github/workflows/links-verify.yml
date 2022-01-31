@@ -24,8 +24,9 @@ jobs:
         ref: 'master'
     - name: Run du sh
       run: |
-        cd content/Packs
-        echo du sh *
+        cd content
+        find Packs/* -name 'README.md' | xargs sed -n '/\`\`\`json/,/\`\`\`/p' | grep -Eoi '(http|https)://[a-zA-Z0-9./?=_%:-]*' | sort -u | >> out.txt
+        cat out.txt
 #    - name: Setup muffet
 #      run: 'go get -u github.com/raviqqe/muffet'
 #    - name: Verify Links
