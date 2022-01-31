@@ -29,7 +29,7 @@ jobs:
         path: content-docs
         token: ${{ secrets.GITHUB_TOKEN }}
         fetch-depth: 0
-        ref: 'master'
+        ref: 'Fix_broken_links'
     - name: Run du sh
       run: |
         ls
