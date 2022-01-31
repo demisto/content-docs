@@ -40,6 +40,7 @@ jobs:
         cat ../content-docs/urls_ignore.txt >> out.txt
         sort -u out.txt
         cat out.txt
+        exit 0
     - name: Setup muffet
       run: 'go get -u github.com/raviqqe/muffet'
     - name: Verify Links
