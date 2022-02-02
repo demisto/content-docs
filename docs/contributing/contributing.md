@@ -19,6 +19,10 @@ Contributions can be either officially supported (by Palo Alto Networks, a Techn
 
 For more information about the different support levels, check the [official documentation](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/marketplace/content-packs-support-types.html).
 
+## What to contribute
+If you’re looking for an easy way to start contributing Content to Cortex XSOAR Marketplace, have a look at the issues labeled as [good first issue](https://github.com/demisto/content/labels/good%20first%20issue), which are low-hanging fruits.
+
+These issues are particularly well suited for external contributions. If you decide to start on an issue, [assign yourself](https://docs.github.com/en/issues/tracking-your-work-with-issues/assigning-issues-and-pull-requests-to-other-github-users#assigning-an-individual-issue-or-pull-request) so other contributors from the community know that you're working on it.
 ## How to contribute
 
 After you have created your content, you must submit your content to Palo Alto Networks: the Cortex XSOAR Content Team will review and approve it before it becomes available to customers.
