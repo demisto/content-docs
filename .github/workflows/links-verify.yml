@@ -27,7 +27,7 @@ jobs:
         ref: 'Fix_broken_links'
     - name: create ignore url files
       run: |
-        grep -RPoz "(?s)## Commands.*\Z|<h2>Commands.*\Z" --include "README.md" content/Packs | grep  -Eo "(http|https)://[a-zA-Z0-9./?=_%:-]*" | sort -u > urls.txt
+        grep -RPoz "(?s)## Commands.*\Z|<h2>Commands.*\Z" --include "README.md" content/Packs | grep  -Eoa "(http|https)://[a-zA-Z0-9./?=_%:-]*" | sort -u > urls.txt
         sed -i -e 's/^/-e "/' urls.txt
         sed -i -e 's/$/"/' urls.txt
         cat urls.txt
