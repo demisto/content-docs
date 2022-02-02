@@ -28,8 +28,6 @@ jobs:
     - name: create ignore url files
       run: |
         grep -RPoz "(?s)## Commands.*\Z|<h2>Commands.*\Z" --include "README.md" content/packs | grep  -Eo "(http|https)://[a-zA-Z0-9./?=_%:-]*" | sort -u > urls.txt
-#        ls
-#        find content/Packs/* -name 'README.md' | xargs sed -n '/^## Commands/,/^## /p' | grep -EIoi '(http|https)://[a-zA-Z0-9./?=_%:-]*' | sort -u > out.txt
         sed -i -e 's/^/-e "/' urls.txt
         sed -i -e 's/$/"/' urls.txt
         cat urls.txt
