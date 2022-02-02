@@ -27,10 +27,17 @@ jobs:
         ref: 'Fix_broken_links'
     - name: create ignore url files
       run: |
-        grep -RPoz "(?s)## Commands.*\Z|<h2>Commands.*\Z" --include "README.md" content/Packs | grep  -Eoa "(http|https)://[a-zA-Z0-9./?=_%:-]*" | sort -u > urls.txt
-        sed -i -e 's/^/-e "/' urls.txt
-        sed -i -e 's/$/"/' urls.txt
-        cat urls.txt
+        grep -RPoz "(?s)## Commands.*\Z|<h2>Commands.*\Z" --include "README.md" content/Packs/*/Integrations | grep  -Eoa "(http|https)://[a-zA-Z0-9./?=_%:-]*" | sort -u > all_urls_ignore.txt
+        :: -R to grep recursively
+        :: -P for the regex pattern
+        :: -o to print only the match (from `## Commands` or `<h2>Commands` to the EOF`)
+        :: -z to ignore new lines (otherwise the pattern will not work)
+        :: --include which files to grep
+        :: in which directory
+        sed -i -e 's/^/-e "/' all_urls_ignore.txt
+        sed -i -e 's/$/"/' all_urls_ignore.txt
+        cat content-docs/urls_ignore.txt >> all_urls_ignore.txt
+        cat all_urls_ignore.txt
     - name: Set up Go 1.13
       uses: actions/setup-go@v2
       with:
@@ -41,7 +48,7 @@ jobs:
     - name: Verify Links
       run: |
         muffet --version
-        muffet -c 16 --ignore-fragments -b 8192 `< urls.txt` \
+        muffet -c 16 --ignore-fragments -b 8192 `< all_urls_ignore.txt` \
         https://xsoar.pan.dev > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
         grep -v -E '^\s+(401|403|405|429|x509|lookup|parse|timeout|dial)' muffet.txt > muffet-clean.out
         echo "Muffet output after 401, 403, 405, 429 and x509 remove:"
