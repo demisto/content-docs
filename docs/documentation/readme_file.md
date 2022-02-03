@@ -149,10 +149,10 @@ You can also embed videos from external services such as YouTube via an iframe. 
 Screenshots from YouTube:
 
 **Share Dialog:**
-<img width="515" src="../doc_imgs/integrations/YouTube-embed.png" />  
+<img width="515" src="./docs/doc_imgs/integrations/youtube-embed.png" />  
 
 **Embed Dialog:**
-<img width="425" src="../doc_imgs/integrations/YouTube-embed-2.png" />
+<img width="425" src="./docs/integrations/YouTube-embed-2.png" />
 
 Paste the embed snippet in the README documentation page. Make sure to change the `allowfullscreen` option to include `allowfullscreen="true"`. For example:
 ```
