@@ -4,7 +4,7 @@ on:
   pull_request: {}
   push:
     branches:
-    - master
+    - Fix_broken_links
 
 jobs:
   build:
