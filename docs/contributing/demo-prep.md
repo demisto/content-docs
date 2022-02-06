@@ -39,7 +39,7 @@ The following may change given the scope and the size of the contribution.
   - Verify layout is bound to incident / indicator type.
   - Verify incident / indicator fields are bound to incident / indicator types.
   - Verify classifier is bound to incident type.
-  - Verify playbook is bound to playbook.
+  - Verify playbook is bound to an incident type.
 
 ### Post Demo
 - If there were any changes requested during the demo by the reviewers, they must be fixed and committed.
