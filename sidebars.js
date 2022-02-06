@@ -198,6 +198,15 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "Indicators, Fields & Layouts",
+      collapsed: true,
+      items: [
+        "indicators/url-extraction",
+        "indicators/domain-extraction"
+      ]
+    },
+    {
+      type: "category",
       label: "Documentation",
       collapsed: true,
       items: [
@@ -232,7 +241,8 @@ const sidebars = {
       items: [
         "partners/why-xsoar",
         "partners/become-a-tech-partner",
-        "partners/paid-packs",
+        "partners/premium-packs",
+        "partners/private-offer",
         "partners/adopt",
         "partners/certification",
         "partners/office-hours",

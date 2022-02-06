@@ -56,7 +56,7 @@ The following fields are populated in the pack metadata:
 | useCases | List | Use-cases implemented by the pack. |
 | keywords | List | List of strings by which the pack can be found in Cortex XSOAR marketplace. |
 | eulaLink | String | (Optional - Premium packs only) URL referencing the pack license agreement, will appear under the 'Disclaimer' section in the pack details. Non-premium packs are hosted in our open source content repo and will be subject to an [MIT License](https://github.com/demisto/content/blob/master/LICENSE). |
-| price | String | (Optional - Premium packs only) The pack price in Palo Alto [points](https://xsoar.pan.dev/docs/partners/paid-packs/#points). |
+| price | String | (Optional - Premium packs only) The pack price in Palo Alto [points](https://xsoar.pan.dev/docs/partners/premium-packs/#points). |
 | dependencies | Dictionary | (Optional) An object that describes the content packs that the pack is dependant on. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | displayedImages | List | (Optional) Images to be displayed in Cortex XSOAR marketplace. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | githubUser | List | (Optional) List of Github usernames to receive notification in the PR in case pack files were modified. |
@@ -178,7 +178,7 @@ For Partners, this image is **mandatory** and is validated during the build. If 
 In case file does not exist, the pack author name will be displayed in text.
 
 ### CONTRIBUTORS.md
-If you are contributing to an existing pack, you can add a **CONTRIBUTORS.md** file to the pack and list yourself as a contributor for the pack. The file's content will appear in the pack README in XSOAR Marketplace.
+If you are contributing to an existing pack, you can add a **CONTRIBUTORS.md** file to the pack and list yourself as a contributor for the pack in the mentioned list. The file should have the follwoing structure and will appear in the pack details in the XSOAR Marketplace.
 
 #### Example CONTRIBUTORS.md
 ```

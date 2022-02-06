@@ -192,7 +192,8 @@ def get_beta_data(yml_data: dict, content: str):
 def get_packname_from_metadata(pack_dir):
     with open(f'{pack_dir}/pack_metadata.json', 'r') as f:
         metadata = json.load(f)
-    return metadata.get('name')
+        is_pack_hidden = metadata.get("hidden", False)
+    return metadata.get('name'), is_pack_hidden
 
 
 def get_pack_link(file_path: str) -> str:
@@ -204,9 +205,10 @@ def get_pack_link(file_path: str) -> str:
     # the regex extracts pack path, for example: content/Packs/EWSv2/Integrations/I1/README.md -> content/Packs/EWSv2/
     match = re.match(r'.+/Packs/.+?(?=/)', file_path)
     pack_dir = match.group(0) if match else ''
+    is_pack_hidden = False
 
     try:
-        pack_name_in_docs = get_packname_from_metadata(pack_dir)
+        pack_name_in_docs, is_pack_hidden = get_packname_from_metadata(pack_dir)
     except FileNotFoundError:
         pack_name_in_docs = pack_name.replace('_', ' ').replace('-', ' - ')
 
@@ -218,6 +220,10 @@ def get_pack_link(file_path: str) -> str:
         file_type = ''
     if 'ApiModules' in pack_name or 'NonSupported' in pack_name:
         return ''
+
+    if is_pack_hidden:  # this pack is hidden, don't add a link
+        return f"#### This {file_type} is part of the **{pack_name_in_docs}** Pack.\n\n" \
+            if file_type and pack_name and pack_name_in_docs else ''
     return f"#### This {file_type} is part of the **[{pack_name_in_docs}]({pack_link})** Pack.\n\n" \
         if file_type and pack_name and pack_name_in_docs else ''
 
