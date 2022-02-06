@@ -105,8 +105,8 @@ function travelDependenciesJson(firstLvlDepsJson, depsJson, startKey) {
     }
   }
   */
-
-  if (startKey in depsJson === false) {
+  // don't travel dependencies JSON if already travelled from the startKey
+  if (!(startKey in depsJson)) {
     travelDependencies(depsJson, startKey, firstLvlDepsJson);
     depsJson[startKey]['mandatoryCount'] = Object.keys(depsJson[startKey]['mandatory']).length;
     depsJson[startKey]['optionalCount'] = Object.keys(depsJson[startKey]['optional']).length;
@@ -116,12 +116,16 @@ function travelDependenciesJson(firstLvlDepsJson, depsJson, startKey) {
 function travelDependencies(depsJson, startKey, firstLvlDepsJson) {
   // Travel over the dependencies json of a given Pack dependency type, while collecting all sub-dependecy mandatory packs
   
-  if (startKey in depsJson === false) {
-    depsJson[startKey] = {...firstLvlDepsJson[startKey]};
+  if (!(startKey in depsJson)) {
+    if (!(startKey in firstLvlDepsJson)) {
+      depsJson[startKey] = {'mandatory': {}, 'optional': {}}
+    } else {
+      depsJson[startKey] = {...firstLvlDepsJson[startKey]};
+    }
   }
 
   dependencyPacks = depsJson[startKey]['mandatory'];
-  for (var depKey in depsJson[startKey]['mandatory']) {
+  for (var depKey in dependencyPacks) {
     if (depsJson[depKey] === undefined) {
       travelDependenciesJson(firstLvlDepsJson, depsJson, depKey);
     }
@@ -129,7 +133,7 @@ function travelDependencies(depsJson, startKey, firstLvlDepsJson) {
     // fill mandatory sub-dependecies
     for (var subDepKey in depsJson[depKey]['mandatory']) {
       // skip if subDepKey is startKey or if subDepKey is already in node's collected mandatory
-      if (subDepKey !== startKey && (depsJson[startKey]['mandatory'][subDepKey] === undefined) ) {
+      if (subDepKey !== startKey && (dependencyPacks[subDepKey] === undefined) ) {
         if (depsJson[subDepKey] === undefined) {
           // subDepKey wasn't yet traveled
           travelDependenciesJson(firstLvlDepsJson, depsJson, subDepKey);
@@ -147,10 +151,10 @@ function travelDependencies(depsJson, startKey, firstLvlDepsJson) {
 }
 
 function getMandatoryChainDependencies(packName, depsJson, exclusionSet) {
-  // collects all mandatory chained dependecies, while skipping over keys it collected along the way
+  // collects all mandatory chained dependencies, while skipping over keys it collected along the way
 
   res = {};
-  if (packName in depsJson === false) {  // sanity
+  if (!(packName in depsJson)) {  // sanity
     return res;
   }
   if (exclusionSet === undefined) {
@@ -323,7 +327,7 @@ function genPackDetails() {
 
     try {
       if (pack.dependencies) {
-        if (pack.id in fullDepsJson === false) {
+        if (!(pack.id in fullDepsJson)) {
           travelDependenciesJson(firstLeveldepsMap, fullDepsJson, pack.id)
         }
       }
