@@ -1,5 +1,5 @@
 ---
-id: demo_prep
+id: demo-prep
 title: Contribution Demo Preparation
 ---
 
