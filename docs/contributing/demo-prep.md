@@ -3,20 +3,23 @@ id: demo_prep
 title: Contribution Demo Preparation
 ---
 
-This document includes explanations how to prepare to a demo and how it will be conducted.          
+This document includes info on how to prepare for a demo and how it will be conducted.          
 Please make sure you go over it before you the demo.
 
 
 ## Contribution Demo
 
-Demo is the last stage of the contribution before it is merged into the internal repo.
-In order to be prepared as much as possible to the demo and avoid post-demo changes requests make sure to fo through the steps detailed int this document.
+A demo is the last stage of the contribution before it is merged into the [Content](https://github.com/demisto/content) internal repo.
+In order to be prepared as much as possible, and avoid post-demo change requests make sure to go through the steps detailed in this document.
 
 ### General Notes
 - The purpose of the demo is to make sure the contribution is up to XSOAR standards and to ensure everything works as expected while providing good UX. 
 - The participants who will take part of the demo are the contributor, the PR reviewer, and based on the content of the PR a security reviewer as well.
-- The demo should take up to an hour.
+- The demo should take up to an hour (based on the PR size).
 
+### Pre Demo
+- Make sure the change requests from your code review are fully addressed and fixed.
+- Prepare an XSOAR instance that has all the recent changes and has the most updated version of your pack, the demo will be performed in this environment.
 ### Demo Agenda and Workflow:
 The following may change given the scope and the size of the contribution.
 - Product overview - short general explanation about the product.
@@ -40,6 +43,6 @@ The following may change given the scope and the size of the contribution.
 
 ### Post Demo
 - If there were any changes requested during the demo by the reviewers, they must be fixed and committed.
-- After all requested changes made, the PR will be merged.
+- After all requested changes are made, the PR will be merged.
 
 
