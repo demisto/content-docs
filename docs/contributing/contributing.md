@@ -94,7 +94,7 @@ After opening the Pull Request, make sure that you:
 
 - Sign the [CLA](https://github.com/demisto/content/blob/master/docs/cla.pdf): every contributor must sign our Contributor License Agreement in order for their contribution to be added to our content. In case of CLA issues check out our [FAQs](../concepts/faq#cla-is-pending-even-though-i-signed-the-agreement).
 - Monitor your Pull Request on GitHub and be ready for a demo: our Content team will add comments to the Pull Request, asking questions and requesting changes. In order to establish a decent release process for your contribution, you are kindly asked to respond to the reviewer's code review and apply the required changes within 14 days. Stale Pull Requests might be closed.
-- At some point, we'll ask you to schedule a meeting to see an interactive demo. Make sure you have a working installation of Cortex XSOAR with your pack fully configured. Check out our [Contribution Demo Page](../contributing/demo-prep).
+- At some point, we'll ask you to schedule a meeting to see an interactive demo. Make sure you have a working installation of Cortex XSOAR with your pack fully configured. Check out our [Contribution Demo Page](../contributing/demo-prep) for more details.
 
 :::note Important Note
 As part of the Pull Request template, you will be asked to fill in the [contribution registration form](https://forms.gle/XDfxU4E61ZwEESSMA), make sure to do so, without it we cannot review your contribution.
