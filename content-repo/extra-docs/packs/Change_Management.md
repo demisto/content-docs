@@ -54,35 +54,34 @@ To create custom fields in a Jira project, see https://support.atlassian.com/jir
 5. After the incident is fetched, go to **Setting** > **Object Setup** > **Classification and Mapping** and choose **classifier-mapper-incoming-JiraV2**.
 6. Click **Duplicate**.
 
-{incident screenshot here}
-
+   ![Incidents](../../../docs/doc_imgs/reference/Change_Management/classification_and_mapping_Jira.PNG)
 
 
 
 7. Edit the duplicated mapper by clicking it.
 8. From the **Select Incident** dropdown list, select the incident you fetched.
 
-{select incident screenshot here}
+
+   ![Select_Instance](../../../docs/doc_imgs/reference/Change_Management/Jira_Mapper_load_json.PNG)
 
 
 
 
 9. Load the incident JSON file and search for the values that you previously recorded and map them accordingly. For example, if the value of *Request IP SRC* was 1.1.1.1 in Jira, search for it in the JSON file and map it to the relevant field. Repeat this for all the custom fields.
 
-{map fields screenshot here}
-
+   ![Map_fields](../../../docs/doc_imgs/reference/Change_Management/Jira_Map_fields.PNG)
 
 
 10. Create an instance of the **Atlassian Jira v2** integration.
    1. Select **FW change management** as the incident type.
    2. Select the mapper that was created above.
 
-   {instance setting screenshot here}
+     ![Instance_setting](../../../docs/doc_imgs/reference/Change_Management/Jira_settings.PNG)
 
    3. For the outgoing mapper, select the default **classifier-mapper-outgoing-Jira**.
    4. In the Query section, enter a query to ensure the only change management incidents are fetched. (In the example below, *cm* is the detected project for change management.)
 
-   {query screenshot here}
+     ![Query](../../../docs/doc_imgs/reference/Change_Management/Jira_query.PNG)
 
 11. Since it is important to document all the processes in the playbook for future reference, if you are using the Jira integration, make sure all the relevant mirroring settings are enabled (https://xsoar.pan.dev/docs/reference/integrations/jira-v2#configure-incident-mirroring).
 
@@ -115,23 +114,20 @@ To create custom fields in a Jira project, see https://support.atlassian.com/jir
 5. After the incident is fetched, in Cortex XSOAR go to **Settings** > **Object Setup** > **Classification and Mapping** and choose **ServiceNow - Incoming Mapper**.
 6. Click **Duplicate**.
 
-{SNOW incidents screenshot here}
+   ![Incidents](../../../docs/doc_imgs/reference/Change_Management/classification_and_mapping_SNOW.PNG)
 
 7. Load the incident JSON file and search for the values that you previously recorded and map them accordingly. For example, if the value of Request IP SRC was 1.1.1.1 in Jira, search for it in the JSON file and map it to the relevant field. Repeat this for all the custom fields.
 
-{mapping screenshot here}
+   ![Map_fields](../../../docs/doc_imgs/reference/Change_Management/SNOW_Map_fields.PNG)
 
 8. Create an instance of the **ServiceNow v2 ** integration.
    1. Select **FW change management** as the incident type.
    2. Select the mapper that was created above.
    3. For the outgoing mapper, select the default **ServiceNow - Outgoing Mapper**.
 
-{SNOW instance setting screenshot here}
+    ![Instance_setting](../../../docs/doc_imgs/reference/Change_Management/Snow_settings.PNG)
 
 9. In the Query section, enter a query to ensure the only change management incidents are fetched.
-
-{query screenshot here}
-
 
 10. Since it is important to documentation all the process in the playbook for future reference, if you are using the ServiceNow integration, make sure all the relevant mirroring settings are enabled (https://xsoar.pan.dev/docs/reference/integrations/service-now-v2#configure-incident-mirroring).
 
