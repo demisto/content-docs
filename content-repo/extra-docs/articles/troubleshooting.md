@@ -113,6 +113,8 @@ Examples:
 * Set the read timeout value to *120* seconds system wide, `--env=REQUESTS_TIMEOUT=120`
 * Set the read timeout value to *75* seconds for the Palo Alto Networks WildFire v2 integration, `--env=REQUESTS_TIMEOUT.WildFire-v2=75`
 
+**Note:** The `REQUESTS_TIMEOUT` settings only affects integrations which use the [BaseClient](https://xsoar.pan.dev/docs/integrations/code-conventions#client-class) class from CommonServerPython.
+
 
 ## TLS/SSL Troubleshooting
 
