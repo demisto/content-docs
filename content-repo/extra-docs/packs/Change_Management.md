@@ -57,6 +57,12 @@ To create custom fields in a Jira project, see https://support.atlassian.com/jir
 
 
 7. Edit the duplicated mapper by clicking it.
+8. From the **Incident Type** dropdown list, select **FW change management**.
+
+   ![Incidents](../../../docs/doc_imgs/reference/Change_Management/Jira_copy_from.PNG)
+
+9. From the **Copy from** dropdown list, select your current Jira mapper to copy the mapped fields. 
+
 8. From the **Select Incident** dropdown list, select the incident you fetched.
 
 
@@ -71,13 +77,15 @@ To create custom fields in a Jira project, see https://support.atlassian.com/jir
 
 
 10. Create an instance of the **Atlassian Jira v2** integration.
-   1. Select **FW change management** as the incident type.
-   2. Select the mapper that was created above.
+    1. Select **FW change management** as the incident type.
+    2. Select the mapper that was created above.
 
-     ![Instance_setting](../../../docs/doc_imgs/reference/Change_Management/Jira_settings.PNG)
+    ![Instance_setting](../../../docs/doc_imgs/reference/Change_Management/Jira_settings.PNG)
 
-   3. For the outgoing mapper, select the default **classifier-mapper-outgoing-Jira**.
-   4. In the Query section, enter a query to ensure the only change management incidents are fetched. (In the example below, *cm* is the detected project for change management.)
+     3. For the outgoing mapper, select the default **classifier-mapper-outgoing-Jira**.
+
+     4. In the Query section, enter a query to ensure the only change management incidents are fetched.  
+    (In the example below, *cm* is the detected project for change management.)
 
      ![Query](../../../docs/doc_imgs/reference/Change_Management/Jira_query.PNG)
 
@@ -88,6 +96,7 @@ To create custom fields in a Jira project, see https://support.atlassian.com/jir
 
 ### ServiceNow
 
+1. In the ServiceNow application, select **Incidents** in the left menu.
 
 1. In *Form design* and *Layout design* in ServiceNow, edit your incident form to contain the following custom fields. See https://docs.servicenow.com/bundle/rome-it-service-management/page/product/change-management/task/t_CreateCustomField.html for details.
 
@@ -114,14 +123,21 @@ To create custom fields in a Jira project, see https://support.atlassian.com/jir
 
    ![Incidents](../../../docs/doc_imgs/reference/Change_Management/classification_and_mapping_SNOW.PNG)
 
+8. From the **Incident Type** dropdown list, select **FW change management**.
+
+   ![Incidents](../../../docs/doc_imgs/reference/Change_Management/SNOW_copy_from.PNG)
+
+9. From the **Copy from** dropdown list, select your current ServiceNow mapper to copy the mapped fields. 
+
 7. Load the incident JSON file and search for the values that you previously recorded and map them accordingly. For example, if the value of Request IP SRC was 1.1.1.1 in Jira, search for it in the JSON file and map it to the relevant field. Repeat this for all the custom fields.
 
    ![Map_fields](../../../docs/doc_imgs/reference/Change_Management/SNOW_Map_fields.PNG)
 
 8. Create an instance of the **ServiceNow v2 ** integration.
-   1. Select **FW change management** as the incident type.
-   2. Select the mapper that was created above.
-   3. For the outgoing mapper, select the default **ServiceNow - Outgoing Mapper**.
+    1. Select **FW change management** as the incident type.
+    2. Select the mapper that was created above.
+
+    3. For the outgoing mapper, select the default **ServiceNow - Outgoing Mapper**.
 
     ![Instance_setting](../../../docs/doc_imgs/reference/Change_Management/Snow_settings.PNG)
 
