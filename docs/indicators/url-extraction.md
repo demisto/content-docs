@@ -4,31 +4,32 @@ title: URL Extraction
 ---
 
 
-The Cortex XSOAR URL indicator type is built using regex and a formatting script.
-The following describes the URL indicator components and what output you should expect when extracting indicators of type URL.
+The Cortex XSOAR URL indicator type is built using regular expression and a formatting script.
+The following describes the URL extraction components and what output you should expect when extracting indicators of type URL.
 
 ## URL Extraction Components
 
 There are two components when extracting URL indicators:
-- Regular Expression 
+- Regular expression
 - Formatting script
 
 ### Regular Expression
 
-When text is given, a URL regex will try to catch a valid URL based on the following characteristics:
+When text is given, a URL regular expression will try to catch a valid URL based on the following characteristics:
 - A URL prefixed by one of the following protocols:
-   - HTTP
-   - HTTPS
-   - FTP
-   - HXXP (obfuscated HTTP)
-   - HXXPS (obfuscated HTTPS)
+   - http
+   - https
+   - ftp
+   - ftps
+   - hxxp (defanged hxxp)
+   - hxxps (defanged hxxps)
 - A URL with ASCII or non-ASCII characters
-- Escaped and Unescaped URLs
+- Escaped and unescaped URLs
 - URL with or without query parameters
 
 ### Formatting Script
 
-After extracting the URL using regex, a  **FormatURL** formatting script iterates on each given URL and does the following:
+After extracting the URL using regular expression, a  **FormatURL** formatting script iterates on each given URL and does the following:
 
 1. If the URL is prefixed by a URL defense system, Proofpoint or ATP, the script extracts the redirected URL and continues with steps 3-6 for the original and extracted redirected URL.
 2. If the URL is NOT prefixed by a URL defense system, Proofpoint or ATP, the script checks if the first query parameter is a *redirected URL* query parameter by checking if the first parameter value starts with *http* or *https*.
@@ -55,9 +56,9 @@ After extracting the URL using regex, a  **FormatURL** formatting script iterate
 
    For example:
 
-   `HXXP → HTTP`
+   `hxxp → http`
 
-   `HXXPS → HTTPS`
+   `hxxps → https`
 
 6. Returns the formatted URL.
 

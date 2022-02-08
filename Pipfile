@@ -13,11 +13,16 @@ requests-mock = "*"
 
 [packages]
 pyyaml = "*"
+types-PyYAML = "*"
 inflection = "*"
 beautifulsoup4 = "*"
+circleci = "==1.2.2"
 requests = "*"
-pydoc-markdown = "*"
+types-requests = "*"
+pydoc-markdown = "==3.10.0"
 python-dateutil = "*"
+types-python-dateutil = "*"
+slack_sdk = "*"
 
 [requires]
 python_version = "3.9"

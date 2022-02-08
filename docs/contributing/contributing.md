@@ -19,6 +19,10 @@ Contributions can be either officially supported (by Palo Alto Networks, a Techn
 
 For more information about the different support levels, check the [official documentation](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/marketplace/content-packs-support-types.html).
 
+## What to contribute
+If you’re looking for an easy way to start contributing Content to Cortex XSOAR Marketplace, have a look at the issues labeled as [good first issue](https://github.com/demisto/content/labels/good%20first%20issue), which are low-hanging fruits.
+
+These issues are particularly well suited for external contributions. If you decide to start on an issue, [assign yourself](https://docs.github.com/en/issues/tracking-your-work-with-issues/assigning-issues-and-pull-requests-to-other-github-users#assigning-an-individual-issue-or-pull-request) so other contributors from the community know that you're working on it.
 ## How to contribute
 
 After you have created your content, you must submit your content to Palo Alto Networks: the Cortex XSOAR Content Team will review and approve it before it becomes available to customers.
@@ -94,7 +98,7 @@ After opening the Pull Request, make sure that you:
 
 - Sign the [CLA](https://github.com/demisto/content/blob/master/docs/cla.pdf): every contributor must sign our Contributor License Agreement in order for their contribution to be added to our content. In case of CLA issues check out our [FAQs](../concepts/faq#cla-is-pending-even-though-i-signed-the-agreement).
 - Monitor your Pull Request on GitHub and be ready for a demo: our Content team will add comments to the Pull Request, asking questions and requesting changes. In order to establish a decent release process for your contribution, you are kindly asked to respond to the reviewer's code review and apply the required changes within 14 days. Stale Pull Requests might be closed.
-- At some point, we'll ask you to schedule a meeting to see an interactive demo. Make sure you have a working installation of Cortex XSOAR with your pack fully configured.
+- At some point, we'll ask you to schedule a meeting to see an interactive demo. Make sure you have a working installation of Cortex XSOAR with your pack fully configured. Check out our [Contribution Demo Page](../contributing/demo-prep) for more details.
 
 :::note Important Note
 As part of the Pull Request template, you will be asked to fill in the [contribution registration form](https://forms.gle/XDfxU4E61ZwEESSMA), make sure to do so, without it we cannot review your contribution.
