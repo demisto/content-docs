@@ -128,6 +128,7 @@ The command section tells Cortex XSOAR what arguments are required for your comm
       type: string
     description: Sample description for the command-name function
   runonce: false
+  hidden: true
 ```
 An explanation of these fields is as follows:
 #### Command:
@@ -136,6 +137,7 @@ An explanation of these fields is as follows:
 | **name** | The name of the command. | `vendorname-command` |
 | **description** | A description for the command. | |
 | **runonce** | Boolean. Indicates if the command runs repeatedly. | |
+| **hidden** | Boolean. Indicates if the command visiable. | |
 
 #### Command arguments:
 | Name | Description | Standard |
