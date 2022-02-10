@@ -137,7 +137,7 @@ An explanation of these fields is as follows:
 | **name** | The name of the command. | `vendorname-command` |
 | **description** | A description for the command. | |
 | **runonce** | Boolean. Indicates if the command runs repeatedly. | |
-| **hidden** | Boolean. Indicates if the command visiable. | |
+| **hidden** | Boolean. Indicates if the command is hidden. | |
 
 #### Command arguments:
 | Name | Description | Standard |
