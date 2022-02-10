@@ -116,8 +116,8 @@ function travelDependenciesJson(firstLvlDepsJson, depsJson, startKey) {
 function travelDependencies(depsJson, startKey, firstLvlDepsJson) {
   // Travel over the dependencies json of a given Pack dependency type, while collecting all sub-dependecy mandatory packs
   
-  if (!(startKey in depsJson)) {
-    if (!(startKey in firstLvlDepsJson)) {
+  if (!(depsJson[startKey])) {
+    if (!(firstLvlDepsJson[startKey])) {
       depsJson[startKey] = {'mandatory': {}, 'optional': {}}
     } else {
       depsJson[startKey] = {...firstLvlDepsJson[startKey]};
@@ -134,12 +134,12 @@ function travelDependencies(depsJson, startKey, firstLvlDepsJson) {
     for (var subDepKey in depsJson[depKey]['mandatory']) {
       // skip if subDepKey is startKey or if subDepKey is already in node's collected mandatory
       if (subDepKey !== startKey && (dependencyPacks[subDepKey] === undefined) ) {
-        if (depsJson[subDepKey] === undefined) {
+        if (!(depsJson[subDepKey])) {
           // subDepKey wasn't yet traveled
           travelDependenciesJson(firstLvlDepsJson, depsJson, subDepKey);
         }
         // collect subDepKey chained mandatory dependecies (subDepKey incl.)
-        for (var chainKey in getMandatoryChainDependencies(subDepKey, depsJson)) {
+        for (var chainKey in depsJson[subDepKey]['mandatory']) {
           depsJson[startKey]['mandatory'][chainKey] = {
             version: depsJson[chainKey].version,
             support: depsJson[chainKey].support === "xsoar" ? "Cortex XSOAR" : capitalizeFirstLetter(depsJson[chainKey].support)
@@ -148,30 +148,6 @@ function travelDependencies(depsJson, startKey, firstLvlDepsJson) {
       }
     }
   }
-}
-
-function getMandatoryChainDependencies(packName, depsJson, exclusionSet) {
-  // collects all mandatory chained dependencies, while skipping over keys it collected along the way
-
-  res = {};
-  if (!(packName in depsJson)) {  // sanity
-    return res;
-  }
-  if (exclusionSet === undefined) {
-    exclusionSet = new Set(packName);
-  }
-
-  for (var depKey in depsJson[packName]['mandatory']) {
-    // prevent iterating over a key that was already iterated
-    if (!exclusionSet.has(depKey)) {
-      exclusionSet.add(depKey);
-      res = {
-        ...res, 
-        ...getMandatoryChainDependencies(depKey, depsJson, exclusionSet)};
-        res[packName] = {version: depsJson[packName].version};
-    }
-  }
-  return res
 }
 
 function reverseReleases(obj) {
