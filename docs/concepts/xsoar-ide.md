@@ -23,32 +23,42 @@ The script helper will open up a flyout menu which presents all of the functions
 
 ## Keyboard Shortcuts 
 Some useful keyboard shortcuts supported in the IDE -
-###Selection
+
+### Selection
+
 | Action | Windows/Linux | Mac |
 |--------|---------------|-----|
 |Select all|	Ctrl-A	|Command-A|
 |Select left|	Shift-Left|	Shift-Left|
 |Select right|	Shift-Right|	Shift-Right|
-###Go To
+
+### Go To
+
 | Action | Windows/Linux | Mac |
 |--------|---------------|-----|
 |Go to start|	Ctrl-Home	|Command-Home, Command-Up|
 |Go to end|	Ctrl-End	|Command-End, Command-Down|
-###Find/Replace
+
+### Find/Replace
+
 | Action | Windows/Linux | Mac |
 |--------|---------------|-----|
 |Find	|Ctrl-F	|Command-F|
 |Replace|	Ctrl-H	|Command-Option-F|
 |Find next|	Ctrl-K	|Command-G|
 |Find previous|	Ctrl-Shift-K|	Command-Shift-G|
-###Folding
+
+### Folding
+
 | Action | Windows/Linux | Mac |
 |--------|---------------|-----|
 |Fold selection|	Alt-L, Ctrl-F1|	Command-Option-L, Command-F1|
 |Unfold	|Alt-Shift-L, Ctrl-Shift-F1|	Command-Option-Shift-L, Command-Shift-F1|
 |Fold all|	Alt-0	|Command-Option-0|
 |Unfold all|	Alt-Shift-0	|Command-Option-Shift-0|
-###Other
+
+### Other
+
 | Action | Windows/Linux | Mac |
 |--------|---------------|-----|
 |Indent|	Tab|	Tab|
