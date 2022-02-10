@@ -20,6 +20,42 @@ The script helper will open up a flyout menu which presents all of the functions
 
 ![](../doc_imgs/integrations/script-helper-flyout.png)
 
+
+## Keyboard Shortcuts 
+###Selection
+| Action | Windows/Linux | Mac |
+|--------|---------------|-----|
+|Select all|	Ctrl-A	|Command-A|
+|Select left|	Shift-Left|	Shift-Left|
+|Select right|	Shift-Right|	Shift-Right|
+###Go To
+| Action | Windows/Linux | Mac |
+|--------|---------------|-----|
+|Go to start|	Ctrl-Home	|Command-Home, Command-Up|
+|Go to end|	Ctrl-End	|Command-End, Command-Down|
+###Find/Replace
+| Action | Windows/Linux | Mac |
+|--------|---------------|-----|
+|Find	|Ctrl-F	|Command-F|
+|Replace|	Ctrl-H	|Command-Option-F|
+|Find next|	Ctrl-K	|Command-G|
+|Find previous|	Ctrl-Shift-K|	Command-Shift-G|
+###Folding
+| Action | Windows/Linux | Mac |
+|--------|---------------|-----|
+|Fold selection|	Alt-L, Ctrl-F1|	Command-Option-L, Command-F1|
+|Unfold	|Alt-Shift-L, Ctrl-Shift-F1|	Command-Option-Shift-L, Command-Shift-F1|
+|Fold all|	Alt-0	|Command-Option-0|
+|Unfold all|	Alt-Shift-0	|Command-Option-Shift-0|
+###Other
+| Action | Windows/Linux | Mac |
+|--------|---------------|-----|
+|Indent|	Tab|	Tab|
+|Outdent|	Shift-Tab|	Shift-Tab|
+|Undo|	Ctrl-Z|	Command-Z|
+|Redo|	Ctrl-Shift-Z, Ctrl-Y|	Command-Shift-Z, Command-Y|
+|Toggle comment|	Ctrl-/|	Command-/|
+
 ## The Settings Menu
 The settings menu contains configurations for Basic Settings, Parameters, Detailed Instructions, Commands and Script settings. Clicking the **Settings** button will open a flyout menu as seen below:
 ![](../doc_imgs/integrations/settings-menu.png)
