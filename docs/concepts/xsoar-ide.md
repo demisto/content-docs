@@ -22,6 +22,7 @@ The script helper will open up a flyout menu which presents all of the functions
 
 
 ## Keyboard Shortcuts 
+Some useful keyboard shortcuts supported in the IDE -
 ###Selection
 | Action | Windows/Linux | Mac |
 |--------|---------------|-----|
