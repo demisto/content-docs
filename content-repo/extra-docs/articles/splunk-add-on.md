@@ -126,12 +126,14 @@ In cases where after associating Create XSOAR Incident with saved searches or co
    wget --no-check-certificate --header="Authorization: <API_KEY>" -O - https://<XSOAR_SERVER>:<PORT>/user
    ```
    
-5. Check Splunk logs for timeout errors:
-   1. Locate log facility called SavedSplunker.
-   2. Increase the verbosity to ERROR level.
-   3. If logs include the following:
-   ```WARN SavedSplunker - Reached maximum amount of time allowed to spend in per-result alerts for savedsearch_id="test```
-   4. Extend ```max_per_result_alerts_time``` param in limits.conf file.
+#### Connection Timeout Errors
+<COMPLETE>
+In case of a connection timeout error as in the above log:
+1. Locate the `SavedSplunker` log facility.
+2. Increase its verbosity to *ERROR* level.
+3. If the logs include the following:
+    ```WARN SavedSplunker - Reached maximum amount of time allowed to spend in per-result alerts for savedsearch_id="SAVEDSEARCH_ID"```
+    Increase the *max_per_result_alerts_time* value in the `limits.conf` file.
 
 #### Incident Created with Incorrect Fields
 If incidents being created in XSOAR but with incorrect fields, refer to the [Connectivity Test](#connectivity-test---create-a-custom-alert-action-from-saved-searches) section for an understanding of the fields which are associated with create incident actions.
