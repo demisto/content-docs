@@ -127,7 +127,9 @@ In cases where after associating Create XSOAR Incident with saved searches or co
    ```
    
 #### Connection Timeout Errors
-<COMPLETE>
+```
+2022-01-25 02:45:02,941 ERROR pid=**** tid=MainThread file=*** | sendmodaction - signature="Failed creating an incident to server ****. Reason: HTTPSConnectionPool(host='***', port=443): Read timed out. (read timeout=30.0)" action_name="***" search_name="****" action_status="failure"
+```
 In case of a connection timeout error as in the above log:
 1. Locate the `SavedSplunker` log facility.
 2. Increase its verbosity to *ERROR* level.
