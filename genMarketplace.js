@@ -140,9 +140,11 @@ function travelDependencies(depsJson, startKey, firstLvlDepsJson) {
         }
         // collect subDepKey chained mandatory dependecies (subDepKey incl.)
         for (var chainKey in depsJson[subDepKey]['mandatory']) {
-          depsJson[startKey]['mandatory'][chainKey] = {
-            version: depsJson[chainKey].version,
-            support: depsJson[chainKey].support === "xsoar" ? "Cortex XSOAR" : capitalizeFirstLetter(depsJson[chainKey].support)
+          if (!(depsJson[startKey]['mandatory'][chainKey])) {
+            depsJson[startKey]['mandatory'][chainKey] = {
+              version: depsJson[chainKey].version,
+              support: depsJson[chainKey].support === "xsoar" ? "Cortex XSOAR" : capitalizeFirstLetter(depsJson[chainKey].support)
+            }
           }
         }
       }
