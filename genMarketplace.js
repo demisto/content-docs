@@ -124,7 +124,7 @@ function travelDependencies(depsJson, startKey, firstLvlDepsJson) {
     }
   }
 
-  dependencyPacks = depsJson[startKey]['mandatory'];
+  let dependencyPacks = depsJson[startKey]['mandatory'];
   for (var depKey in dependencyPacks) {
     if (depsJson[depKey] === undefined) {
       travelDependenciesJson(firstLvlDepsJson, depsJson, depKey);
