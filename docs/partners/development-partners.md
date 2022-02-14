@@ -78,7 +78,7 @@ SOAR XPERTS is a team of like-minded, highly skilled and determined individuals,
  
  ### MetronLabs
  
-![metronlabs_partner](../doc_imgs/partners/metron_logo.png)
+ <img src="../doc_imgs/partners/metron_logo.png" width="200px;"/>
  
 Metron builds, manages, and maintains third-party integrations for 60+ leading security platforms. Our on-demand and fixed-cost approach is streamlined and trusted by numerous growth companies in the security space - from high-growth unicorns to large enterprises. As an XSOAR development partner, we help you maximize your XSOAR capabilities. Our clients have experienced shorter development times and 2X-3X cost savings compared to deploying an internal engineering team for the same tasks. In addition, Metron also builds integration labs to manage 100+ third-party integrations, set up malware labs for researchers, and several other custom security automation solutions.
 
