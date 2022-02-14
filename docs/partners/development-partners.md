@@ -76,7 +76,7 @@ SOAR XPERTS is a team of like-minded, highly skilled and determined individuals,
  ([www.soarxperts.com](https://www.soarxperts.com))
  
  
- ### MetronLabs
+ ### Metron Labs
  
  <img src="../doc_imgs/partners/metron_logo.png" width="200px;"/>
  
