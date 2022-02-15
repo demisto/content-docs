@@ -25,17 +25,7 @@ Review this document to determine the Palo Alto Networks integrations you need f
 
 ### Playbooks
 - [PAN-OS Query Logs For Indicators](https://xsoar.pan.dev/docs/reference/playbooks/pan-os-query-logs-for-indicators)
-- [PAN-OS Commit COnfiguration](https://xsoar.pan.dev/docs/reference/playbooks/pan-os-commit-configuration)
-
-
-## [Palo Alto Networks PAN-OS EDL Service](https://xsoar.pan.dev/marketplace/details/EDL)
-
-### Use Cases
-This integration provides an External Dynamic List (EDL) as a service for the system indicators (Outbound feed).
-
-### Playbooks
-[PAN-OS EDL Service Configuration](https://xsoar.pan.dev/docs/reference/playbooks/pan-os-edl-service-configuration)
-
+- [PAN-OS Commit Configuration](https://xsoar.pan.dev/docs/reference/playbooks/pan-os-commit-configuration)
 
 ## [Palo Alto Networks BPA](https://xsoar.pan.dev/marketplace/details/BPA)
 

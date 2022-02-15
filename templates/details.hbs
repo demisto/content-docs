@@ -1,6 +1,6 @@
 import Layout from "@theme/Layout";
 import TabItem from "@theme/TabItem";
-import Tabs from "@theme/Tabs";
+import ContentPackTabs from "../../../../theme/ContentPackTabs";
 import clsx from "clsx";
 import React from "react";
 import Collapsible from "react-collapsible";
@@ -26,8 +26,8 @@ return (
     </div>
 
     <main className={clsx("container", "contentPackAlign" )}>
-        <Tabs defaultValue="details" values={[ { label: "Details" , value: "details" }, { label: "Content" ,
-            value: "content" }, { label: "Version History" , value: "versions" }]}>
+        <ContentPackTabs defaultValue="details" downloadUrl="https://marketplace-dist.storage.googleapis.com/content/packs/{{id}}/{{id}}_with_dependencies.zip"
+        values={[ { label: "Details" , value: "details" }, { label: "Content" , value: "content" }, { label: "Dependencies" , value: "dependencies" }, { label: "Version History" , value: "versions" }]}>
             <TabItem value="details">
                 <div className="row">
                     <div className={clsx("col col--8" )}>
@@ -160,6 +160,68 @@ return (
                 {{/each}}
                 {{/if}}
             </TabItem>
+            <TabItem value="dependencies">
+                {{#if dependencies.mandatory}}
+                <div className={clsx("row", "version" )}>
+                    <div className="col col--8">
+                        <div className={clsx("card shadow--md", "dependenciesCard" )}>
+                            <Collapsible trigger="Required Content Packs ({{dependencies.mandatoryCount}})">
+                                <table className="contentTable">
+                                    <thead>
+                                        <tr className="infoTableRow">
+                                            <th className="contentTableColName">Pack Name</th>
+                                            <th className="contentTableColDesc">Pack By</th>
+                                        </tr>
+                                    </thead>
+                                    {{#each dependencies.mandatory}}
+                                    <tbody>
+                                        <tr className="infoTableRow">
+                                            <td className="contentTableColName">
+                                                <a href="https://xsoar.pan.dev/marketplace/details/{{@key}}">{{@key}}</a>
+                                            </td>
+                                            <td className="contentTableColDesc">
+                                                <p>By: {{this.support}}</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    {{/each}}
+                                </table>
+                            </Collapsible>
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+                {{#if dependencies.optional}}
+                <div className={clsx("row", "version" )}>
+                    <div className="col col--8">
+                        <div className={clsx("card shadow--md", "dependenciesCard" )}>
+                            <Collapsible trigger="Optional Content Packs ({{dependencies.optionalCount}})">
+                                <table className="contentTable">
+                                    <thead>
+                                        <tr className="infoTableRow">
+                                            <th className="contentTableColName">Pack Name</th>
+                                            <th className="contentTableColDesc">Pack By</th>
+                                        </tr>
+                                    </thead>
+                                    {{#each dependencies.optional}}
+                                    <tbody>
+                                        <tr className="infoTableRow">
+                                            <td className="contentTableColName">
+                                                <a href="https://xsoar.pan.dev/marketplace/details/{{@key}}">{{@key}}</a>
+                                            </td>
+                                            <td className="contentTableColDesc">
+                                                <p>By: {{this.support}}</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    {{/each}}
+                                </table>
+                            </Collapsible>
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+            </TabItem>
             <TabItem value="versions">
                 {{#if changeLog}}
                 {{#each changeLog}}
@@ -169,6 +231,7 @@ return (
                             <Collapsible trigger="{{this.displayName}} ({{this.released}})">
                                 <article dangerouslySetInnerHTML=\{{ __html:
                                     converter.makeHtml("{{{this.releaseNotes}}}"), }}></article>
+                                <a className="button button--outline button--primary button--md" href="https://storage.googleapis.com/marketplace-dist/content/packs/{{../id}}/{{this.version}}/{{../id}}.zip" target="_blank" title="Warning: Downloading this pack without its required dependencies may result in failed installation.">Download</a>
                             </Collapsible>
                         </div>
                     </div>
@@ -176,7 +239,7 @@ return (
                 {{/each}}
                 {{/if}}
             </TabItem>
-        </Tabs>
+        </ContentPackTabs>
     </main>
 </Layout>
 );
