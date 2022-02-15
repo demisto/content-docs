@@ -49,7 +49,7 @@ Loginsoft, an IT Consulting company based out of VA, US, supports leading Cybers
  ### Metron Labs
  
  <img src="../doc_imgs/partners/metron_logo.png" width="200px;"/>
-
+</br> 
 
 
 
