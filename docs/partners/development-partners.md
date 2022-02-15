@@ -47,9 +47,7 @@ Loginsoft, an IT Consulting company based out of VA, US, supports leading Cybers
 
 
  ### Metron Labs
-<br> 
-<img src="../doc_imgs/partners/metron_logo.png" width="200px;"/>
-<br> 
+<img src="../doc_imgs/partners/metron_logo.png" width="200px;" style="margin: 0 10px 10px 0;"/>
 
 
 
