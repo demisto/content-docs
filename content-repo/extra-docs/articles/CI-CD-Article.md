@@ -33,10 +33,11 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
 
 ### Overview Demo Video
 <video controls>
-    <source src="https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-development.mp4"
+    <source src="https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/content_management_demo.mp4"
             type="video/mp4"/>
-    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-development.mp4 
+    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/content_management_demo.mp4
 </video>
+
 
  ## Development
  
@@ -166,11 +167,11 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
        no-docker-checks=true
     ```
     
-### Testing/Staging Video Tutorial
+### Development Video Tutorial
 <video controls>
-    <source src="https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-testing-staging.mp4"
+    <source src="https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-development.mp4"
             type="video/mp4"/>
-    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-testing-staging.mp4 
+    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-development.mp4 
 </video> 
 
 
@@ -212,11 +213,11 @@ Before you begin, ensure that you have installed the following:
 After the testing has completed successfully, you are now ready to deploy content.
 
 
-### Deployment Video Tutorial
+### Testing/Staging Video Tutorial
 <video controls>
-    <source src="https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-development.mp4"
+    <source src="https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-testing-staging.mp4"
             type="video/mp4"/>
-    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-development.mp4 
+    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-testing-staging.mp4 
 </video>
 
 
@@ -445,6 +446,14 @@ Although you do not have the flexibility of version control and rollback, it is 
    ![cicd_playbook.png](../../../docs/doc_imgs/reference/XSOAR-CICD/cicd_playbook.png)
   
    - If not using the XSOAR CI/CD Content Pack, install content manually. For example, if using Google Cloud Services integration run the `gcd-download-file` command.
+
+
+### Deployment Video Tutorial
+<video controls>
+    <source src="https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-deployment.mp4"
+            type="video/mp4"/>
+    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-deployment.mp4 
+</video>
 
 
 ### CI/CD FAQs
