@@ -31,6 +31,14 @@ The CI/CD process involves the following stages:
 For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
 
 
+### Overview Demo Video
+<video controls>
+    <source src="https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/content_management_demo.mp4"
+            type="video/mp4"/>
+    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/content_management_demo.mp4
+</video>
+
+
  ## Development
  
  In the development stage, [set up the CI/CD process](#setup-the-cicd-development-process) by creating or cloning a Git repository based on the [CI/CD template repository](https://github.com/demisto/content-ci-cd-template). You can then create and maintain your custom content with the built-in functionality of [demisto-sdk](https://xsoar.pan.dev/docs/concepts/demisto-sdk). The CI/CD process uses `demisto-sdk` to develop and deploy custom content packs. It downloads, uploads, validates, creates content, migrates content from a Cortex XSOAR server, etc. It also supports content pack structure generation, auto validation of custom content including running linters on the code, and generation of content pack documentation, etc. For a full list of features, commands, and arguments, see [demisto-sdk-commands](https://github.com/demisto/demisto-sdk#commands).
@@ -159,8 +167,12 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
        no-docker-checks=true
     ```
     
-    
-   
+### Development Video Tutorial
+<video controls>
+    <source src="https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-development.mp4"
+            type="video/mp4"/>
+    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-development.mp4 
+</video> 
 
 
 ## Testing/Staging
@@ -200,6 +212,13 @@ Before you begin, ensure that you have installed the following:
 
 After the testing has completed successfully, you are now ready to deploy content.
 
+
+### Testing/Staging Video Tutorial
+<video controls>
+    <source src="https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-testing-staging.mp4"
+            type="video/mp4"/>
+    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-testing-staging.mp4 
+</video>
 
 
  ## Deployment
@@ -427,6 +446,14 @@ Although you do not have the flexibility of version control and rollback, it is 
    ![cicd_playbook.png](../../../docs/doc_imgs/reference/XSOAR-CICD/cicd_playbook.png)
   
    - If not using the XSOAR CI/CD Content Pack, install content manually. For example, if using Google Cloud Services integration run the `gcd-download-file` command.
+
+
+### Deployment Video Tutorial
+<video controls>
+    <source src="https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-deployment.mp4"
+            type="video/mp4"/>
+    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-deployment.mp4 
+</video>
 
 
 ### CI/CD FAQs
