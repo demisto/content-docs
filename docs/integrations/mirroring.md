@@ -62,7 +62,7 @@ Arguments explanation:
   - *mirrored_object* - this is essentially the object(dict) of whatever you are trying to mirror - the incident in most cases. If there are only entries (no change to incident), you can return `{}` as the first entry. 
   - *entries* - a list of entries to add to your incident. If you want to close the incident, you can return an entry with `{"Contents": {"dbotIncidentClose": True, "closeReason": "some reason", "closeNotes": "Some note"}`. If you want to re-open a closed incident, you should return `{"Contents": {"dbotIncidentReopen": True}}`. Full entry syntax is supported, including marking it as a note.
   
-An example for such a function could be:
+Here's an example for an implementation of `get_remote_data_command`:
 ```python
 def get_remote_data_command(client, args):
     parsed_args = GetRemoteDataArgs(args)
@@ -75,8 +75,8 @@ def get_remote_data_command(client, args):
               'Type': EntryType.NOTE,
               'Contents': entry.get('contents'),
               'ContentsFormat': EntryFormat.TEXT,
-              'Tags': ['tag1', 'tag2'],  # the list of tags to add to the entry
-              'Note': False  # boolean, True for Note, False otherwise
+              'Tags': ['tag1', 'tag2'],  # a list of tags to add to the entry
+              'Note': False  # boolean: True for Note, False otherwise
           })
 
       remote_incident_id = new_incident_data['incident_id']
@@ -97,12 +97,12 @@ Arguments explanation. **You must provide one of the following:**
   - *modified_incident_entries* - a list of entries containing the full incident data. In this case, `get-remote-data` **will not be called**.
 * **skip update** - in case of a failure. In order to notify the server that the command failed and prevent execution of the **get-remote-data** commands, returns an error that contains the string `"skip update"`.
 
-An example for such a function could be:
+Here's an example for an implementation of `get-modified-remote-data`:
 ```python
 def get_modified_remote_data_command(client, args):
     remote_args = GetModifiedRemoteDataArgs(args)
     last_update = remote_args.last_update
-    last_update_utc = dateparser.parse(last_update, settings={'TIMEZONE': 'UTC'})  # convert to utc format
+    last_update_utc = dateparser.parse(last_update, settings={'TIMEZONE': 'UTC'})  # converts to a UTC timestamp
     
     raw_incidents = client.get_incidents(gte_modification_time=last_update_utc, limit=100)
     modified_incident_ids = list()
@@ -114,7 +114,7 @@ def get_modified_remote_data_command(client, args):
 ```
 * **Last Mirror Run (Available from 6.6)** - [get_last_mirror_run()](https://xsoar.pan.dev/docs/reference/api/common-server-python#get_last_mirror_run) retrieves the previous mirror run data that was set. You can set the last run of the mirror using [set_last_mirror_run()](https://xsoar.pan.dev/docs/reference/api/common-server-python#set_last_mirror_run). Storing and getting this data (a dictionary) enables you to control the *lastUpdate* timestamp from the integration or any other data you want to save between mirror runs.
  
-  An example for such a function could be:
+Here's an example for an implementation of `get_modified_remote_data_command`:
 ```python
 def get_modified_remote_data_command(client, args):
     last_update = get_last_mirror_run().get("last_update")
@@ -135,7 +135,6 @@ def get_modified_remote_data_command(client, args):
 
 ### update-remote-system
 * **UpdateRemoteSystemArgs** - this is an object created to maintain all the arguments you receive from the server in order to use this command.
-Arguments explanation:
   - *data* - represents the data of the current incident - a dictionary object `{key: value}`.
   - *entries* - represents the entries from your current incident - a list of dictionary objects representing the entries.
   - *remote_incident_id* - contains the value of the dbotMirrorId field, which represents the ID of the incident in the external system. 
@@ -143,7 +142,7 @@ Arguments explanation:
   - *delta* - represents the dictionary of fields that changed from the last update - a dictionary object `{key: value}` containing only the changed fields.
   - *incident_changed* - a boolean to indicate if the incident itself changed. Because an incident might not change, but we want to send mirrored entries over.
   
-An example for such a function could be:
+Here's an example for an implementation of `update-remote-system`:
 ```python
 def update_remote_system_command(client: Client, args: Dict[str, Any]) -> str:
     """update-remote-system command: pushes local changes to the remote system

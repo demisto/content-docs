@@ -82,6 +82,16 @@ const config = (plop) => {
         name: "changeLog",
         message: "Pack changelog",
       },
+      {
+        type: "input",
+        name: "licenseLink",
+        message: "Pack license information",
+      },
+      {
+        type: "list",
+        name: "dependencies",
+        message: "Pack dependencies",
+      },
     ],
     actions: [
       {

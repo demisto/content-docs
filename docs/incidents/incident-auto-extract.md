@@ -23,6 +23,7 @@ Auto Extract supports the following modes:
 * Inline - Indicators are extracted and enriched within the context that Auto Extract runs, and the findings are added to the Context Data. For example, if you define Auto Extract for the Phishing incident type as inline, all of the indicators for incident classified as Phishing will be extracted and enriched before anything else happens. The playbook you defined to run by default will not run until the indicators have been fully processed. Use this option when you need to have the most robust information available per indicator. Unless otherwise configured in a system configuration, this is the default mode in which Auto Extract executes.
 
    **Note**: This configuration will slow down your system performance. 
+   **Note**: While indicator creation is asynchronous, indicator extraction and enrichment is run synchronously. Data is placed into the incident context and is available via the context for subsequent tasks.
 
 * Out of band - Indicators are enriched in parallel (or asynchronously) to other actions. The enriched data is available within the incident, however, it is not available for immediate use in task inputs or outputs since the information is not available in real time. 
 
