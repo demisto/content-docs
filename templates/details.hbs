@@ -15,6 +15,8 @@ showdown.setFlavor("github");
 const README =
 "{{{readme}}}"
 
+const PREMIUM = `{{{premium}}}`;
+
 function {{id}}() {
 return (
 <Layout title={TITLE} description={DESCRIPTION} wrapperClassName="contentPack">
@@ -26,7 +28,7 @@ return (
     </div>
 
     <main className={clsx("container", "contentPackAlign" )}>
-        <ContentPackTabs defaultValue="details" downloadUrl="https://marketplace-dist.storage.googleapis.com/content/packs/{{id}}/{{id}}_with_dependencies.zip"
+        <ContentPackTabs defaultValue="details" premium="{{premium}}" downloadUrl="https://marketplace-dist.storage.googleapis.com/content/packs/{{id}}/{{id}}_with_dependencies.zip"
         values={[ { label: "Details" , value: "details" }, { label: "Content" , value: "content" }, { label: "Dependencies" , value: "dependencies" }, { label: "Version History" , value: "versions" }]}>
             <TabItem value="details">
                 <div className="row">
@@ -231,7 +233,9 @@ return (
                             <Collapsible trigger="{{this.displayName}} ({{this.released}})">
                                 <article dangerouslySetInnerHTML=\{{ __html:
                                     converter.makeHtml("{{{this.releaseNotes}}}"), }}></article>
+                                {{#unless ../premium}}
                                 <a className="button button--outline button--primary button--md" href="https://storage.googleapis.com/marketplace-dist/content/packs/{{../id}}/{{this.version}}/{{../id}}.zip" target="_blank" title="Warning: Downloading this pack without its required dependencies may result in failed installation.">Download</a>
+                                {{/unless}}
                             </Collapsible>
                         </div>
                     </div>
