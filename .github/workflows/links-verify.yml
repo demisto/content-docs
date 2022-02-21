@@ -26,8 +26,10 @@ jobs:
         fetch-depth: 0
         ref: 'Fix_broken_links'
     - name: create ignore url files
+      # The grep regex finds all URL's in integration README files in the section between ## Commands or <h2>Commands until the end of the file.
+      # -R search recursively -P perl regex -o print only the match -z ignore new line -a process a binary file as if it were text
       run: |
-        grep -RPoz "(?s)## Commands.*\Z|<h2>Commands.*\Z" --include "README.md" content/Packs/*/Integrations | grep  -Eoa "(http|https)://[a-zA-Z0-9./?=_%:-]*" | sort -u > all_urls_ignore.txt
+        grep -RPoz "(?s)## Commands.*\Z|<h2>Commands.*\Z" --include "README.md" content/Packs/*/Integrations | grep  -Poa "(http|https)://[a-zA-Z0-9./?=_%:-]*" | sort -u > all_urls_ignore.txt
         sed -i -e 's/^/-e "/' all_urls_ignore.txt
         sed -i -e 's/$/"/' all_urls_ignore.txt
         cat content-docs/urls_ignore.txt >> all_urls_ignore.txt
