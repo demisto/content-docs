@@ -51,9 +51,6 @@ For each output entry, you have three fields; Context Path, Description and Type
 * **Description** - A short description of what this Context entry represents.
 * **Type** - Indicating the type of value that is located at the path. Enables Cortex XSOAR to format the data correctly.
 
-Use [json-to-outputs](https://github.com/demisto/demisto-sdk#convert-json-to-demisto-outputs) command in 
-[demisto-sdk](https://github.com/demisto/demisto-sdk) tool to convert JSON into yml.
-**Example:** `demisto-sdk json-to-outputs -c threatstream-analysis-report -p ThreatStream.Analysis` 
 
 ```buildoutcfg
 outputs:
