@@ -119,14 +119,12 @@ CONTENT_INFO_TEST_INTEGRATIONS = [
 def test_add_content_info(yml_path, readme_path, expected_content_string):
     """
     Given -
-        a yml and readme path of integrations
+        a yml and readme path of integrations.
 
         Case1: deprecated integration.
         Case2: integration that is supported from version 6.0.0
-    
     When -
         trying to fetch the integration information.
-    
     Then -
         Case1: the content info will contain only information that the integration is deprecated.
         Case2: the content info will contain only information that the integration is supported from 6.0.0 versions.
