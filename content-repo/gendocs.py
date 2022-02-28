@@ -297,9 +297,14 @@ def add_content_info(content: str, yml_data: dict, desc: str, readme_file: str) 
     Returns:
         str: content entity information containing additional information.
     """
-    content = get_deprecated_data(yml_data, desc, readme_file) + content
+    if deprecated_data := get_deprecated_data(yml_data, desc, readme_file):
+        content = deprecated_data + content
+        is_deprecated = True
+    else:
+        is_deprecated = False
     content = get_beta_data(yml_data, content) + content
-    content = get_fromversion_data(yml_data) + content
+    if not is_deprecated:
+        content = get_fromversion_data(yml_data) + content
     content = get_pack_link(readme_file) + content
     return content
 
