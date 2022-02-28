@@ -1,4 +1,5 @@
 import json
+import yaml
 import re
 from gendocs import DEPRECATED_INFO_FILE, DeprecatedInfo, INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
     index_doc_infos, DocInfo, gen_html_doc, process_release_doc, process_extra_readme_doc, \
@@ -98,6 +99,43 @@ def test_findfiles():
     assert f'{SAMPLE_CONTENT}/Integrations/PhishLabsIOC_DRP/README.md' in res
     assert f'{SAMPLE_CONTENT}/Beta_Integrations/SymantecDLP/README.md' in res
     assert f'{SAMPLE_CONTENT}/Integrations/integration-F5_README.md' in res
+
+
+CONTENT_INFO_TEST_INTEGRATIONS = [
+    (
+        f'{SAMPLE_CONTENT}/Deprecated_Integrations/ExportIndicators/ExportIndicators.yml',
+        f'{SAMPLE_CONTENT}/Deprecated_Integrations/ExportIndicators/README.md',
+        ':::caution Deprecated\nUse the Generic Export Indicators Service integration instead.\n:::\n\n'
+    ),
+    (
+        f'{SAMPLE_CONTENT}/Integrations/AnsibleAlibabaCloud/AnsibleAlibabaCloud.yml',
+        f'{SAMPLE_CONTENT}/Integrations/AnsibleAlibabaCloud/README.md',
+        ':::info Supported versions\nSupported Cortex XSOAR versions: 6.0.0 and later.\n:::\n\n'
+    ),
+]
+
+
+@pytest.mark.parametrize("yml_path, readme_path, expected_content_string", CONTENT_INFO_TEST_INTEGRATIONS)
+def test_add_content_info(yml_path, readme_path, expected_content_string):
+    """
+    Given -
+        a yml and readme path of integrations
+
+        Case1: deprecated integration.
+        Case2: integration that is supported from version 6.0.0
+    
+    When -
+        trying to fetch the integration information.
+    
+    Then -
+        Case1: the content info will contain only information that the integration is deprecated.
+        Case2: the content info will contain only information that the integration is supported from 6.0.0 versions.
+    """
+    from gendocs import add_content_info
+    with open(yml_path, 'r', encoding='utf-8') as f:
+        yml_data = yaml.safe_load(f)
+        content = add_content_info("", yml_data, yml_data.get("description"), readme_path)
+        assert content == expected_content_string
 
 
 def test_process_readme_doc(tmp_path, mocker):
