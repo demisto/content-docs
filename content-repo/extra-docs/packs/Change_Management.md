@@ -102,7 +102,7 @@ To create custom fields in a Jira project, see https://support.atlassian.com/jir
 
 *Note: The suggested fields names in ServiceNow are optional. The fields to map in XSOAR are mandatory.* 
 
-| **Field to create in Jira** | **Fields to map in XSOAR** |
+| **Field to create in ServiceNow** | **Fields to map in XSOAR** |
 | --- | --- |
 | Change request summary | Details |
 | Change request description | Description |
@@ -117,7 +117,7 @@ To create custom fields in a Jira project, see https://support.atlassian.com/jir
 
 2. Create a ServiceNow incident that will be used for mapping the custom fields in Cortex XSOAR.
 3. Record the values of these fields to use later.
-4. In Cortex XSOAR, fetch this specific incident. You can use the Query in the integration settings (in JQL).
+4. In Cortex XSOAR, fetch this specific incident. You can use the Query in the integration settings.
 5. After the incident is fetched, in Cortex XSOAR go to **Settings** > **Object Setup** > **Classification and Mapping** and choose **ServiceNow - Incoming Mapper**.
 6. Click **Duplicate**.
 
