@@ -749,7 +749,7 @@ This class is used to return outputs. This object represents an entry in warroom
 | indicators        | list   | DEPRECATED: use 'indicator' instead.                                                                                                                                                       |
 | indicator         | Common.Indicator | single indicator like Common.IP, Common.URL, Common.File, etc.                                                                                                                   |
 | indicators_timeline | IndicatorsTimeline | Must be an IndicatorsTimeline. used by the server to populate an indicator's timeline.                                                                                       |
-| ignore_auto_extract | bool | If set to **True** prevents the built-in [auto-extract](../incidents/incident-auto-extract) from enriching IPs, URLs, files, and other indicators from the result. Default is **False**.  |
+| ignore_auto_extract | bool | If set to **True** prevents the built-in [auto-extract](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-6/cortex-xsoar-admin/manage-indicators/auto-extract-indicators.html) from enriching IPs, URLs, files, and other indicators from the result. Default is **False**.  |
 | mark_as_note | bool |  If set to **True** marks the entry as note. Default is **False**. |
 | scheduled_command | ScheduledCommand | Manages the way the command result should be polled. |
 
@@ -943,7 +943,7 @@ return_outputs(
 
 
 ### AutoExtract
-As part of ```CommandResults()``` there is an argument called ```ignore_auto_extract```, which prevents the built-in [auto-extract](../incidents/incident-auto-extract) feature from enriching IPs, URLs, files, and other indicators from the result. For example:
+As part of ```CommandResults()``` there is an argument called ```ignore_auto_extract```, which prevents the built-in [auto-extract](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-6/cortex-xsoar-admin/manage-indicators/auto-extract-indicators.html) feature from enriching IPs, URLs, files, and other indicators from the result. For example:
 
 ```python
 results = CommandResults(
