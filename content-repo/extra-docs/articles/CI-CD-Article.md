@@ -26,7 +26,7 @@ CI/CD has the following advantages over using the remote repository feature in C
 The CI/CD process involves the following stages:
 - [Development](#development)
 - [Testing/staging](#testingstaging)
-- [Depoloyment](#deployment)
+- [Deployment](#deployment)
 
 For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
 
@@ -82,15 +82,19 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
  
  4. **(Optional) Migrate custom content in Cortex XSOAR to Git Repository**.
 
-    You can migrate all custom content or separate items of content.
+    You can migrate all custom content, separate content items, or detached out-of-the-box content.
+
+
     **NOTE:** Ensure that the `DEMISTO_BASE_URL` and `DEMISTO_API_KEY` are set to the server environment that you want to download. 
-  - **Migrate all custom content**
+  - **Migrate all custom content** 
+    
     If you currently use the existing remote repository feature in Cortex XSOAR and now want to use the CI/CD process, download the content from your development machine using the `demisto-sdk download` command. For example, to download content from your remote repository to your repository created in step 1, run the following command: 
     `demisto-sdk download -o address_of_the_pack_folder -i name_of_the_content`
 
     If you have a lot of content, downloading can take a substantial amount of time, as it creates separate folders for each pack. It is recommended to create one folder with a general name and then separate them into branch repositories.
 
-- **Migrate some custom content**
+- **Migrate some custom content** 
+  
   If you want to migrate some custom content like an integration,  run the download command by specifying the content. For example, to add an `CICDExample` integration to the *CICDExample* Content Pack, run the following command:
         `demisto-sdk download -o Packs/CICDExample -i CICDExample`
         The `CICDExample` integration file appears in the `Integrations` folder, which separates the content into Python and YML files together with a `README.md`.
@@ -99,9 +103,25 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
      
      **NOTE:**  You can download directly from the development server. If downloading Automations and integrations, you need to use the `demisto-sdk split` command to split the content into the correct format.
 
+- **Migrate detached out-of-the-box content**
+  
+  If you have out-of-the-box  content from a content pack that is detached (such a Phishing incident type) and want to use the CI/CD process, run the following command:
+
+  `demisto-sdk download --system --type <object to download such as layouts, playbooks, scripts> -i <the name of the object to download> -o <the output directory. 
+  It is recommended to download to a new SystemPacks directory>`
+
+  For example, to download the detached phishing incident type layout, run `demisto-sdk download --system --type layouts -i Phishing -o SystemPacks/Phishing/Layouts`. 
+  
+  If you want to download the **Phishing Investigation - Generic v2** playbook run the following:
+
+   `demisto-sdk download --system --type playbooks -i Phishing_investigation_-_Generic_v2.yml -o SystemPacks/Phishing/Playbooks`
+
+
  
 5. **Create New Content.**
+   
  	In a branch that has been created in step 3 above, create new content, by running the following command:
+
      `demisto-sdk init` 
     
     The `init` command automatically generates the content pack structure. 
@@ -330,7 +350,8 @@ Although you do not have the flexibility of version control and rollback, it is 
 
     3.2 **(Optional) Update Marketplace Content Packs**.
     
-    You can also add any Marketplace Content Packs to update. You have the option to deploy from here with the latest version. If you have a lot of out-of-the-box content, use the `demisto-sdk xsoar-config-file --add-all-marketplace-packs`, command which automatically adds all the installed out of the box Content Packs to the configuration file.
+    You can also add any Marketplace Content Packs to update. You have the option to deploy from here with the latest version. If you have a lot of out-of-the-box content, use the `demisto-sdk xsoar-config-file --add-all-marketplace-packs` command which automatically adds all the installed out of the box Content Packs to the configuration file.
+  
    
 4. **Check that all the changes are validated and are successful.**
     <br/> The Git repository should look similar to this:
@@ -446,6 +467,14 @@ Although you do not have the flexibility of version control and rollback, it is 
    ![cicd_playbook.png](../../../docs/doc_imgs/reference/XSOAR-CICD/cicd_playbook.png)
   
    - If not using the XSOAR CI/CD Content Pack, install content manually. For example, if using Google Cloud Services integration run the `gcd-download-file` command.
+  
+8. If you have any detached content which you have downloaded in step 4 in Setup the CI/CD Development Process above, run the following command:
+   `sdk upload --input-config-file <path to download the all the system packs from>` 
+   
+   For example, `sdk upload --input-config-file SystemPacks/Phishing/Playbooks.`
+
+   **NOTE**: When you upload detached content to Cortex XSOAR it overrides any existing attached/detached content. To keep any changes make a duplicate of the existing detached content in Cortex XSOAR before uploading.
+
 
 
 ### Deployment Video Tutorial
