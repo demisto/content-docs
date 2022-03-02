@@ -25,6 +25,21 @@ def mdx_server():
     stop_mdx_server()
 
 
+@pytest.fixture()
+def integration_yml_path_and_expected_content_info(request, tmp_path):
+    """
+    Build a minimal yml integration file and returns it.
+    In addition it returns the expected content info that should be returned when adding the content info.
+    """
+    integration_yml_name, integration_yml_data, expected_content_info = request.param
+
+    integration_yml_path = f'{tmp_path}/{integration_yml_name}'
+    with open(integration_yml_path, 'w') as file:
+        yaml.safe_dump(integration_yml_data, file)
+
+    return integration_yml_path, expected_content_info
+
+
 def test_verify_mdx():
     try:
         verify_mdx(f'{BASE_DIR}/test_data/bad-mdx-readme.md')
@@ -101,25 +116,33 @@ def test_findfiles():
     assert f'{SAMPLE_CONTENT}/Integrations/integration-F5_README.md' in res
 
 
-CONTENT_INFO_TEST_INTEGRATIONS = [
-    (
-        f'{SAMPLE_CONTENT}/Deprecated_Integrations/ExportIndicators/ExportIndicators.yml',
-        f'{SAMPLE_CONTENT}/Deprecated_Integrations/ExportIndicators/README.md',
-        ':::caution Deprecated\nUse the Generic Export Indicators Service integration instead.\n:::\n\n'
-    ),
-    (
-        f'{SAMPLE_CONTENT}/Integrations/AnsibleAlibabaCloud/AnsibleAlibabaCloud.yml',
-        f'{SAMPLE_CONTENT}/Integrations/AnsibleAlibabaCloud/README.md',
-        ':::info Supported versions\nSupported Cortex XSOAR versions: 6.0.0 and later.\n:::\n\n'
-    ),
-]
-
-
-@pytest.mark.parametrize("yml_path, readme_path, expected_content_string", CONTENT_INFO_TEST_INTEGRATIONS)
-def test_add_content_info(yml_path, readme_path, expected_content_string):
+@pytest.mark.parametrize(
+    'integration_yml_path_and_expected_content_info', [
+        (
+            'deprecated-integration',
+            {
+                'deprecated': True,
+                'description': 'Deprecated. Use the Generic Export Indicators Service integration instead. '
+                               'Use the Export Indicators Service integration to provide an endpoint '
+                               'with a list of indicators as a service for the system indicators.'
+            },
+            ':::caution Deprecated\nUse the Generic Export Indicators Service integration instead.\n:::\n\n'
+        ),
+        (
+            '6-0-0-integration',
+            {
+                'fromversion': '6.0.0',
+                'description': 'Manage Alibaba Cloud Elastic Compute Instances'
+            },
+            ':::info Supported versions\nSupported Cortex XSOAR versions: 6.0.0 and later.\n:::\n\n'
+        )
+    ],
+    indirect=True
+)
+def test_add_content_info(integration_yml_path_and_expected_content_info):
     """
     Given -
-        a yml and readme path of integrations.
+        a minimal integration yml file.
 
         Case1: deprecated integration.
         Case2: integration that is supported from version 6.0.0
@@ -130,9 +153,11 @@ def test_add_content_info(yml_path, readme_path, expected_content_string):
         Case2: the content info will contain only information that the integration is supported from 6.0.0 versions.
     """
     from gendocs import add_content_info
+
+    yml_path, expected_content_string = integration_yml_path_and_expected_content_info
     with open(yml_path, 'r', encoding='utf-8') as f:
         yml_data = yaml.safe_load(f)
-        content = add_content_info("", yml_data, yml_data.get("description"), readme_path)
+        content = add_content_info("", yml_data, yml_data.get("description"), '')
         assert content == expected_content_string
 
 
