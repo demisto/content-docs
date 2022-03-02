@@ -520,9 +520,10 @@ def get_ip(ip):
     ip_data = http_request('POST', '/v1/api/ip' + ip)
     return ip_data
 ```
+**Note:** These logging methods replace the deprecated ```LOG()``` function.
 
 ## Do No Print Sensitive Data to The Log
-This section is critical.When an integration is ready to be used as part of a public release (meaning you are done debugging it), we **ALWAYS** remove print statements that are not absolutely necessary.
+This section is critical. When an integration is ready to be used as part of a public release (meaning you are done debugging it), we **ALWAYS** remove print statements that are not absolutely necessary.
 
 
 ## Dates
@@ -906,7 +907,7 @@ class EntryFormat(object):
 
 
 ### DEPRECATED - return_outputs
-_Note_: Use `return_results` instead
+**Note:** Use `return_results` instead
  
 `return_outputs()` is a convenience function - it is simply a wrapper of `demisto.results()` used to return results to the War Room and which defaults to the most commonly used configuration for entries, only exposing the most functional parameters for the sake of simplicity. For example:
 ```python
@@ -915,7 +916,7 @@ def return_outputs(readable_output, outputs=None, raw_response=None, timeline=No
     This function wraps the demisto.results(), makes the usage of returning results to the user more intuitively.
 
     :type readable_output: ``str``
-    :param readable_output: markdown string that will be presented in the warroom, should be human readable -
+    :param readable_output: markdown string that will be presented in the War Room, should be human readable -
         (HumanReadable)
 
     :type outputs: ``dict``
