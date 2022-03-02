@@ -29,8 +29,8 @@ The following are the possible playbook triggers:
 
 | **Field to create in Jira** | **Fields to map in XSOAR** |
 | --- | --- |
-| Change request summary | Details |
-| Change request description | Description |
+| Request summary | Details |
+| Request description | Description |
 | Destination Port | Dst Ports |
 | FW policy action | Policy Actions |
 | FW Source Zone | Source Networks |
@@ -104,8 +104,8 @@ To create custom fields in a Jira project, see https://support.atlassian.com/jir
 
 | **Field to create in ServiceNow** | **Fields to map in XSOAR** |
 | --- | --- |
-| Change request summary | Details |
-| Change request description | Description |
+| Request summary | Details |
+| Request description | Description |
 | Destination Port | Dst Ports |
 | FW policy action | Policy Actions |
 | FW Source Zone | Source Networks |
