@@ -471,6 +471,7 @@ Although you do not have the flexibility of version control and rollback, it is 
   
 8. If you have any detached content which you have downloaded in step 4 in Setup the CI/CD Development Process above, run the following command:
    `sdk upload --input-config-file -reattach`
+   
    The command uploads all the detached content automatically and compares the content to content in Cortex XSOAR. The files that exist in the `SystemPacks` folder remain detached and all other items are attached when uploaded to Cortex XSOAR.    
       
    **NOTE**: When you upload detached content to Cortex XSOAR it overrides any existing detached content. To keep any changes make a duplicate of the existing detached content in Cortex XSOAR before uploading.  
