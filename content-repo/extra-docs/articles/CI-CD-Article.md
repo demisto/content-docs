@@ -107,8 +107,9 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
   
   If you have out-of-the-box  content from a content pack that is detached (such a Phishing incident type) and want to use the CI/CD process, run the following command:
 
-  `demisto-sdk download --system --type <object to download such as layouts, playbooks, scripts> -i <the name of the object to download> -o <the output directory>. 
-  It is recommended to download to a new SystemPacks directory>`
+  `demisto-sdk download --system --type <object to download such as layouts, playbooks, scripts> -i <the name of the object to download> -o <the output directory>`. 
+  
+  It is recommended to download to a new `SystemPacks` folder to avoid validation errors. The object needs to be stored in the `SystemPacks` folder to preserve the pack structure. **NOTE**: Only the detached items are stored and not other files such as pack metadata, release notes, readme, etc.
 
   For example, to download the detached phishing incident type layout, run `demisto-sdk download --system --type layouts -i Phishing -o SystemPacks/Phishing/Layouts`. 
   
@@ -469,11 +470,10 @@ Although you do not have the flexibility of version control and rollback, it is 
    - If not using the XSOAR CI/CD Content Pack, install content manually. For example, if using Google Cloud Services integration run the `gcd-download-file` command.
   
 8. If you have any detached content which you have downloaded in step 4 in Setup the CI/CD Development Process above, run the following command:
-   `sdk upload --input-config-file <path to download the all the system packs from>` 
-   
-   For example, `sdk upload --input-config-file SystemPacks/Phishing/Playbooks.`
-
-   **NOTE**: When you upload detached content to Cortex XSOAR it overrides any existing attached/detached content. To keep any changes make a duplicate of the existing detached content in Cortex XSOAR before uploading.
+   `sdk upload --input-config-file -reattach`
+   The command uploads all the detached content automatically and compares the content to content in Cortex XSOAR. The files that exist in the `SystemPacks` folder remain detached and all other items are attached when uploaded to Cortex XSOAR.    
+      
+   **NOTE**: When you upload detached content to Cortex XSOAR it overrides any existing detached content. To keep any changes make a duplicate of the existing detached content in Cortex XSOAR before uploading.  
 
 
 
