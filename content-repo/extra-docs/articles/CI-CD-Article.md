@@ -107,7 +107,7 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
   
   If you have out-of-the-box  content from a content pack that is detached (such a Phishing incident type) and want to use the CI/CD process, run the following command:
 
-  `demisto-sdk download --system --type <object to download such as layouts, playbooks, scripts> -i <the name of the object to download> -o <the output directory. 
+  `demisto-sdk download --system --type <object to download such as layouts, playbooks, scripts> -i <the name of the object to download> -o <the output directory>. 
   It is recommended to download to a new SystemPacks directory>`
 
   For example, to download the detached phishing incident type layout, run `demisto-sdk download --system --type layouts -i Phishing -o SystemPacks/Phishing/Layouts`. 
