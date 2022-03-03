@@ -54,7 +54,7 @@ else
 
     if [ ! -d ${CONTENT_GIT_DIR} ]; then
         echo "Cloning content to dir: ${CONTENT_GIT_DIR} ..."
-        git clone ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}
+        git clone --depth 1 ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}
     else
         echo "Content dir: ${CONTENT_GIT_DIR} exists. Skipped clone."
         if [ -z "${CONTENT_REPO_SKIP_PULL}"]; then        

@@ -58,7 +58,8 @@ const sidebars = {
         "contributing/checklist",
         "contributing/conventions",
         "contributing/docs-contrib",
-        "contributing/marketplace"
+        "contributing/marketplace",
+        "contributing/demo-prep"
       ]
     },
     {
@@ -191,7 +192,6 @@ const sidebars = {
         "incidents/incident-customize-incident-layout",
         "incidents/incident-fields",
         "incidents/incident-jobs",
-        "incidents/incident-auto-extract",
         "incidents/incident-classification-mapping",
         "incidents/incident-pre-processing"
       ]

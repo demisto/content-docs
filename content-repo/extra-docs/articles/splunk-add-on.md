@@ -125,6 +125,17 @@ In cases where after associating Create XSOAR Incident with saved searches or co
    curl -kv -H "Authorization:<API_KEY>" https://<XSOAR_SERVER>:<PORT>/user
    wget --no-check-certificate --header="Authorization: <API_KEY>" -O - https://<XSOAR_SERVER>:<PORT>/user
    ```
+   
+#### Connection Timeout Errors
+```
+2022-01-25 02:45:02,941 ERROR pid=**** tid=MainThread file=*** | sendmodaction - signature="Failed creating an incident to server ****. Reason: HTTPSConnectionPool(host='***', port=443): Read timed out. (read timeout=30.0)" action_name="***" search_name="****" action_status="failure"
+```
+In case of a connection timeout error as in the above log:
+1. Locate the `SavedSplunker` log facility.
+2. Increase its verbosity to *ERROR* level.
+3. If the logs include the following:
+    ```WARN SavedSplunker - Reached maximum amount of time allowed to spend in per-result alerts for savedsearch_id="SAVEDSEARCH_ID"```
+    Increase the *max_per_result_alerts_time* value in the `limits.conf` file.
 
 #### Incident Created with Incorrect Fields
 If incidents being created in XSOAR but with incorrect fields, refer to the [Connectivity Test](#connectivity-test---create-a-custom-alert-action-from-saved-searches) section for an understanding of the fields which are associated with create incident actions.
