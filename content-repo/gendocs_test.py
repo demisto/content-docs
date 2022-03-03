@@ -124,7 +124,8 @@ def test_findfiles():
                 'deprecated': True,
                 'description': 'Deprecated. Use the Generic Export Indicators Service integration instead. '
                                'Use the Export Indicators Service integration to provide an endpoint '
-                               'with a list of indicators as a service for the system indicators.'
+                               'with a list of indicators as a service for the system indicators.',
+                'fromversion': '6.0.0'
             },
             ':::caution Deprecated\nUse the Generic Export Indicators Service integration instead.\n:::\n\n'
         ),
@@ -144,8 +145,8 @@ def test_add_content_info(integration_yml_path_and_expected_content_info):
     Given -
         a minimal integration yml file.
 
-        Case1: deprecated integration.
-        Case2: integration that is supported from version 6.0.0
+        Case1: deprecated integration with a fromversion = 6.0.0.
+        Case2: integration that is supported fromversion = 6.0.0
     When -
         trying to fetch the integration information.
     Then -
