@@ -1,4 +1,5 @@
 import json
+import yaml
 import re
 from gendocs import DEPRECATED_INFO_FILE, DeprecatedInfo, INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
     index_doc_infos, DocInfo, gen_html_doc, process_release_doc, process_extra_readme_doc, \
@@ -22,6 +23,21 @@ def mdx_server():
     yield start_mdx_server()
     print('Cleaning up MDX server')
     stop_mdx_server()
+
+
+@pytest.fixture()
+def integration_yml_path_and_expected_content_info(request, tmp_path):
+    """
+    Build a minimal yml integration file and returns it.
+    In addition it returns the expected content info that should be returned when adding the content info.
+    """
+    integration_yml_name, integration_yml_data, expected_content_info = request.param
+
+    integration_yml_path = f'{tmp_path}/{integration_yml_name}'
+    with open(integration_yml_path, 'w') as file:
+        yaml.safe_dump(integration_yml_data, file)
+
+    return integration_yml_path, expected_content_info
 
 
 def test_verify_mdx():
@@ -98,6 +114,52 @@ def test_findfiles():
     assert f'{SAMPLE_CONTENT}/Integrations/PhishLabsIOC_DRP/README.md' in res
     assert f'{SAMPLE_CONTENT}/Beta_Integrations/SymantecDLP/README.md' in res
     assert f'{SAMPLE_CONTENT}/Integrations/integration-F5_README.md' in res
+
+
+@pytest.mark.parametrize(
+    'integration_yml_path_and_expected_content_info', [
+        (
+            'deprecated-integration',
+            {
+                'deprecated': True,
+                'description': 'Deprecated. Use the Generic Export Indicators Service integration instead. '
+                               'Use the Export Indicators Service integration to provide an endpoint '
+                               'with a list of indicators as a service for the system indicators.',
+                'fromversion': '6.0.0'
+            },
+            ':::caution Deprecated\nUse the Generic Export Indicators Service integration instead.\n:::\n\n'
+        ),
+        (
+            '6-0-0-integration',
+            {
+                'fromversion': '6.0.0',
+                'description': 'Manage Alibaba Cloud Elastic Compute Instances'
+            },
+            ':::info Supported versions\nSupported Cortex XSOAR versions: 6.0.0 and later.\n:::\n\n'
+        )
+    ],
+    indirect=True
+)
+def test_add_content_info(integration_yml_path_and_expected_content_info):
+    """
+    Given -
+        a minimal integration yml file.
+
+        Case1: deprecated integration with a fromversion = 6.0.0.
+        Case2: integration that is supported fromversion = 6.0.0
+    When -
+        trying to fetch the integration information.
+    Then -
+        Case1: the content info will contain only information that the integration is deprecated.
+        Case2: the content info will contain only information that the integration is supported from 6.0.0 versions.
+    """
+    from gendocs import add_content_info
+
+    yml_path, expected_content_string = integration_yml_path_and_expected_content_info
+    with open(yml_path, 'r', encoding='utf-8') as f:
+        yml_data = yaml.safe_load(f)
+        content = add_content_info("", yml_data, yml_data.get("description"), '')
+        assert content == expected_content_string
 
 
 def test_process_readme_doc(tmp_path, mocker):
