@@ -116,9 +116,7 @@ function ContentPackTabs(props) {
             {label}
           </li>
         ))}
-        {(premium == "true") ? (
-            <li/>
-        ) : (
+        {(premium == "true") ? (null) : (
             <li className={clsx('tabs__item', styles.tabItem, styles.downloadTabItem, styles.noAnimation)}>
                 <a className={clsx("button button--primary button--outline button--md" )}
                    href={downloadUrl}
