@@ -269,10 +269,7 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
                 readme_repo_path = readme_repo_path[len(content_dir):]
             edit_url = f'https://github.com/demisto/content/blob/{BRANCH}/{readme_repo_path}'
             header = f'---\nid: {id}\ntitle: {json.dumps(doc_info.name)}\ncustom_edit_url: {edit_url}\n---\n\n'
-            content = get_deprecated_data(yml_data, desc, readme_file) + content
-            content = get_beta_data(yml_data, content) + content
-            content = get_fromversion_data(yml_data) + content
-            content = get_pack_link(readme_file) + content
+            content = add_content_info(content, yml_data, desc, readme_file)
             content = header + content
         verify_mdx_server(content)
         with open(f'{target_dir}/{id}.md', mode='w', encoding='utf-8') as f:  # type: ignore
@@ -284,6 +281,32 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
     finally:
         sys.stdout.flush()
         sys.stderr.flush()
+
+
+def add_content_info(content: str, yml_data: dict, desc: str, readme_file: str) -> str:
+    """
+    Add information about a content entity such as script/integration. regarding whether it is deprecated,
+    its supported versions, whether its a beta entity, and a pack link that states to which pack this entity belongs.
+
+    Args:
+        content (str): The already built content.
+        yml_data (dict): yml data of the content entity.
+        desc (str): the description of the content entity
+        readme_file (str): the path to the README file of the content entity.
+
+    Returns:
+        str: content entity information containing additional information.
+    """
+    if deprecated_data := get_deprecated_data(yml_data, desc, readme_file):
+        content = deprecated_data + content
+        is_deprecated = True
+    else:
+        is_deprecated = False
+    content = get_beta_data(yml_data, content) + content
+    if not is_deprecated:
+        content = get_fromversion_data(yml_data) + content
+    content = get_pack_link(readme_file) + content
+    return content
 
 
 def handle_desc_field(desc: str):
