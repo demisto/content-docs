@@ -110,7 +110,7 @@ if [[ ( "$PULL_REQUEST" == "true" || -n "$CI_PULL_REQUEST" ) && "$CONTENT_BRANCH
     fi
 
     echo "$DIFF_FILES" | grep -v -E '^src/pages/marketplace/|^genMarketplace.js|^plopfile.js|^static/|^sidebars.js' || MAX_PACKS=20
-    if [ -n "MAX_PACKS" ]; then
+    if [ -n "$MAX_PACKS" ]; then
         echo "MAX_PACKS set to: $MAX_PACKS"
         export MAX_PACKS
     fi
@@ -154,8 +154,8 @@ echo "Generating docs..."
 pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
 echo "Generating Demisto class and CommonServerPython docs..."
 pipenv run ./gen_pydocs.py -t "${TARGET_DIR}"
-if [[ $CIRCLE_BRANCH =~ pull/[0-9]+ ]]; then
-    echo "Skipping, should not run on contributor's branch."
+if [[ "$CURRENT_BRANCH" != "master" ]]; then
+    echo "Skipping top contributors page generation, should run only on master."
     exit 0
 else
     echo "Generating top contributors page..."
