@@ -20,6 +20,7 @@ Examples of common errors indicating that there probably is a networking issue:
 * `dial tcp: lookup ****: no such host`
 * `connect: operation timed out`
 * `connect: connection refused`
+* `ERR_CONNECTION_REFUSED`
 
 
 When troubleshooting networking issues, it is important to first understand what type of networking the integration or automation is using. Cortex XSOAR integrations and automations can be classified into two main types regarding their networking use:
