@@ -32,10 +32,10 @@ This article walks you through the process of contributing content from the Cort
           3. Log in to your GitHub account so you can participate in the review process of the pull request that will be opened for your content pack.
           4. Sign the [Palo Alto Networks Contributor License Agreement](https://github.com/demisto/content/blob/master/docs/cla.pdf).
           5. Given a version number MAJOR.MINOR.REVISION, select _Update Type_:
-               a. **Revision** when you make backwards compatible bug fixes.
-               b. **Minor** when you add functionality in a backwards compatible manner.
-               c. **Major** when you make incompatible API changes or revamping the pack by adding to it a lot of new backwards compatible functionality.
-               d. **Documentation** when only documentation files were updated.
+                 1. **Revision** when you make backwards compatible bug fixes.
+                 2. **Minor** when you add functionality in a backwards compatible manner.
+                 3. **Major** when you make incompatible API changes or revamping the pack by adding to it a lot of new backwards compatible functionality.
+                 4. **Documentation** when only documentation files were updated.
 
 1. After you submit the form you will be redirected to a page that informs you that your pack was received and is being processed.  
 
