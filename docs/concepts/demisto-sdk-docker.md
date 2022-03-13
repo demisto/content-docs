@@ -4,6 +4,14 @@ Run Demisto-SDK validations from within a docker container.
 
 You can use this image to run Demisto-SDK commands locally or as a CI/CD process.
 
+## Get The Docker Image
+
+Pull the docker image with:
+`docker pull demisto/demisto-sdk:<tag>`
+
+You can find the latest tags in the docker hub:
+`http://hub.docker.com/r/demisto/demisto-sdk`
+
 ## The Content Repository
 
 To use the Demisto-SDK, ensure you have a content-like repository with Cortex XSOAR content in a structure that matches the official [XSOAR Content repo](https://github.com/demisto/content).
