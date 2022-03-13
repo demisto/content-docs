@@ -14,7 +14,7 @@ Cortex XSOAR is a powerful platform that comes with a rich set of features and f
 1. Read and understand Cortex XSOAR [Concepts](../concepts/concepts).
 1. Read the [FAQ](../concepts/faq).
 1. Register to the [Learning Center](http://education.paloaltonetworks.com/learningcenter) and go through the [Product Training](../partners/become-a-tech-partner#3-take-required-training).
-1. If you plan to publish your content to the [XSOAR Marketplace](../partners/paid-packs) for other customers to use, read about the [Contribution](../contributing/contributing) process and the different tiers and support levels (partner vs community support, etc.).
+1. If you plan to publish your content to the [XSOAR Marketplace](/marketplace) for other customers to use, read about the [Contribution](../contributing/contributing) process and the different tiers and support levels (partner vs community support, etc.).
 1. Bookmark the links to the [Cortex XSOAR Developer Hub](https://xsoar.pan.dev/docs/) (this site) and the [Cortex XSOAR Product Documentation Page](https://docs.paloaltonetworks.com/cortex/cortex-xsoar.html).
 1. Access the Palo Alto Networks [DFIR Slack Community](https://start.paloaltonetworks.com/join-our-slack-community) and join the *#demisto-developers* channel.
 1. Sign up to the [Developer Newsletter](https://start.paloaltonetworks.com/cortex-xsoar-developer-newsletter.html) to receive technical updates on developing and contributing.
@@ -32,7 +32,7 @@ If you are or want to become a Technology Partner, make sure that you also:
 
 This site provides guidance and best practices to create production-quality XSOAR content: for those of you who want to take their work to the next level so that it will be published in the XSOAR marketplace and used by several production users worldwide in large SOCs, we offer a full [contribution](../contributing/contributing) guide to walk you through proper design, development, and documentation: please read it after this article.
 
-If you just want to get started and create content for your own benefit or contribute in a *community* supported way, there are no such requirements. For more information about the different support levels, check the [official documentation](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/marketplace/marketplace-overview/content-packs-support-types.html).
+If you just want to get started and create content for your own benefit or contribute in a *community* supported way, there are no such requirements. For more information about the different support levels, check the [official documentation](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-5/cortex-xsoar-admin/marketplace/content-packs-support-types.html).
 
 Check the following summary to determine what tools you should use to create new content, depending on what you want to achieve.
 

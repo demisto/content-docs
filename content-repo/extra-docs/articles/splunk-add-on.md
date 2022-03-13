@@ -125,6 +125,17 @@ In cases where after associating Create XSOAR Incident with saved searches or co
    curl -kv -H "Authorization:<API_KEY>" https://<XSOAR_SERVER>:<PORT>/user
    wget --no-check-certificate --header="Authorization: <API_KEY>" -O - https://<XSOAR_SERVER>:<PORT>/user
    ```
+   
+#### Connection Timeout Errors
+```
+2022-01-25 02:45:02,941 ERROR pid=**** tid=MainThread file=*** | sendmodaction - signature="Failed creating an incident to server ****. Reason: HTTPSConnectionPool(host='***', port=443): Read timed out. (read timeout=30.0)" action_name="***" search_name="****" action_status="failure"
+```
+In case of a connection timeout error as in the above log:
+1. Locate the `SavedSplunker` log facility.
+2. Increase its verbosity to *ERROR* level.
+3. If the logs include the following:
+    ```WARN SavedSplunker - Reached maximum amount of time allowed to spend in per-result alerts for savedsearch_id="SAVEDSEARCH_ID"```
+    Increase the *max_per_result_alerts_time* value in the `limits.conf` file.
 
 #### Incident Created with Incorrect Fields
 If incidents being created in XSOAR but with incorrect fields, refer to the [Connectivity Test](#connectivity-test---create-a-custom-alert-action-from-saved-searches) section for an understanding of the fields which are associated with create incident actions.
@@ -149,3 +160,11 @@ Cortex XSOAR allows users to set up different types of incidents and the user ca
 * In the case of a self-signed certificate, make sure that the whole certificate chain exist. Each of root, intermediate, and client certificate is required.
 
 * When checking SSL certificate validity by pinging, ping to the server domain. SSL certificates are signed on server domain rather than its IP.
+
+#### Splunk Common Information Model (CIM) Issues
+If Splunk CIM is installed, make sure its version is compatible with the installed Splunk version. A common error caused by a version incompatibility might look as follows:
+  ```
+    12-28-2021 13:45:13.807 -0800 ERROR sendmodalert - action=create_xsoar_incident STDERR - NameError: name 'basestring' is not defined
+    12-28-2021 13:45:13.807 -0800 ERROR sendmodalert - action=create_xsoar_incident STDERR - if isinstance(self.sid, basestring) and 'scheduler' in self.sid:
+    12-28-2021 13:45:13.807 -0800 ERROR sendmodalert - action=create_xsoar_incident STDERR - File "/opt/splunk/etc/apps/Splunk_SA_CIM/lib/cim_actions.py", line 157, in init
+  ```

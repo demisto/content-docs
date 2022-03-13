@@ -859,7 +859,7 @@ This integration was integrated and tested with version xx of Proofpoint TAP v2
     <tr>
       <td>Proofpoint.Report.Attachment.Blacklisted</td>
       <td>Number</td>
-      <td>Optional, whether the file was blacklisted.</td>
+      <td>Optional, whether the file was added to block list.</td>
     </tr>
     <tr>
       <td>Proofpoint.Report.Attachment.Offset</td>
@@ -1339,7 +1339,7 @@ This integration was integrated and tested with version xx of Proofpoint TAP v2
     <tr>
       <td>Proofpoint.Report.URL.Blacklisted</td>
       <td>Boolean</td>
-      <td>Optional, whether the URL was listed on a blacklist.</td>
+      <td>Optional, whether the URL was listed on a block list.</td>
     </tr>
     <tr>
       <td>Proofpoint.Report.URL.SHA256</td>

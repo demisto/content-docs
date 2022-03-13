@@ -58,7 +58,8 @@ const sidebars = {
         "contributing/checklist",
         "contributing/conventions",
         "contributing/docs-contrib",
-        "contributing/marketplace"
+        "contributing/marketplace",
+        "contributing/demo-prep"
       ]
     },
     {
@@ -191,9 +192,17 @@ const sidebars = {
         "incidents/incident-customize-incident-layout",
         "incidents/incident-fields",
         "incidents/incident-jobs",
-        "incidents/incident-auto-extract",
         "incidents/incident-classification-mapping",
         "incidents/incident-pre-processing"
+      ]
+    },
+    {
+      type: "category",
+      label: "Indicators, Fields & Layouts",
+      collapsed: true,
+      items: [
+        "indicators/url-extraction",
+        "indicators/domain-extraction"
       ]
     },
     {
@@ -232,7 +241,8 @@ const sidebars = {
       items: [
         "partners/why-xsoar",
         "partners/become-a-tech-partner",
-        "partners/paid-packs",
+        "partners/premium-packs",
+        "partners/private-offer",
         "partners/adopt",
         "partners/certification",
         "partners/office-hours",

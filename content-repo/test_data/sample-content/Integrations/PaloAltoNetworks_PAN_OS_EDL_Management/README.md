@@ -7,8 +7,8 @@
 <h2>Use Cases</h2>
 <ul>
   <li>
-    Manage blacklists and whitelists in the web-server in a dynamic manner to
-    control the blacklists in PAN-OS.
+    Manage block lists and allow lists in the web-server in a dynamic manner to
+    control the block lists in PAN-OS.
   </li>
 </ul>
 <h2>Detailed Description</h2>

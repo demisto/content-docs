@@ -63,6 +63,14 @@ For example, for Microsoft Graph User, replace the ***SCOPE*** with `directory.a
 8. Enter your tenant ID in the ***Token*** parameter field.
 9. Enter your redirect URI in the ***Redirect URI*** parameter field.
 
+#### Using National Cloud
+Some of the Cortex XSOAR-Microsoft integrations support the deployment of national clouds through the self-deployed
+ authorization flow. For more information about Microsoft National Clouds, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/deployments).
+ Currently, the following integration supports national clouds:
+ * O365 Outlook Mail (Using Graph API)  
+ 
+In order to use a national cloud, change the *URL* parameter to the corresponding address of the national cloud you are using. For example, see [O365 Outlook Mail (Using Graph API) - National Clouds](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail#using-national-cloud), for the supported cloud endpoints in this integration.
+
 ### Device Code Flow
 Some of the Cortex XSOAR-Microsoft integrations use the [device code flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code).
 
@@ -96,3 +104,63 @@ In order to use the Cortex XSOAR Azure application, you need to fill in your sub
 After you a redirected to the next page, in the **Overview** tab you will find your Resource group and Subscription ID:
 
 ![Overview](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/subscription_id_resourse_group.png)
+
+
+## Self Deployed Application - Example 
+
+1. In Microsoft Azure portal, create a new app registration.
+   1. Select Azure Active Directory> App registrations> New registration. 
+   ![app](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/app-reg.png)
+   1. In the **Redirect URI (optional)** field select **Web** and type a name (you can enter an arbitrary name). In this example we use *https<nolink\>://xsoar.*
+       ![reg-app](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/reg-app.png)
+   1. Click **Register.**
+   
+        You can see the Essential information here: ![essentials](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/essentials.png)
+   1. Copy the following information:
+
+      - Application (client) ID
+      - Directory (tenant) ID
+   
+2. Get the client secret, which is used for the **key** in the integration settings.
+   1. Click **Certificate and secrets** -> **New client secret**.
+    
+        Copy the client secret.
+        
+    
+3. Ensure the needed permissions are granted for the app registration. 
+   1. Go to API permissions>Add a permission>Microsoft Graph>Delegated permissions and search for 
+    `Directory.AccessAsUser.All` of type `Delegated`.
+   2.    Click Add permissions.
+    ![app-api](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/app-api.png)
+
+    NOTE: Ensure that you have the following permissions:
+     - Directory.Read.All - Delegated
+     - User.ReadWrite.All - Application
+     - User.Read - Delegated
+4. Get the authorization code.
+
+    1. Type the following in a browser: `https://login.microsoftonline.com/<tenant_id\>/oauth2/v2.0/authorize?response_type=code&scope=offline_access%20directory.accessasuser.all&client_id=*<client_id\>*&redirect_uri=https%3A%2F%2Fxsoar`
+    
+    Replace `tenant_id` and `client-id` with the tenant ID that was generated in step 1.iv.  
+    The URI is the *https<nolink\>://xsoar*.
+
+    This prompts the admin user to sign in and grant the app the appropriate permissions:    ![app-perm](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/app-perm.png)
+
+    Once completed you are redirected to the redirect URI and will receive an authorization code in the query parameters of the URI. 
+        
+    NOTE: If there are multiple query parameters returned you should just copy the code value.
+    ![app-connect](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/app-connect.png)
+
+
+   2. Copy the ***AUTH_CODE*** (without the "code=" prefix). This value must be used in the MS Graph User in Cortex XSOAR integration in the **Authorization Code** field. 
+   
+5. Add the information to the instance in Cortex XSOAR by going to Settings>Integrations>Microsoft Graph User>Add Instance.
+
+   1. In the ***ID*** parameter field, type the client ID.
+   2. in the ***Token*** parameter field, type the tenant ID.
+   3. In the ***Key*** parameter field, type your client secret.
+   4. Click the **Use a self-deployed Azure application** checkbox.
+   5. In the ***Redirect URI*** field, type the redirect URI we entered in the Azure portal.
+   6. In the **Authorization code for self-deployed mode - received from the authorization step**, type the code that was generated in 4.2. 
+   7. Save the integration settings and test the setup by running the *!msgraph-user-test* command from the Cortex XSOAR CLI.
+

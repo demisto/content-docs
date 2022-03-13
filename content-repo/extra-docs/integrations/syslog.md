@@ -1,7 +1,12 @@
 ---
-title: Syslog
+title: Syslog (Deprecated)
+id: syslog
 description: Syslog events logger. Automatically convert incoming logs to incidents.
 ---
+
+:::caution Deprecated
+Use the Syslog v2 integration instead.
+:::
 
 A Syslog server provides the ability to automatically open incidents from Syslog clients.  
 This integration provides the ability to filter which logs are to be converted to incidents (or choose to convert all logs).

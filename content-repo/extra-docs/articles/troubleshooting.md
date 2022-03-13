@@ -20,6 +20,7 @@ Examples of common errors indicating that there probably is a networking issue:
 * `dial tcp: lookup ****: no such host`
 * `connect: operation timed out`
 * `connect: connection refused`
+* `ERR_CONNECTION_REFUSED`
 
 
 When troubleshooting networking issues, it is important to first understand what type of networking the integration or automation is using. Cortex XSOAR integrations and automations can be classified into two main types regarding their networking use:
@@ -90,6 +91,30 @@ After you add the server configuration, run the `/reset_containers` command from
 * For multi-tenant deployments, you need to add this setting to each tenant.
 * When using engines, you need to add this setting to each engine.
 
+
+
+### Read Timeout
+In case you encounter a *ReadTimeout* error, such as `ReadTimeout: HTTPSConnectionPool(host='www.google.com', port=443): Read timed out. (read timeout=10)`, then it means that the server (or network) failed to deliver any data whithin 10 seconds. This might be due to a response of large size.
+
+Starting from Base Content Pack version 1.17.6, we support controlling the read timeout value via server advanced coninguration, as follows:
+* System wide
+
+  Key | Value
+  --- |  ----
+  `python.pass.extra.keys` | `--env=REQUESTS_TIMEOUT=<TIMEOUT>`
+
+* Per Integration
+
+  Key | Value
+  --- |  ----
+  `python.pass.extra.keys` | `--env=REQUESTS_TIMEOUT.<INTEGRATION-ID>=<TIMEOUT>`
+
+Examples: 
+
+* Set the read timeout value to *120* seconds system wide, `--env=REQUESTS_TIMEOUT=120`
+* Set the read timeout value to *75* seconds for the Palo Alto Networks WildFire v2 integration, `--env=REQUESTS_TIMEOUT.WildFire-v2=75`
+
+**Note:** The `REQUESTS_TIMEOUT` settings only affects integrations which use the [BaseClient](https://xsoar.pan.dev/docs/integrations/code-conventions#client-class) class from CommonServerPython.
 
 
 ## TLS/SSL Troubleshooting

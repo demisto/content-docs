@@ -5,22 +5,27 @@
 version: 2.1
 jobs:
   build:
-
     machine:
       image: ubuntu-2004:202101-01
-      resource_class: large
+      resource_class: xlarge
+
+    parameters:
+      slack_notify:
+        description: Indicates whether to send a slack notification or not (on daily job we send notification)
+        type: boolean
+        default: false
 
     steps:
       - checkout
       - run:
           name: Create Date Weekly File
-          command: | 
-            date +%Y-%W-v3 > date-week.txt
+          command: |
+            date +%Y-%W-v4 > date-week.txt
             echo "Date week: $(cat date-week.txt)"
       - restore_cache:
-          key: npm-cache-v3-{{ checksum "package-lock.json" }}
+          key: npm-cache-v4-{{ checksum "package-lock.json" }}
       - restore_cache:
-          key: node-cache-v3-{{ checksum "date-week.txt" }}
+          key: node-cache-v4-{{ checksum "date-week.txt" }}
       - run:
           name: Setup Node
           command: |
@@ -32,7 +37,7 @@ jobs:
           command: |
             pyenv versions
             pyenv global 3.9.1
-            pip3 install pipenv
+            pip3 install pipenv==2021.5.29
             pipenv install
       - run:
           name: NPM Install
@@ -57,7 +62,7 @@ jobs:
           environment:
             ALGOLIA_INDEX: demisto
           command: |
-            nvm use            
+            nvm use
             npm run heapstats
             npm run build-docusaurus
             echo "Build is done. Create tar of the build dir"
@@ -69,20 +74,27 @@ jobs:
             equal: [ master, << pipeline.git.branch >> ]
           steps:
             - save_cache:
-                key: npm-cache-v3-{{ checksum "package-lock.json" }}
+                key: npm-cache-v4-{{ checksum "package-lock.json" }}
                 paths:
                   - ~/.npm
             - save_cache:
-                key: node-cache-v3-{{ checksum "date-week.txt" }}
+                key: node-cache-v4-{{ checksum "date-week.txt" }}
                 paths:
                   - node_modules/.cache
       - persist_to_workspace:
-          # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is 
+          # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
           # taken to be the root directory of the workspace.
           root: /home/circleci/project
           # Must be relative path from root
           paths:
-            - build 
+            - build
+      - run:
+          name: Notify Slack
+          when: on_fail
+          command: |
+            if [ "<<parameters.slack_notify>>" = "true" ]; then
+              pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
+            fi
 
   deploy:
     docker:
@@ -93,6 +105,10 @@ jobs:
         description: Indicates if to post a comment or not (on daily job we skip posting)
         type: boolean
         default: true
+      slack_notify:
+        description: Indicates whether to send a slack notification or not (on daily job we send notification)
+        type: boolean
+        default: false
     steps:
       - checkout
       - attach_workspace:
@@ -101,26 +117,6 @@ jobs:
           name: Setup Python
           command: |            
             pipenv install
-      - run:
-          name: Deploy to Netlify
-          no_output_timeout: 30m
-          command: |
-            npm install netlify-cli
-            export PATH="$PATH:`pwd`/node_modules/.bin"
-            netlify --version
-            if [ "$CIRCLE_BRANCH" = "master" ]; then
-              echo "Deploying to prod as CIRCLE_BRANCH is equal to master!"
-              DEPLOG_ARG="--prod"
-
-            else
-              # Get the PR number from the CIRCLE_PULL_REQUEST env variable which is in the form of:
-              # https://github.com/demisto/content-docs/pull/335
-              DEPLOG_ARG="--alias=pull-request-${CIRCLE_PULL_REQUEST##*/}"
-            fi
-
-            # Netlify Deployment
-            netlify deploy -m "CircleCI build: $CIRCLE_BRANCH" -d build $DEPLOG_ARG --json > deploy-info.json
-            cat deploy-info.json | jq
       - run:
           name: Deploy to Firebase
           no_output_timeout: 30m
@@ -133,11 +129,9 @@ jobs:
             if [ "$CIRCLE_BRANCH" = "master" ]; then
               echo "Deploying to prod as CIRCLE_BRANCH is equal to master!"
               firebase deploy --only hosting > deploy-info-firebase.txt
-
             else
               # Get the PR number from the CIRCLE_PULL_REQUEST env variable which is in the form of:
               # https://github.com/demisto/content-docs/pull/335
-
               firebase hosting:channel:deploy "pull-request-${CIRCLE_PULL_REQUEST##*/}" --only xsoar.pan.dev > deploy-info-firebase.txt
               cat deploy-info-firebase.txt
             fi
@@ -146,11 +140,16 @@ jobs:
           condition: <<parameters.post_comment>>
           steps:
             - run:
-                name: Post Comment Netlify
-                command: pipenv run ./content-repo/post_github_comment.py deploy-info.json
-            - run:
-                name: Post Comment FireBase
+                name: Post Comment Firebase
                 command: pipenv run ./content-repo/post_github_comment.py deploy-info-firebase.txt
+
+      - run:
+          name: Notify Slack
+          when: always
+          command: |
+            if [ "<<parameters.slack_notify>>" = "true" ]; then
+              pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
+            fi
 
 workflows:
   build_and_deploy:
@@ -163,18 +162,23 @@ workflows:
             branches:
               # only from non-fork
               only: /^(?!pull\/).*$/
+
   daily:
     triggers:
       - schedule:
-          # should trigger every day at 13:00 UTC (4 hours after each upload-flow run)
-          cron: "0 13 * * *"
+          # should trigger every day at 4:00 UTC (4 hours after 12 AM upload-flow run)
+          cron: "0 4 * * *"
           filters:
             branches:
               only:
-                - master                
+                - master
     jobs:
-      - build
+      - build:
+          name: nightly build
+          slack_notify: true
       - deploy:
+          name: nightly deploy
           post_comment: false
+          slack_notify: true
           requires:
-            - build
+            - nightly build

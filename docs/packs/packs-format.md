@@ -46,7 +46,7 @@ The following fields are populated in the pack metadata:
 | name | String | The pack name. Usually it's the name of the integration the pack contains (e.g. CortexXDR) or the use-case implemented in it. |
 | description | String | A short overview of the pack. |
 | support | String | Should be one of the following:<br />1.  xsoar - Supported by Cortex XSOAR.<br />2.  partner - Supported by a Cortex XSOAR partner.<br />3.  developer - Supported by an independent developer/organization.<br />4.  community - Not officialy supported, but available for the community to use.<br /> For `partner` and `developer`, either email address or URL fields must be filled out.  |
-| currentVersion | String | The pack version, in the format of `x.x.x`. On the initial release this should be set to "1.0.0". |
+| currentVersion | String | The pack version, in the format of `x.x.x`. On the initial release this should be set to "1.0.0". See [here](#content-packs-versioning)|
 | author | String | The name of the organization (for partners) or developer (for individual contributions) which developed the integration. |
 | url | String | The URL to which users should refer to in case of support needed regarding the pack. Usually is the organization support URL or the developer GitHub repository. If left empty the default support site presented to users will be the [Live Community](https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions) site.|
 | email | String | The email address to which users should reach out to in case of support needed regarding the pack. |
@@ -55,12 +55,14 @@ The following fields are populated in the pack metadata:
 | created | String | Pack creation time in ISO 8601 format - YYYY-MM-DDTHH:mm:ssZ, e.g. 2020-01-25T10:00:00Z |
 | useCases | List | Use-cases implemented by the pack. |
 | keywords | List | List of strings by which the pack can be found in Cortex XSOAR marketplace. |
-| eulaLink | String | (Optional - Premium packs only) URL referencing the pack license agreement, will appear under the 'Disclaimer' section in the pack details. Non-premium packs are hosted in our open source content repo and will be subject to an [MIT License](https://github.com/demisto/content/blob/master/LICENSE) |
+| eulaLink | String | (Optional - Premium packs only) URL referencing the pack license agreement, will appear under the 'Disclaimer' section in the pack details. Non-premium packs are hosted in our open source content repo and will be subject to an [MIT License](https://github.com/demisto/content/blob/master/LICENSE). |
+| price | String | (Optional - Premium packs only) The pack price in Palo Alto [points](https://xsoar.pan.dev/docs/partners/premium-packs/#points). |
 | dependencies | Dictionary | (Optional) An object that describes the content packs that the pack is dependant on. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | displayedImages | List | (Optional) Images to be displayed in Cortex XSOAR marketplace. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | githubUser | List | (Optional) List of Github usernames to receive notification in the PR in case pack files were modified. |
 | devEmail | List | (Optional) List of emails to receive notification in case contributed pack files were modified. |
 | certification | String | (Optional) If the pack is certifed the value of this fields should be "certified" |
+| itemPrefix | String | (Optional) String to overwrite pack fields prefix. You can specify an alternative string instead of the default pack name enforced by the validation process.
 
 
 Pack metadata contents for example:
@@ -131,12 +133,19 @@ A supported partner pack metadata contents for example:
 ```
 
 
+### Content Packs Versioning
+Pack versions have the following format MAJOR.MINOR.REVISION:
+   1. **Revision** when you make backwards compatible bug fixes.
+   1. **Minor** when you add functionality in a backwards compatible manner.
+   1. **Major** when you make incompatible API changes or revamping the pack by adding to it a lot of new backwards compatible functionality.
+
+
 ### README.md
 The file contains a general explanation for the pack and you are free to add any information relevant for the pack. For more details refer to the [Pack Documentation](../documentation/pack-docs) page.
 
 ### .secrets-ignore
 This file will be used while running the `demisto-sdk secrets`([explanation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/secrets/README.md)), we will determine the file and will
- use it as a  white list of approved words for your PR.
+ use it as an allow list of approved words for your PR.
 
 **Note**: We use `demisto-sdk secrets` as part of our pre-commit hook to check that possible secrets in the PR aren't exposed to a public repository.
 
@@ -176,7 +185,7 @@ For Partners, this image is **mandatory** and is validated during the build. If 
 In case file does not exist, the pack author name will be displayed in text.
 
 ### CONTRIBUTORS.md
-If you are contributing to an existing pack, you can add a **CONTRIBUTORS.md** file to the pack and list yourself as a contributor for the pack. The file's content will appear in the pack README in XSOAR Marketplace.
+If you are contributing to an existing pack, you can add a **CONTRIBUTORS.md** file to the pack and list yourself as a contributor for the pack in the mentioned list. The file should have the follwoing structure and will appear in the pack details in the XSOAR Marketplace.
 
 #### Example CONTRIBUTORS.md
 ```

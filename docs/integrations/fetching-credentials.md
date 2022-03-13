@@ -81,11 +81,17 @@ In order to extract the specific credentials name use the `identifier` argument 
 ```python
 args: dict = demisto.args()
 credentials_name: str = args.get('identifier')
-credentials: list = [get_credentials(credentials_name)]
+try:
+    credentials: list = [get_credentials(credentials_name)]
+except Exception as e:
+    demisto.debug(f"Could not fetch credentials: {creds_name}. Error: {e}")
+    credentials = []
 
 demisto.credentials(credentials)
 ```
-**Note:** In this scenario it is important to return a list containing only **one** set of credentials.
+:::note Important Note
+When working with a specific credentials name (the `identifier` key), it is important to **always** return a list containing up to **one** set of credentials. In other words, it is important to catch errors that are part of this flow, and instead of raising them, return an empty list. If no list or a list with more than one element will be returned, the `credentials` tab will fail to load.
+:::
 
 #### The two scenarios together:
 ```python
@@ -95,7 +101,11 @@ credentials_str = params.get('credential_names')
 credentials_names_from_configuration = argToList(credentials_str)  # argToList is a wrapper to safely execute the str.split() function
 credentials_name: str = args.get('identifier')
 if credentials_name:
-    credentials: list = [get_credentials(credentials_name)]
+    try:
+        credentials: list = [get_credentials(credentials_name)]
+    except Exception as e:
+        demisto.debug(f"Could not fetch credentials: {creds_name}. Error: {e}")
+        credentials = []
 else:
     credentials = []
     for credentials_name in credentials_names_from_configuration:

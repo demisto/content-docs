@@ -9,7 +9,7 @@ This article is focused on contributing Cortex XSOAR Content. If you want to con
 
 Thanks for being interested in contributing to Cortex XSOAR. This document describes the Contribution process. If you are not sure whether you should read this, make sure you read the [Getting Started Guide](../concepts/getting-started-guide) first.
 
-Contributing allows you to make the content that you build on Cortex XSOAR available to every client through the  [Marketplace](../partners/paid-packs). Content can be either Partner or Community supported, [Free or Paid](../partners/paid-packs#pricing).
+Contributing allows you to make the content that you build on Cortex XSOAR available to every client through the  [Marketplace](/marketplace). Content can be either Partner or Community supported, [Free or Paid](../partners/premium-packs#pricing).
 
 All the free content (i.e. everything excluding Paid Content Packs) is open source and lives in the Cortex XSOAR [GitHub Repository](https://github.com/demisto/content), with a MIT license.
 
@@ -17,8 +17,12 @@ All the free content (i.e. everything excluding Paid Content Packs) is open sour
 
 Contributions can be either officially supported (by Palo Alto Networks, a Technology Partner, or an individual developer), or *community* supported: the former means that when a customer has a problem with the content, they will have an email address or web site to reach out to, and they will expect an answer. When the contribution is *community* supported, it's not required to provide support (customers will ask questions on our [Live Community Forum](https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions)) and the quality requirements for the contribution to be accepted will be lower.
 
-For more information about the different support levels, check the [official documentation](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/marketplace/marketplace-overview/content-packs-support-types.html).
+For more information about the different support levels, check the [official documentation](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/marketplace/content-packs-support-types.html).
 
+## What to contribute
+If you’re looking for an easy way to start contributing Content to Cortex XSOAR Marketplace, have a look at the issues labeled as [good first issue](https://github.com/demisto/content/labels/good%20first%20issue), which are low-hanging fruits.
+
+These issues are particularly well suited for external contributions. If you decide to start on an issue, [assign yourself](https://docs.github.com/en/issues/tracking-your-work-with-issues/assigning-issues-and-pull-requests-to-other-github-users#assigning-an-individual-issue-or-pull-request) so other contributors from the community know that you're working on it.
 ## How to contribute
 
 After you have created your content, you must submit your content to Palo Alto Networks: the Cortex XSOAR Content Team will review and approve it before it becomes available to customers.
@@ -45,6 +49,7 @@ Please read the following guidelines carefully: following them will maximize the
 1. Make sure you have all the [Contributing Requirements](../contributing/contrib-requirements) satisfied.
 1. Setup a development environment by following the brief [Dev Setup Guide](../concepts/dev-setup) or the more detailed [Tutorial](../tutorials/tut-setup-dev).
 1. Follow the [Content Pack Structure](../packs/packs-format) to build your contribution. [demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md) will help you create it.
+1. If you are updating an **existing** content pack, make sure it is updated with the latest version available in the marketplace before proceeding.
 1. Depending on the content entities you need to build, navigate to the specific section of this website for details. If you are creating Integrations and/or Scripts (aka Automations), make sure that you:
     * Use the proper  [Integration/Script Directory Structure](../integrations/package-dir). [demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md) will help you create it. If working on existing code, beyond trivial changes, we require converting to this structure as it allows running linting and unit tests and provides a clearer review process.
     * Understand the [YAML file](../integrations/yaml-file) structure and the [Parameter Types](../integrations/parameter-types).
@@ -92,7 +97,8 @@ When creating the pull request make sure to fill in the different section in the
 After opening the Pull Request, make sure that you:
 
 - Sign the [CLA](https://github.com/demisto/content/blob/master/docs/cla.pdf): every contributor must sign our Contributor License Agreement in order for their contribution to be added to our content. In case of CLA issues check out our [FAQs](../concepts/faq#cla-is-pending-even-though-i-signed-the-agreement).
-- Monitor your Pull Request on GitHub and be ready for a demo: our Content team will add comments to the Pull Request, asking questions and requesting changes. At some point, we'll ask you to schedule a meeting to see an interactive demo, make sure you have a working installation of Cortex XSOAR with your pack fully configured.
+- Monitor your Pull Request on GitHub and be ready for a demo: our Content team will add comments to the Pull Request, asking questions and requesting changes. In order to establish a decent release process for your contribution, you are kindly asked to respond to the reviewer's code review and apply the required changes within 14 days. Stale Pull Requests might be closed.
+- At some point, we'll ask you to schedule a meeting to see an interactive demo. Make sure you have a working installation of Cortex XSOAR with your pack fully configured. Check out our [Contribution Demo Page](../contributing/demo-prep) for more details.
 
 :::note Important Note
 As part of the Pull Request template, you will be asked to fill in the [contribution registration form](https://forms.gle/XDfxU4E61ZwEESSMA), make sure to do so, without it we cannot review your contribution.

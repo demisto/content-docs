@@ -7,7 +7,9 @@ title: Generic Reputation Commands
 ## Background and motivation
 
 XSOAR has an abundance of integrations with reputation providers, for example, VirusTotal, AlienVault OTX, MISP, etc. 
-Every integration that returns a reputation about an indicator must implement the generic reputation commands and calculate a [DBot Score](../dbot).
+Every integration that returns a reputation about an indicator must implement the generic reputation commands and calculate a [DBot Score](../integrations/dbot).
+
+When creating commands that enrich indicators, the commands should be named according to the indicator: !ip, !domain, etc. This naming convention allows commands from multiple integrations to be run together to enrich an indicator. For example, running !ip ip=8.8.8.8 can trigger multiple integrations that gather information about the IP address.
 
 ## Generic reputation commands
 

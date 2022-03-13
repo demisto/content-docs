@@ -414,7 +414,7 @@ xdr_url:https://1111.paloaltonetworks.com/incident-view/31
             "med_severity_alert_count": 0, 
             "detection_time": null, 
             "assigned_user_mail": "foo@demisto.com", 
-            "resolve_comment": "Possible white list and FP", 
+            "resolve_comment": "Possible allow list and FP", 
             "status": "resolved_other", 
             "user_count": 1, 
             "xdr_url": "https://1111.paloaltonetworks.com/incident-view/2", 
@@ -521,7 +521,7 @@ xdr_url:https://1111.paloaltonetworks.com/incident-view/31
       <td>0</td>
       <td>1565263085359</td>
       <td>&nbsp;</td>
-      <td>Possible white list and FP</td>
+      <td>Possible allow list and FP</td>
       <td>high</td>
       <td>resolved_other</td>
       <td>1</td>

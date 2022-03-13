@@ -39,9 +39,9 @@ When configuring the feed, indicators of type STIX report are created in XSOAR. 
 
 In the v2 version of the Unit 42 integration, each report stores relationships with campaign indicator objects, and under the campaigns you will see relationships with many other indicator objects, including MITRE ATT&CK - Attack Patterns.
 
-The Courses of Action pack and playbooks work with both versions of the MITRE ATT&CK pack.
+The Courses of Action pack and playbooks work with both versions of the Unit 42 pack.
 - See v1 integration documentation here: [Unit42 Feed](https://xsoar.pan.dev/docs/reference/integrations/unit42-feed)
-- See v2 integration documentation here: [Unit42 v2 Feed](https://xsoar.pan.dev/docs/reference/integrations/unit42v2-feed)
+- See v2 integration documentation here: [Unit 42 ATOMs Feed](https://xsoar.pan.dev/docs/reference/integrations/unit42v2-feed)
 
 ### Palo Alto Networks PAN-OS
 

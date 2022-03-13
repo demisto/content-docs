@@ -73,9 +73,11 @@ def verify_mdx_server(readme_content: str):
 def start_mdx_server():
     global MDX_SERVER_PROCESS
     if not MDX_SERVER_PROCESS:
+        node_version_res = subprocess.run(["node", "--version"], capture_output=True, text=True)
+        print(f'starting mdx server with node version: {node_version_res}')
         mdx_parse_server = f'{os.path.dirname(os.path.abspath(__file__))}/../mdx-parse-server.js'
         MDX_SERVER_PROCESS = subprocess.Popen(['node', mdx_parse_server], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        time.sleep(1)  # let the node process complete startup
+        time.sleep(2)  # let the node process complete startup
 
 
 def stop_mdx_server():
