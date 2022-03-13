@@ -41,6 +41,9 @@ When you configure the integration in Cortex XSOAR, enter those parameters in th
 * ID - Client ID
 * Token - Tenant ID
 * Key - Client Secret
+  * Alternatively, instead of providing the *Client Secret*, you can authenticate using [certificate credentials](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-certificate-credentials) by providing:
+    * Certificate Thumbprint - The certificate thumbprint as appears when registering the certificate to the App
+    * Private Key -  The private key of the registered certificate
 
 In addition, make sure to select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
 
