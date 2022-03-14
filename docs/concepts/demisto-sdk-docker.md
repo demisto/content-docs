@@ -84,7 +84,7 @@ demisto/demisto-sdk:<tag>"
 
 ### Validate command
 
-for more information about the validate command, please refer to its [documentation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md) on the [demisto-sdk repo](https://github.com/demisto/demisto-sdk).
+For more information about the validate command, please refer to its [documentation.](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md) on the [demisto-sdk repo](https://github.com/demisto/demisto-sdk).
 
 ```sh
 docker run -it --rm \
