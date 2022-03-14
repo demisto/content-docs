@@ -47,9 +47,9 @@ When configuring SAML 2.0, you need to map several attributes from your IdP to C
 | RelayState | For IdPs using relay state, you need to supply the relay state. |
 | Sign request and verify response signature | Method for the IdP to verify the user sign-in request using the IdP vendor certificate. |
 | Identity Provider public certificate | Public certificate for your IdP. |
-| Identity Provider private key | Private key for your IdP in PEM format (required for single logout). |
+| Identity Provider private key | Private key for your IdP in PEM format in PKCS#1 type (required for single logout). |
 | Service Provider public certificate | Public certificate for the service provider. |
-| Service Provider Private key (pem format) | Private certificate key for the service provider. |
+| Service Provider Private key (pem format) | Private certificate key for the service provider in PKCS#1 type. |
 | Do not validate server certificate (insecure) | Whether to verify the server certificate. |
 | Use system proxy settings | Whether to use proxy settings. |
 | ADFS | Whether to use the ADFS server. |
