@@ -162,5 +162,5 @@ After you a redirected to the next page, in the **Overview** tab you will find y
    4. Click the **Use a self-deployed Azure application** checkbox.
    5. In the ***Redirect URI*** field, type the redirect URI we entered in the Azure portal.
    6. In the **Authorization code for self-deployed mode - received from the authorization step**, type the code that was generated in 4.2. 
-   7. Save the integration settings and test the setup by running the *!msgraph-user-test* command from the Cortex XSOAR CLI.
+   7. Save the integration settings and test the setup by running the *!msgraph-user-test* command from the Cortex XSOAR
 
