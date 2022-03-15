@@ -25,6 +25,7 @@ The DBot score must be at the root level of the context and contain **all** the 
 | Vendor | This is the vendor reporting the score of the indicator| Required |
 | Score | An int representing the status of the indicator. See Score Types below| Required |
 | Reliability | Reliability of the source providing the intelligence data. See Reliability Levels below| Optional |
+| Message | Used to message on the api response, for example: When return api response is "Not found" | Optional |
 
 ## Reliability Level
 The reliability of an intelligence-data source influences the reputation of an indicator and the values for
@@ -57,7 +58,7 @@ Unknown score can be interpeted in two ways:
 1. The vendor returns an "Unknown" score for the indicator.
 2. The vendor returns nothing on the indicator.
 
-In both cases we mark the indicator score as Unknown.
+In both cases we mark the indicator score as Unknown, But in the second case you need to add a message -> "No results found".
 
 ## Malicious
 If the DBot score is returned as a "3" or "Bad", we need to add to the context that a malicious indicator was found. To do this, we add an additional key to the URL, IP, or File context called "Malicious" as shown below:
