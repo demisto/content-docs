@@ -668,6 +668,63 @@ The resulted table will be:
 
 ![image](https://user-images.githubusercontent.com/72340690/103922604-a25efb80-511c-11eb-9021-c062226b5001.png)
 
+You may also use the ``JsonTransformer`` in order to view a complex JSON values.
+For example, for the following data:
+```
+d = {
+  "Machine Action Id": "5b38733b-ed80-47be-b892-f2ffb52593fd",
+  "MachineId": "f70f9fe6b29cd9511652434919c6530618f06606",
+  "Hostname": "desktop-s2455r9",
+  "Status": "Succeeded",
+  "Creation time": "2022-02-17T08:20:02.6180466Z",
+  "Commands": [
+    {
+      "startTime": null,
+      "endTime": "2022-02-17T08:22:33.823Z",
+      "commandStatus": "Completed",
+      "errors": ["error1", "error2", "error3"],
+      "command": {
+        "type": "GetFile",
+        "params": [
+          {
+            "key": "Path",
+            "value": "test.txt"
+          }
+        ]
+      }
+    },
+    {
+      "startTime": null,
+      "endTime": "2022-02-17T08:22:33.823Z",
+      "commandStatus": "Completed",
+      "errors": [],
+      "command": {
+        "type": "GetFile",
+        "params": [
+          {
+            "key": "Path",
+            "value": "test222.txt"
+          }
+        ]
+      }
+    }
+  ]
+}
+
+```
+
+One option is to use ``is_auto_json_trasnfom=True` for this data, like in the example below.
+```python
+tableToMarkdown('tableToMarkdown test', d, is_auto_json_trasnform=True)
+```
+<img width="565" alt="image" src="https://user-images.githubusercontent.com/88267954/158395189-396f35b0-bb81-4e0b-a3bc-a71edb9ae09e.png">
+
+In addition, it's possible to provide ``json_transform_mapping``, which is a mapping between a header key to ``JsonTransformer`` instance. Use a list of keys (`keys`) and either a flag for search in nested keys (`is_nested`), or a function (`func`) to parse the value with a custom function.
+
+```python
+tableToMarkdown('tableToMarkdown test', d, json_transform_mapping={'Commands': JsonTransformer(keys=('commandStatus', 'command'), is_neted=True))
+```
+<img width="496" alt="image" src="https://user-images.githubusercontent.com/88267954/158401302-471656d9-8f64-40ee-b726-9320f1fad7a9.png">
 
 ### demisto.command()
 ```demisto.command()``` is typically used to tie a function to a command in Cortex XSOAR, for example:
