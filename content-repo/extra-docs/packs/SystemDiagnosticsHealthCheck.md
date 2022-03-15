@@ -119,7 +119,7 @@ There are 47 incident fields.
 
 
 
-### Demisto REST API Integration
+### Prerequisites for Triggering the Playbook
 The playbooks in this pack execute scripts to collect and parse information from the local system. The scripts require the **Demisto REST API** integration.
 
 1. Log in to Cortex XSOAR as the **Admin** user.
