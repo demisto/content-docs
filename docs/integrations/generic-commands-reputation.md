@@ -133,7 +133,3 @@ EntityRelationship(
 [MISP](https://github.com/demisto/content/tree/master/Packs/MISP/Integrations/MISP_V2)
 
 [DeHashed](https://github.com/demisto/content/tree/master/Packs/DeHashed/Integrations/DeHashed)
-
-[GuardiCoreV2](https://github.com/demisto/content/tree/master/Packs/GuardiCore) 
-
-[CrowdStrikeFalcon](https://github.com/demisto/content/tree/master/Packs/CrowdStrikeFalcon) 
