@@ -82,7 +82,7 @@ The Cortex seller will be the main point of contact and lead the customer throug
 **Have a Private Offer Opportunity?** Please email the details of the request to xsoar.privateoffer@paloaltonetworks.com.
 
 ## Private Offer Agreement 
-The Agreement details the terms and conditions for delivering your content to a specific Customer through the XSOAR Marketplace. The Agreement is a binding contract between your organization and Palo Alto Networks ([see sample](../doc_imgs/partners/PrivateOfferTermsAgreementSample.pdf)).
+The Agreement details the terms and conditions for delivering your content to a specific Customer through the XSOAR Marketplace. The Agreement is a binding contract between your organization and Palo Alto Networks [see sample](https://drive.google.com/file/d/16LFr_fcV5SVkfH7RXDtyLoFmH8AWiPYe/view?usp=sharing).
 
 After the terms of the deal have been set and approved by your team, the XSOAR PST will send you a Private Offer Agreement via DocuSign. Once the Agreement is executed by your Signatory, the rest of the process can continue. 
 
@@ -90,12 +90,12 @@ After the terms of the deal have been set and approved by your team, the XSOAR P
 We are invested in the success of the XSOAR Marketplace and want to help maximize your efforts and investment in developing premium content available for Private Offer. 
 
 On an ongoing basis, we will be running internal enablement sessions to ensure sales understands the value Partner solutions add to a customer’s XSOAR investment. To aid in enabling our sellers to promote and sell your solution we recommend creating the following:
-* [Sales playbook](https://docs.google.com/presentation/d/1WMrFTYoN-wc8BEwFnTnetNG4-lPP3wAiD8g-W0gSMbI/edit?usp=sharing) (e.g. cheat sheet) to highlight Partner solution, value prop and use cases.
-* [Joint Solution Brief](https://docs.google.com/document/d/1Hk2fCSHd6dKAQo0eEUyBx8y1oSK4j-17AcaV-pQRnf4/edit?usp=sharing) (JSB)
+* [Sales playbook](https://docs.google.com/presentation/d/1JCao5OT33UvK0sd3uWRRZZrwv-29qUzLGVJZoMVyY2E/edit?usp=sharing) (e.g. cheat sheet) to highlight Partner solution, value prop and use cases.
+* [Joint Solution Brief](https://docs.google.com/document/d/1hR6wFVK8IzrDibnye0UMzJNcNR05x14ZyNFN9BV_2ZI/edit?usp=sharing) (JSB)
 * Please send completed playbooks and JSBs to the XSOAR PST for review: xsoar.privateoffer@paloaltonetworks.com.
 
 ## Ways to Promote Your Private Offer Solution(s)
-* Write a blog post [(template here)](https://docs.google.com/document/d/1amTRiQ2fl_wUNvfF8M4MP939PlK2x-nyCQLqzjsV_eg/edit?usp=sharing) - prior to posting, please send draft for review to xsoar.privateoffer@paloaltonetworks.com
+* Write a blog post [(template here)](https://docs.google.com/document/d/19gFlrhWYI_9T-uqFG5vQU3AgBf8dKvPMDyXl8RpxOmE/edit?usp=sharing) - prior to posting, please send draft for review to xsoar.privateoffer@paloaltonetworks.com
 * Enable your sales teams
 * Highlight the value prop of your Cortex XSOAR solution and partnership on your website
 * Tweet about the offering
