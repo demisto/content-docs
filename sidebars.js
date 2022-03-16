@@ -124,6 +124,8 @@ const sidebars = {
               label: "Builtins",
               items: [
                 "integrations/get-entries-filter",
+                "integrations/task-complete",
+                "integrations/reopen-investigation",
               ]
             },
           ]
