@@ -39,6 +39,34 @@ When creating commands that enrich indicators, the commands should be named acco
      isArray: true
 ```
 
+### **endpoint**
+
+**Description:** Returns information about an endpoint.
+
+```yaml
+- name: endpoint
+   arguments:
+   - default: false
+     description: The endpoint ID.
+     isArray: false
+     name: id
+     required: false
+     secret: false
+    - default: true
+     description: The endpoint IP address.
+     isArray: false
+     name: ip
+     required: false
+     secret: false
+    - default: false
+     description: The endpoint hostname.
+     isArray: false
+     name: hostname
+     required: false
+     secret: false
+    deprecated: false
+```
+
 
 ### **url url=**
 
@@ -133,3 +161,7 @@ EntityRelationship(
 [MISP](https://github.com/demisto/content/tree/master/Packs/MISP/Integrations/MISP_V2)
 
 [DeHashed](https://github.com/demisto/content/tree/master/Packs/DeHashed/Integrations/DeHashed)
+
+[GuardiCoreV2](https://github.com/demisto/content/tree/master/Packs/GuardiCore) 
+
+[CrowdStrikeFalcon](https://github.com/demisto/content/tree/master/Packs/CrowdStrikeFalcon) 
