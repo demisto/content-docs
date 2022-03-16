@@ -39,34 +39,6 @@ When creating commands that enrich indicators, the commands should be named acco
      isArray: true
 ```
 
-### **endpoint**
-
-**Description:** Returns information about an endpoint.
-
-```yaml
-- name: endpoint
-   arguments:
-   - default: false
-     description: The endpoint ID.
-     isArray: false
-     name: id
-     required: false
-     secret: false
-    - default: true
-     description: The endpoint IP address.
-     isArray: false
-     name: ip
-     required: false
-     secret: false
-    - default: false
-     description: The endpoint hostname.
-     isArray: false
-     name: hostname
-     required: false
-     secret: false
-    deprecated: false
-```
-
 
 ### **url url=**
 
