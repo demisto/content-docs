@@ -25,7 +25,7 @@ The DBot score must be at the root level of the context and contain **all** the 
 | Vendor | The vendor reporting the score of the indicator.| Required |
 | Score | An integer regarding the status of the indicator. See [Score Types](#score-types) below.| Required |
 | Reliability | The reliability of the source providing the intelligence data. See [Reliability Level](#reliability-level) below.| Optional |
-| Message | Used to message on the API response. For example, when the return API response is `"Not found"`. | Optional |
+| Message | Optional message to show an API response. For example, `"Not found"`. | Optional |
 
 ## Reliability Level
 When merging indicators, the reliability of an intelligence-data source influences the reputation of an indicator and the values for
