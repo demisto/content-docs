@@ -23,7 +23,7 @@ To start the authentication process, go to the integration's detailed instructio
 3.  Click __Add instance__.
 4.  Click the Link that appears in the Help section:.
 
-    <img width="300" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/instance_detailed_instructions_new.png" align="middle"></img>
+    <img width="800" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/instance_detailed_instructions_new.png" align="middle"></img>
 
 5.  In the XSOAR Web Page that appears, click the **Start Authorization Process** button to initiate the authorization flow.
  
