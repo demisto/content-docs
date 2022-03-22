@@ -88,6 +88,11 @@ const config = (plop) => {
         message: "Pack license information",
       },
       {
+        type: "input",
+        name: "premium",
+        message: "If Premium Pack",
+      },
+      {
         type: "list",
         name: "dependencies",
         message: "Pack dependencies",
