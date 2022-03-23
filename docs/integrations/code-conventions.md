@@ -825,6 +825,29 @@ Will produce an error in the War Room, for example:
 
 <img width="907" src="../doc_imgs/integrations/50571503-ed6b0900-0db4-11e9-8e9e-dc23f5ff403c.png"></img>
 
+### CommandRunner
+
+CommandRunner is a Class to run executing multiple commands, return all the valid results and a human readable summary table of commands that succeded and commands that returned an error.
+
+In order to use this functionality, create a List of `CommandRunner.Command`, and call `CommandRunner.run_commands_with_summary(commands)`.
+
+CommandRunner.Command:
+| Arg               | Type   | 
+| commands   | str or List[str]   | The command to run. Could be a single command or a list of commands.                                            |
+| args_lst | dict or List[Dict]    | The args of the command. if provided a list and commands is a str, run the command with all the args in the list. If commands is a list, the args_lst should be in the same size, and the args should correspond to the same command index.                            |
+| instance           | str | (Optional) The instance the command should run |
+| brand    | str   | (Optional) The instance the command should run |
+
+
+**Example**
+```python
+commands = [CommandRunner.Command('command1', {'arg': 'val'},
+            CommandRunner.Command('command2', [{'arg1': 'val2'}, {'arg2': 'val2'}])),
+            CommandRunner.Command(['command3', 'command4'], [{'arg1': 'val2'}, {'arg2': 'val2'}]),
+            CommandRunner.Command('command5', {}, instance='some_instance', brand='some_brand')]
+
+return_results(CommandRunner.run_commands_with_summary(commands))
+```
 
 ### DEPRECATED - demisto.results()
 _Note_: Use `return_results` instead
