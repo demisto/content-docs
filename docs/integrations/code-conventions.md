@@ -668,7 +668,7 @@ The resulted table will be:
 
 ![image](https://user-images.githubusercontent.com/72340690/103922604-a25efb80-511c-11eb-9021-c062226b5001.png)
 
-You may also use the ``JsonTransformer`` in order to view a complex JSON values.
+You may also use the ``JsonTransformer`` in order to present a complex JSON values.
 For example, for the following data:
 ```
 d = {
@@ -719,7 +719,7 @@ tableToMarkdown('tableToMarkdown test', d, is_auto_json_trasnform=True)
 ```
 <img width="565" alt="image" src="https://user-images.githubusercontent.com/88267954/158395189-396f35b0-bb81-4e0b-a3bc-a71edb9ae09e.png">
 
-In addition, it's possible to provide ``json_transform_mapping``, which is a mapping between a header key to ``JsonTransformer`` instance. Use a list of keys (`keys`) and either a flag for search in nested keys (`is_nested`), or a function (`func`) to parse the value with a custom function.
+To customize the transform, provide `json_transform_mapping` a `dict`, which maps header keys and a `JsonTransformer` instance. Use a list of keys (`keys`) and either a flag for search in nested keys (`is_nested`), or a function (`func`) to parse the value with a custom function.
 
 ```python
 tableToMarkdown('tableToMarkdown test', d, json_transform_mapping={'Commands': JsonTransformer(keys=('commandStatus', 'command'), is_neted=True))
