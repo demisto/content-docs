@@ -30,7 +30,7 @@ else
 
     CONTENT_GIT_URL="https://github.com/demisto/content.git"
     CONTENT_BRANCH="Improve_result_description"
-    REQUIRE_BRANCH=false
+    REQUIRE_BRANCH=true
     if [ -n "${INCOMING_HOOK_BODY}" ]; then
         echo "INCOMING_HOOK_BODY=${INCOMING_HOOK_BODY}"
         INCOMING_HOOK_JSON=$(echo "${INCOMING_HOOK_BODY}" | python3 -c "import sys, urllib.parse as p; print(p.unquote(sys.stdin.read()));")
@@ -63,7 +63,7 @@ else
         fi
     fi
     cd ${CONTENT_GIT_DIR}
-    if [[ "$CONTENT_BRANCH" != "master" ]] && (git branch -a | grep "remotes/origin/${CONTENT_BRANCH}$"); then
+    if [[ "$CONTENT_BRANCH" != "master" ]] && (git branch -a | grep "remotes/origin/$CONTENT_BRANCH$"); then
         echo "found remote branch: '$CONTENT_BRANCH' will use it for generating docs"
         git checkout $CONTENT_BRANCH
     else
