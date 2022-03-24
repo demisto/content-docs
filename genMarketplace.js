@@ -366,7 +366,8 @@ function genPackDetails() {
       contentItems: pack.contentItems,
       changeLog: reverseReleases(pack.changeLog),
       licenseLink: pack.hasOwnProperty("eulaLink") ? pack.eulaLink : "https://github.com/demisto/content/blob/master/LICENSE",
-      dependencies: fullDepsJson[pack.id]
+      dependencies: fullDepsJson[pack.id],
+      premium: pack.hasOwnProperty("premium") ? pack.premium : false
     });
   });
 };

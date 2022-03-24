@@ -113,7 +113,8 @@ const sidebars = {
               label: "Generic Commands",
               items: [
                 "integrations/generic-commands-about",
-                "integrations/generic-commands-reputation"
+                "integrations/generic-commands-reputation",
+                "integrations/generic-endpoint-command",
               ]
             },
             "integrations/dbot",
@@ -123,6 +124,8 @@ const sidebars = {
               label: "Builtins",
               items: [
                 "integrations/get-entries-filter",
+                "integrations/task-complete",
+                "integrations/reopen-investigation",
               ]
             },
           ]

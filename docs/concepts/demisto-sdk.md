@@ -93,6 +93,10 @@ demisto-sdk <command_name> -h
 
 This gives you a full list of the command's arguments and their descriptions. We add new arguments and features regularly, so please feel free to approach us with new ideas and suggestions!
 
+## Run using Docker image
+
+You can run the Demisto-SDK using a docker image. For more details go to [Demisto-SDK Docker](./demisto-sdk-docker).
+
 ## Commands
 
 This guide will give you a short tutorial about the basic SDK commands. While there are additional commands and use cases found in the SDK, these are the main commands you should know to begin:
