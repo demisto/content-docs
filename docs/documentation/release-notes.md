@@ -110,14 +110,32 @@ One should specify in the corresponding release notes file the following changes
     - Bad example: `Added the timeout parameter.`  
     - Good example: `Added the timeout parameter, which enables you to define the amount of time (in minutes) that the integration will try to execute commands before it throws an error.`
 
-- If this is a single line release note, there is no need for the bullet point, just a regular sentence. 
+- If this is a single line release note, there is no need for the bullet point, just a regular sentence.
+- The release note line must start with one of the following prefixes:
+
+```
+'Added support for...'
+'Added the...'
+'Fixed an issue...'
+'Improved implementation...'
+'Updated the Docker image to...'
+'You can now...'
+'Deprecated. '
+'Deprecated the...'
+```
+
+Specifying any other prefix will result in an error when running `demisto-sdk doc-review`:
+
+```
+Line is not using one of our templates, consider changing it to fit our standard.
+```
 
 Pretend you need this release note to do your work. A bad RN can easily lead to a CS ticket.
 
 ### Entity Styling  
-- Command name: - should be wrapped with three stars - \*\*\*command_name***
-- Packs/Integrations/scripts/playbooks and other content entities (incident fields, dashboards...) - should be wrapped with two stars - \*\*entity_name**
-- Parameters/arguments/functions/outputs names - should be wrapped with one star - \*parameter_name*
+- Command name: - should be wrapped with three stars - `***command_name***`
+- Packs/Integrations/scripts/playbooks and other content entities (incident fields, dashboards...) - should be wrapped with two stars - `**entity_name**`
+- Parameters/arguments/functions/outputs names - should be wrapped with one star - `*parameter_name*`
 
 
 ### Examples  
