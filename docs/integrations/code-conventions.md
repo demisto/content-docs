@@ -614,7 +614,7 @@ return_results(fileResult(filename, file_content))
 You can specify the file type, but it defaults to "None" when not provided.
 
 ### create_indicator_result_with_dbotscore_unknown
-This will return a generic response to the War Room, and an indicator with dbot_score unknoun to context path, Used for cases where the api response to an indicator is not found by using the following syntax:
+Used for cases where the api response to an indicator is not found, This will return a generic response to the War Room, and an indicator with dbot_score unknoun to context path, by using the following syntax:
 
 ```python
 indicator = "www.google.com",
