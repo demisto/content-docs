@@ -614,7 +614,7 @@ return_results(fileResult(filename, file_content))
 You can specify the file type, but it defaults to "None" when not provided.
 
 ### create_indicator_result_with_dbotscore_unknown
-Used for cases where the api response to an indicator is not found, This will return a generic response to the War Room, and an indicator with dbot_score unknoun to context path, by using the following syntax:
+Used for cases where the API response to an indicator is not found and returns a verdict with an unknown score (0). A generic response is returned to the War Room and to the context path, by using the following syntax:
 
 ```python
 indicator = "www.google.com",
@@ -624,19 +624,19 @@ reliability = DBotScoreReliability.C
 return_results(create_indicator_result_with_dbotscore_unknown(indicator, indicator_type, reliability))
 ```
 
-The resulted in War Room will be:
+The War Room result will show:
 
 <img width="1105" alt="image" src="https://user-images.githubusercontent.com/72099621/160278670-37d07cd5-fef4-4b86-81b8-742fbf947298.png">
 
-And resulted in Context Path will be:
+The Context Path will show:
 
 <img width="231" alt="image" src="https://user-images.githubusercontent.com/72099621/160278966-23c79cc3-ed47-498a-8076-1ec3053303d8.png">
 
-If the integration has reliability it should be noted, but it defaults to "None" when not provided.
+If the integration has a reliability it should be noted, but it defaults to "None" when not provided.
 
 **Note:**
- - When the indicator is of type **CustomIndicator** it is required to give the argument *context_prefix*.
- - When the indicator is of type **Cryptocurrency** it is required to give the argument *address_type*.
+ - When the indicator is of type **CustomIndicator**, you need to provide the *context_prefix* argument.
+ - When the indicator is of type **Cryptocurrency**, you need to provide the *address_type* argument.
 
 ### tableToMarkdown
 This will transform your JSON, dict, or other table into a Markdown table.
@@ -968,7 +968,7 @@ return_outputs(
 
 
 ### AutoExtract
-As part of ```CommandResults()``` there is an argument called ```ignore_auto_extract```, which prevents the built-in [auto-extract](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-6/cortex-xsoar-admin/manage-indicators/auto-extract-indicators.html) feature from enriching IPs, URLs, files, and other indicators from the result. For example:
+As part of ```CommandResults()``` there is an argument called ```ignore_auto_extract```, which prevents the built-in [indicator extraction](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-6/cortex-xsoar-admin/manage-indicators/auto-extract-indicators.html) feature from enriching IPs, URLs, files, and other indicators from the result. For example:
 
 ```python
 results = CommandResults(
