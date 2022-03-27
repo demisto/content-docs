@@ -626,11 +626,11 @@ return_results(create_indicator_result_with_dbotscore_unknown(indicator, indicat
 
 The War Room result will show:
 
-<img width="1105" alt="image" src="https://user-images.githubusercontent.com/72099621/160278670-37d07cd5-fef4-4b86-81b8-742fbf947298.png">
+<img width="1105" alt="image" src="https://user-images.githubusercontent.com/72099621/160278670-37d07cd5-fef4-4b86-81b8-742fbf947298.png"></img>
 
 The Context Path will show:
 
-<img width="231" alt="image" src="https://user-images.githubusercontent.com/72099621/160278966-23c79cc3-ed47-498a-8076-1ec3053303d8.png">
+<img width="231" alt="image" src="https://user-images.githubusercontent.com/72099621/160278966-23c79cc3-ed47-498a-8076-1ec3053303d8.png"></img>
 
 If the integration has a reliability it should be noted, but it defaults to "None" when not provided.
 
