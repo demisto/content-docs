@@ -621,7 +621,7 @@ indicator = "www.google.com",
 indicator_type = DBotScoreType.URL
 reliability = DBotScoreReliability.C
 
-return_results(create_indicator_result_with_dbotscore_unknown(indicator, indicator_type))
+return_results(create_indicator_result_with_dbotscore_unknown(indicator, indicator_type, reliability))
 ```
 
 The resulted in War Room will be:
