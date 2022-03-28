@@ -106,7 +106,7 @@ One should specify in the corresponding release notes file the following changes
   - Fixes for customer bugs
 
 ### General
-- The release notes need to be in simple language and informative. Think about what is the impact on the user and what they should know about this version.
+- The release notes need to be in simple language and informative. Think about what is the impact on the user and what they should know about this version. Pretend you need this release note to do your work. A bad RN can easily lead to a CS ticket.
     - Bad example: `Added the timeout parameter.`  
     - Good example: `Added the timeout parameter, which enables you to define the amount of time (in minutes) that the integration will try to execute commands before it throws an error.`
 
@@ -129,8 +129,6 @@ Release notes not using the prefixes will result in an error when running `demis
 ```
 Line is not using one of our templates, consider changing it to fit our standard.
 ```
-
-Pretend you need this release note to do your work. A bad RN can easily lead to a CS ticket.
 
 ### Entity Styling  
 - Command name: - should be wrapped with three stars - `***command_name***`
