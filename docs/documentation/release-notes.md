@@ -110,8 +110,8 @@ One should specify in the corresponding release notes file the following changes
     - Bad example: `Added the timeout parameter.`  
     - Good example: `Added the timeout parameter, which enables you to define the amount of time (in minutes) that the integration will try to execute commands before it throws an error.`
 
-- If this is a single line release note, there is no need for the bullet point, just a regular sentence.
-- The release note line must start with one of the following prefixes:
+- Single line release notes do not need a bullet point.
+- Release notes must start with one of the following prefixes:
 
 ```
 'Added support for...'
@@ -124,7 +124,7 @@ One should specify in the corresponding release notes file the following changes
 'Deprecated the...'
 ```
 
-Specifying any other prefix will result in an error when running `demisto-sdk doc-review`:
+Release notes not using the prefixes will result in an error when running `demisto-sdk doc-review`:
 
 ```
 Line is not using one of our templates, consider changing it to fit our standard.
