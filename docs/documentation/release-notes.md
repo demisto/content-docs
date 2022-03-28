@@ -114,14 +114,14 @@ One should specify in the corresponding release notes file the following changes
 - Release notes must start with one of the following prefixes:
 
 ```
-'Added support for...'
-'Added the...'
-'Fixed an issue...'
-'Improved implementation...'
-'Updated the Docker image to...'
-'You can now...'
+'Added support for '
+'Added the '
+'Fixed an issue '
+'Improved implementation '
+'Updated the Docker image to '
+'You can now '
 'Deprecated. '
-'Deprecated the...'
+'Deprecated the' 
 ```
 
 Release notes not using the prefixes will result in an error when running `demisto-sdk doc-review`:
