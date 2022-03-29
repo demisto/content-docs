@@ -50,14 +50,20 @@ If downloading Docker images:
 ***python3 ./Utils/download_packs_and_docker_images.py -p "AWS - IAM,Cybereason"***
 
 3. Upload the Docker images.
-   1. Expand the Docker zip file.
+   1. Expand the `docker.zip` file.
    2. Run the following command for each of the docker images:
 
       ***docker load -i &lt;path to the docker tar file&gt;***
       
-      If using podman use the following commmand (make sure the tar file is located in a directory which the `demisto` user has access, such as /tmp):
+      If using podman (Red Hat 8.x) use the following commmand:
       
-      ***sudo su - demisto -c 'podman load -i &lt;YOUR_DOCKER_FILE&gt;.tar'***
+      ***sudo su -s /bin/bash - demisto -c 'podman load -i &lt;FULL PATH TO YOUR DOCKER FILE&gt;.tar'***
+      
+      **Note:** make sure the tar file is located in a directory which the `demisto` user has read access both to the dir and file, such as /tmp.
+      
+      For example:
+      
+      ***sudo su -s /bin/bash  - demisto -c 'podman load -i /tmp/python3_3.9.8.24399.tar'***
       
 4. Upload the content packs to your Cortex XSOAR environment.
    1. In your Cortex XSOAR environment, go to **Marketplace**.
