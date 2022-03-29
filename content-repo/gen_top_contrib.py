@@ -8,6 +8,15 @@ import requests
 from typing import List, Dict
 from datetime import datetime
 
+
+# override print so we have a timestamp with each print
+def timestamped_print(*args, **kwargs):
+    __builtins__.print(datetime.now().strftime("%H:%M:%S.%f"), *args, **kwargs)
+
+
+print = timestamped_print
+
+
 PR_NUMBER_REGEX = re.compile(r'(?<=pull/)([0-9]+)')
 USER_NAME_REGEX = re.compile(r'(?<=@)[a-zA-Z-0-9]+')
 TOKEN = os.getenv('GITHUB_TOKEN', '')
@@ -17,15 +26,8 @@ HEADERS = {
 }
 if TOKEN:
     HEADERS['Authorization'] = 'Bearer ' + TOKEN
+    print('Using token authentication')
 VERIFY = os.getenv('SKIP_SSL_VERIFY') is None
-
-
-# override print so we have a timestamp with each print
-def timestamped_print(*args, **kwargs):
-    __builtins__.print(datetime.now().strftime("%H:%M:%S.%f"), *args, **kwargs)
-
-
-print = timestamped_print
 
 
 def create_grid(dataset: list) -> str:
@@ -265,10 +267,16 @@ def main():
     parser.add_argument("-t", "--target", help="Target dir to generate docs at.", required=True)
     args = parser.parse_args()
     contrib_target = args.target + '/top-contributors.md'
-    response = get_inner_pr_request()
-    users_list = get_contributors_users(response)
-    with open(contrib_target, 'a', encoding='utf-8') as f:
-        f.write(f'\n {create_grid(users_list)}')
+    try:
+        response = get_inner_pr_request()
+        users_list = get_contributors_users(response)
+        with open(contrib_target, 'a', encoding='utf-8') as f:
+            f.write(f'\n {create_grid(users_list)}')
+    except requests.exceptions.HTTPError as ex:
+        print(f'Requests errors: {ex}')
+        res = requests.request('GET', "https://api.github.com/rate_limit", headers=HEADERS, verify=VERIFY)
+        print(f'Github Rate Limit response: {res.text}')
+        raise
 
 
 if __name__ == '__main__':
