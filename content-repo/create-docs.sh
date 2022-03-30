@@ -54,11 +54,11 @@ else
 
     if [ ! -d ${CONTENT_GIT_DIR} ]; then
         if [[ "$CONTENT_BRANCH" == "master" ]]; then
-          echo "Cloning content (depth 1) to dir: ${CONTENT_GIT_DIR} ..."
-          git clone --depth 1 ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}
+            echo "Cloning content (depth 1) to dir: ${CONTENT_GIT_DIR} ..."
+            git clone --depth 1 ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}
         else
-          echo "Cloning content to dir: ${CONTENT_GIT_DIR} ..."
-          git clone ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}
+            echo "Cloning content to dir: ${CONTENT_GIT_DIR} ..."
+            git clone ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}
         fi
     else
         echo "Content dir: ${CONTENT_GIT_DIR} exists. Skipped clone."
