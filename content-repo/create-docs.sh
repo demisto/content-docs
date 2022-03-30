@@ -55,6 +55,7 @@ else
     if [ ! -d ${CONTENT_GIT_DIR} ]; then
 
         if [[ "$CONTENT_BRANCH" != "master" ]]; then
+          echo "choosing specific branch"
           git remote set-branches origin "$CONTENT_BRANCH"
         fi
 
