@@ -11,7 +11,7 @@ As of March 2022, with the release of the Common Types content pack v3.2.2X, cha
 - All layouts have been modified to better represent the changes.
 - Types default mappings were updated to adhere to the new field associations.
 
-These changes enable you to more easily share and work with IOCs. Cortex XSOAR indicators are divided into two categories, STIX - Domain Objects (SDOs) and Cyber-observable Objects (SCOs). The category determines which fields are associated with the IOC. In Cortex XSOAR, all SCOs can be used in a relationship with either SDOs or SCOs. 
+These changes enable you to more easily share and work with IOCs. Cortex XSOAR indicators are divided into two categories, STIX Domain Objects (SDOs) and Cyber-observable Objects (SCOs). The category determines which fields are associated with the IOC. In Cortex XSOAR, all SCOs can be used in a relationship with either SDOs or SCOs. 
 
 Some of the descriptions below are taken directly from [STIX documentation](https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html#_axjijf603msy).
 
@@ -70,7 +70,7 @@ Network domain name, similar to STIX *Domain Name Object*. The value is the doma
 | Blocked | A Boolean switch to mark the object as blocked in the user environment |
 | Community Notes | Comments and freeform notes regarding the indicator |
 | Description | The description of the object |
-| STIX ID | The STIX ID for the object in the format of `account--<UUID>` |
+| STIX ID | The STIX ID for the object in the format of `domain--<UUID>` |
 | Tags | Tags attached to the object |
 | Traffic Light Protocol | Red, Amber, Green or White |
 
@@ -99,7 +99,7 @@ A single user email address.
 | Blocked | A Boolean switch to mark the object as blocked in the user environment |
 | Community Notes | Comments and freeform notes regarding the indicator |
 | Description | The description of the object |
-| STIX ID | The STIX ID for the object in the format of `account--<UUID>` |
+| STIX ID | The STIX ID for the object in the format of `email--<UUID>` |
 | Tags | Tags attached to the object |
 | Traffic Light Protocol | Red, Amber, Green or White |
 
@@ -123,7 +123,7 @@ Represents a single file. For backward compatibility, the indicator has multiple
 | Blocked | A Boolean switch to mark the object as blocked in the user environment |
 | Community Notes | Comments and freeform notes regarding the indicator |
 | Description | The description of the object |
-| STIX ID | The STIX ID for the object in the format of `account--<UUID>` |
+| STIX ID | The STIX ID for the object in the format of `file--<UUID>` |
 | Tags | Tags attached to the object |
 | Traffic Light Protocol | Red, Amber, Green or White |
 
@@ -145,7 +145,7 @@ Represents a single file. For backward compatibility, the indicator has multiple
 | Size | File size |
 | SSDeep   | SSDeep Hash |
 
-### IPv4 / IPv6 / CIDR
+### IPv4 / IPv6 / CIDR / IPv6CIDR
 
 Represent an IP address and its subnet (CIDR). If no subnet is provided, the address is treated as a single IP (same as a /32 subnet).
 
@@ -162,7 +162,7 @@ Represent an IP address and its subnet (CIDR). If no subnet is provided, the add
 | Blocked | A Boolean switch to mark the object as blocked in the user environment |
 | Community Notes | Comments and freeform notes regarding the indicator |
 | Description | The description of the object |
-| STIX ID | The STIX ID for the object in the format of `account--<UUID>` |
+| STIX ID | The STIX ID for the object in the format of `type--<UUID>` |
 | Tags | Tags attached to the object |
 | Traffic Light Protocol | Red, Amber, Green or White |
 
@@ -189,7 +189,7 @@ Represents the properties of a uniform resource locator.
 | Blocked | A Boolean switch to mark the object as blocked in the user environment |
 | Community Notes | Comments and freeform notes regarding the indicator |
 | Description | The description of the object |
-| STIX ID | The STIX ID for the object in the format of `account--<UUID>` |
+| STIX ID | The STIX ID for the object in the format of `url--<UUID>` |
 | Tags | Tags attached to the object |
 | Traffic Light Protocol | Red, Amber, Green or White |
 
@@ -217,7 +217,7 @@ Attack Patterns are a type of TTP (Tactics, Techniques and Procedures) that desc
 | ----------- | ----------- |
 | Community Notes | Comments and freeform notes regarding the indicator |
 | Description | The description of the object |
-| STIX ID | The STIX ID for the object in the format of `account--<UUID>` |
+| STIX ID | The STIX ID for the object in the format of `attack-pattern--<UUID>` |
 | Tags | Tags attached to the object |
 | Traffic Light Protocol | Red, Amber, Green or White |
 
@@ -248,7 +248,7 @@ For example, a Campaign could be used to describe a crime syndicate's attack usi
 | ----------- | ----------- |
 | Community Notes | Comments and freeform notes regarding the indicator |
 | Description | The description of the object |
-| STIX ID | The STIX ID for the object in the format of `account--<UUID>` |
+| STIX ID | The STIX ID for the object in the format of `campaign--<UUID>` |
 | Tags | Tags attached to the object |
 | Traffic Light Protocol | Red, Amber, Green or White |
 
@@ -273,7 +273,7 @@ A Course of Action is an action taken either to prevent an attack or to respond 
 | ----------- | ----------- |
 | Community Notes | Comments and freeform notes regarding the indicator |
 | Description | The description of the object |
-| STIX ID | The STIX ID for the object in the format of `account--<UUID>` |
+| STIX ID | The STIX ID for the object in the format of `course-of-action--<UUID>` |
 | Tags | Tags attached to the object |
 | Traffic Light Protocol | Red, Amber, Green or White |
 
@@ -297,7 +297,7 @@ To preserve backward compatibility, our vulnerability indicator is referred to a
 | ----------- | ----------- |
 | Community Notes | Comments and freeform notes regarding the indicator |
 | Description | The description of the object |
-| STIX ID | The STIX ID for the object in the format of `account--<UUID>` |
+| STIX ID | The STIX ID for the object in the format of `vulnerability--<UUID>` |
 | Tags | Tags attached to the object |
 | Traffic Light Protocol | Red, Amber, Green or White |
 
@@ -324,7 +324,7 @@ The Infrastructure SDO represents a type of TTP and describes any systems, softw
 | ----------- | ----------- |
 | Community Notes | Comments and freeform notes regarding the indicator |
 | Description | The description of the object |
-| STIX ID | The STIX ID for the object in the format of `account--<UUID>` |
+| STIX ID | The STIX ID for the object in the format of `infrastructure--<UUID>` |
 | Tags | Tags attached to the object |
 | Traffic Light Protocol | Red, Amber, Green or White |
 
@@ -351,7 +351,7 @@ Whereas a Campaign is a set of attacks over a period of time against a specific 
 | ----------- | ----------- |
 | Community Notes | Comments and freeform notes regarding the indicator |
 | Description | The description of the object |
-| STIX ID | The STIX ID for the object in the format of `account--<UUID>` |
+| STIX ID | The STIX ID for the object in the format of `intrusion-set--<UUID>` |
 | Tags | Tags attached to the object |
 | Traffic Light Protocol | Red, Amber, Green or White |
 
@@ -379,7 +379,7 @@ Malware is a type of TTP that represents malicious code. It generally refers to 
 | ----------- | ----------- |
 | Community Notes | Comments and freeform notes regarding the indicator |
 | Description | The description of the object |
-| STIX ID | The STIX ID for the object in the format of `account--<UUID>` |
+| STIX ID | The STIX ID for the object in the format of `malware--<UUID>` |
 | Tags | Tags attached to the object |
 | Traffic Light Protocol | Red, Amber, Green or White |
 
@@ -393,7 +393,7 @@ Malware is a type of TTP that represents malicious code. It generally refers to 
 | Malware Types | Which type of malware. Values should come from STIX `malware-type-ov` open vocabulary|
 | Operating System Refs | Identifier of a software object |
 
-### Reports
+### Report
 
 Reports are collections of threat intelligence focused on one or more topics, such as a description of a threat actor, malware, or attack technique, including context and related details. They are used to group related threat intelligence together so that it can be published as a comprehensive cyber threat story.
 
@@ -409,7 +409,7 @@ Reports are collections of threat intelligence focused on one or more topics, su
 | ----------- | ----------- |
 | Community Notes | Comments and freeform notes regarding the indicator |
 | Description | The description of the object |
-| STIX ID | The STIX ID for the object in the format of `account--<UUID>` |
+| STIX ID | The STIX ID for the object in the format of `report--<UUID>` |
 | Tags | Tags attached to the object |
 | Traffic Light Protocol | Red, Amber, Green or White |
 
@@ -434,7 +434,7 @@ Threat Actors are individuals, groups, or organizations believed to be operating
 | ----------- | ----------- |
 | Community Notes | Comments and freeform notes regarding the indicator |
 | Description | The description of the object |
-| STIX ID | The STIX ID for the object in the format of `account--<UUID>` |
+| STIX ID | The STIX ID for the object in the format of `threat-actor--<UUID>` |
 | Tags | Tags attached to the object |
 | Traffic Light Protocol | Red, Amber, Green or White |
 
@@ -467,7 +467,7 @@ Tools are legitimate software that can be used by threat actors to perform attac
 | ----------- | ----------- |
 | Community Notes | Comments and freeform notes regarding the indicator |
 | Description | The description of the object |
-| STIX ID | The STIX ID for the object in the format of `account--<UUID>` |
+| STIX ID | The STIX ID for the object in the format of `tool--<UUID>` |
 | Tags | Tags attached to the object |
 | Traffic Light Protocol | Red, Amber, Green or White |
 
