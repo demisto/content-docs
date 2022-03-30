@@ -56,7 +56,7 @@ else
 
         if [[ "$CONTENT_BRANCH" != "master" ]]; then
           echo "choosing specific branch"
-          git remote set-branches origin "$CONTENT_BRANCH"
+          # git remote set-branches origin "$CONTENT_BRANCH"
         fi
 
         echo "Cloning content (depth 1) to dir: ${CONTENT_GIT_DIR} ..."
