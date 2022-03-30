@@ -29,7 +29,7 @@ else
     echo "==== current branch: ${CURRENT_BRANCH} ===="
 
     CONTENT_GIT_URL="https://github.com/demisto/content.git"
-    CONTENT_BRANCH="master"
+    CONTENT_BRANCH="Improve_result_description"
     REQUIRE_BRANCH=false
     if [ -n "${INCOMING_HOOK_BODY}" ]; then
         echo "INCOMING_HOOK_BODY=${INCOMING_HOOK_BODY}"
@@ -55,12 +55,12 @@ else
     if [ ! -d ${CONTENT_GIT_DIR} ]; then
 
         if [[ "$CONTENT_BRANCH" != "master" ]]; then
-          echo "choosing specific branch"
-          # git remote set-branches origin "$CONTENT_BRANCH"
+          echo "Cloning content (depth 1) to dir: ${CONTENT_GIT_DIR} ..."
+          git clone --depth 1 ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}
+        else
+          echo "Cloning content to dir: ${CONTENT_GIT_DIR} ..."
+          git clone ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}
         fi
-
-        echo "Cloning content (depth 1) to dir: ${CONTENT_GIT_DIR} ..."
-        git clone --depth 1 ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}
 
     else
         echo "Content dir: ${CONTENT_GIT_DIR} exists. Skipped clone."
@@ -71,7 +71,7 @@ else
     fi
     cd ${CONTENT_GIT_DIR}
     echo 'all git branches'
-    git branch -a
+    git branch -a | grep "remotes/origin/${CONTENT_BRANCH}$"
     exit 1
     if [[ "$CONTENT_BRANCH" != "master" ]] && (git branch -a | grep "remotes/origin/${CONTENT_BRANCH}$"); then
         echo "found remote branch: '$CONTENT_BRANCH' will use it for generating docs"
