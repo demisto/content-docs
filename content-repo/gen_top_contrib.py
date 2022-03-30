@@ -34,18 +34,18 @@ VERIFY = os.getenv('SKIP_SSL_VERIFY') is None
 
 # Retry class which uses 60 seconds backoff and only 2 retries
 class SearchRetry(Retry):
-    def __init__(self):
-        super().__init__(
-            total=3,
-            status_forcelist=[429, 403, 500, 502, 503, 504]
-        )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)            
 
     def get_backoff_time(self):
         return 60.0
 
 
 search_session = requests.Session()
-search_session.mount("https://", HTTPAdapter(max_retries=SearchRetry()))
+search_session.mount("https://", HTTPAdapter(max_retries=SearchRetry(
+    total=2,
+    status_forcelist=[429, 403, 500, 502, 503, 504],
+)))
 
 
 def create_grid(dataset: list) -> str:
