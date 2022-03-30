@@ -29,7 +29,7 @@ else
     echo "==== current branch: ${CURRENT_BRANCH} ===="
 
     CONTENT_GIT_URL="https://github.com/demisto/content.git"
-    CONTENT_BRANCH="Improve_result_description"
+    CONTENT_BRANCH="master"
     REQUIRE_BRANCH=false
     if [ -n "${INCOMING_HOOK_BODY}" ]; then
         echo "INCOMING_HOOK_BODY=${INCOMING_HOOK_BODY}"
@@ -54,13 +54,12 @@ else
 
     if [ ! -d ${CONTENT_GIT_DIR} ]; then
 
-        if [[ "$CONTENT_BRANCH" == "master" ]]; then
-          echo "Cloning content (depth 1) to dir: ${CONTENT_GIT_DIR} ..."
-          git clone --depth 1 ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}
-        else
-          echo "Cloning content to dir: ${CONTENT_GIT_DIR} ..."
-          git clone ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}
+        if [[ "$CONTENT_BRANCH" != "master" ]]; then
+          git remote set-branches origin "$CONTENT_BRANCH"
         fi
+
+        echo "Cloning content (depth 1) to dir: ${CONTENT_GIT_DIR} ..."
+        git clone --depth 1 ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}
 
     else
         echo "Content dir: ${CONTENT_GIT_DIR} exists. Skipped clone."
