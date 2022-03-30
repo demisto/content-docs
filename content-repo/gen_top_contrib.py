@@ -38,6 +38,7 @@ class SearchRetry(Retry):
         super().__init__(*args, **kwargs)            
 
     def get_backoff_time(self):
+        print('Rate limit hit returning 60 seconds backoff time')
         return 60.0
 
 
