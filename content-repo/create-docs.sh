@@ -63,7 +63,7 @@ else
         fi
     fi
     cd ${CONTENT_GIT_DIR}
-    if [[ "$CONTENT_BRANCH" != "master" ]] && (git branch -a | grep "remotes/origin/${CONTENT_BRANCH}$"); then
+    if [[ "$CONTENT_BRANCH" != "maste" ]] && (git branch -a | grep "remotes/origin/${CONTENT_BRANCH}$"); then
         echo "found remote branch: '$CONTENT_BRANCH' will use it for generating docs"
         git checkout $CONTENT_BRANCH
     else
