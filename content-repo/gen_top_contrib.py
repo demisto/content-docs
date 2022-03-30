@@ -36,7 +36,7 @@ VERIFY = os.getenv('SKIP_SSL_VERIFY') is None
 class SearchRetry(Retry):
     def __init__(self):
         super().__init__(
-            total=2,
+            total=3,
             status_forcelist=[429, 403, 500, 502, 503, 504]
         )
 
