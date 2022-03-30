@@ -35,7 +35,7 @@ VERIFY = os.getenv('SKIP_SSL_VERIFY') is None
 # Retry class which uses 60 seconds backoff and only 2 retries
 class SearchRetry(Retry):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)            
+        super().__init__(*args, **kwargs)
 
     def get_backoff_time(self):
         print('Rate limit hit returning 60 seconds backoff time')
