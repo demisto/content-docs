@@ -15,19 +15,55 @@ Adopting a pack has several advantages for the partner:
 ### Marketing with Palo Alto Networks
 - Opportunity to place company name and logo on the pack.
 - Add detailed description and marketing to the pack (see yellow box, below) including links, images, company overview, etc. 
-- Engage in marketing activities with Palo Alto Networks (e.g. joint solution blog).
+- Engage in marketing activities with Palo Alto Networks.
 
 ![pack example cyren](../doc_imgs/partners/packexample_cyren.png)
 
 ## Process
-The process to Adopt-a-Pack is simple:
-1. Partner signs the Palo Alto Networks Technology Partnership Agreement. If you've already signed our agreement, you will not have to sign again. We may need to send you a statement via email but there is no additional paperwork to Adopt. 
-1. Partner notifies Palo Alto Networks that they wish to adopt the pack. *Important:* you must notify us so we can work with you. 
-1. Partner opens a PR on the pack. The PR must update the pack readme and relevant release note both containing the text below, and increment the version number. To increment the version and adjust the release note it is recommended to run `demisto-sdk update-release-notes -i Packs/<MyPack> -f` which will generate a new release note file and will bump the pack version. More information can be found [here](../documentation/release-notes). This starts the 90 day transition period. 
-1. Once that PR is merged, the Partner is able to make changes and updates to the pack via PR(s), but the primary support will remain with Palo Alto Networks. (If the existing pack is not in use, the transition time can be shortened.) 
-1. After the 90 day transition period has elapsed, the Partner submits a pull request updating the readme (per text below), support information, and increments the version number and officially takes over the pack!
+The process to Adopt-a-Pack takes under 5 minutes! Follow the step by step instructions and watch the video tutorials below to learn how to submit your adoption pull requests.  
 
-### Text for the Pack
-For partners who received permission for the adoption process, please add the following text to the **top** of the pack readme.md file and the newly created release note file.
-- At the start of the adoption process: `Note: Support for this pack will be moving to the partner around <<Month>>, <<Day>>, <<Year>>.` (Be sure to update the date to 90 days in the future.)
-- At the end of the 90 day period: `Note: Support for this pack moved to the partner on <<Month>>, <<Day>>, <<Year>>. Please contact the partner directly via the support link on the right.` (Be sure to update the date.)
+**Visual Studio Instructions**: If you are creating the pull request from Visual Studio, please follow the below steps. For additional guidance, watch the Visual Studio video overview. 
+
+<details>
+<summary>Click here to see the Visual Studio instructions</summary>
+
+<br/>
+  
+If work on a cloned Github repository from an IDE, please follow the below steps: 
+
+1. Locate your company's pack folder and open the README.md file. Paste the below text into the file: 
+  a. Note: Support for this pack will be moving to the partner around <<Month>>, <<Day>>, <<Year>>.
+  b. Make sure you change the month, day, and year to the appropriate date that is 90 days from your submittal date. 
+  c. Once complete, save these changes and run the Demisto SDK command to update the release notes: 
+    i. From a terminal, run the following command with the pack path:
+       demisto-sdk update-release-notes -i <path to pack> -f
+       See [documentation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/update_release_notes/README.md) if needed.
+   ii. After the command has been completed, it will create the new release note and update the version number in the pack_metadata.json folder. 
+  iii. Before continuing, you need to add the following text to the release note:
+        “Start of adoption process, update to readme file” 
+2. Now, it’s time to save and commit the changes as a Github pull request. Once you publish the changes via Visual Studio, Github will prompt you to open a pull request. When prompted, click the green button “Compare & pull request” 
+  a. Double check the pull request to ensure all changes are correct 
+  b. Change the pull request title to “Company Name Pack Adoption” and adjust the description to “Updating README file for adoption”.
+  c. When ready, click the green button “Create pull request” on the bottom of the page 
+3. The request will now be reviewed, approved and merged by a Cortex XSOAR engineer!
+
+**After the 90 days, another pull request must be submitted to complete the adoption process. Please follow the below steps if you are submitting the final pull request via Visual Studio: **
+1. Update the release note just as you did in the first pull request but change the text to the below:
+  a. Note: Support for this pack moved to the partner on <<Month>>, <<Day>>, <<Year>>. Please contact the partner directly via the support link on the          right.
+2. Next, go to the pack_metadata.json file and update the following sections:
+  a. “currentVersion” - update the version. For this example, we would be updating it to “1.2.12” 
+  b. “Support” - must say “partner” 
+  c. “Author” - must say your company name
+  d. “url” - must be changed to your company’s support site
+  e. “Email” - must be your company's support email 
+3. Once everything is updated, save your changes and run the Demisto SDK command as you did in the first pull request: 
+  a. From a terminal, run the following command with the pack path:
+     demisto-sdk update-release-notes -i <path to pack> -f
+     See [documentation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/update_release_notes/README.md) if needed.
+Next, open your pull request in Github as you did the first time and the engineers for Cortex XSOAR will review, approve and merge your newly adopted pack! 
+
+
+</details>
+  
+  
+**Github Instructions:** If you prefer to create the pull request directly from Github, please follow the below step by step instructions. For additional guidance, watch Github video overview. 
