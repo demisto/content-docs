@@ -40,16 +40,16 @@ If work on a cloned Github repository from an IDE, please follow the below steps
        See [documentation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/update_release_notes/README.md) if needed.
    ii. After the command has been completed, it will create the new release note and update the version number in the pack_metadata.json folder. 
   iii. Before continuing, you need to add the following text to the release note:
-        “Start of adoption process, update to readme file” 
+        _Start of adoption process, update to readme file_
 2. Now, it’s time to save and commit the changes as a Github pull request. Once you publish the changes via Visual Studio, Github will prompt you to open a pull request. When prompted, click the green button “Compare & pull request” 
   a. Double check the pull request to ensure all changes are correct 
-  b. Change the pull request title to “Company Name Pack Adoption” and adjust the description to “Updating README file for adoption”.
+  b. Change the pull request title to _Company Name Pack Adoption_ and adjust the description to _Updating README file for adoption_.
   c. When ready, click the green button “Create pull request” on the bottom of the page 
 3. The request will now be reviewed, approved and merged by a Cortex XSOAR engineer!
 
 **After the 90 days, another pull request must be submitted to complete the adoption process. Please follow the below steps if you are submitting the final pull request via Visual Studio: **
 1. Update the release note just as you did in the first pull request but change the text to the below:
-  a. Note: Support for this pack moved to the partner on <<Month>>, <<Day>>, <<Year>>. Please contact the partner directly via the support link on the          right.
+  a. Note: Support for this pack moved to the partner on <<Month>>, <<Day>>, <<Year>>. Please contact the partner directly via the support link on the right.
 2. Next, go to the pack_metadata.json file and update the following sections:
   a. “currentVersion” - update the version. For this example, we would be updating it to “1.2.12” 
   b. “Support” - must say “partner” 
