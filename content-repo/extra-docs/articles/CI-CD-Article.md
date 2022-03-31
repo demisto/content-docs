@@ -11,8 +11,15 @@ In Cortex XSOAR, you can develop and test your content on other machines, before
 The CI/CD process helps you develop and maintain content for complex content development using the full functionality of a Git repository, enabling you to run unit tests, code reviews, run test playbooks, etc. Instead of building and maintaining code on a Cortex XSOAR development environment, you can build content from your own repository, build servers, and utilize third party tools (like CircleCI, Jenkins, etc). You can also use version control, undertake code reviews, do lint and validations, use automatic testing, run tests on development machines, etc. 
 
 
+The process is designed for more advanced users who have an understanding of CI/CD concepts and have a number of developers who work on local machines. In particular, it is recommended that you should have the following knowledge:
+ - The ability to set up a build system
+ - The ability to use demisto-sdk
+ - The ability to run Linux (under build system/container/wsl)
+ - A basic knowledge of Git
+ - A basic knowledge of containers (docker)
 
-The process is designed for more advanced users who have an understanding of CI/CD concepts and have a number of developers who work on local machines. The remote repository feature in the UI is designed for less complex content (one or two developers working on a local machine).  
+
+The remote repository feature in the UI is designed for less complex content (one or two developers working on a local machine).  
 
 
 
