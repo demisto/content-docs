@@ -268,8 +268,7 @@ def test_normalize_id():
 
 
 def test_process_release_doc(tmp_path, mdx_server):
-    last_month = datetime.now() + dateutil.relativedelta.relativedelta(months=-1)
-    version = last_month.strftime('%y.%-m.0')
+    version = '22.2.0'
     release_file = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs/releases/{version}.md'
     res = process_release_doc(str(tmp_path), release_file)
     assert res.id == version
