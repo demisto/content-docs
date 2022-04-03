@@ -31,11 +31,11 @@ We are assuming that Cortex XSOAR is already installed. For more information abo
 
 Check if your Cortex XSOAR License is correctly installed by navigating to *Settings* -> *ABOUT* -> *License* and make sure that everything is green:
 
-![Check Cortex XSOAR License](../doc_imgs/tutorials/tut-setup-dev/01-checkdemistolicense.gif)
+![Check Cortex XSOAR License](/doc_imgs/tutorials/tut-setup-dev/01-checkdemistolicense.gif)
 
 **PRO tip**: you can quickly navigate to different pages within Cortex XSOAR by hitting *Ctrl-K* and then typing what you want. For the license page, for example, type */settings/license* or just *lic* and select the autocompleted option:
 
-![Jump to Page](../doc_imgs/tutorials/tut-setup-dev/02-jumptopage.png)
+![Jump to Page](/doc_imgs/tutorials/tut-setup-dev/02-jumptopage.png)
 
 #### Operating System
 
@@ -89,7 +89,7 @@ And that's it! Again, if the installation fails, check out [this](https://github
 
 Not much to check here, just go to [GitHub](https://github.com) and make sure that you have an account or Sign Up for one:
 
-![GitHub](../doc_imgs/tutorials/tut-setup-dev/03-github.png)
+![GitHub](/doc_imgs/tutorials/tut-setup-dev/03-github.png)
 
 #### Docker
 
@@ -117,11 +117,11 @@ Great, all the prerequisites are set! We can get started.
 
 Make sure you're logged on GitHub and navigate to the [Cortex XSOAR Content Repo](https://github.com/demisto/content) and click on **Fork**:
 
-![Fork Repository](../doc_imgs/tutorials/tut-setup-dev/04-fork.png)
+![Fork Repository](/doc_imgs/tutorials/tut-setup-dev/04-fork.png)
 
 Once the fork is complete, copy the URL:
 
-![Copy GitHub URL](../doc_imgs/tutorials/tut-setup-dev/05-copygithuburl.png)
+![Copy GitHub URL](/doc_imgs/tutorials/tut-setup-dev/05-copygithuburl.png)
 
 This is the fork where you will commit your code and, once ready, create the Pull Request to submit your contribution back to the Cortex XSOAR Content repository.
 
@@ -441,7 +441,7 @@ To https://github.com/[omitted]/content
 
 You can go back to GitHub and, under **your** fork, you should be able to see that there is a new branch with the name you provided (`my_integration_name` in this example):
 
-![GitHub Branch](../doc_imgs/tutorials/tut-setup-dev/06-githubbranch.png)
+![GitHub Branch](/doc_imgs/tutorials/tut-setup-dev/06-githubbranch.png)
 
 Congratulations! You completed the set up of the Development Environment for Cortex XSOAR! Now you can start writing your code. Please have a look at the [Code Conventions](../integrations/code-conventions).
 

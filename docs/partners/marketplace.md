@@ -37,14 +37,14 @@ The XSOAR Marketplace supports two subscription models to give customers purchas
 Learn more about [Private Offer](https://xsoar.pan.dev/docs/partners/private-offer)
 
 For packs that resell 3rd party products, the following illustrates the subscription flow:
-![Subscribingto3rdpartycontent](../doc_imgs/partners/Subscribingto3rdpartycontent.png)
+![Subscribingto3rdpartycontent](/doc_imgs/partners/Subscribingto3rdpartycontent.png)
 
 
 ### Show Your Pack
 
 With the new pack display model, Partners have much more real estate and flexibility to show their content within Marketplace including links, images, etc. You can even include a video in your listing to help convey the value of your pack.
 
-![pack example cyren](../doc_imgs/partners/packexample_cyren.png)
+![pack example cyren](/doc_imgs/partners/packexample_cyren.png)
 
 ### Marketplace Listing Best Practices
 

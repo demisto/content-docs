@@ -3,7 +3,7 @@ id: docker
 title: Using Docker
 ---
 
-![](../doc_imgs/integrations/docker-for-beginners.png)
+![](/doc_imgs/integrations/docker-for-beginners.png)
 
 ## What is Docker?
 Docker is a tool used by developers to package together dependencies into a single container (or image). What this means for *you* is that in order to use your integration, you are not required to "pip install" all of the packages required. They are part of a container that "docks" to the server and contains all of the libraries you need. To learn more about docker, [visit their site here](https://docs.docker.com/)
@@ -93,7 +93,7 @@ This command is creating the docker image called "example_name" and uses the pyt
 
 When the docker image is created, the following dialog box will appear. Once this has occurred, the docker image is ready to use.
 
-![](../doc_imgs/integrations/docker-image-list-demisto.png)
+![](/doc_imgs/integrations/docker-image-list-demisto.png)
 
 This command accepts the following arguments:
 

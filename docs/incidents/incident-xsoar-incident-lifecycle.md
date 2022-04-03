@@ -6,7 +6,7 @@ Cortex XSOAR is an orchestration and automation system used to bring all of the 
 
 The following diagram and sections further explain the incident lifecycle in Cortex XSOAR.
 
-![Incident Lifecycle](../doc_imgs/incidents/Incident_Lifecycle.png "Incident Lifecycle")
+![Incident Lifecycle](/doc_imgs/incidents/Incident_Lifecycle.png "Incident Lifecycle")
 
 ## Planning
 Before you begin configuring integrations and ingesting information from 3rd parties, you should plan ahead. 
