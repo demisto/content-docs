@@ -16,12 +16,12 @@ You can find the latest tags in the docker hub:
 
 To use the Demisto-SDK, ensure you have a content-like repository with Cortex XSOAR content in a structure that matches the official [XSOAR Content repo](https://github.com/demisto/content).
 
-You can generate such a repository may using the following [template](https://github.com/demisto/content-external-template)
+You can generate such a repository using the following [template](https://github.com/demisto/content-external-template)
 
 ## Mounts
 
 Demisto-SDK uses volume mounts to run on the local content repository.
-Please note that mounting on macOS and Windows may cause slowness.
+_Please note that mounting on macOS and Windows may cause slowness._
 
 To ensure the best performance, please either:
 

@@ -24,7 +24,7 @@ jobs:
         path: content-docs
         token: ${{ secrets.GITHUB_TOKEN }}
         fetch-depth: 0
-        ref: 'Fix_broken_links'
+        ref: 'master'
     - name: create ignore url files
       # The grep regex finds all URL's in integration README files in the section between ## Commands or <h2>Commands until the end of the file.
       # -R search recursively -P perl regex -o print only the match -z ignore new line -a process a binary file as if it were text
