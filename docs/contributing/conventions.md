@@ -25,11 +25,11 @@ Please use the following guidelines when working on the changes requested by our
 
 - The review usually has a *summary* and several *conversations*: make sure you address all the comments, including the ones in the summary:
 
-    ![Pull Request Review Sections](/doc_imgs/contributing/pull_request_review.png)
+    ![Pull Request Review Sections](../doc_imgs/contributing/pull_request_review.png)
 
 - When addressing the review's *conversations*, please do **NOT** mark them as resolved: just write "**done**" in a comment, so the reviewer can better keep track of them:
 
-    ![Resolve Conversation](/doc_imgs/contributing/resolve_conversation.png)
+    ![Resolve Conversation](../doc_imgs/contributing/resolve_conversation.png)
 
 - Once you have pushed all requested changes, please ask for a new review by navigating to Reviewers section in the right sidebar in GitHub and click the ⭯ icon next to the reviewer's name.
 
@@ -46,14 +46,14 @@ After you push changes, please come back to the Pull Request and check the statu
 
 Everything should be green:
 
-![Build Status Green](/doc_imgs/contributing/doc_status_green.png)
+![Build Status Green](../doc_imgs/contributing/doc_status_green.png)
 
 If you have an error on a test, click on the details link to open the CircleCI Build page:
 
-![Build Status Red](/doc_imgs/contributing/doc_status_red.png)
+![Build Status Red](../doc_imgs/contributing/doc_status_red.png)
 
 Browse to the failed CircleCI section and try to find the error message (usually in red). It's often something easy to understand and to fix, as in the following screenshot:
 
-![CircleCI Error](/doc_imgs/contributing/circleci_error.png)
+![CircleCI Error](../doc_imgs/contributing/circleci_error.png)
 
 If the error is unclear or you are in doubt, add a comment to the PR to ask the reviewer or post a question in the **#demisto-developers** channel on [Slack](https://dfircommunity.slack.com).

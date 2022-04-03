@@ -554,7 +554,7 @@ When working on integrations that require user credentials (such as username/pas
 **Using username and password:**
 
 - **In Demisto UI:**
-![image](/doc_imgs/integrations/credentials_username_password.png)
+![image](../doc_imgs/integrations/credentials_username_password.png)
 
 - **In the YML file:**
 ```yml
@@ -582,7 +582,7 @@ return {
 **Using an API Token/Key:**
 
 - **In Demisto UI:**
-![image](/doc_imgs/integrations/credentials_api_token.png)
+![image](../doc_imgs/integrations/credentials_api_token.png)
 
 - **In the YML file:**
 ```yml
@@ -655,7 +655,7 @@ The above will create the table seen below:
 | third  | baz    |
 
 In the War Room, this is how a table will appear:
-<img width="788" src="/doc_imgs/integrations/50571324-46846e00-0db0-11e9-9888-ddd9dc275541.png"></img>
+<img width="788" src="../doc_imgs/integrations/50571324-46846e00-0db0-11e9-9888-ddd9dc275541.png"></img>
 
 You may also use ```headerTransform``` to convert the existing keys into formatted headers.
 
@@ -719,17 +719,17 @@ The resulted table will be:
 ```
  The argument above can be seen in the integration settings as shown below:
  
- <img width="644" src="/doc_imgs/integrations/50575189-ac4d1600-0e01-11e9-83fc-7a8f6f8ce55a.png"></img>
+ <img width="644" src="../doc_imgs/integrations/50575189-ac4d1600-0e01-11e9-83fc-7a8f6f8ce55a.png"></img>
  
  After the command is executed, the arguments are displayed in the War Room as part of the command, for example:
  
- <img width="758" src="/doc_imgs/integrations/50575199-fd5d0a00-0e01-11e9-9d54-944eb7c6f287.png"></img>
+ <img width="758" src="../doc_imgs/integrations/50575199-fd5d0a00-0e01-11e9-9d54-944eb7c6f287.png"></img>
 
 ### IndicatorsTimeline
 The `IndicatorTimeline` is an optional object (available from Server version 5.5.0 and up) . It is only applicable for commands that operate on indicators. It is a dictionary (or list of dictionaries) of the following format:
 When `IndicatorTimeline` data is returned in an entry, the timeline section of the indicator whose value was noted in the timeline data will be updated (and is viewable in the indicator's view page in Cortex XSOAR as can be seen in the attached image).
 
-<img width="758" src="/doc_imgs/integrations/timeline_section.png"></img>
+<img width="758" src="../doc_imgs/integrations/timeline_section.png"></img>
 
 **What value should be used for the `'Category'` field of a `timeline` data object?**  
 Any Cortex XSOAR integration command or automation that returns `timeline` data may include the `'Category'` value.
@@ -847,7 +847,7 @@ return_error(message="error has occurred: API Key is incorrect", error=ex)
 
 Will produce an error in the War Room, for example:
 
-<img width="907" src="/doc_imgs/integrations/50571503-ed6b0900-0db4-11e9-8e9e-dc23f5ff403c.png"></img>
+<img width="907" src="../doc_imgs/integrations/50571503-ed6b0900-0db4-11e9-8e9e-dc23f5ff403c.png"></img>
 
 
 ### DEPRECATED - demisto.results()
@@ -894,7 +894,7 @@ The entry is composed of multiple components.
     ```
     When `IndicatorTimeline` data is returned in an entry, the timeline section of the indicator whose value was noted in the timeline data will be updated (and is viewable in the indicator's view page in Cortex XSOAR as can be seen in the attached image).
  
-    <img width="758" src="/doc_imgs/integrations/timeline_section.png"></img>
+    <img width="758" src="../doc_imgs/integrations/timeline_section.png"></img>
 
     **What value should be used for the `'Category'` field of a `timeline` data object?**  
     Any Cortex XSOAR integration command that returns `timeline` data should include the `'Category'` value of `'Integration Update'`. When returning `timeline` data from a Cortex XSOAR automation, the value passed to the `'Category'` field should be `'Automation Update'`.

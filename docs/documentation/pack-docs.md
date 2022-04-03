@@ -9,9 +9,9 @@ Content Packs displayed in the Cortex XSOAR Marketplace contain 2 main documenta
 
 #### Screenshots
 * *Description* in Pack display card: <br/>  
-<img src="/doc_imgs/integrations/gdpr-card.png" width="250"></img>  
+<img src="../doc_imgs/integrations/gdpr-card.png" width="250"></img>  
 * Details Tab with *Description* and *README*:
-![](/doc_imgs/integrations/gdpr-details.png)    
+![](../doc_imgs/integrations/gdpr-details.png)    
 
 
 ## Pack Description

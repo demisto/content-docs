@@ -17,7 +17,7 @@ Adopting a pack has several advantages for the partner:
 - Add detailed description and marketing to the pack (see yellow box, below) including links, images, company overview, etc. 
 - Engage in marketing activities with Palo Alto Networks.
 
-![pack example cyren](/doc_imgs/partners/packexample_cyren.png)
+![pack example cyren](../doc_imgs/partners/packexample_cyren.png)
 
 ## Process
 The process to Adopt-a-Pack takes under 5 minutes! Follow the step by step instructions and watch the video tutorials below to learn how to submit your adoption pull requests.  
@@ -32,9 +32,15 @@ The process to Adopt-a-Pack takes under 5 minutes! Follow the step by step instr
 If work on a cloned Github repository from an IDE, please follow the below steps: 
 
 1. Locate your company's pack folder and open the README.md file. Paste the below text into the file: 
-  a. Note: Support for this pack will be moving to the partner around Month, Day, Year.
+  a. Note: Support for this pack will be moving to the partner around <<Month>>, <<Day>>, <<Year>>.
   b. Make sure you change the month, day, and year to the appropriate date that is 90 days from your submittal date. 
-  c. Once complete, save these changes and run the `demisto-sdk update-release-notes -i <path to pack> -f` to update the release notes. See [documentation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/update_release_notes/README.md) if needed. After the command has been completed, it will create the new release note in the `ReleaseNotes` folder and update the version number in `pack_metadata.json`. Add the following text to the release note: `Start of adoption process, update to readme file`.
+  c. Once complete, save these changes and run the Demisto SDK command to update the release notes: 
+    i. From a terminal, run the following command with the pack path:
+       demisto-sdk update-release-notes -i <path to pack> -f
+       See [documentation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/update_release_notes/README.md) if needed.
+   ii. After the command has been completed, it will create the new release note and update the version number in the pack_metadata.json folder. 
+  iii. Before continuing, you need to add the following text to the release note:
+        _Start of adoption process, update to readme file_
 2. Now, it’s time to save and commit the changes as a Github pull request. Once you publish the changes via Visual Studio, Github will prompt you to open a pull request. When prompted, click the green button “Compare & pull request” 
   a. Double check the pull request to ensure all changes are correct 
   b. Change the pull request title to _Company Name Pack Adoption_ and adjust the description to _Updating README file for adoption_.
@@ -43,16 +49,19 @@ If work on a cloned Github repository from an IDE, please follow the below steps
 
 **After the 90 days, another pull request must be submitted to complete the adoption process. Please follow the below steps if you are submitting the final pull request via Visual Studio: **
 1. Update the release note just as you did in the first pull request but change the text to the below:
-  a. Note: Support for this pack moved to the partner on Month, Day, Year. Please contact the partner directly via the support link on the right.
+  a. Note: Support for this pack moved to the partner on <<Month>>, <<Day>>, <<Year>>. Please contact the partner directly via the support link on the right.
 2. Next, go to the pack_metadata.json file and update the following sections:
   a. “currentVersion” - update the version. For this example, we would be updating it to “1.2.12” 
   b. “Support” - must say “partner” 
   c. “Author” - must say your company name
   d. “url” - must be changed to your company’s support site
   e. “Email” - must be your company's support email 
-3. Once everything is updated, save your changes and run `demisto-sdk update-release-notes -i <path to pack> -f` as you did in the first pull request. 
-     
+3. Once everything is updated, save your changes and run the Demisto SDK command as you did in the first pull request: 
+  a. From a terminal, run the following command with the pack path:
+     demisto-sdk update-release-notes -i <path to pack> -f
+     See [documentation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/update_release_notes/README.md) if needed.
 Next, open your pull request in Github as you did the first time and the engineers for Cortex XSOAR will review, approve and merge your newly adopted pack! 
+
 
 </details>
   

@@ -97,7 +97,7 @@ Or if you want more control on the image (for example setting width dimension) y
 <img width="500" src="https://github.com/demisto/content/raw/2d6e082cfb181f823e5b1446ae71e10537591ea6/Packs/AutoFocus/doc_files/AutoFocusPolling.png" />
 ```
 **Screenshot of `Download` button:**
-![Github Download](/doc_imgs/integrations/github-download-button.png)
+![Github Download](../doc_imgs/integrations/github-download-button.png)
 
 **Absolute Image URL Examples:**
 * URL to commit hash: https://github.com/demisto/content/raw/2d6e082cfb181f823e5b1446ae71e10537591ea6/Packs/AutoFocus/doc_files/AutoFocusPolling.png
@@ -149,10 +149,10 @@ You can also embed videos from external services such as YouTube via an iframe. 
 Screenshots from YouTube:
 
 **Share Dialog:**
-<img width="515" src="/doc_imgs/integrations/youtube-embed.png" />  
+<img width="515" src="../doc_imgs/integrations/youtube-embed.png" />  
 
 **Embed Dialog:**
-<img width="425" src="/doc_imgs/integrations/youtube-embed-2.png" />
+<img width="425" src="../doc_imgs/integrations/youtube-embed-2.png" />
 
 Paste the embed snippet in the README documentation page. Make sure to change the `allowfullscreen` option to include `allowfullscreen="true"`. For example:
 ```
@@ -171,8 +171,8 @@ allowfullscreen="true"></iframe>
 
 Example Images: 
 
-![image](/doc_imgs/integrations/40935346-7ca3b24a-6840-11e8-8540-b00677cd6657.png)
-![image](/doc_imgs/integrations/40935354-8406dcc4-6840-11e8-9b0c-b0a9c4bd8a99.png)
+![image](../doc_imgs/integrations/40935346-7ca3b24a-6840-11e8-8540-b00677cd6657.png)
+![image](../doc_imgs/integrations/40935354-8406dcc4-6840-11e8-9b0c-b0a9c4bd8a99.png)
 
 
 ## Posting Documentation
@@ -190,7 +190,7 @@ CONTENT_REPO_DIR=~/dev/demisto/content npm run reference-docs && npm start
 ### Preview by Creating a PR at the Content Docs Repo
 Create a PR at the [content-docs repo](https://github.com/demisto/content-docs) with the same branch name as the PR you are working on in the [content repo](https://github.com/demisto/content-docs). Mention in the PR that it is related to a PR from the content repo. Your PR in the content-docs repo will include a preview link in the GitHub Checks section from `deploy/netlify`. You can perform a dummy white space change for the PR that will re-trigger the build and create a new preview. Example screenshot for preview link:
 
-<img width="500" src="/doc_imgs/integrations/doc-preview-check.png" />
+<img width="500" src="../doc_imgs/integrations/doc-preview-check.png" />
 
 ## Notes
 We use [MDX](https://mdxjs.com/) for the Markdown generation. MDX is a superset of standard Markdown, but it requires that any html used in the document must be jsx complaint. Meaning all html tags need to contain a closing tag. For example don't use: `<br>`, use: `<br/>`. Additionally, html entities `< >`, not in code blocks, need to be encoded. Use `&lt;` and `&gt;` to encode. As part of the CircleCI build, the README.md file will be validated that it is MDX complaint.

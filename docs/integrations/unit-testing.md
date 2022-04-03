@@ -72,7 +72,7 @@ pytest -v
 ```
 
 Sample run:
-![code sample](/doc_imgs/integrations/unit-test-sample-run.png)
+![code sample](../doc_imgs/integrations/unit-test-sample-run.png)
 
 It is also possible to run from outside the virtual env by running:
 
@@ -86,7 +86,7 @@ Open the unit test file within PyCharm. You will see a green arrow next to each 
 
 Sample clip of debugging in PyCharm:
 
-![debug test](/doc_imgs/integrations/Unit-Testing-Debug.gif)
+![debug test](../doc_imgs/integrations/Unit-Testing-Debug.gif)
 
 ### Run With Docker
 
@@ -136,7 +136,7 @@ Options:
 
 Sample output:
 
-![sample output](/doc_imgs/integrations/unit-test-sample-output.png)
+![sample output](../doc_imgs/integrations/unit-test-sample-output.png)
 
 ## Common Unit Testing Use Cases
 
