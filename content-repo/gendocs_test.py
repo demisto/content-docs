@@ -12,7 +12,6 @@ from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, ve
 import os
 import pytest
 from datetime import datetime
-import dateutil.relativedelta
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SAMPLE_CONTENT = f'{BASE_DIR}/test_data/sample-content'
@@ -265,21 +264,6 @@ def test_normalize_id():
     assert normalize_id("that's not good") == 'thats-not-good'
     assert normalize_id("have i been pwned? v2") == 'have-i-been-pwned-v2'
     assert normalize_id("path/with/slash/and..-dots") == 'pathwithslashand-dots'
-
-
-def test_process_release_doc(tmp_path, mdx_server):
-    version = '22.2.0'
-    release_file = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs/releases/{version}.md'
-    res = process_release_doc(str(tmp_path), release_file)
-    assert res.id == version
-    assert res.description.startswith('Published on')
-    assert res.name == f'Content Release {version}'
-    with open(str(tmp_path / f'{res.id}.md'), 'r') as f:
-        assert f.readline().startswith('---')
-        assert f.readline().startswith(f'id: {res.id}')
-        assert f.readline().startswith(f'sidebar_label: "{res.id}"')
-        assert f.readline().startswith(
-            'custom_edit_url: https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/releases')
 
 
 def test_process_release_doc_old(tmp_path, mdx_server):
