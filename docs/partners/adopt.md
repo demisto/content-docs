@@ -97,7 +97,7 @@ Next, open your pull request in Github as you did the first time and the enginee
 7. Done! You have completed step 1 of the adoption process. 
 
 **After 90 days, you will follow the below steps to complete the adoption process:**
-1. In order to complete the second adoption step, first you will need to update your README file & open a pull request with this text: Note: Support for this pack moved to the partner on <<Month>>, <<Day>>, <<Year>>. Please contact the partner directly via the support link on the right.
+1. In order to complete the second adoption step, first you will need to update your README file & open a pull request with this text: Note: Support for this pack moved to the partner on Month, Day, Year. Please contact the partner directly via the support link on the right.
 2. Next, go to the pack_metadata.json file and update the following sections:
   a. “currentVersion” - update the version. For this example, we would be updating it to “1.2.12” 
   b. “Support” - must say “partner” 
