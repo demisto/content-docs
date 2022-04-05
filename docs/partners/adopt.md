@@ -60,7 +60,7 @@ Next, open your pull request in Github as you did the first time and the enginee
 <br/>
  
  
-  <strong>Github Instructions**</strong>: If you prefer to create the pull request directly from Github, please follow the below step by step instructions. For additional guidance, watch [Github video overview](https://www.youtube.com/watch?v=9mInBTuC6AE). 
+  <strong>Github Instructions**</strong>: If you prefer to create the pull request directly from Github, please follow the below step by step instructions. For additional guidance, watch <a href="https://www.youtube.com/watch?v=9mInBTuC6AE">Github video overview</a>. 
 <details>
 <summary>Click here to see the Github instructions</summary>
 
