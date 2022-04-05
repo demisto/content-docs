@@ -22,11 +22,11 @@ Adopting a pack has several advantages for the partner:
 ## Process
 The process to Adopt-a-Pack takes under 5 minutes! Follow the step by step instructions and watch the video tutorials below to learn how to submit your adoption pull requests.  
 
-**Visual Studio Instructions**: If you are creating the pull request from Visual Studio, please follow the below steps. For additional guidance, watch the [Visual Studio video overview](https://www.youtube.com/watch?v=9GPkhtRw4Oc). 
+<strong>Visual Studio Instructions</strong>: If you are creating the pull request from Visual Studio, please follow the below steps. For additional guidance, watch the <a href="https://www.youtube.com/watch?v=9GPkhtRw4Oc">Visual Studio video overview</a>.
 <details>
 <summary>Click here to see the Visual Studio instructions</summary>
 
-<br/>
+<br/> watch the <a href="https://www.youtube.com/watch?v=9mInBTuC6AE">Github video overview</a>. 
   
 If work on a cloned Github repository from an IDE, please follow the below steps: 
 
@@ -60,7 +60,7 @@ Next, open your pull request in Github as you did the first time and the enginee
 <br/>
  
  
-  <strong>Github Instructions**</strong>: If you prefer to create the pull request directly from Github, please follow the below step by step instructions. For additional guidance, watch <a href="https://www.youtube.com/watch?v=9mInBTuC6AE">Github video overview</a>. 
+  <strong>Github Instructions</strong>: If you prefer to create the pull request directly from Github, please follow the below step by step instructions. For additional guidance, watch the <a href="https://www.youtube.com/watch?v=9mInBTuC6AE">Github video overview</a>. 
 <details>
 <summary>Click here to see the Github instructions</summary>
 
