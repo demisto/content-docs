@@ -26,7 +26,7 @@ The process to Adopt-a-Pack takes under 5 minutes! Follow the step by step instr
 <details>
 <summary>Click here to see the Visual Studio instructions</summary>
 
-<br/> watch the <a href="https://www.youtube.com/watch?v=9mInBTuC6AE">Github video overview</a>. 
+<br/>
   
 If work on a cloned Github repository from an IDE, please follow the below steps: 
 
