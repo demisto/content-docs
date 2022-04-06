@@ -13,8 +13,7 @@ The CI/CD process helps you develop and maintain content for complex content dev
 
 The process is designed for more advanced users who have an understanding of CI/CD concepts and have a number of developers who work on local machines. In particular, it is recommended that you should have the following knowledge:
  - The ability to set up a build system
- - The ability to use demisto-sdk
- - The ability to run Linux (under build system/container/wsl)
+ - The ability to use [demisto-sdk](https://xsoar.pan.dev/docs/concepts/demisto-sdk)
  - A basic knowledge of Git
  - A basic knowledge of containers (docker)
 
