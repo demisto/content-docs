@@ -520,9 +520,10 @@ def get_ip(ip):
     ip_data = http_request('POST', '/v1/api/ip' + ip)
     return ip_data
 ```
+**Note:** These logging methods replace the deprecated ```LOG()``` function.
 
 ## Do No Print Sensitive Data to The Log
-This section is critical.When an integration is ready to be used as part of a public release (meaning you are done debugging it), we **ALWAYS** remove print statements that are not absolutely necessary.
+This section is critical. When an integration is ready to be used as part of a public release (meaning you are done debugging it), we **ALWAYS** remove print statements that are not absolutely necessary.
 
 
 ## Dates
@@ -612,6 +613,30 @@ return_results(fileResult(filename, file_content))
 
 You can specify the file type, but it defaults to "None" when not provided.
 
+### create_indicator_result_with_dbotscore_unknown
+Used for cases where the API response to an indicator is not found and returns a verdict with an unknown score (0). A generic response is returned to the War Room and to the context path, by using the following syntax:
+
+```python
+indicator = "www.google.com",
+indicator_type = DBotScoreType.URL
+reliability = DBotScoreReliability.C
+
+return_results(create_indicator_result_with_dbotscore_unknown(indicator, indicator_type, reliability))
+```
+
+The War Room result will show:
+
+<img width="1105" alt="image" src="https://user-images.githubusercontent.com/72099621/160278670-37d07cd5-fef4-4b86-81b8-742fbf947298.png"></img>
+
+The Context Path will show:
+
+<img width="231" alt="image" src="https://user-images.githubusercontent.com/72099621/160278966-23c79cc3-ed47-498a-8076-1ec3053303d8.png"></img>
+
+If the integration has a reliability it should be noted, but it defaults to "None" when not provided.
+
+**Note:**
+ - When the indicator is of type **CustomIndicator**, you need to provide the *context_prefix* argument.
+ - When the indicator is of type **Cryptocurrency**, you need to provide the *address_type* argument.
 
 ### tableToMarkdown
 This will transform your JSON, dict, or other table into a Markdown table.
@@ -906,7 +931,7 @@ class EntryFormat(object):
 
 
 ### DEPRECATED - return_outputs
-_Note_: Use `return_results` instead
+**Note:** Use `return_results` instead
  
 `return_outputs()` is a convenience function - it is simply a wrapper of `demisto.results()` used to return results to the War Room and which defaults to the most commonly used configuration for entries, only exposing the most functional parameters for the sake of simplicity. For example:
 ```python
@@ -915,7 +940,7 @@ def return_outputs(readable_output, outputs=None, raw_response=None, timeline=No
     This function wraps the demisto.results(), makes the usage of returning results to the user more intuitively.
 
     :type readable_output: ``str``
-    :param readable_output: markdown string that will be presented in the warroom, should be human readable -
+    :param readable_output: markdown string that will be presented in the War Room, should be human readable -
         (HumanReadable)
 
     :type outputs: ``dict``
@@ -943,7 +968,7 @@ return_outputs(
 
 
 ### AutoExtract
-As part of ```CommandResults()``` there is an argument called ```ignore_auto_extract```, which prevents the built-in [auto-extract](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-6/cortex-xsoar-admin/manage-indicators/auto-extract-indicators.html) feature from enriching IPs, URLs, files, and other indicators from the result. For example:
+As part of ```CommandResults()``` there is an argument called ```ignore_auto_extract```, which prevents the built-in [indicator extraction](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-6/cortex-xsoar-admin/manage-indicators/auto-extract-indicators.html) feature from enriching IPs, URLs, files, and other indicators from the result. For example:
 
 ```python
 results = CommandResults(
