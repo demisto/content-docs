@@ -19,11 +19,11 @@ Please use the following guidelines when working on the changes requested by our
 
     ```bash
     COMMITS=122
-    COMMIT_ID=0d1ddfc42
-
+    
     git reset --hard HEAD~$COMMITS
 
     # OR specific commit
+    # COMMIT_ID=0d1ddfc42
     # git reset --hard $COMMIT_ID
 
     git merge --squash HEAD@{1}
