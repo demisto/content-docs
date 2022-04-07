@@ -13,13 +13,31 @@ We value your contributions and want to make sure that your experience is smooth
 
 Please use the following guidelines when working on the changes requested by our reviewers:
 
-- Make sure you always create PRs from your own fork using a dedicated branch (do NOT use the master/main branch).
+- Before opening the PR, make sure to `squash` all commits into a single commit. It makes the `git` history cleaner and easier for us to review it this way. 
+
+    Here's a little snippet to perform a squash merge after consolidating the commits into one:
+
+    ```bash
+    COMMITS=122
+    COMMIT_ID=0d1ddfc42
+
+    git reset --hard HEAD~$COMMITS
+
+    # OR specific commit
+    # git reset --hard $COMMIT_ID
+
+    git merge --squash HEAD@{1}
+
+    git commit -m "squash last $COMMITS"
+    ```
+
+- Make sure you always create PRs from your own fork using a dedicated branch (do NOT use the `master`/`main` branch).
 
 - Use clear and brief messages for your commits ([this article](https://chris.beams.io/posts/git-commit/) has good examples).
 
 - Do **NOT** use force pushes (i.e. `git push --force`): if you end up in a situation where you need to force push, it's probably better to reach to us and ask (in the PR itself or via [Slack](https://dfircommunity.slack.com)).
 
-- During the process our reviewers might ask for several changes: please work through the entire list and commit all the changes.
+- During the process our reviewers might ask for several changes. Please work through the entire list and commit all the changes.
 
 -  When you push changes to your fork's branch that was used to open the PR, the PR is automatically updated, you don't need to open a new PR. Do **NOT** open a new PR unless absolutely necessary (i.e. unless asked by the reviewer), as it will make it hard for the reviewer to track their comments. 
 
