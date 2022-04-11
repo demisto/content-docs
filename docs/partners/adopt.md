@@ -91,9 +91,9 @@ Next, open your pull request in Github as you did the first time and the enginee
       ```
       Make sure you change the `MONTH`, `DAY`, and `YEAR` to the appropriate date that is 90 days from your submittal date.
 
-- Edit the pull request title to “Company Name Pack Adoption” and adjust the description to “Updating README file for adoption”.
-- You will be creating a new branch, make sure you name the branch something easy to remember & save it like “XSOAR-patch-1” because you will be making      other commits to this same branch. 
-- Now, click the green “Commit Changes” button, this will take you to your pull request. Scroll down and click the green “Create pull request” at the        bottom of the screen. 
+    - Edit the pull request title to “Company Name Pack Adoption” and adjust the description to “Updating README file for adoption”.
+    - You will be creating a new branch, make sure you name the branch something easy to remember & save it like “XSOAR-patch-1” because you will be making other commits to this same branch. 
+    - Now, click the green “Commit Changes” button, this will take you to your pull request. Scroll down and click the green “Create pull request” at the        bottom of the screen. 
 **NOTE:** If you are not ready to officially submit the pull request for review, you can create a draft pull request instead. To the right of the              “Create pull request” button there is a small button with an arrow, click that and choose the Draft option. This will still create the pull request        but the XSOAR eng team will not review it until it is taken out of draft.
     
 Your pull request is not ready yet, continue following the instructions below. 
@@ -122,12 +122,12 @@ Your pull request is not ready yet, continue following the instructions below.
 **After 90 days, you will follow the below steps to complete the adoption process:**
 1. In order to complete the second adoption step, first you will need to update your README file & open a pull request with this text: Note: Support for this pack moved to the partner on Month, Day, Year. Please contact the partner directly via the support link on the right.
 2. Next, go to the pack_metadata.json file and update the following sections:
-- “currentVersion” - update the version. For this example, we would be updating it to “1.2.12” 
-- “Support” - must say “partner” 
-- “Author” - must say your company name
-- “url” - must be changed to your company’s support site
-- “Email” - must be your company's support email 
-3. Also, update your Author image using the <a href="https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng">instructions on our site</a>.
+    - “currentVersion” - update the version. For this example, we would be updating it to “1.2.12” 
+    - “Support” - must say “partner” 
+    - “Author” - must say your company name
+    - “url” - must be changed to your company’s support site
+    - “Email” - must be your company's support email 
+    - Also, update your Author image using the <a href="https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng">instructions on our site</a>.
 4. Lastly, update the Release Notes as you did in step 1. 
 
 Once the Cortex XSOAR engineering team merges your pull request, you will have successfully adopted your pack!
