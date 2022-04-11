@@ -39,7 +39,7 @@ If work on a cloned Github repository from an IDE, please follow the below steps
     ```
     Make sure you change the `MONTH`, `DAY`, and `YEAR` to the appropriate date that is 90 days from your submittal date.
 
-    - Once complete, save these changes and run `demisto-sdk update-release-notes -i <path to pack> -f` to update the release notes. See [documentation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/update_release_notes/README.md). After the command has been completed, it will create the new release note Markdown file in the `ReleaseNotes` folder and update the version number in `pack_metadata.json`. Before continuing, you need to add the following text to the release note: `_Start of adoption process, update to readme file_`
+    - Once complete, save these changes and run `demisto-sdk update-release-notes -i <path to pack> -f` to update the release notes. See [documentation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/update_release_notes/README.md). After the command has been completed, it will create the new release note Markdown file in the `ReleaseNotes` folder and update the version number in `pack_metadata.json`. Before continuing, you need to add the following text to the release note: `Start of adoption process, update to readme file`
 2. Now, it’s time to save and commit the changes as a Github pull request. Once you publish the changes via Visual Studio, Github will prompt you to open a pull request. When prompted, click the green button “Compare & pull request” 
     - Double check the pull request to ensure all changes are correct 
     - Change the pull request title to _Company Name Pack Adoption_ and adjust the description to _Updating README file for adoption_.
@@ -56,13 +56,13 @@ If work on a cloned Github repository from an IDE, please follow the below steps
     ```
 
 
-    Next, go to the `pack_metadata.json` file and update the following sections:
-
-    - `currentVersion` - update the version. For this example, we would be updating it to `1.2.12` 
-    - `support` - must say `partner`
-    - `author` - must say your company name
-    - `url` - must be changed to your company’s support site
-    - `email` - must be your company's support email 
+2. Next, go to the pack_metadata.json file and update the following sections:
+    - currentVersion - update the version. For this example, we would be updating it to 1.2.12
+    - support - must say `partner`
+    - author - must say your company name
+    - url - must be changed to your company’s support site
+    - email - must be your company's support email 
+    
 3. Once everything is updated, save your changes and run the `demisto-sdk update-release-notes -i <path to pack> -f` as you did in the first pull request.
 
 Next, open your pull request in Github as you did the first time and the engineers for Cortex XSOAR will review, approve and merge your newly adopted pack! 
@@ -91,21 +91,20 @@ Next, open your pull request in Github as you did the first time and the enginee
       ```
       Make sure you change the `MONTH`, `DAY`, and `YEAR` to the appropriate date that is 90 days from your submittal date.
 
-
-    - Edit the pull request title to “Company Name Pack Adoption” and adjust the description to “Updating README file for adoption”.
-    - You will be creating a new branch, make sure you name the branch something easy to remember & save it like “XSOAR-patch-1” because you will be making      other commits to this same branch. 
-    - Now, click the green “Commit Changes” button, this will take you to your pull request. Scroll down and click the green “Create pull request” at the        bottom of the screen. 
-   
-      **NOTE:** If you are not ready to officially submit the pull request for review, you can create a draft pull request instead. To the right of the              “Create pull request” button there is a small button with an arrow, click that and choose the Draft option. This will still create the pull request        but the XSOAR eng team will not review it until it is taken out of draft.
+- Edit the pull request title to “Company Name Pack Adoption” and adjust the description to “Updating README file for adoption”.
+- You will be creating a new branch, make sure you name the branch something easy to remember & save it like “XSOAR-patch-1” because you will be making      other commits to this same branch. 
+- Now, click the green “Commit Changes” button, this will take you to your pull request. Scroll down and click the green “Create pull request” at the        bottom of the screen. 
+**NOTE:** If you are not ready to officially submit the pull request for review, you can create a draft pull request instead. To the right of the              “Create pull request” button there is a small button with an arrow, click that and choose the Draft option. This will still create the pull request        but the XSOAR eng team will not review it until it is taken out of draft.
     
-    Your pull request is not ready yet, continue following the instructions below. 
+Your pull request is not ready yet, continue following the instructions below. 
+    
 4. At the top of your pull request, you will see your branch name that you created. Click your branch and it will redirect you back into the main content repository. Ensure that the top left corner of the repository has your branch name before continuing. 
 ![Branch_name](/doc_imgs/partners/Branch_name.png)
 5. Now, click into the “Packs” folder and find your company’s folder. Once you are in your company’s folder, click the “pack_metadata.json” file. 
 
     - Click the pencil to edit this file just as you did previously. 
     - Next, update the version number in the line titled `currentVersion` - increase the version up one number. For example, if it is “1.2.10” change it to “1.2.11” . 
-    - Once the number is updated, go to the bottom of the page, make sure you have selected “Commit directly to the “__the branch you’ve created___ “ and        then click the green “Commit changes” button. 
+    - Once the number is updated, go to the bottom of the page, make sure you have selected “Commit directly to the branch you’ve already created“ and        then click the green “Commit changes” button. 
     - Now this step is completed, onto the next one! 
 
 6. Go back to your `Packs` folder and click into `ReleaseNotes`. 
@@ -123,15 +122,15 @@ Next, open your pull request in Github as you did the first time and the enginee
 **After 90 days, you will follow the below steps to complete the adoption process:**
 1. In order to complete the second adoption step, first you will need to update your README file & open a pull request with this text: Note: Support for this pack moved to the partner on Month, Day, Year. Please contact the partner directly via the support link on the right.
 2. Next, go to the pack_metadata.json file and update the following sections:
-  a. “currentVersion” - update the version. For this example, we would be updating it to “1.2.12” 
-  b. “Support” - must say “partner” 
-  c. “Author” - must say your company name
-  d. “url” - must be changed to your company’s support site
-  e. “Email” - must be your company's support email 
-3. Also, update your Author image using instructions on our site 
+- “currentVersion” - update the version. For this example, we would be updating it to “1.2.12” 
+- “Support” - must say “partner” 
+- “Author” - must say your company name
+- “url” - must be changed to your company’s support site
+- “Email” - must be your company's support email 
+3. Also, update your Author image using the <a href="https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng">instructions on our site</a>.
 4. Lastly, update the Release Notes as you did in step 1. 
 
-Once the Cortex XSOAR engineering team merged your pull request, you have successfully adopted your pack!
+Once the Cortex XSOAR engineering team merges your pull request, you will have successfully adopted your pack!
 
 
 </details>
