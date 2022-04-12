@@ -28,7 +28,7 @@ The process to Adopt-a-Pack takes under 5 minutes! Follow the step by step instr
 
 <br/>
 
-If work on a cloned Github repository from an IDE, please follow the below steps: 
+Please follow the below steps if you are working on a cloned Github repository from an IDE: 
 
 1. Locate your company's pack folder and open the `README.md` file. Paste the below text into the file: 
 
@@ -82,20 +82,23 @@ Next, open your pull request in Github as you did the first time and the enginee
 2. Go to the Packs folder and find your company’s pack 
 3. Click the “README.md” file and then click the ![Pencil_Icon](/doc_imgs/partners/Pencil_Icon.png) on the right side of the screen to edit the file. 
 
-   - In line #1 of the file, copy and paste the below text to show that the support is moving over to the partner: 
-<br/>    
+   i. In line #1 of the file, copy and paste the below text to show that the support is moving over to the partner: 
+    
+    
       ```
       Note: Support for this pack moved to the partner on MONTH, DAY, YEAR.
       
       Please contact the partner directly via the support link on the right.
       ```
-Make sure you change the `MONTH`, `DAY`, and `YEAR` to the appropriate date that is 90 days from your submittal date.
+    
+    
+ ii. Make sure you change the `MONTH`, `DAY`, and `YEAR` to the appropriate date that is 90 days from your submittal date.
 <br/>
     
   - Edit the pull request title to “Company Name Pack Adoption” and adjust the description to “Updating README file for adoption”.
   - You will be creating a new branch, make sure you name the branch something easy to remember & save it like “XSOAR-patch-1” because you will be making other commits to this same branch. 
   - Now, click the green “Commit Changes” button, this will take you to your pull request. Scroll down and click the green “Create pull request” at the        bottom of the screen. 
-**NOTE:** If you are not ready to officially submit the pull request for review, you can create a draft pull request instead. To the right of the              “Create pull request” button there is a small button with an arrow, click that and choose the Draft option. This will still create the pull request        but the XSOAR eng team will not review it until it is taken out of draft.
+  - **NOTE:** If you are not ready to officially submit the pull request for review, you can create a draft pull request instead. To the right of the              “Create pull request” button there is a small button with an arrow, click that and choose the Draft option. This will still create the pull request        but the XSOAR eng team will not review it until it is taken out of draft.
     
 Your pull request is not ready yet, continue following the instructions below. 
     
@@ -121,7 +124,17 @@ Your pull request is not ready yet, continue following the instructions below.
 7. Done! You have completed step 1 of the adoption process. 
 
 **After 90 days, you will follow the below steps to complete the adoption process:**
-1. In order to complete the second adoption step, first you will need to update your README file & open a pull request with this text: Note: Support for this pack moved to the partner on Month, Day, Year. Please contact the partner directly via the support link on the right.
+1. In order to complete the second adoption step, first you will need to update your README file & open a pull request with this text: 
+    
+    
+    '''
+    Note: Support for this pack moved to the partner on Month, Day, Year. 
+    
+    Please contact the partner directly via the support link on the right.
+    '''
+    
+    
+    
 2. Next, go to the pack_metadata.json file and update the following sections:
     - “currentVersion” - update the version. For this example, we would be updating it to “1.2.12” 
     - “Support” - must say “partner” 
