@@ -238,3 +238,7 @@ The **Integration-Instance.log** is located in  `/var/log/demisto/`.
 These log level modes are only for the configured instance and do not affect the log for the entire server.
 
 Note that the log level configuration for an integration instance may affect performance of the integration instance, therefore use this feature only for troubleshooting, and set it to Off when you have the required information in the log.
+
+:::caution Important Note
+Debug mode feature prints extended data from integrations configuration and settings which might include sensitive information. Before sharing these files make sure your secretes are removed.
+:::
