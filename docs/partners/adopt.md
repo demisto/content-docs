@@ -81,8 +81,7 @@ Next, open your pull request in Github as you did the first time and the enginee
 1. Make sure you have a GitHub account and you are logged in
 2. Go to the Packs folder and find your company’s pack 
 3. Click the “README.md” file and then click the ![Pencil_Icon](/doc_imgs/partners/Pencil_Icon.png) on the right side of the screen to edit the file. 
-
-   i. In line #1 of the file, copy and paste the below text to show that the support is moving over to the partner: 
+  - In line #1 of the file, copy and paste the below text to show that the support is moving over to the partner: 
     
     ```
     Note: Support for this pack moved to the partner on MONTH, DAY, YEAR.
@@ -91,8 +90,7 @@ Next, open your pull request in Github as you did the first time and the enginee
     ```
     
     
- ii. Make sure you change the `MONTH`, `DAY`, and `YEAR` to the appropriate date that is 90 days from your submittal date.
-<br/>
+  - Make sure you change the `MONTH`, `DAY`, and `YEAR` to the appropriate date that is 90 days from your submittal date.
     
   - Edit the pull request title to “Company Name Pack Adoption” and adjust the description to “Updating README file for adoption”.
   - You will be creating a new branch, make sure you name the branch something easy to remember & save it like “XSOAR-patch-1” because you will be making other commits to this same branch. 
