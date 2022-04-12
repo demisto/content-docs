@@ -82,14 +82,14 @@ Next, open your pull request in Github as you did the first time and the enginee
 2. Go to the Packs folder and find your company’s pack 
 3. Click the “README.md” file and then click the ![Pencil_Icon](/doc_imgs/partners/Pencil_Icon.png) on the right side of the screen to edit the file. 
 
-    - In line #1 of the file, copy and paste the below text to show that the support is moving over to the partner: 
-    
+   - In line #1 of the file, copy and paste the below text to show that the support is moving over to the partner: 
+<br/>    
       ```
       Note: Support for this pack moved to the partner on MONTH, DAY, YEAR.
       
       Please contact the partner directly via the support link on the right.
       ```
-      Make sure you change the `MONTH`, `DAY`, and `YEAR` to the appropriate date that is 90 days from your submittal date.
+Make sure you change the `MONTH`, `DAY`, and `YEAR` to the appropriate date that is 90 days from your submittal date.
 <br/>
     
   - Edit the pull request title to “Company Name Pack Adoption” and adjust the description to “Updating README file for adoption”.
