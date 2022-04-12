@@ -90,10 +90,11 @@ Next, open your pull request in Github as you did the first time and the enginee
       Please contact the partner directly via the support link on the right.
       ```
       Make sure you change the `MONTH`, `DAY`, and `YEAR` to the appropriate date that is 90 days from your submittal date.
-
-    - Edit the pull request title to “Company Name Pack Adoption” and adjust the description to “Updating README file for adoption”.
-    - You will be creating a new branch, make sure you name the branch something easy to remember & save it like “XSOAR-patch-1” because you will be making other commits to this same branch. 
-    - Now, click the green “Commit Changes” button, this will take you to your pull request. Scroll down and click the green “Create pull request” at the        bottom of the screen. 
+<br/>
+    
+  - Edit the pull request title to “Company Name Pack Adoption” and adjust the description to “Updating README file for adoption”.
+  - You will be creating a new branch, make sure you name the branch something easy to remember & save it like “XSOAR-patch-1” because you will be making other commits to this same branch. 
+  - Now, click the green “Commit Changes” button, this will take you to your pull request. Scroll down and click the green “Create pull request” at the        bottom of the screen. 
 **NOTE:** If you are not ready to officially submit the pull request for review, you can create a draft pull request instead. To the right of the              “Create pull request” button there is a small button with an arrow, click that and choose the Draft option. This will still create the pull request        but the XSOAR eng team will not review it until it is taken out of draft.
     
 Your pull request is not ready yet, continue following the instructions below. 
