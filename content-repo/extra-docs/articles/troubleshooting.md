@@ -161,7 +161,7 @@ Use the [CertificatesTroubleshoot Automation](https://xsoar.pan.dev/docs/referen
 Cortex XSOAR (Server 5.0+) supports running Python integration commands and automation scripts in `debug-mode` from the Cortex XSOAR CLI. When a command is run in `debug-mode` a log file of the command execution will be created and attached to the war room. When encountering an issue which is related to an integration or an automation, make sure to reproduce the command with `debug-mode` and inspect the generated log file. The `debug-mode` log file will contain information not available in the Server logs and can provide additional insights regarding the root cause of the issue. Additionally, some integrations have specific code to include extra debug info when run in `debug-mode`.
 
 :::caution Important Note
-Debug mode feature prints extended data from integrations configuration and settings which might include sensitive information. Before sharing these files make sure your secretes are removed.
+The debug mode feature prints extended data from an integrations configuration and settings which may include sensitive information. Before sharing the generated log files, make sure sensitive information has been removed.
 :::
 
 ### Run a command in `debug-mode`
@@ -214,6 +214,9 @@ Screenshot of running a `test-module` command with `debug-mode=true` and the res
 ![test-module-debug](../../../docs/doc_imgs/reference/test-module-debug.png)
 
 ## Integration Debug Logs
+:::caution Important Note
+The Integration Debug feature prints extended data from an integrations configuration and settings which may include sensitive information. Before sharing the generated **Integration-Instance** log files, make sure sensitive information has been removed.
+:::
 Starting with version 6.2, it is possible to create logs for an instance of an integration in order to get debug information for a specific instance over a period of time. 
 
 This mode is especially useful for long running integrations such as EDL or TAXII-Server. It helps troubleshooting when it is not possible to run the desired command in `debug-mode` from the playground. Whether it is a long running integration, or the issue occurs from time to time such as with the ***fetch-incidents*** command.
