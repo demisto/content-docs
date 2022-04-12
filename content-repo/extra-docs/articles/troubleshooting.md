@@ -160,6 +160,10 @@ Use the [CertificatesTroubleshoot Automation](https://xsoar.pan.dev/docs/referen
 ## Debug Mode
 Cortex XSOAR (Server 5.0+) supports running Python integration commands and automation scripts in `debug-mode` from the Cortex XSOAR CLI. When a command is run in `debug-mode` a log file of the command execution will be created and attached to the war room. When encountering an issue which is related to an integration or an automation, make sure to reproduce the command with `debug-mode` and inspect the generated log file. The `debug-mode` log file will contain information not available in the Server logs and can provide additional insights regarding the root cause of the issue. Additionally, some integrations have specific code to include extra debug info when run in `debug-mode`.
 
+:::caution Important Note
+Debug mode feature prints extended data from integrations configuration and settings which might include sensitive information. Before sharing these files make sure your secretes are removed.
+:::
+
 ### Run a command in `debug-mode`
 In the Cortex XSOAR CLI run the command with all arguments that cause the issue and append the  following argument: `debug-mode=true`. For example: 
 
@@ -238,7 +242,3 @@ The **Integration-Instance.log** is located in  `/var/log/demisto/`.
 These log level modes are only for the configured instance and do not affect the log for the entire server.
 
 Note that the log level configuration for an integration instance may affect performance of the integration instance, therefore use this feature only for troubleshooting, and set it to Off when you have the required information in the log.
-
-:::caution Important Note
-Debug mode feature prints extended data from integrations configuration and settings which might include sensitive information. Before sharing these files make sure your secretes are removed.
-:::
