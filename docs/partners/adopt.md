@@ -84,12 +84,11 @@ Next, open your pull request in Github as you did the first time and the enginee
 
    i. In line #1 of the file, copy and paste the below text to show that the support is moving over to the partner: 
     
+    ```
+    Note: Support for this pack moved to the partner on MONTH, DAY, YEAR.
     
-      ```
-      Note: Support for this pack moved to the partner on MONTH, DAY, YEAR.
-      
-      Please contact the partner directly via the support link on the right.
-      ```
+    Please contact the partner directly via the support link on the right.
+    ```
     
     
  ii. Make sure you change the `MONTH`, `DAY`, and `YEAR` to the appropriate date that is 90 days from your submittal date.
@@ -126,13 +125,11 @@ Your pull request is not ready yet, continue following the instructions below.
 **After 90 days, you will follow the below steps to complete the adoption process:**
 1. In order to complete the second adoption step, first you will need to update your README file & open a pull request with this text: 
     
-    
-    '''
-    Note: Support for this pack moved to the partner on Month, Day, Year. 
+    ```
+    Note: Support for this pack moved to the partner on MONTH, DAY, YEAR.
     
     Please contact the partner directly via the support link on the right.
-    '''
-    
+    ```
     
     
 2. Next, go to the pack_metadata.json file and update the following sections:
