@@ -720,3 +720,6 @@ html[data-theme="dark"] .header-github-link:before {
   background-color: var(--ifm-color-primary);
   border: var(--ifm-color-primary);
 }
+
+/* unordered listing consistency */ 
+ul { list-style-type: lower-roman; }

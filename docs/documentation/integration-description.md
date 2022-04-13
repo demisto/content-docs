@@ -45,14 +45,14 @@ This is the contents of the `HelloWorld_description.md` file:
 ### Cortex XSOAR versions up to 6.0
 
 
-![](../doc_imgs/integrations/description_question_mark.png)
+![](/doc_imgs/integrations/description_question_mark.png)
 
 The content of the description file will be displayed:
 
-![](../doc_imgs/integrations/description.md_example.png)
+![](/doc_imgs/integrations/description.md_example.png)
 
 ### Cortex XSOAR versions 6.1 and above
 
 Starting from version 6.1, the content of the description file is shown on the side of the configuration data:
 
-![](../doc_imgs/integrations/integration-config-panel-61.png)
+![](/doc_imgs/integrations/integration-config-panel-61.png)

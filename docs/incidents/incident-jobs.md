@@ -20,7 +20,7 @@ For a better understanding of how jobs are implemented to trigger playbooks, rea
 1. To configure the job to recur, select **Recurring**. <br/> Determine at which intervals the job recurs, when it starts, and when the job expires. 
 You can also configure the recurring job using a cron expresion. To do so, click **Switch to Cron view** and enter the expression. For assistance in defining the cron expression, click **Show cron examples**. <br/> To configure the job to run once, enter a date and time in the **Start at** field.
 
-![Time-triggered Job](../doc_imgs/incidents/Jobs_Time-Triggered_Basic.png)
+![Time-triggered Job](/doc_imgs/incidents/Jobs_Time-Triggered_Basic.png)
 
 1. Enter the information in the job configuration fields. Explanations of the job configuration fields are available below under Job Fields Reference.
 
@@ -34,7 +34,7 @@ You can also configure the recurring job using a cron expresion. To do so, click
 
 		* **Trigger a new job instance and run concurrently with the previous instance** - the current job continues to run and a new job is triggred in parallel. 
 
-	![Time-triggered Queue Handling](../doc_imgs/incidents/Jobs_Time-Triggered_Queue-handling.png)	
+	![Time-triggered Queue Handling](/doc_imgs/incidents/Jobs_Time-Triggered_Queue-handling.png)	
 
 1. Click **Create new job**. 
 
@@ -51,7 +51,7 @@ You can also configure the recurring job using a cron expresion. To do so, click
 
 1. Click **Create new job**. 
 
-![Feed-triggered Job](../doc_imgs/incidents/Jobs_Feed-Triggered.png)
+![Feed-triggered Job](/doc_imgs/incidents/Jobs_Feed-Triggered.png)
 
 ## Job Fields Reference
 
