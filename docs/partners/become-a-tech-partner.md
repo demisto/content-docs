@@ -118,3 +118,10 @@ Now that the integration is complete, you'll get the visibility you deserve! The
 
 Partners who wish to contribute paid packs must follow a few [additional onboarding steps](/docs/partners/premium-packs-process). 
 
+## 8. Suggested Timeline
+
+Here is an example of a timeline that shows a full development cycle for a pack
+
+![Edi - Frame 1 (2)](https://user-images.githubusercontent.com/85438368/163173540-bb88adbd-734c-439f-8722-a788106349b6.jpg)
+
+
