@@ -104,6 +104,12 @@ At a minimum, an integration consists in:
 - Ability to test the integration, build test playbooks, and use the integration from the CLI
 - A couple of example playbooks to showcase how your your integration could be used
 
+Here is an example of a timeline that shows a full development cycle for a pack
+
+![Edi - Frame 1 (5)](https://user-images.githubusercontent.com/85438368/163222681-55acdbc8-fe1f-4a89-9cd8-cec8a3af2246.jpg)
+![Edi - Frame 2 (1)](https://user-images.githubusercontent.com/85438368/163222707-d96ff23d-48ae-4d60-997a-02d12c4aa60c.jpg)
+
+
 ## 6. Submit a GitHub Pull Request
 
 Once you have completed development of your content or integration, please [submit a Pull Request](/docs/contributing/contributing) on our GitHub Content Repo. You will be required to fill in a contribution form that includes details like your *Partner ID* and some other details.
@@ -117,11 +123,3 @@ Now that the integration is complete, you'll get the visibility you deserve! The
 ---
 
 Partners who wish to contribute paid packs must follow a few [additional onboarding steps](/docs/partners/premium-packs-process). 
-
-## 8. Suggested Timeline
-
-Here is an example of a timeline that shows a full development cycle for a pack
-
-![Edi - Frame 1 (2)](https://user-images.githubusercontent.com/85438368/163173540-bb88adbd-734c-439f-8722-a788106349b6.jpg)
-
-
