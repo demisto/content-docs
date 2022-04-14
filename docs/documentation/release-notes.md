@@ -194,7 +194,7 @@ In some cases, a new version is introduced which breaks backward compatibility (
 From XSOAR version 6.5 and above, there is a support to mark a new version as a **breaking changes version** mechanism.
 
 Marking a version as a **breaking changes version** will pop up a screen to the customer upon installation:
-![image](../doc_imgs/integrations/bc_alert_example.png)
+![image](/doc_imgs/integrations/bc_alert_example.png)
 
 
 #### How to indicate a new version as a breaking changes version?

@@ -16,7 +16,7 @@ The survey question and the first response is recorded in the incident's context
 
 Since this is a conditional task, it's important to remember to create a condition for each of the answers. For example, if the survey answers include, Yes, No, and Maybe, there should be a corresponding condition (path) in the playbook for each of these answers.
 
-![Ask Task Message Preview](../doc_imgs/playbooks/Communication-Ask-Task-Message-Preview.png)
+![Ask Task Message Preview](/doc_imgs/playbooks/Communication-Ask-Task-Message-Preview.png)
 
 ## Data Collection Task
 
