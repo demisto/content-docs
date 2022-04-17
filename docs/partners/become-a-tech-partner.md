@@ -106,8 +106,8 @@ At a minimum, an integration consists in:
 
 Here is an example of a timeline that shows a full development cycle for a pack
 
-![Edi - Frame 1 (5)](https://user-images.githubusercontent.com/85438368/163222681-55acdbc8-fe1f-4a89-9cd8-cec8a3af2246.jpg)
-![Edi - Frame 2 (1)](https://user-images.githubusercontent.com/85438368/163222707-d96ff23d-48ae-4d60-997a-02d12c4aa60c.jpg)
+![Edi - Frame 1 (6)](https://user-images.githubusercontent.com/85438368/163706901-0de0171f-df61-4b4f-851b-dca35f8b827e.jpg)
+![Edi - Frame 2 (2)](https://user-images.githubusercontent.com/85438368/163706921-f6edc411-8370-45d1-ac30-e9d41b65c6ac.jpg)
 
 
 ## 6. Submit a GitHub Pull Request
