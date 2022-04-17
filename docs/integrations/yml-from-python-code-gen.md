@@ -1,3 +1,11 @@
+---
+id: yml-from-python-code-gen 
+title: Generate YML from Python
+description: Generate an integration yml file from the integration Python code, using unique syntax.
+---
+
+Use the `demisto-sdk generate-yml-from-python` command to generate an integration yml from an integration python file.
+
 # Generate YML from Python
 Generate YML file from Python code that includes special syntax.
 The output file name will be the same as the Python code with the `.yml` extension instead of `.py`.
