@@ -14,7 +14,7 @@ A Test Playbook consists of several steps, including testing commands, verifying
 
 We use a standard naming convention for our playbook tests which follows the format below:
 
-```Integration_Name-Test```
+```Integration_Name_Test```
 
 ## Auto-Generate a Test Playbook
 To auto generate a Test playbook based upon an integration or script use the following `demisto-sdk generate-test-playbook` command which can be found [here](https://github.com/demisto/demisto-sdk#generate-test-playbook). You can then import the playbook and modify it to your needs.
@@ -82,7 +82,7 @@ After you build the command, verify that you have received the results that you 
 8. Choose the **yes** label name for the condition and click **Save**.
 
 ### Naming and Exporting the Playbook
-Cortex XSOAR uses a standard naming convention for playbook tests that follows this format: `Integration_Name-Test`.
+Cortex XSOAR uses a standard naming convention for playbook tests that follows this format: `Integration_Name_Test`.
 
 1. Click **Save Version**.
 2. Exit the playbook editor.
@@ -95,9 +95,9 @@ Cortex XSOAR uses a standard naming convention for playbook tests that follows t
 4. Using the example above, the top of your YAML should look like this:
 
 ```yml
-id: IPInfo-Test
+id: IPInfo_Test
 version: -1
-name: IPInfo-Test
+name: IPInfo_Test
 ```
 
 ## Adding Tests to conf.json
@@ -107,7 +107,7 @@ The following is an example of a correct conf.json entry for an integration:
 ```yml
         {
             "integrations": "Forcepoint",
-            "playbookID": "forcepoint test",
+            "playbookID": "Forcepoint_Test",
             "timeout": 500,
             "nightly": true
         },
