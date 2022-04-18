@@ -20,8 +20,7 @@ The generation currently supports integrations only.
    Override existing yml file. If not used and yml file already exists, the script will not generate a new yml file.
 
 
-## Features and Usage
-### Usage
+## Usage
 The feature is supported from content Base pack version 1.20.0 and on.
 
 Make sure you have the following line your Python code:
@@ -29,7 +28,7 @@ Make sure you have the following line your Python code:
 from CommonServerPython import *
 ```
 
-### Initialization and Integration Configuration
+## Initialization and Integration Configuration
 The initialization begins with the YMLMetadataCollector object in the following way:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
@@ -63,7 +62,7 @@ Other arguments include:
     * type
     * subtype
 
-#### ConfKey
+### ConfKey
 To specify integration configuration keys use the keyword `conf=[ConfKey(), ConfKey()]` like so:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name",
@@ -110,8 +109,8 @@ will result in the following metadata for the configuration key:
 }
 ```
 
-### Adding Commands
-#### General
+## Adding Commands
+### General
 To add command metadata, you have to wrap the command function using `@metadata_collector.command()`
 like so:
 ```python
@@ -131,7 +130,7 @@ The only mandatory argument is `command_name`. Other `metadata_collector.command
 * file_output
 * multiple_output_prefixes
 
-##### Restored Args
+#### Restored Args
 In order to reduce code duplication, you can reuse the following arguments:
 * command_name
 * outputs_prefix
@@ -155,7 +154,7 @@ Warnings:
 * The restored arguments will not show up in the command arguments in the yml.
 * Other arguments like `client`, `args` and so on can be added to the function declaration without problems.
 
-##### Command with file output
+#### Command with file output
 If the command has a file output please specify `file_output=True` in the `@metadata_collector.command` args like so
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
@@ -192,7 +191,7 @@ This will result in the following metadata for the command outputs:
       type: String
 ```
 
-#### Metadata from `metadata_collector.command` inputs
+### Metadata from `metadata_collector.command` inputs
 In order to add command description, one can specify it in `@metadata_collector.command` under the description key like so:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
@@ -201,7 +200,7 @@ metadata_collector = YMLMetadataCollector(integration_name="some_name")
 def funky_command():
     print("funk")
 ```
-##### InputArgument
+#### InputArgument
 To explicitly add input arguments use the `InputArgument` object like so:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
@@ -232,7 +231,7 @@ predefined options.
 
 If `is_array` is not specified it is inferred from the `input_type` or defaults to `False`
 
-##### OutputArgument
+#### OutputArgument
 To explicitly add output arguments use the `OutputArgument` object like so:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
@@ -259,7 +258,7 @@ Where `output_type` will be converted from a Python type to available context ou
 
 The output prefix in the context data will be the one specified in the `@metadata_collector.command`, for our example it will be `funk`.
 
-###### Multiple prefixes
+##### Multiple prefixes
 In order to have multiple prefixes specify the `multiple_output_prefixes=True` argument in the
 `@metadata_collector.command` and add a `prefix` argument to every OutputArgument like so:
 ```python
@@ -282,10 +281,10 @@ def funky_command():
 If the `prefix` was not specified in the `OutputArgument` the general `outputs_prefix` provided in `@metadata_collector.command` is used.
 If `outputs_prefix` is not defined, the `integration_name` provided in `YMLMetadataCollector` initialization is used.
 
-#### Metadata from docstring and declaration
+### Metadata from docstring and declaration
 An alternative to specifing the command metadata in the `@metadata_collector.command` usage,
 one can specify the description, the output arguments and the input arguments in the docstring of the function.
-##### Description
+#### Description
 To specify a description of the command in the docstring, use the first line (or lines) like so:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
@@ -310,7 +309,7 @@ def funky_command():
     print("funk")
 ```
 will be `The command is used to give up the funk.\n     It is a very funky command.`.
-##### Args
+#### Args
 To specify input arguments use the `Args` section like so:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
@@ -456,7 +455,7 @@ Will result in the following input argument metadata:
       execution: true
 ```
 
-##### Context Outputs
+#### Context Outputs
 To specify command outputs use the `Context Outputs` section like so:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
@@ -483,7 +482,7 @@ This will result in the following metadata:
 ```
 
 To add an output prefix for all context outputs of the command, use the `outputs_prefix` in the `@metadata_collector.command`.
-###### Multiple prefixes
+##### Multiple prefixes
 To specify multiple output prefixes in the docstring you can specify the `multiple_output_prefixes=True` in the `@metadata_collector.command`
 and add the prefixes to the command names like so
 ```python
@@ -499,7 +498,7 @@ def funky_command():
     """
     print("funk")
 ```
-#### Notes
+### Notes
 * Metadata from explicit `@metadata_collector.command` arguments can be used along with metadata providing in docstring, as long as it is not the same field.
 For example, one can provide inputs_list via `@metadata_collector.command` and `Context Outputs` in the docstring, specifing both inputs and outputs.
 * If a field is specified in both ways: explicitly in `@metadata_collector.command` and in the docstring, the explicit one will be used.
