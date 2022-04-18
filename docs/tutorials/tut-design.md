@@ -377,3 +377,9 @@ If you are building asynchronous tasks (i.e. starting a job and waiting for it t
 To make your content easy find in the Cortex XSOAR Marketplace and properly used by customers, it's really important to document it properly. Make sure to check the [Content Pack Documentation](../documentation/pack-docs) page to understand how.
 
 Integrations, Scripts and Playbooks and their components (i.e. integration commands arguments and outputs) also have descriptions that show up within the product and in this site on the Reference section. We recommend to learn our [Documentation Best Practices](../documentation/documentation_tips) early on so you get familiar with them as you write your design document. 
+
+```LearningEditor
+original='./tut-integration-editor-files/main_solution.py'
+solution='great solution'
+language='python'
+```
