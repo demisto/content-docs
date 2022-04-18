@@ -334,9 +334,10 @@ function genPackDetails() {
     } catch (err) {
       console.log(err);
     }
-    
+
     generatePackDetails.runActions({
       id: pack.id ? pack.id.replace(/-|\s/g, "").replace(".", "") : pack.id,
+      packId: pack.id,
       name: pack.name,
       description: pack.description.replace(/\\/g, "\\\\"),
       author: pack.author,
