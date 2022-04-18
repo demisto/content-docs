@@ -211,11 +211,7 @@ module.exports = {
           docLayoutComponent: "@theme/DocPage",
           docItemComponent: "@theme/DocItem",
           beforeDefaultRemarkPlugins: [remarkPlugin],
-<<<<<<< HEAD
           remarkPlugins: [require('./editor-plugin/index.js')],
-=======
-          remarkPlugins: [require('docusaurus-plugin-learn-with-code')],
->>>>>>> 02ae517739dcf8cef3c26bcaaa691f587f2f3b42
           rehypePlugins: [],
           showLastUpdateAuthor: false,
           showLastUpdateTime: true
