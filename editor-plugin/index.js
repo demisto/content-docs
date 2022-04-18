@@ -51,7 +51,7 @@ const mdxEditor = (options) => {
     )
     if (mdSyntexFound) {
       importsArr.push(
-        "import { LearningEditor } from '/Users/ostolero/dev/demisto/content-docs/editor-plugin/LearningEditor.js';"
+        "import { LearningEditor } from './../../editor-plugin/LearningEditor.js';"
       )
     }
     for (let i = 0; i < importsArr.length; i++) {
