@@ -479,7 +479,7 @@ in order to establish a connection between `demisto-sdk` and the XSOAR server, a
 Further information about how to run this command can be found [here](../documentation/readme_file.md#creating-documentation).
 
 ### generate-yml-from-python
-Use this command to generate YML file from Python code that includes its' special syntax.
+Use this command to generate a YML file from Python code that includes its special syntax.
 
 The output file name will be the same as the Python code with the `.yml` extension instead of `.py`.
 
