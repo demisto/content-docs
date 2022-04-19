@@ -7,35 +7,34 @@ description: Generate an integration yml file from the integration Python code, 
 Use the `demisto-sdk generate-yml-from-python` command to generate an integration yml from an integration python file.
 
 # Generate YML from Python
-Generate YML file from Python code that includes special syntax.
+Generate a YML file from Python code that includes special syntax.
 The output file name will be the same as the Python code with the `.yml` extension instead of `.py`.
 The generation currently supports integrations only.
 
-**Arguments**
-* **-i, --input**
-   (Required) The path to the python code to generate from.
-* **-v, --verbose**
-   Flag for extended prints.
-* **-f, --force**
-   Override existing yml file. If not used and yml file already exists, the script will not generate a new yml file.
+## Flags
+| Flags | Description |
+| --- | --- |
+| *-i, --input* | (Required) The path to the python code to generate from. |
+| *-v, --verbose* |Flag for extended prints. |
+| *-f, --force* | Override the existing yml file. If not used and the yml file already exists, the script will not generate a new yml file.
 
 
 ## Usage
-The feature is supported from content Base pack version 1.20.0 and on.
+This feature is supported from content Base pack version 1.20.0 and on.
 
-Make sure you have the following line your Python code:
+Make sure you have the following line in your Python code:
 ```python
 from CommonServerPython import *
 ```
 
 ## Initialization and Integration Configuration
-The initialization begins with the YMLMetadataCollector object in the following way:
+The initialization begins with the *YMLMetadataCollector* object in the following way:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
 ```
 * It is very important that the **name of the initialized object is `metadata_collector`**. Otherwise the generation will not work.
-* The only mandatory argument for the YMLMetadataCollector is the integration_name which will be used as your integration ID.
-* All other arguments concerning the whole integration will be passed in this initialization as well. See the initialization examples in the sections below.
+* The only mandatory argument for the *YMLMetadataCollector* is the integration_name which will be used as your integration ID.
+* All other arguments for the integration will be passed in this initialization as well. See the initialization examples in the sections below.
 Other arguments include:
     * integration_name
     * display
@@ -63,7 +62,9 @@ Other arguments include:
     * subtype
 
 ### ConfKey
-To specify integration configuration keys use the keyword `conf=[ConfKey(), ConfKey()]` like so:
+To specify integration configuration keys, use the keyword `conf=[ConfKey(), ConfKey()]`. 
+
+For example:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name",
                                                       conf=[ConfKey(name="some_name",
@@ -80,14 +81,15 @@ ConfKey arguments include:
 * options
 * input_type
 
-Where `key_type` takes argument of type `ParameterTypes` which is exactly the same as `ParameterType` that can be found in
+Where `key_type` takes the argument of type `ParameterTypes` which is exactly the same as `ParameterType` that can be found in
 `demisto_sdk.commands.common.constants`
 
 The trailing `s` was added to reduce circular imports.
 
 The argument `options` takes a list of strings and specifies the argument as predefined and the list as the options.
 
-And `input_type` takes and enum class and results in the enum attributes as the predefined options.
+`input_type` takes an enum class and results in the enum attributes as the predefined options.
+
 Usage example:
 ```python
 class InputOptions(enum.Enum):
@@ -111,8 +113,10 @@ will result in the following metadata for the configuration key:
 
 ## Adding Commands
 ### General
-To add command metadata, you have to wrap the command function using `@metadata_collector.command()`
-like so:
+To add command metadata, you have to wrap the command function using `@metadata_collector.command()`. 
+
+For example:
+
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
 
@@ -120,7 +124,7 @@ metadata_collector = YMLMetadataCollector(integration_name="some_name")
 def funky_command():
     print("funk")
 ```
-The only mandatory argument is `command_name`. Other `metadata_collector.command` arguments inculde
+The only mandatory argument is `command_name`. Other `metadata_collector.command` arguments include:
 * deprecated
 * execution
 * description
@@ -130,7 +134,7 @@ The only mandatory argument is `command_name`. Other `metadata_collector.command
 * file_output
 * multiple_output_prefixes
 
-#### Restored Args
+#### Restored Arguments
 In order to reduce code duplication, you can reuse the following arguments:
 * command_name
 * outputs_prefix
@@ -150,12 +154,14 @@ When running `funky_command(client=SomeClient)` the following will be printed:
 The command name is funky-command output_prefix is funk and execution False
 ```
 Warnings:
-* Make sure you specify `restore=True` in the `metadata_collector.command` args.
+* Make sure you specify `restore=True` in the `metadata_collector.command` arguments.
 * The restored arguments will not show up in the command arguments in the yml.
-* Other arguments like `client`, `args` and so on can be added to the function declaration without problems.
+* Other arguments like `client`, `args`, and so on can be added to the function declaration without problems.
 
 #### Command with file output
-If the command has a file output please specify `file_output=True` in the `@metadata_collector.command` args like so
+If the command has a file output, specify `file_output=True` in the `@metadata_collector.command` arguments.
+
+For example:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
 
@@ -192,7 +198,9 @@ This will result in the following metadata for the command outputs:
 ```
 
 ### Metadata from `metadata_collector.command` inputs
-In order to add command description, one can specify it in `@metadata_collector.command` under the description key like so:
+In order to add command description, you can specify it in `@metadata_collector.command` under the description key.
+
+For example:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
 
@@ -201,7 +209,9 @@ def funky_command():
     print("funk")
 ```
 #### InputArgument
-To explicitly add input arguments use the `InputArgument` object like so:
+To explicitly add input arguments use the `InputArgument` object.
+
+For example:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
 
@@ -232,7 +242,9 @@ predefined options.
 If `is_array` is not specified it is inferred from the `input_type` or defaults to `False`
 
 #### OutputArgument
-To explicitly add output arguments use the `OutputArgument` object like so:
+To explicitly add output arguments, use the `OutputArgument` object.
+
+For example:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
 
@@ -259,8 +271,9 @@ Where `output_type` will be converted from a Python type to available context ou
 The output prefix in the context data will be the one specified in the `@metadata_collector.command`, for our example it will be `funk`.
 
 ##### Multiple prefixes
-In order to have multiple prefixes specify the `multiple_output_prefixes=True` argument in the
-`@metadata_collector.command` and add a `prefix` argument to every OutputArgument like so:
+In order to have multiple prefixes, specify the `multiple_output_prefixes=True` argument in `@metadata_collector.command` and add a `prefix` argument to every `OutputArgument`.
+
+For example:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
 
@@ -278,14 +291,16 @@ metadata_collector = YMLMetadataCollector(integration_name="some_name")
 def funky_command():
     print("funk")
 ```
-If the `prefix` was not specified in the `OutputArgument` the general `outputs_prefix` provided in `@metadata_collector.command` is used.
+If `prefix` was not specified in the `OutputArgument`, the general `outputs_prefix` provided in `@metadata_collector.command` is used.
 If `outputs_prefix` is not defined, the `integration_name` provided in `YMLMetadataCollector` initialization is used.
 
 ### Metadata from docstring and declaration
-An alternative to specifing the command metadata in the `@metadata_collector.command` usage,
-one can specify the description, the output arguments and the input arguments in the docstring of the function.
+As an alternative to specifying the command metadata in the `@metadata_collector.command` usage,
+you can specify the description, the output arguments, and the input arguments in the docstring of the function.
 #### Description
-To specify a description of the command in the docstring, use the first line (or lines) like so:
+To specify a description of the command in the docstring, use the first line (or lines).
+
+For example:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
 
@@ -295,7 +310,9 @@ def funky_command():
     print("funk")
 ```
 The description will be `Very funky command.`.
-Use an empty line to end the description. For example the description for the following command:
+Use an empty line to end the description. 
+
+For example:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
 
@@ -308,9 +325,11 @@ def funky_command():
     """
     print("funk")
 ```
-will be `The command is used to give up the funk.\n     It is a very funky command.`.
+ the description for will be `The command is used to give up the funk.\n     It is a very funky command.`.
 #### Args
-To specify input arguments use the `Args` section like so:
+To specify input arguments, use the `Args` section.
+
+For example:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
 
@@ -341,7 +360,7 @@ This will result in the following input argument metadata:
       default: false
 ```
 To specify if the argument is an array or not, you can either add an argument type
-in the docstring like so
+in the docstring, like so:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
 
@@ -355,7 +374,7 @@ def funky_command():
     """
     print("funk")
 ```
-or specify it as a type in the function declaration like so
+or specify it as a type in the function declaration, like so:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
 
@@ -370,7 +389,7 @@ def funky_command(beat: int, punk: str):
     print("funk")
 ```
 
-If your argument has predefined options, you can either add it as an enum class as the argument type like so
+If your argument has predefined options, you can either add it as an enum class as the argument type, like so
 ```python
 class BeatOptions(enum.Enum):
     UpTown = "up_town"
@@ -414,7 +433,9 @@ def funky_command():
     print("funk")
 ```
 
-To specify default use `default=<The default>.` like so
+To specify a default, use `default=<The default>.` 
+
+For example:
 ```python
 @metadata_collector.command(command_name="funky-command")
 def funky_command():
@@ -431,7 +452,7 @@ To specify execution=True, add `potentially harmful.` or `execution.` to the arg
 
 To specify required=True, add `required.` to the argument description.
 
-For example the following docstring:
+For example:
 ```python
 @metadata_collector.command(command_name="funky-command")
 def funky_command():
@@ -442,7 +463,7 @@ def funky_command():
     """
     print("funk")
 ```
-Will result in the following input argument metadata:
+The docstring in the example above will result in the following input argument metadata:
 ```yaml
     arguments:
     - name: punk
@@ -456,7 +477,9 @@ Will result in the following input argument metadata:
 ```
 
 #### Context Outputs
-To specify command outputs use the `Context Outputs` section like so:
+To specify command outputs, use the `Context Outputs` section.
+
+For example:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
 
@@ -483,8 +506,10 @@ This will result in the following metadata:
 
 To add an output prefix for all context outputs of the command, use the `outputs_prefix` in the `@metadata_collector.command`.
 ##### Multiple prefixes
-To specify multiple output prefixes in the docstring you can specify the `multiple_output_prefixes=True` in the `@metadata_collector.command`
-and add the prefixes to the command names like so
+To specify multiple output prefixes in the docstring you can specify the `multiple_output_prefixes=True` in `@metadata_collector.command`
+and add the prefixes to the command names. 
+
+For example: 
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
 
@@ -499,9 +524,10 @@ def funky_command():
     print("funk")
 ```
 ### Notes
-* Metadata from explicit `@metadata_collector.command` arguments can be used along with metadata providing in docstring, as long as it is not the same field.
-For example, one can provide inputs_list via `@metadata_collector.command` and `Context Outputs` in the docstring, specifing both inputs and outputs.
-* If a field is specified in both ways: explicitly in `@metadata_collector.command` and in the docstring, the explicit one will be used.
+* Metadata from explicit `@metadata_collector.command` arguments can be used along with metadata provided in docstring, as long as it is not the same field.
+For example, one can provide inputs_list via `@metadata_collector.command` and `Context Outputs` in the docstring, specifying both inputs and outputs.
+* If a field is specified explicitly in `@metadata_collector.command` and in the docstring, the explicit one will be used.
+
 For example:
 ```python
 metadata_collector = YMLMetadataCollector(integration_name="some_name")
@@ -553,7 +579,7 @@ metadata_collector = YMLMetadataCollector(integration_name="HelloWorldNoYML",
                                           default_mapper_in="HelloWorld-mapper",
                                           default_classifier="HelloWorld",
                                           conf=[ConfKey(name="url",
-                                                        display="Server URL (e.g. https://soar.monstersofhack.com)",
+                                                        display="Server URL (e.g., https://soar.monstersofhack.com)",
                                                         required=True,
                                                         default_value="https://soar.monstersofhack.com"),
                                                 ConfKey(name="isFetch",
@@ -626,10 +652,10 @@ class Client(BaseClient):
     """Client class to interact with the service API
 
     This Client implements API calls, and does not contain any Demisto logic.
-    Should only do requests and return data.
+    It should only do requests and return data.
     It inherits from BaseClient defined in CommonServer Python.
     Most calls use _http_request() that handles proxy, SSL verification, etc.
-    For this HelloWorld implementation, no special attributes defined
+    For this HelloWorld implementation, no special attributes are defined.
     """
 
     def get_ip_reputation(self, ip):
@@ -723,7 +749,7 @@ class Client(BaseClient):
         """Gets a specific HelloWorld alert by id
 
         :type alert_id: ``str``
-        :param alert_id: id of the alert to return
+        :param alert_id: ID of the alert to return
 
         :return: dict containing the alert as returned from the API
         :rtype: ``Dict[str, Any]``
@@ -741,7 +767,7 @@ class Client(BaseClient):
         """Changes the status of a specific HelloWorld alert
 
         :type alert_id: ``str``
-        :param alert_id: id of the alert to return
+        :param alert_id: ID of the alert to return
 
         :type alert_status: ``str``
         :param alert_status: new alert status. Options are: 'ACTIVE' or 'CLOSED'
@@ -830,7 +856,7 @@ class Client(BaseClient):
 
 
 def parse_domain_date(domain_date: Union[List[str], str], date_format: str = '%Y-%m-%dT%H:%M:%S.000Z') -> Optional[str]:
-    """Converts whois date format to an ISO8601 string
+    """Converts WHOIS date format to an ISO8601 string
 
     Converts the HelloWorld domain WHOIS date (YYYY-mm-dd HH:MM:SS) format
     in a datetime. If a list is returned with multiple elements, takes only
@@ -906,12 +932,12 @@ def test_module(client: Client, first_fetch_time: int) -> str:
     # INTEGRATION DEVELOPER TIP
     # Client class should raise the exceptions, but if the test fails
     # the exception text is printed to the Cortex XSOAR UI.
-    # If you have some specific errors you want to capture (i.e. auth failure)
+    # If you have some specific errors you want to capture (i.e., auth failure)
     # you should catch the exception here and return a string with a more
     # readable output (for example return 'Authentication Error, API Key
     # invalid').
-    # Cortex XSOAR will print everything you return different than 'ok' as
-    # an error
+    # Cortex XSOAR will print everything you return that is different than 'ok' as
+    # an error.
     try:
         client.search_alerts(max_results=1, start_time=first_fetch_time, alert_status=None, alert_type=None,
                              severity=None)
@@ -923,7 +949,7 @@ def test_module(client: Client, first_fetch_time: int) -> str:
     return 'ok'
 
 
-# Example of decorated function with args and context outputs in docstirng.
+# Example of a decorated function with args and context outputs in docstirng.
 @metadata_collector.command(command_name="helloworld-say-hello", outputs_prefix="HelloWorld")
 def say_hello_command(client: Client, args: Dict[str, Any], **kwargs) -> CommandResults:
     """Hello command - prints hello to anyone.
@@ -1009,7 +1035,7 @@ def search_alerts_command(client: Client, args: Dict[str, Any]) -> CommandResult
         alert_id (str): Alert ID.
         alert_status (str): Alert status. Can be 'ACTIVE' or 'CLOSED'.
         alert_type (str): Alert type. For example 'Bug' or 'Vulnerability'.
-        created (datetime.datetime): Alert created time. Format is ISO8601 (i.e. '2020-04-30T10:35:00.000Z').
+        created (datetime.datetime): Alert created time. Format is ISO8601 (i.e., '2020-04-30T10:35:00.000Z').
         name (str): Alert name.
         severity (str): Alert severity. Can be 'Low', 'Medium', 'High' or 'Critical'.
     """
@@ -1064,7 +1090,7 @@ def search_alerts_command(client: Client, args: Dict[str, Any]) -> CommandResult
 GET_ALERT_OUTPUTS = [OutputArgument(name='alert_id', output_type=str, description='Alert ID.'),
                      OutputArgument(name='created', output_type=datetime,
                                     description="Alert created time. Format is ISO8601 "
-                                                "(i.e. '2020-04-30T10:35:00.000Z').")]
+                                                "(i.e., '2020-04-30T10:35:00.000Z').")]
 
 
 @metadata_collector.command(command_name='helloworld-get-alert', outputs_prefix='HelloWorld.Alert',
@@ -1116,7 +1142,7 @@ class StatusEnum(enum.Enum):
 def update_alert_status_command(client: Client, args: Dict[str, Any]) -> CommandResults:
     """Update the status for an alert.
 
-    Changes the status of a HelloWorld alert and returns the updated alert info
+    Changes the status of a HelloWorld alert and returns the updated alert info.
 
     Args:
         client (Client): HelloWorld client to use.
@@ -1129,7 +1155,7 @@ def update_alert_status_command(client: Client, args: Dict[str, Any]) -> Command
 
     Context Outputs:
         alert_id (str): Alert ID.
-        updated (datetime): Alert update time. Format is ISO8601 (i.e. '2020-04-30T10:35:00.000Z').
+        updated (datetime): Alert update time. Format is ISO8601 (i.e., '2020-04-30T10:35:00.000Z').
         alert_status (str): Alert status. Can be 'ACTIVE' or 'CLOSED'.
     """
 
@@ -1296,7 +1322,7 @@ commonfields:
 name: HelloWorldNoYML
 display: HelloWorldNoYML
 configuration:
-- display: Server URL (e.g. https://soar.monstersofhack.com)
+- display: Server URL (e.g., https://soar.monstersofhack.com)
   name: url
   type: 0
   required: true
@@ -1346,7 +1372,7 @@ configuration:
   type: 0
   required: false
   additionalinfo: Comma-separated list of types of alerts to fetch. Types might change
-    over time. Some examples are 'Bug' and 'Vulnerability'
+    over time. Some examples are 'Bug' and 'Vulnerability'.
 - display: Minimum severity of alerts to fetch
   name: min_severity
   type: 15
@@ -1381,7 +1407,7 @@ script:
       description: Alert ID.
       type: String
     - contextPath: HelloWorld.Alert.created
-      description: Alert created time. Format is ISO8601 (i.e. '2020-04-30T10:35:00.000Z').
+      description: Alert created time. Format is ISO8601 (i.e., '2020-04-30T10:35:00.000Z').
       type: Unknown
   - deprecated: false
     description: Hello command - prints hello to anyone.
@@ -1403,7 +1429,7 @@ script:
     arguments:
     - name: severity
       isArray: false
-      description: Filter by alert severity. Comma-separated value (Low,Medium,High,Critical)
+      description: Filter by alert severity. Comma-separated value (Low,Medium,High,Critical).
       required: true
       secret: false
       default: false
@@ -1431,7 +1457,7 @@ script:
       default: false
     - name: max_results
       isArray: false
-      description: Maximum results to return.
+      description: Maximum number of results to return.
       required: true
       secret: false
       default: false
@@ -1453,7 +1479,7 @@ script:
       description: Alert type. For example 'Bug' or 'Vulnerability'.
       type: String
     - contextPath: HelloWorld.Alert.created
-      description: Alert created time. Format is ISO8601 (i.e. '2020-04-30T10:35:00.000Z').
+      description: Alert created time. Format is ISO8601 (i.e., '2020-04-30T10:35:00.000Z').
       type: Date
     - contextPath: HelloWorld.Alert.name
       description: Alert name.
@@ -1486,7 +1512,7 @@ script:
       description: Alert ID.
       type: String
     - contextPath: HelloWorld.Alert.updated
-      description: Alert update time. Format is ISO8601 (i.e. '2020-04-30T10:35:00.000Z').
+      description: Alert update time. Format is ISO8601 (i.e., '2020-04-30T10:35:00.000Z').
       type: Unknown
     - contextPath: HelloWorld.Alert.alert_status
       description: Alert status. Can be 'ACTIVE' or 'CLOSED'.
