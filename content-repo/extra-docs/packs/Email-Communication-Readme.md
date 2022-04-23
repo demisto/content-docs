@@ -13,24 +13,21 @@ The pack includes two options for adding email functionality: the 'Email Communi
 These components of the content pack allow XSOAR to fetch new emails from your mail listener and create new incidents from them if they are not related to an existing case.  You can then reply to the original sender and include additional recipients if needed.  This incident type and layout are intended for use where the incoming email is the incident trigger, and only one email thread is needed per incident.
 
 ####Email Threads Layout
-The Email Threads layout can be used to add email functionality to any incident type where it is needed, including incidents triggered by sources other than incoming email.  You can initiate new email conversations from the Email Threads layout and replies will be attached to the same incident.  You can also have multiple separate email threads, allowing you to interact with different groups of users and keep conversations separate.  This layout is intended for use where the first email on a thread is sent outbound from XSOAR.
+The Email Threads layout can be used to add email functionality to any incident type where it is needed, including incidents triggered by sources other than incoming email.  You can initiate new email conversations from the Email Threads layout and replies will be attached to the same incident.  You can also create multiple separate email threads, allowing you to interact with different groups of users and keep conversations separate.  This layout is intended for use where the first email on a thread is sent outbound from XSOAR.
 
 
 
 
 ## Pack Workflow
-When an email is sent to the email address configured in your email integration, your email listener fetches the incoming email in Cortex XSOAR. 
+When an email is sent to the email address configured in your email integration, your email listener fetches the incoming email into Cortex XSOAR. 
 
-If the email is in response to an existing incident, an 8-digit number will appear next to the subject of the email, for example <93075875> Incident1. The pre-process script searches for incidents that have the 8 digit code in either the *emailgeneratedcode* or *emailgeneratedcodes* fields.
+If the email is in response to an existing incident, an 8-digit number will appear next to the subject of the email, for example <93075875> Incident1. The pre-process script searches for incidents that have this 8-digit code in either the *emailgeneratedcode* or *emailgeneratedcodes* fields.
 
 If there is no 8-digit number in the subject of the email or if the pre-process rule is unable to locate the 8-digit number, a new 'Email Communication' incident is created and a random 8-digit number is generated for the incident. 
 
-If there is an 8-digit number in the subject of the email, and the pre-process rule is able to locate the incident associated with the 8-digit number, the email is added to the existing email thread and not as a separate unlinked email.  In the event the related incident is closed, the pre-process script re-opens the incident.
+If there is an 8-digit number in the subject of the email and the pre-process rule is able to locate the incident associated with the 8-digit number, the email is added to the existing email thread and not as a separate unlinked email.  In the event the related incident is closed, the pre-process script re-opens the incident.
 
-You can view the email thread in the War Room or in the incident layout. You can also reply to the email thread in the incident layout. 
-
-
- 
+You can view the email thread in the incident layout. You can also reply to the email thread in the incident layout. 
 
 
 ## In This Pack
@@ -40,9 +37,9 @@ The Email Communication content pack includes several content items.
 There are 5 Automations in this pack.
 * [DisplayEmailHtml](https://xsoar.pan.dev/docs/reference/scripts/display-email-html): Displays the original email in HTML format in the Email Communication incident layout.
 
-* [DisplayEmailHtmlThread](https://link-to-be-determined): Displays a complete email chain as a single HTML formatted document in the Email Threads incident layout.
+* [DisplayEmailHtmlThread](https://xsoar.pan.dev/docs/reference/scripts/display-email-html-thread): Displays a complete email chain as a single HTML formatted document in the Email Threads incident layout.
 
-* [SummarizeEmailThreads](https://link-to-be-determined): Displays a table summarizing all email threads present on an incident using the Email Threads layout.
+* [SummarizeEmailThreads](https://xsoar.pan.dev/docs/reference/scripts/summarize-email-threads): Displays a table summarizing all email threads present on an incident using the Email Threads layout.
 
 * [PreprocessEmail](https://xsoar.pan.dev/docs/reference/scripts/preprocess-email): Pre-process script for Email Communication layout. This script checks if the incoming email contains an 8-digit number to link the mail to an existing incident, and tags the email as "email-thread". 
 
@@ -64,8 +61,8 @@ There are 8 Classifiers in this pack. When you configure an instance of the Gmai
 There are 8 incident fields in this pack.
 * **Add CC To Email**: Add a new CC recipient to the email thread.
 * **Add BCC To Email**: Add a new BCC recipient to the email thread.
-* **Email Generated Code**: Stores unique 8 digit code to match email to incident.  Used in Email Communication incidents.
-* **Email Generated Codes**: Stores comma separated list of multiple unique 8 digit codes to match email to incident.  Used in incidents using the Email Threads layout.
+* **Email Generated Code**: Stores unique 8-digit code to match email to incident.  Used in Email Communication incidents.
+* **Email Generated Codes**: Stores comma separated list of multiple unique 8-digit codes to match email to incident.  Used in incidents using the Email Threads layout.
 * **Email New Recipients**: Field to set email recipients to send new outbound emails to.  Used in Email Threads layout.
 * **Email New Subject**: Field to set email subject for new outbound emails.  Used in Email Threads layout.
 * **Email New Body**: Field to set email body for new outbound emails.  Used in Email Threads layout.
@@ -87,7 +84,7 @@ There are 3 interactive sections in which you can specify 1 or more email addres
  
 >**Important:** 
 - In order to add CC recipients or an attachment to the email reply, you must select the *Show empty fields* checkbox. 
-- You must customize the *service_mail* parameter in the **Send Reply** button with the mailbox from which emails are sent. See [Customize *service_mail* Parameter in the **Send Reply** Button](#customize-*service_mail-parameter-in-the-**send-reply**-button).
+- You must customize the *service_mail* parameter in the **SendEmailReply** script with the mailbox from which emails are sent. See [Configure the *service_mail* and *mail_sender_instance* Parameters ](#configure-the-*service_mail*-and-*mail_sender_instance*-Parameters).
 
 
 | Layout sections     | Description                                                                                |
@@ -105,6 +102,8 @@ There are 3 interactive sections in which you can specify 1 or more email addres
 
 #### Email Threads Layout
 There are several interactive sections in the Email Threads layout, and you will use different ones depending on the action you wish to take
+
+![Layout](https://raw.githubusercontent.com/demisto/content-docs/docs/doc_imgs/reference/EmailCommunication_EmailThreadsLayout.png)
 
 **To start a new email thread:**
 1. In the **Step 1 (New Thread)** section, enter email recipients and an email subject.  CC and BCC recipients are optional.
@@ -134,10 +133,6 @@ The out-of-the-box classification and mapping (for EWS, Gmail, MS Graph Mail, an
 Those custom incident fields are populated with specific values for the Email Communication scripts to execute.
  
 If an EWS, Gmail, MS Graph Mail or MS Graph Mail Single user instance is already configured for other incident types, create a new instance for the email communication type with the associated classification and mapping. 
- 
-
- 
-
 
  
 ## Pack Configurations
@@ -205,7 +200,7 @@ You can configure the *service_mail* and *mail_sender_instance* parameters for t
 6. Expand the *mail_sender_instance* argument and do one of the following:
    - To send the email a specific integration instance: In the *Initial value* field, enter the name of the integration instance you wish to use.
    - To enter an integration instance to use each time: Mark the *mandatory* checkbox and leave the *Initial value* empty.
-![EmailCommunication_ServuceMailSettings](https://raw.githubusercontent.com/demisto/content-docs/docs/doc_imgs/reference/EmailCommunication_SendEmailReplySettings.png)
+![EmailCommunication_SendEmailReplySettings](https://raw.githubusercontent.com/demisto/content-docs/docs/doc_imgs/reference/EmailCommunication_SendEmailReplySettings.png)
 7. Click **Save**.
 8. Click the three vertical dots and select the **Reattach Automation** option.
 
@@ -213,7 +208,7 @@ You can configure the *service_mail* and *mail_sender_instance* parameters for t
 The **Email Threads** layout allows you to add email functionality to any existing Incident Types and Layouts where it is needed using the following procedures.
 
 ### Add *Email Threads* tab to existing Incident Layout 
-1. Navigate to **Settings -> Objects Setup -> Incidents -> Layouts
+1. Navigate to **Settings -> Objects Setup -> Incidents -> Layouts**
 2. Check the box next to the desired layout and then click the **Edit** button
 3. Click **Tabs** in the Library and search for **Email Threads**
 4. Drag the item named **Email Threads (Email Threads)** to the desired position on your layout
@@ -239,7 +234,7 @@ It is important that both of these procedures are followed completely, or Email 
 :::
 
 ## Configure Related Incident Query Window (Optional)
-The preprocess script searches for incidents related to incoming emails that contain an 8 digit code to attach the email to.  The default time window for this search is the past 60 days.  This limitation is set to preserve system resources, and should be left at default if possible.
+The pre-process script searches for incidents related to incoming emails that contain an 8-digit code to attach the email to.  The default time window for this search is the past 60 days.  This limit is set to preserve system resources, and should be left at default if possible.
 
 If you need to adjust the query window however, you can do so by creating a new XSOAR list to store the configuration parameter by following these steps:
 1. Navigate to **Settings -> Advanced -> Lists** and click the **Add a List** button
@@ -270,7 +265,11 @@ After you configure the integrations and the pre-process rule, test that the inc
 6. Reply to the reply email sent from Cortex XSOAR and verify that your reply email was added to the email thread.
 
 ###Email Threads Layout
-
+1. Open an incident where you have added the Email Threads layout
+2. Create a new outbound email to your own email address, then click the **Send New Email** button
+3. Open the War Room of your incident and confirm that a message appears that your email was sent successfully.
+4. Find the email in your mailbox and send a reply to it
+5. Wait a few minutes for XSOAR to fetch the reply, then confirm it appears in the thread viewer section in the lower left of the Email Threads tab of your incident.  You may need to enter the number of your thread in the **Email Selected Thread** field and click the button to update the thread viewer to see your new reply.
 
 
 ## Integrations
