@@ -36,6 +36,7 @@ module.exports = {
   organizationName: "Demisto", // Usually your GitHub org/user name.
   projectName: "content-docs", // Usually your repo name.
   themeConfig: {
+    sidebarCollapsible: true,
     algolia: {
       apiKey: "74349c31456061cb5e9cb8e9d9992b89",
       appId: "HRXQIDA6WM",
@@ -213,8 +214,7 @@ module.exports = {
           remarkPlugins: [require('docusaurus-plugin-learn-with-code')],
           rehypePlugins: [],
           showLastUpdateAuthor: false,
-          showLastUpdateTime: true,
-          sidebarCollapsible: true
+          showLastUpdateTime: true
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css")
