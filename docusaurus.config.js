@@ -42,7 +42,6 @@ module.exports = {
       indexName: "demisto",
       algoliaOptions: { typoTolerance: false, hitsPerPage: 1000, filters: 'type:lvl1 OR type:content' } // Optional, if provided by Algolia
     },
-    sidebarCollapsible: true,
     navbar: {
       title: "",
       logo: {
@@ -214,7 +213,8 @@ module.exports = {
           remarkPlugins: [require('./editor-plugin/index.js')],
           rehypePlugins: [],
           showLastUpdateAuthor: false,
-          showLastUpdateTime: true
+          showLastUpdateTime: true,
+          sidebarCollapsible: true
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css")
