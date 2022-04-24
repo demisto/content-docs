@@ -210,7 +210,7 @@ module.exports = {
           docLayoutComponent: "@theme/DocPage",
           docItemComponent: "@theme/DocItem",
           beforeDefaultRemarkPlugins: [remarkPlugin],
-          remarkPlugins: [require('./editor-plugin/index.js')],
+          remarkPlugins: [require('docusaurus-plugin-learn-with-code')],
           rehypePlugins: [],
           showLastUpdateAuthor: false,
           showLastUpdateTime: true,
@@ -243,7 +243,7 @@ module.exports = {
         gtm: "GTM-KWZSPLM", //GTM-XXXXXX
       },
     ],
-    require('./editor-plugin/monaco-editor/index.js')
+    require('docusaurus-plugin-learn-with-code/lib/monaco-editor')
   ],
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
