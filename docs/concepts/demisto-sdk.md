@@ -478,6 +478,22 @@ in order to establish a connection between `demisto-sdk` and the XSOAR server, a
 
 Further information about how to run this command can be found [here](../documentation/readme_file.md#creating-documentation).
 
+### generate-yml-from-python
+Use this command to generate a YML file from Python code that includes its special syntax.
+
+The output file name will be the same as the Python code with the `.yml` extension instead of `.py`.
+
+The generation currently supports integrations only.
+The feature is supported from content Base pack version 1.20.0 and on.
+
+Example run:
+```buildoutcfg
+demisto-sdk -i my_integration.py -v
+```
+
+Further information about the syntax and how to run this command can be found  [here](../integrations/yml-from-python-code-gen.md).
+
+
 ## Setting a Preset Custom Command Configuration
 
 You can create your own configuration for the `demisto-sdk` commands by creating a file named `.demisto-sdk-conf`
