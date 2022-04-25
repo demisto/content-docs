@@ -827,7 +827,7 @@ Will produce an error in the War Room, for example:
 
 ### CommandRunner
 
-CommandRunner is a Class to run executing multiple commands, return all the valid results and a human readable summary table of commands that succeded and commands that returned an error.
+CommandRunner is a Class for executing multiple commands, return all the valid results and a human readable summary table of commands that succeded and commands that returned an error.
 
 In order to use this functionality, create a List of `CommandRunner.Command`, and call `CommandRunner.run_commands_with_summary(commands)`.
 
@@ -848,6 +848,8 @@ commands = [CommandRunner.Command('command1', {'arg': 'val'},
 
 return_results(CommandRunner.run_commands_with_summary(commands))
 ```
+
+This will return all the results of all commands, including another HumanReadble summary table.
 
 ### DEPRECATED - demisto.results()
 _Note_: Use `return_results` instead
