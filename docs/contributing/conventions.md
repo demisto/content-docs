@@ -13,24 +13,6 @@ We value your contributions and want to make sure that your experience is smooth
 
 Please use the following guidelines when working on the changes requested by our reviewers:
 
-- Before opening the PR, make sure to `squash` all commits into a single commit. It makes the `git` history cleaner and easier for us to review it this way. 
-
-    Here's a little snippet to perform a squash merge after consolidating the commits into one:
-
-    ```bash
-    COMMITS=122
-    
-    git reset --hard HEAD~$COMMITS
-
-    # OR specific commit
-    # COMMIT_ID=0d1ddfc42
-    # git reset --hard $COMMIT_ID
-
-    git merge --squash HEAD@{1}
-
-    git commit -m "squash last $COMMITS"
-    ```
-
 - Make sure you always create PRs from your own fork using a dedicated branch (do NOT use the `master`/`main` branch).
 
 - Use clear and brief messages for your commits ([this article](https://chris.beams.io/posts/git-commit/) has good examples).
@@ -51,6 +33,32 @@ Please use the following guidelines when working on the changes requested by our
 
 - Once you have pushed all requested changes, please ask for a new review by navigating to Reviewers section in the right sidebar in GitHub and click the ⭯ icon next to the reviewer's name.
 
+
+- **Recommendation**: If the branch you'll be using as the basis for the Pull Request includes more than 50 of commits, make sure to `squash` all commits into a single commit before creating the Pull Request. It makes the `git` history cleaner and easier for us to review it this way.
+
+    Here's a little snippet to perform a squash merge after consolidating 122 commits into one:
+
+    ```bash
+    COMMITS=122
+    
+    git reset --hard HEAD~$COMMITS
+
+    git merge --squash HEAD@{1}
+
+    git commit -m "squash last $COMMITS into one"
+    ```
+
+    Alternatively, you can use a specific commit to squash from:
+
+    ```bash
+    COMMIT_HASH=0d1ddfc42
+    
+    git reset --hard $COMMIT_HASH
+
+    git merge --squash HEAD@{1}
+
+    git commit -m "squash from $COMMIT_HASH into one"
+    ```
 
 ## The Build Process
 
