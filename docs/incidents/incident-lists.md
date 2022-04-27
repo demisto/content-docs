@@ -36,7 +36,8 @@ The Lists content item must be in JSON format and can be imported independently 
 
    For example the top of your YAML file should look like this:
 
-   ```yml
+   ```json
+
    id: <name of your list>
    version: -1
    name: <name of your list>
