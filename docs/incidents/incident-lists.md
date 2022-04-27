@@ -34,7 +34,7 @@ The Lists content item must be in JSON format and can be imported independently 
 
 3. Modify the value in the *version* field to -1 to prevent user changes.
 
-   For example the top of your YAML file should look like this:
+   For example the top of your JSON file should look like this:
 
    ```json
 
