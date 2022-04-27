@@ -827,16 +827,17 @@ Will produce an error in the War Room, for example:
 
 ### CommandRunner
 
-CommandRunner is a Class for executing multiple commands, return all the valid results and a human readable summary table of commands that succeded and commands that returned an error.
+`CommandRunner` is a class for executing multiple commands, which returns all valid results together with a human readable summary table of successful commands and commands that return errors.
 
-In order to use this functionality, create a List of `CommandRunner.Command`, and call `CommandRunner.run_commands_with_summary(commands)`.
+To use this functionality, create a list of commands using the `CommandRunner.Command`, and then call `CommandRunner.run_commands_with_summary(commands)`.
 
-CommandRunner.Command:
-| Arg               | Type   | 
-| commands   | str or List[str]   | The command to run. Could be a single command or a list of commands.                                            |
-| args_lst | dict or List[Dict]    | The args of the command. if provided a list and commands is a str, run the command with all the args in the list. If commands is a list, the args_lst should be in the same size, and the args should correspond to the same command index.                            |
-| instance           | str | (Optional) The instance the command should run |
-| brand    | str   | (Optional) The instance the command should run |
+`CommandRunner.Command`:
+|  Arg  |  Type | Description |
+| ------ | -----| --------|
+| `commands`   | str or List[str]   | The command to run. Could be a single command or a list of commands.                                            |
+| `args_lst` | dict or List[Dict]    | The args of the command. If provided in a list and the commands argument is a str, run the command with all the args in the list. If the commands argument is a list, the `args_lst` should be in the same size, and the args should correspond to the same command index.                            |
+| `instance`  | str | (Optional) The instance the command should run |
+| `brand`    | str   | (Optional) The instance the command should run. |
 
 
 **Example**
@@ -849,7 +850,7 @@ commands = [CommandRunner.Command('command1', {'arg': 'val'},
 return_results(CommandRunner.run_commands_with_summary(commands))
 ```
 
-This will return all the results of all commands, including another HumanReadble summary table.
+This returns all the results of all commands, including a human readable summary table.
 
 ### DEPRECATED - demisto.results()
 _Note_: Use `return_results` instead
