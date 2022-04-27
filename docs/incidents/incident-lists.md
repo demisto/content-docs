@@ -30,7 +30,8 @@ The Lists content item must be in JSON format and can be imported independently 
 1. Save your newly created list to the Lists directory in your pack as a JSON file. 
    - The Lists directory is *Packs/<pack_name>/Lists/*. 
    - The name of the file should be *list-<list_name>.json*.
-2. In the list yml file that you created, edit the *id* field so that it is identical to the *name* field.
+2. In the list json file that you created, edit the *id* field so that it is identical to the *name* field.
+
 3. Modify the value in the *version* field to -1 to prevent user changes.
 
    For example the top of your YAML file should look like this:
