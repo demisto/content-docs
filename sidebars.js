@@ -157,7 +157,8 @@ const sidebars = {
             "integrations/openapi-codegen",
             "integrations/postman-codegen",
             "integrations/code-generator",
-            "integrations/scheduled-commands"
+            "integrations/scheduled-commands",
+            "integrations/yml-from-python-code-gen"
           ]
         }
       ]

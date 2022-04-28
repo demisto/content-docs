@@ -8,7 +8,7 @@ Cortex XSOAR can pull events from 3rd party tools and convert them into actionab
 ## The `fetch-incidents` Command
 The `fetch incidents` command is the function that Cortex XSOAR calls every minute to import new incidents and is triggered by the "Fetches incidents" parameter in the integration configuration. It is not necessary to configure the `fetch-incidents` command in the Integration Settings.
 
-![screen shot 2019-01-07 at 15 35 01](../doc_imgs/integrations/50771147-6aedb800-1292-11e9-833f-b5dd13e3507b.png)
+![screen shot 2019-01-07 at 15 35 01](/doc_imgs/integrations/50771147-6aedb800-1292-11e9-833f-b5dd13e3507b.png)
 
 
 Let's walk through the example below:
@@ -126,4 +126,4 @@ demisto.incidents([])
 
 ## Troubleshooting
 For troubleshooting fetch-incident execute `!integration_instance_name-fetch` in the Playground, it should return the incidents.
-<img src="../doc_imgs/integrations/70272523-0f34f300-17b1-11ea-89a0-e4e0e359f614.png" width="480"></img>
+<img src="/doc_imgs/integrations/70272523-0f34f300-17b1-11ea-89a0-e4e0e359f614.png" width="480"></img>
