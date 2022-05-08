@@ -124,6 +124,69 @@ If you do not have any incidents to return then just return an empty list to ```
 demisto.incidents([])
 ```
 
+## Advenced
+
+### Generic fetch with look back
+Use the generic look back functions for fetching missing incidents that are indexed a while after they are created.
+
+#### Use case
+When a 3rd party product creates incidents, sometimes it might be indexed a while after it was created.
+For example, if incident "a" was created before incident "b", and just "b" was indexed, the fetch-incidents will fetch only "b" and will miss "a", also if "a" was indexed after the fetch were called, the next fetch will fetch only from the created time of "b".
+
+#### Solution
+Having the parameter look_back we can configure how nuch the fetch-incidents will look back in time (minutes) to get the incidents that were created a while ago but indexed a minute ago.
+
+The solution functions are in [CommonServerPython](https://xsoar.pan.dev/docs/reference/api/common-server-python) and you can find the exact documentation there, but here is a short description.
+
+* **get_fetch_run_time_range** - The function gets the last run object and some other arguments and calculate the time to fetch and returns the start and end time to fetch.
+If the parameter look_back is given, then the start time will always be >= than `now - look_back`.
+
+* **filter_incidents_by_duplicates_and_limit** - After getting the incidents from the 3rd party API call, we will want to filter the incidents from duplicates.
+In the example above, after incident "a" is indexed the fetch will bring incidents "a" and "b", then we want to return only "a" because "b" is already fetched.
+In addition, after filtering from duplicates, if we still have more incidents than the limit, the function will return only by the limit.
+
+* **get_latest_incident_created_time** - Given a list of incidents and the created time field, the function will return the latest incident created time.
+
+* **remove_old_incidents_ids** - Removes old unneccesary incident ids from the last run object to avoid overloading.
+
+* **get_found_incident_ids** - Returns a list of the new fetched incident ids. This is for saving it into the last run object and filter duplicates in the next call of fetch-incidents.
+
+* **create_updated_last_run_object** - Creates a new last run object with a new time and limit for the next fetch.
+
+* **update_last_run_object** - Updates the existing last run object.
+The function updates the found ids given from the function `get_found_incident_ids` and updates also the new time and limit given from the function `create_updated_last_run_object` and returns the updated last run object.
+
+Note. The solution is highly modular, this is done in part so you can only use specific functions and implement the others according to your needs.
+
+### Example fetch with look back
+```python
+def fetch_incidents(params):
+
+    incidents = []
+
+    fetch_limit_param = params.get('limit')
+    look_back = int(params.get('look_back', 0))
+    first_fetch = params.get('first_fetch')
+    time_zone = params.get('time_zone', 0)
+
+    last_run = demisto.getLastRun()
+    # The fetch_limit might be different than the fetch_limit_param in case the start time in the current fetch is the same as the start time in the previous fetch.
+    fetch_limit = last_run.get('limit') or fetch_limit_param
+
+    # It's important to get here the end_fetch_time to pass it into the update_last_run_object function.
+    start_fetch_time, end_fetch_time = get_fetch_run_time_range(last_run=last_run, first_fetch=first_fetch, look_back=look_back, timezone=time_zone)
+
+    # Functions for building the query and send the API call to get the incidents.
+    query = build_query(start_fetch_time, end_fetch_time, fetch_limit)
+    incidents_res = get_incidents_request(query)
+
+    incidents = filter_incidents_by_duplicates_and_limit(incidents_res=incidents_res, last_run=last_run, fetch_limit=fetch_limit_param, id_field='incident_id')
+
+    last_run = update_last_run_object(last_run=last_run, incidents=incidents, fetch_limit=fetch_limit_param, start_fetch_time=start_fetch_time, end_fetch_time=end_fetch_time, look_back=look_back, created_time_field='created', id_field='incident_id')
+
+    demisto.incidents(incidents)
+    demisto.setLastRun(last_run)
+```
 ## Troubleshooting
 For troubleshooting fetch-incident execute `!integration_instance_name-fetch` in the Playground, it should return the incidents.
 <img src="../doc_imgs/integrations/70272523-0f34f300-17b1-11ea-89a0-e4e0e359f614.png" width="480"></img>
