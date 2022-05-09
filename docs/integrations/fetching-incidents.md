@@ -130,8 +130,9 @@ demisto.incidents([])
 Use the generic look back functions for fetching missing incidents that are indexed a while after they are created.
 
 #### Use case
-When a 3rd party product creates incidents, sometimes it might be indexed a while after it was created.
-For example, if incident "a" was created before incident "b", and just "b" was indexed, the fetch-incidents will fetch only "b" and will miss "a", also if "a" was indexed after the fetch were called, the next fetch will fetch only from the created time of "b".
+During a **fetch-incidents** run, some edge-cases might cause missing incidents from the 3rd-party product. The most common are:
+* Indexing issues in the product: for example, if an incident A was created before an incident B, and only B was indexed, the fetch-incidents will fetch only B and will miss A, so if A was indexed after the fetch was called, the next fetch will fetch only from the created time of B.
+* An update in the incident information: some implementations of fetch-incidents are using a query filter to fetch only specific incidents. If initially an incident did not match the query (i.e., it was not fetched) but at some point was updated so that now it does match the query, a **fetch-incidents** command that queries incidents from the product using a **time** field, will not find it.
 
 #### Solution
 Having the parameter look_back we can configure how nuch the fetch-incidents will look back in time (minutes) to get the incidents that were created a while ago but indexed a minute ago.
