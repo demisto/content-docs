@@ -156,7 +156,15 @@ In the example above, after an incident A is indexed the fetch will bring incide
 * **update_last_run_object()** - Updates the existing last run object.
 The function updates the found ids given from the function `get_found_incident_ids` and updates also the new time and limit given from the function `create_updated_last_run_object` and returns the updated last run object.
 
-Note. The solution is highly modular, this is done in part so you can only use specific functions and implement the others according to your needs.
+The main way how it works is by saving into the last run object the following fields:
+* **time** - As in a regular fetch, the time to fetch from in the next fetch call.
+* **limit** - The limit will be increased in case we didn't fetch all the incidents from a given time, so we will save the start time for the next fetch as the current fetch start time.
+* **found_incident_ids** - The new fetched incident IDs. This is for filter duplicates in the next fetch calles.
+
+#### Notes
+- The solution is highly modular, this is done in part so you can only use specific functions and implement the others according to your needs.
+- The generic methods can be used also for regular fetch-incidents without look back as well (where `look_back=0`).
+- If the look_back config parameter is inceased for some reason, you might have duplicate incidents as their IDs are not saved in the last run any more and could not be filtered.
 
 ### Example fetch with look back
 ```python
