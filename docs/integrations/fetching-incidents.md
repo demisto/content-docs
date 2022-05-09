@@ -127,7 +127,7 @@ demisto.incidents([])
 ## Advenced
 
 ### Generic fetch with look back
-Use the generic look back functions for fetching missing incidents that are indexed a while after they are created.
+Use the generic look-back methods for fetching missing incidents.
 
 #### Use case
 During a **fetch-incidents** run, some edge-cases might cause missing incidents from the 3rd-party product. The most common are:
