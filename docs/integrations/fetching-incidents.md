@@ -137,7 +137,7 @@ During a **fetch-incidents** run, some edge-cases might cause missing incidents 
 #### Solution
 Having the *look_back* parameter, we can configure how much the fetch-incidents will look back in time (minutes) to get the incidents that were created a while ago but indexed a minute ago.
 
-The solution functions are in [CommonServerPython](https://xsoar.pan.dev/docs/reference/api/common-server-python) and you can find the exact documentation there, but here is a short description.
+The generic methods for this feature are implemented in [CommonServerPython](https://xsoar.pan.dev/docs/reference/api/common-server-python) and you can find the exact documentation there, but here is a short description.
 
 * **get_fetch_run_time_range** - The function gets the last run object and some other arguments and calculate the time to fetch and returns the start and end time to fetch.
 If the parameter look_back is given, then the start time will always be >= than `now - look_back`.
