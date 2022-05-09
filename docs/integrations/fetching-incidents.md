@@ -139,7 +139,7 @@ Having the *look_back* parameter, we can configure how much the fetch-incidents 
 
 The generic methods for this feature are implemented in [CommonServerPython](https://xsoar.pan.dev/docs/reference/api/common-server-python) and you can find the exact documentation there, but here is a short description.
 
-* **get_fetch_run_time_range** - The function gets the last run object and some other arguments and calculate the time to fetch and returns the start and end time to fetch.
+* **get_fetch_run_time_range()** - using the last run object and other necessary parameters, this method calculates and retrieves the time range from which to fetch.
 If the parameter look_back is given, then the start time will always be >= than `now - look_back`.
 
 * **filter_incidents_by_duplicates_and_limit** - After getting the incidents from the 3rd party API call, we will want to filter the incidents from duplicates.
