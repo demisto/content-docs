@@ -137,6 +137,11 @@ During a **fetch-incidents** run, some edge-cases might cause missing incidents 
 #### Solution
 Having the *look_back* parameter, we can configure how much the fetch-incidents will look back in time (minutes) to get the incidents that were created a while ago but indexed a minute ago.
 
+As part of the feature, the following fields are stored in the last run object and used in the methods described below:
+* **time** - As in a regular fetch, the time to fetch from in the next fetch call.
+* **limit** - The limit will be increased by the limit parameter value in case we will need to do the next fetch from the same time we did the current fetch, this is so that we do not get the same incidents result as we got in the current fetch but we will get more incidents and filter out the duplicates.
+* **found_incident_ids** - IDs of incidents fetched in previous runs. Used for filtering duplicates in the next runs.
+
 The generic methods for this feature are implemented in [CommonServerPython](https://xsoar.pan.dev/docs/reference/api/common-server-python) and you can find the exact documentation there, but here is a short description.
 
 * **get_fetch_run_time_range()** - using the last run object and other necessary parameters, this method calculates and retrieves the time range from which to fetch.
@@ -156,19 +161,9 @@ In the example above, after an incident A is indexed the fetch will bring incide
 * **update_last_run_object()** - Updates the existing last run object.
 The function updates the found ids given from the function `get_found_incident_ids` and updates also the new time and limit given from the function `create_updated_last_run_object` and returns the updated last run object.
 
-As part of the feature, the following fields are stored in the last run object and used in the methods described below:
-* **time** - As in a regular fetch, the time to fetch from in the next fetch call.
-* **limit** - The limit will be increased in case we didn't fetch all the incidents from a given time, so we will save the start time for the next fetch as the current fetch start time.
-* **found_incident_ids** - IDs of incidents fetched in previous runs. Used for filtering duplicates in the next runs.
-
-#### Notes
-- The solution is highly modular, this is done in part so you can only use specific functions and implement the others according to your needs.
-- The generic methods can be used also for regular fetch-incidents without look back as well (where `look_back=0`).
-- If the look_back config parameter is inceased for some reason, you might have duplicate incidents as their IDs are not saved in the last run any more and could not be filtered.
-
 ### Example fetch with look back
 ```python
-def fetch_incidents(params):
+def fetch_incidents(params: dict):
 
     incidents = []
 
@@ -178,23 +173,34 @@ def fetch_incidents(params):
     time_zone = params.get('time_zone', 0)
 
     last_run = demisto.getLastRun()
+
     # The fetch_limit might be different than the fetch_limit_param in case the start time in the current fetch is the same as the start time in the previous fetch.
     fetch_limit = last_run.get('limit') or fetch_limit_param
 
     # It's important to get here the end_fetch_time to pass it into the update_last_run_object function.
-    start_fetch_time, end_fetch_time = get_fetch_run_time_range(last_run=last_run, first_fetch=first_fetch, look_back=look_back, timezone=time_zone)
+    start_fetch_time, end_fetch_time = get_fetch_run_time_range(last_run=last_run, first_fetch=first_fetch,
+                                                                look_back=look_back, timezone=time_zone)
 
     # Functions for building the query and send the API call to get the incidents.
     query = build_query(start_fetch_time, end_fetch_time, fetch_limit)
     incidents_res = get_incidents_request(query)
 
-    incidents = filter_incidents_by_duplicates_and_limit(incidents_res=incidents_res, last_run=last_run, fetch_limit=fetch_limit_param, id_field='incident_id')
+    incidents = filter_incidents_by_duplicates_and_limit(incidents_res=incidents_res, last_run=last_run,
+                                                         fetch_limit=fetch_limit_param, id_field='incident_id')
 
-    last_run = update_last_run_object(last_run=last_run, incidents=incidents, fetch_limit=fetch_limit_param, start_fetch_time=start_fetch_time, end_fetch_time=end_fetch_time, look_back=look_back, created_time_field='created', id_field='incident_id')
+    last_run = update_last_run_object(last_run=last_run, incidents=incidents, fetch_limit=fetch_limit_param,
+                                      start_fetch_time=start_fetch_time, end_fetch_time=end_fetch_time, look_back=look_back, 
+                                      created_time_field='created', id_field='incident_id')
 
     demisto.incidents(incidents)
     demisto.setLastRun(last_run)
 ```
+
+#### Notes
+- The solution is highly modular, this is done in part so you can only use specific functions and implement the others according to your needs.
+- The generic methods can be used also for regular fetch-incidents without look back as well (where `look_back=0`).
+- If the look_back parameter value is increased by *k* minutes, you might encounter duplicate incidents for the next *k* minutes.
+
 ## Troubleshooting
 For troubleshooting fetch-incident execute `!integration_instance_name-fetch` in the Playground, it should return the incidents.
 <img src="../doc_imgs/integrations/70272523-0f34f300-17b1-11ea-89a0-e4e0e359f614.png" width="480"></img>
