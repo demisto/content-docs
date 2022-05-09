@@ -156,10 +156,10 @@ In the example above, after an incident A is indexed the fetch will bring incide
 * **update_last_run_object()** - Updates the existing last run object.
 The function updates the found ids given from the function `get_found_incident_ids` and updates also the new time and limit given from the function `create_updated_last_run_object` and returns the updated last run object.
 
-The main way how it works is by saving into the last run object the following fields:
+As part of the feature, the following fields are stored in the last run object and used in the methods described below:
 * **time** - As in a regular fetch, the time to fetch from in the next fetch call.
 * **limit** - The limit will be increased in case we didn't fetch all the incidents from a given time, so we will save the start time for the next fetch as the current fetch start time.
-* **found_incident_ids** - The new fetched incident IDs. This is for filter duplicates in the next fetch calles.
+* **found_incident_ids** - IDs of incidents fetched in previous runs. Used for filtering duplicates in the next runs.
 
 #### Notes
 - The solution is highly modular, this is done in part so you can only use specific functions and implement the others according to your needs.
