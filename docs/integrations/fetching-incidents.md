@@ -142,19 +142,18 @@ The generic methods for this feature are implemented in [CommonServerPython](htt
 * **get_fetch_run_time_range()** - using the last run object and other necessary parameters, this method calculates and retrieves the time range from which to fetch.
 If the parameter look_back is given, then the start time will always be >= than `now - look_back`.
 
-* **filter_incidents_by_duplicates_and_limit** - After getting the incidents from the 3rd party API call, we will want to filter the incidents from duplicates.
-In the example above, after incident "a" is indexed the fetch will bring incidents "a" and "b", then we want to return only "a" because "b" is already fetched.
-In addition, after filtering from duplicates, if we still have more incidents than the limit, the function will return only by the limit.
+* **filter_incidents_by_duplicates_and_limit()** - After getting the incidents from the 3rd party API call, we need to filter out the duplicate incidents.
+In the example above, after an incident A is indexed the fetch will bring incidents A and B, then we must return only A because B was already fetched. In addition, after filtering duplicates, if we still have more incidents than the limit, the function will return only by the limit.
 
-* **get_latest_incident_created_time** - Given a list of incidents and the created time field, the function will return the latest incident created time.
+* **get_latest_incident_created_time()** - Given a list of incidents and the created time field, the function will return the latest incident created time.
 
-* **remove_old_incidents_ids** - Removes old unneccesary incident ids from the last run object to avoid overloading.
+* **remove_old_incidents_ids()** - Removes old incident IDs from the last run object to avoid overloading.
 
-* **get_found_incident_ids** - Returns a list of the new fetched incident ids. This is for saving it into the last run object and filter duplicates in the next call of fetch-incidents.
+* **get_found_incident_ids()** - Returns a list of the new fetched incident IDs. This is for saving it into the last run object and filter duplicates in the next call of fetch-incidents.
 
-* **create_updated_last_run_object** - Creates a new last run object with a new time and limit for the next fetch.
+* **create_updated_last_run_object()** - Creates a new last run object with a new time and limit for the next fetch.
 
-* **update_last_run_object** - Updates the existing last run object.
+* **update_last_run_object()** - Updates the existing last run object.
 The function updates the found ids given from the function `get_found_incident_ids` and updates also the new time and limit given from the function `create_updated_last_run_object` and returns the updated last run object.
 
 Note. The solution is highly modular, this is done in part so you can only use specific functions and implement the others according to your needs.
