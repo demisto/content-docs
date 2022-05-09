@@ -135,7 +135,7 @@ During a **fetch-incidents** run, some edge-cases might cause missing incidents 
 * An update in the incident information: some implementations of fetch-incidents are using a query filter to fetch only specific incidents. If initially an incident did not match the query (i.e., it was not fetched) but at some point was updated so that now it does match the query, a **fetch-incidents** command that queries incidents from the product using a **time** field, will not find it.
 
 #### Solution
-Having the parameter look_back we can configure how nuch the fetch-incidents will look back in time (minutes) to get the incidents that were created a while ago but indexed a minute ago.
+Having the *look_back* parameter, we can configure how much the fetch-incidents will look back in time (minutes) to get the incidents that were created a while ago but indexed a minute ago.
 
 The solution functions are in [CommonServerPython](https://xsoar.pan.dev/docs/reference/api/common-server-python) and you can find the exact documentation there, but here is a short description.
 
