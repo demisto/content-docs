@@ -26,12 +26,15 @@ if demisto.command() == 'fetch-incidents':
 ```
 
 ## Last Run
-demisto.getLastRun() is the function that retrieves the previous run time. To avoid duplicating incidents, it's important that Cortex XSOAR only fetches events that occurred since the last time the function was run. This helps avoid duplicate incidents.
+`demisto.getLastRun()` is the function that retrieves the previous run time. To avoid duplicating incidents, it's important that Cortex XSOAR only fetches events that occurred since the last time the function was run. This helps avoid duplicate incidents.
 
 ```python
     # demisto.getLastRun() will returns an obj with the previous run in it.
     last_run = str(demisto.getLastRun())
 ```
+Note that the value of `demisto.getLastRun()` is not stored in between CLI command runs, but only in the incident fetch flow on the server side. Therefore, if you print out the value of `demisto.getLastRun()` in the integration code, its value will appear as `{}`.
+
+For debugging, you can save the value of `demisto.getLastRun()` to integration context, which does persist in between CLI commmand runs, or run the `fetch_incidents()` function twice within the same command run.
 
 ## First Run
 When an integration runs for the first time, the Last Run time will not be in the integration context. We catch this from failing by using an ```if``` statement. When the last run time is not specified, we use a time that is specified in the integration settings.
