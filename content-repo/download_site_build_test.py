@@ -1,4 +1,4 @@
-from download_site_builid import download_site_buiild
+from download_site_build import download_site_build
 import os
 import pytest
 
@@ -11,7 +11,7 @@ def test_download_site_build_non_forked_pr(requests_mock, test_file):
     with open(f'{BASE_DIR}/test_data/{test_file}', 'r') as f:
         circleci_response = f.read()
     requests_mock.get('https://circleci.com/api/v1.1/project/github/demisto/content-docs/153', text=circleci_response)
-    res = download_site_buiild(f'{BASE_DIR}/test_data/github-status-event.json')
+    res = download_site_build(f'{BASE_DIR}/test_data/github-status-event.json')
     assert not res
     assert requests_mock.call_count == 1
 
@@ -30,7 +30,7 @@ def test_download_site_build_forked_pr(requests_mock, tmp_path):
 } ]""")
     download_val = "dummy download"
     requests_mock.get('/dummy-download.txt', text=download_val)
-    res = download_site_buiild(f'{BASE_DIR}/test_data/github-status-event.json', dest_file)
+    res = download_site_build(f'{BASE_DIR}/test_data/github-status-event.json', dest_file)
     assert res == 345
     assert requests_mock.call_count == 3
     with open(dest_file, 'r') as f:
