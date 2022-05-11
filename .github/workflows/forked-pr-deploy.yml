@@ -63,8 +63,8 @@ jobs:
           npm install firebase-tools
           export GOOGLE_APPLICATION_CREDENTIALS="$HOME"/gcloud.json
 
-          echo "==== $(date): Firebase deploy... ===="
-          firebase hosting:channel:deploy "pull-request-${$FORKED_PR##*/}" --only xsoar.pan.dev < deploy-info-firebase.txt
+          echo "==== $(date): Firebase deploy for PR: $FORKED_PR ... ===="
+          firebase hosting:channel:deploy "pull-request-$FORKED_PR" --only xsoar.pan.dev > deploy-info-firebase.txt
           cat deploy-info-firebase.txt
           echo "==== $(date): Posting comment to PR ... ===="
           PR_NUM=$FORKED_PR pipenv run ./content-repo/post_github_comment.py deploy-info-firebase.txt

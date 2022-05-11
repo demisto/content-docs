@@ -157,7 +157,8 @@ const sidebars = {
             "integrations/openapi-codegen",
             "integrations/postman-codegen",
             "integrations/code-generator",
-            "integrations/scheduled-commands"
+            "integrations/scheduled-commands",
+            "integrations/yml-from-python-code-gen"
           ]
         }
       ]
@@ -196,7 +197,8 @@ const sidebars = {
         "incidents/incident-fields",
         "incidents/incident-jobs",
         "incidents/incident-classification-mapping",
-        "incidents/incident-pre-processing"
+        "incidents/incident-pre-processing",
+        "incidents/incident-lists"
       ]
     },
     {

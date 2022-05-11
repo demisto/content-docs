@@ -8,7 +8,7 @@ Cortex XSOAR can pull events from 3rd party tools and convert them into actionab
 ## The `fetch-incidents` Command
 The `fetch incidents` command is the function that Cortex XSOAR calls every minute to import new incidents and is triggered by the "Fetches incidents" parameter in the integration configuration. It is not necessary to configure the `fetch-incidents` command in the Integration Settings.
 
-![screen shot 2019-01-07 at 15 35 01](../doc_imgs/integrations/50771147-6aedb800-1292-11e9-833f-b5dd13e3507b.png)
+![screen shot 2019-01-07 at 15 35 01](/doc_imgs/integrations/50771147-6aedb800-1292-11e9-833f-b5dd13e3507b.png)
 
 
 Let's walk through the example below:
@@ -26,12 +26,15 @@ if demisto.command() == 'fetch-incidents':
 ```
 
 ## Last Run
-demisto.getLastRun() is the function that retrieves the previous run time. To avoid duplicating incidents, it's important that Cortex XSOAR only fetches events that occurred since the last time the function was run. This helps avoid duplicate incidents.
+`demisto.getLastRun()` is the function that retrieves the previous run time. To avoid duplicating incidents, it's important that Cortex XSOAR only fetches events that occurred since the last time the function was run. This helps avoid duplicate incidents.
 
 ```python
     # demisto.getLastRun() will returns an obj with the previous run in it.
     last_run = str(demisto.getLastRun())
 ```
+Note that the value of `demisto.getLastRun()` is not stored in between CLI command runs, but only in the incident fetch flow on the server side. Therefore, if you print out the value of `demisto.getLastRun()` in the integration code, its value will appear as `{}`.
+
+For debugging, you can save the value of `demisto.getLastRun()` to integration context, which does persist in between CLI commmand runs, or run the `fetch_incidents()` function twice within the same command run.
 
 ## First Run
 When an integration runs for the first time, the Last Run time will not be in the integration context. We catch this from failing by using an ```if``` statement. When the last run time is not specified, we use a time that is specified in the integration settings.
@@ -203,4 +206,4 @@ def fetch_incidents(params: dict):
 
 ## Troubleshooting
 For troubleshooting fetch-incident execute `!integration_instance_name-fetch` in the Playground, it should return the incidents.
-<img src="../doc_imgs/integrations/70272523-0f34f300-17b1-11ea-89a0-e4e0e359f614.png" width="480"></img>
+<img src="/doc_imgs/integrations/70272523-0f34f300-17b1-11ea-89a0-e4e0e359f614.png" width="480"></img>
