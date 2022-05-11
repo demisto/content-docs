@@ -54,6 +54,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FORKED_PR: ${{ steps.build_download.outputs.forked_pr }}
+          FIREBASE_JSON_KEY: ${{ secrets.FIREBASE_JSON_KEY }}
         run: |
           echo "==== $(date): extract build zip... ===="
           tar xzf build-site.tar.gz
@@ -62,6 +63,7 @@ jobs:
           echo $FIREBASE_JSON_KEY > "$HOME"/gcloud.json
           npm install firebase-tools
           export GOOGLE_APPLICATION_CREDENTIALS="$HOME"/gcloud.json
+          export PATH="$PATH:`pwd`/node_modules/.bin"
 
           echo "==== $(date): Firebase deploy for PR: $FORKED_PR ... ===="
           firebase hosting:channel:deploy "pull-request-$FORKED_PR" --only xsoar.pan.dev > deploy-info-firebase.txt
