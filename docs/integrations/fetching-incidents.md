@@ -137,18 +137,26 @@ During a **fetch-incidents** run, some edge-cases might cause missing incidents 
 #### Solution
 Having the *look_back* parameter, we can configure how much the fetch-incidents will look back in time (minutes) to get the incidents that were created a while ago but indexed a minute ago.
 
+##### Related LastRun Fields
 As part of the feature, the following fields are stored in the last run object and used in the methods described below:
 * **time** - As in a regular fetch, the time to fetch from in the next fetch call.
-* **limit** - The limit will be increased by the limit parameter value in case we will need to do the next fetch from the same time we did the current fetch, this is so that we do not get the same incidents result as we got in the current fetch but we will get more incidents and filter out the duplicates.
+* **limit** - In case the current fetch run has the same start_time we did the last fetch (determined in `get_fetch_run_time_range()`), the limit will be increased by the limit parameter value, and then incidents we already got in the last fetches will be filtered out.
 * **found_incident_ids** - IDs of incidents fetched in previous runs. Used for filtering duplicates in the next runs.
 
-The generic methods for this feature are implemented in [CommonServerPython](https://xsoar.pan.dev/docs/reference/api/common-server-python) and you can find the exact documentation there, but here is a short description.
+##### Related Methods
+The generic methods for this feature are implemented in [CommonServerPython](https://xsoar.pan.dev/docs/reference/api/common-server-python) and you can find the full documentation there.
 
 * **get_fetch_run_time_range()** - using the last run object and other necessary parameters, this method calculates and retrieves the time range from which to fetch.
 If the parameter look_back is given, then the start time will always be >= than `now - look_back`.
 
 * **filter_incidents_by_duplicates_and_limit()** - After getting the incidents from the 3rd party API call, we need to filter out the duplicate incidents.
 In the example above, after an incident A is indexed the fetch will bring incidents A and B, then we must return only A because B was already fetched. In addition, after filtering duplicates, if we still have more incidents than the limit, the function will return only by the limit.
+
+* **update_last_run_object()** - Updates the existing last run object.
+The function updates the found ids given from the function `get_found_incident_ids` and updates also the new time and limit given from the function `create_updated_last_run_object` and returns the updated last run object.
+
+###### Helper Methods
+The following helpers are used in the methods above, and should not be used at the integration scope.
 
 * **get_latest_incident_created_time()** - Given a list of incidents and the created time field, the function will return the latest incident created time.
 
@@ -157,9 +165,6 @@ In the example above, after an incident A is indexed the fetch will bring incide
 * **get_found_incident_ids()** - Returns a list of the new fetched incident IDs. This is for saving it into the last run object and filter duplicates in the next call of fetch-incidents.
 
 * **create_updated_last_run_object()** - Creates a new last run object with a new time and limit for the next fetch.
-
-* **update_last_run_object()** - Updates the existing last run object.
-The function updates the found ids given from the function `get_found_incident_ids` and updates also the new time and limit given from the function `create_updated_last_run_object` and returns the updated last run object.
 
 ### Example fetch with look back
 ```python
