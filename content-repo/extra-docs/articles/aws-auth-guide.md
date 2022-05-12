@@ -31,6 +31,15 @@ a _Trust Relationship_ and establishes a trusted relationship between two resour
 
 More information regarding [Trust Relationships can be found here.](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/edit_trust.html)
 
+### Define Regional STS Endpoint
+Go to Cortex XSOAR User-Interface and follow these steps:
+1) Settings -> ABOUT -> Troubleshooting
+2) Press on "Add Server Configuration"
+3) Fill the Key with the string: python.pass.extra.keys
+4) Fill the Value with the string: --env=AWS_STS_REGIONAL_ENDPOINTS=regional
+5) Run in the CLI /reset_containers
+6) Optional: You can test that the env is set properly by running the following in the server CLI - !py script="import os; print(os.environ)"
+
 ### How XSOAR uses STS to Authenticate
 
 Your XSOAR Instance assumes a role using the following process flow:
