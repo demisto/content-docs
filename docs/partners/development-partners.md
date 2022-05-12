@@ -88,7 +88,7 @@ With decades of experience in consulting, project management, IT integration and
 ScienceSoft Cybersecurity is a team of experienced cybersecurity developers/consultants, certified hackers/pen testers, and SIEM/SOAR/XDR experts whose job is to protect organizations, simulate breaking into them and discover risks & vulnerabilities before the criminals find them. ScienceSoft helps companies fix vulnerabilities, test products, and put solid security controls in place. Our teams work in a fully secure, closed-off and controlled environment compliant with ISO 27001. We specialize in custom cybersecurity app/integration development and professional services.
 
 → Contact Alex Nivin [anivin@scnsoft.com](mailto:anivin@scnsoft.com)
-([www.scnsoft.com](www.scnsoft.com))
+([www.scnsoft.com](https://www.scnsoft.com))
  
 
 ### SOAR XPERTS
