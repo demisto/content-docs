@@ -249,7 +249,6 @@ def fetch_incidents(params: dict):
 - Fetching incidents is flexible, you can use the various functions according to your needs.
 - You can also use the generic methods for regular ***fetch-incidents*** without lookback.
 - If the *look_back* value is increased by *k* minutes, you may get duplicate incidents for the *k* minutes that overlap with the previous fetch.
->>>>>>> ed60cf32f77f6d158823b3a71a96016de267f07b
 
 ## Troubleshooting
 To troubleshoot ***fetch-incident***, execute `!integration_instance_name-fetch debug-mode=true` in the Playground to return the incidents.  
