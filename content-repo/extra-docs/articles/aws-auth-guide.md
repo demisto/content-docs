@@ -33,12 +33,12 @@ More information regarding [Trust Relationships can be found here.](https://docs
 
 ### Define Regional STS Endpoint
 Go to Cortex XSOAR instance and perform the following steps:
-1) Settings -> ABOUT -> Troubleshooting
-2) Press on "Add Server Configuration"
-3) Fill the Key with the string: **python.pass.extra.keys**
-4) Fill the Value with the string: **--env=AWS_STS_REGIONAL_ENDPOINTS=regional**
-5) Run in the CLI: `/reset_containers`
-6) Verify that the env is set properly by running the following in the server CLI: `!py script="import os; print(os.environ)"`
+* Settings -> ABOUT -> Troubleshooting
+* Press on "Add Server Configuration"
+* Fill the Key with the string: **python.pass.extra.keys**
+* Fill the Value with the string: **--env=AWS_STS_REGIONAL_ENDPOINTS=regional**
+* Run in the CLI: `/reset_containers`
+* Verify that the env is set properly by running the following in the server CLI: `!py script="import os; print(os.environ)"`
 
 ### How XSOAR uses STS to Authenticate
 
