@@ -3,9 +3,15 @@ id: fetching-incidents
 title: Fetching Incidents
 ---
 
-Cortex XSOAR pulls events from 3rd party tools and converts them into incidents using the following elements.
+Cortex XSOAR pulls events from 3rd party tools and converts them into incidents using fetching commands, parameters, and queries.  
 
-## fetch-incidents
+This topic provides:  
+- A description of the fetching command and parameters
+- A description of creating fetched incidents in Cortex XSOAR
+- An explanation of how missing incidents are fetched with generic lookback methods
+- Troubleshooting tips
+
+# fetch-incidents Command
 The ***fetch incidents*** command is the function that Cortex XSOAR calls every minute to import new incidents and is triggered by the *Fetches incidents* parameter in the integration configuration. It is not necessary to configure the ***fetch-incidents*** command in the Integration Settings.
 
 ![screen shot 2019-01-07 at 15 35 01](../doc_imgs/integrations/50771147-6aedb800-1292-11e9-833f-b5dd13e3507b.png)
@@ -42,7 +48,7 @@ To set up the first run properly, use an ```if``` statement with a time that is 
 
 It is best practice to specify how far back in time to fetch incidents on the first run. This is a configurable parameter in the integration settings.
 
-## Queries and Parameters
+## Query and Parameters
 
 Queries and parameters enable filtering events.  
 For example, you may want to import only certain event types into Cortex XSOAR. To do this, you need to query the API for only that specific event type. These are configurable parameters in the integration settings.
@@ -68,9 +74,7 @@ The *Fetch Limit* parameter sets the maximum number of incidents to get per fetc
 **Note:** 
 If you enter a larger number or leave *Fetch Limit* blank, the **Test** button will fail.
 
-# Fetch Incident Flow  
-
-## 1. Create an Incident
+# Create an Incident
 Incidents are created by building an array of incident objects. These objects must contain:
 - The ```name``` of the incident
 - When the incident ```occurred``` 
@@ -111,7 +115,7 @@ incident = {
 }
 ```
 
-## 2. Set Last Run
+### Set Last Run
 When the last events is retrieved, you need to save the new last run time to the integration context. This timestamp will be used the next time the ***fetch-incidents*** function runs.  
 **Notes:**
 - When setting *demisto.setLastRun*, the values of the dictionary must be type **string**.  
@@ -124,11 +128,11 @@ demisto.setLastRun({
 })
 ```
 
-## 3. Send the Incidents to Cortex XSOAR
+### Send the Incidents to Cortex XSOAR
 When all of the incidents are created, the *demisto.incidents()* function returns an array of incidents in Cortex XSOAR.  
 This is similar to the *demisto.results()* function, but is used exclusively to handle incident objects.
 
-### Example
+#### Example
 
 ```python
 # this command will create incidents in Cortex XSOAR
@@ -141,26 +145,24 @@ If there are no incidents to return,  *demisto.incidents()* returns an empty lis
 demisto.incidents([])
 ```
 
-# Advanced
+# Fetch Missing Incidents with Generic Lookback Methods
+This advanced feature uses generic lookback methods for fetching missing incidents.
 
-## Generic Fetch with Lookback
-Use the generic lookback methods for fetching missing incidents.
-
-### Use case
+## Use case
 During a ***fetch-incidents*** run, some edge-case scenarios may cause missing incidents from the 3rd-party product.  
 The most common scenarios are:
 * Indexing issues in the product: For example, if incident A was created before incident B and only B was indexed, ***fetch-incidents*** will fetch only B and not A. If A was indexed after the fetch was called, the next fetch will fetch only from the created time of B.
-* An update in the incident information: Some implementations of ***fetch-incidents*** use a query filter to fetch only specific incidents. If initially an incident did not match the query (meaning, it was not fetched) but at some point was updated so that it now matches the query, ***fetch-incidents*** that queries incidents from the product using a **time** field will not find it.
+* An update in the incident information: Some implementations of ***fetch-incidents*** use a query filter to fetch only specific incidents. If initially an incident did not match the query (meaning, it was not fetched) but at some point was updated so that it now matches the query, ***fetch-incidents*** will not pull the updated incident because the time to fetch it already passed.
 
-#### Solution
+### Solution
 The *look_back* parameter enables configuring how far back in time (in minutes) ***fetch-incidents*** will look to get the incidents that were created a while ago but indexed a few minutes ago.  
-In addition, the  *demisto.getLastRun()* function stores the following fields to be used by the lookback methods:
-- **time** - The time to fetch in the next fetch call (as in a regular fetch).
-- **limit** - The number of incidents to fetch. Increase this value if you need to do the next fetch for the same time as the current fetch. This enables getting more incident results, and you can then filter out the duplicates from the current fetch.
+In addition, the **LastRun** object stores the following fields to be used by the lookback methods:
+- **time** - The time to fetch the next fetch call (as in a regular fetch).
+- **limit** - The number of incidents retrieved in the next fetch. If the current fetch run has the same start_time as the last fetch (determined in **get_fetch_run_time_range()**), the limit will be increased by the limit parameter value, and then incidents retrieved in the last fetch will be filtered out.
 - **found_incident_ids** - The IDs of incidents fetched in previous runs. Used for filtering duplicates in the next runs.
 
-##### Lookback Methods
-Lookback is implemented using the following methods. For the generic methods for lookback, see [CommonServerPython](https://xsoar.pan.dev/docs/reference/api/common-server-python).
+#### Lookback Methods
+Lookback is implemented using the following generic methods. For more information about lookback generic methods, see [CommonServerPython](https://xsoar.pan.dev/docs/reference/api/common-server-python).
 
 - **get_fetch_run_time_range()** - Using the last run object and other parameters, this method calculates and retrieves the time range in which to fetch.  
    If the *look_back* parameter is defined, then the start time will always be greater than or equal to `now - look_back`.
@@ -173,9 +175,9 @@ If after filtering duplicates you have more incidents than the limit, ***fetch-i
 - **update_last_run_object()** - Updates the existing last run object.  
 The function updates the found IDs from the **get_found_incident_ids** function and also updates the new time and limit from the  **create_updated_last_run_object** function and returns the updated last run object.
 
-###### Helper Methods  
+##### Helper Methods  
 
-The following helpers are used in the above lookback methods, and should not be used in the integration scope.
+The following helpers are used in the above lookback methods, and should not be used when implementing ***fetch-incidents*** in the integration.
 
 - **get_latest_incident_created_time()** - Given a list of incidents and the created time field, this function will return the latest incident created time.
 
@@ -199,14 +201,14 @@ def fetch_incidents(params: dict):
 
     last_run = demisto.getLastRun()
 
-    # The fetch_limit might be different than the fetch_limit_param in case the start time in the current fetch is the same as the start time in the previous fetch.
+    # If the start time in the current fetch is the same as the start time in the previous fetch, the fetch_limit may be different from the fetch_limit_param.
     fetch_limit = last_run.get('limit') or fetch_limit_param
 
     # It's important to get here the end_fetch_time to pass it into the update_last_run_object function.
     start_fetch_time, end_fetch_time = get_fetch_run_time_range(last_run=last_run, first_fetch=first_fetch,
                                                                 look_back=look_back, timezone=time_zone)
 
-    # Functions for building the query and send the API call to get the incidents.
+    # Here you insert functions for building the query and sending the API call to get the incidents. For example:
     query = build_query(start_fetch_time, end_fetch_time, fetch_limit)
     incidents_res = get_incidents_request(query)
 
@@ -221,12 +223,12 @@ def fetch_incidents(params: dict):
     demisto.setLastRun(last_run)
 ```
 
-#### Notes:
+### Notes:
 - Fetching incidents is flexible, you can use the various functions according to your needs.
-- You can use ***fetch-incidents*** without lookback (by setting *look_back*=0).
-- If the *look_back* value is increased by *k* minutes, you may get duplicate incidents for the next *k* minutes.
+- You can also use the generic methods for regular ***fetch-incidents*** without lookback.
+- If the *look_back* value is increased by *k* minutes, you may get duplicate incidents for the *k* minutes that overlap with the previous fetch.
 
-## Troubleshooting
+# Troubleshooting
 To troubleshoot ***fetch-incident***, execute `!integration_instance_name-fetch` in the Playground to return the incidents.  
 
 <img src="../doc_imgs/integrations/70272523-0f34f300-17b1-11ea-89a0-e4e0e359f614.png" width="480"></img>
