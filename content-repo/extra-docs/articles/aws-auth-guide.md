@@ -18,18 +18,14 @@ AWS Integrations provide the option of using the AWS Security Token Service (STS
 * [Amazon STS documentation](https://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html)
 * [AWS IAM Roles documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html)
 
-### Basic Concepts of STS
-
-STS allows a resource to "trade-in" the credentials the resource has attached to it for other credentials.
-
-For your XSOAR instance or engine, the credentials attached are the EC2 Metadata. The metadata is essentially a group 
-of environment variables that the instance can use to "trade-in" for another set of credentials. This method of 
-credential delegation is much more secure since it does not require _Access Keys_ and _Secret Keys_ to be stored anywhere.
-
-To facilitate this "trade-in" process, there needs to be a level of trust between the resources. This is called 
-a _Trust Relationship_ and establishes a trusted relationship between two resources.
-
-More information regarding [Trust Relationships can be found here.](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/edit_trust.html)
+### Define Regional STS Endpoint
+Go to Cortex XSOAR instance and perform the following steps:
+1) Settings -> ABOUT -> Troubleshooting
+2) Press on "Add Server Configuration"
+3) Fill the Key with the string: **python.pass.extra.keys**
+4) Fill the Value with the string: **--env=AWS_STS_REGIONAL_ENDPOINTS=regional**
+5) Run in the CLI: `/reset_containers`
+6) Verify that the env is set properly by running the following in the server CLI: `!py script="import os; print(os.environ)"`
 
 ### Define Regional STS Endpoint
 Go to Cortex XSOAR User-Interface and follow these steps:
