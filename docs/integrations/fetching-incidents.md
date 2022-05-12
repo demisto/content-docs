@@ -229,6 +229,6 @@ def fetch_incidents(params: dict):
 - If the *look_back* value is increased by *k* minutes, you may get duplicate incidents for the *k* minutes that overlap with the previous fetch.
 
 ## Troubleshooting
-To troubleshoot ***fetch-incident***, execute `!integration_instance_name-fetch` in the Playground to return the incidents.  
+To troubleshoot ***fetch-incident***, execute `!integration_instance_name-fetch debug-mode=true` in the Playground to return the incidents.  
 
 <img src="../doc_imgs/integrations/70272523-0f34f300-17b1-11ea-89a0-e4e0e359f614.png" width="480"></img>
