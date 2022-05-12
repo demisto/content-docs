@@ -158,7 +158,7 @@ The most common scenarios are:
 The *look_back* parameter enables configuring how far back in time (in minutes) ***fetch-incidents*** will look to get the incidents that were created a while ago but indexed a few minutes ago.  
 In addition, the **LastRun** object stores the following fields to be used by the lookback methods:
 - **time** - The time to fetch the next fetch call (as in a regular fetch).
-- **limit** - The number of incidents retrieved in the next fetch. If the current fetch run has the same start_time as the last fetch (determined in **get_fetch_run_time_range()**), the limit will be increased by the limit parameter value, and then incidents retrieved in the last fetch will be filtered out.
+- **limit** - The maximal number of incidents retrieved in the next fetch. If the current fetch run has the same start_time as the last fetch (determined in **get_fetch_run_time_range()**), this field will be increased by the limit instance parameter value, and then incidents retrieved in the last fetch will be filtered out.
 - **found_incident_ids** - The IDs of incidents fetched in previous runs. Used for filtering duplicates in the next runs.
 
 ### Lookback Methods
