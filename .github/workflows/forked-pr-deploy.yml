@@ -26,7 +26,7 @@ jobs:
           pip install pipenv
           pipenv install
           echo "==== $(date): Download build site... ===="
-          pipenv run ./content-repo/download_site_builid.py -e "$GITHUB_EVENT_PATH"
+          pipenv run ./content-repo/download_site_build.py -e "$GITHUB_EVENT_PATH"
       - name: Setup Node
         if: "steps.build_download.outputs.forked_pr > 0"
         uses: actions/setup-node@v1
@@ -54,6 +54,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FORKED_PR: ${{ steps.build_download.outputs.forked_pr }}
+          FIREBASE_JSON_KEY: ${{ secrets.FIREBASE_JSON_KEY }}
         run: |
           echo "==== $(date): extract build zip... ===="
           tar xzf build-site.tar.gz
@@ -62,9 +63,10 @@ jobs:
           echo $FIREBASE_JSON_KEY > "$HOME"/gcloud.json
           npm install firebase-tools
           export GOOGLE_APPLICATION_CREDENTIALS="$HOME"/gcloud.json
+          export PATH="$PATH:`pwd`/node_modules/.bin"
 
-          echo "==== $(date): Firebase deploy... ===="
-          firebase hosting:channel:deploy "pull-request-${$FORKED_PR##*/}" --only xsoar.pan.dev < deploy-info-firebase.txt
+          echo "==== $(date): Firebase deploy for PR: $FORKED_PR ... ===="
+          firebase hosting:channel:deploy "pull-request-$FORKED_PR" --only xsoar.pan.dev > deploy-info-firebase.txt
           cat deploy-info-firebase.txt
           echo "==== $(date): Posting comment to PR ... ===="
           PR_NUM=$FORKED_PR pipenv run ./content-repo/post_github_comment.py deploy-info-firebase.txt
