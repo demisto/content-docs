@@ -127,6 +127,24 @@ If you do not have any incidents to return then just return an empty list to ```
 demisto.incidents([])
 ```
 
+## Fetch History
+In XSOAR Version 6.8 and above, it is possible to view the last **fetch-incidents**/**fetch-indicators** runs using the Fetch History modal. To enter the modal, click the button with the history icon next to the Integration Instance settings.
+<img src="/doc_imgs/incidents/fetchhistory.gif"></img>
+The fields available for each record are:
+1. **Pulled At** - The date and time when the fetch run was completed.
+2. **Duration** - How long did the fetch take.
+3. **Last Run** - The value of the last run object.
+4. **Message** - One of the following:
+   a. If successfully finished, describes how many Incidents/Indicators were pulled/dropped. If nothing was pulled/dropped, the message will be "Completed".
+   b. In case of an error, displays the error message.
+   c. In Long-Running Integrations, displays the info/error message forwarded to `demisto.updateModuleHealth()`. Set the *is_error* boolean argument of this method to determine the message type.
+5. **Source IDs** - If available, displays the Incident IDs as they appear in the 3rd-party product. The IDs are collected from Incidents that contain the **dbotMirrorId** field.
+   Note: the **dbotMirrorId** field should be determined at the integration level rather than the mapping level.
+
+* The amount of records stored for every instance is 20 by default. It can be modified using the **fetch.history.size** server configuration.
+* This feature can be turned off by setting the **fetch.history.enabled** server configuration to *false*.
+
+
 ## Troubleshooting
 For troubleshooting fetch-incident execute `!integration_instance_name-fetch` in the Playground, it should return the incidents.
 <img src="/doc_imgs/integrations/70272523-0f34f300-17b1-11ea-89a0-e4e0e359f614.png" width="480"></img>
