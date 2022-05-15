@@ -80,6 +80,10 @@ Incidents are created by building an array of incident objects. These objects mu
 - When the incident ```occurred``` 
 - The ```rawJSON``` key for the incident
 
+Recommended to include:
+- ```details``` - a brief description of the incident.
+- ```dbotMirrorId``` - the ID of the incident in the 3rd-party product (see [Fetch History](https://xsoar.pan.dev/docs/integrations/fetching-incidents#fetch-history)).
+
 #### Example
 
 ```python
@@ -97,6 +101,7 @@ for event in events:
     incident = {
         'name': event['name'],        # name is required field, must be set
         'occurred': event['create_time'], # must be string of a format ISO8601
+        'dbotMirrorId': str(event['event_id']),  # must be a string
         'rawJSON': json.dumps(event)  # the original event, this will allow mapping of the event in the mapping stage. Don't forget to `json.dumps`
     }
     incidents.append(incident)
@@ -150,14 +155,14 @@ In XSOAR Versions 6.8 and above, it is possible to observe the results of the la
 
 When implementing a **fetch-incidents** command, in some cases we can populate extra data for the following columns in the modal:
 
-1. In Long-Running Integrations, the info/error message given in `demisto.updateModuleHealth()` will be displayed in the **Message** column. Use the *is_error* boolean argument of this method to determine the message type. For example:
+1. **Message** - In Long-Running Integrations, the info/error message given in `demisto.updateModuleHealth()` will be displayed in the **Message** column. Use the *is_error* boolean argument of this method to determine the message type. For example:
    
    ```python
    demisto.updateModuleHealth("Could not connect to client.", is_error=True)
    ```
    The above line will produce a new record in the modal, and its **Message** value will be `Error: Could not connect to client.`.
 
-1. If Incidents on the 3rd-party product have IDs, it is possible to display them in the **Source IDs** column by adding the `dbotMirrorId` field as part of the incident dictionary. For example:
+1. **Source IDs** - If Incidents on the 3rd-party product have IDs, it is possible to display them in the **Source IDs** column by adding the `dbotMirrorId` field as part of the incident dictionary. For example:
    
    ```python
    demisto.incidents([
@@ -167,7 +172,7 @@ When implementing a **fetch-incidents** command, in some cases we can populate e
    ```
    The above will produce a new record in the modal, and its **Source IDs** value will be `123, 124`.
    
-   **Note:** the population of the fetch run information occurs **before** the classification, therefore this field must be defined at the integration code level rather than the classification & mapping level.
+   **Note:** the population of the fetch history information occurs **before** the classification, therefore this field must be defined at the integration code level rather than the classification & mapping level.
 
 ## Fetch Missing Incidents with Generic Lookback Methods
 This advanced feature uses generic lookback methods for fetching missing incidents.
