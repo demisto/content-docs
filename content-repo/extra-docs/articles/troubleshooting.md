@@ -245,3 +245,35 @@ The **Integration-Instance.log** is located in  `/var/log/demisto/`.
 These log level modes are only for the configured instance and do not affect the log for the entire server.
 
 Note that the log level configuration for an integration instance may affect performance of the integration instance, therefore use this feature only for troubleshooting, and set it to Off when you have the required information in the log.
+
+## Fetch Incidents Troubleshooting
+### Fetch History
+In XSOAR Versions 6.8 and above, it is possible to observe the results of the last **fetch-incidents**/**fetch-indicators** runs using the Fetch History modal. To view the modal, click the button with the history icon next to the Integration Instance settings.
+<img src="../../docs/doc_imgs/incidents/fetchhistory.gif"></img>
+
+The following fields are stored for each record:
+
+1. **Pulled At** - The date and time when the fetch run was completed.
+1. **Duration** - How long did the fetch take.
+1. **Last Run** - The contents of the last run object.
+1. **Message** - Depending on the fetch run status, will be one of the following:
+   
+   a. If successfully finished, how many Incidents/Indicators were pulled or dropped. If nothing was pulled or dropped, the message will be "Completed".
+   a. In case of an error, the error details.
+   a. In Long-Running Integrations, the info/error message forwarded to `demisto.updateModuleHealth()`. The *is_error* boolean argument of this method determines the message type.
+1. **Source IDs** - If available, displays the Incident IDs as they appear in the 3rd-party product. The IDs are collected from Incidents that contain the `dbotMirrorId` field.
+   Note: the `dbotMirrorId` field should be determined at the integration level rather than the mapping level.
+
+#### Server Configurations
+| Key | Description | Default Value |
+| --- | --- | --- |
+| **fetch.history.size** | The amount of records stored for every instance. | 20 |
+| **fetch.history.enabled** | Whether or not the feature is enabled. | true |
+
+### Debugging
+1. In case of a reoccurring issue with a fetching instance, follow [these steps](https://xsoar.pan.dev/docs/reference/articles/troubleshooting-guide#fetch-incidents-in-debug-mode) to produce a debug log of a single fetch run.
+
+2. If the issue does not reproduce consistently:
+
+   - [Set the log level](https://xsoar.pan.dev/docs/reference/articles/troubleshooting-guide#integration-debug-logs) of the specific instance for more convenient tracking of the fetch logs over time.
+   - Keep track on the [Fetch History](https://xsoar.pan.dev/docs/reference/articles/troubleshooting-guide#fetch-history) of this instance. Consider temporarily setting the **fetch.history.size** server configuration to store more records.

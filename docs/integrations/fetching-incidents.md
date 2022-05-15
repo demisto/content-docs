@@ -146,26 +146,28 @@ demisto.incidents([])
 ```
 
 ## Fetch History
-In XSOAR Versions 6.8 and above, it is possible to observe the results of the last **fetch-incidents**/**fetch-indicators** runs using the Fetch History modal. To view the modal, click the button with the history icon next to the Integration Instance settings.
-<img src="/doc_imgs/incidents/fetchhistory.gif"></img>
+In XSOAR Versions 6.8 and above, it is possible to observe the results of the last **fetch-incidents**/**fetch-indicators** runs using the Fetch History modal. For more details, visit the [Fetch History](https://xsoar.pan.dev/docs/reference/articles/troubleshooting-guide#fetch-history) documentation.
 
-The following fields are stored for each record:
+When implementing a **fetch-incidents** command, in some cases we can populate extra data for the following columns in the modal:
 
-1. **Pulled At** - The date and time when the fetch run was completed.
-1. **Duration** - How long did the fetch take.
-1. **Last Run** - The contents of the last run object.
-1. **Message** - Depending on the fetch run status, will be one of the following:
-   a. If successfully finished, how many Incidents/Indicators were pulled or dropped. If nothing was pulled or dropped, the message will be "Completed".
-   a. In case of an error, the error details.
-   a. In Long-Running Integrations, the info/error message forwarded to `demisto.updateModuleHealth()`. The *is_error* boolean argument of this method determines the message type.
-1. **Source IDs** - If available, displays the Incident IDs as they appear in the 3rd-party product. The IDs are collected from Incidents that contain the `dbotMirrorId` field.
-   Note: the `dbotMirrorId` field should be determined at the integration level rather than the mapping level.
+1. In Long-Running Integrations, the info/error message given in `demisto.updateModuleHealth()` will be displayed in the **Message** column. Use the *is_error* boolean argument of this method to determine the message type. For example:
+   
+   ```python
+   demisto.updateModuleHealth("Could not connect to client.", is_error=True)
+   ```
+   The above line will produce a new record in the modal, and its **Message** value will be `Error: Could not connect to client.`.
 
-### Server Configurations
-| Key | Description | Default Value |
-| --- | --- | --- |
-| **fetch.history.size** | The amount of records stored for every instance. | 20 |
-| **fetch.history.enabled** | Whether or not the feature is enabled. | true |
+1. If Incidents on the 3rd-party product have IDs, it is possible to display them in the **Source IDs** column by adding the `dbotMirrorId` field as part of the incident dictionary. For example:
+   
+   ```python
+   demisto.incidents([
+       {"name": "This is an incident.", "dbotMirrorId": "123"},
+       {"name": "This is another incident.", "dbotMirrorId": "124"},
+   ])
+   ```
+   The above will produce a new record in the modal, and its **Source IDs** value will be `123, 124`.
+   
+   **Note:** the population of the fetch run information occurs **before** the classification, therefore this field must be defined at the integration code level rather than the classification & mapping level.
 
 ## Fetch Missing Incidents with Generic Lookback Methods
 This advanced feature uses generic lookback methods for fetching missing incidents.
