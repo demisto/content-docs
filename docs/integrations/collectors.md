@@ -13,15 +13,18 @@ Collection integrations are developed the same as other integrations. They provi
 ## Naming Convention
 Collection Integration names (`id`, `name` and `display` fields) should end with the words **Event Collector**. This consistent naming convention ensures that users can easily understand what the integration is used for.
 
-## Supported Server Version
-A Collection integration's YAML file _must_ have the following field `fromversion: 6.8.0`. This is because Collections integrations are only supported from server version 6.8.0 and onwards.
-
-
 ## Required Keys
-Every Event Collection integration should have the following key in the integration YAML file:
+- Every Event Collection integration should have the `isfetchevents` key in the integration YAML file, to indicate that this integration is a Collection integration.
+- A Collection integration's YAML file must have the `fromversion: 6.8.0` field. This is because Collection integrations are only supported from server version 6.8.0 and onwards.
+- Since Collection integrations are only supported in XSIAM make sure that your YML file includes the `marketplaces` key with the `-marketplacev2` value.
+
+Example:
 ```yml
 script:
   isfetchevents: true
+fromversion: 6.8.0
+marketplaces:
+- marketplacev2
 ```
 
 ## Commands
