@@ -147,6 +147,7 @@ const sidebars = {
           collapsed: true,
           items: [
             "integrations/feeds",
+            "integrations/event-collectors",
             "integrations/iam-integrations",
             "integrations/powershell-code",
             "integrations/fetching-credentials",
