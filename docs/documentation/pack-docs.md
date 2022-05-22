@@ -5,7 +5,7 @@ title: Pack Documentation
 
 Content Packs displayed in the Cortex XSOAR Marketplace contain 2 main documentation sections: 
 * **Description**: displayed in the Content Pack card when browsing the Marketplace and in the top of the *Details* tab.
-* **Video**: displayed in the main display area and in the middle of the *Details* tab.
+* **Videos**: displayed in the main display area and in the middle of the *Details* tab.
 * **README**: displayed in the main display area and in the bottom of the *Details* tab.
 
 #### Screenshots
