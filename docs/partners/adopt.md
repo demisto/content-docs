@@ -140,7 +140,7 @@ Once the Cortex XSOAR engineering team merges your pull request, you will have s
 
 </details>
 
-</br>
+<br/>
 <strong>Command Line Instructions</strong>
 <details>
 <summary>Click here to see the command line instructions</summary>
