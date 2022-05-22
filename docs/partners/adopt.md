@@ -28,19 +28,17 @@ The process to Adopt-a-Pack takes under 5 minutes! Follow the step by step instr
 
 <br/>
 
-Please follow the below steps if you are working on a cloned Github repository from an IDE: 
+Please follow the below steps if you are working on a cloned GitHub repository from an IDE: 
 
 1. Locate your company's pack folder and open the `README.md` file. Paste the below text into the file: 
 
     ```
-    Note: Support for this pack moved to the partner on MONTH, DAY, YEAR.
-    
-    Please contact the partner directly via the support link on the right.
+    Note: Support for this Pack will be moved to the Partner on MONTH, DAY, YEAR.
     ```
     Make sure you change the `MONTH`, `DAY`, and `YEAR` to the appropriate date that is 90 days from your submittal date.
 
     - Once complete, save these changes and run `demisto-sdk update-release-notes -i <path to pack> -f` to update the release notes. See [documentation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/update_release_notes/README.md). After the command has been completed, it will create the new release note Markdown file in the `ReleaseNotes` folder and update the version number in `pack_metadata.json`. Before continuing, you need to add the following text to the release note: `Start of adoption process, update to readme file`
-2. Now, it’s time to save and commit the changes as a Github pull request. Once you publish the changes via Visual Studio, Github will prompt you to open a pull request. When prompted, click the green button “Compare & pull request” 
+2. Now, it’s time to save and commit the changes as a GitHub pull request. Once you publish the changes via Visual Studio, GitHub will prompt you to open a pull request. When prompted, click the green button “Compare & pull request” 
     - Double check the pull request to ensure all changes are correct 
     - Change the pull request title to _Company Name Pack Adoption_ and adjust the description to _Updating README file for adoption_.
     - When ready, click the green button “Create pull request” on the bottom of the page 
@@ -50,7 +48,7 @@ Please follow the below steps if you are working on a cloned Github repository f
 1. Update the release note just as you did in the first pull request but change the text to the below:
     
     ```
-    Note: Support for this pack moved to the partner on MONTH, DAY, YEAR.
+    Note: Support for this Pack moved to the partner on MONTH, DAY, YEAR.
     
     Please contact the partner directly via the support link on the right.
     ```
@@ -65,7 +63,7 @@ Please follow the below steps if you are working on a cloned Github repository f
     
 3. Once everything is updated, save your changes and run the `demisto-sdk update-release-notes -i <path to pack> -f` as you did in the first pull request.
 
-Next, open your pull request in Github as you did the first time and the engineers for Cortex XSOAR will review, approve and merge your newly adopted pack! 
+Next, open your pull request in GitHub as you did the first time and the engineers for Cortex XSOAR will review, approve and merge your newly adopted pack! 
 
 
 </details>
@@ -74,9 +72,9 @@ Next, open your pull request in Github as you did the first time and the enginee
 <br/>
  
  
-  <strong>Github Instructions</strong>: If you prefer to create the pull request directly from Github, please follow the below step by step instructions. For additional guidance, watch the <a href="https://www.youtube.com/watch?v=9mInBTuC6AE">Github video overview</a>. 
+  <strong>GitHub Instructions</strong>: If you prefer to create the pull request directly from GitHub, please follow the below step by step instructions. For additional guidance, watch the <a href="https://www.youtube.com/watch?v=9mInBTuC6AE">GitHub video overview</a>. 
 <details>
-<summary>Click here to see the Github instructions</summary>
+<summary>Click here to see the GitHub instructions</summary>
 
 1. Make sure you have a GitHub account and you are logged in
 2. Go to the Packs folder and find your company’s pack 
@@ -84,9 +82,7 @@ Next, open your pull request in Github as you did the first time and the enginee
   - In line #1 of the file, copy and paste the below text to show that the support is moving over to the partner: 
     
     ```
-    Note: Support for this pack moved to the partner on MONTH, DAY, YEAR.
-    
-    Please contact the partner directly via the support link on the right.
+    Note: Support for this Pack will be moved to the Partner on MONTH, DAY, YEAR.
     ```
     
     
@@ -124,7 +120,7 @@ Your pull request is not ready yet, continue following the instructions below.
 1. In order to complete the second adoption step, first you will need to update your README file & open a pull request with this text: 
     
     ```
-    Note: Support for this pack moved to the partner on MONTH, DAY, YEAR.
+    Note: Support for this Pack moved to the partner on MONTH, DAY, YEAR.
     
     Please contact the partner directly via the support link on the right.
     ```
@@ -141,5 +137,17 @@ Your pull request is not ready yet, continue following the instructions below.
 
 Once the Cortex XSOAR engineering team merges your pull request, you will have successfully adopted your pack!
 
+
+</details>
+
+</br>
+<strong>Command Line Instructions</strong>
+<details>
+<summary>Click here to see the command line instructions</summary>
+
+From within the `content` directory, run:
+```bash
+./Utils/adopt_pack.bash
+```
 
 </details>
