@@ -51,7 +51,7 @@ Here are some templates that can help you get started:
 * "Get smarter. This pack utilizes _________ and _______for when _________ is heavily needed"
 
 ## Pack Videos
-For larger packs that provide at least one end-to-end use case you are encouraged to create a short video for the pack that will be showed in the *Details* tab of the pack in the Marketplace. The video file should hosted in youtube. The video should contain a more detailed overview of the Pack compared to the *Description* section, but stay tuned to the value proposition of the pack.
+For larger packs that provide at least one end-to-end use case you are encouraged to create a short video or a few videos for the pack that will be showed in the *Details* tab of the pack in the Marketplace. The videos files should be hosted in youtube. The videos should contain a more detailed overview of the Pack compared to the *Description* section, but stay tuned to the value proposition of the pack.
 
 
 ## Pack README
