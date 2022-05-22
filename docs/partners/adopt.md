@@ -20,13 +20,14 @@ Adopting a pack has several advantages for the partner:
 ![pack example cyren](/doc_imgs/partners/packexample_cyren.png)
 
 ## Process
-The process to Adopt-a-Pack takes under 5 minutes! Follow the step by step instructions and watch the video tutorials below to learn how to submit your adoption pull requests.  
+The process to Adopt-a-Pack takes under 5 minutes! Choose one of the options below and follow the step by step instructions or watch the video tutorials below to learn how to submit your adoption Pull Requests. 
 
-<strong>Visual Studio Instructions</strong>: If you are creating the pull request from Visual Studio, please follow the below steps. For additional guidance, watch the <a href="https://www.youtube.com/watch?v=9GPkhtRw4Oc">Visual Studio video overview</a>.
 <details>
-<summary>Click here to see the Visual Studio instructions</summary>
+<summary><strong>Visual Studio Instructions</strong></summary>
 
 <br/>
+
+If you are creating the Pull Request from Visual Studio, please follow the below steps. For additional guidance, watch the <a href="https://www.youtube.com/watch?v=9GPkhtRw4Oc">Visual Studio video overview</a>.
 
 Please follow the below steps if you are working on a cloned GitHub repository from an IDE: 
 
@@ -71,10 +72,10 @@ Next, open your pull request in GitHub as you did the first time and the enginee
 
 <br/>
  
- 
-  <strong>GitHub Instructions</strong>: If you prefer to create the pull request directly from GitHub, please follow the below step by step instructions. For additional guidance, watch the <a href="https://www.youtube.com/watch?v=9mInBTuC6AE">GitHub video overview</a>. 
 <details>
-<summary>Click here to see the GitHub instructions</summary>
+<summary><strong>GitHub Instructions</strong></summary>
+
+If you prefer to create the Pull Request directly from GitHub, please follow the below step by step instructions. For additional guidance, watch the <a href="https://www.youtube.com/watch?v=9mInBTuC6AE">GitHub video overview</a>. 
 
 1. Make sure you have a GitHub account and you are logged in
 2. Go to the Packs folder and find your company’s pack 
@@ -141,9 +142,9 @@ Once the Cortex XSOAR engineering team merges your pull request, you will have s
 </details>
 
 <br/>
-<strong>Command Line Instructions</strong>
+
 <details>
-<summary>Click here to see the command line instructions</summary>
+<summary><strong>Command Line Instructions</strong></summary>
 
 From within the `content` directory, run:
 ```bash
