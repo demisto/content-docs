@@ -22,17 +22,12 @@ Adopting a pack has several advantages for the partner:
 ## Process
 Choose one of the options below and follow the step by step instructions or watch the video tutorials below to learn how to submit your adoption Pull Requests. 
 
-<details>
-<summary><strong>Working on a local clone of Content repo</strong></summary><blockquote>
-<br/>
-
-These methods assume that you have already [forked the `content` repository](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-2-fork-the-github-repo) and [cloned the fork onto your local machine](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-3-clone-the-github-fork-locally).
+<details><summary><strong>Working on a local clone of Content repo</strong></summary>
+<blockquote>These methods assume that you have already [forked the `content` repository](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-2-fork-the-github-repo) and [cloned the fork onto your local machine](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-3-clone-the-github-fork-locally).
 Choose either one of the methods below to start or complete adoption.
+</br>
 
-<details><summary><strong>Adopt Using Helper Script</strong></summary><blockquote>
-
-<br/>
-
+<details><summary><strong>Adopt Using Helper Script</strong></summary>
 This script will automatically perform the necessary steps to create an adoption PR.
 
 **Note:** The script was only tested on Unix systems, specifically Mac OS and Ubuntu. It might not work correctly on other systems. 
@@ -65,15 +60,11 @@ You will be prompted for the following information when running this command:
 - A link to your organization's support site.
 - Email address for your organization's support.
 - A link to download your [author image](https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng). If no link is supplied, please add this manually to `content/packs/$PACK/Author_image.png`
-
-</details>
-
-<details><summary><strong>Adopt Using Visual Studio Code</strong></summary><blockquote>
-
-
+	</details>
+	<details><summary><strong>Adopt Using Visual Studio Code</strong></summary>
 If you are creating the Pull Request from Visual Studio Code, please follow the below steps. For additional guidance, watch the <a href="https://www.youtube.com/watch?v=9GPkhtRw4Oc">Visual Studio video overview</a>.
 
-1. Locate your company's pack folder and open the `README.md` file. Paste the below text into the file: 
+1. Locate your company's pack folder and open the `README.md` file. Paste the below text into the file:
 
     ```
     Note: Support for this Pack will be moved to the Partner on MONTH, DAY, YEAR.
@@ -82,43 +73,38 @@ If you are creating the Pull Request from Visual Studio Code, please follow the 
 
 2. Once complete, save these changes and run `demisto-sdk update-release-notes -i <path to pack> -f` to update the release notes. See [documentation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/update_release_notes/README.md). After the command has been completed, it will create the new release note Markdown file in the `ReleaseNotes` folder and update the version number in `pack_metadata.json`. Before continuing, you need to add the following text to the release note: 
 
-        Start of adoption process.
+```
+Start of adoption process.
+```
 
-3. Now, it’s time to save and commit the changes as a GitHub pull request. Once you publish the changes via Visual Studio, GitHub will prompt you to open a pull request. When prompted, click the green button “Compare & pull request” 
-    - Double check the pull request to ensure all changes are correct 
-    - Change the pull request title to _Company Name Pack Adoption_ and adjust the description to _Updating README file for adoption_.
-    - When ready, click the green button “Create pull request” on the bottom of the page 
+3. Now, it's time to save and commit the changes as a GitHub pull request. Once you publish the changes via Visual Studio, GitHub will prompt you to open a pull request. When prompted, click the green button "Compare & pull request".
+    - Double check the pull request to ensure all changes are correct.
+    - Change the pull request title to 'Company Name Pack Adoption' and adjust the description to _Updating README file for adoption_.
+    - When ready, click the green button “Create pull request" on the bottom of the page.
 4. The request will now be reviewed, approved and merged by a Cortex XSOAR engineer!
 
 **After the 90 days**, another pull request must be submitted to complete the adoption process. Please follow the below steps if you are submitting the final pull request via Visual Studio:
 1. Update the release note just as you did in the first pull request but change the text to the below:
-    
     ```
     Note: Support for this Pack moved to the partner on MONTH, DAY, YEAR.
-    
+
     Please contact the partner directly via the support link on the right.
     ```
-
-
 2. Next, go to the pack_metadata.json file and update the following sections:
     - `currentVersion` - update the version. For this example, we would be updating it to 1.2.12
     - `support` - must say `partner`
     - `author` - must say your company name
     - `url` - must be changed to your company’s support site
-    - `email` - must be your company's support email 
-    
+    - `email` - must be your company's support email.
 3. Once everything is updated, save your changes and run the `demisto-sdk update-release-notes -i <path to pack> -f` as you did in the first pull request.
 
-Next, open your pull request in GitHub as you did the first time and the engineers for Cortex XSOAR will review, approve and merge your newly adopted pack! 
-
+Next, open your pull request in GitHub as you did the first time and the engineers for Cortex XSOAR will review, approve and merge your newly adopted pack!
+</blockquote>
 </details>
-</details>
-  
 
-<br/>
- 
-<details>
-<summary><strong>Adopt Using GitHub UI</strong></summary><blockquote>
+
+
+<details><summary><strong>Adopt Using GitHub UI</strong></summary><blockquote>
 
 If you prefer to create the Pull Request directly from GitHub, please follow the below step by step instructions. For additional guidance, watch the <a href="https://www.youtube.com/watch?v=9mInBTuC6AE">GitHub video overview</a>. 
 
@@ -195,7 +181,5 @@ Your Pull Request is not ready yet, continue following the instructions below.
 
 Once the Cortex XSOAR engineering team merges your Pull Request, you will have successfully adopted your pack!
 
-
+</blockquote>
 </details>
-
-<br/>
