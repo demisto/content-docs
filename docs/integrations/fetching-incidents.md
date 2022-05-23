@@ -3,7 +3,7 @@ id: fetching-incidents
 title: Fetching Incidents
 ---
 
-Cortex XSOAR pulls events from 3rd party tools and converts them into incidents using the fetch-incidents command.  
+Cortex XSOAR pulls events from third party tools and converts them into incidents using the ***fetch-incidents*** command.  
 
 This topic provides:  
 - A description of the fetching command and parameters
@@ -12,7 +12,7 @@ This topic provides:
 - Troubleshooting tips
 
 ## fetch-incidents Command
-The ***fetch incidents*** command is the function that Cortex XSOAR calls every minute to import new incidents and is triggered by the *Fetches incidents* parameter in the integration configuration. It is not necessary to configure the ***fetch-incidents*** command in the Integration Settings.
+The ***fetch-incidents*** command is the function that Cortex XSOAR calls every minute to import new incidents. It is triggered by the *Fetches incidents* parameter in the integration configuration. It is not necessary to configure the ***fetch-incidents*** command in the integration settings.
 
 ![screen shot 2019-01-07 at 15 35 01](/doc_imgs/integrations/50771147-6aedb800-1292-11e9-833f-b5dd13e3507b.png)
 
@@ -38,9 +38,9 @@ This helps avoid duplicate incidents by fetching only events that occurred since
 ```
 
 **Note:**  
-The value of *demisto.getLastRun()* is not stored between CLI command runs, but only in the incident fetch flow on the server side. Therefore, if you print out the value of *demisto.getLastRun()* in the integration code, its value will appear as {}.
+The value of *demisto.getLastRun()* is not stored between CLI command runs; it is only stored in the incident fetch flow on the server side. Therefore, if you print out the value of *demisto.getLastRun()* in the integration code, its value will appear as {}.
 
-For debugging, you can save the value of *demisto.getLastRun()* to integration context, which does persist between CLI command runs. Or you can run the ***fetch_incidents()*** command twice within the same command run.
+For debugging, you can save the value of *demisto.getLastRun()* to integration context, which does persist between CLI command runs. Alternatively, you can run the ***fetch_incidents()*** command twice within the same command run.
 
 ## First Run
 When an integration runs for the first time, the last run time is not in the integration context.  
@@ -80,6 +80,10 @@ Incidents are created by building an array of incident objects. These objects mu
 - When the incident ```occurred``` 
 - The ```rawJSON``` key for the incident
 
+Recommended to include:
+- ```details``` - a brief description of the incident.
+- ```dbotMirrorId``` - the ID of the incident in the third-party product (see [Fetch History](https://xsoar.pan.dev/docs/integrations/fetching-incidents#fetch-history)).
+
 #### Example
 
 ```python
@@ -97,13 +101,14 @@ for event in events:
     incident = {
         'name': event['name'],        # name is required field, must be set
         'occurred': event['create_time'], # must be string of a format ISO8601
+        'dbotMirrorId': str(event['event_id']),  # must be a string
         'rawJSON': json.dumps(event)  # the original event, this will allow mapping of the event in the mapping stage. Don't forget to `json.dumps`
     }
     incidents.append(incident)
 ```
 
 ### rawJSON
-The ```rawJSON``` key in the incident field enables event mapping. Mapping is how an event gets imported into Cortex XSOAR, where you choose which data from the event to be mapped to Cortex XSOAR fields.
+The ```rawJSON``` key in the incident field enables event mapping. Mapping is how an event gets imported into Cortex XSOAR and enables you to choose which data from the event is to be mapped to Cortex XSOAR fields.
 
 #### Example
 
@@ -116,7 +121,7 @@ incident = {
 ```
 
 ### Set Last Run
-When the last events is retrieved, you need to save the new last run time to the integration context. This timestamp will be used the next time the ***fetch-incidents*** function runs.  
+When the last events are retrieved, you need to save the new last run time to the integration context. This timestamp will be used the next time the ***fetch-incidents*** function runs.  
 **Notes:**
 - When setting *demisto.setLastRun*, the values of the dictionary must be type **string**.  
 - We recommend using the time of the most recently created incident as the new last run.
@@ -145,11 +150,35 @@ If there are no incidents to return,  *demisto.incidents()* returns an empty lis
 demisto.incidents([])
 ```
 
+## Fetch History
+In XSOAR versions 6.8 and above, it is possible to observe the results of the last **fetch-incidents**/**fetch-indicators** runs using the Fetch History modal. For more details, visit the [Fetch History](https://xsoar.pan.dev/docs/reference/articles/troubleshooting-guide#fetch-history) documentation.
+
+When implementing a **fetch-incidents** command, in some cases we can populate extra data for the following columns in the modal:
+
+1. **Message** - In long-running integrations, the info/error message given in `demisto.updateModuleHealth()` will be displayed in the **Message** column. Use the *is_error* boolean argument of this method to determine the message type. For example:
+   
+   ```python
+   demisto.updateModuleHealth("Could not connect to client.", is_error=True)
+   ```
+   The above line will produce a new record in the modal, and its **Message** value will be `Error: Could not connect to client.`.
+
+2. **Source IDs** - If incidents on the third-party product have IDs, it is possible to display them in the **Source IDs** column by adding the `dbotMirrorId` field as part of the incident dictionary. For example:
+   
+   ```python
+   demisto.incidents([
+       {"name": "This is an incident.", "dbotMirrorId": "123"},
+       {"name": "This is another incident.", "dbotMirrorId": "124"},
+   ])
+   ```
+   The above will produce a new record in the modal, and its **Source IDs** value will be `123, 124`.
+   
+   **Note:** the population of the fetch history information occurs **before** the classification, therefore this field must be defined at the integration code level rather than the classification and mapping level.
+
 ## Fetch Missing Incidents with Generic Lookback Methods
 This advanced feature uses generic lookback methods for fetching missing incidents.
 
 ### Use case
-During a ***fetch-incidents*** run, some edge-case scenarios may cause missing incidents from the 3rd-party product.  
+During a ***fetch-incidents*** run, some edge-case scenarios may cause missing incidents from the third-party product.  
 The most common scenarios are:
 * Indexing issues in the product: For example, if incident A was created before incident B and only B was indexed, ***fetch-incidents*** will fetch only B and not A. If A was indexed after the fetch was called, the next fetch will fetch only from the created time of B.
 * An update in the incident information: Some implementations of ***fetch-incidents*** use a query filter to fetch only specific incidents. If initially an incident did not match the query (meaning, it was not fetched) but at some point was updated so that it now matches the query, ***fetch-incidents*** will not pull the updated incident because the time to fetch it already passed.
@@ -158,7 +187,7 @@ The most common scenarios are:
 The *look_back* parameter enables configuring how far back in time (in minutes) ***fetch-incidents*** will look to get the incidents that were created a while ago but indexed a few minutes ago.  
 In addition, the **LastRun** object stores the following fields to be used by the lookback methods:
 - **time** - The time to fetch the next fetch call (as in a regular fetch).
-- **limit** - The maximal number of incidents retrieved in the next fetch. If the current fetch run has the same start_time as the last fetch (determined in **get_fetch_run_time_range()**), this field will be increased by the limit instance parameter value, and then incidents retrieved in the last fetch will be filtered out.
+- **limit** - The maximum number of incidents retrieved in the next fetch. If the current fetch run has the same start_time as the last fetch (determined in **get_fetch_run_time_range()**), this field will be increased by the limit instance parameter value, and then incidents retrieved in the last fetch will be filtered out.
 - **found_incident_ids** - The IDs of incidents fetched in previous runs. Used for filtering duplicates in the next runs.
 
 ### Lookback Methods
@@ -167,7 +196,7 @@ Lookback is implemented using the following generic methods. For more informatio
 - **get_fetch_run_time_range()** - Using the last run object and other parameters, this method calculates and retrieves the time range in which to fetch.  
    If the *look_back* parameter is defined, then the start time will always be greater than or equal to `now - look_back`.
 
-- **filter_incidents_by_duplicates_and_limit()** - After getting the incidents using the 3rd party API call, you need to filter out the duplicate incidents.  
+- **filter_incidents_by_duplicates_and_limit()** - After getting the incidents using the third-party API call, you need to filter out the duplicate incidents.  
 From the example above, after incident A is indexed the next fetch will get incidents A and B, but B must be filtered out since it was already fetched.  
 **Note:**
 If after filtering duplicates you have more incidents than the limit, ***fetch-incidents*** will get only up to the limit number of incidents.
@@ -224,7 +253,7 @@ def fetch_incidents(params: dict):
 ```
 
 ### Notes:
-- Fetching incidents is flexible, you can use the various functions according to your needs.
+- Fetching incidents is flexible and you can use the various functions according to your needs.
 - You can also use the generic methods for regular ***fetch-incidents*** without lookback.
 - If the *look_back* value is increased by *k* minutes, you may get duplicate incidents for the *k* minutes that overlap with the previous fetch.
 
