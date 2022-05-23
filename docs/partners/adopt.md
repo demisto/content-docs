@@ -49,20 +49,23 @@ Follow the steps below to adopt using the helper script:
 For example, if we wanted to start adopting the `HelloWorld` Pack, we would run the following command:
 
 ```bash
-    ./Utils/adopt_pack.bash start HelloWorld
+PACK=HelloWorld
+./Utils/adopt_pack.bash start $PACK
 ```
 
 3. **After 90 days**, run the script below to complete the adoption:
 
 ```bash
-./Utils/adopt_pack.bash complete HelloWorld
+PACK=HelloWorld
+./Utils/adopt_pack.bash complete $PACK
 ```
 
 You will be prompted for the following information when running this command:
 
-- `URL`: A link to your organization's support site.
-- `Email`: Email address for your organization's support.
-- `Author Image`: A link to download an [Author image](https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng). If no link is supplied, please add this manually.
+- Your organization/company's name.
+- A link to your organization's support site.
+- Email address for your organization's support.
+- A link to download your [author image](https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng). If no link is supplied, please add this manually to `content/packs/$PACK/Author_image.png`
 
 </details>
 
@@ -70,7 +73,7 @@ You will be prompted for the following information when running this command:
 <summary><strong>Adopt Using Visual Studio Code</strong></summary>
 
 
-If you are creating the Pull Request from Visual Studio, please follow the below steps. For additional guidance, watch the <a href="https://www.youtube.com/watch?v=9GPkhtRw4Oc">Visual Studio video overview</a>.
+If you are creating the Pull Request from Visual Studio Code, please follow the below steps. For additional guidance, watch the <a href="https://www.youtube.com/watch?v=9GPkhtRw4Oc">Visual Studio video overview</a>.
 
 1. Locate your company's pack folder and open the `README.md` file. Paste the below text into the file: 
 
