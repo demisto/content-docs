@@ -25,7 +25,7 @@ Choose one of the options below and follow the step by step instructions or watc
 <details><summary><strong>Working on a local clone of Content repo</strong></summary>
 <blockquote>These methods assume that you have already [forked the `content` repository](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-2-fork-the-github-repo) and [cloned the fork onto your local machine](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-3-clone-the-github-fork-locally).
 Choose either one of the methods below to start or complete adoption.
-</br>
+<br/>
 
 <details><summary><strong>Adopt Using Helper Script</strong></summary>
 This script will automatically perform the necessary steps to create an adoption PR.
