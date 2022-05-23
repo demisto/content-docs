@@ -23,13 +23,14 @@ Adopting a pack has several advantages for the partner:
 Choose one of the options below and follow the step by step instructions or watch the video tutorials below to learn how to submit your adoption Pull Requests. 
 
 <details><summary><strong>Working on a local clone of Content repo</strong></summary>
-
-<blockquote>These methods assume that you have already [forked the `content` repository](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-2-fork-the-github-repo) and [cloned the fork onto your local machine](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-3-clone-the-github-fork-locally).
+<div>
+These methods assume that you have already [forked the `content` repository](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-2-fork-the-github-repo) and [cloned the fork onto your local machine](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-3-clone-the-github-fork-locally).
 Choose either one of the methods below to start or complete adoption.
 
 <br/>
 <details><summary><strong>Adopt Using Helper Script</strong></summary>
-This script will automatically perform the necessary steps to create an adoption PR.
+
+<div>This script will automatically perform the necessary steps to create an adoption PR.
 
 **Note:** The script was only tested on Unix systems, specifically Mac OS and Ubuntu. It might not work correctly on other systems. 
 
@@ -61,11 +62,14 @@ You will be prompted for the following information when running this command:
 - A link to your organization's support site.
 - Email address for your organization's support.
 - A link to download your [author image](https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng). If no link is supplied, please add this manually to `content/packs/$PACK/Author_image.png`
+
+</div>
 </details>
 
 <br/>
 
 <details><summary><strong>Adopt Using Visual Studio Code</strong></summary>
+<div>
 If you are creating the Pull Request from Visual Studio Code, please follow the below steps. For additional guidance, watch the <a href="https://www.youtube.com/watch?v=9GPkhtRw4Oc">Visual Studio video overview</a>.
 
 1. Locate your company's pack folder and open the `README.md` file. Paste the below text into the file:
@@ -103,13 +107,17 @@ Start of adoption process.
 3. Once everything is updated, save your changes and run the `demisto-sdk update-release-notes -i <path to pack> -f` as you did in the first pull request.
 
 Next, open your pull request in GitHub as you did the first time and the engineers for Cortex XSOAR will review, approve and merge your newly adopted pack!
-</blockquote>
+
+</div>
+</details>
+</div>
 </details>
 
 <br/>
 
-<details><summary><strong>Adopt Using GitHub UI</strong></summary><blockquote>
+<details><summary><strong>Adopt Using GitHub UI</strong></summary>
 
+<div>
 If you prefer to create the Pull Request directly from GitHub, please follow the below step by step instructions. For additional guidance, watch the <a href="https://www.youtube.com/watch?v=9mInBTuC6AE">GitHub video overview</a>. 
 
 **Requirements:** Make sure you have a GitHub account and you are logged in.
@@ -185,5 +193,5 @@ Your Pull Request is not ready yet, continue following the instructions below.
 
 Once the Cortex XSOAR engineering team merges your Pull Request, you will have successfully adopted your pack!
 
-</blockquote>
+</div>
 </details>

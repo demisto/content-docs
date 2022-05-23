@@ -80,4 +80,4 @@ In order to ses the events sent by the `send_events_to_xsiam()` function, in you
 dataset = MyVendor_MyProduct_raw
 ```
 If all was done correctly you should be seeing the events sent by your integration in the table of results, like this:
-![debug test](../doc_imgs/integrations/XSIAM_XQL_query.png)
+![debug test](/doc_imgs/integrations/XSIAM_XQL_query.png)
