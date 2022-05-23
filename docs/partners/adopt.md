@@ -134,7 +134,7 @@ Your pull request is not ready yet, continue following the instructions below.
     - “url” - must be changed to your company’s support site
     - “Email” - must be your company's support email 
     - Also, update your Author image using the <a href="https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng">instructions on our site</a>.
-4. Lastly, update the Release Notes as you did in step 1. 
+3. Lastly, update the Release Notes as you did in step 1. 
 
 Once the Cortex XSOAR engineering team merges your pull request, you will have successfully adopted your pack!
 
@@ -145,10 +145,27 @@ Once the Cortex XSOAR engineering team merges your pull request, you will have s
 
 <details>
 <summary><strong>Command Line Instructions</strong></summary>
+**Note:** This script was only tested on Unix systems, specifically Mac OS and Ubuntu. It might not work correctly on other systems.
 
-From within the `content` directory, run:
+1. Change directory to where the `content` repository is located. This is the location where you [cloned forked repository](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-3-clone-the-github-fork-locally).
+
+2. Look for the Pack you want to adopt in the `content/Packs/` directory. You will use the folder name as the second argument to the `adopt_pack.bash` script. 
+For example, if we wanted to start adopting the `HelloWorld` Pack, we would run the following command:
+
 ```bash
-./Utils/adopt_pack.bash
+./Utils/adopt_pack.bash start HelloWorld
 ```
+
+**After 90 days, run the script below to complete the adoption:**
+
+```bash
+./Utils/adopt_pack.bash complete HelloWorld
+```
+
+You will be prompted for the following information when running this command:
+
+- `URL`: A link to your organization's support site.
+- `Email`: Email address for your organization's support.
+- `Author Image`: A link to download an [Author image](https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng). If no link is supplied, please add this manually.
 
 </details>
