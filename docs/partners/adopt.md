@@ -24,11 +24,15 @@ Choose one of the options below and follow the step by step instructions or watc
 
 <details><summary><strong>Working on a local clone of Content repo</strong></summary>
 <div>
+
+<br/>
 These methods assume that you have already [forked the `content` repository](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-2-fork-the-github-repo) and [cloned the fork onto your local machine](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-3-clone-the-github-fork-locally).
 Choose either one of the methods below to start or complete adoption.
 
 <br/>
 <details><summary><strong>Adopt Using Helper Script</strong></summary>
+
+<br/>
 
 <div>This script will automatically perform the necessary steps to create an adoption PR.
 
@@ -69,6 +73,7 @@ You will be prompted for the following information when running this command:
 <br/>
 
 <details><summary><strong>Adopt Using Visual Studio Code</strong></summary>
+<br/>
 <div>
 If you are creating the Pull Request from Visual Studio Code, please follow the below steps. For additional guidance, watch the <a href="https://www.youtube.com/watch?v=9GPkhtRw4Oc">Visual Studio video overview</a>.
 
@@ -110,13 +115,14 @@ Next, open your pull request in GitHub as you did the first time and the enginee
 
 </div>
 </details>
+
 </div>
 </details>
 
 <br/>
 
 <details><summary><strong>Adopt Using GitHub UI</strong></summary>
-
+<br/>
 <div>
 If you prefer to create the Pull Request directly from GitHub, please follow the below step by step instructions. For additional guidance, watch the <a href="https://www.youtube.com/watch?v=9mInBTuC6AE">GitHub video overview</a>. 
 
