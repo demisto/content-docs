@@ -39,7 +39,7 @@ This script will automatically perform the necessary steps to create an adoption
 **Note:** The script was only tested on Unix systems, specifically Mac OS and Ubuntu. It might not work correctly on other systems. 
 
 **Requirements:**
-Before using this automation, make sure you have [Git](https://git-scm.com/downloads) and [Python](https://www.python.org/downloads/) installed and in your `PATH`. This script will install [`demisto-sdk`](https://github.com/demisto/demisto-sdk#installation) python package if it does not exist in your environment.
+Before using this automation, make sure you have [`git`](https://git-scm.com/downloads) and [`python3`](https://www.python.org/downloads/) installed and in your `PATH`. This script will install [`demisto-sdk`](https://github.com/demisto/demisto-sdk#installation) python package if it does not exist in your environment.
 
 Follow the steps below to adopt using the helper script:
 
@@ -52,7 +52,7 @@ For example, if we wanted to start adopting the `HelloWorld` Pack, we would run 
     ./Utils/adopt_pack.bash start HelloWorld
     ```
 
-    **After 90 days**, run the script below to complete the adoption:
+3. **After 90 days**, run the script below to complete the adoption:
 
     ```bash
     ./Utils/adopt_pack.bash complete HelloWorld
