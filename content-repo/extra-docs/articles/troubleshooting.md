@@ -207,6 +207,24 @@ In the Cortex XSOAR CLI run the command with all arguments that cause the issue 
 Screenshot of running a command with `debug-mode=true` and the resulting log file (`ad-search.log`):
 ![debug-mode-example](../../../docs/doc_imgs/reference/debug-mode-example.png)
 
+### Test Integration Module in `debug-mode`
+Starting with Cortex XSOAR 6.2 when you `Test` an integration module and it fails, you can download from the integration configuration dialog a `debug-mode` full report by following the link: **Run advanced test and download a full report**. Example screenshot:
+
+![image](https://user-images.githubusercontent.com/1395797/169849803-56908773-0bb4-41b7-ae65-133454d51865.png)
+
+If you require a `debug-mode` log when the `Test` from the integration configuration dialog succeeds, it is possible to run the test integration module command from the Cortex XSOAR CLI with `debug-mode=true`. This is done by issuing a command of the form:
+
+```
+!<instance_name>-test-module debug-mode=true
+```
+
+For example for an integration instance name of: `Cortex_XDR_instance_1` run the following from the CLI:
+
+```
+!Cortex_XDR_instance_1-test-module debug-mode=true
+```
+
+
 ### Fetch Incidents in `debug-mode`
 Starting with Cortex XSOAR 6.0 it is possible to run the fetch incidents command from the Cortex XSOAR CLI with `debug-mode=true`. This is done by issuing a command of the form:
 
@@ -224,19 +242,6 @@ For example for an integration instance name of: `Cortex_XDR_instance_1` run the
 
 Screenshot of running a `fetch` command with `debug-mode=true` and the resulting log file (`fetch-incidents.log`):
 ![fetch-incidents-debug](../../../docs/doc_imgs/reference/fetch-incidents-debug.png)
-
-### Test Integration Module in `debug-mode`
-Starting with Cortex XSOAR 6.0 it is possible to run the test integration module command from the Cortex XSOAR CLI with `debug-mode=true`. This is done by issuing a command of the form:
-
-```
-!<instance_name>-test-module debug-mode=true
-```
-
-For example for an integration instance name of: `Cortex_XDR_instance_1` run the following from the CLI:
-
-```
-!Cortex_XDR_instance_1-test-module debug-mode=true
-```
 
 **Note:** 
 - If the instance name contains spaces, replace the space with an underscore (`_`).
