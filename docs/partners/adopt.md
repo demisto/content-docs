@@ -26,7 +26,7 @@ Choose one of the options below and follow the step by step instructions or watc
 <div>
 
 <br/>
-These methods assume that you have already [forked the `content` repository](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-2-fork-the-github-repo) and [cloned the fork onto your local machine](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-3-clone-the-github-fork-locally).
+These methods assume that you have already [forked the Content repository](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-2-fork-the-github-repo) and [cloned the fork onto your local machine](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-3-clone-the-github-fork-locally).
 Choose either one of the methods below to start or complete adoption.
 
 <br/>
@@ -43,9 +43,14 @@ Before using this automation, make sure you have [`git`](https://git-scm.com/dow
 
 Follow the steps below to adopt using the helper script:
 
-1. Change directory to where the `content` repository is located. This is the location where you [cloned the forked `content` repository](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-3-clone-the-github-fork-locally).
+1. Inside your terminal, change your working directory to the root of the Content repository. This is the location where you [cloned the forked `content` repository](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-3-clone-the-github-fork-locally).
 
-2. Look for the Pack you want to adopt in the `content/Packs/` directory. You will use the folder name as the second argument to the `adopt_pack.bash` script. 
+2. Look for the pack you want to adopt under the `Packs/` directory. You will use the folder name as the second argument to the `adopt_pack.bash` script. 
+3. Run the following bash script.
+\```
+./Utils/adopt_pack.bash start <MyPackName>
+\```
+
 For example, if we wanted to start adopting the `HelloWorld` Pack, we would run the following command:
 
 ```bash
@@ -53,14 +58,18 @@ PACK=HelloWorld
 ./Utils/adopt_pack.bash start $PACK
 ```
 
-3. **After 90 days**, run the script below to complete the adoption:
+**After 90 days**
+1. run the script below to complete the adoption:
+*Note: Be sure to prepare the following items as you will be prompted to submit those as part of the flow:
+- Your organization/company's name.
+- A link to your organization's support site.
+- Email address for your organization's support.
+- A link to download your [author image](https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng). If no link is supplied, please add this manually to `content/packs/$PACK/Author_image.png`
 
-```bash
-PACK=HelloWorld
-./Utils/adopt_pack.bash complete $PACK
-```
+\```bash
+./Utils/adopt_pack.bash complete HelloWorld
+\```
 
-You will be prompted for the following information when running this command:
 
 - Your organization/company's name.
 - A link to your organization's support site.
@@ -90,10 +99,10 @@ If you are creating the Pull Request from Visual Studio Code, please follow the 
 Start of adoption process.
 ```
 
-3. Now, it's time to save and commit the changes as a GitHub pull request. Once you publish the changes via Visual Studio, GitHub will prompt you to open a pull request. When prompted, click the green button "Compare & pull request".
+3. Now, it's time to save and commit the changes and open a dedicated GitHub pull request. Once you publish the changes via Visual Studio, GitHub will prompt you to open a pull request. When prompted, click the green button `Compare & pull request`.
     - Double check the pull request to ensure all changes are correct.
     - Change the pull request title to 'Company Name Pack Adoption' and adjust the description to _Updating README file for adoption_.
-    - When ready, click the green button “Create pull request" on the bottom of the page.
+    - When ready, click the green button `Create pull request` on the bottom of the page.
 4. The request will now be reviewed, approved and merged by a Cortex XSOAR engineer!
 
 **After the 90 days**, another pull request must be submitted to complete the adoption process. Please follow the below steps if you are submitting the final pull request via Visual Studio:
@@ -126,7 +135,7 @@ Next, open your pull request in GitHub as you did the first time and the enginee
 <div>
 If you prefer to create the Pull Request directly from GitHub, please follow the below step by step instructions. For additional guidance, watch the <a href="https://www.youtube.com/watch?v=9mInBTuC6AE">GitHub video overview</a>. 
 
-**Requirements:** Make sure you have a GitHub account and you are logged in.
+**Requirements:** Make sure you working on [fork of the Content repository](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-2-fork-the-github-repo) and you are logged in with your GitHub account.
 
 1. Go to the `Packs` folder and find your company’s pack.
 2. Find the `README.md` file and then click the ![Pencil_Icon](/doc_imgs/partners/Pencil_Icon.png) on the right side of the screen to edit the file. 
@@ -145,11 +154,10 @@ If you prefer to create the Pull Request directly from GitHub, please follow the
         Start of adoption process.
         
 
-5. Edit the Pull Request title to '`COMPANY_NAME` Pack Adoption' and adjust the description to 'Updating README file for adoption'.
-6. Create a new branch named `partners-COMPANY_NAME-adoption-start`. 
-7. Now, click the green “Commit Changes” button. This will take you to your Pull Request. Scroll down and click the green “Create Pull Request” at the bottom of the screen. 
-  
-**Note:** If you are not ready to officially submit the pull request for review, you can create a draft pull request instead. To the right of the “Create pull request” button there is a small button with an arrow, click that and choose the Draft option. This will still create the Pull Request but the XSOAR eng team will not review it until it is taken out of draft.
+5. At the bottom of the screen, edit the Pull Request title to '`COMPANY_NAME` Pack Adoption' and adjust the description to 'Updating README file for adoption'.
+6. Create a new branch named `partner-COMPANY_NAME-adoption-start`. 
+7. Now, click the green “Commit Changes” button. This will take you to your Pull Request. 
+8. As your Pull Request is not ready yet, will create an initial draft Pull Request as follows: At the bottom of the page, to the right of the `Create pull request` button there is a small button with an arrow, click and choose the `Draft` option. This will still create the Pull Request but the XSOAR eng team will not review it until it is taken out of draft mode.
     
 Your Pull Request is not ready yet, continue following the instructions below. 
     
