@@ -37,34 +37,43 @@ This placeholder should be replaced with a line describing what was changed for 
 For example, if changes are detected in the Cortex XDR pack for the items *IncidentFields*, *Integrations*, and *Playbooks*; the following is created:
 ```markdown
 #### Incident Fields
-  - **XDR Alerts**
+##### XDR Alerts
   - %%UPDATE_RN%%
 
 #### Integrations
-  - **Cortex XDR - IR**
+##### Cortex XDR - IR
   - %%UPDATE_RN%%
 
 #### Playbooks
-  - **Cortex XDR - Isolate Endpoints**
-  - %%UPDATE_RN%%
-  - **Cortex XDR - Port Scan**
+##### Cortex XDR - Isolate Endpoints
   - %%UPDATE_RN%%
 
+##### Cortex XDR - Port Scan
+  - %%UPDATE_RN%%
+
+```
+
+## MD Formatting
+For single line RNs, follow this format:
+```markdown
+#### Integrations
+##### Cortex XDR - IR
+Release note here.
 ```
 
 For single line RNs with a nested list, follow this format:
 ```markdown
 #### Integrations
-  - **Cortex XDR - IR**
-  - Release note here.
-    - List item 1
-    - List item 2
+##### Cortex XDR - IR
+Release note here.
+  - List item 1
+  - List item 2
 ```
 
 For multiline RNs, follow this format:
 ```markdown
 #### Integrations
-  - **Cortex XDR - IR**
+##### Cortex XDR - IR
   - Release note 1 here.
   - Release note 2 here.
   - Release note 2 here.
@@ -73,7 +82,7 @@ For multiline RNs, follow this format:
 For multiline RNs with nested content, follow this format:
 ```markdown
 #### Integrations
-  - **Cortex XDR - IR**
+##### Cortex XDR - IR
   - Release note 1 here.
     - List item 1
     - List item 2
