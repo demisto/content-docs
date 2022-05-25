@@ -26,6 +26,7 @@ Choose one of the options below and follow the step by step instructions or watc
 <div>
 
 <br/>
+
 These methods assume that you have already [forked the Content repository](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-2-fork-the-github-repo) and [cloned the fork onto your local machine](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-3-clone-the-github-fork-locally).
 Choose either one of the methods below to start or complete adoption.
 
@@ -36,7 +37,7 @@ Choose either one of the methods below to start or complete adoption.
 
 <div>This script will automatically perform the necessary steps to create an adoption PR.
 
-**Note:** The script was only tested on Unix systems, specifically Mac OS and Ubuntu. It might not work correctly on other systems. 
+**Note:** The script is supported for Ubuntu and Mac OS. If you encounter any issues, please consult with your Partner Success representative.
 
 **Requirements:**
 Before using this automation, make sure you have [`git`](https://git-scm.com/downloads) and [`python3`](https://www.python.org/downloads/) installed and in your `PATH`. This script will install [`demisto-sdk`](https://github.com/demisto/demisto-sdk#installation) python package if it does not exist in your environment.
@@ -47,34 +48,88 @@ Follow the steps below to adopt using the helper script:
 
 2. Look for the pack you want to adopt under the `Packs/` directory. You will use the folder name as the second argument to the `adopt_pack.bash` script. 
 3. Run the following bash script.
-\```
+```
 ./Utils/adopt_pack.bash start <MyPackName>
-\```
+```
 
 For example, if we wanted to start adopting the `HelloWorld` Pack, we would run the following command:
 
 ```bash
-PACK=HelloWorld
-./Utils/adopt_pack.bash start $PACK
+./Utils/adopt_pack.bash start HelloWorld
+Initializing Pack Adoption...
+✓ Detected OS 'Mac OS'.
+✓ Dependency 'git' found.
+✓ Dependency 'python3' found.
+✓ Dependency 'demisto-sdk' found.
+✓ All dependencies met.
+✓ Found git repository in '~/dev/demisto/fork/content'.
+✓ Pack 'HelloWorld' exists.
+✗ Not on master/main branch.
+        - No untracked changes done, attempting to checkout to master/main branch...
+        - Checking out master branch...
+        - Branch 'partner-HelloWorld-adopt-start' exists, will be deleted and recreated...
+        - ✓ Branch 'partner-HelloWorld-adopt-start' deleted
+✓ Branch 'partner-HelloWorld-adopt-start' created.
+✓ Pack version bumped to "1.2.12" in '~/dev/demisto/fork/content/Packs/HelloWorld/pack_metadata.json'
+✓ Release note created in 'Packs/HelloWorld/ReleaseNotes/1_2_12.md'
+✓ Release note '1_2_12.md' updated.
+✓ Adoption start message added to README.md
+✓ Changes committed.
+✓ Branch pushed upstream.
+
+All done here!
+
+Please visit ====> https://github.com/me/content/pull/new/partner-HelloWorld-adopt-start <==== and fill out the Pull Request details to complete the adoption process
 ```
 
 **After 90 days**
-1. run the script below to complete the adoption:
-*Note: Be sure to prepare the following items as you will be prompted to submit those as part of the flow:
+
+Be sure to prepare the following items as you will be prompted to submit those as part of the flow:
+
 - Your organization/company's name.
 - A link to your organization's support site.
 - Email address for your organization's support.
-- A link to download your [author image](https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng). If no link is supplied, please add this manually to `content/packs/$PACK/Author_image.png`
+- A link to download your [author image](https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng). If no link is supplied, you will be asked to add it manually to `content/packs/$PACK/Author_image.png`
 
-\```bash
+Then run the following script to complete the adoption:
+
+```bash
 ./Utils/adopt_pack.bash complete HelloWorld
-\```
+Initializing Pack Adoption...
+✓ Detected OS 'Mac OS'.
+✓ Dependency 'git' found.
+✓ Dependency 'python3' found.
+✓ Dependency 'demisto-sdk' found.
+✓ All dependencies met.
+✓ Found git repository in '~/dev/demisto/fork/content/'.
+✓ Pack 'HelloWorld' exists.
+✗ Not on master/main branch.
+        - No untracked changes done, attempting to checkout to master/main branch...
+        - Checking out master branch...
+✓ Branch 'partner-HelloWorld-adopt-complete' doesn't exist
+✓ Branch 'partner-HelloWorld-adopt-complete' created.
+✓ Pack version bumped to "1.2.12" in '~/dev/demisto/fork/content/Packs/HelloWorld/pack_metadata.json'
+✓ Release note created in 'Packs/HelloWorld/ReleaseNotes/1_2_12.md'
+✓ Release note '1_2_12.md' updated.
+✓ Support type 'partner' set in pack_metadata.json.
+Enter your organization/company's name: acme
+✓ Author set in pack_metadata.json.
+Enter a URL to your support site: https://acme.org
+✓ URL field set in pack_metadata.json.
+Enter the email to your support site: support@acme.org
+✓ Email field set in pack_metadata.json.
+Enter a URL to download the author image. If you do not have a URL, just press enter and make sure to add it manually according to https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng: 
+https://static.wikia.nocookie.net/looneytunes/imageshttps://static.wikia.nocookie.net/looneytunes/images/5/56/Comp_2.jpg      
+Attempting to download image from https://static.wikia.nocookie.net/looneytunes/images/5/56/Comp_2.jpg...
+✓ Author image downloaded to '~/dev/demisto/fork/content//Packs/HelloWorld/Author_image.png'
+✓ Adoption complete message added to README.md
+✓ Changes committed.
+✓ Branch pushed upstream.
 
+All done here!
 
-- Your organization/company's name.
-- A link to your organization's support site.
-- Email address for your organization's support.
-- A link to download your [author image](https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng). If no link is supplied, please add this manually to `content/packs/$PACK/Author_image.png`
+Please visit ====> https://github.com/me/content/pull/new/partner-HelloWorld-adopt-complete <==== and fill out the Pull Request details to complete the adoption process
+```
 
 </div>
 </details>
@@ -84,43 +139,55 @@ PACK=HelloWorld
 <details><summary><strong>Adopt Using Visual Studio Code</strong></summary>
 <br/>
 <div>
-If you are creating the Pull Request from Visual Studio Code, please follow the below steps. For additional guidance, watch the <a href="https://www.youtube.com/watch?v=9GPkhtRw4Oc">Visual Studio video overview</a>.
+If you are creating the Pull Request from Visual Studio Code, please follow the below steps. For additional guidance, watch the <a href="https://www.youtube.com/watch?v=9GPkhtRw4Oc">Visual Studio video overview</a>. 
 
-1. Locate your company's pack folder and open the `README.md` file. Paste the below text into the file:
+To follow along, you'll need to have [Demisto SDK installed on your machine](https://github.com/demisto/demisto-sdk#installation).
+
+1. Locate your company's Pack folder and open the `README.md` file. Paste the below text into the file:
 
     ```
     Note: Support for this Pack will be moved to the Partner on MONTH, DAY, YEAR.
     ```
     Make sure you change the `MONTH`, `DAY`, and `YEAR` to the appropriate date that is 90 days from your submission date.
 
-2. Once complete, save these changes and run `demisto-sdk update-release-notes -i <path to pack> -f` to update the release notes. See [documentation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/update_release_notes/README.md). After the command has been completed, it will create the new release note Markdown file in the `ReleaseNotes` folder and update the version number in `pack_metadata.json`. Before continuing, you need to add the following text to the release note: 
-
-```
-Start of adoption process.
-```
-
-3. Now, it's time to save and commit the changes and open a dedicated GitHub pull request. Once you publish the changes via Visual Studio, GitHub will prompt you to open a pull request. When prompted, click the green button `Compare & pull request`.
-    - Double check the pull request to ensure all changes are correct.
-    - Change the pull request title to 'Company Name Pack Adoption' and adjust the description to _Updating README file for adoption_.
-    - When ready, click the green button `Create pull request` on the bottom of the page.
-4. The request will now be reviewed, approved and merged by a Cortex XSOAR engineer!
-
-**After the 90 days**, another pull request must be submitted to complete the adoption process. Please follow the below steps if you are submitting the final pull request via Visual Studio:
-1. Update the release note just as you did in the first pull request but change the text to the below:
-    ```
-    Note: Support for this Pack moved to the partner on MONTH, DAY, YEAR.
-
-    Please contact the partner directly via the support link on the right.
-    ```
-2. Next, go to the pack_metadata.json file and update the following sections:
-    - `currentVersion` - update the version. For this example, we would be updating it to 1.2.12
+2. Next, open the `pack_metadata.json` file and update the following sections:
     - `support` - must say `partner`
     - `author` - must say your company name
     - `url` - must be changed to your company’s support site
     - `email` - must be your company's support email.
-3. Once everything is updated, save your changes and run the `demisto-sdk update-release-notes -i <path to pack> -f` as you did in the first pull request.
+3. Once everything is updated, save your changes and run the `demisto-sdk update-release-notes -i <path to pack> -f`. The command output will instruct you to open the newly-created release note. Find the file and open it.
+4. Replace the `%%RN%%` placeholder with the following text:
 
-Next, open your pull request in GitHub as you did the first time and the engineers for Cortex XSOAR will review, approve and merge your newly adopted pack!
+    ```
+    - Start of adoption process.
+    ```
+
+5. Go to _Source Control_ tab and commit the changes. Click on the _Publish Branch_ button. This will open a Pull Request.
+6. Fill out the pull request details and create the pull request.
+
+
+**After 90 days**
+
+Please follow the steps below to complete the adoption process:
+
+1. Open the `README.md` file and update the top of the file with the following: 
+    
+    ```
+    Note: Support for this Pack moved to the partner on MONTH, DAY, YEAR.
+    
+    Please contact the partner directly via the support link on the right.
+    ```
+    
+2. Open the `pack_metadata.json` file and update the following sections:
+    - `support` - must say “partner” 
+    - `author` - must say your company name
+    - `url` - must be changed to your company’s support site
+    - `email` - must be your company's support email 
+    - Also, update your Author image using the <a href="https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng">instructions on our site</a>.
+3. Repeat step 3 through 6 in the previous section.
+
+Once the Cortex XSOAR engineering team merges your Pull Request, you will have successfully adopted your pack!
+
 
 </div>
 </details>
@@ -139,25 +206,20 @@ If you prefer to create the Pull Request directly from GitHub, please follow the
 
 1. Go to the `Packs` folder and find your company’s pack.
 2. Find the `README.md` file and then click the ![Pencil_Icon](/doc_imgs/partners/Pencil_Icon.png) on the right side of the screen to edit the file. 
-3. In the first line of the file, copy and paste the below text to show that the support is moving over to the partner: 
+3. In the first line of the file, copy and paste the below text to show that the support is moving over: 
     
     ```
     Note: Support for this Pack will be moved to the Partner on MONTH, DAY, YEAR.
     ```
-    
-    
-    Make sure you change the `MONTH`, `DAY`, and `YEAR` to the appropriate date that is 90 days from your submission date.
 
-4. Once complete, save these changes and run `demisto-sdk update-release-notes -i <path to pack> -f` to update the release notes. See [documentation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/update_release_notes/README.md). After the command has been completed, it will create the new release note Markdown file in the `ReleaseNotes` folder and update the version number in `pack_metadata.json`. Before continuing, you need to add the following text to the release note: 
+    Make sure you change the `MONTH`, `DAY`, and `YEAR` to the appropriate date that is **90 days** from your submission date.
 
-        
-        Start of adoption process.
-        
+    While still in the `README.md` file, scroll down to the bottom of the page where select the 'Create a new branch for this commit and start a pull request'. Change the name of the new branch to `partner-COMPANY_NAME-adoption-start` and click on 'Propose changes'. 
 
-5. At the bottom of the screen, edit the Pull Request title to '`COMPANY_NAME` Pack Adoption' and adjust the description to 'Updating README file for adoption'.
-6. Create a new branch named `partner-COMPANY_NAME-adoption-start`. 
-7. Now, click the green “Commit Changes” button. This will take you to your Pull Request. 
-8. As your Pull Request is not ready yet, will create an initial draft Pull Request as follows: At the bottom of the page, to the right of the `Create pull request` button there is a small button with an arrow, click and choose the `Draft` option. This will still create the Pull Request but the XSOAR eng team will not review it until it is taken out of draft mode.
+4. At the bottom of the screen, edit the Pull Request title to '`COMPANY_NAME` Pack Adoption' and adjust the description to 'Updating README file for adoption'.
+5. Create a new branch named `partner-COMPANY_NAME-adoption-start`. 
+6. Now, click the green “Commit Changes” button. This will take you to your Pull Request. 
+7. As your Pull Request is not ready yet, will create an initial draft Pull Request as follows: At the bottom of the page, to the right of the `Create pull request` button there is a small button with an arrow, click and choose the `Draft` option. This will still create the Pull Request but the XSOAR eng team will not review it until it is taken out of draft mode.
     
 Your Pull Request is not ready yet, continue following the instructions below. 
     
@@ -172,7 +234,7 @@ Your Pull Request is not ready yet, continue following the instructions below.
     - Once the number is updated, go to the bottom of the page, make sure you have selected “Commit directly to the branch you’ve already created“ and then click the green “Commit changes” button. 
     - Now this step is completed, onto the next one! 
 
-6. Go back to your `Packs` folder and click into `ReleaseNotes`. 
+10. Go back to your `Packs` folder and click into `ReleaseNotes`. 
 
     - Since we updated the version, we need to create a new release notes file. Find the file that has your original release notes number before you changed it. For example, if you changed “1_2_10” to “1_2_11” then you need to click into “1_2_10”. 
     - Once you find the correct release note, click the edit pencil icon as you did in the previous steps, and copy the last line in the file to keep the same format. Once you have it copied, click cancel changes and go back to the `ReleaseNotes` folder. 
@@ -182,19 +244,18 @@ Your Pull Request is not ready yet, continue following the instructions below.
    - Now,  paste the text you copied in the previous step. Delete line 2 of the text and write “Start of adoption process, update to readme file” 
    - Name the subject of this to “update release notes”, make sure it is committing to your branch and then click “Commit new file” 
 
-    **Note:** If your Pull Request is still in draft, please commit the changes and remove from draft. 
+**Note:** If your Pull Request is still in draft, please commit the changes and remove from draft. 
 
-7. Done! You have started the adoption process. 
+11. Done! You have started the adoption process. 
 
 **After 90 days**, you will follow the below steps to complete the adoption process:
-1. In order to complete the second adoption step, first you will need to update your README file & open a pull request with this text: 
+1. In order to complete the second adoption step, first you will need to update your `README.md` file and open a pull request with this text: 
     
     ```
     Note: Support for this Pack moved to the partner on MONTH, DAY, YEAR.
     
     Please contact the partner directly via the support link on the right.
     ```
-    
     
 2. Next, go to the `pack_metadata.json` file and update the following sections:
     - `currentVersion` - update the version. For this example, we would be updating it to “1.2.12” 
@@ -203,9 +264,11 @@ Your Pull Request is not ready yet, continue following the instructions below.
     - `url` - must be changed to your company’s support site
     - `Email` - must be your company's support email 
     - Also, update your Author image using the <a href="https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng">instructions on our site</a>.
-3. Lastly, update the release notes as you did in step 6. 
-
-Once the Cortex XSOAR engineering team merges your Pull Request, you will have successfully adopted your pack!
+3. Repeat step 10 from the previous section.
 
 </div>
 </details>
+
+
+<br/>
+Once the Cortex XSOAR engineering team merges your Pull Request, you will have successfully adopted your pack!
