@@ -37,7 +37,7 @@ Choose either one of the methods below to start or complete adoption.
 
 <div>This script will automatically perform the necessary steps to create an adoption PR.
 
-**Note:** The script is supported for Ubuntu and Mac OS. If you encounter any issues, please consult with your Partner Success representative.
+**Note:** The script is supported for Ubuntu and Mac OS. If you encounter any issues, please report it by [opening an issue](https://github.com/demisto/content/issues).
 
 **Requirements:**
 Before using this automation, make sure you have [`git`](https://git-scm.com/downloads) and [`python3`](https://www.python.org/downloads/) installed and in your `PATH`. This script will install [`demisto-sdk`](https://github.com/demisto/demisto-sdk#installation) python package if it does not exist in your environment.
@@ -136,12 +136,14 @@ Please visit ====> https://github.com/me/content/pull/new/partner-HelloWorld-ado
 
 <br/>
 
-<details><summary><strong>Adopt Using Visual Studio Code</strong></summary>
+<details><summary><strong>Adopt Using a Text Editor/IDE</strong></summary>
 <br/>
 <div>
-If you are creating the Pull Request from Visual Studio Code, please follow the below steps. For additional guidance, watch the <a href="https://www.youtube.com/watch?v=9GPkhtRw4Oc">Visual Studio video overview</a>. 
+You can also perform the necessary steps to adopt using any text editor or an IDE of your choice and the command line.
 
-To follow along, you'll need to have [Demisto SDK installed on your machine](https://github.com/demisto/demisto-sdk#installation).
+**Requirements:** To follow along, you'll need to have [Demisto SDK installed on your machine](https://github.com/demisto/demisto-sdk#installation).
+
+For additional guidance, you can watch how to [perform the steps using Visual Studio Code](https://www.youtube.com/watch?v=9GPkhtRw4Oc). 
 
 1. Locate your company's Pack folder and open the `README.md` file. Paste the below text into the file:
 
@@ -202,7 +204,7 @@ Once the Cortex XSOAR engineering team merges your Pull Request, you will have s
 <div>
 If you prefer to create the Pull Request directly from GitHub, please follow the below step by step instructions. For additional guidance, watch the <a href="https://www.youtube.com/watch?v=9mInBTuC6AE">GitHub video overview</a>. 
 
-**Requirements:** Make sure you working on [fork of the Content repository](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-2-fork-the-github-repo) and you are logged in with your GitHub account.
+**Requirements:** Make sure you are working on [fork of the Content repository](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-2-fork-the-github-repo) and you are logged in with your GitHub account.
 
 1. Go to the `Packs` folder and find your company’s pack.
 2. Find the `README.md` file and then click the ![Pencil_Icon](/doc_imgs/partners/Pencil_Icon.png) on the right side of the screen to edit the file. 
