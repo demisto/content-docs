@@ -243,3 +243,25 @@ The following incident fields must be configured either in the integration or th
 * **triggerDebugMirroringRun (Available from 6.6)** - is runnable from the War Room in order to debug a full mirroring run over existing incidents. You can add an incident ID to the command to get information about a specific incident. If no ID is given, the incident will be loaded from the War Room context. The output of this command is a unique debug log file that includes logs for the entire mirroring flow. In addition, this debug log includes the content of the integrations' debug-mode logs. An example for running the command from the cli: `!triggerDebugMirroringRun incidentId=50`
 
 *Note: This command triggers real mirroring actions, for example, updating incidents and fields.*
+
+
+### Details element example
+
+<details>
+  <summary>Toggle me!</summary>
+  <div>
+    <div>This is the detailed content</div>
+    <br/>
+    <details>
+      <summary>
+        Nested toggle! Some surprise inside...
+      </summary>
+      <div>
+        😲😲😲😲😲
+        ```bash
+        a = 4
+        ```
+      </div>
+    </details>
+  </div>
+</details>
