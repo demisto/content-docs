@@ -93,51 +93,49 @@ Be sure to prepare the following items as you will be prompted to submit those a
 - A link to your organization's support site.
 - Email address for your organization's support.
 - A link to download your [author image](https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng). If no link is supplied, you will be asked to add it manually to `content/packs/<MyPackName>/Author_image.png`.
-    
 
-	```bash
-	./Utils/adopt_pack.bash complete HelloWorld
-	
-	Initializing Pack Adoption...
-	✓ Detected OS 'Mac OS'.
-	✓ Dependency 'git' found.
-	✓ Dependency 'python3' found.
-	✓ Dependency 'demisto-sdk' found.
-	✓ All dependencies met.
-	✓ Found git repository in  '~/dev/demisto/fork/content/'.
-	✓ Pack 'HelloWorld' exists.
-	✗ Not on master/main branch.
-	- No untracked changes done, attempting to checkout to master/main branch...
-	- Checking out master branch...
-	✓ Branch 'partner-HelloWorld-adopt-complete' doesn't exist
-	✓ Branch 'partner-HelloWorld-adopt-complete' created.
-	✓ Pack version bumped to "1.2.12" in '~/dev/demisto/fork/content/Packs/HelloWorld/pack_metadata.json'
-	✓ Release note created in 'Packs/HelloWorld/ReleaseNotes/1_2_12.md'
-	✓ Release note '1_2_12.md' updated.
-	✓ Support type 'partner' set in pack_metadata.json.
-	Enter your organization/company's name: acme
-	✓ Author set  in pack_metadata.json.
-	Enter a URL to your support site: https://acme.org
-	✓ URL field set  in pack_metadata.json.
-	Enter the email to your support site: support@acme.org
-	✓ Email field set  in pack_metadata.json.
-	Enter a URL to download the author image. If you do not have a URL, just press enter and make sure to add it manually according to https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng:
+```bash
+./Utils/adopt_pack.bash complete HelloWorld
 
-	https://static.wikia.nocookie.net/looneytunes/imageshttps://static.wikia.nocookie.net/looneytunes/images/5/56/Comp_2.jpg
+Initializing Pack Adoption...
+✓ Detected OS 'Mac OS'.
+✓ Dependency 'git' found.
+✓ Dependency 'python3' found.
+✓ Dependency 'demisto-sdk' found.
+✓ All dependencies met.
+✓ Found git repository in  '~/dev/demisto/fork/content/'.
+✓ Pack 'HelloWorld' exists.
+✗ Not on master/main branch.
+- No untracked changes done, attempting to checkout to master/main branch...
+- Checking out master branch...
+✓ Branch 'partner-HelloWorld-adopt-complete' doesn't exist
+✓ Branch 'partner-HelloWorld-adopt-complete' created.
+✓ Pack version bumped to "1.2.12" in '~/dev/demisto/fork/content/Packs/HelloWorld/pack_metadata.json'
+✓ Release note created in 'Packs/HelloWorld/ReleaseNotes/1_2_12.md'
+✓ Release note '1_2_12.md' updated.
+✓ Support type 'partner' set in pack_metadata.json.
+Enter your organization/company's name: acme
+✓ Author set  in pack_metadata.json.
+Enter a URL to your support site: https://acme.org
+✓ URL field set  in pack_metadata.json.
+Enter the email to your support site: support@acme.org
+✓ Email field set  in pack_metadata.json.
+Enter a URL to download the author image. If you do not have a URL, just press enter and make sure to add it manually according to https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng:
 
-	Attempting to download image from https://static.wikia.nocookie.net/looneytunes/images/5/56/Comp_2.jpg...
-	✓ Author image downloaded to '~/dev/demisto/fork/content//Packs/HelloWorld/Author_image.png'
-	✓ Adoption complete message added to README.md
-	✓ Changes committed.
-	✓ Branch pushed upstream.
+https://static.wikia.nocookie.net/looneytunes/imageshttps://static.wikia.nocookie.net/looneytunes/images/5/56/Comp_2.jpg
 
-	All done here!
+Attempting to download image from https://static.wikia.nocookie.net/looneytunes/images/5/56/Comp_2.jpg...
+✓ Author image downloaded to '~/dev/demisto/fork/content//Packs/HelloWorld/Author_image.png'
+✓ Adoption complete message added to README.md
+✓ Changes committed.
+✓ Branch pushed upstream.
 
-	Please visit ====> https://github.com/me/content/pull/new/partner-HelloWorld-adopt-complete <==== and fill out the Pull Request details to complete the adoption process
-	```
-	<br/>
+All done here!
 
-  
+Please visit ====> https://github.com/me/content/pull/new/partner-HelloWorld-adopt-complete <==== and fill out the Pull Request details to complete the adoption process
+```
+
+<br/>
 
 #### Adopt Using a Text Editor/IDE
 
