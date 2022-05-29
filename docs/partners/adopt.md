@@ -83,31 +83,16 @@ Follow the steps below to adopt using the helper script:
 	All done here!
 
 	Please visit ====> https://github.com/me/content/pull/new/partner-HelloWorld-adopt-start <==== and fill out the Pull Request details to complete the adoption process
-
 	```
-
-  
 
 	**After 90 days**
 
-	  
-
 	Be sure to prepare the following items as you will be prompted to submit those as part of the flow:
 
-	  
-
 	- Your organization/company's name.
-
 	- A link to your organization's support site.
-
 	- Email address for your organization's support.
-
-	- A link to download your [author image](https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng). If no link is supplied, you will be asked to add it manually to `content/packs/$PACK/Author_image.png`
-
-	  
-
-	Then run the following script to complete the adoption:
-
+	- A link to download your [author image](https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng). If no link is supplied, you will be asked to add it manually to `content/packs/<MyPackName>/Author_image.png`
 	  
 
 	```bash
@@ -174,11 +159,8 @@ Follow the steps below to adopt using the a text editor or IDE. For additional g
 2. Next, open the `pack_metadata.json` file and update the following sections:
 
 	-  `support` - must say `partner`
-
 	-  `author` - must say your company name
-
 	-  `url` - must be changed to your company’s support site
-
 	-  `email` - must be your company's support email.
 
 3.  Once everything is updated, save your changes and run the `demisto-sdk update-release-notes -i <path to pack> -f`. The command output will instruct you to open the newly-created release note. Find the file and open it.
@@ -188,8 +170,6 @@ Follow the steps below to adopt using the a text editor or IDE. For additional g
 	- Start of adoption process.
 	```
 
-	  
-
 5. Go to _Source Control_ tab and commit the changes. Click on the _Publish Branch_ button. This will open a Pull Request.
 
 6. Fill out the pull request details and create the pull request.
@@ -198,9 +178,8 @@ Follow the steps below to adopt using the a text editor or IDE. For additional g
 
 	Please follow the steps below to complete the adoption process:
 
-	  
 
-1. Open the `README.md` file and update the top of the file with the following:
+7. Open the `README.md` file and update the top of the file with the following:
 	```
 	Note: Support for this Pack moved to the partner on MONTH, DAY, YEAR.
 	Please contact the partner directly via the support link on the right.
