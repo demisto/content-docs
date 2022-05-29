@@ -139,7 +139,7 @@ Follow the steps below to adopt using the helper script:
 
   
 
-### Adopt Using a Text Editor/IDE
+#### Adopt Using a Text Editor/IDE
 
 You can also perform the necessary steps to adopt using any text editor or an IDE of your choice and the command line. 
 
@@ -205,7 +205,7 @@ Follow the steps below to adopt using the a text editor or IDE. For additional g
 
   
 
-### Adopt Using GitHub UI
+#### Adopt Using GitHub UI
 
 **Requirements:** Make sure you are working on [fork of the Content repository](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-2-fork-the-github-repo) and you are logged in with your GitHub account.
 
