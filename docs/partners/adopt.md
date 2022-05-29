@@ -205,11 +205,11 @@ Follow the steps below to adopt using the a text editor or IDE. For additional g
 
   
 
-#### Adopt Using GitHub UI
+### Adopt Using GitHub UI
+
+If you prefer to create the Pull Request directly from GitHub, please follow the instructions below. For additional guidance, watch the [GitHub tutorial](https://www.youtube.com/watch?v=9mInBTuC6AE).
 
 **Requirements:** Make sure you are working on [fork of the Content repository](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-2-fork-the-github-repo) and you are logged in with your GitHub account.
-
-If you prefer to create the Pull Request directly from GitHub, please follow the below step by step instructions. For additional guidance, watch the [GitHub instructions](https://www.youtube.com/watch?v=9mInBTuC6AE).
   
 
 1. Go to the `Packs` folder and find your company’s pack.
