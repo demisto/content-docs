@@ -90,6 +90,20 @@ ScienceSoft Cybersecurity is a team of experienced cybersecurity developers/cons
 → Contact Alex Nivin [anivin@scnsoft.com](mailto:anivin@scnsoft.com)
 ([www.scnsoft.com](https://www.scnsoft.com))
  
+ 
+### SecInfra
+
+<img src="/doc_imgs/partners/secinfra_logo.png" width="200px;"/>
+
+<br />
+<br />
+
+SecInfra's goal is to support cybersecurity companies in their efforts to secure their infrastructure. We help IT departments implement a structured approach to make the most of the technological innovations available in the cybersecurity ecosystem to meet the most demanding challenges.
+Among our expertises, SOAR holds a preponderant place, whether it's within our MDR service or our delivery expertise. We have a thorough understanding of XSOAR, from the design of the platform to the development of complex custom integrations, including remote management and support.
+
+→ Contact Guillaume Brauman [gbr@secinfra.fr](mailto:gbr@secinfra.fr)
+ ([www.secinfra.fr](https://www.secinfra.fr))
+
 
 ### SOAR XPERTS
 
