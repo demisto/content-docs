@@ -46,15 +46,13 @@ Follow the steps below to adopt using the helper script:
 
 2. Look for the pack you want to adopt under the `Packs/` directory. You will use the folder name as the second argument to the `adopt_pack.bash` script.
 
-3. Run the following bash script.
+3. Run the following `bash` script:
 
-	```
+	```bash
 	./Utils/adopt_pack.bash start <MyPackName>
 	```
 
-	  For example, if we wanted to start adopting the `HelloWorld` Pack, we would run the following command:
-
-  
+	For example, if we wanted to start adopting the `HelloWorld` Pack, we would run the following command:
 
 	```bash
 	./Utils/adopt_pack.bash start HelloWorld
@@ -222,11 +220,11 @@ If you prefer to create the Pull Request directly from GitHub, please follow the
 
   
 
-	Make sure you change the `MONTH`, `DAY`, and `YEAR` to the appropriate date that is **90 days** from your submission date.
+Make sure you change the `MONTH`, `DAY`, and `YEAR` to the appropriate date that is **90 days** from your submission date.
 
   
 
-	While still in the `README.md` file, scroll down to the bottom of the page where select the 'Create a new branch for this commit and start a pull request'. Change the name of the new branch to `partner-COMPANY_NAME-adoption-start` and click on 'Propose changes'.
+While still in the `README.md` file, scroll down to the bottom of the page where select the 'Create a new branch for this commit and start a pull request'. Change the name of the new branch to `partner-COMPANY_NAME-adoption-start` and click on 'Propose changes'.
 
   
 
