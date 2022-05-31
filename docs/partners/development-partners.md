@@ -91,7 +91,7 @@ ScienceSoft Cybersecurity is a team of experienced cybersecurity developers/cons
 ([www.scnsoft.com](https://www.scnsoft.com))
  
  
-### SECINFRFA
+### SecInfra
 
 <img src="/doc_imgs/partners/secinfra_logo.png" width="200px;"/>
 
@@ -102,7 +102,7 @@ SecInfra is a pure security player whose goal is to support companies in their e
 Among our expertises, SOAR holds a preponderant place, whether within our MDR service or within our expertise delivery activity. We have a complete capacity on Xsoar, from the design of the platform to the development of complex custom integration, including remote management and support.
 
 → Contact Guillaume Brauman [gbr@secinfra.fr](mailto:gbr@secinfra.fr)
- ([www.secinfra.fr](www.secinfra.fr))
+ ([www.secinfra.fr](https://www.secinfra.fr))
 
 
 ### SOAR XPERTS
