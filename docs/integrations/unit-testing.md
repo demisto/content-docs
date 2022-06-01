@@ -138,6 +138,20 @@ Sample output:
 
 ![sample output](/doc_imgs/integrations/unit-test-sample-output.png)
 
+#### Use Remote Docker
+When running unit tests within docker, you can use a remote docker engine accessible via ssh. For example, you can use a docker engine which is running on a remote Linux machine in the cloud. This is especially useful when testing advanced integrations, you would like to test on a Linux machine (for example Rasterize integration which uses Chrome). Set the following env varialbe with an ssh connection url to use a remote docker engine: `DOCKER_HOST`. For example:
+```
+DOCKER_HOST=ssh://myuser@myhost.com demisto-sdk lint -i Packs/rasterize/Integrations/rasterize
+```
+Make sure you are able to ssh to the target machine without a password prompt. See example article: https://www.redhat.com/sysadmin/passwordless-ssh.
+
+If you are using a GCP machine accessed via an IAP Tunnel, see following [article](https://medium.com/@albert.brand/remote-to-a-vm-over-an-iap-tunnel-with-vscode-f9fb54676153) on how to add to the `~/.ssh/config` a proper `Host` entry to be used for the `DOCKER_HOST` env variable. 
+
+**Note:** `demisto-sdk` by default uses a native python client ([paramiko](https://github.com/paramiko/paramiko)) to connect via ssh. If the connection fails, you can also try using an `ssh` cmd client, by setting the env variable: `DOCKER_SSH_CLIENT=true`. The `ssh` client must be on your path. The `docker-py` package version 5.0.3 used by `demisto-sdk` currently has a known [bug](https://github.com/docker/docker-py/pull/2993) where a host configured with `ProxyCommand` (such as when using a GCP host via IAP Tunnel), the connection will fail with an error similar to: `AttributeError: 'SSHHTTPAdapter' object has no attribute 'ssh_conf'`. In this case, use the commmand line ssh client by setting `DOCKER_SSH_CLIENT`. For example:
+```
+DOCKER_HOST=ssh://myuser@myhost.com DOCKER_SSH_CLIENT=true demisto-sdk lint -i Packs/rasterize/Integrations/rasterize
+```
+
 ## Common Unit Testing Use Cases
 
 ### Multi variables assertion
