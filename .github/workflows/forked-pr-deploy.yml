@@ -31,7 +31,7 @@ jobs:
         if: "steps.build_download.outputs.forked_pr > 0"
         uses: actions/setup-node@v1
         with:
-          node-version: '12.x'  
+          node-version: '16.x'  
 #      - name: Deploy Netlify Build
 #        if: "steps.build_download.outputs.forked_pr > 0"
 #        env:
@@ -61,7 +61,7 @@ jobs:
           echo "==== $(date): Starting Firebase install... ===="
 
           echo $FIREBASE_JSON_KEY > "$HOME"/gcloud.json
-          npm install firebase-tools
+          npm install firebase-tools@~11.0.1
           export GOOGLE_APPLICATION_CREDENTIALS="$HOME"/gcloud.json
           export PATH="$PATH:`pwd`/node_modules/.bin"
 
