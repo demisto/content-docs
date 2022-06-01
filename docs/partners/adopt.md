@@ -44,13 +44,15 @@ Follow the steps below to adopt using the helper script:
 
 1. Inside your terminal, change your working directory to the root of the Content repository. This is the location where you [cloned the forked `content` repository](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-3-clone-the-github-fork-locally).
 
-2. Look for the pack you want to adopt under the `Packs/` directory. You will use the folder name as the second argument to the `adopt_pack.bash` script.
+2. Look for the pack you want to adopt under the `Packs/` directory. You will use the folder name as the second argument (`<MyPackName>`) to the `adopt_pack.bash` script.
 
 3. Run the following `bash` script:
 
 	```bash
 	./Utils/adopt_pack.bash start <MyPackName>
 	```
+
+	When the script finishes its execution, it will print a link to GitHub to open a Pull Request with the changes. Click on the link or copy it into your browser and fill out the Pull Request form.
 
 	For example, if we wanted to start adopting the `HelloWorld` Pack, we would run the following command:
 
@@ -83,15 +85,24 @@ Follow the steps below to adopt using the helper script:
 	Please visit ====> https://github.com/me/content/pull/new/partner-HelloWorld-adopt-start <==== and fill out the Pull Request details to complete the adoption process
 	```
 
+<br/>
+
 **After 90 days**
 
-Be sure to prepare the following items as you will be prompted to submit those as part of the flow:
+Prepare the following information as you will be prompted to submit those as part of the script execution:
 
 - Your organization/company's name.
 - A link to your organization's support site.
 - Email address for your organization's support.
 - A link to download your [author image](https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng). If no link is supplied, you will be asked to add it manually to `content/packs/<MyPackName>/Author_image.png`.
 
+Once you have all the necessary information, run the script:
+
+```bash
+./Utils/adopt_pack.bash complete <MyPackName>
+```
+
+For example, if we were to complete the adoption of the `HelloWorld` Pack, we would run:
 ```bash
 ./Utils/adopt_pack.bash complete HelloWorld
 
