@@ -194,7 +194,6 @@ const sidebars = {
       items: [
         "incidents/incident-xsoar-incident-lifecycle",
         "incidents/incident-types",
-        "incidents/incident-customize-incident-layout",
         "incidents/incident-fields",
         "incidents/incident-jobs",
         "incidents/incident-classification-mapping",
