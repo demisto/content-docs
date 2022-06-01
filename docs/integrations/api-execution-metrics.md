@@ -3,14 +3,14 @@ id: api_execution_metric_reporting
 title: API Execution Metric Reporting
 ---
 
-Cortex XSOAR version 7.0.0 adds support for API Execution Metric Reporting.
+Cortex XSOAR version 6.8 adds support for API Execution Metric Reporting.
 
 ## Supported Server Version
-API Execution Metric Reporting is only supported from version 7.0.0 and on.
+API Execution Metric Reporting is supported from version 6.8.
 
 
 ## Implementing API Execution Metric Reporting
-In order for metric data to be stored, an integration must return an `execution_metrics` command result as part of the returned response.
+For metric data to be stored, an integration must return an `execution_metrics` command result, as part of the returned response.
 
 An example of how a command may implement the `ExecutionMetrics` object is as follows:
 ```python
@@ -21,7 +21,7 @@ command_results = []
 urls = ['sample_url.com/successful', 'sample_url.com/general-error', 'sample_url.com/ratelimited']
 
 for url in urls:
-    # Your implementation will likely have it's own logic regarding what the result is of an API call
+    # Your implementation will likely have it's own logic regarding what the result is of an API call.
     if url.is_success:
         # When a result is to be recorded, it's necessary to increment the metric by a given amount. 
         execution_metrics.success += 1
@@ -39,9 +39,9 @@ command_results.append(execution_metrics.metrics)
 ```
 
 ## Rate Limiting
-If the service that an integration is being developed for implements API throttling, using [Scheduled Commands](./../integrations/scheduled-commands) in addition to metric reporting, will help customers to have insight into their API usage. With these reported metrics, customers will be able to make informed decisions regarding their service licences.
+If a service that an integration is being developed implements API throttling, using [Scheduled Commands](./../integrations/scheduled-commands) in addition to metric reporting, it can help you to have insight into your API usage. With these reported metrics, you can make informed decisions regarding your service licenses.
 
-Refer to the following example to see how this implementation could look like.
+The following example shows you how this implementation could look like.
 
 ```python
 # An instance of ExecutionMetrics must be instantiated to begin capturing metric results.
@@ -69,7 +69,7 @@ for url in urls:
         continue
     # Don't forget to log your successes too.
     execution_metrics.success += 1
-# From XSOAR version 6.1.0 and above, scheduling is supported. It's best to check if a command can be scheduled.
+# From Cortex XSOAR version 6.1 and above, scheduling is supported. It's best to check if a command can be scheduled.
 if supports_polling():
     if len(items_to_schedule) > 0:
         # If a command can be scheduled, implement some logic which is in line with the service's usage recommendations.
@@ -80,14 +80,14 @@ if execution_metrics.metrics is not None and execution_metrics.is_supported():
     command_results.append(execution_metrics.metrics)
 ```
 
-If an item has been scheduled and upon exhausting the permitted retries, a `TimeoutError` metric will automatically be reported for the quantity of `ItemsRemaining` that are reported in the Scheduled Command.
+If an item has been scheduled and after exhausting the permitted retries, a `TimeoutError` metric is automatically reported for the quantity of `ItemsRemaining`, which is reported in the Scheduled Command.
 ## Dashboards
-API Execution Metric reporting was implemented in order to present the information via a dashboard to help provide insight into an integration's usage of an API service. 
+API Execution Metric reporting was implemented to present the information via a dashboard to help provide insight into an integration's usage of an API service. 
 
 In general, if your integration is using a service where the results of the API calls may be of importance to determine usage, it is best practice to also include a widget in the content pack.
 
 ## Permitted Metric Types
-Each metric type results in additional metric records being created in telemetry database. To prevent excessive records from being created, metric types other than those defined in the default list are automatically converted to a `GeneralError`.
+Each metric type results in additional metric records being created in the telemetry database. To prevent excessive records from being created, metric types other than those defined in the default list are automatically converted to a `GeneralError`.
 
 | Metric Type  | Description                               |
 |--------------|-------------------------------------------|
