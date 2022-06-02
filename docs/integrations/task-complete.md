@@ -1,6 +1,6 @@
 ---
 id: task-complete 
-title: taskComplete 
+title: task Complete 
 ---
 You can use this command to mark a playbook task as completed. For example, you might need to include the taskComplete command in a SLA breach script, to close a task and force the playbook to continue running after the SLA has been breached. You can also use the taskComplete command to add an action button in an incident layout, that can be used to mark a specific playbook task as complete. 
 
