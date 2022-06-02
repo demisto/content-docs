@@ -17,6 +17,8 @@ All the free content (i.e. everything excluding Paid Content Packs) is open sour
 
 Contributions can be either officially supported (by Palo Alto Networks, a Technology Partner, or an individual developer), or *community* supported: the former means that when a customer has a problem with the content, they will have an email address or web site to reach out to, and they will expect an answer. When the contribution is *community* supported, it's not required to provide support (customers will ask questions on our [Live Community Forum](https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions)) and the quality requirements for the contribution to be accepted will be lower.
 
+**Note:** If you plan to contribute content that integrate with one of Palo Alto Networks products, we will require the pack to be supported by Cortex XSOAR and therfore we might adopt your pack and push it into the Cortex XSOAR development pipeline to be released as Cortex XSOAR supported.
+
 For more information about the different support levels, check the [official documentation](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/marketplace/content-packs-support-types.html).
 
 ## What to contribute

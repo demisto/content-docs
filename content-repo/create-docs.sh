@@ -53,8 +53,13 @@ else
     fi
 
     if [ ! -d ${CONTENT_GIT_DIR} ]; then
-        echo "Cloning content to dir: ${CONTENT_GIT_DIR} ..."
-        git clone --depth 1 ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}
+        if [[ "$CONTENT_BRANCH" == "master" ]]; then
+            echo "Cloning content (depth 1) to dir: ${CONTENT_GIT_DIR} ..."
+            git clone --depth 1 ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}
+        else
+            echo "Cloning content to dir: ${CONTENT_GIT_DIR} ..."
+            git clone ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}
+        fi
     else
         echo "Content dir: ${CONTENT_GIT_DIR} exists. Skipped clone."
         if [ -z "${CONTENT_REPO_SKIP_PULL}"]; then        
@@ -154,8 +159,8 @@ echo "Generating docs..."
 pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
 echo "Generating Demisto class and CommonServerPython docs..."
 pipenv run ./gen_pydocs.py -t "${TARGET_DIR}"
-if [[ "$CURRENT_BRANCH" != "master" ]]; then
-    echo "Skipping top contributors page generation, should run only on master."
+if [[ "$CURRENT_BRANCH" != "master" && "$CURRENT_BRANCH" != *"gen-top-contrib"* ]]; then
+    echo "Skipping top contributors page generation, should run only on master or branch containing 'gen-top-contrib'."
     exit 0
 else
     echo "Generating top contributors page..."

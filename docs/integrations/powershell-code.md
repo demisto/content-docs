@@ -68,7 +68,7 @@ demisto-sdk lint -i Packs/Legacy/Scripts/VerifyJSON
 **Tip:** Use the command line params `--no-pwsh-analyze` and `--no-pwsh-test` to skip either the PSScriptAnalyzer or unit testing.
 
 Sample output:
-![lint output](../doc_imgs/integrations/lint-powershell-output.png)
+![lint output](/doc_imgs/integrations/lint-powershell-output.png)
 
 ### PowerShell Command Line
 Make sure to install [Pester](https://pester.dev/docs/introduction/installation), [PSScriptAnalyzer](https://github.com/PowerShell/PSScriptAnalyzer#installation) and all dependent modules. Run `demisto-sdk lint -i ...` to copy `CommonServerPowerShell.ps1` and `demistomock.ps1` to the Integration/Automation directory. Enter the pwsh console and change into the Integration/Automation directory. 
@@ -84,13 +84,13 @@ Invoke-ScriptAnalyzer -Path <code file>
 Check the command help on how to specify specific tests to run.
 
 Sample output:
-![](../doc_imgs/integrations/pwsh-lint-cmd-output.png)
+![](/doc_imgs/integrations/pwsh-lint-cmd-output.png)
 
 ### VSCode IDE
 We recommend using VSCode as a PowerShell editor. The [PowerShell Extension](https://code.visualstudio.com/docs/languages/powershell) developed by Microsoft comes with built-in support for PSScriptAnalyzer and Pester unit testing (including Debugging).
 
 Sample output of PSScriptAnalyzer in VS Code alerting about an unused variable:
-![VS Code PSScriptAnalyzer](../doc_imgs/integrations/vs-code-pwsh-analyazer.png)
+![VS Code PSScriptAnalyzer](/doc_imgs/integrations/vs-code-pwsh-analyazer.png)
 
 Sample debug session using VS Code:
-![VS Code Debug](../doc_imgs/integrations/vscode-pwsh-debug.gif)
+![VS Code Debug](/doc_imgs/integrations/vscode-pwsh-debug.gif)

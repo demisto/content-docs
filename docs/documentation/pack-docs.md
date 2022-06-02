@@ -5,13 +5,14 @@ title: Pack Documentation
 
 Content Packs displayed in the Cortex XSOAR Marketplace contain 2 main documentation sections: 
 * **Description**: displayed in the Content Pack card when browsing the Marketplace and in the top of the *Details* tab.
-* **README**: displayed in the main display area of the *Details* tab.
+* **Videos**: displayed in the main display area and in the middle of the *Details* tab.
+* **README**: displayed in the main display area and in the bottom of the *Details* tab.
 
 #### Screenshots
 * *Description* in Pack display card: <br/>  
-<img src="../doc_imgs/integrations/gdpr-card.png" width="250"></img>  
+<img src="/doc_imgs/integrations/gdpr-card.png" width="250"></img>  
 * Details Tab with *Description* and *README*:
-![](../doc_imgs/integrations/gdpr-details.png)    
+![](/doc_imgs/integrations/gdpr-details.png)    
 
 
 ## Pack Description
@@ -48,6 +49,10 @@ Here are some templates that can help you get started:
 * "Streamline your _______ process for  _______. Optimized for _________ and ________ this _______ targeted Content Pack is ideal for _____________"
 * "Eliminate ________ by improving your__________. Rich with layouts and playbooks, this Content Pack is right for ____________"
 * "Get smarter. This pack utilizes _________ and _______for when _________ is heavily needed"
+
+## Pack Videos
+For larger packs that provide at least one end-to-end use case you are encouraged to create a short video or a few videos for the pack that will be showed in the *Details* tab of the pack in the Marketplace. The videos files should be hosted in youtube. The videos should contain a more detailed overview of the Pack compared to the *Description* section, but stay tuned to the value proposition of the pack.
+
 
 ## Pack README
 For larger packs that provide at least one end-to-end use case you should create a detailed README file for the pack that will be displayed in the *Details* tab of the pack in the Marketplace. The `README.md` file should be markdown formatted and placed in the Packs root directory. The file should contain a more detailed overview of the Pack compared to the *Description* section. You are free to add any information you see fit to include about the pack. It is recommended to provide an overview of what the Pack does and how to start working with the Pack.  

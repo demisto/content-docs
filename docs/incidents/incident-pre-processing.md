@@ -41,7 +41,7 @@ To test a rule:
 ## Example
 The following example creates a rule for processing an incoming incident that is part of a phishing campaign.
 
-![Parse Email Files - Outputs tab](../doc_imgs/incidents/PreProcessingRules.png)
+![Parse Email Files - Outputs tab](/doc_imgs/incidents/PreProcessingRules.png)
 
 In most cases, in a phishing campaign, the email subject will be similar. Therefore, we created, a condition for incoming incidents that have a subject line that contains the text, this is a phishing email.
 

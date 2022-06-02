@@ -5,7 +5,7 @@ title: Scheduled Commands
 
 ### Available from Cortex XSOAR version 6.2.0 and later.
 
-<img width="533" src="../doc_imgs/integrations/polling-command.png"></img>
+<img width="533" src="/doc_imgs/integrations/polling-command.png"></img>
 
 A command can schedule the future execution of another command.
 
@@ -42,6 +42,16 @@ The schedule sequence completes when any one of three terminating actions occur:
 1. ***Done*** - The integration finishes a schedule sequence by **not returning** a schedule result. Otherwise, the sequence continues as long as a schedule result is returned. 
 2. ***Error*** - The schedule sequence finishes with an error when a command in the sequence returns an error result.
 3. ***Timeout (automatically handled)*** - The schedule sequence finishes execution with a timeout error when the timeout is reached. Cortex XSOAR will return the timeout error entry automatically.
+
+#### How to Ignore Scheduled War Room Entries
+You can prevent printing the `Scheduled Entries` to the War Room when there is no output. However, this is possible only for entries that are subsequent to the first entry, since the first entry is expected to provide context about the expected final result. In other words, the first entry is always expected to have a result, but the entries that come after it may be empty until a non-scheduled result is returned.
+
+It makes sense to prevent printing to the War Room until the final result is available, since the `schedule` icon provides the scheduling context via its tooltip
+.
+To prevent War Room entries while using a `ScheduledCommand`, return a `CommandResults` with just a `scheduled_command`. For example:
+```python
+return_results(CommandResults(scheduled_command=scheduled_command))
+```
 
 #### Code Example
 In the example below, if the `status` is not `complete` then a result with `scheduled_command` is returned. After `interval_in_seconds` seconds (60 by default), the result schedules a poll for the search status and result. This is done in the next run as well, and repeats until the status is complete.

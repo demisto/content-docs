@@ -11,7 +11,8 @@
  */
 
  .heroBanner {
-  padding: 4rem 0;
+  padding: 1rem 0; /* Reduced padding for slider implementation */
+  /* padding: 4rem 0; */
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -128,7 +129,6 @@
 }
 
 @media only screen and (max-width: 768px) {
-  
   .hero {
     border-left: 20px;
     border-right: 20px;
@@ -156,6 +156,15 @@
   .indexCtasGitHubButton {
     display: none;
   }
+}
+
+.symphonyBannerDesktop { margin-top: 3rem; }
+
+@media (max-width: 820px) {
+  .symphonyBannerDesktop { display: none; }
+}
+@media (min-width: 821px) {
+  .symphonyBannerMobile { display: none };
 }
 
 /* Animation */

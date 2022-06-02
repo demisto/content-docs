@@ -554,7 +554,7 @@ When working on integrations that require user credentials (such as username/pas
 **Using username and password:**
 
 - **In Demisto UI:**
-![image](../doc_imgs/integrations/credentials_username_password.png)
+![image](/doc_imgs/integrations/credentials_username_password.png)
 
 - **In the YML file:**
 ```yml
@@ -582,7 +582,7 @@ return {
 **Using an API Token/Key:**
 
 - **In Demisto UI:**
-![image](../doc_imgs/integrations/credentials_api_token.png)
+![image](/doc_imgs/integrations/credentials_api_token.png)
 
 - **In the YML file:**
 ```yml
@@ -613,6 +613,30 @@ return_results(fileResult(filename, file_content))
 
 You can specify the file type, but it defaults to "None" when not provided.
 
+### create_indicator_result_with_dbotscore_unknown
+Used for cases where the API response to an indicator is not found and returns a verdict with an unknown score (0). A generic response is returned to the War Room and to the context path, by using the following syntax:
+
+```python
+indicator = "www.google.com",
+indicator_type = DBotScoreType.URL
+reliability = DBotScoreReliability.C
+
+return_results(create_indicator_result_with_dbotscore_unknown(indicator, indicator_type, reliability))
+```
+
+The War Room result will show:
+
+<img width="1105" alt="image" src="https://user-images.githubusercontent.com/72099621/160278670-37d07cd5-fef4-4b86-81b8-742fbf947298.png"></img>
+
+The Context Path will show:
+
+<img width="231" alt="image" src="https://user-images.githubusercontent.com/72099621/160278966-23c79cc3-ed47-498a-8076-1ec3053303d8.png"></img>
+
+If the integration has a reliability it should be noted, but it defaults to "None" when not provided.
+
+**Note:**
+ - When the indicator is of type **CustomIndicator**, you need to provide the *context_prefix* argument.
+ - When the indicator is of type **Cryptocurrency**, you need to provide the *address_type* argument.
 
 ### tableToMarkdown
 This will transform your JSON, dict, or other table into a Markdown table.
@@ -631,7 +655,7 @@ The above will create the table seen below:
 | third  | baz    |
 
 In the War Room, this is how a table will appear:
-<img width="788" src="../doc_imgs/integrations/50571324-46846e00-0db0-11e9-9888-ddd9dc275541.png"></img>
+<img width="788" src="/doc_imgs/integrations/50571324-46846e00-0db0-11e9-9888-ddd9dc275541.png"></img>
 
 You may also use ```headerTransform``` to convert the existing keys into formatted headers.
 
@@ -695,17 +719,17 @@ The resulted table will be:
 ```
  The argument above can be seen in the integration settings as shown below:
  
- <img width="644" src="../doc_imgs/integrations/50575189-ac4d1600-0e01-11e9-83fc-7a8f6f8ce55a.png"></img>
+ <img width="644" src="/doc_imgs/integrations/50575189-ac4d1600-0e01-11e9-83fc-7a8f6f8ce55a.png"></img>
  
  After the command is executed, the arguments are displayed in the War Room as part of the command, for example:
  
- <img width="758" src="../doc_imgs/integrations/50575199-fd5d0a00-0e01-11e9-9d54-944eb7c6f287.png"></img>
+ <img width="758" src="/doc_imgs/integrations/50575199-fd5d0a00-0e01-11e9-9d54-944eb7c6f287.png"></img>
 
 ### IndicatorsTimeline
 The `IndicatorTimeline` is an optional object (available from Server version 5.5.0 and up) . It is only applicable for commands that operate on indicators. It is a dictionary (or list of dictionaries) of the following format:
 When `IndicatorTimeline` data is returned in an entry, the timeline section of the indicator whose value was noted in the timeline data will be updated (and is viewable in the indicator's view page in Cortex XSOAR as can be seen in the attached image).
 
-<img width="758" src="../doc_imgs/integrations/timeline_section.png"></img>
+<img width="758" src="/doc_imgs/integrations/timeline_section.png"></img>
 
 **What value should be used for the `'Category'` field of a `timeline` data object?**  
 Any Cortex XSOAR integration command or automation that returns `timeline` data may include the `'Category'` value.
@@ -744,7 +768,7 @@ This class is used to return outputs. This object represents an entry in warroom
 |-------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | outputs_prefix    | str    | Should be identical to the prefix in the yml contextPath in yml file. for example:         CortexXDR.Incident                                                                              |
 | outputs_key_field | str    | Primary key field in the main object. If the command returns Incidents, and of the properties of Incident is incident_id, then outputs_key_field='incident_id'                             |
-| outputs           | object | (Optional) The data to be returned and will be set to context. If not set, no data will be added to the context                                                                                                                                          |
+| outputs           | list / dict | (Optional) The data to be returned and will be set to context. If not set, no data will be added to the context                                                                                                                                          |
 | readable_output    | str   | (Optional) markdown string that will be presented in the War Room, should be human readable -  (HumanReadable) - if not set, readable output will be generated via tableToMarkdown function |
 | raw_response      | object | (Optional) must be dictionary, if not provided then will be equal to outputs.  Usually must be the original raw response from the 3rd party service (originally Contents)                  |
 | indicators        | list   | DEPRECATED: use 'indicator' instead.                                                                                                                                                       |
@@ -823,8 +847,34 @@ return_error(message="error has occurred: API Key is incorrect", error=ex)
 
 Will produce an error in the War Room, for example:
 
-<img width="907" src="../doc_imgs/integrations/50571503-ed6b0900-0db4-11e9-8e9e-dc23f5ff403c.png"></img>
+<img width="907" src="/doc_imgs/integrations/50571503-ed6b0900-0db4-11e9-8e9e-dc23f5ff403c.png"></img>
 
+### CommandRunner
+
+`CommandRunner` is a class for executing multiple commands, which returns all valid results together with a human readable summary table of successful commands and commands that return errors.
+
+To use this functionality, create a list of commands using the `CommandRunner.Command`, and then call `CommandRunner.run_commands_with_summary(commands)`.
+
+`CommandRunner.Command`:
+|  Arg  |  Type | Description |
+| ------ | -----| --------|
+| `commands`   | str or List[str]   | The command to run. Could be a single command or a list of commands.                                            |
+| `args_lst` | dict or List[Dict]    | The args of the command. If provided in a list and the commands argument is a str, run the command with all the args in the list. If the commands argument is a list, the `args_lst` should be in the same size, and the args should correspond to the same command index.                            |
+| `instance`  | str | (Optional) The instance the command should run |
+| `brand`    | str   | (Optional) The instance the command should run. |
+
+
+**Example**
+```python
+commands = [CommandRunner.Command('command1', {'arg': 'val'},
+            CommandRunner.Command('command2', [{'arg1': 'val2'}, {'arg2': 'val2'}])),
+            CommandRunner.Command(['command3', 'command4'], [{'arg1': 'val2'}, {'arg2': 'val2'}]),
+            CommandRunner.Command('command5', {}, instance='some_instance', brand='some_brand')]
+
+return_results(CommandRunner.run_commands_with_summary(commands))
+```
+
+This returns all the results of all commands, including a human readable summary table.
 
 ### DEPRECATED - demisto.results()
 _Note_: Use `return_results` instead
@@ -870,7 +920,7 @@ The entry is composed of multiple components.
     ```
     When `IndicatorTimeline` data is returned in an entry, the timeline section of the indicator whose value was noted in the timeline data will be updated (and is viewable in the indicator's view page in Cortex XSOAR as can be seen in the attached image).
  
-    <img width="758" src="../doc_imgs/integrations/timeline_section.png"></img>
+    <img width="758" src="/doc_imgs/integrations/timeline_section.png"></img>
 
     **What value should be used for the `'Category'` field of a `timeline` data object?**  
     Any Cortex XSOAR integration command that returns `timeline` data should include the `'Category'` value of `'Integration Update'`. When returning `timeline` data from a Cortex XSOAR automation, the value passed to the `'Category'` field should be `'Automation Update'`.
@@ -944,7 +994,7 @@ return_outputs(
 
 
 ### AutoExtract
-As part of ```CommandResults()``` there is an argument called ```ignore_auto_extract```, which prevents the built-in [auto-extract](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-6/cortex-xsoar-admin/manage-indicators/auto-extract-indicators.html) feature from enriching IPs, URLs, files, and other indicators from the result. For example:
+As part of ```CommandResults()``` there is an argument called ```ignore_auto_extract```, which prevents the built-in [indicator extraction](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-6/cortex-xsoar-admin/manage-indicators/auto-extract-indicators.html) feature from enriching IPs, URLs, files, and other indicators from the result. For example:
 
 ```python
 results = CommandResults(
