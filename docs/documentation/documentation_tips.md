@@ -110,6 +110,6 @@ After the `demisto.sdk` runs, the output shows the following:
 ` Some XSOAR text`
 `XSOAR is the best.`
 
- ![XSOAR-format](../../../docs/doc_imgs/reference/XSOAR-format.png)
+ ![XSOAR-format](https://github.com/demisto/content-docs/blob/master/docs/doc_imgs/reference/XSOAR-format.png)
 
  
