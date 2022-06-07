@@ -139,7 +139,7 @@ Sample output:
 ![sample output](/doc_imgs/integrations/unit-test-sample-output.png)
 
 #### Use Remote Docker
-When running unit tests within docker, you can use a remote docker engine accessible via ssh. For example, you can use a docker engine which is running on a remote Linux machine in the cloud. This is especially useful when testing advanced integrations, you would like to test on a Linux machine (for example Rasterize integration which uses Chrome). Set the following env varialbe with an ssh connection url to use a remote docker engine: `DOCKER_HOST`. For example:
+When running unit tests within docker, you can use a remote docker engine accessible via ssh. For example, you can use a docker engine which is running on a remote Linux machine in the cloud. This is especially useful when testing advanced integrations, you would like to test on a Linux machine (for example Rasterize integration which uses Chrome). Set the following env variable with an ssh connection url to use a remote docker engine: `DOCKER_HOST`. For example:
 ```
 DOCKER_HOST=ssh://myuser@myhost.com demisto-sdk lint -i Packs/rasterize/Integrations/rasterize
 ```
