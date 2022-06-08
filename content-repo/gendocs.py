@@ -39,6 +39,7 @@ BASE_URL = "https://xsoar.pan.dev/docs/"
 MARKETPLACE_URL = "https://xsoar.pan.dev/marketplace/"
 DOCS_LINKS_JSON = {}
 
+CONFIGURE_INTEGRATION_TITLE_REGEX = re.compile(r"(.*)(## Configure [\w\s]+ on Cortex [\w\s]+\n)(.*)")
 INTEGRATION_YML_MATCH = [
     "Packs/[^/]+?/Integrations/[^/]+?/.+.yml",
     "Packs/[^/]+?/Integrations/.+.yml",
@@ -158,6 +159,28 @@ def get_extracted_deprecated_note(description: str):
                 res = res[0].capitalize() + res[1:]
             return res
     return ""
+
+
+def get_detailed_description_data(yml_data: dict, readme_file: str, content: str):
+    expandable_data = None
+    for regex in INTEGRATION_DOCS_MATCH:
+        if re.match(regex, readme_file):
+            data = yml_data.get('detaileddescription')
+            if not data:
+                description_file = readme_file.replace('_README', '_description')
+                if os.path.exists(description_file):
+                    with open(description_file, 'r', encoding='utf-8') as f:
+                        if data := f.read():
+                            title = 'Click here to view the Integration\'s configuration details'
+                            expandable_data = f'<details><summary>{title}</summary><p>{data}</p></details>'
+            break
+    if expandable_data:
+        if m := CONFIGURE_INTEGRATION_TITLE_REGEX.match(content):
+            if len(m.groups()) != 4:
+                # unexpected error, skipping
+                return content
+            return m.group(1) + m.group(2) + expandable_data + m.group(3)
+    return content
 
 
 def get_deprecated_data(yml_data: dict, desc: str, readme_file: str):
@@ -297,6 +320,7 @@ def add_content_info(content: str, yml_data: dict, desc: str, readme_file: str) 
     Returns:
         str: content entity information containing additional information.
     """
+    content = get_detailed_description_data(yml_data, readme_file, content)
     if deprecated_data := get_deprecated_data(yml_data, desc, readme_file):
         content = deprecated_data + content
         is_deprecated = True
