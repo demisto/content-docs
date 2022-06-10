@@ -17,7 +17,7 @@ Adopting a pack has several advantages for the partner:
 - Add detailed description and marketing to the pack (see yellow box, below) including links, images, company overview, etc. 
 - Engage in marketing activities with Palo Alto Networks.
 
-![pack example cyren](/doc_imgs/partners/packexample_cyren.png)
+![pack example cyren](/docs/doc_imgs/partners/packexample_cyren.png)
 
 
 ## Process
@@ -30,9 +30,10 @@ Choose either one of the methods below to start or complete adoption.
 
 The adoption methods offered below assume that you have already [forked the Content repository](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-2-fork-the-github-repo) and [cloned the fork onto your local machine](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-3-clone-the-github-fork-locally).
 
-#### Adopt Using Helper Script
-
-This script will automatically perform the necessary steps to create an adoption PR.
+<details>
+	<summary>Adopt Using Helper Script</summary>
+	<br/>
+	This script will automatically perform the necessary steps to create an adoption PR.
 
 **Note:** The script is supported for Ubuntu and Mac OS. If you encounter any issues, please report it by [opening an issue](https://github.com/demisto/content/issues).
 
@@ -143,12 +144,16 @@ All done here!
 
 Please visit ====> https://github.com/me/content/pull/new/partner-HelloWorld-adopt-complete <==== and fill out the Pull Request details to complete the adoption process
 ```
+</details>
+
+
 
 <br/>
 
-#### Adopt Using a Text Editor/IDE
-
-You can also perform the necessary steps to adopt using any text editor or an IDE of your choice and the command line. 
+<details>
+	<summary>Adopt Using a Text Editor/IDE</summary>
+	<br/>
+	You can also perform the necessary steps to adopt using any text editor or an IDE of your choice and the command line. 
 
 **Requirements:** To follow along, you'll need to have [Demisto SDK installed on your machine](https://github.com/demisto/demisto-sdk#installation).
 
@@ -174,7 +179,7 @@ Follow the steps below to adopt using the a text editor or IDE. For additional g
 
 4. Replace the `%%RN%%` placeholder with the following text:
 	```
-	- Start of adoption process.
+	- Started adoption process.
 	```
 
 5. Go to _Source Control_ tab and commit the changes. Click on the _Publish Branch_ button. This will open a Pull Request.
@@ -204,13 +209,16 @@ Follow the steps below to adopt using the a text editor or IDE. For additional g
 
 	- Also, update your Author image using the [Author image instructions](https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng).
 
-	3. Repeat step 3 through 6 in the previous section.
+	3. Repeat step 3 through 6 in the previous section. Replace the `%%RN%%` placeholder with the following text:
+	```
+	- Completed adoption process.
+	```
 
 	Once the Cortex XSOAR engineering team merges your Pull Request, you will have successfully adopted your pack!
-	 
-	<br/>
+</details>
 
-  
+
+<br/>
 
 ### Adopt Using GitHub UI
 
@@ -218,10 +226,11 @@ If you prefer to create the Pull Request directly from GitHub, please follow the
 
 **Requirements:** Make sure you are working on [fork of the Content repository](https://xsoar.pan.dev/docs/tutorials/tut-setup-dev#step-2-fork-the-github-repo) and you are logged in with your GitHub account.
   
+<details>
+	<summary>Instructions</summary>
+	1. Go to the `Packs` folder and find your company’s pack.
 
-1. Go to the `Packs` folder and find your company’s pack.
-
-2. Find the `README.md` file and then click the ![Pencil_Icon](/doc_imgs/partners/Pencil_Icon.png) on the right side of the screen to edit the file.
+2. Find the `README.md` file and then click the ![Pencil_Icon](/docs/doc_imgs/partners/Pencil_Icon.png) on the right side of the screen to edit the file.
 
 3. In the first line of the file, copy and paste the below text to show that the support is moving over:
 
@@ -253,7 +262,7 @@ Your Pull Request is not ready yet, continue following the instructions below.
 
   
 
-![Branch_name](/doc_imgs/partners/Branch_name.png)
+![Branch_name](/docs/doc_imgs/partners/Branch_name.png)
 
   
 
@@ -273,19 +282,19 @@ Your Pull Request is not ready yet, continue following the instructions below.
 
 10. Go back to your `Packs` folder and click into `ReleaseNotes`.
 
-  
 
 - Since we updated the version, we need to create a new release notes file. Find the file that has your original release notes number before you changed it. For example, if you changed “1_2_10” to “1_2_11” then you need to click into “1_2_10”.
 
 - Once you find the correct release note, click the edit pencil icon as you did in the previous steps, and copy the last line in the file to keep the same format. Once you have it copied, click cancel changes and go back to the `ReleaseNotes` folder.
 
-![release_note_step](/doc_imgs/partners/release_note_step.png)
-
-  
+![release_note_step](/docs/doc_imgs/partners/release_note_step.png)
 
 - Next, on the top right hand corner of the screen, click “Add file” and “Create new file”. Name your file the new version number you created earlier, which for this example would be `1_2_11.md`.
 
-- Now, paste the text you copied in the previous step. Delete line 2 of the text and write “Start of adoption process, update to readme file”
+- Add the following text to the release note under the Pack name:
+  	```
+	- Started adoption process.
+	```
 
 - Name the subject of this to “update release notes”, make sure it is committing to your branch and then click “Commit new file”
 
@@ -295,9 +304,9 @@ Your Pull Request is not ready yet, continue following the instructions below.
 
   
 
-11. Done! You have started the adoption process.
+Done! You have started the adoption process.
 
-  
+<br/>
 
 **After 90 days**
 
@@ -321,7 +330,13 @@ Follow the below steps to complete the adoption process:
 
 	- Also, update your Author image using the <a  href="https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng">instructions on our site</a>.
 
-3. Repeat step 10 from the previous section.
+3. Repeat step 10 from the previous section. Add the following text to the release note:
+  	```
+	- Completed adoption process.
+	```
+</details>
+
+
 
 <br/>
 
