@@ -17,7 +17,7 @@ Adopting a pack has several advantages for the partner:
 - Add detailed description and marketing to the pack (see yellow box, below) including links, images, company overview, etc. 
 - Engage in marketing activities with Palo Alto Networks.
 
-![pack example cyren](/docs/doc_imgs/partners/packexample_cyren.png)
+![pack example cyren](/doc_imgs/partners/packexample_cyren.png)
 
 
 ## Process
@@ -230,9 +230,9 @@ If you prefer to create the Pull Request directly from GitHub, please follow the
 	<summary>Instructions</summary>
 	1. Go to the `Packs` folder and find your company’s pack.
 
-2. Find the `README.md` file and then click the ![Pencil_Icon](/docs/doc_imgs/partners/Pencil_Icon.png) on the right side of the screen to edit the file.
+1. Find the `README.md` file and then click the ![Pencil_Icon](/doc_imgs/partners/Pencil_Icon.png) on the right side of the screen to edit the file.
 
-3. In the first line of the file, copy and paste the below text to show that the support is moving over:
+2. In the first line of the file, copy and paste the below text to show that the support is moving over:
 
 	```
 	Note: Support for this Pack will be moved to the Partner on MONTH, DAY, YEAR.
@@ -262,7 +262,7 @@ Your Pull Request is not ready yet, continue following the instructions below.
 
   
 
-![Branch_name](/docs/doc_imgs/partners/Branch_name.png)
+![Branch_name]/docs/doc_imgs/partners/Branch_name.png)
 
   
 
@@ -287,7 +287,7 @@ Your Pull Request is not ready yet, continue following the instructions below.
 
 - Once you find the correct release note, click the edit pencil icon as you did in the previous steps, and copy the last line in the file to keep the same format. Once you have it copied, click cancel changes and go back to the `ReleaseNotes` folder.
 
-![release_note_step](/docs/doc_imgs/partners/release_note_step.png)
+![release_note_step](/doc_imgs/partners/release_note_step.png)
 
 - Next, on the top right hand corner of the screen, click “Add file” and “Create new file”. Name your file the new version number you created earlier, which for this example would be `1_2_11.md`.
 
