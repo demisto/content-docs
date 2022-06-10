@@ -197,7 +197,7 @@ Follow the steps below to adopt using the a text editor or IDE. For additional g
 	Please contact the partner directly via the support link on the right.
 	```
 
-2.  Open the `pack_metadata.json` file and update the following sections:
+8.  Open the `pack_metadata.json` file and update the following sections:
 
 	-  `support` - must say “partner”
 
@@ -209,12 +209,14 @@ Follow the steps below to adopt using the a text editor or IDE. For additional g
 
 	- Also, update your Author image using the [Author image instructions](https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng).
 
-	3. Repeat step 3 through 6 in the previous section. Replace the `%%RN%%` placeholder with the following text:
+9. Repeat step 3 through 6 in the previous section. Replace the `%%RN%%` placeholder with the following text:
+
 	```
 	- Completed adoption process.
 	```
 
 	Once the Cortex XSOAR engineering team merges your Pull Request, you will have successfully adopted your pack!
+
 </details>
 
 
@@ -322,18 +324,20 @@ Follow the below steps to complete the adoption process:
 
 2. Next, go to the `pack_metadata.json` file and update the following sections:
 
-	-  `currentVersion` - update the version. Using the video as our example, we would be updating it to “1.2.12”.
-	-  `support` - must say “partner”
-	-  `Author` - must say your company name
-	-  `url` - must be changed to your company’s support site
-	-  `Email` - must be your company's support email
-
-	- Also, update your Author image using the <a  href="https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng">instructions on our site</a>.
+	- `currentVersion` - update the version. Using the video as our example, we would be updating it to “1.2.12”.
+	- `support` - must say “partner”
+	- `Author` - must say your company name
+	- `url` - must be changed to your company’s support site
+	- `Email` - must be your company's support email
+	- Also, update your Author image using the [our documentation](https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng).
 
 3. Repeat step 10 from the previous section. Add the following text to the release note:
-  	```
+
+	```
 	- Completed adoption process.
 	```
+	
+
 </details>
 
 
