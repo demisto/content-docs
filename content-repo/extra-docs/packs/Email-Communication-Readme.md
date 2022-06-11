@@ -174,7 +174,8 @@ This pack requires that you configure a pre-process rule to link the email commu
 See [pre-processing rules](https://demisto.developers.paloaltonetworks.com/docs/incidents/incident-pre-processing) for additional information.
 
 ### Configure the *service_mail* and *mail_sender_instance* Parameters 
-The *service_mail* parameter sets the sender's email address. This parameter is optional.
+The *service_mail* parameter sets the sender's email address. This parameter is optional when using the *Email Communication* incident type and layout, but is required to use the *Email Threads* layout.
+
 The *mail_sender_instance* parameter sets the specific Integration instance to use to send email messages.  This parameter is optional.
 
 The **SendEmailReply** script runs the ***reply-mail*** and ***send-mail*** commands and all the supported integrations send the email.
