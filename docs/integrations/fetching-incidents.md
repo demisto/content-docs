@@ -14,7 +14,7 @@ This topic provides:
 ## fetch-incidents Command
 The ***fetch-incidents*** command is the function that Cortex XSOAR calls every minute to import new incidents. It is triggered by the *Fetches incidents* parameter in the integration configuration. It is not necessary to configure the ***fetch-incidents*** command in the integration settings.
 
-![screen shot 2019-01-07 at 15 35 01](../doc_imgs/integrations/50771147-6aedb800-1292-11e9-833f-b5dd13e3507b.png)
+![screen shot 2019-01-07 at 15 35 01](/doc_imgs/integrations/50771147-6aedb800-1292-11e9-833f-b5dd13e3507b.png)
 
 Open the ***fetch-incidents*** command. Make sure the command is also referenced in the execution block.
 
@@ -260,4 +260,4 @@ def fetch_incidents(params: dict):
 ## Troubleshooting
 To troubleshoot ***fetch-incident***, execute `!integration_instance_name-fetch debug-mode=true` in the Playground to return the incidents.  
 
-<img src="../doc_imgs/integrations/70272523-0f34f300-17b1-11ea-89a0-e4e0e359f614.png" width="480"></img>
+<img src="/doc_imgs/integrations/70272523-0f34f300-17b1-11ea-89a0-e4e0e359f614.png" width="480"></img>

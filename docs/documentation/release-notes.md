@@ -207,7 +207,7 @@ In some cases, a new version is introduced which breaks backward compatibility.
 From Cortex XSOAR version 6.8 and above, there is support to mark a new version as a **breaking changes version**.
 
 Marking a version as a **breaking changes version** provides the user with an alert before installation:
-![image](../doc_imgs/integrations/bc_alert_example.png)
+![image](/doc_imgs/integrations/bc_alert_example.png)
 
 
 #### Idicate a new version is a breaking changes version
