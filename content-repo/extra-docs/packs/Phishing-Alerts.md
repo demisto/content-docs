@@ -18,13 +18,13 @@ These content items enable you retrieve, process and analyze email files, and ma
 
 
 ### Playbooks
-This content pack contains a playbook and two sub-playbooks.
+This content pack contains a playbook and one sub-playbook.
  
 | Playbook | Description | Notes |
 |---------------- | ------------- | ------------- |
 | Phishing Alerts Investigation | This is the main playbook and the default playbook for the **Phishing Alerts** incident type. Use this playbook to investigate and remediate a potential phishing incident fetched from either your Email Security Gateway or through your SIEM. One of the playbook's main tasks is to retrieve the original email file from your Email Security Gateway or Email Service Provider. <br/> The playbook's tasks include assessing the initial severity, processing results, and assessing the existence of similar phishing incidents in Cortex XSOAR. <br/> No action is taken without an initial approval by the analyst using the playbook's inputs. | Under the playbook inputs, you can add the SOC email address to send the notifications via email. |
 | Phishing Alerts - Check Severity | This sub-playbook is executed as part of the **Phishing Alerts Investigation** playbook. It calculates the incident severity and notifies the SOC via email if a sensitive mailbox has been detected.| - | 
-| Get Email From Email Gateway - Generic | This sub-playbook is executed as part of the **Get Original Email - Generic v2** sub-playbook, which is also a sub-playbook of the **Process Email - Generic v2** playbook executed by the parent playbook. The playbook enables you to retrieve the eml or msg files saved in the Email Security Gateway. | -
+
  ---
  
 ## Incident Types ##
