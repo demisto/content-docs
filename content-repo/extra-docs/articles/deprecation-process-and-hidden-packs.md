@@ -55,7 +55,7 @@ use other playbook example:
 <img src="../../../docs/doc_imgs/playbooks/deprecated-playbook-2.png" width="400" align="middle"></img>
 
 ## Hidden Packs
-Hidden pack means that customers will not see that pack in the marketplace anymore.
+A hidden pack will not be no longer shown in the marketplace.
 
 A pack should be hidden from the marketplace when all of its integrations, scripts and playbooks are deprecated.
 
