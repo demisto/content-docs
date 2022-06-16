@@ -22,11 +22,10 @@ Deprecating integration is a very simple process.
 
 2) Add to the integration yml description the sentence: Deprecated. "reason why it is deprecated" or "use integration v2 instead" or "No available replacement"
 
-here are two examples:
-
+no available replacement integration example:
 <img src="../../../docs/doc_imgs/integrations/deprecated-integration-1.png" width="400" align="middle"></img>
 
-
+use other integration example:
 <img src="../../../docs/doc_imgs/integrations/deprecated-integration-2.png" width="400" align="middle"></img>
 
 ## Deprecating script process
@@ -37,11 +36,10 @@ Deprecating script is a very simple process.
 
 2) Add to the script yml comment the sentence: Deprecated. "reason why it is deprecated" or "use other script instead" or "No available replacement"
 
-here are two examples:
-
+no available replacement script example:
 <img src="../../../docs/doc_imgs/scripts/deprecated-script-1.png" width="400" align="middle"></img>  
 
-
+use other script example:
 <img src="../../../docs/doc_imgs/scripts/deprecated-script-2.png" width="400" align="middle"></img>
 
 ## Deprecating playbook process
@@ -52,11 +50,10 @@ Deprecating playbook is a very simple process.
 
 2) Add to the playbook yml comment the sentence: Deprecated. "reason why it is deprecated" or "use other playbook instead" or "No available replacement"
 
-here are two examples:
-
+no available replacement playbook example:
 <img src="../../../docs/doc_imgs/playbooks/deprecated-playbook-1.png" width="400" align="middle"></img>
 
-
+use other playbook example:
 <img src="../../../docs/doc_imgs/playbooks/deprecated-playbook-2.png" width="400" align="middle"></img>
 
 ## Hidden Packs
