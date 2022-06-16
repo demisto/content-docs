@@ -59,9 +59,7 @@ A hidden pack will not be no longer shown in the marketplace.
 
 A pack should be hidden from the marketplace when all of its integrations, scripts and playbooks are deprecated.
 
-Right now there is a validation in our content build which checks whether all the integrations, scripts and playbooks are deprecated for every pack.
-
-In case all integrations, scripts and playbooks of a single pack are deprecated the validation will alert to make the pack hidden from the marketplace.
+There is such a validation in the demisto-sdk that checks that such packs are marked as hidden.
 
 ## Making Pack Hidden Process
 There are two options to make a pack hidden:
