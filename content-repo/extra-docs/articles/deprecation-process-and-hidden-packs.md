@@ -21,9 +21,9 @@ Deprecating integration is a very simple process.
 
 here are two examples:
 
-<img src="../../../docs/doc_imgs/integration/deprecated-integration.png" width="400" align="middle"></img>
+<img src="../../../docs/doc_imgs/integrations/deprecated-integration.png" width="400" align="middle"></img>
 
-<img src="../../../docs/doc_imgs/integration/deprecated-integration-2.png" width="400" align="middle"></img>
+<img src="../../../docs/doc_imgs/integrations/deprecated-integration-2.png" width="400" align="middle"></img>
 
 ## Deprecating script process
 
