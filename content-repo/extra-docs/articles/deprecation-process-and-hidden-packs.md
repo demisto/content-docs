@@ -16,7 +16,7 @@ A pack is considered deprecated when all of its integrations, scripts and playbo
 
 Deprecating integration is a very simple process. 
 
-1) define in the integration yml file the following key: ```deprecated: true```.
+1) Add the following key to the integration yaml file ```deprecated: true```.
 
 2) Add to the integration yml description the sentence: Deprecated. "reason why it is deprecated" or "use integration v2 instead" or "No available replacement"
 
