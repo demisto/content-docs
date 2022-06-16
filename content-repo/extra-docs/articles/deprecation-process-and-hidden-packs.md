@@ -30,7 +30,7 @@ use other integration example:
 
 Deprecating script is a very simple process.
 
-1) define in the script yml file the following key: ```deprecated: true```.
+1) Add the following key to the script yaml file ```deprecated: true```.
 
 2) Add to the script yml comment the sentence: Deprecated. "reason why it is deprecated" or "use other script instead" or "No available replacement"
 
