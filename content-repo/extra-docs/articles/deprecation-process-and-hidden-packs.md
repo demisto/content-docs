@@ -17,7 +17,7 @@ A pack is considered deprecated when all of its integrations, scripts and playbo
 Deprecating integration is a very simple process. 
 
 1) define in the integration yml file the following key: ```deprecated: true```.
-2) Add to the integration yml description the sentence: Deprecated. <reason why it is deprecated> or <use integration v2 instead> or <No available replacment>
+2) Add to the integration yml description the sentence: Deprecated. "reason why it is deprecated" or "use integration v2 instead" or "No available replacement"
 
 here are two examples:
 
@@ -30,7 +30,7 @@ here are two examples:
 Deprecating script is a very simple process.
 
 1) define in the script yml file the following key: ```deprecated: true```.
-2) Add to the script yml comment the sentence: Deprecated. <reason why it is deprecated> or <use other script instead> or <No available replacment>
+2) Add to the script yml comment the sentence: Deprecated. "reason why it is deprecated" or "use other script instead" or "No available replacement"
 
 here are two examples:
 
@@ -38,11 +38,11 @@ here are two examples:
 
 <img src="../../../docs/doc_imgs/scripts/deprecated-script-2.png" width="400" align="middle"></img>
 
-## Deprecating script process
+## Deprecating playbook process
 
 Deprecating playbook is a very simple process.
 1) define in the playbook yml file the following key: ```deprecated: true```.
-2) Add to the playbook yml comment the sentence: Deprecated. <reason why it is deprecated> or <use other script instead> or <No available replacment>
+2) Add to the playbook yml comment the sentence: Deprecated. "reason why it is deprecated" or "use other playbook instead" or "No available replacement"
 
 here are two examples:
 
