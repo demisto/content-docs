@@ -5,9 +5,7 @@ description: Review content items deprecation and hidden packs processes.
 ---
 
 ## What Deprecated Content Item Means
-Deprecated content items means the content item should not be used anymore, if an integration, script or a playbook is deprecated,
-
-that means it **shouldn't** be used anymore.
+Deprecated content items are no longer supported, and **should not be used**. The feature may no longer be considered efficient or safe.
 
 ## Supported Content Items
 The **only** content items that can be deprecated are **integrations, scripts and playbooks**.
