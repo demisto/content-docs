@@ -66,6 +66,6 @@ There are two options to make a pack hidden:
 
 1) Adding the key ```"hidden": true``` manually to the `pack_metadata.json` file.
 
-2) by running ```demisto-sdk format -i Packs/<pack-name>/pack_metadata.json``` it will automatically hide the pack as seen below.
+2) Running ```demisto-sdk format -i Packs/<pack-name>/pack_metadata.json``` will automatically hide the pack, as shown below.
 
 <img src="../../../docs/doc_imgs/packs/hidden-pack.png" width="400" align="middle"></img>
