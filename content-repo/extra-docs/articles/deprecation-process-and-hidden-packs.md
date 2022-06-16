@@ -18,7 +18,7 @@ Deprecating integration is a very simple process.
 
 1) Add the following key to the integration yaml file ```deprecated: true```.
 
-2) Add to the integration yml description the sentence: Deprecated. "reason why it is deprecated" or "use integration v2 instead" or "No available replacement"
+2) Add the following sentence to the integration yml's description : Deprecated. {reason why it is deprecated} either {use integration v2 instead} or {No available replacement}
 
 no available replacement integration example:
 <img src="../../../docs/doc_imgs/integrations/deprecated-integration-1.png" width="400" align="middle"></img>
