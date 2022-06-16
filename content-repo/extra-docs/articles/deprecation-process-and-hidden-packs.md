@@ -42,7 +42,6 @@ use other script example:
 
 ## Deprecating playbook process
 
-Deprecating playbook is a very simple process.
 
 1) define in the playbook yml file the following key: ```deprecated: true```.
 
