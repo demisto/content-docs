@@ -64,7 +64,7 @@ There is such a validation in the demisto-sdk that checks that such packs are ma
 ## Making Pack Hidden Process
 There are two options to make a pack hidden:
 
-1) by adding manually to the `pack_metadata.json` the key ```"hidden": true```
+1) Adding the key ```"hidden": true``` manually to the `pack_metadata.json` file.
 
 2) by running ```demisto-sdk format -i Packs/<pack-name>/pack_metadata.json``` it will automatically hide the pack as seen below.
 
