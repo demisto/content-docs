@@ -63,15 +63,14 @@ Though not advised, if you do not wish to create the version differences section
 Images in the documentation should be added to the relevant pack under a `doc_files` or `doc_imgs` directory. Images may be included with **absolute** or **relative** URLs.
 
 ### Relative Image URLs
-You may use relative URLs to documentation images stored in the `doc_files` or `doc_imgs` directories. To use relative URLs simply link to the image using a relative path such as (if the `doc_files` dir is located at the top level Pack directory):
+When creating Markdown `README` documents for XSOAR entities (Playbooks, Integrations, Scripts, etc.), you may use relative URLs to documentation images stored in the `doc_files` or `doc_imgs` directories. To use relative URLs simply link the image using a relative path such as:
 ```
 ![Setup Account](./../../doc_files/create-account.png)
 ```
-Or for example as (if the `doc_files` dir is located at the same level as the README.md file):
-```
-![Setup Account](./doc_files/create-account.png)
-```
-Make sure to view the README.md file in GitHub's web interface and validate that the images display properly.
+
+Make sure to view the `README.md` file in GitHub's web interface and validate that the images display properly.
+
+**Note**: Relative image URLs are not supported for [Pack `README`s](https://xsoar.pan.dev/docs/documentation/pack-docs).
 
 **Documentation with Relative URL examples:**
 * Google Calendar: https://github.com/demisto/content/blob/master/Packs/GoogleCalendar/Integrations/GoogleCalendar/README.md
