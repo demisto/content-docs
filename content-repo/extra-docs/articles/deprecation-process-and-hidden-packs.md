@@ -17,6 +17,7 @@ A pack is considered deprecated when all of its integrations, scripts and playbo
 2) Add the following sentence to the integration yaml's description: 
   
    ```description: Deprecated. {reason why it is deprecated} either {use integration v2 instead} or {No available replacement}```
+
 Example: No available replacement integration:
 <img src="../../../docs/doc_imgs/integrations/deprecated-integration-1.png" width="400" align="middle"></img>
 
@@ -39,6 +40,7 @@ Example: Use other script:
 ## How to Deprecate a Playbook
 1) Add the following key to the playbook yaml file:
    ```deprecated: true```
+
 2) Add the following sentence to the playbook yaml's description:
    ```Deprecated. {reason why it is deprecated} or {use other playbook instead} or {No available replacement}```
 
@@ -47,6 +49,7 @@ Example: No available replacement playbook:
 
 Example: Use other playbook:
 <img src="../../../docs/doc_imgs/playbooks/deprecated-playbook-2.png" width="400" align="middle"></img>
+
 ## Hidden Packs
 A hidden pack will no longer be shown in Marketplace.
 
