@@ -9,7 +9,7 @@ The add-on is open source. Source code is available at: [https://github.com/demi
 
 
 ### Prerequisites
-* Splunk version 8.2 or later
+* Splunk version 8.0 or later
 
 
 ### Test on a local Splunk Environment
