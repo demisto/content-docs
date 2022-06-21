@@ -10,13 +10,10 @@ Note that in some cases fetching remote files is needed. In the case of a privat
 
 ## Installation and Setup
 
-The Demisto SDK library supports Python 3.7 and up. Prior to installation please make sure you have a compatible Python version installed.
+The Demisto SDK library supports Python 3.8 and up. Prior to installation please make sure you have a compatible Python version installed.
 Also, Demisto SDK is designed to work on either macOS or Linux, if you are using Windows we support working through WSL. Please see [here](../contributing/contrib-requirements.md#windows-users) for more information.
 
-If you have followed our development setup [`bootstrap` process](dev-setup.md#bootstrap) you don't need to install the SDK manually as it is installed for you on your `venv`.
-
-These installation steps are only required if you are not working with the `bootstrap` or if you are working on a repository which is not part of the Content repository.
-To manually install the Demisto-SDK, enter your terminal and run the command:
+To locally install the Demisto-SDK, enter your terminal and run the command:
 
 ```buildoutcfg
 pip3 install demisto-sdk

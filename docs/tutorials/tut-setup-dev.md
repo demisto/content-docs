@@ -14,7 +14,7 @@ This tutorial will guide you through the following steps:
 1. Verify the requirements
 2. Fork the GitHub repo
 3. Clone the GitHub fork locally
-4. Run the bootstrap script
+4. Setup the VSCode extension
 5. Run the linter and unit tests
 6. Create a branch and integration directory
 7. Commit and push
