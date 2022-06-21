@@ -9,7 +9,7 @@ The add-on is open source. Source code is available at: [https://github.com/demi
 
 
 ### Prerequisites
-* Splunk version 7.2 or later
+* Splunk version 8.0 or later
 
 
 ### Test on a local Splunk Environment
@@ -41,8 +41,10 @@ In order to use the add-on and create incidents in XSOAR, you must complete the 
 * Choose log level (optional):  
   By default, the logging level is "INFO". You can change the logging level to "DEBUG" if needed.
 * Additional Settings (optional):  
- If you have an SSL certificate, provide its full path under the **"Location to Certificate"** field.
+    * If you have an SSL certificate, provide its full path under the **"Location to Certificate"** field.
   By default, **"Validate SSL"** is enabled.
+    * If you would like to extend the incident creatiin request timeout, provide the desired timeout under the "Timeout Value" field.
+    By default, timeout value is 10 seconds.
   
   ![splunk-add-on-config.png](../../../docs/doc_imgs/reference/splunk-add-on-config.png)
 * You must restart Splunk in order to apply changes in the configuration settings.
