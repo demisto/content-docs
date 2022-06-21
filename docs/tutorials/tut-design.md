@@ -89,7 +89,7 @@ If you are planning to create a new Integration that [fetches incidents](../inte
 
 - **Incident Fields**: Product-specific fields are important to create a data model that is relevant to the incident type you have created. More [info](../incidents/incident-fields). All of the incident fields should be associated only to the incident type you have created, and their name should be prefixed accordingly to indicate it.
 
-- **Layouts**: As you create new Incident Types with dedicated Fields, it's a good practice to define layouts to visualize them in the Cortex XSOAR UI so that the right data is immediately visible to the analyst. More [info](../incidents/incident-customize-incident-layout).
+- **Layouts**: As you create new Incident Types with dedicated Fields, it's a good practice to define layouts to visualize them in the Cortex XSOAR UI so that the right data is immediately visible to the analyst. More [info](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/incidents/customize-incident-view-layouts/customize-incident-layouts).
 
 - A **Classifier**, that is used to determine how an incoming incident retrieved by your integration is associated to a specific Incident type. More [info](../incidents/incident-classification-mapping).
 
