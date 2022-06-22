@@ -19,7 +19,12 @@ In addition, there are two more conditions:
 - "Deprecated. Use {OTHER_PACK_NAME} instead."
 - "Deprecated. {Optional: REASON} No available replacement."
 
-## How to deprecate a pack
+## Hidden Pack
+A hidden pack will no longer be shown in Marketplace. Customers will not be able to download a hidden pack from XSOAR marketplace anymore.
+
+Pack's reference docs will still be available for use.
+
+## How to deprecate and hide a pack
 1) Make sure that all the pack's integrations, scripts and playbooks are deprecated.
 
 2) Then there are two options:
@@ -28,6 +33,13 @@ In addition, there are two more conditions:
 
 * "Deprecated. Use {OTHER_PACK_NAME} instead."
 * "Deprecated. {Optional: REASON} No available replacement."
+
+Optional: Hiding a pack:
+
+Manually add the following key to the `pack_metadata.json` file. ```"hidden": true```
+
+<img src="../../../docs/doc_imgs/packs/hidden-pack.png" width="400" align="middle"></img>
+
 
 Example: No available replacement pack:
 <img src="../../../docs/doc_imgs/packs/deprecated-pack-2.png" width="400" align="middle"></img>
@@ -79,11 +91,3 @@ Example: No available replacement playbook:
 
 Example: Use other playbook:
 <img src="../../../docs/doc_imgs/playbooks/deprecated-playbook-2.png" width="400" align="middle"></img>
-
-## Hidden Pack
-A hidden pack will no longer be shown in Marketplace.
-
-## How to Hide a Pack
-Manually add the following key to the `pack_metadata.json` file. ```"hidden": true```
-
-<img src="../../../docs/doc_imgs/packs/hidden-pack.png" width="400" align="middle"></img>
