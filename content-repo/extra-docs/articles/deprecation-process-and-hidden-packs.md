@@ -38,8 +38,9 @@ Optional: Hiding a pack:
 
 Manually add the following key to the `pack_metadata.json` file. ```"hidden": true```
 
-<img src="../../../docs/doc_imgs/packs/hidden-pack.png" width="400" align="middle"></img>
+Example: Hidden pack:
 
+<img src="../../../docs/doc_imgs/packs/hidden-pack.png" width="400" align="middle"></img>
 
 Example: No available replacement pack:
 <img src="../../../docs/doc_imgs/packs/deprecated-pack-2.png" width="400" align="middle"></img>
