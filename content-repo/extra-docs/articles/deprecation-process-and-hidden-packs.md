@@ -12,7 +12,8 @@ A pack is considered deprecated when all of its integrations, scripts and playbo
 
 In addition, there are two more conditions:
 
-1) The pack's name ends with the suffix (Deprecated). 
+1) The pack's name ends with the suffix (Deprecated).
+
 2) the pack description should start one of the following sentences:
 
 - "Deprecated. Use {OTHER_PACK_NAME} instead."
@@ -22,8 +23,8 @@ In addition, there are two more conditions:
 1) Make sure that all the pack's integrations, scripts and playbooks are deprecated.
 
 2) Then there are two options:
-* run ```demisto-sdk format -i Packs/<pack-name>/pack_metadata.json``` and it will deprecate the pack automatically if all the integrations, scripts and playbooks are deprecated
-* Add to the name of the pack in the `pack_metadata.json` the suffix (Deprecated) and add to the description of the pack in the `pack_metadata.json` one of the two formats:
+- run ```demisto-sdk format -i Packs/<pack-name>/pack_metadata.json``` and it will deprecate the pack automatically if all the integrations, scripts and playbooks are deprecated
+- Add to the name of the pack in the `pack_metadata.json` the suffix (Deprecated) and add to the description of the pack in the `pack_metadata.json` one of the two formats:
 
 - "Deprecated. Use {OTHER_PACK_NAME} instead."
 - "Deprecated. {Optional: REASON} No available replacement."
@@ -40,8 +41,8 @@ Example: Use other pack:
 
 2) Add one of the following sentence to the integration yaml's description: 
   
-- "Deprecated. Use {OTHER_INTEGRATION_NAME} instead."
-- "Deprecated. {Optional: REASON} No available replacement."
+* "Deprecated. Use {OTHER_INTEGRATION_NAME} instead."
+* "Deprecated. {Optional: REASON} No available replacement."
 
 Example: No available replacement integration:
 <img src="../../../docs/doc_imgs/integrations/deprecated-integration-1.png" width="400" align="middle"></img>
