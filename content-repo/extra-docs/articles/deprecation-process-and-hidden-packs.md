@@ -14,7 +14,7 @@ In addition, there are two more conditions:
 
 1) The pack's name ends with the suffix (Deprecated).
 
-2) the pack description should start one of the following sentences:
+2) The pack description should start one of the following sentences:
 
 - "Deprecated. Use {OTHER_PACK_NAME} instead."
 - "Deprecated. {Optional: REASON} No available replacement."
@@ -23,11 +23,11 @@ In addition, there are two more conditions:
 1) Make sure that all the pack's integrations, scripts and playbooks are deprecated.
 
 2) Then there are two options:
-- run ```demisto-sdk format -i Packs/<pack-name>/pack_metadata.json``` and it will deprecate the pack automatically if all the integrations, scripts and playbooks are deprecated
+- Run ```demisto-sdk format -i Packs/<pack-name>/pack_metadata.json``` only if all the pack's integrations, scripts and playbooks are deprecated.
 - Add to the name of the pack in the `pack_metadata.json` the suffix (Deprecated) and add to the description of the pack in the `pack_metadata.json` one of the two formats:
 
-- "Deprecated. Use {OTHER_PACK_NAME} instead."
-- "Deprecated. {Optional: REASON} No available replacement."
+* "Deprecated. Use {OTHER_PACK_NAME} instead."
+* "Deprecated. {Optional: REASON} No available replacement."
 
 Example: No available replacement pack:
 <img src="../../../docs/doc_imgs/packs/deprecated-pack-2.png" width="400" align="middle"></img>
