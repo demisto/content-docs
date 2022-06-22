@@ -10,7 +10,7 @@ The **only** content items that can be deprecated are **integrations, scripts an
 
 A pack is considered deprecated when all of its integrations, scripts and playbooks are deprecated.
 
-In addition, two more conditions are:
+In addition, there are two more conditions:
 
 1) The pack's name ends with the suffix (Deprecated). 
 2) the pack description should start one of the following sentences:
