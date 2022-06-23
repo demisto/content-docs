@@ -32,6 +32,15 @@ Where:
 - **isremotesyncin** determines if mirroring from the 3rd party integration to XSOAR is supported.
 - **isremotesyncout** determines if mirroring from XSOAR to the 3rd party integration is supported.
 
+
+## Optional Prameters
+A Mirroring Integration's YAML file may have the following parameters (under the configuration section) if can be used in the integration:
+- **incidents_fetch_query** determines the query to fetch incident with.
+- **comment_tag, work_notes_tag, file_tag** available tags for marking incident entries.
+- **mirror_direction** determines which mirroring directions are available (options are None, Incoming, Outgoing and 'Incoming and Outgoing').
+- **close_incident** checkbox determines if mirrored XSOAR incidents will be closed when the corresponding incident is closed.
+-  **close_out** checkbox determines if mirrored incidents will be closed when the corresponding XSOAR incident is closed.
+
 ## Commands
 Use the following commands to implement a mirroring integration.  
 *Note that when mirroring both incoming and outgoing data, all the commands are required. For mirroring in only one direction, only some of the commands are required.*
