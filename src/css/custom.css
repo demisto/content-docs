@@ -682,7 +682,7 @@ html[data-theme="dark"] .header-github-link:before {
 
 .xsoarItem::before {
   content: "";
-  background-image: url("/img/Cortex-XSOAR-product-green.svg");
+  background-image: url("/img/cortexfavicon.png");
   background-size: 100% 100%;
   display: inline-block;
   height: 30px;
@@ -720,3 +720,6 @@ html[data-theme="dark"] .header-github-link:before {
   background-color: var(--ifm-color-primary);
   border: var(--ifm-color-primary);
 }
+
+/* unordered listing consistency */ 
+ul { list-style-type: lower-roman; }

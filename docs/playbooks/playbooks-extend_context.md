@@ -44,3 +44,14 @@ When querying QRadar for offenses based on certain criteria, by default the syst
 
 2. Identify the fields that you want to add and run your command. For example, to retrieve the number of devices affected by a given offense as well as the domain in which those devices reside, run the following command:
    `!qradar-offenses extend-context=device-count=device_count::domain-id=domain_id`
+
+### DT Syntax to Get Select Keys from List of Dictionaries
+
+DT syntax is supported within the extend-context value. You can use DT to get select keys of interest from a command that returns a list of dictionaries containing many keys. For example, the findIndicators automation returns a long list of indicator properties, but you may only be interested in saving the value and the indicator_type to minimize the size of the context data.
+
+1. Run the command `!findIndicators size=2 query="type:IP" raw-response=true`. You will see a list of two dictionaries containing 20+ items.
+2. Use the following DT value for `extend-context` to save only `value` and `indicator_type` into a context key called `FoundIndicators`:
+
+   ```
+   !findIndicators size=2 query="type:IP" extend-context=`FoundIndicators=.={"value": val.value, "indicator_type": val.indicator_type}`
+   ```

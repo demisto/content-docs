@@ -33,7 +33,7 @@
     },
     {
       "id": "FalconIntel",
-      "note": "Useg the CrowdStrike Falcon Intel v2 integration instead."
+      "note": "Use the CrowdStrike Falcon Intel v2 integration instead."
     },
     {
       "id": "CVE Search",

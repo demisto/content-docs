@@ -3,40 +3,38 @@ id: release-notes
 title: Pack Release Notes
 ---
 
-Release notes files help to keep track of the changes made for a specific content entity like an integration or a playbook.
+Release notes files help users keep track of changes made for specific content entities, such as integrations or playbooks.
 
-To generate a release notes markdown file, first commit the changes to your branch and then run the following command provided by the `demisto-sdk`:
+To generate a release notes markdown file, first commit the changes to your branch and then run the following command provided by the **demisto-sdk**:
 
 ```bash
 demisto-sdk update-release-notes -i [Changed pack path] -u [major|minor|revision]
 ```
 
-**Please note:** Changes which have not been committed will not be detected automatically by the `update-release-notes` command.
+**Please note:** Changes that have not been committed are not detected automatically by the ***update-release-notes*** command.
 
-This command will bump the `currentVersion` found in `pack_metadata.json` file automatically according to the update version (as denoted by the `-u` flag) for you.
+This command automatically updates the *currentVersion* found in the *pack_metadata.json* file according to the update version (as denoted by the *-u* flag).
 
-Generally, you will use the command when you are ready to merge and expect no other changes. If you need to make additional 
-changes *after* running the command, you will need to remove the `-u` argument. This will update the release notes 
-file for you to fill out.
+In most cases, you run the command when you are ready to merge and expect no further changes. If you need to make additional 
+changes after running the command, remove the `-u` argument. This updates the release notes file for you to fill out.
 
 ```bash
 demisto-sdk update-release-notes -i [Changed pack path]
 ```
 
-For more detailed information regarding the `update-release-notes` command in the `demisto-sdk`, please refer to the 
-[documentation found here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/update_release_notes/README.md).
+For more information regarding the ***update-release-notes*** command in the **demisto-sdk**, please refer to the 
+[command documentation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/update_release_notes/README.md).
 
 ## Naming
-The release notes file will be generated for you and is found under the `ReleaseNotes` folder within each pack. If this folder does not already exist, one will be created for you.
+The release notes file is generated for you and is found in the *ReleaseNotes* folder within each pack. If this folder does not already exist, it is created for you.
 
-The names for the files generated should not be changed as this will cause potential issues in the future. 
-
+Do not change the names of the files that are automatically generated, as this can cause potential issues later in the development process. 
 
 ## Format
-After running the `demisto-sdk` command mentioned above, the release notes file which was generated will contain a section for each entity changed in the pack as well as a placeholder (`%%UPDATE_RN%%`).
+After running the ***demisto-sdk*** command, the release notes file contains a section for each entity changed in the pack as well as a placeholder (`%%UPDATE_RN%%`).
 This placeholder should be replaced with a line describing what was changed for that specific entity.
 
-For example, if changes were detected in the Cortex XDR pack for the items IncidentFields, Integrations, and Playbooks; the following would be created:
+For example, if changes are detected in the Cortex XDR pack for the items *IncidentFields*, *Integrations*, and *Playbooks*; the following is created:
 ```markdown
 #### Incident Fields
 ##### XDR Alerts
@@ -60,16 +58,16 @@ For single line RNs, follow this format:
 ```markdown
 #### Integrations
 ##### Cortex XDR - IR
-  - Release note here.
+Release note here.
 ```
 
 For single line RNs with a nested list, follow this format:
 ```markdown
 #### Integrations
 ##### Cortex XDR - IR
-  - Release note here.
-    - List item 1
-    - List item 2
+Release note here.
+  - List item 1
+  - List item 2
 ```
 
 For multiline RNs, follow this format:
@@ -97,27 +95,43 @@ For multiline RNs with nested content, follow this format:
 ## Examples and Best Practices
 
 ### What Should Be Logged
-One should specify in the corresponding release notes file the following changes:
-  - Any change made
-  - Creation of a new command
-  - Adding/updating parameters
-  - Adding/updating arguments
-  - Updating outputs
-  - Fixes for customer bugs
+Specify in the corresponding release notes file:
+  - Any change(s) made
+  - New command(s)
+  - New or udpated parameters
+  - New or updated arguments
+  - Updated outputs
+  - Bug fixes
 
 ### General
-- The release notes need to be in simple language and informative. Think about what is the impact on the user and what they should know about this version.
+- Release notes should be simple, informative, and clearly written. Consider the impact of changes on the user and what they need to know about this version. A poorly written release note with inadequate information can lead to a Customer Support ticket.
     - Bad example: `Added the timeout parameter.`  
     - Good example: `Added the timeout parameter, which enables you to define the amount of time (in minutes) that the integration will try to execute commands before it throws an error.`
 
-- If this is a single line release note, there is no need for the bullet point, just a regular sentence. 
+- Single line release notes do not need a bullet point.
+- Release notes must start with one of the following prefixes:
 
-Pretend you need this release note to do your work. A bad RN can easily lead to a CS ticket.
+```
+'Added support for '
+'Added the '
+'Fixed an issue '
+'Improved implementation '
+'Updated the Docker image to '
+'You can now '
+'Deprecated. '
+'Deprecated the' 
+```
+
+Release notes not using one of these prefixes will generate an error when running `demisto-sdk doc-review`:
+
+```
+Line is not using one of our templates, consider changing it to fit our standard.
+```
 
 ### Entity Styling  
-- Command name: - should be wrapped with three stars - \*\*\*command_name***
-- Packs/Integrations/scripts/playbooks and other content entities (incident fields, dashboards...) - should be wrapped with two stars - \*\*entity_name**
-- Parameters/arguments/functions/outputs names - should be wrapped with one star - \*parameter_name*
+- Command names: - should be wrapped with three stars - ***command_name***
+- Packs/integrations/scripts/playbooks and other content entities (incident fields, dashboards. etc.) - should be wrapped with two stars - **entity_name**
+- Parameters/arguments/functions/outputs names - should be wrapped with one star - *parameter_name*
 
 
 ### Examples  
@@ -137,7 +151,7 @@ Added 3 commands:
     - ***msgraph-mail-create-folder***
 ```
 
-#### Bug Fixes Examples
+#### Bug Fix Examples
 ```markdown
 - **Slack v2**  
     - Fixed an issue where mirrored investigations contained mismatched user names.
@@ -158,7 +172,7 @@ Improved implementation of the default value for the *fetch_time* parameter.
 ```
 #### General Changes
 
-> **Note:** Use these if the change has no visible impact on the user, but please try to refrain from using these if possible!
+> **Note:** Use these if the change has no visible impact on the user. 
 
 ```markdown
 - Maintenance and stability enhancements.
@@ -166,11 +180,10 @@ Improved implementation of the default value for the *fetch_time* parameter.
 ```
   
 ## Excluding Items
-Release notes are required to contain all items which have been changed included in the generated file. As such, validation 
-will fail if detected items are removed from the generated release notes file.
+Release notes must contain all changed items included in the generated file. As such, validation 
+fails if detected items are removed from the generated release notes file.
 
-However, you may encounter a scenario where certain changes are not necessary to document in the release notes. To solve 
-this, you may comment out the entries by using the following syntax:
+However, you may encounter a scenario where certain changes are not necessary to document in the release notes. In this case, to pass validation, comment out the entries using the following syntax:
 
 ```markdown
 <!--
@@ -181,52 +194,51 @@ this, you may comment out the entries by using the following syntax:
 ```
 
 ## demisto-sdk doc-review
-`demisto-sdk` includes the `doc-review` command to assist with the doc review process. It will check the spelling of the release notes and provide guidance if you are not using one of our standardized templates. Example usage:
+**demisto-sdk** includes the ***doc-review*** command to assist with the documentation review process. The ***doc-review*** command checks the spelling of the release notes and provide guidance if you are not using one of our standardized templates. Example usage:
 
 ```
 demisto-sdk doc-review -i Packs/Base/ReleaseNotes/1_11_10.md
 ```
 
-More info is available at the `demisto-sdk doc-review` command [README](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/doc_reviewer/README.md).
+More info is available at the ***demisto-sdk doc-review*** command [README](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/doc_reviewer/README.md).
 
 ## Breaking Changes Version
-In some cases, a new version is introduced which breaks backward compatibility (although we try to avoid it as much as possible, sometimes it is needed).
-From XSOAR version 6.5 and above, there is a support to mark a new version as a **breaking changes version** mechanism.
+In some cases, a new version is introduced which breaks backward compatibility.
+From Cortex XSOAR version 6.8 and above, there is support to mark a new version as a **breaking changes version**.
 
-Marking a version as a **breaking changes version** will pop up a screen to the customer upon installation:
-![image](../doc_imgs/integrations/bc_alert_example.png)
+Marking a version as a **breaking changes version** provides the user with an alert before installation:
+![image](/doc_imgs/integrations/bc_alert_example.png)
 
 
-#### How to indicate a new version as a breaking changes version?
-In order to specify the new introduced version as breaking changes, the demisto-sdk update-release-notes command can be run with the -bc flag, for example:
+#### Idicate a new version is a breaking changes version
+To specify the new introduced version as **breaking changes**, run the demisto-sdk ***update-release-notes*** command with the -bc flag. For example:
 
 ```
 demisto-sdk update-release-notes -i Packs/<Pack Name> -u revision -bc
 ```
-Adding the `-bc` flag will:
-- Generate a corresponding configuration JSON file to the new release notes. For example, if the newly created release notes version is 1_1_0.md, a new configuration file 1_1_0.json will be created in the corresponding ReleaseNotes directory.
-- The configuration JSON file will be generated with the following fields:
-  -  `breakingChanges`: Indicates whether version is breaking changes or not, will be created with `true` value upon using `-bc` flag.
-  -  `breakingChangesNotes`: Will contain the text to be displayed to the customer upon installation, as can be seen in above image. If `breakingChangesNotes` is not specified, the default will be to present the whole release notes text to the user upon installation.
+Adding the *-bc* flag:
+- Generates a corresponding configuration JSON file to the new release notes. For example, if the newly created release notes version is 1_1_0.md, a new configuration file 1_1_0.json is created in the corresponding ReleaseNotes directory.
+- The configuration JSON file is generated with the following fields:
+  -  *breakingChanges*: Indicates whether the version is breaking changes or not, is created with **true** value upon using *-bc* flag.
+  -  *breakingChangesNotes*: Contains the text to be displayed to the customer upon installation, as shown in the above image. If *breakingChangesNotes* is not specified, the default is to present the entire release notes text to the user upon installation.
 
 
 ## Common Troubleshooting Tips
 
-#### I excluded an item from the release notes file, but it won't pass validation.
+#### I excluded an item from the release notes file, but it doesn't pass validation.
 
-Make sure to remove the `%%UPDATE_RN%%` from the generated file and leave the other generated items intact.
+Remove the `%%UPDATE_RN%%` from the generated file and leave the other generated items intact.
 
-#### When I run the `update-release-notes` command, it does not find any of my changes.
+#### When I run the ***update-release-notes*** command, it does not find any of my changes.
 
-First make sure you have committed your files. Next check to see that the type of file you changed requires a release notes 
+First check you have committed your files. Then verify that the type of file you changed requires a release notes 
 entry. TestPlaybooks, Images, README's and TestData don't require release notes.
 
 #### I ran the command and filled out the release notes correctly, but it still fails validation.
 
-On rare occasions it's possible that the pack you are working on has already had the version bumped. To resolve this, delete 
-the generated release notes Markdown (*.md) file and restore the `currentVersion` in the `pack_metadata.json` file to it's original version. Next, pull from the master branch. 
-Lastly, run the `update-release-notes` command as you previously had done.
+On rare occasions, it's possible that the pack you are working on has already had the version updated. To resolve this, delete 
+the generated release notes Markdown (*.md) file and restore the *currentVersion* in the *pack_metadata.json* file to its original version. Next, pull from the master branch. Lastly, run the ***update-release-notes*** command again.
 
 #### I added a new pack. Do I need release notes?
 
-New packs do not require release notes. The build process will automatically create the initial release notes for you.
+New packs do not require release notes. The build process automatically creates the initial release notes.

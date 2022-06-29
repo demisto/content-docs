@@ -22,7 +22,7 @@ def download_file(url: str, target_path: str):
             shutil.copyfileobj(r.raw, f, length=32*1024*1024)
 
 
-def download_site_buiild(event_file: str, download_path: str = "build-site.tar.gz") -> int:
+def download_site_build(event_file: str, download_path: str = "build-site.tar.gz") -> int:
     """Will download the site bulid if this is a forked PR bulid.
 
     Args:
@@ -65,7 +65,7 @@ def download_site_buiild(event_file: str, download_path: str = "build-site.tar.g
             break
     if not download_url:
         raise ValueError(f"download url missing for artifacts: {artifacts}")
-    print(f'Downloading build artifact from: {download_url} to: {download_path} ...')
+    print(f'Downloading build artifact from: {download_url} (pr num: {pr_num}) to: {download_path} ...')
     download_file(download_url, download_path)
     return int(pr_num)
 
@@ -75,11 +75,14 @@ def main():
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-e", "--event", help="Github event data file which triggered the workflow", required=True)
     args = parser.parse_args()
-    pr = download_site_buiild(args.event)
+    pr = download_site_build(args.event)
     if pr:
         # priint so workflow picks up the pr
         # see: https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-commands-for-github-actions#setting-an-output-parameter
+        print('set output for forked pr: {pr}')
         print(f'::set-output name=forked_pr::{pr}')
+    else:
+        print('not outputting forked pr as no pr num found')
 
 
 if __name__ == "__main__":

@@ -3,7 +3,7 @@ id: dbot
 title: Reputation and DBotScore
 ---
 
-DBot is the Cortex XSOAR machine learning bot which ingests information about indicators to determine if they are malicious or not. Since DBot requires a very specific dataset, we must format our data as per this article.
+DBot is the Cortex XSOAR machine learning bot, which ingests information about indicators to determine if they are malicious. Since DBot requires a very specific dataset, you need to format the data according to this article.
 
 ## Context Format
 ```python
@@ -16,20 +16,21 @@ DBot is the Cortex XSOAR machine learning bot which ingests information about in
 } 
 ```
 
-The DBot score must be at the root level of the context and contain **all** the required keys as listed below.
+The DBot score must be at the root level of the context and contain **all** the required keys, as listed below.
 
 | Key | Meaning | Required
 | --- | --- | --- |
-| Indicator | The indicator value | Required |
-| Type | Can be: ip, file, email, url, cve, account, cider, domainglob, certificate, or cryptocurrency | Required |
-| Vendor | This is the vendor reporting the score of the indicator| Required |
-| Score | An int representing the status of the indicator. See Score Types below| Required |
-| Reliability | Reliability of the source providing the intelligence data. See Reliability Levels below| Optional |
+| Indicator | The indicator value. | Required |
+| Type | The indicator type. Can be: ip, file, email, url, cve, account, cider, domainglob, certificate, or cryptocurrency. | Required |
+| Vendor | The vendor reporting the score of the indicator.| Required |
+| Score | An integer regarding the status of the indicator. See [Score Types](#score-types) below.| Required |
+| Reliability | The reliability of the source providing the intelligence data. See [Reliability Level](#reliability-level) below.| Optional |
+| Message | Optional message to show an API response. For example, `"Not found"`. | Optional |
 
 ## Reliability Level
-The reliability of an intelligence-data source influences the reputation of an indicator and the values for
-indicator fields when merging indicators.  
-The values are case sensitive.
+When merging indicators, the reliability of an intelligence-data source influences the reputation of an indicator and the values for
+indicator fields.  
+**NOTE:** The values are case sensitive.
 
 ``` 
   A+ - 3rd party enrichment  
@@ -52,15 +53,15 @@ Dbot uses an integer to represent the reputation of an indicator.
 | 3 | Bad |
 
 ## Unknown
-Unknown score can be interpeted in two ways: 
+An unknown score can be interpeted in the following ways: 
 
 1. The vendor returns an "Unknown" score for the indicator.
 2. The vendor returns nothing on the indicator.
 
-In both cases we mark the indicator score as Unknown.
+In both cases, you mark the indicator score as Unknown, but in the second case you need to add a message: `"No results found"`.
 
 ## Malicious
-If the DBot score is returned as a "3" or "Bad", we need to add to the context that a malicious indicator was found. To do this, we add an additional key to the URL, IP, or File context called "Malicious" as shown below:
+If the DBot score is returned as a `"3"` or `"Bad"`, you need to add to the context that a malicious indicator was found. To do this, add an additional key to the `URL`, `IP`, or `File` context called `"Malicious"` as shown below:
 
 ```python
 demisto.results({
@@ -98,7 +99,7 @@ demisto.results({
 })
 ```
 
-Malicious has two key values, "Vendor" and "Description". Vendor is the entity reporting the malicious indicator and description explains briefly what was found. For example:
+`Malicious` has two key values: `"Vendor"` and `"Description"`. The `Vendor` is the entity reporting the malicious indicator. The `Description` explains briefly what was found. For example:
 
 
 ```python
@@ -111,9 +112,7 @@ Malicious has two key values, "Vendor" and "Description". Vendor is the entity r
 }
 ```
 
-**Please Note**: We are unable to use the Cortex XSOAR Transformers (DT) within the DBot score context. 
-
-For example, using the following in your DBot context, will not work:
+**NOTE**: It is not possible to use the Cortex XSOAR Transformers (DT) within the DBot score context. For example, using the following in your DBot context, will not work:
 
 ```python
 DBotScore(val.Indicator == obj.Indicator)

@@ -113,7 +113,8 @@ const sidebars = {
               label: "Generic Commands",
               items: [
                 "integrations/generic-commands-about",
-                "integrations/generic-commands-reputation"
+                "integrations/generic-commands-reputation",
+                "integrations/generic-endpoint-command",
               ]
             },
             "integrations/dbot",
@@ -123,6 +124,8 @@ const sidebars = {
               label: "Builtins",
               items: [
                 "integrations/get-entries-filter",
+                "integrations/task-complete",
+                "integrations/reopen-investigation",
               ]
             },
           ]
@@ -144,6 +147,7 @@ const sidebars = {
           collapsed: true,
           items: [
             "integrations/feeds",
+            "integrations/event-collectors",
             "integrations/iam-integrations",
             "integrations/powershell-code",
             "integrations/fetching-credentials",
@@ -154,7 +158,9 @@ const sidebars = {
             "integrations/openapi-codegen",
             "integrations/postman-codegen",
             "integrations/code-generator",
-            "integrations/scheduled-commands"
+            "integrations/scheduled-commands",
+            "integrations/yml-from-python-code-gen",
+            "integrations/fetch-incidents-lookback",
           ]
         }
       ]
@@ -192,9 +198,9 @@ const sidebars = {
         "incidents/incident-customize-incident-layout",
         "incidents/incident-fields",
         "incidents/incident-jobs",
-        "incidents/incident-auto-extract",
         "incidents/incident-classification-mapping",
-        "incidents/incident-pre-processing"
+        "incidents/incident-pre-processing",
+        "incidents/incident-lists"
       ]
     },
     {

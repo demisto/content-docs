@@ -28,7 +28,7 @@ Our ecosystem of helpful partners is growing. If you are interested in becoming 
 
 ### Crest Data Systems
 
-![crest_dev_partner](../doc_imgs/partners/crest_dev_partner.png)
+![crest_dev_partner](/doc_imgs/partners/crest_dev_partner.png)
 
 Crest Data Systems is a leading provider of software integrations and custom solutions in the areas of Data Analytics, Cyber Security, and DevOps based in the San Francisco Bay Area. Crest has built 1,500+ integrations and provided 24x7 managed (CloudOps/SRE and SOC) services for 100+ customers ranging from Fortune 500 corporations to Silicon Valley Startups to help them outperform the competition and stay ahead of the innovation curve.
 
@@ -38,7 +38,7 @@ Crest Data Systems is a leading provider of software integrations and custom sol
 
 ### Loginsoft Consulting LLC
 
-![loginsoft_dev_partner](../doc_imgs/partners/loginsoft_partner.png)
+![loginsoft_dev_partner](/doc_imgs/partners/loginsoft_partner.png)
 
 Loginsoft, an IT Consulting company based out of VA, US, supports leading Cybersecurity product companies in Integrations with Threat Intelligence Platforms such as TIP, SOAR and SIEM, Developing Vulnerability Detection Plugins, CVE and Threat Research. Loginsoft's Cyber engineering team provides expertise in Application/Network/IoT Security including Vulnerability Management and Threat hunting. In addition, Loginsoft provides IT engineering support to Fortune companies like Verizon, Discovery, Humana, Customers Bank and so on with Application Development and QA Automation, both onsite and offshore.
 
@@ -46,9 +46,22 @@ Loginsoft, an IT Consulting company based out of VA, US, supports leading Cybers
 ([www.loginsoft.com](https://www.loginsoft.com))
 
 
+ ### Metron Labs
+<img src="/doc_imgs/partners/metron_logo.png" width="200px;"/>
+
+<br />
+<br />
+
+Metron builds, manages, and maintains third-party integrations for 60+ leading security platforms. Our on-demand and fixed-cost approach is streamlined and trusted by numerous growth companies in the security space - from high-growth unicorns to large enterprises. As an XSOAR development partner, we help you maximize your XSOAR capabilities. Our clients have experienced shorter development times and 2X-3X cost savings compared to deploying an internal engineering team for the same tasks. In addition, Metron also builds integration labs to manage 100+ third-party integrations, set up malware labs for researchers, and several other custom security automation solutions.
+
+
+→ Contact Prashant Koirala [prashant@metronlabs.com](mailto:prashant@metronlabs.com)
+([www.metronlabs.com](https://www.metronlabs.com))
+
+
 ### NTT DATA Services
 
-![nttdata_dev_partner](../doc_imgs/partners/nttdata_dev_partner.jpg)
+![nttdata_dev_partner](/doc_imgs/partners/nttdata_dev_partner.jpg)
 
 NTT DATA Services is a digital business and IT services leader headquartered in Plano, Texas. We are the largest business unit outside Japan of trusted global innovator NTT DATA Corporation, a top 10 provider and part of the $109B NTT Group. With our consultative approach, we leverage deep industry expertise and leading-edge technologies powered by AI, automation and cloud to create practical and scalable solutions that contribute to society and help clients worldwide. Our global team delivers one of the industry’s most robust and integrated portfolios. This includes consulting, applications, data intelligence and analytics, hybrid infrastructure, workplace, cybersecurity and business process services to help organizations accelerate and sustain value throughout their digital journeys.
 
@@ -58,20 +71,46 @@ NTT DATA Services is a digital business and IT services leader headquartered in 
  
  ### QMasters
 
-![qmasters_dev_partner](../doc_imgs/partners/qmasters_dev_partner.png)
+![qmasters_dev_partner](/doc_imgs/partners/qmasters_dev_partner.png)
 
 With decades of experience in consulting, project management, IT integration and working with a wide range of companies from many sectors, including the Israeli Government, QMasters addresses ever-growing security demands. QMasters has quickly established itself as a leading Information Security company, both in Israel and internationally, specializing in consulting, implementing and integrating of security products and solutions.
 
 → Contact Gregori Nazrovsky [gregorin@qmasters.co](mailto:gregorin@qmasters.com)
  ([qmasters.co](https://qmasters.co))
  
+ 
+### ScienceSoft USA Corporation
+<img src="/doc_imgs/partners/sciencesoft.png" width="200px;"/>
+
+<br />
+<br />
+
+ScienceSoft Cybersecurity is a team of experienced cybersecurity developers/consultants, certified hackers/pen testers, and SIEM/SOAR/XDR experts whose job is to protect organizations, simulate breaking into them and discover risks & vulnerabilities before the criminals find them. ScienceSoft helps companies fix vulnerabilities, test products, and put solid security controls in place. Our teams work in a fully secure, closed-off and controlled environment compliant with ISO 27001. We specialize in custom cybersecurity app/integration development and professional services.
+
+→ Contact Alex Nivin [anivin@scnsoft.com](mailto:anivin@scnsoft.com)
+([www.scnsoft.com](https://www.scnsoft.com))
+ 
+ 
+### SecInfra
+
+<img src="/doc_imgs/partners/secinfra_logo.png" width="200px;"/>
+
+<br />
+<br />
+
+SecInfra's goal is to support cybersecurity companies in their efforts to secure their infrastructure. We help IT departments implement a structured approach to make the most of the technological innovations available in the cybersecurity ecosystem to meet the most demanding challenges.
+Among our expertises, SOAR holds a preponderant place, whether it's within our MDR service or our delivery expertise. We have a thorough understanding of XSOAR, from the design of the platform to the development of complex custom integrations, including remote management and support.
+
+→ Contact Guillaume Brauman [gbr@secinfra.fr](mailto:gbr@secinfra.fr)
+ ([www.secinfra.fr](https://www.secinfra.fr))
+
 
 ### SOAR XPERTS
 
-![soar_xperts_partner](../doc_imgs/partners/soarxperts_dev_partner.png)
+![soar_xperts_partner](/doc_imgs/partners/soarxperts_dev_partner.png)
 
 SOAR XPERTS is a team of like-minded, highly skilled and determined individuals, all sharing the passion for digitising and automating cybersecurity operations knowledge and best practices. We are NOT another cybersecurity company; we strive that our clients acknowledge us as "customer-first" centric. We specialise in the XSOAR platform and help its community get the most out of their investment in the platform. Our guiding principles are fit for purpose and fair value for money.
 
 → Contact Abe Binder [abe@soarxperts.com](mailto:abe@soarxperts.com)
  ([www.soarxperts.com](https://www.soarxperts.com))
-
+ 

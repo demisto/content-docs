@@ -23,9 +23,9 @@ jobs:
             date +%Y-%W-v4 > date-week.txt
             echo "Date week: $(cat date-week.txt)"
       - restore_cache:
-          key: npm-cache-v4-{{ checksum "package-lock.json" }}
+          key: npm-cache-v5-{{ checksum "package-lock.json" }}
       - restore_cache:
-          key: node-cache-v4-{{ checksum "date-week.txt" }}
+          key: node-cache-v5-{{ checksum "date-week.txt" }}
       - run:
           name: Setup Node
           command: |
@@ -74,11 +74,11 @@ jobs:
             equal: [ master, << pipeline.git.branch >> ]
           steps:
             - save_cache:
-                key: npm-cache-v4-{{ checksum "package-lock.json" }}
+                key: npm-cache-v5-{{ checksum "package-lock.json" }}
                 paths:
                   - ~/.npm
             - save_cache:
-                key: node-cache-v4-{{ checksum "date-week.txt" }}
+                key: node-cache-v5-{{ checksum "date-week.txt" }}
                 paths:
                   - node_modules/.cache
       - persist_to_workspace:
@@ -118,11 +118,13 @@ jobs:
           command: |            
             pipenv install
       - run:
+          name: Setup Firebase
+          command: curl -sL https://firebase.tools | bash
+      - run:
           name: Deploy to Firebase
           no_output_timeout: 30m
           command: |
             echo $FIREBASE_JSON_KEY > "$HOME"/gcloud.json
-            npm install firebase-tools
             export PATH="$PATH:`pwd`/node_modules/.bin"
             export GOOGLE_APPLICATION_CREDENTIALS="$HOME"/gcloud.json
 

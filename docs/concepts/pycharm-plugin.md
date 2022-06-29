@@ -64,7 +64,7 @@ After you successfully configure the plugin, several files are automatically dow
 * `CommonServerUserPython`
 * `demistomock` (enables you to run the scripts locally in PyCharm)
 
-![PyCharm_-_General.png](../doc_imgs/integrations/pycharm-general.png)
+![PyCharm_-_General.png](/doc_imgs/integrations/pycharm-general.png)
 
 ## Create a New Cortex XSOAR File
 
@@ -112,7 +112,7 @@ To run an integration from PyCharm, you need an active Playground in Cortex XSOA
 2. Enter the necessary arguments.
 3. Click **Export and run in Cortex XSOAR**.
 
-![PyCharm_-_Export_and_Run.png](../doc_imgs/integrations/pycharm-export.png)
+![PyCharm_-_Export_and_Run.png](/doc_imgs/integrations/pycharm-export.png)
 
 ## Update Cortex XSOAR Mock Files
 
@@ -122,7 +122,7 @@ You might want to manually update the mock files after content updates, in which
 
 To update the Cortex XSOAR mock files, select **Tools > Demisto Plugin Setup**, and click Update **Demisto Mocks**.
 
-![](../doc_imgs/integrations/pycharm-mceclip0.png)
+![](/doc_imgs/integrations/pycharm-mceclip0.png)
 
 ## Local Run/Local Debug (Advanced)
 

@@ -9,6 +9,31 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
+    - name: content checkout
+      uses: actions/checkout@v2.4.0  # https://github.com/marketplace/actions/checkout
+      with:
+        repository: demisto/content
+        path: content
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+        ref: 'master'
+    - name: content-docs checkout
+      uses: actions/checkout@v2.4.0  # https://github.com/marketplace/actions/checkout
+      with:
+        repository: demisto/content-docs
+        path: content-docs
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+        ref: 'master'
+    - name: create ignore url files
+      # The grep regex finds all URL's in integration README files in the section between ## Commands or <h2>Commands until the end of the file.
+      # -R search recursively -P perl regex -o print only the match -z ignore new line -a process a binary file as if it were text
+      run: |
+        grep -RPoz "(?s)## Commands.*\Z|<h2>Commands.*\Z" --include "README.md" content/Packs/*/Integrations | grep  -Poa "(http|https)://[a-zA-Z0-9./?=_%:-]*" | sort -u > all_urls_ignore.txt
+        sed -i -e 's/^/-e "/' all_urls_ignore.txt
+        sed -i -e 's/$/"/' all_urls_ignore.txt
+        cat content-docs/urls_ignore.txt >> all_urls_ignore.txt
+        cat all_urls_ignore.txt
     - name: Set up Go 1.13
       uses: actions/setup-go@v2
       with:
@@ -19,76 +44,10 @@ jobs:
     - name: Verify Links
       run: |
         muffet --version
-        muffet -c 16 --ignore-fragments -b 8192 \
-        -e 'https://github.com/demisto/content-docs/.*' \
-        -e 'https://github.com/demisto/content/blob/master//Packs/.*' \
-        -e 'https?://\d+\.\d+\.\d+\.\d+.*' \
-        -e 'https://github.com/demisto/content/releases/download/.*' \
-        -e 'https://github.com/demisto/content/tree/\d+\.\d+\.\d+' \
-        -e 'https?://localhost.*' \
-        -e 'https?://(www\.)?example.*' \
-        -e 'https?://hostname/.*' \
-        -e 'https://yourdomain.*' \
-        -e 'https://.*\.domain.com/' \
-        -e 'https://partner.analystplatform.com.*' \
-        -e 'https://demistodev.atlassian.net.*' \
-        -e 'https://.*s3.amazonaws.com/.*X-Amz-Credential.*' \
-        -e 'http://medimobility.es/wordpress/.*' \
-        -e 'https://hmrc.5-notifications.com.*' \
-        -e 'https://icloud.com.uk-maps.info.*' \
-        -e 'https://software8n-chase.com.*' \
-        -e 'http://www.lifetmeda.ru.*' \
-        -e 'https://help.symantec.com.*' \
-        -e '(?i).*eicar.*' \
-        -e 'https://www.mockapi.com/.*' \
-        -e 'https://linkedin.com/.*' \
-        -e 'https://api.*.crowdstrike.com.*' \
-        -e 'https://dehashed.com.*' \
-        -e 'https://secure.aadcdn.microsoftonline-p.com.*' \
-        -e 'https://blog.demisto.com.*' \
-        -e 'https://www.demisto.com.*' \
-        -e 'https://go.demisto.com.*' \
-        -e 'https?://maps.google.com.*' \
-        -e 'https://demisto.*.atlassian.net.*' \
-        -e 'https://panw-test.oktapreview.com.*' \
-        -e 'https://twitter.com.*' \
-        -e 'https?://(www\.)?icann.org/epp.*' \
-        -e 'https://.*-dsn.algolia.net' \
-        -e 'https://www.bastille.net' \
-        -e 'https://click.send.grammarly.com.*' \
-        -e 'https://api.slack.com/scim/v1.*' \
-        -e 'https://panwtest.enterprise.slack.com.*' \
-        -e 'https://api-console.zoho.com.*' \
-        -e 'https?://.*test.com.*'  \
-        -e 'https://github.com/crestdatasystems/DemistoPrivateContent.*' \
-        -e 'https?://br430.teste.website/.*' \
-        -e 'https://zenshin-talent.us4.list-manage.com.*' \
-        -e 'https://zeustracker.abuse.ch.*' \
-        -e 'https?://(www\.)?pastebin.com/.*' \
-        -e 'https?://(www\.)?abuse.com.*' \
-        -e '(?i)https?://(www\.)?google.com/.*' \
-        -e 'https://www.dos.ny.gov/consumerprotection/pdf/infosecbreach03.pdf' \
-        -e 'https://images.nasa.gov' \
-        -e 'https://virustotal.com/vtapi/v2/ip/.*' \
-        -e 'https://xsoar.pan.dev/marketplace/details/.*/' \
-        -e 'https://s3.*.amazonaws.com/my-bucket/.*' \
-        -e 'https://virustotal.com/vtapi/v2/.*' \
-        -e 'https://github.com/example-user1/.*' \
-        -e 'https://some.ru.*' \
-        -e 'https://github.com/demisto/content-docs/issues/new.*' \
-        -e 'https://github.com/demisto/content-docs/blob/master/.*\.md' \
-        -e 'https://github.com/demisto/content-docs/tree/master/.*\.md' \
-        -e 'https://github.com/demisto/content/blob/master//Packs/.*/README.md' \
-        -e 'https://gitlab.com/test-user/.*' \
-        -e '.*/docs/reference/integrations/okta' \
-        -e '.*/docs/reference/integrations/service-now' \
-        -e 'https://github.com/content-bot/.*' \
-        -e 'https://raw.githubusercontent.com/demisto/hello-world/.*' \
-        -e 'https://www.soarxperts.com.*' \
-        -e 'https://xsoar.pan.dev/marketplace/contributors' \
+        muffet -c 16 --ignore-fragments -b 8192 `< all_urls_ignore.txt` \
         https://xsoar.pan.dev > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
-        grep -v -E '^\s+(403|401|405|x509|lookup|parse|timeout|dial)' muffet.txt > muffet-clean.out
-        echo "Muffet output after 401, 403, 405 and x509 remove:"
+        grep -v -E '^\s+(401|403|405|429|x509|lookup|parse|timeout|dial)' muffet.txt > muffet-clean.out
+        echo "Muffet output after 401, 403, 405, 429 and x509 remove:"
         cat muffet-clean.out
         if [ -n "$(grep -v '^https'  muffet-clean.out)" ]; then
           echo "muffet failed verification!!!"

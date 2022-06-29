@@ -334,9 +334,10 @@ function genPackDetails() {
     } catch (err) {
       console.log(err);
     }
-    
+
     generatePackDetails.runActions({
       id: pack.id ? pack.id.replace(/-|\s/g, "").replace(".", "") : pack.id,
+      packId: pack.id,
       name: pack.name,
       description: pack.description.replace(/\\/g, "\\\\"),
       author: pack.author,
@@ -365,7 +366,9 @@ function genPackDetails() {
       integrations: pack.integrations,
       contentItems: pack.contentItems,
       changeLog: reverseReleases(pack.changeLog),
-      dependencies: fullDepsJson[pack.id]
+      licenseLink: pack.hasOwnProperty("eulaLink") ? pack.eulaLink : "https://github.com/demisto/content/blob/master/LICENSE",
+      dependencies: fullDepsJson[pack.id],
+      premium: pack.hasOwnProperty("premium") ? pack.premium : false
     });
   });
 };

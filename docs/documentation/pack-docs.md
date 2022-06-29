@@ -5,13 +5,14 @@ title: Pack Documentation
 
 Content Packs displayed in the Cortex XSOAR Marketplace contain 2 main documentation sections: 
 * **Description**: displayed in the Content Pack card when browsing the Marketplace and in the top of the *Details* tab.
-* **README**: displayed in the main display area of the *Details* tab.
+* **Videos**: displayed in the main display area and in the middle of the *Details* tab.
+* **README**: displayed in the main display area and in the bottom of the *Details* tab.
 
 #### Screenshots
 * *Description* in Pack display card: <br/>  
-<img src="../doc_imgs/integrations/gdpr-card.png" width="250"></img>  
+<img src="/doc_imgs/integrations/gdpr-card.png" width="250"></img>  
 * Details Tab with *Description* and *README*:
-![](../doc_imgs/integrations/gdpr-details.png)    
+![](/doc_imgs/integrations/gdpr-details.png)    
 
 
 ## Pack Description
@@ -49,6 +50,10 @@ Here are some templates that can help you get started:
 * "Eliminate ________ by improving your__________. Rich with layouts and playbooks, this Content Pack is right for ____________"
 * "Get smarter. This pack utilizes _________ and _______for when _________ is heavily needed"
 
+## Pack Videos
+For larger packs that provide at least one end-to-end use case you are encouraged to create a short video or a few videos for the pack that will be showed in the *Details* tab of the pack in the Marketplace. The videos files should be hosted in youtube. The videos should contain a more detailed overview of the Pack compared to the *Description* section, but stay tuned to the value proposition of the pack.
+
+
 ## Pack README
 For larger packs that provide at least one end-to-end use case you should create a detailed README file for the pack that will be displayed in the *Details* tab of the pack in the Marketplace. The `README.md` file should be markdown formatted and placed in the Packs root directory. The file should contain a more detailed overview of the Pack compared to the *Description* section. You are free to add any information you see fit to include about the pack. It is recommended to provide an overview of what the Pack does and how to start working with the Pack.  
 
@@ -65,12 +70,11 @@ Each pack readme should contain:
 1. Mostly relevant for use-case packs that contain multiple playbooks: a reference to the README of the **main playbook** of the pack that contains the playbook logic. Add the following:
 _For more information, visit the Cortex XSOAR Developer Docs_
 Note that "Cortex XSOAR Developer Docs" should link **directly to the readme of the main playbook**. An example of what is linked in the Phishing pack: https://xsoar.pan.dev/docs/reference/playbooks/phishing-investigation---generic-v2
-1. For packs that contains playbooks: a youtube video or an image of the main playbook of the pack. The section following the pack image below explains how to add an image.
-
+1. For packs that contains playbooks: a youtube video is a great addition.
 ![image](https://user-images.githubusercontent.com/43602124/88673366-31d59c80-d0f1-11ea-9319-b7d9f2fb8625.png)
 
 ### Images
-Images can provide a great addition to the Pack `README.md` and can help users to get a quick understanding of the Pack. For Packs that contain playbooks which implement a use case, we recommend including at least an image of the main use case playbook.  Images can be included only as **absolute** urls. See the [following for instructions](../documentation/readme_file#absolute-image-urls). 
+Images can provide a great addition to the Pack `README.md` and can help users to get a quick understanding of the Pack. Images can be included only as **absolute** urls. See the [following for instructions](../documentation/readme_file#absolute-image-urls). 
 
 ### Videos
 It is possible to add an image placeholder which links to an external video. For example to add an external video hosted on YouTube use the following snippet template (replace `[YOUTUBE_VIDEO_ID]` with the YouTube video ID):

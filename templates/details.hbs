@@ -15,6 +15,7 @@ showdown.setFlavor("github");
 const README =
 "{{{readme}}}"
 
+
 function {{id}}() {
 return (
 <Layout title={TITLE} description={DESCRIPTION} wrapperClassName="contentPack">
@@ -26,7 +27,7 @@ return (
     </div>
 
     <main className={clsx("container", "contentPackAlign" )}>
-        <ContentPackTabs defaultValue="details" downloadUrl="https://marketplace-dist.storage.googleapis.com/content/packs/{{id}}/{{id}}_with_dependencies.zip"
+        <ContentPackTabs defaultValue="details" premium="{{premium}}" downloadUrl="https://marketplace-dist.storage.googleapis.com/content/packs/{{packId}}/{{packId}}_with_dependencies.zip"
         values={[ { label: "Details" , value: "details" }, { label: "Content" , value: "content" }, { label: "Dependencies" , value: "dependencies" }, { label: "Version History" , value: "versions" }]}>
             <TabItem value="details">
                 <div className="row">
@@ -104,9 +105,9 @@ return (
                         <small>
                             Content packs are licensed by the Publisher identified above
                             and subject to the Publisher’s own{" "}
-                            <a href="https://github.com/demisto/content/blob/master/LICENSE">
+                            <span><a href="{{licenseLink}}">
                                 licensing terms
-                            </a>
+                            </a></span>
                             . Palo Alto Networks is not liable for and does not warrant or
                             support any content pack produced by a third-party Publisher,
                             whether or not such packs are designated as “Palo Alto
@@ -231,7 +232,18 @@ return (
                             <Collapsible trigger="{{this.displayName}} ({{this.released}})">
                                 <article dangerouslySetInnerHTML=\{{ __html:
                                     converter.makeHtml("{{{this.releaseNotes}}}"), }}></article>
-                                <a className="button button--outline button--primary button--md" href="https://storage.googleapis.com/marketplace-dist/content/packs/{{../id}}/{{this.version}}/{{../id}}.zip" target="_blank" title="Warning: Downloading this pack without its required dependencies may result in failed installation.">Download</a>
+                                {{#if pullRequests.length}}
+                                    Related pull requests:
+                                    {{#each this.pullRequests}}
+                                    <br/>
+                                    - <a href="https://github.com/demisto/content/pull/{{this}}">{{this}} </a>
+                                    {{/each}}
+                                    <br/>
+                                    <br/>
+                                {{/if}}
+                                {{#unless ../premium}}
+                                <a className="button button--outline button--primary button--md" href="https://storage.googleapis.com/marketplace-dist/content/packs/{{../packId}}/{{this.version}}/{{../packId}}.zip" target="_blank" title="Warning: Downloading this pack without its required dependencies may result in failed installation.">Download</a>
+                                {{/unless}}
                             </Collapsible>
                         </div>
                     </div>

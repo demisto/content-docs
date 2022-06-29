@@ -53,8 +53,9 @@ else
     fi
 
     if [ ! -d ${CONTENT_GIT_DIR} ]; then
+        # Do not do "git clone --depth 1" as we need full history for the deprecated integrations data generation
         echo "Cloning content to dir: ${CONTENT_GIT_DIR} ..."
-        git clone ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}
+        git clone ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}        
     else
         echo "Content dir: ${CONTENT_GIT_DIR} exists. Skipped clone."
         if [ -z "${CONTENT_REPO_SKIP_PULL}"]; then        
@@ -110,7 +111,7 @@ if [[ ( "$PULL_REQUEST" == "true" || -n "$CI_PULL_REQUEST" ) && "$CONTENT_BRANCH
     fi
 
     echo "$DIFF_FILES" | grep -v -E '^src/pages/marketplace/|^genMarketplace.js|^plopfile.js|^static/|^sidebars.js' || MAX_PACKS=20
-    if [ -n "MAX_PACKS" ]; then
+    if [ -n "$MAX_PACKS" ]; then
         echo "MAX_PACKS set to: $MAX_PACKS"
         export MAX_PACKS
     fi
@@ -154,8 +155,8 @@ echo "Generating docs..."
 pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
 echo "Generating Demisto class and CommonServerPython docs..."
 pipenv run ./gen_pydocs.py -t "${TARGET_DIR}"
-if [[ $CIRCLE_BRANCH =~ pull/[0-9]+ ]]; then
-    echo "Skipping, should not run on contributor's branch."
+if [[ "$CURRENT_BRANCH" != "master" && "$CURRENT_BRANCH" != *"gen-top-contrib"* ]]; then
+    echo "Skipping top contributors page generation, should run only on master or branch containing 'gen-top-contrib'."
     exit 0
 else
     echo "Generating top contributors page..."

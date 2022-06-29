@@ -14,7 +14,7 @@ You can use communication tasks to receive information from individuals or group
 
 4. Select the **Ask** option.
 
-![Communication Ask Task](../doc_imgs/playbooks/Communication-New-Ask-Task.png)
+![Communication Ask Task](/doc_imgs/playbooks/Communication-New-Ask-Task.png)
 
 In the task configuration, there are several tabs that you can enter values for. Some configurations are required, and some are optional. For detailed information for each configuration tab, see the Playboook Field Reference page [INSERT LINK TO Playbook_Field_Reference.md].
 
@@ -26,13 +26,13 @@ The following shows you an example of how to configure a couple of Ask tasks.
 
 In this example, the message and survey are sent by email to all users with the Analyst role, and several external users. We didn't include a message body because the message subject is the survey question we want recipients to answer. There are three reply options, Yes, No, and Not sure. In the playbook, we will only add conditions for the Yes and No replies.
 
-![Example Ask Task](../doc_imgs/playbooks/communication_example-ask-task.png)
+![Example Ask Task](/doc_imgs/playbooks/communication_example-ask-task.png)
 
 ### Send a Survey 
 
 In this example, the message and survey will be sent to recipients every hour for six hours, until a reply is received. The SLA is six hours. If the SLA is breached, the playbook will proceed according to the Yes condition.
 
-![Example Ask Task - Timing](../doc_imgs/playbooks/communication_example-ask-task-timing.png)
+![Example Ask Task - Timing](/doc_imgs/playbooks/communication_example-ask-task-timing.png)
 
 
 ## Create a Data Collection Task
@@ -67,12 +67,12 @@ The following shows you an example of how to configure a couple of Data Collecti
 
 In this example, we created a stand-alone question, with a multi-select answer. Note that this question is not mandatory, and we did not select the **First option is default** checkbox. Had we selected this checkbox, the Reply Option "0" would be the default value in the answer field.
 
-![Data Collection Task](../doc_imgs/playbooks/Communication-Data-Collection-Stand-alone.png)
+![Data Collection Task](/doc_imgs/playbooks/Communication-Data-Collection-Stand-alone.png)
 
 ### Field-based using a Custom Field
 
 In this example, we created a question based on a custom Grid field that we marked as mandatory. For the question field, we included a descriptive sentence explaining how to fill in the grid.
 
-![Data Collection Task - Field Based](../doc_imgs/playbooks/Communication-Data-Collection-Field-based.png)
+![Data Collection Task - Field Based](/doc_imgs/playbooks/Communication-Data-Collection-Field-based.png)
 
 

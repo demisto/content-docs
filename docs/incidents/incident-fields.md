@@ -7,7 +7,7 @@ Incident Fields are used for accepting or populating incident data coming from i
 You can set and update all system incident fields using the `setIncident` command, of which each field is a command argument.
 
 **Note**: Creating Incident Fields should be an iterative process in which you continue to create fields as you gain a better understanding of your needs and the information available in the 3rd-party integrations that you use. There are many fields already available as part of common Content packs. Before creating a new Incident Field try checking if there is an existing field, which matches your needs. Starting with Server version 6.1, you can search for packs according to `Incident fields` name by modifying the `Search in` selection. Screenshot:
-<img src="../doc_imgs/incidents/incident-fields-search.png" width="300" ></img>
+<img src="/doc_imgs/incidents/incident-fields-search.png" width="300" ></img>
 
 ## Create a Custom Incident Field
 You can define custom incident fields based on the information you want to display in your Incident Type layouts, as well as the information ingested from 3rd-party integrations. 
@@ -85,12 +85,12 @@ The following section shows several examples of common fields that are used in r
 ### False Positive
 Below is an example of a mandatory Incident field "False Positive" to be filled at time of Incident Close. The Field can have a value YES or NO and the SOC admin should be able to query or run report based on this field. After this field is added, all incidents will need to have this filled in before an incident can be marked closed.
 
-![Single Select False Positive](../doc_imgs/incidents/Single-Select_False-Positive.png)
+![Single Select False Positive](/doc_imgs/incidents/Single-Select_False-Positive.png)
 
 ### SLA Fields
 The following SLA field can be used to trigger a notification when the status effecting the SLA of an incident changes. In addition, if the SLA is breached, we have configured the field such that an email is sent to the owner's supervisor.
 
-![SLA Incident Field](../doc_imgs/incidents/SLA_Incident_Field.png)
+![SLA Incident Field](/doc_imgs/incidents/SLA_Incident_Field.png)
 
 ## Associate Existing Incident Fields to New Incident Types
 You can add additional incident types to an existing incident field. 

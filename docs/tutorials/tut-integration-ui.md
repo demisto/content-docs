@@ -18,13 +18,13 @@ The [CommonServerPython (CSP)](../reference/api/common-server-python) and [Commo
 
 ## Script Helper
 
-![scripthelper](../doc_imgs/tutorials/tut-integration-ui/cortex-xsoar-ide.png )
+![scripthelper](/doc_imgs/tutorials/tut-integration-ui/cortex-xsoar-ide.png )
 
 In many cases, there is already an existing script for common server functions. With the **Script Helper**, you can easily find tools to format a table, manipulate data, post to the war room, etc. If a function you want to create seems like it could be used in many different scripts, there’s a good chance it already exists in Script Helper. If you do create a new function that you believe would be useful across many scripts, we encourage you to contribute that function to [CommonServerPython](https://github.com/demisto/content/blob/master/Packs/Base/Scripts/CommonServerPython/CommonServerPython.py) scripts.
 
 ## Navigate to BYOI (Bring Your Own Integration)
 
-![byoi](../doc_imgs/tutorials/tut-integration-ui/byoi.png)
+![byoi](/doc_imgs/tutorials/tut-integration-ui/byoi.png)
 
 Go to **Settings > Integrations**. Click the blue button **BYOI** in the top right corner, and the built-in Cortex XSOAR IDE will open. If you don’t see this button, it means you don’t have the correct permissions required for creating new integrations. Please reach out to your admin for assistance. 
 
@@ -48,7 +48,7 @@ In the Basic section, we name the integration, add a description, choose a categ
 - **Category** - Select **Utilities** for the category. See full list of available [categories](../concepts/design-best-practices).
 - **Logo** - The logo should be no larger than 10KB, have a transparent background, and be in PNG format. You can drag and drop the logo here, or click the box to open the file browser and select the file for upload. 
 
-![integration-settings](../doc_imgs/tutorials/tut-integration-ui/integration-settings-image.png )
+![integration-settings](/doc_imgs/tutorials/tut-integration-ui/integration-settings-image.png )
 
 **Note**: The **Fetches incidents** checkbox tells Cortex XSOAR that the integration runs periodically to ingest events and create incidents in Cortex XSOAR. Our **Yoda Speak** integration does not need to fetch incidents, so make sure this checkbox is empty. While we don’t need this feature for our **Yoda Speak** integration, [fetching incidents](../integrations/fetching-incidents) is an essential part of many integrations. There are additional options available here - external schema support, [can sync mirror in, can sync mirror out](../integrations/mirroring_integration), and [long running integration](../integrations/long-running), but these are less commonly used. 
 
@@ -71,7 +71,7 @@ For the **Yoda Speak** integration, the free service does not require an API key
 
 **Note:** Many integrations that connect to third party services require an API key for authentication, which is sent with every request to the third party service. Since it’s used by every command that performs an API call, we add it as a global parameter and not an argument. 
 
-![apikey](../doc_imgs/tutorials/tut-integration-ui/apikey_param.png) 
+![apikey](/doc_imgs/tutorials/tut-integration-ui/apikey_param.png) 
  
 Enter the following values for the url parameter:
 
@@ -85,7 +85,7 @@ Enter the following values for the url parameter:
 
 **Note:** In some cases, the URL parameter may be used for third party services that allow you to connect to more than one server, such as servers in different geographic regions, for example https://login.example.de or https://login.example.com.
 
-![url](../doc_imgs/tutorials/tut-integration-ui/url.png)
+![url](/doc_imgs/tutorials/tut-integration-ui/url.png)
 
 Enter the following values for the insecure parameter:
 
@@ -98,7 +98,7 @@ Enter the following values for the insecure parameter:
 
 When **Trust any certificate** is set to **True**, the integration ignores TLS/SSL certificate validation errors. Use this to test connection issues or connect to a service while ignoring SSL certificate validity. We do not recommend setting this option to true in a production environment. 
 
-![insecure](../doc_imgs/tutorials/tut-integration-ui/insecure.png)
+![insecure](/doc_imgs/tutorials/tut-integration-ui/insecure.png)
 
 Enter the following values for the proxy parameter:
 
@@ -112,7 +112,7 @@ Enter the following values for the proxy parameter:
 
 When **Use system proxy settings** is set to **True**, the , integration runs using the proxy server (HTTP or HTTPS)  defined in the server configuration. In most cases, a proxy is not required.
 
-![proxy](../doc_imgs/tutorials/tut-integration-ui/proxy.png)
+![proxy](/doc_imgs/tutorials/tut-integration-ui/proxy.png)
 
 ### Command Settings
 
@@ -121,7 +121,7 @@ We are now ready to add a command. Before we start coding, we can configure the 
 2. For Command name, enter ***yoda-speak-translate***. 
 3. For the description, enter **Translates a text from English to Yoda**. 
 
-![command-name](../doc_imgs/tutorials/tut-integration-ui/command-name.png )
+![command-name](/doc_imgs/tutorials/tut-integration-ui/command-name.png )
 
 **Note:** Command names should follow “brand-function” name formatting convention. For example, VirusTotal has a command that adds a comment to a scan, named ***vt-comments-add***. An exception to this rule is that when creating commands that enrich indicators, the commands should be named according to the indicator: ***!ip***, ***!domain***, etc. This naming convention allows commands from multiple integrations to be run together to enrich an indicator. For example, running ***!ip ip=8.8.8.8*** can trigger multiple integrations that gather information about the IP address. For more information, see [Generic Reputation Commands](../integrations/generic-commands-reputation).
 
@@ -129,7 +129,7 @@ We are now ready to add a command. Before we start coding, we can configure the 
 
 We want to translate English text to Yoda-style text, so we add an argument called *text*. Users can provide a different text string on every call. The argument is mandatory, since the command can’t run if there’s nothing to translate.
 
-![argument](../doc_imgs/tutorials/tut-integration-ui/argument-text.png)
+![argument](/doc_imgs/tutorials/tut-integration-ui/argument-text.png)
 
 **Note:** Unlike parameters, arguments are specific to each command. 
 
@@ -139,7 +139,7 @@ In Cortex XSOAR, the [context](../integrations/context-and-outputs) is a JSON ob
 
 To write the translation to context, we can add an output to the ***yoda-speak-translate*** command. The naming convention for the context path is *Brandname.Object.Property*, so we will add *YodaSpeak.TheForce.Translation* as the context path. For a description, enter **Translation this is**. Select type *String*.
 
-![outputs](../doc_imgs/tutorials/tut-integration-ui/outputs.png)
+![outputs](/doc_imgs/tutorials/tut-integration-ui/outputs.png)
 
 
 ## Integration Code
@@ -343,49 +343,49 @@ This line tells the system where to start running our code. By convention, we ca
 
 Go to **Settings > Integrations**, and search for **Yoda**. Click on **Add instance**. 
 
-![yoda-utility](../doc_imgs/tutorials/tut-integration-ui/yoda-utility.png)
+![yoda-utility](/doc_imgs/tutorials/tut-integration-ui/yoda-utility.png)
 
 We will not enter an API key, but will instead use the free option with a limited number of API calls. To test connectivity, click on the **Test** button. If the connection is successful, you will see **Success** and the date/time displayed. Click **Save & Exit**.  
 
-![yoda-instance](../doc_imgs/tutorials/tut-integration-ui/yoda-instance.png)
+![yoda-instance](/doc_imgs/tutorials/tut-integration-ui/yoda-instance.png)
 
 **NOTE:** If you have an integration open in two different tabs, you may encounter an error where your changes aren’t saved. In this case, take a screenshot of your changes, close both tabs, and then reopen one tab. Enter your changes again and save.
 
 To test the integration, create a new incident. At the CLI, enter ***!yoda-speak-translate*** and the argument *Hello, my name is John Smith. We are learning about integrations.* (or any other string in English, of course!)
 
-![yoda-cli](../doc_imgs/tutorials/tut-integration-ui/yoda-command-cli.png)
+![yoda-cli](/doc_imgs/tutorials/tut-integration-ui/yoda-command-cli.png)
 
 In the War Room, you can see the table we created with the *tableToMarkdown* function, with the results. 
 
-![yoda-results](../doc_imgs/tutorials/tut-integration-ui/translation-results.png)
+![yoda-results](/doc_imgs/tutorials/tut-integration-ui/translation-results.png)
 
 Let’s view the same translation in the context.
 
 *YodaSpeak* is the root for *The Force*. If the translation changes the next time we run the command, the translation field will be updated. 
 
-![yoda-context](../doc_imgs/tutorials/tut-integration-ui/translationcontext.png)
+![yoda-context](/doc_imgs/tutorials/tut-integration-ui/translationcontext.png)
 
 You can see the real power of integrations when you include them in a playbook. Go to the Playbooks page and click **+New Playbook**. We’ll name it **Yoda Speak**, and the playbook will translate the details field in an incident into Yoda Speak. In the task library, search for **yoda** and click **Add**. You can see there is a field for *text*, which is a required argument. While we could just type our text here, we instead want to pull that string from incident details. Click on the curly brackets, then **Incident details**, **Details**. Click **OK**. 
 
-![yoda-source](../doc_imgs/tutorials/tut-integration-ui/source-text.png)
+![yoda-source](/doc_imgs/tutorials/tut-integration-ui/source-text.png)
 
 To print the translation to the War Room, we add a print task. In the task library, search for **print** and add the *Print* task found under utilities. Once again, we want to pull our text from the incident, so click on the curly brackets. Our options now include yoda-speak-translate. Under ***yoda-speak-translate***, choose *Translation* and click **OK**.
 
-![yoda-print](../doc_imgs/tutorials/tut-integration-ui/print-task.png)
+![yoda-print](/doc_imgs/tutorials/tut-integration-ui/print-task.png)
 
 We will now connect the tasks in our playbook. Use your cursor to create lines between **Playbook Triggered** and **yoda-speak-translate** and between **yoda-speak-translate** and **Print**.
 
-![connect-tasks](../doc_imgs/tutorials/tut-integration-ui/connect-tasks.png)
+![connect-tasks](/doc_imgs/tutorials/tut-integration-ui/connect-tasks.png)
 
 Save the playbook.
 
 To test our new playbook, go to the **Incidents** page and create a new incident. In the details section, enter the text for translation: *The prequel movies are more entertaining than the new Disney movies*. Assign the **Yoda Speak** playbook, and click **Create new incident**.
 
-![new-incident](../doc_imgs/tutorials/tut-integration-ui/new-incident.png)
+![new-incident](/doc_imgs/tutorials/tut-integration-ui/new-incident.png)
 
 Now select the incident we just created from the incident list. Go to the **Work Plan** page and you can see that our playbook executed successfully.
 
-![playbook-complete](../doc_imgs/tutorials/tut-integration-ui/playbook-complete.png)
+![playbook-complete](/doc_imgs/tutorials/tut-integration-ui/playbook-complete.png)
 
 ## We’re Done!	
 

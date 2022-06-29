@@ -13,16 +13,16 @@ It is important to take a moment and familiarize yourself with the Cortex XSOAR 
 ## The Script Helper
 Cortex XSOAR is equipped with a script helper which is accessible via the button below:
 
-![](../doc_imgs/integrations/script-helper.png)
+![](/doc_imgs/integrations/script-helper.png)
 
 
 The script helper will open up a flyout menu which presents all of the functions that are part of the common server. If you are trying to accomplish something that may seem trivial, check the script helper as a function for it may already exist.
 
-![](../doc_imgs/integrations/script-helper-flyout.png)
+![](/doc_imgs/integrations/script-helper-flyout.png)
 
 ## The Settings Menu
 The settings menu contains configurations for Basic Settings, Parameters, Detailed Instructions, Commands and Script settings. Clicking the **Settings** button will open a flyout menu as seen below:
-![](../doc_imgs/integrations/settings-menu.png)
+![](/doc_imgs/integrations/settings-menu.png)
 
 ## Basic Settings
 In the basic settings menu, is where we give an integration the following:

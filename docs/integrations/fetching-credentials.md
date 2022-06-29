@@ -18,8 +18,8 @@ in the format of a username and password (key:value).
 For this example we are going to look at the HashiCorp Vault integration. The first thing you need to do is add a boolean parameter with the name:
 `isFetchCredentials`(You can give it a different display name). When this parameter is set to true, Cortex XSOAR will fetch credentials from the vault integration.
 
-It would look like something like this: ![image](../doc_imgs/integrations/53886096-eae09600-4027-11e9-8c2d-a46078c3dcc4.png)  
-![image](../doc_imgs/integrations/53886311-69d5ce80-4028-11e9-9755-08585fecff34.png)
+It would look like something like this: ![image](/doc_imgs/integrations/53886096-eae09600-4027-11e9-8c2d-a46078c3dcc4.png)  
+![image](/doc_imgs/integrations/53886311-69d5ce80-4028-11e9-9755-08585fecff34.png)
 
 ### fetch-credentials Command
 
@@ -65,7 +65,7 @@ demisto.credentials(credentials)
 ```
 
 If everything went well you should be able to see the credentials in the Cortex XSOAR credentials store:
-![image](../doc_imgs/integrations/53886981-f339d080-4029-11e9-9d27-a76b85d2d025.png)
+![image](/doc_imgs/integrations/53886981-f339d080-4029-11e9-9d27-a76b85d2d025.png)
 
 Note that these credentials cannot be edited or deleted, they reflect what's in the vault. You can stop fetching credentials by unticking the 
 `Fetch Credentials` checkbox in the integration settings.
@@ -73,7 +73,7 @@ Note that these credentials cannot be edited or deleted, they reflect what's in 
 #### 2. Fetch a specific set of credentials:
 A user may choose to configure another integration using a set of credentials fetched by a vault integration: 
 
-![image](../doc_imgs/integrations/choose_credentials.png)
+![image](/doc_imgs/integrations/choose_credentials.png)
 
 Since XSOAR does not store the credentials in its DB, each time these credentials are used in the new configured integration, Cortex XSOAR
 will query the vault integration for it.

@@ -382,7 +382,7 @@
       },
       {
           "source": "/sign-addn",
-          "destination": "https://na2.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=f1b0bfb5-5e5a-49b9-8ed6-5b475605cefa&env=na2&acct=11b87c14-db4f-4b90-b5b1-58b37f18856f&v=2",
+          "destination": "https://na2.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=8f563812-ea9c-4e6f-9a7f-e57ae1ebe825&env=na2&acct=11b87c14-db4f-4b90-b5b1-58b37f18856f&v=2",
           "type": 301
       },
       {

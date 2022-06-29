@@ -4,14 +4,14 @@ title: Mirroring Integration
 ---
 
 Cortex XSOAR version 6.0.0 adds support for Mirroring Integrations. These integrations allow you to mirror incidents/tickets/cases from other services.  
-For example: Another XSOAR server, Cortex XDR, ServiceNow. In addition, when mapping the incident fields, mirroring enables you to pull the database schema from the integration, which brings all of the available fields into Cortex XSOAR. For more information about working with the schema, see the Select schema option described [here](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/incidents/classification-and-mapping/create-a-mapper.html).
+For example: Another Cortex XSOAR server, Cortex XDR, ServiceNow. In addition, when mapping the incident fields, mirroring enables you to pull the database schema from the integration, which brings all of the available fields into Cortex XSOAR. For more information about working with the schema, see the Select schema option described [here](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/incidents/classification-and-mapping/create-a-mapper.html).
 
 An example mirroring integration can be seen [here](https://github.com/demisto/content/tree/master/Packs/ServiceNow/Integrations/ServiceNowv2).
 
 Mirroring integrations are developed the same as other integrations. They provide a few extra configuration parameters and APIs.
 
 :::note 
-**For Cortex XSOAR versions 6.1.0 and earlier**: Once an incident field is changed manually within XSOAR, it will be marked as "dirty" and will not be updated by the mirroring process in XSOAR throughout the life of the incident. It should be noted that in the case outbound mirroring is enabled, any changes to the incident in XSOAR will however still be reflected in the external system.
+**For Cortex XSOAR versions 6.1.0 and earlier**: Once an incident field is changed manually within Cortex XSOAR, it will be marked as "dirty" and will not be updated by the mirroring process in Cortex XSOAR throughout the life of the incident. It should be noted that in the case outbound mirroring is enabled, any changes to the incident in Cortex XSOAR will however still be reflected in the external system.
 :::
 
 ## Supported Server Version
@@ -37,31 +37,30 @@ Use the following commands to implement a mirroring integration.
 *Note that when mirroring both incoming and outgoing data, all the commands are required. For mirroring in only one direction, only some of the commands are required.*
 - `test-module` - this is the command that is run when the `Test` button in the configuration panel of an integration is clicked.
 - `fetch-incidents` - this is the command that fetches new incidents to Cortex XSOAR.
-- `get-modified-remote-data` - available from Cortex XSOAR version 6.1.0. This command queries for incidents that were modified since the last update. If the command is implemented in the integration, the **get-remote-data** command will only be performed on incidents returned from this command, rather than on all existing incidents. This command is executed every 1 minute for each individual **integration's instance**. 
-If the command is not implemented, make sure to raise `NotImplementedError` so `get-remote-data` will be called instead. If the command fails return an error entry with one of the following sub-strings: `API rate limit` or `skip update` (exact case) to signal to the Server that there is an issue and it should not continue to `get-remote-data`. 
-- `get-remote-data` - this command gets new information about the incidents in the remote system and updates *existing* incidents in Cortex XSOAR. If an API rate limit error occures, this method should raise an error with substring `"API rate limit"`, so that the sync loop will start from the failed incident.
+- `get-modified-remote-data` - available from Cortex XSOAR version 6.1.0. This command queries for incidents that were modified since the last update. If the command is implemented in the integration, the ***get-remote-data*** command will only be performed on incidents returned from this command, rather than on all existing incidents. This command is executed every 1 minute for each individual **integration's instance**. 
+If the command is not implemented, make sure to raise `NotImplementedError` so ***get-remote-data*** will be called instead. If the command fails to return an error entry with one of the following sub-strings: `API rate limit` or `skip update` (exact case), it signals to the server that there is an issue and it should not continue with the ***get-remote-data*** command. 
+- `get-remote-data` - this command gets new information about the incidents in the remote system and updates *existing* incidents in Cortex XSOAR. If an API rate limit error occurs, this method should return an error with substring `"API rate limit"`, so that the sync loop will start from the failed incident.
 This command is executed every 1 minute for each individual **incident** fetched by the integration.
 - `update-remote-system` - this command updates the remote system with the information we have in the mirrored incidents within Cortex XSOAR. This command is executed whenever the individual incident is changed in Cortex XSOAR.
-- `get-mapping-fields` - this command pulls the remote schema for the different incident types, and their associated incident fields, from the remote system. This enables users to map XSOAR fields to the 3rd-party integration fields in the outgoing mapper. This command is being called when selecting the **Select schema** option in the **Get data** configuration in a classifier or a mapper.
+- `get-mapping-fields` - this command pulls the remote schema for the different incident types, and their associated incident fields, from the remote system. This enables users to map Cortex XSOAR fields to the 3rd-party integration fields in the outgoing mapper. This command is called when selecting the *Select schema* option in the **Get data** configuration in a classifier or a mapper.
 
 ## Special Server Configurations
-- `sync.mirror.job.enable` is to enable / disable the mirroring job - (default is **enabled**)
+- `sync.mirror.job.enable` enables / disables the mirroring job - (default is **enabled**)
 - `sync.mirror.job.delay` is the interval for the job in minutes - (default is **1 minute**)
-- `sync.mirror.job.delayAdvanced` is mostly used for demos and overrides `sync.mirror.job.delay`. When specified, it sets the interval for the job **in seconds**. This feature is useful for live demos, when you may not want to wait a while minute to demonstrate mirroring.
+- `sync.mirror.job.delayAdvanced` is mostly used for demos and overrides `sync.mirror.job.delay` and if specified is the interval for the job in seconds. The idea is that for demos you do not want to wait a minute to show that mirroring happened.
 
 ## How to implement mirroring functions
 You can implement the following functions, using the classes described below, which are globally available through the CommonServerPython file.
 
 ### get-remote-data
-* **GetRemoteDataArgs** - this is an object created to maintain all the arguments received from the mirrored service:
-  - *remote_incident_id* - contains the value of the `dbotMirrorId` field, which represents the id of the incident in the external system.
+* **GetRemoteDataArgs** - this is an object created to maintain all the arguments you receive from the server in order to use this command.
+Arguments explanation:
+  - *remote_incident_id* - contains the value of the `dbotMirrorId` field, which represents the ID of the incident in the external system.
   - *last_update* - the time the incident was last updated.
-* **GetRemoteDataResponse** - this is the object that maintains the format by which results from this function should be ordered. Use return_results on this object to use it.
-  - *mirrored_object* - this is essentially the object (dict) of the mirrored data, an incident in most cases. If there is no change to the incident, you can return `{}` as the first entry.
-  - *entries* - a list of entries to add to your incident. 
-      - To close the incident, you can return an entry with `{"Contents": {"dbotIncidentClose": True, "closeReason": "some reason", "closeNotes": "Some note"}`. 
-      - To re-open a closed incident, return `{"Contents": {"dbotIncidentReopen": True}}`. 
-      - The Full entry syntax is supported, including marking it as a note. 
+* **GetRemoteDataResponse** - this is the object that maintains the format in which you should order the results from this function. You should use return_results on this object to make it work.
+Arguments explanation:
+  - *mirrored_object* - this is essentially the object(dict) of whatever you are trying to mirror - the incident in most cases. If there are only entries (no change to incident), you can return `{}` as the first entry. 
+  - *entries* - a list of entries to add to your incident. If you want to close the incident, you can return an entry with `{"Contents": {"dbotIncidentClose": True, "closeReason": "some reason", "closeNotes": "Some note"}`. If you want to re-open a closed incident, you should return `{"Contents": {"dbotIncidentReopen": True}}`. Full entry syntax is supported, including marking it as a note.
   
 Here's an example for an implementation of `get_remote_data_command`:
 ```python
@@ -89,13 +88,14 @@ def get_remote_data_command(client, args):
 ```
 
 ### get-modified-remote-data
-* **GetModifiedRemoteDataArgs** - this is an object created to maintain all the arguments received from the mirrored service.
-  - *last_update* - Date string represents the last time we retrieved modified incidents for this integration.
+* **GetModifiedRemoteDataArgs** - this is an object created to maintain all the arguments you receive from the server in order to use this command.
+Arguments explanation:
+  - *last_update* - Date string that represents the last time we retrieved modified incidents for this integration.
 * **GetModifiedRemoteDataResponse** - this is the object that maintains the format in which you should order the results from this function. You should use `return_results` on this object to make it work.
-**You must provide one of the following:**
-  - *modified_incident_ids* - a list of strings representing incident IDs that were modified since the last check. Later, `get-remote-data` command will only run on modified incidents.
+Arguments explanation. **You must provide one of the following:**
+  - *modified_incident_ids* - a list of strings representing incident IDs that were modified since the last check. Later the `get-remote-data` command will run on only modified incidents.
   - *modified_incident_entries* - a list of entries containing the full incident data. In this case, `get-remote-data` **will not be called**.
-* **skip update** - in case of failure, in order to tell XSOAR that the command failed and prevent execution of **get-remote-data** commands, return error which contains the string `"skip update"`.
+* **skip update** - in case of a failure. In order to notify the server that the command failed and prevent execution of the **get-remote-data** commands, returns an error that contains the string `"skip update"`.
 
 Here's an example for an implementation of `get-modified-remote-data`:
 ```python
@@ -112,7 +112,7 @@ def get_modified_remote_data_command(client, args):
 
     return GetModifiedRemoteDataResponse(modified_incident_ids)
 ```
-* **Last Mirror Run (Available from XSOAR 6.6)** - [get_last_mirror_run()](https://xsoar.pan.dev/docs/reference/api/common-server-python#get_last_mirror_run) retrieves the data set on the previous mirror run, usually a dictionary of the form `{"lastMirrorRun": "2018-10-24T14:13:20+00:00", "lastIncidentId":1234}`. You can set last run of the mirror using [set_last_mirror_run()](https://xsoar.pan.dev/docs/reference/api/common-server-python#set_last_mirror_run). These two methods enable you to control the lastUpdate timestamp from the integration, or any other data you want to save between mirror runs.
+* **Last Mirror Run (Available from 6.6)** - [get_last_mirror_run()](https://xsoar.pan.dev/docs/reference/api/common-server-python#get_last_mirror_run) retrieves the previous mirror run data that was set. You can set the last run of the mirror using [set_last_mirror_run()](https://xsoar.pan.dev/docs/reference/api/common-server-python#set_last_mirror_run). Storing and getting this data (a dictionary) enables you to control the *lastUpdate* timestamp from the integration or any other data you want to save between mirror runs.
  
 Here's an example for an implementation of `get_modified_remote_data_command`:
 ```python
@@ -137,10 +137,10 @@ def get_modified_remote_data_command(client, args):
 * **UpdateRemoteSystemArgs** - this is an object created to maintain all the arguments you receive from the server in order to use this command.
   - *data* - represents the data of the current incident - a dictionary object `{key: value}`.
   - *entries* - represents the entries from your current incident - a list of dictionary objects representing the entries.
-  - *remote_incident_id* - contains the value of the `dbotMirrorId` field, which represents the id of the incident in the mirrored service. 
-  - *inc_status* - the status of the incident. This is a numeric value, that can be used with `IncidentStatus` from CommonServerPython.
-  - *delta* - the dictionary of fields which have changed from the last update - a dictionary object `{key: value}` only containing the changed fields and their values. 
-  - *incident_changed* is a boolean indicating a change in the incident itself. Incidents might not change but we want to send mirrored entries over.
+  - *remote_incident_id* - contains the value of the dbotMirrorId field, which represents the ID of the incident in the external system. 
+  - *inc_status* - the status of the incident(numeric value, could be used with IncidentStatus from CommonServerPython).
+  - *delta* - represents the dictionary of fields that changed from the last update - a dictionary object `{key: value}` containing only the changed fields.
+  - *incident_changed* - a boolean to indicate if the incident itself changed. Because an incident might not change, but we want to send mirrored entries over.
   
 Here's an example for an implementation of `update-remote-system`:
 ```python
@@ -224,19 +224,22 @@ def get_mapping_fields_command():
 
 ## Incident fields on a XSOAR incident 
 The following incident fields must be configured either in the integration or the instance mapping:
-* **dbotMirrorDirection** - valid values are `In`, `Out` or `Both`.
-* **dbotMirrorId** - the id of the incident in the mirrored service.
-* **dbotMirrorInstance** - the instance through which mirroring is performed.
-- **dbotDirtyFields** - fields that have been changed locally, and hence their values will not be updated from remote.
-- **dbotCurrentDirtyFields** - fields to be sent remotely as delta in the next iteration of the job - probably should remain invisible to the end user.
-- **dbotMirrorLastSync** timestamp of this incident's last sync with the mirrored service.
+* **dbotMirrorDirection** - valid values are Both, In, or Out.
+* **dbotMirrorId** - represents the ID of the incident in the external system.
+* **dbotMirrorInstance** - the instance through which you will be mirroring.
+- **dbotDirtyFields** for fields we changed locally and therefore will not be updated from the remote.
+- **dbotCurrentDirtyFields** for fields that are going to be sent remotely as a delta in the next iteration of the job - probably should remain invisible to the end user.
+- **dbotMirrorLastSync** timestamp that includes the last time we synched this incident with the remote system.
 * **dbotMirrorTags** - tags for mirrored-out entries (comment/files).
 
 ## Debugging
 
-* **getMirrorStatistics** command - a hidden command that returns mirroring statistics: total mirrored incidents count, rate limit hit count, last run, closed incident records and closed rate limited incident records.
+* **getMirrorStatistics** command - a hidden command that returns mirroring statistics: total mirrored, rate limited, last run, closed incident records and closed rate limited incident records.
 * **getSyncMirrorRecords** - a hidden command that returns records that hold internal mirroring metadata for each mirrored incident.
-* **get-remote-data** - is runnable through the war room if the command is defined in the yml file.
-* **get-modified-remote-data** - is runnable through the war room if the command is defined in the yml file.
-* **get-mapping-fields** - is runnable through the war room with no arguments and see the results.
-* **purgeClosedSyncMirrorRecords** - receives 2 arguments: mandatory `dbotMirrorInstance` for which integration to purge and optional `olderThan` in days. Since this bucket is forever growing (with all the closed incidents that are mirrored), might be a good idea to purge when you're sure that there will be no update from the remote system on the really old incidents.
+* **get-remote-data** - is runnable through the War Room if the command is defined in the yml file.
+* **get-modified-remote-data** - is runnable through the War Room if the command is defined in the yml file.
+* **get-mapping-fields** - is runnable through the War Room with no arguments and displays the results.
+* **purgeClosedSyncMirrorRecords** - receives 2 arguments: mandatory `dbotMirrorInstance` for which integration to purge and optional `olderThan` in days. Since this bucket is forever growing (with all the closed incidents that are mirrored), it might be a good idea to purge when you're sure that there will be no update from the remote system on the really old incidents.
+* **triggerDebugMirroringRun (Available from 6.6)** - is runnable from the War Room in order to debug a full mirroring run over existing incidents. You can add an incident ID to the command to get information about a specific incident. If no ID is given, the incident will be loaded from the War Room context. The output of this command is a unique debug log file that includes logs for the entire mirroring flow. In addition, this debug log includes the content of the integrations' debug-mode logs. An example for running the command from the cli: `!triggerDebugMirroringRun incidentId=50`
+*  
+   *Note: This command triggers real mirroring actions, for example, updating incidents and fields.*

@@ -7,4 +7,4 @@ title: Integration Logo Standards
 - Dimensions of 120x50.
 - Transparent background.
 
-![Integration Logo Standard](../doc_imgs/integrations/logo-standard.png)
+![Integration Logo Standard](/doc_imgs/integrations/logo-standard.png)

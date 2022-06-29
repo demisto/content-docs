@@ -5,8 +5,19 @@ import os
 import re
 
 import requests
+from urllib3.util.retry import Retry
+from requests.adapters import HTTPAdapter
 from typing import List, Dict
 from datetime import datetime
+
+
+# override print so we have a timestamp with each print
+def timestamped_print(*args, **kwargs):
+    __builtins__.print(datetime.now().strftime("%H:%M:%S.%f"), *args, **kwargs)
+
+
+print = timestamped_print
+
 
 PR_NUMBER_REGEX = re.compile(r'(?<=pull/)([0-9]+)')
 USER_NAME_REGEX = re.compile(r'(?<=@)[a-zA-Z-0-9]+')
@@ -17,15 +28,25 @@ HEADERS = {
 }
 if TOKEN:
     HEADERS['Authorization'] = 'Bearer ' + TOKEN
+    print('Using token authentication')
 VERIFY = os.getenv('SKIP_SSL_VERIFY') is None
 
 
-# override print so we have a timestamp with each print
-def timestamped_print(*args, **kwargs):
-    __builtins__.print(datetime.now().strftime("%H:%M:%S.%f"), *args, **kwargs)
+# Retry class which uses 60 seconds backoff and only 2 retries
+class SearchRetry(Retry):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def get_backoff_time(self):
+        print('Rate limit hit returning 60 seconds backoff time')
+        return 60.0
 
 
-print = timestamped_print
+search_session = requests.Session()
+search_session.mount("https://", HTTPAdapter(max_retries=SearchRetry(
+    total=2,
+    status_forcelist=[429, 403, 500, 502, 503, 504],
+)))
 
 
 def create_grid(dataset: list) -> str:
@@ -87,7 +108,7 @@ def github_pagination_prs(url: str, params: dict, res) -> list:
             last_page = link[link.find("<")+1:link.find(">")][-1]
         while params['page'] <= int(last_page):
             params['page'] = params['page'] + 1
-            response = requests.request('GET', url, params=params, headers=HEADERS, verify=VERIFY)
+            response = search_session.request('GET', url, params=params, headers=HEADERS, verify=VERIFY)
             response.raise_for_status()
             next_page_prs = response.json().get('items', [])
             prs.extend(next_page_prs)
@@ -108,7 +129,7 @@ def get_contractors_prs() -> list:
         'per_page': 100,
         'page': 1
     }
-    res = requests.request('GET', url, headers=HEADERS, params=params, verify=VERIFY)
+    res = search_session.request('GET', url, headers=HEADERS, params=params, verify=VERIFY)
     res.raise_for_status()
     prs = res.json().get('items', [])
 
@@ -132,7 +153,7 @@ def get_contrib_prs() -> List[Dict]:
         'per_page': 100,
         'page': 1
     }
-    res = requests.request('GET', url, headers=HEADERS, params=params, verify=VERIFY)
+    res = search_session.request('GET', url, headers=HEADERS, params=params, verify=VERIFY)
     res.raise_for_status()
     prs = res.json().get('items', [])
 
@@ -265,10 +286,16 @@ def main():
     parser.add_argument("-t", "--target", help="Target dir to generate docs at.", required=True)
     args = parser.parse_args()
     contrib_target = args.target + '/top-contributors.md'
-    response = get_inner_pr_request()
-    users_list = get_contributors_users(response)
-    with open(contrib_target, 'a', encoding='utf-8') as f:
-        f.write(f'\n {create_grid(users_list)}')
+    try:
+        response = get_inner_pr_request()
+        users_list = get_contributors_users(response)
+        with open(contrib_target, 'a', encoding='utf-8') as f:
+            f.write(f'\n {create_grid(users_list)}')
+    except requests.exceptions.HTTPError as ex:
+        print(f'Requests errors: {ex}')
+        res = requests.request('GET', "https://api.github.com/rate_limit", headers=HEADERS, verify=VERIFY)
+        print(f'Github Rate Limit response: {res.text}')
+        raise
 
 
 if __name__ == '__main__':

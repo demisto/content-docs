@@ -46,9 +46,10 @@ The following fields are populated in the pack metadata:
 | name | String | The pack name. Usually it's the name of the integration the pack contains (e.g. CortexXDR) or the use-case implemented in it. |
 | description | String | A short overview of the pack. |
 | support | String | Should be one of the following:<br />1.  xsoar - Supported by Cortex XSOAR.<br />2.  partner - Supported by a Cortex XSOAR partner.<br />3.  developer - Supported by an independent developer/organization.<br />4.  community - Not officialy supported, but available for the community to use.<br /> For `partner` and `developer`, either email address or URL fields must be filled out.  |
-| currentVersion | String | The pack version, in the format of `x.x.x`. On the initial release this should be set to "1.0.0". |
+| currentVersion | String | The pack version, in the format of `x.x.x`. On the initial release this should be set to "1.0.0". See [here](#content-packs-versioning)|
 | author | String | The name of the organization (for partners) or developer (for individual contributions) which developed the integration. |
 | url | String | The URL to which users should refer to in case of support needed regarding the pack. Usually is the organization support URL or the developer GitHub repository. If left empty the default support site presented to users will be the [Live Community](https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions) site.|
+| videos | String | The Youtube video link of the pack.|
 | email | String | The email address to which users should reach out to in case of support needed regarding the pack. |
 | categories | List | The use-case categories which are implemented in the pack. Usually set by the integration, which included in the pack category. Should be one of the following:<br />1. Analytics & SIEM<br />2. Utilities<br />3. Messaging<br />4. Endpoint<br />5. Network Security<br />6. Vulnerability Management<br />7. Case Management<br />8. Forensics & Malware Analysis<br />9. IT Services<br />10. Data Enrichment & Threat Intelligence<br />11. Authentication<br />12. Database<br />13. Deception<br />14. Email Gateway|
 | tags | List | Tags to be attached to the pack on Cortex XSOAR marketplace. |
@@ -75,6 +76,7 @@ Pack metadata contents for example:
     "currentVersion": "1.0.0",
     "author": "Cortex XSOAR",
     "url": "https://www.paloaltonetworks.com/cortex",
+    "videos": "https://www.youtube.com/watch?v=ium2969zgn8",
     "email": "",
     "categories": [
         "Endpoint"
@@ -131,6 +133,13 @@ A supported partner pack metadata contents for example:
     ]    
 }
 ```
+
+
+### Content Packs Versioning
+Pack versions have the following format MAJOR.MINOR.REVISION:
+   1. **Revision** when you make backwards compatible bug fixes.
+   1. **Minor** when you add functionality in a backwards compatible manner.
+   1. **Major** when you make incompatible API changes or revamping the pack by adding to it a lot of new backwards compatible functionality.
 
 
 ### README.md
