@@ -306,7 +306,7 @@ Although you do not have the flexibility of version control and rollback, it is 
     For example:
     ```
         repository: demisto/content-ci-cd-template
-        path: content-ci-cd-template
+        path: repository
     ```
     
    1.2 If not using an artifact server, replace the following section:
