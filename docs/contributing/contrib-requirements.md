@@ -15,11 +15,21 @@ If you are not sure whether you should read this, more details can be found [her
 
 You need an instance of Cortex XSOAR up and running. You can Sign Up for the [Cortex XSOAR Free Edition](https://start.paloaltonetworks.com/sign-up-for-demisto-free-edition) or, if you're entitled to, contact the XSOAR Alliances team to have a non-production license.
 
-### VSCode Extension
+### Development OS
 
-The [Cortex XSOAR VSCode extension](../concepts/vscode-extension.md) is the recommended way to develop, supported by all OSs. See [Setup environnement with VSCode extension](../concepts/vscode-extension.md#setup-content-environment-with-vscode-extension) and [Developing with VSCode extension](../concepts/vscode-extension.md#development-and-debugging)
+Our recommended OS for development is either macOS or Linux, as we use bash and docker in some of our validation/testing flows. We also support Windows through WSL.
 
+#### Windows Users
 
+If you are working on Windows, you can either work with a Linux VM or utilize [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10). 
+
+**Note:** When using WSL2 you may experience performance issues if working on the Windows mounted file system (for example `/mnt/c/`). See the following [WSL issue](https://github.com/microsoft/WSL/issues/4197) for more info. In such cases we recommend using the Linux file system (`ext4` partition) WSL2 provides. Meaning that the local demisto content and the SDK will all be located on the WSL file system and using an editor which supports remote WSL. Editors supporting remote WSL include:
+* VS Code: https://code.visualstudio.com/docs/remote/wsl
+* PyCharm Professional Edition: https://www.jetbrains.com/help/pycharm/using-wsl-as-a-remote-interpreter.html 
+
+#### Other Operating Systems
+
+If you successfully manage to develop and contribute on other platforms (native Windows, OpenBSD, etc.), please let us know and we'll add it to the tutorial! (click on Report an issue at the bottom of this page).
 
 ### GitHub
 
@@ -30,7 +40,7 @@ You will also need `git` - a distributed version control system, installed in yo
 
 ### Python
 
-If you are planning on contributing code, (i.e Integration or Automation) you will need to use **Python** and, more specifically, Python 3.8+. While some content is built via Javascript and Python 2, we require Python 3.8+ for contributions.
+If you are planning on contributing code, (i.e Integration or Automation) you will need to use **Python** and, more specifically, Python 3.7+. While some content is built via Javascript and Python 2, we require Python 3.7+ for contributions.
 
 :::note
 Note

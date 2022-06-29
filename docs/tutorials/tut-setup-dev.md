@@ -14,7 +14,7 @@ This tutorial will guide you through the following steps:
 1. Verify the requirements
 2. Fork the GitHub repo
 3. Clone the GitHub fork locally
-4. Setup the VSCode extension
+4. Setup environment
 5. Run the linter and unit tests
 6. Create a branch and integration directory
 7. Commit and push
@@ -37,59 +37,13 @@ Check if your Cortex XSOAR License is correctly installed by navigating to *Sett
 
 ![Jump to Page](/doc_imgs/tutorials/tut-setup-dev/02-jumptopage.png)
 
-#### Operating System
-
-We assume you have an Operating System and that it is working :)
-
-*Note:* if you're using **Windows with WSL**, and your code resides to a shared folder on the Windows tree (i.e. `/mnt/c/code/demisto`), please make sure that the folder is set to be [case sensitive](https://devblogs.microsoft.com/commandline/improved-per-directory-case-sensitivity-support-in-wsl/).
-
-#### Python and pyenv
-
-You will need `python3` installed on your system. We recommend using `pyenv`. At the time of writing, the latest version of Python 3.7 is *3.7.5*.
-
-Make sure `pyenv` in installed and that the `eval "$(pyenv init -)"` expression is placed in your shell configuration (`~/.bashrc` or `~/.zshrc`) - [more information about this](https://github.com/pyenv/pyenv#installation).
-
-```bash
-sb@dddd:~/demisto$ eval "$(pyenv init -)"
-sb@dddd:~/demisto$ pyenv -v
-pyenv 1.2.15
-sb@dddd:~/demisto$~/demisto$
-```
-If it doesn't work, please follow the instructions [here](https://github.com/pyenv/pyenv#installation). Either Homebrew for MacOS or the automatic installer on Linux/WSL work fine.
-
-Make sure that the required version of Python is available:
-
-```bash
-sb@dddd:~/demisto$ pyenv versions
-  3.7.5
-sb@dddd:~/demisto$
-```
-If it doesn't work, please follow the instructions [here](https://github.com/pyenv/pyenv#installation). Either Homebrew for MacOS or the automatic installer on Linux/WSL work fine.
-
-If it is missing, you will need to install it. As `pyenv` compiles CPython, you might need some libraries. Depending on your OS, [this](https://github.com/pyenv/pyenv/wiki/Common-build-problems) article explains how to install the required dependencies and provides useful troubleshooting info.
-
-Also, it's a good time to take a break as installing might take a bit.
-
-Install Python 3.7.5:
-
-```bash
-sb@dddd:~/demisto$ pyenv install 3.7.5
-Downloading Python-3.7.5.tar.xz...
--> https://www.python.org/ftp/python/3.7.5/Python-3.7.5.tar.xz
-Installing Python-3.7.5...
-Installed Python-3.7.5 to /home/sb/.pyenv/versions/3.7.5
-
-sb@dddd:~/demisto$ pyenv versions
-  3.7.5
-sb@dddd:~/demisto$
-```
-And that's it! Again, if the installation fails, check out [this](https://github.com/pyenv/pyenv/wiki/Common-build-problems) page.
 
 #### GitHub
 
 Not much to check here, just go to [GitHub](https://github.com) and make sure that you have an account or Sign Up for one:
 
 ![GitHub](/doc_imgs/tutorials/tut-setup-dev/03-github.png)
+
 
 #### Docker
 
@@ -146,7 +100,63 @@ sb@dddd:~/demisto$
 
 *Note:* you must clone **your fork** of the repository, as you will need to be able to write into it. Do **not** clone `demisto/content`, as you won't be able to push commits.
 
-### Step 4: Run the bootstrap script
+### Step 4: Setup environment
+
+#### Setup a remote environment (Recommended)
+
+#### Setup a local environment
+
+#### Operating System
+
+We assume you have an Operating System and that it is working :)
+
+*Note:* if you're using **Windows with WSL**, and your code resides to a shared folder on the Windows tree (i.e. `/mnt/c/code/demisto`), please make sure that the folder is set to be [case sensitive](https://devblogs.microsoft.com/commandline/improved-per-directory-case-sensitivity-support-in-wsl/).
+
+#### Python and pyenv
+
+You will need `python3` installed on your system. We recommend using `pyenv`. At the time of writing, the latest version of Python 3.7 is *3.7.5*.
+
+Make sure `pyenv` in installed and that the `eval "$(pyenv init -)"` expression is placed in your shell configuration (`~/.bashrc` or `~/.zshrc`) - [more information about this](https://github.com/pyenv/pyenv#installation).
+
+```bash
+sb@dddd:~/demisto$ eval "$(pyenv init -)"
+sb@dddd:~/demisto$ pyenv -v
+pyenv 1.2.15
+sb@dddd:~/demisto$~/demisto$
+```
+If it doesn't work, please follow the instructions [here](https://github.com/pyenv/pyenv#installation). Either Homebrew for MacOS or the automatic installer on Linux/WSL work fine.
+
+Make sure that the required version of Python is available:
+
+```bash
+sb@dddd:~/demisto$ pyenv versions
+  3.7.5
+sb@dddd:~/demisto$
+```
+If it doesn't work, please follow the instructions [here](https://github.com/pyenv/pyenv#installation). Either Homebrew for MacOS or the automatic installer on Linux/WSL work fine.
+
+If it is missing, you will need to install it. As `pyenv` compiles CPython, you might need some libraries. Depending on your OS, [this](https://github.com/pyenv/pyenv/wiki/Common-build-problems) article explains how to install the required dependencies and provides useful troubleshooting info.
+
+Also, it's a good time to take a break as installing might take a bit.
+
+Install Python 3.7.5:
+
+```bash
+sb@dddd:~/demisto$ pyenv install 3.7.5
+Downloading Python-3.7.5.tar.xz...
+-> https://www.python.org/ftp/python/3.7.5/Python-3.7.5.tar.xz
+Installing Python-3.7.5...
+Installed Python-3.7.5 to /home/sb/.pyenv/versions/3.7.5
+
+sb@dddd:~/demisto$ pyenv versions
+  3.7.5
+sb@dddd:~/demisto$
+```
+And that's it! Again, if the installation fails, check out [this](https://github.com/pyenv/pyenv/wiki/Common-build-problems) page.
+
+
+
+
 
 Before running the `bootstrap` script that creates the virtual environment, let's set up `pyenv` to work correctly in the `content` folder you just cloned.
 
