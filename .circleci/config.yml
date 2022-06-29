@@ -166,14 +166,6 @@ workflows:
               only: /^(?!pull\/).*$/
 
   daily:
-    triggers:
-      - schedule:
-          # should trigger every day at 4:00 UTC (4 hours after 12 AM upload-flow run)
-          cron: "0 4 * * *"
-          filters:
-            branches:
-              only:
-                - master
     jobs:
       - build:
           name: nightly build
