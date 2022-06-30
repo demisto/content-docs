@@ -186,16 +186,18 @@ For Partners, this image is **mandatory** and is validated during the build. If 
  
 In case file does not exist, the pack author name will be displayed in text.
 
-### CONTRIBUTORS.md
-If you are contributing to an existing pack, you can add a **CONTRIBUTORS.md** file to the pack and list yourself as a contributor for the pack in the mentioned list. The file should have the follwoing structure and will appear in the pack details in the XSOAR Marketplace.
+### CONTRIBUTORS.json
+If you are contributing to an existing pack, you can add a **CONTRIBUTORS.json** file to the root of the pack in case one does not already exist. The file should contain a list of strings that will include your name. 
 
-#### Example CONTRIBUTORS.md
+#### Example of a CONTRIBUTORS.json file:
+```json
+[
+    "Jane Doe",
+    "John Smith"
+]
 ```
-### Pack Contributors:
 
----
- - Jane Doe
- - John Smith
+#### Once your contribution will be merged, pack details will show the following:
 
-Contributions are welcome and appreciated. For more info, visit our [Contribution Guide](https://xsoar.pan.dev/docs/contributing/contributing).
-```
+![image](https://user-images.githubusercontent.com/44666568/176713193-8a0857bf-a5ed-45cd-98e4-3c575752c0ff.png)
+
