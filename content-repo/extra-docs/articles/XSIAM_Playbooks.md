@@ -6,18 +6,18 @@ description: The XSIAM alerts handling playbooks included in this pack help you 
 ---
 The XSIAM alerts handling playbooks included in this pack help you respond to Cortex XDR alerts in a timely manner. The playbooks are based on the MITRE ATT&CK tactics and techniques and the NIST framework Computer Security Incident Handling Guide.
 
-## MITRE ATT&CK Tactics and Techniques
+## MITRE ATT&CK [Tactics](https://attack.mitre.org/tactics/enterprise/) and [Techniques](https://attack.mitre.org/techniques/enterprise/)
 MITRE ATT&CK is a globally-accessible knowledge base of adversary tactics and techniques based on real-world observations.
 The framework can be used by SOC and threat intelligence analysts, threat hunters, red teamers, and defenders to classify attacks better and assess risks for their organization.
 Organizations can use the framework to identify gaps in their defenses, prioritize them, and take the necessary actions to remediate the threat.
 Many cyber security systems classify incidents and reports based on the MITRE ATT&CK framework.
 Cortex XSOAR uses the MITRE ATT&CK feed integration to ingest the information about these techniques and sub-techniques and many different integrations to retrieve indicators and incidents obtaining these techniques.
 
-## NIST Framework - Computer Security Incident Handling Guide
+## [NIST Framework - Computer Security Incident Handling Guide](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r2.pdf)
 NIST's Computer Security Incident Handling Guide assists organizations in establishing computer security incident response capabilities and handling incidents efficiently and effectively. This publication provides guidelines for incident handling, particularly for analyzing incident-related data and determining the appropriate response to each incident.
 
 ## XSIAM Alerts - BIOCs and ABIOCs
-Behavioral indicators of compromise (BIOCs) enable you to alert and respond to behaviors—tactics, techniques, and procedures. Instead of hashes and other traditional indicators of compromise, BIOC rules detect behavior such as is related to processes, registry, files, and network activity.
+Behavioral indicators of compromise (BIOCs) enable you to alert and respond to behaviors—tactics, techniques, and procedures. Instead of hashes and other traditional indicators of compromise, BIOC rules detect behavior related to processes, registry, files, and network activity.
 Analytical behavioral indicators of compromise (ABIOCs) examine logs and data from your sensors on the Cortex XDR tenants to build an activity baseline and recognize abnormal activity when it occurs. The Analytics Engine accesses your logs as they are streamed to the Cortex XDR tenant, including any Firewall data forwarded by the Cortex Data Lake, and analyzes the data as soon as it arrives. Cortex XDR raises an Analytics alert when the Analytics Engine determines an anomaly.
 
 ## About this Pack
@@ -115,7 +115,7 @@ The Core playbooks are aim to provide a tailored response to some of the most co
 - [AWS IAM User Access Investigation](https://xsoar.pan.dev/docs/reference/playbooks/aws-iam-user-access-investigation)
 - [T1059 - Command and Scripting Interpreter](https://xsoar.pan.dev/docs/reference/playbook)
 
-## Playbook Demonstration
+## Playbook Flow Demonstration
 ### [T1059 - Command and Scripting Interpreter](https://xsoar.pan.dev/docs/reference/playbook)
 
 This playbook handles command and scripting interpreter alerts based on the MITRE T1059 technique. An attacker might abuse command and script interpreters to execute commands, scripts, or binaries. Most systems come with some built-in command-line interface and scripting capabilities. For example, macOS and Linux distributions include some Unix Shell, while Windows installations include the Windows Command Shell and PowerShell.
@@ -145,4 +145,3 @@ The playbook's flow is as follows:
 8. Closes the alert.
 
 ![T1059_-_Command_and_Scripting_Interpreter](https://user-images.githubusercontent.com/28757135/176421698-95fb873f-e06d-4cb4-8e09-cdb7a54ec888.png)
-
