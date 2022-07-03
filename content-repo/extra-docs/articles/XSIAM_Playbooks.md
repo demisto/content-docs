@@ -6,15 +6,15 @@ description: The XSIAM alerts handling playbooks included in this pack help you 
 ---
 The XSIAM alerts handling playbooks included in this pack help you respond to Cortex XDR alerts in a timely manner. The playbooks are based on the MITRE ATT&CK tactics and techniques and the NIST framework Computer Security Incident Handling Guide.
 
-## MITRE ATT&CK [Tactics](https://attack.mitre.org/tactics/enterprise/) and [Techniques](https://attack.mitre.org/techniques/enterprise/)
-MITRE ATT&CK is a globally-accessible knowledge base of adversary tactics and techniques based on real-world observations.
+## MITRE ATT&CK Tactics and Techniques
+MITRE ATT&CK is a globally-accessible knowledge base of the adversary [tactics](https://attack.mitre.org/tactics/enterprise/) and [techniques](https://attack.mitre.org/techniques/enterprise/) based on real-world observations.
 The framework can be used by SOC and threat intelligence analysts, threat hunters, red teamers, and defenders to classify attacks better and assess risks for their organization.
 Organizations can use the framework to identify gaps in their defenses, prioritize them, and take the necessary actions to remediate the threat.
 Many cyber security systems classify incidents and reports based on the MITRE ATT&CK framework.
 Cortex XSOAR uses the MITRE ATT&CK feed integration to ingest the information about these techniques and sub-techniques and many different integrations to retrieve indicators and incidents obtaining these techniques.
 
-## [NIST Framework - Computer Security Incident Handling Guide](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r2.pdf)
-NIST's Computer Security Incident Handling Guide assists organizations in establishing computer security incident response capabilities and handling incidents efficiently and effectively. This publication provides guidelines for incident handling, particularly for analyzing incident-related data and determining the appropriate response to each incident.
+## NIST Framework - Computer Security Incident Handling Guide
+[NIST's Computer Security Incident Handling Guide](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r2.pdf) assists organizations in establishing computer security incident response capabilities and handling incidents efficiently and effectively. This publication provides guidelines for incident handling, particularly for analyzing incident-related data and determining the appropriate response to each incident.
 
 ## XSIAM Alerts - BIOCs and ABIOCs
 Behavioral indicators of compromise (BIOCs) enable you to alert and respond to behaviors—tactics, techniques, and procedures. Instead of hashes and other traditional indicators of compromise, BIOC rules detect behavior related to processes, registry, files, and network activity.
@@ -25,6 +25,35 @@ The Core pack playbooks were created to provide a dedicated response to XSIAM al
 The playbooks incorporate sub-playbooks which serve as modular functionality across all parent playbooks to investigate, contain and eradicate the threat.
 
 ## Core Investigative and Response Playbooks
+
+#### [Enrichment for Verdict](https://xsoar.pan.dev/docs/reference/playbooks/enrichment-for-verdict)
+This playbook checks prior alert closing reasons and performs enrichment on different IOC types. It then returns the information needed to establish the alert's verdict.
+
+The sub-playbooks being used as part of the verdict decision flow are:
+
+- [File Reputation](https://xsoar.pan.dev/docs/reference/playbooks/file-reputation)
+- [Domain Enrichment - Generic v2](https://xsoar.pan.dev/docs/reference/playbooks/domain-enrichment---generic-v2)
+- [URL Enrichment - Generic v2](https://xsoar.pan.dev/docs/reference/playbooks/url-enrichment---generic-v2)
+- [IP Enrichment - Generic v2](https://xsoar.pan.dev/docs/reference/playbooks/ip-enrichment---generic-v2)
+- [Account Enrichment - Generic v2.1](https://xsoar.pan.dev/docs/reference/playbooks/account-enrichment---generic-v21)
+- [AWS IAM - User enrichment](https://xsoar.pan.dev/docs/reference/playbooks/aws-iam---user-enrichment)
+
+The File Reputation playbook has some vital functionality you should be familiar with:
+
+Enrichment sources and their outputs:
+
+- XDR
+    - The output is exported to a key called 'XDRFileSigners', which can be populated with 'Trusted' or 'Untrusted'. 
+      
+      The decision of whether the verdict is trusted is based on pre-defined input that contains trusted signers provided by the user compared to the suspicious file being analyzed.
+- NSRL
+    - The output is exported to a key called 'NSRLFileVerdict', which can be populated with 'isNSRL' or 'isNotNSRL'.
+      
+      The decision is based on an enrichment where we check if the file hash is present in the [NSRL database](https://www.nist.gov/itl/ssd/software-quality-group/national-software-reference-library-nsrl).
+- VirusTotal
+    - The outputs are exported to a key called 'VTFileSigners', which can be populated with 'Trusted' or 'Untrusted' and 'VTFileVerdict', which can be populated with 'Benign', 'Suspicious' or 'Malicious'. 
+      
+      The decision is based on a pre-defined input containing a threshold provided by the user, compared with the number of engined files detected as malicious.
 
 #### [Endpoint Investigation Plan](https://xsoar.pan.dev/docs/reference/playbooks/endpoint-investigation-plan)
 This playbook handles all the endpoint investigation actions available with Cortex XSIAM, including the following tasks:
@@ -71,35 +100,6 @@ This playbook handles all the recovery actions available with Cortex XSIAM, incl
 - Restore the quarantined file
 
 The Recovery Plan allows the analyst to revert containment actions taken on the endpoint.
-
-#### [Enrichment for Verdict](https://xsoar.pan.dev/docs/reference/playbooks/enrichment-for-verdict)
-This playbook checks prior alert closing reasons and performs enrichment on different IOC types. It then returns the information needed to establish the alert's verdict.
-
-The sub-playbooks being used as part of the verdict decision flow are:
-
-- [File Reputation](https://xsoar.pan.dev/docs/reference/playbooks/file-reputation)
-- [Domain Enrichment - Generic v2](https://xsoar.pan.dev/docs/reference/playbooks/domain-enrichment---generic-v2)
-- [URL Enrichment - Generic v2](https://xsoar.pan.dev/docs/reference/playbooks/url-enrichment---generic-v2)
-- [IP Enrichment - Generic v2](https://xsoar.pan.dev/docs/reference/playbooks/ip-enrichment---generic-v2)
-- [Account Enrichment - Generic v2.1](https://xsoar.pan.dev/docs/reference/playbooks/account-enrichment---generic-v21)
-- [AWS IAM - User enrichment](https://xsoar.pan.dev/docs/reference/playbooks/aws-iam---user-enrichment)
-
-The File Reputation playbook has some vital functionality you should be familiar with:
-
-Enrichment sources and their outputs:
-
-- XDR
-    - The output is exported to a key called 'XDRFileSigners', which can be populated with 'Trusted' or 'Untrusted'. 
-      
-      The decision of whether the verdict is trusted is based on pre-defined input that contains trusted signers provided by the user compared to the suspicious file being analyzed.
-- NSRL
-    - The output is exported to a key called 'NSRLFileVerdict', which can be populated with 'isNSRL' or 'isNotNSRL'.
-      
-      The decision is based on an enrichment where we check if the file hash is present in the [NSRL database](https://www.nist.gov/itl/ssd/software-quality-group/national-software-reference-library-nsrl).
-- VirusTotal
-    - The outputs are exported to a key called 'VTFileSigners', which can be populated with 'Trusted' or 'Untrusted' and 'VTFileVerdict', which can be populated with 'Benign', 'Suspicious' or 'Malicious'. 
-      
-      The decision is based on a pre-defined input containing a threshold provided by the user, compared with the number of engined files detected as malicious.
 
 #### [Handle False Positive Alerts](https://xsoar.pan.dev/docs/reference/playbooks/handle-false-positive-alerts)
 
