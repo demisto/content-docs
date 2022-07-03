@@ -100,7 +100,15 @@ Enrichment sources and their outputs:
     - The outputs are exported to a key called 'VTFileSigners', which can be populated with 'Trusted' or 'Untrusted' and 'VTFileVerdict', which can be populated with 'Benign', 'Suspicious' or 'Malicious'. 
       
       The decision is based on a pre-defined input containing a threshold provided by the user, compared with the number of engined files detected as malicious.
-      
+
+#### [Handle False Positive Alerts](https://xsoar.pan.dev/docs/reference/playbooks/handle-false-positive-alerts)
+
+This playbook handles false positive alerts, and provide the user with one or more of the following handling actions:
+
+- Add an [alert exclusion](https://docs.paloaltonetworks.com/cortex/cortex-xdr/cortex-xdr-prevent-admin/investigation-and-response/investigate-endpoint-alerts/alert-exclusions/add-an-alert-exclusion)
+- Add an [alert exception](https://docs.paloaltonetworks.com/cortex/cortex-xdr/cortex-xdr-pro-admin/endpoint-security/exceptions-security-profiles/add-exceptions-profile)
+- Add the file hash to an [allow list](https://docs.paloaltonetworks.com/cortex/cortex-xdr/cortex-xdr-api/cortex-xdr-apis/response-actions/allow-list-files)
+
 ## Core Playbooks
 
 The Core playbooks are aim to provide a tailored response to some of the most common XDR alerts. These playbooks were created after dedicated research on the relevant alert/technique and are built using a modular approach. The sub-playbooks mentioned above provide the core functionality needed as part of the incident response process with custom content relevant for each use case.
