@@ -102,6 +102,7 @@ This command accepts the following arguments:
 | **name**  | New docker image name, should be lower case only  |
 | **dependencies**  |  New docker image dependencies, those are python libs like stix or requests, can have multiple as comma separated: lib1,lib2,lib3 |
 | **packages**  |  new docker image packages, those are OS packages like libxslt or wget, can have multiple as comma separated: pkg1,pkg2,pkg3 |
+| **base**         |  New docker image base image to use, it must be ubuntu based with python installed, the default will be demisto/python3-deb base image, with python 3.x |
 
 
 You may need to update a Docker Image. Do this by executing the following:
