@@ -187,7 +187,7 @@ For Partners, this image is **mandatory** and is validated during the build. If 
 In case file does not exist, the pack author name will be displayed in text.
 
 ### CONTRIBUTORS.json
-If you are contributing to an existing pack, you can add a **CONTRIBUTORS.json** file to the root of the pack in the event that one does not already exist. The file should contain a list of strings that will include your name. 
+If you are contributing to an existing pack, you can add a **CONTRIBUTORS.json** file to the root of the pack in the event that one does not already exist. The file should contain a list of strings including your name. 
 
 #### Example of a CONTRIBUTORS.json file:
 ```json
