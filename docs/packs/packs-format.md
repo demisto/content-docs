@@ -197,7 +197,7 @@ If you are contributing to an existing pack, you can add a **CONTRIBUTORS.json**
 ]
 ```
 
-#### Once your contribution will be merged, pack details will show the following:
+#### Once your contribution is merged, pack details will show the following:
 
 ![image](https://user-images.githubusercontent.com/44666568/176713193-8a0857bf-a5ed-45cd-98e4-3c575752c0ff.png)
 
