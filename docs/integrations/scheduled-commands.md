@@ -21,6 +21,60 @@ Use cases for scheduled commands include:
 
 For an example, see the [Autofocus V2](https://github.com/demisto/content/blob/master/Packs/AutoFocus/Integrations/AutofocusV2/AutofocusV2.yml) `autofocus-samples-search` command.
 
+## The polling_function Decorator
+The `polling_function` decorator can be used to save much of the boilerplate code you would otherwise need to implement yourself to write a polling function.
+
+All functions implementing this decorator must always return a PollResult object.
+#### Code Example
+In the example below, we are polling against the `client.call_api` function. 
+
+If the api has a successful resppnse, we return our results wrapped in a PollResult object. 
+
+Otherwise, we return whether to `continue_to_poll` according to the results of the `should_not_keep_polling` function. (Note, either a boolean or a predicate can be passed to continue_to_poll)
+```python
+@polling_function('cs-falcon-sandbox-result')
+def some_polling_command(client: Client, args: Dict[str, Any]):
+    key = get_api_id(args)
+    api_response = client.call_api()
+    successful_response = api_response.status_code == 200
+
+    if successful_response:
+        success_return = show_successful_response()
+        return PollResult(success_return)
+
+    else:
+        error_response = CommandResults(raw_response=report_response,
+                                        readable_output='API returned an error',
+                                        entry_type=entryTypes['error'])
+
+        return PollResult(continue_to_poll=lambda: not should_not_keep_polling(client, key), response=error_response)
+```
+
+#### polling_function arguments
+
+| Arg                  | Type | Description                                                              | Default           |
+|----------------------|------|--------------------------------------------------------------------------|-------------------|
+| name                 | str  | The name of the command                                                  |                   |
+| interval             | int  | How many seconds until the next run                                      | 30                |
+| timeout              | int  | How long to poll until timeout                                           | 600               |
+| poll_message         | str  | The message to display in the war room while polling                     | Fetching Results: |
+| polling_arg_name     | str  | The name of the argument to indicate polling should be done              | polling           |
+| requires_polling_arg | bool | Whether a polling argument should be expected as one of the demisto args | True              |
+
+
+#### The PollResult Class
+ 
+| Arg               | Type                  | Description                                                                                     |
+|-------------------|-----------------------|-------------------------------------------------------------------------------------------------|
+| response          | Any                   | The response of the command in the event of success, or in case of failure but Polling is false |
+| continue_to_poll  | Union[bool, Callable] | Wether to return a ScheduledCommand to the server to keep polling.                              |
+| args_for_next_run | Dict                  | The arguments to use in the next iteration. Will use the input args in case of None             |
+| partial_result    | CommandResults        | CommandResults to return, even though we will poll again                                        |
+
+One last thing regarding the decorator, to Ignore Scheduled War Room Entries (as indicated below) add `hide_polling_output` as a boolean argument to the command. 
+
+For example see the [cs-falcon-sandbox-scan](https://github.com/demisto/content/blob/849fee1dfe10907158e5c307dd367284accee2a0/Packs/CrowdStrikeFalconSandbox/Integrations/CrowdStrikeFalconSandboxV2/CrowdStrikeFalconSandboxV2.yml#L65) command.
+
 ### ScheduledCommand Class
 `ScheduledCommand` is an optional class that enables scheduling commands via the command results.
 
@@ -148,3 +202,4 @@ if samples_result and not isError(samples_result[0]):
         script_results.extend(samples_result)
 return_results(script_results)
 ```
+
