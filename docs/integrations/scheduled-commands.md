@@ -28,7 +28,7 @@ All functions implementing this decorator must always return a PollResult object
 #### Code Example
 In the example below, we are polling against the `client.call_api` function. 
 
-If the api has a successful resppnse, we return our results wrapped in a PollResult object. 
+If the api has a successful response, we return our results wrapped in a PollResult object. 
 
 Otherwise, we return whether to `continue_to_poll` according to the results of the `should_not_keep_polling` function. (Note, either a boolean or a predicate can be passed to continue_to_poll)
 ```python
@@ -71,7 +71,7 @@ def some_polling_command(client: Client, args: Dict[str, Any]):
 | args_for_next_run | Dict                  | The arguments to use in the next iteration. Will use the input args in case of None             |
 | partial_result    | CommandResults        | CommandResults to return, even though we will poll again                                        |
 
-One last thing regarding the decorator, to Ignore Scheduled War Room Entries (as indicated below) add `hide_polling_output` as a boolean argument to the command. 
+One last thing regarding the decorator, to Ignore Scheduled War Room Entries (as indicated below) add `hide_polling_output` as a boolean argument to the command in the yml file. 
 
 For example see the [cs-falcon-sandbox-scan](https://github.com/demisto/content/blob/849fee1dfe10907158e5c307dd367284accee2a0/Packs/CrowdStrikeFalconSandbox/Integrations/CrowdStrikeFalconSandboxV2/CrowdStrikeFalconSandboxV2.yml#L65) command.
 
