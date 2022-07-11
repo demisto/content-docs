@@ -46,6 +46,7 @@ jobs:
       run: |
         cd content-repo
         wget https://raw.githubusercontent.com/demisto/content/master/Packs/Base/Scripts/CommonServerPython/CommonServerPython.py
+        wget https://raw.githubusercontent.com/demisto/content/master/Packs/ApiModules/Scripts/DemistoClassApiModule/DemistoClassApiModule.py
         wget https://raw.githubusercontent.com/demisto/content/master/Tests/demistomock/demistomock.py
     - name: Lint
       run: |
