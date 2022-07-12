@@ -72,3 +72,25 @@ The environnement contains `demisto-sdk`, `zsh`, `git`, `pyenv`, `poetry`, prein
 Follow [XSOAR VSCode extension](../concepts/vscode-extension.md) to getting started with our features.
 
 If you are not familiar with using `VSCode`, follow the [Getting Started](https://code.visualstudio.com/docs/introvideos/basics) guide.
+
+## Using with MacOS or native Windows
+
+As in `docker` is not native for **Mac** or in **Windows**, there could be performance issues.
+If facing performance issues, try the following:
+
+* If you're in **Windows**, [use **WSL2**](#windows)
+* Update you `docker`.
+* Disable `Autosave` in the `VSCode`.
+
+## Troubleshooting
+
+If there are errors in [opening the dev container](#open-the-dev-container), try the following:
+
+* Update you `docker`.
+* Clean up your `docker`: 
+```bash
+  docker system prune -a --volumes
+```
+  
+
+
