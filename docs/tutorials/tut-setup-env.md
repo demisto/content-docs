@@ -40,7 +40,7 @@ To get much better performance, use **WSL**.
     ```bash
     wsl --set-version <distro name> 2
     ```
-    replacing `<distro name>` with the name of the Linux distribution that you want to update. For example, `wsl --set-version Ubuntu 2` will set your Ubuntu distribution to use `WSL 2`.
+    Replacing `<distro name>` with the name of the Linux distribution that you want to update. For example, `wsl --set-version Ubuntu 2` will set your Ubuntu distribution to use `WSL 2`.
 
 
 ### Clone
