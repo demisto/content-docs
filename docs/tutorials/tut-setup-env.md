@@ -29,7 +29,7 @@ To get much better performance, use **WSL**.
 
 * Follow the instructions [here](https://code.visualstudio.com/docs/remote/wsl#_installation) to get started with **WSL**.
 * Follow the instructions [here](https://code.visualstudio.com/docs/remote/wsl#_open-a-remote-folder-or-workspace) to open **WSL** in VSCode.
-* After installing **WSL**, [enable docker support on it](https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros)
+* After installing **WSL**, [enable docker support on it](https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros).
 * Make sure that `WSL 2` is installed with:
     ```bash
     wsl --list --verbose
