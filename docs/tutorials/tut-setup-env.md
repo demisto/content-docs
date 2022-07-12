@@ -23,18 +23,34 @@ Follow the instructions [here](https://code.visualstudio.com/docs/remote/contain
 
 ## Installation
 
-### Option 1: Clone the GitHub repository locally
+### Clone the GitHub repository locally
 
-*Note*: **Windows** Users: To get improved performance, follow the instruction [here](https://docs.microsoft.com/en-us/windows/wsl/install) to install **WSL**, and clone the repository into the **WSL** filesystem.
+#### Windows
 
-In this way you will work on your local GitHub repository, but in a container environment. Every change in the local files will be changed in the container, and every change you make in the container will be changed locally.
+To get much better performance, use **WSL**.
+
+* Follow the instructions [here](https://code.visualstudio.com/docs/remote/wsl#_installation) to get started.
+* Follow the instructions [here](https://code.visualstudio.com/docs/remote/wsl#_open-a-remote-folder-or-workspace) to open **WSL** in VSCode.
+* After installing **WSL**, [enable `docker` support on it](https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros)
+* Make sure that **WSL2** is installed with:
+```bash
+  wsl --list --verbose
+```
+To change versions, use the command:
+```bash
+wsl --set-version <distro name> 2
+```
+replacing `<distro name>` with the name of the Linux distribution that you want to update. For example, `wsl --set-version Ubuntu 2` will set your Ubuntu distribution to use WSL 2.
+
 
 #### Clone
 
 You can clone with the terminal, and you can work directly with VSCode.
 To work with Github in VSCode you can follow the instructions [here](https://code.visualstudio.com/docs/editor/github#_setting-up-a-repository)
 
-### Open the folder in VSCode
+**Note**: On **Windows**, clone the repository in the **WSL** filesystem:
+
+### Open the repository in VSCode
 
 If you cloned the repository with VSCode, you can skip this step.
 
@@ -42,25 +58,17 @@ If you cloned the repository with VSCode, you can skip this step.
 2. Go to File -> Open Folder.
 3. Select your GitHub repository.
 
-#### Reopen in Container
+### Open the Dev Container
 
-1. Hit on this button on the bottom left corner.
+1. Click on this green button:
+    ![image](https://code.visualstudio.com/assets/docs/remote/common/remote-dev-status-bar.png)
 2. Hit on **Reopen in Container**.
 3. Wait for a few minutes until the Dev Container is ready.
 
-### Option 2: Clone the GitHub fork repository a container volume
-
-In this way we will clone the GitHub repository in a repository volume. The files will not be available locally, only from the container. This is the best option for performance.
-
-#### Clone in a container
-
-1. Open VSCode.
-2. Hit on this button in the bottom left corner.
-3. Hit on **Clone Repository in Container Volume**.
-4. Wait for a few minutes until the Dev Container is ready.
-
 ## Usage
 
+The environnement contains `demisto-sdk`, `zsh`, `git`, `pyenv`, `poetry`, preinstalled system and python dependencies, and recommended extensions, including [XSOAR VSCode extension](../concepts/vscode-extension.md)
 
+Follow [XSOAR VSCode extension](../concepts/vscode-extension.md) to getting started with our features.
 
-
+If you are not familiar with using `VSCode`, follow the [Getting Started](https://code.visualstudio.com/docs/introvideos/basics) guide.
