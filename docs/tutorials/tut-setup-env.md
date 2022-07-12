@@ -78,15 +78,15 @@ If you are not familiar with using `VSCode`, follow the [Getting Started](https:
 As in `docker` is not native for **Mac** or in **Windows**, there could be performance issues.
 If facing performance issues, try the following:
 
-* If you're in **Windows**, [use **WSL2**](#windows)
-* Update you `docker`.
+* If you're in **Windows**, [use WSL2](#windows).
+* Update your `docker`.
 * Disable `Autosave` in the `VSCode`.
 
 ## Troubleshooting
 
 If there are errors in [opening the dev container](#open-the-dev-container), try the following:
 
-* Update you `docker`.
+* Update your `docker`.
 * Clean up your `docker`: 
 ```bash
   docker system prune -a --volumes
