@@ -5,6 +5,7 @@ sidebar_label: VSCode Extension
 ---
 The Cortex XSOAR extension for Visual Studio Code enables you to design and author scripts and integrations for Cortex XSOAR directly from VSCode. The extension adds a set of commands, as a sidebar with Automation and Integration Settings, just like the Settings sidebar in the Cortex XSOAR script editor. When writing code, the plugin provides you with auto-completion of Cortex XSOAR and Python functions.
 The extension also provides an easy-to-use set of demisto-sdk commands to format your packs, lint, and validate.
+The extension provides an easy virtual environment setup for XSOAR integrations and scripts.
 
 ## Extension Workflow
 
