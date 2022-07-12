@@ -29,7 +29,7 @@ Cortex XSOAR recommends configuring the following:
 ### xsoar.autoFindProblems.readProblems
 
 Will auto-run *demisto-sdk lint* and *demisto-sdk validate* when saving your file if this configuration is set to *true*.
-It is recommended to change this configuration to *false* for performance.
+The default is *false*, and for now, it is recommended not to enable this configuration for performance.
 
 ## Commands
 
