@@ -15,40 +15,38 @@ This is a tutorial to set up a fully configured remote environment with VSCode [
 
 ### Docker
 
-**Windows**: Docker Desktop 2.0+ on Windows 10 Pro/Enterprise. Windows 10 Home (2004+) requires Docker Desktop 2.3+ and the WSL 2 back-end.
-**macOS**: Docker Desktop 2.0+.
-**Linux**: Docker CE/EE 18.06+ and Docker Compose 1.21+
+* **Windows**: Docker Desktop 2.0+ on Windows 10 Pro/Enterprise. Windows 10 Home (2004+) requires Docker Desktop 2.3+ and the WSL 2 back-end.
+* **macOS**: Docker Desktop 2.0+.
+* **Linux**: Docker CE/EE 18.06+ and Docker Compose 1.21+
 
 Follow the instructions [here](https://code.visualstudio.com/docs/remote/containers#_installation) to install **docker** to your Operating System.
 
 ## Installation
 
-### Clone the GitHub repository locally
-
-#### Windows
+### Windows Users
 
 To get much better performance, use **WSL**.
 
-* Follow the instructions [here](https://code.visualstudio.com/docs/remote/wsl#_installation) to get started.
+* Follow the instructions [here](https://code.visualstudio.com/docs/remote/wsl#_installation) to get started with **WSL**.
 * Follow the instructions [here](https://code.visualstudio.com/docs/remote/wsl#_open-a-remote-folder-or-workspace) to open **WSL** in VSCode.
-* After installing **WSL**, [enable `docker` support on it](https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros)
-* Make sure that **WSL2** is installed with:
-```bash
-  wsl --list --verbose
-```
-To change versions, use the command:
-```bash
-wsl --set-version <distro name> 2
-```
-replacing `<distro name>` with the name of the Linux distribution that you want to update. For example, `wsl --set-version Ubuntu 2` will set your Ubuntu distribution to use WSL 2.
+* After installing **WSL**, [enable docker support on it](https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros)
+* Make sure that `WSL 2` is installed with:
+    ```bash
+    wsl --list --verbose
+    ```
+    Make sure that the installed distribution is running `WSL 2`.
+
+    To change versions, use the command:
+    ```bash
+    wsl --set-version <distro name> 2
+    ```
+    replacing `<distro name>` with the name of the Linux distribution that you want to update. For example, `wsl --set-version Ubuntu 2` will set your Ubuntu distribution to use `WSL 2`.
 
 
-#### Clone
+### Clone
 
 You can clone with the terminal, and you can work directly with VSCode.
-To work with Github in VSCode you can follow the instructions [here](https://code.visualstudio.com/docs/editor/github#_setting-up-a-repository)
-
-**Note**: On **Windows**, clone the repository in the **WSL** filesystem:
+To work with Github in VSCode you can follow the instructions [here](https://code.visualstudio.com/docs/editor/github#_setting-up-a-repository).
 
 ### Open the repository in VSCode
 
