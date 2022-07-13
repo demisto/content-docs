@@ -66,8 +66,8 @@ When using it, those actions will be performed automatically:
 
 ## Debugging
 
-Read the [Debugging using your IDE](../integrations/debugging#Debugging%20using%20your%20IDE) section.
-[Open integrations and scripts in python virtual environment](#open-integrations-and-scripts-in-python-virtual-environment)
+* First, [Open integrations and scripts in python virtual environment](#open-integrations-and-scripts-in-python-virtual-environment)
+* Then, read the [Debugging using your IDE](../integrations/debugging#Debugging%20using%20your%20IDE) section.
 
 You can use Run and Debug (⇧⌘D) in VSCode (or click F5 on the python file).
 
