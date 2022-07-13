@@ -14,8 +14,13 @@ const slideImages = [
     link: 'https://start.paloaltonetworks.com/join-our-slack-community'
   },
   {
-    url: image3,
+    url: image2,
     caption: 'Slide 2',
+    link: 'https://start.paloaltonetworks.com/cortex-xsoar-whats-soaring-newsletter.html'
+  },
+  {
+    url: image3,
+    caption: 'Slide 3',
     link: 'https://www.paloaltonetworks.com/cortex/xsoar'
   }
 ];
