@@ -60,7 +60,7 @@ Starting from version 5.5 of Cortex XSOAR, we also support [PowerShell](../integ
 If you are writing code (i.e. Integrations and Scripts), you will need to run several linters and [unit tests](../integrations/unit-testing) to validate your code, as we do in our build process. In this case, you must install docker. Visit the [docker site installation page](https://docs.docker.com/install/) for installation options.
 
 :::note
-If you're using WSL, you cannot run Docker natively on WSL, but you can install Docker Desktop on Windows and configure WSL to communicate to it using [this](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly) tutorial.
+If you're using WSL, you should [enable integration with Docker Desktop](https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros)
 :::
 
 ### Node.js and NPM
