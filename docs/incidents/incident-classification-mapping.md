@@ -31,6 +31,7 @@ When an integration fetches incidents, it populates the rawJSON object in the in
   - Pull from *integrationName* - Cortex XSOAR fetches events from the instance (alerts, notifications etc.)
   - Upload JSON file - Upload a file containing the rawJSON object from the integration. The file must be uploaded in JSON format.  
   - Skip getting samples - Map the attributes without event data. This is not recommended.
+  - External schema support - Enable the get-mapping-fields command that pulls the remote schema for the different incident types, and their associated incident fields, from the remote system.
 
 4. Set the classification key.
 
