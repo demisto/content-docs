@@ -6,7 +6,7 @@ title: Understanding Entitlements
 Entitlements are the medium by which integrations can trigger a playbook task to complete when given a response by a user.
 
 ## Entitlement Structure
-Entitlements are composed of three main parts. The GUID, which is an identifier used by XSOAR to determine that the response
+Entitlements are composed of three main parts. The GUID, which is an identifier used by Cortex XSOAR to determine that the response
 is unique. The Incident ID, which ties the entitlement to a specific incident. And lastly, the Task ID which is used to 
 close a specific playbook task with the response given.
 
@@ -27,7 +27,7 @@ res = demisto.executeCommand('addEntitlement',
      })
 ```
 
-The response received will provide you with the GUID. which can be extracted with the following:
+The response received will provide you with the GUID, which can be extracted with the following:
 ```python
 guid = demisto.get(res[0], 'Contents')
 ```
@@ -87,4 +87,4 @@ After we have the parts extracted from our entitlement, we will call the `demist
 demisto.handleEntitlementForUser(incidentID=incident_id, guid=guid, email=user_email, response=reply, taskID=task_id)
 ```
 
-When the `demisto.handleEntitlementForUser()` function is called, the XSOAR server will close the given task in the given incident with the response which was provided.
+When the `demisto.handleEntitlementForUser()` function is called, the Cortex XSOAR server will close the given task in the given incident with the response that was provided.
