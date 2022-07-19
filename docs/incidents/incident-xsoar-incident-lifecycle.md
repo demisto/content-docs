@@ -37,3 +37,5 @@ Playbooks are triggered either when an incident is created or when you run them 
 
 ## Post-processing
 Once the incident is complete and you are ready to close it out, you can run various post-processing actions on the incident. For example, send an email to the person who opened the incident informing them that their incident has been resolved, or close an incident in a ticketing system.
+
+For more information about the incident lifecycle, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/incidents/incident-lifecycle).

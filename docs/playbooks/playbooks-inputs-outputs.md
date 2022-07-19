@@ -24,3 +24,4 @@ In turn, an output can then serve as input for a subsequent task. For example, t
 
 Notice that the input for this task is Account.Manager, which is the output we highlighted in the playbooks inputs, above.
 
+For more information on playbook inputs and outputs, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/playbooks/playbook-inputs-and-outputs).

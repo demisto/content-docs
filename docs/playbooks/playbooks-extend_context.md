@@ -55,3 +55,5 @@ DT syntax is supported within the extend-context value. You can use DT to get se
    ```
    !findIndicators size=2 query="type:IP" extend-context=`FoundIndicators=.={"value": val.value, "indicator_type": val.indicator_type}`
    ```
+
+For more information on the Extend Context feature, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/playbooks/extend-context).
