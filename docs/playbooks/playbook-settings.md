@@ -15,3 +15,5 @@ You can manage general playbook settings such as the name, who can edit and run 
 	![Playbook Settings](/doc_imgs/playbooks/playbook-settings.png "Playbook Settings")
 
 3. Click **Save Version**. 
+
+For more information on playbook settings, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/playbooks/manage-playbook-settings).

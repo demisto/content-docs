@@ -367,3 +367,5 @@ Classifier file:
 	"fromVersion": "6.0.0"
   }
  ```
+
+For more information about incident classification and mapping, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/incidents/classification-and-mapping).

@@ -72,3 +72,5 @@ The following table lists the fields available when defining a job, and their de
 | Details | Enter details that should appear within the incident. |
 | Attachments | Click the clip to add attachments to the job. |
 | Notify the owner | Sends a message to the job owner using one of the notification methods configured in Cortex XSOAR. |
+
+For more information about jobs, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/playbooks/create-a-job).
