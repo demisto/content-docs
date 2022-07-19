@@ -42,4 +42,4 @@ Inputs are data pieces that are present in the playbook or task. The inputs are 
 ## Field Mapping
 You can map output from a playbook task directly to an incident field. This means that the value for an output key populates the specified field per incident. This is a good alternative to using a task with a set incident command. 
 
-
+NOTE - For more information about Playbooks, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/playbooks).
