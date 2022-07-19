@@ -65,4 +65,4 @@ The polling is done only when the result is `finished`. The dt filter will retur
 * **GenericPolling task is completed but status is still not "finished":** If the timeout is reached, the playbook succesfully finishes even if there are items that did not complete. Try increasing the timeout value for the GenericPolling task.
 * **The integration returns an ID not found error when running from GenericPolling, however when running manualy, it finishes successfully:** Some products cannot handle consecutive requests to query an action status right after the request to perform the action. After you initiate the action, try adding a `Sleep` task before calling the **GenericPolling** sub-playbook.
 
-For more information about customized messages for communciation tasks, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/playbooks/generic-polling).
+For more information about generic polling, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/playbooks/generic-polling).
