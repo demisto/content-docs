@@ -6,7 +6,7 @@ title: Pretty
 
 
 
-<!doctype html>
+
 <html lang="en-US" itemscope itemtype="https://schema.org/WebPage">
 <head>
 <meta charset="UTF-8">
