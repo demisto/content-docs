@@ -117,7 +117,6 @@ This playbook handles false positive alerts, and provide the user with one or mo
 
 The Core playbooks provide a tailored response to some of the most common XDR alerts. These playbooks were created after dedicated research on the relevant alert/technique and are built using a modular approach. The sub-playbooks mentioned above provide the core functionality needed as part of the incident response process with custom content relevant for each use case.
 
-- [IOC Alert]()
 - [NGFW Scan](https://xsoar.pan.dev/docs/reference/playbooks/ngfw-scan)
 - [WildFire Malware](https://xsoar.pan.dev/docs/reference/playbooks/wild-fire-malware)
 - [Ransomware Response](https://xsoar.pan.dev/docs/reference/playbooks/ransomware-response)
