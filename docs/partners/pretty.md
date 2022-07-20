@@ -1,4 +1,3 @@
-
 ---
 id: pretty 
 title: Pretty
