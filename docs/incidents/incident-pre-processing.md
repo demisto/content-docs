@@ -48,3 +48,5 @@ In most cases, in a phishing campaign, the email subject will be similar. Theref
 As we know that this is a campaign, we are going to ask to close the incoming incident and link it to an already existing incident.
 
 Lastly, we have to tell Cortex XSOAR to which incident to link the incoming incident, so we've asked to link to the oldest incident, since we want to link to the first incident in the campaign.
+
+For more information about incident pre-process rules, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/incidents/incident-management/incident-de-duplication/creating-pre-process-rules-for-incidents).

@@ -26,4 +26,4 @@ All responses are collected and recorded in the incident's context data, whether
 
 **Note**: You can collect responses in custom fields, for example, a Grid field.
 
-
+For more information on communciation tasks, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/playbooks/playbook-tasks/communication-tasks).
