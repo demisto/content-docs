@@ -63,7 +63,7 @@ For more examples and ideas, visit:
 sb@dddd:~/demisto$
 ```
 
-*Note:* if you're using Windows with WSL, you can still use Docker Desktop from WSL. Follow [this](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly) tutorial for details.
+*Note:* if you're using Windows with WSL2, you can still use Docker Desktop from WSL. Follow [this](https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros) tutorial for details.
 
 Great, all the prerequisites are set! We can get started.
 
@@ -104,7 +104,7 @@ sb@dddd:~/demisto$
 
 #### Option 1: Setup a remote environment
 
-Follow this [guide](tut-setup-env.md).
+Follow this [guide](tut-setup-dev-remote.md).
 
 #### Option 2: Setup a local environment
 
@@ -159,6 +159,14 @@ And that's it! Again, if the installation fails, check out [this](https://github
 ##### Poetry
 
 Follow this instructions to install [poetry](https://python-poetry.org/docs/master/#installing-with-the-official-installer)
+
+##### Node
+
+Follow [this](https://github.com/nvm-sh/nvm#install--update-script) instructions to install `nvm` package manager.
+After installing, run:
+```bash
+nvm install node
+```
 
 ##### Bootstrap
 

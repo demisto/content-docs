@@ -15,9 +15,9 @@ It utilizes the excellent [demisto-sdk](./demisto-sdk) python package.
 ## Prerequisites
 
 * Python 3.8 and up.
-* [Python for VSCode](https://marketplace.visualstudio.com/items?itemName=ms-python.python).
+* [VSCode](https://code.visualstudio.com/Download)
 * Setup the [content repository](../concepts/dev-setup)
-* Install [demisto-sdk](../concepts/demisto-sdk#installation-and-setup). Don't forget to [setup the required environment variables](../concepts/demisto-sdk#environment-variable-setup). 
+
 
 ## Install the Visual Studio Code extension
 
@@ -41,7 +41,39 @@ Notable commands:
 
 * ***XSOAR: Demisto-SDK Lint/Validate/Update Release Notes...***: Will run the [demisto-sdk](https://github.com/demisto/demisto-sdk/) commands.
 
-* ***XSOAR: Configure XSOAR unit tests***: Will configure the integration unit tests. 
+* ***XSOAR: Configure XSOAR unit tests***: Will configure the integration unit tests.
+
+* ***XSOAR: Configure Demisto-SDK for XSOAR***: Will configure XSOAR environnement variables for *demisto-sdk*
+
+## Environment setup
+
+### Remote development (Any OS)
+
+To develop in a fully configured remote development environment, follow [this](./../tutorials/tut-setup-dev-remote.md) guide.
+
+### Local development (Linux, MacOS, WSL2)
+
+The VScode extension supports setting up your development environment.
+This will:
+1. Install the dependencies using **Homebrew** (optionally).
+2. Install **Demisto-SDK** (optionally).
+3. Add `code` to `PATH` to open `VSCode` with running `code <path>` from the terminal. 
+4. Bootstrap the **Content** repository with `python` and `node` dependencies.
+5. Install the **Content** repository recommended extensions.
+6. Configure VSCode `settings.json` to lint with `mypy` and `flake8`.
+7. Configure **Demisto-SDK** settings for `XSOAR`, selecting the XSOAR server URL, API Key and more. 
+
+The first step requires **Homebrew**:
+
+* Install [Homebrew](https://brew.sh/).
+* If on **Linux** or **WSL**, make sure to follow the instructions after installing *Homebrew* or follow this [guide](https://docs.brew.sh/Homebrew-on-Linux#requirements).
+
+If you wish to install the dependencies manually, you can follow [this](./dev-setup.md#option-3-manual-setup) until the `Bootstrap` step.
+
+#### Usage
+
+Execute the command **XSOAR: install local development environment**, either from [VSCode Command Pallete](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette), or when right clicking a file.
+
 
 ## Open integrations and scripts in python virtual environment.
 

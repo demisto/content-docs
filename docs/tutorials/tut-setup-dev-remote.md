@@ -1,5 +1,5 @@
 ---
-id: tut-setup-env
+id: tut-setup-dev-remote
 title: Set Up Your Remote Dev Environment
 ---
 
