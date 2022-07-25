@@ -114,7 +114,7 @@ function travelDependenciesJson(firstLvlDepsJson, depsJson, startKey) {
 }
 
 function travelDependencies(depsJson, startKey, firstLvlDepsJson) {
-  // Travel over the dependencies json of a given Pack dependency type, while collecting all sub-dependecy mandatory packs
+  // Travel over the dependencies json of a given Pack dependency type, while collecting all sub-dependency mandatory packs
   
   if (!(startKey in depsJson)) {
     if (!(startKey in firstLvlDepsJson)) {
@@ -249,6 +249,7 @@ function genPackDetails() {
       version: metadata.currentVersion,
       support: metadata.support === "xsoar" ? "Cortex XSOAR" : capitalizeFirstLetter(metadata.support)
     };
+    console.log("This is the id to pack metadata", idToPackMetadata);
     marketplace.push(metadata);
   });
 
@@ -264,17 +265,11 @@ function genPackDetails() {
         let dependency = metadata.dependencies[depId]
         if (dependency.mandatory) {
           dependenciesJson["mandatory"][depId] = {
-            console.log('for debugging' + depId)
-            console.log('for debugging' + idToPackMetadata)
-
             version: idToPackMetadata[depId].version,
             support: idToPackMetadata[depId].support
           };
         } else {
           dependenciesJson["optional"][depId] = {
-            console.log('for debugging' + depId)
-            console.log('for debugging' + idToPackMetadata)
-
             version: idToPackMetadata[depId].version,
             support: idToPackMetadata[depId].support
           };
