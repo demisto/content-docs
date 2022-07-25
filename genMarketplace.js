@@ -249,7 +249,7 @@ function genPackDetails() {
     } else {
       console.log("no README.md for", metadata.name);
     }
-    idToPackMetadata[metadata.name] = {
+    idToPackMetadata[metadata.id] = {
       version: metadata.currentVersion,
       support: metadata.support === "xsoar" ? "Cortex XSOAR" : capitalizeFirstLetter(metadata.support)
     };
