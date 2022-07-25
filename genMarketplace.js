@@ -205,6 +205,7 @@ function genPackDetails() {
     deep: 1,
     onlyDirectories: true,
   });
+  console.log(Json.parse(packs));
   packs.map((pack) => {
     const meta = globby.sync(
       [
