@@ -205,7 +205,10 @@ function genPackDetails() {
     deep: 1,
     onlyDirectories: true,
   });
-  console.log(Json.parse(packs));
+  console.log('This is the packs');
+  for(var i=0; i<packs.length; i++){
+     console.log(packs[i]);
+   };
   packs.map((pack) => {
     const meta = globby.sync(
       [
@@ -254,7 +257,10 @@ function genPackDetails() {
   });
 
   console.log("This is the id to pack metadata", idToPackMetadata);
-  console.log("This is the marketplace", JSON.parse(marketplace);
+  console.log('This is the marketplace');
+  for(var i=0; i<marketplace.length; i++){
+     console.log(marketplace[i]);
+   }
 
   marketplace.map((metadata) => {
     if (metadata.dependencies) {
