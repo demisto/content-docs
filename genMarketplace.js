@@ -251,7 +251,10 @@ function genPackDetails() {
     };
     marketplace.push(metadata);
   });
+
   console.log("This is the id to pack metadata", idToPackMetadata);
+  console.log("This is the marketplace", JSON.parse(marketplace);
+
   marketplace.map((metadata) => {
     if (metadata.dependencies) {
       let dependenciesJson = {
