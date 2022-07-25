@@ -264,11 +264,17 @@ function genPackDetails() {
         let dependency = metadata.dependencies[depId]
         if (dependency.mandatory) {
           dependenciesJson["mandatory"][depId] = {
+            console.log('for debugging' + depId)
+            console.log('for debugging' + idToPackMetadata)
+
             version: idToPackMetadata[depId].version,
             support: idToPackMetadata[depId].support
           };
         } else {
           dependenciesJson["optional"][depId] = {
+            console.log('for debugging' + depId)
+            console.log('for debugging' + idToPackMetadata)
+
             version: idToPackMetadata[depId].version,
             support: idToPackMetadata[depId].support
           };
