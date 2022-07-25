@@ -249,7 +249,6 @@ function genPackDetails() {
       version: metadata.currentVersion,
       support: metadata.support === "xsoar" ? "Cortex XSOAR" : capitalizeFirstLetter(metadata.support)
     };
-    console.log("This is the id to pack metadata", idToPackMetadata);
     marketplace.push(metadata);
   });
 
