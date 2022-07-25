@@ -261,6 +261,7 @@ function genPackDetails() {
         support: metadata.support
       };
       for (var depId in metadata.dependencies) {
+        console.log("This is the name", metadata.name);
         console.log("This is the depId", depId);
         let dependency = metadata.dependencies[depId]
         console.log("This is the dependency", dependency);
