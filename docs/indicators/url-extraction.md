@@ -103,3 +103,5 @@ The following are some of the most common URL structures that Cortex XSOAR suppo
 - `ftp://foo.bar/resource`
 
 - `ftps://foo.bar/resource`
+
+For more information about indicator extraction, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/manage-indicators/auto-extract-indicators).

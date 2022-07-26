@@ -56,6 +56,8 @@ The following fields are populated in the pack metadata:
 | created | String | Pack creation time in ISO 8601 format - YYYY-MM-DDTHH:mm:ssZ, e.g. 2020-01-25T10:00:00Z |
 | useCases | List | Use-cases implemented by the pack. |
 | keywords | List | List of strings by which the pack can be found in Cortex XSOAR marketplace. |
+| marketplaces    | List | List of marketplaces in which the pack can be found (XSOAR XSIAM). |
+| hidden | Boolean | (Optional) Whether to hide the pack from Marketplace. Updates to this pack will not be published to Marketplace and the pack cannot be installed. |
 | eulaLink | String | (Optional - Premium packs only) URL referencing the pack license agreement, will appear under the 'Disclaimer' section in the pack details. Non-premium packs are hosted in our open source content repo and will be subject to an [MIT License](https://github.com/demisto/content/blob/master/LICENSE). |
 | price | String | (Optional - Premium packs only) The pack price in Palo Alto [points](https://xsoar.pan.dev/docs/partners/premium-packs/#points). |
 | dependencies | Dictionary | (Optional) An object that describes the content packs that the pack is dependant on. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
@@ -186,16 +188,18 @@ For Partners, this image is **mandatory** and is validated during the build. If 
  
 In case file does not exist, the pack author name will be displayed in text.
 
-### CONTRIBUTORS.md
-If you are contributing to an existing pack, you can add a **CONTRIBUTORS.md** file to the pack and list yourself as a contributor for the pack in the mentioned list. The file should have the follwoing structure and will appear in the pack details in the XSOAR Marketplace.
+### CONTRIBUTORS.json
+If you are contributing to an existing pack, you can add a **CONTRIBUTORS.json** file to the root of the pack in the event that one does not already exist. The file should contain a list of strings including your name. 
 
-#### Example CONTRIBUTORS.md
+#### Example of a CONTRIBUTORS.json file:
+```json
+[
+    "Jane Doe",
+    "John Smith"
+]
 ```
-### Pack Contributors:
 
----
- - Jane Doe
- - John Smith
+#### Once your contribution is merged, pack details will show the following:
 
-Contributions are welcome and appreciated. For more info, visit our [Contribution Guide](https://xsoar.pan.dev/docs/contributing/contributing).
-```
+![image](https://user-images.githubusercontent.com/44666568/176713193-8a0857bf-a5ed-45cd-98e4-3c575752c0ff.png)
+

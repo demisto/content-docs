@@ -148,7 +148,7 @@ module.exports = {
           position: "right"
         },
         {
-          href: "https://blog.demisto.com/",
+          href: "https://www.paloaltonetworks.com/blog/security-operations/",
           label: "Blog",
           position: "right"
         },
