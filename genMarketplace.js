@@ -262,7 +262,7 @@ function genPackDetails() {
       };
       for (var depId in metadata.dependencies) {
         let dependency = metadata.dependencies[depId]
-        if idToPackMetadata[depId]: {
+        if (idToPackMetadata[depId]) {
           if (dependency.mandatory) {
             dependenciesJson["mandatory"][depId] = {
               version: idToPackMetadata[depId].version,
