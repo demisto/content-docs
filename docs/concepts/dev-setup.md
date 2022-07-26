@@ -62,12 +62,6 @@ nvm install node
 `Pipx` is a package to install and run python application globally in an isolated python environment.
 
 Installation:
-* **MacOS**:
-  ```bash
-  brew install pipx
-  pipx ensurepath
-  ```
-* **Linux and WSL2**:
   ```bash
   pip install --user pipx
   pipx ensurepath
