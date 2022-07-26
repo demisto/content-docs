@@ -205,10 +205,6 @@ function genPackDetails() {
     deep: 1,
     onlyDirectories: true,
   });
-  console.log('This is the packs');
-  for(var i=0; i<packs.length; i++){
-     console.log(packs[i]);
-   };
   packs.map((pack) => {
     const meta = globby.sync(
       [
@@ -256,12 +252,6 @@ function genPackDetails() {
     marketplace.push(metadata);
   });
 
-  console.log("This is the id to pack metadata", idToPackMetadata);
-  console.log('This is the marketplace');
-  for(var i=0; i<marketplace.length; i++){
-     console.log(marketplace[i]);
-   }
-
   marketplace.map((metadata) => {
     if (metadata.dependencies) {
       let dependenciesJson = {
@@ -271,20 +261,19 @@ function genPackDetails() {
         support: metadata.support
       };
       for (var depId in metadata.dependencies) {
-        console.log("This is the name", metadata.name);
-        console.log("This is the depId", depId);
         let dependency = metadata.dependencies[depId]
-        console.log("This is the dependency", dependency);
-        if (dependency.mandatory) {
-          dependenciesJson["mandatory"][depId] = {
-            version: idToPackMetadata[depId].version,
-            support: idToPackMetadata[depId].support
-          };
-        } else {
-          dependenciesJson["optional"][depId] = {
-            version: idToPackMetadata[depId].version,
-            support: idToPackMetadata[depId].support
-          };
+        if idToPackMetadata[depId]: {
+          if (dependency.mandatory) {
+            dependenciesJson["mandatory"][depId] = {
+              version: idToPackMetadata[depId].version,
+              support: idToPackMetadata[depId].support
+            };
+          } else {
+            dependenciesJson["optional"][depId] = {
+              version: idToPackMetadata[depId].version,
+              support: idToPackMetadata[depId].support
+            };
+          }
         }
       }
       firstLeveldepsMap[metadata.id] = dependenciesJson;
