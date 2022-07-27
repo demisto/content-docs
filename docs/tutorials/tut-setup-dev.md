@@ -14,7 +14,7 @@ This tutorial will guide you through the following steps:
 1. Verify the requirements
 2. Fork the GitHub repo
 3. Clone the GitHub fork locally
-4. Setup environment
+4. Set up the environment
 5. Run the linter and unit tests
 6. Create a branch and integration directory
 7. Commit and push
@@ -63,7 +63,7 @@ For more examples and ideas, visit:
 sb@dddd:~/demisto$
 ```
 
-*Note:* if you're using Windows with WSL2, you can still use Docker Desktop from WSL. Follow [this](https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros) tutorial for details.
+*Note:* If you are using Windows with WSL2, you can still use Docker Desktop from WSL. Follow this [tutorial](https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros) for details.
 
 Great, all the prerequisites are set! We can get started.
 
@@ -98,25 +98,25 @@ Checking out files: 100% (4522/4522), done.
 sb@dddd:~/demisto$
 ```
 
-*Note:* you must clone **your fork** of the repository, as you will need to be able to write into it. Do **not** clone `demisto/content`, as you won't be able to push commits.
+*Note:* You must clone **your fork** of the repository, as you will need to be able to write into it. Do **not** clone `demisto/content`, as you won't be able to push commits.
 
 ### Step 4: Setup environment
 
 #### Option 1: Setup a remote environment
 
-Follow this [guide](tut-setup-dev-remote.md).
+Follow the instructions in this [guide](tut-setup-dev-remote.md).
 
 #### Option 2: Setup a local environment
 
 ##### Operating System
 
-We assume you have an Operating System and that it is working :)
+We assume you have an operating system and that it is working. :)
 
-*Note:* if you're using **Windows with WSL**, and your code resides to a shared folder on the Windows tree (i.e. `/mnt/c/code/demisto`), please make sure that the folder is set to be [case sensitive](https://devblogs.microsoft.com/commandline/improved-per-directory-case-sensitivity-support-in-wsl/).
+*Note:* If you are using **Windows with WSL**, and your code resides in a shared folder on the Windows tree (i.e., `/mnt/c/code/demisto`), make sure that the folder is set to be [case sensitive](https://devblogs.microsoft.com/commandline/improved-per-directory-case-sensitivity-support-in-wsl/).
 
 ##### Python and pyenv
 
-You will need `python3` installed on your system. We recommend using `pyenv`. At the time of writing, the latest version of Python 3.10 is *3.10.5*.
+You will need `python3` installed on your system. We recommend using `pyenv`. At the time of this writing, the latest version of Python 3.10 is *3.10.5*.
 
 Make sure `pyenv` in installed and that the `eval "$(pyenv init -)"` expression is placed in your shell configuration (`~/.bashrc` or `~/.zshrc`) - [more information about this](https://github.com/pyenv/pyenv#installation).
 
@@ -126,7 +126,7 @@ sb@dddd:~/demisto$ pyenv -v
 pyenv 1.2.15
 sb@dddd:~/demisto$~/demisto$
 ```
-If it doesn't work, please follow the instructions [here](https://github.com/pyenv/pyenv#installation). Either Homebrew for MacOS or the automatic installer on Linux/WSL work fine.
+If this doesn't work, follow the instructions [here](https://github.com/pyenv/pyenv#installation). Either Homebrew for MacOS or the automatic installer on Linux/WSL works fine.
 
 Make sure that the required version of Python is available:
 
@@ -135,11 +135,11 @@ sb@dddd:~/demisto$ pyenv versions
   3.10.5
 sb@dddd:~/demisto$
 ```
-If it doesn't work, please follow the instructions [here](https://github.com/pyenv/pyenv#installation). Either Homebrew for MacOS or the automatic installer on Linux/WSL work fine.
+If this doesn't work, follow the instructions [here](https://github.com/pyenv/pyenv#installation). Either Homebrew for MacOS or the automatic installer on Linux/WSL work fine.
 
-If it is missing, you will need to install it. As `pyenv` compiles CPython, you might need some libraries. Depending on your OS, [this](https://github.com/pyenv/pyenv/wiki/Common-build-problems) article explains how to install the required dependencies and provides useful troubleshooting info.
+If the required version of Python is missing, you will need to install it. As `pyenv` compiles CPython, you might need some libraries. Depending on your operating system, this [article](https://github.com/pyenv/pyenv/wiki/Common-build-problems)  explains how to install the required dependencies and provides useful troubleshooting info.
 
-Also, it's a good time to take a break as installing might take a bit.
+Now is a good time to take a break since installing might take a while.
 
 Install Python 3.10.5:
 
@@ -158,11 +158,12 @@ And that's it! Again, if the installation fails, check out [this](https://github
 
 ##### Poetry
 
-Follow this instructions to install [poetry](https://python-poetry.org/docs/master/#installing-with-the-official-installer)
+Follow these instructions to install [poetry](https://python-poetry.org/docs/master/#installing-with-the-official-installer)
 
 ##### Node
 
-Follow [this](https://github.com/nvm-sh/nvm#install--update-script) instructions to install `nvm` package manager.
+Follow these [instructions](https://github.com/nvm-sh/nvm#install--update-script) to install the `nvm` package manager.
+
 After installing, run:
 ```bash
 nvm install node
@@ -193,12 +194,12 @@ sb@dddd:~/demisto/content$ python3 -V
 Ptyhon 3.10.5
 ```
 
-OK, now you can run the `.hooks/bootstrap` script that will install the dependencies and create the `poetry` environment:
+Now you can run the `.hooks/bootstrap` script that will install the dependencies and create the `poetry` environment:
 ```bash
 sb@dddd:~/demisto/content$ .hooks/bootstrap
 Installing 'pre-commit' hooks
 =======================
-Configure poetry to install virutal enviroment in the project repo (will be availible in (.venv)
+Configure poetry to install virtual environment in the project repo (will be available in (.venv)
 Check if poetry files are valid
 All set!
 Installing dependencies...
@@ -218,7 +219,7 @@ up to date, audited 230 packages in 1s
 
 *Note*: if you are using WSL and you see some errors about "python.exe" getting called, disable it in App Execution Alias ([details](https://superuser.com/questions/1437590/typing-python-on-windows-10-version-1903-command-prompt-opens-microsoft-stor)).
 
-Everything is configured, and you can start developing. When you work on your integration, you can activate the `poetry` with the `poetry shell` command:
+Everything is configured, and you can start developing. When you work on your integration, you can activate `poetry` with the `poetry shell` command:
 ```bash
 sb@dddd:~/demisto/content$ poetry shell
 (.venv) sb@dddd:~/demisto/content$
