@@ -139,3 +139,15 @@ Follow the [VSCode documentation](https://code.visualstudio.com/docs/remote/cont
 ### Features
 
 The same features of the [virtual environment](#open-integrations-and-scripts-in-python-virtual-environment) feature is available here. 
+
+
+## Troubleshooting
+
+- If **demisto-sdk** is not recognized from the extension using **MacOS** and **zsh** terminal, try adding the following to [VSCode settings.json](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson):
+  ```json
+    "terminal.integrated.profiles.osx": {
+        "zsh": {
+            "path": "/bin/zsh -l",
+            "args": ["-i"]
+        }
+    }
