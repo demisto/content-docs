@@ -114,7 +114,7 @@ function travelDependenciesJson(firstLvlDepsJson, depsJson, startKey) {
 }
 
 function travelDependencies(depsJson, startKey, firstLvlDepsJson) {
-  // Travel over the dependencies json of a given Pack dependency type, while collecting all sub-dependecy mandatory packs
+  // Travel over the dependencies json of a given Pack dependency type, while collecting all sub-dependency mandatory packs
   
   if (!(startKey in depsJson)) {
     if (!(startKey in firstLvlDepsJson)) {
@@ -261,17 +261,19 @@ function genPackDetails() {
         support: metadata.support
       };
       for (var depId in metadata.dependencies) {
-        let dependency = metadata.dependencies[depId]
-        if (dependency.mandatory) {
-          dependenciesJson["mandatory"][depId] = {
-            version: idToPackMetadata[depId].version,
-            support: idToPackMetadata[depId].support
-          };
-        } else {
-          dependenciesJson["optional"][depId] = {
-            version: idToPackMetadata[depId].version,
-            support: idToPackMetadata[depId].support
-          };
+        if (depId in idToPackMetadata) {
+          let dependency = metadata.dependencies[depId]
+          if (dependency.mandatory) {
+            dependenciesJson["mandatory"][depId] = {
+              version: idToPackMetadata[depId].version,
+              support: idToPackMetadata[depId].support
+            };
+          } else {
+            dependenciesJson["optional"][depId] = {
+              version: idToPackMetadata[depId].version,
+              support: idToPackMetadata[depId].support
+            };
+          }
         }
       }
       firstLeveldepsMap[metadata.id] = dependenciesJson;
