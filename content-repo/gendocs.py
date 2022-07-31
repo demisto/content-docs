@@ -634,7 +634,7 @@ def find_deprecated_integrations(content_dir: str):
     for f in files:
         with open(f, 'r') as fr:
             content = fr.read()
-            if dep_search  := re.search(r'^deprecated:\s*true', content, re.MULTILINE):
+            if dep_search := re.search(r'^deprecated:\s*true', content, re.MULTILINE):
                 pack_dir = re.match(r'.+/Packs/.+?(?=/)', f)
                 if is_xsoar_supported_pack(pack_dir.group(0)):  # type: ignore[union-attr]
                     yml_data = yaml.safe_load(content)
