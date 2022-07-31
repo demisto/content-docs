@@ -154,7 +154,8 @@ In order to debug **Python 2** code, it is necessary to install an older python 
 ## Troubleshooting
 
 - If **Open integration/script in a Dev Container** or **Open integration/script in a virtual environment** fails, make sure the **Docker** is running. In addition, you can try to [clean up the Docker](https://docs.docker.com/config/pruning/) or [sign in to docker](https://www.docker.com/blog/seamless-sign-in-with-docker-desktop-4-4-2/) to avoid the [docker pull rate limit](https://docs.docker.com/docker-hub/download-rate-limit/#:~:text=Pull%20rates%20limits%20are%20based,to%205000%20pulls%20per%20day.).
-- If **demisto-sdk** is not recognized from the extension using **MacOS** and **zsh** terminal, try adding the following to [VSCode settings.json](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson):
+- ### **demisto-sdk** is not available when using **MacOS** and **zsh** terminal
+* try adding the following to [VSCode settings.json](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson):
   ```json
     "terminal.integrated.profiles.osx": {
         "zsh": {
