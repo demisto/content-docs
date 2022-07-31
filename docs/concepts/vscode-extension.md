@@ -152,3 +152,14 @@ The same features of the [virtual environment](#open-integrations-and-scripts-in
             "args": ["-i"]
         }
     }
+
+## Python 2 support
+
+VSCode dropped support for **Python 2**.
+In order to debug **Python 2** code, it is necessary to install an older python extension.
+- Go to VSCode extensions.
+- Select **Python**. 
+![Python](https://github.com/demisto/vscode-extension/raw/master/documentation/changelog/0.2.0/python2_1.png)
+- Select **Install Another version**.
+- Select the version `2022.2.1924087327`.
+![Version](https://github.com/demisto/vscode-extension/raw/master/documentation/changelog/0.2.0/python2_2.png)
