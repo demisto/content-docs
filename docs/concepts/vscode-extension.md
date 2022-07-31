@@ -65,8 +65,8 @@ This will:
 
 The first step requires **Homebrew**:
 
-- Install [Homebrew](https://brew.sh/).
-- If on **Linux** or **WSL**, make sure to follow the instructions after installing _Homebrew_ or follow the instructions in this [guide](https://docs.brew.sh/Homebrew-on-Linux#requirements).
+* Install [Homebrew](https://brew.sh/).
+* If on **Linux** or **WSL**, make sure to follow the instructions after installing _Homebrew_ or follow the instructions in this [guide](https://docs.brew.sh/Homebrew-on-Linux#requirements).
 
 If you want to install the dependencies manually, follow the instructions in this [guide](./dev-setup.md#option-3-manual-setup) until the `Bootstrap` step.
 
@@ -81,36 +81,36 @@ With the VSCode extension, you are able to open a workspace of the integration o
 
 ### Usage
 
-- Go to the integration or a script.
-- Right-click it, and select **Open integration/script in virtual environnement**
+* Go to the integration or a script.
+* Right-click it, and select **Open integration/script in virtual environnement**
 
 ### Features
 
 When using it, the following actions are automatically performed:
 
-- Initializes a Python virtual environment based on the integration Docker image with all dependencies and test dependencies installed.
-- Copies the dependent files to the directory (`CommonServerPython.py` , `demistomock.py` and ApiModules if necessary).
-- Opens a new VSCode workspace that is configured with **pytest** and linting with **mypy** and **flake8** enabled. Run the tests with the `Test Explorer`. See the linting errors in the `Problems` tab.
-- Switches to the newly created virtual environment as the selected Python interpreter in this workspace.
-- Creates a configured `launch.json` in the workspace, to debug the integration easily with demistomock.
-- If the virtual environment already exists, a popup will be triggered to ask you whether to open the existing environment or create a new one.
+* Initializes a Python virtual environment based on the integration Docker image with all dependencies and test dependencies installed.
+* Copies the dependent files to the directory (`CommonServerPython.py` , `demistomock.py` and ApiModules if necessary).
+* Opens a new VSCode workspace that is configured with **pytest** and linting with **mypy** and **flake8** enabled. Run the tests with the `Test Explorer`. See the linting errors in the `Problems` tab.
+* Switches to the newly created virtual environment as the selected Python interpreter in this workspace.
+* Creates a configured `launch.json` in the workspace, to debug the integration easily with demistomock.
+* If the virtual environment already exists, a popup will be triggered to ask you whether to open the existing environment or create a new one.
 
 ## Debugging
 
-- First, [Open integrations and scripts in the Python virtual environment](#open-integrations-and-scripts-in-python-virtual-environment)
-- Then, read the [Debugging using your IDE](../integrations/debugging#Debugging%20using%20your%20IDE) section.
+* First, [Open integrations and scripts in the Python virtual environment](#open-integrations-and-scripts-in-python-virtual-environment)
+* Then, read the [Debugging using your IDE](../integrations/debugging#Debugging%20using%20your%20IDE) section.
 
 You can use Run and Debug (⇧⌘D) in VSCode (or click F5 on the Python file).
 
 ## Notes
 
-- If during the installation one or more Python packages fail to install, the installation will proceed and create the virtual environment with the packages that were installed.
+* If during the installation one or more Python packages fail to install, the installation will proceed and create the virtual environment with the packages that were installed.
 
   It is your responsibility to figure out why the installation failed (probably due to missing non-Python dependencies in your host), and manually install or recreate the virtual environnement afterwards.
   If you face this issue, you might want to try [Open integration/script in Dev Container](#open-integrations-and-scripts-in-dev-container-advanced) option.
 
-- To use [demisto-sdk](./demisto-sdk) in this workspace it has do be installed globally in your system, with `pip install demisto-sdk` in the system interpreter.
-- You can use this feature together with the content Dev Container.
+* To use [demisto-sdk](./demisto-sdk) in this workspace it has do be installed globally in your system, with `pip install demisto-sdk` in the system interpreter.
+* You can use this feature together with the content Dev Container.
 
 ## Open integrations and scripts in Dev Container (Advanced)
 
@@ -132,8 +132,8 @@ Follow the [VSCode documentation](https://code.visualstudio.com/docs/remote/cont
 
 ### Usage
 
-- Go to the integration or a script.
-- Right-click it and select **Open integration/script in a Dev Container**
+* Go to the integration or a script.
+* Right-click it and select **Open integration/script in a Dev Container**
 
 ### Features
 
@@ -149,6 +149,7 @@ In order to debug **Python 2** code, it is necessary to install an older python 
   ![Python](https://github.com/demisto/vscode-extension/raw/master/documentation/changelog/0.2.0/python2_1.png)
 - Select **Install Another version**.
 - Select the version `2022.2.1924087327`.
+  
   ![Version](https://github.com/demisto/vscode-extension/raw/master/documentation/changelog/0.2.0/python2_2.png)
 
 ## Troubleshooting
@@ -156,11 +157,8 @@ In order to debug **Python 2** code, it is necessary to install an older python 
 ### **Open integration/script in a Dev Container** or **Open integration/script in a virtual environment** fails
 
 1. Make sure **Docker** is running.
-2. If _Docker_ is running try to [clean up the Docker](https://docs.docker.com/config/pruning/) or [sign in to docker](https://www.docker.com/blog/seamless-sign-in-with-docker-desktop-4-4-2/) to avoid the [docker pull rate limit](https://docs.docker.com/docker-hub/download-rate-limit/#:~:text=Pull%20rates%20limits%20are%20based,to%205000%20pulls%20per%20day.).
-
-- ### **demisto-sdk** is not available when using **MacOS** and **zsh** terminal
-
-* try adding the following to [VSCode settings.json](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson):
+2. If **Docker** is running try to [clean up the Docker](https://docs.docker.com/config/pruning/) or [sign in to docker](https://www.docker.com/blog/seamless-sign-in-with-docker-desktop-4-4-2/) to avoid the [docker pull rate limit](https://docs.docker.com/docker-hub/download-rate-limit/#:~:text=Pull%20rates%20limits%20are%20based,to%205000%20pulls%20per%20day.).
+3. if **demisto-sdk** is not available when using **MacOS** and **zsh** terminal, try adding the following to [VSCode settings.json](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson):
   ```json
     "terminal.integrated.profiles.osx": {
         "zsh": {
