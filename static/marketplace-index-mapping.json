@@ -1,6 +1,6 @@
 {
     "description": "File maps the Marketplace base url to Server version. Default should be used if specific version not found.", 
     "versionMap": {
-        "default": "https://storage.googleapis.com/marketplace-dist"        
+        "default": "https://marketplace.xsoar.paloaltonetworks.com"        
     }
 }
