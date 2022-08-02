@@ -308,7 +308,7 @@ function genPackDetails() {
           let fixedKey = ""
           var promises = []
           for (var [key, value] of Object.entries(pack.contentItems)) {
-            fixedKey = contentItemTransformer[key] || key;
+            fixedKey = contentItemTransformer[key] || (key.charAt(0).toUpperCase() + key.slice(1));
             for (var listItem of value) {
               listItem.description = listItem.description
                 ? jsStringEscape(listItem.description)
