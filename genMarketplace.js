@@ -26,6 +26,7 @@ const contentItemTransformer = {
   classifier: "Classifiers",
   widget: "Widgets",
   dashboard: "Dashboards",
+  wizard: "Wizards",
 };
 
 const removeDir = function (path) {
@@ -307,7 +308,7 @@ function genPackDetails() {
           let fixedKey = ""
           var promises = []
           for (var [key, value] of Object.entries(pack.contentItems)) {
-            fixedKey = contentItemTransformer[key];
+            fixedKey = contentItemTransformer[key] || key;
             for (var listItem of value) {
               listItem.description = listItem.description
                 ? jsStringEscape(listItem.description)
