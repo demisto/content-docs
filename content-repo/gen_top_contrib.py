@@ -109,7 +109,8 @@ def github_pagination_prs(url: str, params: dict, res) -> list:
         try:
             last_pr_number = PAGE_NUMBER_REGEX.search(last_page_link)[0]
         except IndexError:
-            print(f"Couldn't find the last page number. \n Last page link - {last_page_link}")
+            print(f"Error: Couldn't find the last page number. \n Last page link - {last_page_link}")
+            return
 
         while params['page'] < int(last_pr_number):
             params['page'] = params['page'] + 1
