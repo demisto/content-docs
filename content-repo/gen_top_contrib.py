@@ -18,9 +18,9 @@ def timestamped_print(*args, **kwargs):
 
 print = timestamped_print
 
-
 PR_NUMBER_REGEX = re.compile(r'(?<=pull/)([0-9]+)')
 USER_NAME_REGEX = re.compile(r'(?<=@)[a-zA-Z-0-9]+')
+PAGE_NUMBER_REGEX = re.compile(r'(?<=&page=)([0-9]+)')
 TOKEN = os.getenv('GITHUB_TOKEN', '')
 URL = 'https://api.github.com'
 HEADERS = {
@@ -104,9 +104,15 @@ def github_pagination_prs(url: str, params: dict, res) -> list:
     prs = []
     if link := res.headers.get('Link'):
         links = link.split(',')
-        for link in links:
-            last_page = link[link.find("<")+1:link.find(">")][-1]
-        while params['page'] <= int(last_page):
+        last_page = links[-1]
+        last_page_link = last_page[last_page.find("<")+1:last_page.find(">")]
+        try:
+            last_pr_number = PAGE_NUMBER_REGEX.search(last_page_link)[0]
+        except IndexError:
+            print(f"Error: Couldn't find the last page number. \n Last page link - {last_page_link}")
+            return
+
+        while params['page'] < int(last_pr_number):
             params['page'] = params['page'] + 1
             response = search_session.request('GET', url, params=params, headers=HEADERS, verify=VERIFY)
             response.raise_for_status()
