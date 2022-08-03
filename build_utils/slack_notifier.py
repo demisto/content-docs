@@ -5,7 +5,7 @@ from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 from typing import List, Dict
 
-SLACK_CHANNEL = '#dmst-content-team'
+SLACK_CHANNEL = '#dmst-build'
 
 
 def get_circle_failed_steps(ci_token: str, build_number: int) -> List[str]:
