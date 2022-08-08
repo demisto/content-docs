@@ -206,6 +206,27 @@ client = Client(
 )
 ```
 
+
+#### Example - client instance using Client Certificate Authentication 
+```python
+# if you want to use client side certificate authorization, provide to the BaseClient
+# cert_text and key_text parameters, containing the private key and the certificate text
+cert_text = demisto.params().get('cert_text')
+key_text = demisto.params().get('key_text')
+
+# get the service API url
+base_url = urljoin(demisto.params()['url'], '/api/v1')
+
+client = Client(
+    base_url=base_url,
+    verify=verify_certificate,
+    cert_text=cert_text,
+    key_text=key_text,
+    proxy=proxy
+)
+```
+
+
 ### HTTP Call Retries
 We do not allow using `sleep` in the code as it might lead to performance issues.
 Instead, you can utilize the retry mechanism implemented in the **BaseClient** by using the `retries` and `backoff_factor` arguments of the `_http_request` function.
