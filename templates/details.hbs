@@ -19,7 +19,7 @@ const README =
 "{{{readme}}}"
 
 
-console.log(VIDEOS);
+console.log('This is the videos: ' + VIDEOS);
 
 function {{id}}() {
 return (
@@ -40,11 +40,11 @@ return (
                         <div className={clsx("card shadow--md", "readme" )}>
                             <div className="card__body">
                                 <p>{DESCRIPTION}</p>
-                                {{#if VIDEOS}}
+                                {{#each videos}}
                                   <video controls>
-                                    <source src={VIDEOS} type="video/mp4" />
+                                    <source src="{{this}}" type="video/mp4" />
                                   </video>
-                                {{/if}}
+                                {{/each}}
                                 <article dangerouslySetInnerHTML=\{{ __html: converter.makeHtml(README), }}></article>
                             </div>
                         </div>
