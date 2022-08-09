@@ -10,7 +10,7 @@ const DESCRIPTION =
 `{{{description}}}`
 
 const VIDEOS =
-`{{{videos}}}`;
+`{{{videos}}}`
 
 var showdown = require("showdown"),
 converter = new showdown.Converter({"tables": true, "ghCodeBlocks": true});
@@ -40,9 +40,11 @@ return (
                         <div className={clsx("card shadow--md", "readme" )}>
                             <div className="card__body">
                                 <p>{DESCRIPTION}</p>
-                                <video>
-                                  <source src="{{VIDEOS}}" type="video/mp4" />
-                                </video>
+                                {{#if VIDEOS}}
+                                  <video controls>
+                                    <source src={VIDEOS} type="video/mp4" />
+                                  </video>
+                                {{/if}}
                                 <article dangerouslySetInnerHTML=\{{ __html: converter.makeHtml(README), }}></article>
                             </div>
                         </div>
