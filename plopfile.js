@@ -38,6 +38,11 @@ const config = (plop) => {
         message: "Pack Author Image",
       },
       {
+        type: "list",
+        name: "videos",
+        message: "Pack Videos",
+      },
+      {
         type: "input",
         name: "readme",
         message: "Pack README",

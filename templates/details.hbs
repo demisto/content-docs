@@ -1,4 +1,4 @@
-import Layout from "@theme/Layout";
+import Layout from "@theme/Layout@theme/Layout";
 import TabItem from "@theme/TabItem";
 import ContentPackTabs from "../../../../theme/ContentPackTabs";
 import clsx from "clsx";
@@ -8,7 +8,7 @@ import Collapsible from "react-collapsible";
 const TITLE = "{{{name}}}";
 const DESCRIPTION =
 `{{{description}}}`
-
+const VIDEOS = "{{{videos}}}"
 var showdown = require("showdown"),
 converter = new showdown.Converter({"tables": true, "ghCodeBlocks": true});
 showdown.setFlavor("github");
@@ -35,6 +35,9 @@ return (
                         <div className={clsx("card shadow--md", "readme" )}>
                             <div className="card__body">
                                 <p>{DESCRIPTION}</p>
+                                <video>
+                                  <source src="{{VIDEOS}}" type="video/mp4">
+                                </video>
                                 <article dangerouslySetInnerHTML=\{{ __html: converter.makeHtml(README), }}></article>
                             </div>
                         </div>
