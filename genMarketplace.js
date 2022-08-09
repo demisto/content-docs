@@ -338,9 +338,8 @@ function genPackDetails() {
     } catch (err) {
       console.log(err);
     }
-
+    console.log(pack);
     generatePackDetails.runActions({
-      console.log(pack);
       id: pack.id ? pack.id.replace(/-|\s/g, "").replace(".", "") : pack.id,
       packId: pack.id,
       name: pack.name,

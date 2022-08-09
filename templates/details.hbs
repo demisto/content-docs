@@ -1,4 +1,4 @@
-import Layout from "@theme/Layout@theme/Layout";
+import Layout from "@theme/Layout";
 import TabItem from "@theme/TabItem";
 import ContentPackTabs from "../../../../theme/ContentPackTabs";
 import clsx from "clsx";
@@ -6,12 +6,17 @@ import React from "react";
 import Collapsible from "react-collapsible";
 
 const TITLE = "{{{name}}}";
-const DESCRIPTION = `{{{description}}}`;
-const VIDEOS = "{{{videos}}}";
+const DESCRIPTION =
+`{{{description}}}`
+
+const VIDEOS =
+`{{{videos}}}`;
+
 var showdown = require("showdown"),
 converter = new showdown.Converter({"tables": true, "ghCodeBlocks": true});
 showdown.setFlavor("github");
-const README = "{{{readme}}}";
+const README =
+"{{{readme}}}"
 
 
 console.log(VIDEOS);
