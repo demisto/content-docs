@@ -41,9 +41,7 @@ return (
                             <div className="card__body">
                                 <p>{DESCRIPTION}</p>
                                 {{#each videos}}
-                                  <video controls>
-                                    <source src="{{this}}" type="video/mp4" />
-                                  </video>
+                                  <iframe src="{{this.replace('/watch?v=', '/embed/')}}" />
                                 {{/each}}
                                 <article dangerouslySetInnerHTML=\{{ __html: converter.makeHtml(README), }}></article>
                             </div>
