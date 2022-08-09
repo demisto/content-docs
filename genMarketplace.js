@@ -220,6 +220,7 @@ function genPackDetails() {
       }
     );
     let metadata = JSON.parse(fs.readFileSync(meta[0].path));
+    console.log(metadata);
     let readme = meta[2] ? meta[1].path : null;
     let changeLog = meta[2]
       ? JSON.parse(fs.readFileSync(meta[2].path, "utf8"))
@@ -339,6 +340,7 @@ function genPackDetails() {
     }
 
     generatePackDetails.runActions({
+      console.log(pack);
       id: pack.id ? pack.id.replace(/-|\s/g, "").replace(".", "") : pack.id,
       packId: pack.id,
       name: pack.name,

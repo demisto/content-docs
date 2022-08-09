@@ -14,6 +14,8 @@ showdown.setFlavor("github");
 const README = "{{{readme}}}";
 
 
+console.log(VIDEOS);
+
 function {{id}}() {
 return (
 <Layout title={TITLE} description={DESCRIPTION} wrapperClassName="contentPack">
@@ -34,7 +36,7 @@ return (
                             <div className="card__body">
                                 <p>{DESCRIPTION}</p>
                                 <video>
-                                  <source src="{{VIDEOS}}" type="video/mp4">
+                                  <source src="{{VIDEOS}}" type="video/mp4" />
                                 </video>
                                 <article dangerouslySetInnerHTML=\{{ __html: converter.makeHtml(README), }}></article>
                             </div>
