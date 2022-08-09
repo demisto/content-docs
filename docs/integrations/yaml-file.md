@@ -87,6 +87,10 @@ An explanation of these fields is as follows:
 | **required** | Boolean value to indicate that the parameter is required |
 | **additionalinfo** | Additional info about the field, will appear under a question mark in the configuration pannel |
 
+Integration parameters may be hidden from the XSOAR UI, using the optional `hidden` field.
+- To hide the parameter in all marketplaces (XSOAR, XSIAM), use a boolean `true`. 
+- To hide the parameter in specific content marketplace versions, provide list of marketplace version names (e.g. `xsoar` or `marketplacev2` for XSIAM)
+
 ## Script
 This section is where your code will reside. Review the example below:
 
@@ -159,7 +163,7 @@ An explanation of these fields is as follows:
 The last section of the YAML file provides Cortex XSOAR with information regarding what version is supported and tests. See the example below:
 
 ```yml
-fromversion: 4.1.0
+fromversion: 6.5.0
 tests:
   - Sample Integration Test
 ```
