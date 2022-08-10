@@ -9,17 +9,12 @@ const TITLE = "{{{name}}}";
 const DESCRIPTION =
 `{{{description}}}`
 
-const VIDEOS =
-`{{{videos}}}`
-
 var showdown = require("showdown"),
 converter = new showdown.Converter({"tables": true, "ghCodeBlocks": true});
 showdown.setFlavor("github");
 const README =
 "{{{readme}}}"
 
-
-console.log('This is the videos: ' + VIDEOS);
 
 function {{id}}() {
 return (
