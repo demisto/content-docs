@@ -36,7 +36,7 @@ return (
                             <div className="card__body">
                                 <p>{DESCRIPTION}</p>
                                 {{#each videos}}
-                                  <iframe src="{{this.replace('/watch?v=', '/embed/')}}">
+                                  <iframe src="{{this}}">
                                   </iframe>
                                 {{/each}}
                                 <article dangerouslySetInnerHTML=\{{ __html: converter.makeHtml(README), }}></article>
