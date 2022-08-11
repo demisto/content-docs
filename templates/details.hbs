@@ -36,8 +36,12 @@ return (
                             <div className="card__body">
                                 <p>{DESCRIPTION}</p>
                                 {{#each videos}}
-                                  <iframe src="{{this}}">
-                                  </iframe>
+<!--                                   <video controls> -->
+<!--                                     <source src="{{this}}" /> -->
+<!--                                   </video> -->
+                                  <video data-yt2html5="{{this}}"></video>
+                                  <script src="https://cdn.jsdelivr.net/gh/thelevicole/youtube-to-html5-loader@5.0.0/dist/YouTubeToHtml5.js"></script>
+                                  <script>new YouTubeToHtml5();</script>
                                 {{/each}}
                                 <article dangerouslySetInnerHTML=\{{ __html: converter.makeHtml(README), }}></article>
                             </div>
