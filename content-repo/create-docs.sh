@@ -128,7 +128,6 @@ else
 fi
 
 TARGET_DIR=${SCRIPT_DIR}/../docs/reference
-CONTRIB_TARGET_DIR=${SCRIPT_DIR}/../src/pages/marketplace
 REL_IMGS_DIR=${SCRIPT_DIR}/../docs/doc_imgs/reference/relative
 echo "Deleting and creating dirs: ${TARGET_DIR} and ${REL_IMGS_DIR}"
 rm -rf ${TARGET_DIR}/integrations
@@ -158,10 +157,3 @@ echo "Generating docs..."
 pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
 echo "Generating Demisto class and CommonServerPython docs..."
 pipenv run ./gen_pydocs.py -t "${TARGET_DIR}"
-if [[ "$CURRENT_BRANCH" != "master" && "$CURRENT_BRANCH" != *"gen-top-contrib"* ]]; then
-    echo "Skipping top contributors page generation, should run only on master or branch containing 'gen-top-contrib'."
-    exit 0
-else
-    echo "Generating top contributors page..."
-    pipenv run python ./gen_top_contrib.py -t "${CONTRIB_TARGET_DIR}"
-fi
