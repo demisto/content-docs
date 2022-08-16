@@ -507,7 +507,7 @@
             },
             {
                 "source": "/marketplace/**",
-                "destination": "https://xsoar-marketplace.pan.dev/marketplace/**",
+                "destination": "https://cortex.marketplace.pan.dev/marketplace/**",
                 "type": 301
             }
         ]
