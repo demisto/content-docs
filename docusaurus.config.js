@@ -71,7 +71,7 @@ module.exports = {
           activeBaseRegex: "docs/reference/(index|api|integrations|playbooks|releases|scripts)"
         },
         {
-          to: "/marketplace",
+          to: "https://xsoar-marketplace.pan.dev/",
           label: "Marketplace",
           position: "left"
         },
