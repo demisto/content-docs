@@ -193,7 +193,8 @@ def get_packname_from_metadata(pack_dir):
     with open(f'{pack_dir}/pack_metadata.json', 'r') as f:
         metadata = json.load(f)
         is_pack_hidden = metadata.get("hidden", False)
-    return metadata.get('name'), is_pack_hidden
+        xsoar_marketplace = "xsoar" in metadata.get("marketplaces", [])
+    return metadata.get('name'), is_pack_hidden, xsoar_marketplace
 
 
 def get_pack_link(file_path: str) -> str:
@@ -206,9 +207,10 @@ def get_pack_link(file_path: str) -> str:
     match = re.match(r'.+/Packs/.+?(?=/)', file_path)
     pack_dir = match.group(0) if match else ''
     is_pack_hidden = False
+    xsoar_marketplace = False
 
     try:
-        pack_name_in_docs, is_pack_hidden = get_packname_from_metadata(pack_dir)
+        pack_name_in_docs, is_pack_hidden, xsoar_marketplace = get_packname_from_metadata(pack_dir)
     except FileNotFoundError:
         pack_name_in_docs = pack_name.replace('_', ' ').replace('-', ' - ')
 
@@ -221,7 +223,7 @@ def get_pack_link(file_path: str) -> str:
     if 'ApiModules' in pack_name or 'NonSupported' in pack_name:
         return ''
 
-    if is_pack_hidden:  # this pack is hidden, don't add a link
+    if is_pack_hidden or not xsoar_marketplace:  # this pack is hidden, don't add a link
         return f"#### This {file_type} is part of the **{pack_name_in_docs}** Pack.\n\n" \
             if file_type and pack_name and pack_name_in_docs else ''
     return f"#### This {file_type} is part of the **[{pack_name_in_docs}]({pack_link})** Pack.\n\n" \
