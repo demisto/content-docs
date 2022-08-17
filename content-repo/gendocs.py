@@ -223,7 +223,8 @@ def get_pack_link(file_path: str) -> str:
     if 'ApiModules' in pack_name or 'NonSupported' in pack_name:
         return ''
 
-    if is_pack_hidden or not xsoar_marketplace:  # this pack is hidden, don't add a link
+    # This pack is hidden, or it's not on XSOAR marketplace, don't add a link
+    if is_pack_hidden or not xsoar_marketplace:
         return f"#### This {file_type} is part of the **{pack_name_in_docs}** Pack.\n\n" \
             if file_type and pack_name and pack_name_in_docs else ''
     return f"#### This {file_type} is part of the **[{pack_name_in_docs}]({pack_link})** Pack.\n\n" \
