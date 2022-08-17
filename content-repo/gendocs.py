@@ -207,7 +207,7 @@ def get_pack_link(file_path: str) -> str:
     match = re.match(r'.+/Packs/.+?(?=/)', file_path)
     pack_dir = match.group(0) if match else ''
     is_pack_hidden = False
-    xsoar_marketplace = False
+    xsoar_marketplace = True
 
     try:
         pack_name_in_docs, is_pack_hidden, xsoar_marketplace = get_packname_from_metadata(pack_dir)
