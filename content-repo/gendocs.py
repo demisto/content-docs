@@ -193,7 +193,7 @@ def get_packname_from_metadata(pack_dir):
     with open(f'{pack_dir}/pack_metadata.json', 'r') as f:
         metadata = json.load(f)
         is_pack_hidden = metadata.get("hidden", False)
-        xsoar_marketplace = "xsoar" in metadata.get("marketplaces", [])
+        xsoar_marketplace = 'xsoar' in metadata.get('marketplaces', [])
     return metadata.get('name'), is_pack_hidden, xsoar_marketplace
 
 
