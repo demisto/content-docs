@@ -162,7 +162,7 @@ def test_add_content_info(integration_yml_path_and_expected_content_info):
 
 
 def test_process_readme_doc(tmp_path, mocker):
-    mocker.patch('gendocs.get_packname_from_metadata', return_value=('', False))
+    mocker.patch('gendocs.get_packname_from_metadata', return_value=('', False, True))
     res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, 'integrations',
                              str(tmp_path), "dummy-relative",
                              f'{SAMPLE_CONTENT}/Integrations/DomainTools_Iris/README.md')
@@ -187,7 +187,7 @@ def test_process_readme_doc(tmp_path, mocker):
 
 
 def test_process_readme_doc_same_dir(tmp_path, mocker):
-    mocker.patch('gendocs.get_packname_from_metadata', return_value=('', False))
+    mocker.patch('gendocs.get_packname_from_metadata', return_value=('', False, True))
     res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, 'integrations',
                              str(tmp_path), "dummy-relative", f'{SAMPLE_CONTENT}/Integrations/integration-F5_README.md')
     assert res.id == 'f5-firewall'
@@ -203,7 +203,7 @@ def test_process_readme_doc_same_dir(tmp_path, mocker):
 
 
 def test_process_readme_doc_edl(tmp_path, mocker):
-    mocker.patch('gendocs.get_packname_from_metadata', return_value=('', False))
+    mocker.patch('gendocs.get_packname_from_metadata', return_value=('', False, True))
     res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT,
                              'integrations', str(tmp_path), "dummy-relative",
                              f'{SAMPLE_CONTENT}/Integrations/PaloAltoNetworks_PAN_OS_EDL_Management/README.md')
@@ -211,7 +211,7 @@ def test_process_readme_doc_edl(tmp_path, mocker):
 
 
 def test_process_readme_doc_playbookl(tmp_path, mocker):
-    mocker.patch('gendocs.get_packname_from_metadata', return_value=('', False))
+    mocker.patch('gendocs.get_packname_from_metadata', return_value=('', False, True))
     res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT,
                              'integrations', str(tmp_path), "dummy-relative",
                              f'{SAMPLE_CONTENT}/Playbooks/playbook-lost_stolen_device_README.md')
@@ -220,7 +220,7 @@ def test_process_readme_doc_playbookl(tmp_path, mocker):
 
 
 def test_process_code_script(tmp_path, mocker):
-    mocker.patch('gendocs.get_packname_from_metadata', return_value=('', False))
+    mocker.patch('gendocs.get_packname_from_metadata', return_value=('', False, True))
     res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT,
                              'integrations', str(tmp_path), "dummy-relative",
                              f'{SAMPLE_CONTENT}/Scripts/script-IsIPInRanges_README.md')
@@ -466,7 +466,7 @@ def test_get_pack_link(test_input, expected, metadata_name, mocker):
         Then:
             - Ensure the link to pack in marketplace generated as expected
         """
-    mocker.patch('gendocs.get_packname_from_metadata', return_value=(metadata_name, False))
+    mocker.patch('gendocs.get_packname_from_metadata', return_value=(metadata_name, False, True))
     assert expected == get_pack_link(test_input)
 
 
