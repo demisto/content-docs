@@ -6,7 +6,7 @@ description: Communication across and between departments is a vital component o
 ---
 The Email Communication content pack enables security teams to interact with end users or third parties using email as part of an incident. The SOC team is able to communicate directly through the Cortex XSOAR platform as part of the remediation process.
 
-## Pack Overview  
+## Pack Overview  test
 This content pack includes two options for adding email functionality: the **Email Communication** incident type and layout, and the **Email Threads** layout.
 
 ### Email Communication Incident Type and Layout
