@@ -30,6 +30,7 @@ To start the authentication process, go to the integration's detailed instructio
 
 
 ## Self Deployed Application
+### Client Credentials
 To use a self-configured Azure application, you need to add a new Azure App Registration in the Azure Portal. 
 
 The application must have the required permissions for the relevant APIs, which are documented in the integration documentation, for example see [Microsoft Defender Advanced Threat Protection required permissions](https://xsoar.pan.dev/docs/reference/integrations/microsoft-defender-advanced-threat-protection#required-permissions).
@@ -88,6 +89,10 @@ To configure a Microsoft integration that uses this authorization flow with a se
    <img width="600" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/device_code.png" align="middle"></img>
 
 5. Enter your application ID in the ***Application ID*** parameter field.
+
+- #### Security awareness: 
+    - [Device Code flow - Evolved phishing](https://www.microsoft.com/security/blog/2022/01/26/evolved-phishing-device-registration-trick-adds-to-phishers-toolbox-for-victims-without-mfa/)
+    - Note: No email should be sent to the customer asking for security code in any scenario. All generated code should be shown in the war room, by running the official integration command.
 
 ## Revoke Consent
 
