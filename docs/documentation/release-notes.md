@@ -174,7 +174,7 @@ Improved implementation of the default value for the *fetch_time* parameter.
 ```
 #### General Changes
 
-> **Note:** Use these if the change has no visible impact on the user. 
+> **Note:** In most cases we will avoid having such release notes, use these only if the change has no visible impact on the user, 
 
 ```markdown
 - Maintenance and stability enhancements.
