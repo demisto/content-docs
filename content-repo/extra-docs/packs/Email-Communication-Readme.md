@@ -41,12 +41,12 @@ The Email Communication content pack includes several content items.
 * [SendEmailReply](https://xsoar.pan.dev/docs/reference/scripts/send-email-reply): Sends the email reply. 
 
 ### Classifiers
- When you configure an instance of the Gmail integration, EWS V2 integration, MS Graph Mail Single User integration, or MS Graph Mail integration, use the following classifiers.
+ When you configure an instance of the Gmail integration, EWS V2 integration, MS Graph Mail Single User integration, MS Graph Mail integration, Gmail Single User integration or EWS O365 integration use the following classifiers.
 
-* **EWS - Classifier - Email Communication**:  Classifies EWS email messages.
-* **EWS - Incoming Mapper - Email Communication**:  Maps incoming EWS email message fields. 
-* **Gmail - Classifier - Email Communication**:   Classifies Gmail email messages. 
-* **Gmail - Incoming Mapper - Email Communication**: Maps incoming Gmail email message fields.
+* **EWS - Classifier - Email Communication**:  Classifies EWS and EWS O365 email messages.
+* **EWS - Incoming Mapper - Email Communication**:  Maps incoming EWS and EWS O365 email message fields. 
+* **Gmail - Classifier - Email Communication**:   Classifies Gmail and Gmail Single User email messages. 
+* **Gmail - Incoming Mapper - Email Communication**: Maps incoming Gmail and Gmail Single User email message fields.
 * **MS Graph Mail - Classifier - Email Communication**:   Classifies MS Graph Mail email messages. 
 * **MS Graph Mail - Incoming Mapper - Email Communication**: Maps incoming MS Graph Mail email message fields.
 * **MS Graph Mail Single User - Classifier - Email Communication**: Classifies MS Graph Mail Single user email messages.
