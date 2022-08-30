@@ -77,7 +77,7 @@ In this layout there are three interactive sections in which you can specify one
  
 **Important:** 
 - To add CC recipients or an attachment to the email reply, you must select the **Show empty fields** checkbox. 
-- You must customize the *service_mail* parameter in the **SendEmailReply** script with the mailbox from which emails are sent. See [Configure the *service_mail* and *mail_sender_instance* Parameters ](#configure-the-*service_mail*-and-*mail_sender_instance*-Parameters).
+- You must customize the *service_mail* parameter in the **SendEmailReply** script with the mailbox from which emails are sent. See [Configure the *service_mail* and *mail_sender_instance* Parameters ](#configure-the-servicemail-and-mailsenderinstance-parameters).
 
 
 | Layout Section    | Description                                                                                |
@@ -97,7 +97,7 @@ In this layout there are three interactive sections in which you can specify one
 #### Email Threads Layout
 There are several interactive sections in the **Email Threads** layout.
 
-![Layout](https://raw.githubusercontent.com/demisto/content-docs/docs/doc_imgs/reference/EmailCommunication_EmailThreadsLayout.png)
+![Layout](https://github.com/demisto/content-docs/blob/master/docs/doc_imgs/reference/EmailCommunication_EmailThreadsLayout.png)
 
 **To start a new email thread:**
 1. In the **Step 1 (New Thread)** section, enter email recipients and an email subject.  CC and BCC recipients are optional.
@@ -137,7 +137,7 @@ If an EWS, Gmail, MS Graph Mail or MS Graph Mail Single user instance is already
 To get up and running with this pack, you must do the following: 
 - [Configure Demisto REST API Integration](#demisto-rest-api-integration)
 - [Create a pre-process rule that will link the emails to an existing incident](#pre-process-rule)
-- [Configure the *service_mail* and *mail_sender_instance* parameters](#configure-the-*service_mail*-and-*mail_sender_instance*-Parameters)
+- [Configure the *service_mail* and *mail_sender_instance* parameters](#configure-the-servicemail-and-mailsenderinstance-parameters)
 
 ### Demisto REST API Integration
 The scripts in the pack require that you install the **Demisto REST API** integration and configure an integration instance.
@@ -171,7 +171,7 @@ This pack requires that you configure a pre-process rule to link the email commu
 
 ![Preprocess-rule](https://raw.githubusercontent.com/demisto/content/84e7bc89c8757544804540e6711d4b9aba210ec1/Packs/EmailCommunication/doc_files/pre-process-rule.png)
 
-See [pre-processing rules](https://demisto.developers.paloaltonetworks.com/docs/incidents/incident-pre-processing) for additional information.
+See [pre-processing rules](https://xsoar.pan.dev/docs/incidents/incident-pre-processing) for additional information.
 
 ### Configure the *service_mail* and *mail_sender_instance* Parameters 
 The *service_mail* parameter sets the sender's email address. This parameter is optional when using the *Email Communication* incident type and layout, but is required to use the *Email Threads* layout.
@@ -185,7 +185,7 @@ You can configure the *service_mail* and *mail_sender_instance* parameters for t
 - Send the email from one default email address - If multiple email-sender integrations or instances are configured, you can configure the *mail_sender_instance* parameter to a specific integration instance.
 - Send the emails from a different sender each time - This is particularly useful for MSSPs when the sender address changes per customer, incident type, and so on. You can configure the parameters to be mandatory, so each time you click **send reply** (**Email Communication** layout) or **Send New Email** / **Reply To Thread** (**Email Threads** layout), a pop-up will appear in which you will need to enter the service_mail email address and mail_sender_instance name.
 
-  ![EmailCommunication_PopUp](https://raw.githubusercontent.com/demisto/content-docs/docs/doc_imgs/reference/EmailCommunication_PopUp.png)
+  ![EmailCommunication_PopUp](https://github.com/demisto/content-docs/blob/master/docs/doc_imgs/reference/EmailCommunication_PopUp.png)
 		
 #### To configure the service_mail and mail_sender_instance parameters
 1. Navigate to the **Automation** tab.
@@ -199,7 +199,7 @@ You can configure the *service_mail* and *mail_sender_instance* parameters for t
    - To send the email a specific integration instance: In the **Initial value** field, enter the name of the integration instance you wish to use.
    - To enter an integration instance to use each time: Mark the **mandatory** checkbox and leave the **Initial value** empty.  
 
-     ![EmailCommunication_SendEmailReplySettings](https://raw.githubusercontent.com/demisto/content-docs/docs/doc_imgs/reference/EmailCommunication_SendEmailReplySettings.png)  
+     ![EmailCommunication_SendEmailReplySettings](https://github.com/demisto/content-docs/blob/master/docs/doc_imgs/reference/EmailCommunication_SendEmailReplySettings.png)  
 
 7. Click **Save**.
 8. Click the three vertical dots and select the **Reattach Automation** option.
@@ -278,7 +278,7 @@ In addition, you need to configure the Demisto REST API integration.
 - EWS V2 - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/ews-v2)
 - MS Graph Mail - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail)
 - MS Graph Mail Single User - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail-single-user)
-- Demisto REST API
+- Demisto REST API - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/demisto-rest-api)
 
 ## Demo Video
 <video controls>
