@@ -4,6 +4,7 @@ import argparse
 import json
 import os
 import re
+import tempfile
 
 import requests
 from urllib3.util.retry import Retry
@@ -72,16 +73,8 @@ def create_grid(dataset: list) -> str:
     return html_card
 
 
-def load_service_account():
-    with open(SERVICE_ACCOUNT, 'w') as service_account:
-        gcp_service_account = service_account.read()
-
-    return gcp_service_account
-
-
-def get_contributors_file_from_bucket():
-    gcp_service_account = load_service_account()
-    storage_client = storage.Client.from_service_account_json(gcp_service_account)
+def get_contributors_file_from_bucket(service_account_file):
+    storage_client = storage.Client.from_service_account_json(service_account_file)
     bucket = storage_client.bucket('xsoar-ci-artifacts')
     blob = bucket.blob('content-cache-docs/contributors.json')
     contributors = blob.download_as_string()
@@ -89,9 +82,8 @@ def get_contributors_file_from_bucket():
     return contributors
 
 
-def update_contributors_file(list_users):
-    gcp_service_account = load_service_account()
-    storage_client = storage.Client.from_service_account_json(gcp_service_account)
+def update_contributors_file(service_account_file, list_users):
+    storage_client = storage.Client.from_service_account_json(service_account_file)
     bucket = storage_client.bucket('xsoar-ci-artifacts')
     blob = bucket.blob('content-cache-docs/contributors.json')
     blob.upload_from_string(list_users)
@@ -362,7 +354,9 @@ def main():
     args = parser.parse_args()
     contrib_target = args.target + '/top-contributors.md'
     try:
-        contributors_data = get_contributors_file_from_bucket()
+        service_account_file = tempfile.NamedTemporaryFile(delete=False, mode='w')
+        service_account_file.write(json.loads(SERVICE_ACCOUNT))
+        contributors_data = get_contributors_file_from_bucket(service_account_file)
         query = 'type:pr state:closed org:demisto repo:content is:merged base:master head:contrib/ sort:updated-desc'
         # First time upload or in a case of malfunction
         if contributors_data:
@@ -378,7 +372,7 @@ def main():
             users_dict = update_users_list(users_dict, contributors_data)
 
         print('Updating contributors file...')
-        update_contributors_file(json.dumps(users_dict, indent=4))
+        update_contributors_file(service_account_file, json.dumps(users_dict, indent=4))
         users_dict.pop('last_update')
         sorted_users_list = sorted(users_dict.items(), key=lambda x: x[1]['number_of_contributions'], reverse=True)
         users = create_users_list(sorted_users_list)
@@ -389,6 +383,8 @@ def main():
         res = requests.request('GET', "https://api.github.com/rate_limit", headers=HEADERS, verify=VERIFY)
         print(f'Github Rate Limit response: {res.text}')
         raise
+    finally:
+        service_account_file.close()
 
 
 if __name__ == '__main__':
