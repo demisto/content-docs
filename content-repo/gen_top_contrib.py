@@ -355,8 +355,9 @@ def main():
     contrib_target = args.target + '/top-contributors.md'
     try:
         service_account_file = tempfile.NamedTemporaryFile(delete=False, mode='w')
-        service_account_file.write(json.loads(SERVICE_ACCOUNT))
-        contributors_data = get_contributors_file_from_bucket(service_account_file)
+        service_account = json.dumps(SERVICE_ACCOUNT)
+        service_account_file.write(service_account)
+        contributors_data = get_contributors_file_from_bucket(service_account_file.name)
         query = 'type:pr state:closed org:demisto repo:content is:merged base:master head:contrib/ sort:updated-desc'
         # First time upload or in a case of malfunction
         if contributors_data:
@@ -372,7 +373,7 @@ def main():
             users_dict = update_users_list(users_dict, contributors_data)
 
         print('Updating contributors file...')
-        update_contributors_file(service_account_file, json.dumps(users_dict, indent=4))
+        update_contributors_file(service_account_file.name, json.dumps(users_dict, indent=4))
         users_dict.pop('last_update')
         sorted_users_list = sorted(users_dict.items(), key=lambda x: x[1]['number_of_contributions'], reverse=True)
         users = create_users_list(sorted_users_list)
