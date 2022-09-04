@@ -355,10 +355,8 @@ def main():
     contrib_target = args.target + '/top-contributors.md'
     try:
         service_account_file = tempfile.NamedTemporaryFile(delete=False, mode='w', suffix='.json')
-        print(f'Temp file name: {service_account_file.name}')
-        service_account = json.dumps(SERVICE_ACCOUNT)
-        service_account_file.write(service_account)
-        service_account_file.close()
+        json.dump(SERVICE_ACCOUNT, service_account_file)
+        service_account_file.flush()
         contributors_data = get_contributors_file_from_bucket(service_account_file.name)
         query = 'type:pr state:closed org:demisto repo:content is:merged base:master head:contrib/ sort:updated-desc'
         # First time upload or in a case of malfunction
