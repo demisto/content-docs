@@ -354,9 +354,11 @@ def main():
     args = parser.parse_args()
     contrib_target = args.target + '/top-contributors.md'
     try:
-        service_account_file = tempfile.NamedTemporaryFile(delete=False, mode='w')
+        service_account_file = tempfile.NamedTemporaryFile(delete=False, mode='w', suffix='.json')
+        print(f'Temp file name: {service_account_file.name}')
         service_account = json.dumps(SERVICE_ACCOUNT)
         service_account_file.write(service_account)
+        service_account_file.close()
         contributors_data = get_contributors_file_from_bucket(service_account_file.name)
         query = 'type:pr state:closed org:demisto repo:content is:merged base:master head:contrib/ sort:updated-desc'
         # First time upload or in a case of malfunction
@@ -384,8 +386,6 @@ def main():
         res = requests.request('GET', "https://api.github.com/rate_limit", headers=HEADERS, verify=VERIFY)
         print(f'Github Rate Limit response: {res.text}')
         raise
-    finally:
-        service_account_file.close()
 
 
 if __name__ == '__main__':
