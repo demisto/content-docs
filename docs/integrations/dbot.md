@@ -24,7 +24,7 @@ The DBot score must be at the root level of the context and contain **all** the 
 | Type | The indicator type. Can be: ip, file, email, url, cve, account, cider, domainglob, certificate, or cryptocurrency. | Required |
 | Vendor | The vendor reporting the score of the indicator.| Required |
 | Score | An integer regarding the status of the indicator. See [Score Types](#score-types) below.| Required |
-| Reliability | The reliability of the source providing the intelligence data. See [Reliability Level](#reliability-level) below.| Optional |
+| Reliability | The reliability of the source providing the intelligence data. See [Reliability Level](#reliability-level) below.| Required |
 | Message | Optional message to show an API response. For example, `"Not found"`. | Optional |
 
 ## Reliability Level
