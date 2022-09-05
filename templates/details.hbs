@@ -4,6 +4,7 @@ import ContentPackTabs from "../../../../theme/ContentPackTabs";
 import clsx from "clsx";
 import React from "react";
 import Collapsible from "react-collapsible";
+import ReactPlayer from 'react-player/youtube';
 
 const TITLE = "{{{name}}}";
 const DESCRIPTION =
@@ -36,9 +37,7 @@ return (
                             <div className="card__body">
                                 <p>{DESCRIPTION}</p>
                                 {{#each videos}}
-                                  <video data-yt2html5="{{this}}" controls></video>
-                                  <script src="https://cdn.jsdelivr.net/gh/thelevicole/youtube-to-html5-loader@5.0.0/dist/YouTubeToHtml5.js"></script>
-                                  <script>new YouTubeToHtml5();</script>
+                                  <ReactPlayer width="384px" height="216px" controls url={this} />
                                 {{/each}}
                                 <article dangerouslySetInnerHTML=\{{ __html: converter.makeHtml(README), }}></article>
                             </div>
