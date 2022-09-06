@@ -37,7 +37,7 @@ return (
                             <div className="card__body">
                                 <p>{DESCRIPTION}</p>
                                 {{#each videos}}
-                                  <ReactPlayer width="384px" height="216px" controls url={this} />
+                                  {ReactPlayer width="384px" height="216px" controls url={this} /}
                                 {{/each}}
                                 <article dangerouslySetInnerHTML=\{{ __html: converter.makeHtml(README), }}></article>
                             </div>

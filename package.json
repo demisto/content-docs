@@ -18,15 +18,15 @@
     "index": "curl https://storage.googleapis.com/marketplace-dist/content/packs/index.zip > index.zip && unzip -o index.zip && rm index.zip"
   },
   "dependencies": {
-    "@docusaurus/core": "2.0.0-beta.0",
-    "@docusaurus/mdx-loader": "2.0.0-beta.0",
-    "@docusaurus/plugin-content-blog": "2.0.0-beta.0",
+    "@docusaurus/core": "^2.1.0",
+    "@docusaurus/mdx-loader": "^2.1.0",
+    "@docusaurus/plugin-content-blog": "^2.1.0",
     "@docusaurus/plugin-content-docs": "2.0.0-beta.0",
     "@docusaurus/plugin-content-pages": "2.0.0-beta.0",
     "@docusaurus/plugin-google-analytics": "2.0.0-beta.0",
     "@docusaurus/plugin-google-gtag": "2.0.0-beta.0",
     "@docusaurus/plugin-sitemap": "2.0.0-beta.0",
-    "@docusaurus/preset-classic": "2.0.0-beta.0",
+    "@docusaurus/preset-classic": "^2.1.0",
     "@docusaurus/theme-classic": "2.0.0-beta.0",
     "@docusaurus/theme-live-codeblock": "2.0.0-beta.0",
     "@docusaurus/theme-search-algolia": "2.0.0-beta.0",
@@ -36,7 +36,7 @@
     "@mdx-js/react": "^1.6.7",
     "algoliasearch": "4.8.6",
     "classnames": "2.2.6",
-    "copyfiles": "2.1.1",
+    "copyfiles": "^2.4.1",
     "mini-css-extract-plugin": "2.4.4",
     "query-string": "^7.0.0",
     "react": "^17.0.2",
@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "js-string-escape": "^1.0.1",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7",
     "node-plop": "^0.26.2",
     "plop": "^2.7.4",
     "xmlhttprequest": "^1.8.0"
