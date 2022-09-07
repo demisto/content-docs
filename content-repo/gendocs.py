@@ -308,8 +308,8 @@ def add_content_info(content: str, yml_data: dict, desc: str, readme_file: str) 
     if not is_deprecated:
         content = get_fromversion_data(yml_data) + content
     # Check if there is marketplace key that does not contain the XSOAR value.
-    if marketplaces := yml_data.get('marketplaces'):
-        xsoar_marketplace = 'xsoar' in marketplaces.get('marketplaces', [])
+    if marketplaces := yml_data.get('marketplaces', []):
+        xsoar_marketplace = 'xsoar' in marketplaces
     else:
         xsoar_marketplace = True
     content = get_pack_link(readme_file, xsoar_marketplace) + content
