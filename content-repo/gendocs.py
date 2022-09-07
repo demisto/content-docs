@@ -308,6 +308,7 @@ def add_content_info(content: str, yml_data: dict, desc: str, readme_file: str) 
     content = get_beta_data(yml_data, content) + content
     if not is_deprecated:
         content = get_fromversion_data(yml_data) + content
+    print(yml_data)
     content = get_pack_link(readme_file) + content
     return content
 
