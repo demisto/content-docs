@@ -116,9 +116,7 @@ if [[ ( "$PULL_REQUEST" == "true" || -n "$CI_PULL_REQUEST" ) && "$CONTENT_BRANCH
         export MAX_PACKS
     fi
 fi
-echo "MAX_PACKS set to: $MAX_PACKS"
-export MAX_PACKS=20
-echo $MAX_PACKS
+
 BUCKET_DIR="${SCRIPT_DIR}/.content-bucket"
 if  [[ ! -d "$BUCKET_DIR" ]]; then
     echo "Copying bucket docs content to: $BUCKET_DIR"

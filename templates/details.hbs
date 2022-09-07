@@ -41,7 +41,6 @@ return (
                             <div className="card__body">
                                 <p>{DESCRIPTION}</p>
                                 {{#if VIDEO}}
-                                  {console.log(VIDEO)}
                                   <p>This is the video {VIDEO}</p>
                                   <ReactPlayer className="react-player-wrapper" width="384px" height="216px" controls url={VIDEO} />
                                 {{/if}}

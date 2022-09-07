@@ -38,9 +38,9 @@ const config = (plop) => {
         message: "Pack Author Image",
       },
       {
-        type: "list",
+        type: "input",
         name: "video",
-        message: "Pack Videos",
+        message: "Pack Video",
       },
       {
         type: "input",
