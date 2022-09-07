@@ -197,7 +197,7 @@ def get_packname_from_metadata(pack_dir):
     return metadata.get('name'), is_pack_hidden, xsoar_marketplace
 
 
-def get_pack_link(file_path: str) -> str:
+def get_pack_link(file_path: str, xsoar_marketplace: bool = True) -> str:
     # the regex extracts pack name from paths, for example: content/Packs/EWSv2 -> EWSv2
     match = re.search(r'Packs[/\\]([^/\\]+)[/\\]?', file_path)
     pack_name = match.group(1) if match else ''
@@ -207,7 +207,6 @@ def get_pack_link(file_path: str) -> str:
     match = re.match(r'.+/Packs/.+?(?=/)', file_path)
     pack_dir = match.group(0) if match else ''
     is_pack_hidden = False
-    xsoar_marketplace = True
 
     try:
         pack_name_in_docs, is_pack_hidden, xsoar_marketplace = get_packname_from_metadata(pack_dir)
@@ -309,7 +308,8 @@ def add_content_info(content: str, yml_data: dict, desc: str, readme_file: str) 
     if not is_deprecated:
         content = get_fromversion_data(yml_data) + content
     print(yml_data)
-    content = get_pack_link(readme_file) + content
+    xsoar_marketplace = 'xsoar' in yml_data.get('marketplaces', [])
+    content = get_pack_link(readme_file, xsoar_marketplace) + content
     return content
 
 
@@ -415,6 +415,7 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
         content = get_deprecated_data(yml_data, desc, readme_file) + content
         content = get_beta_data(yml_data, content) + content
         content = get_fromversion_data(yml_data) + content
+        print(f'This is the second yml data {yml_data}')
         content = get_pack_link(readme_file) + content
         content = header + content
         verify_mdx_server(content)
