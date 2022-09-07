@@ -337,7 +337,7 @@ function genPackDetails() {
     } catch (err) {
       console.log(err);
     }
-
+    console.log('This is the pack video:' + pack.videos)
     generatePackDetails.runActions({
       id: pack.id ? pack.id.replace(/-|\s/g, "").replace(".", "") : pack.id,
       packId: pack.id,
@@ -347,7 +347,6 @@ function genPackDetails() {
       currentVersion: pack.currentVersion,
       versionInfo: pack.versionInfo,
       authorImage: pack.authorImage != "" ? pack.authorImage : null,
-      console.log('This is the pack video:' + pack.videos)
       videos: pack.videos,
       readme: pack.readme
         ? jsStringEscape(pack.readme)
