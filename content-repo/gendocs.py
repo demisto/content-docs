@@ -189,11 +189,11 @@ def get_beta_data(yml_data: dict, content: str):
     return ""
 
 
-def get_packname_from_metadata(pack_dir):
+def get_packname_from_metadata(pack_dir, xsoar_marketplace: bool = True):
     with open(f'{pack_dir}/pack_metadata.json', 'r') as f:
         metadata = json.load(f)
         is_pack_hidden = metadata.get("hidden", False)
-        xsoar_marketplace = 'xsoar' in metadata.get('marketplaces', [])
+        xsoar_marketplace = 'xsoar' in metadata.get('marketplaces', []) if xsoar_marketplace else False
     return metadata.get('name'), is_pack_hidden, xsoar_marketplace
 
 
@@ -209,7 +209,7 @@ def get_pack_link(file_path: str, xsoar_marketplace: bool = True) -> str:
     is_pack_hidden = False
 
     try:
-        pack_name_in_docs, is_pack_hidden, xsoar_marketplace = get_packname_from_metadata(pack_dir)
+        pack_name_in_docs, is_pack_hidden, xsoar_marketplace = get_packname_from_metadata(pack_dir, xsoar_marketplace)
     except FileNotFoundError:
         pack_name_in_docs = pack_name.replace('_', ' ').replace('-', ' - ')
 
