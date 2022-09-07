@@ -39,7 +39,7 @@ const config = (plop) => {
       },
       {
         type: "list",
-        name: "videos",
+        name: "video",
         message: "Pack Videos",
       },
       {

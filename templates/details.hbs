@@ -10,8 +10,8 @@ const TITLE = "{{{name}}}";
 const DESCRIPTION =
 `{{{description}}}`
 
-const VIDEOS =
-`{{{videos}}}`
+const VIDEO =
+`{{{video}}}`
 
 var showdown = require("showdown"),
 converter = new showdown.Converter({"tables": true, "ghCodeBlocks": true});
@@ -19,7 +19,7 @@ showdown.setFlavor("github");
 const README =
 "{{{readme}}}"
 
-console.log('This is the videos: ' + VIDEOS);
+console.log('This is the videos: ' + VIDEO);
 
 function {{id}}() {
 return (
@@ -40,11 +40,11 @@ return (
                         <div className={clsx("card shadow--md", "readme" )}>
                             <div className="card__body">
                                 <p>{DESCRIPTION}</p>
-                                {{#each videos}}
-                                  {console.log(videos)}
-                                  <p>This is the video {this}</p>
-                                  <ReactPlayer className="react-player-wrapper" width="384px" height="216px" controls url={this} />
-                                {{/each}}
+                                {{#if VIDEO}}
+                                  {console.log(VIDEO)}
+                                  <p>This is the video {VIDEO}</p>
+                                  <ReactPlayer className="react-player-wrapper" width="384px" height="216px" controls url={VIDEO} />
+                                {{/if}}
                                 <article dangerouslySetInnerHTML=\{{ __html: converter.makeHtml(README), }}></article>
                             </div>
                         </div>
