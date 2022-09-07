@@ -470,7 +470,7 @@ def test_get_pack_link(test_input, expected, metadata_name, mocker):
     assert expected == get_pack_link(test_input)
 
 
-def error_raising_func(pack_dir):
+def error_raising_func(pack_dir, xsoar_marketplace):
     raise FileNotFoundError
 
 
