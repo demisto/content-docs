@@ -307,8 +307,11 @@ def add_content_info(content: str, yml_data: dict, desc: str, readme_file: str) 
     content = get_beta_data(yml_data, content) + content
     if not is_deprecated:
         content = get_fromversion_data(yml_data) + content
-    print(yml_data)
-    xsoar_marketplace = 'xsoar' in yml_data.get('marketplaces', [])
+    # Check if there is marketplace key that does not contain the XSOAR value.
+    if marketplaces := yml_data.get('marketplaces'):
+        xsoar_marketplace = 'xsoar' in marketplaces.get('marketplaces', [])
+    else:
+        xsoar_marketplace = True
     content = get_pack_link(readme_file, xsoar_marketplace) + content
     return content
 
@@ -415,7 +418,6 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
         content = get_deprecated_data(yml_data, desc, readme_file) + content
         content = get_beta_data(yml_data, content) + content
         content = get_fromversion_data(yml_data) + content
-        print(f'This is the second yml data {yml_data}')
         content = get_pack_link(readme_file) + content
         content = header + content
         verify_mdx_server(content)
