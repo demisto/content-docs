@@ -347,6 +347,7 @@ function genPackDetails() {
       currentVersion: pack.currentVersion,
       versionInfo: pack.versionInfo,
       authorImage: pack.authorImage != "" ? pack.authorImage : null,
+      console.log('This is the pack video:' + pack.videos)
       videos: pack.videos,
       readme: pack.readme
         ? jsStringEscape(pack.readme)
