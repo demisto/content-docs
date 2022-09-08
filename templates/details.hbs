@@ -4,7 +4,7 @@ import ContentPackTabs from "../../../../theme/ContentPackTabs";
 import clsx from "clsx";
 import React from "react";
 import Collapsible from "react-collapsible";
-import ReactPlayer from 'react-player/youtube';
+import ReactPlayer from 'react-player/lazy';
 
 const TITLE = "{{{name}}}";
 const DESCRIPTION =
@@ -40,10 +40,8 @@ return (
                         <div className={clsx("card shadow--md", "readme" )}>
                             <div className="card__body">
                                 <p>{DESCRIPTION}</p>
-                                {{#if VIDEO}}
-                                  <p>This is the video {VIDEO}</p>
-                                  <ReactPlayer className="react-player-wrapper" width="384px" height="216px" controls url={VIDEO} />
-                                {{/if}}
+                                <p>This is the video {VIDEO}</p>
+                                <ReactPlayer className="react-player-wrapper" width="384px" height="216px" controls url={VIDEO} />
                                 <article dangerouslySetInnerHTML=\{{ __html: converter.makeHtml(README), }}></article>
                             </div>
                         </div>
