@@ -4,14 +4,11 @@ import ContentPackTabs from "../../../../theme/ContentPackTabs";
 import clsx from "clsx";
 import React from "react";
 import Collapsible from "react-collapsible";
-import ReactPlayer from 'react-player/lazy';
+import ReactPlayer from 'react-player/youtube';
 
 const TITLE = "{{{name}}}";
 const DESCRIPTION =
 `{{{description}}}`
-
-const VIDEO =
-`{{{video}}}`
 
 var showdown = require("showdown"),
 converter = new showdown.Converter({"tables": true, "ghCodeBlocks": true});
@@ -19,7 +16,6 @@ showdown.setFlavor("github");
 const README =
 "{{{readme}}}"
 
-console.log('This is the videos: ' + VIDEO);
 
 function {{id}}() {
 return (
@@ -40,8 +36,9 @@ return (
                         <div className={clsx("card shadow--md", "readme" )}>
                             <div className="card__body">
                                 <p>{DESCRIPTION}</p>
-                                <p>This is the video {VIDEO}</p>
-                                <ReactPlayer className="react-player-wrapper" width="384px" height="216px" controls url={VIDEO} />
+                                {{#if video}}
+                                  <ReactPlayer className="react-player-wrapper" width="400px" height="220px" controls url="{{video}}" />
+                                {{/if}}
                                 <article dangerouslySetInnerHTML=\{{ __html: converter.makeHtml(README), }}></article>
                             </div>
                         </div>

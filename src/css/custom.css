@@ -723,3 +723,8 @@ html[data-theme="dark"] .header-github-link:before {
 
 /* unordered listing consistency */ 
 ul { list-style-type: lower-roman; }
+
+/* react player style */
+.react-player-wrapper {
+  margin-bottom: 25px;
+}
