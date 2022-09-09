@@ -189,15 +189,15 @@ def get_beta_data(yml_data: dict, content: str):
     return ""
 
 
-def get_packname_from_metadata(pack_dir):
+def get_packname_from_metadata(pack_dir, xsoar_marketplace: bool = True):
     with open(f'{pack_dir}/pack_metadata.json', 'r') as f:
         metadata = json.load(f)
         is_pack_hidden = metadata.get("hidden", False)
-        xsoar_marketplace = 'xsoar' in metadata.get('marketplaces', [])
+        xsoar_marketplace = 'xsoar' in metadata.get('marketplaces', []) if xsoar_marketplace else False
     return metadata.get('name'), is_pack_hidden, xsoar_marketplace
 
 
-def get_pack_link(file_path: str) -> str:
+def get_pack_link(file_path: str, xsoar_marketplace: bool = True) -> str:
     # the regex extracts pack name from paths, for example: content/Packs/EWSv2 -> EWSv2
     match = re.search(r'Packs[/\\]([^/\\]+)[/\\]?', file_path)
     pack_name = match.group(1) if match else ''
@@ -207,10 +207,9 @@ def get_pack_link(file_path: str) -> str:
     match = re.match(r'.+/Packs/.+?(?=/)', file_path)
     pack_dir = match.group(0) if match else ''
     is_pack_hidden = False
-    xsoar_marketplace = True
 
     try:
-        pack_name_in_docs, is_pack_hidden, xsoar_marketplace = get_packname_from_metadata(pack_dir)
+        pack_name_in_docs, is_pack_hidden, xsoar_marketplace = get_packname_from_metadata(pack_dir, xsoar_marketplace)
     except FileNotFoundError:
         pack_name_in_docs = pack_name.replace('_', ' ').replace('-', ' - ')
 
@@ -308,7 +307,12 @@ def add_content_info(content: str, yml_data: dict, desc: str, readme_file: str) 
     content = get_beta_data(yml_data, content) + content
     if not is_deprecated:
         content = get_fromversion_data(yml_data) + content
-    content = get_pack_link(readme_file) + content
+    # Check if there is marketplace key that does not contain the XSOAR value.
+    if marketplaces := yml_data.get('marketplaces', []):
+        xsoar_marketplace = 'xsoar' in marketplaces
+    else:
+        xsoar_marketplace = True
+    content = get_pack_link(readme_file, xsoar_marketplace) + content
     return content
 
 
