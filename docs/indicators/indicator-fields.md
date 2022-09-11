@@ -3,11 +3,11 @@ id: indicator-fields
 title: Indicator Fields
 ---
 
-As of March 2022, with the release of the Common Types content pack v3.2.2X, changes have been made to the structure of indicator fields, to have them more closely align with STIX standards.
+As of March 2022, with the release of the Common Types content pack v3.2.2X, changes have been made to the structure of indicator fields, to align them more closely with STIX standards.
 
-- All layouts have been modified to better represent the change.
+- All indicator layouts have been modified to better represent the changes.
 
-These changes will enable you to more easily share and work with IOCs in the future. Like STIX, Cortex XSOAR indicators are divided into two categories, STIX Domain Objects (SDOs) and Cyber-observable Objects (SCOs). The category determines which fields are presented in the layout of that specific IOC. In Cortex XSOAR, all SCOs can be used in a relationship with either SDOs or SCOs. In the future we will rollout more changes to help improve the quality of life using indicator fields within XSOAR as well as sharing them with others.
+These changes enable you to more easily share and work with IOCs. Like STIX, Cortex XSOAR indicators are divided into two categories, STIX Domain Objects (SDOs) and STIX Cyber-observable Objects (SCOs). The category determines which fields are presented in the layout of that specific IOC. In Cortex XSOAR, all SCOs can be used in a relationship with either SDOs or SCOs.
 
 Some of the descriptions below are taken directly from [STIX documentation](https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html#_axjijf603msy).
 
