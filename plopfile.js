@@ -39,6 +39,11 @@ const config = (plop) => {
       },
       {
         type: "input",
+        name: "video",
+        message: "Pack Video",
+      },
+      {
+        type: "input",
         name: "readme",
         message: "Pack README",
       },
