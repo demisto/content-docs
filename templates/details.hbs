@@ -37,7 +37,7 @@ return (
                             <div className="card__body">
                                 <p>{DESCRIPTION}</p>
                                 {{#if video}}
-                                  <ReactPlayer className="react-player-wrapper" width="400px" height="220px" controls url="{{video}}" />
+                                  <ReactPlayer className="react-player-wrapper" controls url="{{video}}" />
                                 {{/if}}
                                 <article dangerouslySetInnerHTML=\{{ __html: converter.makeHtml(README), }}></article>
                             </div>
