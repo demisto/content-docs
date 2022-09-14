@@ -16,7 +16,7 @@ As you are building out your playbook, keep in mind the following:
 
 
 ## Task Types
-The answers to the above questions will determine what kind of task you will need to create. Playbooks support the folloiwng task types:
+TThe answers to the above questions will determine what kind of task you will need to create. Playbooks support the folloiwng task types:
 
 * Standard tasks - these range from manual tasks like creating an incident or escalating an existing incident, to automated tasks such as parsing a file or enriching indicators. Automated tasks are based on scripts that exist in the system. These scripts can be something that was created by you, the user, or come pre-packaged as part of an integration. For example, the *!file* command enables you to enrich a file using any number of integrations that you have installed in your system. Alternatively, the *!ADGetUser* command is specific to the Active Directory integration.
 
