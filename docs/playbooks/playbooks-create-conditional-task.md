@@ -24,3 +24,5 @@ Conditional tasks are used for determining different paths for your playbook. Yo
 	![Conditional Automation](/doc_imgs/playbooks/playbook_conditional_automation.png)
 
 5. Complete the task configuration in the remaining tabs. Some configurations are required, and some are optional. For detailed information for each configuration tab, see the [Playbook Field Reference](../playbooks/playbooks-field-reference).
+
+For more information on conditional playbook tasks, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/playbooks/playbook-tasks/create-a-conditional-task).

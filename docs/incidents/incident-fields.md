@@ -123,3 +123,5 @@ This occurs when a content update has an incident field with the same name as a 
 **Solution**
 
 Click Install Content to force the update and retain your custom incident field. The content update will install without the system version of the incident field.
+
+For more information about incident fields, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/incidents/incident-management/incident-fields).

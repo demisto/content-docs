@@ -14,7 +14,7 @@ This tutorial will guide you through the following steps:
 1. Verify the requirements
 2. Fork the GitHub repo
 3. Clone the GitHub fork locally
-4. Run the bootstrap script
+4. Set up the environment
 5. Run the linter and unit tests
 6. Create a branch and integration directory
 7. Commit and push
@@ -37,59 +37,13 @@ Check if your Cortex XSOAR License is correctly installed by navigating to *Sett
 
 ![Jump to Page](/doc_imgs/tutorials/tut-setup-dev/02-jumptopage.png)
 
-#### Operating System
-
-We assume you have an Operating System and that it is working :)
-
-*Note:* if you're using **Windows with WSL**, and your code resides to a shared folder on the Windows tree (i.e. `/mnt/c/code/demisto`), please make sure that the folder is set to be [case sensitive](https://devblogs.microsoft.com/commandline/improved-per-directory-case-sensitivity-support-in-wsl/).
-
-#### Python and pyenv
-
-You will need `python3` installed on your system. We recommend using `pyenv`. At the time of writing, the latest version of Python 3.7 is *3.7.5*.
-
-Make sure `pyenv` in installed and that the `eval "$(pyenv init -)"` expression is placed in your shell configuration (`~/.bashrc` or `~/.zshrc`) - [more information about this](https://github.com/pyenv/pyenv#installation).
-
-```bash
-sb@dddd:~/demisto$ eval "$(pyenv init -)"
-sb@dddd:~/demisto$ pyenv -v
-pyenv 1.2.15
-sb@dddd:~/demisto$~/demisto$
-```
-If it doesn't work, please follow the instructions [here](https://github.com/pyenv/pyenv#installation). Either Homebrew for MacOS or the automatic installer on Linux/WSL work fine.
-
-Make sure that the required version of Python is available:
-
-```bash
-sb@dddd:~/demisto$ pyenv versions
-  3.7.5
-sb@dddd:~/demisto$
-```
-If it doesn't work, please follow the instructions [here](https://github.com/pyenv/pyenv#installation). Either Homebrew for MacOS or the automatic installer on Linux/WSL work fine.
-
-If it is missing, you will need to install it. As `pyenv` compiles CPython, you might need some libraries. Depending on your OS, [this](https://github.com/pyenv/pyenv/wiki/Common-build-problems) article explains how to install the required dependencies and provides useful troubleshooting info.
-
-Also, it's a good time to take a break as installing might take a bit.
-
-Install Python 3.7.5:
-
-```bash
-sb@dddd:~/demisto$ pyenv install 3.7.5
-Downloading Python-3.7.5.tar.xz...
--> https://www.python.org/ftp/python/3.7.5/Python-3.7.5.tar.xz
-Installing Python-3.7.5...
-Installed Python-3.7.5 to /home/sb/.pyenv/versions/3.7.5
-
-sb@dddd:~/demisto$ pyenv versions
-  3.7.5
-sb@dddd:~/demisto$
-```
-And that's it! Again, if the installation fails, check out [this](https://github.com/pyenv/pyenv/wiki/Common-build-problems) page.
 
 #### GitHub
 
 Not much to check here, just go to [GitHub](https://github.com) and make sure that you have an account or Sign Up for one:
 
 ![GitHub](/doc_imgs/tutorials/tut-setup-dev/03-github.png)
+
 
 #### Docker
 
@@ -109,7 +63,7 @@ For more examples and ideas, visit:
 sb@dddd:~/demisto$
 ```
 
-*Note:* if you're using Windows with WSL, you can still use Docker Desktop from WSL. Follow [this](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly) tutorial for details.
+*Note:* If you are using Windows with WSL2, you can still use Docker Desktop from WSL. Follow this [tutorial](https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros) for details.
 
 Great, all the prerequisites are set! We can get started.
 
@@ -144,9 +98,78 @@ Checking out files: 100% (4522/4522), done.
 sb@dddd:~/demisto$
 ```
 
-*Note:* you must clone **your fork** of the repository, as you will need to be able to write into it. Do **not** clone `demisto/content`, as you won't be able to push commits.
+*Note:* You must clone **your fork** of the repository, as you will need to be able to write into it. Do **not** clone `demisto/content`, as you won't be able to push commits.
 
-### Step 4: Run the bootstrap script
+### Step 4: Setup environment
+
+#### Option 1: Setup a remote environment
+
+Follow the instructions in this [guide](tut-setup-dev-remote.md).
+
+#### Option 2: Setup a local environment
+
+##### Operating System
+
+We assume you have an operating system and that it is working. :)
+
+*Note:* If you are using **Windows with WSL**, and your code resides in a shared folder on the Windows tree (i.e., `/mnt/c/code/demisto`), make sure that the folder is set to be [case sensitive](https://devblogs.microsoft.com/commandline/improved-per-directory-case-sensitivity-support-in-wsl/).
+
+##### Python and pyenv
+
+You will need `python3` installed on your system. We recommend using `pyenv`. At the time of this writing, the latest version of Python 3.10 is *3.10.5*.
+
+Make sure `pyenv` in installed and that the `eval "$(pyenv init -)"` expression is placed in your shell configuration (`~/.bashrc` or `~/.zshrc`) - [more information about this](https://github.com/pyenv/pyenv#installation).
+
+```bash
+sb@dddd:~/demisto$ eval "$(pyenv init -)"
+sb@dddd:~/demisto$ pyenv -v
+pyenv 1.2.15
+sb@dddd:~/demisto$~/demisto$
+```
+If this doesn't work, follow the instructions [here](https://github.com/pyenv/pyenv#installation). Either Homebrew for MacOS or the automatic installer on Linux/WSL works fine.
+
+Make sure that the required version of Python is available:
+
+```bash
+sb@dddd:~/demisto$ pyenv versions
+  3.10.5
+sb@dddd:~/demisto$
+```
+If this doesn't work, follow the instructions [here](https://github.com/pyenv/pyenv#installation). Either Homebrew for MacOS or the automatic installer on Linux/WSL work fine.
+
+If the required version of Python is missing, you will need to install it. As `pyenv` compiles CPython, you might need some libraries. Depending on your operating system, this [article](https://github.com/pyenv/pyenv/wiki/Common-build-problems)  explains how to install the required dependencies and provides useful troubleshooting info.
+
+Now is a good time to take a break since installing might take a while.
+
+Install Python 3.10.5:
+
+```bash
+sb@dddd:~/demisto$ pyenv install 3.10.5
+Downloading Python-3.10.5.tar.xz...
+-> https://www.python.org/ftp/python/3.10.5/Python-3.10.5.tar.xz
+Installing Python-3.10.5...
+Installed Python-3.10.5 to /home/sb/.pyenv/versions/3.10.5
+
+sb@dddd:~/demisto$ pyenv versions
+  3.10.5
+sb@dddd:~/demisto$
+```
+And that's it! Again, if the installation fails, check out [this](https://github.com/pyenv/pyenv/wiki/Common-build-problems) page.
+
+##### Poetry
+
+Follow these instructions to install [poetry](https://python-poetry.org/docs/master/#installing-with-the-official-installer)
+
+##### Node
+
+Follow these [instructions](https://github.com/nvm-sh/nvm#install--update-script) to install the `nvm` package manager.
+
+After installing, run:
+```bash
+nvm install node
+```
+
+##### Bootstrap
 
 Before running the `bootstrap` script that creates the virtual environment, let's set up `pyenv` to work correctly in the `content` folder you just cloned.
 
@@ -159,56 +182,53 @@ pyenv: no local version configured for this directory
 
 You can tell `pyenv` to use the latest version Python 3 you previously installed and verify that everything is set correctly:
 ```
-sb@dddd:~/demisto/content$ pyenv local 3.7.5
+sb@dddd:~/demisto/content$ pyenv local 3.10.5
 
 sb@dddd:~/demisto/content$ pyenv local
-3.7.5
+3.10.5
 
 sb@dddd:~/demisto/content$ which python3
 /home/sb/.pyenv/shims/python3
 
 sb@dddd:~/demisto/content$ python3 -V
-Ptyhon 3.7.5
+Ptyhon 3.10.5
 ```
 
-OK, now you can run the `.hooks/bootstrap` script that will install the dependencies and create the `virtualenv`:
+Now you can run the `.hooks/bootstrap` script that will install the dependencies and create the `poetry` environment:
 ```bash
 sb@dddd:~/demisto/content$ .hooks/bootstrap
 Installing 'pre-commit' hooks
 =======================
-Initializing virtual env...
-Running virtualenv with interpreter /home/sb/.pyenv/shims/python3
-Already using interpreter /home/sb/.pyenv/versions/3.7.5/bin/python3
-Using base prefix '/home/sb/.pyenv/versions/3.7.5'
-New python executable in /home/sb/demisto/content/venv/bin/python3
-Also creating executable in /home/sb/demisto/content/venv/bin/python
-Installing setuptools, pip, wheel...
-done.
-Running virtualenv with interpreter /home/sb/.pyenv/shims/python2
-Already using interpreter /home/sb/.pyenv/versions/2.7.17/bin/python2
-New python executable in /home/sb/demisto/content/venv/bin/python2
+Configure poetry to install virtual environment in the project repo (will be available in (.venv)
+Check if poetry files are valid
+All set!
+Installing dependencies...
+Detected local env.
+Installing dependencies from lock file
 
-[... output omitted for brevity ...]
-
-Successfully installed GitPython-3.0.5 PyYAML-5.2 atomicwrites-1.3.0 attrs-19.3.0 autopep8-1.4.4 bandit-1.6.2 beautifulsoup4-4.8.1 bs4-0.0.1 certifi-2019.11.28 chardet-3.0.4 demisto-py-2.0.6 demisto-sdk-0.2.6 docopt-0.6.2 entrypoints-0.3 flake8-3.7.8 freezegun-0.3.12 gitdb2-2.0.6 idna-2.8 importlib-metadata-1.3.0 mccabe-0.6.1 more-itertools-8.0.2 mypy-0.730 mypy-extensions-0.4.3 packaging-19.2 pbr-5.4.4 pipenv-2018.11.26 pluggy-0.13.1 py-1.8.0 pycodestyle-2.5.0 pyflakes-2.1.1 pykwalify-1.7.0 pyparsing-2.4.6 pypdf2-1.26.0 pytest-5.2.1 pytest-mock-1.11.1 python-dateutil-2.8.1 pytz-2019.3 requests-2.22.0 requests-mock-1.7.0 ruamel.yaml-0.16.5 ruamel.yaml.clib-0.2.0 six-1.13.0 smmap2-2.0.5 soupsieve-1.9.5 stevedore-1.31.0 typed-ast-1.4.0 typing-extensions-3.7.4.1 tzlocal-2.0.0 urllib3-1.25.7 virtualenv-16.7.9 virtualenv-clone-0.5.3 wcwidth-0.1.7 zipp-0.6.0    ==========================
-Done setting up virtualenv at directory 'venv'
-Activate the venv by running: . ./venv/bin/activate
+No dependencies to install or update
+==========================
+Done setting up virtualenv with poetry
+Activate the venv by running: poetry shell
 Deactivate by running: deactivate
-sb@dddd:~/demisto/content$
+=======================
+Running: npm install ...
+
+up to date, audited 230 packages in 1s
 ```
 
 *Note*: if you are using WSL and you see some errors about "python.exe" getting called, disable it in App Execution Alias ([details](https://superuser.com/questions/1437590/typing-python-on-windows-10-version-1903-command-prompt-opens-microsoft-stor)).
 
-Everything is configured, and you can start developing. When you work on your integration, you can activate the `virtualenv` with the `activate` command:
+Everything is configured, and you can start developing. When you work on your integration, you can activate `poetry` with the `poetry shell` command:
 ```bash
-sb@dddd:~/demisto/content$ . ./venv/bin/activate
-(venv) sb@dddd:~/demisto/content$
+sb@dddd:~/demisto/content$ poetry shell
+(.venv) sb@dddd:~/demisto/content$
 ```
 
-Note the `(venv)` in front of the prompt. You can always leave the `virtualenv` using the `deactivate` command:
+Note the `(.venv)` in front of the prompt. You can always leave the `poetry` virtual environment using the `deactivate` command:
 
 ```bash
-(venv) sb@dddd:~/demisto/content$ deactivate
+(.venv) sb@dddd:~/demisto/content$ deactivate
 sb@dddd:~/demisto/content$
 ```
 
@@ -218,10 +238,10 @@ Our content ships with an `HelloWorld` integration that provides basic functiona
 
 It's located in the `Packs/HelloWorld/Integrations/HelloWorld` folder. We will use `demisto-sdk` to run the *linting* and *unit testing* in order to make sure that everything is fine with the dev environment (python, docker, etc.).
 
-First, make sure you are running inside the `virtualenv`:
+First, make sure you are running inside the `poetry` virtual environment:
 ```bash
-sb@dddd:~/demisto/content$ . ./venv/bin/activate
-(venv) sb@dddd:~/demisto/content$
+sb@dddd:~/demisto/content$ poetry shell
+(.venv) sb@dddd:~/demisto/content$
 ```
 
 Then, make sure that `demisto-sdk` has been installed automatically by the bootstrap script as part of the preqreuisites:

@@ -18,9 +18,9 @@ This will print the statement in the War Room, where you will be able to see it.
 
 Keep in mind that this may not appear in the War Room depending on how close the ```demisto.results()``` statement is to the failure. To display the results before an error, you can add ```sys.exit(2)```, which will end the process before the error is returned.
 
-:::note
+>Note:
 Both ```demisto.results()``` and ```sys.exit()``` should not be part of your final code. Make sure you follow the [Code Conventions](../integrations/code-conventions).
-:::
+
 
 ## The *Logs*
 
@@ -54,10 +54,8 @@ Sometimes when printing or using the logs is too confusing or messy you want to 
 
 ### Python Environment  
 
-Python Environment  
-You need to prepare a python environment with all the base dependencies. It is recommended to use a virtual env tool like [virtuaelenv](../concepts/dev-setup) or [pipenv](https://pipenv.pypa.io/en/latest/).
-The environment requirements can be found in the `dev-requirements-py3.txt`. To install it using pipenv run `pipenv install -r dev-requirements-py3.txt`.
-
+* You need to prepare a Python environment with all the base dependencies. Follow the instructions in the [Development setup](../concepts/dev-setup.md).
+* After the Python environment is prepared, [open the integration in a virtual environment](../concepts/vscode-extension.md#open-integrations-and-scripts-in-python-virtual-environment) using the `Cortex XSOAR Visual Studio Code Extension` in `VSCode`.
 ### Using Demistomock (the demisto object)
 
 Ever noticed that all integrations in your IDE start with:

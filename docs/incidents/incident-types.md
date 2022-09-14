@@ -31,3 +31,5 @@ The following table lists the fields for an incident type, and their description
 | Post process using | Select the script to run on these incident types after they have been processed.|
 | SLA | Determine the SLA for this incident type in any combination of Weeks, Days, and Hours. |
 | Set Reminder at | Optionally configure a reminder for the SLA in any combination of Weeks, Days, and Hours. |
+
+For more information about incident types, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/incidents/customize-incident-view-layouts/create-an-incident-type).

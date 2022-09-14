@@ -10,12 +10,8 @@ import classnames from "classnames";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import ScrollUpButton from "react-scroll-up-button";
-import { Slide } from 'react-slideshow-image';
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import SymphonyBannerDesktop from '/static/img/symphony-banner-desktop.png';
-import SymphonyBannerMobile from '/static/img/symphony-banner-mobile.jpeg';
-import 'react-slideshow-image/dist/styles.css';
 import styles from "./styles.module.css";
 
 const features = [
@@ -110,32 +106,6 @@ const features = [
   },
 ];
 
-const symphonyBanner = (
-  <>
-    <img
-      className={styles.symphonyBannerDesktop}
-      alt="Symphony 2022. Join us at the premier summit for security operations."
-      src={SymphonyBannerDesktop}
-    />
-    <img
-      className={styles.symphonyBannerMobile}
-      alt="Symphony 2022. Join us at the premier summit for security operations."
-      src={SymphonyBannerMobile}
-    />
-    <Link
-      className={classnames(
-        "button button--info button--secondary button--lg",
-        styles.headerButtons
-      )}
-      to="https://symphony.paloaltonetworks.com/#register"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Register Now
-    </Link>
-  </>
-)
-
 function Feature({ imageUrl, title, description, button }) {
   const imgUrl = useBaseUrl(imageUrl);
   return (
@@ -154,58 +124,10 @@ function Feature({ imageUrl, title, description, button }) {
   );
 }
 
-function CortexHero() {
-  return (
-    <div className={styles.hero}>
-      <div className={styles.heroInner}>
-        <h1 className={styles.heroProjectTagline}>
-          <img
-            alt="Cortex XSOAR"
-            className={styles.heroLogo}
-            src={useBaseUrl("img/Cortex-XSOAR-black.svg")}
-          />
-          Automate the{" "}
-          <span className={styles.heroProjectKeywords}>future</span> with{" "}
-          <span className={styles.heroProjectKeywords}>Cortex XSOAR</span>{" "}
-        </h1>
-        <h3 className={styles.heroProjectDescription}>
-          Develop new integrations, automations, playbooks, reports and
-          more...
-        </h3>
-        <div className={styles.indexCtas}>
-          <Link
-            className={classnames(
-              "button button--info button--secondary button--lg",
-              styles.headerButtons
-            )}
-            to="/docs/partners/why-xsoar"
-          >
-            Why Cortex XSOAR?
-          </Link>
-          <Link
-            className={classnames(
-              "button button--info button--secondary button--lg",
-              styles.headerButtons
-            )}
-            href="https://start.paloaltonetworks.com/become-a-technology-partner"
-          >
-            Become a Partner
-          </Link>
-        </div>
-      </div>
-    </div>
-  )
-} 
-
 function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
   const vertificalsRef = useRef(null);
-  const sliderSettings = {
-    autoplay: false,
-    indicators: true,
-    easing: "ease-out"
-  }
 
   return (
     <Layout
@@ -216,14 +138,47 @@ function Home() {
       <ScrollUpButton />
 
       <header className={classnames("hero hero--primary heroTilted", styles.heroBanner)}>
-        <Slide className="hero-slider__container container" {...sliderSettings}>
-          <div className="hero-slider__item">
-            <CortexHero />
+        <div className="container">
+          <div className={styles.hero}>
+            <div className={styles.heroInner}>
+              <h1 className={styles.heroProjectTagline}>
+                <img
+                  alt="Cortex XSOAR"
+                  className={styles.heroLogo}
+                  src={useBaseUrl("img/Cortex-XSOAR-black.svg")}
+                />
+                Automate the{" "}
+                <span className={styles.heroProjectKeywords}>future</span> with{" "}
+                <span className={styles.heroProjectKeywords}>Cortex XSOAR</span>{" "}
+              </h1>
+              <h3 className={styles.heroProjectDescription}>
+                Develop new integrations, automations, playbooks, reports and
+                more...
+              </h3>
+              <div className={styles.indexCtas}>
+                <Link
+                  className={classnames(
+                    "button button--info button--secondary button--lg",
+                    styles.headerButtons
+                  )}
+                  to="/docs/partners/why-xsoar"
+                >
+                  Why Cortex XSOAR?
+                </Link>
+                <Link
+                  className={classnames(
+                    "button button--info button--secondary button--lg",
+                    styles.headerButtons
+                  )}
+                  href="https://start.paloaltonetworks.com/become-a-technology-partner"
+                >
+                  Become a Partner
+                </Link>
+              </div>
+            </div>
           </div>
-          <div className="hero-slider__item">
-            {symphonyBanner}
-          </div>
-        </Slide>
+        </div>
+        
       </header>
 
       <main>

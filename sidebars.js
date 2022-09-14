@@ -159,7 +159,8 @@ const sidebars = {
             "integrations/postman-codegen",
             "integrations/code-generator",
             "integrations/scheduled-commands",
-            "integrations/yml-from-python-code-gen"
+            "integrations/yml-from-python-code-gen",
+            "integrations/fetch-incidents-lookback",
           ]
         }
       ]

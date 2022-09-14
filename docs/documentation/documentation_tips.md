@@ -3,7 +3,9 @@ id: documentation_tips
 title: Documentation Best Practices
 ---
 
-This article describes the desired documentation standards in XSOAR content entities, and contains examples that can be very useful when writing documentation.
+This article describes the desired documentation standards in Cortex XSOAR content entities, and contains examples that can be very useful when writing documentation.
+
+**NOTE**: If you are writing documents for Cortex XSOAR and Cortex XSIAM that contains similar content, you can use special formatted strings that enable you to filter the correct entity. For more information, see [Cortex XSOAR and Cortex XSIAM Formatting](#cortex-xsoar-and-cortex-xsiam-formatting).
 
 ## Entities Description Field
 ### For playbook and scripts, use the following guideline:
@@ -85,3 +87,33 @@ A good description will be: `True if the version of the element exists.`
 | List of predetermined options | The…. Can be “optionA”, “optionB”, or  “optionC”. | The severity oh the incident to fetch. Can be "Low", "High" or "Critical" | 
 | Unknown  | - An array of...\n - A list of…\n -A dictionary of... | A list of indicators associated to.. | 
 | Date | - The date and time that...\n - The date and time when... | The date and time when the indicator was last updated. The date format is: YYYYMMDDThhmmss, where "T" denotes the start of the value for time, in UTC time. |
+
+## Cortex XSOAR and Cortex XSIAM Formatting
+
+When writing `Description.md` and `ReadMe.md` files some text may be relevant for Cortex XSOAR and not Cortex XSIAM and vice versa. For example, in ServiceNow v2 documentation, mirroring is supported in Cortex XSOAR but not in Cortex XSIAM.
+
+Rather than creating separate documents, you can add the following format to the `Description` and `ReadMe` documents:
+
+| Format | Description |
+| -------| -----------|
+| `<~XSOAR>`Text`</~XSOAR>` | Applies to Cortex XSOAR only. |
+| `</~XSIAM>`Text`</~XSIAM>` | Applies to Cortex XSIAM only.
+
+In this example, we only want to show Cortex XSOAR text:
+
+`<~XSOAR>Some XSOAR text</~XSOAR>`
+`<~XSIAM> Some XSIAM text</~XSIAM>`
+`<~XSOAR>XSOAR</~XSOAR><~XSIAM>XSIAM</~XSIAM> is the best.`
+
+After the `demisto.sdk` runs, the output shows the following:
+
+` Some XSOAR text`
+`XSOAR is the best.`
+
+
+![image](../doc_imgs/reference/XSOAR-format.png)
+ 
+ 
+ 
+
+ 

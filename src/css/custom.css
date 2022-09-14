@@ -724,15 +724,9 @@ html[data-theme="dark"] .header-github-link:before {
 /* unordered listing consistency */ 
 ul { list-style-type: lower-roman; }
 
-/* Homepage Hero Slider */
-.hero-slider__container .indicators { padding-left: 0; }
-.hero-slider__container .indicators li { margin: 0 0.5rem !important; }
-.hero-slider__container .images-wrap { align-items: center; }
-
-@media (min-width: 769px) {
-  .hero-slider__item { padding: 0 2rem; }
-}
-
-@media (max-width: 768px) {
-  .hero-slider__container .nav.default-nav { display: none; }
+/* react player style */
+.react-player-wrapper {
+  margin-bottom: 25px;
+  width: 400px;
+  height: 220px;
 }

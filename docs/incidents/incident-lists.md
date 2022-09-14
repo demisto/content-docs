@@ -80,3 +80,5 @@ You can import a content item list.
 2. Click ![import button](/doc_imgs/integrations/50277516-4d74bd80-044d-11e9-94b6-5195dd0db796.png).
 3. Navigate to and select the content list to import.
 4. Click *Open*.
+
+For more information about lists, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/lists/manage-lists).

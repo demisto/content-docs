@@ -26,6 +26,7 @@ const contentItemTransformer = {
   classifier: "Classifiers",
   widget: "Widgets",
   dashboard: "Dashboards",
+  wizard: "Wizards",
 };
 
 const removeDir = function (path) {
@@ -114,7 +115,7 @@ function travelDependenciesJson(firstLvlDepsJson, depsJson, startKey) {
 }
 
 function travelDependencies(depsJson, startKey, firstLvlDepsJson) {
-  // Travel over the dependencies json of a given Pack dependency type, while collecting all sub-dependecy mandatory packs
+  // Travel over the dependencies json of a given Pack dependency type, while collecting all sub-dependency mandatory packs
   
   if (!(startKey in depsJson)) {
     if (!(startKey in firstLvlDepsJson)) {
@@ -261,17 +262,19 @@ function genPackDetails() {
         support: metadata.support
       };
       for (var depId in metadata.dependencies) {
-        let dependency = metadata.dependencies[depId]
-        if (dependency.mandatory) {
-          dependenciesJson["mandatory"][depId] = {
-            version: idToPackMetadata[depId].version,
-            support: idToPackMetadata[depId].support
-          };
-        } else {
-          dependenciesJson["optional"][depId] = {
-            version: idToPackMetadata[depId].version,
-            support: idToPackMetadata[depId].support
-          };
+        if (depId in idToPackMetadata) {
+          let dependency = metadata.dependencies[depId]
+          if (dependency.mandatory) {
+            dependenciesJson["mandatory"][depId] = {
+              version: idToPackMetadata[depId].version,
+              support: idToPackMetadata[depId].support
+            };
+          } else {
+            dependenciesJson["optional"][depId] = {
+              version: idToPackMetadata[depId].version,
+              support: idToPackMetadata[depId].support
+            };
+          }
         }
       }
       firstLeveldepsMap[metadata.id] = dependenciesJson;
@@ -305,7 +308,7 @@ function genPackDetails() {
           let fixedKey = ""
           var promises = []
           for (var [key, value] of Object.entries(pack.contentItems)) {
-            fixedKey = contentItemTransformer[key];
+            fixedKey = contentItemTransformer[key] || (key.charAt(0).toUpperCase() + key.slice(1));
             for (var listItem of value) {
               listItem.description = listItem.description
                 ? jsStringEscape(listItem.description)
@@ -344,6 +347,7 @@ function genPackDetails() {
       currentVersion: pack.currentVersion,
       versionInfo: pack.versionInfo,
       authorImage: pack.authorImage != "" ? pack.authorImage : null,
+      video: pack.videos,
       readme: pack.readme
         ? jsStringEscape(pack.readme)
         : "",

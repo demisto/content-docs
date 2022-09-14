@@ -85,6 +85,13 @@ Key | Value
 --- |  ----
 `python.pass.extra.keys` | `--network=host`
 
+It is also possible to configure only a specific docker image to use the host networking by stating `python.pass.extra.keys.<docker-image>` as the key. For example:
+
+Key | Value
+--- |  ----
+`python.pass.extra.keys.demisto/smbprotocol` | `--network=host`
+
+
 After you add the server configuration, run the `/reset_containers` command from the Cortex XSOAR CLI to reset all containers and to begin using the new configuration.
 
 **Notes:**
