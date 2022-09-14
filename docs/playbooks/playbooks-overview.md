@@ -2,7 +2,7 @@
 id: playbooks-overview
 title: Playbooks
 ---
-Playbooks are at the heart of the Cortex XSOAR system. They enable you to automate many of your security processes, including, but not limited to handling your investigations and managing your tickets. You can structure and automate security responses that were previously handled manually. For example, you can use playbook tasks to parse the information in the incident, whether it be an email or a PDF attachment. You can interact with users in your organization using communication tasks, or remediate an incident by interacting with a 3rd party integration. 
+PPlaybooks are at the heart of the Cortex XSOAR system. They enable you to automate many of your security processes, including, but not limited to handling your investigations and managing your tickets. You can structure and automate security responses that were previously handled manually. For example, you can use playbook tasks to parse the information in the incident, whether it be an email or a PDF attachment. You can interact with users in your organization using communication tasks, or remediate an incident by interacting with a 3rd party integration. 
 
 Playbooks have different task types for each of the actions you want to take along the way. There are manual tasks where an analyst might have to confirm information or escalate an incident, and there are conditional tasks with a loop to check if certain information is present so you can proceed with your investigation. The playbook tasks can open tickets in a ticketing system, such as Jira, detonate a file using a sanbox. 
 
