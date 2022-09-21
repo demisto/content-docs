@@ -52,7 +52,7 @@ There is 1 incident type - **Configuration Setup**.
 ​
 ### Layout
 There is 1 layout - **configuration setup**
-![layout.png](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/docs-files/layout.png)
+![layout.png](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/doc_files/layout.png)
 ​
 ### Playbook
 There is 1 playbook - **Configuration Setup**
@@ -63,7 +63,7 @@ It consists of five stages:
 3. Installing Marketplace packs.
 4. Configuring lists.
 5. Configuring jobs.
-![playbook.png](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/docs-files/playbook.png)
+![playbook.png](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/doc_files/playbook.png)
 ​
 ## Prerequisites
 ​
@@ -133,7 +133,7 @@ The structure of the repository is as follows:
 | .hooks | --- |
 | Packs | Your customized packs that contain your incident fields, incident types, layouts, playbooks, scripts, integrations, and release notes. You can define multiple packs. |
 | README.md | A markdown file that provides a description of the pack. |
-| xsoar_config.json<br/>[Example file](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/docs-files/xsoar_config.json) | The configuration file that defines what packs lists, and jobs will be set up on the machine.<br/> It consists of the following sections:<br/>- *custom_packs* - Your own internal packs to be installed through the build process.<br/>- *marketplace_packs* - Marketplace packs to be installed on the machine.<br/>- *lists* - Lists to be created in the machine.<br/>- *jobs* - Jobs to be created in the machine. |
+| xsoar_config.json<br/>[Example file](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/doc_files/xsoar_config.json) | The configuration file that defines what packs lists, and jobs will be set up on the machine.<br/> It consists of the following sections:<br/>- *custom_packs* - Your own internal packs to be installed through the build process.<br/>- *marketplace_packs* - Marketplace packs to be installed on the machine.<br/>- *lists* - Lists to be created in the machine.<br/>- *jobs* - Jobs to be created in the machine. |
 | .private-repo-settings | --- |
 | .demisto-sdk-conf | Your custom configuration file for the demisto-sdk commands. For details, click [here](https://xsoar.pan.dev/docs/concepts/demisto-sdk#setting-a-preset-custom-command-configuration). |
 | requirements.txt | Contains a list of all the project’s dependencies. |
@@ -146,7 +146,7 @@ The structure of the repository is as follows:
 ​
 ### Create the CI/CD Process
 ​
-Create a yml file for the CI/CD process. The [Example File](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/docs-files/ci-cd.yml) is a GitHub actions YML file that can be used as a template for creating your CI/CD process.
+Create a yml file for the CI/CD process. The [Example File](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/doc_files/ci-cd.yml) is a GitHub actions YML file that can be used as a template for creating your CI/CD process.
 ​
 ​
 1. Prepare the environment and the virtual environment on which to run the demisto-sdk. 
