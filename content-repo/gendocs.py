@@ -88,7 +88,6 @@ PACKS_INTEGRATIONS_PREFIX = 'Integrations'
 PACKS_SCRIPTS_PREFIX = 'Scripts'
 PACKS_PLAYBOOKS_PREFIX = 'Playbooks'
 
-print(f'max failures: {MAX_FAILURES}')
 
 class DocInfo:
     def __init__(self, id: str, name: str, description: str, readme: str, error_msg: Optional[str] = None):
