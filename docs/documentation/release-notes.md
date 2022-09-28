@@ -114,6 +114,8 @@ Specify in the corresponding release notes file:
 ```
 'Added support for '
 'Added the '
+'Added a'
+'Added an '
 'Fixed an issue '
 'Improved implementation '
 'Updated the Docker image to '
@@ -172,7 +174,7 @@ Improved implementation of the default value for the *fetch_time* parameter.
 ```
 #### General Changes
 
-> **Note:** Use these if the change has no visible impact on the user. 
+> **Note:** In most cases we will avoid having such release notes, use these only if the change has no clear or visible impact on the user.
 
 ```markdown
 - Maintenance and stability enhancements.

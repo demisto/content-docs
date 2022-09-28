@@ -347,6 +347,7 @@ function genPackDetails() {
       currentVersion: pack.currentVersion,
       versionInfo: pack.versionInfo,
       authorImage: pack.authorImage != "" ? pack.authorImage : null,
+      video: pack.videos,
       readme: pack.readme
         ? jsStringEscape(pack.readme)
         : "",

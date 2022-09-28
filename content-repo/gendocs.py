@@ -73,7 +73,7 @@ PACKS_PREFIX = 'packs'
 NO_HTML = '<!-- NOT_HTML_DOC -->'
 YES_HTML = '<!-- HTML_DOC -->'
 BRANCH = os.getenv('HEAD', 'master')
-MAX_FAILURES = int(os.getenv('MAX_FAILURES', 15))  # if we have more than this amount in a single category we fail the build
+MAX_FAILURES = int(os.getenv('MAX_FAILURES', 20))  # if we have more than this amount in a single category we fail the build
 # env vars for faster development
 MAX_FILES = int(os.getenv('MAX_FILES', -1))
 FILE_REGEX = os.getenv('FILE_REGEX')
@@ -189,14 +189,15 @@ def get_beta_data(yml_data: dict, content: str):
     return ""
 
 
-def get_packname_from_metadata(pack_dir):
+def get_packname_from_metadata(pack_dir, xsoar_marketplace: bool = True):
     with open(f'{pack_dir}/pack_metadata.json', 'r') as f:
         metadata = json.load(f)
         is_pack_hidden = metadata.get("hidden", False)
-    return metadata.get('name'), is_pack_hidden
+        xsoar_marketplace = 'xsoar' in metadata.get('marketplaces', []) if xsoar_marketplace else False
+    return metadata.get('name'), is_pack_hidden, xsoar_marketplace
 
 
-def get_pack_link(file_path: str) -> str:
+def get_pack_link(file_path: str, xsoar_marketplace: bool = True) -> str:
     # the regex extracts pack name from paths, for example: content/Packs/EWSv2 -> EWSv2
     match = re.search(r'Packs[/\\]([^/\\]+)[/\\]?', file_path)
     pack_name = match.group(1) if match else ''
@@ -208,7 +209,7 @@ def get_pack_link(file_path: str) -> str:
     is_pack_hidden = False
 
     try:
-        pack_name_in_docs, is_pack_hidden = get_packname_from_metadata(pack_dir)
+        pack_name_in_docs, is_pack_hidden, xsoar_marketplace = get_packname_from_metadata(pack_dir, xsoar_marketplace)
     except FileNotFoundError:
         pack_name_in_docs = pack_name.replace('_', ' ').replace('-', ' - ')
 
@@ -221,7 +222,8 @@ def get_pack_link(file_path: str) -> str:
     if 'ApiModules' in pack_name or 'NonSupported' in pack_name:
         return ''
 
-    if is_pack_hidden:  # this pack is hidden, don't add a link
+    # This pack is hidden, or it's not on XSOAR marketplace, don't add a link
+    if is_pack_hidden or not xsoar_marketplace:
         return f"#### This {file_type} is part of the **{pack_name_in_docs}** Pack.\n\n" \
             if file_type and pack_name and pack_name_in_docs else ''
     return f"#### This {file_type} is part of the **[{pack_name_in_docs}]({pack_link})** Pack.\n\n" \
@@ -305,7 +307,12 @@ def add_content_info(content: str, yml_data: dict, desc: str, readme_file: str) 
     content = get_beta_data(yml_data, content) + content
     if not is_deprecated:
         content = get_fromversion_data(yml_data) + content
-    content = get_pack_link(readme_file) + content
+    # Check if there is marketplace key that does not contain the XSOAR value.
+    if marketplaces := yml_data.get('marketplaces', []):
+        xsoar_marketplace = 'xsoar' in marketplaces
+    else:
+        xsoar_marketplace = True
+    content = get_pack_link(readme_file, xsoar_marketplace) + content
     return content
 
 
