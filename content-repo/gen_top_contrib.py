@@ -74,6 +74,17 @@ def create_grid(dataset: list) -> str:
     return html_card
 
 
+def create_service_account_file():
+    """
+    Create a service account json file from the circle variable.
+    """
+    service_account_file = tempfile.NamedTemporaryFile(delete=False, mode='w', suffix='.json')
+    json.dump(json.loads(SERVICE_ACCOUNT), service_account_file)
+    service_account_file.flush()
+
+    return service_account_file
+
+
 def get_contributors_file_from_bucket(service_account_file):
     storage_client = storage.Client.from_service_account_json(service_account_file)
     bucket = storage_client.bucket('xsoar-ci-artifacts')
@@ -309,11 +320,13 @@ def get_contributors_users(users_info, last_update: str) -> dict:
     return users
 
 
-def create_users_list(list_users: list) -> List:
+def create_users_list(users_dict: dict) -> List:
     users = []
     contributors = []
+    users_dict.pop('last_update')
+    sorted_users_list = sorted(users_dict.items(), key=lambda x: x[1]['number_of_contributions'], reverse=True)
 
-    for key, value in list_users:
+    for key, value in sorted_users_list:
         users.append({
             'Contributor': f"<img src='{value.get('github_avatar')}'/><br></br> "
                            f"<a href='{value.get('github_profile')}' target='_blank'>{value.get('user')}</a>"
@@ -360,9 +373,7 @@ def main():
     args = parser.parse_args()
     contrib_target = args.target + '/top-contributors.md'
     try:
-        service_account_file = tempfile.NamedTemporaryFile(delete=False, mode='w', suffix='.json')
-        json.dump(json.loads(SERVICE_ACCOUNT), service_account_file)
-        service_account_file.flush()
+        service_account_file = create_service_account_file()
         contributors_data = get_contributors_file_from_bucket(service_account_file.name)
 
         # This part should always run unless it is the first time or in a case of a previous malfunction
@@ -381,9 +392,7 @@ def main():
 
         print('Updating contributors file...')
         update_contributors_file(service_account_file.name, json.dumps(users_dict, indent=4))
-        users_dict.pop('last_update')
-        sorted_users_list = sorted(users_dict.items(), key=lambda x: x[1]['number_of_contributions'], reverse=True)
-        users = create_users_list(sorted_users_list)
+        users = create_users_list(users_dict)
         with open(contrib_target, 'a', encoding='utf-8') as f:
             f.write(f'\n {create_grid(users)}')
     except requests.exceptions.HTTPError as ex:
