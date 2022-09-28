@@ -27,6 +27,7 @@ PAGE_NUMBER_REGEX = re.compile(r'(?<=&page=)([0-9]+)')
 TOKEN = os.getenv('GITHUB_TOKEN', '')
 SERVICE_ACCOUNT = os.getenv('GCP_SERVICE_ACCOUNT')
 URL = 'https://api.github.com'
+QUERY = 'type:pr state:closed org:demisto repo:content is:merged base:master head:contrib/ sort:updated-desc'
 HEADERS = {
     'Accept': 'application/vnd.github.v3+json',
 }
@@ -204,9 +205,9 @@ def get_contrib_prs(query: str) -> Tuple[List[Dict], str]:
 
 def get_github_user(user_name: str) -> Dict:
     """
-    Get the github user.
+    Get the GitHub user.
     Args:
-        user_name (str): the github username.
+        user_name (str): the GitHub username.
 
     Returns: The user avatar and its profile.
 
@@ -223,7 +224,11 @@ def get_github_user(user_name: str) -> Dict:
 def get_inner_pr_request(query: str) -> Tuple[list, str]:
     """
     Get the inner pr information (will be used to get the user).
-    Returns (list): http response - prs_info.
+    Args:
+        query (str): The query to use to get the contributions PRs.
+    Returns:
+        users_info (list): http response - prs_info.
+        last_updated (str): The last updated PR timestamp.
     """
     users_info = []
     external_prs, last_updated = get_contrib_prs(query)
@@ -265,7 +270,7 @@ def get_contributors_users(users_info, last_update: str) -> dict:
         users_info (list): the response of get_inner_pr_request()
         last_update (str): the last updated PR timestamp
 
-    Returns (list): GitHub users
+    Returns (dict): GitHub users
 
     """
     users = {}
@@ -348,6 +353,7 @@ def update_users_list(users_dict: dict, contributors_file_dict: dict):
 
 
 def main():
+    global QUERY
     parser = argparse.ArgumentParser(description='Generate Top contributors page.',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-t", "--target", help="Target dir to generate docs at.", required=True)
@@ -358,18 +364,19 @@ def main():
         json.dump(json.loads(SERVICE_ACCOUNT), service_account_file)
         service_account_file.flush()
         contributors_data = get_contributors_file_from_bucket(service_account_file.name)
-        query = 'type:pr state:closed org:demisto repo:content is:merged base:master head:contrib/ sort:updated-desc'
-        # First time upload or in a case of malfunction
+
+        # This part should always run unless it is the first time or in a case of a previous malfunction
         if contributors_data:
-            # Update the file with recent contributions
+            # Update the query with the last_updated pr timestamp
             contributors_data = json.loads(contributors_data)
             last_updated_timestamp = contributors_data.get('last_update')
-            query += f' merged:>{last_updated_timestamp}'
+            QUERY += f' merged:>{last_updated_timestamp}'
 
-        response, last_updated = get_inner_pr_request(query)
+        response, last_updated = get_inner_pr_request(QUERY)
         users_dict = get_contributors_users(response, last_updated)
 
         if contributors_data:
+            # Update the file with recent contributions
             users_dict = update_users_list(users_dict, contributors_data)
 
         print('Updating contributors file...')
