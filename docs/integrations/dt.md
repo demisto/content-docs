@@ -3,10 +3,10 @@ id: dt
 title: Cortex XSOAR Transform Language (DT)
 ---
 
-Cortex XSOAR Transform Language (commonly referred to as **DT**) is used for various functions within Cortex XSOAR related to Context. In it's most basic sense, DT is a query language for JSON objects. If you are familiar with JSONQuery, this should be very familiar to you.
+Cortex XSOAR Transform Language (commonly referred to as **DT**) is used for various Context related functions in Cortex XSOAR. DT is a query language for JSON objects, similar to JSONQuery.
 
 ## Context Example
-We are going to use the following as our example context and go over the various ways that DT can be used to access, aggregate, and mutate data.
+The following sample Context data will be used to show the various ways DT can access, aggregate, and mutate data.
 
 ```python
 {
@@ -98,9 +98,14 @@ We are going to use the following as our example context and go over the various
 ```
 
 ## Nested Values
-DT can go deep. Deep like cosmic brownies and Jimi Hendrix at 2am deep. But in its essence, we are dealing with a dictionary of key values. Let's look at the following example.
+DT can access keys from nested dictionaries as well as dictionaries.
 
-Using the context example noted above, these are the various ways that DT can be used to access nested keys.
+Using the above Context data sample, you can access the following key values:  
+- The "Continent" key value, located in the "Geo" dictionary, which is located in the "MaxMind" dictionary.
+- The "Hostname" key value, located in the "IP" dictionary.
+- The "FirstSeen" key value, located in the "RecordedFuture" dictionary, which is located in the "IP" dictionary. 
+
+Access the key values using the following DT statements:  
 
 | Example | Result |
 | --- | --- |
@@ -110,13 +115,14 @@ Using the context example noted above, these are the various ways that DT can be
 
 
 ## Dealing with Arrays
-We access array values just as we would any other dictionary (or JSON) key in dot notation, with an index.
+Access array values as you access any other dictionary (or JSON) key in dot notation, with an index.
 
-**Indexes start at 0!** The first is not "1", we are dealing with code, not sheep.
+**Note:**   
+Indices start with 0, not 1.
 
-Let's take a look at the above context.
+Using the above Context data sample:
 
-Under "URLScan", we have an array called "Certificates". If we wanted to access the "SubjectName" value of the first entry, we would use the following DT statement.
+Under "URLScan", there is an array called "Certificates". If you want to access the "SubjectName" value of the first entry, use the following DT statement.
 
 | Example | Result |
 | --- | --- |
@@ -127,9 +133,9 @@ Under "URLScan", we have an array called "Certificates". If we wanted to access 
 If you want to retrieve a range of results, you can use ```[0:9]``` where "0" is the beginning of the array and "9" is the 9th position in the array.
 
 ## Selectors
-DT also allows for conditions within the statement itself and uses Javascript to select the context items. This functions as a way to bind results together by embedding a selection into the DT string.
+DT also allows for conditions within the statement itself and uses Javascript to select the Context items. This is a way to bind results together by embedding a selection into the DT string.
 
-You will notice that `val` is used quite often in the DT string. This is a Javascript method that exposes the value at the given context path.
+You will notice that `val` is used quite often in the DT string. This is a Javascript method that exposes the value at the given Context path.
 
 The following are a few examples of selector methods:
 
@@ -140,9 +146,9 @@ The following are a few examples of selector methods:
 | ```${URLScan.Certificates.SubjectName( val.indexOf('doubleclick') >= 0)}``` | `*.g.doubleclick.net` | will return any SubjectName that contains doubleclick. |
 | ```${URLScan.Country( val.toUpperCase().indexOf('IE') >= 0)}``` | `IE` | will return any Country that contains IE or ie or any mixed case. |
 | ```${URLScan.Certificates(val.SubjectName.indexOf('de') == val.length-2).ValidTo}``` | `2019-03-13 08:16:00` | will return all ValidTo for certificates that have SubjectName ending with de. Please notice that we tested a relative path to “SubjectName” (“de”) and returned a different path (“ValidTo”). |
-| ```${URLScan.Certificates(val.ValidFrom == val1---URLScan.Certificates.[0].ValidFrom).SubjectName} ``` | `["<span>www.google</span>.com", "<span>www.google</span>.de", "*.apis.google.com"]`| will return all SubjectNames for Certificates that have the same ValidTo time as the first Certificate in the array. Please notice that the bind value (val1) does not start with ‘.’ and will DT the context from the top context. |
+| ```${URLScan.Certificates(val.ValidFrom == val1---URLScan.Certificates.[0].ValidFrom).SubjectName} ``` | `["<span>www.google</span>.com", "<span>www.google</span>.de", "*.apis.google.com"]`| will return all SubjectNames for Certificates that have the same ValidTo time as the first Certificate in the array. Note that the bind value (val1) does not start with ‘.’ and will DT the Context from the top Context. |
 
-Selectors are great for avoiding duplicate entries and can be used to add context to existing entries.
+Selectors help avoiding duplicate entries and can be used to add context to existing entries.
 
 An example of how this may be used in your code is the following:
 ```python
@@ -164,10 +170,10 @@ demisto.results({
 })
 ```
 
-The code snippet ```'URL(val.Data && val.Data == obj.Data)'``` will look for entries in the context whose name found under "Data" are the same. If it finds a match, it will update the existing context, If it does not, it will create a new entry in the context because it views the entry as "unique" to the existing values.
+The code snippet ```'URL(val.Data && val.Data == obj.Data)'``` will look for entries in the Context whose name found under "Data" are the same. If it finds a match, it will update the existing Context, If it does not, it will create a new entry in the Context because it views the entry as "unique" to the existing values.
 
 ## Mutators
-Since DT is Javascript based, it is also capable of mutating a result in the event that your integration may need a different format of the result. A classic use case for this would be using joining a server address obtained from another integration to an endpoint found by your integration to create a url which may be used by your integration at a later time.
+Since DT is Javascript based, it can also mutate a result if your integration needs a different result format. A classic use case for this is joining a server address obtained from another integration to an endpoint found by your integration to create a URL which may be used by your integration at a later time.
 
 Here are a few examples:
 
@@ -177,5 +183,4 @@ Here are a few examples:
 | ```${MaxMind.Organization=val.toLowerCase()}``` | `google llc` | returns all the organizations but in lower case. |
 | ```${DBotScore.Vendor(val.indexOf('Recorded')>=0)=val.toLowerCase()}``` | `"Recorded Future"` | returns all the Vendors containing “Recorded” but in lower case. |
 | ```${DBotScore.type=val.ip +': ' + val.Vendor} ``` | `["ip: ipinfo", "ip: Recorded Future", "ip: VirusTotal"]` | returns the concatenated ip and vendor for all DBotScores. |
-
 
