@@ -144,10 +144,14 @@ return (
                                     <tbody>
                                         <tr className="infoTableRow">
                                             <td className="contentTableColName">
-                                                {{#if this.docLink}}
-                                                    <a href="{{this.docLink}}"> {{this.name}} </a>
+                                                {{#if this.name}}
+                                                    {{#if this.docLink}}
+                                                        <a href="{{this.docLink}}"> {{this.name}} </a>
+                                                    {{else}}
+                                                        <p>{{this.name}}</p>
+                                                    {{/if}}
                                                 {{else}}
-                                                    <p>{{this.name}}</p>
+                                                    <p>{{this.details}}</p>
                                                 {{/if}}
                                             </td>
                                             <td className="contentTableColDesc">
