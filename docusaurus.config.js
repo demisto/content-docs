@@ -73,7 +73,8 @@ module.exports = {
         {
           to: "https://cortex.marketplace.pan.dev/marketplace",
           label: "Marketplace",
-          position: "left"
+          position: "left",
+          target: '_self'
         },
         {
           label: "Products",
