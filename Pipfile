@@ -23,6 +23,8 @@ pydoc-markdown = "==3.10.0"
 python-dateutil = "*"
 types-python-dateutil = "*"
 slack_sdk = "*"
+google-api-python-client = "*"
+google-cloud-storage = "*"
 
 [requires]
 python_version = "3.9"
