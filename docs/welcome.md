@@ -14,7 +14,7 @@ Cortex XSOAR's security orchestration and automation enables standardized, autom
 
 The Cortex XSOAR Developer Hub is organized in different sections to guide you through the process of creating a successful Cortex XSOAR contribution. Start with the [Getting Started](concepts/getting-started-guide) section to understand the Cortex XSOAR concepts, the Contribution process, and to set up a development environment.
 
-On the left sidebar you'll find documentation for all the different things you can build: start with [Content Packs](integrations/packs-format) that represent the backbone of every contribution then, depending on what you want to create, explore the other sections accordingly: **Integrations & Scripts**, **Playbooks**, **Incidents, Fields & Layouts**.
+On the left sidebar you'll find documentation for all the different things you can build: start with [Content Packs](packs/packs-format) that represent the backbone of every contribution then, depending on what you want to create, explore the other sections accordingly: **Integrations & Scripts**, **Playbooks**, **Incidents, Fields & Layouts**.
 
 Finally, the **Tutorials** section includes longer end-to-end articles that guide you through a specific process (i.e. design).
 
