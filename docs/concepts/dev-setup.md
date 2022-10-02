@@ -3,9 +3,9 @@ id: dev-setup
 title: Development Setup
 ---
 
-> <i>Important Note:</i>  
+:::info Important Note
 This article is focused on setting up a development environment to create and contribute supported new content. If you are not planning to contribute or your contribution will be only community supported, the content in this article is not required. For more details, refer to the [Getting Started Guide](../concepts/getting-started-guide#using-the-right-tools).
-
+:::
 
 **For details, the [Setup Tutorial](../tutorials/tut-setup-dev) summarizes the end-to-end steps that are required.**
 

@@ -135,7 +135,7 @@ Integrations enable communications with third party APIs: in order to get them a
 
 Start your integration design by knowing the answers to the following questions:
  - What Product/API are you integrating with?
- - Which product [category](../integrations/packs-format#pack_metadatajson) does it belong to?
+ - Which product [category](../packs/packs-format#pack_metadatajson) does it belong to?
  - What version(s) of the product you are going to support?
  - Does it support on-prem deployment or SaaS only?
  - How does the authentication work?
@@ -228,7 +228,7 @@ Commands should be as atomic as possible (i.e. each command should ideally run a
 Make sure that commands run quickly and are non-blocking: a command should never take more than 2-3 seconds to run and return the information, or it would have significant performance impacts in XSOAR. **Avoid sleep() at all costs in your code**.
 
 If you have commands that need to run for longer periods of time, we recommend two approaches:
-- Make the commands asynchronous and implement a [Generic Polling](..//playbooks/generic-polling) mechanism. For example, if you need to run a search across your Endpoints, instead of having a single command that waits until the search is completed, you should implement three separate commands:
+- Make the commands asynchronous and implement a [Generic Polling](../playbooks/generic-polling) mechanism. For example, if you need to run a search across your Endpoints, instead of having a single command that waits until the search is completed, you should implement three separate commands:
   - A command that triggers the search and returns immediately a job id as output (i.e. `!helloworld-start-scan`).
   - A command that checks the status of the job taking the job id as input (i.e. `!helloworld-scan-status`).
   - A command that retrieves the results of a job when it's complete, taking the job id as input (i.e. `helloworld-scan-results`).

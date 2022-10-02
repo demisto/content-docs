@@ -13,7 +13,7 @@ Happy contributing!
 
 No matter what you include in your content pack, the pack must include the following:
 
-- Pack Metadata file (i.e. `Packs/YourPackName/pack_metadata.json`) : the information about your content pack. It should be compiled with all the required information, as explained [here](../integrations/packs-format).
+- Pack Metadata file (i.e. `Packs/YourPackName/pack_metadata.json`) : the information about your content pack. It should be compiled with all the required information, as explained [here](../packs/packs-format).
 - Pack README (i.e. `Packs/YourPackName/README.md`): the readme of the pack file. More information [here](../documentation/pack-docs).
 - Release Notes (i.e. `Packs/YourPackName/ReleaseNotes/1_0_1.md`): these are required only if you are updating an existing Content pack, not for the first. More information [here](../documentation/release-notes).
 
