@@ -71,9 +71,10 @@ module.exports = {
           activeBaseRegex: "docs/reference/(index|api|integrations|playbooks|releases|scripts)"
         },
         {
-          to: "/marketplace",
+          to: "https://cortex.marketplace.pan.dev/marketplace",
           label: "Marketplace",
-          position: "left"
+          position: "left",
+          target: '_self'
         },
         {
           label: "Products",

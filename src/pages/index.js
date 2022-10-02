@@ -259,7 +259,7 @@ function Home() {
         <section className={styles.tools}>
           <div className="integrations">
             <div className="integrations-inner">              
-              <a href="/marketplace">
+              <a href="https://cortex.marketplace.pan.dev/marketplace">
                 See the Cortex XSOAR Marketplace
               </a>
             </div>

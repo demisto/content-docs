@@ -19,491 +19,496 @@
       "**/.*",
       "**/node_modules/**"
     ],
-     "redirects": [
-       {
+    "redirects": [
+      {
         "source": "/docs",
         "destination": "/docs/welcome",
         "type": 301
       },
-              {
+      {
         "source": "/start-contributing",
         "destination": "/docs/contributing/marketplace",
         "type": 301
       },
-              {
+      {
         "source": "/docs/become-a-tech-partner",
         "destination": "/docs/partners/become-a-tech-partner",
         "type": 301
       },
-              {
+      {
         "source": "/docs/partner-owned-integration",
         "destination": "/docs/partners/partner-owned-integration",
         "type": 301
       },
-              {
+      {
         "source": "/development-partners",
         "destination": "/docs/partners/development-partners",
         "type": 301
       },
-       {
+      {
         "source": "/docs/design-best-practices",
         "destination": "/docs/concepts/design-best-practices",
         "type": 301
       },
       {
-          "source": "/docs/use-cases",
-          "destination": "/docs/concepts/use-cases",
-          "type": 301
+        "source": "/docs/use-cases",
+        "destination": "/docs/concepts/use-cases",
+        "type": 301
       },
       {
-          "source": "/docs/faq",
-          "destination": "/docs/concepts/faq",
-          "type": 301
+        "source": "/docs/faq",
+        "destination": "/docs/concepts/faq",
+        "type": 301
       },
       {
-          "source": "/docs/changelog",
-          "destination": "/docs/howtos/integrations/release-notes",
-          "type": 301
+        "source": "/docs/changelog",
+        "destination": "/docs/howtos/integrations/release-notes",
+        "type": 301
       },
       {
-          "source": "/docs/code-conventions",
-          "destination": "/docs/howtos/integrations/code-conventions",
-          "type": 301
+        "source": "/docs/code-conventions",
+        "destination": "/docs/howtos/integrations/code-conventions",
+        "type": 301
       },
       {
-          "source": "/docs/context-and-outputs",
-          "destination": "/docs/howtos/integrations/context-and-outputs",
-          "type": 301
+        "source": "/docs/context-and-outputs",
+        "destination": "/docs/howtos/integrations/context-and-outputs",
+        "type": 301
       },
       {
-          "source": "/docs/context-standards",
-          "destination": "/docs/howtos/integrations/context-standards-about",
-          "type": 301
+        "source": "/docs/context-standards",
+        "destination": "/docs/howtos/integrations/context-standards-about",
+        "type": 301
       },
       {
-          "source": "/docs/dbot",
-          "destination": "/docs/howtos/integrations/dbot",
-          "type": 301
+        "source": "/docs/dbot",
+        "destination": "/docs/howtos/integrations/dbot",
+        "type": 301
       },
       {
-          "source": "/docs/debugging",
-          "destination": "/docs/howtos/integrations/debugging",
-          "type": 301
+        "source": "/docs/debugging",
+        "destination": "/docs/howtos/integrations/debugging",
+        "type": 301
       },
       {
-          "source": "/docs/dev-setup",
-          "destination": "/docs/howtos/integrations/dev-setup",
-          "type": 301
+        "source": "/docs/dev-setup",
+        "destination": "/docs/howtos/integrations/dev-setup",
+        "type": 301
       },
       {
-          "source": "/docs/doc-structure",
-          "destination": "/docs/howtos/integrations/doc-structure",
-          "type": 301
+        "source": "/docs/doc-structure",
+        "destination": "/docs/howtos/integrations/doc-structure",
+        "type": 301
       },
       {
-          "source": "/docs/docker",
-          "destination": "/docs/howtos/integrations/docker",
-          "type": 301
+        "source": "/docs/docker",
+        "destination": "/docs/howtos/integrations/docker",
+        "type": 301
       },
       {
-          "source": "/docs/dt",
-          "destination": "/docs/howtos/integrations/dt",
-          "type": 301
+        "source": "/docs/dt",
+        "destination": "/docs/howtos/integrations/dt",
+        "type": 301
       },
       {
-          "source": "/docs/fetching-credentials",
-          "destination": "/docs/howtos/integrations/fetching-credentials",
-          "type": 301
+        "source": "/docs/fetching-credentials",
+        "destination": "/docs/howtos/integrations/fetching-credentials",
+        "type": 301
       },
       {
-          "source": "/docs/fetching-incidents",
-          "destination": "/docs/howtos/integrations/fetching-incidents",
-          "type": 301
+        "source": "/docs/fetching-incidents",
+        "destination": "/docs/howtos/integrations/fetching-incidents",
+        "type": 301
       },
       {
-          "source": "/docs/getting-started-guide",
-          "destination": "/docs/howtos/integrations/getting-started-guide",
-          "type": 301
+        "source": "/docs/getting-started-guide",
+        "destination": "/docs/howtos/integrations/getting-started-guide",
+        "type": 301
       },
       {
-          "source": "/docs/integration-docs",
-          "destination": "/docs/howtos/integrations/integration-docs",
-          "type": 301
+        "source": "/docs/integration-docs",
+        "destination": "/docs/howtos/integrations/integration-docs",
+        "type": 301
       },
       {
-          "source": "/docs/linting",
-          "destination": "/docs/howtos/integrations/linting",
-          "type": 301
+        "source": "/docs/linting",
+        "destination": "/docs/howtos/integrations/linting",
+        "type": 301
       },
       {
-          "source": "/docs/long-running",
-          "destination": "/docs/howtos/integrations/long-running",
-          "type": 301
+        "source": "/docs/long-running",
+        "destination": "/docs/howtos/integrations/long-running",
+        "type": 301
       },
       {
-          "source": "/docs/package-dir",
-          "destination": "/docs/howtos/integrations/package-dir",
-          "type": 301
+        "source": "/docs/package-dir",
+        "destination": "/docs/howtos/integrations/package-dir",
+        "type": 301
       },
       {
-          "source": "/docs/parameter-types",
-          "destination": "/docs/howtos/integrations/parameter-types",
-          "type": 301
+        "source": "/docs/parameter-types",
+        "destination": "/docs/howtos/integrations/parameter-types",
+        "type": 301
       },
       {
-          "source": "/docs/testing",
-          "destination": "/docs/integrations/test-playbooks",
-          "type": 301
+        "source": "/docs/testing",
+        "destination": "/docs/integrations/test-playbooks",
+        "type": 301
       },
       {
-          "source": "/docs/integrations/testing",
-          "destination": "/docs/integrations/test-playbooks",
-          "type": 301
+        "source": "/docs/integrations/testing",
+        "destination": "/docs/integrations/test-playbooks",
+        "type": 301
       },
       {
-          "source": "/docs/unit-testing",
-          "destination": "/docs/howtos/integrations/unit-testing",
-          "type": 301
+        "source": "/docs/unit-testing",
+        "destination": "/docs/howtos/integrations/unit-testing",
+        "type": 301
       },
       {
-          "source": "/docs/yaml-file",
-          "destination": "/docs/howtos/integrations/yaml-file",
-          "type": 301
+        "source": "/docs/yaml-file",
+        "destination": "/docs/howtos/integrations/yaml-file",
+        "type": 301
       },
       {
-          "source": "/docs/circleci",
-          "destination": "/docs/howtos/contributing/circleci",
-          "type": 301
+        "source": "/docs/circleci",
+        "destination": "/docs/howtos/contributing/circleci",
+        "type": 301
       },
       {
-          "source": "/docs/playbook-conventions",
-          "destination": "/docs/howtos/playbooks/playbook-conventions",
-          "type": 301
+        "source": "/docs/playbook-conventions",
+        "destination": "/docs/howtos/playbooks/playbook-conventions",
+        "type": 301
       },
       {
-          "source": "/docs/playbooks",
-          "destination": "/docs/howtos/playbooks/playbooks",
-          "type": 301
+        "source": "/docs/playbooks",
+        "destination": "/docs/howtos/playbooks/playbooks",
+        "type": 301
       },
       {
-          "source": "/docs/generic-polling",
-          "destination": "/docs/howtos/playbooks/generic-polling",
-          "type": 301
+        "source": "/docs/generic-polling",
+        "destination": "/docs/howtos/playbooks/generic-polling",
+        "type": 301
       },
       {
-          "source": "/docs/tutorial-setup-dev",
-          "destination": "/docs/tutorials/getting-started/tut-setup-dev",
-          "type": 301
+        "source": "/docs/tutorial-setup-dev",
+        "destination": "/docs/tutorials/getting-started/tut-setup-dev",
+        "type": 301
       },
       {
-          "source": "/docs/tutorial",
-          "destination": "/docs/tutorials/integrations/tut-integration-ui",
-          "type": 301
+        "source": "/docs/tutorial",
+        "destination": "/docs/tutorials/integrations/tut-integration-ui",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/changelog",
-          "destination": "/docs/integrations/release-notes",
-          "type": 301
+        "source": "/docs/howtos/integrations/changelog",
+        "destination": "/docs/integrations/release-notes",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/code-conventions",
-          "destination": "/docs/integrations/code-conventions",
-          "type": 301
+        "source": "/docs/howtos/integrations/code-conventions",
+        "destination": "/docs/integrations/code-conventions",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/context-and-outputs",
-          "destination": "/docs/integrations/context-and-outputs",
-          "type": 301
+        "source": "/docs/howtos/integrations/context-and-outputs",
+        "destination": "/docs/integrations/context-and-outputs",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/context-standards",
-          "destination": "/docs/integrations/context-standards",
-          "type": 301
+        "source": "/docs/howtos/integrations/context-standards",
+        "destination": "/docs/integrations/context-standards",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/dbot",
-          "destination": "/docs/integrations/dbot",
-          "type": 301
+        "source": "/docs/howtos/integrations/dbot",
+        "destination": "/docs/integrations/dbot",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/debugging",
-          "destination": "/docs/integrations/debugging",
-          "type": 301
+        "source": "/docs/howtos/integrations/debugging",
+        "destination": "/docs/integrations/debugging",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/dev-setup",
-          "destination": "/docs/integrations/dev-setup",
-          "type": 301
+        "source": "/docs/howtos/integrations/dev-setup",
+        "destination": "/docs/integrations/dev-setup",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/doc-structure",
-          "destination": "/docs/integrations/doc-structure",
-          "type": 301
+        "source": "/docs/howtos/integrations/doc-structure",
+        "destination": "/docs/integrations/doc-structure",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/docker",
-          "destination": "/docs/integrations/docker",
-          "type": 301
+        "source": "/docs/howtos/integrations/docker",
+        "destination": "/docs/integrations/docker",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/dt",
-          "destination": "/docs/integrations/dt",
-          "type": 301
+        "source": "/docs/howtos/integrations/dt",
+        "destination": "/docs/integrations/dt",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/fetching-credentials",
-          "destination": "/docs/integrations/fetching-credentials",
-          "type": 301
+        "source": "/docs/howtos/integrations/fetching-credentials",
+        "destination": "/docs/integrations/fetching-credentials",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/fetching-incidents",
-          "destination": "/docs/integrations/fetching-incidents",
-          "type": 301
+        "source": "/docs/howtos/integrations/fetching-incidents",
+        "destination": "/docs/integrations/fetching-incidents",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/getting-started-guide",
-          "destination": "/docs/integrations/getting-started-guide",
-          "type": 301
+        "source": "/docs/howtos/integrations/getting-started-guide",
+        "destination": "/docs/integrations/getting-started-guide",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/integration-docs",
-          "destination": "/docs/integrations/integration-docs",
-          "type": 301
+        "source": "/docs/howtos/integrations/integration-docs",
+        "destination": "/docs/integrations/integration-docs",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/linting",
-          "destination": "/docs/integrations/linting",
-          "type": 301
+        "source": "/docs/howtos/integrations/linting",
+        "destination": "/docs/integrations/linting",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/long-running",
-          "destination": "/docs/integrations/long-running",
-          "type": 301
+        "source": "/docs/howtos/integrations/long-running",
+        "destination": "/docs/integrations/long-running",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/package-dir",
-          "destination": "/docs/integrations/package-dir",
-          "type": 301
+        "source": "/docs/howtos/integrations/package-dir",
+        "destination": "/docs/integrations/package-dir",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/packs-format",
-          "destination": "/docs/integrations/packs-format",
-          "type": 301
+        "source": "/docs/howtos/integrations/packs-format",
+        "destination": "/docs/integrations/packs-format",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/parameter-types",
-          "destination": "/docs/integrations/parameter-types",
-          "type": 301
+        "source": "/docs/howtos/integrations/parameter-types",
+        "destination": "/docs/integrations/parameter-types",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/test-playbooks",
-          "destination": "/docs/integrations/test-playbooks",
-          "type": 301
+        "source": "/docs/howtos/integrations/test-playbooks",
+        "destination": "/docs/integrations/test-playbooks",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/unit-testing",
-          "destination": "/docs/integrations/unit-testing",
-          "type": 301
+        "source": "/docs/howtos/integrations/unit-testing",
+        "destination": "/docs/integrations/unit-testing",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/yaml-file",
-          "destination": "/docs/integrations/yaml-file",
-          "type": 301
+        "source": "/docs/howtos/integrations/yaml-file",
+        "destination": "/docs/integrations/yaml-file",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/integration-cache",
-          "destination": "/docs/integrations/integration-cache",
-          "type": 301
+        "source": "/docs/howtos/integrations/integration-cache",
+        "destination": "/docs/integrations/integration-cache",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/integrations/integration-context",
-          "destination": "/docs/integrations/integration-cache",
-          "type": 301
+        "source": "/docs/howtos/integrations/integration-context",
+        "destination": "/docs/integrations/integration-cache",
+        "type": 301
       },
       {
-          "source": "/docs/integrations/changelog",
-          "destination": "/docs/integrations/release-notes",
-          "type": 301
+        "source": "/docs/integrations/changelog",
+        "destination": "/docs/integrations/release-notes",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/contributing/circleci",
-          "destination": "/docs/contributing/circleci",
-          "type": 301
+        "source": "/docs/howtos/contributing/circleci",
+        "destination": "/docs/contributing/circleci",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/playbooks/playbook-conventions",
-          "destination": "/docs/playbooks/playbook-conventions",
-          "type": 301
+        "source": "/docs/howtos/playbooks/playbook-conventions",
+        "destination": "/docs/playbooks/playbook-conventions",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/playbooks/playbooks",
-          "destination": "/docs/playbooks/playbooks",
-          "type": 301
+        "source": "/docs/howtos/playbooks/playbooks",
+        "destination": "/docs/playbooks/playbooks",
+        "type": 301
       },
       {
-          "source": "/docs/howtos/playbooks/generic-polling",
-          "destination": "/docs/playbooks/generic-polling",
-          "type": 301
+        "source": "/docs/howtos/playbooks/generic-polling",
+        "destination": "/docs/playbooks/generic-polling",
+        "type": 301
       },
       {
-          "source": "/docs/tutorials/getting-started/tut-setup-dev",
-          "destination": "/docs/tutorials/tut-setup-dev",
-          "type": 301
+        "source": "/docs/tutorials/getting-started/tut-setup-dev",
+        "destination": "/docs/tutorials/tut-setup-dev",
+        "type": 301
       },
       {
-          "source": "/docs/tutorials/integrations/tut-integration-ui",
-          "destination": "/docs/tutorials/tut-integration-ui",
-          "type": 301
+        "source": "/docs/tutorials/integrations/tut-integration-ui",
+        "destination": "/docs/tutorials/tut-integration-ui",
+        "type": 301
       },
       {
-          "source": "/docs/tutorials/tut-minemeld-migration",
-          "destination": "/docs/reference/articles/minemeld-migration",
-          "type": 301
+        "source": "/docs/tutorials/tut-minemeld-migration",
+        "destination": "/docs/reference/articles/minemeld-migration",
+        "type": 301
       },
       {
-          "source": "/docs/tutorials/tutorial-incident-lifecycle",
-          "destination": "/docs/reference/articles/incident-lifecycle",
-          "type": 301
+        "source": "/docs/tutorials/tutorial-incident-lifecycle",
+        "destination": "/docs/reference/articles/incident-lifecycle",
+        "type": 301
       },
       {
-          "source": "/docs/tutorials/tutorial-playbook-TIM-EDL",
-          "destination": "/docs/reference/articles/tim-edl",
-          "type": 301
+        "source": "/docs/tutorials/tutorial-playbook-TIM-EDL",
+        "destination": "/docs/reference/articles/tim-edl",
+        "type": 301
       },
       {
-          "source": "/docs/tutorials/tutorial-TIM-export-indicators-to-3rd-party",
-          "destination": "/docs/reference/articles/export-indicators",
-          "type": 301
+        "source": "/docs/tutorials/tutorial-TIM-export-indicators-to-3rd-party",
+        "destination": "/docs/reference/articles/export-indicators",
+        "type": 301
       },
       {
-          "source": "/program-guide",
-          "destination": "https://www.paloaltonetworks.com/content/dam/pan/en_US/assets/pdf/datasheets/cortex-xsoar-partner-program-guide.pdf",
-          "type": 301
+        "source": "/program-guide",
+        "destination": "https://www.paloaltonetworks.com/content/dam/pan/en_US/assets/pdf/datasheets/cortex-xsoar-partner-program-guide.pdf",
+        "type": 301
       },
       {
-          "source": "/sign-addn",
-          "destination": "https://na2.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=8f563812-ea9c-4e6f-9a7f-e57ae1ebe825&env=na2&acct=11b87c14-db4f-4b90-b5b1-58b37f18856f&v=2",
-          "type": 301
+        "source": "/sign-addn",
+        "destination": "https://na2.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=8f563812-ea9c-4e6f-9a7f-e57ae1ebe825&env=na2&acct=11b87c14-db4f-4b90-b5b1-58b37f18856f&v=2",
+        "type": 301
       },
       {
-          "source": "/extra",
-          "destination": "/docs/partners/why-demisto",
-          "type": 301
+        "source": "/extra",
+        "destination": "/docs/partners/why-demisto",
+        "type": 301
       },
       {
-          "source": "/docs/why-demisto",
-          "destination": "/docs/partners/why-xsoar",
-          "type": 301
+        "source": "/docs/why-demisto",
+        "destination": "/docs/partners/why-xsoar",
+        "type": 301
       },
       {
-          "source": "/docs/partners/why-demisto",
-          "destination": "/docs/partners/why-xsoar",
-          "type": 301
+        "source": "/docs/partners/why-demisto",
+        "destination": "/docs/partners/why-xsoar",
+        "type": 301
       },
       {
-          "source": "/partner-kit",
-          "destination": "https://drive.google.com/drive/folders/1oy2xycgqdofPEeXtz9fqh_zF5V5OZwkE",
-          "type": 301
+        "source": "/partner-kit",
+        "destination": "https://drive.google.com/drive/folders/1oy2xycgqdofPEeXtz9fqh_zF5V5OZwkE",
+        "type": 301
       },
       {
-          "source": "/share",
-          "destination": "https://drive.google.com/drive/u/0/folders/15sfGV-xb8MsZYKTanNETRRxvq8OeEcp2",
-          "type": 301
+        "source": "/share",
+        "destination": "https://drive.google.com/drive/u/0/folders/15sfGV-xb8MsZYKTanNETRRxvq8OeEcp2",
+        "type": 301
       },
       {
-          "source": "/docs/reference",
-          "destination": "/docs/reference/index",
-          "type": 301
+        "source": "/docs/reference",
+        "destination": "/docs/reference/index",
+        "type": 301
       },
       {
-          "source": "/office-hours",
-          "destination": "https://paloaltonetworks.zoom.us/j/91689983283",
-          "type": 301
+        "source": "/office-hours",
+        "destination": "https://paloaltonetworks.zoom.us/j/91689983283",
+        "type": 301
       },
       {
-          "source": "/survey",
-          "destination": "https://docs.google.com/forms/d/e/1FAIpQLSehK06xku8wU1LBA-VYDiC92HLt94KZ9FNbmNEhplATtbiskg/viewform?usp=sf_link",
-          "type": 301
+        "source": "/survey",
+        "destination": "https://docs.google.com/forms/d/e/1FAIpQLSehK06xku8wU1LBA-VYDiC92HLt94KZ9FNbmNEhplATtbiskg/viewform?usp=sf_link",
+        "type": 301
       },
       {
-          "source": "/docs/partners/marketplace",
-          "destination": "/docs/partners/paid-packs",
-          "type": 301
+        "source": "/docs/partners/marketplace",
+        "destination": "/docs/partners/paid-packs",
+        "type": 301
       },
       {
-          "source": "/docs/integrations/doc-structure",
-          "destination": "/docs/integrations/integration-docs",
-          "type": 301
+        "source": "/docs/integrations/doc-structure",
+        "destination": "/docs/integrations/integration-docs",
+        "type": 301
       },
       {
-          "source": "/docs/integrations/context-standards",
-          "destination": "/docs/integrations/context-standards-about",
-          "type": 301
+        "source": "/docs/integrations/context-standards",
+        "destination": "/docs/integrations/context-standards-about",
+        "type": 301
       },
       {
-          "source": "/docs/integrations/getting-started-guide",
-          "destination": "/docs/concepts/getting-started-guide",
-          "type": 301
+        "source": "/docs/integrations/getting-started-guide",
+        "destination": "/docs/concepts/getting-started-guide",
+        "type": 301
       },
       {
-          "source": "/docs/integrations/dev-setup",
-          "destination": "/docs/concepts/dev-setup",
-          "type": 301
+        "source": "/docs/integrations/dev-setup",
+        "destination": "/docs/concepts/dev-setup",
+        "type": 301
       },
       {
-          "source": "/docs/integrations/xsoar-ide",
-          "destination": "/docs/concepts/xsoar-ide",
-          "type": 301
+        "source": "/docs/integrations/xsoar-ide",
+        "destination": "/docs/concepts/xsoar-ide",
+        "type": 301
       },
       {
-          "source": "/docs/integrations/pycharm-plugin",
-          "destination": "/docs/concepts/pycharm-plugin",
-          "type": 301
+        "source": "/docs/integrations/pycharm-plugin",
+        "destination": "/docs/concepts/pycharm-plugin",
+        "type": 301
       },
       {
-          "source": "/docs/integrations/release-notes",
-          "destination": "/docs/documentation/release-notes",
-          "type": 301
+        "source": "/docs/integrations/release-notes",
+        "destination": "/docs/documentation/release-notes",
+        "type": 301
       },
       {
-          "source": "/docs/integrations/pack-docs",
-          "destination": "/docs/documentation/pack-docs",
-          "type": 301
+        "source": "/docs/integrations/pack-docs",
+        "destination": "/docs/documentation/pack-docs",
+        "type": 301
       },
       {
-          "source": "/docs/integrations/integration-docs",
-          "destination": "/docs/documentation/readme_file",
-          "type": 301
+        "source": "/docs/integrations/integration-docs",
+        "destination": "/docs/documentation/readme_file",
+        "type": 301
       },
       {
-          "source": "/docs/integrations/integration-description",
-          "destination": "/docs/documentation/integration-description",
-          "type": 301
+        "source": "/docs/integrations/integration-description",
+        "destination": "/docs/documentation/integration-description",
+        "type": 301
       },
       {
-          "source": "/docs/integrations/packs-format",
-          "destination": "/docs/packs/packs-format",
-          "type": 301
+        "source": "/docs/integrations/packs-format",
+        "destination": "/docs/packs/packs-format",
+        "type": 301
       },
       {
-          "source": "/docs/integrations/premium_packs",
-          "destination": "/docs/packs/premium_packs",
-          "type": 301
+        "source": "/docs/integrations/premium_packs",
+        "destination": "/docs/packs/premium_packs",
+        "type": 301
       },
       {
-          "source": "/docs/concepts/dev-requirements",
-          "destination": "/docs/contributing/dev-requirements",
-          "type": 301
+        "source": "/docs/concepts/dev-requirements",
+        "destination": "/docs/contributing/dev-requirements",
+        "type": 301
       },
       {
-          "source": "/request-private-offer",
-          "destination": "https://docs.google.com/forms/d/e/1FAIpQLScxTnY_RZQAFpJWurqOQzTJDaq5KcrGVKvfJUffo3i8QD89pw/viewform",
-          "type": 301
+        "source": "/request-private-offer",
+        "destination": "https://docs.google.com/forms/d/e/1FAIpQLScxTnY_RZQAFpJWurqOQzTJDaq5KcrGVKvfJUffo3i8QD89pw/viewform",
+        "type": 301
       },
       {
-          "source": "/private-offer-learn-more",
-          "destination": "https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-5/cortex-xsoar-admin/marketplace/cortex-xsoar-marketplace-private-offer.html",
-          "type": 301
+        "source": "/private-offer-learn-more",
+        "destination": "https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-5/cortex-xsoar-admin/marketplace/cortex-xsoar-marketplace-private-offer.html",
+        "type": 301
+      },
+      {
+        "source": "/marketplace",
+        "destination": "https://cortex.marketplace.pan.dev/marketplace",
+        "type": 301
       }
     ]
   }

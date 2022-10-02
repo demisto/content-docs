@@ -118,23 +118,23 @@ def test_findfiles():
 @pytest.mark.parametrize(
     'integration_yml_path_and_expected_content_info', [
         (
-            'deprecated-integration',
-            {
-                'deprecated': True,
-                'description': 'Deprecated. Use the Generic Export Indicators Service integration instead. '
-                               'Use the Export Indicators Service integration to provide an endpoint '
-                               'with a list of indicators as a service for the system indicators.',
-                'fromversion': '6.0.0'
-            },
-            ':::caution Deprecated\nUse the Generic Export Indicators Service integration instead.\n:::\n\n'
+                'deprecated-integration',
+                {
+                    'deprecated': True,
+                    'description': 'Deprecated. Use the Generic Export Indicators Service integration instead. '
+                                   'Use the Export Indicators Service integration to provide an endpoint '
+                                   'with a list of indicators as a service for the system indicators.',
+                    'fromversion': '6.0.0'
+                },
+                ':::caution Deprecated\nUse the Generic Export Indicators Service integration instead.\n:::\n\n'
         ),
         (
-            '6-0-0-integration',
-            {
-                'fromversion': '6.0.0',
-                'description': 'Manage Alibaba Cloud Elastic Compute Instances'
-            },
-            ':::info Supported versions\nSupported Cortex XSOAR versions: 6.0.0 and later.\n:::\n\n'
+                '6-0-0-integration',
+                {
+                    'fromversion': '6.0.0',
+                    'description': 'Manage Alibaba Cloud Elastic Compute Instances'
+                },
+                ':::info Supported versions\nSupported Cortex XSOAR versions: 6.0.0 and later.\n:::\n\n'
         )
     ],
     indirect=True
@@ -440,19 +440,19 @@ def test_get_extracted_deprecated_note():
 
 @pytest.mark.parametrize("test_input, expected, metadata_name", [
     ('Packs/TestPack/Integrations/TestIntegration/README.md',
-     '#### This Integration is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n',
+     '#### This Integration is part of the **[TestPack](https://cortex.marketplace.pan.dev/marketplace/details/TestPack)** Pack.\n\n',
      'TestPack'),
     ('tmp_path/Packs/TestPack/Playbooks/TestIntegration/README.md',
-     '#### This Playbook is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n',
+     '#### This Playbook is part of the **[TestPack](https://cortex.marketplace.pan.dev/marketplace/details/TestPack)** Pack.\n\n',
      'TestPack'),
     ('content/Packs/TestPack/Scripts/TestIntegration/README.md',
-     '#### This Script is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n',
+     '#### This Script is part of the **[TestPack](https://cortex.marketplace.pan.dev/marketplace/details/TestPack)** Pack.\n\n',
      'TestPack'),
     ('Packs/Test-Pack/Scripts/TestIntegration/README.md',
-     '#### This Script is part of the **[Test - Pack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n',
+     '#### This Script is part of the **[Test - Pack](https://cortex.marketplace.pan.dev/marketplace/details/TestPack)** Pack.\n\n',
      'Test - Pack'),
     ('Packs/Test_Pack/Scripts/TestIntegration/README.md',
-     '#### This Script is part of the **[Test Pack](https://xsoar.pan.dev/marketplace/details/Test_Pack)** Pack.\n\n',
+     '#### This Script is part of the **[Test Pack](https://cortex.marketplace.pan.dev/marketplace/details/Test_Pack)** Pack.\n\n',
      'Test Pack')
 ])
 def test_get_pack_link(test_input, expected, metadata_name, mocker):
@@ -476,19 +476,19 @@ def error_raising_func(pack_dir, xsoar_marketplace):
 
 @pytest.mark.parametrize("test_input, expected", [
     ('Packs/TestPack/Integrations/TestIntegration/README.md',
-     '#### This Integration is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'
+     '#### This Integration is part of the **[TestPack](https://cortex.marketplace.pan.dev/marketplace/details/TestPack)** Pack.\n\n'
      ),
     ('tmp_path/Packs/TestPack/Playbooks/TestIntegration/README.md',
-     '#### This Playbook is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'
+     '#### This Playbook is part of the **[TestPack](https://cortex.marketplace.pan.dev/marketplace/details/TestPack)** Pack.\n\n'
      ),
     ('content/Packs/TestPack/Scripts/TestIntegration/README.md',
-     '#### This Script is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'
+     '#### This Script is part of the **[TestPack](https://cortex.marketplace.pan.dev/marketplace/details/TestPack)** Pack.\n\n'
      ),
     ('Packs/Test-Pack/Scripts/TestIntegration/README.md',
-     '#### This Script is part of the **[Test - Pack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'
+     '#### This Script is part of the **[Test - Pack](https://cortex.marketplace.pan.dev/marketplace/details/TestPack)** Pack.\n\n'
      ),
     ('Packs/Test_Pack/Scripts/TestIntegration/README.md',
-     '#### This Script is part of the **[Test Pack](https://xsoar.pan.dev/marketplace/details/Test_Pack)** Pack.\n\n'
+     '#### This Script is part of the **[Test Pack](https://cortex.marketplace.pan.dev/marketplace/details/Test_Pack)** Pack.\n\n'
      )
 ])
 def test_get_pack_link_no_metadata(mocker, test_input, expected):
