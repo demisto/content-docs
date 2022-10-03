@@ -502,7 +502,7 @@
       },
       {
         "source": "/private-offer-learn-more",
-        "destination": "https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-5/cortex-xsoar-admin/marketplace/cortex-xsoar-marketplace-private-offer.html",
+        "destination": "https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-5/cortex-xsoar-admin/marketplace/cortex-xsoar-marketplace-private-offe.html",
         "type": 301
       },
       {
