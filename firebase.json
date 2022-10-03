@@ -506,8 +506,8 @@
         "type": 301
       },
       {
-        "source": "/marketplace",
-        "destination": "https://cortex.marketplace.pan.dev/marketplace",
+        "source": "/:marketplace*",
+        "destination": "https://cortex.marketplace.pan.dev/:marketplace",
         "type": 301
       }
     ]
