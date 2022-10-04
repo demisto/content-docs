@@ -506,8 +506,13 @@
         "type": 301
       },
       {
-        "source": "/marketplace",
-        "destination": "https://cortex.marketplace.pan.dev/marketplace",
+        "source": "/marketplace/details/:pack",
+        "destination": "https://cortex.marketplace.pan.dev/marketplace/details/:pack",
+        "type": 301
+      },
+      {
+        "source": "/marketplace/contributors",
+        "destination": "https://cortex.marketplace.pan.dev/marketplace/contributors",
         "type": 301
       }
     ]
