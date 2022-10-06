@@ -109,7 +109,9 @@ jobs:
             pipenv install
       - run:
           name: Setup Firebase
-          command: curl -sL https://firebase.tools | bash
+          command: |
+            curl -sL https://firebase.tools | bash
+            echo firebase --version
       - run:
           name: Deploy to Firebase
           no_output_timeout: 30m
