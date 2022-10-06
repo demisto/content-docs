@@ -45,12 +45,7 @@ jobs:
             nvm use
             node --version
             npm --version
-            npm ci
-      - run:
-          name: NPM Build content-repo docs
-          command: |
-            nvm use
-            npm run reference-docs
+            npm install
       - run:
           name: NPM Build
           no_output_timeout: 80m
@@ -129,7 +124,7 @@ jobs:
             else
               # Get the PR number from the CIRCLE_PULL_REQUEST env variable which is in the form of:
               # https://github.com/demisto/content-docs/pull/335
-              firebase hosting:channel:deploy:log "pull-request-${CIRCLE_PULL_REQUEST##*/}" > deploy-info-firebase.txt
+              firebase hosting:channel:deploy:log "pull-request-${CIRCLE_PULL_REQUEST##*/}" --only xsoar.pan.dev > deploy-info-firebase.txt
               cat deploy-info-firebase.txt
             fi
 
