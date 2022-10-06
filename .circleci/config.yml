@@ -3,8 +3,6 @@
 ### https://circleci.com/docs/config-sample
 ### =============================================================
 version: 2.1
-orbs:
-  node: circleci/node@18.10.0
 jobs:
   build:
     machine:
