@@ -90,7 +90,7 @@ A good description will be: `True if the version of the element exists.`
 
 ## Cortex XSOAR and Cortex XSIAM Formatting
 
-When writing `Description.md`, `README.md` and even release notes files like `1_1_1.md`, some text may be relevant to only a specific product like Cortex XSOAR, but no to others, such as Cortex XSIAM or vice versa. For example, in ServiceNow v2 documentation, mirroring is supported in Cortex XSOAR but not in Cortex XSIAM.
+When writing `Description.md`, `README.md` and even release notes files like `1_1_1.md`, some text may be relevant to a specific product like Cortex XSOAR, but no to others, such as Cortex XSIAM or vice versa. For example, in ServiceNow v2 documentation, mirroring is supported in Cortex XSOAR but not in Cortex XSIAM.
 
 Rather than creating separate documents, you can add the following format to the release notes, `Description.md` or `README.md` documents:
 
