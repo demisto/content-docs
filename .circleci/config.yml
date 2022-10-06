@@ -109,12 +109,10 @@ jobs:
             pipenv install
       - run:
           name: Setup Firebase
-          command: |
-            curl -Lo ./firebase_bin https://firebase.tools/bin/linux/v7.2.2
-            echo firebase --version
+          command: curl -sL https://firebase.tools | bash
       - run:
           name: Deploy to Firebase
-          no_output_timeout: 30m
+          no_output_timeout: 300m
           command: |
             echo $FIREBASE_JSON_KEY > "$HOME"/gcloud.json
             export PATH="$PATH:`pwd`/node_modules/.bin"
