@@ -107,7 +107,7 @@ In this example, we only want to show Cortex XSOAR text:
 <~XSOAR>XSOAR</~XSOAR><~XSIAM>XSIAM</~XSIAM> is the best.
 ```
 
-When the pack is deplyed in the the XSOAR marketplace the output will show the following:
+When the pack is deployed in the the XSOAR marketplace the generated file will only have the following:
 
 ```
 Some XSOAR text
