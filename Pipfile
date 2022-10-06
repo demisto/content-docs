@@ -27,4 +27,4 @@ google-api-python-client = "*"
 google-cloud-storage = "*"
 
 [requires]
-python_version = "3.9"
+python_version = "3.10.7"
