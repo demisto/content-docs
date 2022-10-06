@@ -88,7 +88,7 @@ jobs:
 
   deploy:
     docker:
-      - image: cimg/python:3.9.1-node
+      - image: circleci/python:3.9.1-buster-node
     resource_class: small
     parameters:
       post_comment:
@@ -110,8 +110,7 @@ jobs:
       - run:
           name: Setup Firebase
           command: |
-            npm version
-            sudo npm install -g firebase-tools@11.13.0
+            curl -Lo ./firebase_bin https://firebase.tools/bin/linux/v11.13.0
             firebase --version
       - run:
           name: Deploy to Firebase
