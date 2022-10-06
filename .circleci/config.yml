@@ -110,6 +110,8 @@ jobs:
       - run:
           name: Setup Firebase
           command: |
+            curl https://raw.github.com/creationix/nvm/master/install.sh | sh
+            source ~/.nvm/nvm.sh
             nvm install node
             nvm use node
             npm version
