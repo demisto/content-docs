@@ -3,6 +3,8 @@
 ### https://circleci.com/docs/config-sample
 ### =============================================================
 version: 2.1
+orbs:
+  node: circleci/node@18.10.0
 jobs:
   build:
     machine:
@@ -88,7 +90,7 @@ jobs:
 
   deploy:
     docker:
-      - image: circleci/python:3.9.1-buster-node
+      - image: circleci/python:3.10.7-buster-node
     resource_class: small
     parameters:
       post_comment:
@@ -110,11 +112,6 @@ jobs:
       - run:
           name: Setup Firebase
           command: |
-            curl https://raw.github.com/creationix/nvm/master/install.sh | sh
-            ls
-            source ~/nvm.sh
-            nvm install node
-            nvm use node
             npm version
             npm install -g firebase-tools@11.13.0
             firebase --version
