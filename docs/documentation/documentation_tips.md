@@ -90,28 +90,35 @@ A good description will be: `True if the version of the element exists.`
 
 ## Cortex XSOAR and Cortex XSIAM Formatting
 
-When writing `Description.md` and `ReadMe.md` files some text may be relevant for Cortex XSOAR and not Cortex XSIAM and vice versa. For example, in ServiceNow v2 documentation, mirroring is supported in Cortex XSOAR but not in Cortex XSIAM.
+When writing `Description.md`, `README.md` and even release notes files like `1_1_1.md`, some text may be relevant to only a specific product like Cortex XSOAR, but no to others, such as Cortex XSIAM or vice versa. For example, in ServiceNow v2 documentation, mirroring is supported in Cortex XSOAR but not in Cortex XSIAM.
 
-Rather than creating separate documents, you can add the following format to the `Description` and `ReadMe` documents:
+Rather than creating separate documents, you can add the following format to the release notes, `Description.md` or `README.md` documents:
 
 | Format | Description |
 | -------| -----------|
 | `<~XSOAR>`Text`</~XSOAR>` | Applies to Cortex XSOAR only. |
-| `</~XSIAM>`Text`</~XSIAM>` | Applies to Cortex XSIAM only.
+| `<~XSIAM>`Text`</~XSIAM>` | Applies to Cortex XSIAM only.
 
 In this example, we only want to show Cortex XSOAR text:
 
-`<~XSOAR>Some XSOAR text</~XSOAR>`
-`<~XSIAM> Some XSIAM text</~XSIAM>`
-`<~XSOAR>XSOAR</~XSOAR><~XSIAM>XSIAM</~XSIAM> is the best.`
+```
+<~XSOAR>Some XSOAR text</~XSOAR>
+<~XSIAM>Some XSIAM text</~XSIAM>
+<~XSOAR>XSOAR</~XSOAR><~XSIAM>XSIAM</~XSIAM> is the best.
+```
 
-After the `demisto.sdk` runs, the output shows the following:
+When the pack is deplyed in the the XSOAR marketplace the output will show the following:
 
-` Some XSOAR text`
-`XSOAR is the best.`
+```
+Some XSOAR text
+XSOAR is the best.
+```
 
-
-![image](../doc_imgs/reference/XSOAR-format.png)
+And in the XSIAM marketplace like this:
+```
+Some XSIAM text
+XSIAM is the best.
+```
  
  
  
