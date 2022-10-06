@@ -124,7 +124,7 @@ jobs:
             else
               # Get the PR number from the CIRCLE_PULL_REQUEST env variable which is in the form of:
               # https://github.com/demisto/content-docs/pull/335
-              firebase deploy:log "pull-request-${CIRCLE_PULL_REQUEST##*/}" --only xsoar.pan.dev > deploy-info-firebase.txt
+              firebase deploy:log "pull-request-${CIRCLE_PULL_REQUEST##*/}" --debug --only xsoar.pan.dev > deploy-info-firebase.txt
               cat deploy-info-firebase.txt
             fi
 
