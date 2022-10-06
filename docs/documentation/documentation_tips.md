@@ -111,7 +111,7 @@ After the `demisto.sdk` runs, the output shows the following:
 `XSOAR is the best.`
 
 
-![image](/doc_imgs/reference/XSOAR-format.png)
+![image](../doc_imgs/reference/XSOAR-format.png)
  
  
  
