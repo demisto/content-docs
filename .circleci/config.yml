@@ -110,8 +110,7 @@ jobs:
       - run:
           name: Setup Firebase
           command: |
-            curl -sL https://firebase.tools | bash
-            curl -Lo ./firebase_bin https://firebase.tools/bin/linux/v11.13.0
+            npm i -g firebase-tools@11.0.0 -f
             firebase --version
       - run:
           name: Deploy to Firebase
