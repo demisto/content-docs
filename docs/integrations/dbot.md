@@ -3,7 +3,7 @@ id: dbot
 title: Reputation and DBotScore
 ---
 
-DBot is the Cortex XSOAR machine learning bot, which ingests information about indicators to determine if they are malicious. Since DBot requires a very specific dataset, you must format the data according to this article. As described in the [generic reputation command](./integrations/generic-commands-reputation#background-and-motivation) article, when developing an integration that implements a generic reputation command, it is necessary also to create a corresponding DBot score object.
+DBot is the Cortex XSOAR machine learning bot, which ingests information about indicators to determine if they are malicious. Since DBot requires a very specific dataset, you must format the data according to this article. As described in the [generic reputation command](./generic-commands-reputation#background-and-motivation) article, when developing an integration that implements a generic reputation command, it is necessary also to create a corresponding DBot score object.
 
 ## Context Format
 ```python
