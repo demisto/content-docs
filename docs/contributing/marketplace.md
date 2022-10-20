@@ -64,14 +64,15 @@ If you have already submitted your contribution and you would like to make chang
 
 1. Add or remove content items from the pack, as needed.
 
-1. Press **Save and Contribute** and complete the form as documented [above](#submit-a-content-pack).
- 
    **Note**: Changing the pack name or the email of the contributor at this stage will result in creating a pull request on GitHub, rather than updating the existing one.
    
-   **When resubmitting to an existing pack, make sure that the contribution's name is identical to the display name of the pack you are contributing to.**
-   You can change the contribution's name here:
-   ![](/doc_imgs/contributing/docs-contribution-name-text-box.png)
+   **When resubmitting to an existing pack, make sure the contribution name is the same as the display name of the pack you are contributing to.**
+   If not, please change the contribution name here:
    
+   ![](/doc_imgs/contributing/docs-contribution-name-text-box.png)
+
+1. Press **Save and Contribute** and complete the form as documented [above](#submit-a-content-pack).
+ 
    In the form you may include notes describing the essence of the update, or an updated demo video link, which will be displayed in a comment on the pull request after the changes are successfully pushed to GitHub.
 
 1. Once the changes are pushed to your branch, you will receive an notification via email.
