@@ -1,7 +1,7 @@
 name: Verify Site Links
 
 on:
-  push: {} #  uncommnet for testing
+  push: {} #  uncomment for testing
   schedule: # daily at 12 noon UTC
     - cron: '0 12 * * *'
 
@@ -28,13 +28,18 @@ jobs:
     - name: create ignore url files
       # The grep regex finds all URL's in integration README files in the section between ## Commands or <h2>Commands until the end of the file.
       # -R search recursively -P perl regex -o print only the match -z ignore new line -a process a binary file as if it were text
+      # we filter out the domains: pan.dev, paloaltonetworks.com
       run: |
-        grep -RPoz "(?s)## Commands.*\Z|<h2>Commands.*\Z" --include "README.md" content/Packs/*/Integrations | grep  -Poa "(http|https)://[a-zA-Z0-9./?=_%:-]*" | sort -u > all_urls_ignore.txt
+        grep -RPoz "(?s)## Commands.*\Z|<h2>Commands.*\Z" --include "README.md" content/Packs/*/Integrations \
+        | grep  -Poa "(http|https)://[a-zA-Z0-9./?=_%:-]*" \
+        | grep -v -i pan.dev \
+        | grep -v -i paloaltonetworks.com \
+        | sort -u > all_urls_ignore.txt
         sed -i -e 's/^/-e "/' all_urls_ignore.txt
         sed -i -e 's/$/"/' all_urls_ignore.txt
         cat content-docs/urls_ignore.txt >> all_urls_ignore.txt
         cat all_urls_ignore.txt
-    - name: Set up Go 1.13
+    - name: Set up Go 1.19
       uses: actions/setup-go@v2
       with:
         go-version: 1.19.2
@@ -42,12 +47,10 @@ jobs:
     - name: Setup muffet
       run: 'go install github.com/raviqqe/muffet/v2@latest'
     - name: Verify Links
+      # If there are false positives, add ignore urls to urls_ignore.txt file
       run: |
         muffet --version
-        muffet -v -c 16 --ignore-fragments -b 8192 \
-        -e 'https://.*-dsn.algolia.net' \
-        -e 'https?://(www\.)?example.*' \
-        -e 'https://xsoar-bd.atlassian.net/.*' \
+        muffet -v -c 16 --ignore-fragments -b 8192 \        
         `< all_urls_ignore.txt` \
         https://xsoar.pan.dev > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
         grep -v -E '^\s+(401|403|405|429|x509|lookup|parse|timeout|dial)' muffet.txt > muffet-clean.out
