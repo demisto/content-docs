@@ -44,3 +44,4 @@ static/assets/deprecated*.json
 /index
 index.zip
 index.json
+.github/workflows/muffet.txt
