@@ -10,21 +10,18 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - name: content checkout
-      uses: actions/checkout@v2.4.0  # https://github.com/marketplace/actions/checkout
+      uses: actions/checkout@v3  # https://github.com/marketplace/actions/checkout
       with:
         repository: demisto/content
         path: content
-        token: ${{ secrets.GITHUB_TOKEN }}
-        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}        
         ref: 'master'
     - name: content-docs checkout
-      uses: actions/checkout@v2.4.0  # https://github.com/marketplace/actions/checkout
+      uses: actions/checkout@v3  # https://github.com/marketplace/actions/checkout
       with:
         repository: demisto/content-docs
         path: content-docs
-        token: ${{ secrets.GITHUB_TOKEN }}
-        fetch-depth: 0
-        ref: 'master'
+        token: ${{ secrets.GITHUB_TOKEN }}        
     - name: create ignore url files
       # The grep regex finds all URL's in integration README files in the section between ## Commands or <h2>Commands until the end of the file.
       # -R search recursively -P perl regex -o print only the match -z ignore new line -a process a binary file as if it were text
