@@ -37,7 +37,7 @@ jobs:
         | sort -u > all_urls_ignore.txt
         sed -i -e 's/^/-e "/' all_urls_ignore.txt
         sed -i -e 's/$/"/' all_urls_ignore.txt
-        cat content-docs/urls_ignore.txt >> all_urls_ignore.txt
+        cat content-docs/.github/workflows/urls_ignore.txt >> all_urls_ignore.txt
         cat all_urls_ignore.txt
     - name: Set up Go 1.19
       uses: actions/setup-go@v2
@@ -47,7 +47,7 @@ jobs:
     - name: Setup muffet
       run: 'go install github.com/raviqqe/muffet/v2@latest'
     - name: Verify Links
-      # If there are false positives, add ignore urls to urls_ignore.txt file
+      # If there are false positives, add ignore urls to .github/workflows/urls_ignore.txt file
       run: |
         muffet --version
         muffet -v -c 16 --ignore-fragments -b 8192 \        
