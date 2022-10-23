@@ -47,8 +47,11 @@ jobs:
       # If there are false positives, add ignore urls to .github/workflows/urls_ignore.txt file
       run: |
         muffet --version
-        muffet -v -c 16 --ignore-fragments -b 8192 --skip-tls-verification --one-page-only \        
-        https://yahoo.com > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
+        echo "Running test curl..."
+        curl -v https://xsoar.pan.dev > /dev/null
+        echo "Running muffet link checking"
+        muffet -v -c 16 --ignore-fragments -b 8192 --skip-tls-verification \        
+        https://xsoar.pan.dev > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file..."
         grep -v -E '^\s+(401|403|405|429|x509|lookup|parse|timeout|dial)' muffet.txt > muffet-clean.out
         echo "Muffet output after 401, 403, 405, 429 and x509 remove:"
         cat muffet-clean.out
