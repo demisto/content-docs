@@ -28,7 +28,7 @@ jobs:
       # we filter out the domains: pan.dev, paloaltonetworks.com
       run: |
         grep -RPoz "(?s)## Commands.*\Z|<h2>Commands.*\Z" --include "README.md" content/Packs/*/Integrations \
-        | grep -i -Poa "(http|https)://[a-zA-Z0-9./?=_%:-]*" \
+        | grep -i -Poa "(http|https)://[a-zA-Z0-9_]+\.[a-zA-Z0-9./?=_%:-]+" \
         | grep -v -i pan.dev \
         | grep -v -i paloaltonetworks.com \
         | sort -u > all_urls_ignore.txt
@@ -48,19 +48,25 @@ jobs:
       run: |
         muffet --version
         echo "Running test curl..."
-        curl -v https://xsoar.pan.dev > /dev/null
+        curl -s -v https://xsoar.pan.dev > /dev/null
         echo "Running muffet link checking"
         (set -f; muffet -v -c 16 --ignore-fragments -b 8192 --skip-tls-verification \
-        `cat content-docs/.github/workflows/urls_ignore.txt` \
+        `cat all_urls_ignore.txt` \
         https://xsoar.pan.dev > muffet.txt 2>&1 && echo "muffet completed successfully" && exit 0 || echo "muffet failed but still need to verify output file...")
-        grep -v -E '^\s+(401|403|405|429|x509|lookup|parse|timeout|dial)' muffet.txt > muffet-clean.out
+        grep -v -E '^\s+(401|403|405|429|x509|200|lookup|parse|timeout|dial|body size exceeds)' muffet.txt | grep -B 1 -E '^\s+' > muffet-clean.out
         echo "Muffet output after 401, 403, 405, 429 and x509 remove:"
         cat muffet-clean.out
         if [ -n "$(grep -v '^https'  muffet-clean.out)" ]; then
           echo "muffet failed verification!!!"
           exit 1
         fi
-        echo "All good! muffet passed!!!"
+        valid_urls_count=`grep -E '^https://' muffet.txt | wc -l | awk '{print $1}'` 
+        echo "All good! muffet passed!!! Valid urls counts: $valid_urls_count"
+
+        if [[ "$valid_urls_count" -lt 2500 ]]; then
+          echo "Valid urls processed is too low: [$valid_urls_count]. Failing build..."
+          exit 1
+        fi
     - name: Save artifcats
       if: ${{ always() }}
       uses: actions/upload-artifact@v3
