@@ -57,7 +57,7 @@ jobs:
         echo "Muffet output after 401, 403, 405, 429 and x509 remove:"
         cat muffet-clean.out
         if [ -n "$(grep -v '^https'  muffet-clean.out)" ]; then
-          bad_urls_count=`grep -E '^\s+\d+' muffet-clean.out | wc -l | awk '{print $1}'` 
+          bad_urls_count=`grep -E '^\s.*\s+http' muffet-clean.out | wc -l | awk '{print $1}'` 
           echo "muffet failed verification!!! Bad urls count: $bad_urls_count"
           exit 1
         fi

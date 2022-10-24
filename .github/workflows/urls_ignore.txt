@@ -69,3 +69,7 @@
 -e https?://.*xyz\.com.*
 -e https://.*circle-artifacts.com.*
 -e https?://*.acme.*
+-e https?://jqplay.org.*
+-e https://cortex.marketplace.pan.dev/marketplace/details/.*Permium
+-e https://xsoar.pan.dev/docs/reference/releases/.*
+-e https?://.*malc0de.com.*
