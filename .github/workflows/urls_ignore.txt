@@ -70,6 +70,6 @@
 -e https://.*circle-artifacts.com.*
 -e https?://*.acme.*
 -e https?://jqplay.org.*
--e https://cortex.marketplace.pan.dev/marketplace/details/.*Permium
+-e https://cortex.marketplace.pan.dev/marketplace/details/.*Premium
 -e https://xsoar.pan.dev/docs/reference/releases/.*
 -e https?://.*malc0de.com.*
