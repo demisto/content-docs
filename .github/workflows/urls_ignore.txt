@@ -66,3 +66,6 @@
 -e https://.*-dsn.algolia.net
 -e https?://(www\.)?example.*
 -e https://xsoar-bd.atlassian.net/.*
+-e https?://.*xyz\.com.*
+-e https://.*circle-artifacts.com.*
+-e https?://*.acme.*
