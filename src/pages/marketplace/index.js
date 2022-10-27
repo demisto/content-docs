@@ -3,14 +3,14 @@ import React, { useEffect } from "react";
 
 function Marketplace() {
   const location = useLocation();
-  location.search != 'contributors'
-    ? const newLocation = location.search
-      ? `https://cortex.marketplace.pan.dev/marketplace/${location.search}`
-      : "https://cortex.marketplace.pan.dev/marketplace";
-    : const newLocation 'https://cortex.marketplace.pan.dev/marketplace/contributors'
+  const newLocation = location.search
+    ? `https://cortex.marketplace.pan.dev/marketplace/${location.search}`
+    : "https://cortex.marketplace.pan.dev/marketplace";
 
   useEffect(() => {
-    window.location.href = newLocation;
+    if (! newLocation.endsWith('marketplace/contributors')) {
+        window.location.href = newLocation;
+    }
   }, []);
 
   return (
