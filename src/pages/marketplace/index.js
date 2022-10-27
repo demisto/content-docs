@@ -1,6 +1,7 @@
 import { useLocation } from "@docusaurus/router";
 import React, { useEffect } from "react";
 
+
 function Marketplace() {
   const location = useLocation();
   const newLocation = location.search
