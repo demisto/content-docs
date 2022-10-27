@@ -512,7 +512,7 @@
       },
       {
         "source": "/marketplace/contributors",
-        "destination": "https://cortex.marketplace.pan.dev/marketplace/contributors",
+        "destination": "/marketplace/contributors",
         "type": 301
       }
     ]

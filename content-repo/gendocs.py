@@ -36,7 +36,7 @@ def timestamped_print(*args, **kwargs):
 print = timestamped_print
 
 BASE_URL = "https://xsoar.pan.dev/docs/"
-MARKETPLACE_URL = "https://xsoar.pan.dev/marketplace/"
+MARKETPLACE_URL = "https://cortex.marketplace.pan.dev/marketplace/"
 DOCS_LINKS_JSON = {}
 
 INTEGRATION_YML_MATCH = [
