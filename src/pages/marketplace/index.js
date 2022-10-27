@@ -8,7 +8,9 @@ function Marketplace() {
     : "https://cortex.marketplace.pan.dev/marketplace";
 
   useEffect(() => {
-    window.location.href = newLocation;
+    if (! newLocation.endsWith('marketplace/contributors')) {
+        window.location.href = newLocation;
+    }
   }, []);
 
   return (
