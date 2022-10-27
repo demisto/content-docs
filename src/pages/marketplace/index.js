@@ -3,9 +3,11 @@ import React, { useEffect } from "react";
 
 function Marketplace() {
   const location = useLocation();
-  const newLocation = location.search
-    ? `https://cortex.marketplace.pan.dev/marketplace/${location.search}`
-    : "https://cortex.marketplace.pan.dev/marketplace";
+  location.search != 'contributors'
+    ? const newLocation = location.search
+      ? `https://cortex.marketplace.pan.dev/marketplace/${location.search}`
+      : "https://cortex.marketplace.pan.dev/marketplace";
+    : const newLocation 'https://cortex.marketplace.pan.dev/marketplace/contributors'
 
   useEffect(() => {
     window.location.href = newLocation;
