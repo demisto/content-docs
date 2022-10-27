@@ -9,7 +9,7 @@ function Marketplace() {
     : "https://cortex.marketplace.pan.dev/marketplace";
 
   useEffect(() => {
-    if (! newLocation.endsWith('marketplace/contributors')) {
+    if (! (location.search.endsWith('contributors'))) {
         window.location.href = newLocation;
     }
   }, []);
