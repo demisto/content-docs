@@ -259,5 +259,3 @@ Currently, the pack does not support the following features:
     Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-Pull-Request.mp4
 </video>
 
-
-https://github.com/demisto/content-assets/blob/master/Assets/ContentManagement/CICD-Pull-Request.mp4
