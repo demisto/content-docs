@@ -417,7 +417,7 @@ def main():
 
 
 ## Unit Tests
-Every integration must have unit tests.
+Every integration command must be covered with a unit test. Unit tests should be documented using Given-When-Then. 
 
 - Unit tests must be in a separate file, which should have the same name as the integration but be appended with `_test.py` for example `HelloWorld_test.py`
 - To mock http requests use [requests_mock](https://requests-mock.readthedocs.io/en/latest/).
@@ -429,6 +429,15 @@ from HelloWorld import Client, say_hello_command, say_hello_over_http_command
 
 
 def test_say_hello():
+    """
+    Given
+            A name to say hello to
+    When
+            Calling say_hello_command
+    Then
+            Make sure the outputs, outputs_prefix and outputs_key_field values are as expected.
+    """
+    
     client = Client(
         base_url="https://test.com", 
         verify=False, 
@@ -449,6 +458,15 @@ def test_say_hello():
 
 
 def test_say_hello_over_http(requests_mock):
+    """
+    Given
+            A name to say hello to
+    When
+            Calling say_hello_over_http_command
+    Then
+            Make sure the outputs, outputs_prefix and outputs_key_field values are as expected.
+    """
+    
     mock_response = {"result": "Hello DBot"}
     requests_mock.get("https://test.com/api/v1/suffix/hello/Dbot", json=mock_response)
 
@@ -472,13 +490,7 @@ def test_say_hello_over_http(requests_mock):
 ```
 
 ## Variable Naming
-When naming variables use the following convention.
-
-### Do this:
-```variable_name```
-
-### Do not do this:
-```variableName```
+When naming variables, use `[snake_case]([url](https://en.wikipedia.org/wiki/Snake_case))`, not `PascalCase` or `camelCase`.
 
 ## Outputs
 Make sure you read and understand [Context and Outputs](context-and-outputs).
