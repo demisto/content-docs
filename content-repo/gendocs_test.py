@@ -360,10 +360,10 @@ def test_insert_approved_tags_and_usecases(tmp_path):
     }))
     approved_tags = content_repo_dir / 'approved_tags.json'
     approved_tags.write_text(json.dumps({
-        'approved_list': [
-            'IoT',
-            'Machine Learning'
-        ]
+        'approved_list': {'common': ['IoT','Machine Learning'],
+        'xsoar': [],
+        'marketplacev2': []
+        }
     }))
     os.chdir(str(content_repo_dir))
     insert_approved_tags_and_usecases()
