@@ -157,7 +157,7 @@ An explanation of these fields is as follows:
 | --- | --- | ---|
 | **contextPath** | The dot notation representation of the context. | `Product.Entity.EntityDetails` |
 | **description** | Description of the context item. | |
-| **type** | The type which the context item will be formatted. | Unknown, String, Number, Date, Boolean |
+| **type** | The type which the context item will be formatted. | Available options are: Unknown, String, Number, Date, Boolean. |
 
 ## Version and Tests
 The last section of the YAML file provides Cortex XSOAR with information regarding what version is supported and tests. See the example below:
