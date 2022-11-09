@@ -212,7 +212,7 @@ Marking a version as a **breaking changes version** provides the user with an al
 ![image](/doc_imgs/integrations/bc_alert_example.png)
 
 
-#### Idicate a new version is a breaking changes version
+#### Indicate a new version is a breaking changes version
 To specify the new introduced version as **breaking changes**, run the demisto-sdk ***update-release-notes*** command with the -bc flag. For example:
 
 ```
