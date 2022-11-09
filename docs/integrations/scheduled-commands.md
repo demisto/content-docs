@@ -25,6 +25,8 @@ For an example, see the [Autofocus V2](https://github.com/demisto/content/blob/m
 The `polling_function` decorator can be used to save much of the boilerplate code you would otherwise need to implement yourself to write a polling function.
 
 All functions implementing this decorator must always return a PollResult object.
+
+Note: **args must be the first parameter in the function definition and call.**
 #### Code Example
 In the example below, we are polling against the `client.call_api` function. 
 
@@ -33,7 +35,7 @@ If the api has a successful response, we return our results wrapped in a PollRes
 Otherwise, we return whether to `continue_to_poll` according to the results of the `should_not_keep_polling` function. (Note, either a boolean or a predicate can be passed to continue_to_poll)
 ```python
 @polling_function('cs-falcon-sandbox-result')
-def some_polling_command(client: Client, args: Dict[str, Any]):
+def some_polling_command(args: Dict[str, Any], client: Client):
     key = get_api_id(args)
     api_response = client.call_api()
     successful_response = api_response.status_code == 200
