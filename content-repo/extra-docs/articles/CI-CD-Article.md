@@ -494,6 +494,54 @@ Although you do not have the flexibility of version control and rollback, it is 
 </video>
 
 
+## Manage a Pull Request
+
+In order to use this option in Cortex XSOAR platform, please download the *XSOAR CI/CD* Content Pack from the marketplace.
+
+In the pull request management there are 2 options: 
+1. Pull request creation.
+2. Pull request update.
+
+The platform supports GitHub, GitLab and Bitbucket.
+The default git code management is GitHub. If you wish to change that, open the playbooks tab, search for the playbook: "Pull Request Creation - Generic", and choose it.
+Now, click on the task that titled "Playbook Triggered", in the beginning of the playbook, and update the value of the GitIntegration field to github, gitlab or bitbucket (in lower case letters) and save it.
+
+The default main branch (The branch that the pull request will be merged into) in the playbook is master. In order to change that open the playbook "Pull Request Creation - Generic", click on the task that titled "Playbook Triggered", update the value of the MainBranch field accordingly and save it. 
+
+If you want to get a message to your slack or teams, open the playbook "Pull Request Creation - Generic" like in the explanation above, click on the task that titled "Playbook Triggered", update the value of the ChannelName field to the wanted channel and save it.
+
+### Pull Request Creation
+In order to create a new pull request in your repository follow the next steps:
+1. In Cortex XSOAR platform, go to Incidents.
+2. Click The *New Incident* button, and a new window will open.
+3. In the new window fill in the following fields:
+    - The name of the incident.
+    - The type of the incident: Pull Request Creation.
+    - The playbook: Pull Request Creation - Generic.
+    - In the CI/CD Pull Request Attachment field, attach the files to add to the new pull request.
+    - (Optional) - In the CI/CD Branch field, write the name of the new branch for the pull request. The name of the branch should be a new one, that wasn't in use before. If you don't fill this field, a new name will be generated automatically during the run of the playbook.
+    - (Optional) - In the field CI/CD Pull Request Reviewer, add a reviewer information. 
+      - If you are using GitHub, write the username of the reviewer. 
+      - If Bitbucket, write the account id of the reviewer (use the command !bitbucket-workspace-member-list to retrieve the relevant account id).
+      - If GitLab, enter a username *or* user id.
+    - (Optional) - In the field CI/CD Pull Request Comment, write a comment to the pull request description.
+4. Click the *Create New Incident* button to create the pull request.
+5. If a channel is configured, as written above, in the end of the process a message will be sent with the new pull request details in the configured channel. 
+
+### Pull Request Update
+In order to update an exiting pull requestin your repository follow the next steps:
+1. In Cortex XSOAR platform, go to Incidents.
+2. Click The *New Incident* button, and a new window will open.
+3. In the new window fill in the following fields:
+    - The name of the incident.
+    - The type of the incident: Pull Request Update.
+    - The playbook: Pull Request Creation - Generic.
+    - In the CI/CD Pull Request Attachment field, attach the files to add or update in the pull request.
+    - Choose the pull request source branch from the list in CI/CD Pull Request Branch field, *or* write the name of the source branch in CI/CD Branch field. If a name was not given, a new branch name will be generated automatically and a *new* pull request will be created.
+4. Click the *Create New Incident* button to update the pull request.
+5. If a channel is configured, as written above, in the end of the process a message will be sent with the updated pull request details in the configured channel.
+
+
 ### CI/CD FAQs
 
 1. **We use Dev/Prod.  Do I still need this feature?  What is the difference?**
