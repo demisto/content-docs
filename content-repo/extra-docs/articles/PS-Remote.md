@@ -132,6 +132,7 @@ If the test fails, an error message will describe at which point an error occurr
 - [Name Resolution Troubleshooting](#name-resolution-troubleshooting)
 - [Network Connectivity Troubleshooting](#network-connectivity-troubleshooting)
 - [Authentication Troubleshooting](#authentication-troubleshooting)
+- [Incidents Injestions Delays](#incidents-injestions-delays)
 
 ### Host Troubleshooting
 A common issues with regards to working with WinRM is that the network connectivity is not properly configured. 
@@ -179,6 +180,9 @@ If you receive the following error in the integration test, check the provided u
 
 If you are using Basic Authentication, make sure to provide a local user and not a domain user.
 Another issue could be related to the Powershell remoting settings. Review the [Host Troubleshooting](#host-troubleshooting) section above accordingly.
+
+### Incidents Injestions Delays
+You might come across cases where your incidents are pulled into XSOAR with some delay, in such cases we recommend checking that the given username does not include the domain in it, this should solve the delay problems.
 
 ## WinRM Useful Commands
 The following provides a list of useful WinRM commands.
