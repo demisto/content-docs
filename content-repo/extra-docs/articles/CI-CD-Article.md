@@ -206,7 +206,7 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
 
 ## Testing/Staging
 
-In testing/staging proceess, you can do the following:
+In testing/staging process, you can do the following:
 
 - Utilize 3rd party CI/CD Solutions, such as CircleCI, Jenkins, etc.
 - Run validations and automated tests from a testing server as part of a build process.
@@ -470,7 +470,7 @@ Although you do not have the flexibility of version control and rollback, it is 
 7. **(Artifact Server) Add the content to Cortex XSOAR.**
    You can either use the [XSOAR CI/CD Content Pack](https://xsoar.pan.dev/docs/reference/packs/content-management) or download content manually. If using Google Cloud Services, download the [Google Cloud Storage Content Pack](https://xsoar.pan.dev/docs/reference/integrations/google-cloud-storage) and set up the integration instance. If using another storage application you need to download the appropriate Content Pack such as AWS. 
    - Download the [XSOAR CI/CD Content Pack](https://xsoar.pan.dev/docs/reference/packs/content-management).
-   The Content Pack includes the Configuration Setup playbook, the configuration setup layout, incident fields,  automations, etc. The playbook can run via a job or manually. The playbook fetches the configuration file and loads the contents to the machine. It downloads, and installs the custom content packs and configures lists and jobs if part of the content packs.
+   The Content Pack includes the Configuration Setup playbook, the configuration setup layout, incident fields, automations, etc. The playbook can run via a job or manually. The playbook fetches the configuration file and loads the contents to the machine. It downloads, and installs the custom content packs and configures lists and jobs if part of the content packs.
    The XSOAR CI/CD Content Pack uses either Google Cloud Storage or HTTP requests to fetch the content packs. If running a different storage provider, you need to download the integration (such as AWS - S3). You need to either create or duplicate the **Configuration Setup** incident field and add the provider (such as AWS) as the source. You also need to update the **Configuration Set_up** playbook by adding a task at the same level as Google Cloud Storage.
  
    ![cicd_playbook.png](../../../docs/doc_imgs/reference/XSOAR-CICD/cicd_playbook.png)
@@ -496,50 +496,62 @@ Although you do not have the flexibility of version control and rollback, it is 
 
 ## Manage a Pull Request
 
-In order to use this option in Cortex XSOAR platform, please download the *XSOAR CI/CD* Content Pack from the marketplace.
+In order to use this option in Cortex XSOAR platform, download the **XSOAR CI/CD** content pack from Marketplace. (Search for the **Content Management** content pack).
 
 In the pull request management there are 2 options: 
-1. Pull request creation.
-2. Pull request update.
+- Pull request creation.
+- Pull request update.
 
-The platform supports GitHub, GitLab and Bitbucket.
-The default git code management is GitHub. If you wish to change that, open the playbooks tab, search for the playbook: "Pull Request Creation - Generic", and choose it.
-Now, click on the task that titled "Playbook Triggered", in the beginning of the playbook, and update the value of the GitIntegration field to github, gitlab or bitbucket (in lower case letters) and save it.
+The platform supports GitHub, GitLab, and Bitbucket.
+The default Git code management is GitHub. If you want to change the default: 
 
-The default main branch (The branch that the pull request will be merged into) in the playbook is master. In order to change that open the playbook "Pull Request Creation - Generic", click on the task that titled "Playbook Triggered", update the value of the MainBranch field accordingly and save it. 
+1. In the Cortex XSOAR platform, go to **Playbooks**.
+2. Search for and select the **Pull Request Creation - Generic** playbook.
+3. Click the *Playbook Triggered* task (located in the beginning of the playbook) and update the value of the *GitIntegration* field to github, gitlab, or bitbucket.
+4. Click **Save**.
 
-If you want to get a message to your slack or teams, open the playbook "Pull Request Creation - Generic" like in the explanation above, click on the task that titled "Playbook Triggered", update the value of the ChannelName field to the wanted channel and save it.
+The default main branch (the branch that the pull request will be merged into) in the playbook is master. In order to change that:
+1. In the Cortex XSOAR platform, go to **Playbooks**.
+1. Search for and open the *Pull Request Creation - Generic* playbook.
+2. Click the *Playbook Triggered* task (located in the beginning of the playbook) and update the value of the *MainBranch* field accordingly. 
+3. Click **Save**.
+
+If you want to get a message to your Slack or Teams application:
+1. In the Cortex XSOAR platform, go to **Playbooks**.
+1. Search for and open the *Pull Request Creation - Generic* playbook.
+2. Click the *Playbook Triggered* task (located in the beginning of the playbook) and update the value of the  *ChannelName* field to the wanted channel and save it. 
+3. Click **Save**.
 
 ### Pull Request Creation
-In order to create a new pull request in your repository follow the next steps:
-1. In Cortex XSOAR platform, go to Incidents.
-2. Click The *New Incident* button, and a new window will open.
-3. In the new window fill in the following fields:
+To create a new pull request in your repository:
+1. In the Cortex XSOAR platform, go to **Incidents**.
+2. Click **New Incident**, and a new window will open.
+3. In the new window, fill in the following fields:
     - The name of the incident.
     - The type of the incident: Pull Request Creation.
     - The playbook: Pull Request Creation - Generic.
-    - In the CI/CD Pull Request Attachment field, attach the files to add to the new pull request.
-    - (Optional) - In the CI/CD Branch field, write the name of the new branch for the pull request. The name of the branch should be a new one, that wasn't in use before. If you don't fill this field, a new name will be generated automatically during the run of the playbook.
-    - (Optional) - In the field CI/CD Pull Request Reviewer, add a reviewer information. 
+    - In the *CI/CD Pull Request Attachment* field, attach the files to add to the new pull request.
+    - (Optional) - In the *CI/CD Branch* field, write the name of the new branch for the pull request. The name of the branch should be a new one, that wasn't used before. If you don't fill this field, a new name will be generated automatically during the run of the playbook.
+    - (Optional) - In the *CI/CD Pull Request Reviewer* field, add reviewer information. 
       - If you are using GitHub, write the username of the reviewer. 
-      - If Bitbucket, write the account id of the reviewer (use the command !bitbucket-workspace-member-list to retrieve the relevant account id).
-      - If GitLab, enter a username *or* user id.
-    - (Optional) - In the field CI/CD Pull Request Comment, write a comment to the pull request description.
-4. Click the *Create New Incident* button to create the pull request.
-5. If a channel is configured, as written above, in the end of the process a message will be sent with the new pull request details in the configured channel. 
+      - If you are using Bitbucket, write the account ID of the reviewer. (Use the ***!bitbucket-workspace-member-list*** command  to retrieve the relevant account ID).
+      - If you are using GitLab, enter a username *or* user ID.
+    - (Optional) - In the *CI/CD Pull Request Comment* field, write a comment for the pull request description.
+4. Click **Create New Incident** to create the pull request.
+5. If a channel is configured (as described above), at the end of the process a message will be sent with the new pull request details in the configured channel. 
 
 ### Pull Request Update
-In order to update an exiting pull request in your repository follow the next steps:
-1. In Cortex XSOAR platform, go to Incidents.
-2. Click The *New Incident* button, and a new window will open.
-3. In the new window fill in the following fields:
+To update an exiting pull request in your repository:
+1. In Cortex XSOAR platform, go to **Incidents**.
+2. Click **New Incident**, and a new window will open.
+3. In the new window,fill in the following fields:
     - The name of the incident.
     - The type of the incident: Pull Request Update.
     - The playbook: Pull Request Creation - Generic.
-    - In the CI/CD Pull Request Attachment field, attach the files to add or update in the pull request.
-    - Choose the pull request source branch from the list in CI/CD Pull Request Branch field, *or* write the name of the source branch in CI/CD Branch field. If a name was not given, a new branch name will be generated automatically and a *new* pull request will be created.
-4. Click the *Create New Incident* button to update the pull request.
-5. If a channel is configured, as written above, in the end of the process a message will be sent with the updated pull request details in the configured channel.
+    - In the *CI/CD Pull Request Attachment* field, attach the files to add or update in the pull request.
+    - Choose the pull request source branch from the list in *CI/CD Pull Request Branch* field, *or* write the name of the source branch in the *CI/CD Branch* field. If a name is not given, a new branch name will be generated automatically and a new pull request will be created.
+4. Click *Create New Incident* to update the pull request.
+5. If a channel is configured (as described above), at the end of the process a message will be sent with the updated pull request details in the configured channel.
 
 
 ### CI/CD FAQs
