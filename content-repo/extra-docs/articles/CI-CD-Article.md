@@ -529,7 +529,7 @@ In order to create a new pull request in your repository follow the next steps:
 5. If a channel is configured, as written above, in the end of the process a message will be sent with the new pull request details in the configured channel. 
 
 ### Pull Request Update
-In order to update an exiting pull requestin your repository follow the next steps:
+In order to update an exiting pull request in your repository follow the next steps:
 1. In Cortex XSOAR platform, go to Incidents.
 2. Click The *New Incident* button, and a new window will open.
 3. In the new window fill in the following fields:
