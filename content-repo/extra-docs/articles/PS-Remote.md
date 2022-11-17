@@ -182,7 +182,7 @@ If you are using Basic Authentication, make sure to provide a local user and not
 Another issue could be related to the Powershell remoting settings. Review the [Host Troubleshooting](#host-troubleshooting) section above accordingly.
 
 ### Incidents Injestions Delays
-You might come a cross cases where your incidents are pulled into XSOAR with some delay, in such cases we recomend checking that the given username does not include the domain in it, this should solve the delay problems.
+You might come across cases where your incidents are pulled into XSOAR with some delay, in such cases we recommend checking that the given username does not include the domain in it, this should solve the delay problems.
 
 ## WinRM Useful Commands
 The following provides a list of useful WinRM commands.
