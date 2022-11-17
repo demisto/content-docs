@@ -70,28 +70,6 @@ The Email Communication content pack includes several content items.
 * **Email Communication**: Used in the **Email Communication** incident type.
 * **Email Threads**: This layout can be added to other incident types to add email functionality to them.
 
-#### Email Communication Layout
-In this layout there are three interactive sections in which you can specify one or more email addresses to add as a CC to the email, create the body of the email, and add attachments. The remaining three sections are for viewing the original email and all the email communications and attachments associated with the incident.
-
-![Layout](https://raw.githubusercontent.com/demisto/content/84e7bc89c8757544804540e6711d4b9aba210ec1/Packs/EmailCommunication/doc_files/Email_Communication_layout.png)
- 
-**Important:** 
-- To add CC recipients or an attachment to the email reply, you must select the **Show empty fields** checkbox. 
-- You must customize the *service_mail* parameter in the **SendEmailReply** script with the mailbox from which emails are sent. See [Configure the *service_mail* and *mail_sender_instance* Parameters ](#configure-the-servicemail-and-mailsenderinstance-parameters).
-
-
-| Layout Section    | Description                                                                                |
-|---------------------|--------------------------------------------------------------------------------------------|
-| Add CC to email     | Add one or more CC recipients to the email as a comma-separated list of email addresses.     |
-| Message body        | Write the body of the email reply. It is sent as an email and added to the War Room entry. |
-| Attachments         | Add attachments to the email reply.                                                        |
-| Email thread        | Displays the entire email thread including the original email and all email replies.       |  
-| Original Email HTML | Displays in HTML format the original email that opened the incident.                       |  
-| Mail Attachments    | Displays the metadata of the email attachments. Contains the Send Reply button.            |
-
-**Note:**  
- If an email cannot be sent to a specified address, no notification will appear in Cortex XSOAR. 
-
 ---
 
 ## Before You Start
@@ -107,20 +85,20 @@ If an EWS, Gmail, MS Graph Mail or MS Graph Mail Single user instance is already
 To get up and running with this pack, you must do the following: 
 - [Configure Demisto REST API Integration](#demisto-rest-api-integration)
 - [Create a pre-process rule that will link the emails to an existing incident](#pre-process-rule)
-- [Configure the *service_mail* and *mail_sender_instance* parameters](#configure-the-servicemail-and-mailsenderinstance-parameters)
+- [Configure the service_mail and mail_sender_instance parameters](#configure-the-service_mail-and-mail_sender_instance-parameters)
 
 ### Demisto REST API Integration
 The scripts in the pack require that you install the **Demisto REST API** integration and configure an integration instance.
 
 1. In Cortex XSOAR, go to **Settings > INTEGRATIONS > API Keys**.
-2. Click the **Get Your Key**, enter a name for the API key, and click **Generate Key**.
+~~2. Click the **Get Your Key**, enter a name for the API key, and click **Generate Key**.
 3. **(IMPORTANT)** Copy and save the API key, you will not be able to access it again.
 4. Go to **Settings > INTEGRATIONS > Servers & Services** and search for **Demisto REST API**.
 5. Click **Add instance** and enter the required information.
     - A meaningful name for the integration instance
     - Demisto Server URL
     - API key that you generated
-7. Click the **Test** button to make sure that that server and API key are reachable and valid.
+7. Click the **Test** button to mak~~e sure that that server and API key are reachable and valid.
 8. Click **Done**.
 
 ### Pre-Process Rule
@@ -143,7 +121,7 @@ This pack requires that you configure a pre-process rule to link the email commu
 
 See [pre-processing rules](https://xsoar.pan.dev/docs/incidents/incident-pre-processing) for additional information.
 
-### Configure the *service_mail* and *mail_sender_instance* Parameters 
+### Configure the service_mail and mail_sender_instance Parameters 
 The *service_mail* parameter sets the sender's email address. This parameter is optional when using the *Email Communication* incident type and layout, but is required to use the *Email Threads* layout.
 
 The *mail_sender_instance* parameter sets the specific Integration instance to use to send email messages.  This parameter is optional.
@@ -173,34 +151,6 @@ You can configure the *service_mail* and *mail_sender_instance* parameters for t
 
 7. Click **Save**.
 8. Click the three vertical dots and select the **Reattach Automation** option.
-
-### Email Threads Layout
-There are several interactive sections in the **Email Threads** layout.
-
-![Layout](https://github.com/demisto/content-docs/blob/master/docs/doc_imgs/reference/EmailCommunication_EmailThreadsLayout.png?raw=true)
-
-**To start a new email thread:**
-1. In the **Step 1 (New Thread)** section, enter email recipients and an email subject.  CC and BCC recipients are optional.
-   - If either the **Email New Recipients** or **Email New Subject** fields are not filled the email will not be sent and an error will be displayed in the War Room.
-2. In the **Step 2 (New Thread)** section, enter the body of the email you wish to send.  This field supports Markdown for formatting, and in Cortex XSOAR 6.5+ you can use the built-in Markdown editor to assist with creating and preview formatting.
-   - If the **Email New Body** field is not filled the email will not be sent and an error will be displayed in the War Room.
-3. In the **Step 3: Add Attachments & Send Message** section, you can add attachments (optional) to be included in the outgoing email.  
-   - You must click the **Save** button on the **Email New Attachment** field after adding files.  
-   - When ready to send the email, click the **Send New Email** button.
-
-**To reply to an existing email thread:**
-1. In the **Step 1 (Reply To Existing Thread)** section, set the **Email Selected Thread** field to the thread number you wish to reply to.  
-  A list of threads and their numbers is shown in the upper left corner of the layout.  Reply emails are automatically sent to all recipients already included on the thread, but you can add new CC or BCC recipients in this section if needed.
-2. In the **Step 2 (Reply To Existing Thread)** section, enter the body of the email you wish to send.  This field supports Markdown for formatting, and in Cortex XSOAR 6.5+ you can use the built-in Markdown editor to assist with creating and preview formatting.
-   - If the **Email New Body** field is not filled the email will not be sent and an error will be displayed in the War Room.
-3. In the **Step 3: Add Attachments & Send Message** section, you can add attachments (optional) to be included in the outgoing email.  
-    - You must click the **Save** button on the **Email New Attachment** field after adding files. 
-    - When ready to send the email, click the **Reply To Thread** button.
-
-**To pick a thread number you want to view:**  
-
-- In the **Select Thread To View** section, enter a number in the **Email Selected Thread** field and then click the **Click to Update Thread Viewer** button to update the display.  
-The entire email thread will be shown in the lower left section with the newest message at the top.
 
 ## Add Email Threads Functionality to Custom Incident Types
 The **Email Threads** layout allows you to add email functionality to any existing incident types and layouts where it is needed using the following procedures.  
@@ -248,6 +198,58 @@ Use the following steps to configure a custom signature:
 3. Select **HTML** as the Content Type for the list.
 4. Enter your signature in the list contents pane.
 5. Click **Save**.
+
+## Layout Instructions 
+### Email Communication Layout
+In this layout there are three interactive sections in which you can specify one or more email addresses to add as a CC to the email, create the body of the email, and add attachments. The remaining three sections are for viewing the original email and all the email communications and attachments associated with the incident.
+
+![Layout](https://raw.githubusercontent.com/demisto/content/84e7bc89c8757544804540e6711d4b9aba210ec1/Packs/EmailCommunication/doc_files/Email_Communication_layout.png)
+ 
+**Important:** 
+- To add CC recipients or an attachment to the email reply, you must select the **Show empty fields** checkbox. 
+- You must customize the *service_mail* parameter in the **SendEmailReply** script with the mailbox from which emails are sent. See [Configure the *service_mail* and *mail_sender_instance* Parameters ](#configure-the-servicemail-and-mailsenderinstance-parameters).
+
+
+| Layout Section    | Description                                                                                |
+|---------------------|--------------------------------------------------------------------------------------------|
+| Add CC to email     | Add one or more CC recipients to the email as a comma-separated list of email addresses.     |
+| Message body        | Write the body of the email reply. It is sent as an email and added to the War Room entry. |
+| Attachments         | Add attachments to the email reply.                                                        |
+| Email thread        | Displays the entire email thread including the original email and all email replies.       |  
+| Original Email HTML | Displays in HTML format the original email that opened the incident.                       |  
+| Mail Attachments    | Displays the metadata of the email attachments. Contains the Send Reply button.            |
+
+**Note:**  
+ If an email cannot be sent to a specified address, no notification will appear in Cortex XSOAR. 
+
+### Email Threads Layout
+There are several interactive sections in the **Email Threads** layout.
+
+![Layout](https://github.com/demisto/content-docs/blob/master/docs/doc_imgs/reference/EmailCommunication_EmailThreadsLayout.png?raw=true)
+
+**To start a new email thread:**
+1. In the **Step 1 (New Thread)** section, enter email recipients and an email subject.  CC and BCC recipients are optional.
+   - If either the **Email New Recipients** or **Email New Subject** fields are not filled the email will not be sent and an error will be displayed in the War Room.
+2. In the **Step 2 (New Thread)** section, enter the body of the email you wish to send.  This field supports Markdown for formatting, and in Cortex XSOAR 6.5+ you can use the built-in Markdown editor to assist with creating and preview formatting.
+   - If the **Email New Body** field is not filled the email will not be sent and an error will be displayed in the War Room.
+3. In the **Step 3: Add Attachments & Send Message** section, you can add attachments (optional) to be included in the outgoing email.  
+   - You must click the **Save** button on the **Email New Attachment** field after adding files.  
+   - When ready to send the email, click the **Send New Email** button.
+
+**To reply to an existing email thread:**
+1. In the **Step 1 (Reply To Existing Thread)** section, set the **Email Selected Thread** field to the thread number you wish to reply to.  
+  A list of threads and their numbers is shown in the upper left corner of the layout.  Reply emails are automatically sent to all recipients already included on the thread, but you can add new CC or BCC recipients in this section if needed.
+2. In the **Step 2 (Reply To Existing Thread)** section, enter the body of the email you wish to send.  This field supports Markdown for formatting, and in Cortex XSOAR 6.5+ you can use the built-in Markdown editor to assist with creating and preview formatting.
+   - If the **Email New Body** field is not filled the email will not be sent and an error will be displayed in the War Room.
+3. In the **Step 3: Add Attachments & Send Message** section, you can add attachments (optional) to be included in the outgoing email.  
+    - You must click the **Save** button on the **Email New Attachment** field after adding files. 
+    - When ready to send the email, click the **Reply To Thread** button.
+
+**To pick a thread number you want to view:**  
+
+- In the **Select Thread To View** section, enter a number in the **Email Selected Thread** field and then click the **Click to Update Thread Viewer** button to update the display.  
+The entire email thread will be shown in the lower left section with the newest message at the top.
+
 
 ## Testing the Pack
 After you configure the integrations and the pre-process rule, test that the incidents/layouts you wish to use are working correctly.
