@@ -25,6 +25,7 @@ types-python-dateutil = "*"
 slack_sdk = "*"
 google-api-python-client = "*"
 google-cloud-storage = "*"
+pytz = "*"
 
 [requires]
 python_version = "3.9"
