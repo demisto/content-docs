@@ -91,7 +91,7 @@ To get up and running with this pack, you must do the following:
 The scripts in the pack require that you install the **Demisto REST API** integration and configure an integration instance.
 
 1. In Cortex XSOAR, go to **Settings > INTEGRATIONS > API Keys**.
-~~2. Click the **Get Your Key**, enter a name for the API key, and click **Generate Key**.
+2. Click the **Get Your Key**, enter a name for the API key, and click **Generate Key**.
 3. **(IMPORTANT)** Copy and save the API key, you will not be able to access it again.
 4. Go to **Settings > INTEGRATIONS > Servers & Services** and search for **Demisto REST API**.
 5. Click **Add instance** and enter the required information.
