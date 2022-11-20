@@ -98,7 +98,7 @@ The scripts in the pack require that you install the **Demisto REST API** integr
     - A meaningful name for the integration instance
     - Demisto Server URL
     - API key that you generated
-7. Click the **Test** button to mak~~e sure that that server and API key are reachable and valid.
+7. Click the **Test** button to make sure that that server and API key are reachable and valid.
 8. Click **Done**.
 
 ### Pre-Process Rule
