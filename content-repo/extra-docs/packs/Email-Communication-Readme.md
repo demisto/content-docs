@@ -12,7 +12,7 @@ This content pack includes two options for adding email functionality: the **Ema
 ### Email Communication Incident Type and Layout
 The **Email Communication** incident type and layout allow Cortex XSOAR to fetch new emails from your mail listener and create new incidents from them if they are not related to an existing case.  You can then reply to the original sender and include additional recipients if needed.  This incident type and layout are intended for use when the incoming email is the incident trigger, and only one email thread is needed per incident.
 
-### Email Threads Layout
+### Email Threads - Layout
 The **Email Threads** layout adds email functionality to any incident type where it is needed, including incidents triggered by sources other than incoming email.  You can initiate new email conversations from the **Email Threads** layout and replies will be attached to the same incident.  You can also create multiple separate email threads, allowing you to interact with different groups of users and keep conversations separate.  This layout is intended for use when the first email on a thread is sent outbound from Cortex XSOAR.
 
 ## Pack Workflow
@@ -67,9 +67,8 @@ The Email Communication content pack includes several content items.
 **Email Communication**.
 
 ### Layout
-* **Email Communication**: Used in the **Email Communication** incident type.
-* **Email Threads**: This layout can be added to other incident types to add email functionality to them.
-
+- [Email Communication](#email-communication-layout): Used in the **Email Communication** incident type.
+- [Email Threads](#email-threads-layout): This layout can be added to other incident types to add email functionality to them.
 ---
 
 ## Before You Start
@@ -262,7 +261,7 @@ After you configure the integrations and the pre-process rule, test that the inc
 5. Refresh the page and see that your reply appears in the **Email Thread** section.
 6. Reply to the reply email sent from Cortex XSOAR and verify that your reply email was added to the email thread.
 
-### Email Threads Layout
+### Email Threads - Layout
 1. Open an incident where you have added the **Email Threads** layout.
 2. Create a new outbound email to your own email address, then click the **Send New Email** button.
 3. Open the War Room of your incident and confirm that a message appears that your email was sent successfully.
