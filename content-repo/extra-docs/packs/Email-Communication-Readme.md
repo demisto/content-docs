@@ -67,8 +67,8 @@ The Email Communication content pack includes several content items.
 **Email Communication**.
 
 ### Layout
-* **Email Communication**: Used in the **Email Communication** incident type.
-* **Email Threads**: This layout can be added to other incident types to add email functionality to them.
+* **[Email Communication](#email-communication-layout)**: Used in the **Email Communication** incident type.
+* **[Email Threads](#email-threads-layout)**: This layout can be added to other incident types to add email functionality to them.
 
 ---
 
@@ -207,7 +207,7 @@ In this layout there are three interactive sections in which you can specify one
  
 **Important:** 
 - To add CC recipients or an attachment to the email reply, you must select the **Show empty fields** checkbox. 
-- You must customize the *service_mail* parameter in the **SendEmailReply** script with the mailbox from which emails are sent. See [Configure the *service_mail* and *mail_sender_instance* Parameters ](#configure-the-servicemail-and-mailsenderinstance-parameters).
+- You must customize the *service_mail* parameter in the **SendEmailReply** script with the mailbox from which emails are sent. See [Configure the *service_mail* and *mail_sender_instance* Parameters ](#configure-the-service_mail-and-mail_sender_instance-parameters).
 
 
 | Layout Section    | Description                                                                                |
