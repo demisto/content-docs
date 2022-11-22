@@ -6,12 +6,12 @@ sidebar_label: Parameter Types
 
 Integration Parameter Types are used to configure instances of the integration. When adding a parameter to an integration in Cortex XSOAR, there are numerous types to choose from.
 Each type will affect the parameter behavior and interaction with the user.
-Please see [here](https://xsoar.pan.dev/docs/integrations/yaml-file#configuration) for more information how to set the parameter type.
+See [here](https://xsoar.pan.dev/docs/integrations/yaml-file#configuration) for more information how to set the parameter type.
 
 ## Boolean
 
-This type of parameter creates a check box in the integration configuration. When the check box is ticked, the value in
-the integration code would be `True`, and `False` otherwise.
+This type of parameter creates a checkbox in the integration configuration. When the checkbox is ticked, the value in
+the integration code is `True`, and `False` otherwise.
 The type number is: 0.
 
 ![image](/doc_imgs/integrations/54881985-48654700-4e5e-11e9-8e1c-7a95d1b84328.png)
