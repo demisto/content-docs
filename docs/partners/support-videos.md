@@ -1,20 +1,9 @@
 ---
 id: office-hours 
-title: Office Hours 
+title: Support Videos 
 ---
 
-As part of Cortex XSOAR Partner enablement our technical Partner team makes itself available for a technical virtual office hours session. We sometimes begin with a short (~20min) training session and then leave the rest of the time open for Q&A.
-
-_Note:_ These are technical sessions and we request that all participants complete the <a href="/docs/partners/become-a-tech-partner#3-take-required-training">required training</a> prior to joining.  
-
-## Join Us
-
-Office hours are held:
-- Thursdays at 8a US-PT / 11a US-ET / 6p IST
-- <a href="https://xsoar.pan.dev/office-hours">https://xsoar.pan.dev/office-hours</a> (Password required)
-
-If you'd like to join please email <a href="mailto:soar.alliances@paloaltonetworks.com">soar.alliances@paloaltonetworks.com</a> or contact your Partner representative for the password.
-
+As part of Cortex XSOAR Partner enablement, our technical Partner team created the below videos that will help answer questions in regards to contributing a pack to the XSOAR Marketplace. 
 
 ## Session Archives
 
