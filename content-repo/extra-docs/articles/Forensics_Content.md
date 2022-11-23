@@ -10,9 +10,9 @@ This page lists all Cortex XSOAR content that is currently available to support 
 Currently compatible with the [Malware Investigation and Response](https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response) pack:
 | Pack Name | Available Functionality |
 | --- | --- |
-| [Palo Alto Networks Cortex XDR - Investigation and Response](https://xsoar.pan.dev/docs/reference/packs/palo-alto-networks-cortex-xdr---investigation-and-response) | `xdr-script-run` |
-| [CrowdStrike Falcon](https://cortex.marketplace.pan.dev/marketplace/details/CrowdStrikeFalcon/) | CrowdStrike RTR |
-| [Microsoft Defender for Endpoint](https://cortex.marketplace.pan.dev/marketplace/details/MicrosoftDefenderAdvancedThreatProtection/) |  | 
+| [Palo Alto Networks Cortex XDR - Investigation and Response](https://xsoar.pan.dev/docs/reference/packs/palo-alto-networks-cortex-xdr---investigation-and-response) | - Retrieve files from endpoint with command `xdr-file-retrieve`<br />- Run script on endpoint with command `xdr-run-script`<br />- Run shell command on endpoint with command `xdr-script-commands-execute` |
+| [CrowdStrike Falcon](https://cortex.marketplace.pan.dev/marketplace/details/CrowdStrikeFalcon/) | - Perform CrowdStrike Real Time Response (RTR) operations with commands `cs-falcon-run-command` and `cs-falcon-rtr-*`<br />- Run script on endpoint with command `cs-falcon-run-script` |
+| [Microsoft Defender for Endpoint](https://cortex.marketplace.pan.dev/marketplace/details/MicrosoftDefenderAdvancedThreatProtection/) | - Retrieve files associated with alert with command `microsoft-atp-get-alert-related-files`<br />- Perform live response operations with commands `microsoft-atp-live-response-*` | 
 
 Other packs:
 | Pack Name | Available Functionality |
