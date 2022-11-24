@@ -592,6 +592,11 @@ def insert_approved_tags_and_usecases():
             approved_tags_string += 'Xsoar Tags\n        '
             approved_tags_string += approved_xsoar_tags_string
             approved_tags_string += '\n        '
+        if approved_tags.get('xpanse', []):
+            approved_xsoar_tags_string = '\n        '.join(approved_tags.get('xpanse', []))
+            approved_tags_string += 'Xpanse Tags\n        '
+            approved_tags_string += approved_xsoar_tags_string
+            approved_tags_string += '\n        '
 
     with open("../docs/documentation/pack-docs.md", "r+") as f:
         pack_docs = f.readlines()
