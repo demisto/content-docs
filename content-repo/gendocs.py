@@ -577,7 +577,9 @@ def insert_approved_tags_and_usecases():
         approved_usecases_string = '\n        '.join(approved_usecases)
 
     with open('approved_tags.json', 'r') as f:
-        approved_tags = json.loads(f.read()).get('approved_list', {})
+        approved_tags = json.loads(f.read()).get('approved_list')
+        approved_tags_string = '\n        '.join(approved_tags)
+        """approved_tags = json.loads(f.read()).get('approved_list', {})
         approved_tags_string = ''
 
         approved_common_tags_string = '\n        '.join(approved_tags.get('common', []))
@@ -595,10 +597,10 @@ def insert_approved_tags_and_usecases():
             approved_tags_string += approved_xsoar_tags_string
             approved_tags_string += '\n        '
         if approved_tags.get('xpanse', []):
-            approved_xsoar_tags_string = '\n        '.join(approved_tags.get('xpanse', []))
+            approved_xspanse_tags_string = '\n        '.join(approved_tags.get('xpanse', []))
             approved_tags_string += 'Xpanse Tags\n        '
-            approved_tags_string += approved_xsoar_tags_string
-            approved_tags_string += '\n        '
+            approved_tags_string += approved_xspanse_tags_string
+            approved_tags_string += '\n        '"""
 
     with open("../docs/documentation/pack-docs.md", "r+") as f:
         pack_docs = f.readlines()
