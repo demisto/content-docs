@@ -171,8 +171,12 @@ def get_deprecated_data(yml_data: dict, desc: str, readme_file: str):
 
 def get_fromversion_data(yml_data: dict):
     from_version = yml_data.get('fromversion', '')
+    marketplaces = yml_data.get('marketplaces', [])
     if from_version and not from_version.startswith(('4', '5.0')):
-        return f':::info Supported versions\nSupported Cortex XSOAR versions: {from_version} and later.\n:::\n\n'
+        if 'xsoar' in marketplaces:
+            return f':::info Supported versions\nSupported Cortex XSOAR versions: {from_version} and later.\n:::\n\n'
+        elif 'marketplacev2' in marketplaces:
+            return f':::info Supported versions\nSupported Cortex XSIAM versions: {from_version} and later.\n:::\n\n'
     return ''
 
 
