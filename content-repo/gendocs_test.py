@@ -131,6 +131,7 @@ def test_findfiles():
         (
                 '6-0-0-integration',
                 {
+                    'marketplaces': ['xsoar'],
                     'fromversion': '6.0.0',
                     'description': 'Manage Alibaba Cloud Elastic Compute Instances'
                 },
