@@ -584,26 +584,29 @@ def insert_approved_tags_and_usecases():
         approved_tags_string = ''
 
         approved_common_tags_string = '\n        '.join(approved_tags.get('common', []))
-        approved_tags_string += 'Common Tags:\n\n        '
+        approved_tags_string += 'Common Tags:\n        '
         approved_tags_string += approved_common_tags_string
 
         if approved_tags.get('marketplacev2', []):
             approved_tags_string += '\n        '
+            approved_tags_string += '\n        '
             approved_marketplacev2_tags_string = '\n        '.join(approved_tags.get('marketplacev2', []))
-            approved_tags_string += 'Marketplace V2 Tags:\n\n        '
+            approved_tags_string += 'Marketplace V2 Tags:\n        '
             approved_tags_string += approved_marketplacev2_tags_string
-        """
+
         if approved_tags.get('xsoar', []):
             approved_tags_string += '\n        '
-            approved_xsoar_tags_string = '\n        '.join(approved_tags.get('xsoar', []))
-            approved_tags_string += 'Xsoar Tags\n        '
-            approved_tags_string += approved_xsoar_tags_string
             approved_tags_string += '\n        '
+            approved_xsoar_tags_string = '\n        '.join(approved_tags.get('xsoar', []))
+            approved_tags_string += 'Xsoar Tags:\n\n        '
+            approved_tags_string += approved_xsoar_tags_string
+
         if approved_tags.get('xpanse', []):
+            approved_tags_string += '\n        '
             approved_xspanse_tags_string = '\n        '.join(approved_tags.get('xpanse', []))
-            approved_tags_string += 'Xpanse Tags\n        '
+            approved_tags_string += 'Xpanse Tags:\n\n        '
             approved_tags_string += approved_xspanse_tags_string
-            approved_tags_string += '\n        '"""
+
 
     with open("../docs/documentation/pack-docs.md", "r+") as f:
         pack_docs = f.readlines()
