@@ -603,8 +603,9 @@ def insert_approved_tags_and_usecases():
 
         if approved_tags.get('xpanse', []):
             approved_tags_string += '\n        '
+            approved_tags_string += '\n        '
             approved_xspanse_tags_string = '\n        '.join(approved_tags.get('xpanse', []))
-            approved_tags_string += 'Xpanse Tags:\n\n        '
+            approved_tags_string += 'Xpanse Tags:\n        '
             approved_tags_string += approved_xspanse_tags_string
 
 
