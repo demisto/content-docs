@@ -24,13 +24,20 @@ The above command generates `integration-VirusTotal.yml` file under `/output/pat
 
 |Field Name|Field Type|Description|Examples|Is Required|
 |----------|----------|-----------|--------|-----------|
-|name|string|The integration name. The command sets the integration id the same as the name. Spaces and special characters will be removed|Virus Total|Required|
+|name|string|The integration name. The command sets the integration id the same as the name. Spaces and special characters will be removed.  | VirusTotal | Required |
+| display_name | string | The display name for the integration. This may be different than the name. | Virus Total | Required |
+| description | string | A brief description of what the integration will do. | Analyzes suspicious hashes, URLs, domains, and IP addresses. | Required |
+| category | string | The field/subject the integration relates to, in high level. | Data Enrichment & Threat Intelligence | Required |
 |command_prefix|string|The prefix to all the commands. The prefix should be:<br />- lower cased<br />- separated with dashes|vt,virustotal|Required|
+| docker_image | string | Docker image full name with version. | demisto/python3:3.9.2.17957 | Required | 
 |url|string|The default value for integration `Server URL` parameter.|https://www.virustotal.com|Optional|
 |base_url_path|string|Suffix for the integration `Server URL` parameter. If the API url contains constant suffix like `/vtapi/v2`|vtapi/v2|Optional|
 |auth|object|Determines which authentication method is used to connect to the method. See the [Authentication section](#authentication) for more detail.||Optional|
 |context_path|string|Prefix for every command outputs. Must not contain spaces nor special characters. |VirusTotal -> VirusTotal.IP.source|Required|
-|fix_code|bool|If true, run autopep8 to format the Python code. The default and the recommneded value is `true`|true|Optional|
+| code_type | string | The code the integration is written in. | python | Optional |
+| code_subtype | string | The subtype of the code. | python3 | Optional |
+| is_fetch | Boolean | Whether the integration should run periodically to ingest events and create incidents. | false | Optional |
+|fix_code|bool|If true, run autopep8 to format the Python code. The default and the recommended value is `true`|true|Optional|
 
 
 
