@@ -608,7 +608,6 @@ def insert_approved_tags_and_usecases():
             approved_tags_string += 'Xpanse Tags:\n        '
             approved_tags_string += approved_xspanse_tags_string
 
-
     with open("../docs/documentation/pack-docs.md", "r+") as f:
         pack_docs = f.readlines()
         f.seek(0)
