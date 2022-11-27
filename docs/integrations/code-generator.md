@@ -34,8 +34,8 @@ The above command generates `integration-VirusTotal.yml` file under `/output/pat
 |base_url_path|string|Suffix for the integration `Server URL` parameter. If the API url contains constant suffix like `/vtapi/v2`|vtapi/v2|Optional|
 |auth|object|Determines which authentication method is used to connect to the method. See the [Authentication section](#authentication) for more detail.||Optional|
 |context_path|string|Prefix for every command outputs. Must not contain spaces nor special characters. |VirusTotal -> VirusTotal.IP.source|Required|
-| code_type | string | The code the integration is written in. | python | Optional |
-| code_subtype | string | The subtype of the code. | python3 | Optional |
+| code_type | string | The code the integration is written in. | python | Required |
+| code_subtype | string | The subtype of the code. | python3 | Required |
 | is_fetch | Boolean | Whether the integration should run periodically to ingest events and create incidents. | false | Optional |
 |fix_code|bool|If true, run autopep8 to format the Python code. The default and the recommended value is `true`|true|Optional|
 
