@@ -131,7 +131,6 @@ def test_findfiles():
         (
                 '6-0-0-integration',
                 {
-                    'marketplaces': ['xsoar'],
                     'fromversion': '6.0.0',
                     'description': 'Manage Alibaba Cloud Elastic Compute Instances'
                 },
@@ -319,7 +318,9 @@ def test_get_deprecated_data():
     assert "Add information" not in res
 
 
-@pytest.mark.parametrize("test_input, expected", [({'fromversion': '5.5.0'}, ''),
+@pytest.mark.parametrize("test_input, expected", [({'fromversion': '5.5.0'},
+                                                   ':::info Supported versions\nSupported '
+                                                   'Cortex XSOAR versions: 5.5.0 and later.\n:::\n\n'),
                                                   ({'fromversion': '5.5.0', 'marketplaces': ['xsoar', 'marketplacev2']},
                                                    ':::info Supported versions\nSupported '
                                                    'Cortex XSOAR versions: 5.5.0 and later.\n:::\n\n'
