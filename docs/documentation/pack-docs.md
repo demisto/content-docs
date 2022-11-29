@@ -87,7 +87,7 @@ An example of including a YouTube video can be seen at the [Zoom Feed README](ht
 In order to classify packs and make them easier to find, there are a number of pack metadata elements that you can use:
 - ***Use-case*** -- a name of a situation in which packs can be used - usually the pack name. The optional approved values for use-cases are:
 
-- ***Tags*** -- words from the same semantic field of the use-case. These make it easier to find packs using filters or the search bar, and are visible on the screen to help understand what the pack is and its benefit to users. The optional approved values for tags are:
+- ***Tags*** -- words from the same semantic field of the use-case. These make it easier to find packs using filters or the search bar, and are visible on the screen to help understand what the pack is and its benefit to users. To add a unique tag for a marketplace, add the marketplace name as a prefix for the tag name, as in the following example: ['marketplace_name:tag_name']. The tags under the 'Common tags' are valid for all marketplaces, and do not require a specific prefix. The optional approved values for tags for each marketplace are:
 
 - ***Keywords*** -- operate like tags but aren't displayed in the UI. Assists in searching for your pack. You can freely add keywords as you see fit.
 
