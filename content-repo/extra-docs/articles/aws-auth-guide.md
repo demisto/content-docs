@@ -10,7 +10,7 @@ When the Cortex XSOAR server is located within the AWS environment in a local ne
   
   <img width="410" src="../../../docs/doc_imgs/reference/aws-s3.png" />
 
-* **Access Key, Secret Key and Session Token**: the integration will use a configured Access Key, Secret Key and Session Token to authenticate to AWS, the Session Token is set as part of the Secret Key parameter, in the form of `<access_key>@@@<session_token>`.
+* **Access Key, Secret Key, and Session Token**: the integration will use a configured Access Key, Secret Key, and Session Token to authenticate to AWS. The Session Token is set as part of the Secret Key parameter, in the form of `<access_key>@@@<session_token>`.
 
   For example: if your Access Key is `AccessKey123` and your Session Token is `SessionToken456=` then you should set the Secret Key parameter to `AccessKey123@@@SessionToken456=`.
 
