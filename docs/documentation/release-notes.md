@@ -121,7 +121,12 @@ Specify in the corresponding release notes file:
 'Updated the Docker image to '
 'You can now '
 'Deprecated. '
-'Deprecated the' 
+'Deprecated the'
+'Improved layout'
+'Created a new layout'
+'Playbook now supports'
+'Created a new playbook'
+'Updated the'
 ```
 
 Release notes not using one of these prefixes will generate an error when running `demisto-sdk doc-review`:
