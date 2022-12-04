@@ -505,22 +505,19 @@ In the pull request management there are 2 options:
 The platform supports GitHub, GitLab, and Bitbucket.
 The default Git code management is GitHub. If you want to change the default: 
 
+
+To change the default values in the **Pull Request Creation - Generic** playbook:
 1. In the Cortex XSOAR platform, go to **Playbooks**.
 2. Search for and select the **Pull Request Creation - Generic** playbook.
-3. Click the *Playbook Triggered* task (located in the beginning of the playbook) and update the value of the *GitIntegration* field to github, gitlab, or bitbucket.
+3. Click the *Playbook Triggered* task (located in the beginning of the playbook) and update the values as required:
+   | Field | Description | Default |
+   | --- | --- | ---
+   | GitIntegration | Git code management. Possible values are github, gitlab, bitbucket. | github |
+   |  MainBranch |  The branch that the pull request will be merged into  | master |
+   | ChannelName| The application to send your message to. Possible values are Slack or Teams | --- |
 4. Click **Save**.
 
-The default main branch (the branch that the pull request will be merged into) in the playbook is master. In order to change that:
-1. In the Cortex XSOAR platform, go to **Playbooks**.
-1. Search for and open the *Pull Request Creation - Generic* playbook.
-2. Click the *Playbook Triggered* task (located in the beginning of the playbook) and update the value of the *MainBranch* field accordingly. 
-3. Click **Save**.
 
-If you want to get a message to your Slack or Teams application:
-1. In the Cortex XSOAR platform, go to **Playbooks**.
-1. Search for and open the *Pull Request Creation - Generic* playbook.
-2. Click the *Playbook Triggered* task (located in the beginning of the playbook) and update the value of the  *ChannelName* field to the wanted channel and save it. 
-3. Click **Save**.
 
 ### Pull Request Creation
 To create a new pull request in your repository:
