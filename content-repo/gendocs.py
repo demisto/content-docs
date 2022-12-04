@@ -578,7 +578,7 @@ def insert_approved_tags_and_usecases():
 
     with open('approved_tags.json', 'r') as f:
         approved_tags = json.loads(f.read()).get('approved_list', {})
-        
+
     approved_tags_string = ''
     approved_common_tags_string = '\n        '.join(approved_tags.get('common', []))
     approved_tags_string += 'Common Tags:\n        '
