@@ -73,5 +73,5 @@ This page is meant as an overview to Marketplace. Please see the [Palo Alto Netw
 
 ## More Information
 
-If you are interested in contributing a pack, please [submit your application](https://start.paloaltonetworks.com/become-a-technology-partner) today. Contact the [Partner Success Team](mailto:soar.alliances@paloaltonetworks.com) with any questions.  
+If you are interested in contributing a pack, please [submit your application](https://technologypartners.paloaltonetworks.com/English/register_email.aspx) today. Contact the [Partner Success Team](mailto:soar.alliances@paloaltonetworks.com) with any questions.  
 

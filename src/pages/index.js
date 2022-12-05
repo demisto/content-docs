@@ -170,7 +170,7 @@ function Home() {
                     "button button--info button--secondary button--lg",
                     styles.headerButtons
                   )}
-                  href="https://start.paloaltonetworks.com/become-a-technology-partner"
+                  href="https://technologypartners.paloaltonetworks.com/English/register_email.aspx"
                 >
                   Become a Partner
                 </Link>
@@ -220,7 +220,7 @@ function Home() {
                     "button button--info button--secondary button--lg",
                     styles.headerButtons
                   )}
-                  href="https://start.paloaltonetworks.com/become-a-technology-partner"
+                  href="https://technologypartners.paloaltonetworks.com/English/register_email.aspx"
                 >
                   Become a Partner
                 </Link>

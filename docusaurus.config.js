@@ -142,7 +142,7 @@ module.exports = {
             },
             {
               to:
-                "https://start.paloaltonetworks.com/become-a-technology-partner",
+                "https://technologypartners.paloaltonetworks.com/English/register_email.aspx",
               label: "Sign Up Now"
             },
           ],
