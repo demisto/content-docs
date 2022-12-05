@@ -511,7 +511,7 @@ To change the default values in the **Pull Request Creation - Generic** playbook
 2. Search for and select the **Pull Request Creation - Generic** playbook.
 3. Click the *Playbook Triggered* task (located in the beginning of the playbook) and update the values as required:
    | Field | Description | Default |
-   | --- | --- | ---
+   | --- | --- | --- |
    | GitIntegration | Git code management. Possible values are github, gitlab, bitbucket. | github |
    |  MainBranch |  The branch that the pull request will be merged into  | master |
    | ChannelName| The application to send your message to. Possible values are Slack or Teams | --- |
