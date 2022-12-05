@@ -930,7 +930,7 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
         insert_approved_tags_and_usecases()
 
     print("Writing json links into contentItemsDocsLinks.json")
-    update_contributors_file(json.dumps(DOCS_LINKS_JSON), create_service_account_file())
+    update_contributors_file(create_service_account_file().name, json.dumps(DOCS_LINKS_JSON, indent=4))
 
 
 if __name__ == "__main__":
