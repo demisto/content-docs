@@ -98,7 +98,7 @@ def create_service_account_file():
     Create a service account json file from the circle variable.
     """
     service_account_file = tempfile.NamedTemporaryFile(delete=False, mode='w', suffix='.json')
-    json.dump(json.loads(SERVICE_ACCOUNT), service_account_file)
+    service_account_file.write(SERVICE_ACCOUNT)
     service_account_file.flush()
 
     return service_account_file
