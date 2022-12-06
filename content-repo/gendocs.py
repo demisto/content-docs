@@ -108,7 +108,7 @@ def update_contributors_file(service_account_file, list_links):
     """
         Updates the contentItemsDocsLinks json file.
         Args:
-            service_account_file (Object): Service account file which uses to connect to the bucket.
+            service_account_file (Object): A Service Account file which used to connect to the bucket.
             list_links (Dict[str: str]): Dict of {content item name: path in xsoar.pan.dev}.
                 for example: {"Aha": "https://xsoar.pan.dev/docs/reference/integrations/aha"}
     """
