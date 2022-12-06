@@ -95,7 +95,7 @@ SERVICE_ACCOUNT = os.getenv('GCP_SERVICE_ACCOUNT')
 
 def create_service_account_file():
     """
-    Create a service account json file from the circle variable.
+        Create a service account json file from the circle variable.
     """
     service_account_file = tempfile.NamedTemporaryFile(delete=False, mode='w', suffix='.json')
     service_account_file.write(SERVICE_ACCOUNT)
@@ -106,7 +106,11 @@ def create_service_account_file():
 
 def update_contributors_file(service_account_file, list_links):
     """
-    Updates the service account json file.
+        Updates the contentItemsDocsLinks json file.
+        Args:
+            service_account_file (Object): Service account file which uses to connect to the bucket.
+            list_links (Dict[str: str]): Dict of {content item name: path in xsoar.pan.dev}.
+                for example: {"Aha": "https://xsoar.pan.dev/docs/reference/integrations/aha"}
     """
     storage_client = storage.Client.from_service_account_json(service_account_file)
     bucket = storage_client.bucket('xsoar-ci-artifacts')
