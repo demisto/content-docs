@@ -41,6 +41,9 @@ Let customers know your XSOAR Marketplace premium pack is available for Private 
 
 For Partners interested in having their premium pack available for Private Offer on the XSOAR Marketplace, please contact the XSOAR Partner Success Team (PST) at xsoar.privateoffer@paloaltonetworks.com to ensure your solution is added to our internal enablement content.  
 
+## Private Offer Only
+By default, all Premium packs are available for both monthly subscription and Private Offer. Starting with XSOAR v.6.10/8.0 the platform supports Private Offer Only which means that a customer can only purchase your offering via the Private Offer process - monthly subscriptions will be disabled. 
+
 ### Private Offer Listing Designation Steps
 To create your Private Offer listing, follow the [Premium Packs setup](https://xsoar.pan.dev/docs/packs/premium_packs) and then follow these steps to add the Private Offer button:
 

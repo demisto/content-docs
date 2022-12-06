@@ -34,7 +34,7 @@ The XSOAR Marketplace supports two subscription models to give customers purchas
 - **Monthly** - Customer subscribes to your premium pack and the subscription automatically renews on a monthly basis.  We automatically pay you a revenue share, also on a monthly basis, with no invoice required!
 - **Private Offer:** Customer subscribes to your premium content for a mutually agreed upon term length and price. We automatically pay you a revenue share, up front, for the full contracted term!  
 
-Learn more about [Private Offer](https://xsoar.pan.dev/docs/partners/private-offer)
+As a pack publisher, you can specify if monthly subscriptions are allowed or if all customers must use Private Offer to purchase. Learn more about [Private Offer](https://xsoar.pan.dev/docs/partners/private-offer)
 
 For packs that resell 3rd party products, the following illustrates the subscription flow:
 ![Subscribingto3rdpartycontent](/doc_imgs/partners/Subscribingto3rdpartycontent.png)
@@ -73,5 +73,5 @@ This page is meant as an overview to Marketplace. Please see the [Palo Alto Netw
 
 ## More Information
 
-If you are interested in contributing a pack, please [submit your application](https://start.paloaltonetworks.com/become-a-technology-partner) today. Contact the [Partner Success Team](mailto:soar.alliances@paloaltonetworks.com) with any questions.  
+If you are interested in contributing a pack, please [submit your application](https://technologypartners.paloaltonetworks.com/English/register_email.aspx) today. Contact the [Partner Success Team](mailto:soar.alliances@paloaltonetworks.com) with any questions.  
 
