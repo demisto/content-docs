@@ -11,13 +11,15 @@ import shutil
 import subprocess
 import sys
 import traceback
+import tempfile
+import yaml
+
 from datetime import datetime
 from distutils.version import StrictVersion
 from functools import partial
 from multiprocessing import Pool
 from typing import Dict, Iterator, List, Optional, Tuple, TypedDict
-
-import yaml
+from google.cloud import storage
 from bs4 import BeautifulSoup
 from dateutil.relativedelta import relativedelta
 
@@ -87,6 +89,33 @@ MIN_RELEASE_VERSION = StrictVersion((datetime.now() + relativedelta(months=-18))
 PACKS_INTEGRATIONS_PREFIX = 'Integrations'
 PACKS_SCRIPTS_PREFIX = 'Scripts'
 PACKS_PLAYBOOKS_PREFIX = 'Playbooks'
+
+SERVICE_ACCOUNT = os.getenv('GCP_SERVICE_ACCOUNT')
+
+
+def create_service_account_file():
+    """
+        Create a service account json file from the circle variable.
+    """
+    service_account_file = tempfile.NamedTemporaryFile(delete=False, mode='w', suffix='.json')
+    service_account_file.write(SERVICE_ACCOUNT)
+    service_account_file.flush()
+
+    return service_account_file
+
+
+def update_contributors_file(service_account_file, list_links):
+    """
+        Updates the contentItemsDocsLinks json file.
+        Args:
+            service_account_file (Object): A Service Account file which used to connect to the bucket.
+            list_links (Dict[str: str]): Dict of {content item name: path in xsoar.pan.dev}.
+                for example: {"Aha": "https://xsoar.pan.dev/docs/reference/integrations/aha"}
+    """
+    storage_client = storage.Client.from_service_account_json(service_account_file)
+    bucket = storage_client.bucket('xsoar-ci-artifacts')
+    blob = bucket.blob('content-cache-docs/contentItemsDocsLinks.json')
+    blob.upload_from_string(list_links)
 
 
 class DocInfo:
@@ -905,8 +934,7 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
         insert_approved_tags_and_usecases()
 
     print("Writing json links into contentItemsDocsLinks.json")
-    with open('contentItemsDocsLinks.json', 'w') as file:
-        json.dump(DOCS_LINKS_JSON, file)
+    update_contributors_file(create_service_account_file().name, json.dumps(DOCS_LINKS_JSON, indent=4))
 
 
 if __name__ == "__main__":
