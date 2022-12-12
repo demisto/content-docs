@@ -19,8 +19,6 @@ Use cases for scheduled commands include:
 * ***Integration***: In the integration yml, under the command root, add `polling: true`.
 * ***Script***: In the script yml, in the root of the file, add `polling: true`.
 
-For an example, see the [Autofocus V2](https://github.com/demisto/content/blob/master/Packs/AutoFocus/Integrations/AutofocusV2/AutofocusV2.yml) `autofocus-samples-search` command.
-
 ## The polling_function Decorator
 The `polling_function` decorator can be used to save much of the boilerplate code you would otherwise need to implement yourself to write a polling function.
 
@@ -76,6 +74,38 @@ def some_polling_command(args: Dict[str, Any], client: Client):
 One last thing regarding the decorator, to Ignore Scheduled War Room Entries (as indicated below) add `hide_polling_output` as a boolean argument to the command in the yml file. 
 
 For example see the [cs-falcon-sandbox-scan](https://github.com/demisto/content/blob/849fee1dfe10907158e5c307dd367284accee2a0/Packs/CrowdStrikeFalconSandbox/Integrations/CrowdStrikeFalconSandboxV2/CrowdStrikeFalconSandboxV2.yml#L65) command.
+
+### A more complicated example
+
+Say we are trying to implement a command that submits a url for analysis and then polls for the result.  The proper way to implement this would be to split this flow into two commands. The submit command, and the find command. The find command will be a polling command, and is useful on its own without the context of submit. We want to perform the submit command once and poll on the get_result command until we have a response.
+
+We will then have the **submit-file** command call the **find-url** command.
+
+```python
+@polling_function('find-url')
+def find_url_command(args: Dict[str, Any], client: Client):
+    api_response = client.call_api(args.get('url')
+    successful_response = api_response.status_code == 200
+
+    if successful_response:
+        success_return = show_successful_response(api_response)
+        return PollResult(success_return)
+
+    else:
+        error_response = CommandResults(raw_response=report_response,
+                                        readable_output='API returned an error',
+                                        entry_type=entryTypes['error'])
+
+        return PollResult(continue_to_poll=True, response=error_response)
+        
+def submit_url_command(args: Dict[str, Any], client: Client):
+    client.submit_url(args.get('url))
+    return find_url_command(args, client)
+```
+
+
+<details>
+    <summary>If this decorator doesnt cover a specific usecase, read the advanced section: </summary>
 
 ### ScheduledCommand Class
 `ScheduledCommand` is an optional class that enables scheduling commands via the command results.
@@ -204,4 +234,4 @@ if samples_result and not isError(samples_result[0]):
         script_results.extend(samples_result)
 return_results(script_results)
 ```
-
+</details>
