@@ -75,7 +75,7 @@ If you have already submitted your contribution and you would like to make chang
 
 ## Notes
 
-1. In addition to the resubmission option described above, there are other ways to update a content pack that you contributed and is already on a GitHub pull request: you may either modify the files directly on the pull request, or close the pull request and create a new contribution that includes your changes.
+1. In addition to the resubmission option described above, there are other ways to update a content pack that you contributed and is already on a GitHub pull request: you may either modify the files directly on the pull request, or close the pull request and create a new contribution that includes your changes (not recommended).
 
 1. The contribution mode selection dropdown will only appear if content items that were part of your contribution were detected as originating from existing sources (for example, you created a new automation in the UI by clicking "Duplicate Automation").
 
