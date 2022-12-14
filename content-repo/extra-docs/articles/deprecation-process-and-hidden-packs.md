@@ -63,6 +63,17 @@ Example: No available replacement integration:
 Example: Use other integration example:
 <img src="../../../docs/doc_imgs/integrations/deprecated-integration-2.png" width="400" align="middle"></img>
 
+## How to Deprecate an Integration Command
+1) Add the following key to the command in the integration yaml file: 
+   ```deprecated: true```
+
+   **Why we deprecate commands instead of deleting them?**
+   Some user might have used this command in a custom script or playbook.
+   Deleting it will result in an unexpected error, that's why deprecating is the prefered way to remain backwards compatible.
+
+Example: 
+<img src="../../../docs/doc_imgs/integrations/deprecate_command.png" width="400" align="middle"></img>
+
 ## How to Deprecate a Script
 1) Add the following key to the script yaml file: 
 ```deprecated: true```
