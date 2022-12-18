@@ -44,8 +44,6 @@ In each of the above options, the review phase will begin with the **opening of 
       
       Links to the Contribution registration form and to the CLA will appear on your PR:
       
-      ![Contribution-regisatration-form]()
-      
       ![CLA](/doc_imgs/contributing/failed_CLA.png)
       
       
