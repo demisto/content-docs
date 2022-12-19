@@ -65,8 +65,9 @@ Example: Use other integration example:
 
 ## How to Deprecate an Integration Command
 1) Add the following key to the command in the integration yaml file: 
-   ```deprecated: true```
+   ```deprecated: true```.
    
+
 **Why deprecate commands instead of deleting them?**
    Some users may have used this command in a custom script or playbook.
    Deleting a command may result in unexpected errors, while deprecation retains backwards compatibility for the command.
