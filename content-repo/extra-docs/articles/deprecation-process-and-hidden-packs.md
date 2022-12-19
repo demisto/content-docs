@@ -69,7 +69,7 @@ Example: Use other integration example:
 ​
    **Why deprecate commands instead of deleting them?**
    Some users may have used this command in a custom script or playbook.
-   Deleting a command may result in unexpected errors, while deprecating retains backwards compatibility.
+   Deleting a command may result in unexpected errors, while deprecation retains backwards compatibility for the command.
 ​
 Example: 
 <img src="../../../docs/doc_imgs/integrations/deprecate_command.png" width="400" align="middle"></img>
