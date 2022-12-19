@@ -36,13 +36,15 @@ In each of the above options, the review phase will begin with the **opening of 
 #### In order for the contribution process to be successful, the XSOAR content team requires the contributors the following:
 
    1. Provide the XSOAR content team with as much information as possible about the changes you made or about the new content you created.
-        * If you contributed through the XSOAR UI, please provide this information in the redirected UI contribution form.
+        * If you contributed through the XSOAR UI, please provide this information in the redirected **UI contribution form**.
         * If you contributed through a GitHub Pull Request, please add this information in the PR body (fill in the template). 
    
    2. If you contributed through a GitHub Pull Request make sure to register your contribution by filling out the **contribution registration form**, and sign the **CLA** ([Contributor License Agreement](https://github.com/demisto/content/blob/master/docs/cla.pdf)).
       **The review process won't start if those forms remain unfilled**.
       
       Links to the Contribution registration form and to the CLA will appear on your PR:
+      
+      ![contribution-registration-form](/doc_imgs/contributing/contribution-registration-form.png)
       
       ![CLA](/doc_imgs/contributing/failed_CLA.png)
       
@@ -54,7 +56,7 @@ In each of the above options, the review phase will begin with the **opening of 
    4. Please check the status of the build of your PR once it is completed - If the build includes errors, please try to solve them - for more information about the build process please see [the-build-process](../contributing/conventions#the-build-process).
    
    5. During the review process monitor your PR - your reviewer will add comments to the Pull Request, asking questions and requesting changes. In order to establish a decent release process for your contribution, you are kindly asked to respond to the reviewer's code review and apply the required changes within **14 days**.
-    **Stale Pull Requests might be closed**.
+      **Stale Pull Requests might be closed**.
     
    6. In some cases, your reviewer will ask you to schedule a meeting to see an interactive demo. Make sure you have a working installation of Cortex XSOAR with your pack fully configured. Check out our [Contribution Demo Page](../contributing/demo-prep) for more details.
    
