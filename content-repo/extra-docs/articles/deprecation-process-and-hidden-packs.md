@@ -20,8 +20,8 @@ In addition, there are two more conditions:
 - "Deprecated. {Optional: REASON} No available replacement."
 
 ## Hidden Pack
-A hidden pack will no longer be shown in Marketplace. Customers will not be able to download a hidden pack from XSOAR marketplace anymore.
-
+A hidden pack will no longer be shown in Marketplace. Customers will not be able to download a hidden pack from Cortex XSOAR marketplace anymore.
+​
 Pack's reference docs will still be available for use.
 
 ## How to deprecate and hide a pack
@@ -62,6 +62,16 @@ Example: No available replacement integration:
 
 Example: Use other integration example:
 <img src="../../../docs/doc_imgs/integrations/deprecated-integration-2.png" width="400" align="middle"></img>
+
+## How to Deprecate an Integration Command
+1) Add the following key to the command in the integration yaml file: ```deprecated: true```
+
+**Why deprecate commands instead of deleting them?**
+   Some users may have used this command in a custom script or playbook.
+   Deleting a command may result in unexpected errors, while deprecation retains backwards compatibility for the command.
+​
+Example: 
+<img src="../../../docs/doc_imgs/integrations/deprecate_command.png" width="400" align="middle"></img>
 
 ## How to Deprecate a Script
 1) Add the following key to the script yaml file: 
