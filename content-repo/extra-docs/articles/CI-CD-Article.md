@@ -553,6 +553,14 @@ To update an exiting pull request in your repository:
 5. If a channel is configured (as described above), at the end of the process a message will be sent with the updated pull request details in the configured channel.
 
 
+### CI/CD Pull Request Creation
+<video controls>
+    <source src="https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-Pull-Request.mp4"
+            type="video/mp4"/>
+    Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-Pull-Request.mp4
+</video>
+
+
 ### CI/CD FAQs
 
 1. **We use Dev/Prod.  Do I still need this feature?  What is the difference?**
