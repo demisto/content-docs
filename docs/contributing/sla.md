@@ -58,7 +58,7 @@ In each of the above options, the review phase will begin with the **opening of 
    5. During the review process monitor your PR - your reviewer will add comments to the Pull Request, asking questions and requesting changes. In order to establish a decent review process for your contribution, you are kindly asked to respond to the reviewer's code review and apply the required changes within **14 days**.
       **Stale Pull Requests might be closed**.
     
-   6. In some cases, your reviewer will ask you to schedule a meeting to see an interactive demo. Make sure you have a working installation of Cortex XSOAR with your pack fully configured. Check out our [Contribution Demo Page](../contributing/demo-prep) for more details.
+   6. In some cases, your reviewer will ask you to schedule a meeting to see an interactive demo. Make sure you have a working installation of Cortex XSOAR with your most recent pack version (including all review comments) fully configured. Check out our [Contribution Demo Page](../contributing/demo-prep) for more details.
    
    
  
