@@ -24,7 +24,7 @@ In each of the above options, the review phase will begin with the **opening of 
    
    3. If requested, after the needed changes were done, and a corresponding message in the pull request was posted - your reviewer will respond within **3 business days**. Note, you might have a couple of such fixes rounds, the above holds for each of them.
    
-   4. Your reviewer will be available for any questions during the review process - you can contact him on the PR itself or on slack (DFIR community).
+   4. Your reviewer will be available for any questions during the review process - you can contact him on the PR itself or on slack ([DFIR Slack Community](https://start.paloaltonetworks.com/join-our-slack-community)).
    
    5. Once your PR is approved and merged by your reviewer, an **internal PR** including your changes will be opened within an **hour**.
     The internal PR allows us to run our internal validity and security checks on your final code. 
@@ -50,7 +50,7 @@ In each of the above options, the review phase will begin with the **opening of 
       
       
    3. Providing the XSOAR content team with a recorded demo session that demonstrates your changes is much appreciated and will speed up the review process.
-        * If you contributed through the XSOAR UI, please provide a link to the recorded session in the redirected UI contribution form.
+        * If you contributed through the XSOAR UI, please provide a link to the recorded session in your **UI contribution form**.
         * If you contributed through a GitHub Pull Request, please provide it in the **contribution registration form**.
    
    4. Please check the status of the build of your PR once it is completed - If the build includes errors, please try to solve them - for more information about the build process please see [the-build-process](../contributing/conventions#the-build-process).
@@ -58,7 +58,7 @@ In each of the above options, the review phase will begin with the **opening of 
    5. During the review process monitor your PR - your reviewer will add comments to the Pull Request, asking questions and requesting changes. In order to establish a decent review process for your contribution, you are kindly asked to respond to the reviewer's code review and apply the required changes within **14 days**.
       **Stale Pull Requests might be closed**.
     
-   6. In some cases, your reviewer will ask you to schedule a meeting to see an interactive demo. Make sure you have a working installation of Cortex XSOAR with your most recent pack version (including all review comments) fully configured. Check out our [Contribution Demo Page](../contributing/demo-prep) for more details.
+   6. In some cases, your reviewer will ask you to schedule a meeting to see an interactive demo. Make sure you have a working installation of Cortex XSOAR with your most recent pack version (including all review changes) fully configured. Check out our [Contribution Demo Page](../contributing/demo-prep) for more details.
    
    
  
