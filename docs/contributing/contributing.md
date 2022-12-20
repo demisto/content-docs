@@ -29,6 +29,8 @@ These issues are particularly well suited for external contributions. If you dec
 
 After you have created your content, you must submit your content to Palo Alto Networks: the Cortex XSOAR Content Team will review and approve it before it becomes available to customers.
 
+Before starting, it is recommended to read the [Contribution SLA](../contributing/sla) document.
+
 There are three ways to submit your work:
  1. Contribute from the Cortex XSOAR UI [Marketplace](../contributing/marketplace). This flow is simpler and doesn't require to set up a development environment or be familiar with git. However, it is recommended **only** in the following scenarios:
     - You are an individual contributor, contributing **new** content that is *community* supported.
