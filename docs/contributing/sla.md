@@ -22,7 +22,7 @@ In each of the above options, the review phase will begin with the **opening of 
    
    2. Your reviewer will publish his initial response to your changes within **5 business days**.
    
-   3. If you were required to make changes to the code, you have made the necessary changes, and have updated about it in a message on the PR - your reviewer will respond within **3 business days**.
+   3. If requested, after the needed changes were done, and a corresponding message in the pull request was posted - your reviewer will respond within **3 business days**. Note, you might have a couple of such fixes rounds, the above holds for each of them.
    
    4. Your reviewer will be available for any questions during the review process - you can contact him on the PR itself or on slack (DFIR community).
    
