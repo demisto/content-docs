@@ -36,7 +36,7 @@ In each of the above options, the review phase will begin with the **opening of 
 #### In order for the contribution process to be successful, the XSOAR content team requires the contributors the following:
 
    1. Provide the XSOAR content team with as much information as possible about the changes you made or about the new content you created.
-        * If you contributed through the XSOAR UI, please provide this information in the redirected **UI contribution form**.
+        * If you contributed through the XSOAR UI, please provide this information in your **UI contribution form**.
         * If you contributed through a GitHub Pull Request, please add this information in the PR body (fill in the template). 
    
    2. If you contributed through a GitHub Pull Request make sure to register your contribution by filling out the **contribution registration form**, and sign the **CLA** ([Contributor License Agreement](https://github.com/demisto/content/blob/master/docs/cla.pdf)).
