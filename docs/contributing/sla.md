@@ -3,7 +3,7 @@ id: sla
 title: Contribution SLA
 ---
 
-This is a Service Level Agreement (SLA) between the contributor and the Cortex XSOAR content team. This document identifies the services required and the expected level of services.
+This is a Service Level Agreement (SLA) between the contributor and the Cortex XSOAR Content team. This document identifies the services required and the expected level of services.
 
 #### There are three options for contributing content to the Cortex XSOAR marketplace:
 
