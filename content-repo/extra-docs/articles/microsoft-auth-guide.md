@@ -3,6 +3,15 @@ title: Microsoft Integrations - Authentication
 description: Authentication method for Microsoft Graph and Azure integrations in Cortex XSOAR.
 ---
 
+:::info Security Awareness: Device Code Authorization
+It is recommended to use the client credentials and user authorization flows for integrations when possible. The device code authorization flow has limited protections against sophisticated phishing campaigns.
+
+In no scenario emails or other forms of communication will be sent to the customer asking to enter a security code or follow a link. All generated links and codes will be shown in the War Room, by running the official integration commands.
+
+More info at: [Device Code flow - Evolved phishing](https://www.microsoft.com/security/blog/2022/01/26/evolved-phishing-device-registration-trick-adds-to-phishers-toolbox-for-victims-without-mfa/)
+
+:::
+
 Microsoft integrations (Graph and Azure) in Cortex XSOAR use Azure Active Directory applications to authenticate with Microsoft APIs. These integrations use OAuth 2.0 and OpenID Connect standard-compliant authentication services, which use an **Application** to sign-in or delegate authentication. 
 For more information, see the [Microsoft identity platform overview](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-overview).
 
@@ -91,11 +100,6 @@ To configure a Microsoft integration that uses this authorization flow with a se
    <img width="600" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/device_code.png" align="middle"></img>
 
 5. Enter your application ID in the ***Application ID*** parameter field.
-
-#### Security awareness 
-[Device Code flow - Evolved phishing](https://www.microsoft.com/security/blog/2022/01/26/evolved-phishing-device-registration-trick-adds-to-phishers-toolbox-for-victims-without-mfa/)
-
-**Note:** No email should be sent to the customer asking for a security code in any scenario. All generated code should be shown in the War Room, by running the official integration command.
 
 ## Revoke Consent
 

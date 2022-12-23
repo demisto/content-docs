@@ -932,9 +932,9 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     if os.getenv('UPDATE_PACK_DOCS') or os.getenv('CI'):
         # to avoid cases that in local dev someone might checkin the modifed pack-docs.md we do this only if explicityl asked for or in CI env
         insert_approved_tags_and_usecases()
-
-    print("Writing json links into contentItemsDocsLinks.json")
-    update_contributors_file(create_service_account_file().name, json.dumps(DOCS_LINKS_JSON, indent=4))
+    if os.getenv('UPDATE_TOP_CONTRIBS') or os.getenv('CI'):
+        print("Writing json links into contentItemsDocsLinks.json")
+        update_contributors_file(create_service_account_file().name, json.dumps(DOCS_LINKS_JSON, indent=4))
 
 
 if __name__ == "__main__":
