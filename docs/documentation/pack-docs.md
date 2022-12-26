@@ -86,8 +86,31 @@ An example of including a YouTube video can be seen at the [Zoom Feed README](ht
 ## Pack Keywords, Tags, Use-cases & Categories
 In order to classify packs and make them easier to find, there are a number of pack metadata elements that you can use:
 - ***Use-case*** -- a name of a situation in which packs can be used - usually the pack name. The optional approved values for use-cases are:
+  <details>
+  <summary>Pack Use Cases</summary>
+
+      Compliance
+      Phishing
+      Use Case
+      Threat Intelligence
+      Identity and Access
+      Malware
+
+  </details>
 
 - ***Tags*** -- words from the same semantic field of the use-case. These make it easier to find packs using filters or the search bar, and are visible on the screen to help understand what the pack is and its benefit to users. To add a tag that's only relevant for a specific marketplace, add the marketplace name as a prefix for the tag name, as in the following example: `['marketplace_name:tag_name']`. The tags under the 'Common tags' are valid for all marketplaces, and do not require a specific prefix. The optional approved values for tags for each marketplace are:
+  <details>
+  <summary>Pack Tags</summary>
+
+      Breach Simulation
+      Forensics
+      Use Case
+      Palo Alto Networks Products
+      Getting Started
+      Core
+      Threat Intelligence Management 
+
+  </details>
 
 - ***Keywords*** -- operate like tags but aren't displayed in the UI. Assists in searching for your pack. You can freely add keywords as you see fit.
 
@@ -97,7 +120,7 @@ For example, for a pack related to messaging, you may want to add "msg" as a key
 Your pack should fall into one of the approved existing categories:
   <details>
   <summary>Pack Categories</summary>
-
+      
       Analytics & SIEM
       Authentication 
       Breach And Attack Simulation
