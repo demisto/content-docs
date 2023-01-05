@@ -32,23 +32,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '16.x'  
-#      - name: Deploy Netlify Build
-#        if: "steps.build_download.outputs.forked_pr > 0"
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          FORKED_PR: ${{ steps.build_download.outputs.forked_pr }}
-#          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-#          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-#        run: |
-#          echo "==== $(date): extract build zip... ===="
-#          tar xzf build-site.tar.gz
-#          echo "==== $(date): Starting Netlify install... ===="
-#          npm install -g netlify-cli
-#          echo "==== $(date): Netlify deploy... ===="
-#          netlify deploy -m "CircleCI forked pr build: $FORKED_PR" -d build --alias=pull-request-$FORKED_PR --json > deploy-info.json
-#          cat deploy-info.json
-#          echo "==== $(date): Posting comment to PR ... ===="
-#          PR_NUM=$FORKED_PR pipenv run ./content-repo/post_github_comment.py deploy-info.json
       - name: Deploy Firebase Build
         if: "steps.build_download.outputs.forked_pr > 0"
         env:
