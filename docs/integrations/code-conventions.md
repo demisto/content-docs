@@ -187,8 +187,8 @@ client = Client(
 
 #### Example - client instance using Basic Authentication
 ```python
-username = demisto.params().get('credentials').get('identifier')
-password = demisto.params().get('credentials').get('password')
+username = demisto.params().get('credentials', {}).get('identifier')
+password = demisto.params().get('credentials', {}).get('password')
 
 # get the service API url
 base_url = urljoin(demisto.params()['url'], '/api/v1')
@@ -578,8 +578,8 @@ When working on integrations that require user credentials (such as username/pas
 - **And in the code:**
 ```python
 params = demisto.params()
-username = params.get('credentials').get('identifier')
-password = params.get('credentials').get('password')
+username = params.get('credentials', {}).get('identifier')
+password = params.get('credentials', {}).get('password')
 ```
 - **In demistomock.py:**
 ```python
