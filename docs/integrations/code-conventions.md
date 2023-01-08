@@ -557,8 +557,16 @@ When working on a command that supports pagination (usually has API parameters l
 3. `limit` 
 
 **The two use cases** 
-- **Manual Pagination:** The user wants to control the pagination on its own by using the `page` and `page size` arguments. To achieve this, the command will simply pass the `page` and `page size` values on to the API request.
+- **Manual Pagination:** The user wants to control the pagination on its own by using the `page` and `page size` arguments. To achieve this, the command will simply pass the `page` and `page size` values on to the API request. If `limit` argument was also provided, then it will be redundant and should be ignored.
 - **Automatic Pagination:** The user does not want to work with pages, but only with a number of total results. In this case, the `limit` argument will be used to aggregate results by iterating over the necessary pages from the first page until collecting all the needed results. This implies a pagination loop mechanism will be implemented behind the scenes. For example, if the limit value received is 250 and the maximal page size enforced by the API is 100, the command will need to perform 3 API calls (pages 1,2, and 3) to collect the 250 requested results.
+
+**Notes:**
+- **Page Tokens** - In case an API supports page tokens, instead of the more common 'limit' and 'offset'/'skip' as query parameters: 
+  - The arguments that will be implemented are: `limit`, `page_size` and `next_token`.
+  - The retrieved `next_token` should be displayed in human readable output and in the context. It will be a single node in the context, and will be overwritten each command run.
+- **Standard argument defaults** - `limit` will have a default of '50' in the YAML. `page_size` should be defaulted in the code to '50', in case only `page` was provided.
+- When an integrated API doesn't support pagination parameters at all - then only `limit` will be applied, and implemented internally in the code. An additional argument will be added to allow the user to retrieve all results by overriding the default `limit`: `all_results`=true. 
+- If API supports only 'limit' and 'offset'/'skip' as query parameters, then all 3 standard XSOAR pagination arguments should be implemented.
 
 ## Credentials
 When working on integrations that require user credentials (such as username/password, API token/key, etc..) the best practice is to use the `credentials` parameter type.
