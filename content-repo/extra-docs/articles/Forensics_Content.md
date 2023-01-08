@@ -4,7 +4,7 @@ title: Forensics Content Roundup
 description: Article listing all Cortex XSOAR content that is currently available to support forensic analysis and investigations.
 
 ---
-This page lists all Cortex XSOAR content that is currently available to support forensic analysis and investigations.
+This page aggregates Cortex XSOAR content that is currently available to support forensic analysis and investigations.
 
 ## Endpoint Response/Analysis/Triage Packs
 Currently compatible with the [Malware Investigation and Response](https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response) pack:
@@ -39,3 +39,9 @@ Other packs:
 | --- | --- |
 | [Binalyze AIR](https://cortex.marketplace.pan.dev/marketplace/details/Binalyze/) ||
 | [Cado Response](https://cortex.marketplace.pan.dev/marketplace/details/CadoResponse/) ||
+
+## Conclusion
+
+For more ideas, search the Marketplace by keyword or filter by tag "Forensics".
+
+<img width="1207" alt="Screen Shot 2023-01-08 at 12 45 31 PM" src="https://user-images.githubusercontent.com/91506078/211215821-ead5063e-72a0-4833-bfe7-f161c0b0d3f0.png">
