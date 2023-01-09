@@ -33,7 +33,6 @@
     "@mdx-js/mdx": "^1.6.7",
     "@mdx-js/react": "^1.6.7",
     "algoliasearch": "4.8.6",
-    "caniuse-lite": "^1.0.30001442",
     "classnames": "2.2.6",
     "copyfiles": "2.1.1",
     "query-string": "^7.0.0",
