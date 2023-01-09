@@ -33,8 +33,10 @@
     "@mdx-js/mdx": "^1.6.7",
     "@mdx-js/react": "^1.6.7",
     "algoliasearch": "4.8.6",
+    "caniuse-lite": "^1.0.30001442",
     "classnames": "2.2.6",
     "copyfiles": "2.1.1",
+    "mini-css-extract-plugin": "2.4.4",
     "query-string": "^7.0.0",
     "react": "^17.0.2",
     "react-collapsible": "^2.8.3",
@@ -46,8 +48,7 @@
     "react-select": "^4.3.1",
     "react-slideshow-image": "^3.5.0",
     "replace": "^1.2.0",
-    "showdown": "^1.9.1",
-    "mini-css-extract-plugin": "2.4.4"
+    "showdown": "^1.9.1"
   },
   "devDependencies": {
     "js-string-escape": "^1.0.1",
