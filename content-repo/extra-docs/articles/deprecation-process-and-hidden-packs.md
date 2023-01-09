@@ -28,7 +28,7 @@ Pack's reference docs will still be available for use.
 1) Make sure that all the pack's integrations, scripts and playbooks are deprecated.
 
 2) Then there are two options:
-- Run ```demisto-sdk format -i Packs/<pack-name>/pack_metadata.json``` only if all the pack's integrations, scripts and playbooks are deprecated.
+- Run ```demisto-sdk format -i Packs/<pack-name>/pack_metadata.json -d``` only if all the pack's integrations, scripts and playbooks are deprecated.
 - Add to the name of the pack in the `pack_metadata.json` the suffix (Deprecated) and add to the description of the pack in the `pack_metadata.json` one of the two formats:
 
 * "Deprecated. Use {OTHER_PACK_NAME} instead."
