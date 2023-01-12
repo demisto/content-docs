@@ -7,14 +7,14 @@ description: Article listing all Cortex XSOAR content that is currently availabl
 This page aggregates Cortex XSOAR content that is currently available to support forensic analysis and investigations.
 
 ## Endpoint Response/Analysis/Triage Packs
-Currently compatible with the [Malware Investigation and Response](https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response) pack:
+#### Currently compatible with the [Malware Investigation and Response](https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response) pack:
 | Pack Name | Available Functionality |
 | --- | --- |
 | [Palo Alto Networks Cortex XDR - Investigation and Response](https://xsoar.pan.dev/docs/reference/packs/palo-alto-networks-cortex-xdr---investigation-and-response) | <ul><li>Retrieve files from endpoint based on path with command `xdr-file-retrieve`</li><li>Execute Python script on endpoint with command `xdr-script-run`</li><li>Execute snippet of Python code on endpoint with command `xdr-snippet-code-script-execute`; then use command `xdr-get-script-execution-results` to get results</li><li>Run OS shell (i.e., Windows Command or Unix bash) command on endpoint with command `xdr-script-commands-execute`; then use command `xdr-get-script-execution-results` to get results</li><li>Execute XQL query with commands `xdr-xql-*-query`</li></ul> |
 | [CrowdStrike Falcon](https://cortex.marketplace.pan.dev/marketplace/details/CrowdStrikeFalcon/) | <ul><li>Perform CrowdStrike Real Time Response (RTR) operations on endpoint (e.g., retrieve files, list network/process/scheduled tasks information, read registry data, and more) with commands `cs-falcon-rtr-*`</li><li>Execute script on endpoint with command `cs-falcon-run-script`</li><li>Run shell command on endpoint with command `cs-falcon-run-command`</li></ul> |
 | [Microsoft Defender for Endpoint](https://cortex.marketplace.pan.dev/marketplace/details/MicrosoftDefenderAdvancedThreatProtection/) | <ul><li>Retrieve files associated with alert with command `microsoft-atp-get-alert-related-files`</li><li>Execute script on endpoint with command `microsoft-atp-live-response-run-script`</li><li>Perform other live response operations on endpoint with commands `microsoft-atp-live-response-*`</li></ul> | 
 
-Other packs:
+#### Other response/analysis/triage packs:
 | Pack Name | Available Functionality |
 | --- | --- |
 | [Tanium Threat Response](https://cortex.marketplace.pan.dev/marketplace/details/TaniumThreatResponse/) ||
