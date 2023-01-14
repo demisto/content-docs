@@ -123,8 +123,8 @@ After collecting and enriching the data, the playbook enters the [Cortex XDR - C
 - If the incident includes "Unusual allocation of multiple cloud compute resources" with medium/high severity, the source ASN isn't known, and the source IP isn't known.
 - If the incident includes both "Unusual allocation of multiple cloud compute resources" AND "A cloud compute instance was created in a dormant region"
 - If none of the conditions is true, the playbook will wait for an analyst's decision.
- 
- If the analyst approves the activity, the False Positive flow will be executed, and the incident severity will be set as 'low'.
+
+If the analyst approves the activity, the False Positive flow will be executed, and the incident severity will be set as 'low'.
 
 If the activity is not approved by the analyst or the [Cortex XDR - Cryptomining - Set Verdict](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---cryptomining---set-verdict) playbook final verdict is malicious, the response flow is executed. These are the primary response steps:
 - Setting the incident severity as 'high'.
