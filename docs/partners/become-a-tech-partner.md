@@ -43,8 +43,8 @@ The following steps explain the process that you need to go through in order to 
 
 ## 1. Sign up as an XSOAR Technology Partner
 
-[Submit your application now!](https://start.paloaltonetworks.com/become-a-technology-partner) After your application is approved you’ll receive an email with a few resources to help you get started, and we'll reach out for a follow up.
-<a class="button button--outline button--primary button--lg" href="https://start.paloaltonetworks.com/become-a-technology-partner" target="_blank">Sign Up Now</a>
+Submit your application now! After your application is approved you’ll receive an email with a few resources to help you get started, and we'll reach out for a follow up.
+<a class="button button--outline button--primary button--lg" href="https://technologypartners.paloaltonetworks.com/English/register_email.aspx" target="_blank">Sign Up Now</a>
 
 ## 2. Complete the Technical Partnership Agreement
 

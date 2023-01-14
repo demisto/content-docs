@@ -187,8 +187,8 @@ client = Client(
 
 #### Example - client instance using Basic Authentication
 ```python
-username = demisto.params().get('credentials').get('identifier')
-password = demisto.params().get('credentials').get('password')
+username = demisto.params().get('credentials', {}).get('identifier')
+password = demisto.params().get('credentials', {}).get('password')
 
 # get the service API url
 base_url = urljoin(demisto.params()['url'], '/api/v1')
@@ -417,7 +417,7 @@ def main():
 
 
 ## Unit Tests
-Every integration must have unit tests.
+Every integration command must be covered with a unit test. Unit tests should be documented using Given-When-Then. 
 
 - Unit tests must be in a separate file, which should have the same name as the integration but be appended with `_test.py` for example `HelloWorld_test.py`
 - To mock http requests use [requests_mock](https://requests-mock.readthedocs.io/en/latest/).
@@ -429,6 +429,15 @@ from HelloWorld import Client, say_hello_command, say_hello_over_http_command
 
 
 def test_say_hello():
+    """
+    Given
+            A name to say hello to
+    When
+            Calling say_hello_command
+    Then
+            Make sure the outputs, outputs_prefix and outputs_key_field values are as expected.
+    """
+    
     client = Client(
         base_url="https://test.com", 
         verify=False, 
@@ -449,6 +458,15 @@ def test_say_hello():
 
 
 def test_say_hello_over_http(requests_mock):
+    """
+    Given
+            A name to say hello to
+    When
+            Calling say_hello_over_http_command
+    Then
+            Make sure the outputs, outputs_prefix and outputs_key_field values are as expected.
+    """
+    
     mock_response = {"result": "Hello DBot"}
     requests_mock.get("https://test.com/api/v1/suffix/hello/Dbot", json=mock_response)
 
@@ -472,13 +490,7 @@ def test_say_hello_over_http(requests_mock):
 ```
 
 ## Variable Naming
-When naming variables use the following convention.
-
-### Do this:
-```variable_name```
-
-### Do not do this:
-```variableName```
+When naming variables, use `[snake_case]([url](https://en.wikipedia.org/wiki/Snake_case))`, not `PascalCase` or `camelCase`.
 
 ## Outputs
 Make sure you read and understand [Context and Outputs](context-and-outputs).
@@ -545,8 +557,16 @@ When working on a command that supports pagination (usually has API parameters l
 3. `limit` 
 
 **The two use cases** 
-- **Manual Pagination:** The user wants to control the pagination on its own by using the `page` and `page size` arguments. To achieve this, the command will simply pass the `page` and `page size` values on to the API request.
+- **Manual Pagination:** The user wants to control the pagination on its own by using the `page` and `page size` arguments. To achieve this, the command will simply pass the `page` and `page size` values on to the API request. If `limit` argument was also provided, then it will be redundant and should be ignored.
 - **Automatic Pagination:** The user does not want to work with pages, but only with a number of total results. In this case, the `limit` argument will be used to aggregate results by iterating over the necessary pages from the first page until collecting all the needed results. This implies a pagination loop mechanism will be implemented behind the scenes. For example, if the limit value received is 250 and the maximal page size enforced by the API is 100, the command will need to perform 3 API calls (pages 1,2, and 3) to collect the 250 requested results.
+
+**Notes:**
+- **Page Tokens** - In case an API supports page tokens, instead of the more common 'limit' and 'offset'/'skip' as query parameters: 
+  - The arguments that will be implemented are: `limit`, `page_size` and `next_token`.
+  - The retrieved `next_token` should be displayed in human readable output and in the context. It will be a single node in the context, and will be overwritten each command run.
+- **Standard argument defaults** - `limit` will have a default of '50' in the YAML. `page_size` should be defaulted in the code to '50', in case only `page` was provided.
+- When an integrated API doesn't support pagination parameters at all - then only `limit` will be applied, and implemented internally in the code. An additional argument will be added to allow the user to retrieve all results by overriding the default `limit`: `all_results`=true. 
+- If API supports only 'limit' and 'offset'/'skip' as query parameters, then all 3 standard XSOAR pagination arguments should be implemented.
 
 ## Credentials
 When working on integrations that require user credentials (such as username/password, API token/key, etc..) the best practice is to use the `credentials` parameter type.
@@ -566,8 +586,8 @@ When working on integrations that require user credentials (such as username/pas
 - **And in the code:**
 ```python
 params = demisto.params()
-username = params.get('credentials').get('identifier')
-password = params.get('credentials').get('password')
+username = params.get('credentials', {}).get('identifier')
+password = params.get('credentials', {}).get('password')
 ```
 - **In demistomock.py:**
 ```python

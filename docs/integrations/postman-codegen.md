@@ -3,7 +3,7 @@ id: postman-codegen
 title: Postman Code Generator
 description: Generate XSOAR integration from Postman Collection
 ---
-Use the `demisto sdk postman-codegen` command to generate an XSOAR integration (yml file) from a Postman Collection v2.1. Note the generated integration is in the yml format. Use the `demisto-sdk split-yml` [command](package-dir#split-a-yml-file-to-directory-structure) to split the integration into the recommended [Directory Structure](package-dir) for further development.
+Use the `demisto sdk postman-codegen` command to generate an XSOAR integration (yml file) from a Postman Collection v2.1. Note the generated integration is in the yml format. Use the `demisto-sdk split` [command](package-dir#split-a-yml-file-to-directory-structure) to split the integration into the recommended [Directory Structure](package-dir) for further development.
 
 You can generate the integration either as a two step process or a single step.
 - **Single Step:** Use this method to generate directly an integration yml file.

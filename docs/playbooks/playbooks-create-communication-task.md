@@ -76,3 +76,4 @@ In this example, we created a question based on a custom Grid field that we mark
 ![Data Collection Task - Field Based](/doc_imgs/playbooks/Communication-Data-Collection-Field-based.png)
 
 
+For more information about communciation tasks, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/playbooks/playbook-tasks/communication-tasks).

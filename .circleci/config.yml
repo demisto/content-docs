@@ -52,11 +52,6 @@ jobs:
             nvm use
             npm run reference-docs
       - run:
-          name: NPM Build marketplace docs
-          command: |
-            nvm use
-            npm run marketplace-docs
-      - run:
           name: NPM Build
           no_output_timeout: 80m
           environment:

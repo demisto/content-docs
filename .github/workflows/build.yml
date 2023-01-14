@@ -47,6 +47,7 @@ jobs:
         cd content-repo
         wget https://raw.githubusercontent.com/demisto/content/master/Packs/Base/Scripts/CommonServerPython/CommonServerPython.py
         wget https://raw.githubusercontent.com/demisto/content/master/Tests/demistomock/demistomock.py
+        sed -i -e '/from DemistoClassApiModule import */d' CommonServerPython.py
     - name: Lint
       run: |
         cd content-repo

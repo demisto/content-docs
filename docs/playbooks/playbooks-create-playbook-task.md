@@ -23,3 +23,4 @@ To create a task:
 
 4. Click **Save**.
 
+For more information on playbook tasks, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/playbooks/playbook-tasks).

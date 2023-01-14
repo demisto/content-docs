@@ -114,12 +114,18 @@ Specify in the corresponding release notes file:
 ```
 'Added support for '
 'Added the '
+'Added a'
+'Added an '
 'Fixed an issue '
 'Improved implementation '
-'Updated the Docker image to '
+'Updated the'
 'You can now '
 'Deprecated. '
-'Deprecated the' 
+'Deprecated the'
+'Improved layout'
+'Created a new layout'
+'Playbook now supports'
+'Created a new playbook'
 ```
 
 Release notes not using one of these prefixes will generate an error when running `demisto-sdk doc-review`:
@@ -172,7 +178,7 @@ Improved implementation of the default value for the *fetch_time* parameter.
 ```
 #### General Changes
 
-> **Note:** Use these if the change has no visible impact on the user. 
+> **Note:** In most cases we will avoid having such release notes, use these only if the change has no clear or visible impact on the user.
 
 ```markdown
 - Maintenance and stability enhancements.
@@ -210,7 +216,7 @@ Marking a version as a **breaking changes version** provides the user with an al
 ![image](/doc_imgs/integrations/bc_alert_example.png)
 
 
-#### Idicate a new version is a breaking changes version
+#### Indicate a new version is a breaking changes version
 To specify the new introduced version as **breaking changes**, run the demisto-sdk ***update-release-notes*** command with the -bc flag. For example:
 
 ```

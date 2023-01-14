@@ -71,9 +71,10 @@ module.exports = {
           activeBaseRegex: "docs/reference/(index|api|integrations|playbooks|releases|scripts)"
         },
         {
-          to: "/marketplace",
+          to: "https://cortex.marketplace.pan.dev/marketplace",
           label: "Marketplace",
-          position: "left"
+          position: "left",
+          target: '_self'
         },
         {
           label: "Products",
@@ -141,14 +142,14 @@ module.exports = {
             },
             {
               to:
-                "https://start.paloaltonetworks.com/become-a-technology-partner",
+                "https://technologypartners.paloaltonetworks.com/English/register_email.aspx",
               label: "Sign Up Now"
             },
           ],
           position: "right"
         },
         {
-          href: "https://blog.demisto.com/",
+          href: "https://www.paloaltonetworks.com/blog/security-operations/",
           label: "Blog",
           position: "right"
         },

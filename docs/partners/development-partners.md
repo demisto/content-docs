@@ -15,7 +15,7 @@ Having your integration built by a development partner and certified by us is ea
 
 2. Establish scoping and contracting - Define what you want to accomplish in your integration. We’re happy to join calls to define use cases and commands based on our experience -- just let us know! (Palo Alto Networks is not a party to your agreement.)
 
-3. Sign up as a Technical Partner - [register](https://start.paloaltonetworks.com/become-a-technology-partner) and complete our Technology Partner Agreement (TPA) so we can publish the integration under your company name.
+3. Sign up as a Technical Partner - [register](https://technologypartners.paloaltonetworks.com/English/register_email.aspx) and complete our Technology Partner Agreement (TPA) so we can publish the integration under your company name.
 
 4. The development partner will keep us updated on timing and any issues. They’ll manage the GitHub pull request and certification with our Engineering teams.
 

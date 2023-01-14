@@ -11,6 +11,9 @@ Every integration that returns a reputation about an indicator must implement th
 
 When creating commands that enrich indicators, the commands should be named according to the indicator: !ip, !domain, etc. This naming convention allows commands from multiple integrations to be run together to enrich an indicator. For example, running !ip ip=8.8.8.8 can trigger multiple integrations that gather information about the IP address.
 
+The easiest (and best) way to return indicator context is using one of the classes under `Common` (`Common.IP`, `Common.URL`, etc). For more information, see [here](context-and-outputs#return-ip-reputation). A simple example for returning indicators is the [`Ipinfo_v2` integration](https://github.com/demisto/content/blob/master/Packs/ipinfo/Integrations/ipinfo_v2/ipinfo_v2.py)
+
+
 ## Generic reputation commands
 
 ### **file file=**

@@ -5,13 +5,15 @@ sidebar_label: Parameter Types
 ---
 
 Integration Parameter Types are used to configure instances of the integration. When adding a parameter to an integration in Cortex XSOAR, there are numerous types to choose from.
-Each type will affect the parameter behavior and interaction with the user. 
+Each type will affect the parameter behavior and interaction with the user.
+See [here](https://xsoar.pan.dev/docs/integrations/yaml-file#configuration) for more information how to set the parameter type.
 
 ## Boolean
 
-This type of parameter creates a check box in the integration configuration. When the check box is ticked, the value in
-the integration code would be `True`, and `False` otherwise.
-Example:
+This type of parameter creates a checkbox in the integration configuration. When the checkbox is ticked, the value in
+the integration code is `True`, and `False` otherwise.
+The type number is: 0.
+
 ![image](/doc_imgs/integrations/54881985-48654700-4e5e-11e9-8e1c-7a95d1b84328.png)
 
 ![image](/doc_imgs/integrations/54881975-2966b500-4e5e-11e9-87c7-b9f2eadeef5d.png)
@@ -22,6 +24,7 @@ Access: `demisto.params().get('proxy')`
 
 This type of parameter is used for short input parameters, such as server URLs, ports or queries. It creates a small
 sized text box in the integration configuration.
+The type number is: 8.
 
 ![image](/doc_imgs/integrations/54881995-616df800-4e5e-11e9-8f15-475422b97066.png)
 
@@ -33,6 +36,7 @@ Access: `demisto.params().get('url')`
 
 This type of parameter is used for long text inputs, such as certificates. It creates a large sized text box in the 
 integration configuration.
+The type number is: 12.
 
 ![image](/doc_imgs/integrations/54882097-4a7bd580-4e5f-11e9-80d7-4db8859bbab4.png)
 
@@ -45,6 +49,7 @@ Access: `demisto.params().get('cert')`
 This type of parameter is used for encrypted inputs, such as API tokens. This should not be used for username-password 
 credentials however. It creates a small sized text box with an encrypted text, which would also be stored encrypted in
 the database. 
+The type number is: 4.
 
 ![image](/doc_imgs/integrations/54882368-f7575200-4e61-11e9-86e4-c5e33948f35e.png)
 
@@ -57,6 +62,7 @@ Access: `demisto.params().get('token')`
 This type of parameter is used for username-password credentials - username as plain text and an encrypted password. 
 It supports retrieving credentials from the Cortex XSOAR credentials store (more info on the credentials store can be found in
 the Cortex XSOAR support portal).
+The type number is: 9.
 
 ![image](/doc_imgs/integrations/54882618-89f8f080-4e64-11e9-8bbc-e4974c9466a5.png)
 
@@ -71,6 +77,7 @@ Password: `demisto.params().get('credentials', {}).get('password')`
 ## Single Select
 
 This type of parameter is used to allow selecting a single input from a list of allowed inputs. 
+The type number is: 15.
 
 ![image](/doc_imgs/integrations/54883090-3ee1dc00-4e6a-11e9-88b7-5bbce20702d9.png)
 
@@ -81,6 +88,7 @@ Access: `demisto.params().get('log')`
 ## Multi Select
 
 This type of parameter is used to allow selecting multiple inputs from a list of allowed inputs.
+The type number is: 16.
 
 ![image](/doc_imgs/integrations/54883128-d810f280-4e6a-11e9-94b6-cd6dc43987e9.png)
 

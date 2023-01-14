@@ -11,13 +11,15 @@ import shutil
 import subprocess
 import sys
 import traceback
+import tempfile
+import yaml
+
 from datetime import datetime
 from distutils.version import StrictVersion
 from functools import partial
 from multiprocessing import Pool
 from typing import Dict, Iterator, List, Optional, Tuple, TypedDict
-
-import yaml
+from google.cloud import storage
 from bs4 import BeautifulSoup
 from dateutil.relativedelta import relativedelta
 
@@ -36,7 +38,7 @@ def timestamped_print(*args, **kwargs):
 print = timestamped_print
 
 BASE_URL = "https://xsoar.pan.dev/docs/"
-MARKETPLACE_URL = "https://xsoar.pan.dev/marketplace/"
+MARKETPLACE_URL = "https://cortex.marketplace.pan.dev/marketplace/"
 DOCS_LINKS_JSON = {}
 
 INTEGRATION_YML_MATCH = [
@@ -73,7 +75,7 @@ PACKS_PREFIX = 'packs'
 NO_HTML = '<!-- NOT_HTML_DOC -->'
 YES_HTML = '<!-- HTML_DOC -->'
 BRANCH = os.getenv('HEAD', 'master')
-MAX_FAILURES = int(os.getenv('MAX_FAILURES', 15))  # if we have more than this amount in a single category we fail the build
+MAX_FAILURES = int(os.getenv('MAX_FAILURES', 80))  # if we have more than this amount in a single category we fail the build
 # env vars for faster development
 MAX_FILES = int(os.getenv('MAX_FILES', -1))
 FILE_REGEX = os.getenv('FILE_REGEX')
@@ -87,6 +89,33 @@ MIN_RELEASE_VERSION = StrictVersion((datetime.now() + relativedelta(months=-18))
 PACKS_INTEGRATIONS_PREFIX = 'Integrations'
 PACKS_SCRIPTS_PREFIX = 'Scripts'
 PACKS_PLAYBOOKS_PREFIX = 'Playbooks'
+
+SERVICE_ACCOUNT = os.getenv('GCP_SERVICE_ACCOUNT')
+
+
+def create_service_account_file():
+    """
+        Create a service account json file from the circle variable.
+    """
+    service_account_file = tempfile.NamedTemporaryFile(delete=False, mode='w', suffix='.json')
+    service_account_file.write(SERVICE_ACCOUNT)
+    service_account_file.flush()
+
+    return service_account_file
+
+
+def update_contributors_file(service_account_file, list_links):
+    """
+        Updates the contentItemsDocsLinks json file.
+        Args:
+            service_account_file (Object): A Service Account file which used to connect to the bucket.
+            list_links (Dict[str: str]): Dict of {content item name: path in xsoar.pan.dev}.
+                for example: {"Aha": "https://xsoar.pan.dev/docs/reference/integrations/aha"}
+    """
+    storage_client = storage.Client.from_service_account_json(service_account_file)
+    bucket = storage_client.bucket('xsoar-ci-artifacts')
+    blob = bucket.blob('content-cache-docs/contentItemsDocsLinks.json')
+    blob.upload_from_string(list_links)
 
 
 class DocInfo:
@@ -189,14 +218,15 @@ def get_beta_data(yml_data: dict, content: str):
     return ""
 
 
-def get_packname_from_metadata(pack_dir):
+def get_packname_from_metadata(pack_dir, xsoar_marketplace: bool = True):
     with open(f'{pack_dir}/pack_metadata.json', 'r') as f:
         metadata = json.load(f)
         is_pack_hidden = metadata.get("hidden", False)
-    return metadata.get('name'), is_pack_hidden
+        xsoar_marketplace = 'xsoar' in metadata.get('marketplaces', []) if xsoar_marketplace else False
+    return metadata.get('name'), is_pack_hidden, xsoar_marketplace
 
 
-def get_pack_link(file_path: str) -> str:
+def get_pack_link(file_path: str, xsoar_marketplace: bool = True) -> str:
     # the regex extracts pack name from paths, for example: content/Packs/EWSv2 -> EWSv2
     match = re.search(r'Packs[/\\]([^/\\]+)[/\\]?', file_path)
     pack_name = match.group(1) if match else ''
@@ -208,7 +238,7 @@ def get_pack_link(file_path: str) -> str:
     is_pack_hidden = False
 
     try:
-        pack_name_in_docs, is_pack_hidden = get_packname_from_metadata(pack_dir)
+        pack_name_in_docs, is_pack_hidden, xsoar_marketplace = get_packname_from_metadata(pack_dir, xsoar_marketplace)
     except FileNotFoundError:
         pack_name_in_docs = pack_name.replace('_', ' ').replace('-', ' - ')
 
@@ -221,7 +251,8 @@ def get_pack_link(file_path: str) -> str:
     if 'ApiModules' in pack_name or 'NonSupported' in pack_name:
         return ''
 
-    if is_pack_hidden:  # this pack is hidden, don't add a link
+    # This pack is hidden, or it's not on XSOAR marketplace, don't add a link
+    if is_pack_hidden or not xsoar_marketplace:
         return f"#### This {file_type} is part of the **{pack_name_in_docs}** Pack.\n\n" \
             if file_type and pack_name and pack_name_in_docs else ''
     return f"#### This {file_type} is part of the **[{pack_name_in_docs}]({pack_link})** Pack.\n\n" \
@@ -305,7 +336,12 @@ def add_content_info(content: str, yml_data: dict, desc: str, readme_file: str) 
     content = get_beta_data(yml_data, content) + content
     if not is_deprecated:
         content = get_fromversion_data(yml_data) + content
-    content = get_pack_link(readme_file) + content
+    # Check if there is marketplace key that does not contain the XSOAR value.
+    if marketplaces := yml_data.get('marketplaces', []):
+        xsoar_marketplace = 'xsoar' in marketplaces
+    else:
+        xsoar_marketplace = True
+    content = get_pack_link(readme_file, xsoar_marketplace) + content
     return content
 
 
@@ -568,9 +604,36 @@ def insert_approved_tags_and_usecases():
     with open('approved_usecases.json', 'r') as f:
         approved_usecases = json.loads(f.read()).get('approved_list')
         approved_usecases_string = '\n        '.join(approved_usecases)
+
     with open('approved_tags.json', 'r') as f:
-        approved_tags = json.loads(f.read()).get('approved_list')
-        approved_tags_string = '\n        '.join(approved_tags)
+        approved_tags = json.loads(f.read()).get('approved_list', {})
+
+    approved_tags_string = ''
+    approved_common_tags_string = '\n        '.join(approved_tags.get('common', []))
+    approved_tags_string += 'Common Tags:\n        '
+    approved_tags_string += approved_common_tags_string
+
+    if approved_tags.get('marketplacev2', []):
+        approved_tags_string += '\n        '
+        approved_tags_string += '\n        '
+        approved_marketplacev2_tags_string = '\n        '.join(approved_tags.get('marketplacev2', []))
+        approved_tags_string += 'Marketplace V2 Tags:\n        '
+        approved_tags_string += approved_marketplacev2_tags_string
+
+    if approved_tags.get('xsoar', []):
+        approved_tags_string += '\n        '
+        approved_tags_string += '\n        '
+        approved_xsoar_tags_string = '\n        '.join(approved_tags.get('xsoar', []))
+        approved_tags_string += 'Xsoar Tags:\n\n        '
+        approved_tags_string += approved_xsoar_tags_string
+
+    if approved_tags.get('xpanse', []):
+        approved_tags_string += '\n        '
+        approved_tags_string += '\n        '
+        approved_xspanse_tags_string = '\n        '.join(approved_tags.get('xpanse', []))
+        approved_tags_string += 'Xpanse Tags:\n        '
+        approved_tags_string += approved_xspanse_tags_string
+
     with open("../docs/documentation/pack-docs.md", "r+") as f:
         pack_docs = f.readlines()
         f.seek(0)
@@ -634,7 +697,7 @@ def find_deprecated_integrations(content_dir: str):
     for f in files:
         with open(f, 'r') as fr:
             content = fr.read()
-            if dep_search  := re.search(r'^deprecated:\s*true', content, re.MULTILINE):
+            if dep_search := re.search(r'^deprecated:\s*true', content, re.MULTILINE):
                 pack_dir = re.match(r'.+/Packs/.+?(?=/)', f)
                 if is_xsoar_supported_pack(pack_dir.group(0)):  # type: ignore[union-attr]
                     yml_data = yaml.safe_load(content)
@@ -869,10 +932,9 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     if os.getenv('UPDATE_PACK_DOCS') or os.getenv('CI'):
         # to avoid cases that in local dev someone might checkin the modifed pack-docs.md we do this only if explicityl asked for or in CI env
         insert_approved_tags_and_usecases()
-
-    print("Writing json links into contentItemsDocsLinks.json")
-    with open('contentItemsDocsLinks.json', 'w') as file:
-        json.dump(DOCS_LINKS_JSON, file)
+    if os.getenv('UPDATE_TOP_CONTRIBS') or os.getenv('CI'):
+        print("Writing json links into contentItemsDocsLinks.json")
+        update_contributors_file(create_service_account_file().name, json.dumps(DOCS_LINKS_JSON, indent=4))
 
 
 if __name__ == "__main__":

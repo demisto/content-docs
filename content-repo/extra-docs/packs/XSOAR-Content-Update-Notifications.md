@@ -1,5 +1,5 @@
 ---
-id: content-upadte-notification
+id: content-update-notification
 title: XSOAR Content Update Notifications
 description: Use this pack to automate your content update process for marketplace packs.
 ---
