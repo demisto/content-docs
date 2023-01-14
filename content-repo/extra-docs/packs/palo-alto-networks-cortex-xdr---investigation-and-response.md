@@ -126,7 +126,7 @@ After collecting and enriching the data, the playbook enters the [Cortex XDR - C
  
  If the analyst approves the activity, the False Positive flow will be executed, and the incident severity will be set as 'low'.
 
- If the activity is not approved by the analyst or the [Cortex XDR - Cryptomining - Set Verdict](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---cryptomining---set-verdict) playbook final verdict is malicious, the response flow is executed. These are the primary response steps:
+If the activity is not approved by the analyst or the [Cortex XDR - Cryptomining - Set Verdict](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---cryptomining---set-verdict) playbook final verdict is malicious, the response flow is executed. These are the primary response steps:
 - Setting the incident severity as 'high'.
 - Sending a message to the SOC.
 - Executing the [Cloud Response - Generic](https://xsoar.pan.dev/docs/reference/playbooks/cloud-response---generic) playbook.
