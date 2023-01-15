@@ -22,7 +22,8 @@ The Palo Alto Networks Cortex XDR - Investigation and Response pack enables the 
 - [Device Control Violations](#device-control-violations) - Fetch device control violations from XDR and communicate with the user to determine the reason the device was connected.
 - [XDR Incident Handling](#xdr-incident-handling) - Compare incidents in Palo Alto Networks Cortex XDR and Cortex XSOAR, and update the incidents appropriately. 
 - [AWS IAM User Access Investigation](#aws-iam-user-access-investigation) - Investigates and responds to Cortex XDR Cloud alerts where an AWS IAM user's access key is used suspiciously to access the cloud environment. 
-- [Cortex XDR - Cloud Cryptomining](#Cortex_XDR_-_Cloud_Cryptomining) - Investigates and responds to Cortex XDR XCloud Cryptojacking alerts. The playbook Supports AWS, Azure and GCP.
+- [Cortex XDR - Cloud Cryptomining](#Cortex_XDR_-_Cloud_Cryptomining) - Investigates and responds to Cortex XDR XCloud 
+  Cryptomining alerts. The playbook Supports AWS, Azure and GCP.
 
 
  
@@ -49,7 +50,9 @@ The playbook then searches for similar incidents in Cortex XSOAR to link to the 
 
 If no similar incidents are found, or if the analyst does not want to close the incident as a duplicate, the workflow continues.
 
-The [Cortex XDR Alerts Handling](#cortex-xdr-alerts-handling) sub-playbook loops through and checks the category of the alerts. Currently, this sub-playbook handles Malware, Port Scan and Cloud Cryptojacking alerts only. If the category is Malware, the [Cortex XDR - Malware Investigation](#cortex-xdr---malware-investigation) sub-playbook will run. If the category is Port Scan, the [Cortex XDR - Port Scan - Adjusted](#cortex-xdr---port-scan---adjusted) sub-playbook will run and if the category is Cloud Cryptomining, the [Cortex XDR - Cloud Cryptomining](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---cloud-cryptomining) sub-playbook will run. After the Malware, Port Scan or Cloud Cryptomining sub-playbook runs or if the alert is in any other category, the main playbook will continue to further investigate. It counts the number of alerts in the incident. This information will be displayed in the layout. It then executes the [Cortex XDR device control violations](#cortex-xdr-device-control-violations) sub-playbook. 
+The [Cortex XDR Alerts Handling](#cortex-xdr-alerts-handling) sub-playbook loops through and checks the category of the alerts.
+Currently, this sub-playbook handles Malware, Port Scan and Cloud Cryptomining alerts only. If the category is Malware, the 
+[Cortex XDR - Malware Investigation](#cortex-xdr---malware-investigation) sub-playbook will run. If the category is Port Scan, the [Cortex XDR - Port Scan - Adjusted](#cortex-xdr---port-scan---adjusted) sub-playbook will run and if the category is Cloud Cryptomining, the [Cortex XDR - Cloud Cryptomining](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---cloud-cryptomining) sub-playbook will run. After the Malware, Port Scan or Cloud Cryptomining sub-playbook runs or if the alert is in any other category, the main playbook will continue to further investigate. It counts the number of alerts in the incident. This information will be displayed in the layout. It then executes the [Cortex XDR device control violations](#cortex-xdr-device-control-violations) sub-playbook. 
 
 Then the [Entity Enrichment Generic v3](https://xsoar.pan.dev/docs/reference/playbooks/entity-enrichment---generic-v3) sub-playbook runs which takes all the entities in the incidents and enriches them with the available products in the environment. The SOC team will then do a manual in-depth analysis of the incident. 
 
@@ -99,7 +102,10 @@ The analyst manually checks if the user has an AWS login profile and deletes it.
 
 
 ## Cortex XDR - Cloud Cryptomining
-The [Cortex XDR - Cloud Cryptomining](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---cloud-cryptomining) playbook enriches, investigates, and responds to Cortex XDR XCloud Cryptojacking alerts. The playbook flow is triggered based on the 'Unusual allocation of multiple cloud compute resources' alert. If the alert isn't present in the incident, the playbook will exit the IR flow.
+The [Cortex XDR - Cloud Cryptomining](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---cloud-cryptomining) playbook 
+enriches, investigates, and responds to Cortex XDR XCloud Cryptomining alerts. The playbook flow is triggered based on the 
+'Unusual 
+allocation of multiple cloud compute resources' alert. If the alert isn't present in the incident, the playbook will exit the IR flow.
 
 First, the playbook will fetch and map to the context the raw JSON of the alert.
 
