@@ -52,7 +52,7 @@ If no similar incidents are found, or if the analyst does not want to close the 
 
 The [Cortex XDR Alerts Handling](#cortex-xdr-alerts-handling) sub-playbook loops through and checks the category of the alerts.
 Currently, this sub-playbook handles Malware, Port Scan and Cloud Cryptomining alerts only. If the category is Malware, the 
-[Cortex XDR - Malware Investigation](#cortex-xdr---malware-investigation) sub-playbook will run. If the category is Port Scan, the [Cortex XDR - Port Scan - Adjusted](#cortex-xdr---port-scan---adjusted) sub-playbook will run and if the category is Cloud Cryptomining, the [Cortex XDR - Cloud Cryptomining](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---cloud-cryptomining) sub-playbook will run. After the Malware, Port Scan or Cloud Cryptomining sub-playbook runs or if the alert is in any other category, the main playbook will continue to further investigate. It counts the number of alerts in the incident. This information will be displayed in the layout. It then executes the [Cortex XDR device control violations](#cortex-xdr-device-control-violations) sub-playbook. 
+[Cortex XDR - Malware Investigation](#cortex-xdr---malware-investigation) sub-playbook will run. If the category is Port Scan, the [Cortex XDR - Port Scan - Adjusted](#cortex-xdr---port-scan---adjusted) sub-playbook will run and if the category is Cloud Cryptomining, the [Cortex XDR - Cloud Cryptomining](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---cloud-cryptomining) sub-playbook will run. After the Malware, Port Scan or Cloud Cryptomining sub-playbook runs or if the alert is in any other category, the main playbook will continue to further investigate. It counts the number of alerts in the incident and displays this information in the layout. It then executes the [Cortex XDR device control violations](#cortex-xdr-device-control-violations) sub-playbook. 
 
 Then the [Entity Enrichment Generic v3](https://xsoar.pan.dev/docs/reference/playbooks/entity-enrichment---generic-v3) sub-playbook runs which takes all the entities in the incidents and enriches them with the available products in the environment. The SOC team will then do a manual in-depth analysis of the incident. 
 
@@ -107,7 +107,7 @@ enriches, investigates, and responds to Cortex XDR XCloud Cryptomining alerts. T
 'Unusual 
 allocation of multiple cloud compute resources' alert. If the alert isn't present in the incident, the playbook will exit the IR flow.
 
-First, the playbook will fetch and map to the context the raw JSON of the alert.
+First, the playbook will fetch and map the raw JSON of the alert to context.
 
 Then the playbook enters the [Cortex XDR - Cloud Enrichment](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---cloud-enrichment) playbook and collects and enriches the following:
  - Resource enrichment
@@ -122,12 +122,12 @@ Also, the playbook will collect data for later usage in the layout.
 
 After collecting and enriching the data, the playbook enters the [Cortex XDR - Cryptomining - Set Verdict](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---cryptomining---set-verdict) playbook. This playbook will set the incident verdict as Unknown or Malicious based on the following decision tree logic:
 
-- If the source IP address is malicious
+- If the source IP address is malicious.
 - If the incident includes both "Unusual allocation of multiple cloud compute resources" AND "Cloud identity reached a 
-     throttling API rate" (medium/high severity)
-- If the incident includes both "Unusual allocation of multiple cloud compute resources" AND "Suspicious heavy allocation of compute resources - possible mining activity"
+     throttling API rate" (medium/high severity).
+- If the incident includes both "Unusual allocation of multiple cloud compute resources" AND "Suspicious heavy allocation of compute resources - possible mining activity".
 - If the incident includes "Unusual allocation of multiple cloud compute resources" with medium/high severity, the source ASN isn't known, and the source IP isn't known.
-- If the incident includes both "Unusual allocation of multiple cloud compute resources" AND "A cloud compute instance was created in a dormant region"
+- If the incident includes both "Unusual allocation of multiple cloud compute resources" AND "A cloud compute instance was created in a dormant region".
 - If none of the conditions is true, the playbook will wait for an analyst's decision.
 
 If the analyst approves the activity, the False Positive flow will be executed, and the incident severity will be set as 'low'.
@@ -137,7 +137,7 @@ If the activity is not approved by the analyst or the [Cortex XDR - Cryptomining
 - Sending a message to the SOC.
 - Executing the [Cloud Response - Generic](https://xsoar.pan.dev/docs/reference/playbooks/cloud-response---generic) playbook.
 
-The Cloud Response - Generic playbook provides response playbooks for:
+The **Cloud Response - Generic** playbook provides response playbooks for:
 
 - AWS
 - Azure
@@ -145,10 +145,10 @@ The Cloud Response - Generic playbook provides response playbooks for:
 
 The response actions available are:
 
-- Terminate/Shut down/Power off an instance
-- Delete/Disable a user
-- Delete/Revoke/Disable credentials
-- Block indicators
+- Terminate/Shut down/Power off an instance.
+- Delete/Disable a user.
+- Delete/Revoke/Disable credentials.
+- Block indicators.
 
 The playbook will move forward for the analyst's resolution when the response phase has finished.
 
