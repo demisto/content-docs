@@ -67,7 +67,6 @@ def create_slack_notifier(slack_token: str, build_url: str, ci_token: str, build
         slack_client = WebClient(token=slack_token)
         slack_client.chat_postMessage(
             channel=SLACK_CHANNEL,
-            as_user=False,
             username="Content-Docs CircleCI",
             attachments=[{
                 'color': color,
