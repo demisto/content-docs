@@ -276,7 +276,7 @@ def main() -> None:
     args = demisto.args()
     command = demisto.command()
 
-    api_key = params.get('api_key',{}).get(‘password’)
+    api_key = params.get('api_key',{}).get('password')
     base_url = params.get('url')
     verify = not params.get('insecure', False)
     proxy = params.get('proxy', False)
@@ -298,15 +298,15 @@ try:
 There are two possible commands that can be passed to the *main* function in our integration.  
 
 ```python
- if command == 'test-module':
-            # This is the call made when clicking the integration Test button.
-            return_results(test_module(client))
+    if command == 'test-module':
+        # This is the call made when clicking the integration Test button.
+        return_results(test_module(client))
 
-        elif command == 'yoda-speak-translate':
-            return_results(translate_command(client, **args))
+    elif command == 'yoda-speak-translate':
+        return_results(translate_command(client, **args))
 
-        else:
-            raise NotImplementedError(f"command {command} is not implemented.")
+    else:
+        raise NotImplementedError(f"command {command} is not implemented.")
 ```
 
 - ***test-module***
