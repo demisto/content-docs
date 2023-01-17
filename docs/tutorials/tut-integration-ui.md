@@ -248,7 +248,7 @@ def translate_command(client: Client, text: str) -> CommandResults:
                             'Translation': translated}}
 
     return CommandResults(outputs_prefix='YodaSpeak',
-                          outputs_key_field=’Phrase.Original',
+                          outputs_key_field=['Phrase']['Original'],
                           outputs=outputs,
                           raw_response=response,
                           readable_output=tableToMarkdown(name='Yoda Says...', t=outputs))
