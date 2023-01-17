@@ -179,15 +179,15 @@ requests.packages.urllib3.disable_warnings() # pylint: disable=no-member
 ```python
 class Client(BaseClient):
     def __init__(self, api_key: str, base_url: str, proxy: bool, verify: bool):
-       super().__init__(base_url=base_url, proxy=proxy, verify=verify)
+        super().__init__(base_url=base_url, proxy=proxy, verify=verify)
        
-       self.api_key = api_key
+        self.api_key = api_key
        
-	if self.api_key:
-	    self._headers = {'X-Funtranslations-Api-Secret': self.api_key}
+        if self.api_key:
+	        self._headers = {'X-Funtranslations-Api-Secret': self.api_key}
  
-     def translate(self, text: str):
-	 return self._http_request(method='POST', url_suffix='yoda', data={'text': text}, resp_type='json',  ok_codes=(200,))
+    def translate(self, text: str):
+	    return self._http_request(method='POST', url_suffix='yoda', data={'text': text}, resp_type='json',  ok_codes=(200,))
 ```
 
 The Client is an object that communicates with the API. We create a class called *Client*.
