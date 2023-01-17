@@ -307,6 +307,9 @@ There are two possible commands that can be passed to the *main* function in our
 
         else:
             raise NotImplementedError(f"command {command} is not implemented.")
+	   
+ except():
+ 	print("Failure you seek.")
 ```
 
 - ***test-module***
