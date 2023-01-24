@@ -7,7 +7,7 @@ This document is an SLA that details the required services and the expected leve
 
 #### Options for contributing content to the Cortex XSOAR Marketplace:
 
-   1. [Contribute through the Cortex XSOAR UI](../contributing/marketplace)
+   1. [Contribute through the Cortex XSOAR UI](../contributing/marketplace).
    
    2. Contribute through a GitHub Pull Request on the public [XSOAR Content Repository](https://github.com/demisto/content). For more information, see [How to contribute](../contributing/contributing#how-to-contribute).
 
