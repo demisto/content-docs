@@ -3,7 +3,7 @@ id: sla
 title: Contribution SLA
 ---
 
-This document is an SLA that presents the required services and the expected level of services in the process of contributing content to Cortex XSOAR.
+This document is an SLA that presents the required services and the expected level of services in the process of contributing content to the Cortex XSOAR Marketplace.
 
 #### Options for contributing content to the Cortex XSOAR Marketplace:
 
@@ -20,13 +20,13 @@ In each of the above options, the review phase begins with the **opening of the 
 Once your PR is open, the XSOAR content team commits to the following:
    1. After opening the PR, a reviewer will be assigned to your PR and will publish the initial response to your changes within **5 business days**.
    
-   2. If you are asked to make changes, you need to make those changes, and add a corresponding message in the pull request. Your reviewer will respond within **3 business days**. Note: You might have a few rounds of fixes. These commitments are the same for each round.
+   2. If you are asked to make changes, you need to make those changes, and add a corresponding message in the pull request. Your reviewer will respond within **3 business days**. **Note:** You might have a few rounds of fixes. These commitments are the same for each round.
    
    3. Your reviewer will be available for any questions during the review process - you can contact them on the PR itself or on slack ([DFIR Slack Community](https://start.paloaltonetworks.com/join-our-slack-community)).
    
    4. Once your PR is approved and merged by your reviewer, an **internal PR** including your changes will be opened within an **hour**.
     The internal PR allows us to run our internal validity and security checks on your final code. The internal PR will be merged within **3 business days**.
-    Note: If during the internal PR phase we discover issues related to the code changes made in the contribution, the contributor may be asked to help resolve them.
+    **Note:** If during the internal PR phase we discover issues related to the code changes made in the contribution, the contributor may be asked to help resolve them.
 
    5. Once the **internal PR is merged**, your changes will be published in the Cortex XSOAR Marketplace within **3 business days**.
 
