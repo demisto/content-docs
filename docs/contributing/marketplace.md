@@ -75,11 +75,9 @@ If you have already submitted your contribution and you would like to make chang
 
 ## Notes
 
-1. In addition to the resubmission option described above, there are other ways to update a content pack that you contributed and is already on a GitHub pull request: you may either modify the files directly on the pull request, or close the pull request and create a new contribution that includes your changes.
+1. In addition to the resubmission option described above, there are other ways to update a content pack that you contributed and is already on a GitHub pull request: you may either modify the files directly on the pull request, or close the pull request and create a new contribution that includes your changes (not recommended).
 
 1. The contribution mode selection dropdown will only appear if content items that were part of your contribution were detected as originating from existing sources (for example, you created a new automation in the UI by clicking "Duplicate Automation").
-
-1. When updating an existing pack, the pack options are determined and populated by the content items included in your contribution. For example, if you were to duplicate the `AbuseIPDB` integration and save the duplicate with your changes as `AbuseIPDB_copy`. **Note**: the default name applied to duplicated content appends `_copy` to the original name. This is important because it indicates to us that this most likely contains a modification to existing content. In our example, the pack to which the `AbuseIPDB` integration belongs, `AbuseIPDB`, will appear as an option in the dropdown for updating content.
 
 ## Known Limitations
 

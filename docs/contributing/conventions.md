@@ -31,7 +31,7 @@ Please use the following guidelines when working on the changes requested by our
 
     ![Resolve Conversation](/doc_imgs/contributing/resolve_conversation.png)
 
-- Once you have pushed all requested changes, please ask for a new review by navigating to Reviewers section in the right sidebar in GitHub and click the ⭯ icon next to the reviewer's name.
+- Once you have pushed all requested changes, please ask for a new review by navigating to Reviewers section in the right sidebar in GitHub and click the ![](/doc_imgs/contributing/request-review-icon.png) icon next to the reviewer's name.
 
 
 - **Recommendation**: If the branch you'll be using as the basis for the Pull Request includes more than 50 of commits, make sure to `squash` all commits into a single commit before creating the Pull Request. It makes the `git` history cleaner and easier for us to review it this way.

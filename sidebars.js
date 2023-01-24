@@ -59,7 +59,8 @@ const sidebars = {
         "contributing/conventions",
         "contributing/docs-contrib",
         "contributing/marketplace",
-        "contributing/demo-prep"
+        "contributing/demo-prep",
+        "contributing/sla"
       ]
     },
     {
