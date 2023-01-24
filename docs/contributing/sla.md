@@ -16,7 +16,7 @@ This document is an SLA that details the required services and the expected leve
 
 In each of the above options, a review phase begins with the **opening of the GitHub Pull Request** containing your content changes.
 
-### XSOAR Content Team Commitments
+### XSOAR Content Team Commitments:
 Once your PR is open, the XSOAR content team commits to the following:
    1. After opening the PR, a reviewer will be assigned to your PR and will publish the initial response to your changes within **5 business days**.
    
