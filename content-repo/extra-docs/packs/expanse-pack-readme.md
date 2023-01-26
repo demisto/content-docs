@@ -1,19 +1,19 @@
 ---
 id: expanse-pack-readme
-title: Expanse Pack
-description: The Expanse Content Pack for Cortex XSOAR provides full coverage of the Expander and Behavior product capabilities from Expanse to allow SOCs to automate the defense of their company’s attack surface.
+title: Cortex Xpanse Pack
+description: The Cortex Xpanse Content Pack for Cortex XSOAR provides full coverage of the Expanse Expander product capabilities to allow SOCs to automate the defense of their company’s attack surface.
 ---
-The Expanse Content Pack for Cortex XSOAR provides full coverage of the Expander and Behavior product capabilities from Expanse to allow SOCs to automate the defense of their company’s attack surface. 
+The Cortex Xpanse Content Pack for Cortex XSOAR provides full coverage of the Expanse Expander product capabilities to allow SOCs to automate the defense of their company’s attack surface. 
 
-The integrations in this pack enable fetching and mirroring of Expanse issues into Cortex XSOAR incidents, and ingestion of indicators (IPs, domains, and certificates) that refer to the corporate network perimeter as discovered by Expanse.
+The integrations in this pack enable fetching and mirroring of Xpanse issues into Cortex XSOAR incidents, and ingestion of indicators (IPs, domains, and certificates) that refer to the corporate network perimeter as discovered by Expanse.
 
 Through a powerful set of playbooks, analysts can correlate the discovered information with data provided from internal security systems (such as Palo Alto Networks Cortex Data Lake, Prisma Cloud and Panorama, Active Directory, Splunk SIEM, etc.) to help pinpoint the correct owners of the assets and automate remediation.
 
 
 
-## Handle Expanse Incident
+## Handle an Xpanse Incident
 
-After configuring an instance of the Expanse v2 integration, the Expanse issues will start getting mapped to Expanse incident type and the **Handle Expanse Incident** playbook will automatically be launched.
+After configuring an instance of the Cortex Xpanse integration, the Xpanse issues start getting mapped to the Expanse incident type and the **Handle Expanse Incident** playbook will automatically be launched.
 If you are only interested in enrichment and attribution, use the **Handle Expanse Incident - Attribution Only** playbook instead, by assigning it to the Expanse Issue Incident Type.
 
 The first phase of the playbook is the *Enrichment* phase. The playbook tries to enrich the data (such as IP addresses, Domains, Certificates) associated with this incident. The playbook uses the enrichment commands for these indicator types to obtain as much context as possible from the Expanse integration and from other integrations that can provide reputation and enrichment for those assets.
@@ -24,7 +24,6 @@ The next phase is the *Validation* phase. This phase collects information to det
 - The users or owners who connect to it in order to determine who owns the asset.
 
 This is achieved by correlating the IP address and FQDN that are found with the information available in other products as follows:
-- Use Expanse's Behavior product to determine if there is risky or non-compliant communications to and from the IP address with external IP addresses.
 - Search firewall logs from Cortex Data Lake, Panorama, and Splunk to see if there is evidence of that asset, if users are connected to that service, or if there a firewall protecting this service. 
 - Search Prisma Cloud to see if the asset is running on a public cloud service like AWS/GCP/Azure. If it is, then the asset is protected by Prisma Cloud and the owner, IP address, and FQDN can be retrieved from the Prisma Cloud inventory.
 - If a user is found from the firewall logs, the playbook enriches the user information from Active Directory.
@@ -51,7 +50,7 @@ The final phase is the *Response* phase. Depending on the issue type, several re
 
 
 ## In This Pack
-The Expanse V2 content pack includes several content items.
+The Cortex Xpanse content pack includes several content items.
 
 ### Automations
 | Name | Description |
@@ -83,6 +82,15 @@ The Expanse V2 content pack includes several content items.
 
 
 ### Incident Fields
+- **Expanse Activity Status**
+- **Expanse Asset**
+- **Expanse Asset Organization Unit**
+- **Expanse Asset Owner**
+- **Expanse Assignee**
+- **Expanse Business Units**
+- **Expanse Category**
+- **Expanse Certificate**
+- **Expanse Cloud Management Status**
 - **Expanse Created** 
 - **Expanse Domain**
 - **Expanse Geolocation**
@@ -101,7 +109,7 @@ The Expanse V2 content pack includes several content items.
 - **Expanse Region**
 - **Expanse Service**
 - **Expanse Shadow IT**
-- **Expanse Tabs**
+- **Expanse Tags**
 
 
 
@@ -132,7 +140,7 @@ The Expanse V2 content pack includes several content items.
 ### Integrations
 
 - **Expanse Expander Feed** - Retrieves the discovered IPs, IP ranges, domains, and certificates from the Expanse Expander asset database and stores them in Cortex XSOAR for analysis and correlation. 
-- **Expanse v2** - Allows XSOAR to collect Expanse issues and bi-directionally mirror them. The Expanse Expander API creates incidents from the Expanse issues and enriches IPs, IP ranges, domains, and certificates using information from assets discovered by Expanse Expander, and risky flows detected by Expanse Behavior. 
+- **Cortex Expanse** - Allows XSOAR to collect Expanse issues and bi-directionally mirror them. The Expanse Expander API creates incidents from the Expanse issues and enriches IPs, IP ranges, domains, and certificates using information from assets discovered by Expanse Expander, and risky flows detected by Expanse Behavior. 
 
 
 ### Layouts
@@ -190,6 +198,12 @@ Sub-playbook to support the Expanse Handle Incident playbook.
 - Loads a list to be used in the Expanse playbook.
 - Creates the list if it does not exist.
 
+#### Expanse Unmanged Cloud
+Subplaybook for brining rogue cloud accounts under management.
+
+#### Expanse VM Enrich
+Used to verify that all assets found by Xpanse are being scanned by a vulnerability management tool.
+
 #### Extract and Enrich Expanse Indicators
 Sub-playbook for the Handle Expanse Incident playbooks.
 - Extracts and enriches indicators (CIDRs, IPs, Certificates, Domains and DomainGlobs) from Expanse incidents.
@@ -203,7 +217,8 @@ This is the main playbook for handling Expanse incidents.
 #### Handle Expanse Incident - Attribution Only
 Shorter version of Handle Expanse Incident playbook with only the Attribution part.
 
-
+#### NSA - 5 Security Vulnerabilities Under Active Nation-State Attack
+Russian Foreign Intelligence Service (SVR) actors (also known as APT29, Cozy Bear, and The Dukes) frequently use publicly known vulnerabilities to conduct widespread scanning and exploitation.
 #### Xpanse Incident Handling - Generic
 A generic playbook for handling Xpanse issues. The logic behind this playbook is working with an internal exclusions list which will help the analyst to get a decision or, if configured, close incidents automatically.
 
@@ -212,7 +227,7 @@ A generic playbook for handling Xpanse issues. The logic behind this playbook is
 
 ### Widgets
 There are 25 Widgets in this pack.
-
+- Expanse Active Certificates by BU
 - Expanse Active Certificates by BU with Active Service
 - Expanse Active Domain with Bad/Suspicious Reputation
 - Expanse Active Domains by BU
@@ -275,7 +290,7 @@ This Content Pack may require the following additional Content Packs:
 ## Pack Configurations
 
 ### Integrations
-Configure an instance of the [Expanse V2](https://xsoar.pan.dev/docs/reference/integrations/expanse-v2) integration. At a minimum, you only need to configure the API key. 
+Configure an instance of the [Cortex Xpanse](https://xsoar.pan.dev/docs/reference/integrations/expanse-v2) integration. At a minimum, you only need to configure the API key. 
 
 You do not need to enable any additional integrations, but if you don't have Panorama, Cortex Data Lake, Splunk with firewall logs, or Prisma Cloud, the enrichment and validation phases of the playbook will not provide good results.
 
