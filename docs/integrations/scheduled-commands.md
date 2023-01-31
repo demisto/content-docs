@@ -144,7 +144,6 @@ In the example below, if the `status` is not `complete` then a result with `sche
 
 ```python
 def run_polling_command(args: dict, cmd: str, search_function: Callable, results_function: Callable):
-    ScheduledCommand.raise_error_if_not_supported()
     interval_in_secs = int(args.get('interval_in_seconds', 60))
     if 'af_cookie' not in args:
         # create new search
