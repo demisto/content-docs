@@ -2,7 +2,6 @@
 id: Digital-Forensics-Content
 title: Digital Forensics Content Roundup
 description: Article listing all Cortex XSOAR content that is currently available to support digital forensic analysis and investigations.
-
 ---
 This page aggregates Cortex XSOAR content that is currently available to support forensic analysis and investigations.
 
