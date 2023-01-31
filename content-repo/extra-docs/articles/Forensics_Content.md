@@ -56,6 +56,6 @@ This page aggregates Cortex XSOAR content that is currently available to support
 
 ## Conclusion
 
-For more digital forensics content ideas, search Marketplace by keyword or filter using the  "Forensics" tag.
+For more digital forensics content ideas, search Marketplace by keyword or filter using the "Forensics" tag.
 
-<img width="1207" alt="Screen Shot 2023-01-08 at 12 45 31 PM" src="https://user-images.githubusercontent.com/91506078/211215821-ead5063e-72a0-4833-bfe7-f161c0b0d3f0.png">
+![marketplace-forensics.png](../../../docs/doc_imgs/reference/marketplace-forensics.png)
