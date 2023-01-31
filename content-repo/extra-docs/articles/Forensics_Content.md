@@ -30,7 +30,7 @@ This page aggregates Cortex XSOAR content that is currently available to support
 ## Analysis Tools Packs
 | Pack Name | Available Functionality |
 | --- | --- |
-| [ExifRead](https://cortex.marketplace.pan.dev/marketplace/details/ExifRead/) | Return an image file metadata and EXIF tags with the `ExifRead` automation.</li></ul> |
+| [ExifRead](https://cortex.marketplace.pan.dev/marketplace/details/ExifRead/) | Return an image file metadata and EXIF tags with the `ExifRead` automation. |
 | [Oletools](https://cortex.marketplace.pan.dev/marketplace/details/Oletools/) | Analyze potentially malicious Microsoft Word, Microsoft Excel, and other Microsoft OLE2 files using the [oletools](https://github.com/decalage2/oletools) analysis tools with the `Oletools` automation. |
 | [PCAP Analysis](https://cortex.marketplace.pan.dev/marketplace/details/PcapAnalysis/) | <ul><li>Analyze packet capture (PCAP) files using the `PcapMinerV2` automation.</li><li>Extract streams and files, respectively, from PCAP files using the `PcapFileExtractStreams` and `PcapFileExtractor` automations.</li></ul> |
 | [Volatility](https://cortex.marketplace.pan.dev/marketplace/details/Volatility/) | Perform memory forensics analysis by running the [Volatility](https://www.volatilityfoundation.org/) tool on a remote analysis server over SSH (using the [RemoteAccess v2 integration](https://xsoar.pan.dev/docs/reference/integrations/remote-access-v2)) with the `AnalyzeMemImage` automation (which includes some common memory analysis commands) and the other automations in this pack. |
