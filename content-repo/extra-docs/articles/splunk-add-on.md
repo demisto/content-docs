@@ -35,6 +35,9 @@ In order to use the add-on and create incidents in XSOAR, you must complete the 
 * Create a XSOAR instance:  
   Under XSOAR Instances tab, press the "Add" button. Choose an instance name, and fill the XSOAR server URL (including port if needed) and the API key fields. The API key is used for authorization with XSOAR. To generate this parameter, login to Cortex XSOAR and click on Settings → Integration → API Keys.
   
+
+  >*NOTE:*  When using XSOAR v8 and above, and *Advanced API key* should be generated and be inserted as follows: *<API_KEY>$<API_KEY_ID>*
+
   ![splunk-add-on-instances.png](../../../docs/doc_imgs/reference/splunk-add-on-instances.png)
 * Set up proxy settings (optional):  
   Under the **Proxy** tab, select the **"Enable"** checkbox and provide all of the necessary proxy parameters.
