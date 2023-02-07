@@ -81,6 +81,17 @@ The following provides instructions for configuring the AWS settings when the Co
 
 Before you can use the AWS integrations in Cortex XSOAR, you need to perform several configuration steps in your AWS environment.
 
+**Please note:** For engines and servers using IMDSv2 for their EC2 metadata, the default http-put-response-hop-limit is 1.
+If your integration is running within a container (Docker/Podman), you will need to set either `--net=host` as an extra configuration for the container service (Docker/Podman), or the hop limit will need to be increased to 2.
+To increase the hop limit, please refer to the example below:
+
+In an AWS enabled CLI:
+```
+aws ec2 modify-instance-metadata-options \
+    --instance-id <instance_id> \
+    --http-put-response-hop-limit 2 \
+    --http-endpoint enabled
+```
 
 ### Create a Policy allowing to AssumeRole
 
