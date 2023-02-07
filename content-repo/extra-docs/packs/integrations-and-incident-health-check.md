@@ -133,7 +133,7 @@ If the incident type **Integrations and Incidents Health Check** is not chosen, 
  
 
 ## Limitations
-* Testing the following OAuth integrations is currently not supported:
+Testing the following OAuth integrations is currently not supported:
   * ServiceNow v2
   * ServiceNow CMDB
   * Azure WAF
