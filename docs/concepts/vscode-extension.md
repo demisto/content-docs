@@ -152,7 +152,7 @@ In order to debug **Python 2** code, it is necessary to install an older python 
   ![Version](https://github.com/demisto/vscode-extension/raw/master/documentation/changelog/0.2.0/python2_2.png)
 
 ## Remote Development using SSH
-Please refer to [this](https://code.visualstudio.com/docs/remote/ssh) link for instructions on how to develop remotely using SSH .
+Please refer to [this](https://code.visualstudio.com/docs/remote/ssh) link for instructions on how to develop remotely using SSH.
 
 ## Troubleshooting
 
