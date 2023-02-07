@@ -131,3 +131,12 @@ If the incident type **Integrations and Incidents Health Check** is not chosen, 
 
 ![griderror](https://raw.githubusercontent.com/demisto/content-docs/master/docs/doc_imgs/reference/HealthCheck_GridError.png)
  
+
+## Limitations
+* Testing the following OAuth integrations is currently not supported:
+  * ServiceNow v2
+  * ServiceNow CMDB
+  * Azure WAF
+  * Gmail Single User
+  * O365 - EWS - Extension
+
