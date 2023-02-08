@@ -113,7 +113,7 @@ Follow one of these steps for authentication based on Azure Managed Identities:
    - Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox and leave the **Azure Managed Identities Client ID** field empty.
 
 - ##### To use User Assigned Managed Identity
-   1. Go to the [Azure Portal](https://portal.azure.com/) -> **Managed Identities**
+   1. Go to [Azure Portal](https://portal.azure.com/) -> **Managed Identities**.
    2. Select your User Assigned Managed Identity -> copy the Client ID -> paste it in the **Azure Managed Identities Client ID** field in the instance settings.
    3. Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox.
 
