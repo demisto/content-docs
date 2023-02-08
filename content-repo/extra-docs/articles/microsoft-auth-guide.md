@@ -15,10 +15,11 @@ More info at: [Device Code flow - Evolved phishing](https://www.microsoft.com/se
 Microsoft integrations (Graph and Azure) in Cortex XSOAR use Azure Active Directory applications to authenticate with Microsoft APIs. These integrations use OAuth 2.0 and OpenID Connect standard-compliant authentication services, which use an **Application** to sign-in or delegate authentication. 
 For more information, see the [Microsoft identity platform overview](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-overview).
 
-There are 2 application authentication methods available: 
+There are three application authentication methods available: 
 
 1.  [Cortex XSOAR Application](#cortex-xsoar-application)
 2.  [Self Deployed Application](#self-deployed-application)
+3.  [Azure Managed Identities](#azure-managed-identities-authentication)
 
 ## Cortex XSOAR Application
 In this method, you grant consent for the Cortex XSOAR multi-tenant application to access your data. The application is maintained by Cortex XSOAR.
@@ -100,6 +101,21 @@ To configure a Microsoft integration that uses this authorization flow with a se
    <img width="600" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/device_code.png" align="middle"></img>
 
 5. Enter your application ID in the ***Application ID*** parameter field.
+
+## Azure Managed Identities Authentication
+#### Note: This option is relevant only if the integration is running on Azure VM.
+
+Some of the Cortex XSOAR-Microsoft integrations use the [Azure Managed Identities Authentication](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview).
+
+Follow one of these steps for authentication based on Azure Managed Identities:
+
+- ##### To use System Assigned Managed Identity
+   - Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox and leave the **Azure Managed Identities Client ID** field empty.
+
+- ##### To use User Assigned Managed Identity
+   1. Go to the [Azure Portal](https://portal.azure.com/) -> **Managed Identities**
+   2. Select your User Assigned Managed Identity -> copy the Client ID -> paste it in the **Azure Managed Identities Client ID** field in the instance settings.
+   3. Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox.
 
 ## Revoke Consent
 
