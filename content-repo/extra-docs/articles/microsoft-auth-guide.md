@@ -206,3 +206,44 @@ After you a redirected to the next page, in the **Overview** tab you will find y
    6. In the **Authorization code for self-deployed mode - received from the authorization step**, type the code that was generated in 4.2. 
    7. Save the integration settings and test the setup by running the *!msgraph-user-test* command from the Cortex XSOAR CLI.
 
+
+## Supported Authentication Flows for Microsoft integrations
+
+| Integration Name | XSOAR Application | Client Credentials | Device Code | Auth code (redirect URI) | Azure Managed Identities |
+| --- | --- | --- | --- | --- | --- |
+| Azure Compute v2 | yes - oproxy | yes with certificate | no | no | no |
+| Azure Data Explorer | yes - device | no - api requires user impersonation | yes | yes | no |
+| AzureDevOps | yes - device | no - api requires user impersonation | yes | yes | no |
+| Azure Firewall | yes - device | yes - test | yes | no | yes |
+| Azure Key Vault | no | yes with certificate | no | no | yes |
+| Azure Kubernetes Services | yes - device | no - api requires user impersonation | yes | yes | yes |
+| Azure Log Analytics | yes - oproxy | yes with certificate | no | yes | yes |
+| Azure Network Security Groups | yes - device | no - api requires user impersonation | yes | yes | yes |
+| Azure Risky Users | yes - device | yes | yes | no | yes |
+| Azure Security Center v2 | yes - oproxy | yes with certificate | no | no | yes |
+| Azure Sentinel | no | yes with certificate | no | no | yes |
+| Azure SQL Management | yes - device | no - api requires user impersonation | yes | yes | yes |
+| Azure Storage | yes - device | no - api requires user impersonation | yes | yes | yes |
+| Azure Storage Container | no | no | no | no | yes |
+| Azure Storage FileShare | no | no | no | no | no |
+| Azure Storage Queue | no | no | no | no | yes |
+| Azure Storage Table | no | no | no | no | yes |
+| Azure Web Application Firewall | yes - device | no - api requires user impersonation | yes | yes | yes |
+| Microsoft 365 Defender | yes - device | yes with certificate | yes | no | yes |
+| Microsoft 365 Defender Event Collector - XSIAM | no | yes | no | no | no - saas |
+| Microsoft Defender for Cloud Apps | no | yes | yes | no | no |
+| Microsoft Defender Advanced Threat Protection | yes - oproxy | yes with certificate | no | yes | yes |
+| Microsoft Graph API | yes - device | yes with certificate | no | no - integration supports only app permissions | yes |
+| Azure Active Directory Applications | yes - device | yes | yes | no | yes |
+| O365 Outlook Calendar | yes - oproxy | yes with certificate | no | no | yes |
+| Microsoft Graph Device Management | yes - oproxy | yes with certificate | no | no | yes |
+| O365 File Management | yes - oproxy | yes with certificate | no | no | yes |
+| Microsoft Graph Groups | yes - oproxy | yes with certificate | no | no | yes |
+| Azure Active Directory Identity And Access | yes - device | yes | yes | no | yes |
+| Microsoft Graph Mail Single User | yes - oproxy | no - cannot be implemented | no | yes | yes |
+| O365 Outlook Mail | yes - oproxy | yes with certificate | no | no - cannot be implemented | yes |
+| Microsoft Graph Security | yes - oproxy | yes with certificate | no | no | yes |
+| Microsoft Graph User | yes - oproxy | yes with certificate | no | yes | yes |
+| Microsoft Management Activity API (O365 Azure Events) | yes - oproxy | no | no | yes | yes |
+| Microsoft Teams | no | yes | no | no | no |
+| Microsoft Teams Management | yes - device code | yes | yes | no | yes |
