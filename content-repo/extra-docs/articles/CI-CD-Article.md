@@ -51,7 +51,7 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
 
  #### Setup the CI/CD Development Process
  
- Before you begin, download and install the `demisto-sdk` on your machine.  
+ Before you begin, download and install the `demisto-sdk` on your machine. For more information, see [Demisto Installation and Setup](https://xsoar.pan.dev/docs/concepts/demisto-sdk#installation-and-setup).
  
  Ensure that the `DEMISTO_BASE_URL` and `DEMISTO_API_KEY` are set to the server environment that you want to use. For example, if you want to upload content directly to the server without using an artifact server you need to point the server to this environment. When working on a branch and you want to download/upload to a development environment, ensure that the `demisto-sdk` points to the development server.
  1. **Create the CI/CD Repository.**
