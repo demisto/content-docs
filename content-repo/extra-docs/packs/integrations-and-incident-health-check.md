@@ -136,7 +136,28 @@ If the incident type **Integrations and Incidents Health Check** is not chosen, 
 Testing the following OAuth integrations is currently not supported:
   * ServiceNow v2
   * ServiceNow CMDB
-  * Azure WAF
   * Gmail Single User
+  * Versa Director
+
+Additionally, when using a self-deployed application for Microsoft/Azure integrations, testing the following integrations is not supported:
+  * Microsoft Graph API
+  * Microsoft Graph User
+  * Microsoft Graph Mail Single User
+  * Microsoft 365 Defender
+  * Microsoft Defender for Cloud Apps
+  * O365 Defender SafeLinks - Single User
+  * Microsoft Teams Management
+  * Microsoft Policy And Compliance (Audit Log)
   * O365 - EWS - Extension
+  * Azure Active Directory Applications 
+  * Azure Active Directory Identity And Access
+  * Azure Data Explorer
+  * Azure DevOps
+  * Azure Firewall
+  * Azure Kubernetis Services
+  * Azure Network Security Groups
+  * Azure Risky Users
+  * Azure SQL Management
+  * Azure Storage
+  * Azure WAF
 
