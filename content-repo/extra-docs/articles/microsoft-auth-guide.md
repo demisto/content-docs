@@ -15,10 +15,11 @@ More info at: [Device Code flow - Evolved phishing](https://www.microsoft.com/se
 Microsoft integrations (Graph and Azure) in Cortex XSOAR use Azure Active Directory applications to authenticate with Microsoft APIs. These integrations use OAuth 2.0 and OpenID Connect standard-compliant authentication services, which use an **Application** to sign-in or delegate authentication. 
 For more information, see the [Microsoft identity platform overview](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-overview).
 
-There are 2 application authentication methods available: 
+There are three application authentication methods available: 
 
 1.  [Cortex XSOAR Application](#cortex-xsoar-application)
 2.  [Self Deployed Application](#self-deployed-application)
+3.  [Azure Managed Identities](#azure-managed-identities-authentication)
 
 ## Cortex XSOAR Application
 In this method, you grant consent for the Cortex XSOAR multi-tenant application to access your data. The application is maintained by Cortex XSOAR.
@@ -100,6 +101,21 @@ To configure a Microsoft integration that uses this authorization flow with a se
    <img width="600" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/device_code.png" align="middle"></img>
 
 5. Enter your application ID in the ***Application ID*** parameter field.
+
+## Azure Managed Identities Authentication
+#### Note: This option is relevant only if the integration is running on Azure VM.
+
+Some of the Cortex XSOAR-Microsoft integrations use the [Azure Managed Identities Authentication](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview).
+
+Follow one of these steps for authentication based on Azure Managed Identities:
+
+- ##### To use System Assigned Managed Identity
+   - Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox and leave the **Azure Managed Identities Client ID** field empty.
+
+- ##### To use User Assigned Managed Identity
+   1. Go to [Azure Portal](https://portal.azure.com/) -> **Managed Identities**.
+   2. Select your User Assigned Managed Identity -> copy the Client ID -> paste it in the **Azure Managed Identities Client ID** field in the instance settings.
+   3. Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox.
 
 ## Revoke Consent
 
@@ -190,3 +206,44 @@ After you a redirected to the next page, in the **Overview** tab you will find y
    6. In the **Authorization code for self-deployed mode - received from the authorization step**, type the code that was generated in 4.2. 
    7. Save the integration settings and test the setup by running the *!msgraph-user-test* command from the Cortex XSOAR CLI.
 
+
+## Supported Authentication Flows for Microsoft integrations
+
+| Integration Name | XSOAR Application | Client Credentials | Device Code | Auth code (redirect URI) | Azure Managed Identities |
+| --- | --- | --- | --- | --- | --- |
+| Azure Compute v2 | yes | yes - support both client secret and certificate | no | no | no |
+| Azure Data Explorer | yes | no - not supported by the API | yes | yes | no |
+| AzureDevOps | yes | no - not supported by the API | yes | yes | no |
+| Azure Firewall | yes | yes | yes | no | yes |
+| Azure Key Vault | no | yes - support both client secret and certificate | no | no | yes |
+| Azure Kubernetes Services | yes | no - not supported by the API | yes | yes | yes |
+| Azure Log Analytics | yes | yes - support both client secret and certificate | no | yes | yes |
+| Azure Network Security Groups | yes | no - not supported by the API | yes | yes | yes |
+| Azure Risky Users | yes | yes | yes | no | yes |
+| Azure Security Center v2 | yes | yes - support both client secret and certificate | no | no | yes |
+| Azure Sentinel | no | yes - support both client secret and certificate | no | no | yes |
+| Azure SQL Management | yes | no - not supported by the API | yes | yes | yes |
+| Azure Storage | yes | no - not supported by the API | yes | yes | yes |
+| Azure Storage Container | no | no | no | no | yes |
+| Azure Storage FileShare | no | no | no | no | no |
+| Azure Storage Queue | no | no | no | no | yes |
+| Azure Storage Table | no | no | no | no | yes |
+| Azure Web Application Firewall | yes | no - not supported by the API | yes | yes | yes |
+| Microsoft 365 Defender | yes | yes - support both client secret and certificate | yes | no | yes |
+| Microsoft 365 Defender Event Collector - XSIAM | no | yes | no | no | no - saas |
+| Microsoft Defender for Cloud Apps | no | yes | yes | no | no |
+| Microsoft Defender Advanced Threat Protection | yes | yes - support both client secret and certificate | no | yes | yes |
+| Microsoft Graph API | yes | yes - support both client secret and certificate | no | no | yes |
+| Azure Active Directory Applications | yes - device | yes | yes | no | yes |
+| O365 Outlook Calendar | yes | yes - support both client secret and certificate | no | no | yes |
+| Microsoft Graph Device Management | yes | yes - support both client secret and certificate | no | no | yes |
+| O365 File Management | yes | yes - support both client secret and certificate | no | no | yes |
+| Microsoft Graph Groups | yes | yes - support both client secret and certificate | no | no | yes |
+| Azure Active Directory Identity And Access | yes | yes | yes | no | yes |
+| Microsoft Graph Mail Single User | yes | no | no | yes | yes |
+| O365 Outlook Mail | yes | yes - support both client secret and certificate | no | no | yes |
+| Microsoft Graph Security | yes | yes - support both client secret and certificate | no | no | yes |
+| Microsoft Graph User | yes | yes - support both client secret and certificate | no | yes | yes |
+| Microsoft Management Activity API (O365 Azure Events) | yes | no | no | yes | yes |
+| Microsoft Teams | no | yes | no | no | no |
+| Microsoft Teams Management | yes | yes | yes | no | yes |
