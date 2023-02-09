@@ -154,7 +154,7 @@ Additionally, when using a self-deployed application for Microsoft/Azure integra
   * Azure Data Explorer
   * Azure DevOps
   * Azure Firewall
-  * Azure Kubernetis Services
+  * Azure Kubernetes Services
   * Azure Network Security Groups
   * Azure Risky Users
   * Azure SQL Management
