@@ -73,7 +73,7 @@ To configure a Microsoft integration that uses this authorization flow with a se
 3. Enter your client secret in the *Key* parameter field.
 4. Enter your tenant ID in the *Token* parameter field.
 5. Save the instance.
-6. Run the `!<integration command prefix>-generate-login-url` command in the War Room and follow the instructions,. For example, for Microsoft Graph User: `!msgraph-user-generate-login-url`.
+6. Run the `!<integration command prefix>-generate-login-url` command in the War Room and follow the instructions. For example, for Microsoft Graph User: `!msgraph-user-generate-login-url`.
 
 #### Using National Cloud
 Some of the Cortex XSOAR-Microsoft integrations support the deployment of national clouds through the self-deployed
