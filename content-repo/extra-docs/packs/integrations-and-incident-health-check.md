@@ -121,6 +121,8 @@ You can review the playbook inputs and edit them by clicking the 'Playbook Trigg
 | AutoCloseInvestigation | This input determines if the investigation should close automatically after rerunning the scripts.|
  ---
 
+## Notes
+1. To prevent exceeding quota limits, configured instances in which the *Do not use by default* checkbox was selected, will not be tested by this pack.
 
 ## Troubleshooting
 The Health Check for Integrations and Incidents  pack contains several incident fields which are associated with the **Integrations and Incidents Health Check** incident type. 
