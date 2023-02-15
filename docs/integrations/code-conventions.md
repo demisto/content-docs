@@ -678,6 +678,39 @@ In the War Room, this is how a table will appear:
 <img width="788" src="/doc_imgs/integrations/50571324-46846e00-0db0-11e9-9888-ddd9dc275541.png"></img>
 
 You may also use ```headerTransform``` to convert the existing keys into formatted headers.
+A function that formats the original data headers (optional).
+```python
+DATA = [
+    {
+        'header_1': 'a1',
+        'header_2': 'b1',
+        'header_3': 'c1'
+    }
+  ]
+tableToMarkdown('tableToMarkdown with headerTransform', DATA, 
+                headerTransform=underscoreToCamelCase)
+```
+The above will create the table seen below:
+### tableToMarkdown with headerTransform
+|Header1|Header2|Header3|
+|---|---|---|
+| a1 | b1 | c1 |
+
+You may also use ```removeNull``` to remove empty columns in the table. Default is False.
+```python
+headers = ['header_1', 'header_2']
+data = {
+    'header_1': 'foo',
+}
+tableToMarkdown('tableToMarkdown test', data, removeNull=True, headers=headers)
+```
+The above will create the table seen below:
+### tableToMarkdown test
+|header_1|
+|---|
+| foo |
+
+You may also use ```metadata``` to add text above the table as a secondary title.
 
 Use the ```url_keys``` argument to specify a list of keys whose value in the MD table should be a clickable url. This list may contain keys of inner dicts\list of dicts in the data given to the tableToMarkdown function.
 For example, for the following data:
@@ -712,6 +745,26 @@ The resulted table will be:
 
 ![image](https://user-images.githubusercontent.com/72340690/103922604-a25efb80-511c-11eb-9021-c062226b5001.png)
 
+Use the ```date_fields``` argument (list) of date fields to format the value to human-readable output.
+```python
+data = [
+    {
+        "docker_image": "demisto/python3",
+        "create_time": '1631521313466'
+    }
+]
+tableToMarkdown('tableToMarkdown test', data, headers=["docker_image", "create_time"],
+                date_fields=['create_time'])
+```
+The above will create the table seen below:
+### tableToMarkdown test
+|docker_image|create_time|
+|---|---|
+| demisto/python3 | 2021-09-13 08:21:53 |
+
+# TODO - json_transform_mapping
+
+# TODO - is_auto_json_transform
 
 ### demisto.command()
 ```demisto.command()``` is typically used to tie a function to a command in Cortex XSOAR, for example:
