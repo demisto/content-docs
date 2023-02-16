@@ -804,7 +804,7 @@ table = tableToMarkdown("tableToMarkdown test", data_with_list,
 The above will create the table seen below:
 ![img_1.png](img_1.png)
 #
-Use the ```is_auto_json_transform``` argument (bool), to try to auto transform complex json.
+Use the ```is_auto_json_transform``` argument (bool), to try to auto transform a complex JSON.
 ```python
 nested_data_example = {
   "name": "Active Directory Query",
