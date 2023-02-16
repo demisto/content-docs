@@ -679,10 +679,10 @@ In the War Room, this is how a table will appear:
 #
 You may also use ```headerTransform``` to convert the existing keys into formatted headers.
 A function that formats the original data headers (optional).
+
 ```python
-t = {'header_1': 'a1','header_2': 'b1','header_3': 'c1'}
-tableToMarkdown('tableToMarkdown with headerTransform', t, 
-                headerTransform=underscoreToCamelCase)
+t = {'header_1': 'a1', 'header_2': 'b1', 'header_3': 'c1'}
+tableToMarkdown('tableToMarkdown with headerTransform', t, headerTransform=underscoreToCamelCase)
 ```
 The above will create the table seen below:
 ### tableToMarkdown with headerTransform
