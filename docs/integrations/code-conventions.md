@@ -744,12 +744,8 @@ data = [
         "create_time": '1631521313466'
     }
 ]
-tableToMarkdown('tableToMarkdown test', data, headers=["docker_image", "create_time"],
+tableToMarkdown('tableToMarkdown date_fields example', data, headers=["docker_image", "create_time"],
                 date_fields=['create_time'])
-```
-The above will create the table seen below:
-### tableToMarkdown test
-|docker_image|create_time|
 |---|---|
 | demisto/python3 | 2021-09-13 08:21:53 |
 
