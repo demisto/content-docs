@@ -676,7 +676,7 @@ The above will create the table seen below:
 
 In the War Room, this is how a table will appear:
 <img width="788" src="/doc_imgs/integrations/50571324-46846e00-0db0-11e9-9888-ddd9dc275541.png"></img>
-
+#
 You may also use ```headerTransform``` to convert the existing keys into formatted headers.
 A function that formats the original data headers (optional).
 ```python
@@ -695,7 +695,7 @@ The above will create the table seen below:
 |Header1|Header2|Header3|
 |---|---|---|
 | a1 | b1 | c1 |
-
+#
 You may also use ```removeNull``` to remove empty columns in the table. Default is False.
 ```python
 headers = ['header_1', 'header_2']
@@ -711,7 +711,7 @@ The above will create the table seen below:
 | foo |
 
 You may also use ```metadata``` to add text above the table as a secondary title.
-
+#
 Use the ```url_keys``` argument to specify a list of keys whose value in the MD table should be a clickable url. This list may contain keys of inner dicts\list of dicts in the data given to the tableToMarkdown function.
 For example, for the following data:
 
@@ -744,7 +744,7 @@ tableToMarkdown('Data Table', d, headers=('id', 'url1', 'result', 'links'),
 The resulted table will be:
 
 ![image](https://user-images.githubusercontent.com/72340690/103922604-a25efb80-511c-11eb-9021-c062226b5001.png)
-
+#
 Use the ```date_fields``` argument (list) of date fields to format the value to human-readable output.
 ```python
 data = [
@@ -762,9 +762,88 @@ The above will create the table seen below:
 |---|---|
 | demisto/python3 | 2021-09-13 08:21:53 |
 
-# TODO - json_transform_mapping
+#
+Use the ```json_transform_mapping``` argument (Dict[str, JsonTransformer]), mapping between a header key to corresponding JsonTransformer.
+```python
+data_with_list = {
+  "Machine Action Id": "5b38733b-ed80-47be-b892-f2ffb52593fd",
+  "MachineId": "f70f9fe6b29cd9511652434919c6530618f06606",
+  "Hostname": "desktop-s2455r9",
+  "Status": "Succeeded",
+  "Creation time": "2022-02-17T08:20:02.6180466Z",
+  "Commands": [
+    {
+      "startTime": null,
+      "endTime": "2022-02-17T08:22:33.823Z",
+      "commandStatus": "Completed",
+      "errors": ["error1", "error2", "error3"],
+      "command": {
+        "type": "GetFile",
+        "params": [
+          {
+            "key": "Path",
+            "value": "test.txt"
+          }
+        ]
+      }
+    },
+    {
+      "startTime": null,
+      "endTime": "2022-02-17T08:22:33.823Z",
+      "commandStatus": "Completed",
+      "errors": [],
+      "command": {
+        "type": "GetFile",
+        "params": [
+          {
+            "key": "Path",
+            "value": "test222.txt"
+          }
+        ]
+      }
+    }
+  ]
+}
+table = tableToMarkdown("tableToMarkdown test", data_with_list,
+            json_transform_mapping={'Commands': JsonTransformer(keys=('commandStatus', 'command'))})
+```
+The above will create the table seen below:
+### tableToMarkdown test
+|Commands|Creation time|Hostname|Machine Action Id|MachineId|Status|
+|---|---|---|---|---|---|
+| **-**	***commandStatus***: Completed<br>	**command**:<br>		***type***: GetFile<br>		**params**:<br>			**-**	***key***: Path<br>				***value***: test.txt<br>**-**	***commandStatus***: Completed<br>	**command**:<br>		***type***: GetFile<br>		**params**:<br>			**-**	***key***: Path<br>				***value***: test222.txt | 2022-02-17T08:20:02.6180466Z | desktop-s2455r9 | 5b38733b-ed80-47be-b892-f2ffb52593fd | f70f9fe6b29cd9511652434919c6530618f06606 | Succeeded |
 
-# TODO - is_auto_json_transform
+#
+Use the ```is_auto_json_transform``` argument (bool), to try to auto transform complex json.
+```python
+nested_data_example = {
+  "name": "Active Directory Query",
+  "changelog": {
+    "1.0.4": {
+      "path": "",
+      "releaseNotes": "\n#### Integrations\n##### Active Directory Query v2\nFixed an issue where the ***ad-get-user*** command caused performance issues because the *limit* argument was not defined.\n",
+      "displayName": "1.0.4 - R124496",
+      "released": "2020-09-23T17:43:26Z"
+    }
+  },
+  "nested": {
+    "item1": {
+      "a": 1,
+      "b": 2,
+      "c": 3,
+      "d": 4
+    }
+  }
+}
+table = tableToMarkdown("tableToMarkdown test", nested_data_example,
+                    headers=['name', 'changelog', 'nested'],
+                    is_auto_json_transform=True)
+```
+The above will create the table seen below:
+### tableToMarkdown test
+|name|changelog|nested|
+|---|---|---|
+| Active Directory Query | **1.0.4**:<br>	***path***: <br>	***releaseNotes***: <br>#### Integrations<br>##### Active Directory Query v2<br>Fixed an issue where the ***ad-get-user*** command caused performance issues because the *limit* argument was not defined.<br>| **item1**:<br>	***a***: 1<br>	***b***: 2<br>	***c***: 3<br>	***d***: 4 |
 
 ### demisto.command()
 ```demisto.command()``` is typically used to tie a function to a command in Cortex XSOAR, for example:
