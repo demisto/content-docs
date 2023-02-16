@@ -73,7 +73,7 @@ To configure a Microsoft integration that uses this authorization flow with a se
 3. Enter your client ID in the *ID* parameter field. 
 4. Enter your client secret in the *Key* parameter field.
 5. Enter your tenant ID in the *Token* parameter field.
-6. Enter your redirect URI in the ***Redirect URI*** parameter field.
+6. Enter your redirect URI in the *Redirect URI* parameter field.
 7. Save the instance.
 8. Run the `!<integration command prefix>-generate-login-url` command in the War Room and follow the instructions. For example, for Microsoft Graph User: `!msgraph-user-generate-login-url`.
 
