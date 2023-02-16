@@ -834,9 +834,9 @@ table = tableToMarkdown("tableToMarkdown test", nested_data_example,
 ```
 The above will create the table seen below:
 ### tableToMarkdown test
-|name|changelog|nested|
-|---|---|---|
-| Active Directory Query | **1.0.4**:<br>	***path***: <br>	***releaseNotes***: <br>#### Integrations<br>##### Active Directory Query v2<br>Fixed an issue where the ***ad-get-user*** command caused performance issues because the *limit* argument was not defined.<br>| **item1**:<br>	***a***: 1<br>	***b***: 2<br>	***c***: 3<br>	***d***: 4 |
+| name                   | changelog                                                                                                                                                                                                                                      | nested                                                                 |
+|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| Active Directory Query | **1.0.4**:<br>	***path***: <br>	***releaseNotes***: <br>#### Integrations<br>##### Active Directory Query v2<br>Fixed an issue where the ***ad-get-user*** command caused performance issues because the *limit* argument was not defined.<br> | **item1**:<br>	***a***: 1<br>	***b***: 2<br>	***c***: 3<br>	***d***: 4 |
 
 ### demisto.command()
 ```demisto.command()``` is typically used to tie a function to a command in Cortex XSOAR, for example:
