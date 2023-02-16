@@ -682,10 +682,7 @@ You may also use ```headerTransform``` to convert the existing keys into formatt
 
 ```python
 t = {'header_1': 'a1', 'header_2': 'b1', 'header_3': 'c1'}
-tableToMarkdown('tableToMarkdown with headerTransform', t, headerTransform=underscoreToCamelCase)
-```
-The above will create the table seen below:
-### tableToMarkdown with headerTransform
+tableToMarkdown('headerTransform Example', t, headerTransform=underscoreToCamelCase)
 |Header1|Header2|Header3|
 |---|---|---|
 | a1 | b1 | c1 |
