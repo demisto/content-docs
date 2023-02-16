@@ -678,7 +678,7 @@ In the War Room, this is how a table will appear:
 <img width="788" src="/doc_imgs/integrations/50571324-46846e00-0db0-11e9-9888-ddd9dc275541.png"></img>
 #
 You may also use ```headerTransform``` to convert the existing keys into formatted headers.
-A function that formats the original data headers (optional).
+|This function formats the original data headers (optional).
 
 ```python
 t = {'header_1': 'a1', 'header_2': 'b1', 'header_3': 'c1'}
