@@ -696,10 +696,7 @@ headers = ['header_1', 'header_2']
 data = {
     'header_1': 'foo',
 }
-tableToMarkdown('tableToMarkdown test', data, removeNull=True, headers=headers)
-```
-The above will create the table seen below:
-### tableToMarkdown test
+tableToMarkdown('removeNull Example', data, removeNull=True, headers=headers)
 |header_1|
 |---|
 | foo |
