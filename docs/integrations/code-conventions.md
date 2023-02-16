@@ -757,7 +757,7 @@ The above will create the table seen below:
 | demisto/python3 | 2021-09-13 08:21:53 |
 
 #
-Use the ```json_transform_mapping``` argument (Dict[str, JsonTransformer]), mapping between a header key to corresponding JsonTransformer.
+Use the ```json_transform_mapping``` argument (Dict[str, JsonTransformer]), to map between a header key to the corresponding JsonTransformer.
 ```python
 data_with_list = {
   "Machine Action Id": "5b38733b-ed80-47be-b892-f2ffb52593fd",
