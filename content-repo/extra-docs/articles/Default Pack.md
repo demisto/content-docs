@@ -77,4 +77,4 @@ In order to make use of the Default layout, the user needs to do the following:
 7.  If you would also like to use the Default playbook for your incident type - under “Default playbook” - select the “Default” playbook.
     
 
-![](https://lh6.googleusercontent.com/ZFpc8Tocj3jyX3xbgSD-3MpYKzr0Ygx6kL5wipFuX8XykUovcOyyNFbQ6w1JeO7HMWcuGKiJ_fIIouDOm5A24tANxiRiNzYxm39Ej9bRROdtZj_obOneEs0LAJS1gzcqQaowpvKhgDgQcR-DtWB-1uo)
+![](https://github.com/demisto/content-docs/blob/master/docs/doc_imgs/reference/unclassified%20edit.png?raw=true)
