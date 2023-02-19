@@ -121,6 +121,8 @@ You can review the playbook inputs and edit them by clicking the 'Playbook Trigg
 | AutoCloseInvestigation | This input determines if the investigation should close automatically after rerunning the scripts.|
  ---
 
+## Notes
+1. Integration instances in which the *Do not use by default* checkbox was selected, are not supported by this pack. This is due to XSOAR platform limitations and in order to prevent exceeding quota limits.
 
 ## Troubleshooting
 The Health Check for Integrations and Incidents  pack contains several incident fields which are associated with the **Integrations and Incidents Health Check** incident type. 
