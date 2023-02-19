@@ -1,0 +1,80 @@
+
+## Introduction
+
+The Default pack provides a solution for new users who are still early in their Cortex XSOAR journey, or as a solution for use-cases that you would like to handle but are yet to create content for.
+
+  
+
+We’ve created a playbook that puts together the core elements of handling any kind of incident. With that playbook there’s also a new layout that gives insight into the data that came with the incident together with any new information collected during the investigation of that incident.
+
+  
+  
+
+## Walkthough
+
+### Playbook:
+
+The playbook makes use of existing out-of-the-box, free content in order to investigate the incident.
+
+It has 3 inputs - whether to extract and enrich indicators from the fetched incident (turn on in case you decided to disable [auto-extract](https://xsoar.pan.dev/docs/incidents/incident-types#incident-type-properties_)), and two tags used for allowing or blocking indicators using an External Dynamic List.
+
+The playbook begins by de-duplicating any similar incidents. If a file is involved in the incident, it will then run the following steps:
+
+-   Attempt to retrieve the actual file by its hash or file path
+    
+-   Search for endpoints that have that file on them and display them in the layout
+    
+-   Extract indicators from the file
+    
+-   Detonate the file
+    
+
+In addition, the playbook will detonate URLs if a supported sandbox integration is enabled.
+
+The playbook then enriches the indicators using the Entity Enrichment - Generic v3 playbook, which can very SSL certificates, take screenshots of URLs, check for domain-squatting and more.
+
+After doing so, the playbook calculates a severity for the incident based on various factors.
+
+If the incident is deemed a true positive, the playbook allows the user to remediate the incident.
+
+Finally, the playbook generates an investigation report and closes the incident.
+
+  
+
+### Layout:
+
+The layout is built in a way that would fit any type of incident by using a dynamic section that dynamically loads the fields you’ve mapped for that incident type.
+
+If you haven’t mapped any fields - you will see them in the “Unmapped Fields” section.
+
+Additionally, the layout provides buttons for the user to tag indicators as benign or malicious for later use in an EDL.
+
+The layout also provides buttons for checking whether an IP is private or public, and whether a domain is internal or external. Those buttons make use of new scripts that utilize XSOAR Lists for centralized management of that data. They are easily customizable.
+
+The Default layout aims to make it as easy as possible for an analyst to investigate an incident, so it includes a “Cheat Sheet” page which provides a collection of the most common scripts an analyst may use - from data manipulation scripts and networking tools to XSOAR debugging utilities.
+
+  
+  
+
+## How To Use
+
+In order to make use of the Default layout, the user needs to do the following:
+
+1.  Go to Settings
+    
+2.  Under Object Step, open up Incidents
+    
+3.  Under the Types tab, find the incident type you would like to use with the Default layout.
+    
+
+1.  If the incident type is locked, click the Detach button.
+    
+
+5.  Click on the name of the incident type
+    
+6.  Under “Layout”, select the “Default” layout.
+    
+7.  If you would also like to use the Default playbook for your incident type - under “Default playbook” - select the “Default” playbook.
+    
+
+![](https://lh6.googleusercontent.com/ZFpc8Tocj3jyX3xbgSD-3MpYKzr0Ygx6kL5wipFuX8XykUovcOyyNFbQ6w1JeO7HMWcuGKiJ_fIIouDOm5A24tANxiRiNzYxm39Ej9bRROdtZj_obOneEs0LAJS1gzcqQaowpvKhgDgQcR-DtWB-1uo)
