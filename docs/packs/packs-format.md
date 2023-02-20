@@ -163,7 +163,7 @@ This file will be used while running the `demisto-sdk secrets`([explanation](htt
 
 On the following line add `ignore=` flag, with one or more comma-separated values:
 * `auto-test` - ignore test file in the build test collection.
-* `linter code` e.g. IN126 - ignore linter error codes.
+* `linter code` e.g., IN126 - ignore linter error codes.
 
 2) By default, unit-tests of scripts/integrations are running without docker network.
 
