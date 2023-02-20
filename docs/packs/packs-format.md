@@ -167,7 +167,7 @@ On the following line add `ignore=` flag, with one or more comma-separated value
 
 2) By default, unit-tests of scripts/integrations are running without a docker network.
 
-   In case one of the integrations/scripts inside a pack needs network during unit-tests run, this can be done in this format
+   In case one of the integrations/scripts inside a pack needs a network during the unit-tests run, this can be done in this format
 
 ```
 [tests_require_network]
