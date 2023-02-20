@@ -165,7 +165,7 @@ On the following line add `ignore=` flag, with one or more comma-separated value
 * `auto-test` - ignore test file in the build test collection.
 * `linter code` e.g., IN126 - ignore linter error codes.
 
-2) By default, unit-tests of scripts/integrations are running without docker network.
+2) By default, unit-tests of scripts/integrations are running without a docker network.
 
    In case one of the integrations/scripts inside a pack needs network during unit-tests run, this can be done in this format
 
