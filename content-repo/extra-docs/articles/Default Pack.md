@@ -67,17 +67,11 @@ In order to make use of the Default layout, do the following:
     
 2.  Under **Object Setup**, click **Incidents**
     
-3.  Under the Types tab, find the incident type you would like to use with the Default layout.
+3.  Under the Types tab, select the incident type you would like to use with the Default layout. If the incident is locked, you would first need to duplicate it or detach it first using the appropriate buttons.
     
-
-1.  If the incident type is locked, click **Detach**.
+4.  Under **Layout**, select the **Default** layout.
     
-
-5.  Click on the name of the incident type
-    
-6.  Under **Layout**, select the **Default** layout.
-    
-7. To use the Default playbook for your incident type - under **Default playbook** - select the **Default** playbook.
+5. To use the Default playbook for your incident type - under **Default playbook** - select the **Default** playbook.
     
 
 ![](https://github.com/demisto/content-docs/blob/master/docs/doc_imgs/reference/unclassified%20edit.png?raw=true)
