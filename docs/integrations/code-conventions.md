@@ -550,7 +550,7 @@ print(formatted_time)
 
 **Note:** If the response returned is in epoch, it is a best practice to convert it to ```%Y-%m-%dT%H:%M:%S```.
 
-## Pagination in integration commands
+## Pagination in Integration Commands
 When working on a command that supports pagination (usually has API parameters like `page` and/or `page size`) with a maximal page size enforced by the API, our best practice is to create a command that will support two different use-cases with the following 3 integer arguments:
 1. `page` 
 2. `page_size` 
@@ -563,7 +563,18 @@ When working on a command that supports pagination (usually has API parameters l
 **Notes:**
 - **Page Tokens** - In case an API supports page tokens, instead of the more common 'limit' and 'offset'/'skip' as query parameters: 
   - The arguments that will be implemented are: `limit`, `page_size` and `next_token`.
-  - The retrieved `next_token` should be displayed in human readable output and in the context. It will be a single node in the context, and will be overwritten each command run.
+  - The retrieved `next_token` should be displayed in human readable output and in the context. It will be a single node in the context, and will be overwritten each command run:
+  ```json
+  {
+    "IntegrationName":
+    {
+        "Object1NextToken": "TOKEN_VALUE",
+        "Object2NextToken": "TOKEN_VALUE",
+        "Objects1": [],
+        "Objects2": []
+    }
+  }
+  ```
 - **Standard argument defaults** - `limit` will have a default of '50' in the YAML. `page_size` should be defaulted in the code to '50', in case only `page` was provided.
 - When an integrated API doesn't support pagination parameters at all - then only `limit` will be applied, and implemented internally in the code. An additional argument will be added to allow the user to retrieve all results by overriding the default `limit`: `all_results`=true. 
 - If API supports only 'limit' and 'offset'/'skip' as query parameters, then all 3 standard XSOAR pagination arguments should be implemented.
