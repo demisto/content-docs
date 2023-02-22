@@ -67,7 +67,7 @@ In order to make use of the Default layout, do the following:
     
 2.  Under **Object Setup**, click **Incidents**
     
-3.  Under the Types tab, select the incident type you would like to use with the Default layout. If the incident is locked, you would first need to duplicate it or detach it first using the appropriate buttons.
+3.  Under the Types tab, select the incident type you would like to use with the Default layout. If the incident is locked, you first need to duplicate it or detach using the appropriate buttons.
     
 4.  Under **Layout**, select the **Default** layout.
     
