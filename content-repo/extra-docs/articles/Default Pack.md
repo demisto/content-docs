@@ -24,22 +24,21 @@ Note: tagging the indicators does not automatically allow or block them. Instead
 
 The playbook begins by de-duplicating any similar incidents. If a file is involved in the incident, it will then run the following steps:
 
--   Attempt to retrieve the actual file by its hash or file path
+1. Attempt to retrieve the actual file by its hash or file path
     
--   Search for endpoints that have that file on them and display them in the layout
+2. Search for endpoints that have that file on them and display them in the layout
     
--   Extract indicators from the file
+3. Extract indicators from the file
     
--   Detonate the file
+4. Detonate the file
     
+5. Detonate URLs if a supported sandbox integration is enabled.
 
-In addition, the playbook will detonate URLs if a supported sandbox integration is enabled.
+6. Enrich the indicators using the Entity Enrichment - Generic v3 playbook, which can verify SSL certificates, take screenshots of URLs, check for domain-squatting, and more.
 
-The playbook then enriches the indicators using the Entity Enrichment - Generic v3 playbook, which can verify SSL certificates, take screenshots of URLs, check for domain-squatting, and more.
+7. Calculate a severity for the incident based on various factors.
 
-After doing so, the playbook calculates a severity for the incident based on various factors.
-
-If the incident is deemed a true positive, the playbook allows the user to remediate the incident.
+8. If the incident is deemed a true positive, the playbook allows the user to remediate the incident automatically and/or manually.
 
 Finally, the playbook generates an investigation report and closes the incident.
 
