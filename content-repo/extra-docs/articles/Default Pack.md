@@ -62,7 +62,7 @@ The Default layout aims to make it as easy as possible for an analyst to investi
 The "Investigation" tab displays related assets and indicators from the incident. If mapped, information like "Source IP" or "Detected Endpoints" will show up in that tab, along with the available buttons. In addition, any indicator found throughout the incident will show up in the Indicators section, and could be selected and tagged for allowing or blocking using an EDL.
 
 The “Utilities” tab provides a collection of the most common scripts an analyst may use - from data manipulation scripts and networking tools to Cortex XSOAR debugging utilities. 
-As explained in the different sections, some buttons require scripts from complimentary packs which are free to install from the Marketplace.
+As explained in the different sections, some buttons require scripts from complimentary packs which are free to install from Marketplace.
 This tab may be useful if the analyst needs to base64 decode a string, list the redirects for a given URL, ping a host on the network, etc.
 
 
