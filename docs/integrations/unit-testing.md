@@ -60,7 +60,7 @@ Unit tests should be written in a separate Python file named: `<your_choice>_tes
 ### Docker network 
 By default, unit-tests are not running with access to the network; the network is disabled within the container that runs the unit-tests.
 
-Refer [here](../packs/packs-format.md#pack-ignore) if the script/integration needs docker network 
+Refer to [here](../packs/packs-format.md#pack-ignore) if the script/integration tests need access to the network. 
 
 ### Mocking
 
