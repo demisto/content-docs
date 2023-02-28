@@ -20,6 +20,7 @@ The playbook makes use of existing out-of-the-box, free content in order to inve
 It has 3 inputs - whether to extract and enrich indicators from the fetched incident (turn on in case you decided to disable [auto-extract](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.6/Cortex-XSOAR-Administrator-Guide/Indicator-Extraction)), and two tags used for allowing or blocking indicators using an External Dynamic List.
 
 Extracting and enriching the indicators related to the incident is crucial for the investigation and response process. If you are unsure, we suggest to keep the input value as "True".
+
 The tag inputs are optional names that you would like to use for tagging indicators. For example, you may want to tag malicious indicators as "mal", or benign indicators as "safe". The Default layout then allows you to make use of these tags by using the buttons that correspond to the indicators you want to tag.
 Note: tagging the indicators does not automatically allow or block them. Instead, tagging indicators can be used in conjunction with an External Dynamic List and the Generic Export Indicators Service integration. You can read more about it by [installing the pack](https://cortex.marketplace.pan.dev/marketplace/details/EDL/) for the Marketplace and reading the integration documentation..
 
