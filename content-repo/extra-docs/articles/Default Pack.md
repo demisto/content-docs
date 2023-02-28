@@ -22,7 +22,7 @@ It has 3 inputs - whether to extract and enrich indicators from the fetched inci
 Extracting and enriching the indicators related to the incident is crucial for the investigation and response process. If you are unsure, we suggest to keep the input value as "True".
 
 The tag inputs are optional names that you would like to use for tagging indicators. For example, you may want to tag malicious indicators as "mal", or benign indicators as "safe". The Default layout then allows you to make use of these tags by using the buttons that correspond to the indicators you want to tag.
-Note: tagging the indicators does not automatically allow or block them. Instead, tagging indicators can be used in conjunction with an External Dynamic List and the Generic Export Indicators Service integration. You can read more about it by [installing the pack](https://cortex.marketplace.pan.dev/marketplace/details/EDL/) for the Marketplace and reading the integration documentation..
+Note: Tagging the indicators does not automatically allow or block them. Instead, tagging indicators can be used in conjunction with an External Dynamic List and the Generic Export Indicators Service integration. You can read more about it by [installing the pack](https://cortex.marketplace.pan.dev/marketplace/details/EDL/) from Marketplace and reading the integration documentation..
 
 The playbook begins by de-duplicating any similar incidents. If a file is involved in the incident, it will then run the following steps:
 
@@ -50,14 +50,14 @@ Finally, the playbook generates an investigation report and closes the incident.
 
 The layout is built in a way that would fit any type of incident by using a dynamic section that dynamically loads the fields you’ve mapped for that incident type.
 
-If you haven’t mapped any fields - you will see them in the “Unmapped Fields” section.
+If you haven’t mapped any fields, you will see them in the “Unmapped Fields” section.
 
 Additionally, the layout provides buttons for the user to tag indicators as benign or malicious for later use in an EDL.
 The layout also provides buttons for checking whether an IP is private or public, and whether a domain is internal or external. These buttons make use of new scripts that utilize Cortex XSOAR Lists for centralized management of that data. 
 
 **Note:** The aforementioned lists should be modified by the user to function correctly. The *InternalDomains* list should include the internal domains and/or subdomains of the organization, and the *PrivateIPs* should include any IP addresses or IP ranges in CIDR notation that are considered as private in the organization, along with optional tags.  If needed, the user can create new lists and use them with the scripts instead.
 
-The Default layout aims to make it as easy as possible for an analyst to investigate an incident, this is why it makes use of dynamic sections (sections that update dynamically by running scripts behind the scenes) and buttons.
+The Default layout aims to make it as easy as possible for an analyst to investigate an incident. This is why it makes use of dynamic sections (sections that update dynamically by running scripts behind the scenes) and buttons.
 
 The "Investigation" tab displays related assets and indicators from the incident. If mapped, information like "Source IP" or "Detected Endpoints" will show up in that tab, along with the available buttons. In addition, any indicator found throughout the incident will show up in the Indicators section, and could be selected and tagged for allowing or blocking using an EDL.
 
