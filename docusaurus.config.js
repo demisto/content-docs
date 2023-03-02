@@ -137,10 +137,6 @@ module.exports = {
               label: "Office Hours"
             },
             {
-              to: "/docs/partners/development-partners",
-              label: "Development Partners"
-            },
-            {
               to:
                 "https://technologypartners.paloaltonetworks.com/English/register_email.aspx",
               label: "Sign Up Now"
