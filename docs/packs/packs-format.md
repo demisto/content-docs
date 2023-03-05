@@ -28,6 +28,7 @@ All the directories within the pack are the representation of all the possible e
 - IndicatorFields
 - Connections
 - TestPlaybooks
+- ModelingRules
 ```
 
 ## Pack files
