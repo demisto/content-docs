@@ -1,4 +1,8 @@
 
+---
+title: The Default Pack
+description: Overview of the Default pack in Cortex XSOAR.
+---
 
 ## Introduction
 
