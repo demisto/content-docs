@@ -254,8 +254,7 @@ const sidebars = {
         "partners/private-offer",
         "partners/adopt",
         "partners/certification",
-        "partners/office-hours",
-        "partners/development-partners"
+        "partners/office-hours"
       ],
     },
   ],
