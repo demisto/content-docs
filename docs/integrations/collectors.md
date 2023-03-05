@@ -259,7 +259,7 @@ Throughout the development and testing process of the Event Collector and the XD
 
 To find the auth ID, in XSIAM, go to Settings > Integrations > API Keys and find the ID column for the API key you'll be using:
 
-![](/docs/doc_imgs/xsiam_auth_id.png)
+![](../../../content-docs/docs/doc_imgs/xsiam_auth_id.png)
 
 Then use the following command to upload the Pack:
 
