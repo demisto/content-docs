@@ -68,7 +68,7 @@ def some_polling_command(args: Dict[str, Any], client: Client):
 |-------------------|-----------------------|-------------------------------------------------------------------------------------------------|
 | response          | Any                   | The response of the command in the event of success, or in case of failure but Polling is false |
 | continue_to_poll  | Union[bool, Callable] | Wether to return a ScheduledCommand to the server to keep polling.                              |
-| args_for_next_run | Dict                  | The arguments to use in the next iteration. Will use the input args in case of None. Important: if you are using this argument, you must add the argument to the .yml file with the attribute "hidden: true", that way the polling command will recognise the argument for the next run.        |
+| args_for_next_run | Dict                  | The arguments to use in the next iteration. Will use the input args in case of None. Important: if you are using this argument, you must add it to the yml file with the attribute "hidden: true", that way the polling command will recognize the argument for the next run.        |
 | partial_result    | CommandResults        | CommandResults to return, even though we will poll again                                        |
 
 One last thing regarding the decorator, to Ignore Scheduled War Room Entries (as indicated below) add `hide_polling_output` as a boolean argument to the command in the yml file. 
