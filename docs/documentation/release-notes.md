@@ -13,7 +13,14 @@ demisto-sdk update-release-notes -i [Changed pack path] -u [major|minor|revision
 
 **Please note:** Changes that have not been committed are not detected automatically by the ***update-release-notes*** command.
 
-This command automatically updates the *currentVersion* found in the *pack_metadata.json* file according to the update version (as denoted by the *-u* flag).
+This command automatically updates the *currentVersion* found in the *pack_metadata.json* file according to the update version (as denoted by the *-u* flag), the versioning format is as follows: MAJOR.MINOR.REVISION.
+
+| versioning type | when to use |
+|---|---|
+| major | when you make a new version of the pack or one of its integrations. |
+| minor | when you add functionality (for example: mirroring, fetching incidents or indicators). |
+| revision | when you add new content items or commands, and when updating such. |
+| documentation | when adding or updation documentaion. |
 
 In most cases, you run the command when you are ready to merge and expect no further changes. If you need to make additional 
 changes after running the command, remove the `-u` argument. This updates the release notes file for you to fill out.
