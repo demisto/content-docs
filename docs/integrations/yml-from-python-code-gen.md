@@ -234,12 +234,19 @@ def funky_command():
 * execution
 * options
 * input_type
+* default_arg
 
 Where `options` and `input_type` behave similarly to those in the ConfKey:
 `options` to specify predefined arguments with list of options, and `input_type` to specify an enum class as the
 predefined options.
 
 If `is_array` is not specified it is inferred from the `input_type` or defaults to `False`
+
+If there is a default value for the input argument, use the `default` argument.
+
+In order to specify the input argument as a default argument 
+(would be used without specifing argument name), specify `default_arg` flag as `True`.
+For example `!ip 1.1.1.1` will be equivalent to `!ip ip=1.1.1.1` if `ip` is set as a default argument.
 
 #### OutputArgument
 To explicitly add output arguments, use the `OutputArgument` object.
@@ -349,13 +356,13 @@ This will result in the following input argument metadata:
     - name: beat
       isArray: false
       description: The beat to the funk.
-      required: true
+      required: false 
       secret: false
       default: false
     - name: punk
       isArray: false
       description: The punk to the funk.
-      required: true
+      required: false
       secret: false
       default: false
 ```
@@ -452,6 +459,11 @@ To specify execution=True, add `potentially harmful.` or `execution.` to the arg
 
 To specify required=True, add `required.` to the argument description.
 
+To specify the argument as a default argument, add `default argument.` to the argument description.
+This will result in being able to use the argument without specifing argument name.
+For example `!ip 1.1.1.1` will be equivalent to `!ip ip=1.1.1.1` if `ip` is set as a default argument.
+
+
 For example:
 ```python
 @metadata_collector.command(command_name="funky-command")
@@ -459,7 +471,7 @@ def funky_command():
     """Very funky command.
 
     Args:
-        punk: The punk to the funk. default=Avril Lavigne. secret. execution.
+        punk: The punk to the funk. default=Avril Lavigne. secret. execution. default argument.
     """
     print("funk")
 ```
