@@ -18,7 +18,7 @@ This command automatically updates the *currentVersion* found in the *pack_metad
 | versioning type | when to use |
 |---|---|
 | major | When you make a new version of the pack, or one of its integrations (for example, a rewrite of integration, or a vast change in it). |
-| minor | When you add functionality (for example mirroring, fetching incidents, or indicators). |
+| minor | When you add functionality (for example mirroring, fetching incidents, or indicators), or when you add many commands. |
 | revision | When you add new content items or a few commands, and when updating such. |
 | documentation | When adding or updating documentation. |
 
