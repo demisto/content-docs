@@ -65,22 +65,61 @@ def main():
         raise Exception(f'Error in {SOURCE_NAME} Integration [{e}]')
 ```
 Notice: 
-- You should always path the `events` to the `send_events_to_xsiam()` function, also in cases when no events were fetched. This is important as the `send_events_to_xsiam()` function also updates the UI for the number of events fetched which could also be 0. Don't be troubled, in such cases the empty data will not be sent forward to the DataBase.
+- You should always pass the `events` to the `send_events_to_xsiam()` function, also in cases when no events were fetched. This is important as the `send_events_to_xsiam()` function also updates the UI for the number of events fetched which could also be 0. Don't be troubled, in such cases the empty data will not be sent forward to the Dataset.
 - In the given example we assume the events are **not** in a `cef` or `leef` formats and therefore the `data_format` argument is not used.
-- In cases where `events` consist of multiple types with differing structures, i.e. within `fetch-events` we're calling two different API endponts, we may call `send_events_to_xsiam()` any number of times. For example, if we consider both an audit and a detection as events, we can do the following:
-
+- In cases where `events` consist of multiple types with differing structures, i.e. within `fetch-events` we're calling two different API endponts, we call `send_events_to_xsiam()` with an aggregated list of events from both endpoints. For example, if we have `detections: List[Dict[str, Any]]` and `audits: List[Dict[str, Any]]`, we would send them as so:
+ 
   ```python
   audits, detections, last_run = fetch_events_command(client)
-  send_events_to_xsiam(events=audits, vendor='MyVendor', product='Audits')
-  send_events_to_xsiam(events=detections, vendor='MyVendor', product='Detections')
+  send_events_to_xsiam(events=audits + detections, vendor='MyVendor', product='MyProduct')
   ```
+
+  We then would 
 
 Fore more info on the `send_events_to_xsiam()` function visit the [API reference](https://xsoar.pan.dev/docs/reference/api/common-server-python#send_events_to_xsiam).
 
 
+## Creating Parsing Rules
+
+When developing an event collector, we need to set the [Parsing Rules](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSIAM/Cortex-XSIAM-Administrator-Guide/Create-Parsing-Rules) within the collector code.
+
+The most common parsing rule is the `_time` system property which indicates the event time from the remote system. For example, if we use the following events as an example:
+
+
+```json
+ {
+    "id": "1234",
+    "message": "New user added 'root2'",
+    "type": "audit",
+    "op": "add",
+    "result": "success",
+    "host_info": {
+      "host": "prod-01",
+      "os": "Windows"
+    },
+    "created": "1676764803"
+  }
+```
+
+ We see that the `created` event property is a `str` representation of a timestamp (without milliseconds). However, The `_time` system property expects the result to be an `str` in format `%Y-%m-%dT%H:%M:%S.000Z`. So we can can transform it using the [`timestamp_to_datestring`](https://xsoar.pan.dev/docs/reference/api/common-server-python#timestamp_to_datestring) function from `CommonServerPython`.
+
+
+```python
+from datetime import datetime
+from CommonServerPython import *
+
+#  ...
+  events: List[Dict[str, Any]] = get_events()
+
+  for event in events:
+    event["_time"] = timestamp_to_datestring(float(event.get("created")) * 1000)
+
+# ...
+```
+
 ## Seeing the Events
 
-After the events are received by XSIAM, they will be stored in a Dataset called `vendor_product_raw`. In case it's the first time we fetch events, this Dataset will be created. To manage the Datasets, you can visit the [Dataset Management](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSIAM/Cortex-XSIAM-Administrator-Guide/Dataset-Management).
+After the events are received by XSIAM, they will be stored in a Dataset called `MyVendor_MyProduct_raw`. In case it's the first time we fetch events, this Dataset will be created. To manage the Datasets, you can visit the [Dataset Management](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSIAM/Cortex-XSIAM-Administrator-Guide/Dataset-Management).
 
 
 In order to see the events, visit the [Query Builder](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSIAM/Cortex-XSIAM-Administrator-Guide/Query-Builder).
@@ -245,8 +284,8 @@ We need to first create a new directory named `ModelingRules/MyVendorEventCollec
   {
     "MyVendor_MyProduct_raw": {
       "field_1": {
-        "type": "string|int",
-        "is_array": true|false
+        "type": "string|int", // Specify whether the field is a string or an integer
+        "is_array": true|false // Specify whether the field is an array/list of types.
       },
       "field_2": {
         "type": "string|int",
@@ -256,24 +295,6 @@ We need to first create a new directory named `ModelingRules/MyVendorEventCollec
     }
   }
   ```
-
-## Creating Parsing Rules
-
-When developing an event collector, we need to set the [Parsing Rules](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSIAM/Cortex-XSIAM-Administrator-Guide/Create-Parsing-Rules) within the collector code.
-
-The most common parsing rule is the `_time` system property which indicates the event time. For example, if we use the events from above as an example, we see that the `creation` event property is a `str` representation of a timestamp (without milliseconds).
-
-The `_time` system property expects the result to be an `str` in format `%Y-%m-%dT%H:%M:%S.000Z`.
-
-
-```python
-from datetime import datetime
-from CommonServerPython import *
-
-event["_time"] = timestamp_to_datestring(
-  float(event.get("created")) * 1000
-)
-```
 
 ## Upload Pack to XSIAM Development Environment
 
