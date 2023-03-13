@@ -17,10 +17,10 @@ This command automatically updates the *currentVersion* found in the *pack_metad
 
 | versioning type | when to use |
 |---|---|
-| major | when you make a new version of the pack, or one of its integrations (For example, a rewrite of integration, or a vast change in it.). |
-| minor | when you add functionality (for example: mirroring, fetching incidents, or indicators). |
-| revision | when you add new content items or a few commands, and when updating such. |
-| documentation | when adding or updating documentation. |
+| major | When you make a new version of the pack, or one of its integrations (for example, a rewrite of integration, or a vast change in it). |
+| minor | When you add functionality (for example mirroring, fetching incidents, or indicators). |
+| revision | When you add new content items or a few commands, and when updating such. |
+| documentation | When adding or updating documentation. |
 
 In most cases, you run the command when you are ready to merge and expect no further changes. If you need to make additional 
 changes after running the command, remove the `-u` argument. This updates the release notes file for you to fill out.
