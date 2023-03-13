@@ -126,7 +126,8 @@ In our example, let's say that we have the following events we sent to XSIAM and
     "host_info": {
       "host": "prod-01",
       "os": "Windows"
-    }
+    },
+    "created": "1676764803"
   },
   {
     "id": "1235",
@@ -137,7 +138,8 @@ In our example, let's say that we have the following events we sent to XSIAM and
     "host_info": {
       "host": "prod-01",
       "os": "Windows"
-    }
+    },
+    "created": "1676764823"
   },
   {
     "id": "1236",
@@ -148,7 +150,8 @@ In our example, let's say that we have the following events we sent to XSIAM and
     "host_info": {
       "host": "prod-01",
       "os": "Windows"
-    }
+    },
+    "created": "1676764834"
   },
   {
     "id": "1237",
@@ -159,7 +162,8 @@ In our example, let's say that we have the following events we sent to XSIAM and
     "host_info": {
       "host": "prod-01",
       "os": "Windows"
-    }
+    },
+    "created": "1676764903"
   }
 ]
 ```
@@ -253,6 +257,24 @@ We need to first create a new directory named `ModelingRules/MyVendorEventCollec
   }
   ```
 
+## Creating Parsing Rules
+
+When developing an event collector, we need to set the [Parsing Rules](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSIAM/Cortex-XSIAM-Administrator-Guide/Create-Parsing-Rules) within the collector code.
+
+The most common parsing rule is the `_time` system property which indicates the event time. For example, if we use the events from above as an example, we see that the `creation` event property is a `str` representation of a timestamp (without milliseconds).
+
+The `_time` system property expects the result to be an `str` in format `%Y-%m-%dT%H:%M:%S.000Z`.
+
+
+```python
+from datetime import datetime
+from CommonServerPython import *
+
+event["_time"] = timestamp_to_datestring(
+  float(event.get("created")) * 1000
+)
+```
+
 ## Upload Pack to XSIAM Development Environment
 
 Throughout the development and testing process of the Event Collector and the XDM rules, it's beneficial to push the changes from your local dev environment to the XSIAM instance. To do this, make sure you set up the `demisto-sdk` to work with XSIAM by creating an API key, copying the XSIAM URL and exporting the relevant environmental variable. 
@@ -264,10 +286,9 @@ To find the auth ID, in XSIAM, go to Settings > Integrations > API Keys and find
 Then use the following command to upload the Pack:
 
 ```bash
-
 export XSIAM_AUTH_ID=43
 
 demisto-sdk upload -i Packs/MyVendor -x -z --override-existing 
 ```
 
-See [`demisto-sdk Installation](https://github.com/demisto/demisto-sdk#installation) for more details.
+See [`demisto-sdk` Installation](https://github.com/demisto/demisto-sdk#installation) for more details.
