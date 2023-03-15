@@ -33,7 +33,9 @@ The playbook begins by de-duplicating any similar incidents. If a file is involv
 3. Extract indicators from the file
     
 4. Detonate the file
-    
+
+Regardless of whether a file is involved or not, the playbook will continue with the next steps:
+
 5. Detonate URLs if a supported sandbox integration is enabled.
 
 6. Enrich the indicators using the Entity Enrichment - Generic v3 playbook, which can verify SSL certificates, take screenshots of URLs, check for domain-squatting, and more.
