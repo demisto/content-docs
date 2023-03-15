@@ -20,12 +20,9 @@ We’ve created a playbook that puts together the core elements of handling any 
 
 The playbook makes use of existing out-of-the-box, free content in order to investigate the incident.
 
-It has 3 inputs - whether to extract and enrich indicators from the fetched incident (turn on in case you decided to disable [auto-extract](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.6/Cortex-XSOAR-Administrator-Guide/Indicator-Extraction)), and two tags used for allowing or blocking indicators using an External Dynamic List.
+It has one input - whether to extract and enrich indicators from the fetched incident (turn on in case you decided to disable [auto-extract](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.6/Cortex-XSOAR-Administrator-Guide/Indicator-Extraction)).
 
 Extracting and enriching the indicators related to the incident is crucial for the investigation and response process. If you are unsure, we suggest to keep the input value as "True".
-
-The tag inputs are optional names that you would like to use for tagging indicators. For example, you may want to tag malicious indicators as "mal", or benign indicators as "safe". The Default layout then allows you to make use of these tags by using the buttons that correspond to the indicators you want to tag.
-Note: Tagging the indicators does not automatically allow or block them. Instead, tagging indicators can be used in conjunction with an External Dynamic List and the Generic Export Indicators Service integration. You can read more about it by [installing the pack](https://cortex.marketplace.pan.dev/marketplace/details/EDL/) from Marketplace and reading the integration documentation..
 
 The playbook begins by de-duplicating any similar incidents. If a file is involved in the incident, it will then run the following steps:
 
@@ -56,6 +53,9 @@ The layout is built in a way that would fit any type of incident by using a dyna
 If you haven’t mapped any fields, you will see them in the “Unmapped Fields” section.
 
 Additionally, the layout provides buttons for the user to tag indicators as benign or malicious for later use in an EDL.
+For example, you may want to tag malicious indicators as "mal", or benign indicators as "safe". The Default layout allows you to make use of these tags by using the buttons that correspond to the indicators you want to tag.
+Note: Tagging the indicators does not automatically allow or block them. Instead, tagging indicators can be used in conjunction with an External Dynamic List and the Generic Export Indicators Service integration. You can read more about it by [installing the pack](https://cortex.marketplace.pan.dev/marketplace/details/EDL/) from Marketplace and reading the integration documentation.
+
 The layout also provides buttons for checking whether an IP is private or public, and whether a domain is internal or external. These buttons make use of new scripts that utilize Cortex XSOAR Lists for centralized management of that data. 
 
 **Note:** The aforementioned lists should be modified by the user to function correctly. The *InternalDomains* list should include the internal domains and/or subdomains of the organization, and the *PrivateIPs* should include any IP addresses or IP ranges in CIDR notation that are considered as private in the organization, along with optional tags.  If needed, the user can create new lists and use them with the scripts instead.
