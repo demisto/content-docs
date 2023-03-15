@@ -119,7 +119,7 @@ from CommonServerPython import *
 
 ## Seeing the Events
 
-After the events are received by XSIAM, they will be stored in a Dataset called `MyVendor_MyProduct_raw`. In case it's the first time we fetch events, this Dataset will be created. To manage the Datasets, you can visit the [Dataset Management](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSIAM/Cortex-XSIAM-Administrator-Guide/Dataset-Management).
+After the events are received by XSIAM, they will be stored in a Dataset in the structure of `<vendor>_<product>_raw`. In case it's the first time we fetch events, this Dataset will be created. To manage the Datasets, you can visit the [Dataset Management](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSIAM/Cortex-XSIAM-Administrator-Guide/Dataset-Management).
 
 
 In order to see the events, visit the [Query Builder](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSIAM/Cortex-XSIAM-Administrator-Guide/Query-Builder).
@@ -144,7 +144,7 @@ Creating Data Modeling rules entails 2 steps that should be done sequentially:
 
 At this point, we have a Dataset of raw events. We will use the Dataset to [create Data Modeling rules](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSIAM/Cortex-XSIAM-Administrator-Guide/Create-Data-Model-Rules). 
 
-The first line in the Data Model Rules editor should be define the model will use the `MyVendor_MyProduct_raw` Dataset:
+The Data Model definition begins with:
 
 ```
 [MODEL: dataset="MyVendor_MyProduct_raw"]
@@ -284,7 +284,7 @@ We need to first create a new directory named `ModelingRules/MyVendorEventCollec
   {
     "MyVendor_MyProduct_raw": {
       "field_1": {
-        "type": "string|int", // Specify whether the field is a string or an integer
+        "type": "string|int|datetime", // Specify whether the field is a string, an integer or a datetime
         "is_array": true|false // Specify whether the field is an array/list of types.
       },
       "field_2": {
@@ -295,21 +295,3 @@ We need to first create a new directory named `ModelingRules/MyVendorEventCollec
     }
   }
   ```
-
-## Upload Pack to XSIAM Development Environment
-
-Throughout the development and testing process of the Event Collector and the XDM rules, it's beneficial to push the changes from your local dev environment to the XSIAM instance. To do this, make sure you set up the `demisto-sdk` to work with XSIAM by creating an API key, copying the XSIAM URL and exporting the relevant environmental variable. 
-
-To find the auth ID, in XSIAM, go to Settings > Integrations > API Keys and find the ID column for the API key you'll be using:
-
-![](../../../content-docs/docs/doc_imgs/xsiam_auth_id.png)
-
-Then use the following command to upload the Pack:
-
-```bash
-export XSIAM_AUTH_ID=43
-
-demisto-sdk upload -i Packs/MyVendor -x -z --override-existing 
-```
-
-See [`demisto-sdk` Installation](https://github.com/demisto/demisto-sdk#installation) for more details.
