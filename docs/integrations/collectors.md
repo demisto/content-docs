@@ -1,6 +1,7 @@
 ---
 id: event-collectors
 title: Event Collection Integrations
+tags: [xsiam, integration, collector]
 ---
 Server version 6.8.0 adds support for Event Collection integrations for Cortex XSIAM. Collection integrations allow fetching events and logs from external products, for example OKTA,
 Jira and so on.
@@ -31,13 +32,13 @@ marketplaces:
 Every Collection integration will at minimum support these three commands:
 - `test-module` - this is the command that is run when the `Test` button in the configuration panel of an integration is clicked.
 - `<product-prefix>-get-events` - where `<product-prefix>` is replaced by the name of the Product or Vendor source providing the events. So for example, if you were developing a Collection integration for Microsoft Intune, this command might be called `msintune-get-events`. This command should fetch a limited number of events from the external source and display them in the war room.
-- `fetch-events` - this command will initiate a request to the external product chosen endpoint(s) using the relevant chosen params, and send the fetched events to the XSIAM database. If the integration instance is configured to `Fetch evnts`, then this is the command that will be executed at the specified `Events Fetch Interval`.
+- `fetch-events` - this command will initiate a request to the external product chosen endpoint(s) using the relevant chosen params, and send the fetched events to the XSIAM database. If the integration instance is configured to `Fetch events`, then this is the command that will be executed at the specified `Events Fetch Interval`.
 
-## API Command: send_events_to_xsiam()
-Use the `send_events_to_xsiam()` function when the `fetch-events` command is executed. With the following arguments:
+## API Command: `send_events_to_xsiam()`
+Call the `send_events_to_xsiam()` function from `CommonServerPython` when the `fetch-events` command is executed. The function expects the following arguments:
 - `events` - The events to send to the XSIAM server. Should be of the following:
-  1. List of strings or dicts where each string or dict represents an event.
-  2. String containing raw events separated by new lines.
+  1. `List[str]` or `List[Dict[str, Any]]` where each string or `Dict` represents an event.
+  2. `str` containing raw events separated by new lines.
 - `vendor` - The vendor represented by Collection integration.
 - `product` - The specific product integrated in the given Collection integration.
 - `data_format` - Should only be filled in case the `events` parameter contains a string in the format of `leef` or `cef`. In other cases the `data_format` will be set automatically.
@@ -74,9 +75,7 @@ Notice:
   send_events_to_xsiam(events=audits + detections, vendor='MyVendor', product='MyProduct')
   ```
 
-  We then would 
-
-Fore more info on the `send_events_to_xsiam()` function visit the [API reference](https://xsoar.pan.dev/docs/reference/api/common-server-python#send_events_to_xsiam).
+For more info on the `send_events_to_xsiam()` function visit the [API reference](https://xsoar.pan.dev/docs/reference/api/common-server-python#send_events_to_xsiam).
 
 
 ## Creating Parsing Rules
