@@ -70,7 +70,7 @@ When creating Markdown `README` documents for XSOAR entities (Playbooks, Integra
 
 Make sure to view the `README.md` file in GitHub's web interface and validate that the images display properly.
 
-**Note**: Relative image URLs are not supported for [Pack `README`s](https://xsoar.pan.dev/docs/documentation/pack-docs).
+**Note**: Relative image URLs are also supported for pack READMEs, See the [following for instructions](https://xsoar.pan.dev/docs/documentation/pack-docs#images).
 
 **Documentation with Relative URL examples:**
 * Google Calendar: https://github.com/demisto/content/blob/master/Packs/GoogleCalendar/Integrations/GoogleCalendar/README.md
@@ -95,6 +95,9 @@ Or if you want more control on the image (for example setting width dimension) y
 ```
 <img width="500" src="https://github.com/demisto/content/raw/2d6e082cfb181f823e5b1446ae71e10537591ea6/Packs/AutoFocus/doc_files/AutoFocusPolling.png" />
 ```
+
+**Note**: Absolute image URLs are not supported for [Pack READMEs](https://xsoar.pan.dev/docs/documentation/pack-docs#images).
+
 **Screenshot of `Download` button:**
 ![Github Download](/doc_imgs/integrations/github-download-button.png)
 
