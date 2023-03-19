@@ -110,15 +110,13 @@ Ingest events from O365 (Azure AD, SharePoint, EWS, etc) as incidents.
 
 | Integration 	| Cloud/On-Prem 	| Usage 	| Limitations 	| Auth Method 	|
 |:---:	|:---:	|:---:	|:---:	|:---:	|
-| [EWS Mail Sender](https://xsoar.pan.dev/docs/reference/integrations/ews-mail-sender)	| On-Prem 	| Notify user by mail in a playbook.<br/>Fetch emails as incidents. 	| Supports basic authentication only 	| Basic Auth 	|
 | [EWS O365](https://xsoar.pan.dev/docs/reference/integrations/ewso365) 	| Cloud/[Hybrid](https://docs.microsoft.com/en-us/exchange/exchange-hybrid#hybrid-deployment-example)	| Manage and search mailboxes	| For O365 - Supports OAuth2.<br/>Only supports admin accounts that have access to all mailboxes.| client_credentials<br/>Using Oproxy/Self-deployed. 	|
 | [EWS v2](https://xsoar.pan.dev/docs/reference/integrations/ews-v2) 	| On-Prem + Cloud 	| Manage and search mailboxes.<br/>Manage compliance searches. 	|  	| Basic Auth + NTLM 	|
 | [EWS Extension](https://xsoar.pan.dev/docs/reference/integrations/ews-extension) 	|  	| Manage junk rules and search the message trace. 	| Uses different APIs than EWSv2 	|  	|
-| [Exchange Online Powershell V2 module](https://xsoar.pan.dev/docs/reference/integrations/ews-extension#enable-or-disable-access-to-exchange-online-powershell) 	| On-Prem 	| Manage mailboxes and permissions.<br/>Edit Tenant Allow/Block lists.	|  	|  	|
+| [EWS Extension Online Powershell v2](https://xsoar.pan.dev/docs/reference/integrations/ews-extension-online-powershell-v2) 	| On-Prem 	| Manage mailboxes and permissions.<br/>Edit Tenant Allow/Block lists.	|  	|  	|
 | [O365 Outlook Mail (Using Graph API)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail) 	| Cloud 	| Manage and send email on behalf of a different user that was configured  	|  	| client_credentials<br/>Using Oproxy/Self-deployed. 	|
 | [O365 Outlook Mail Single User (Using Graph API)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail-single-user)	| Cloud 	|  	| Can manage the mailbox of the configured user only  	| auth_code (on behalf of a user)<br/>Using Oproxy/Self-deployed.	|
-| [Exchange 2016 Compliance Search](https://xsoar.pan.dev/docs/reference/integrations/exchange-2016-compliance-search) 	| On-Prem 	| The only module that enables searching messages across the entire organization. 	|  	| Basic Auth 	|
-| [O365 Security and Compliance](https://xsoar.pan.dev/docs/reference/integrations/security-and-compliance) 	| Cloud  	| Search across mailboxes and execute actions on the results. 	| Known limitation in the README<br/>Restart authentication process on  	| device-code (on behalf of a user). 	|
+| [O365 - Security And Compliance - Content Search v2](https://xsoar.pan.dev/docs/reference/integrations/security-and-compliance-v2) 	| Cloud  	| Search across mailboxes and execute actions on the results. 	| Known limitation in the README<br/>Restart authentication process on  	| device-code (on behalf of a user). 	|
 
 
 ## Azure Cloud
