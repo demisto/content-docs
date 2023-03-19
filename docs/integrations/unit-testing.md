@@ -58,9 +58,9 @@ if __name__ == "__builtin__" or __name__ == "builtins":
 Unit tests should be written in a separate Python file named: `<your_choice>_test.py`. Within the unit test file, each unit test function should be named: `test_<your name>`. More information on writing unit tests and their format is available at the [PyTest Docs](https://docs.pytest.org/en/latest/contents.html). Good place to see example unit tests: [Proofpoint TAP v2 integration](https://github.com/demisto/content/blob/master/Packs/ProofpointTAP/Integrations/ProofpointTAP_v2/ProofpointTAP_v2_test.py)
 
 ### Docker network 
-By default, unit-tests are not running with docker network, meaning network is disabled within the container that runs the unit-tests.
+By default, unit-tests are not running with access to the network; the network is disabled within the container that runs the unit-tests.
 
-Refer [here](../packs/packs-format.md#pack-ignore) if the script/integration needs docker network 
+Refer to [here](../packs/packs-format.md#pack-ignore) if the script/integration tests need access to the network. 
 
 ### Mocking
 
