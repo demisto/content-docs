@@ -13,14 +13,6 @@ This is a tutorial to set up a fully configured remote environment with VSCode [
 2. Install the [remote extension pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack).
 
 
-### Docker
-
-* **Windows**: Docker Desktop 2.0+ on Windows 10 Pro/Enterprise. Windows 10 Home (2004+) requires Docker Desktop 2.3+ and the WSL 2 back-end.
-* **macOS**: Docker Desktop 2.0+.
-* **Linux**: Docker CE/EE 18.06+ and Docker Compose 1.21+
-
-Follow the instructions [here](https://code.visualstudio.com/docs/remote/containers#_installation) to install **Docker** to your operating system.
-
 ## Installation
 
 ### Windows Users
