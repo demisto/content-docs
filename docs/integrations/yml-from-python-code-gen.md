@@ -242,10 +242,10 @@ predefined options.
 
 If `is_array` is not specified it is inferred from the `input_type` or defaults to `False`
 
-If there is a default value for the input argument, use the `default` argument.
+To set a default value to a given input argument, use the `default='some val'`.
 
-In order to specify the input argument as a default argument 
-(would be used without specifing argument name), specify `default_arg` flag as `True`.
+In order to specify the input argument as a default argument of the command
+(would be used without specifing argument name), specify `default_arg=True`.
 For example `!ip 1.1.1.1` will be equivalent to `!ip ip=1.1.1.1` if `ip` is set as a default argument.
 
 #### OutputArgument
