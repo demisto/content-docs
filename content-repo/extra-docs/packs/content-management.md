@@ -512,6 +512,138 @@ Although you do not have the flexibility of version control and rollback, it is 
     Sorry, your browser doesn't support embedded videos. You can download the video at: https://github.com/demisto/content-assets/raw/master/Assets/ContentManagement/CICD-deployment.mp4 
 </video>
 
+## Prerequisites
+​
+The following are the prerequisites for using this pack:
+- [Create the Repository](#create-the-repository)
+- [Create the CI/CD process](#create-the-cicd-process)
+- [Create the Structure for the Artifacts Server](#create-the-structure-for-the-artifacts-server)
+​
+### Create the Repository
+​
+The repository is used to organize your custom content packs and your configuration files.  
+​
+You should clone our [example repository](https://github.com/demisto/content-ci-cd-template) to use as a baseline.
+​
+The structure of the repository is as follows:
+​
+```
+├── .hooks
+│   ├── <your-hooks-here>
+├── Packs
+│   ├── Pack1
+│   │   ├── IncidentFields
+│   │   │   ├── <your-incident-field.json>
+│   │   │   ├── ...
+│   │   ├── IncidentTypes
+│   │   │   ├── <your-incident-type.json>
+│   │   │   ├── ...
+│   │   ├── Layouts
+│   │   │   ├── <your-layout.json>
+│   │   │   ├── ...
+│   │   ├── Playbooks
+│   │   │   ├── <your-playbook.yml>
+│   │   │   ├── ...
+│   │   ├── Scripts
+│   │   │   ├── <your-script>
+│   │   │   │   ├── <your-script.py>
+│   │   │   │   ├── <your-script.yml>
+│   │   │   ├── ...
+│   │   ├── Integrations
+│   │   │   ├── <your-integration>
+│   │   │   │   ├── <your-integration.py>
+│   │   │   │   ├── <your-integration.yml>
+│   │   │   ├── ...
+│   │   ├── ReleaseNotes
+│   │   │   ├── <1_0_1.md>
+│   │   │   ├── <1_0_2.md>
+│   │   │   ├── ...
+│   ├── ...
+├── README.md
+├── xsoar_config.json
+├── .private-repo-settings
+├── .demisto-sdk-conf
+├── requirements.txt
+├── tox.ini
+├── demistomock.py                    # Can be copied from the Content repo
+├── demistomock.ps1                   # Can be copied from the Content repo
+├── CommonServerPython.py             # Can be copied from the Content repo
+├── CommonServerPowerShell.ps1        # Can be copied from the Content repo
+├── dev_envs
+│   ├── pytest
+│   │   ├── conftest.py               # Can be copied from the Content repo
+```
+​
+
+| Content of repo | Description |
+| --- | ---|
+| .hooks | --- |
+| Packs | Your customized packs that contain your incident fields, incident types, layouts, playbooks, scripts, integrations, and release notes. You can define multiple packs. |
+| README.md | A markdown file that provides a description of the pack. |
+| xsoar_config.json<br/>[Example file](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/doc_files/xsoar_config.json) | The configuration file that defines what packs lists, and jobs will be set up on the machine.<br/> It consists of the following sections:<br/>- *custom_packs* - Your own internal packs to be installed through the build process.<br/>- *marketplace_packs* - Marketplace packs to be installed on the machine.<br/>- *lists* - Lists to be created in the machine, when the list type set to dynamic then the list won’t be overwritten.<br/>- *jobs* - Jobs to be created in the machine. |
+| .private-repo-settings | --- |
+| .demisto-sdk-conf | Your custom configuration file for the demisto-sdk commands. For details, click [here](https://xsoar.pan.dev/docs/concepts/demisto-sdk#setting-a-preset-custom-command-configuration). |
+| requirements.txt | Contains a list of all the project’s dependencies. |
+| tox.ini | The command-line driven automated testing tool for Python. |
+| demistomock.py | You can copy this file from the Content repo (content/Tests/demistomock/). |
+| demistomock.ps1 | You can copy this file from the Content repo (/content/Tests/demistomock/).  |
+| CommonServerPython.py | You can copy this file from the Content repo (/content/Packs/Base/Scripts/CommonServerPython/). |
+| CommonServerPowerShell.ps1 | You can copy this file from the Content repo (/content/Packs/Base/Scripts/CommonServerPowerShell/). |              
+| conftest.py | You can copy this file from the Content repo (/content/Tests/scripts/dev_envs/pytest/). |
+​
+### Create the CI/CD Process
+​
+Create a yml file for the CI/CD process. The [Example File](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/doc_files/ci-cd.yml) is a GitHub actions YML file that can be used as a template for creating your CI/CD process.
+​
+​
+1. Prepare the environment and the virtual environment on which to run the demisto-sdk. 
+2. Create an ID set for the private repository using the [demisto-sdk create-id-set](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/create_id_set) command.
+3. Merge the ID set with the Content repository's ID set using the following command: ***demisto-sdk merge-id-sets -i1 <path_to_private_repo_id__set> -i2 <path_to_content_repo_id_set> -o <path_to_output>***.
+4. Validate the packs' files using the [demisto-sdk validate](https://xsoar.pan.dev/docs/concepts/demisto-sdk#validate) command.
+5. Run unit tests and linters on the packs using the [demisto-sdk lint](https://xsoar.pan.dev/docs/concepts/demisto-sdk#lint) command.
+6. Create uploadable pack zips using the [demisto-sdk zip-packs](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/zip_packs) command.
+​
+   Or 
+​
+   Upload zipped packs directly to your machine using the [demisto-sdk upload](https://xsoar.pan.dev/docs/concepts/demisto-sdk#upload) command.
+7. Upload the artifacts to your artifact repository.
+​
+​
+​
+### Create the Structure for the Artifacts Server
+This artifacts server structure enables you to keep track of your work. Your versions are saved in the *production* folder. The *builds* folder saves your test packs before your deploy them.
+```
+├── builds
+│   ├── <branch-name>
+│   │   ├── packs
+│   │   │   ├── <pack1>
+│   │   │   │   ├── 1.0.0
+│   │   │   │   │   ├── pack1.zip
+│   │   │   ├── <pack2>
+│   │   │   │   ├── 1.0.1
+│   │   │   │   │   ├── pack2.zip
+│   │   │   ├── ...
+│   ├── ...
+├── production
+│   ├── packs
+│   │   ├── <pack1>
+│   │   │   ├── 1.0.0
+│   │   │   │   │   ├── pack1.zip
+│   │   │   ├── 1.0.1
+│   │   │   │   │   ├── pack1.zip
+│   │   │   ├── 1.1.0
+│   │   │   │   │   ├── pack1.zip
+│   │   │   ├── ...
+│   │   ├── <pack2>
+│   │   │   ├── 1.0.0
+│   │   │   │   │   ├── pack2.zip
+│   │   │   ├── 1.0.1
+│   │   │   │   │   ├── pack2.zip
+│   │   │   ├── 1.0.2
+│   │   │   │   │   ├── pack2.zip
+│   │   │   ├── ...
+│   │   ├── ...
+```
 
 ## Manage a Pull Request
 
