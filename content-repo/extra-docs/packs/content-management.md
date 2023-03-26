@@ -23,6 +23,7 @@ The CI/CD process works as follows:
 * run a playbook that reads from a configuration file that determines which content to install in your environment. The configuration file contains a list of content to install from your bucket.
 
 In Cortex XSOAR, you can develop and test your content on other machines, before using it in a production environment. You can do this by using [the remote repository feature in the UI](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-5/cortex-xsoar-admin/remote-repository/remote-repositories-overview.html) or using the CI/CD process.
+The CI/CD process tested in Cortex XSOAR version 6.0.0 and above, Cortex XSOAR version 8.0.0 supported as well.
 
 
 
