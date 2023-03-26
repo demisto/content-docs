@@ -40,7 +40,7 @@ configuration:
   section: Collect
 ```
 
-For example, since the `first_fetch` and `fetch_limit` are collection-related parameters, we would add them to the *Collect* section
+For example, since the `first_fetch` and `fetch_limit` are collection-related parameters, we would add them to the *Collect* section:
 
 ```yaml
 - name: first_fetch
@@ -48,16 +48,18 @@ For example, since the `first_fetch` and `fetch_limit` are collection-related pa
   display: First fetch time
   required: false
   type: 0
-  section: Collect # <---
+  section: Collect # <--- Added
 - name: fetch_limit
   defaultvalue: '1000'
   display: Fetch Limit
   additionalinfo: Maximum amount of detections to fetch. Audits API does not include a fetch limit therefore this configuration is only relevant to detections.
   required: false
   type: 0
-  section: Collect # <---
+  section: Collect # <--- Added
 ```
 
+
+This is how it will look in the integration instance modal:
 ![](../doc_imgs/integrations/collect_section.png)
 
 ## Commands
