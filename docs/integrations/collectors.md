@@ -28,6 +28,38 @@ marketplaces:
 - marketplacev2
 ```
 
+## Collect Section Parameters
+
+In order to organize all collection-related parameters in one section, we can add the following key to each relevant parameter in the integration YAML:
+
+```yaml
+configuration:
+  # ...
+- name: ...
+  # ...
+  section: Collect
+```
+
+For example, since the `first_fetch` and `fetch_limit` are collection-related parameters, we would add them to the *Collect* section
+
+```yaml
+- name: first_fetch
+  defaultvalue: 3 days
+  display: First fetch time
+  required: false
+  type: 0
+  section: Collect # <---
+- name: fetch_limit
+  defaultvalue: '1000'
+  display: Fetch Limit
+  additionalinfo: Maximum amount of detections to fetch. Audits API does not include a fetch limit therefore this configuration is only relevant to detections.
+  required: false
+  type: 0
+  section: Collect # <---
+```
+
+![](../doc_imgs/integrations/collect_section.png)
+
 ## Commands
 Every Collection integration will at minimum support these three commands:
 - `test-module` - this is the command that is run when the `Test` button in the configuration panel of an integration is clicked.
@@ -116,6 +148,16 @@ from CommonServerPython import *
 # ...
 ```
 
+To ensure that the parsing rule has been applied and is working as expected, we can run an [XQL search](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSIAM/Cortex-XSIAM-Administrator-Guide/XQL-Search) to compare the `_time` and `created` fields:
+
+```python
+dataset = "MyVendor_MyProduct_raw" | 
+fields
+  _time,
+  created
+```
+
+
 ## Seeing the Events
 
 After the events are received by XSIAM, they will be stored in a Dataset in the structure of `<vendor>_<product>_raw`. In case it's the first time we fetch events, this Dataset will be created. To manage the Datasets, you can visit the [Dataset Management](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSIAM/Cortex-XSIAM-Administrator-Guide/Dataset-Management).
@@ -123,7 +165,7 @@ After the events are received by XSIAM, they will be stored in a Dataset in the 
 
 In order to see the events, visit the [Query Builder](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSIAM/Cortex-XSIAM-Administrator-Guide/Query-Builder).
 
-In our example, to view all events, we would use the following [XQL search](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSIAM/Cortex-XSIAM-Administrator-Guide/XQL-Search):
+In our example, to view all events, we would use the following XQL search:
 ```xql
 dataset = MyVendor_MyProduct_raw
 ```
