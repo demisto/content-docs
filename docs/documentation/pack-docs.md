@@ -75,20 +75,20 @@ Note that "Cortex XSOAR Developer Docs" should link **directly to the readme of 
 
 ### Images
 Images can provide a great addition to the Pack `README.md` and can help users to get a quick understanding of the Pack. 
-To add an image to the readme pack, enter it under the binary_files directory in the relevant pack. (If there isn't one, create it).
+To add an image to the readme pack, enter it under the `readme_images` directory in the relevant pack. (If there isn't one, create it).
 
 Embed the image in the README.md using a Markdown Image Link, such as:
 ```
-![Playbook Image](binary_files/AutoFocusPolling.png)
+![Playbook Image](readme_images/AutoFocusPolling.png)
 ```
 Or if you want more control on the image (for example setting width dimension) you can use the HTML `<img>` tag, such as:
 ```
-<img width="500" src="binary_files/AutoFocusPolling.png" />
+<img width="500" src="readme_images/AutoFocusPolling.png" />
 ```
 
 **Note**:
 - Absolute image URLs are not supported for Pack `README`s.
-- The images must be under `binary_files` directory in the relevant pack.
+- The images must be under `readme_images` directory in the relevant pack.
 
 ### Videos
 It is possible to add an image placeholder which links to an external video. For example to add an external video hosted on YouTube use the following snippet template (replace `[YOUTUBE_VIDEO_ID]` with the YouTube video ID):
