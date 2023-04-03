@@ -125,9 +125,9 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
             `demisto-sdk download -o Packs/CICDExample -i CICDExample`
             The `CICDExample` integration file appears in the `Integrations` folder, which separates the content into Python and YML files together with a `README.md`.
         
-        ![cicd_integration.png](../../../docs/doc_imgs/reference/XSOAR-CICD/cicd_integration.png)
+      ![cicd_integration.png](../../../docs/doc_imgs/reference/XSOAR-CICD/cicd_integration.png)
          
-         **NOTE:**  You can download directly from the development server. If downloading automations and integrations, you need to use the `demisto-sdk split` command to split the content into the correct format.
+      **NOTE:**  You can download directly from the development server. If downloading automations and integrations, you need to use the `demisto-sdk split` command to split the content into the correct format.
 
   - **Migrate detached out-of-the-box content**
   
