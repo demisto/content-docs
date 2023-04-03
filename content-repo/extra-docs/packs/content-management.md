@@ -129,7 +129,7 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
      
 
 
-     **NOTE:**  You can download directly from the development server. If downloading Automations and integrations, you need to use the `demisto-sdk split` command to split the content into the correct format.
+   **NOTE:**  You can download directly from the development server. If downloading Automations and integrations, you need to use the `demisto-sdk split` command to split the content into the correct format.
 
   - **Migrate detached out-of-the-box content**
   
