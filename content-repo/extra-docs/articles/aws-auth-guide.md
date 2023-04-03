@@ -302,10 +302,10 @@ The following steps will exemplify the creation of an IAM integration associated
 ### Working with PrivateLinks
 When using AWS PrivateLinks (sts/service links) you should make sure that the DNS hostname is configured properly.
 You can do it by one of the following methods
-1. [AWS Private DNS](https://docs.aws.amazon.com/vpc/latest/privatelink/manage-dns-names.html).
-1. Using the python pass arguments configuration
-   * Go to **Settings** -> **About** -> **Troubleshooting** -> **Server Configuration**.
-   * Click on **Add Server Configuration**.
-   * Add the key `python.pass.extra.keys`.
-   * In the configuration value field `--add-host=<host>:X.X.X.X`.
-   * If you are using STS authentication than you might need to configure also the sts-host `--add-host=<host>:X.X.X.X##--add-host=<sts-host>:Y.Y.Y.Y`.
+- [AWS Private DNS](https://docs.aws.amazon.com/vpc/latest/privatelink/manage-dns-names.html).
+- Using the python pass arguments configuration:
+   1. Go to **Settings** > **About** > **Troubleshooting** > **Server Configuration**.
+   2. Click **Add Server Configuration**.
+   3. Add the key `python.pass.extra.keys`.
+   4. In the configuration value field `--add-host=<host>:X.X.X.X`.
+   5. If you are using STS authentication, you might need to also configure the sts-host `--add-host=<host>:X.X.X.X##--add-host=<sts-host>:Y.Y.Y.Y`.
