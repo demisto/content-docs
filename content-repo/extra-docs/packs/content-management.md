@@ -111,7 +111,7 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
     You can migrate all custom content, separate content items, or detach out-of-the-box content.
 
 
-    **NOTE:** Ensure that the `DEMISTO_BASE_URL` and `DEMISTO_API_KEY` are set to the server environment that you want to download. 
+**NOTE:** Ensure that the `DEMISTO_BASE_URL` and `DEMISTO_API_KEY` are set to the server environment that you want to download. 
   - **Migrate all custom content** 
     
     If you currently use the existing remote repository feature in Cortex XSOAR and now want to use the CI/CD process, download the content from your development machine using the `demisto-sdk download` command. For example, to download content from your remote repository to your repository created in step 1, run the following command: 
@@ -129,7 +129,7 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
      
 
 
-   **NOTE:**  You can download directly from the development server. If downloading Automations and integrations, you need to use the `demisto-sdk split` command to split the content into the correct format.
+**NOTE:**  You can download directly from the development server. If downloading Automations and integrations, you need to use the `demisto-sdk split` command to split the content into the correct format.
 
   - **Migrate detached out-of-the-box content**
   
