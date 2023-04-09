@@ -454,3 +454,7 @@
 .cardBody {
   text-align: center;
 }
+
+.cardTitle {
+  word-wrap: break-word;
+}

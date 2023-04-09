@@ -115,7 +115,7 @@ function Feature({ imageUrl, title, description, button }) {
           <img src={imgUrl} title={title} className={styles.cardImage} />
         </div>
         <div className={(classnames("card__body"), styles.cardBody)}>
-          <h4>{title}</h4>
+          <h4 className={(classnames("card__title"), styles.cardTitle)}>{title}</h4>
           <small>{description}</small>
         </div>
         <div className="card__footer">{button}</div>
