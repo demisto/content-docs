@@ -59,7 +59,7 @@ If you cloned the repository with VSCode, you can skip this step.
 ### Open the Dev Container
 
 1. Click this green button:
-    ![image](https://code.visualstudio.com/assets/docs/remote/common/remote-dev-status-bar.png)
+    ![image](https://code.visualstudio.com/assets/docs/devcontainers/containers/remote-dev-status-bar.png)
 2. Click **Reopen in Container**.
 3. Wait a few minutes until the Dev Container is ready.
 
