@@ -500,8 +500,7 @@ Further information about how to run this command can be found  [here](../docume
 Use this command to generate a readme file for your integration, script or playbook.
 
 Running this command creates a new `README.md` file in the same directory as the entity on which it ran, unless otherwise specified using the `-o` flag.
-To generate command examples, set up the `DEMISTO_BASE_URL` and the `DEMISTO_API_KEY` environment variables (as well as `XSIAM_AUTH_ID`, if needed) prior to running this command
-in order to establish a connection between `demisto-sdk` and the server, as well as create a file containing some command examples to be run for the documentation.
+To generate command examples, set up the required [environment variables](#environment-variable-setup) prior to running this command in order to establish a connection between `demisto-sdk` and the server, as well as create a file containing some command examples to be run for the documentation.
 
 Further information about how to run this command can be found [here](../documentation/readme_file.md#creating-documentation).
 
