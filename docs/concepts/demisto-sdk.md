@@ -2,7 +2,7 @@
 id: demisto-sdk
 title: Demisto SDK
 ---
-The [Demisto SDK](https://github.com/demisto/demisto-sdk) is a Python library designed to aid the development process, both to validate  entities being developed and to assist in the interaction between your development setup and Cortex XSOAR.
+The [Demisto SDK](https://github.com/demisto/demisto-sdk) is a Python library designed to aid the development process, both to validate  entities being developed and to assist in the interaction between your development setup and Cortex XSOAR or Cortex XSIAM.
 This guide will help you get acquainted with the Demisto SDK, including installation and set up and will provide some
 basic information about key commands to aid you in the development process. For additional information, please see our full [Demisto SDK documentation](https://github.com/demisto/demisto-sdk#demisto-sdk).
 
@@ -38,11 +38,12 @@ pip3 install --upgrade demisto-sdk
 
 ### Environment Variable Setup
 
-Some SDK commands require you to have an interaction with the Cortex XSOAR server. Examples of such interactions
-include uploading and downloading entities to or from XSOAR and running commands in XSOAR's CLI.
+Some SDK commands require you to have an interaction with the Cortex XSOAR or Cortex XSIAM server. Examples of such interactions
+include uploading and downloading entities to or from XSOAR or XSIAM and running commands in the CLI.
 
-To use these functions set up the base URL and API key:
+To use these functions, set up the required environment variables:
 
+#### For Cortex XSOAR 6.x Only
  1. Get your API key by going to the Cortex XSOAR server -> `Settings` -> `Integrations` -> `API Keys` -> `Get Your Key` -> Give your key a name and press `Generate Key`.
  2. Copy the given key.
  3. Add the following parameters to `~/.zshrc` and `~/.bash_profile`:
@@ -59,7 +60,35 @@ To use these functions set up the base URL and API key:
     export DEMISTO_API_KEY=XXXXXXXXXXXXXXXXXXXXXX
     ```
 
-> Another option (available from demisto-sdk 1.5.2), you can use a `.env` file in the root repository with the above variables.
+    > Alternatively, you can use a `.env` file in the root repository with the above variables.
+
+#### For Cortex XSIAM or Cortex XSOAR 8.x and above
+1. The base URL should be retrieved from the XSIAM instance by navigating to `Settings` -> `Configurations` -> `API Keys` -> clicking on the `Copy URL` button located at the top right corner of the page, and not the browser URL.
+2. The API key should be set to a Standard security level and must have the Instance Administrator role.
+3. The `XSIAM_AUTH_ID` environment variable needs to be set. Get it from the `ID` column of the created API Key.
+4. Add the following parameters to `~/.zshrc` and `~/.bash_profile`:
+
+    ```buildoutcfg
+    export DEMISTO_BASE_URL=<BASE_URL>
+    export DEMISTO_API_KEY=<API_KEY>
+    export XSIAM_AUTH_ID=<THE_XSIAM_AUTH_ID>
+    ```
+
+    For example:
+
+    ```buildoutcfg
+    export DEMISTO_BASE_URL=https://api-xsiam-server.us.paloaltonetworks.com
+    export DEMISTO_API_KEY=XXXXXXXXXXXXXXXXXXXXXX
+    export XSIAM_AUTH_ID=1
+    ```
+
+    > Alternatively, you can use a `.env` file in the root repository with the above variables.
+
+Please note that once the `XSIAM_AUTH_ID` environment variable is set, the SDK commands will be configured to work with a Cortex XSIAM / XSOAR 8.x instance.
+In order to set Demisto SDK to work with a Cortex XSOAR 6.x instance, you need to delete the `XSIAM_AUTH_ID` parameter from your environment. To do this, please run the following command:
+```buildoutcfg
+unset XSIAM_AUTH_ID
+```
 
 ### Using the SDK in Private Repositories
 
@@ -146,7 +175,7 @@ For additional information see [here](https://github.com/demisto/demisto-sdk/blo
 
 ### validate
 
-Use this command to make sure your `.yml`, `.json` and `.md` files are up to Cortex XSOAR standards.
+Use this command to make sure your `.yml`, `.json` and `.md` files are up to Cortex XSOAR or Cortex XSIAM standards.
 
 #### Examples and Use Cases
 
@@ -222,20 +251,20 @@ The error codes serve two main functions:
     ```
 
    - Note: **Not all error codes can be ignored! It is  preferable to fix errors rather than ignore them.**
-   Please consult with a Cortex XSOAR team member before ignoring an error.  
+   Please consult with a Cortex XSOAR or XSIAM team member before ignoring an error.  
 
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md#validate).
 
 ### lint
 
-Use this command to make sure your `.py` and `.ps1` files are up to Cortex XSOAR standards.
+Use this command to make sure your `.py` and `.ps1` files are up to Cortex XSOAR or XSIAM standards.
 This command runs several libraries to validate your code,  including:
 
 - [Flake8](https://pypi.org/project/flake8/) - Makes sure your code is up to PEP8 standards.
 - [MyPy](https://pypi.org/project/mypy/) - Validates type annotations, assignments and additional Python checks.
 - [Vulture](https://pypi.org/project/vulture/) - Finds unused code.
 - [Bandit](https://pypi.org/project/bandit/) - Finds security issues.
-- XSOAR Linter - An internal linter used to identify XSOAR specific restrictions and provide best practice advice for your code.
+- XSOAR Linter - An internal linter used to identify specific restrictions and provide best practice advice for your code.
 - Pylint and Pytest - Used to run your attached unit test (in the `_test.py`) file on the integration/script's Docker and will report your code coverage.
 - PowerShell test and analyze - Code linters for PowerShell.
 
@@ -298,7 +327,7 @@ For additional information see [here](https://github.com/demisto/demisto-sdk/blo
 
 ### format
 
-Use this command to format an XSOAR entity in accordance with Cortex XSOAR standards.
+Use this command to format an XSOAR or XSIAM entity in accordance with our standards.
 In some cases, when a file is downloaded from the XSOAR server, it might contain additional fields that are
 not required when entering the entity to the `content` repository. The `format` command will remove the unnecessary fields and make any fixes needed to the existing fields.
 
@@ -310,7 +339,7 @@ not required when entering the entity to the `content` repository. The `format` 
     demisto-sdk format -i Packs/myPack/Integrations/myIntegration/myIntegration.yml
     ```
 
-   This formats the file `Packs/myPack/Integrations/myIntegration/myIntegration.yml` in accordance with Cortex XSOAR standards.
+   This formats the file `Packs/myPack/Integrations/myIntegration/myIntegration.yml` in accordance with our standards.
 
 - Format a pack and update script and integration Docker images:
 
@@ -324,8 +353,8 @@ For additional information see [here](https://github.com/demisto/demisto-sdk/blo
 
 ### upload
 
-Use this command to upload an XSOAR entity to a Cortex XSOAR server. Be sure to set up the `DEMISTO_BASE_URL`
-and the `DEMISTO_API_KEY` prior to running this command in order to establish a connection between `demisto-sdk` and the XSOAR server.
+Use this command to upload an entity to a Cortex XSOAR or Cortex XSIAM. Be sure to set up the required [environment variables](#environment-variable-setup) prior to running this command in order to establish a connection between `demisto-sdk` and the XSOAR or the XSIAM server.
+
 
 #### Examples and Use Cases
 
@@ -335,7 +364,7 @@ and the `DEMISTO_API_KEY` prior to running this command in order to establish a 
     demisto-sdk upload -i Packs/myPack/Integrations/myIntegration
     ```
 
-   This uploads the integration found in `Packs/myPack/Integrations/myIntegration` to the preset XSOAR server.
+   This uploads the integration found in `Packs/myPack/Integrations/myIntegration` to the preset server.
 
 - Upload a pack to the server without certificate validation:
 
@@ -343,7 +372,7 @@ and the `DEMISTO_API_KEY` prior to running this command in order to establish a 
     demisto-sdk upload -i Pack/myPack --insecure
     ```
 
-   This iterates over all the content entities in the pack `myPack` and uploads them to the preset XSOAR server
+   This iterates over all the content entities in the pack `myPack` and uploads them to the preset server
    without checking the certification. Note that this command does not upload the entities as a whole pack but instead uploads them individually.
 
 - Zip and upload a whole pack to the Marketplace:
@@ -352,17 +381,16 @@ and the `DEMISTO_API_KEY` prior to running this command in order to establish a 
     demisto-sdk upload -i Pack/myPack -z
     ```
 
-   This will zip, upload and install the pack `myPack` in the preset XSOAR server's Marketplace.
+   This will zip, upload and install the pack `myPack` in the preset server's Marketplace.
 
-   **When uploading to the Marketplace, the command will overwrite any pack which already exists in the XSOAR server.
+   **When uploading to the Marketplace, the command will overwrite any pack which already exists in the server.
    In order to avoid mistakes, a prompt will appear asking you to approve the upload.**
 
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/upload/README.md#upload).
 
 ### zip-packs
 
-Use this command to generate zipped packs and upload them to the Marketplace in Cortex XSOAR. Be sure to set up the `DEMISTO_BASE_URL`
-and the `DEMISTO_API_KEY` prior to running this command in order to establish a connection between `demisto-sdk` and the XSOAR server.
+Use this command to generate zipped packs and upload them to the Marketplace in Cortex XSOAR or Cortex XSIAM. Be sure to set up the required [environment variables](#environment-variable-setup) prior to running this command in order to establish a connection between `demisto-sdk` and the XSOAR or the XSIAM server.
 
 #### Examples and Use Cases
 
@@ -380,19 +408,18 @@ and the `DEMISTO_API_KEY` prior to running this command in order to establish a 
     demisto-sdk zip-packs -i Campaign -o Packs/Campaign -u
     ```
 
-   This will zip, upload and install the pack `Campaign` in the preset XSOAR server's Marketplace.
+   This will zip, upload and install the pack `Campaign` in the preset server's Marketplace.
 
-   **When uploading to the Marketplace, the command will overwrite any pack which already exists in the XSOAR server.
+   **When uploading to the Marketplace, the command will overwrite any pack which already exists in the server.
    In order to avoid mistakes, a prompt will appear asking you to approve the upload.**
 
 For additional information see [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/zip_packs/README.md#zip-packs).
 
 ### download
 
-Use this command to download entities from a Cortex XSOAR server to your local repository. Be sure to set up the `DEMISTO_BASE_URL`
-and the `DEMISTO_API_KEY` prior to running this command in order to establish a connection between `demisto-sdk` and the XSOAR server.
+Use this command to download entities from a Cortex XSOAR or XSIAM server to your local repository. Be sure to set up the required [environment variables](#environment-variable-setup) prior to running this command in order to establish a connection between `demisto-sdk` and the server.
 
-This command can be useful when developing within the Cortex XSOAR server itself and downloading the new entities to your
+This command can be useful when developing within the Cortex XSOAR or Cortex XSIAM server itself and downloading the new entities to your
 local environment in order to continue with the contribution process.
 
 #### Notes and Limitations
@@ -409,7 +436,7 @@ local environment in order to continue with the contribution process.
     demisto-sdk download -lf
     ```
 
-   This lists all the files which are downloadable using this command from the preset XSOAR server.
+   This lists all the files which are downloadable using this command from the preset server.
    Note: Do not run the `-lf` flag with `-i` or `-o`.
 
 - Download a file to a given pack:
@@ -473,8 +500,8 @@ Further information about how to run this command can be found  [here](../docume
 Use this command to generate a readme file for your integration, script or playbook.
 
 Running this command creates a new `README.md` file in the same directory as the entity on which it ran, unless otherwise specified using the `-o` flag.
-To generate command examples, set up the `DEMISTO_BASE_URL` and the `DEMISTO_API_KEY` prior to running this command
-in order to establish a connection between `demisto-sdk` and the XSOAR server, as well as create a file containing some command examples to be run for the documentation.
+To generate command examples, set up the `DEMISTO_BASE_URL` and the `DEMISTO_API_KEY` environment variables (as well as `XSIAM_AUTH_ID`, if needed) prior to running this command
+in order to establish a connection between `demisto-sdk` and the server, as well as create a file containing some command examples to be run for the documentation.
 
 Further information about how to run this command can be found [here](../documentation/readme_file.md#creating-documentation).
 
