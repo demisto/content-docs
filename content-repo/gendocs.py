@@ -479,7 +479,8 @@ def process_extra_docs(target_dir: str, prefix: str,
 POOL_SIZE = 4
 
 
-def process_doc_info(doc_info: DocInfo, success: List[str], fail: List[str], doc_infos: List[DocInfo], seen_docs: Dict[str, DocInfo], private_doc: bool = False):
+def process_doc_info(doc_info: DocInfo, success: List[str], fail: List[str], doc_infos: List[DocInfo],
+                     seen_docs: Dict[str, DocInfo], private_doc: bool = False):
     if doc_info.error_msg == EMPTY_FILE_MSG:
         # ignore empty files
         return
