@@ -479,13 +479,17 @@ def process_extra_docs(target_dir: str, prefix: str,
 POOL_SIZE = 4
 
 
-def process_doc_info(doc_info: DocInfo, success: List[str], fail: List[str], doc_infos: List[DocInfo], seen_docs: Dict[str, DocInfo]):
+def process_doc_info(doc_info: DocInfo, success: List[str], fail: List[str], doc_infos: List[DocInfo],
+                     seen_docs: Dict[str, DocInfo], private_doc: bool = False):
     if doc_info.error_msg == EMPTY_FILE_MSG:
         # ignore empty files
         return
     if doc_info.error_msg:
         fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
     elif doc_info.id in seen_docs:
+        if private_doc:
+            # Ignore private repo files which are already in the content repo since they may be outdated.
+            return
         fail.append(f'{doc_info.readme} (duplicate with {seen_docs[doc_info.id].readme})')
     else:
         doc_infos.append(doc_info)
@@ -527,7 +531,7 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
         process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
     for private_doc_info in process_extra_docs(target_sub_dir, prefix, private_packs=True,
                                                private_packs_prefix=private_pack_prefix):
-        process_doc_info(private_doc_info, success, fail, doc_infos, seen_docs)
+        process_doc_info(private_doc_info, success, fail, doc_infos, seen_docs, private_doc=True)
     org_print(f'\n===========================================\nSuccess {prefix} docs ({len(success)}):')
     for r in sorted(success):
         print(r)
