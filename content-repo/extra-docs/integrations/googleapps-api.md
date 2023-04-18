@@ -75,12 +75,12 @@ There are several procedures you have to perform in Google before configuring th
 | `https://www.googleapis.com/auth/`<br/>`admin.directory.user` | Enables full user management. | <ul><li> gmail-hide-user </li><li> gmail-set-user-password </li><li> gmail-create-user </li><li> gmail-delete-user </li></ul>|
 | `https://www.googleapis.com/auth/`<br/>`admin.directory.user.readonly` | Views users on your domain. | <ul><li> gmail-list-users </li><li> gmail-get-user </li><li> gmail-search-all-mailboxes</li></ul> |
 | `https://www.googleapis.com/auth/`<br/>`admin.directory.user.security` | Manages data access permissions for users on your domain. | <ul><li> gmail-get-user-tokens </li></ul>|
-| `https://www.googleapis.com/auth/`<br/>`gamil.compose` | Sends a message on behalf of a user. | <ul><li> send-mail </li></ul>|
-| `https://www.googleapis.com/auth/`<br/>`gamil.modify` | Views and modifies but not deletes email. | <ul><li> gmail-get-autoreply </li><li> gmail-move-mail </li><li> gmail-move-mail-to-mailbox </li><li> gmail-delete-mail </li></ul>|
-| `https://www.googleapis.com/auth/`<br/>`gamil.readonly` | Views email messages and settings. | <ul><li> gmail-get-autoreply </li><li> gmail-search </li><li> gmail-search-all-mailboxes </li><li> gmail-get-mail </li><li> gmail-get-attachments </li><li> gmail-get-thread </li><li> fetch-incidents </li></ul>|
-| `https://www.googleapis.com/auth/`<br/>`gamil.send` | Sends an email on behalf of someone else. | <ul><li> send-mail </li></ul>|
-| `https://www.googleapis.com/auth/`<br/>`gamil.settings.basic` | Manages basic mail settings. | <ul><li> gmail-get-autoreply </li><li> gmail-set-autoreply </li><li> gmail-add-filter </li><li> gmail-add-delete-filter </li><li> gmail-list-filters </li><li> gmail-remove-filter </li></ul>|
-| `https://www.googleapis.com/auth/`<br/>`gamil.settings.sharing` | Manages sensitive email settings, including who can manage emails. | <ul><li> gmail-delegate-user-mailbox </li><li> gmail-remove-delegated-mailbox </li></ul>|
+| `https://www.googleapis.com/auth/`<br/>`gmail.compose` | Sends a message on behalf of a user. | <ul><li> send-mail </li></ul>|
+| `https://www.googleapis.com/auth/`<br/>`gmail.modify` | Views and modifies but not deletes email. | <ul><li> gmail-get-autoreply </li><li> gmail-move-mail </li><li> gmail-move-mail-to-mailbox </li><li> gmail-delete-mail </li></ul>|
+| `https://www.googleapis.com/auth/`<br/>`gmail.readonly` | Views email messages and settings. | <ul><li> gmail-get-autoreply </li><li> gmail-search </li><li> gmail-search-all-mailboxes </li><li> gmail-get-mail </li><li> gmail-get-attachments </li><li> gmail-get-thread </li><li> fetch-incidents </li></ul>|
+| `https://www.googleapis.com/auth/`<br/>`gmail.send` | Sends an email on behalf of someone else. | <ul><li> send-mail </li></ul>|
+| `https://www.googleapis.com/auth/`<br/>`gmail.settings.basic` | Manages basic mail settings. | <ul><li> gmail-get-autoreply </li><li> gmail-set-autoreply </li><li> gmail-add-filter </li><li> gmail-add-delete-filter </li><li> gmail-list-filters </li><li> gmail-remove-filter </li></ul>|
+| `https://www.googleapis.com/auth/`<br/>`gmail.settings.sharing` | Manages sensitive email settings, including who can manage emails. | <ul><li> gmail-delegate-user-mailbox </li><li> gmail-remove-delegated-mailbox </li></ul>|
 
 ### Get an Immutable Google Apps ID Parameters
 
