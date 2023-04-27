@@ -557,8 +557,9 @@ When working on a command that supports pagination (usually has API parameters l
 3. `limit` 
 
 **The two use cases** 
-- **Manual Pagination:** The user wants to control the pagination on its own by using the `page` and `page size` arguments. To achieve this, the command will simply pass the `page` and `page size` values on to the API request. If `limit` argument was also provided, then it will be redundant and should be ignored.
-- **Automatic Pagination:** The user does not want to work with pages, but only with a number of total results. In this case, the `limit` argument will be used to aggregate results by iterating over the necessary pages from the first page until collecting all the needed results. This implies a pagination loop mechanism will be implemented behind the scenes. For example, if the limit value received is 250 and the maximal page size enforced by the API is 100, the command will need to perform 3 API calls (pages 1,2, and 3) to collect the 250 requested results.
+- **Manual Pagination:** The user wants to control the pagination on its own by using the `page` and `page size` arguments, usually as part of a wrapper script for the command. To achieve this, the command will simply pass the `page` and `page size` values on to the API request. If `limit` argument was also provided, then it will be redundant and should be ignored.
+- **Automatic Pagination:** When the user does not want implement a wrapper script that works with pages, but only with a number of total results at once. In this case, the `limit` argument will be used to aggregate results by iterating over the necessary pages from the first page until collecting all the needed results. This implies a pagination loop mechanism will be implemented behind the scenes. For example, if the limit value received is 250 and the maximal page size enforced by the API is 100, the command will need to perform 3 API calls (pages 1,2, and 3) to collect the 250 requested results.
+  Note that when a potentially large number of results may be returned, and the user wants to perform filters and/or transformers on them, we still recommend creating a wrapper script for the command for better performance.
 
 **Notes:**
 - **Page Tokens** - In case an API supports page tokens, instead of the more common 'limit' and 'offset'/'skip' as query parameters: 
@@ -576,6 +577,7 @@ When working on a command that supports pagination (usually has API parameters l
   }
   ```
 - **Standard argument defaults** - `limit` will have a default of '50' in the YAML. `page_size` should be defaulted in the code to '50', in case only `page` was provided.
+- There should be no maximum value for the `limit` argument. This means that users should be able to retrieve as many records as they need in a single command execution.
 - When an integrated API doesn't support pagination parameters at all - then only `limit` will be applied, and implemented internally in the code. An additional argument will be added to allow the user to retrieve all results by overriding the default `limit`: `all_results`=true. 
 - If API supports only 'limit' and 'offset'/'skip' as query parameters, then all 3 standard XSOAR pagination arguments should be implemented.
 
