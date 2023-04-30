@@ -33,6 +33,9 @@ marketplaces:
 In order to organize all collection-related parameters in one section, we can add the following key to each relevant parameter in the integration YAML:
 
 ```yaml
+sectionOrder:
+- Connect
+- Collect
 configuration:
   # ...
 - name: ...
