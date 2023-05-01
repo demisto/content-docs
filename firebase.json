@@ -426,11 +426,6 @@
         "type": 301
       },
       {
-        "source": "/docs/partners/marketplace",
-        "destination": "/docs/partners/paid-packs",
-        "type": 301
-      },
-      {
         "source": "/docs/integrations/doc-structure",
         "destination": "/docs/integrations/integration-docs",
         "type": 301
