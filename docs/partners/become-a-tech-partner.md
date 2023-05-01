@@ -119,7 +119,3 @@ After the PR is submitted, our development team will conduct a review. When the 
 ## 7. Get the Word Out
 
 Now that the integration is complete, you'll get the visibility you deserve! The Partner Success Team will connect you to our Marketing team to work together on content, such as Solution Briefs, Blog posts, YouTube videos, etc.
-
----
-
-Partners who wish to contribute paid packs must follow a few [additional onboarding steps](/docs/partners/premium-packs-process). 

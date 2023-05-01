@@ -16,9 +16,8 @@ Here are a few of the benefits:
 
 1. Gain visibility and new revenue opportunities for your products and services.
 1. Extend your product functionality to better enable incident investigation and response.
-1. [Monetize your pack](/docs/partners/premium-packs) on our [Marketplace](/marketplace).
-1. Establish deeper relationships with partners by creating new SOAR use cases that complement your integrations.
-1. Enabling security orchestration best practices for your customers.
+2. Establish deeper relationships with partners by creating new SOAR use cases that complement your integrations.
+3. Enabling security orchestration best practices for your customers.
 
 ## Easier than you think!
 

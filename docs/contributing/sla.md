@@ -10,8 +10,6 @@ This document is an SLA that details the required services and the expected leve
    1. [Contribute through the Cortex XSOAR UI](../contributing/marketplace).
    
    2. Contribute through a GitHub Pull Request on the public [XSOAR Content Repository](https://github.com/demisto/content). For more information, see [How to Contribute](../contributing/contributing#how-to-contribute).
-
-   3. Contribute through a private GitHub repository. Required if you are providing a **Premium** (Paid) Content Pack. For more information, see [Premium Packs](../packs/premium_packs).
    
 
 In each of the above options, a review phase begins with the **opening of the GitHub Pull Request** containing your content changes.
