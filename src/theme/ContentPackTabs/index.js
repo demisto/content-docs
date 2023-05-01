@@ -21,7 +21,7 @@ const keys = {
 };
 
 function ContentPackTabs(props) {
-  const {lazy, block, defaultValue, values, groupId, className, downloadUrl} = props;
+  const {lazy, block, defaultValue, values, groupId, className} = props;
   const {tabGroupChoices, setTabGroupChoices} = useUserPreferencesContext();
   const [selectedValue, setSelectedValue] = useState(defaultValue);
   const children = Children.toArray(props.children);
