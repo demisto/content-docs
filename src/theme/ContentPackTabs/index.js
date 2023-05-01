@@ -21,7 +21,7 @@ const keys = {
 };
 
 function ContentPackTabs(props) {
-  const {lazy, block, defaultValue, values, groupId, className} = props;
+  const {lazy, block, defaultValue, values, groupId, className, downloadUrl, premium} = props;
   const {tabGroupChoices, setTabGroupChoices} = useUserPreferencesContext();
   const [selectedValue, setSelectedValue] = useState(defaultValue);
   const children = Children.toArray(props.children);
@@ -116,6 +116,16 @@ function ContentPackTabs(props) {
             {label}
           </li>
         ))}
+        {(premium == "true") ? (null) : (
+            <li className={clsx('tabs__item', styles.tabItem, styles.downloadTabItem, styles.noAnimation)}>
+                <a className={clsx("button button--primary button--outline button--md" )}
+                   href={downloadUrl}
+                   target="_blank"
+                   title="To ensure proper installation, automatically download all other content packs that are required by this pack. ">
+                Download With Dependencies
+                </a>
+            </li>
+        )}
       </ul>
       {lazy ? (
         cloneElement(
