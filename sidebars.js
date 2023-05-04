@@ -211,7 +211,8 @@ const sidebars = {
       items: [
         "indicators/indicator-fields",
         "indicators/url-extraction",
-        "indicators/domain-extraction"
+        "indicators/domain-extraction",
+        "indicators/relationships"
       ]
     },
     {
