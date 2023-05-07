@@ -1,5 +1,5 @@
 ---
-id: indicator-relationships
+id: relationships
 title: Relationships
 ---
 
