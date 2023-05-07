@@ -918,6 +918,7 @@ This class is used to return outputs. This object represents an entry in warroom
 | indicators_timeline | IndicatorsTimeline | Must be an IndicatorsTimeline. used by the server to populate an indicator's timeline.                                                                                       |
 | ignore_auto_extract | bool | If set to **True** prevents the built-in [auto-extract](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-6/cortex-xsoar-admin/manage-indicators/auto-extract-indicators.html) from enriching IPs, URLs, files, and other indicators from the result. Default is **False**.  |
 | mark_as_note | bool |  If set to **True** marks the entry as note. Default is **False**. |
+| relationships | list | A list of [`EntityRelationship`](https://xsoar-pan-dev--pull-request-1327-xrbyem8d.web.app/docs/indicators/relationships) objects representing all the relationships of the indicator |
 | scheduled_command | ScheduledCommand | Manages the way the command result should be polled. |
 
 **Example**
