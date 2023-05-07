@@ -29,7 +29,7 @@ EntityRelationship(
    source_reliability='B - Usually reliable',
    brand='My Integration ID')
 ```
-   - When setting the name of the relationship, make sure to choose a value that appear in the the predefined list of [relationships](https://xsoar.pan.dev/docs/reference/api/common-server-python#relationships.)
+   - When setting the name of the relationship, make sure to choose a value that appears in the the predefined list of [relationships](https://xsoar.pan.dev/docs/reference/api/common-server-python#relationships.)
 
    - For more information about creating a relationship entity, visit the [EntityRelationship](https://xsoar.pan.dev/docs/reference/api/common-server-python#entityrelationship).
    
