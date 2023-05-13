@@ -50,10 +50,14 @@ When querying QRadar for offenses based on certain criteria, by default the syst
 DT syntax is supported within the extend-context value. You can use DT to get select keys of interest from a command that returns a list of dictionaries containing many keys. For example, the findIndicators automation returns a long list of indicator properties, but you may only be interested in saving the value and the indicator_type to minimize the size of the context data.
 
 1. Run the command `!findIndicators size=2 query="type:IP" raw-response=true`. You will see a list of two dictionaries containing 20+ items.
-2. Use the following DT value for `extend-context` to save only `value` and `indicator_type` into a context key called `FoundIndicators`:
+2. Use the following value for `extend-context` to save only `value` and `indicator_type` into a context key called `FoundIndicators`:
 
    ```
    !findIndicators size=2 query="type:IP" extend-context=`FoundIndicators=.={"value": val.value, "indicator_type": val.indicator_type}`
+   ```
+3. Use the following value for `extend-context` to save only the incident `name`, `status`, and `id` to a key called `FoundIncidents`:
+   ```
+   !SearchIncidentsV2 id=<ANY_INCIDENT_ID> extend-context=`FoundIncidents=Contents.data={"name": val.name, "status": val.status, "id": val.id}` ignore-outputs=true
    ```
 
 For more information on the Extend Context feature, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/playbooks/extend-context).
