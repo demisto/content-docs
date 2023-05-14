@@ -234,8 +234,8 @@ After you a redirected to the next page, in the **Overview** tab you will find y
 | O365 Outlook Calendar | yes | yes - support both client secret and certificate | no | no | yes |
 | Microsoft Graph Device Management | yes | yes - support both client secret and certificate | no | no | yes |
 | O365 File Management | yes | yes - support both client secret and certificate | no | no | yes |
-| Microsoft Graph Groups | yes | yes - support both client secret and certificate | no | no | yes |
-| Azure Active Directory Identity And Access | yes | yes | yes | no | yes |
+| Microsoft Graph Groups | yes | yes - support both client secret and certificate | no | yes | yes |
+| Azure Active Directory Identity And Access | yes | yes - support both client secret and certificate | yes | no | yes |
 | Microsoft Graph Mail Single User | yes | no | no | yes | yes |
 | O365 Outlook Mail | yes | yes - support both client secret and certificate | no | no | yes |
 | Microsoft Graph Security | yes | yes - support both client secret and certificate | no | no | yes |
