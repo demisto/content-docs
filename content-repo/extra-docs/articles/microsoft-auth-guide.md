@@ -247,14 +247,14 @@ After you a redirected to the next page, in the **Overview** tab you will find y
 
 ## Troubleshooting
 In case of errors in the authentication process - token revoked/expired or in case you generate new credentials, 
-you can use the *!<integration command prefix>-auth-reset* command in the War Rooms in order to rerun the authentication process,
+you can use the `*!<integration command prefix>-auth-reset*` command in the War Rooms in order to rerun the authentication process,
 instead of recreating a new integration instance.
 Following verify the connectivity by clicking the Test button to test the instance.
 
 For example, for Microsoft Graph Mail Single User,
-When using 'self-deployed Azure app':
-In case of expired/revoked token error, follow these steps:
+When using the 'self-deployed Azure app':
+In case of an expired/revoked token error, follow these steps:
 1. Run !msgraph-mail-auth-reset.
 2. Validate that all the credentials you entered are correct (Client ID, Client Secret, Tenant ID, Application redirect URI).
 3. Run !msgraph-mail-generate-login-url to generate a new *Authorization code*.
-4. Run !msgraph-mail-test to test connectivity of the email.
+4. Run !msgraph-mail-test to test the connectivity of the email.
