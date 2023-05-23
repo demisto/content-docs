@@ -29,9 +29,9 @@ The DBot score must be at the root level of the context and contain **all** the 
 
 ## Reliability Level
 When merging indicators, the reliability of an intelligence-data source impacts the reputation of an indicator and the values assigned to indicator fields.  
-Integration that outputs a DBotScore object, and hence defines each indicator's reliability, should allow the user to manually configure the default reliability for the generated indicator's DBotScore.  
+An integration that outputs a DBotScore object, and hence defines each indicator's reliability, should allow the user to manually configure the default reliability for the generated indicator's DBotScore.  
 
-To achieve this, a **Source Reliability** (named `integration_reliability`) parameter has to be implemented in the YAML file.  
+To achieve this, a *Source Reliability* (named `integration_reliability`) parameter has to be implemented in the YAML file.  
 This parameter is later used to determine the reliability level when creating the DBotScore object.
 
 ### Example of Implementing a Reliability Parameter (in an integration's YAML file)
