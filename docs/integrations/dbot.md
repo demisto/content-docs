@@ -54,7 +54,7 @@ This parameter is later used to determine the reliability level when creating th
  **NOTE:** The values are case sensitive.
 
 ## Score Types
-Dbot uses an integer to represent the reputation of an indicator.
+DBot uses an integer to represent the reputation of an indicator.
 
 | Number | Reputation |
 | --- | --- |
