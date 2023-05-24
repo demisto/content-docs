@@ -60,4 +60,4 @@ DT syntax is supported within the extend-context value. You can use DT to get se
    !SearchIncidentsV2 id=<ANY_INCIDENT_ID> extend-context=`FoundIncidents=Contents.data={"name": val.name, "status": val.status, "id": val.id}` ignore-outputs=true
    ```
 
-For more information on the Extend Context feature, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/playbooks/extend-context).
+For more information on the Extend Context feature, see the [Cortex XSOAR Administrator's Guide](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.11/Cortex-XSOAR-Administrator-Guide/Extend-Context).
