@@ -180,6 +180,7 @@ def get_extracted_deprecated_note(description: str):
         r'.*deprecated\s*[\.\-:]\s*(.*?No available replacement.*?\.)',
     ]
     for r in regexs:
+        print(f'This is the description: {description}')
         dep_match = re.match(r, description, re.IGNORECASE)
         if dep_match:
             res = dep_match[1]
@@ -758,7 +759,7 @@ def add_deprecated_info(content_dir: str, deperecated_article: str, deperecated_
     deprecated_automations = sorted(deprecated_automations, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
     deprecated_playbooks = sorted(deprecated_playbooks, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
     deperecated_json_file = f'{assets_dir}/{os.path.basename(deperecated_article.replace(".md", ".json"))}'
-    with open(deperecated_json_file, 'w') as f:
+    with open('/Users/meichler/dev/demisto/content-docs/static/assets/deprecated.json', 'w') as f:
         json.dump({
             'description': 'Generated machine readable doc of deprecated content items',
             'integrations': deprecated_integrations,
@@ -770,7 +771,7 @@ def add_deprecated_info(content_dir: str, deperecated_article: str, deperecated_
     deprecated_automations_no_note = [i for i in deprecated_automations if not i['note']]
     deprecated_playbooks_no_note = [i for i in deprecated_playbooks if not i['note']]
     deperecated_json_file_no_note = deperecated_json_file.replace('.json', '.no_note.json')
-    with open(deperecated_json_file_no_note, 'w') as f:
+    with open('/Users/meichler/dev/demisto/content-docs/static/assets/deprecated.no_note.json', 'w') as f:
         json.dump({
             'description': 'Generated doc of deprecated integrations which do not contain a note about replacement or deprecation reason',
             'integrations': deprecated_integrations_no_note,
@@ -866,7 +867,7 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     args = parser.parse_args()
     print(f'Using multiprocess pool size: {POOL_SIZE}')
     print('Starting MDX server...')
-    start_mdx_server()
+    # start_mdx_server()
     prefix = os.path.basename(args.target)
     integrations_full_prefix = f'{prefix}/{INTEGRATIONS_PREFIX}'
     scripts_full_prefix = f'{prefix}/{SCRIPTS_PREFIX}'
@@ -880,12 +881,12 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
                                       private_pack_prefix=PRIVATE_PACKS_PLAYBOOKS_PREFIX)
     script_doc_infos = create_docs(args.dir, args.target, SCRIPTS_DOCS_MATCH, SCRIPTS_PREFIX,
                                    private_pack_prefix=PRIVATE_PACKS_SCRIPTS_PREFIX)
-    release_doc_infos = create_releases(args.target)
-    article_doc_infos = create_articles(args.target, ARTICLES_PREFIX)
-    packs_articles_doc_infos = create_articles(args.target, PACKS_PREFIX)
+    # release_doc_infos = create_releases(args.target)
+    # article_doc_infos = create_articles(args.target, ARTICLES_PREFIX)
+    # packs_articles_doc_infos = create_articles(args.target, PACKS_PREFIX)
     if os.getenv('SKIP_DEPRECATED') not in ('true', 'yes', '1'):
         add_deprecated_info(args.dir, f'{args.target}/{ARTICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE, 
-                           f'{args.target}/../../static/assets')
+                            f'{args.target}/../../static/assets')
     index_base = f'{os.path.dirname(os.path.abspath(__file__))}/reference-index.md'
     index_target = args.target + '/index.md'
     articles_index_target = args.target + '/articles-index.md'
