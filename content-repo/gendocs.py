@@ -744,21 +744,21 @@ def merge_deprecated_info(deprecated_list: List[DeprecatedInfo], deprecated_info
     return merged_list
 
 
-def add_deprecated_info(content_dir: str, deperecated_article: str, deperecated_info_file: str, assets_dir: str):
+def add_deprecated_info(content_dir: str, deprecated_article: str, deprecated_info_file: str, assets_dir: str):
     """Will append the deprecated content item's info to the deprecated article
 
     Args:
         content_dir (str): content dir to search for deprecated content item's
-        deperecated_article (str): deprecated article (md file) to add to
-        deperecated_info_file (str): json file with static deprecated info to merge
+        deprecated_article (str): deprecated article (md file) to add to
+        deprecated_info_file (str): json file with static deprecated info to merge
     """
-    deprecated_integrations = merge_deprecated_info(find_deprecated_items(content_dir, 'Integrations'), deperecated_info_file)
-    deprecated_automations = merge_deprecated_info(find_deprecated_items(content_dir, 'Scripts'), deperecated_info_file)
-    deprecated_playbooks = merge_deprecated_info(find_deprecated_items(content_dir, 'Playbooks'), deperecated_info_file)
+    deprecated_integrations = merge_deprecated_info(find_deprecated_items(content_dir, 'Integrations'), deprecated_info_file)
+    deprecated_automations = merge_deprecated_info(find_deprecated_items(content_dir, 'Scripts'), deprecated_info_file)
+    deprecated_playbooks = merge_deprecated_info(find_deprecated_items(content_dir, 'Playbooks'), deprecated_info_file)
     deprecated_integrations = sorted(deprecated_integrations, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
     deprecated_automations = sorted(deprecated_automations, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
     deprecated_playbooks = sorted(deprecated_playbooks, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
-    deperecated_json_file = f'{assets_dir}/{os.path.basename(deperecated_article.replace(".md", ".json"))}'
+    deperecated_json_file = f'{assets_dir}/{os.path.basename(deprecated_article.replace(".md", ".json"))}'
     with open(deperecated_json_file, 'w') as f:
         json.dump({
             'description': 'Generated machine readable doc of deprecated content items',
@@ -779,7 +779,7 @@ def add_deprecated_info(content_dir: str, deperecated_article: str, deperecated_
             'playbooks': deprecated_playbooks_no_note
         }, f, indent=2)
 
-    with open(deperecated_article, "at") as f:
+    with open(deprecated_article, "at") as f:
         f.write(f'\n## Deprecated Integrations\n')
         for d in deprecated_integrations:
             f.write(f'\n### {d["name"] if d.get("name") else d["id"]}\n')
@@ -885,7 +885,7 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     article_doc_infos = create_articles(args.target, ARTICLES_PREFIX)
     packs_articles_doc_infos = create_articles(args.target, PACKS_PREFIX)
     if os.getenv('SKIP_DEPRECATED') not in ('true', 'yes', '1'):
-        add_deprected_integrations_info(args.dir, f'{args.target}/{ARTICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE,
+        add_deprecated_info(args.dir, f'{args.target}/{ARTICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE,
                                         f'{args.target}/../../static/assets')
     index_base = f'{os.path.dirname(os.path.abspath(__file__))}/reference-index.md'
     index_target = args.target + '/index.md'
