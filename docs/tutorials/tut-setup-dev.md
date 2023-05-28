@@ -19,8 +19,6 @@ This tutorial will guide you through the following steps:
 6. Create a branch and integration directory
 7. Commit and push
 
-OK, let's begin.
-
 ### Step 1: Verify the requirements
 
 Let's go make sure that all the requirements are satisfied, one by one.
@@ -71,11 +69,11 @@ Great, all the prerequisites are set! We can get started.
 
 Make sure you're logged on GitHub and navigate to the [Cortex XSOAR Content Repo](https://github.com/demisto/content) and click on **Fork**:
 
-![Fork Repository](/doc_imgs/tutorials/tut-setup-dev/04-fork.png)
+![Fork Repository](../doc_imgs/tutorials/tut-setup-dev/04-fork.png)
 
 Once the fork is complete, copy the URL:
 
-![Copy GitHub URL](/doc_imgs/tutorials/tut-setup-dev/05-copygithuburl.png)
+![Copy GitHub URL](../doc_imgs/tutorials/tut-setup-dev/05-copygithuburl.png)
 
 This is the fork where you will commit your code and, once ready, create the Pull Request to submit your contribution back to the Cortex XSOAR Content repository.
 

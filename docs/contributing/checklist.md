@@ -3,9 +3,12 @@ id: checklist
 title: Contribution Checklist
 ---
 
-This document includes a checklist that summarizes the list of files that you need in order to [contribute](../contributing/contributing) to the Cortex XSOAR content repository. Please make sure you have everything before you open a Pull Request (unless stated otherwise).
+This document includes a checklist that summarizes the list of files that you need in order to [contribute](../contributing/contributing) to the Cortex XSOAR content repository.  
+Before contributing and opening a Pull Request, please make sure you meet all the requirements in this checklist.
 
-Keep in mind that content packs can contain multiple types of entities, such as Integrations, Automations (Scripts), Playbooks, Incident Types, Incident Fields, and so on.
+:::info
+Note that content packs can contain different types of entities, such as Integrations, Automations (Scripts), Playbooks, Incident-Types, Incident-Fields, etc.
+:::
 
 Happy contributing!
 
@@ -17,7 +20,10 @@ No matter what you include in your content pack, the pack must include the follo
 - Pack README (i.e. `Packs/YourPackName/README.md`): the readme of the pack file. More information [here](../documentation/pack-docs).
 - Release Notes (i.e. `Packs/YourPackName/ReleaseNotes/1_0_1.md`): these are required only if you are updating an existing Content pack, not for the first. More information [here](../documentation/release-notes).
 
-**Note**: Please use PascalCase (YourPackName) for the names of the directories and files that include your company, integration and playbook names (see the examples below).
+:::note
+Use PascalCase (PackName) for the names of the pack and it's entities (integrations, scripts, playbooks, etc.).
+:::
+
 
 As a reference, you can check the tree of the [Hello World](https://github.com/demisto/content/tree/master/Packs/HelloWorld) pack on GitHub.
 
