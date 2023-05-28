@@ -121,9 +121,9 @@ For contributors that aim to be [Certified](../partners/certification), we requi
 
 For more details, check the [Contribution Guidelines](../contributing/contributing) and verify the [Contribution Checklist](../contributing/checklist).
 
-If you are a [Technology Partner](../partners/become-a-tech-partner) you should have already received an invite to edit a personalized template on Google Docs. Otherwise, you can clone our [Design Document Template](https://docs.google.com/document/d/183jIki5hAwADUL7L5PREtjDCZVKQOTmqypeomzSpBZI) and get started.
+If you are a [Technology Partner](../partners/become-a-tech-partner) you should have already received an invite to edit a personalized template on Google Docs. Otherwise, you can clone our [Design Document Template](https://docs.google.com/document/d/1BAM3u7nOZi8gD-10XiBeQzrOyjU5_ZOXc_O60QIaXeU) and get started.
 
-As a reference on how to properly fill a Design Document, check out the [Hello World Design Document](https://docs.google.com/document/d/1wETtBEKg37PHNU8tYeB56M1LE314ux086z3HFeF_cX0). Make sure you also look at the comments that provide useful guidelines.
+As a reference on how to properly fill a Design Document, check out the [Hello World Design Document](https://docs.google.com/document/d/1s73bmvRQfAAOBzSL3-RPjw3dvOpKuyGZ4brRuJ4SumM). Make sure you also look at the comments that provide useful guidelines.
 
 ## Integration Design
 
