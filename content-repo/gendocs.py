@@ -725,6 +725,9 @@ def find_deprecated_items(content_dir: str, item: str = 'Integrations'):
                     res.append(info)
                 else:
                     print(f'Skippinng deprecated  {item.lower()}: {f} which is not supported by xsoar')
+
+    print(item)
+    print(res)
     return res
 
 
