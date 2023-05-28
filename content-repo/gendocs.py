@@ -693,9 +693,9 @@ def get_deprecated_display_dates(dep_date: datetime) -> Tuple[str, str]:
     return (datetime.strftime(start, DATE_FRMT), datetime.strftime(end, DATE_FRMT))
 
 
-def find_deprecated_integrations(content_dir: str):
-    files = glob.glob(content_dir + '/Packs/*/Integrations/*.yml')
-    files.extend(glob.glob(content_dir + '/Packs/*/Integrations/*/*.yml'))
+def find_deprecated_items(content_dir: str, item: str = 'Integrations'):
+    files = glob.glob(content_dir + f'/Packs/*/{item}/*.yml')
+    files.extend(glob.glob(content_dir + f'/Packs/*/{item}/*/*.yml'))
     res: List[DeprecatedInfo] = []
     # go over each file and check if contains deprecated: true
     for f in files:
@@ -720,16 +720,16 @@ def find_deprecated_integrations(content_dir: str):
                         name = name.replace(dep_suffix, "").strip()
                     info = DeprecatedInfo(id=id, name=name, description=desc, note=get_extracted_deprecated_note(desc),
                                           maintenance_start=maintenance_start, eol_start=eol_start)
-                    print(f'Adding deprecated integration: [{name}]. Deprecated date: {dep_date}. From file: {f}')
+                    print(f'Adding deprecated {item.lower()}: [{name}]. Deprecated date: {dep_date}. From file: {f}')
                     res.append(info)
                 else:
-                    print(f'Skippinng deprecated integration: {f} which is not supported by xsoar')
+                    print(f'Skippinng deprecated  {item.lower()}: {f} which is not supported by xsoar')
     return res
 
 
-def merge_deprecated_info(deprecated_list: List[DeprecatedInfo], deperecated_info_file: str):
-    with open(deperecated_info_file, "rt") as f:
-        to_merge_list: List[DeprecatedInfo] = json.load(f)['integrations']
+def merge_deprecated_info(deprecated_list: List[DeprecatedInfo], deprecated_info_file: str, item: str = 'integrations'):
+    with open(deprecated_info_file, "rt") as f:
+        to_merge_list: List[DeprecatedInfo] = json.load(f)[item]
     to_merge_map = {i['id']: i for i in to_merge_list}
     merged_list: List[DeprecatedInfo] = []
     for d in deprecated_list:
@@ -743,32 +743,63 @@ def merge_deprecated_info(deprecated_list: List[DeprecatedInfo], deperecated_inf
     return merged_list
 
 
-def add_deprected_integrations_info(content_dir: str, deperecated_article: str, deperecated_info_file: str, assets_dir: str):
-    """Will append the deprecated integrations info to the deprecated article
+def add_deprecated_info(content_dir: str, deperecated_article: str, deperecated_info_file: str, assets_dir: str):
+    """Will append the deprecated content item's info to the deprecated article
 
     Args:
-        content_dir (str): content dir to search for deprecated integrations
+        content_dir (str): content dir to search for deprecated content item's
         deperecated_article (str): deprecated article (md file) to add to
         deperecated_info_file (str): json file with static deprecated info to merge
     """
-    deprecated_infos = merge_deprecated_info(find_deprecated_integrations(content_dir), deperecated_info_file)
-    deprecated_infos = sorted(deprecated_infos, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
+    deprecated_integrations = merge_deprecated_info(find_deprecated_items(content_dir, 'Integrations'), deperecated_info_file)
+    deprecated_automations = merge_deprecated_info(find_deprecated_items(content_dir, 'Scripts'), deperecated_info_file)
+    deprecated_playbooks = merge_deprecated_info(find_deprecated_items(content_dir, 'Playbooks'), deperecated_info_file)
+    deprecated_integrations = sorted(deprecated_integrations, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
+    deprecated_automations = sorted(deprecated_automations, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
+    deprecated_playbooks = sorted(deprecated_playbooks, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
     deperecated_json_file = f'{assets_dir}/{os.path.basename(deperecated_article.replace(".md", ".json"))}'
     with open(deperecated_json_file, 'w') as f:
         json.dump({
-            'description': 'Generated machine readable doc of deprecated integrations',
-            'integrations': deprecated_infos
+            'description': 'Generated machine readable doc of deprecated content items',
+            'integrations': deprecated_integrations,
+            'scripts': deprecated_automations,
+            'playbooks': deprecated_playbooks
         }, f, indent=2)
-    deperecated_infos_no_note = [i for i in deprecated_infos if not i['note']]
+
+    deprecated_integrations_no_note = [i for i in deprecated_integrations if not i['note']]
+    deprecated_automations_no_note = [i for i in deprecated_automations if not i['note']]
+    deprecated_playbooks_no_note = [i for i in deprecated_playbooks if not i['note']]
     deperecated_json_file_no_note = deperecated_json_file.replace('.json', '.no_note.json')
     with open(deperecated_json_file_no_note, 'w') as f:
         json.dump({
             'description': 'Generated doc of deprecated integrations which do not contain a note about replacement or deprecation reason',
-            'integrations': deperecated_infos_no_note
+            'integrations': deprecated_integrations_no_note,
+            'scripts': deprecated_automations_no_note,
+            'playbooks': deprecated_playbooks_no_note
         }, f, indent=2)
+
     with open(deperecated_article, "at") as f:
-        for d in deprecated_infos:
-            f.write(f'\n## {d["name"] if d.get("name") else d["id"]}\n')
+        f.write(f'\n## Deprecated Integrations\n')
+        for d in deprecated_integrations:
+            f.write(f'\n### {d["name"] if d.get("name") else d["id"]}\n')
+            if d.get("maintenance_start"):
+                f.write(f'* **Maintenance Mode Start Date:** {d["maintenance_start"]}\n')
+            if d.get("eol_start"):
+                f.write(f'* **End-of-Life Date:** {d["eol_start"]}\n')
+            if d.get("note"):
+                f.write(f'* **Note:** {d["note"]}\n')
+        f.write(f'\n## Deprecated Scripts\n')
+        for d in deprecated_automations:
+            f.write(f'\n### {d["name"] if d.get("name") else d["id"]}\n')
+            if d.get("maintenance_start"):
+                f.write(f'* **Maintenance Mode Start Date:** {d["maintenance_start"]}\n')
+            if d.get("eol_start"):
+                f.write(f'* **End-of-Life Date:** {d["eol_start"]}\n')
+            if d.get("note"):
+                f.write(f'* **Note:** {d["note"]}\n')
+        f.write(f'\n## Deprecated Playbooks\n')
+        for d in deprecated_playbooks:
+            f.write(f'\n### {d["name"] if d.get("name") else d["id"]}\n')
             if d.get("maintenance_start"):
                 f.write(f'* **Maintenance Mode Start Date:** {d["maintenance_start"]}\n')
             if d.get("eol_start"):
@@ -853,8 +884,8 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     article_doc_infos = create_articles(args.target, ARTICLES_PREFIX)
     packs_articles_doc_infos = create_articles(args.target, PACKS_PREFIX)
     if os.getenv('SKIP_DEPRECATED') not in ('true', 'yes', '1'):
-        add_deprected_integrations_info(args.dir, f'{args.target}/{ARTICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE,
-                                        f'{args.target}/../../static/assets')
+        add_deprecated_info(args.dir, f'{args.target}/{ARTICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE, 
+                           f'{args.target}/../../static/assets')
     index_base = f'{os.path.dirname(os.path.abspath(__file__))}/reference-index.md'
     index_target = args.target + '/index.md'
     articles_index_target = args.target + '/articles-index.md'
