@@ -125,8 +125,6 @@ After all the prerequisites are met, and you are ready to create your Pull Reque
 Then on the main page of your forked repository, click on the **Compare & pull request** button to open a new Pull Request (on the original Cortex XSOAR Content repository).  
 Make sure to fill in the description template, and click on **Create pull request**.
 
-![Creating a pull request](../doc_imgs/TODO.gif)
-
 For additional information on how to create a Pull Request from a fork, you can refer to [official GitHub documentation](https://help.github.com/articles/creating-a-pull-request-from-a-fork).
 
 ### Post-Submission
