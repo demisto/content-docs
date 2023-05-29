@@ -13,4 +13,4 @@ New features will not be added to a content item in **Maintenance Mode**. If the
 #### End-Of-Life
 After the **Maintenance Mode** period ends, the content item will be declared **End-Of-Life**. This is the last day that the content item will be supported by Palo Alto Networks.
 
-**Note**: This article applies to Cortex XSOAR Supported Packs only. Palo Alto Networks is not liable for and does not warrant or support any content pack produced by a third-party Publisher. For more info about Content Packs Support Types see: https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-5/cortex-xsoar-admin/marketplace/content-packs-support-types.html.
+**Note**: This article applies to Cortex XSOAR Supported Packs only. Palo Alto Networks is not liable for and does not warrant or support any content pack produced by a third-party Publisher. For more info about Content Packs Support Types see: https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6.11/cortex-xsoar-admin/marketplace/content-packs-support-types.html.

@@ -725,13 +725,12 @@ def find_deprecated_items(content_dir: str, item: str = 'Integrations'):
                     res.append(info)
                 else:
                     print(f'Skippinng deprecated  {item.lower()}: {f} which is not supported by xsoar')
-
     return res
 
 
-def merge_deprecated_info(deprecated_list: List[DeprecatedInfo], deprecated_info_file: str, item: str = 'integrations'):
-    with open(deprecated_info_file, "rt") as f:
-        to_merge_list: List[DeprecatedInfo] = json.load(f)[item]
+def merge_deprecated_info(deprecated_list: List[DeprecatedInfo], deperecated_info_file: str):
+    with open(deperecated_info_file, "rt") as f:
+        to_merge_list: List[DeprecatedInfo] = json.load(f)['integrations']
     to_merge_map = {i['id']: i for i in to_merge_list}
     merged_list: List[DeprecatedInfo] = []
     for d in deprecated_list:
@@ -753,7 +752,7 @@ def add_deprecated_info(content_dir: str, deprecated_article: str, deprecated_in
         deprecated_article (str): deprecated article (md file) to add to
         deprecated_info_file (str): json file with static deprecated info to merge
     """
-    deprecated_integrations = merge_deprecated_info(find_deprecated_items(content_dir, 'Integrations'), deprecated_info_file)
+    deprecated_integrations = merge_deprecated_info(find_deprecated_items(content_dir), deprecated_info_file)
     deprecated_automations = find_deprecated_items(content_dir, 'Scripts')
     deprecated_playbooks = find_deprecated_items(content_dir, 'Playbooks')
     deprecated_integrations = sorted(deprecated_integrations, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
