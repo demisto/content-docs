@@ -1,6 +1,6 @@
 ---
 id: tut-setup-dev
-title: Set Up Your Dev Environment
+title: Setup Your Dev Environment
 ---
 
 Thank you for showing interest in contributing to the Cortex XSOAR content. We hope this experience will be easy and fun.
