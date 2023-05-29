@@ -781,7 +781,7 @@ def add_deprecated_info(content_dir: str, deprecated_article: str, deprecated_in
         }, f, indent=2)
 
     with open(deprecated_article, "at") as f:
-        f.write(f'\n## Deprecated Integrations\n')
+        f.write('\n## Deprecated Integrations\n')
         for d in deprecated_integrations:
             f.write(f'\n### {d["name"] if d.get("name") else d["id"]}\n')
             if d.get("maintenance_start"):
@@ -790,7 +790,7 @@ def add_deprecated_info(content_dir: str, deprecated_article: str, deprecated_in
                 f.write(f'* **End-of-Life Date:** {d["eol_start"]}\n')
             if d.get("note"):
                 f.write(f'* **Note:** {d["note"]}\n')
-        f.write(f'\n## Deprecated Scripts\n')
+        f.write('\n## Deprecated Scripts\n')
         for d in deprecated_automations:
             f.write(f'\n### {d["name"] if d.get("name") else d["id"]}\n')
             if d.get("maintenance_start"):
@@ -799,7 +799,7 @@ def add_deprecated_info(content_dir: str, deprecated_article: str, deprecated_in
                 f.write(f'* **End-of-Life Date:** {d["eol_start"]}\n')
             if d.get("note"):
                 f.write(f'* **Note:** {d["note"]}\n')
-        f.write(f'\n## Deprecated Playbooks\n')
+        f.write('\n## Deprecated Playbooks\n')
         for d in deprecated_playbooks:
             f.write(f'\n### {d["name"] if d.get("name") else d["id"]}\n')
             if d.get("maintenance_start"):
@@ -887,7 +887,7 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     packs_articles_doc_infos = create_articles(args.target, PACKS_PREFIX)
     if os.getenv('SKIP_DEPRECATED') not in ('true', 'yes', '1'):
         add_deprecated_info(args.dir, f'{args.target}/{ARTICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE,
-                                        f'{args.target}/../../static/assets')
+                            f'{args.target}/../../static/assets')
     index_base = f'{os.path.dirname(os.path.abspath(__file__))}/reference-index.md'
     index_target = args.target + '/index.md'
     articles_index_target = args.target + '/articles-index.md'
