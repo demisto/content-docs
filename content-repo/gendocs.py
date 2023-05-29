@@ -754,8 +754,8 @@ def add_deprecated_info(content_dir: str, deprecated_article: str, deprecated_in
         deprecated_info_file (str): json file with static deprecated info to merge
     """
     deprecated_integrations = merge_deprecated_info(find_deprecated_items(content_dir, 'Integrations'), deprecated_info_file)
-    deprecated_automations = merge_deprecated_info(find_deprecated_items(content_dir, 'Scripts'), deprecated_info_file)
-    deprecated_playbooks = merge_deprecated_info(find_deprecated_items(content_dir, 'Playbooks'), deprecated_info_file)
+    deprecated_automations = find_deprecated_items(content_dir, 'Scripts')
+    deprecated_playbooks = find_deprecated_items(content_dir, 'Playbooks')
     deprecated_integrations = sorted(deprecated_integrations, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
     deprecated_automations = sorted(deprecated_automations, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
     deprecated_playbooks = sorted(deprecated_playbooks, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
