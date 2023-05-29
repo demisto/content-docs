@@ -47,7 +47,7 @@ After that, the generated environment will be kept in your GitHub account.
    4. Click **Create fork**.
 4. Wait a few seconds for the fork to be created, until you're redirected to your forked repository page.
 5. Create a new branch on your fork, and give it a meaningful name.
-6. click **Code**, go to the **Codespaces** tab, and click **Create Codespace on <branch name>**.
+6. click **Code**, go to the **Codespaces** tab, and click **Create Codespace on \<branch name\>**.
 7. A page saying "This Codespace is requesting additional permissions" might appear. If it does, click **Continue without authorizing**.
 8. Click **New Codespace** (this might take a few minutes).
 
