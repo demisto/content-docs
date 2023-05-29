@@ -1,6 +1,6 @@
 ---
 id: tut-setup-dev-remote
-title: Set Up Your Remote Dev Environment
+title: Setup Your Remote Dev Environment
 ---
 
 This is a tutorial to set up a fully configured remote environment with VSCode [Dev Containers](https://code.visualstudio.com/docs/remote/containers).
@@ -89,6 +89,3 @@ If there are errors in [opening the dev container](#open-the-dev-container), try
 ```bash
   docker system prune -a --volumes
 ```
-  
-
-
