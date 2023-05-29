@@ -105,7 +105,7 @@ For multiline RNs with nested content, follow this format:
 Specify in the corresponding release notes file:
   - Any change(s) made
   - New command(s)
-  - New or udpated parameters
+  - New or updated parameters
   - New or updated arguments
   - Updated outputs
   - Bug fixes
