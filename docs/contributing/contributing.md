@@ -128,14 +128,16 @@ Before submitting a Pull Request to the [Cortex XSOAR GitHub Repository](https:/
 *Creating a new fork*
 
 ### Pull Request Creation
-After all the prerequisites are met, and you are ready to create your pull request, commit and push your work to the branch you created in your forked repository (if you haven't already done so).  
-After pushing your changes to the remote branch on GitHub, GitHub should automatically detect the changes, and a green **Compare & pull request** button will appear at the top.  
-Click it, and then on the opened form, update the title and the description (using the pre-existing template), and click "Create pull request".  
+After all the prerequisites are met, and you are ready to create your pull request, commit and push your work to the branch you created in your forked repository (if you haven't already done so).
+
+After pushing your changes to the remote branch on GitHub, GitHub should automatically detect the changes, and a green **Compare & pull request** button will appear at the top.
+
+Click it, and then on the opened form, update the title and the description (using the pre-existing template), and click "Create pull request".
 
 For additional information on how to create a Pull Request from a fork, refer to [official GitHub documentation](https://help.github.com/articles/creating-a-pull-request-from-a-fork).
 
-![Creating a new PR](../doc_imgs/contributing/content-new-fork.gif)
-*Creating a new PR*
+![Creating a new pull request](../doc_imgs/contributing/content-new-pr.png)
+*Creating a new pull request*
 
 :::note
 There will be a setting at the top of the form, to determine where the pull request will be opened.  
@@ -148,8 +150,8 @@ After submitting your pull request, sign our [Contributor License Agreement (CLA
 
 Our Content team will review your code, and might ask questions and request changes.  
 
-In order to establish a proper release timeframe for your contribution, you are required to respond (and apply the requested changes, if any) within 14 days.  
-Stale pull requests will be closed.
+In order to establish a proper release timeframe for your contribution,
+you are required to respond (and apply the requested changes, if any) within 14 days. Stale pull requests will be closed.
 
 At some point, when the review process is complete (or close to completion), we'll ask to schedule a meeting for an interactive demo.  
 
