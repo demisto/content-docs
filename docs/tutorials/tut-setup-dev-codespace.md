@@ -1,6 +1,6 @@
 ---
 id: tut-setup-dev-codespace
-title: Setup Your GitHub Codespace Environment
+title: Set Up Your GitHub Codespace Environment
 ---
 
 This tutorial provides a step-by-step instructions for setting up a personal Codespace for developing Cortex XSOAR content.

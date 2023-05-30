@@ -3,8 +3,6 @@ id: tut-setup-dev
 title: Set Up Your Dev Environment
 ---
 
-Thank you for showing interest in contributing to the Cortex XSOAR content. We hope this experience will be easy and fun.
-
 This tutorial will guide you on how to set up your dev environment to quickly start developing on Cortex XSOAR. While in Cortex XSOAR you can write code directly in the UI, which is awesome, you'll need a proper development environment external to Cortex XSOAR to contribute a full integration. This is because, in order to build a full fledged integration, you'll need to *lint* your code, run unit tests with *pytest*, create some documentation, submit your changes via *git* and more.
 
 If you've been through this process already and just want a quick reference, you can jump to the [Development Setup](../concepts/dev-setup) page, otherwise keep reading for more details.
