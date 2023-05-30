@@ -51,7 +51,7 @@ After that, the generated environment will be kept in your GitHub account.
 7. A page saying "This Codespace is requesting additional permissions" might appear. If it does, click **Continue without authorizing**.
 8. Click **New Codespace** (this might take a few minutes).
 
-![Creating a new fork](../doc_imgs/contributing/create-a-new-fork.gif)
+![Creating a new fork](../doc_imgs/contributing/content-new-fork.gif)
 *Creating a new fork*
 
 ![Creating a new Codespace](../doc_imgs/tutorials/tut-setup-dev-codespace/create-a-new-codespace.gif)
@@ -64,7 +64,11 @@ By default, Codespaces opens a browser-based VSCode editor that's connected to t
 but it can also be used in IDEs by using an extension.
 
 To open it, enter the main forked repository page, click **Code**, go to the **Codespaces** tab, and click the newly created Codespace (should have a random name).  
-After that, it might take a few minutes for the Codespace to be initialized, and then once it's ready, you will be redirected to the IDE.
+After that, it can take a few minutes for the Codespace to be initialized.  
+Once your Codespace is ready, you will be redirected to the web-based IDE, where you can start developing your content.
+
+![Connecting to the Codespace (browser)](../doc_imgs/tutorials/tut-setup-dev-codespace/open-codespace-in-browser.gif)
+*Connecting to the Codespace (browser)*
 
 #### Visual Studio Code (local)
 In order to connect to your Codespace from a local VSCode editor, you will need to install the official [GitHub Codespaces extension](https://marketplace.visualstudio.com/items?itemName=GitHub.Codespaces).  

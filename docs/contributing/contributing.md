@@ -124,14 +124,24 @@ Before submitting a Pull Request to the [Cortex XSOAR GitHub Repository](https:/
 5. Create a short demo video presenting the product and your pack, and link it.  
     This will help our reviewers to better understand what the product is used for, and how the newly contributed content integrates with it.
 
-![Creating a fork](../doc_imgs/contributing/create-a-new-fork.gif)
+![Creating a fork](../doc_imgs/contributing/content-new-fork.gif)
+*Creating a new fork*
 
 ### Pull Request Creation
 After all the prerequisites are met, and you are ready to create your pull request, commit and push your work to the branch you created in your forked repository (if you haven't already done so).  
-Then on the main page of your forked repository, click **Compare & pull request** to open a new Pull Request (on the original Cortex XSOAR Content repository).  
-Fill in the description template, and click **Create pull request**.
+After pushing your changes to the remote branch on GitHub, GitHub should automatically detect the changes, and a green **Compare & pull request** button will appear at the top.  
+Click it, and then on the opened form, update the title and the description (using the pre-existing template), and click "Create pull request".  
 
 For additional information on how to create a Pull Request from a fork, refer to [official GitHub documentation](https://help.github.com/articles/creating-a-pull-request-from-a-fork).
+
+![Creating a new PR](../doc_imgs/contributing/content-new-fork.gif)
+*Creating a new PR*
+
+:::note
+There will be a setting at the top of the form, to determine where the pull request will be opened.  
+By default, it will open the pull request from your fork on the branch you created, to the `master` branch of the base Cortex XSOAR Content repository.  
+This is the desired behavior, and should not be changed.
+:::
 
 ### Post-Submission
 After submitting your pull request, sign our [Contributor License Agreement (CLA)](https://github.com/demisto/content/blob/master/docs/cla.pdf), and monitor your pull request.  
