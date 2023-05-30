@@ -4,9 +4,9 @@ title: Getting Started Guide
 ---
 
 This guide will provide you with some pointers to jumpstart your development journey.  
-After reading it, you’ll have a starting-point for creating new content for the Cortex XSOAR platform.  
+After reading it, you’ll have a starting point for creating new content for the Cortex XSOAR platform.  
 
-If you have any questions or need support, please feel free to reach out to us on the `#demisto-developers` channel on our [Slack DFIR Community](https://www.demisto.com/community/).  
+If you have any questions or need support, feel free to reach out to us on the `#demisto-developers` channel on our [Slack DFIR Community](https://www.demisto.com/community/).  
 If you're a Technology Partner (or interested in becoming one), you can also contact us via the [Cortex XSOAR Alliance Email](mailto:soar.alliances@paloaltonetworks.com).
  
 ## Prerequisites and Resources
@@ -32,7 +32,7 @@ If you are or want to become a Technology Partner, we also recommend you to:
 ## Development Environment
 ### demisto-sdk
 Whether you are using the XSOAR IDE or a full development environment, we have an official SDK that can help you with your development process.  
-It can be used to upload, download and run code on XSOAR directly from your operating system shell.  
+It can be used to upload, download and run code on Cortex XSOAR directly from your operating system shell.  
 For more information, refer to the [demisto-sdk](../concepts/demisto-sdk) article.
 
 
@@ -46,6 +46,6 @@ When making a large amount of changes, or developing new content, we recommend u
 For a tutorial on how to set up a full development environment, refer to the [Development Environment](../concepts/dev-setup) guide.
 
 :::tip
-If you are using *Visual Studio Code* as your IDE, we recommend you to install the [Cortex XSOAR extension](https://marketplace.visualstudio.com/items?itemName=CortexXSOARext.xsoar).  
+If you are using *Visual Studio Code* as your IDE, we recommend that you install the [Cortex XSOAR extension](https://marketplace.visualstudio.com/items?itemName=CortexXSOARext.xsoar).  
 For more information, refer to the [Visual Studio Code extension](vscode-extension) article.
 :::

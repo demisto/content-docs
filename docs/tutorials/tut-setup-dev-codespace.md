@@ -3,7 +3,7 @@ id: tut-setup-dev-codespace
 title: Setup Your GitHub Codespace Environment
 ---
 
-This tutorial provides a step-by-step instructions for setting up a personal Codespace for developing XSOAR content.
+This tutorial provides a step-by-step instructions for setting up a personal Codespace for developing Cortex XSOAR content.
 
 ## What are GitHub Codespaces?
 [GitHub Codespaces](https://github.com/features/Codespaces) are cloud-based development environments provided by [GitHub](https://github.com) that allow you to set up remote environments with preinstalled and preconfigured tools and dependencies 
@@ -13,7 +13,7 @@ Your Codespace environment will be hosted on GitHub's servers (attached to your 
 and will allow you to access your Codespace from any computer, continuing your work from where you left off.
 
 ### Cost and Limitations
-GitHub offers a free quota for Codespaces (which is higher for GitHub Pro users) that you can utilize for developing XSOAR content.  
+GitHub offers a free quota for Codespaces (which is higher for GitHub Pro users) that you can utilize for developing Cortex XSOAR content.  
 
 The quota is calculated based on the number of hours your Codespace is actively running.
 
@@ -34,7 +34,7 @@ If you want to use paid usage once you've reached your free quota, you can find 
 - A GitHub account (can be created [here](https://github.com/signup)).
 
 ## Setup
-This is an initial setup that needs to be done only once.  
+The following provides instructions for an initial setup that needs to be done only once.  
 After that, the generated environment will be kept in your GitHub account.
 
 ### Create a New Codespace
@@ -45,9 +45,9 @@ After that, the generated environment will be kept in your GitHub account.
    2. Select your account as the owner, and leave the repository name as is.
    3. Keep the **Copy the master branch only** option selected.
    4. Click **Create fork**.
-4. Wait a few seconds for the fork to be created, until you're redirected to your forked repository page.
+4. Wait a few seconds for the fork to be created. You will be redirected to your forked repository page.
 5. Create a new branch on your fork, and give it a meaningful name.
-6. click **Code**, go to the **Codespaces** tab, and click **Create Codespace on \<branch name\>**.
+6. Click **Code**, go to the **Codespaces** tab, and click **Create Codespace on \<branch name\>**.
 7. A page saying "This Codespace is requesting additional permissions" might appear. If it does, click **Continue without authorizing**.
 8. Click **New Codespace** (this might take a few minutes).
 
@@ -63,7 +63,7 @@ After that, the generated environment will be kept in your GitHub account.
 By default, Codespaces opens a browser-based VSCode editor that's connected to the Codespace, and should be enough for most use cases,
 but it can also be used in IDEs by using an extension.
 
-To open it, enter the main forked repository page, click **Code**, go to the **Codespaces** tab, and click on the newly created Codespace (should have a random name).  
+To open it, enter the main forked repository page, click **Code**, go to the **Codespaces** tab, and click the newly created Codespace (should have a random name).  
 After that, it might take a few minutes for the Codespace to be initialized, and then once it's ready, you will be redirected to the IDE.
 
 #### Visual Studio Code (local)

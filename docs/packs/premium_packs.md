@@ -17,5 +17,5 @@ In this document we explain step-by-step how to develop paid content for the XSO
    - Pull request build must pass.
    - Implement all feedback/comments that we provide in the pull request.
    - Internal validation process must pass. If the validation process fails, we will update you and explain why it failed.
-5. After we approve your pull request you can merge the pull request.
-6. The pack is now officially available for purchase in the XSOAR Marketplace!
+5. After we approve your pull request, you can merge the pull request.
+The pack is now officially available for purchase in the XSOAR Marketplace!

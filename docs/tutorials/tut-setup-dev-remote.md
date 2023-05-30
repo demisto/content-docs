@@ -1,6 +1,6 @@
 ---
 id: tut-setup-dev-remote
-title: Setup Your Remote Dev Environment
+title: Set Up Your Remote Dev Environment
 ---
 
 This is a tutorial to set up a fully configured remote environment with VSCode [Dev Containers](https://code.visualstudio.com/docs/remote/containers).
