@@ -22,6 +22,7 @@ from typing import Dict, Iterator, List, Optional, Tuple, TypedDict
 from google.cloud import storage
 from bs4 import BeautifulSoup
 from dateutil.relativedelta import relativedelta
+from packaging import version
 
 from CommonServerPython import tableToMarkdown  # type: ignore
 from mdx_utils import (fix_mdx, fix_relative_images, normalize_id,
@@ -92,6 +93,9 @@ PACKS_PLAYBOOKS_PREFIX = 'Playbooks'
 
 SERVICE_ACCOUNT = os.getenv('GCP_SERVICE_ACCOUNT')
 
+DEFAULT_FROM_VERSION = '0'
+DEFAULT_TO_VERSION = '9999'
+
 
 def create_service_account_file():
     """
@@ -120,14 +124,14 @@ def update_contributors_file(service_account_file, list_links):
 
 class DocInfo:
     def __init__(self, id: str, name: str, description: str, readme: str, error_msg: Optional[str] = None,
-                 from_version: str = '0', to_version: str = '9999'):
+                 from_version: str = DEFAULT_FROM_VERSION, to_version: str = DEFAULT_TO_VERSION):
         self.id = id
         self.name = name
         self.description = description
         self.readme = readme
         self.error_msg = error_msg
-        self.from_version = version_convertor(from_version)
-        self.to_version = version_convertor(to_version)
+        self.from_version = version.parse(from_version)
+        self.to_version = version.parse(to_version)
 
 
 class DeprecatedInfo(TypedDict, total=False):
@@ -137,17 +141,6 @@ class DeprecatedInfo(TypedDict, total=False):
     maintenance_start: str
     eol_start: str
     note: str
-
-
-def version_convertor(version: str) -> int:
-    """
-        Converts a version representation from string to int. for example "6.5.0" => 650.
-        Args:
-            version (str): The version in string representation.
-        Returns:
-             The version in integer representation.
-    """
-    return int(version.replace('.', ''))
 
 
 def version_conflict(to_check: DocInfo, check_with: DocInfo):
@@ -311,8 +304,8 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
         id = normalize_id(id)
         name = yml_data.get('display') or yml_data['name']
         desc = yml_data.get('description') or yml_data.get('comment')
-        from_version = yml_data.get('fromversion', '0')
-        to_version = yml_data.get('toversion', '9999')
+        from_version = yml_data.get('fromversion', DEFAULT_FROM_VERSION)
+        to_version = yml_data.get('toversion', DEFAULT_TO_VERSION)
         if desc:
             desc = handle_desc_field(desc)
         doc_info = DocInfo(id, name, desc, readme_file, from_version=from_version, to_version=to_version)
@@ -468,8 +461,8 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
         name = yml_data['title']
         file_id = yml_data.get('id') or normalize_id(name)
         desc = yml_data.get('description')
-        from_version = yml_data.get('fromversion', '0')
-        to_version = yml_data.get('toversion', '9999')
+        from_version = yml_data.get('fromversion', DEFAULT_FROM_VERSION)
+        to_version = yml_data.get('toversion', DEFAULT_TO_VERSION)
         if desc:
             desc = handle_desc_field(desc)
         readme_file_name = os.path.basename(readme_file)
