@@ -516,7 +516,7 @@ def process_doc_info(doc_info: DocInfo, success: List[str], fail: List[str], doc
         return
     if doc_info.error_msg:
         fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
-    elif doc_info.id in seen_docs and not version_conflict(doc_info, seen_docs[doc_info.id]):
+    elif doc_info.id in seen_docs and version_conflict(doc_info, seen_docs[doc_info.id]):
         if private_doc:
             # Ignore private repo files which are already in the content repo since they may be outdated.
             return
