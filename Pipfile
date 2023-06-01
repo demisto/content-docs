@@ -23,7 +23,6 @@ pydoc-markdown = "==3.10.0"
 python-dateutil = "*"
 types-python-dateutil = "*"
 slack_sdk = "*"
-packaging = "*"
 google-api-python-client = "*"
 google-cloud-storage = "*"
 
