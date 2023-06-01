@@ -120,7 +120,7 @@ def update_contributors_file(service_account_file, list_links):
 
 class DocInfo:
     def __init__(self, id: str, name: str, description: str, readme: str, error_msg: Optional[str] = None,
-                 from_version: str = '0', to_version: str = '0'):
+                 from_version: str = '0', to_version: str = '9999'):
         self.id = id
         self.name = name
         self.description = description
@@ -139,7 +139,7 @@ class DeprecatedInfo(TypedDict, total=False):
     note: str
 
 
-def version_convertor(version: str = '0') -> int:
+def version_convertor(version: str) -> int:
     """
         Converts a version representation from string to int. for example "6.5.0" => 650.
         Args:
@@ -159,11 +159,12 @@ def version_conflict(to_check: DocInfo, check_with: DocInfo):
         Returns:
              True if there is a mismatch in the versions otherwise False.
     """
-    if to_check.id != check_with.id:
+    if to_check.id != check_with.id or to_check.to_version < check_with.from_version or check_with.to_version < to_check.from_version:
         return False
-    if to_check.to_version < check_with.from_version or check_with.to_version < to_check.from_version:
-        return False
-    print(f'Found version conflict in {to_check.readme} and {check_with.readme} with the same ID {to_check.id}')
+
+    print(f'Found version conflict in {to_check.readme} with the from version {to_check.from_version} and '
+          f'to version {to_check.to_version} while {check_with.readme} has the from version {check_with.from_version} '
+          f'and to version {check_with.to_version} and both of them has the same ID {to_check.id}')
     return True
 
 
@@ -310,11 +311,11 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
         id = normalize_id(id)
         name = yml_data.get('display') or yml_data['name']
         desc = yml_data.get('description') or yml_data.get('comment')
-        from_version = yml_data.get('fromversion')
-        to_version = yml_data.get('toversion')
+        from_version = yml_data.get('fromversion', '0')
+        to_version = yml_data.get('toversion', '9999')
         if desc:
             desc = handle_desc_field(desc)
-        doc_info = DocInfo(id, name, desc, readme_file, from_version, to_version)
+        doc_info = DocInfo(id, name, desc, readme_file, from_version=from_version, to_version=to_version)
         with open(readme_file, 'r', encoding='utf-8') as f:
             content = f.read()
         if not content.strip():
@@ -467,8 +468,8 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
         name = yml_data['title']
         file_id = yml_data.get('id') or normalize_id(name)
         desc = yml_data.get('description')
-        from_version = yml_data.get('fromversion')
-        to_version = yml_data.get('toversion')
+        from_version = yml_data.get('fromversion', '0')
+        to_version = yml_data.get('toversion', '9999')
         if desc:
             desc = handle_desc_field(desc)
         readme_file_name = os.path.basename(readme_file)
@@ -488,7 +489,7 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
         verify_mdx_server(content)
         with open(f'{target_dir}/{file_id}.md', mode='w', encoding='utf-8') as f:
             f.write(content)
-        return DocInfo(file_id, name, desc, readme_file, from_version, to_version)
+        return DocInfo(file_id, name, desc, readme_file, from_version=from_version, to_version=to_version)
     except Exception as ex:
         print(f'fail: {readme_file}. Exception: {traceback.format_exc()}')
         return DocInfo('', '', '', readme_file, str(ex).splitlines()[0])
