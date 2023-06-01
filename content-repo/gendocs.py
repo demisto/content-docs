@@ -119,12 +119,15 @@ def update_contributors_file(service_account_file, list_links):
 
 
 class DocInfo:
-    def __init__(self, id: str, name: str, description: str, readme: str, error_msg: Optional[str] = None):
+    def __init__(self, id: str, name: str, description: str, readme: str, error_msg: Optional[str] = None,
+                 from_version: str = '0', to_version: str = '0'):
         self.id = id
         self.name = name
         self.description = description
         self.readme = readme
         self.error_msg = error_msg
+        self.from_version = version_convertor(from_version)
+        self.to_version = version_convertor(to_version)
 
 
 class DeprecatedInfo(TypedDict, total=False):
@@ -134,6 +137,34 @@ class DeprecatedInfo(TypedDict, total=False):
     maintenance_start: str
     eol_start: str
     note: str
+
+
+def version_convertor(version: str = '0') -> int:
+    """
+        Converts a version representation from string to int. for example "6.5.0" => 650.
+        Args:
+            version (str): The version in string representation.
+        Returns:
+             The version in integer representation.
+    """
+    return int(version.replace('.', ''))
+
+
+def version_conflict(to_check: DocInfo, check_with: DocInfo):
+    """
+        Retrieves two DocInfo classes with the same ID and returns if there is a conflict between the versions.
+        Args:
+            to_check (DocInfo): The DocInfo object to check.
+            check_with (DocInfo): The DocInfo object to check with.
+        Returns:
+             True if there is a mismatch in the versions otherwise False.
+    """
+    if to_check.id != check_with.id:
+        return False
+    if to_check.to_version < check_with.from_version or check_with.to_version < to_check.from_version:
+        return False
+    print(f'Found version conflict in {to_check.readme} and {check_with.readme} with the same ID {to_check.id}')
+    return True
 
 
 def findfiles(match_patterns: List[str], target_dir: str) -> List[str]:
@@ -279,9 +310,11 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
         id = normalize_id(id)
         name = yml_data.get('display') or yml_data['name']
         desc = yml_data.get('description') or yml_data.get('comment')
+        from_version = yml_data.get('fromversion')
+        to_version = yml_data.get('toversion')
         if desc:
             desc = handle_desc_field(desc)
-        doc_info = DocInfo(id, name, desc, readme_file)
+        doc_info = DocInfo(id, name, desc, readme_file, from_version, to_version)
         with open(readme_file, 'r', encoding='utf-8') as f:
             content = f.read()
         if not content.strip():
@@ -434,6 +467,8 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
         name = yml_data['title']
         file_id = yml_data.get('id') or normalize_id(name)
         desc = yml_data.get('description')
+        from_version = yml_data.get('fromversion')
+        to_version = yml_data.get('toversion')
         if desc:
             desc = handle_desc_field(desc)
         readme_file_name = os.path.basename(readme_file)
@@ -453,7 +488,7 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
         verify_mdx_server(content)
         with open(f'{target_dir}/{file_id}.md', mode='w', encoding='utf-8') as f:
             f.write(content)
-        return DocInfo(file_id, name, desc, readme_file)
+        return DocInfo(file_id, name, desc, readme_file, from_version, to_version)
     except Exception as ex:
         print(f'fail: {readme_file}. Exception: {traceback.format_exc()}')
         return DocInfo('', '', '', readme_file, str(ex).splitlines()[0])
@@ -487,7 +522,7 @@ def process_doc_info(doc_info: DocInfo, success: List[str], fail: List[str], doc
         return
     if doc_info.error_msg:
         fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
-    elif doc_info.id in seen_docs and doc_info.readme == seen_docs[doc_info.id].readme:
+    elif doc_info.id in seen_docs and not version_conflict(doc_info, seen_docs[doc_info.id]):
         if private_doc:
             # Ignore private repo files which are already in the content repo since they may be outdated.
             return
