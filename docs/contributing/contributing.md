@@ -79,33 +79,32 @@ The *Pull Request Process* section is not relevant for contributions that were c
 Carefully review the following guidelines, as they will greatly enhance the likelihood of a swift, streamlined, and efficient review process for all parties involved. If you have any questions or require clarification, feel free to contact us through the Slack platform using the #demisto-developers channel.
 
 1. Begin by designing your contribution. We recommend to follow the [design guidelines](../concepts/design) to identify what you want to build and make sure it is aligned with our best practices. Also check out the [design tutorial](../tutorials/tut-design).
-2. Make sure you have all the [Contributing Requirements](../contributing/contrib-requirements) satisfied.
-3. Set up a development environment by following the short [Development Setup](../concepts/dev-setup) guide and the more detailed [tutorial](../tutorials/tut-setup-dev), 
+2. Make sure you have all the [contributing requirements](../contributing/contrib-requirements) satisfied.
+3. Set up a development environment by following the [short development setup](../concepts/dev-setup) guide and the more detailed [tutorial](../tutorials/tut-setup-dev), 
     or [use a pre-configured GitHub Codespace environment](../tutorials/tut-setup-dev-codespace.md).
-4. Follow the [Content Pack Structure](../packs/packs-format) to build your contribution.  
+4. Follow the [content pack structure](../packs/packs-format) to build your contribution.  
     The "[demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md)" command will help you create the basic structure.
 5. If you are updating an **existing** content pack, make you have the latest available version installed before proceeding.
-6. Depending on the content entities you need to build, navigate to the specific section of this website for details.  
-    If you are creating integrations and / or scripts (aka *automations*), make sure that you:
-    * Use the proper [Directory Structure](../integrations/package-dir).  
+6. If you are creating integrations and / or scripts (aka *automations*), make sure that you:
+    * Use the proper [directory structure](../integrations/package-dir).  
         [demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md) will help you create it.  
         If working on existing code that doesn't follow this structure, we require converting to this structure (as long as the changes aren't minor), as it allows running linting and unit-tests, and provides a smoother review process.
     * Understand the structure of the [YAML file](../integrations/yaml-file), and the [parameter types](../integrations/parameter-types) within it.
     * Make sure your integration follows our [logo guidelines](../integrations/integration-logo).
     * Read and follow the instructed [Python code conventions](../integrations/code-conventions), or [PowerShell code conventions](../integrations/powershell-code) (advanced users only).
     * If your integration generates incidents, follow the [Fetch Incidents guidelines](../integrations/fetching-incidents).
-    * Make sure your commands make proper use of the [Context](../integrations/context-and-outputs), including [Context Standards](../integrations/context-standards-about) and [DBotScore](../integrations/dbot).
-    * Make sure to create unit tests as documented [here](../integrations/unit-testing), and that the various linters we support pass as detailed [here](../integrations/linting).
+    * Make proper use of the [Context](../integrations/context-and-outputs) and [DBotScore](../integrations/dbot) with your commands, and follow the [Context Standards](../integrations/context-standards-about).
+    * Create unit-tests as documented [here](../integrations/unit-testing), and assure it passes the [linting](../integrations/linting) process.
     * Document your contributed content by generating the [README File](../documentation/readme_file).
-7. Create [Pack Documentation](../documentation/pack-docs).  
-    Make sure you follow the [Documentation Best Practices](../documentation/documentation_tips).
+7. Create [pack documentation](../documentation/pack-docs).  
+    Make sure you follow the [documentation best practices](../documentation/documentation_tips).
 8. When creating new versions of your content pack, make sure to document your changes in a release notes file as detailed [here](../documentation/release-notes).
+9. Go over the [contributions checklist](../contributing/checklist), and make sure you have all the required files in your content pack.
 
-At this point you should be ready to submit a Pull Request!  
-Check out our [Contributing Checklist](../contributing/checklist) to make sure you have all the parts you need.
+Once these steps are completed, you should be ready to submit your contribution and open a Pull Request.  
 
 :::tip
-[Hello World Content Pack](https://github.com/demisto/content/tree/master/Packs/HelloWorld) is a good example that implements all of the above guidelines and can be used as a reference (alongside the [Hello World Design Document](https://docs.google.com/document/d/1wETtBEKg37PHNU8tYeB56M1LE314ux086z3HFeF_cX0)).
+The [Hello World content pack](https://github.com/demisto/content/tree/master/Packs/HelloWorld) is a good example that implements all of the above guidelines and can be used as a reference (alongside the [Hello World Design Document](https://docs.google.com/document/d/1wETtBEKg37PHNU8tYeB56M1LE314ux086z3HFeF_cX0)).
 :::
 
 :::note
@@ -115,13 +114,12 @@ If you are an XSOAR Technology Partner, make sure the [Cortex XSOAR Alliances Te
 ## Pull Request Submission Process
 ### Prerequisites
 Before submitting a Pull Request to the [Cortex XSOAR GitHub Repository](https://github.com/demisto/content), the following requirements must be met:
-1. Make sure to check the content contribution [checklist](../contributing/checklist), and assure that all the required files exist and are properly formatted.
-2. Create and upload your contribution to a GitHub **fork** of the XSOAR Content repository, and submit your changes **on a new branch** (do **not** push your changes to the *master* branch).
-3. Validate your content using [demisto-sdk validate](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md):  
+1. Create and upload your contribution to a GitHub **fork** of the XSOAR Content repository, and submit your changes **on a new branch** (do **not** push your changes to the *master* branch).
+2. Validate your content using [demisto-sdk validate](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md):  
     `demisto-sdk validate -i Packs/YourPackName`
-4. If your contribution has integrations or scripts, run linting (which also runs [unit-tests](../tutorials/tut-setup-dev#step-5-run-the-linter-and-unit-tests)) by running:  
+3. If your contribution has integrations or scripts, run linting (which also runs [unit-tests](../tutorials/tut-setup-dev#step-5-run-the-linter-and-unit-tests)) by running:  
     `demisto-sdk lint -i Packs/YourPakName`
-5. Create a short demo video presenting the product and your pack, and link it.  
+4. Create a short demo video presenting the product and your pack, and link it.  
     This will help our reviewers to better understand what the product is used for, and how the newly contributed content integrates with it.
 
 ![Creating a fork](../doc_imgs/contributing/content-new-fork.gif)
@@ -163,7 +161,7 @@ As part of the pull request template, you will be asked to fill in the [contribu
 Make sure to do so, as without it, we will not be able to start the review process for your contribution.
 :::
 
-:::info
+:::tip
 If after signing the CLA it still shows as unsigned, refer to the [FAQ](../concepts/faq#cla-is-pending-even-though-i-signed-the-agreement) for possible solutions.
 :::
 
