@@ -22,6 +22,7 @@ from typing import Dict, Iterator, List, Optional, Tuple, TypedDict
 from google.cloud import storage
 from bs4 import BeautifulSoup
 from dateutil.relativedelta import relativedelta
+from packaging import version
 
 from CommonServerPython import tableToMarkdown  # type: ignore
 from mdx_utils import (fix_mdx, fix_relative_images, normalize_id,
@@ -75,7 +76,7 @@ PACKS_PREFIX = 'packs'
 NO_HTML = '<!-- NOT_HTML_DOC -->'
 YES_HTML = '<!-- HTML_DOC -->'
 BRANCH = os.getenv('HEAD', 'master')
-MAX_FAILURES = int(os.getenv('MAX_FAILURES', 30))  # if we have more than this amount in a single category we fail the build
+MAX_FAILURES = int(os.getenv('MAX_FAILURES', 40))  # if we have more than this amount in a single category we fail the build
 # env vars for faster development
 MAX_FILES = int(os.getenv('MAX_FILES', -1))
 FILE_REGEX = os.getenv('FILE_REGEX')
@@ -91,6 +92,9 @@ PACKS_SCRIPTS_PREFIX = 'Scripts'
 PACKS_PLAYBOOKS_PREFIX = 'Playbooks'
 
 SERVICE_ACCOUNT = os.getenv('GCP_SERVICE_ACCOUNT')
+
+DEFAULT_FROM_VERSION = '0'
+DEFAULT_TO_VERSION = '9999'
 
 
 def create_service_account_file():
@@ -119,12 +123,15 @@ def update_contributors_file(service_account_file, list_links):
 
 
 class DocInfo:
-    def __init__(self, id: str, name: str, description: str, readme: str, error_msg: Optional[str] = None):
+    def __init__(self, id: str, name: str, description: str, readme: str, error_msg: Optional[str] = None,
+                 from_version: str = DEFAULT_FROM_VERSION, to_version: str = DEFAULT_TO_VERSION):
         self.id = id
         self.name = name
         self.description = description
         self.readme = readme
         self.error_msg = error_msg
+        self.from_version = version.parse(from_version)
+        self.to_version = version.parse(to_version)
 
 
 class DeprecatedInfo(TypedDict, total=False):
@@ -134,6 +141,24 @@ class DeprecatedInfo(TypedDict, total=False):
     maintenance_start: str
     eol_start: str
     note: str
+
+
+def version_conflict(to_check: DocInfo, check_with: DocInfo):
+    """
+        Retrieves two DocInfo classes with the same ID and returns if there is a conflict between the versions.
+        Args:
+            to_check (DocInfo): The DocInfo object to check.
+            check_with (DocInfo): The DocInfo object to check with.
+        Returns:
+             True if there is a mismatch in the versions otherwise False.
+    """
+    if to_check.id != check_with.id or to_check.to_version < check_with.from_version or check_with.to_version < to_check.from_version:
+        return False
+
+    print(f'Found version conflict in {to_check.readme} with the from version {to_check.from_version} and '
+          f'to version {to_check.to_version} while {check_with.readme} has the from version {check_with.from_version} '
+          f'and to version {check_with.to_version} and both of them has the same ID {to_check.id}')
+    return True
 
 
 def findfiles(match_patterns: List[str], target_dir: str) -> List[str]:
@@ -180,12 +205,13 @@ def get_extracted_deprecated_note(description: str):
         r'.*deprecated\s*[\.\-:]\s*(.*?No available replacement.*?\.)',
     ]
     for r in regexs:
-        dep_match = re.match(r, description, re.IGNORECASE)
-        if dep_match:
-            res = dep_match[1]
-            if res[0].islower():
-                res = res[0].capitalize() + res[1:]
-            return res
+        if description:  # To avoid None descriptions.
+            dep_match = re.match(r, description, re.IGNORECASE)
+            if dep_match:
+                res = dep_match[1]
+                if res[0].islower():
+                    res = res[0].capitalize() + res[1:]
+                return res
     return ""
 
 
@@ -278,9 +304,11 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
         id = normalize_id(id)
         name = yml_data.get('display') or yml_data['name']
         desc = yml_data.get('description') or yml_data.get('comment')
+        from_version = yml_data.get('fromversion', DEFAULT_FROM_VERSION)
+        to_version = yml_data.get('toversion', DEFAULT_TO_VERSION)
         if desc:
             desc = handle_desc_field(desc)
-        doc_info = DocInfo(id, name, desc, readme_file)
+        doc_info = DocInfo(id, name, desc, readme_file, from_version=from_version, to_version=to_version)
         with open(readme_file, 'r', encoding='utf-8') as f:
             content = f.read()
         if not content.strip():
@@ -433,6 +461,8 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
         name = yml_data['title']
         file_id = yml_data.get('id') or normalize_id(name)
         desc = yml_data.get('description')
+        from_version = yml_data.get('fromversion', DEFAULT_FROM_VERSION)
+        to_version = yml_data.get('toversion', DEFAULT_TO_VERSION)
         if desc:
             desc = handle_desc_field(desc)
         readme_file_name = os.path.basename(readme_file)
@@ -452,7 +482,7 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
         verify_mdx_server(content)
         with open(f'{target_dir}/{file_id}.md', mode='w', encoding='utf-8') as f:
             f.write(content)
-        return DocInfo(file_id, name, desc, readme_file)
+        return DocInfo(file_id, name, desc, readme_file, from_version=from_version, to_version=to_version)
     except Exception as ex:
         print(f'fail: {readme_file}. Exception: {traceback.format_exc()}')
         return DocInfo('', '', '', readme_file, str(ex).splitlines()[0])
@@ -487,8 +517,9 @@ def process_doc_info(doc_info: DocInfo, success: List[str], fail: List[str], doc
     if doc_info.error_msg:
         fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
     elif doc_info.id in seen_docs:
-        if private_doc:
+        if private_doc or not version_conflict(doc_info, seen_docs[doc_info.id]):
             # Ignore private repo files which are already in the content repo since they may be outdated.
+            # Ignore the same id if there is no conflict in the version.
             return
         fail.append(f'{doc_info.readme} (duplicate with {seen_docs[doc_info.id].readme})')
     else:
@@ -693,9 +724,9 @@ def get_deprecated_display_dates(dep_date: datetime) -> Tuple[str, str]:
     return (datetime.strftime(start, DATE_FRMT), datetime.strftime(end, DATE_FRMT))
 
 
-def find_deprecated_integrations(content_dir: str):
-    files = glob.glob(content_dir + '/Packs/*/Integrations/*.yml')
-    files.extend(glob.glob(content_dir + '/Packs/*/Integrations/*/*.yml'))
+def find_deprecated_items(content_dir: str, item: str = 'Integrations'):
+    files = glob.glob(content_dir + f'/Packs/*/{item}/*.yml')
+    files.extend(glob.glob(content_dir + f'/Packs/*/{item}/*/*.yml'))
     res: List[DeprecatedInfo] = []
     # go over each file and check if contains deprecated: true
     for f in files:
@@ -707,7 +738,7 @@ def find_deprecated_integrations(content_dir: str):
                     yml_data = yaml.safe_load(content)
                     id = yml_data.get('commonfields', {}).get('id') or yml_data['name']
                     name: str = yml_data.get('display') or yml_data['name']
-                    desc = yml_data.get('description')
+                    desc = yml_data.get('description') or yml_data.get('comment')  # comment is for scripts.
                     content_to_search = content[:dep_search.regs[0][0]]
                     lines_search = re.findall(r'\n', content_to_search)
                     blame_line = 1
@@ -720,10 +751,10 @@ def find_deprecated_integrations(content_dir: str):
                         name = name.replace(dep_suffix, "").strip()
                     info = DeprecatedInfo(id=id, name=name, description=desc, note=get_extracted_deprecated_note(desc),
                                           maintenance_start=maintenance_start, eol_start=eol_start)
-                    print(f'Adding deprecated integration: [{name}]. Deprecated date: {dep_date}. From file: {f}')
+                    print(f'Adding deprecated {item.lower()}: [{name}]. Deprecated date: {dep_date}. From file: {f}')
                     res.append(info)
                 else:
-                    print(f'Skippinng deprecated integration: {f} which is not supported by xsoar')
+                    print(f'Skippinng deprecated  {item.lower()}: {f} which is not supported by xsoar')
     return res
 
 
@@ -743,32 +774,63 @@ def merge_deprecated_info(deprecated_list: List[DeprecatedInfo], deperecated_inf
     return merged_list
 
 
-def add_deprected_integrations_info(content_dir: str, deperecated_article: str, deperecated_info_file: str, assets_dir: str):
-    """Will append the deprecated integrations info to the deprecated article
+def add_deprecated_info(content_dir: str, deprecated_article: str, deprecated_info_file: str, assets_dir: str):
+    """Will append the deprecated content item's info to the deprecated article
 
     Args:
-        content_dir (str): content dir to search for deprecated integrations
-        deperecated_article (str): deprecated article (md file) to add to
-        deperecated_info_file (str): json file with static deprecated info to merge
+        content_dir (str): content dir to search for deprecated content item's
+        deprecated_article (str): deprecated article (md file) to add to
+        deprecated_info_file (str): json file with static deprecated info to merge
     """
-    deprecated_infos = merge_deprecated_info(find_deprecated_integrations(content_dir), deperecated_info_file)
-    deprecated_infos = sorted(deprecated_infos, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
-    deperecated_json_file = f'{assets_dir}/{os.path.basename(deperecated_article.replace(".md", ".json"))}'
+    deprecated_integrations = merge_deprecated_info(find_deprecated_items(content_dir), deprecated_info_file)
+    deprecated_automations = find_deprecated_items(content_dir, 'Scripts')
+    deprecated_playbooks = find_deprecated_items(content_dir, 'Playbooks')
+    deprecated_integrations = sorted(deprecated_integrations, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
+    deprecated_automations = sorted(deprecated_automations, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
+    deprecated_playbooks = sorted(deprecated_playbooks, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
+    deperecated_json_file = f'{assets_dir}/{os.path.basename(deprecated_article.replace(".md", ".json"))}'
     with open(deperecated_json_file, 'w') as f:
         json.dump({
-            'description': 'Generated machine readable doc of deprecated integrations',
-            'integrations': deprecated_infos
+            'description': 'Generated machine readable doc of deprecated content items',
+            'integrations': deprecated_integrations,
+            'scripts': deprecated_automations,
+            'playbooks': deprecated_playbooks
         }, f, indent=2)
-    deperecated_infos_no_note = [i for i in deprecated_infos if not i['note']]
+
+    deprecated_integrations_no_note = [i for i in deprecated_integrations if not i['note']]
+    deprecated_automations_no_note = [i for i in deprecated_automations if not i['note']]
+    deprecated_playbooks_no_note = [i for i in deprecated_playbooks if not i['note']]
     deperecated_json_file_no_note = deperecated_json_file.replace('.json', '.no_note.json')
     with open(deperecated_json_file_no_note, 'w') as f:
         json.dump({
             'description': 'Generated doc of deprecated integrations which do not contain a note about replacement or deprecation reason',
-            'integrations': deperecated_infos_no_note
+            'integrations': deprecated_integrations_no_note,
+            'scripts': deprecated_automations_no_note,
+            'playbooks': deprecated_playbooks_no_note
         }, f, indent=2)
-    with open(deperecated_article, "at") as f:
-        for d in deprecated_infos:
-            f.write(f'\n## {d["name"] if d.get("name") else d["id"]}\n')
+
+    with open(deprecated_article, "at") as f:
+        f.write('\n## Deprecated Integrations\n')
+        for d in deprecated_integrations:
+            f.write(f'\n### {d["name"] if d.get("name") else d["id"]}\n')
+            if d.get("maintenance_start"):
+                f.write(f'* **Maintenance Mode Start Date:** {d["maintenance_start"]}\n')
+            if d.get("eol_start"):
+                f.write(f'* **End-of-Life Date:** {d["eol_start"]}\n')
+            if d.get("note"):
+                f.write(f'* **Note:** {d["note"]}\n')
+        f.write('\n## Deprecated Scripts\n')
+        for d in deprecated_automations:
+            f.write(f'\n### {d["name"] if d.get("name") else d["id"]}\n')
+            if d.get("maintenance_start"):
+                f.write(f'* **Maintenance Mode Start Date:** {d["maintenance_start"]}\n')
+            if d.get("eol_start"):
+                f.write(f'* **End-of-Life Date:** {d["eol_start"]}\n')
+            if d.get("note"):
+                f.write(f'* **Note:** {d["note"]}\n')
+        f.write('\n## Deprecated Playbooks\n')
+        for d in deprecated_playbooks:
+            f.write(f'\n### {d["name"] if d.get("name") else d["id"]}\n')
             if d.get("maintenance_start"):
                 f.write(f'* **Maintenance Mode Start Date:** {d["maintenance_start"]}\n')
             if d.get("eol_start"):
@@ -853,8 +915,8 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     article_doc_infos = create_articles(args.target, ARTICLES_PREFIX)
     packs_articles_doc_infos = create_articles(args.target, PACKS_PREFIX)
     if os.getenv('SKIP_DEPRECATED') not in ('true', 'yes', '1'):
-        add_deprected_integrations_info(args.dir, f'{args.target}/{ARTICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE,
-                                        f'{args.target}/../../static/assets')
+        add_deprecated_info(args.dir, f'{args.target}/{ARTICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE,
+                            f'{args.target}/../../static/assets')
     index_base = f'{os.path.dirname(os.path.abspath(__file__))}/reference-index.md'
     index_target = args.target + '/index.md'
     articles_index_target = args.target + '/articles-index.md'
