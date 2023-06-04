@@ -247,7 +247,7 @@ After you a redirected to the next page, in the **Overview** tab you will find y
 
 ## Troubleshooting
 In case of errors in the authentication process, such as a token revoked/expired or in case you generate new credentials, 
-you can use the `*!<integration command prefix>-auth-reset*` command in the War Room in order to rerun the authentication process,
+you can use the `!<integration command prefix>-auth-reset` command in the War Room in order to rerun the authentication process,
 instead of recreating a new integration instance.
 After running the command, click **Test** to verify the connectivity of the instance.
 
