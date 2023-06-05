@@ -335,7 +335,7 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
             f.write(content)
         return doc_info
     except Exception as ex:
-        print(f'fail: {os.path.normpath(readme_file)}. Exception: {traceback.format_exc()}')
+        print(f'fail: {readme_file}. Exception: {traceback.format_exc()}')
         return DocInfo('', '', '', readme_file, str(ex).splitlines()[0])
     finally:
         sys.stdout.flush()
@@ -420,7 +420,7 @@ def process_release_doc(target_dir: str, release_file: str) -> Optional[DocInfo]
             f.write(content)
         return doc_info
     except Exception as ex:
-        print(f'fail: {os.path.normpath(release_file)}. Exception: {traceback.format_exc()}. Message: {ex}')
+        print(f'fail: {release_file}. Exception: {traceback.format_exc()}. Message: {ex}')
         # We shouldn't have failing release docs. Breack the build
         raise
     finally:
@@ -484,7 +484,7 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
             f.write(content)
         return DocInfo(file_id, name, desc, readme_file, from_version=from_version, to_version=to_version)
     except Exception as ex:
-        print(f'fail: {os.path.normpath(readme_file)}. Exception: {traceback.format_exc()}')
+        print(f'fail: {readme_file}. Exception: {traceback.format_exc()}')
         return DocInfo('', '', '', readme_file, str(ex).splitlines()[0])
 
 
@@ -565,10 +565,10 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
         process_doc_info(private_doc_info, success, fail, doc_infos, seen_docs, private_doc=True)
     org_print(f'\n===========================================\nSuccess {prefix} docs ({len(success)}):')
     for r in sorted(success):
-        print(os.path.normpath(r))
+        print(r)
     org_print(f'\n===========================================\nFailed {prefix} docs ({len(fail)}):')
     for r in sorted(fail):
-        print(os.path.normpath(r))
+        print(r)
     org_print("\n===========================================\n")
     if len(fail) > MAX_FAILURES:
         print(f'MAX_FAILURES of {len(fail)} exceeded limit: {MAX_FAILURES}. Aborting!!')
@@ -892,8 +892,8 @@ def main():
     parser = argparse.ArgumentParser(description='''Generate Content Docs. You should probably not call this script directly.
 See: https://github.com/demisto/content-docs/#generating-reference-docs''',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("-t", "--target", help="Target dir to generate docs at.", required=True)
-    parser.add_argument("-d", "--dir", help="Content repo dir.", required=True)
+    parser.add_argument("-t", "--target", type=os.path.normpath, help="Target dir to generate docs at.", required=True)
+    parser.add_argument("-d", "--dir", type=os.path.normpath, help="Content repo dir.", required=True)
     args = parser.parse_args()
     print(f'Using multiprocess pool size: {POOL_SIZE}')
     print('Starting MDX server...')
