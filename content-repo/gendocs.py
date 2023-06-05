@@ -892,8 +892,8 @@ def main():
     parser = argparse.ArgumentParser(description='''Generate Content Docs. You should probably not call this script directly.
 See: https://github.com/demisto/content-docs/#generating-reference-docs''',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("-t", "--target", help="Target dir to generate docs at.", required=True)
-    parser.add_argument("-d", "--dir", help="Content repo dir.", required=True)
+    parser.add_argument("-t", "--target", type=os.path.normpath, help="Target dir to generate docs at.", required=True)
+    parser.add_argument("-d", "--dir", type=os.path.normpath, help="Content repo dir.", required=True)
     args = parser.parse_args()
     print(f'Using multiprocess pool size: {POOL_SIZE}')
     print('Starting MDX server...')
