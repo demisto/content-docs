@@ -565,10 +565,10 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
         process_doc_info(private_doc_info, success, fail, doc_infos, seen_docs, private_doc=True)
     org_print(f'\n===========================================\nSuccess {prefix} docs ({len(success)}):')
     for r in sorted(success):
-        print(r)
+        print(os.path.normpath(r))
     org_print(f'\n===========================================\nFailed {prefix} docs ({len(fail)}):')
     for r in sorted(fail):
-        print(r)
+        print(os.path.normpath(r))
     org_print("\n===========================================\n")
     if len(fail) > MAX_FAILURES:
         print(f'MAX_FAILURES of {len(fail)} exceeded limit: {MAX_FAILURES}. Aborting!!')
