@@ -335,7 +335,7 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
             f.write(content)
         return doc_info
     except Exception as ex:
-        print(f'fail: {readme_file}. Exception: {traceback.format_exc()}')
+        print(f'fail: {os.path.normpath(readme_file)}. Exception: {traceback.format_exc()}')
         return DocInfo('', '', '', readme_file, str(ex).splitlines()[0])
     finally:
         sys.stdout.flush()
@@ -420,7 +420,7 @@ def process_release_doc(target_dir: str, release_file: str) -> Optional[DocInfo]
             f.write(content)
         return doc_info
     except Exception as ex:
-        print(f'fail: {release_file}. Exception: {traceback.format_exc()}. Message: {ex}')
+        print(f'fail: {os.path.normpath(release_file)}. Exception: {traceback.format_exc()}. Message: {ex}')
         # We shouldn't have failing release docs. Breack the build
         raise
     finally:
@@ -484,7 +484,7 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
             f.write(content)
         return DocInfo(file_id, name, desc, readme_file, from_version=from_version, to_version=to_version)
     except Exception as ex:
-        print(f'fail: {readme_file}. Exception: {traceback.format_exc()}')
+        print(f'fail: {os.path.normpath(readme_file)}. Exception: {traceback.format_exc()}')
         return DocInfo('', '', '', readme_file, str(ex).splitlines()[0])
 
 
