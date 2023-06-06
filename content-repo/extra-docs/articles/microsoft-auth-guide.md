@@ -80,10 +80,13 @@ To configure a Microsoft integration that uses this authorization flow with a se
 ### Using National Cloud
 
 - To see which integrations support natively National Clouds,See the [table below.](https://xsoar.pan.dev/docs/reference/articles/microsoft-integrations---authentication#supported-authentication-flows-for-microsoft-integrations) 
+  - For Microsoft Azure integrations select the appropriate cloud using the *Azure Cloud* parameter.
+  - For Microsoft Defender select the appropriate cloud using the *Endpoint Type* parameter.
+  - For using self-deployment option please select the *Custom* option and follow the instructions below.
 
 - Some of the Cortex XSOAR-Microsoft integrations support the deployment of national clouds through the self-deployed
  authorization flow. For more information about Microsoft National Clouds, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/deployments).
- In order to use a national cloud, change the *URL* parameter to the corresponding address of the national cloud you are using. For example, see [O365 Outlook Mail (Using Graph API) - National Clouds](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail#using-national-cloud), for the supported cloud endpoints in this integration.
+ In order to use a national cloud, change the *URL* parameter to the corresponding address of the national cloud you are using.
 
 ### Device Code Flow
 Some of the Cortex XSOAR-Microsoft integrations use the [device code flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code).
@@ -141,25 +144,23 @@ After you a redirected to the next page, in the **Overview** tab you will find y
    1. Select Azure Active Directory> App registrations> New registration.
 
       ![app](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/app-reg.png)
-   1. In the **Redirect URI (optional)** field select **Web** and type a name (you can enter an arbitrary name). In this example we use *https<nolink\>://xsoar.* 
+   2. In the **Redirect URI (optional)** field select **Web** and type a name (you can enter an arbitrary name). In this example we use *https<nolink\>://xsoar.* 
 
        ![reg-app](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/reg-app.png)
-   1. Click **Register.**
+   3. Click **Register.**
    
         You can see the Essential information here: 
         
         ![essentials](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/essentials.png)
-   1. Copy the following information:
+   4. Copy the following information:
 
       - Application (client) ID
       - Directory (tenant) ID
-   
+  
 2. Get the client secret, which is used for the **key** in the integration settings.
    1. Click **Certificate and secrets** -> **New client secret**.
     
         Copy the client secret.
-        
-    
 3. Ensure the needed permissions are granted for the app registration. 
    1. Go to API permissions>Add a permission>Microsoft Graph>Delegated permissions and search for 
     `Directory.AccessAsUser.All` of type `Delegated`.
@@ -189,9 +190,7 @@ After you a redirected to the next page, in the **Overview** tab you will find y
 
        ![app-connect](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/app-connect.png)
 
-
-   2. Copy the ***AUTH_CODE*** (without the "code=" prefix). This value must be used in the MS Graph User in Cortex XSOAR integration in the **Authorization Code** field. 
-   
+   2. Copy the ***AUTH_CODE*** (without the "code=" prefix). This value must be used in the MS Graph User in Cortex XSOAR integration in the **Authorization Code** field.
 5. Add the information to the instance in Cortex XSOAR by going to Settings>Integrations>Microsoft Graph User>Add Instance.
 
    1. In the ***ID*** parameter field, type the client ID.
@@ -205,41 +204,41 @@ After you a redirected to the next page, in the **Overview** tab you will find y
 
 ## Supported Authentication Flows for Microsoft integrations
 
-| Integration Name                                      | XSOAR Application | Client Credentials                               | Device Code | Auth code (redirect URI) | Azure Managed Identities | Supports National Clouds |
-|-------------------------------------------------------|-------------------|--------------------------------------------------|-------------|--------------------------|--------------------------|--------------------------| 
-| Azure Compute v2                                      | yes               | yes - support both client secret and certificate | no          | no                       | no                       | no                       |
-| Azure Data Explorer                                   | yes               | no - not supported by the API                    | yes         | yes                      | no                       | no                       |
-| AzureDevOps                                           | yes               | no - not supported by the API                    | yes         | yes                      | no                       | no                       |
-| Azure Firewall                                        | yes               | yes                                              | yes         | no                       | yes                      | no                       |
-| Azure Key Vault                                       | no                | yes - support both client secret and certificate | no          | no                       | yes                      | yes                      |
-| Azure Kubernetes Services                             | yes               | no - not supported by the API                    | yes         | yes                      | yes                      | yes                      |
-| Azure Log Analytics                                   | yes               | yes - support both client secret and certificate | no          | yes                      | yes                      | no                       |
-| Azure Network Security Groups                         | yes               | no - not supported by the API                    | yes         | yes                      | yes                      | no                       |
-| Azure Risky Users                                     | yes               | yes                                              | yes         | no                       | yes                      | no                       |
-| Azure Security Center v2                              | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | no                       |
-| Azure Sentinel                                        | no                | yes - support both client secret and certificate | no          | no                       | yes                      | yes                      |
-| Azure SQL Management                                  | yes               | no - not supported by the API                    | yes         | yes                      | yes                      | no                       |
-| Azure Storage                                         | yes               | no - not supported by the API                    | yes         | yes                      | yes                      | no                       |
-| Azure Storage Container                               | no                | no                                               | no          | no                       | yes                      | no                       |
-| Azure Storage FileShare                               | no                | no                                               | no          | no                       | no                       | no                       |
-| Azure Storage Queue                                   | no                | no                                               | no          | no                       | yes                      | no                       |
-| Azure Storage Table                                   | no                | no                                               | no          | no                       | yes                      | no                       |
-| Azure Web Application Firewall                        | yes               | no - not supported by the API                    | yes         | yes                      | yes                      | no                       |
-| Microsoft 365 Defender                                | yes               | yes - support both client secret and certificate | yes         | no                       | yes                      | no                       |
-| Microsoft 365 Defender Event Collector - XSIAM        | no                | yes                                              | no          | no                       | no - saas                | no                       |
-| Microsoft Defender for Cloud Apps                     | no                | yes                                              | yes         | no                       | no                       | no                       |
-| Microsoft Defender for Endpoint (Defender ATP)        | yes               | yes - support both client secret and certificate | no          | yes                      | yes                      | yes                      |
-| Microsoft Graph API                                   | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | no                       |
-| Azure Active Directory Applications                   | yes - device      | yes                                              | yes         | no                       | yes                      | no                       |
-| O365 Outlook Calendar                                 | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | no                       |
-| Microsoft Graph Device Management                     | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | no                       |
-| O365 File Management                                  | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | no                       |
-| Microsoft Graph Groups                                | yes               | yes - support both client secret and certificate | no          | yes                      | yes                      | no                       |
-| Azure Active Directory Identity And Access            | yes               | yes - support both client secret and certificate | yes         | no                       | yes                      | no                       |
-| Microsoft Graph Mail Single User                      | yes               | no                                               | no          | yes                      | yes                      | no                       |
-| O365 Outlook Mail                                     | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | yes                      |
-| Microsoft Graph Security                              | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | no                       |
-| Microsoft Graph User                                  | yes               | yes - support both client secret and certificate | no          | yes                      | yes                      | no                       |
-| Microsoft Management Activity API (O365 Azure Events) | yes               | no                                               | no          | yes                      | yes                      | no                       |
-| Microsoft Teams                                       | no                | yes                                              | no          | yes                      | no                       | no                       |
-| Microsoft Teams Management                            | yes               | yes                                              | yes         | no                       | yes                      | no                       |
+| Integration Name                                      | XSOAR Application | Client Credentials                               | Device Code | Auth code (redirect URI) | Azure Managed Identities | Supports National Clouds   |
+|-------------------------------------------------------|-------------------|--------------------------------------------------|-------------|--------------------------|--------------------------|----------------------------| 
+| Azure Compute v2                                      | yes               | yes - support both client secret and certificate | no          | no                       | no                       | no                         |
+| Azure Data Explorer                                   | yes               | no - not supported by the API                    | yes         | yes                      | no                       | no                         |
+| AzureDevOps                                           | yes               | no - not supported by the API                    | yes         | yes                      | no                       | no                         |
+| Azure Firewall                                        | yes               | yes                                              | yes         | no                       | yes                      | no                         |
+| Azure Key Vault                                       | no                | yes - support both client secret and certificate | no          | no                       | yes                      | yes                        |
+| Azure Kubernetes Services                             | yes               | no - not supported by the API                    | yes         | yes                      | yes                      | yes                        |
+| Azure Log Analytics                                   | yes               | yes - support both client secret and certificate | no          | yes                      | yes                      | no                         |
+| Azure Network Security Groups                         | yes               | no - not supported by the API                    | yes         | yes                      | yes                      | no                         |
+| Azure Risky Users                                     | yes               | yes                                              | yes         | no                       | yes                      | no                         |
+| Azure Security Center v2                              | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | no                         |
+| Azure Sentinel                                        | no                | yes - support both client secret and certificate | no          | no                       | yes                      | yes                        |
+| Azure SQL Management                                  | yes               | no - not supported by the API                    | yes         | yes                      | yes                      | no                         |
+| Azure Storage                                         | yes               | no - not supported by the API                    | yes         | yes                      | yes                      | no                         |
+| Azure Storage Container                               | no                | no                                               | no          | no                       | yes                      | no                         |
+| Azure Storage FileShare                               | no                | no                                               | no          | no                       | no                       | no                         |
+| Azure Storage Queue                                   | no                | no                                               | no          | no                       | yes                      | no                         |
+| Azure Storage Table                                   | no                | no                                               | no          | no                       | yes                      | no                         |
+| Azure Web Application Firewall                        | yes               | no - not supported by the API                    | yes         | yes                      | yes                      | no                         |
+| Microsoft 365 Defender                                | yes               | yes - support both client secret and certificate | yes         | no                       | yes                      | no                         |
+| Microsoft 365 Defender Event Collector - XSIAM        | no                | yes                                              | no          | no                       | no - saas                | no                         |
+| Microsoft Defender for Cloud Apps                     | no                | yes                                              | yes         | no                       | no                       | no                         |
+| Microsoft Defender for Endpoint (Defender ATP)        | yes               | yes - support both client secret and certificate | no          | yes                      | yes                      | yes                        |
+| Microsoft Graph API                                   | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | no                         |
+| Azure Active Directory Applications                   | yes - device      | yes                                              | yes         | no                       | yes                      | no                         |
+| O365 Outlook Calendar                                 | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | no                         |
+| Microsoft Graph Device Management                     | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | no                         |
+| O365 File Management                                  | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | no                         |
+| Microsoft Graph Groups                                | yes               | yes - support both client secret and certificate | no          | yes                      | yes                      | no                         |
+| Azure Active Directory Identity And Access            | yes               | yes - support both client secret and certificate | yes         | no                       | yes                      | no                         |
+| Microsoft Graph Mail Single User                      | yes               | no                                               | no          | yes                      | yes                      | no                         |
+| O365 Outlook Mail                                     | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | yes - self-deployment only |
+| Microsoft Graph Security                              | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | no                         |
+| Microsoft Graph User                                  | yes               | yes - support both client secret and certificate | no          | yes                      | yes                      | no                         |
+| Microsoft Management Activity API (O365 Azure Events) | yes               | no                                               | no          | yes                      | yes                      | no                         |
+| Microsoft Teams                                       | no                | yes                                              | no          | yes                      | no                       | no                         |
+| Microsoft Teams Management                            | yes               | yes                                              | yes         | no                       | yes                      | no                         |
