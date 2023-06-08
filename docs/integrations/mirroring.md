@@ -4,7 +4,7 @@ title: Mirroring Integration
 ---
 
 Cortex XSOAR version 6.0.0 adds support for Mirroring Integrations. These integrations allow you to mirror incidents/tickets/cases from other services.  
-For example: Another Cortex XSOAR server, Cortex XDR, ServiceNow. In addition, when mapping the incident fields, mirroring enables you to pull the database schema from the integration, which brings all of the available fields into Cortex XSOAR. For more information about working with the schema, see the Select schema option described [here](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/incidents/classification-and-mapping/create-a-mapper.html).
+For example: Another Cortex XSOAR server, Cortex XDR, ServiceNow. In addition, when mapping the incident fields, mirroring enables you to pull the database schema from the integration, which brings all of the available fields into Cortex XSOAR. For more information about working with the schema, see the Select schema option described [here](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.11/Cortex-XSOAR-Administrator-Guide/Create-a-Mapper).
 
 An example mirroring integration can be seen [here](https://github.com/demisto/content/tree/master/Packs/ServiceNow/Integrations/ServiceNowv2).
 
