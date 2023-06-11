@@ -16,18 +16,17 @@ and will allow you to access your Codespace from any computer, continuing your w
 GitHub offers a free quota for Codespaces (which is higher for GitHub Pro users) that you can utilize for developing Cortex XSOAR content.  
 
 The quota is calculated based on the number of hours your Codespace is actively running.
-
-:::info
-Codespaces generated from our Content repository (or a fork of it) use 4-cores by default.
-:::
-
 You can see the free quota plan and additional information [here](https://docs.github.com/en/billing/managing-billing-for-github-Codespaces/about-billing-for-github-Codespaces#monthly-included-storage-and-core-hours-for-personal-accounts).  
 
-:::tip
-You can find information about your Codespace quota usage on the settings under "Billing and plans".  
-See the following GitHub article for a step-by-step guide: [Viewing your GitHub Codespaces usage](https://docs.github.com/en/billing/managing-billing-for-github-Codespaces/viewing-your-github-Codespaces-usage).
+:::info
+Codespaces generated from the Content repository (or a fork of it) are configured to have 4 cores by default.
+:::
 
-You will receive an email notification when you have used 75%, 90%, and 100% of your freely-included quotas.
+:::tip
+You will receive an automated email notification when you have used 75%, 90%, and 100% of your freely-included quotas.
+
+You can find information about your Codespaces quota usage on the settings under "Billing and plans".  
+See the following GitHub article for a step-by-step guide: [Viewing your GitHub Codespaces usage](https://docs.github.com/en/billing/managing-billing-for-github-Codespaces/viewing-your-github-Codespaces-usage).
 :::
 
 If you want to use paid usage once you've reached your free quota, you can find information about the pricing [here](https://docs.github.com/en/billing/managing-billing-for-github-Codespaces/about-billing-for-github-Codespaces#pricing-for-paid-usage).
@@ -36,7 +35,7 @@ If you want to use paid usage once you've reached your free quota, you can find 
 A GitHub account (can be created [here](https://github.com/signup)).
 
 ## Setup
-The following provides instructions for an initial setup that needs to be done only once.  
+The following instructions are for an initial setup that needs to be done only once.  
 After that, the generated environment will be kept in your GitHub account.
 
 ### Create a New Codespace
@@ -64,21 +63,22 @@ After that, the generated environment will be kept in your GitHub account.
 
 ### Connect to Your Codespace
 #### Browser-based Visual Studio Code
-By default, Codespaces opens a browser-based VSCode editor that's connected to the Codespace, and should be enough for most use cases,
-but it can also be used in IDEs by using an extension.
+By default, GitHub provides a browser-based Visual Studio Code editor that's automatically configured, authenticated, and connected to your Codespace, using your GitHub account.  
+This IDE should be sufficient for most use cases.
 
 To open it, enter the main forked repository page, click **Code**, go to the **Codespaces** tab,
 and click the newly created Codespace (should have a random name).
 
-It can take a few minutes for the Codespace to be initialized.  
+It can take up to a few minutes for the Codespace to be fully initialized.  
+This is a one-time process that's done only at the first time you open a Codespace.
 
-Then, once your Codespace is ready, you will be redirected to the web-based IDE, where you can start working.
+Once the initialization is completed and your Codespace is ready, you will be redirected to the IDE, where you can start your development.
 
 ![Connecting to the Codespace (browser)](../doc_imgs/tutorials/tut-setup-dev-codespace/open-codespace-in-browser.gif)
 *Connecting to the Codespace (browser)*
 
 #### Visual Studio Code (local)
-In order to connect to your Codespace from a local VSCode editor, you will need to install the official [GitHub Codespaces extension](https://marketplace.visualstudio.com/items?itemName=GitHub.Codespaces).
+In order to connect to your Codespace from a local Visual Studio Code editor, you will need to install the official [GitHub Codespaces extension](https://marketplace.visualstudio.com/items?itemName=GitHub.Codespaces).
 
 For a complete installation & configuration tutorial, refer to the official "[Using GitHub Codespaces in your local development environment](https://docs.github.com/en/Codespaces/developing-in-Codespaces/using-github-Codespaces-in-visual-studio-code)" article by GitHub.  
 (You can skip the "Creating a Codespace in VS Code" section, as we've already created a Codespace.)
