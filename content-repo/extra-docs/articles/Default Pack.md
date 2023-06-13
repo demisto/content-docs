@@ -49,16 +49,22 @@ Finally, the playbook generates an investigation report and closes the incident.
   
 
 ### Layout
+![](https://github.com/demisto/content-docs/blob/master/docs/doc_imgs/reference/default%20layout%201.png?raw=true)
 
 The layout is built in a way that would fit any type of incident by using a dynamic section that dynamically loads the fields you’ve mapped for that incident type.
 
 If you haven’t mapped any fields, you will see them in the “Unmapped Fields” section.
+
+![](https://github.com/demisto/content-docs/blob/master/docs/doc_imgs/reference/default%20layout%202.png?raw=true)
 
 Additionally, the layout provides buttons for the user to tag indicators as benign or malicious for later use in an EDL.
 For example, you may want to tag malicious indicators as "mal", or benign indicators as "safe". The Default layout allows you to make use of these tags by using the buttons that correspond to the indicators you want to tag.
 Note: Tagging the indicators does not automatically allow or block them. Instead, tagging indicators can be used in conjunction with an External Dynamic List and the Generic Export Indicators Service integration. You can read more about it by [installing the pack](https://cortex.marketplace.pan.dev/marketplace/details/EDL/) from Marketplace and reading the integration documentation.
 
 The layout also provides buttons for checking whether an IP is private or public, and whether a domain is internal or external. These buttons make use of new scripts that utilize Cortex XSOAR Lists for centralized management of that data. 
+
+![](https://github.com/demisto/content-docs/blob/master/docs/doc_imgs/reference/default%20layout%203.png?raw=true)
+
 
 **Note:** The aforementioned lists should be modified by the user to function correctly. The *InternalDomains* list should include the internal domains and/or subdomains of the organization, and the *PrivateIPs* should include any IP addresses or IP ranges in CIDR notation that are considered as private in the organization, along with optional tags.  If needed, the user can create new lists and use them with the scripts instead.
 
@@ -70,7 +76,7 @@ The “Utilities” tab provides a collection of the most common scripts an anal
 As explained in the different sections, some buttons require scripts from complimentary packs which are free to install from Marketplace.
 This tab may be useful if the analyst needs to base64 decode a string, list the redirects for a given URL, ping a host on the network, etc.
 
-
+![](https://github.com/demisto/content-docs/blob/master/docs/doc_imgs/reference/default%20layout%204.png?raw=true)
 
 ## How To Use
 
