@@ -63,14 +63,13 @@ Note: Tagging the indicators does not automatically allow or block them. Instead
 
 The layout also provides buttons for checking whether an IP is private or public, and whether a domain is internal or external. These buttons make use of new scripts that utilize Cortex XSOAR Lists for centralized management of that data. 
 
-![](https://github.com/demisto/content-docs/blob/master/docs/doc_imgs/reference/default%20layout%203.png?raw=true)
-
-
 **Note:** The aforementioned lists should be modified by the user to function correctly. The *InternalDomains* list should include the internal domains and/or subdomains of the organization, and the *PrivateIPs* should include any IP addresses or IP ranges in CIDR notation that are considered as private in the organization, along with optional tags.  If needed, the user can create new lists and use them with the scripts instead.
 
 The Default layout aims to make it as easy as possible for an analyst to investigate an incident. This is why it makes use of dynamic sections (sections that update dynamically by running scripts behind the scenes) and buttons.
 
 The "Investigation" tab displays related assets and indicators from the incident. If mapped, information like "Source IP" or "Detected Endpoints" will show up in that tab, along with the available buttons. In addition, any indicator found throughout the incident will show up in the Indicators section, and could be selected and tagged for allowing or blocking using an EDL.
+
+![](https://github.com/demisto/content-docs/blob/master/docs/doc_imgs/reference/default%20layout%203.png?raw=true)
 
 The “Utilities” tab provides a collection of the most common scripts an analyst may use - from data manipulation scripts and networking tools to Cortex XSOAR debugging utilities. 
 As explained in the different sections, some buttons require scripts from complimentary packs which are free to install from Marketplace.
