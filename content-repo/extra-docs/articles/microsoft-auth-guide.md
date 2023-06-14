@@ -41,6 +41,18 @@ To start the authentication process, go to the integration's detailed instructio
 
 
 ## Self Deployed Application
+
+### Using National Cloud
+
+- To see which integrations support natively National Clouds,See the [table below.](https://xsoar.pan.dev/docs/reference/articles/microsoft-integrations---authentication#supported-authentication-flows-for-microsoft-integrations) 
+  - For Microsoft Azure integrations, select the appropriate cloud using the *Azure Cloud* parameter.
+  - For Microsoft Defender, select the appropriate cloud using the *Endpoint Type* parameter.
+  - For using the self-deployment option, select the *Custom* option and follow the instructions below.
+
+- Some of the Cortex XSOAR-Microsoft integrations support the deployment of national clouds through the self-deployed
+ authorization flow. For more information about Microsoft National Clouds, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/deployments).
+ In order to use a national cloud, change the *Server URL* parameter to the corresponding address of the national cloud you are using.
+
 ### Client Credentials
 To use a self-configured Azure application, you need to add a new Azure App Registration in the Azure Portal. 
 
@@ -76,17 +88,6 @@ To configure a Microsoft integration that uses this authorization flow with a se
 6. Enter your redirect URI in the *Redirect URI* parameter field.
 7. Save the instance.
 8. Run the `!<integration command prefix>-generate-login-url` command in the War Room and follow the instructions. For example, for Microsoft Graph User: `!msgraph-user-generate-login-url`.
-
-### Using National Cloud
-
-- To see which integrations support natively National Clouds,See the [table below.](https://xsoar.pan.dev/docs/reference/articles/microsoft-integrations---authentication#supported-authentication-flows-for-microsoft-integrations) 
-  - For Microsoft Azure integrations, select the appropriate cloud using the *Azure Cloud* parameter.
-  - For Microsoft Defender, select the appropriate cloud using the *Endpoint Type* parameter.
-  - For using the self-deployment option, select the *Custom* option and follow the instructions below.
-
-- Some of the Cortex XSOAR-Microsoft integrations support the deployment of national clouds through the self-deployed
- authorization flow. For more information about Microsoft National Clouds, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/deployments).
- In order to use a national cloud, change the *Server URL* parameter to the corresponding address of the national cloud you are using.
 
 ### Device Code Flow
 Some of the Cortex XSOAR-Microsoft integrations use the [device code flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code).
