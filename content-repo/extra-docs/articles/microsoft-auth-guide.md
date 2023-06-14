@@ -75,7 +75,14 @@ To configure a Microsoft integration that uses this authorization flow with a se
 5. Enter your tenant ID in the *Token* parameter field.
 6. Enter your redirect URI in the *Redirect URI* parameter field.
 7. Save the instance.
-8. Run the `!<integration command prefix>-generate-login-url` command in the War Room and follow the instructions. For example, for Microsoft Graph User: `!msgraph-user-generate-login-url`.
+8. Run the `!<integration command prefix>-generate-login-url` command in the War Room and follow the instructions:
+    >1. Click on the [login URL]() to sign in and grant Cortex XSOAR permissions for your Azure Service Management.
+    You will be automatically redirected to a link with the following structure:
+    ```REDIRECT_URI?code=AUTH_CODE&session_state=SESSION_STATE```
+    >2. Copy the `AUTH_CODE` (without the `code=` prefix, and the `session_state` parameter)
+    and paste it in your instance configuration under the *Authorization code* parameter.
+9. Save the instance.
+10. Run the `!<integration command prefix>-auth-test` command. A 'Success' message should be printed to the War Room.
 
 #### Using National Cloud
 Some of the Cortex XSOAR-Microsoft integrations support the deployment of national clouds through the self-deployed
