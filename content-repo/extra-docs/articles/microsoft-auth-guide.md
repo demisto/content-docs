@@ -68,7 +68,7 @@ Some of the Cortex XSOAR-Microsoft integrations (e.g., Azure Sentinel) require a
 
 To configure a Microsoft integration that uses this authorization flow with a self-deployed Azure application:
 
-1. Make sure the needed permissions are granted for the app registration, e.g. for Microsoft Graph User: API/Permission name `Directory.AccessAsUser.All` of type `Delegated`.
+1. Make sure the needed permissions are granted for the app registration, e.g., for Microsoft Graph User: API/Permission name `Directory.AccessAsUser.All` of type `Delegated`.
 2. The Redirect URI can direct any web application that you wish to receive responses from Azure AD. If you are not sure what to set, you can use `https://localhost`. 
 3. Enter your client ID in the *ID* parameter field. 
 4. Enter your client secret in the *Key* parameter field.
@@ -80,13 +80,13 @@ To configure a Microsoft integration that uses this authorization flow with a se
 ### Using National Cloud
 
 - To see which integrations support natively National Clouds,See the [table below.](https://xsoar.pan.dev/docs/reference/articles/microsoft-integrations---authentication#supported-authentication-flows-for-microsoft-integrations) 
-  - For Microsoft Azure integrations select the appropriate cloud using the *Azure Cloud* parameter.
-  - For Microsoft Defender select the appropriate cloud using the *Endpoint Type* parameter.
-  - For using self-deployment option please select the *Custom* option and follow the instructions below.
+  - For Microsoft Azure integrations, select the appropriate cloud using the *Azure Cloud* parameter.
+  - For Microsoft Defender, select the appropriate cloud using the *Endpoint Type* parameter.
+  - For using the self-deployment option, select the *Custom* option and follow the instructions below.
 
 - Some of the Cortex XSOAR-Microsoft integrations support the deployment of national clouds through the self-deployed
  authorization flow. For more information about Microsoft National Clouds, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/deployments).
- In order to use a national cloud, change the *URL* parameter to the corresponding address of the national cloud you are using.
+ In order to use a national cloud, change the *Server URL* parameter to the corresponding address of the national cloud you are using.
 
 ### Device Code Flow
 Some of the Cortex XSOAR-Microsoft integrations use the [device code flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code).
@@ -147,7 +147,7 @@ After you a redirected to the next page, in the **Overview** tab you will find y
    2. In the **Redirect URI (optional)** field select **Web** and type a name (you can enter an arbitrary name). In this example we use *https<nolink\>://xsoar.* 
 
        ![reg-app](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/reg-app.png)
-   3. Click **Register.**
+   3. Click **Register**.
    
         You can see the Essential information here: 
         
@@ -193,11 +193,11 @@ After you a redirected to the next page, in the **Overview** tab you will find y
    2. Copy the ***AUTH_CODE*** (without the "code=" prefix). This value must be used in the MS Graph User in Cortex XSOAR integration in the **Authorization Code** field.
 5. Add the information to the instance in Cortex XSOAR by going to Settings>Integrations>Microsoft Graph User>Add Instance.
 
-   1. In the ***ID*** parameter field, type the client ID.
-   2. in the ***Token*** parameter field, type the tenant ID.
-   3. In the ***Key*** parameter field, type your client secret.
+   1. In the **ID** parameter field, type the client ID.
+   2. in the **Token** parameter field, type the tenant ID.
+   3. In the **Key** parameter field, type your client secret.
    4. Click the **Use a self-deployed Azure application** checkbox.
-   5. In the ***Redirect URI*** field, type the redirect URI we are entering at the Azure portal.
+   5. In the **Redirect URI** field, type the redirect URI we are entering at the Azure portal.
    6. In the **Authorization code for self-deployed mode - received from the authorization step**, type the code that was generated in 4.2. 
    7. Save the integration settings and test the setup by running the *!msgraph-user-test* command from the Cortex XSOAR CLI.
 
