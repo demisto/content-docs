@@ -831,9 +831,9 @@ Currently, the pack does not support the following features:
 
 ## Migration Guide from Dev-Prod to CI/CD
 
-This guide will help you migrate from the Dev-Prod environment to the CI/CD environment. In the process, you will need to download all your custom content from the Prod environment and also to delete some types of content from the Prod environment, to avoid conflicts.
+This guide will help you migrate from the Dev-Prod environment to the CI/CD environment. In the process, you will need to download all your custom content from the Prod environment and also to delete some types of content from the Prod environment to avoid conflicts.
 
-1. **Download by the `demisto-sdk` the custom content from the Prod environment.**
+1. Use the `demisto-sdk` to download the custom content from the Prod environment.
 
    Run `demisto-sdk download` with the following flags:
     - `-a` - to download all the custom content.
@@ -847,34 +847,34 @@ This guide will help you migrate from the Dev-Prod environment to the CI/CD envi
 
    Follow the on-screen instructions by typing the name of the content pack, metadata, description, type of pack, category, author, email address, tags, integration, etc.
 
-   This will create a new folder named *Packs* (if not already exists), and inside it, a folder with the name of the pack you specified. Inside the pack folder, you will find the all content items you downloaded.
+   This will create a new folder named *Packs* (if it does not already exist), and inside it, a folder with the name of the pack you specified. Inside the pack folder, you will find the all content items you downloaded.
    **NOTE:** Make sure that all your content items are downloaded.
-2. **Run the `Delete Custom Content` playbook, to delete some of the content items.**
+2. Run the **Delete Custom Content** playbook, to delete some of the content items.
 
-   We need to delete some types of content items to be able to upload the content via the CI/CD process.
+   You need to delete the following types of content items to be able to upload the content via the CI/CD process:
 
-   The following content items need to be deleted:
 
    Playbooks, Scripts, Layouts, Classifiers, Mappers, Incident Types and Incident Fields.
 
    Inputs:
 
-   The playbook has one input: `dry_run`, which is a boolean. If set to `true`, the playbook will only print the content items that will be deleted. If set to `false`, the playbook will delete the content items. by default, the input is set to `true`.
+   The playbook has one input: `dry_run`, which is a Boolean. If set to `true`, the playbook will only print the content items that will be deleted. If set to `false`, the playbook will delete the content items. By default, the input is set to `true`.
 
-   To run the playbook, follow these steps:
-    - In Cortex XSOAR platform, go to **Incidents**.
-    - Click **New Incident**.
-    - Enter a name for the incident.
-    -  From the Playbook drop down list, choose **Delete Custom Content**.
-    - Click **Create New Incident** to run the playbook.
-    - Go into the incident to the **Work Plan** tab.
-    - In the **Results** section of the **Delete Content** task, you will see the content items that will be deleted.
-    - **IMPORTANT:** Make sure that the content items that will be deleted are downloaded in the previous step.
-    - Change the `dry_run` input to `false` and run the playbook again.
-3. (Optional) Add **Server Configuration** only if you have custom Integrations.
-   - In Cortex XSOAR platform, go to **Settings** > **About** > **Troubleshooting**.
-   - Click **Add Server Configuration**.
-   - In the **Key** field, enter `allow.name.override.propagation`.
-   - In the **Value** field, enter `true`.
-   - Click **Save**.
-4. Now you can use the **CI/CD process** to upload the content to the Cortex XSOAR platform.
+   To run the playbook:
+    1. In the Cortex XSOAR platform, go to **Incidents**.
+    2. Click **New Incident**.
+    3. Enter a name for the incident.
+    4.  From the Playbook drop down list, choose **Delete Custom Content**.
+    5.  Click **Create New Incident** to run the playbook.
+    6. Go into the incident to the **Work Plan** tab.
+    7. In the **Results** section of the **Delete Content** task, you will see the content items that will be deleted.
+
+       **IMPORTANT:** Make sure that the content items that will be deleted are downloaded in the previous step.
+    8. Change the *dry_run* input to `false` and run the playbook again.
+3. (Optional) Add a **Server Configuration** only if you have custom Integrations.
+   1. In the Cortex XSOAR platform, go to **Settings** > **About** > **Troubleshooting**.
+   2. Click **Add Server Configuration**.
+   3. In the **Key** field, enter `allow.name.override.propagation`.
+   4. In the **Value** field, enter `true`.
+   5. Click **Save**.
+Now you can use the **CI/CD process** to upload the content to the Cortex XSOAR platform.
