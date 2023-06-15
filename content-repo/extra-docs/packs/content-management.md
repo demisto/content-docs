@@ -830,22 +830,38 @@ Currently, the pack does not support the following features:
 
 
 ## Migration Guide from Dev-Prod to CI/CD
+
+This guide will help you migrate from the Dev-Prod environment to the CI/CD environment. In the process, you will need to download all your custom content from the Prod environment and also to delete some types of content from the Prod environment, to avoid conflicts.
+
 1. **Download by the `demisto-sdk` the custom content from the Prod environment.**
+
    Run `demisto-sdk download` with the following flags:
     - `-a` - to download all the custom content.
     - `-o <output_path>` - to specify the output path.
     - (Optional) `--init` - to create a directory structure for the content.
     - (Optional) `--run-format` - to format the code.
+
    For example: 
+
    `demisto-sdk download -a -o /Users/user/CustomContent --init --run-format`
+
    Follow the on-screen instructions by typing the name of the content pack, metadata, description, type of pack, category, author, email address, tags, integration, etc.
+
    This will create a new folder named *Packs* (if not already exists), and inside it, a folder with the name of the pack you specified. Inside the pack folder, you will find the all content items you downloaded.
    **NOTE:** Make sure that all your content items are downloaded.
 2. **Run the `Delete Custom Content` playbook, to delete some of the content items.**
+
    We need to delete some types of content items to be able to upload the content via the CI/CD process.
+
    The following content items need to be deleted:
+
    Playbooks, Scripts, Layouts, Classifiers, Mappers, Incident Types and Incident Fields.
-   The playbook take one input, `dry_run`, which is a boolean. If set to `true`, the playbook will only print the content items that will be deleted. If set to `false`, the playbook will delete the content items. by default, the input is set to `true`.
+
+   Inputs:
+
+   The playbook has one input: `dry_run`, which is a boolean. If set to `true`, the playbook will only print the content items that will be deleted. If set to `false`, the playbook will delete the content items. by default, the input is set to `true`.
+
+   To run the playbook, follow these steps:
     - In Cortex XSOAR platform, go to **Incidents**.
     - Click **New Incident**.
     - Enter a name for the incident.
