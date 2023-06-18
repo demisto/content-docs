@@ -869,11 +869,10 @@ If you have custom Integrations, after the first upload by the CI/CD you may nee
     - Click **Create New Incident** to run the playbook.
     - Go into the incident to the **Work Plan** tab.
     - In the **Results** section of the **Delete Content** task, you will see the content items that will be deleted.
-
-       :::caution
-       Make sure that the content items that will be deleted are downloaded in the previous step.
-       :::
-    8. Change the *dry_run* input to `false` and run the playbook again.
+        :::caution
+        Make sure that the content items that will be deleted are downloaded in the previous step.
+        :::
+    - Change the *dry_run* input to `false` and run the playbook again.
 3. (Optional) Add a **Server Configuration** only if you have custom Integrations.
    - In the Cortex XSOAR platform, go to **Settings** > **About** > **Troubleshooting**.
    - Click **Add Server Configuration**.
