@@ -854,6 +854,7 @@ If you have custom Integrations, after the first upload by the CI/CD you may nee
    This will create a new folder named *Packs* (if it does not already exist), and inside it, a folder with the name of the pack you specified. Inside the pack folder, you will find the all content items you downloaded.
 
    **NOTE:** Make sure that all your content items are downloaded.
+
 2. Run the **Delete Custom Content** playbook, to delete some of the content items.
 
    You need to delete the following types of content items to be able to upload the content via the CI/CD process:<br/>Playbooks, Scripts, Layouts, Classifiers, Mappers, Incident Types and Incident Fields.
@@ -873,10 +874,12 @@ If you have custom Integrations, after the first upload by the CI/CD you may nee
     Make sure that the content items that will be deleted are downloaded in the previous step.
     :::
     - Change the *dry_run* input to `false` and run the playbook again.
+
 3. (Optional) Add a **Server Configuration** only if you have custom Integrations.
    - In the Cortex XSOAR platform, go to **Settings** > **About** > **Troubleshooting**.
    - Click **Add Server Configuration**.
    - In the **Key** field, enter `allow.name.override.propagation`.
    - In the **Value** field, enter `true`.
    - Click **Save**.
+
 4. Now you can use the **CI/CD process** to upload the content to the Cortex XSOAR platform.
