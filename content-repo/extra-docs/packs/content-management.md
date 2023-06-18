@@ -856,10 +856,10 @@ If you have custom Integrations, after the first upload by the CI/CD you may nee
    **NOTE:** Make sure that all your content items are downloaded.
 2. Run the **Delete Custom Content** playbook, to delete some of the content items.
 
-   You need to delete the following types of content items to be able to upload the content via the CI/CD process:<br>Playbooks, Scripts, Layouts, Classifiers, Mappers, Incident Types and Incident Fields.
+   You need to delete the following types of content items to be able to upload the content via the CI/CD process:</br>Playbooks, Scripts, Layouts, Classifiers, Mappers, Incident Types and Incident Fields.
 
    **Inputs:**  
-   The playbook has one input: `dry_run`, which is a Boolean.<br>If set to `true`, the playbook will only print the content items that will be deleted.<br>If set to `false`, the playbook will delete the content items.<br>By default, the input is set to `true`.
+   The playbook has one input: `dry_run`, which is a Boolean.</br>If set to `true`, the playbook will only print the content items that will be deleted.</br>If set to `false`, the playbook will delete the content items.</br>By default, the input is set to `true`.
 
    To run the playbook:
     1. In the Cortex XSOAR platform, go to **Incidents**.
