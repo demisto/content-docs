@@ -879,4 +879,4 @@ If you have custom Integrations, after the first upload by the CI/CD you may nee
    - In the **Key** field, enter `allow.name.override.propagation`.
    - In the **Value** field, enter `true`.
    - Click **Save**.
-Now you can use the **CI/CD process** to upload the content to the Cortex XSOAR platform.
+4. Now you can use the **CI/CD process** to upload the content to the Cortex XSOAR platform.
