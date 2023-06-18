@@ -850,6 +850,7 @@ This guide will help you migrate from the Dev-Prod environment to the CI/CD envi
    Follow the on-screen instructions by typing the name of the content pack, metadata, description, type of pack, category, author, email address, tags, integration, etc.
 
    This will create a new folder named *Packs* (if it does not already exist), and inside it, a folder with the name of the pack you specified. Inside the pack folder, you will find the all content items you downloaded.
+
    **NOTE:** Make sure that all your content items are downloaded.
 2. Run the **Delete Custom Content** playbook, to delete some of the content items.
 
