@@ -833,6 +833,8 @@ Currently, the pack does not support the following features:
 
 This guide will help you migrate from the Dev-Prod environment to the CI/CD environment. In the process, you will need to download all your custom content from the Prod environment and also to delete some types of content from the Prod environment to avoid conflicts.
 
+**Note:** If you have custom Integrations, after the first upload by the CI/CD you may need to reconfigure the Mappers, Classifier and Incident type fields in the integrations instances.
+
 1. Use the `demisto-sdk` to download the custom content from the Prod environment.
 
    Run `demisto-sdk download` with the following flags:
@@ -853,11 +855,9 @@ This guide will help you migrate from the Dev-Prod environment to the CI/CD envi
 
    You need to delete the following types of content items to be able to upload the content via the CI/CD process:
 
-
    Playbooks, Scripts, Layouts, Classifiers, Mappers, Incident Types and Incident Fields.
 
-   Inputs:
-
+   **Inputs:**
    The playbook has one input: `dry_run`, which is a Boolean. If set to `true`, the playbook will only print the content items that will be deleted. If set to `false`, the playbook will delete the content items. By default, the input is set to `true`.
 
    To run the playbook:
