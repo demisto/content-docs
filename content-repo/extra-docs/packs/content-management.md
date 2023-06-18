@@ -862,22 +862,22 @@ If you have custom Integrations, after the first upload by the CI/CD you may nee
    The playbook has one input: `dry_run`, which is a Boolean.<br/>If set to `true`, the playbook will only print the content items that will be deleted.<br/>If set to `false`, the playbook will delete the content items.<br/>By default, the input is set to `true`.
 
    To run the playbook:
-    1. In the Cortex XSOAR platform, go to **Incidents**.
-    2. Click **New Incident**.
-    3. Enter a name for the incident.
-    4.  From the Playbook drop down list, choose **Delete Custom Content**.
-    5.  Click **Create New Incident** to run the playbook.
-    6. Go into the incident to the **Work Plan** tab.
-    7. In the **Results** section of the **Delete Content** task, you will see the content items that will be deleted.
+    - In the Cortex XSOAR platform, go to **Incidents**.
+    - Click **New Incident**.
+    - Enter a name for the incident.
+    - From the Playbook drop down list, choose **Delete Custom Content**.
+    - Click **Create New Incident** to run the playbook.
+    - Go into the incident to the **Work Plan** tab.
+    - In the **Results** section of the **Delete Content** task, you will see the content items that will be deleted.
 
        :::caution
        Make sure that the content items that will be deleted are downloaded in the previous step.
        :::
     8. Change the *dry_run* input to `false` and run the playbook again.
 3. (Optional) Add a **Server Configuration** only if you have custom Integrations.
-   1. In the Cortex XSOAR platform, go to **Settings** > **About** > **Troubleshooting**.
-   2. Click **Add Server Configuration**.
-   3. In the **Key** field, enter `allow.name.override.propagation`.
-   4. In the **Value** field, enter `true`.
-   5. Click **Save**.
+   - In the Cortex XSOAR platform, go to **Settings** > **About** > **Troubleshooting**.
+   - Click **Add Server Configuration**.
+   - In the **Key** field, enter `allow.name.override.propagation`.
+   - In the **Value** field, enter `true`.
+   - Click **Save**.
 Now you can use the **CI/CD process** to upload the content to the Cortex XSOAR platform.
