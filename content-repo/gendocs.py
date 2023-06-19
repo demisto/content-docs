@@ -999,7 +999,8 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
         # to avoid cases that in local dev someone might checkin the modifed pack-docs.md we do this only if explicityl asked for or in CI env
         insert_approved_tags_and_usecases()
     # To avoid updating on preview website (non-master branches) since we generate only 20 reference pages (and links) for each category.
-    if os.getenv('CURRENT_BRANCH') == 'master':
+    # And make sure 'GCP_SERVICE_ACCOUNT' env is set (to avoid forked repos and to enable local running).
+    if os.getenv('CURRENT_BRANCH') == 'master' and os.getenv('GCP_SERVICE_ACCOUNT'):
         print(f"Writing {len(DOCS_LINKS_JSON)} links into contentItemsDocsLinks.json")
         update_docs_link_file(create_service_account_file().name, json.dumps(DOCS_LINKS_JSON, indent=4))
 
