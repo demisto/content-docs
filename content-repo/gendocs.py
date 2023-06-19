@@ -108,7 +108,7 @@ def create_service_account_file():
     return service_account_file
 
 
-def update_contributors_file(service_account_file, list_links):
+def update_docs_link_file(service_account_file, list_links):
     """
         Updates the contentItemsDocsLinks json file.
         Args:
@@ -791,7 +791,7 @@ def add_deprecated_info(content_dir: str, deprecated_article: str, deprecated_in
     deperecated_json_file = f'{assets_dir}/{os.path.basename(deprecated_article.replace(".md", ".json"))}'
     with open(deperecated_json_file, 'w') as f:
         json.dump({
-            'description': 'Generated machine readable doc of deprecated content items',
+            'description': 'Generated machine readable doc of deprecaed content items',
             'integrations': deprecated_integrations,
             'scripts': deprecated_automations,
             'playbooks': deprecated_playbooks
@@ -998,9 +998,10 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     if os.getenv('UPDATE_PACK_DOCS') or os.getenv('CI'):
         # to avoid cases that in local dev someone might checkin the modifed pack-docs.md we do this only if explicityl asked for or in CI env
         insert_approved_tags_and_usecases()
-    if os.getenv('UPDATE_TOP_CONTRIBS') or os.getenv('CI'):
-        print("Writing json links into contentItemsDocsLinks.json")
-        update_contributors_file(create_service_account_file().name, json.dumps(DOCS_LINKS_JSON, indent=4))
+    # To avoid updating on preview website (non-master branches) since we generate only 20 reference pages (and links) for each category.
+    if os.getenv('CURRENT_BRANCH') == 'master':
+        print(f"Writing {len(DOCS_LINKS_JSON)} links into contentItemsDocsLinks.json")
+        update_docs_link_file(create_service_account_file().name, json.dumps(DOCS_LINKS_JSON, indent=4))
 
 
 if __name__ == "__main__":
