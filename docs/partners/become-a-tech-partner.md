@@ -88,7 +88,7 @@ We recommend your technical team review the docs on this site, and the following
 - Our [GitHub Content repository](https://github.com/demisto/content)
 - Cortex XSOAR [Documentation](https://docs.paloaltonetworks.com/cortex/cortex-xsoar.html)
 - Cortex XSOAR [Installation Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/installation.html)
-- Our [Slack channel](https://www.demisto.com/community/) #demisto-developers
+- Our [Slack channel](https://start.paloaltonetworks.com/join-our-slack-community) #demisto-developers
 - Cortex XSOAR [Concepts, and Terminology](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/cortex-xsoar-overview/cortex-xsoar-concepts)
 - Cortex XSOAR [integration video tutorial](https://youtu.be/bDntS6biazI)
 

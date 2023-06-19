@@ -6,7 +6,7 @@ title: Getting Started Guide
 This guide will provide you with some pointers to jumpstart your development journey.  
 After reading it, you’ll have a starting point for creating new content for the Cortex XSOAR platform.  
 
-If you have any questions or need support, feel free to reach out to us on the `#demisto-developers` channel on our [Slack DFIR Community](https://www.demisto.com/community/).  
+If you have any questions or need support, feel free to reach out to us on the `#demisto-developers` channel on our [Slack DFIR Community](https://start.paloaltonetworks.com/join-our-slack-community).  
 
 If you're a Technology Partner (or interested in becoming one), you can contact us via the [Cortex XSOAR Alliance Email](mailto:soar.alliances@paloaltonetworks.com).
  

@@ -9,7 +9,7 @@ Content can be either partner or community supported, and can be either [free or
 
 All content (except for paid content packs) is open source, and is hosted on the [Cortex XSOAR Content GitHub Repository](https://github.com/demisto/content), licensed under the [MIT license](https://github.com/demisto/content/blob/master/LICENSE).  
 
-**If you have any questions or need support, feel free to reach out to us on the `#demisto-developers` channel on our [Slack DFIR Community](https://www.demisto.com/community/).**  
+**If you have any questions or need support, feel free to reach out to us on the `#demisto-developers` channel on our [Slack DFIR Community](https://start.paloaltonetworks.com/join-our-slack-community).**  
 :::note
 This article is only for content contributions.
 For documentation contributions, refer to [Documentation Contributions](docs-contrib).  
