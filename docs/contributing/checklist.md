@@ -21,7 +21,7 @@ No matter what you include in your content pack, the pack must include the follo
 - Release Notes (i.e. `Packs/YourPackName/ReleaseNotes/1_0_1.md`): these are required only if you are updating an existing Content pack, not for the first. More information [here](../documentation/release-notes).
 
 :::note
-Use PascalCase (PackName) for the names of the pack and it's entities (integrations, scripts, playbooks, etc.).
+Use PascalCase (e.g. "PackName") for the names of the pack, its directories, and its entities (integrations, scripts, playbooks, etc.).
 :::
 
 

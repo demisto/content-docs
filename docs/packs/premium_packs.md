@@ -18,4 +18,4 @@ In this document we explain step-by-step how to develop paid content for the XSO
    - Implement all feedback/comments that we provide in the pull request.
    - Internal validation process must pass. If the validation process fails, we will update you and explain why it failed.
 5. After we approve your pull request, you can merge the pull request.
-The pack is now officially available for purchase in the XSOAR Marketplace!
+The pack is now officially available to download in the Cortex XSOAR Marketplace!

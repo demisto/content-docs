@@ -41,14 +41,14 @@ After that, the generated environment will be kept in your GitHub account.
 ### Create a New Codespace
 1. [Log in to your GitHub account](https://github.com/login) (if not already logged in).
 2. Enter the [XSOAR Content repository](https://github.com/demisto/content).
-3. Fork the repository to your account:
+3. Fork the repository to your account (see example GIF below):
    1. Click **Fork** at the top right.
    2. Select your account as the owner, and leave the repository name as is.
    3. Keep the **Copy the master branch only** option selected.
    4. Click **Create fork**.
 4. Wait a few seconds for the fork to be created. You will be redirected to your forked repository page.
 5. Create a new branch on your fork, and give it a meaningful name.
-6. Click **Code**, go to the **Codespaces** tab, and click **Create Codespace on \<branch name\>**.
+6. Click **Code**, go to the **Codespaces** tab, and click **Create Codespace on \<branch name\>** (see example GIF below).
 7. A page saying "This Codespace is requesting additional permissions" might appear.  
     If it does, click **Continue without authorizing**.
 8. Click **New Codespace** (this might take a few minutes).
@@ -91,7 +91,8 @@ For a complete installation & configuration tutorial, refer to the official "[Us
 ## Development
 After your IDE is connected to your Codespace, you can start developing your content as you normally would.
 
-You don't need to configure SSH keys or any other credentials, as the Codespace is already authenticated using your GitHub account.
+The environment comes pre-installed with all the required tools and dependencies for developing Cortex XSOAR content, including.  
+Configure SSH keys or any other credentials is also not required, as the Codespace is already authenticated using your GitHub account.
 
 ## Additional Resources
 For additional documentation about GitHub Codespaces, see the official [GitHub Codespaces documentation](https://docs.github.com/en/codespaces).

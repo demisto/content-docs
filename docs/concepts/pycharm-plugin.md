@@ -2,7 +2,7 @@
 id: pycharm-plugin
 title: PyCharm IDE Plugin
 ---
-:::danger
+:::caution
 The PyCharm plugin is no longer supported.  
 Use the [Cortex XSOAR extension for VSCode](./vscode-extension) instead.
 :::
