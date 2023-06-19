@@ -791,7 +791,7 @@ def add_deprecated_info(content_dir: str, deprecated_article: str, deprecated_in
     deperecated_json_file = f'{assets_dir}/{os.path.basename(deprecated_article.replace(".md", ".json"))}'
     with open(deperecated_json_file, 'w') as f:
         json.dump({
-            'description': 'Generated machine readable doc of deprecaed content items',
+            'description': 'Generated machine readable doc of deprecated content items',
             'integrations': deprecated_integrations,
             'scripts': deprecated_automations,
             'playbooks': deprecated_playbooks
