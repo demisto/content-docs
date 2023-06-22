@@ -38,7 +38,7 @@ Before starting to work on a contribution, it is recommended to go over the [Con
 Contribute by creating a fork and opening a pull request on the [Cortex XSOAR Content GitHub repository](https://github.com/demisto/content).  
 Use this method in the following scenarios:
 * You are a Technology Partner contributing with *partner* supported new content.
-* Your contribution is big and contains lots of different parts (integrations, scripts, playbooks, layouts, etc.) that is likely to lead to a complex review process.
+* Your contribution is large and contains lots of different parts (integrations, scripts, playbooks, layouts, etc) that are likely to lead to a complex review process.
 * You are proficient with GitHub.
 
 :::tip
