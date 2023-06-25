@@ -4,12 +4,13 @@ title: Contributing XSOAR Content
 ---
 
 This article describes the contribution process for Cortex XSOAR content.  
-Contributing allows clients / partners who made custom content, enhancements to existing content, and bug fixes, to share them with the community by making them publicly available in the [Cortex XSOAR Marketplace](https://cortex.marketplace.pan.dev/marketplace/).  
+
+Contributing allows clients and partners who made new content, or modified exiting content (enhancements, bug-fixes, etc.), to share their work with the community by making it publicly available in the [Cortex XSOAR Marketplace](https://cortex.marketplace.pan.dev/marketplace/).  
 Content can be XSOAR, partner, or community supported, and can be either [free or paid](../partners/premium-packs#pricing).
 
 All content (except for paid content packs) is open source, and is hosted on the [Cortex XSOAR Content GitHub Repository](https://github.com/demisto/content), licensed under the [MIT license](https://github.com/demisto/content/blob/master/LICENSE).  
 
-**If you have any questions or need support, feel free to reach out to us on the `#demisto-developers` channel on our [Slack DFIR Community](https://start.paloaltonetworks.com/join-our-slack-community).**  
+**If you have any questions or need support, reach out to us on the `#demisto-developers` channel on our [Slack DFIR Community](https://start.paloaltonetworks.com/join-our-slack-community).**  
 :::note
 This article is only for content contributions.
 For documentation contributions, refer to [Documentation Contributions](docs-contrib).  
@@ -22,10 +23,11 @@ Contributions can be either *officially supported* (by Palo Alto Networks, or a 
 Officially supported packs have  stricter quality-control process, and provide an email address or a website of their owner that customers can reach out to (and will be referred to) in case of an issue.
 
 ### Community Supported Packs
-Community supported packs on the other hand, do not have a support contact (customers will be able to ask questions on our [Live Community Forum](https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions)), and will have a less strict quality-control process.
+Community supported packs, do not have a support contact (customers will be able to ask questions on our [Live Community Forum](https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions)), 
+and will have a lesser strict quality-control process (in comparison to officially supported packs).
 
 :::info
-Contributed content for Palo Alto Networks products (e.g., PAN-OS, XDR, etc.) will be adopted and supported by the Cortex XSOAR Content team.  
+Contributed content for Palo Alto Networks products (e.g., PAN-OS, Cortex XDR, etc.) will be adopted and supported by the Cortex XSOAR Content team.  
 :::
 
 ## Contribution Methods
@@ -178,7 +180,9 @@ Stale pull with no response within this timeframe will be closed.
 If after signing the CLA, you still see a message saying it's unsigned on your PR, refer to the [FAQ](../concepts/faq#cla-is-pending-even-though-i-signed-the-agreement) for possible solutions.
 :::
 
-![A message by our bot that will be posted on your pu](../doc_imgs/contributing/content-bot-pr-message.png)
-*A message by our bot that will be posted on your PR*
+<br />
+
+![An example for a message by our bot on a PR](../doc_imgs/contributing/content-bot-pr-message.png)
+*An example for a message by our bot on a PR*
 
 For additional information on how to properly create and manage your pull request, see the dedicated [Pull Request Conventions](../contributing/conventions) article.

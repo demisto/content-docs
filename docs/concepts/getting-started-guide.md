@@ -15,7 +15,7 @@ Cortex XSOAR is a powerful platform with a rich set of features and customizatio
 Because of that, we recommend following these steps, and reading the aforementioned resources before creating custom content:
 1. Understand the [Cortex XSOAR Concepts](../concepts/concepts).
 2. Read the [FAQ](../concepts/faq).
-3. Register to the [Learning Center](http://education.paloaltonetworks.com/learningcenter), and go through the [Product Training section](../partners/become-a-tech-partner#3-take-required-training).
+3. Register to the [Learning Center](http://education.paloaltonetworks.com/learningcenter), and go through the [Product Training section of "Become an XSOAR Partner"](../partners/become-a-tech-partner#3-take-required-training).
 4. For Cortex XSOAR server (non-content) documentations, refer to the [Cortex XSOAR Product Documentation Page](https://docs.paloaltonetworks.com/cortex/cortex-xsoar.html).
 5. Join the [Palo Alto Networks DFIR Slack community](https://start.paloaltonetworks.com/join-our-slack-community), and join the *#demisto-developers* channel.
 6. If you consider publishing your content to the [Cortex XSOAR Marketplace](https://cortex.marketplace.pan.dev/marketplace), read the [contribution article](../contributing/contributing) for additional info.
@@ -30,16 +30,15 @@ To become a Technology Partner, read the "[Become a Technology Partner](../partn
 
 ## Development Environment
 ### Demisto SDK
-Whether you are using the built-in XSOAR IDE, or a full development environment,  we have an official SDK that can help you with your development process.  
-
-The SDK is a command-line tool that can be used to upload, download, lint, validate and run code on Cortex XSOAR (or XSIAM) directly from your operating system shell.  
+Whether you are using the built-in Cortex XSOAR IDE, or a full development environment, we have an official SDK that will help you with your development process.  
+The SDK is a command-line tool that can be used to upload, download, lint, validate and run code on Cortex XSOAR (or XSIAM) directly from your command line.  
 
 For more information, refer to the [demisto-sdk](../concepts/demisto-sdk) article.
 
 
 ### Basic XSOAR Environment
 For creating / modifying content that's for personal use, or for a community contribution,
-the basic [XSOAR IDE](../concepts/xsoar-ide) can be sufficient, and doesn't require setting up a special development environment.
+the basic [Cortex XSOAR IDE](../concepts/xsoar-ide) can be sufficient, and doesn't require setting up a special development environment.
 
 
 ### Full Development Environment
