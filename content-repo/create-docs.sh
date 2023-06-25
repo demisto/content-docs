@@ -155,7 +155,7 @@ echo "$(tail -n +6 CommonServerPython.py)" > CommonServerPython.py
 echo "Installing pipenv..."
 pipenv install
 echo "Generating docs..."
-pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}"
+pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}" -b "${CURRENT_BRANCH}"
 echo "Generating Demisto class and CommonServerPython docs..."
 pipenv run ./gen_pydocs.py -t "${TARGET_DIR}"
 if [[ "$CURRENT_BRANCH" != "master" && "$CURRENT_BRANCH" != *"gen-top-contrib"* ]]; then
