@@ -894,6 +894,7 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-t", "--target", type=os.path.normpath, help="Target dir to generate docs at.", required=True)
     parser.add_argument("-d", "--dir", type=os.path.normpath, help="Content repo dir.", required=True)
+    parser.add_argument("-b", "--branch", help="Content repo branch.", required=True)
     args = parser.parse_args()
     print(f'Using multiprocess pool size: {POOL_SIZE}')
     print('Starting MDX server...')
@@ -1000,11 +1001,11 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
         insert_approved_tags_and_usecases()
     # To avoid updating on preview website (non-master branches) since we generate only 20 reference pages (and links) for each category.
     # And make sure 'GCP_SERVICE_ACCOUNT' env is set (to avoid forked repos and to enable local running).
-    if os.getenv('CURRENT_BRANCH') == 'master' and os.getenv('GCP_SERVICE_ACCOUNT'):
+    if args.branch == 'master' and os.getenv('GCP_SERVICE_ACCOUNT'):
         print(f"Writing {len(DOCS_LINKS_JSON)} links into contentItemsDocsLinks.json")
         update_docs_link_file(create_service_account_file().name, json.dumps(DOCS_LINKS_JSON, indent=4))
     else:
-        print(f"!@#$%^&*() {os.getenv('CURRENT_BRANCH')}")
+        print(f"!@#$%^&*() {args.branch}")
         print(f"!@#$%^&*(){os.getenv('GCP_SERVICE_ACCOUNT') is not None}")
 
 
