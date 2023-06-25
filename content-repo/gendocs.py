@@ -1003,6 +1003,9 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     if os.getenv('CURRENT_BRANCH') == 'master' and os.getenv('GCP_SERVICE_ACCOUNT'):
         print(f"Writing {len(DOCS_LINKS_JSON)} links into contentItemsDocsLinks.json")
         update_docs_link_file(create_service_account_file().name, json.dumps(DOCS_LINKS_JSON, indent=4))
+    else:
+        print(f"!@#$%^&*() {os.getenv('CURRENT_BRANCH')}")
+        print(f"!@#$%^&*(){os.getenv('GCP_SERVICE_ACCOUNT') is not None}")
 
 
 if __name__ == "__main__":
