@@ -83,7 +83,7 @@ In order to connect to your Codespace from a local Visual Studio Code editor, yo
 For a complete installation & configuration tutorial, refer to the official "[Using GitHub Codespaces in your local development environment](https://docs.github.com/en/codespaces/developing-in-codespaces/using-github-codespaces-in-visual-studio-code)" article by GitHub.  
 (You can skip the "Creating a Codespace in VS Code" section, as we've already created a Codespace.)
 
-#### Using JetBrains IDEs (PyCharm, IntelliJ IDEA, etc.)
+#### Using JetBrains IDEs (PyCharm, IntelliJ IDEA, etc.) (local)
 In order to connect to your Codespace from a JetBrains IDE, you will need to install and configure [JetBrains Gateway](https://www.jetbrains.com/remote-development/gateway).
 
 For a complete installation & configuration tutorial, refer to the official "[Using GitHub Codespaces in your JetBrains IDE](https://docs.github.com/en/codespaces/developing-in-codespaces/using-github-codespaces-in-your-jetbrains-ide)" article by GitHub.

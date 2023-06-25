@@ -16,7 +16,7 @@ For documentation contributions, refer to [Documentation Contributions](docs-con
 :::
 
 ## Content Support Types
-Contributions can be either *officially supported* (by Palo Alto Networks, a Technology Partner, or an individual), or *community supported*.  
+Contributions can be either *officially supported* (by Palo Alto Networks, or a Technology Partner), or *community supported*.  
 
 ### Officially Supported Packs
 Officially supported packs have  stricter quality-control process, and provide an email address or a website of their owner that customers can reach out to (and will be referred to) in case of an issue.
@@ -29,7 +29,7 @@ Contributed content for Palo Alto Networks products (e.g., PAN-OS, XDR, etc.) wi
 :::
 
 ## Contribution Methods
-After creating new content to contribute, you must submit your content to Palo Alto Networks. The Cortex XSOAR Content Team will review and approve it before it becomes available to customers.
+After creating new content, in order to contribute it, you will need to submit it for the Cortex XSOAR Content team to review. Once approved, it will become available for all customers to download.
 Before starting to work on a contribution, it is recommended to go over the [Contribution SLA](../contributing/sla) article.
 
 **There are several ways to submit contributions:**
@@ -41,6 +41,10 @@ Use this method in the following scenarios:
 * Your contribution is large and contains lots of different parts (integrations, scripts, playbooks, layouts, etc) that are likely to lead to a complex review process.
 * You are proficient with GitHub.
 
+:::info
+For information about how to set up a development environment, see the dedicated [Set Up Your Dev Environment](../tutorials/tut-setup-dev-setup) tutorial.
+:::
+
 :::tip
 For contributing through GitHub, we recommend to use a GitHub Codespace, which will provide you with a pre-configured ready-to-use development environment.  
 This method is still experimental, but will make the contribution, development, and review processes much easier.  
@@ -49,7 +53,7 @@ For more information and a step-by-step guide, see the dedicated [GitHub Codespa
 :::
 
 ### 2. Cortex XSOAR Marketplace
-Contribute from within Cortex XSOAR's UI using .  
+Contribute from within Cortex XSOAR's UI using the Marketplace.  
 This method is more simple, and doesn't require you to set up a development environment or be familiar with Git.  
 
 We recommend using this method in the following scenarios:
@@ -92,8 +96,7 @@ Carefully review the following guidelines, as they will greatly enhance the like
     The "[demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md)" command will help you create the basic structure.
 5. If you are updating an **existing** content pack, **make you have the latest available version installed before proceeding**.
 6. If you are creating integrations and / or scripts (aka *automations*), make sure that you:
-    * Use the proper [directory structure](../integrations/package-dir).  
-        [demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md) will help you create it.  
+    * Use the proper [directory structure](../integrations/package-dir). [demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md) will help you create it.  
         If working on existing code that doesn't follow this structure, we require converting to this structure (as long as the changes aren't minor), as it allows running linting and unit-tests, and provides a smoother review process.
     * Understand the structure of the [YAML file](../integrations/yaml-file), and the [parameter types](../integrations/parameter-types) within it.
     * Make sure your integration follows our [logo guidelines](../integrations/integration-logo).
@@ -151,25 +154,31 @@ This is on purpose, and should not be changed.
 :::
 
 ### Post-Submission
-After submitting your pull request, sign our [Contributor License Agreement (CLA)](https://github.com/demisto/content/blob/master/docs/cla.pdf), and monitor your pull request.  
+Before the review process begins, it is mandatory for you to complete two steps:
 
-Our Content team will review your code, and might ask questions and request changes.  
+1. Sign our [Contributor License Agreement (CLA)](https://github.com/demisto/content/blob/master/docs/cla.pdf): Please read and sign our CLA.
+2. Fill out the [registration form](https://forms.gle/XDfxU4E61ZwEESSMA).
 
-In order to establish a proper release timeframe for your contribution,
-you are required to respond (and apply the requested changes, if any) within 14 days. Stale pull requests will be closed.
+Once you have created your pull request, an automated comment will be posted on your pull request with a link to the registration form, 
+and a tag of a member of our contribution team who will review your code.  
 
-At some point, when the review process is complete (or close to completion), we'll ask to schedule a meeting for an interactive demo.  
+Once these requirements are fulfilled, our assigned contributions team member will start reviewing your code.  
 
-Prepare for it, and make sure you have a working instance of Cortex XSOAR, with your contributed pack fully configured.  
-Check out our [Contribution Demo Page](../contributing/demo-prep) for additional information.
+During or near the completion of the review process, we may request scheduling a meeting for an interactive demo.  
+Prepare for it, and make sure you have a working instance of Cortex XSOAR, with your contributed pack fully configured and ready to be presented.  
+Check out our [Contribution Demo Page](../contributing/demo-prep) for additional information about the demo process.
 
 :::caution
-As part of the pull request template, you will be asked to fill in the [contribution registration form](https://forms.gle/XDfxU4E61ZwEESSMA).  
-Make sure to do so, as without it, we will not be able to start the review process for your contribution.
+In order to establish a proper release timeframe for your contribution, 
+you are required to respond (and apply requested changes, if any) within 14 days.  
+Stale pull with no response within this timeframe will be closed.
 :::
 
 :::tip
-If after signing the CLA it still shows as unsigned, refer to the [FAQ](../concepts/faq#cla-is-pending-even-though-i-signed-the-agreement) for possible solutions.
+If after signing the CLA, you still see a message saying it's unsigned on your PR, refer to the [FAQ](../concepts/faq#cla-is-pending-even-though-i-signed-the-agreement) for possible solutions.
 :::
 
-For more details on how to properly create and manage your pull request, check out the dedicated [Pull Request Conventions](../contributing/conventions) article.
+![A message by our bot that will be posted on your pu](../doc_imgs/contributing/content-bot-pr-message.png)
+*A message by our bot that will be posted on your PR*
+
+For additional information on how to properly create and manage your pull request, see the dedicated [Pull Request Conventions](../contributing/conventions) article.
