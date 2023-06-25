@@ -59,7 +59,8 @@ const sidebars = {
         "contributing/conventions",
         "contributing/docs-contrib",
         "contributing/marketplace",
-        "contributing/demo-prep"
+        "contributing/demo-prep",
+        "contributing/sla"
       ]
     },
     {
@@ -147,6 +148,7 @@ const sidebars = {
           collapsed: true,
           items: [
             "integrations/feeds",
+            "integrations/event-collectors",
             "integrations/iam-integrations",
             "integrations/powershell-code",
             "integrations/fetching-credentials",
@@ -157,7 +159,9 @@ const sidebars = {
             "integrations/openapi-codegen",
             "integrations/postman-codegen",
             "integrations/code-generator",
-            "integrations/scheduled-commands"
+            "integrations/scheduled-commands",
+            "integrations/yml-from-python-code-gen",
+            "integrations/fetch-incidents-lookback",
           ]
         }
       ]
@@ -196,7 +200,8 @@ const sidebars = {
         "incidents/incident-fields",
         "incidents/incident-jobs",
         "incidents/incident-classification-mapping",
-        "incidents/incident-pre-processing"
+        "incidents/incident-pre-processing",
+        "incidents/incident-lists"
       ]
     },
     {
@@ -204,8 +209,10 @@ const sidebars = {
       label: "Indicators, Fields & Layouts",
       collapsed: true,
       items: [
+        "indicators/indicator-fields",
         "indicators/url-extraction",
-        "indicators/domain-extraction"
+        "indicators/domain-extraction",
+        "indicators/relationships"
       ]
     },
     {
@@ -248,8 +255,7 @@ const sidebars = {
         "partners/private-offer",
         "partners/adopt",
         "partners/certification",
-        "partners/office-hours",
-        "partners/development-partners"
+        "partners/office-hours"
       ],
     },
   ],

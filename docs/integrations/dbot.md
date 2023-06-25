@@ -3,7 +3,7 @@ id: dbot
 title: Reputation and DBotScore
 ---
 
-DBot is the Cortex XSOAR machine learning bot, which ingests information about indicators to determine if they are malicious. Since DBot requires a very specific dataset, you need to format the data according to this article.
+DBot is the Cortex XSOAR machine learning bot, which ingests information about indicators to determine if they are malicious. Since DBot requires a very specific dataset, you must format the data according to this article. As described in the [generic reputation command](./generic-commands-reputation#background-and-motivation) article, when developing an integration that implements a generic reputation command, it is necessary also to create a corresponding DBot score object.
 
 ## Context Format
 ```python
@@ -24,26 +24,37 @@ The DBot score must be at the root level of the context and contain **all** the 
 | Type | The indicator type. Can be: ip, file, email, url, cve, account, cider, domainglob, certificate, or cryptocurrency. | Required |
 | Vendor | The vendor reporting the score of the indicator.| Required |
 | Score | An integer regarding the status of the indicator. See [Score Types](#score-types) below.| Required |
-| Reliability | The reliability of the source providing the intelligence data. See [Reliability Level](#reliability-level) below.| Optional |
+| Reliability | The reliability of the source providing the intelligence data. See [Reliability Level](#reliability-level) below.| Required |
 | Message | Optional message to show an API response. For example, `"Not found"`. | Optional |
 
 ## Reliability Level
-When merging indicators, the reliability of an intelligence-data source influences the reputation of an indicator and the values for
-indicator fields.  
-**NOTE:** The values are case sensitive.
+When merging indicators, the reliability of an intelligence-data source impacts the reputation of an indicator and the values assigned to indicator fields.  
+An integration that outputs a DBotScore object, and hence defines each indicator's reliability, should allow the user to manually configure the default reliability for the generated indicator's DBotScore.  
 
+To achieve this, a *Source Reliability* (named `integration_reliability`) parameter has to be implemented in the YAML file.  
+This parameter is later used to determine the reliability level when creating the DBotScore object.
+
+### Example of Implementing a Reliability Parameter (in an integration's YAML file)
 ``` 
-  A+ - 3rd party enrichment  
-  A - Completely reliable 
-  B - Usually reliable  
-  C - Fairly reliable  
-  D - Not usually reliable  
-  E - Unreliable  
-  F - Reliability cannot be judged  
+- name: integration_reliability
+  display: Source Reliability
+  additionalinfo: Reliability of the source providing the intelligence data.
+  defaultvalue: C - Fairly reliable
+  options:
+  - A+ - 3rd party enrichment
+  - A - Completely reliable
+  - B - Usually reliable
+  - C - Fairly reliable
+  - D - Not usually reliable
+  - E - Unreliable
+  - F - Reliability cannot be judged
+  required: true
+  type: 15
  ```
+ **NOTE:** The values are case sensitive.
 
 ## Score Types
-Dbot uses an integer to represent the reputation of an indicator.
+DBot uses an integer to represent the reputation of an indicator.
 
 | Number | Reputation |
 | --- | --- |

@@ -187,8 +187,8 @@ client = Client(
 
 #### Example - client instance using Basic Authentication
 ```python
-username = demisto.params().get('credentials').get('identifier')
-password = demisto.params().get('credentials').get('password')
+username = demisto.params().get('credentials', {}).get('identifier')
+password = demisto.params().get('credentials', {}).get('password')
 
 # get the service API url
 base_url = urljoin(demisto.params()['url'], '/api/v1')
@@ -417,7 +417,7 @@ def main():
 
 
 ## Unit Tests
-Every integration must have unit tests.
+Every integration command must be covered with a unit test. Unit tests should be documented using Given-When-Then. 
 
 - Unit tests must be in a separate file, which should have the same name as the integration but be appended with `_test.py` for example `HelloWorld_test.py`
 - To mock http requests use [requests_mock](https://requests-mock.readthedocs.io/en/latest/).
@@ -429,6 +429,15 @@ from HelloWorld import Client, say_hello_command, say_hello_over_http_command
 
 
 def test_say_hello():
+    """
+    Given
+            A name to say hello to
+    When
+            Calling say_hello_command
+    Then
+            Make sure the outputs, outputs_prefix and outputs_key_field values are as expected.
+    """
+    
     client = Client(
         base_url="https://test.com", 
         verify=False, 
@@ -449,6 +458,15 @@ def test_say_hello():
 
 
 def test_say_hello_over_http(requests_mock):
+    """
+    Given
+            A name to say hello to
+    When
+            Calling say_hello_over_http_command
+    Then
+            Make sure the outputs, outputs_prefix and outputs_key_field values are as expected.
+    """
+    
     mock_response = {"result": "Hello DBot"}
     requests_mock.get("https://test.com/api/v1/suffix/hello/Dbot", json=mock_response)
 
@@ -472,13 +490,7 @@ def test_say_hello_over_http(requests_mock):
 ```
 
 ## Variable Naming
-When naming variables use the following convention.
-
-### Do this:
-```variable_name```
-
-### Do not do this:
-```variableName```
+When naming variables, use `[snake_case]([url](https://en.wikipedia.org/wiki/Snake_case))`, not `PascalCase` or `camelCase`.
 
 ## Outputs
 Make sure you read and understand [Context and Outputs](context-and-outputs).
@@ -538,15 +550,36 @@ print(formatted_time)
 
 **Note:** If the response returned is in epoch, it is a best practice to convert it to ```%Y-%m-%dT%H:%M:%S```.
 
-## Pagination in integration commands
+## Pagination in Integration Commands
 When working on a command that supports pagination (usually has API parameters like `page` and/or `page size`) with a maximal page size enforced by the API, our best practice is to create a command that will support two different use-cases with the following 3 integer arguments:
 1. `page` 
 2. `page_size` 
 3. `limit` 
 
 **The two use cases** 
-- **Manual Pagination:** The user wants to control the pagination on its own by using the `page` and `page size` arguments. To achieve this, the command will simply pass the `page` and `page size` values on to the API request.
-- **Automatic Pagination:** The user does not want to work with pages, but only with a number of total results. In this case, the `limit` argument will be used to aggregate results by iterating over the necessary pages from the first page until collecting all the needed results. This implies a pagination loop mechanism will be implemented behind the scenes. For example, if the limit value received is 250 and the maximal page size enforced by the API is 100, the command will need to perform 3 API calls (pages 1,2, and 3) to collect the 250 requested results.
+- **Manual Pagination:** - The user wants to control the pagination on its own by using the `page` and `page size` arguments, usually as part of a wrapper script for the command. To achieve this, the command will simply pass the `page` and `page size` values on to the API request. If `limit` argument was also provided, then it will be redundant and should be ignored.
+- **Automatic Pagination:** - Useful when the user prefers to work with the total number of results returned from the playbook task rather than implementing a wrapper script that works with pages. In this case, the `limit` argument will be used to aggregate results by iterating over the necessary pages from the first page until collecting all the needed results. This implies a pagination loop mechanism will be implemented behind the scenes. For example, if the limit value received is 250 and the maximal page size enforced by the API is 100, the command will need to perform 3 API calls (pages 1,2, and 3) to collect the 250 requested results.
+  Note that when a potentially large number of results may be returned, and the user wants to perform filters and/or transformers on them, we still recommend creating a wrapper script for the command for better performance.
+
+**Notes:**
+- **Page Tokens** - In case an API supports page tokens, instead of the more common 'limit' and 'offset'/'skip' as query parameters: 
+  - The arguments that will be implemented are: `limit`, `page_size` and `next_token`.
+  - The retrieved `next_token` should be displayed in human readable output and in the context. It will be a single node in the context, and will be overwritten each command run:
+  ```json
+  {
+    "IntegrationName":
+    {
+        "Object1NextToken": "TOKEN_VALUE",
+        "Object2NextToken": "TOKEN_VALUE",
+        "Objects1": [],
+        "Objects2": []
+    }
+  }
+  ```
+- **Standard argument defaults** - `limit` will have a default of '50' in the YAML. `page_size` should be defaulted in the code to '50', in case only `page` was provided.
+- There should be no maximum value for the `limit` argument. This means that users should be able to retrieve as many records as they need in a single command execution.
+- When an integrated API doesn't support pagination parameters at all - then only `limit` will be applied, and implemented internally in the code. An additional argument will be added to allow the user to retrieve all results by overriding the default `limit`: `all_results`=true. 
+- If API supports only 'limit' and 'offset'/'skip' as query parameters, then all 3 standard XSOAR pagination arguments should be implemented.
 
 ## Credentials
 When working on integrations that require user credentials (such as username/password, API token/key, etc..) the best practice is to use the `credentials` parameter type.
@@ -566,8 +599,8 @@ When working on integrations that require user credentials (such as username/pas
 - **And in the code:**
 ```python
 params = demisto.params()
-username = params.get('credentials').get('identifier')
-password = params.get('credentials').get('password')
+username = params.get('credentials', {}).get('identifier')
+password = params.get('credentials', {}).get('password')
 ```
 - **In demistomock.py:**
 ```python
@@ -656,9 +689,30 @@ The above will create the table seen below:
 
 In the War Room, this is how a table will appear:
 <img width="788" src="/doc_imgs/integrations/50571324-46846e00-0db0-11e9-9888-ddd9dc275541.png"></img>
-
+#
 You may also use ```headerTransform``` to convert the existing keys into formatted headers.
+|This function formats the original data headers (optional).
 
+```python
+t = {'header_1': 'a1', 'header_2': 'b1', 'header_3': 'c1'}
+tableToMarkdown('headerTransform Example', t, headerTransform=underscoreToCamelCase)
+|Header1|Header2|Header3|
+|---|---|---|
+| a1 | b1 | c1 |
+#
+You may also use ```removeNull``` to remove empty columns in the table. Default is False.
+```python
+headers = ['header_1', 'header_2']
+data = {
+    'header_1': 'foo',
+}
+tableToMarkdown('removeNull Example', data, removeNull=True, headers=headers)
+|header_1|
+|---|
+| foo |
+
+You may also use ```metadata``` to add text above the table as a secondary title.
+#
 Use the ```url_keys``` argument to specify a list of keys whose value in the MD table should be a clickable url. This list may contain keys of inner dicts\list of dicts in the data given to the tableToMarkdown function.
 For example, for the following data:
 
@@ -691,7 +745,95 @@ tableToMarkdown('Data Table', d, headers=('id', 'url1', 'result', 'links'),
 The resulted table will be:
 
 ![image](https://user-images.githubusercontent.com/72340690/103922604-a25efb80-511c-11eb-9021-c062226b5001.png)
+#
+Use the ```date_fields``` argument (list) of date fields to format the value to human-readable output.
+```python
+data = [
+    {
+        "docker_image": "demisto/python3",
+        "create_time": '1631521313466'
+    }
+]
+tableToMarkdown('tableToMarkdown date_fields example', data, headers=["docker_image", "create_time"],
+                date_fields=['create_time'])
+|---|---|
+| demisto/python3 | 2021-09-13 08:21:53 |
 
+#
+Use the ```json_transform_mapping``` argument (Dict[str, JsonTransformer]), to map between a header key to the corresponding JsonTransformer.
+```python
+data_with_list = {
+  "Machine Action Id": "5b38733b-ed80-47be-b892-f2ffb52593fd",
+  "MachineId": "f70f9fe6b29cd9511652434919c6530618f06606",
+  "Hostname": "desktop-s2455r9",
+  "Status": "Succeeded",
+  "Creation time": "2022-02-17T08:20:02.6180466Z",
+  "Commands": [
+    {
+      "startTime": null,
+      "endTime": "2022-02-17T08:22:33.823Z",
+      "commandStatus": "Completed",
+      "errors": ["error1", "error2", "error3"],
+      "command": {
+        "type": "GetFile",
+        "params": [
+          {
+            "key": "Path",
+            "value": "test.txt"
+          }
+        ]
+      }
+    },
+    {
+      "startTime": null,
+      "endTime": "2022-02-17T08:22:33.823Z",
+      "commandStatus": "Completed",
+      "errors": [],
+      "command": {
+        "type": "GetFile",
+        "params": [
+          {
+            "key": "Path",
+            "value": "test222.txt"
+          }
+        ]
+      }
+    }
+  ]
+}
+table = tableToMarkdown("tableToMarkdown test", data_with_list,
+            json_transform_mapping={'Commands': JsonTransformer(keys=('commandStatus', 'command'))})
+```
+The above will create the table seen below:
+![img_1.png](img_1.png)
+#
+Use the ```is_auto_json_transform``` argument (bool), to try to auto transform a complex JSON.
+```python
+nested_data_example = {
+  "name": "Active Directory Query",
+  "changelog": {
+    "1.0.4": {
+      "path": "",
+      "releaseNotes": "\n#### Integrations\n##### Active Directory Query v2\nFixed an issue where the ***ad-get-user*** command caused performance issues because the *limit* argument was not defined.\n",
+      "displayName": "1.0.4 - R124496",
+      "released": "2020-09-23T17:43:26Z"
+    }
+  },
+  "nested": {
+    "item1": {
+      "a": 1,
+      "b": 2,
+      "c": 3,
+      "d": 4
+    }
+  }
+}
+table = tableToMarkdown("tableToMarkdown test", nested_data_example,
+                    headers=['name', 'changelog', 'nested'],
+                    is_auto_json_transform=True)
+```
+The above will create the table seen below:
+![img_2.png](img_2.png)
 
 ### demisto.command()
 ```demisto.command()``` is typically used to tie a function to a command in Cortex XSOAR, for example:
@@ -768,7 +910,7 @@ This class is used to return outputs. This object represents an entry in warroom
 |-------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | outputs_prefix    | str    | Should be identical to the prefix in the yml contextPath in yml file. for example:         CortexXDR.Incident                                                                              |
 | outputs_key_field | str    | Primary key field in the main object. If the command returns Incidents, and of the properties of Incident is incident_id, then outputs_key_field='incident_id'                             |
-| outputs           | object | (Optional) The data to be returned and will be set to context. If not set, no data will be added to the context                                                                                                                                          |
+| outputs           | list / dict | (Optional) The data to be returned and will be set to context. If not set, no data will be added to the context                                                                                                                                          |
 | readable_output    | str   | (Optional) markdown string that will be presented in the War Room, should be human readable -  (HumanReadable) - if not set, readable output will be generated via tableToMarkdown function |
 | raw_response      | object | (Optional) must be dictionary, if not provided then will be equal to outputs.  Usually must be the original raw response from the 3rd party service (originally Contents)                  |
 | indicators        | list   | DEPRECATED: use 'indicator' instead.                                                                                                                                                       |
@@ -776,6 +918,7 @@ This class is used to return outputs. This object represents an entry in warroom
 | indicators_timeline | IndicatorsTimeline | Must be an IndicatorsTimeline. used by the server to populate an indicator's timeline.                                                                                       |
 | ignore_auto_extract | bool | If set to **True** prevents the built-in [auto-extract](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-6/cortex-xsoar-admin/manage-indicators/auto-extract-indicators.html) from enriching IPs, URLs, files, and other indicators from the result. Default is **False**.  |
 | mark_as_note | bool |  If set to **True** marks the entry as note. Default is **False**. |
+| relationships | list | A list of `EntityRelationship` objects representing all the relationships of the indicator. |
 | scheduled_command | ScheduledCommand | Manages the way the command result should be polled. |
 
 **Example**
@@ -849,6 +992,32 @@ Will produce an error in the War Room, for example:
 
 <img width="907" src="/doc_imgs/integrations/50571503-ed6b0900-0db4-11e9-8e9e-dc23f5ff403c.png"></img>
 
+### CommandRunner
+
+`CommandRunner` is a class for executing multiple commands, which returns all valid results together with a human readable summary table of successful commands and commands that return errors.
+
+To use this functionality, create a list of commands using the `CommandRunner.Command`, and then call `CommandRunner.run_commands_with_summary(commands)`.
+
+`CommandRunner.Command`:
+|  Arg  |  Type | Description |
+| ------ | -----| --------|
+| `commands`   | str or List[str]   | The command to run. Could be a single command or a list of commands.                                            |
+| `args_lst` | dict or List[Dict]    | The args of the command. If provided in a list and the commands argument is a str, run the command with all the args in the list. If the commands argument is a list, the `args_lst` should be in the same size, and the args should correspond to the same command index.                            |
+| `instance`  | str | (Optional) The instance the command should run |
+| `brand`    | str   | (Optional) The instance the command should run. |
+
+
+**Example**
+```python
+commands = [CommandRunner.Command('command1', {'arg': 'val'},
+            CommandRunner.Command('command2', [{'arg1': 'val2'}, {'arg2': 'val2'}])),
+            CommandRunner.Command(['command3', 'command4'], [{'arg1': 'val2'}, {'arg2': 'val2'}]),
+            CommandRunner.Command('command5', {}, instance='some_instance', brand='some_brand')]
+
+return_results(CommandRunner.run_commands_with_summary(commands))
+```
+
+This returns all the results of all commands, including a human readable summary table.
 
 ### DEPRECATED - demisto.results()
 _Note_: Use `return_results` instead

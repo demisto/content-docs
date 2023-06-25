@@ -19,7 +19,93 @@ Use cases for scheduled commands include:
 * ***Integration***: In the integration yml, under the command root, add `polling: true`.
 * ***Script***: In the script yml, in the root of the file, add `polling: true`.
 
-For an example, see the [Autofocus V2](https://github.com/demisto/content/blob/master/Packs/AutoFocus/Integrations/AutofocusV2/AutofocusV2.yml) `autofocus-samples-search` command.
+## The polling_function Decorator
+The `polling_function` decorator can be used to save much of the boilerplate code you would otherwise need to implement yourself to write a polling function.
+
+All functions implementing this decorator must always return a PollResult object.
+
+Note: **args must be the first parameter in the function definition and call.**
+#### Code Example
+In the example below, we are polling against the `client.call_api` function. 
+
+If the api has a successful response, we return our results wrapped in a PollResult object. 
+
+Otherwise, we return whether to `continue_to_poll` according to the results of the `should_not_keep_polling` function. (Note, either a boolean or a predicate can be passed to continue_to_poll)
+```python
+@polling_function('cs-falcon-sandbox-result')
+def some_polling_command(args: Dict[str, Any], client: Client):
+    key = get_api_id(args)
+    api_response = client.call_api()
+    successful_response = api_response.status_code == 200
+
+    if successful_response:
+        success_return = show_successful_response()
+        return PollResult(success_return)
+
+    else:
+        error_response = CommandResults(raw_response=report_response,
+                                        readable_output='API returned an error',
+                                        entry_type=entryTypes['error'])
+
+        return PollResult(continue_to_poll=lambda: not should_not_keep_polling(client, key), response=error_response)
+```
+
+#### polling_function arguments
+
+| Arg                  | Type | Description                                                              | Default           |
+|----------------------|------|--------------------------------------------------------------------------|-------------------|
+| name                 | str  | The name of the command                                                  |                   |
+| interval             | int  | How many seconds until the next run                                      | 30                |
+| timeout              | int  | How long to poll until timeout                                           | 600               |
+| poll_message         | str  | The message to display in the war room while polling                     | Fetching Results: |
+| polling_arg_name     | str  | The name of the argument to indicate polling should be done              | polling           |
+| requires_polling_arg | bool | Whether a polling argument should be expected as one of the demisto args | True              |
+
+
+#### The PollResult Class
+ 
+| Arg               | Type                  | Description                                                                                     |
+|-------------------|-----------------------|-------------------------------------------------------------------------------------------------|
+| response          | Any                   | The response of the command in the event of success, or in case of failure but Polling is false |
+| continue_to_poll  | Union[bool, Callable] | Wether to return a ScheduledCommand to the server to keep polling.                              |
+| args_for_next_run | Dict                  | The arguments to use in the next iteration. Will use the input args in case of None. Important: if you are using this argument, you must add it to the yml file with the attribute "hidden: true", that way the polling command will recognize the argument for the next run.        |
+| partial_result    | CommandResults        | CommandResults to return, even though we will poll again                                        |
+
+One last thing regarding the decorator, to Ignore Scheduled War Room Entries (as indicated below) add `hide_polling_output` as a boolean argument to the command in the yml file. 
+
+For example see the [cs-falcon-sandbox-scan](https://github.com/demisto/content/blob/849fee1dfe10907158e5c307dd367284accee2a0/Packs/CrowdStrikeFalconSandbox/Integrations/CrowdStrikeFalconSandboxV2/CrowdStrikeFalconSandboxV2.yml#L65) command.
+
+### A more complicated example
+
+Say we are trying to implement a command that submits a url for analysis and then polls for the result.  The proper way to implement this would be to split this flow into two commands. The submit command, and the find command. The find command will be a polling command, and is useful on its own without the context of submit. We want to perform the submit command once and poll on the get_result command until we have a response.
+
+We will then have the **submit-file** command call the **find-url** command.
+
+```python
+@polling_function('find-url')
+def find_url_command(args: Dict[str, Any], client: Client):
+    api_response = client.call_api(args.get('url')
+    successful_response = api_response.status_code == 200
+
+    if successful_response:
+        success_return = show_successful_response(api_response)
+        return PollResult(success_return)
+
+    else:
+        error_response = CommandResults(raw_response=report_response,
+                                        readable_output='API returned an error',
+                                        entry_type=entryTypes['error'])
+
+        return PollResult(continue_to_poll=True, response=error_response)
+        
+def submit_url_command(args: Dict[str, Any], client: Client):
+    client.submit_url(args.get('url))
+    return find_url_command(args, client)
+```
+
+
+<details>
+    <summary>If this decorator doesnt cover a specific usecase, read the advanced section: </summary>
 
 ### ScheduledCommand Class
 `ScheduledCommand` is an optional class that enables scheduling commands via the command results.
@@ -58,7 +144,6 @@ In the example below, if the `status` is not `complete` then a result with `sche
 
 ```python
 def run_polling_command(args: dict, cmd: str, search_function: Callable, results_function: Callable):
-    ScheduledCommand.raise_error_if_not_supported()
     interval_in_secs = int(args.get('interval_in_seconds', 60))
     if 'af_cookie' not in args:
         # create new search
@@ -148,3 +233,4 @@ if samples_result and not isError(samples_result[0]):
         script_results.extend(samples_result)
 return_results(script_results)
 ```
+</details>

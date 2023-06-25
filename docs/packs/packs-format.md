@@ -49,12 +49,15 @@ The following fields are populated in the pack metadata:
 | currentVersion | String | The pack version, in the format of `x.x.x`. On the initial release this should be set to "1.0.0". See [here](#content-packs-versioning)|
 | author | String | The name of the organization (for partners) or developer (for individual contributions) which developed the integration. |
 | url | String | The URL to which users should refer to in case of support needed regarding the pack. Usually is the organization support URL or the developer GitHub repository. If left empty the default support site presented to users will be the [Live Community](https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions) site.|
+| videos | String | The Youtube video link of the pack.|
 | email | String | The email address to which users should reach out to in case of support needed regarding the pack. |
 | categories | List | The use-case categories which are implemented in the pack. Usually set by the integration, which included in the pack category. Should be one of the following:<br />1. Analytics & SIEM<br />2. Utilities<br />3. Messaging<br />4. Endpoint<br />5. Network Security<br />6. Vulnerability Management<br />7. Case Management<br />8. Forensics & Malware Analysis<br />9. IT Services<br />10. Data Enrichment & Threat Intelligence<br />11. Authentication<br />12. Database<br />13. Deception<br />14. Email Gateway|
 | tags | List | Tags to be attached to the pack on Cortex XSOAR marketplace. |
 | created | String | Pack creation time in ISO 8601 format - YYYY-MM-DDTHH:mm:ssZ, e.g. 2020-01-25T10:00:00Z |
 | useCases | List | Use-cases implemented by the pack. |
 | keywords | List | List of strings by which the pack can be found in Cortex XSOAR marketplace. |
+| marketplaces    | List | List of marketplaces in which the pack can be found (XSOAR XSIAM). |
+| hidden | Boolean | (Optional) Whether to hide the pack from Marketplace. Updates to this pack will not be published to Marketplace and the pack cannot be installed. |
 | eulaLink | String | (Optional - Premium packs only) URL referencing the pack license agreement, will appear under the 'Disclaimer' section in the pack details. Non-premium packs are hosted in our open source content repo and will be subject to an [MIT License](https://github.com/demisto/content/blob/master/LICENSE). |
 | price | String | (Optional - Premium packs only) The pack price in Palo Alto [points](https://xsoar.pan.dev/docs/partners/premium-packs/#points). |
 | dependencies | Dictionary | (Optional) An object that describes the content packs that the pack is dependant on. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
@@ -75,6 +78,7 @@ Pack metadata contents for example:
     "currentVersion": "1.0.0",
     "author": "Cortex XSOAR",
     "url": "https://www.paloaltonetworks.com/cortex",
+    "videos": "https://www.youtube.com/watch?v=ium2969zgn8",
     "email": "",
     "categories": [
         "Endpoint"
@@ -150,16 +154,26 @@ This file will be used while running the `demisto-sdk secrets`([explanation](htt
 **Note**: We use `demisto-sdk secrets` as part of our pre-commit hook to check that possible secrets in the PR aren't exposed to a public repository.
 
 ### .pack-ignore
-This file allows ignoring linter errors while lint checking and ignoring tests in the test collection.
+1) This file allows ignoring linter errors while lint checking and ignoring tests in the test collection.
 
-To add ignored tests/linter errors in a file, first, add the file name to the **.pack-ignore** in this format
+   To add ignored tests/linter errors in a file, first, add the file name to the **.pack-ignore** in this format
 ```
 [file:integration-to-ignore.yml]
 ```
 
 On the following line add `ignore=` flag, with one or more comma-separated values:
-1. `auto-test` - ignore test file in the build test collection.
-2. `linter code` e.g. IN126 - ignore linter error codes.
+* `auto-test` - ignore test file in the build test collection.
+* `linter code` e.g., IN126 - ignore linter error codes.
+
+2) By default, unit-tests of scripts/integrations are running without a docker network.
+
+   In case one of the integrations/scripts inside a pack needs a network during the unit-tests run, this can be done in this format
+
+```
+[tests_require_network]
+integration-id-1
+script-id-1
+```
 
 #### Example .pack-ignore
 ```
@@ -168,6 +182,10 @@ ignore=auto-test
 
 [file:integration-to-ignore.yml]
 ignore=IN126,PA116
+
+[tests_require_network]
+integration-id-1
+script-id-1
 ```
 
 ### Author_image.png
@@ -184,16 +202,18 @@ For Partners, this image is **mandatory** and is validated during the build. If 
  
 In case file does not exist, the pack author name will be displayed in text.
 
-### CONTRIBUTORS.md
-If you are contributing to an existing pack, you can add a **CONTRIBUTORS.md** file to the pack and list yourself as a contributor for the pack in the mentioned list. The file should have the follwoing structure and will appear in the pack details in the XSOAR Marketplace.
+### CONTRIBUTORS.json
+If you are contributing to an existing pack, you can add a **CONTRIBUTORS.json** file to the root of the pack in the event that one does not already exist. The file should contain a list of strings including your name. 
 
-#### Example CONTRIBUTORS.md
+#### Example of a CONTRIBUTORS.json file:
+```json
+[
+    "Jane Doe",
+    "John Smith"
+]
 ```
-### Pack Contributors:
 
----
- - Jane Doe
- - John Smith
+#### Once your contribution is merged, pack details will show the following:
 
-Contributions are welcome and appreciated. For more info, visit our [Contribution Guide](https://xsoar.pan.dev/docs/contributing/contributing).
-```
+![image](https://user-images.githubusercontent.com/44666568/176713193-8a0857bf-a5ed-45cd-98e4-3c575752c0ff.png)
+

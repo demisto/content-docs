@@ -57,27 +57,6 @@ Additional env vars that affect the generation of the docs:
   ```bash
   SKIP_DEPRECATED=true MAX_FILES=10 CONTENT_REPO_DIR=~/dev/demisto/content npm run reference-docs
   ```
-  
-  
-## Generating Marketplace Docs
-Marketplace docs are generated from the content google cloud bucket. If you are working on general site docs which are not related to marketplace, you don't need to run this step to preview the marketplace tab.
-
-To generate the docs we use [pipenv](https://github.com/pypa/pipenv). Make sure to install pipenv by running: `pip3 install pipenv`.
-
-When working locally you can generate the reference docs by running:
-```
-npm run marketplace-docs
-```
-This task will download the packs information from the google cloud bucket and generate the packs docs for the marketplace tab. The generated docs are ignored by `.gitignore` and shouldn't be checked in as they are generated during the build.
-
-Additional env vars that affect the generation of the docs:
-* `MAX_PACKS`: max packs to generate in the marketplace tab. Set this for faster generation when developing. Note also in CI builds on branches this is automatically set to speed up the preview site if there are only modifications related to docs. For example:
-  
-  ```export MAX_PACKS=10 && npm run marketplace-docs```
-  
-```
-NOTE : When running locally, in order to see links from the entities in the marketplace to their corresponding README in the reference section, you will need to run the reference-docs script before running the marketplace-docs script.
-```
 
 ### Generation Code
 Code used for generating content reference docs is written in Python and resides in the `content-repo` folder. To set up a development environment we use [pipenv](https://github.com/pypa/pipenv). Make sure to install pipenv by running: `pip3 install pipenv`. Setup a proper Python env by running:

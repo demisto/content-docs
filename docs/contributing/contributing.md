@@ -29,6 +29,8 @@ These issues are particularly well suited for external contributions. If you dec
 
 After you have created your content, you must submit your content to Palo Alto Networks: the Cortex XSOAR Content Team will review and approve it before it becomes available to customers.
 
+Before you begin, it is recommended to read the [Contribution SLA](../contributing/sla) document.
+
 There are three ways to submit your work:
  1. Contribute from the Cortex XSOAR UI [Marketplace](../contributing/marketplace). This flow is simpler and doesn't require to set up a development environment or be familiar with git. However, it is recommended **only** in the following scenarios:
     - You are an individual contributor, contributing **new** content that is *community* supported.
@@ -57,7 +59,7 @@ Please read the following guidelines carefully: following them will maximize the
     * Understand the [YAML file](../integrations/yaml-file) structure and the [Parameter Types](../integrations/parameter-types).
     * Make sure your integration follows our [Logo Guidelines](../integrations/integration-logo).
     * Read and follow [Python code conventions](../integrations/code-conventions) (recommended) or [Powershell code conventions](../integrations/powershell-code) (advanced users only).
-    * If your integration generates Incidents, follow the [Fetch Incidents](../fetching-incidents) guidelines.
+    * If your integration generates Incidents, follow the [Fetch Incidents](../integrations/fetching-incidents) guidelines.
     * Make sure your commands make proper use of the [Context](../integrations/context-and-outputs), including [Context Standards](../integrations/context-standards-about) and [DBotScore](../integrations/dbot).
     * Make sure to create unit tests as documented [here](../integrations/unit-testing) and that the various linters we support pass as detailed [here](../integrations/linting).
     * Document your integration and automation by generating the [README File](../documentation/readme_file).

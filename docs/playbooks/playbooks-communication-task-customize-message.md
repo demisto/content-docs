@@ -306,3 +306,5 @@ The default SOC name is Your SOC team. To change the default SOC name:
 	</html>
 
 ```
+
+For more information about customized messages for communciation tasks, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/playbooks/playbook-tasks/communication-tasks).

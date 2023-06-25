@@ -9,7 +9,7 @@ The add-on is open source. Source code is available at: [https://github.com/demi
 
 
 ### Prerequisites
-* Splunk version 7.2 or later
+* Splunk version 8.0 or later
 
 
 ### Test on a local Splunk Environment
@@ -35,14 +35,19 @@ In order to use the add-on and create incidents in XSOAR, you must complete the 
 * Create a XSOAR instance:  
   Under XSOAR Instances tab, press the "Add" button. Choose an instance name, and fill the XSOAR server URL (including port if needed) and the API key fields. The API key is used for authorization with XSOAR. To generate this parameter, login to Cortex XSOAR and click on Settings → Integration → API Keys.
   
+
+  >*NOTE:*  When using XSOAR v8 and above, and *Advanced API key* should be generated and be inserted as follows: *<API_KEY>$<API_AUTH_ID>*
+
   ![splunk-add-on-instances.png](../../../docs/doc_imgs/reference/splunk-add-on-instances.png)
 * Set up proxy settings (optional):  
   Under the **Proxy** tab, select the **"Enable"** checkbox and provide all of the necessary proxy parameters.
 * Choose log level (optional):  
   By default, the logging level is "INFO". You can change the logging level to "DEBUG" if needed.
 * Additional Settings (optional):  
- If you have an SSL certificate, provide its full path under the **"Location to Certificate"** field.
+    * If you have an SSL certificate, provide its full path under the **"Location to Certificate"** field.
   By default, **"Validate SSL"** is enabled.
+    * If you would like to extend the incident creatiin request timeout, provide the desired timeout under the "Timeout Value" field.
+    By default, timeout value is 10 seconds.
   
   ![splunk-add-on-config.png](../../../docs/doc_imgs/reference/splunk-add-on-config.png)
 * You must restart Splunk in order to apply changes in the configuration settings.

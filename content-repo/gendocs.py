@@ -11,15 +11,18 @@ import shutil
 import subprocess
 import sys
 import traceback
+import tempfile
+import yaml
+
 from datetime import datetime
 from distutils.version import StrictVersion
 from functools import partial
 from multiprocessing import Pool
 from typing import Dict, Iterator, List, Optional, Tuple, TypedDict
-
-import yaml
+from google.cloud import storage
 from bs4 import BeautifulSoup
 from dateutil.relativedelta import relativedelta
+from packaging import version
 
 from CommonServerPython import tableToMarkdown  # type: ignore
 from mdx_utils import (fix_mdx, fix_relative_images, normalize_id,
@@ -36,7 +39,7 @@ def timestamped_print(*args, **kwargs):
 print = timestamped_print
 
 BASE_URL = "https://xsoar.pan.dev/docs/"
-MARKETPLACE_URL = "https://xsoar.pan.dev/marketplace/"
+MARKETPLACE_URL = "https://cortex.marketplace.pan.dev/marketplace/"
 DOCS_LINKS_JSON = {}
 
 INTEGRATION_YML_MATCH = [
@@ -73,7 +76,7 @@ PACKS_PREFIX = 'packs'
 NO_HTML = '<!-- NOT_HTML_DOC -->'
 YES_HTML = '<!-- HTML_DOC -->'
 BRANCH = os.getenv('HEAD', 'master')
-MAX_FAILURES = int(os.getenv('MAX_FAILURES', 15))  # if we have more than this amount in a single category we fail the build
+MAX_FAILURES = int(os.getenv('MAX_FAILURES', 40))  # if we have more than this amount in a single category we fail the build
 # env vars for faster development
 MAX_FILES = int(os.getenv('MAX_FILES', -1))
 FILE_REGEX = os.getenv('FILE_REGEX')
@@ -88,14 +91,47 @@ PACKS_INTEGRATIONS_PREFIX = 'Integrations'
 PACKS_SCRIPTS_PREFIX = 'Scripts'
 PACKS_PLAYBOOKS_PREFIX = 'Playbooks'
 
+SERVICE_ACCOUNT = os.getenv('GCP_SERVICE_ACCOUNT')
+
+DEFAULT_FROM_VERSION = '0'
+DEFAULT_TO_VERSION = '9999'
+
+
+def create_service_account_file():
+    """
+        Create a service account json file from the circle variable.
+    """
+    service_account_file = tempfile.NamedTemporaryFile(delete=False, mode='w', suffix='.json')
+    service_account_file.write(SERVICE_ACCOUNT)
+    service_account_file.flush()
+
+    return service_account_file
+
+
+def update_docs_link_file(service_account_file, list_links):
+    """
+        Updates the contentItemsDocsLinks json file.
+        Args:
+            service_account_file (Object): A Service Account file which used to connect to the bucket.
+            list_links (Dict[str: str]): Dict of {content item name: path in xsoar.pan.dev}.
+                for example: {"Aha": "https://xsoar.pan.dev/docs/reference/integrations/aha"}
+    """
+    storage_client = storage.Client.from_service_account_json(service_account_file)
+    bucket = storage_client.bucket('xsoar-ci-artifacts')
+    blob = bucket.blob('content-cache-docs/contentItemsDocsLinks.json')
+    blob.upload_from_string(list_links)
+
 
 class DocInfo:
-    def __init__(self, id: str, name: str, description: str, readme: str, error_msg: Optional[str] = None):
+    def __init__(self, id: str, name: str, description: str, readme: str, error_msg: Optional[str] = None,
+                 from_version: str = DEFAULT_FROM_VERSION, to_version: str = DEFAULT_TO_VERSION):
         self.id = id
         self.name = name
         self.description = description
         self.readme = readme
         self.error_msg = error_msg
+        self.from_version = version.parse(from_version)
+        self.to_version = version.parse(to_version)
 
 
 class DeprecatedInfo(TypedDict, total=False):
@@ -105,6 +141,24 @@ class DeprecatedInfo(TypedDict, total=False):
     maintenance_start: str
     eol_start: str
     note: str
+
+
+def version_conflict(to_check: DocInfo, check_with: DocInfo):
+    """
+        Retrieves two DocInfo classes with the same ID and returns if there is a conflict between the versions.
+        Args:
+            to_check (DocInfo): The DocInfo object to check.
+            check_with (DocInfo): The DocInfo object to check with.
+        Returns:
+             True if there is a mismatch in the versions otherwise False.
+    """
+    if to_check.id != check_with.id or to_check.to_version < check_with.from_version or check_with.to_version < to_check.from_version:
+        return False
+
+    print(f'Found version conflict in {to_check.readme} with the from version {to_check.from_version} and '
+          f'to version {to_check.to_version} while {check_with.readme} has the from version {check_with.from_version} '
+          f'and to version {check_with.to_version} and both of them has the same ID {to_check.id}')
+    return True
 
 
 def findfiles(match_patterns: List[str], target_dir: str) -> List[str]:
@@ -151,12 +205,13 @@ def get_extracted_deprecated_note(description: str):
         r'.*deprecated\s*[\.\-:]\s*(.*?No available replacement.*?\.)',
     ]
     for r in regexs:
-        dep_match = re.match(r, description, re.IGNORECASE)
-        if dep_match:
-            res = dep_match[1]
-            if res[0].islower():
-                res = res[0].capitalize() + res[1:]
-            return res
+        if description:  # To avoid None descriptions.
+            dep_match = re.match(r, description, re.IGNORECASE)
+            if dep_match:
+                res = dep_match[1]
+                if res[0].islower():
+                    res = res[0].capitalize() + res[1:]
+                return res
     return ""
 
 
@@ -189,14 +244,15 @@ def get_beta_data(yml_data: dict, content: str):
     return ""
 
 
-def get_packname_from_metadata(pack_dir):
+def get_packname_from_metadata(pack_dir, xsoar_marketplace: bool = True):
     with open(f'{pack_dir}/pack_metadata.json', 'r') as f:
         metadata = json.load(f)
         is_pack_hidden = metadata.get("hidden", False)
-    return metadata.get('name'), is_pack_hidden
+        xsoar_marketplace = 'xsoar' in metadata.get('marketplaces', []) if xsoar_marketplace else False
+    return metadata.get('name'), is_pack_hidden, xsoar_marketplace
 
 
-def get_pack_link(file_path: str) -> str:
+def get_pack_link(file_path: str, xsoar_marketplace: bool = True) -> str:
     # the regex extracts pack name from paths, for example: content/Packs/EWSv2 -> EWSv2
     match = re.search(r'Packs[/\\]([^/\\]+)[/\\]?', file_path)
     pack_name = match.group(1) if match else ''
@@ -208,7 +264,7 @@ def get_pack_link(file_path: str) -> str:
     is_pack_hidden = False
 
     try:
-        pack_name_in_docs, is_pack_hidden = get_packname_from_metadata(pack_dir)
+        pack_name_in_docs, is_pack_hidden, xsoar_marketplace = get_packname_from_metadata(pack_dir, xsoar_marketplace)
     except FileNotFoundError:
         pack_name_in_docs = pack_name.replace('_', ' ').replace('-', ' - ')
 
@@ -221,7 +277,8 @@ def get_pack_link(file_path: str) -> str:
     if 'ApiModules' in pack_name or 'NonSupported' in pack_name:
         return ''
 
-    if is_pack_hidden:  # this pack is hidden, don't add a link
+    # This pack is hidden, or it's not on XSOAR marketplace, don't add a link
+    if is_pack_hidden or not xsoar_marketplace:
         return f"#### This {file_type} is part of the **{pack_name_in_docs}** Pack.\n\n" \
             if file_type and pack_name and pack_name_in_docs else ''
     return f"#### This {file_type} is part of the **[{pack_name_in_docs}]({pack_link})** Pack.\n\n" \
@@ -247,9 +304,11 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
         id = normalize_id(id)
         name = yml_data.get('display') or yml_data['name']
         desc = yml_data.get('description') or yml_data.get('comment')
+        from_version = yml_data.get('fromversion', DEFAULT_FROM_VERSION)
+        to_version = yml_data.get('toversion', DEFAULT_TO_VERSION)
         if desc:
             desc = handle_desc_field(desc)
-        doc_info = DocInfo(id, name, desc, readme_file)
+        doc_info = DocInfo(id, name, desc, readme_file, from_version=from_version, to_version=to_version)
         with open(readme_file, 'r', encoding='utf-8') as f:
             content = f.read()
         if not content.strip():
@@ -305,7 +364,12 @@ def add_content_info(content: str, yml_data: dict, desc: str, readme_file: str) 
     content = get_beta_data(yml_data, content) + content
     if not is_deprecated:
         content = get_fromversion_data(yml_data) + content
-    content = get_pack_link(readme_file) + content
+    # Check if there is marketplace key that does not contain the XSOAR value.
+    if marketplaces := yml_data.get('marketplaces', []):
+        xsoar_marketplace = 'xsoar' in marketplaces
+    else:
+        xsoar_marketplace = True
+    content = get_pack_link(readme_file, xsoar_marketplace) + content
     return content
 
 
@@ -397,6 +461,8 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
         name = yml_data['title']
         file_id = yml_data.get('id') or normalize_id(name)
         desc = yml_data.get('description')
+        from_version = yml_data.get('fromversion', DEFAULT_FROM_VERSION)
+        to_version = yml_data.get('toversion', DEFAULT_TO_VERSION)
         if desc:
             desc = handle_desc_field(desc)
         readme_file_name = os.path.basename(readme_file)
@@ -416,7 +482,7 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
         verify_mdx_server(content)
         with open(f'{target_dir}/{file_id}.md', mode='w', encoding='utf-8') as f:
             f.write(content)
-        return DocInfo(file_id, name, desc, readme_file)
+        return DocInfo(file_id, name, desc, readme_file, from_version=from_version, to_version=to_version)
     except Exception as ex:
         print(f'fail: {readme_file}. Exception: {traceback.format_exc()}')
         return DocInfo('', '', '', readme_file, str(ex).splitlines()[0])
@@ -443,13 +509,18 @@ def process_extra_docs(target_dir: str, prefix: str,
 POOL_SIZE = 4
 
 
-def process_doc_info(doc_info: DocInfo, success: List[str], fail: List[str], doc_infos: List[DocInfo], seen_docs: Dict[str, DocInfo]):
+def process_doc_info(doc_info: DocInfo, success: List[str], fail: List[str], doc_infos: List[DocInfo],
+                     seen_docs: Dict[str, DocInfo], private_doc: bool = False):
     if doc_info.error_msg == EMPTY_FILE_MSG:
         # ignore empty files
         return
     if doc_info.error_msg:
         fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
     elif doc_info.id in seen_docs:
+        if private_doc or not version_conflict(doc_info, seen_docs[doc_info.id]):
+            # Ignore private repo files which are already in the content repo since they may be outdated.
+            # Ignore the same id if there is no conflict in the version.
+            return
         fail.append(f'{doc_info.readme} (duplicate with {seen_docs[doc_info.id].readme})')
     else:
         doc_infos.append(doc_info)
@@ -491,7 +562,7 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
         process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
     for private_doc_info in process_extra_docs(target_sub_dir, prefix, private_packs=True,
                                                private_packs_prefix=private_pack_prefix):
-        process_doc_info(private_doc_info, success, fail, doc_infos, seen_docs)
+        process_doc_info(private_doc_info, success, fail, doc_infos, seen_docs, private_doc=True)
     org_print(f'\n===========================================\nSuccess {prefix} docs ({len(success)}):')
     for r in sorted(success):
         print(r)
@@ -568,9 +639,36 @@ def insert_approved_tags_and_usecases():
     with open('approved_usecases.json', 'r') as f:
         approved_usecases = json.loads(f.read()).get('approved_list')
         approved_usecases_string = '\n        '.join(approved_usecases)
+
     with open('approved_tags.json', 'r') as f:
-        approved_tags = json.loads(f.read()).get('approved_list')
-        approved_tags_string = '\n        '.join(approved_tags)
+        approved_tags = json.loads(f.read()).get('approved_list', {})
+
+    approved_tags_string = ''
+    approved_common_tags_string = '\n        '.join(approved_tags.get('common', []))
+    approved_tags_string += 'Common Tags:\n        '
+    approved_tags_string += approved_common_tags_string
+
+    if approved_tags.get('marketplacev2', []):
+        approved_tags_string += '\n        '
+        approved_tags_string += '\n        '
+        approved_marketplacev2_tags_string = '\n        '.join(approved_tags.get('marketplacev2', []))
+        approved_tags_string += 'Marketplace V2 Tags:\n        '
+        approved_tags_string += approved_marketplacev2_tags_string
+
+    if approved_tags.get('xsoar', []):
+        approved_tags_string += '\n        '
+        approved_tags_string += '\n        '
+        approved_xsoar_tags_string = '\n        '.join(approved_tags.get('xsoar', []))
+        approved_tags_string += 'Xsoar Tags:\n\n        '
+        approved_tags_string += approved_xsoar_tags_string
+
+    if approved_tags.get('xpanse', []):
+        approved_tags_string += '\n        '
+        approved_tags_string += '\n        '
+        approved_xspanse_tags_string = '\n        '.join(approved_tags.get('xpanse', []))
+        approved_tags_string += 'Xpanse Tags:\n        '
+        approved_tags_string += approved_xspanse_tags_string
+
     with open("../docs/documentation/pack-docs.md", "r+") as f:
         pack_docs = f.readlines()
         f.seek(0)
@@ -626,21 +724,21 @@ def get_deprecated_display_dates(dep_date: datetime) -> Tuple[str, str]:
     return (datetime.strftime(start, DATE_FRMT), datetime.strftime(end, DATE_FRMT))
 
 
-def find_deprecated_integrations(content_dir: str):
-    files = glob.glob(content_dir + '/Packs/*/Integrations/*.yml')
-    files.extend(glob.glob(content_dir + '/Packs/*/Integrations/*/*.yml'))
+def find_deprecated_items(content_dir: str, item: str = 'Integrations'):
+    files = glob.glob(content_dir + f'/Packs/*/{item}/*.yml')
+    files.extend(glob.glob(content_dir + f'/Packs/*/{item}/*/*.yml'))
     res: List[DeprecatedInfo] = []
     # go over each file and check if contains deprecated: true
     for f in files:
         with open(f, 'r') as fr:
             content = fr.read()
-            if dep_search  := re.search(r'^deprecated:\s*true', content, re.MULTILINE):
+            if dep_search := re.search(r'^deprecated:\s*true', content, re.MULTILINE):
                 pack_dir = re.match(r'.+/Packs/.+?(?=/)', f)
                 if is_xsoar_supported_pack(pack_dir.group(0)):  # type: ignore[union-attr]
                     yml_data = yaml.safe_load(content)
                     id = yml_data.get('commonfields', {}).get('id') or yml_data['name']
                     name: str = yml_data.get('display') or yml_data['name']
-                    desc = yml_data.get('description')
+                    desc = yml_data.get('description') or yml_data.get('comment')  # comment is for scripts.
                     content_to_search = content[:dep_search.regs[0][0]]
                     lines_search = re.findall(r'\n', content_to_search)
                     blame_line = 1
@@ -653,10 +751,10 @@ def find_deprecated_integrations(content_dir: str):
                         name = name.replace(dep_suffix, "").strip()
                     info = DeprecatedInfo(id=id, name=name, description=desc, note=get_extracted_deprecated_note(desc),
                                           maintenance_start=maintenance_start, eol_start=eol_start)
-                    print(f'Adding deprecated integration: [{name}]. Deprecated date: {dep_date}. From file: {f}')
+                    print(f'Adding deprecated {item.lower()}: [{name}]. Deprecated date: {dep_date}. From file: {f}')
                     res.append(info)
                 else:
-                    print(f'Skippinng deprecated integration: {f} which is not supported by xsoar')
+                    print(f'Skippinng deprecated  {item.lower()}: {f} which is not supported by xsoar')
     return res
 
 
@@ -676,32 +774,63 @@ def merge_deprecated_info(deprecated_list: List[DeprecatedInfo], deperecated_inf
     return merged_list
 
 
-def add_deprected_integrations_info(content_dir: str, deperecated_article: str, deperecated_info_file: str, assets_dir: str):
-    """Will append the deprecated integrations info to the deprecated article
+def add_deprecated_info(content_dir: str, deprecated_article: str, deprecated_info_file: str, assets_dir: str):
+    """Will append the deprecated content item's info to the deprecated article
 
     Args:
-        content_dir (str): content dir to search for deprecated integrations
-        deperecated_article (str): deprecated article (md file) to add to
-        deperecated_info_file (str): json file with static deprecated info to merge
+        content_dir (str): content dir to search for deprecated content item's
+        deprecated_article (str): deprecated article (md file) to add to
+        deprecated_info_file (str): json file with static deprecated info to merge
     """
-    deprecated_infos = merge_deprecated_info(find_deprecated_integrations(content_dir), deperecated_info_file)
-    deprecated_infos = sorted(deprecated_infos, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
-    deperecated_json_file = f'{assets_dir}/{os.path.basename(deperecated_article.replace(".md", ".json"))}'
+    deprecated_integrations = merge_deprecated_info(find_deprecated_items(content_dir), deprecated_info_file)
+    deprecated_automations = find_deprecated_items(content_dir, 'Scripts')
+    deprecated_playbooks = find_deprecated_items(content_dir, 'Playbooks')
+    deprecated_integrations = sorted(deprecated_integrations, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
+    deprecated_automations = sorted(deprecated_automations, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
+    deprecated_playbooks = sorted(deprecated_playbooks, key=lambda d: d['name'].lower() if 'name' in d else d['id'].lower())  # sort by name
+    deperecated_json_file = f'{assets_dir}/{os.path.basename(deprecated_article.replace(".md", ".json"))}'
     with open(deperecated_json_file, 'w') as f:
         json.dump({
-            'description': 'Generated machine readable doc of deprecated integrations',
-            'integrations': deprecated_infos
+            'description': 'Generated machine readable doc of deprecated content items',
+            'integrations': deprecated_integrations,
+            'scripts': deprecated_automations,
+            'playbooks': deprecated_playbooks
         }, f, indent=2)
-    deperecated_infos_no_note = [i for i in deprecated_infos if not i['note']]
+
+    deprecated_integrations_no_note = [i for i in deprecated_integrations if not i['note']]
+    deprecated_automations_no_note = [i for i in deprecated_automations if not i['note']]
+    deprecated_playbooks_no_note = [i for i in deprecated_playbooks if not i['note']]
     deperecated_json_file_no_note = deperecated_json_file.replace('.json', '.no_note.json')
     with open(deperecated_json_file_no_note, 'w') as f:
         json.dump({
             'description': 'Generated doc of deprecated integrations which do not contain a note about replacement or deprecation reason',
-            'integrations': deperecated_infos_no_note
+            'integrations': deprecated_integrations_no_note,
+            'scripts': deprecated_automations_no_note,
+            'playbooks': deprecated_playbooks_no_note
         }, f, indent=2)
-    with open(deperecated_article, "at") as f:
-        for d in deprecated_infos:
-            f.write(f'\n## {d["name"] if d.get("name") else d["id"]}\n')
+
+    with open(deprecated_article, "at") as f:
+        f.write('\n## Deprecated Integrations\n')
+        for d in deprecated_integrations:
+            f.write(f'\n### {d["name"] if d.get("name") else d["id"]}\n')
+            if d.get("maintenance_start"):
+                f.write(f'* **Maintenance Mode Start Date:** {d["maintenance_start"]}\n')
+            if d.get("eol_start"):
+                f.write(f'* **End-of-Life Date:** {d["eol_start"]}\n')
+            if d.get("note"):
+                f.write(f'* **Note:** {d["note"]}\n')
+        f.write('\n## Deprecated Scripts\n')
+        for d in deprecated_automations:
+            f.write(f'\n### {d["name"] if d.get("name") else d["id"]}\n')
+            if d.get("maintenance_start"):
+                f.write(f'* **Maintenance Mode Start Date:** {d["maintenance_start"]}\n')
+            if d.get("eol_start"):
+                f.write(f'* **End-of-Life Date:** {d["eol_start"]}\n')
+            if d.get("note"):
+                f.write(f'* **Note:** {d["note"]}\n')
+        f.write('\n## Deprecated Playbooks\n')
+        for d in deprecated_playbooks:
+            f.write(f'\n### {d["name"] if d.get("name") else d["id"]}\n')
             if d.get("maintenance_start"):
                 f.write(f'* **Maintenance Mode Start Date:** {d["maintenance_start"]}\n')
             if d.get("eol_start"):
@@ -763,8 +892,8 @@ def main():
     parser = argparse.ArgumentParser(description='''Generate Content Docs. You should probably not call this script directly.
 See: https://github.com/demisto/content-docs/#generating-reference-docs''',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("-t", "--target", help="Target dir to generate docs at.", required=True)
-    parser.add_argument("-d", "--dir", help="Content repo dir.", required=True)
+    parser.add_argument("-t", "--target", type=os.path.normpath, help="Target dir to generate docs at.", required=True)
+    parser.add_argument("-d", "--dir", type=os.path.normpath, help="Content repo dir.", required=True)
     args = parser.parse_args()
     print(f'Using multiprocess pool size: {POOL_SIZE}')
     print('Starting MDX server...')
@@ -786,8 +915,8 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     article_doc_infos = create_articles(args.target, ARTICLES_PREFIX)
     packs_articles_doc_infos = create_articles(args.target, PACKS_PREFIX)
     if os.getenv('SKIP_DEPRECATED') not in ('true', 'yes', '1'):
-        add_deprected_integrations_info(args.dir, f'{args.target}/{ARTICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE,
-                                        f'{args.target}/../../static/assets')
+        add_deprecated_info(args.dir, f'{args.target}/{ARTICLES_PREFIX}/deprecated.md', DEPRECATED_INFO_FILE,
+                            f'{args.target}/../../static/assets')
     index_base = f'{os.path.dirname(os.path.abspath(__file__))}/reference-index.md'
     index_target = args.target + '/index.md'
     articles_index_target = args.target + '/articles-index.md'
@@ -869,10 +998,11 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     if os.getenv('UPDATE_PACK_DOCS') or os.getenv('CI'):
         # to avoid cases that in local dev someone might checkin the modifed pack-docs.md we do this only if explicityl asked for or in CI env
         insert_approved_tags_and_usecases()
-
-    print("Writing json links into contentItemsDocsLinks.json")
-    with open('contentItemsDocsLinks.json', 'w') as file:
-        json.dump(DOCS_LINKS_JSON, file)
+    # To avoid updating on preview website (non-master branches) since we generate only 20 reference pages (and links) for each category.
+    # And make sure 'GCP_SERVICE_ACCOUNT' env is set (to avoid forked repos and to enable local running).
+    if os.getenv('CURRENT_BRANCH') == 'master' and os.getenv('GCP_SERVICE_ACCOUNT'):
+        print(f"Writing {len(DOCS_LINKS_JSON)} links into contentItemsDocsLinks.json")
+        update_docs_link_file(create_service_account_file().name, json.dumps(DOCS_LINKS_JSON, indent=4))
 
 
 if __name__ == "__main__":

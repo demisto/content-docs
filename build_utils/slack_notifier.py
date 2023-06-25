@@ -5,7 +5,7 @@ from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 from typing import List, Dict
 
-SLACK_CHANNEL = '#dmst-content-team'
+SLACK_CHANNEL = '#dmst-build'
 
 
 def get_circle_failed_steps(ci_token: str, build_number: int) -> List[str]:
@@ -67,7 +67,6 @@ def create_slack_notifier(slack_token: str, build_url: str, ci_token: str, build
         slack_client = WebClient(token=slack_token)
         slack_client.chat_postMessage(
             channel=SLACK_CHANNEL,
-            as_user=False,
             username="Content-Docs CircleCI",
             attachments=[{
                 'color': color,

@@ -5,7 +5,8 @@ title: Pack Documentation
 
 Content Packs displayed in the Cortex XSOAR Marketplace contain 2 main documentation sections: 
 * **Description**: displayed in the Content Pack card when browsing the Marketplace and in the top of the *Details* tab.
-* **README**: displayed in the main display area of the *Details* tab.
+* **Videos**: displayed in the main display area and in the middle of the *Details* tab.
+* **README**: displayed in the main display area and in the bottom of the *Details* tab.
 
 #### Screenshots
 * *Description* in Pack display card: <br/>  
@@ -49,6 +50,10 @@ Here are some templates that can help you get started:
 * "Eliminate ________ by improving your__________. Rich with layouts and playbooks, this Content Pack is right for ____________"
 * "Get smarter. This pack utilizes _________ and _______for when _________ is heavily needed"
 
+## Pack Videos
+For larger packs that provide at least one end-to-end use case you are encouraged to create a short video or a few videos for the pack that will be showed in the *Details* tab of the pack in the Marketplace. The videos files should be hosted in youtube. The videos should contain a more detailed overview of the Pack compared to the *Description* section, but stay tuned to the value proposition of the pack.
+
+
 ## Pack README
 For larger packs that provide at least one end-to-end use case you should create a detailed README file for the pack that will be displayed in the *Details* tab of the pack in the Marketplace. The `README.md` file should be markdown formatted and placed in the Packs root directory. The file should contain a more detailed overview of the Pack compared to the *Description* section. You are free to add any information you see fit to include about the pack. It is recommended to provide an overview of what the Pack does and how to start working with the Pack.  
 
@@ -65,12 +70,11 @@ Each pack readme should contain:
 1. Mostly relevant for use-case packs that contain multiple playbooks: a reference to the README of the **main playbook** of the pack that contains the playbook logic. Add the following:
 _For more information, visit the Cortex XSOAR Developer Docs_
 Note that "Cortex XSOAR Developer Docs" should link **directly to the readme of the main playbook**. An example of what is linked in the Phishing pack: https://xsoar.pan.dev/docs/reference/playbooks/phishing-investigation---generic-v2
-1. For packs that contains playbooks: a youtube video or an image of the main playbook of the pack. The section following the pack image below explains how to add an image.
-
+1. For packs that contains playbooks: a youtube video is a great addition.
 ![image](https://user-images.githubusercontent.com/43602124/88673366-31d59c80-d0f1-11ea-9319-b7d9f2fb8625.png)
 
 ### Images
-Images can provide a great addition to the Pack `README.md` and can help users to get a quick understanding of the Pack. For Packs that contain playbooks which implement a use case, we recommend including at least an image of the main use case playbook.  Images can be included only as **absolute** urls. See the [following for instructions](../documentation/readme_file#absolute-image-urls). 
+Images can provide a great addition to the Pack `README.md` and can help users to get a quick understanding of the Pack. Images can be included only as **absolute** urls. See the [following for instructions](../documentation/readme_file#absolute-image-urls). 
 
 ### Videos
 It is possible to add an image placeholder which links to an external video. For example to add an external video hosted on YouTube use the following snippet template (replace `[YOUTUBE_VIDEO_ID]` with the YouTube video ID):
@@ -83,7 +87,7 @@ An example of including a YouTube video can be seen at the [Zoom Feed README](ht
 In order to classify packs and make them easier to find, there are a number of pack metadata elements that you can use:
 - ***Use-case*** -- a name of a situation in which packs can be used - usually the pack name. The optional approved values for use-cases are:
 
-- ***Tags*** -- words from the same semantic field of the use-case. These make it easier to find packs using filters or the search bar, and are visible on the screen to help understand what the pack is and its benefit to users. The optional approved values for tags are:
+- ***Tags*** -- words from the same semantic field of the use-case. These make it easier to find packs using filters or the search bar, and are visible on the screen to help understand what the pack is and its benefit to users. To add a tag that's only relevant for a specific marketplace, add the marketplace name as a prefix for the tag name, as in the following example: `['marketplace_name:tag_name']`. The tags under the 'Common tags' are valid for all marketplaces, and do not require a specific prefix. The optional approved values for tags for each marketplace are:
 
 - ***Keywords*** -- operate like tags but aren't displayed in the UI. Assists in searching for your pack. You can freely add keywords as you see fit.
 

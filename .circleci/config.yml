@@ -52,11 +52,6 @@ jobs:
             nvm use
             npm run reference-docs
       - run:
-          name: NPM Build marketplace docs
-          command: |
-            nvm use
-            npm run marketplace-docs
-      - run:
           name: NPM Build
           no_output_timeout: 80m
           environment:
@@ -118,11 +113,13 @@ jobs:
           command: |            
             pipenv install
       - run:
+          name: Setup Firebase
+          command: curl -sL https://firebase.tools | bash
+      - run:
           name: Deploy to Firebase
           no_output_timeout: 30m
           command: |
             echo $FIREBASE_JSON_KEY > "$HOME"/gcloud.json
-            npm install firebase-tools
             export PATH="$PATH:`pwd`/node_modules/.bin"
             export GOOGLE_APPLICATION_CREDENTIALS="$HOME"/gcloud.json
 

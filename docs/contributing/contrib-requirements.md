@@ -13,7 +13,7 @@ If you are not sure whether you should read this, more details can be found [her
 
 ### Cortex XSOAR
 
-You need an instance of Cortex XSOAR up and running. You can Sign Up for the [Cortex XSOAR Free Edition](https://start.paloaltonetworks.com/sign-up-for-demisto-free-edition) or, if you're entitled to, contact the XSOAR Alliances team to have a non-production license.
+You need an instance of Cortex XSOAR up and running. You can Sign Up for the [Cortex XSOAR Free Edition](https://start.paloaltonetworks.com/sign-up-for-demisto-free-edition) or, if you're entitled to, contact the Cortex XSOAR Alliances team to have a non-production license.
 
 ### Development OS
 
@@ -59,9 +59,9 @@ Starting from version 5.5 of Cortex XSOAR, we also support [PowerShell](../integ
 
 If you are writing code (i.e. Integrations and Scripts), you will need to run several linters and [unit tests](../integrations/unit-testing) to validate your code, as we do in our build process. In this case, you must install docker. Visit the [docker site installation page](https://docs.docker.com/install/) for installation options.
 
-:::note
-If you're using WSL, you cannot run Docker natively on WSL, but you can install Docker Desktop on Windows and configure WSL to communicate to it using [this](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly) tutorial.
-:::
+>Note:
+If you're using WSL, you should [enable the integration with Docker Desktop](https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros).
+
 
 ### Node.js and NPM
 Optional. We use Node.js for validating README documentation files for Integrations, Automations and Playbooks. If you are creating README documentation files, we recommend installing Node.js to be able to validate the files locally. Node.js installation instructions for your target platform are available at: https://nodejs.org/en/download/package-manager/.

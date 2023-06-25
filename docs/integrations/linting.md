@@ -247,7 +247,7 @@ More info at: https://mypy.readthedocs.io/en/latest/index.html
 
 [Bandit](https://github.com/PyCQA/bandit) is a tool designed to find common security issues in Python code.
 
-We run `bandit` with a confidence level of HIGH. In the rare case that it reports a false positive, you can execlude the code by adding a comment of the sort: `# nosec`. See: https://github.com/PyCQA/bandit#exclusions .
+We run `bandit` with a confidence level of HIGH. In the rare case that it reports a false positive, you can exclude the code by adding a comment of the sort: `# nosec`. See: https://github.com/PyCQA/bandit#exclusions .
 
 
 ## XSOAR Linter

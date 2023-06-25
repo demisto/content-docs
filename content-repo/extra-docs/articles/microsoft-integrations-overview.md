@@ -104,18 +104,19 @@ Ingest events from O365 (Azure AD, SharePoint, EWS, etc) as incidents.
 - Delete Email.
 - Modify your Outlook recipient list.
 - Process Emails.
+- Retrieve and update Tenant Allow/Block List items.
+- Search mailboxes
+- Compliance search - Start, Remove, Check Status, Get Results
 
 | Integration 	| Cloud/On-Prem 	| Usage 	| Limitations 	| Auth Method 	|
 |:---:	|:---:	|:---:	|:---:	|:---:	|
-| [EWS Mail Sender](https://xsoar.pan.dev/docs/reference/integrations/ews-mail-sender)	| On-Prem 	| Notify user by mail in a playbook.<br/>Fetch emails as incidents. 	| Supports basic authentication only 	| Basic Auth 	|
-| [EWS O365](https://xsoar.pan.dev/docs/reference/integrations/ewso365) 	| Cloud/[Hybrid](https://docs.microsoft.com/en-us/exchange/exchange-hybrid#hybrid-deployment-example)	|  	| For O365 - Supports OAuth2.<br/>Only supports admin accounts that have access to all mailboxes.| client_credentials<br/>Using Oproxy/Self-deployed. 	|
-| [EWS v2](https://xsoar.pan.dev/docs/reference/integrations/ews-v2) 	| On-Prem + Cloud 	|  	|  	| Basic Auth + NTLM 	|
+| [EWS O365](https://xsoar.pan.dev/docs/reference/integrations/ewso365) 	| Cloud/[Hybrid](https://docs.microsoft.com/en-us/exchange/exchange-hybrid#hybrid-deployment-example)	| Manage and search mailboxes	| For O365 - Supports OAuth2.<br/>Only supports admin accounts that have access to all mailboxes.| client_credentials<br/>Using Oproxy/Self-deployed. 	|
+| [EWS v2](https://xsoar.pan.dev/docs/reference/integrations/ews-v2) 	| On-Prem + Cloud 	| Manage and search mailboxes.<br/>Manage compliance searches. 	|  	| Basic Auth + NTLM 	|
 | [EWS Extension](https://xsoar.pan.dev/docs/reference/integrations/ews-extension) 	|  	| Manage junk rules and search the message trace. 	| Uses different APIs than EWSv2 	|  	|
-| [Exchange Online Powershell V2 module](https://xsoar.pan.dev/docs/reference/integrations/ews-extension#enable-or-disable-access-to-exchange-online-powershell) 	| On-Prem 	| Manage mailboxes and permissions. 	|  	|  	|
+| [EWS Extension Online Powershell v2](https://xsoar.pan.dev/docs/reference/integrations/ews-extension-online-powershell-v2) 	| On-Prem 	| Manage mailboxes and permissions.<br/>Edit Tenant Allow/Block lists.	|  	|  	|
 | [O365 Outlook Mail (Using Graph API)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail) 	| Cloud 	| Manage and send email on behalf of a different user that was configured  	|  	| client_credentials<br/>Using Oproxy/Self-deployed. 	|
 | [O365 Outlook Mail Single User (Using Graph API)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail-single-user)	| Cloud 	|  	| Can manage the mailbox of the configured user only  	| auth_code (on behalf of a user)<br/>Using Oproxy/Self-deployed.	|
-| [Exchange 2016 Compliance Search](https://xsoar.pan.dev/docs/reference/integrations/exchange-2016-compliance-search) 	| On-Prem 	| The only module that enables searching messages across the entire organization. 	|  	| Basic Auth 	|
-| [O365 Security and Compliance](https://xsoar.pan.dev/docs/reference/integrations/security-and-compliance) 	| Cloud  	| Search across mailboxes and execute actions on the results. 	| Known limitation in the README<br/>Restart authentication process on  	| device-code (on behalf of a user). 	|
+| [O365 - Security And Compliance - Content Search v2](https://xsoar.pan.dev/docs/reference/integrations/security-and-compliance-v2) 	| Cloud  	| Search across mailboxes and execute actions on the results. 	| Known limitation in the README<br/>Restart authentication process on  	| device-code (on behalf of a user). 	|
 
 
 ## Azure Cloud
@@ -141,7 +142,12 @@ Enable querying data generated from Azure resources.
 - Search files in Box.
 - Isolate an endpoint.
 - Wipe a mobile device that has suspicious activity.
-- Run a critical Windows update on all the endpoints in the organization.  
+- Run a critical Windows update on all the endpoints in the organization. 
+- Threat Hunting.
+- Add/Search for indicators.
+- Add indicators to allow list / block list.
+- Trigger scans on specified hosts.
+- Get information for a specified host. 
 
 ### [Azure Security Center](https://xsoar.pan.dev/docs/reference/integrations/azure-security-center-v2)
 Unified Azure security management.
@@ -166,9 +172,10 @@ Microsoft CASB solution.
 
 |   Integration                      |     Use Cases                                                      |   
 |:-------------:|:------------------------------------------------------:|
-|[Microsoft 365 Defender (Beta)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-365-defender)         |  Fetch incidents on email, collaboration, identity, and device threats. <br/>Advanced hunting - querying 30 days of raw data    |   |
-| [Microsoft Defender for Endpoint (Defender ATP)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-defender-advanced-threat-protection) |                                                                Microsoft’s endpoint, detection, and response (EDR). <br/>Fetch alerts, run a scan on an endpoint, remediate an endpoint, manage indicators, get machine action status.                                                                |   |
-|            [Microsoft Graph Security](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph)           | Unified gateway to security insights.<br/> Fetch alerts from various Microsoft security sources: **Azure ATP**/**Azure Security Center**/**Microsoft CAS**/**Azure Active Directory Identity Protection**/**Azure Sentinel**/**Microsoft Defender for Endpoint (ATP)**  |
+|[Microsoft 365 Defender ](https://xsoar.pan.dev/docs/reference/integrations/microsoft-365-defender)         |  Fetch incidents on email, collaboration, identity, and device threats. <br/>Advanced hunting - querying 30 days of raw data    |   |
+| [Microsoft Defender for Endpoint (Defender ATP)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-defender-advanced-threat-protection) |                                                                Microsoft’s endpoint, detection, and response (EDR). <br/>Fetch alerts, run a scan on an endpoint, remediate an endpoint, manage indicators, get machine action status.<br/> Advanced Hunting - open query and OOTB ready to use queries for malware investigation.<br/>Live-Response - instantaneous access to a machines using a remote shell connection.                                   |   |
+|            [Microsoft Graph Security](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph)           | Unified gateway to security insights.<br/> Fetch alerts from various Microsoft security sources: **Azure ATP**/**Azure Security Center**/**Microsoft CAS**/**Azure Active Directory Identity Protection**/**Azure Sentinel**/**Microsoft Defender for Endpoint (ATP)**  |   |
+|[O365 Defender SafeLinks](https://xsoar.pan.dev/docs/reference/integrations/o365-defender-safe-links) | SafeLinks policy and rule management.<br/>Retrieve reports. |
 
 
 ### [Microsoft Endpoint Configuration Manager (SCCM)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-endpoint-configuration-manager)

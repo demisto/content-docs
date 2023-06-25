@@ -57,6 +57,11 @@ if __name__ == "__builtin__" or __name__ == "builtins":
 
 Unit tests should be written in a separate Python file named: `<your_choice>_test.py`. Within the unit test file, each unit test function should be named: `test_<your name>`. More information on writing unit tests and their format is available at the [PyTest Docs](https://docs.pytest.org/en/latest/contents.html). Good place to see example unit tests: [Proofpoint TAP v2 integration](https://github.com/demisto/content/blob/master/Packs/ProofpointTAP/Integrations/ProofpointTAP_v2/ProofpointTAP_v2_test.py)
 
+### Docker network 
+By default, unit-tests are not run with access to the network; the network is disabled within the container that runs the unit-tests.
+
+Refer to [here](../packs/packs-format.md#pack-ignore) if the script/integration tests need access to the network. 
+
 ### Mocking
 
 We use [pytest-mock](https://github.com/pytest-dev/pytest-mock/) for mocking. `pytest-mock` is enabled by default and installed in the base environment mentioned above. To use a `mocker` object, simply pass it as a parameter to your test function. The `mocker` can then be used to mock both the demisto object and also external APIs. An example of using a `mocker` object is available [here](https://github.com/demisto/content/blob/master/Packs/CommonScripts/Scripts/ParseEmailFiles/ParseEmailFiles_test.py).
@@ -137,6 +142,20 @@ Options:
 Sample output:
 
 ![sample output](/doc_imgs/integrations/unit-test-sample-output.png)
+
+#### Use Remote Docker
+When running unit tests within docker, you can use a remote docker engine accessible via ssh. For example, you can use a docker engine which is running on a remote Linux machine in the cloud. This is especially useful when testing advanced integrations, you would like to test on a Linux machine (for example Rasterize integration which uses Chrome). Set the following env variable with an ssh connection url to use a remote docker engine: `DOCKER_HOST`. For example:
+```
+DOCKER_HOST=ssh://myuser@myhost.com demisto-sdk lint -i Packs/rasterize/Integrations/rasterize
+```
+Make sure you are able to ssh to the target machine without a password prompt. See example article: https://www.redhat.com/sysadmin/passwordless-ssh.
+
+When using a GCP machine accessed via an IAP Tunnel, see following [article](https://medium.com/@albert.brand/remote-to-a-vm-over-an-iap-tunnel-with-vscode-f9fb54676153) on adding a proper `Host` entry to the `~/.ssh/config`, to be used for the `DOCKER_HOST` environment variable. 
+
+**Note:** by default, `demisto-sdk` uses [Paramiko](https://github.com/paramiko/paramiko), a native python client for SSH connections. If the connection fails, you can also try using a `ssh` cmd client, by setting the `DOCKER_SSH_CLIENT=true`environment variable. The `ssh` client must be on your $PATH. The `docker-py` package version 5.0.3 used by `demisto-sdk` currently has a known [bug](https://github.com/docker/docker-py/pull/2993) where a host configured with `ProxyCommand` (such as when using a GCP host via IAP Tunnel), the connection will fail with an error similar to: `AttributeError: 'SSHHTTPAdapter' object has no attribute 'ssh_conf'`. In this case, use the commmand line ssh client by setting `DOCKER_SSH_CLIENT`. For example:
+```
+DOCKER_HOST=ssh://myuser@myhost.com DOCKER_SSH_CLIENT=true demisto-sdk lint -i Packs/rasterize/Integrations/rasterize
+```
 
 ## Common Unit Testing Use Cases
 

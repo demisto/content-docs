@@ -9,6 +9,11 @@ When the Cortex XSOAR server is located within the AWS environment in a local ne
 * **Access Key and Secret Key**: the integration will use a configured Access Key and Secret Key to authenticate to AWS, which are set as part of the integration configuration parameters as can be seen in the following screen shot of the *AWS - S3* Integration:
   
   <img width="410" src="../../../docs/doc_imgs/reference/aws-s3.png" />
+
+* **Access Key, Secret Key, and Session Token**: the integration will use a configured Access Key, Secret Key, and Session Token to authenticate to AWS. The Session Token is set as part of the Secret Key parameter, in the form of `<secret_key>@@@<session_token>`.
+
+  For example: if your Secret Key is `SecretKey123` and your Session Token is `SessionToken456=` then you should set the Secret Key parameter to `SecretKey123@@@SessionToken456=`.
+
 * **EC2 Instance Metadata**: the integration will use the EC2 instance metadata service to retrieve security credentials. In this scenario there is no need to configure an Access Key and Secret Key. Credential management is taken care of by the EC2 instance metadata service. The integration will fetch from the metadata service temporary credentials for authenticating to AWS. To configure the instance metadata service you will need to attach an instance profile with the required permissions to the Cortex XSOAR server or engine that is running on your AWS environment. More information at: [IAM roles for Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html).
 
 When self hosted outside the AWS environment in a remote network, the AWS Integrations should use:  **Access Key and Secret Key** authentication option.
@@ -30,6 +35,15 @@ To facilitate this "trade-in" process, there needs to be a level of trust betwee
 a _Trust Relationship_ and establishes a trusted relationship between two resources.
 
 More information regarding [Trust Relationships can be found here.](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/edit_trust.html)
+
+### Define Regional STS Endpoint
+Go to Cortex XSOAR instance and perform the following steps:
+* Settings -> ABOUT -> Troubleshooting
+* Press on "Add Server Configuration"
+* Fill the Key with the string: **python.pass.extra.keys**
+* Fill the Value with the string: **--env=AWS_STS_REGIONAL_ENDPOINTS=regional**
+* Run in the CLI: `/reset_containers`
+* Verify that the env is set properly by running the following in the server CLI: `!py script="import os; print(os.environ)"`
 
 ### How XSOAR uses STS to Authenticate
 
@@ -67,6 +81,17 @@ The following provides instructions for configuring the AWS settings when the Co
 
 Before you can use the AWS integrations in Cortex XSOAR, you need to perform several configuration steps in your AWS environment.
 
+**Please note:** For engines and servers using IMDSv2 for their EC2 metadata, the default http-put-response-hop-limit is 1.
+If your integration is running within a container (Docker/Podman), you will need to set either `--net=host` as an extra configuration for the container service (Docker/Podman), or the hop limit will need to be increased to 2.
+To increase the hop limit, please refer to the example below:
+
+In an AWS enabled CLI:
+```
+aws ec2 modify-instance-metadata-options \
+    --instance-id <instance_id> \
+    --http-put-response-hop-limit 2 \
+    --http-endpoint enabled
+```
 
 ### Create a Policy allowing to AssumeRole
 
@@ -273,3 +298,14 @@ The following steps will exemplify the creation of an IAM integration associated
    * **Access Key**: add the Access key that you saved when creating the IAM user.
    * **Secret Key**: add the Secret key that you saved when creating the IAM user.
 1. Click **Test** to validate the connection (Keys & Token).
+
+### Working with PrivateLinks
+When using AWS PrivateLinks (sts/service links) you should make sure that the DNS hostname is configured properly.
+You can do it by one of the following methods
+- [AWS Private DNS](https://docs.aws.amazon.com/vpc/latest/privatelink/manage-dns-names.html).
+- Using the python pass arguments configuration:
+   1. Go to **Settings** > **About** > **Troubleshooting** > **Server Configuration**.
+   2. Click **Add Server Configuration**.
+   3. Add the key `python.pass.extra.keys`.
+   4. In the configuration value field `--add-host=<host>:X.X.X.X`.
+   5. If you are using STS authentication, you might need to also configure the sts-host `--add-host=<host>:X.X.X.X##--add-host=<sts-host>:Y.Y.Y.Y`.

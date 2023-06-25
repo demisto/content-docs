@@ -438,9 +438,12 @@ def test_get_contribution_users():
             "type": "User",
             "site_admin": False
     }]
-    res = get_contributors_users(user_info)
-    assert ["<img src='https://avatars.githubusercontent.com/u/testurl'/><br></br> "
-            "<a href='https://github.com/powershelly' target='_blank'>powershelly</a><br></br>1 Contributions"] == res
+    res = get_contributors_users(user_info, last_update='')
+    assert {'powershelly': {
+        'user': 'powershelly',
+        'github_profile': 'https://github.com/powershelly',
+        'github_avatar': 'https://avatars.githubusercontent.com/u/testurl',
+        'number_of_contributions': 1}} == res
 
 
 def test_create_grid():

@@ -34,3 +34,5 @@ Next, in the "Equals (String)" field enter our expected value of "8.8.8.8" and c
 You can test the task with the **Test** button. Finish by clicking **Save**, and connect the tasks together. 
 
 Click "Save" to save your playbook. You can attach playbooks to incidents to automate tasks that are related to that incident.
+
+For more information on playbook development, see the [Cortex XSOAR Administrator's Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-8/cortex-xsoar-admin/playbooks/playbook-development).

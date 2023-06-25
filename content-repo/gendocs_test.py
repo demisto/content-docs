@@ -4,8 +4,8 @@ import re
 from gendocs import DEPRECATED_INFO_FILE, DeprecatedInfo, INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
     index_doc_infos, DocInfo, gen_html_doc, process_release_doc, process_extra_readme_doc, \
     INTEGRATIONS_PREFIX, get_deprecated_data, insert_approved_tags_and_usecases, \
-    find_deprecated_integrations, get_blame_date, get_deprecated_display_dates, \
-    get_fromversion_data, add_deprected_integrations_info, merge_deprecated_info, get_extracted_deprecated_note, \
+    find_deprecated_items, get_blame_date, get_deprecated_display_dates, \
+    get_fromversion_data, add_deprecated_info, merge_deprecated_info, get_extracted_deprecated_note, \
     get_pack_link
 from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server, fix_relative_images, \
     normalize_id
@@ -118,23 +118,23 @@ def test_findfiles():
 @pytest.mark.parametrize(
     'integration_yml_path_and_expected_content_info', [
         (
-            'deprecated-integration',
-            {
-                'deprecated': True,
-                'description': 'Deprecated. Use the Generic Export Indicators Service integration instead. '
-                               'Use the Export Indicators Service integration to provide an endpoint '
-                               'with a list of indicators as a service for the system indicators.',
-                'fromversion': '6.0.0'
-            },
-            ':::caution Deprecated\nUse the Generic Export Indicators Service integration instead.\n:::\n\n'
+                'deprecated-integration',
+                {
+                    'deprecated': True,
+                    'description': 'Deprecated. Use the Generic Export Indicators Service integration instead. '
+                                   'Use the Export Indicators Service integration to provide an endpoint '
+                                   'with a list of indicators as a service for the system indicators.',
+                    'fromversion': '6.0.0'
+                },
+                ':::caution Deprecated\nUse the Generic Export Indicators Service integration instead.\n:::\n\n'
         ),
         (
-            '6-0-0-integration',
-            {
-                'fromversion': '6.0.0',
-                'description': 'Manage Alibaba Cloud Elastic Compute Instances'
-            },
-            ':::info Supported versions\nSupported Cortex XSOAR versions: 6.0.0 and later.\n:::\n\n'
+                '6-0-0-integration',
+                {
+                    'fromversion': '6.0.0',
+                    'description': 'Manage Alibaba Cloud Elastic Compute Instances'
+                },
+                ':::info Supported versions\nSupported Cortex XSOAR versions: 6.0.0 and later.\n:::\n\n'
         )
     ],
     indirect=True
@@ -162,7 +162,7 @@ def test_add_content_info(integration_yml_path_and_expected_content_info):
 
 
 def test_process_readme_doc(tmp_path, mocker):
-    mocker.patch('gendocs.get_packname_from_metadata', return_value=('', False))
+    mocker.patch('gendocs.get_packname_from_metadata', return_value=('', False, True))
     res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, 'integrations',
                              str(tmp_path), "dummy-relative",
                              f'{SAMPLE_CONTENT}/Integrations/DomainTools_Iris/README.md')
@@ -187,7 +187,7 @@ def test_process_readme_doc(tmp_path, mocker):
 
 
 def test_process_readme_doc_same_dir(tmp_path, mocker):
-    mocker.patch('gendocs.get_packname_from_metadata', return_value=('', False))
+    mocker.patch('gendocs.get_packname_from_metadata', return_value=('', False, True))
     res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT, 'integrations',
                              str(tmp_path), "dummy-relative", f'{SAMPLE_CONTENT}/Integrations/integration-F5_README.md')
     assert res.id == 'f5-firewall'
@@ -203,7 +203,7 @@ def test_process_readme_doc_same_dir(tmp_path, mocker):
 
 
 def test_process_readme_doc_edl(tmp_path, mocker):
-    mocker.patch('gendocs.get_packname_from_metadata', return_value=('', False))
+    mocker.patch('gendocs.get_packname_from_metadata', return_value=('', False, True))
     res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT,
                              'integrations', str(tmp_path), "dummy-relative",
                              f'{SAMPLE_CONTENT}/Integrations/PaloAltoNetworks_PAN_OS_EDL_Management/README.md')
@@ -211,7 +211,7 @@ def test_process_readme_doc_edl(tmp_path, mocker):
 
 
 def test_process_readme_doc_playbookl(tmp_path, mocker):
-    mocker.patch('gendocs.get_packname_from_metadata', return_value=('', False))
+    mocker.patch('gendocs.get_packname_from_metadata', return_value=('', False, True))
     res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT,
                              'integrations', str(tmp_path), "dummy-relative",
                              f'{SAMPLE_CONTENT}/Playbooks/playbook-lost_stolen_device_README.md')
@@ -220,7 +220,7 @@ def test_process_readme_doc_playbookl(tmp_path, mocker):
 
 
 def test_process_code_script(tmp_path, mocker):
-    mocker.patch('gendocs.get_packname_from_metadata', return_value=('', False))
+    mocker.patch('gendocs.get_packname_from_metadata', return_value=('', False, True))
     res = process_readme_doc(str(tmp_path), SAMPLE_CONTENT,
                              'integrations', str(tmp_path), "dummy-relative",
                              f'{SAMPLE_CONTENT}/Scripts/script-IsIPInRanges_README.md')
@@ -360,10 +360,7 @@ def test_insert_approved_tags_and_usecases(tmp_path):
     }))
     approved_tags = content_repo_dir / 'approved_tags.json'
     approved_tags.write_text(json.dumps({
-        'approved_list': [
-            'IoT',
-            'Machine Learning'
-        ]
+        'approved_list': {'common': ['IoT', 'Machine Learning'], 'xsoar': [], 'marketplacev2': [], 'xpanse': []}
     }))
     os.chdir(str(content_repo_dir))
     insert_approved_tags_and_usecases()
@@ -392,18 +389,18 @@ SAMPLE_CONTENT_DEP_INTEGRATIONS_COUNT = 7
 
 
 def test_find_deprecated_integrations():
-    res = find_deprecated_integrations(SAMPLE_CONTENT)
+    res = find_deprecated_items(SAMPLE_CONTENT)
     for info in res:
         assert '2021' in info['maintenance_start']
     assert len(res) == SAMPLE_CONTENT_DEP_INTEGRATIONS_COUNT
 
 
-def test_add_deprected_integrations_info(tmp_path):
+def test_add_deprecated_integrations_info(tmp_path):
     deprecated_doc = tmp_path / "deprecated_test.md"
     deprecated_info = tmp_path / "deprecated_info_test.json"
     with open(deprecated_info, "wt") as f:
         json.dump({"integrations": []}, f)
-    add_deprected_integrations_info(SAMPLE_CONTENT, str(deprecated_doc), str(deprecated_info), str(tmp_path))
+    add_deprecated_info(SAMPLE_CONTENT, str(deprecated_doc), str(deprecated_info), str(tmp_path))
     with open(deprecated_doc, "rt") as f:
         dep_content = f.read()
         assert len(re.findall('Maintenance Mode Start Date', dep_content)) == SAMPLE_CONTENT_DEP_INTEGRATIONS_COUNT
@@ -440,19 +437,19 @@ def test_get_extracted_deprecated_note():
 
 @pytest.mark.parametrize("test_input, expected, metadata_name", [
     ('Packs/TestPack/Integrations/TestIntegration/README.md',
-     '#### This Integration is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n',
+     '#### This Integration is part of the **[TestPack](https://cortex.marketplace.pan.dev/marketplace/details/TestPack)** Pack.\n\n',
      'TestPack'),
     ('tmp_path/Packs/TestPack/Playbooks/TestIntegration/README.md',
-     '#### This Playbook is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n',
+     '#### This Playbook is part of the **[TestPack](https://cortex.marketplace.pan.dev/marketplace/details/TestPack)** Pack.\n\n',
      'TestPack'),
     ('content/Packs/TestPack/Scripts/TestIntegration/README.md',
-     '#### This Script is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n',
+     '#### This Script is part of the **[TestPack](https://cortex.marketplace.pan.dev/marketplace/details/TestPack)** Pack.\n\n',
      'TestPack'),
     ('Packs/Test-Pack/Scripts/TestIntegration/README.md',
-     '#### This Script is part of the **[Test - Pack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n',
+     '#### This Script is part of the **[Test - Pack](https://cortex.marketplace.pan.dev/marketplace/details/TestPack)** Pack.\n\n',
      'Test - Pack'),
     ('Packs/Test_Pack/Scripts/TestIntegration/README.md',
-     '#### This Script is part of the **[Test Pack](https://xsoar.pan.dev/marketplace/details/Test_Pack)** Pack.\n\n',
+     '#### This Script is part of the **[Test Pack](https://cortex.marketplace.pan.dev/marketplace/details/Test_Pack)** Pack.\n\n',
      'Test Pack')
 ])
 def test_get_pack_link(test_input, expected, metadata_name, mocker):
@@ -466,29 +463,29 @@ def test_get_pack_link(test_input, expected, metadata_name, mocker):
         Then:
             - Ensure the link to pack in marketplace generated as expected
         """
-    mocker.patch('gendocs.get_packname_from_metadata', return_value=(metadata_name, False))
+    mocker.patch('gendocs.get_packname_from_metadata', return_value=(metadata_name, False, True))
     assert expected == get_pack_link(test_input)
 
 
-def error_raising_func(pack_dir):
+def error_raising_func(pack_dir, xsoar_marketplace):
     raise FileNotFoundError
 
 
 @pytest.mark.parametrize("test_input, expected", [
     ('Packs/TestPack/Integrations/TestIntegration/README.md',
-     '#### This Integration is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'
+     '#### This Integration is part of the **[TestPack](https://cortex.marketplace.pan.dev/marketplace/details/TestPack)** Pack.\n\n'
      ),
     ('tmp_path/Packs/TestPack/Playbooks/TestIntegration/README.md',
-     '#### This Playbook is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'
+     '#### This Playbook is part of the **[TestPack](https://cortex.marketplace.pan.dev/marketplace/details/TestPack)** Pack.\n\n'
      ),
     ('content/Packs/TestPack/Scripts/TestIntegration/README.md',
-     '#### This Script is part of the **[TestPack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'
+     '#### This Script is part of the **[TestPack](https://cortex.marketplace.pan.dev/marketplace/details/TestPack)** Pack.\n\n'
      ),
     ('Packs/Test-Pack/Scripts/TestIntegration/README.md',
-     '#### This Script is part of the **[Test - Pack](https://xsoar.pan.dev/marketplace/details/TestPack)** Pack.\n\n'
+     '#### This Script is part of the **[Test - Pack](https://cortex.marketplace.pan.dev/marketplace/details/TestPack)** Pack.\n\n'
      ),
     ('Packs/Test_Pack/Scripts/TestIntegration/README.md',
-     '#### This Script is part of the **[Test Pack](https://xsoar.pan.dev/marketplace/details/Test_Pack)** Pack.\n\n'
+     '#### This Script is part of the **[Test Pack](https://cortex.marketplace.pan.dev/marketplace/details/Test_Pack)** Pack.\n\n'
      )
 ])
 def test_get_pack_link_no_metadata(mocker, test_input, expected):

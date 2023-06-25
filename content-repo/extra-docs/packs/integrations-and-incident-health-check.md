@@ -121,6 +121,8 @@ You can review the playbook inputs and edit them by clicking the 'Playbook Trigg
 | AutoCloseInvestigation | This input determines if the investigation should close automatically after rerunning the scripts.|
  ---
 
+## Notes
+1. Integration instances in which the *Do not use by default* checkbox was selected, are not supported by this pack. This is due to XSOAR platform limitations and in order to prevent exceeding quota limits.
 
 ## Troubleshooting
 The Health Check for Integrations and Incidents  pack contains several incident fields which are associated with the **Integrations and Incidents Health Check** incident type. 
@@ -131,3 +133,33 @@ If the incident type **Integrations and Incidents Health Check** is not chosen, 
 
 ![griderror](https://raw.githubusercontent.com/demisto/content-docs/master/docs/doc_imgs/reference/HealthCheck_GridError.png)
  
+
+## Limitations
+Testing the following OAuth integrations is currently not supported:
+  * ServiceNow v2
+  * ServiceNow CMDB
+  * Gmail Single User
+  * Versa Director
+
+Additionally, when using a self-deployed application for Microsoft/Azure integrations, testing the following integrations is not supported:
+  * Microsoft Graph API
+  * Microsoft Graph User
+  * Microsoft Graph Mail Single User
+  * Microsoft 365 Defender
+  * Microsoft Defender for Cloud Apps
+  * O365 Defender SafeLinks - Single User
+  * Microsoft Teams Management
+  * Microsoft Policy And Compliance (Audit Log)
+  * O365 - EWS - Extension
+  * Azure Active Directory Applications 
+  * Azure Active Directory Identity And Access
+  * Azure Data Explorer
+  * Azure DevOps
+  * Azure Firewall
+  * Azure Kubernetes Services
+  * Azure Network Security Groups
+  * Azure Risky Users
+  * Azure SQL Management
+  * Azure Storage
+  * Azure WAF
+

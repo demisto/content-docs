@@ -5,13 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import Link from "@docusaurus/Link";
-import useBaseUrl from "@docusaurus/useBaseUrl";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import Layout from "@theme/Layout";
-import classnames from "classnames";
 import React, { useRef } from "react";
+import classnames from "classnames";
+import Layout from "@theme/Layout";
+import Link from "@docusaurus/Link";
 import ScrollUpButton from "react-scroll-up-button";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.css";
 
 const features = [
@@ -128,6 +128,7 @@ function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
   const vertificalsRef = useRef(null);
+
   return (
     <Layout
       title={`${siteConfig.themeConfig.navbar.title}`}
@@ -136,12 +137,7 @@ function Home() {
     >
       <ScrollUpButton />
 
-      <header
-        className={classnames(
-          "hero hero--primary heroTilted",
-          styles.heroBanner
-        )}
-      >
+      <header className={classnames("hero hero--primary heroTilted", styles.heroBanner)}>
         <div className="container">
           <div className={styles.hero}>
             <div className={styles.heroInner}>
@@ -174,7 +170,7 @@ function Home() {
                     "button button--info button--secondary button--lg",
                     styles.headerButtons
                   )}
-                  href="https://start.paloaltonetworks.com/become-a-technology-partner"
+                  href="https://technologypartners.paloaltonetworks.com/English/register_email.aspx"
                 >
                   Become a Partner
                 </Link>
@@ -182,6 +178,7 @@ function Home() {
             </div>
           </div>
         </div>
+        
       </header>
 
       <main>
@@ -223,7 +220,7 @@ function Home() {
                     "button button--info button--secondary button--lg",
                     styles.headerButtons
                   )}
-                  href="https://start.paloaltonetworks.com/become-a-technology-partner"
+                  href="https://technologypartners.paloaltonetworks.com/English/register_email.aspx"
                 >
                   Become a Partner
                 </Link>
@@ -262,7 +259,7 @@ function Home() {
         <section className={styles.tools}>
           <div className="integrations">
             <div className="integrations-inner">              
-              <a href="/marketplace">
+              <a href="https://cortex.marketplace.pan.dev/marketplace">
                 See the Cortex XSOAR Marketplace
               </a>
             </div>

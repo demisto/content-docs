@@ -50,7 +50,7 @@ In the Basic section, we name the integration, add a description, choose a categ
 
 ![integration-settings](/doc_imgs/tutorials/tut-integration-ui/integration-settings-image.png )
 
-**Note**: The **Fetches incidents** checkbox tells Cortex XSOAR that the integration runs periodically to ingest events and create incidents in Cortex XSOAR. Our **Yoda Speak** integration does not need to fetch incidents, so make sure this checkbox is empty. While we don’t need this feature for our **Yoda Speak** integration, [fetching incidents](../integrations/fetching-incidents) is an essential part of many integrations. There are additional options available here - external schema support, [can sync mirror in, can sync mirror out](../integrations/mirroring_integration), and [long running integration](../integrations/long-running), but these are less commonly used. 
+**Note**: The **Fetches incidents** checkbox tells Cortex XSOAR that the integration runs periodically to ingest events and create incidents in Cortex XSOAR. Our **Yoda Speak** integration does not need to fetch incidents, so make sure this checkbox is empty. While we don’t need this feature for our **Yoda Speak** integration, [fetching incidents](../integrations/fetching-incidents) is an essential part of many integrations. There are additional options available here - [external schema support](../incidents/incident-classification-mapping#classify-using-a-classification-key), [can sync mirror in, can sync mirror out](../integrations/mirroring_integration), and [long running integration](../integrations/long-running), but these are less commonly used. 
 
 ### Parameters
 
@@ -288,7 +288,7 @@ def main() -> None:
     args = demisto.args()
     command = demisto.command()
 
-    api_key = params.get('api_key',{}).get(‘password’)
+    api_key = params.get('api_key',{}).get('password')
     base_url = params.get('url')
     verify = not params.get('insecure', False)
     proxy = params.get('proxy', False)
