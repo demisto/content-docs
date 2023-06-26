@@ -31,10 +31,11 @@ jobs:
           command: |
             echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
             source $BASH_ENV
-            nvm install `cat .nvmrc`              
+            nvm install
       - run:
           name: Setup Python
           command: |
+            set -x
             pyenv versions
             pyenv global 3.9.1
             pip3 install pipenv==2021.5.29
@@ -42,6 +43,7 @@ jobs:
       - run:
           name: NPM Install
           command: |
+            set -x
             nvm use
             node --version
             npm --version
@@ -49,6 +51,7 @@ jobs:
       - run:
           name: NPM Build content-repo docs
           command: |
+            set -x
             nvm use
             npm run reference-docs
       - run:
@@ -57,6 +60,7 @@ jobs:
           environment:
             ALGOLIA_INDEX: demisto
           command: |
+            set -x
             nvm use
             npm run heapstats
             npm run build-docusaurus
