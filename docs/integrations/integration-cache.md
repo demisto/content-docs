@@ -58,7 +58,7 @@ demisto.results(integration_context['token'])
 ### Storing token with expiration time
 ```python
 integration_context = get_integration_context()
-token = integration_context.get('token')
+token = integration_context.get('access_token')
 valid_until = integration_context.get('valid_until')
 time_now = int(time.time())
 if token and valid_until:

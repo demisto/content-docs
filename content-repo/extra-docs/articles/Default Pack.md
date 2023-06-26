@@ -49,10 +49,13 @@ Finally, the playbook generates an investigation report and closes the incident.
   
 
 ### Layout
+![](https://github.com/demisto/content-docs/blob/master/docs/doc_imgs/reference/default%20layout%201.png?raw=true)
 
 The layout is built in a way that would fit any type of incident by using a dynamic section that dynamically loads the fields you’ve mapped for that incident type.
 
 If you haven’t mapped any fields, you will see them in the “Unmapped Fields” section.
+
+![](https://github.com/demisto/content-docs/blob/master/docs/doc_imgs/reference/default%20layout%202.png?raw=true)
 
 Additionally, the layout provides buttons for the user to tag indicators as benign or malicious for later use in an EDL.
 For example, you may want to tag malicious indicators as "mal", or benign indicators as "safe". The Default layout allows you to make use of these tags by using the buttons that correspond to the indicators you want to tag.
@@ -66,11 +69,13 @@ The Default layout aims to make it as easy as possible for an analyst to investi
 
 The "Investigation" tab displays related assets and indicators from the incident. If mapped, information like "Source IP" or "Detected Endpoints" will show up in that tab, along with the available buttons. In addition, any indicator found throughout the incident will show up in the Indicators section, and could be selected and tagged for allowing or blocking using an EDL.
 
+![](https://github.com/demisto/content-docs/blob/master/docs/doc_imgs/reference/default%20layout%203.png?raw=true)
+
 The “Utilities” tab provides a collection of the most common scripts an analyst may use - from data manipulation scripts and networking tools to Cortex XSOAR debugging utilities. 
 As explained in the different sections, some buttons require scripts from complimentary packs which are free to install from Marketplace.
 This tab may be useful if the analyst needs to base64 decode a string, list the redirects for a given URL, ping a host on the network, etc.
 
-
+![](https://github.com/demisto/content-docs/blob/master/docs/doc_imgs/reference/default%20layout%204.png?raw=true)
 
 ## How To Use
 
