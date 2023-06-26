@@ -60,11 +60,11 @@ If you have already submitted your contribution and you would like to make chang
 
 1. Create or edit any content items need to be included in your contribution.
 
-2. Go to **Marketplace** > **Contributions**, select your pack and press "Edit".
+2. Go to **Marketplace** > **Contributions**, select your pack and click **Edit**.
 
 3. Add or remove content items from the pack, as needed.
 
-4. Press **Save and Contribute** and complete the form as documented [above](#submit-a-content-pack).
+4. Click **Save and Contribute** and complete the form as documented [above](#submit-a-content-pack).
  
    **Note**: Changing the pack name or the email of the contributor at this stage will result in creating a pull request on GitHub, rather than updating the existing one.
    

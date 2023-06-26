@@ -5,8 +5,8 @@ title: Contributing XSOAR Content
 
 This article describes the contribution process for Cortex XSOAR content.  
 
-Contributing allows clients and partners who made new content, or modified exiting content (enhancements, bug-fixes, etc.), to share their work with the community by making it publicly available in the [Cortex XSOAR Marketplace](https://cortex.marketplace.pan.dev/marketplace/).  
-Content can be XSOAR, partner, or community supported, and can be either [free or paid](../partners/premium-packs#pricing).
+Contributing allows clients and partners who created new content, or modified exiting content (enhancements, bug-fixes, etc.), to share their work with the community by making it publicly available in [Cortex XSOAR Marketplace](https://cortex.marketplace.pan.dev/marketplace/).  
+Content can be Cortex XSOAR, partner, or community supported, and can be either [free or paid](../partners/premium-packs#pricing).
 
 All content (except for paid content packs) is open source, and is hosted on the [Cortex XSOAR Content GitHub Repository](https://github.com/demisto/content), licensed under the [MIT license](https://github.com/demisto/content/blob/master/LICENSE).  
 
@@ -20,7 +20,7 @@ For documentation contributions, refer to [Documentation Contributions](docs-con
 Contributions can be either *officially supported* (by Palo Alto Networks, or a Technology Partner), or *community supported*.  
 
 ### Officially Supported Packs
-Officially supported packs have  stricter quality-control process, and provide an email address or a website of their owner that customers can reach out to (and will be referred to) in case of an issue.
+Officially supported packs have a stricter quality-control process, and provide an email address or a website of their owner that customers can reach out to (and will be referred to) in case of an issue.
 
 ### Community Supported Packs
 Community supported packs, do not have a support contact (customers will be able to ask questions on our [Live Community Forum](https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions)), 
@@ -40,7 +40,7 @@ Before starting to work on a contribution, it is recommended to go over the [Con
 Contribute by creating a fork and opening a pull request on the [Cortex XSOAR Content GitHub repository](https://github.com/demisto/content).  
 Use this method in the following scenarios:
 * You are a Technology Partner contributing with *partner* supported new content.
-* Your contribution is large and contains lots of different parts (integrations, scripts, playbooks, layouts, etc) that are likely to lead to a complex review process.
+* Your contribution is large and contains lots of different parts (integrations, scripts, playbooks, layouts, etc.) that are likely to lead to a complex review process.
 * You are proficient with GitHub.
 
 :::info
@@ -55,18 +55,18 @@ For more information and a step-by-step guide, see the dedicated [GitHub Codespa
 :::
 
 ### 2. Cortex XSOAR Marketplace
-Contribute from within Cortex XSOAR's UI using the Marketplace.  
+Contribute from within Cortex XSOAR's UI using Marketplace.  
 This method is more simple, and doesn't require you to set up a development environment or be familiar with Git.  
 
 We recommend using this method in the following scenarios:
 * Individual contributors, contributing content that is community supported.
-* Small contributions (e.g. a bug fix, or a new integration command) to an existing content pack (whether it's XSOAR-supported or partner-supported).
+* Small contributions (e.g., a bug fix, or a new integration command) to an existing content pack (whether it's XSOAR-supported or partner-supported).
 
 * For more information and a step-by-step guide, see [Contributing Through Cortex XSOAR Marketplace](../contributing/marketplace).
 
 :::caution
-Contributing from the marketplace has several limitations:
-* The built-in editor has limitations, and does not support some of the features that can be found in full-fledged IDE.
+Contributing from Marketplace has several limitations:
+* The built-in editor has limitations, and does not support some of the features that can be found in a full-fledged IDE.
 * Documentation files (README, integration's description, etc.) cannot be created or edited.
 * Unit tests cannot be created or edited.
 * Private content packs cannot be contributed this way.
@@ -82,7 +82,7 @@ The requirements are the same as supported packs, and the contribution process o
 
 :::note
 The following sections are necessary only for *officially supported* contributions,
-but we still recommended to read them even if you are contributing *community supported* content in order to be aware of the best practices.  
+but we still recommend to read them even if you are contributing *community supported* content in order to be aware of the best practices.  
 
 The *Pull Request Process* section is not relevant for contributions that were created from Marketplace.
 :::
@@ -143,13 +143,13 @@ After pushing your changes to the remote branch on GitHub, GitHub should automat
 
 Click it, and then on the opened form, update the title and the description (using the pre-existing template), and click "Create pull request".
 
-For additional information on how to create a Pull Request from a fork, refer to [official GitHub documentation](https://help.github.com/articles/creating-a-pull-request-from-a-fork).
+For additional information on how to create a Pull Request from a fork, refer to the [official GitHub documentation](https://help.github.com/articles/creating-a-pull-request-from-a-fork).
 
 ![Creating a new pull request](../doc_imgs/contributing/content-new-pr.png)
 *Creating a new pull request*
 
 :::note
-There will be a setting at the top of the form, to determine where the pull request will be opened.  
+There will be a setting at the top of the form to determine where the pull request will be opened.  
 By default, it will open the pull request from your fork on the branch you created, to the `master` branch of the base Cortex XSOAR Content repository.  
 Then within a few minutes, the target branch will be replaced from `master` to a different custom one.
 This is on purpose, and should not be changed.
@@ -173,7 +173,7 @@ Check out our [Contribution Demo Page](../contributing/demo-prep) for additional
 :::caution
 In order to establish a proper release timeframe for your contribution, 
 you are required to respond (and apply requested changes, if any) within 14 days.  
-Stale pull with no response within this timeframe will be closed.
+Stale pull requests with no response within this timeframe will be closed.
 :::
 
 :::tip

@@ -3,7 +3,7 @@ id: tut-setup-dev-codespace
 title: Set Up Your GitHub Codespace Environment
 ---
 
-This tutorial provides a step-by-step instructions for setting up a personal Codespace for developing Cortex XSOAR content.
+This tutorial provides step-by-step instructions for setting up a personal Codespace for developing Cortex XSOAR content.
 
 ## What are GitHub Codespaces?
 [GitHub Codespaces](https://github.com/features/codespaces) are cloud-based development environments provided by [GitHub](https://github.com) that allow you to set up remote environments with preinstalled and preconfigured tools and dependencies 
@@ -25,7 +25,7 @@ Codespaces generated from the Content repository (or a fork of it) are configure
 :::tip
 You will receive an automated email notification when you have used 75%, 90%, and 100% of your freely-included quotas.
 
-You can find information about your Codespaces quota usage on the settings under "Billing and plans".  
+You can find information about your Codespaces quota usage in the settings under "Billing and plans".  
 See the following GitHub article for a step-by-step guide: [Viewing your GitHub Codespaces usage](https://docs.github.com/en/billing/managing-billing-for-github-codespaces/viewing-your-github-codespaces-usage).
 :::
 
@@ -70,7 +70,7 @@ To open it, enter the main forked repository page, click **Code**, go to the **C
 and click the newly created Codespace (should have a random name).
 
 It can take up to a few minutes for the Codespace to be fully initialized.  
-This is a one-time process that's done only at the first time you open a Codespace.
+This is a one-time process that's done only the first time you open a Codespace.
 
 Once the initialization is completed and your Codespace is ready, you will be redirected to the IDE, where you can start your development.
 
@@ -80,19 +80,19 @@ Once the initialization is completed and your Codespace is ready, you will be re
 #### Visual Studio Code (local)
 In order to connect to your Codespace from a local Visual Studio Code editor, you will need to install the official [GitHub Codespaces extension](https://marketplace.visualstudio.com/items?itemName=GitHub.Codespaces).
 
-For a complete installation & configuration tutorial, refer to the official "[Using GitHub Codespaces in your local development environment](https://docs.github.com/en/codespaces/developing-in-codespaces/using-github-codespaces-in-visual-studio-code)" article by GitHub.  
+For a complete installation and configuration tutorial, refer to the official "[Using GitHub Codespaces in your local development environment](https://docs.github.com/en/codespaces/developing-in-codespaces/using-github-codespaces-in-visual-studio-code)" article by GitHub.  
 (You can skip the "Creating a Codespace in VS Code" section, as we've already created a Codespace.)
 
 #### Using JetBrains IDEs (PyCharm, IntelliJ IDEA, etc.) (local)
 In order to connect to your Codespace from a JetBrains IDE, you will need to install and configure [JetBrains Gateway](https://www.jetbrains.com/remote-development/gateway).
 
-For a complete installation & configuration tutorial, refer to the official "[Using GitHub Codespaces in your JetBrains IDE](https://docs.github.com/en/codespaces/developing-in-codespaces/using-github-codespaces-in-your-jetbrains-ide)" article by GitHub.
+For a complete installation and configuration tutorial, refer to the official "[Using GitHub Codespaces in your JetBrains IDE](https://docs.github.com/en/codespaces/developing-in-codespaces/using-github-codespaces-in-your-jetbrains-ide)" article by GitHub.
 
 ## Development
 After your IDE is connected to your Codespace, you can start developing your content as you normally would.
 
-The environment comes pre-installed with all the required tools and dependencies for developing Cortex XSOAR content, including.  
-Configure SSH keys or any other credentials is also not required, as the Codespace is already authenticated using your GitHub account.
+The environment comes pre-installed with all the required tools and dependencies for developing Cortex XSOAR content.  
+Configuring SSH keys or any other credentials is also not required, as the Codespace is already authenticated using your GitHub account.
 
 ## Additional Resources
 For additional documentation about GitHub Codespaces, see the official [GitHub Codespaces documentation](https://docs.github.com/en/codespaces).
