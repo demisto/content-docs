@@ -164,6 +164,9 @@ Before the review process begins, it is mandatory for you to complete two steps:
 Once you have created your pull request, an automated comment will be posted on your pull request with a link to the registration form, 
 and a tag of a member of our contribution team who will review your code.  
 
+![An example for a message by our bot on a PR](../doc_imgs/contributing/content-bot-pr-message.png)
+*An example for a message by our bot on a PR*
+
 Once these requirements are fulfilled, our assigned contributions team member will start reviewing your code.  
 
 During or near the completion of the review process, we may request scheduling a meeting for an interactive demo.  
@@ -179,10 +182,5 @@ Stale pull requests with no response within this timeframe will be closed.
 :::tip
 If after signing the CLA, you still see a message saying it's unsigned on your PR, refer to the [FAQ](../concepts/faq#cla-is-pending-even-though-i-signed-the-agreement) for possible solutions.
 :::
-
-<br />
-
-![An example for a message by our bot on a PR](../doc_imgs/contributing/content-bot-pr-message.png)
-*An example for a message by our bot on a PR*
 
 For additional information on how to properly create and manage your pull request, see the dedicated [Pull Request Conventions](../contributing/conventions) article.
