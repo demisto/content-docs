@@ -170,7 +170,7 @@ During or near the completion of the review process, we may request scheduling a
 Prepare for it, and make sure you have a working instance of Cortex XSOAR, with your contributed pack fully configured and ready to be presented.  
 Check out our [Contribution Demo Page](../contributing/demo-prep) for additional information about the demo process.
 
-:::caution
+:::info
 In order to establish a proper release timeframe for your contribution, 
 you are required to respond (and apply requested changes, if any) within 14 days.  
 Stale pull requests with no response within this timeframe will be closed.
