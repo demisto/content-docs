@@ -189,18 +189,21 @@ script-id-1
 ```
 
 ### Author_image.png
-You may choose to show the pack author image such that it will be displayed in the marketplace under the **PUBLISHER** section when viewing the pack details. The image should be saved in the pack root level (i.e. content/packs/MyPackName/Author_image.png), make sure to stick with this file name for the image to appear.
-The image size should be up to 4kb and in the dimensions of 120x50.
+It's possible to add an author image - a logo of the contributing company, which will be displayed on the marketplace page of the pack, under the "PUBLISHER" section.  
+The image should be saved in the root directory of the pack (e.g., `content/packs/MyPackName`), be named `Author_image.png`, and have a size of up to 4 KB, at a resolution of 120x50.
 
-For Partners, this image is **mandatory** and is validated during the build. If the file is missing, a validation will fail with the following error:
+:::info Partner Contributions
+For partner contributions, this file is mandatory, and will be validated as part of the build process.
 
 ```bash
 - Issues with unique files in pack: $PACK_NAME
   Packs/$PACK_NAME/Author_image.png: [IM109] - Partners must provide a non-empty author image under the path Packs/$PACK_NAME/Author_image.png
-
 ```
+:::
  
-In case file does not exist, the pack author name will be displayed in text.
+:::note
+If the `Author_image.png` file does not exist, the name of the author will be displayed under the "PUBLISHER" section instead.
+:::
 
 ### CONTRIBUTORS.json
 If you are contributing to an existing pack, you can add a **CONTRIBUTORS.json** file to the root of the pack in the event that one does not already exist. The file should contain a list of strings including your name. 
