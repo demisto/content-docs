@@ -1,9 +1,8 @@
 # Redirect subdomain
 https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 
-
 # Redirect main docs page
-/docs	/docs/welcome
+/docs /docs/welcome
 
 # Redirect used by Server link (do NOT delete)
 /start-contributing /docs/contributing/marketplace
@@ -11,76 +10,74 @@ https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 # Redirect existing docs
 
 # Partner docs
-/docs/become-a-tech-partner	/docs/partners/become-a-tech-partner
-/docs/partner-owned-integration	/docs/partners/partner-owned-integration
-/docs/development-partners	/docs/partners/development-partners
+/docs/become-a-tech-partner /docs/partners/become-a-tech-partner
+/docs/partner-owned-integration /docs/partners/partner-owned-integration
 
 # Concepts
-/docs/design-best-practices	/docs/concepts/design-best-practices
-/docs/use-cases	/docs/concepts/use-cases
-/docs/faq	/docs/concepts/faq
+/docs/design-best-practices /docs/concepts/design-best-practices
+/docs/use-cases /docs/concepts/use-cases
+/docs/faq /docs/concepts/faq
 
 # Howtos Integrations
-/docs/changelog	/docs/howtos/integrations/release-notes
-/docs/code-conventions	/docs/howtos/integrations/code-conventions
-/docs/context-and-outputs	/docs/howtos/integrations/context-and-outputs
-/docs/context-standards	/docs/howtos/integrations/context-standards-about
-/docs/dbot	/docs/howtos/integrations/dbot
-/docs/debugging	/docs/howtos/integrations/debugging
-/docs/dev-setup	/docs/howtos/integrations/dev-setup
-/docs/doc-structure	/docs/howtos/integrations/doc-structure
-/docs/docker	/docs/howtos/integrations/docker
-/docs/dt	/docs/howtos/integrations/dt
-/docs/fetching-credentials	/docs/howtos/integrations/fetching-credentials
-/docs/fetching-incidents	/docs/howtos/integrations/fetching-incidents
-/docs/getting-started-guide	/docs/howtos/integrations/getting-started-guide
-/docs/integration-docs	/docs/howtos/integrations/integration-docs
-/docs/linting	/docs/howtos/integrations/linting
-/docs/long-running	/docs/howtos/integrations/long-running
-/docs/package-dir	/docs/howtos/integrations/package-dir
-/docs/parameter-types	/docs/howtos/integrations/parameter-types
-/docs/testing	/docs/integrations/test-playbooks
-/docs/integrations/testing	/docs/integrations/test-playbooks
-/docs/unit-testing	/docs/howtos/integrations/unit-testing
-/docs/yaml-file	/docs/howtos/integrations/yaml-file
+/docs/changelog /docs/howtos/integrations/release-notes
+/docs/code-conventions /docs/howtos/integrations/code-conventions
+/docs/context-and-outputs /docs/howtos/integrations/context-and-outputs
+/docs/context-standards /docs/howtos/integrations/context-standards-about
+/docs/dbot /docs/howtos/integrations/dbot
+/docs/debugging /docs/howtos/integrations/debugging
+/docs/dev-setup /docs/howtos/integrations/dev-setup
+/docs/doc-structure /docs/howtos/integrations/doc-structure
+/docs/docker /docs/howtos/integrations/docker
+/docs/dt /docs/howtos/integrations/dt
+/docs/fetching-credentials /docs/howtos/integrations/fetching-credentials
+/docs/fetching-incidents /docs/howtos/integrations/fetching-incidents
+/docs/getting-started-guide /docs/howtos/integrations/getting-started-guide
+/docs/integration-docs /docs/howtos/integrations/integration-docs
+/docs/linting /docs/howtos/integrations/linting
+/docs/long-running /docs/howtos/integrations/long-running
+/docs/package-dir /docs/howtos/integrations/package-dir
+/docs/parameter-types /docs/howtos/integrations/parameter-types
+/docs/testing /docs/integrations/test-playbooks
+/docs/integrations/testing /docs/integrations/test-playbooks
+/docs/unit-testing /docs/howtos/integrations/unit-testing
+/docs/yaml-file /docs/howtos/integrations/yaml-file
 
 # Howtos Contributing
-/docs/circleci	/docs/howtos/contributing/circleci
+/docs/circleci /docs/howtos/contributing/circleci
 
 # Howtos Playbooks
-/docs/playbook-conventions	/docs/howtos/playbooks/playbook-conventions
-/docs/playbooks	/docs/howtos/playbooks/playbooks
-/docs/generic-polling	/docs/howtos/playbooks/generic-polling
+/docs/playbook-conventions /docs/howtos/playbooks/playbook-conventions
+/docs/playbooks /docs/howtos/playbooks/playbooks
+/docs/generic-polling /docs/howtos/playbooks/generic-polling
 
 # Tutorials
-/docs/tutorial-setup-dev	/docs/tutorials/getting-started/tut-setup-dev
-/docs/tutorial	/docs/tutorials/integrations/tut-integration-ui
-
+/docs/tutorial-setup-dev /docs/tutorials/getting-started/tut-setup-dev
+/docs/tutorial /docs/tutorials/integrations/tut-integration-ui
 
 # Redirect docs after second restyle of 3/20/2020
 
 # Howtos Integrations
 /docs/howtos/integrations/changelog /docs/integrations/release-notes
-/docs/howtos/integrations/code-conventions  /docs/integrations/code-conventions
-/docs/howtos/integrations/context-and-outputs   /docs/integrations/context-and-outputs
+/docs/howtos/integrations/code-conventions /docs/integrations/code-conventions
+/docs/howtos/integrations/context-and-outputs /docs/integrations/context-and-outputs
 /docs/howtos/integrations/context-standards /docs/integrations/context-standards
-/docs/howtos/integrations/dbot  /docs/integrations/dbot
+/docs/howtos/integrations/dbot /docs/integrations/dbot
 /docs/howtos/integrations/debugging /docs/integrations/debugging
 /docs/howtos/integrations/dev-setup /docs/integrations/dev-setup
 /docs/howtos/integrations/doc-structure /docs/integrations/doc-structure
-/docs/howtos/integrations/docker    /docs/integrations/docker
-/docs/howtos/integrations/dt    /docs/integrations/dt
-/docs/howtos/integrations/fetching-credentials  /docs/integrations/fetching-credentials
-/docs/howtos/integrations/fetching-incidents    /docs/integrations/fetching-incidents
+/docs/howtos/integrations/docker /docs/integrations/docker
+/docs/howtos/integrations/dt /docs/integrations/dt
+/docs/howtos/integrations/fetching-credentials /docs/integrations/fetching-credentials
+/docs/howtos/integrations/fetching-incidents /docs/integrations/fetching-incidents
 /docs/howtos/integrations/getting-started-guide /docs/integrations/getting-started-guide
-/docs/howtos/integrations/integration-docs  /docs/integrations/integration-docs
-/docs/howtos/integrations/linting   /docs/integrations/linting
-/docs/howtos/integrations/long-running  /docs/integrations/long-running
-/docs/howtos/integrations/package-dir   /docs/integrations/package-dir
-/docs/howtos/integrations/packs-format   /docs/integrations/packs-format
-/docs/howtos/integrations/parameter-types   /docs/integrations/parameter-types
-/docs/howtos/integrations/test-playbooks    /docs/integrations/test-playbooks
-/docs/howtos/integrations/unit-testing  /docs/integrations/unit-testing
+/docs/howtos/integrations/integration-docs /docs/integrations/integration-docs
+/docs/howtos/integrations/linting /docs/integrations/linting
+/docs/howtos/integrations/long-running /docs/integrations/long-running
+/docs/howtos/integrations/package-dir /docs/integrations/package-dir
+/docs/howtos/integrations/packs-format /docs/integrations/packs-format
+/docs/howtos/integrations/parameter-types /docs/integrations/parameter-types
+/docs/howtos/integrations/test-playbooks /docs/integrations/test-playbooks
+/docs/howtos/integrations/unit-testing /docs/integrations/unit-testing
 /docs/howtos/integrations/yaml-file /docs/integrations/yaml-file
 # the next two are correct
 /docs/howtos/integrations/integration-cache /docs/integrations/integration-cache
@@ -90,15 +87,15 @@ https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 /docs/integrations/changelog /docs/integrations/release-notes
 
 # Howtos Contributing
-/docs/howtos/contributing/circleci  /docs/contributing/circleci
+/docs/howtos/contributing/circleci /docs/contributing/circleci
 
 # Howtos Playbooks
 /docs/howtos/playbooks/playbook-conventions /docs/playbooks/playbook-conventions
-/docs/howtos/playbooks/playbooks    /docs/playbooks/playbooks
-/docs/howtos/playbooks/generic-polling  /docs/playbooks/generic-polling
+/docs/howtos/playbooks/playbooks /docs/playbooks/playbooks
+/docs/howtos/playbooks/generic-polling /docs/playbooks/generic-polling
 
 # Tutorials
-/docs/tutorials/getting-started/tut-setup-dev   /docs/tutorials/tut-setup-dev
+/docs/tutorials/getting-started/tut-setup-dev /docs/tutorials/tut-setup-dev
 /docs/tutorials/integrations/tut-integration-ui /docs/tutorials/tut-integration-ui
 
 # Tuts that moved to articles
@@ -109,17 +106,20 @@ https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 
 #Sign Up
 /program-guide https://www.paloaltonetworks.com/content/dam/pan/en_US/assets/pdf/datasheets/cortex-xsoar-partner-program-guide.pdf
-/sign-addn https://na2.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=f1b0bfb5-5e5a-49b9-8ed6-5b475605cefa&env=na2&acct=11b87c14-db4f-4b90-b5b1-58b37f18856f&v=2
+/sign-addn https://na2.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=f1b0bfb5-5e5a-49b9-8ed6-5b475605cefa &
+env=na2 &
+acct=11b87c14-db4f-4b90-b5b1-58b37f18856f &
+v=2
 
 # Rebranding
-/extra	/docs/partners/why-demisto
-/docs/why-demisto	/docs/partners/why-xsoar
-/docs/partners/why-demisto   /docs/partners/why-xsoar
+/extra /docs/partners/why-demisto
+/docs/why-demisto /docs/partners/why-xsoar
+/docs/partners/why-demisto /docs/partners/why-xsoar
 /partner-kit https://drive.google.com/drive/folders/1oy2xycgqdofPEeXtz9fqh_zF5V5OZwkE
 /share https://drive.google.com/drive/u/0/folders/15sfGV-xb8MsZYKTanNETRRxvq8OeEcp2
 
 # Other
-/docs/reference	/docs/reference/index
+/docs/reference /docs/reference/index
 
 # Partner
 /office-hours https://paloaltonetworks.zoom.us/j/91689983283

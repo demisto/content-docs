@@ -41,11 +41,6 @@
         "type": 301
       },
       {
-        "source": "/development-partners",
-        "destination": "/docs/partners/development-partners",
-        "type": 301
-      },
-      {
         "source": "/docs/design-best-practices",
         "destination": "/docs/concepts/design-best-practices",
         "type": 301
