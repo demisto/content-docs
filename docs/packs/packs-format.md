@@ -140,8 +140,8 @@ A supported partner pack metadata contents for example:
 ### Content Packs Versioning
 Pack versions have the following format MAJOR.MINOR.REVISION:
    1. **Revision** when you make backwards compatible bug fixes.
-   1. **Minor** when you add functionality in a backwards compatible manner.
-   1. **Major** when you make incompatible API changes or revamping the pack by adding to it a lot of new backwards compatible functionality.
+   2. **Minor** when you add functionality in a backwards compatible manner.
+   3. **Major** when you make incompatible API changes or revamping the pack by adding to it a lot of new backwards compatible functionality.
 
 
 ### README.md
@@ -193,7 +193,8 @@ It's possible to add an author image - a logo of the contributing company, which
 The image should be saved in the root directory of the pack (e.g., `content/packs/MyPackName`), be named `Author_image.png`, and have a size of up to 4 KB, at a resolution of 120x50.
 
 :::info Partner Contributions
-For partner contributions, this file is mandatory, and will be validated as part of the build process.
+For partner contributions, this file is mandatory, and will be validated as part of the build process.  
+If the file is missing, the build will fail with the following validation error:
 
 ```bash
 - Issues with unique files in pack: $PACK_NAME
