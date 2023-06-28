@@ -233,6 +233,8 @@ const sidebars = {
       collapsed: true,
       items: [
             "tutorials/tut-setup-dev",
+            "tutorials/tut-setup-dev-codespace",
+            "tutorials/tut-setup-dev-remote",
             "tutorials/tut-design",
             "tutorials/tut-integration-ui"
         ]
