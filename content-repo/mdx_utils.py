@@ -8,6 +8,7 @@ from typing import Optional
 import requests
 import inflection
 
+MDX_SERVER_PORT: int = 8080
 MDX_SERVER_PROCESS: Optional[subprocess.Popen] = None
 
 
@@ -59,7 +60,7 @@ def fix_relative_images(txt: str, base_dir: str, id: str, images_dir: str, relat
 
 
 def verify_mdx_server(readme_content: str):
-    response = requests.post('http://localhost:6060', data=readme_content.encode('utf-8'), timeout=10)
+    response = requests.post(f'http://localhost:{MDX_SERVER_PORT}', data=readme_content.encode('utf-8'), timeout=10)
 
     try:
         response.raise_for_status()
@@ -73,10 +74,14 @@ def start_mdx_server():
     global MDX_SERVER_PROCESS
     if not MDX_SERVER_PROCESS:
         node_version_res = subprocess.run(["node", "--version"], capture_output=True, text=True)
-        print(f'Starting Markdown compile server with node version: {node_version_res}')
+        print(f"Starting Markdown compile server with node version: '{node_version_res}', using port: {MDX_SERVER_PORT}")
         mdx_parse_server = Path(__file__).parent / "mdx-parse-server" / "server.js"
-        MDX_SERVER_PROCESS = subprocess.Popen(['node', str(mdx_parse_server)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        time.sleep(2)  # let the node process complete startup
+        MDX_SERVER_PROCESS = subprocess.Popen(
+            ['node', str(mdx_parse_server), '-p', str(MDX_SERVER_PORT)],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            )
+        time.sleep(2)  # Wait for node process to start
 
 
 def stop_mdx_server():

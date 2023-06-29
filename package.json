@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "reference-docs": "cd content-repo && ./create-docs.sh",
+    "reference-docs": "bash content-repo/create-docs.sh",
     "test": "cd content-repo && pipenv install --dev && pipenv run flake8 *.py && pipenv run mypy gendocs.py && pipenv run pytest -v",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
