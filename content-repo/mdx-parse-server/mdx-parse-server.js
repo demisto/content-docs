@@ -1,11 +1,12 @@
-const mdx = require('@mdx-js/mdx');
-const http = require('http')
+import {compile} from '@mdx-js/mdx';
+import readFile from 'fs-extra';
+import http from 'http';
 
 function requestHandler(req, res) {
     // console.log(req)
-    if (req.method != 'POST') {
+    if (req.method !== 'POST') {
         res.statusCode = 405
-        res.end('Only POST is supported')
+        res.end('Only POST requests are supported.')
         return
     }
     let body = ''
@@ -14,13 +15,14 @@ function requestHandler(req, res) {
         body += data
     })
     req.on('end', async function () {
-        //   console.log('Body length: ' + body.length)
+        // console.log('Body length: ' + body.length)
         try {
-            parsed = await mdx(body)
-            res.end('Successfully parsed mdx')
+            const contents = await readFile(file)
+            await compile(contents)
+            res.end('Markdown data parsed successfully.')
         } catch (error) {
             res.statusCode = 500
-            res.end("MDX parse failure: " + error)   
+            res.end("Error while parsing Markdown data: " + error)   
         }
     })
 }
@@ -33,4 +35,3 @@ server.listen(6060, (err) => {
     }
     console.log(`MDS server is listening on port: 6060`)
 });
-

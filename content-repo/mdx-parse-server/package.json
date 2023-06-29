@@ -1,0 +1,11 @@
+{
+  "name": "mdx-parse-server",
+  "version": "1.0.0",
+  "description": "A server that checks whether Markdown data is valid, and returns a response code accordingly.",
+  "type": "module",
+  "main": "mdx-parse-server.js",
+  "dependencies": {
+    "@mdx-js/mdx": "^2.3.0",
+    "fs-extra": "^11.1.1"
+    }
+}

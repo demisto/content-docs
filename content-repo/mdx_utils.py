@@ -3,6 +3,7 @@ import subprocess
 import re
 import os
 import time
+from pathlib import Path
 from typing import Optional
 import requests
 import inflection
@@ -57,26 +58,24 @@ def fix_relative_images(txt: str, base_dir: str, id: str, images_dir: str, relat
     return txt
 
 
-def verify_mdx(readme_file: str):
-    mdx_parse = f'{os.path.dirname(os.path.abspath(__file__))}/../mdx-parse.js'
-    res = subprocess.run(['node', mdx_parse, '-f', readme_file], text=True, timeout=10, capture_output=True)
-    if res.returncode != 0:
-        raise ValueError(f'Failed verfiying: {readme_file}. Error: {res.stderr}')
-
-
 def verify_mdx_server(readme_content: str):
     response = requests.post('http://localhost:6060', data=readme_content.encode('utf-8'), timeout=10)
-    if response.status_code != 200:
-        raise ValueError(f'Failed verfiying via MDX server. Status: {response.status_code}. Error: {response.text}')
+
+    try:
+        response.raise_for_status()
+
+    except Exception as e:
+        print(f'Failed verifying via MDX server. Status: {response.status_code}. Error: {response.text}')
+        raise e
 
 
 def start_mdx_server():
     global MDX_SERVER_PROCESS
     if not MDX_SERVER_PROCESS:
         node_version_res = subprocess.run(["node", "--version"], capture_output=True, text=True)
-        print(f'starting mdx server with node version: {node_version_res}')
-        mdx_parse_server = f'{os.path.dirname(os.path.abspath(__file__))}/../mdx-parse-server.js'
-        MDX_SERVER_PROCESS = subprocess.Popen(['node', mdx_parse_server], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        print(f'Starting Markdown compile server with node version: {node_version_res}')
+        mdx_parse_server = Path(__file__).parent / "mdx-parse-server" / "server.js"
+        MDX_SERVER_PROCESS = subprocess.Popen(['node', str(mdx_parse_server)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         time.sleep(2)  # let the node process complete startup
 
 

@@ -7,7 +7,7 @@ from gendocs import DEPRECATED_INFO_FILE, DeprecatedInfo, INTEGRATION_DOCS_MATCH
     find_deprecated_items, get_blame_date, get_deprecated_display_dates, \
     get_fromversion_data, add_deprecated_info, merge_deprecated_info, get_extracted_deprecated_note, \
     get_pack_link
-from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server, fix_relative_images, \
+from mdx_utils import fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server, fix_relative_images, \
     normalize_id
 import os
 import pytest
@@ -37,14 +37,6 @@ def integration_yml_path_and_expected_content_info(request, tmp_path):
         yaml.safe_dump(integration_yml_data, file)
 
     return integration_yml_path, expected_content_info
-
-
-def test_verify_mdx():
-    try:
-        verify_mdx(f'{BASE_DIR}/test_data/bad-mdx-readme.md')
-        assert False, 'should fail verify'
-    except Exception as ex:
-        assert 'Expected corresponding JSX closing tag' in str(ex)
 
 
 def test_verify_mdx_server(mdx_server):
