@@ -1,0 +1,82 @@
+{
+  "logo.alt": {
+    "message": "Cortex XSOAR for Developers (Formerly Demisto)",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Developer Docs": {
+    "message": "Developer Docs",
+    "description": "Navbar item with label Developer Docs"
+  },
+  "item.label.Articles": {
+    "message": "Articles",
+    "description": "Navbar item with label Articles"
+  },
+  "item.label.Reference": {
+    "message": "Reference",
+    "description": "Navbar item with label Reference"
+  },
+  "item.label.Marketplace": {
+    "message": "Marketplace",
+    "description": "Navbar item with label Marketplace"
+  },
+  "item.label.Products": {
+    "message": "Products",
+    "description": "Navbar item with label Products"
+  },
+  "item.label.Partners": {
+    "message": "Partners",
+    "description": "Navbar item with label Partners"
+  },
+  "item.label.Blog": {
+    "message": "Blog",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.PAN-OS": {
+    "message": "PAN-OS",
+    "description": "Navbar item with label PAN-OS"
+  },
+  "item.label.Cortex Data Lake": {
+    "message": "Cortex Data Lake",
+    "description": "Navbar item with label Cortex Data Lake"
+  },
+  "item.label.Cortex XSOAR": {
+    "message": "Cortex XSOAR",
+    "description": "Navbar item with label Cortex XSOAR"
+  },
+  "item.label.Prisma": {
+    "message": "Prisma",
+    "description": "Navbar item with label Prisma"
+  },
+  "item.label.Why Cortex XSOAR?": {
+    "message": "Why Cortex XSOAR?",
+    "description": "Navbar item with label Why Cortex XSOAR?"
+  },
+  "item.label.Become a Partner": {
+    "message": "Become a Partner",
+    "description": "Navbar item with label Become a Partner"
+  },
+  "item.label.Premium Packs": {
+    "message": "Premium Packs",
+    "description": "Navbar item with label Premium Packs"
+  },
+  "item.label.Private Offer": {
+    "message": "Private Offer",
+    "description": "Navbar item with label Private Offer"
+  },
+  "item.label.Adopt-a-Pack": {
+    "message": "Adopt-a-Pack",
+    "description": "Navbar item with label Adopt-a-Pack"
+  },
+  "item.label.Pack Certification": {
+    "message": "Pack Certification",
+    "description": "Navbar item with label Pack Certification"
+  },
+  "item.label.Office Hours": {
+    "message": "Office Hours",
+    "description": "Navbar item with label Office Hours"
+  },
+  "item.label.Sign Up Now": {
+    "message": "Sign Up Now",
+    "description": "Navbar item with label Sign Up Now"
+  }
+}

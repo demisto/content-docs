@@ -1,0 +1,78 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.docs.category.Getting Started": {
+    "message": "Getting Started",
+    "description": "The label for category Getting Started in sidebar docs"
+  },
+  "sidebar.docs.category.Design": {
+    "message": "Design",
+    "description": "The label for category Design in sidebar docs"
+  },
+  "sidebar.docs.category.Developing": {
+    "message": "Developing",
+    "description": "The label for category Developing in sidebar docs"
+  },
+  "sidebar.docs.category.Contributing": {
+    "message": "Contributing",
+    "description": "The label for category Contributing in sidebar docs"
+  },
+  "sidebar.docs.category.Content Packs": {
+    "message": "Content Packs",
+    "description": "The label for category Content Packs in sidebar docs"
+  },
+  "sidebar.docs.category.Integrations & Scripts": {
+    "message": "Integrations & Scripts",
+    "description": "The label for category Integrations & Scripts in sidebar docs"
+  },
+  "sidebar.docs.category.Components": {
+    "message": "Components",
+    "description": "The label for category Components in sidebar docs"
+  },
+  "sidebar.docs.category.Context Standards": {
+    "message": "Context Standards",
+    "description": "The label for category Context Standards in sidebar docs"
+  },
+  "sidebar.docs.category.Generic Commands": {
+    "message": "Generic Commands",
+    "description": "The label for category Generic Commands in sidebar docs"
+  },
+  "sidebar.docs.category.Builtins": {
+    "message": "Builtins",
+    "description": "The label for category Builtins in sidebar docs"
+  },
+  "sidebar.docs.category.Testing": {
+    "message": "Testing",
+    "description": "The label for category Testing in sidebar docs"
+  },
+  "sidebar.docs.category.Advanced Topics": {
+    "message": "Advanced Topics",
+    "description": "The label for category Advanced Topics in sidebar docs"
+  },
+  "sidebar.docs.category.Playbooks": {
+    "message": "Playbooks",
+    "description": "The label for category Playbooks in sidebar docs"
+  },
+  "sidebar.docs.category.Incidents, Fields & Layouts": {
+    "message": "Incidents, Fields & Layouts",
+    "description": "The label for category Incidents, Fields & Layouts in sidebar docs"
+  },
+  "sidebar.docs.category.Indicators, Fields & Layouts": {
+    "message": "Indicators, Fields & Layouts",
+    "description": "The label for category Indicators, Fields & Layouts in sidebar docs"
+  },
+  "sidebar.docs.category.Documentation": {
+    "message": "Documentation",
+    "description": "The label for category Documentation in sidebar docs"
+  },
+  "sidebar.docs.category.Tutorials": {
+    "message": "Tutorials",
+    "description": "The label for category Tutorials in sidebar docs"
+  },
+  "sidebar.partners.category.Partners": {
+    "message": "Partners",
+    "description": "The label for category Partners in sidebar partners"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "link.title.Docs": {
+    "message": "Docs",
+    "description": "Docs in the footer"
+  },
+  "link.title.Social": {
+    "message": "Social",
+    "description": "Social in the footer"
+  },
+  "link.item.label.Developer Docs": {
+    "message": "Developer Docs",
+    "description": "The label of footer link with label=Developer Docs linking to /docs/welcome"
+  },
+  "link.item.label.Become a Technology Partner": {
+    "message": "Become a Technology Partner",
+    "description": "Become a Technology Partner linking to /docs/partners/become-a-tech-partner"
+  },
+  "link.item.label.Blog": {
+    "message": "Blog",
+    "description": "Blog linking to https://blog.demisto.com"
+  },
+  "copyright": {
+    "message": "Copyright © 2023 Palo Alto Networks, Inc.",
+    "description": "The footer copyright"
+  },
+  "logo.alt": {
+    "message": "Palo Alto Networks for Developers",
+    "description": "The alt text of footer logo"
+  }
+}
