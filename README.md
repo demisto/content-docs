@@ -5,7 +5,7 @@
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/demisto/content-docs.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/demisto/content-docs/context:python)
 
 # Cortex XSOAR Content Developer Docs
-This repo holds Cortex XSOAR Content Developer Docs. The Content Developer Docs provide information on how to develop and contribute content to the Cortex XSOAR platform. The actual content is hosted at the following repo: https://github.com/demisto/content. 
+This test repo holds Cortex XSOAR Content Developer Docs. The Content Developer Docs provide information on how to develop and contribute content to the Cortex XSOAR platform. The actual content is hosted at the following repo: https://github.com/demisto/content. 
 
 This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
 
