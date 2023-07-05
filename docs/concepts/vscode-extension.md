@@ -81,15 +81,15 @@ In addition, you will be able to open the integration environment in a new works
 - Go to the Run and Debug (⇧⌘D), and make sure that `Docker: debug (<integration>)` is selected.
 - Click on the green arrow or F5 to start debugging.
 
+## Run and Debug tests
+
+- First, [Setup integrations and scripts environment](#setup-integrations-and-scripts-environment)
+- Go to the Run and Debug (⇧⌘D), and make sure that `Docker: debug tests (<integration>)` is selected.
+- Click on the green arrow or F5 to start debugging.
+
 ## Notes
 
 - If during the installation one or more Python packages fail to install, the installation will proceed and create the virtual environment with the packages that were installed.
-
-  It is your responsibility to figure out why the installation failed (probably due to missing non-Python dependencies in your host), and manually install or recreate the virtual environnement afterwards.
-  If you face this issue, you might want to try [Open integration/script in Dev Container](#open-integrations-and-scripts-in-dev-container-advanced) option.
-
-- To use [demisto-sdk](./demisto-sdk) in this workspace it has do be installed globally in your system, with `pip install demisto-sdk` in the system interpreter.
-- You can use this feature together with the content Dev Container.
 
 ## Python 2 support
 
@@ -110,12 +110,3 @@ In order to debug **Python 2** code, it is necessary to install an older python 
 * Make sure **Docker** is running.
 * Make sure that `Allow the default Docker socket to be used (requires password)` is enabled in **Docker** advanced settings.
 * If _Docker_ is running try to [clean up the Docker](https://docs.docker.com/config/pruning/) or [sign in to docker](https://www.docker.com/blog/seamless-sign-in-with-docker-desktop-4-4-2/) to avoid the [docker pull rate limit](https://docs.docker.com/docker-hub/download-rate-limit/#:~:text=Pull%20rates%20limits%20are%20based,to%205000%20pulls%20per%20day.).
-* If **demisto-sdk** is not available when using **MacOS** and **zsh** terminal, try adding the following to [VSCode settings.json](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson):
-  ```json
-    "terminal.integrated.profiles.osx": {
-        "zsh": {
-            "path": "/bin/zsh -l",
-            "args": ["-i"]
-        }
-    }
-  ```
