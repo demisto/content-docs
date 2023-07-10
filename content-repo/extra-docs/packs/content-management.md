@@ -860,7 +860,8 @@ If you have custom Integrations, after the first upload by the CI/CD you may nee
    You need to delete the following types of content items to be able to upload the content via the CI/CD process:<br/>Playbooks, Scripts, Layouts, Classifiers, Mappers, Incident Types and Incident Fields.
 
    **Inputs:**  
-   The playbook has one input: `dry_run`, which is a Boolean.<br/>If set to `true`, the playbook will only print the content items that will be deleted.<br/>If set to `false`, the playbook will delete the content items.<br/>By default, the input is set to `true`.
+   - `dry_run` - Boolean.<br/>If set to `true`, the playbook will only print the content items that will be deleted.<br/>If set to `false`, the playbook will delete the content items.<br/>By default, the input is set to `true`.
+   - `instance_name` - String.<br/>The Core REST API instance name to use.
 
    To run the playbook:
     - In the Cortex XSOAR platform, go to **Incidents**.
