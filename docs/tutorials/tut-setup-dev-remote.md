@@ -89,6 +89,3 @@ If there are errors in [opening the dev container](#open-the-dev-container), try
 ```bash
   docker system prune -a --volumes
 ```
-  
-
-

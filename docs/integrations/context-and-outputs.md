@@ -123,7 +123,7 @@ return_results(command_result)
 :::note
   - The code **must** match the context path outputs specified in the YAML file.
   - You can output the API response as is to the context as a raw value, under the brand name key.
-    There is no need to modify the API response and map it to human readable keys.
+    There is no need to modify the API response and map it to human-readable keys.
     You might still see old integrations in which this type of mapping is performed, but this is not a requirement.
   - Avoid using dot and space characters in the context path keys.
 :::
