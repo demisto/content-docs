@@ -49,7 +49,6 @@ Submit your application now! After your application is approved you’ll receive
 ## 2. Complete the Technical Partnership Agreement
 
 Prior to acceptance into the program, all partners must complete and sign our Technology Partner Program Agreement (TPA). You must identify in the TPA which of your product(s) you wish to have integrated with Cortex XSOAR. Due to the large number of partners, we prefer to use our DocuSign to expedite the process. We'll reach out to arrange for signatures.
-<a href="/assets/NextWaveTechnologyPartnerProgramAgreement.pdf" target="_blank" class="button button--outline button--primary button--lg">Download the partnership agreement here</a>
 
 ## 3. Take Required Training
 
