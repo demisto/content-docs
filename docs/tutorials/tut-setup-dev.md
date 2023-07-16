@@ -59,7 +59,9 @@ For more examples and ideas, visit:
 sb@dddd:~/demisto$
 ```
 
-*Note:* Make sure that `Allow the default Docker socket to be used (requires password)` is enabled in **Docker** advanced settings.
+:::info
+Make sure that `Allow the default Docker socket to be used (requires password)` is enabled in **Docker** advanced settings.
+:::
 
 *Note:* If you are using Windows with WSL2, you can still use Docker Desktop from WSL. Follow this [tutorial](https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros) for details.
 
