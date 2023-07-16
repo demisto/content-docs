@@ -84,7 +84,7 @@ In addition, you will be able to open the integration environment in a new works
 ## Run and Debug tests
 
 - First, [Setup integrations and scripts environment](#setup-integrations-and-scripts-environment)
-- Go to the Run and Debug (⇧⌘D), and make sure that `Docker: debug tests (<integration>)` is selected.
+- Go to the [Run and Debug](https://code.visualstudio.com/docs/editor/debugging#_run-and-debug-view) (⇧⌘D), and make sure that `Docker: debug tests (<integration>)` is selected.
 - Click on the green arrow or F5 to start debugging.
 
 ## Notes
