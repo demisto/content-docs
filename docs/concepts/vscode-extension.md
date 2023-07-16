@@ -109,4 +109,4 @@ In order to debug **Python 2** code, it is necessary to install an older python 
 
 * Make sure **Docker** is running.
 * Make sure that `Allow the default Docker socket to be used (requires password)` is enabled in **Docker** advanced settings.
-* If _Docker_ is running try to [clean up the Docker](https://docs.docker.com/config/pruning/) or [sign in to docker](https://www.docker.com/blog/seamless-sign-in-with-docker-desktop-4-4-2/) to avoid the [docker pull rate limit](https://docs.docker.com/docker-hub/download-rate-limit/#:~:text=Pull%20rates%20limits%20are%20based,to%205000%20pulls%20per%20day.).
+* If _Docker_ is running try to [clean up Docker](https://docs.docker.com/config/pruning/) or [sign in to Docker](https://www.docker.com/blog/seamless-sign-in-with-docker-desktop-4-4-2/) to avoid the [Docker pull rate limit](https://docs.docker.com/docker-hub/download-rate-limit/#:~:text=Pull%20rates%20limits%20are%20based,to%205000%20pulls%20per%20day.).
