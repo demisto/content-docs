@@ -50,7 +50,7 @@ To develop in a fully configured remote development environment, follow the inst
 
 ### Local development (Linux, MacOS, WSL2)
 
-The VScode extension supports fully setting up your development environment automatically.
+The VScode extension supports setting up your development environment automatically.
 
 #### Usage
 
@@ -89,7 +89,7 @@ In addition, you will be able to open the integration environment in a new works
 
 ## Notes
 
-- If during the installation one or more Python packages fail to install, the installation will proceed and create the virtual environment with the packages that were installed.
+If during the installation one or more Python packages fail to install, the installation will proceed and create the virtual environment with the packages that were installed.
 
 ## Python 2 support
 

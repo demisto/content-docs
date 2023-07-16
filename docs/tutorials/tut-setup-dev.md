@@ -59,9 +59,14 @@ For more examples and ideas, visit:
 sb@dddd:~/demisto$
 ```
 
-*Note:* Make sure that `Allow the default Docker socket to be used (requires password)` is enabled in **Docker** advanced settings.
+:::info
+Make sure that `Allow the default Docker socket to be used (requires password)` is enabled in **Docker** advanced settings.
+:::
 
-*Note:* If you are using Windows with WSL2, you can still use Docker Desktop from WSL. Follow this [tutorial](https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros) for details.
+:::tip
+If you are using WSL2 on Windows, you can still use Docker Desktop from WSL.  
+See [the following tutorial](https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros) for more details.
+:::
 
 Great, all the prerequisites are set! We can get started.
 
@@ -108,7 +113,7 @@ Follow the instructions in this [guide](tut-setup-dev-remote.md).
 
 #### Let VSCode extension set up a local environment (Linux, MacOS, WSL2)
 
-Follow [this](./vscode-extension.md#local-development-linux-macos-wsl2) guide to set up a fully configured local environment.
+Follow this [guide](./vscode-extension.md#local-development-linux-macos-wsl2) to set up a fully configured local environment.
 
 #### Manually set up a local environment (Linux, MacOS, WSL2)
 
