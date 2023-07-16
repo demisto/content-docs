@@ -113,7 +113,7 @@ Follow the instructions in this [guide](tut-setup-dev-remote.md).
 
 #### Let VSCode extension set up a local environment (Linux, MacOS, WSL2)
 
-Follow [this](./vscode-extension.md#local-development-linux-macos-wsl2) guide to set up a fully configured local environment.
+Follow this [guide](./vscode-extension.md#local-development-linux-macos-wsl2) to set up a fully configured local environment.
 
 #### Manually set up a local environment (Linux, MacOS, WSL2)
 
