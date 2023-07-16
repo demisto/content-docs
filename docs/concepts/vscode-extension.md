@@ -89,7 +89,7 @@ In addition, you will be able to open the integration environment in a new works
 
 ## Notes
 
-- If during the installation one or more Python packages fail to install, the installation will proceed and create the virtual environment with the packages that were installed.
+If during the installation one or more Python packages fail to install, the installation will proceed and create the virtual environment with the packages that were installed.
 
 ## Python 2 support
 
