@@ -65,7 +65,7 @@ Make sure that `Allow the default Docker socket to be used (requires password)` 
 
 :::tip
 If you are using WSL2 on Windows, you can still use Docker Desktop from WSL.  
-Follow [the following tutorial](https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros) for more details.
+See [the following tutorial](https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros) for more details.
 :::
 
 Great, all the prerequisites are set! We can get started.
