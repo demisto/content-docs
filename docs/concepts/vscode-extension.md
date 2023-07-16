@@ -60,7 +60,7 @@ If you want to install the dependencies manually, follow the instructions in thi
 
 ## Setup integrations and scripts environment
 
-Each integration or script in `XSOAR` runs on a different environnement, and has different dependencies.
+Each integration or script in `Cortex XSOAR` runs on a different environment, and has different dependencies.
 This feature will configure the integration or script, and will allow you to debug it easily and run unit tests.
 
 In addition, you will be able to open the integration environment in a new workspace with a virtual environment, for autocompletion.
