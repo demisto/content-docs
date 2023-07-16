@@ -50,7 +50,7 @@ To develop in a fully configured remote development environment, follow the inst
 
 ### Local development (Linux, MacOS, WSL2)
 
-The VScode extension supports fully setting up your development environment automatically.
+The VScode extension supports setting up your development environment automatically.
 
 #### Usage
 
