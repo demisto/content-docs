@@ -13,7 +13,7 @@ jobs:
       slack_notify:
         description: Indicates whether to send a slack notification or not (on daily job we send notification)
         type: boolean
-        default: false
+        default: true
 
     steps:
       - checkout
@@ -85,7 +85,7 @@ jobs:
             - build
       - run:
           name: Notify Slack
-          when: on_fail
+          when: always
           command: |
             pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
 
