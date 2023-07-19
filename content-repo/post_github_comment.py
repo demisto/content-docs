@@ -23,6 +23,7 @@ def get_post_url():
         # change: https://github.com/demisto/content-docs/pull/9
         # to: https://api.github.com/repos/demisto/content-docs/issues/9/comments
         post_url = os.environ['CIRCLE_PULL_REQUEST'].replace('github.com', 'api.github.com/repos').replace('pull', 'issues') + "/comments"
+        pr_num = re.search(r"/pull/(\d+)", os.environ['CIRCLE_PULL_REQUEST']).group(1)
     else:
         # try to get from comment
         last_comment = subprocess.check_output(["git", "log", "-1", "--pretty=%B"], text=True)
@@ -30,10 +31,10 @@ def get_post_url():
         if not m:
             print("No issue id found in last commit comment. Ignoring: \n------\n{}\n-------".format(last_comment))
             return
-        issue_id = m.group(1)
-        print("Issue id found from last commit comment: " + issue_id)
-        post_url = "https://api.github.com/repos/demisto/content-docs/issues/{}/comments".format(issue_id)
-    return post_url
+        pr_num = m.group(1)
+        print("Issue id found from last commit comment: " + pr_num)
+        post_url = "https://api.github.com/repos/demisto/content-docs/issues/{}/comments".format(pr_num)
+    return post_url, pr_num
 
 
 def get_modified_files():
@@ -108,7 +109,7 @@ def update_or_post_bot_comment_on_pull_request(pull_request_number, new_content,
 
 
 def post_comment(deploy_info_file: str):
-    post_url = get_post_url()
+    post_url, pr_num = get_post_url()
     if not post_url:
         print('Skipping post comment as could not resolve a PR post url!!')
         return
@@ -145,14 +146,9 @@ def post_comment(deploy_info_file: str):
     print(f'Going to post comment:\n------------\n{message}\n------------\nto url: {post_url}')
     verify = os.getenv('SKIP_SSL_VERIFY') is None
     headers = {'Authorization': 'Bearer ' + token}
-    if os.getenv('PR_NUM'):
-        pr_num = os.getenv('PR_NUM')
-        update_or_post_bot_comment_on_pull_request(new_content=message, pull_request_number=pr_num, headers=headers,
-                                                   verify=verify)
-    else:
-        print("Did not find PR number, defaulting to sending a new message.")
-        res = requests.post(post_url, json={"body": message}, headers=headers, verify=verify)
-        res.raise_for_status()
+
+    update_or_post_bot_comment_on_pull_request(new_content=message, pull_request_number=pr_num, headers=headers,
+                                               verify=verify)
 
 
 def main():
