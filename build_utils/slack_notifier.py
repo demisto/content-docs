@@ -42,7 +42,9 @@ def get_circle_failed_steps(ci_token: str, build_number: int) -> Tuple[list[str]
             if action_name == 'NPM Build content-repo docs' and action.get('has_output', False):
                 if output_url := action.get('output_url'):
                     with requests.get(output_url) as response:
-                        failed_docs_list = re.search(r"Failed [a-z\s]* \([1-9]\d*\)", response.text)
+                        failed_docs_list = re.findall(r"Failed [a-z\s]* \([1-9]\d*\)", response.text)
+                        print("######### failed_docs_list")
+                        print(failed_docs_list)
 
     return failed_steps_list, failed_docs_list
 
