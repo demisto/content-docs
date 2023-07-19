@@ -1,14 +1,16 @@
 import argparse
+import requests
+import re
 
 from circleci.api import Api as circle_api
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
-from typing import List, Dict
+from typing import Tuple
 
 SLACK_CHANNEL = 'U027A61KVUK'
 
 
-def get_circle_failed_steps(ci_token: str, build_number: int):
+def get_circle_failed_steps(ci_token: str, build_number: int) -> Tuple(list[str], list[str]):
     """
     Get the circle ci failed steps if there are any.
 
@@ -24,21 +26,26 @@ def get_circle_failed_steps(ci_token: str, build_number: int):
     vcs_type = 'github'
     build_report = circle_client.get_build_info(username='demisto', project='content-docs', build_num=build_number,
                                                 vcs_type=vcs_type)
-    print("###### build_report ######")
-    print(build_report)
+
     for step in build_report.get('steps', []):
         step_name = step.get('name', '')
         actions = step.get('actions', [])
         for action in actions:
             action_status = action.get('status', '')
+            action_name = action.get('name', '')
+
             if action_status and action_status == 'failed':
-                action_name = action.get('name', '')
                 if action_name != step_name:
                     failed_steps_list.append(f'{step_name}: {action_name}')
                 else:
                     failed_steps_list.append(f'{step_name}')
 
-    return failed_steps_list, build_report
+            if action_name == 'NPM Build content-repo docs' and action.get('has_output', False):
+                if output_url := action.get('output_url'):
+                    with requests.get(output_url) as response:
+                        failed_docs_list = re.search(r"Failed [a-z\s]* \([1-9]\d*\)", response.text)
+
+    return failed_steps_list, failed_docs_list
 
 
 def create_slack_notifier(slack_token: str, build_url: str, ci_token: str, build_number: int):
@@ -56,16 +63,18 @@ def create_slack_notifier(slack_token: str, build_url: str, ci_token: str, build
 
     steps_fields = []
     try:
-        failed_entities, build_report = get_circle_failed_steps(ci_token=ci_token, build_number=build_number)
-        if failed_entities:
-            steps_fields = get_entities_fields(f'Failed Steps - ({len(failed_entities)})', failed_entities)
+        failed_entities, failed_docs = get_circle_failed_steps(ci_token=ci_token, build_number=build_number)
 
-        if not steps_fields:
-            color = 'good'
-            workflow_status = 'Success'
-        else:
+        if failed_docs:
+            steps_fields = get_entities_fields('Warning:', failed_docs)
+
+        if failed_entities:
+            steps_fields += get_entities_fields(f'Failed Steps - ({len(failed_entities)})', failed_entities)
             color = 'danger'
             workflow_status = 'Failure'
+        else:
+            color = 'good'
+            workflow_status = 'Success'
 
         slack_client = WebClient(token=slack_token)
         slack_client.chat_postMessage(
@@ -83,7 +92,7 @@ def create_slack_notifier(slack_token: str, build_url: str, ci_token: str, build
         assert e.response["error"]
 
 
-def get_entities_fields(entity_title: str, entities: List[str]) -> List[Dict]:
+def get_entities_fields(entity_title: str, entities: list[str]) -> list[dict]:
     """
     Builds an entity from given entity title and entities list
     Args:
