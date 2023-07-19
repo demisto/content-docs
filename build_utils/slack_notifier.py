@@ -65,7 +65,7 @@ def create_slack_notifier(slack_token: str, build_url: str, ci_token: str, build
     steps_fields = []
     try:
         failed_entities, failed_docs = get_circle_failed_steps(ci_token=ci_token, build_number=build_number)
-
+        print(f"#### type(failed_docs) = {type(failed_docs)}")
         if failed_docs:
             steps_fields = get_entities_fields('Warning:', failed_docs)
 
