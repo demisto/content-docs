@@ -142,9 +142,8 @@ jobs:
           name: Notify Slack
           when: always
           command: |
-            if [ "<<parameters.slack_notify>>" = "true" ]; then
               pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
-            fi
+            
 
 workflows:
   build_and_deploy:
