@@ -87,6 +87,26 @@ def get_modified_links(base_url: str):
     return links
 
 
+def update_or_post_bot_comment_on_pull_request(pull_request_number, new_content, headers, verify):
+    # Get the list of comments on the pull request
+    url = f"https://api.github.com/repos/demisto/content-docs/issues/{pull_request_number}/comments"
+    response = requests.get(url)
+    comments = response.json()
+
+    # Find the bot's comment, if it exists
+    for comment in comments:
+        if comment["user"]["login"] == "xsoar-bot":
+            # Update the bot's comment with new content
+            comment_url = f"https://api.github.com/repos/demisto/content-docs/issues/comments/{comment['id']}"
+            response = requests.patch(comment_url, json={"body": new_content}, headers=headers, verify=verify)
+            response.raise_for_status()
+
+    # Bot's comment not found, create a new comment instead
+    post_comment_url = f"https://api.github.com/repos/demisto/content-docs/issues/{pull_request_number}/comments"
+    response = requests.post(post_comment_url, json={"body": new_content}, headers=headers, verify=verify)
+    response.raise_for_status()
+
+
 def post_comment(deploy_info_file: str):
     post_url = get_post_url()
     if not post_url:
@@ -125,8 +145,14 @@ def post_comment(deploy_info_file: str):
     print(f'Going to post comment:\n------------\n{message}\n------------\nto url: {post_url}')
     verify = os.getenv('SKIP_SSL_VERIFY') is None
     headers = {'Authorization': 'Bearer ' + token}
-    res = requests.post(post_url, json={"body": message}, headers=headers, verify=verify)
-    res.raise_for_status()
+    if os.getenv('PR_NUM'):
+        pr_num = os.getenv('PR_NUM')
+        update_or_post_bot_comment_on_pull_request(new_content=message, pull_request_number=pr_num, headers=headers,
+                                                   verify=verify)
+    else:
+        print("Did not find PR number, defaulting to sending a new message.")
+        res = requests.post(post_url, json={"body": message}, headers=headers, verify=verify)
+        res.raise_for_status()
 
 
 def main():
