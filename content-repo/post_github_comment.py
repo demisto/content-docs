@@ -101,11 +101,13 @@ def update_or_post_bot_comment_on_pull_request(pull_request_number, new_content,
             comment_url = f"https://api.github.com/repos/demisto/content-docs/issues/comments/{comment['id']}"
             response = requests.patch(comment_url, json={"body": new_content}, headers=headers, verify=verify)
             response.raise_for_status()
+            return
 
     # Bot's comment not found, create a new comment instead
     post_comment_url = f"https://api.github.com/repos/demisto/content-docs/issues/{pull_request_number}/comments"
     response = requests.post(post_comment_url, json={"body": new_content}, headers=headers, verify=verify)
     response.raise_for_status()
+    return
 
 
 def post_comment(deploy_info_file: str):
