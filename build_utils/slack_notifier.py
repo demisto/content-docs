@@ -43,8 +43,6 @@ def get_circle_failed_steps(ci_token: str, build_number: int) -> Tuple[list[str]
                 if output_url := action.get('output_url'):
                     with requests.get(output_url) as response:
                         failed_docs_list = re.findall(r"Failed [a-z\s]* \([1-9]\d*\)", response.text)
-                        print("######### failed_docs_list")
-                        print(failed_docs_list)
 
     return failed_steps_list, failed_docs_list
 
@@ -65,7 +63,7 @@ def create_slack_notifier(slack_token: str, build_url: str, ci_token: str, build
     steps_fields = []
     try:
         failed_entities, failed_docs = get_circle_failed_steps(ci_token=ci_token, build_number=build_number)
-        print(f"#### type(failed_docs) = {type(failed_docs)}")
+
         if failed_docs:
             steps_fields = get_entities_fields('Warning:', failed_docs)
 
@@ -85,8 +83,7 @@ def create_slack_notifier(slack_token: str, build_url: str, ci_token: str, build
                 'color': color,
                 'title': f'Content Docs Nightly Build - {workflow_status}',
                 'title_link': build_url,
-                'fields': steps_fields,
-                'build_report': build_report
+                'fields': steps_fields
             }]
         )
     except SlackApiError as e:
