@@ -59,7 +59,7 @@ Our integration should handle the response by calling the `demisto.handleEntitle
 
 Typically, it is necessary to parse the required information out of the entitlement string.
 
-You may use a function similar to the following to do so.
+You may use a function similar to the following to do so..
 ```python
 def extract_entitlement(entitlement: str) -> Tuple[str, str, str]:
     """
