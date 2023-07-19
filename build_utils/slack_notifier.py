@@ -5,10 +5,10 @@ from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 from typing import List, Dict
 
-SLACK_CHANNEL = '#dmst-build'
+SLACK_CHANNEL = 'U027A61KVUK'
 
 
-def get_circle_failed_steps(ci_token: str, build_number: int) -> List[str]:
+def get_circle_failed_steps(ci_token: str, build_number: int):
     """
     Get the circle ci failed steps if there are any.
 
@@ -24,6 +24,8 @@ def get_circle_failed_steps(ci_token: str, build_number: int) -> List[str]:
     vcs_type = 'github'
     build_report = circle_client.get_build_info(username='demisto', project='content-docs', build_num=build_number,
                                                 vcs_type=vcs_type)
+    print("###### build_report ######")
+    print(build_report)
     for step in build_report.get('steps', []):
         step_name = step.get('name', '')
         actions = step.get('actions', [])
@@ -36,7 +38,7 @@ def get_circle_failed_steps(ci_token: str, build_number: int) -> List[str]:
                 else:
                     failed_steps_list.append(f'{step_name}')
 
-    return failed_steps_list
+    return failed_steps_list, build_report
 
 
 def create_slack_notifier(slack_token: str, build_url: str, ci_token: str, build_number: int):
@@ -54,7 +56,8 @@ def create_slack_notifier(slack_token: str, build_url: str, ci_token: str, build
 
     steps_fields = []
     try:
-        if failed_entities := get_circle_failed_steps(ci_token=ci_token, build_number=build_number):
+        failed_entities, build_report = get_circle_failed_steps(ci_token=ci_token, build_number=build_number)
+        if failed_entities:
             steps_fields = get_entities_fields(f'Failed Steps - ({len(failed_entities)})', failed_entities)
 
         if not steps_fields:
@@ -72,7 +75,8 @@ def create_slack_notifier(slack_token: str, build_url: str, ci_token: str, build
                 'color': color,
                 'title': f'Content Docs Nightly Build - {workflow_status}',
                 'title_link': build_url,
-                'fields': steps_fields
+                'fields': steps_fields,
+                'build_report': build_report
             }]
         )
     except SlackApiError as e:
