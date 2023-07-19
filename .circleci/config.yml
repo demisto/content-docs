@@ -65,8 +65,7 @@ jobs:
       - store_artifacts:
           path: build-site.tar.gz
       - when:
-          condition:
-            equal: [ master, << pipeline.git.branch >> ]
+          condition: <<parameters.post_comment>>
           steps:
             - save_cache:
                 key: npm-cache-v5-{{ checksum "package-lock.json" }}
