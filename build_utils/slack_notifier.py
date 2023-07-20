@@ -5,12 +5,11 @@ import re
 from circleci.api import Api as circle_api
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
-from typing import Tuple
 
 SLACK_CHANNEL = '#dmst-build'
 
 
-def get_circle_failed_steps(ci_token: str, build_number: int) -> Tuple[list[str], list[str]]:
+def get_circle_failed_steps(ci_token: str, build_number: int) -> tuple[list[str], list[str]]:
     """
     Get the circle ci failed steps if there are any.
 
