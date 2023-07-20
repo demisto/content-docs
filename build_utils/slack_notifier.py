@@ -22,6 +22,7 @@ def get_circle_failed_steps(ci_token: str, build_number: int) -> Tuple[list[str]
         (List[str]): List of failed steps in the given build. Returns empty list if not failed steps were found.
     """
     failed_steps_list = []
+    failed_docs_list = []
     circle_client = circle_api(ci_token)
     vcs_type = 'github'
     build_report = circle_client.get_build_info(username='demisto', project='content-docs', build_num=build_number,
