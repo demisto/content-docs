@@ -18,7 +18,9 @@ def get_circle_failed_steps(ci_token: str, build_number: int) -> tuple[list[str]
         build_number (int): The build number.
 
     Returns:
-        (List[str]): List of failed steps in the given build. Returns empty list if not failed steps were found.
+        (tuple[list[str], list[str]): Returns tuple of lists:
+        failed_steps_list - List of failed steps in the given build. Returns empty list if not failed steps were found.
+        failed_docs_list - List of failed docs in 'NPM Build content-repo docs' step. Returns empty list if not failed steps were found.
     """
     failed_steps_list = []
     failed_docs_list = []
@@ -96,10 +98,10 @@ def get_entities_fields(entity_title: str, entities: list[str]) -> list[dict]:
     Builds an entity from given entity title and entities list
     Args:
         entity_title (str): Title of the entity.
-        entities (List[str]): List of the entities.
+        entities (list[str]): List of the entities.
 
     Returns:
-        (List[Dict]): List of dict containing the entity. List is needed because it is the expected format by Slack API.
+        (list[dict]): List of dict containing the entity. List is needed because it is the expected format by Slack API.
     """
     return [{
         "title": f'{entity_title}',
