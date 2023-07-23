@@ -48,7 +48,7 @@ To set up the first run properly, use an ```if``` statement with a time that is 
 
 It is best practice to specify how far back in time to fetch incidents on the first run. This is a configurable parameter in the integration settings.
 
-Make sure that first_fetch param exist in the yml file.
+Make sure that first_fetch parameter exist in the integration yml file.
 
 ## Query and Parameters
 
@@ -74,7 +74,7 @@ The following example uses the **First Run** ```if``` statement and **query**.
 ### Fetch Limit 
 The *Fetch Limit* parameter sets the maximum number of incidents to get per fetch command. To maintain an optimal load on Cortex XSOAR we recommend setting a limit of 200 incidents per fetch.  
 **Note:**
-Make sure that the max_fetch parameter exist in the yml and has a default value.
+Make sure that the max_fetch parameter exist in the integration yml file and it has a default value.
 If you enter a larger number or leave *Fetch Limit* blank, the **Test** button will fail.
 
 ## Create an Incident
