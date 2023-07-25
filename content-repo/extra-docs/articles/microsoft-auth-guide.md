@@ -63,17 +63,17 @@ To add the registration, refer to the [Microsoft documentation](https://docs.mic
 Some Cortex XSOAR-Microsoft integrations use the [client credentials flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow).
 The Tenant ID, Client ID, and Client secret are required for the integration. 
 
-When you configure the integration in Cortex XSOAR, enter those parameters in the appropriate fields:
+To configure a Microsoft integration that uses this authorization flow with a self-deployed Azure application:
 
-* ID - Client ID
-* Token - Tenant ID
-* Key - Client Secret
+1. Enter your client ID in the *ID* parameter field. 
+2. Enter your client secret in the *Key* parameter field.
+3. Enter your tenant ID in the *Token* parameter field.
+4. Select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
+5. Test and Save the instance.
 
-  Alternatively, instead of providing the *Client Secret*, you can authenticate using [certificate credentials](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-certificate-credentials) by providing:
+Alternatively, instead of providing the *Client Secret*, you can authenticate using [certificate credentials](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-certificate-credentials) by providing:
     * Certificate Thumbprint - The certificate thumbprint as appears when registering the certificate to the App
     * Private Key -  The private key of the registered certificate
-
-In addition, make sure to select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
 
 
 ### Authorize on Behalf of a User
@@ -102,6 +102,7 @@ To configure a Microsoft integration that uses this authorization flow with a se
 Some Cortex XSOAR-Microsoft integrations use the [device code flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code).
 
 To configure a Microsoft integration that uses this authorization flow with a self-deployed Azure application:
+
 1. Make sure the needed permissions are granted for the app registration.
 2. The Redirect URI can direct any web application that you wish to receive responses from Azure AD. If you are not sure what to set, you can use `https://localhost`.
 3. In **Supported account types**, *Accounts in any organizational directory (Any Azure AD directory - Multi-tenant)* should be selected.
