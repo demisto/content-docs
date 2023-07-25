@@ -52,7 +52,7 @@ In the end you should have a credentials list that contains the above objects:
     "user": "username_bar",
     "password": "password_bar",
     "name": "name_bar"
-  },
+  }
 ]
 ```
 When you're done creating the credentials objects, send them to the credentials store by using:
