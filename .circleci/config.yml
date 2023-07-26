@@ -13,7 +13,7 @@ jobs:
       slack_notify:
         description: Indicates whether to send a slack notification or not (on daily job we send notification)
         type: boolean
-        default: true
+        default: false
 
     steps:
       - checkout
@@ -103,7 +103,7 @@ jobs:
       slack_notify:
         description: Indicates whether to send a slack notification or not (on daily job we send notification)
         type: boolean
-        default: true
+        default: false
     steps:
       - checkout
       - attach_workspace:
