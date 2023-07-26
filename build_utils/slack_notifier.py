@@ -6,7 +6,9 @@ from circleci.api import Api as circle_api
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 
-SLACK_CHANNEL = '#dmst-build'
+SLACK_CHANNEL = 'U027A61KVUK'
+BUILD_STAGE = 'Build'
+DEPLOY_STAGE = 'Deploy'
 
 
 def get_circle_failed_steps(ci_token: str, build_number: int) -> tuple[list[str], list[str]]:
@@ -50,7 +52,7 @@ def get_circle_failed_steps(ci_token: str, build_number: int) -> tuple[list[str]
     return failed_steps_list, failed_docs_list
 
 
-def create_slack_notifier(slack_token: str, build_url: str, ci_token: str, build_number: int):
+def create_slack_notifier(slack_token: str, build_url: str, ci_token: str, build_number: int, stage_name: str):
     """
         Sends a build report via slack.
 
@@ -78,17 +80,23 @@ def create_slack_notifier(slack_token: str, build_url: str, ci_token: str, build
             color = 'good'
             workflow_status = 'Success'
 
-        slack_client = WebClient(token=slack_token)
-        slack_client.chat_postMessage(
-            channel=SLACK_CHANNEL,
-            username="Content-Docs CircleCI",
-            attachments=[{
-                'color': color,
-                'title': f'Content Docs Nightly Build - {workflow_status}',
-                'title_link': build_url,
-                'fields': steps_fields
-            }]
+        send_message = bool(
+            ((failed_docs or failed_entities) and stage_name == BUILD_STAGE)
+            or stage_name == DEPLOY_STAGE
         )
+
+        if send_message:
+            slack_client = WebClient(token=slack_token)
+            slack_client.chat_postMessage(
+                channel=SLACK_CHANNEL,
+                username="Content-Docs CircleCI",
+                attachments=[{
+                    'color': color,
+                    'title': f'Content Docs Nightly {stage_name} - {workflow_status}',
+                    'title_link': build_url,
+                    'fields': steps_fields
+                }]
+            )
     except SlackApiError as e:
         assert e.response["error"]
 
@@ -116,6 +124,7 @@ def options_handler():
     parser.add_argument('-s', '--slack_token', help='The token for slack', required=True)
     parser.add_argument('-b', '--build_number', help='The build number', required=True)
     parser.add_argument('-c', '--ci_token', help='The token for circleci/gitlab', required=True)
+    parser.add_argument('-sn', '--stage_name', help='The name of the stage we are running now: Build or Deploy', required=True)
     options = parser.parse_args()
 
     return options
@@ -127,12 +136,17 @@ def main():
     build_url = options.build_url
     ci_token = options.ci_token
     build_number = options.build_number
+    stage_name = options.stage_name
 
     if not slack_token:
         print('Error: Slack token is not configured')
         exit(1)
 
-    create_slack_notifier(slack_token=slack_token, build_url=build_url, ci_token=ci_token, build_number=build_number)
+    create_slack_notifier(slack_token=slack_token,
+                          build_url=build_url,
+                          ci_token=ci_token,
+                          build_number=build_number,
+                          stage_name=stage_name)
 
 
 if __name__ == '__main__':
