@@ -6,7 +6,7 @@ from circleci.api import Api as circle_api
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 
-SLACK_CHANNEL = 'U027A61KVUK'
+SLACK_CHANNEL = '#dmst-build'
 BUILD_STAGE = 'Build'
 DEPLOY_STAGE = 'Deploy'
 
