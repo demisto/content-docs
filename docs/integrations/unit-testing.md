@@ -9,25 +9,9 @@ Unit testing should be used to test small units of code in an isolated and deter
 
 In order to work with unit testing, the integration or automation script needs to be developed in [package (directory) structure](package-dir), where the yml file is separated from the python file and resides in its own directory.
 
-### Setup Pipenv
-
-To run locally the unit tests we want to setup a virtual environment with all required dependencies (both runtime and development). To achieve this we use [Pipenv](https://pipenv.readthedocs.io/en/latest/).
-
-Our recommended way to setup an integration into the [package (directory) structure](package-dir) is to use: `demisto-sdk split`. See full command documentation [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/split/README.md).
-
-Manual Setup:
-
-* **Install pipenv**: Follow the [instructions](https://pipenv.readthedocs.io/en/latest/install/#installing-pipenv).
-* **Copy base Pipenv files**: Copy the base Pipfile and Pipfile.lock files to the target package directory from: [demisto_sdk/commands/lint/resources](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/lint/resources).
-* **Install additional runtime dependencies**: using: `pipenv install <dependency>`. For example: `pipenv install ldap3`
-* **Sync Pipenv**: (including dev dependencies) by running: `pipenv sync --dev`
-* **Enable Virtual Env**: To enable the Pipenv virtual env in the shell run: `pipenv shell`. To exit the virtual env simply run: `exit`.
-
-You should now have a managed virtual environment to run unit tests locally.
-
 ### Setup Vscode
 
-We recommend using VSCode with the Cortex XSOAR Extension This is optional and you can also run/debug unit tests with other IDEs (such as Pycharm).
+We recommend using VSCode with the Cortex XSOAR Extension This is optional and you can also run/debug unit tests with other IDEs (such as Pycharm). 
 
 Setup:
 
@@ -35,6 +19,8 @@ Setup:
 * **Open VSCode**: Open VSCode where the root folder is the folder you wish to develop within.
 * **Choose Interpreter**: Choose the Pipenv interpreter (with all dependencies we setup in the previous step). See: <https://code.visualstudio.com/docs/python/environments>
 * **Enable PyTest**: We run our unit tests with `pytest`. See the following on how to enable PyTest: <https://code.visualstudio.com/docs/python/testing>
+
+For more information about the **Cortex XSOAR Extension**, check out the [visual studio code extension documentation](https://xsoar.pan.dev/docs/concepts/vscode-extension).
 
 ### Setup PyCharm
 
