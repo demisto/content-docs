@@ -85,10 +85,10 @@ jobs:
             - build
       - run:
           name: Notify Slack
-          when: on_fail
+          when: always
           command: |
             if [ "<<parameters.slack_notify>>" = "true" ]; then
-              pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
+              pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN" -sn "Build"
             fi
 
   deploy:
@@ -145,7 +145,7 @@ jobs:
           when: always
           command: |
             if [ "<<parameters.slack_notify>>" = "true" ]; then
-              pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN"
+              pipenv run python ./build_utils/slack_notifier.py -s "$SLACK_TOKEN" -u "$CIRCLE_BUILD_URL" -b "$CIRCLE_BUILD_NUM" -c "$CIRCLECI_TOKEN" -sn "Deploy"
             fi
 
 workflows:
