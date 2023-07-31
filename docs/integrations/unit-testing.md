@@ -9,6 +9,10 @@ Unit testing should be used to test small units of code in an isolated and deter
 
 In order to work with unit testing, the integration or automation script needs to be developed in [package (directory) structure](package-dir), where the yml file is separated from the python file and resides in its own directory.
 
+### General Notes
+In order to verify that the content indeed runs with all the required dependencies, we recommend writing, running, and debugging the unit tests locally with the corresponding image. 
+The VSCode Cortex XSOAR Extension allows you to do this in the easiest way possible. Additionally, you can run and debug the unit tests locally with the corresponding image in other IDEs.
+
 ### Setup Vscode
 
 We recommend using VSCode with the Cortex XSOAR Extension This is optional and you can also run/debug unit tests with other IDEs (such as Pycharm). 
