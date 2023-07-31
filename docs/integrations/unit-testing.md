@@ -21,8 +21,8 @@ Setup:
 
 * **Install the Cortex XSOAR Extension**: Install with-in VSCode by navigating to `Extension`. Or download and install from [here](https://marketplace.visualstudio.com/items?itemName=CortexXSOARext.xsoar)
 * **Open VSCode**: Open VSCode where the root folder is the folder you wish to develop within.
-* **Choose Interpreter**: Choose the Pipenv interpreter (with all dependencies we setup in the previous step). See: <https://code.visualstudio.com/docs/python/environments>
 * **Enable PyTest**: We run our unit tests with `pytest`. See the following on how to enable PyTest: <https://code.visualstudio.com/docs/python/testing>
+* **Setup Integration And Script Environment**: form more details, check out [setup integrations and scripts environment](https://xsoar.pan.dev/docs/concepts/vscode-extension#setup-integrations-and-scripts-environment).
 
 For more information about the **Cortex XSOAR Extension**, check out the [visual studio code extension documentation](https://xsoar.pan.dev/docs/concepts/vscode-extension).
 
@@ -30,7 +30,7 @@ For more information about the **Cortex XSOAR Extension**, check out the [visual
 
 * **Install the Cortex XSOAR Plugin**: Install with-in PyCharm by navigating to `Preferences.. -> Plugins`. Or download and install from [here](https://plugins.jetbrains.com/plugin/12093-demisto-add-on-for-pycharm)
 * **Open Pycharm**: Open PyCharm where the root folder is the folder you wish to develop within.
-* **Choose Interpreter**: Choose the Pipenv interpreter (with all dependencies we setup in the previous step). See: <https://www.jetbrains.com/help/pycharm/configuring-python-interpreter.html>
+* **Choose Interpreter**: Choose the poetry environment interpreter (with all dependencies we setup in the previous step). See: <https://www.jetbrains.com/help/pycharm/configuring-python-interpreter.html>
 * **Enable PyTest**: We run our unit tests with `pytest`. See the following on how to enable PyTest: <https://www.jetbrains.com/help/pycharm/pytest.html>
 
 ## Use `main` in Integration/Automation
