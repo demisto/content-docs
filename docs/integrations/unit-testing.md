@@ -21,8 +21,7 @@ Setup:
 
 * **Install the Cortex XSOAR Extension**: Install with-in VSCode by navigating to `Extension`. Or download and install from [here](https://marketplace.visualstudio.com/items?itemName=CortexXSOARext.xsoar)
 * **Open VSCode**: Open VSCode where the root folder is the folder you wish to develop within.
-* **Enable PyTest**: We run our unit tests with `pytest`. See the following on how to enable PyTest: <https://code.visualstudio.com/docs/python/testing>
-* **Setup Integration And Script Environment**: form more details, check out [setup integrations and scripts environment](https://xsoar.pan.dev/docs/concepts/vscode-extension#setup-integrations-and-scripts-environment).
+* **Setup Dev Environment**: form more details, check out [setup environment](https://xsoar.pan.dev/docs/concepts/vscode-extension#environment-setup).
 
 For more information about the **Cortex XSOAR Extension**, check out the [visual studio code extension documentation](https://xsoar.pan.dev/docs/concepts/vscode-extension).
 
