@@ -876,7 +876,7 @@ If you have custom Integrations, after the first upload by the CI/CD you may nee
     :::
     - Change the *dry_run* input to `false` and run the playbook again.
 
-3. (Optional) Add a **Server Configuration** only if you have custom Integrations.
+3. (Optional) Add a **Server Configuration** only if you have custom Integrations (Available from Cortex XSOAR 6.11.0).
    - In the Cortex XSOAR platform, go to **Settings** > **About** > **Troubleshooting**.
    - Click **Add Server Configuration**.
    - In the **Key** field, enter `allow.name.override.propagation`.
