@@ -230,6 +230,7 @@ If the function raises a ValueError with proper error message, the test will pas
 * When testing a command, mock all external requests (e.g. mock `Client` methods), run the command on given inputs, and compare the output to a hardcoded value.
 * Prefer comparing whole outputs (e.g. comparing the output to a `CommandResult` object), to make sure the code behavior is preserved even when others add features and fix issues.
 * Use the `@freezegun.freeze_time` decorator on the testing method when the output may rely on the time of running.
+* Methods that handle errors or exceptions should have multiple tests - one for the _happy path_ (normal functionality, without errors), and one testing method for each error handled (a.k.a _sad path_s).
 
 ## Troubleshooting Tips
 
