@@ -225,6 +225,12 @@ def test_function():
 
 If the function raises a ValueError with proper error message, the test will pass.
 
+## Content Testing Guidelines
+
+* When testing a command, mock all external requests (e.g. mock `Client` methods), run the command on given inputs, and compare the output to a hardcoded value.
+* Prefer comparing whole outputs (e.g. comparing the output to a `CommandResult` object), to make sure the code behavior is preserved even when others add features and fix issues.
+* Use the `@freezegun.freeze_time` decorator on the testing method when the output may rely on the time of running.
+
 ## Troubleshooting Tips
 
 * The `demisto-sdk lint` by default prints out minimal output. If for some reason it is failing and not clear, run the
