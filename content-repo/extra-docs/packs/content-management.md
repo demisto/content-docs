@@ -834,7 +834,7 @@ Currently, the pack does not support the following features:
 This guide will help you migrate from the Dev-Prod environment to the CI/CD environment. In the process, you will need to download all your custom content from the Prod environment and also to delete some types of content from the Prod environment to avoid conflicts.
 
 :::note
-If you have custom Integrations, after the first upload by the CI/CD you may need to reconfigure the Mappers, Classifier and Incident type fields in the integrations instances.
+If you have custom mappers, classifiers or incident types attached to integrations (OOTB or custom), after the initial upload using CI/CD you may need to reconfigure the mappers, classifiers and incident types in the integrations' instances.
 :::
 
 1. Use the `demisto-sdk` to download the custom content from the Prod environment.
