@@ -40,7 +40,21 @@ In the `fetch_credentials` function, you should retrieve the credentials from th
   "name": "name"
 }
 ```
-In the end you should have a credentials list that contains the above objects.
+In the end you should have a credentials list that contains the above objects:
+```json
+[
+  {
+    "user": "username_foo",
+    "password": "password_foo",
+    "name": "name_foo"
+  },
+  {
+    "user": "username_bar",
+    "password": "password_bar",
+    "name": "name_bar"
+  }
+]
+```
 When you're done creating the credentials objects, send them to the credentials store by using:
 ```python
 demisto.credentials(credentials)

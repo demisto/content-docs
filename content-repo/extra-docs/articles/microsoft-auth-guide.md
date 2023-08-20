@@ -42,6 +42,12 @@ To start the authentication process, go to the integration's detailed instructio
 
 ## Self Deployed Application
 
+To use a self-configured Azure application, you need to add a new Azure App Registration in the Azure Portal. 
+
+The application must have the required permissions for the relevant APIs, which are documented in the integration documentation, for example see [Microsoft Defender Advanced Threat Protection required permissions](https://xsoar.pan.dev/docs/reference/integrations/microsoft-defender-advanced-threat-protection#required-permissions).
+
+To add the registration, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
+
 ### Using National Cloud
 
 - To see which integrations support natively National Clouds,See the [table below.](https://xsoar.pan.dev/docs/reference/articles/microsoft-integrations---authentication#supported-authentication-flows-for-microsoft-integrations) 
@@ -49,34 +55,29 @@ To start the authentication process, go to the integration's detailed instructio
   - For Microsoft Defender, select the appropriate cloud using the *Endpoint Type* parameter.
   - For using the self-deployment option, select the *Custom* option and follow the instructions below.
 
-- Some of the Cortex XSOAR-Microsoft integrations support the deployment of national clouds through the self-deployed
+- Some Cortex XSOAR-Microsoft integrations support the deployment of national clouds through the self-deployed
  authorization flow. For more information about Microsoft National Clouds, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/deployments).
  In order to use a national cloud, change the *Server URL* parameter to the corresponding address of the national cloud you are using.
 
 ### Client Credentials
-To use a self-configured Azure application, you need to add a new Azure App Registration in the Azure Portal. 
-
-The application must have the required permissions for the relevant APIs, which are documented in the integration documentation, for example see [Microsoft Defender Advanced Threat Protection required permissions](https://xsoar.pan.dev/docs/reference/integrations/microsoft-defender-advanced-threat-protection#required-permissions).
-
-To add the registration, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
-
+Some Cortex XSOAR-Microsoft integrations use the [client credentials flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow).
 The Tenant ID, Client ID, and Client secret are required for the integration. 
 
-When you configure the integration in Cortex XSOAR, enter those parameters in the appropriate fields:
+To configure a Microsoft integration that uses this authorization flow with a self-deployed Azure application:
 
-* ID - Client ID
-* Token - Tenant ID
-* Key - Client Secret
+1. Enter your client ID in the *ID* parameter field. 
+2. Enter your client secret in the *Key* parameter field.
+3. Enter your tenant ID in the *Token* parameter field.
+4. Select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
+5. Test and Save the instance.
 
-  Alternatively, instead of providing the *Client Secret*, you can authenticate using [certificate credentials](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-certificate-credentials) by providing:
+Alternatively, instead of providing the *Client Secret*, you can authenticate using [certificate credentials](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-certificate-credentials) by providing:
     * Certificate Thumbprint - The certificate thumbprint as appears when registering the certificate to the App
     * Private Key -  The private key of the registered certificate
 
-In addition, make sure to select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
-
 
 ### Authorize on Behalf of a User
-Some of the Cortex XSOAR-Microsoft integrations (e.g., Azure Sentinel) require authorization on behalf of a user (not admin consent). For more information about this authorization flow, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/auth-v2-user).
+Some Cortex XSOAR-Microsoft integrations (e.g., Microsoft Graph Mail Single User) require authorization on behalf of a user (not admin consent). For more information about this authorization flow, refer to the [authorization code flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow).
 
 To configure a Microsoft integration that uses this authorization flow with a self-deployed Azure application:
 
@@ -86,13 +87,22 @@ To configure a Microsoft integration that uses this authorization flow with a se
 4. Enter your client secret in the *Key* parameter field.
 5. Enter your tenant ID in the *Token* parameter field.
 6. Enter your redirect URI in the *Redirect URI* parameter field.
-7. Save the instance.
-8. Run the `!<integration command prefix>-generate-login-url` command in the War Room and follow the instructions. For example, for Microsoft Graph User: `!msgraph-user-generate-login-url`.
+7. Select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
+8. Save the instance.
+9. Run the `!<integration command prefix>-generate-login-url` command in the War Room and follow the instructions:
+    >1. Click on the [login URL]() to sign in and grant Cortex XSOAR permissions for your Azure Service Management.
+    You will be automatically redirected to a link with the following structure:
+    ```REDIRECT_URI?code=AUTH_CODE&session_state=SESSION_STATE```
+    >2. Copy the `AUTH_CODE` (without the `code=` prefix, and the `session_state` parameter)
+    and paste it in your instance configuration under the *Authorization code* parameter.
+10. Save the instance.
+11. Run the `!<integration command prefix>-auth-test` command. A 'Success' message should be printed to the War Room.
 
 ### Device Code Flow
-Some of the Cortex XSOAR-Microsoft integrations use the [device code flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code).
+Some Cortex XSOAR-Microsoft integrations use the [device code flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code).
 
 To configure a Microsoft integration that uses this authorization flow with a self-deployed Azure application:
+
 1. Make sure the needed permissions are granted for the app registration.
 2. The Redirect URI can direct any web application that you wish to receive responses from Azure AD. If you are not sure what to set, you can use `https://localhost`.
 3. In **Supported account types**, *Accounts in any organizational directory (Any Azure AD directory - Multi-tenant)* should be selected.
@@ -227,9 +237,9 @@ After you a redirected to the next page, in the **Overview** tab you will find y
 | Azure Web Application Firewall                        | yes               | no - not supported by the API                    | yes         | yes                      | yes                      | no                         |
 | Microsoft 365 Defender                                | yes               | yes - support both client secret and certificate | yes         | no                       | yes                      | no                         |
 | Microsoft 365 Defender Event Collector - XSIAM        | no                | yes                                              | no          | no                       | no - saas                | no                         |
-| Microsoft Defender for Cloud Apps                     | no                | yes                                              | yes         | no                       | no                       | no                         |
+| Microsoft Defender for Cloud Apps                     | no                | yes                                              | yes         | no                       | no                       | yes                        |
 | Microsoft Defender for Endpoint (Defender ATP)        | yes               | yes - support both client secret and certificate | no          | yes                      | yes                      | yes                        |
-| Microsoft Graph API                                   | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | no                         |
+| Microsoft Graph API                                   | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | yes                        |
 | Azure Active Directory Applications                   | yes - device      | yes                                              | yes         | no                       | yes                      | no                         |
 | O365 Outlook Calendar                                 | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | no                         |
 | Microsoft Graph Device Management                     | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | no                         |
@@ -243,3 +253,17 @@ After you a redirected to the next page, in the **Overview** tab you will find y
 | Microsoft Management Activity API (O365 Azure Events) | yes               | no                                               | no          | yes                      | yes                      | no                         |
 | Microsoft Teams                                       | no                | yes                                              | no          | yes                      | no                       | no                         |
 | Microsoft Teams Management                            | yes               | yes                                              | yes         | no                       | yes                      | no                         |
+
+
+
+## Troubleshooting
+In case of errors in the authentication process, such as a token revoked/expired or in case you generate new credentials, 
+you can use the `!<integration command prefix>-auth-reset` command in the War Room in order to rerun the authentication process,
+instead of recreating a new integration instance.
+After running the command, click **Test** to verify the connectivity of the instance.
+
+For example, when using the "self-deployed Azure app" for Microsoft Graph Mail Single User, in case of an expired/revoked token error:
+1. Run !msgraph-mail-auth-reset.
+2. Validate that all the credentials you entered are correct (Client ID, Client Secret, Tenant ID, Application redirect URI).
+3. Run !msgraph-mail-generate-login-url to generate a new *Authorization code*.
+4. Run !msgraph-mail-test to test the connectivity of the email.

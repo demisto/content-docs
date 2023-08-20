@@ -834,7 +834,7 @@ Currently, the pack does not support the following features:
 This guide will help you migrate from the Dev-Prod environment to the CI/CD environment. In the process, you will need to download all your custom content from the Prod environment and also to delete some types of content from the Prod environment to avoid conflicts.
 
 :::note
-If you have custom Integrations, after the first upload by the CI/CD you may need to reconfigure the Mappers, Classifier and Incident type fields in the integrations instances.
+If you have custom mappers, classifiers or incident types attached to integrations (OOTB or custom), after the initial upload using CI/CD you may need to reconfigure the mappers, classifiers and incident types in the integrations' instances.
 :::
 
 1. Use the `demisto-sdk` to download the custom content from the Prod environment.
@@ -860,7 +860,8 @@ If you have custom Integrations, after the first upload by the CI/CD you may nee
    You need to delete the following types of content items to be able to upload the content via the CI/CD process:<br/>Playbooks, Scripts, Layouts, Classifiers, Mappers, Incident Types and Incident Fields.
 
    **Inputs:**  
-   The playbook has one input: `dry_run`, which is a Boolean.<br/>If set to `true`, the playbook will only print the content items that will be deleted.<br/>If set to `false`, the playbook will delete the content items.<br/>By default, the input is set to `true`.
+   - `dry_run` - Boolean.<br/>If set to `true`, the playbook will only print the content items that will be deleted.<br/>If set to `false`, the playbook will delete the content items.<br/>By default, the input is set to `true`.
+   - `instance_name` - String.<br/>The Core REST API instance name to use.
 
    To run the playbook:
     - In the Cortex XSOAR platform, go to **Incidents**.
@@ -875,7 +876,7 @@ If you have custom Integrations, after the first upload by the CI/CD you may nee
     :::
     - Change the *dry_run* input to `false` and run the playbook again.
 
-3. (Optional) Add a **Server Configuration** only if you have custom Integrations.
+3. (Optional) Add a **Server Configuration** only if you have custom Integrations (Available from Cortex XSOAR 6.11.0).
    - In the Cortex XSOAR platform, go to **Settings** > **About** > **Troubleshooting**.
    - Click **Add Server Configuration**.
    - In the **Key** field, enter `allow.name.override.propagation`.
