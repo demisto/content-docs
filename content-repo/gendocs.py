@@ -516,7 +516,7 @@ def process_doc_info(doc_info: DocInfo, success: List[str], fail: List[str], doc
         return
     if doc_info.error_msg:
         fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
-    elif doc_info.id in seen_docs:
+    elif doc_info.id in seen_docs:  # Change to hold the file path not the id but it could make duplicates in the webpages.
         if private_doc or not version_conflict(doc_info, seen_docs[doc_info.id]):
             # Ignore private repo files which are already in the content repo since they may be outdated.
             # Ignore the same id if there is no conflict in the version.
@@ -892,9 +892,9 @@ def main():
     parser = argparse.ArgumentParser(description='''Generate Content Docs. You should probably not call this script directly.
 See: https://github.com/demisto/content-docs/#generating-reference-docs''',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("-t", "--target", type=os.path.normpath, help="Target dir to generate docs at.", required=True)
-    parser.add_argument("-d", "--dir", type=os.path.normpath, help="Content repo dir.", required=True)
-    parser.add_argument("-b", "--branch", help="Content repo branch.", required=True)
+    parser.add_argument("-t", "--target", type=os.path.normpath, help="Target dir to generate docs at.", default='/Users/meichler/dev/demisto/content-docs/docs/reference')
+    parser.add_argument("-d", "--dir", type=os.path.normpath, help="Content repo dir.", default='/Users/meichler/Desktop/content')
+    parser.add_argument("-b", "--branch", help="Content repo branch.", default='master')
     args = parser.parse_args()
     print(f'Using multiprocess pool size: {POOL_SIZE}')
     print('Starting MDX server...')
