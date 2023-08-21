@@ -96,6 +96,9 @@ SERVICE_ACCOUNT = os.getenv('GCP_SERVICE_ACCOUNT')
 DEFAULT_FROM_VERSION = '0'
 DEFAULT_TO_VERSION = '9999'
 
+with open('ignored_entities.json') as f:
+    IGNORED_ITEMS = json.load(f)
+
 
 def create_service_account_file():
     """
@@ -301,6 +304,8 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
         with open(ymlfile, 'r', encoding='utf-8') as f:
             yml_data = yaml.safe_load(f)
         id = yml_data.get('commonfields', {}).get('id') or yml_data['id']
+        if id in IGNORED_ITEMS[prefix]:
+            raise ValueError(f'{prefix}-{id} is skipped since it is in the ignored entities file.')
         id = normalize_id(id)
         name = yml_data.get('display') or yml_data['name']
         desc = yml_data.get('description') or yml_data.get('comment')
