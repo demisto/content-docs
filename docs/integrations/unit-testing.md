@@ -232,6 +232,7 @@ If the function raises a ValueError with proper error message, the test will pas
 * Use the `@freezegun.freeze_time` decorator on the testing method when the output may vary in different time, date or timezone (e.g. daylight-saving time) in run time.
 * Methods that handle errors or exceptions should have multiple tests - one for the _happy path_ (normal functionality, without errors), and one testing method for each error handled (a.k.a _sad path/s_).
 * Make sure to sanitize or remove any sensitive data (passwords, tokens, email addresses, personal information, etc.) from unit tests and test data.
+* Using `pytest.parametrize` is preferred over loops in a unit test. Use `pytest.param` to give each case an `id` (Learn more [here](https://docs.pytest.org/en/7.1.x/example/parametrize.html))
 
 ## Troubleshooting Tips
 
