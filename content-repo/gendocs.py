@@ -517,8 +517,8 @@ POOL_SIZE = 4
 
 def process_doc_info(doc_info: DocInfo, success: List[str], fail: List[str], doc_infos: List[DocInfo],
                      seen_docs: Dict[str, DocInfo], private_doc: bool = False):
-    if doc_info.error_msg == EMPTY_FILE_MSG or IGNORE_MSG in doc_info.error_msg:
-        # ignore empty an ignored files.
+    if doc_info.error_msg == EMPTY_FILE_MSG or IGNORE_MSG in (doc_info.error_msg or ''):
+        # skip empty and ignored files.
         return
     if doc_info.error_msg:
         fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
@@ -898,9 +898,9 @@ def main():
     parser = argparse.ArgumentParser(description='''Generate Content Docs. You should probably not call this script directly.
 See: https://github.com/demisto/content-docs/#generating-reference-docs''',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("-t", "--target", type=os.path.normpath, help="Target dir to generate docs at.", default='/Users/meichler/dev/demisto/content-docs/docs/reference')
-    parser.add_argument("-d", "--dir", type=os.path.normpath, help="Content repo dir.", default='/Users/meichler/Desktop/content')
-    parser.add_argument("-b", "--branch", help="Content repo branch.", default='master')
+    parser.add_argument("-t", "--target", type=os.path.normpath, help="Target dir to generate docs at.", required=True)
+    parser.add_argument("-d", "--dir", type=os.path.normpath, help="Content repo dir.", required=True)
+    parser.add_argument("-b", "--branch", help="Content repo branch.", required=True)
     args = parser.parse_args()
     print(f'Using multiprocess pool size: {POOL_SIZE}')
     print('Starting MDX server...')
