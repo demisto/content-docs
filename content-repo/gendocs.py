@@ -81,6 +81,7 @@ MAX_FAILURES = int(os.getenv('MAX_FAILURES', 40))  # if we have more than this a
 MAX_FILES = int(os.getenv('MAX_FILES', -1))
 FILE_REGEX = os.getenv('FILE_REGEX')
 EMPTY_FILE_MSG = 'empty file'
+IGNORE_MSG = 'skipped since it is in the ignored entities.'
 DEPRECATED_INFO_FILE = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs/articles/deprecated_info.json'
 
 # initialize the seed according to the PR branch. Used when selecting max files.
@@ -305,7 +306,7 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
             yml_data = yaml.safe_load(f)
         id = yml_data.get('commonfields', {}).get('id') or yml_data['id']
         if id in IGNORED_ITEMS[prefix]:
-            raise ValueError(f'{prefix}-{id} is skipped since it is in the ignored entities file.')
+            raise ValueError(f'{prefix}: {id} {IGNORE_MSG}')
         id = normalize_id(id)
         name = yml_data.get('display') or yml_data['name']
         desc = yml_data.get('description') or yml_data.get('comment')
@@ -516,8 +517,8 @@ POOL_SIZE = 4
 
 def process_doc_info(doc_info: DocInfo, success: List[str], fail: List[str], doc_infos: List[DocInfo],
                      seen_docs: Dict[str, DocInfo], private_doc: bool = False):
-    if doc_info.error_msg == EMPTY_FILE_MSG:
-        # ignore empty files
+    if doc_info.error_msg == EMPTY_FILE_MSG or IGNORE_MSG in doc_info.error_msg:
+        # ignore empty an ignored files.
         return
     if doc_info.error_msg:
         fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
@@ -897,9 +898,9 @@ def main():
     parser = argparse.ArgumentParser(description='''Generate Content Docs. You should probably not call this script directly.
 See: https://github.com/demisto/content-docs/#generating-reference-docs''',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("-t", "--target", type=os.path.normpath, help="Target dir to generate docs at.", required=True)
-    parser.add_argument("-d", "--dir", type=os.path.normpath, help="Content repo dir.", required=True)
-    parser.add_argument("-b", "--branch", help="Content repo branch.", required=True)
+    parser.add_argument("-t", "--target", type=os.path.normpath, help="Target dir to generate docs at.", default='/Users/meichler/dev/demisto/content-docs/docs/reference')
+    parser.add_argument("-d", "--dir", type=os.path.normpath, help="Content repo dir.", default='/Users/meichler/Desktop/content')
+    parser.add_argument("-b", "--branch", help="Content repo branch.", default='master')
     args = parser.parse_args()
     print(f'Using multiprocess pool size: {POOL_SIZE}')
     print('Starting MDX server...')
