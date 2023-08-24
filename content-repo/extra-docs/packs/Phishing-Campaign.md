@@ -57,10 +57,11 @@ If incidents belonging to a campaign are detected, the playbook checks whether t
 
 In addition, as the **FindEmailCampaign** automation runs on the current phishing incident, the playbook takes the context and incident fields set by the automation, and updates the Phishing Campaign incident with that data, so that it contains the most up to date information about the phishing incidents.
 
-The playbook marks all the similar Phishing incidents as incidents belonging to the detected Phishing Campaign incident. It sets the **Part Of Campaign** incident field in the phishing incidents, with the ID of the phishing campaign incident:
+Updating the data in the Phishing Campaign incident is mostly done using the **SetPhishingCampaignDetails ** automation, which ensures that the context is updated correctly without incidents overwriting each other's context.
+
+The playbook also marks all the similar Phishing incidents as incidents belonging to the detected Phishing Campaign incident. It sets the **Part Of Campaign** incident field in the phishing incidents, with the ID of the phishing campaign incident:
 
 ![image](https://user-images.githubusercontent.com/43602124/127866753-93e7ce42-2c11-474e-b492-0fb07dc751db.png)
-
 
 
 ## Incident Types ##
