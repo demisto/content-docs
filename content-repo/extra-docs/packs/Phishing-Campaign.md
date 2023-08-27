@@ -7,9 +7,9 @@ description: How to detect and manage phishing campaigns in Cortex XSOAR using t
 
 # Phishing Campaign #
 
-The Phishing Campaign pack enables you to find, create and manage phishing campaigns. A phishing campaign is a collection of phishing incidents that originate from the same attacker, or as part of the same organized attack launched against multiple users.
+The Phishing Campaign pack enables you to find, create, and manage phishing campaigns. A phishing campaign is a collection of phishing incidents that originate from the same attacker, or as part of the same organized attack launched against multiple users.
 
-As phishing campaigns are a number of phishing incidents that are similar to each other, it is important to detect and create the links between them, and look at them as a whole, rather than spend time investigating each incident separately. To see how to set up a phishing incident generally in Cortex XSOAR, go to the [Phishing Use Case Tutorial](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-tutorials/tutorials/phishing-use-case.html).
+As phishing campaigns are a number of phishing incidents that are similar to each other, it is important to detect and create the links between them, and look at them as a whole, rather than spend time investigating each incident separately. To see how to set up a phishing incident generally in Cortex XSOAR, go to the [Phishing Use Case Tutorial](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.x/Cortex-XSOAR-6.x-Tutorials/Set-up-a-Phishing-Incident-in-Cortex-XSOAR).
 
 
 ### How It Works
@@ -39,13 +39,14 @@ The **Phishing Campaign** content pack contains several content items.
   The automation can also be customized to meet different criteria (if your email information is mapped into different fields, if your incident type has a different name, or if the similarity by which incidents are searched is too lenient or too strict). It can run to detect phishing campaigns, but to fully utilize it to detect and manage campaigns, use the [**Detect & Manage Phishing Campaigns**](https://xsoar.pan.dev/docs/reference/playbooks/detect--manage-phishing-campaigns) playbook. 
 - **IsIncidentPartOfCampaign Automation**
  
-  The **IsIncidentPartOfCampaign** automation takes the list of incidents detected as similar by the **FindEmailCampaign** automation, and checks whether one of them is already linked to a Phishing Campaign incident. If so, it outputs the ID of that incident so that all the similar phishing incidents can be linked to it. This automation finds whether there is an existing campaign incident or whether a new incident needs to be created.
+  The **IsIncidentPartOfCampaign** automation takes the list of incidents detected as similar by the **FindEmailCampaign** automation and checks whether one of them is already linked to a Phishing Campaign incident. If so, it outputs the ID of that incident so that all similar phishing incidents can be linked to it. This automation finds whether there is an existing campaign incident or whether a new incident needs to be created.
 
 - **SetPhishingCampaignDetails Automation**
-The **SetPhishingCampaignDetails** automation updates the Phishing Campaign incident that was found, or was just created by the playbook, with new information outputted from the **FindEmailCampaign** script.
+
+  The **SetPhishingCampaignDetails** automation updates the Phishing Campaign incident that was found or was just created by the playbook, with new information outputted from the **FindEmailCampaign** script.
 Specifically, if the current phishing incident is not already in the context of the Phishing Campaign incident, it will add that incident along with its data. It will also update the similarities of all the Phishing incidents that are part of that Phishing Campaign incident, relative to the incident that was *created* last.
 
-**Note:** The last created incident is not necessarily the last incident that updated the Phishing Campaign. This is due to the nature of phishing campaigns, where multiple phishing incidents are typically processed at the same time. This behavior in managed through a lock mechanism which ensures that the incidents are processed synchronously (one by one). However, it cannot be guaranteed that the first ingested incident will be the first to acquire the lock and the first to be processed, since different incidents may take different amount of time to reach the Detect & Manage Phishing Campaigns subplaybook.
+**Note:** The last created incident is not necessarily the last incident that updated the Phishing Campaign. This is due to the nature of phishing campaigns, where multiple phishing incidents are typically processed at the same time. This behavior is managed through a lock mechanism which ensures that the incidents are processed synchronously (one by one). However, it cannot be guaranteed that the first ingested incident will be the first to acquire the lock and the first to be processed, since different incidents may take different amounts of time to reach the Detect & Manage Phishing Campaigns subplaybook.
 
 ## Playbooks ##
 
@@ -55,11 +56,11 @@ The **Detect & Manage Phishing Campaigns** playbook uses the **FindEmailCampaign
 
 If incidents belonging to a campaign are detected, the playbook checks whether the incidents are already linked to a Phishing Campaign incident. If so, the currently investigated incident is also added to that campaign incident. If not, a new Phishing Campaign incident is created, and all similar incidents are linked to it.
 
-In addition, as the **FindEmailCampaign** automation runs on the current phishing incident, the playbook takes the context and incident fields set by the automation, and updates the Phishing Campaign incident with that data, so that it contains the most up to date information about the phishing incidents.
+In addition, as the **FindEmailCampaign** automation runs on the current phishing incident, the playbook takes the context and incident fields set by the automation, and updates the Phishing Campaign incident with that data, so that it contains the most up-to-date information about the phishing incidents.
 
 Updating the data in the Phishing Campaign incident is mostly done using the **SetPhishingCampaignDetails ** automation, which ensures that the context is updated correctly without incidents overwriting each other's context.
 
-The playbook also marks all the similar Phishing incidents as incidents belonging to the detected Phishing Campaign incident. It sets the **Part Of Campaign** incident field in the phishing incidents, with the ID of the phishing campaign incident:
+The playbook also marks all similar Phishing incidents as incidents belonging to the detected Phishing Campaign incident. It sets the **Part Of Campaign** incident field in the phishing incidents, with the ID of the phishing campaign incident:
 
 ![image](https://user-images.githubusercontent.com/43602124/127866753-93e7ce42-2c11-474e-b492-0fb07dc751db.png)
 
