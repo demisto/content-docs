@@ -1,4 +1,3 @@
-
 ---
 id: phishing-campaign
 title: Phishing Campaign
