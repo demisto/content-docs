@@ -174,7 +174,7 @@ def update_remote_system_command(client: Client, args: Dict[str, Any]) -> str:
     """
     parsed_args = UpdateRemoteSystemArgs(args)
     if parsed_args.delta:
-        demisto.debug(f'Got the following delta keys {str(list(parsed_args.delta.keys()))}')
+        demisto.debug(f'Got the following delta keys {list(parsed_args.delta)}')
         
     demisto.debug(f'Sending incident with remote ID [{parsed_args.remote_incident_id}] to remote system\n')
     new_incident_id: str = parsed_args.remote_incident_id
