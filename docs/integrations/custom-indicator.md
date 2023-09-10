@@ -70,10 +70,10 @@ description: Create a customized indicator
 
 5. Follow the guides below to add your new indicator type to your XSOAR instance:
    
-    a.  [Create an indicator type](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/manage-indicators/understand-indicators/indicator-types/create-an-indicator-type).
+    a.  [Create an indicator type](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/8/Cortex-XSOAR-Administrator-Guide/Create-an-Indicator-Type).
     
-    b. [Create and map indicator fields](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/manage-indicators/understand-indicators/indicator-fields).
+    b. [Create and map indicator fields](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/8/Cortex-XSOAR-Administrator-Guide/Create-a-Custom-Indicator-Field).
     
-    c. [Customize the layout for your indicator](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/manage-indicators/understand-indicators/customize-indicator-view-layouts).
+    c. [Customize the layout for your indicator](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/8/Cortex-XSOAR-Administrator-Guide/Customize-an-Indicator-Type-Layout).
     
     d. Create a regex in your indicator type, so the indicator will be enriched.
