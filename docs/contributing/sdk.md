@@ -85,7 +85,7 @@ The main module is located in `demisto_sdk/__main__.py` and it holds the busines
 
 Each command has it's own package under `demisto_sdk/commands`.
 
-### Create a New Command
+#### Create a New Command
 
 To create a new command, follow the steps below:
 
