@@ -40,13 +40,13 @@ Run the following command from the repository root directory:
 ❯ git checkout -b $BRANCH_NAME
 ```
 
-1. Install all required dependencies:
+2. Install all required dependencies:
 
 ```bash
 ❯ poetry install
 ```
 
-1. Activate the virtual environment:
+3. Activate the virtual environment:
 
 ```bash
 ❯ poetry shell 
