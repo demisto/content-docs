@@ -2,6 +2,7 @@
 id: sdk
 title: Contributing to XSOAR SDK
 slug: sdk
+authors: [kgal-pan]
 ---
 
 # Contributing to XSOAR SDK
