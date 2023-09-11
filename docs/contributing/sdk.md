@@ -6,7 +6,14 @@ slug: sdk
 
 # Contributing to XSOAR SDK
 
-Contributions to [`demisto-sdk`](https://github.com/demisto/demisto-sdk) are welcome and appreciated.
+Contributions to [`demisto-sdk`](https://github.com/demisto/demisto-sdk) are welcome and appreciated. 
+
+Some common ways to contribute are:
+
+- Create new commands.
+- Improve existing implementation, 
+- Fix bugs.
+- Improve documentation. 
 
 ### Prerequesites
 
@@ -20,7 +27,7 @@ Make sure you already have the following requirements:
 
 ## How to Contribute
 
-### Set Up Development Environment
+### 1. Set Up Development Environment
 
 Run the following command from the repository root directory:
 
@@ -59,7 +66,12 @@ This output will be helpful when selecting the Python interpreter in [Visual Stu
 
 You should now have a working development environment. Feel free to jump into your favorite IDE and open the repository.
 
-### Directory Structure
+### 2. Add Work
+
+This is the step where you add new features, fix bugs, etc. and commit/push them.
+
+To get you started, here's some useful information about the SDK project structure, important modules and how to create new commands. 
+#### Directory Structure
 
 The package that holds the source code for the commands, utilities and unit tests is `demisto_sdk`.
 
@@ -87,12 +99,22 @@ Each command has it's own package under `demisto_sdk/commands`.
    ```
 
 
-### # TODO Open a Pull Request
+### 2. Add `CHANGELOG` Entry
 
+Open `CHANGELOG.MD`. Under the *Unreleased* section, add a new bullet with the description of the work done.
 
-### Further Reading
+### 3.  Open Pull Request
 
-The SDK uses the [`click`](https://click.palletsprojects.com/en/8.1.x/) and [`typer`](https://typer.tiangolo.com/) libraries to expose the commands, arguments and create the command line interface. The `click`/`typer` implementations are found in the `demisto_sdk/__main__.py` module.
+After finishing the development process, push the changes to your SDK fork on GitHub and [open a Pull Request from the forked repo](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) to the [`demisto-sdk`](https://github.com/demisto/demisto-sdk) `master` branch.
 
-# TODO
-- neo4j
+Once the Pull Request is open, it will be assigned to a member of the XSOAR SDK team to review. 
+
+In addition, you will the following [GitHub Status Checks](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-status-checks) running:
+
+* `ci/circleci`: `build`: We use [CircleCI](https://circleci.com/gh/demisto/demisto-sdk) to run a full build on each commit of your pull request. The build will run our content validation hooks, linting and unit test. We require that the build pass (green build). Follow the `details` link of the status to see the full build UI of CircleCI.
+* **LGTM analysis: Python**: We use [LGTM](https://lgtm.com) for continues code analysis. If your PR introduces new LGTM alerts, the LGTM bot will add a comment with links for more details. Usually, these alerts are valid and you should try to fix them. If the alert is a false positive, specify this in a comment of the PR.
+* **license/CLA**: Status check that all contributors have signed our Contributor License Agreement. Before merging any PRs, we need all contributors to sign a Contributor License Agreement. By signing a this agreement, we ensure that the community is free to use your contributions.
+
+These jobs are run in order validate that the Pull Request meets our standards.
+
+Once the Pull Request is approved and merged, the changes will be available in the next [SDK release](https://github.com/demisto/demisto-sdk/releases/.
