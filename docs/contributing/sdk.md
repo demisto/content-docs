@@ -3,6 +3,7 @@ id: sdk
 title: Contributing to XSOAR SDK
 slug: sdk
 authors: [kgal-pan]
+tags: [sdk,python,dev_env,contributing,pr]
 ---
 
 # Contributing to XSOAR SDK
@@ -123,4 +124,4 @@ In addition, you will see the following [GitHub Status Checks](https://help.gith
 
 These jobs are run in order validate that the Pull Request meets our standards.
 
-Once the Pull Request is approved and merged, the changes will be available in the next [SDK release](https://github.com/demisto/demisto-sdk/releases/.
+Once the Pull Request is approved and merged, the changes will be available in the next [SDK release](https://github.com/demisto/demisto-sdk/releases/).
