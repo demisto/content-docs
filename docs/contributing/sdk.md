@@ -27,6 +27,8 @@ Make sure you already have the following requirements:
 
 ## How to Contribute
 
+Before contributing, we need to make sure we set up a development enviromment. Once that is ready, we can begin the development process which includes adding or modifying code, adding unit testing and documenting the changes. Upon completion, we can open a Pull Request to push those changes into the next release of the SDK. 
+
 ### 1. Set Up Development Environment
 
 Run the following command from the repository root directory:
@@ -68,7 +70,7 @@ You should now have a working development environment. Feel free to jump into yo
 
 ### 2. Add Work
 
-This is the step where you add new features, fix bugs, etc. and commit/push them.
+This is the step where you add new features, fix bugs, etc., commit and push them.
 
 To get you started, here's some useful information about the SDK project structure, important modules and how to create new commands. 
 #### Directory Structure
@@ -85,10 +87,13 @@ Each command has it's own package under `demisto_sdk/commands`.
 
 ### Create a New Command
 
-1. Create package for your command in the following path: `demisto_sdk/commands/$NEW_COMMAND`.
-1. Create the `click` command and arguments in the main module.
-1. Create a module in `demisto_sdk/commands/$NEW_COMMAND/$NEW_MODULE.py`
-**Note:** Modules are supposed to return `0` on success or `1` on failure. 
+To create a new command, follow the steps below:
+
+1. Create package for your command in the `demisto_sdk/commands/$NEW_COMMAND` directory.
+2. Create the `click` command and arguments in the `__main__.py` module. See [Basic Concepts - Creating a Command](https://click.palletsprojects.com/en/8.1.x/quickstart/#basic-concepts-creating-a-command) for more information.
+3. Create a module in `demisto_sdk/commands/$NEW_COMMAND/$NEW_MODULE.py`.
+
+   **Note:** Modules are supposed to return `0` on success or `1` on failure. 
 1. Create unit tests. Unit tests should be saved in `demisto_sdk/commands/$NEW_COMMAND/tests`. Test files for all commands which located are located in 
 `demisto_sdk/tests/test_files`.
    
@@ -99,11 +104,11 @@ Each command has it's own package under `demisto_sdk/commands`.
    ```
 
 
-### 2. Add `CHANGELOG` Entry
+### 3. Add Release Notes
 
-Open `CHANGELOG.MD`. Under the *Unreleased* section, add a new bullet with the description of the work done.
+Open `CHANGELOG.md`. Under the *Unreleased* section, add a new bullet with the description of the work done.
 
-### 3.  Open Pull Request
+### 4.  Open Pull Request
 
 After finishing the development process, push the changes to your SDK fork on GitHub and [open a Pull Request from the forked repo](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) to the [`demisto-sdk`](https://github.com/demisto/demisto-sdk) `master` branch.
 
