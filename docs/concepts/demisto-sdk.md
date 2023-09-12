@@ -36,6 +36,8 @@ If you already have the SDK installed and you wish to upgrade the version, run t
 pip3 install --upgrade demisto-sdk
 ```
 
+If you would like to contribute to the Demisto SDK project, check out the [Contributing to XSOAR SDK guide](../contributing/sdk.md).
+
 ### Environment Variable Setup
 
 Some SDK commands require you to have an interaction with the Cortex XSOAR or Cortex XSIAM server. Examples of such interactions

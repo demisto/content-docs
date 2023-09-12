@@ -29,7 +29,7 @@ Make sure you already have the following requirements:
 
 ## How to Contribute
 
-Before contributing, we need to make sure we set up a development enviromment. Once that is ready, we can begin the development process which includes adding or modifying code, adding unit testing and documenting the changes. Upon completion, we can open a Pull Request to push those changes into the next release of the SDK. 
+Before contributing, we need to make sure we set up a development enviromment. Once that is ready, we can begin the development process which includes adding or modifying code, adding unit tests and documenting the changes. Upon completion, we can open a Pull Request to push those changes into the next release of the SDK. 
 
 ### 1. Set Up Development Environment
 
