@@ -87,7 +87,7 @@ The main module is located in `demisto_sdk/__main__.py` and it holds the busines
 
 Each command has it's own package under `demisto_sdk/commands`.
 
-#### Create a New Command
+#### Example Contribution: Create a New Command
 
 To create a new command, follow the steps below:
 
@@ -110,7 +110,7 @@ To create a new command, follow the steps below:
 
 Open `CHANGELOG.md`. Under the *Unreleased* section, add a new bullet with the description of the work done.
 
-### 4.  Open Pull Request
+### 4. Open Pull Request
 
 After finishing the development process, push the changes to your SDK fork on GitHub and [open a Pull Request from the forked repo](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) to the [`demisto-sdk`](https://github.com/demisto/demisto-sdk) `master` branch.
 
@@ -118,9 +118,9 @@ Once the Pull Request is open, it will be assigned to a member of the XSOAR SDK 
 
 In addition, you will see the following [GitHub Status Checks](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-status-checks) running:
 
-* `ci/circleci`: `build`: We use [CircleCI](https://circleci.com/gh/demisto/demisto-sdk) to run a full build on each commit of your pull request. The build will run our content validation hooks, linting and unit test. We require that the build pass (green build). Follow the `details` link of the status to see the full build UI of CircleCI.
-* **LGTM analysis: Python**: We use [LGTM](https://lgtm.com) for continues code analysis. If your PR introduces new LGTM alerts, the LGTM bot will add a comment with links for more details. Usually, these alerts are valid and you should try to fix them. If the alert is a false positive, specify this in a comment of the PR.
-* **license/CLA**: Status check that all contributors have signed our Contributor License Agreement. Before merging any PRs, we need all contributors to sign a Contributor License Agreement. By signing a this agreement, we ensure that the community is free to use your contributions.
+* `ci/circleci` : We use [CircleCI](https://circleci.com/gh/demisto/demisto-sdk) to run a full build on each commit of your pull request. The build will run our content validation hooks, linting and unit test. We require that the build pass (green build). Follow the `details` link of the status to see the full build UI of CircleCI.
+* **guardrails/scan**: We use [GuardRails](https://www.guardrails.io/) to review the contributed code and find potential security vulnerabilities.
+* **license/cla**: Status check that all contributors have signed our Contributor License Agreement. Before merging any PRs, we need all contributors to sign a Contributor License Agreement. By signing a this agreement, we ensure that the community is free to use your contributions.
 
 These jobs are run in order validate that the Pull Request meets our standards.
 
