@@ -104,14 +104,18 @@ We have two types of tests in the SDK:
 * **Unit Tests** - These test individual modules/functions and should be placed in the same directory as the code being tested. For example, unit tests for a new command would live in `demisto_sdk/commands/$NEW_COMMAND/tests/$NEW_COMMAND_test.py`.
 * **Integration Tests** - These test the command execution end-to-end and are located in `demisto_sdk/tests/integration_tests`. They will usually include permutations of arguments, inputs, expected outputs etc.  For example, to test the `demisto-sdk download` command, which includes different flags such as `--force` and `--list-files`, we would create integration tests with those variations, `demisto_sdk/tests/integration_tests/download_integrations_test.py::test_integration_download_force`, `demisto_sdk/tests/integration_tests/download_integrations_test.py::test_integration_download_list_files`, respectively.
 
-   
-   To run the unit tests from within your virtual environment:
+To run the unit tests from within your virtual environment:
 
-   ```bash
-   ❯ pytest -v demisto_sdk/commands/$NEW_COMMAND/tests
-   ```
+```bash
+❯ pytest -v demisto_sdk/commands/$NEW_COMMAND/tests
+```
 
-   You can also run and debug unit tests in the IDE. Follow the instructions on how to set up `pytest` unit test discovery in [Visual Studio Code](https://code.visualstudio.com/docs/python/testing) and [PyCharm](https://www.jetbrains.com/help/pycharm/pytest.html#create-pytest-test).
+To run a specific unit test or integration test, you can specify the file and test name separated by `::`. For example, if we want to only run the `test_integration_download_list_files` test:
+```bash
+❯ pytest -v demisto_sdk/tests/integration_tests/download_integrations_test.py::test_integration_download_list_files
+```
+
+You can also run and debug unit tests in the IDE. Follow the instructions on how to set up `pytest` unit test discovery in [Visual Studio Code](https://code.visualstudio.com/docs/python/testing) and [PyCharm](https://www.jetbrains.com/help/pycharm/pytest.html#create-pytest-test).
 
 
 ### 3. Add Release Notes
