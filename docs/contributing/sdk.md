@@ -94,9 +94,8 @@ To create a new command, follow the steps below:
 1. Create package for your command in the `demisto_sdk/commands/$NEW_COMMAND` directory.
 2. Create the `click` command and arguments in the `__main__.py` module. See [Basic Concepts - Creating a Command](https://click.palletsprojects.com/en/8.1.x/quickstart/#basic-concepts-creating-a-command) for more information.
 3. Create a module in `demisto_sdk/commands/$NEW_COMMAND/$NEW_MODULE.py`.
-
    **Note:** Modules are supposed to return `0` on success or `1` on failure. 
-1. Create unit tests. Unit tests should be saved in `demisto_sdk/commands/$NEW_COMMAND/tests`. Test files for all commands which located are located in 
+4. Create unit tests. Unit tests should be saved in `demisto_sdk/commands/$NEW_COMMAND/tests`. Test files for all commands which located are located in 
 `demisto_sdk/tests/test_files`.
    
    To run the unit tests from within your virtual environment:
@@ -105,10 +104,12 @@ To create a new command, follow the steps below:
    ❯ pytest -v demisto_sdk/commands/$NEW_COMMAND/tests
    ```
 
+   You can also run and debug unit tests in the IDE. Follow the instructions on how to set up `pytest` unit test discovery in [Visual Studio Code](https://code.visualstudio.com/docs/python/testing) and [PyCharm](https://www.jetbrains.com/help/pycharm/pytest.html#create-pytest-test).
+
 
 ### 3. Add Release Notes
 
-Open `CHANGELOG.md`. Under the *Unreleased* section, add a new bullet with the description of the work done.
+Open `CHANGELOG.md`. Under the **Unreleased** section, add a new bullet with the description of the work done.
 
 ### 4. Open Pull Request
 
