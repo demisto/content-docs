@@ -13,7 +13,7 @@ Contributions to [`demisto-sdk`](https://github.com/demisto/demisto-sdk) are wel
 Some common ways to contribute are:
 
 - Create new commands.
-- Improve existing implementation, 
+- Improve existing implementation.
 - Fix bugs.
 - Improve documentation. 
 
@@ -122,6 +122,6 @@ In addition, you will see the following [GitHub Status Checks](https://help.gith
 * **guardrails/scan**: We use [GuardRails](https://www.guardrails.io/) to review the contributed code and find potential security vulnerabilities.
 * **license/cla**: Status check that all contributors have signed our Contributor License Agreement. Before merging any PRs, we need all contributors to sign a Contributor License Agreement. By signing a this agreement, we ensure that the community is free to use your contributions.
 
-These jobs are run in order validate that the Pull Request meets our standards.
+These jobs are run in order validate that the Pull Request meets our standards. Make sure to review failed jobs and address any issues found before requesting a review from the SDK team. If you have any other questions, feel free to reach out to the assigned PR reviewer!
 
 Once the Pull Request is approved and merged, the changes will be available in the next [SDK release](https://github.com/demisto/demisto-sdk/releases/).
