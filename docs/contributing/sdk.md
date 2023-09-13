@@ -95,8 +95,15 @@ To create a new command, follow the steps below:
 2. Create the `click` command and arguments in the `__main__.py` module. See [Basic Concepts - Creating a Command](https://click.palletsprojects.com/en/8.1.x/quickstart/#basic-concepts-creating-a-command) for more information.
 3. Create a module in `demisto_sdk/commands/$NEW_COMMAND/$NEW_MODULE.py`.
    **Note:** Modules are supposed to return `0` on success or `1` on failure. 
-4. Create unit tests. Unit tests should be saved in `demisto_sdk/commands/$NEW_COMMAND/tests`. Test files for all commands which located are located in 
-`demisto_sdk/tests/test_files`.
+
+
+#### Tests
+
+We have two types of tests in the SDK:
+
+* **Unit Tests** - These test individual modules/functions and should be placed in the same directory as the code being tested. For example, unit tests for a new command would live in `demisto_sdk/commands/$NEW_COMMAND/tests/$NEW_COMMAND_test.py`.
+* **Integration Tests** - These test the command execution end-to-end and are located in `demisto_sdk/tests/integration_tests`. They will usually include permutations of arguments, inputs, expected outputs etc.  For example, to test the `demisto-sdk download` command, which includes different flags such as `--force` and `--list-files`, we would create integration tests with those variations, `demisto_sdk/tests/integration_tests/download_integrations_test.py::test_integration_download_force`, `demisto_sdk/tests/integration_tests/download_integrations_test.py::test_integration_download_list_files`, respectively.
+
    
    To run the unit tests from within your virtual environment:
 
