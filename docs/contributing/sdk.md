@@ -29,22 +29,22 @@ Make sure you already have the following requirements:
 
 ## How to Contribute
 
-Before contributing, we need to make sure we set up a development enviromment. Once that is ready, we can begin the development process which includes adding or modifying code, adding unit tests and documenting the changes. Upon completion, we can open a Pull Request to push those changes into the next release of the SDK. 
+Before contributing, it is required set up a development environment. Once that is ready, the development process can begin. The development process includes adding or modifying code, adding unit tests and documenting the changes. Upon completion, a [Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) should be opened to push those changes into the next release of the SDK. 
 
 ### 1. Set Up Development Environment
 
 Run the following command from the repository root directory:
 
-1. Create a new branch to hold contributed work:
-
-```bash
-❯ git checkout -b $BRANCH_NAME
-```
-
-2. Install all required dependencies:
+1. Install all required dependencies:
 
 ```bash
 ❯ poetry install
+```
+
+2. Create a new branch to hold contributed work:
+
+```bash
+❯ git checkout -b $BRANCH_NAME
 ```
 
 3. Activate the virtual environment:
