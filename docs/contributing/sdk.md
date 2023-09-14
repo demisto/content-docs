@@ -6,7 +6,7 @@ authors: [kgal-pan]
 tags: [sdk,python,dev_env,contributing,pr]
 ---
 
-# Contributing to XSOAR SDK
+# Contributing to Cortex XSOAR SDK
 
 Contributions to [`demisto-sdk`](https://github.com/demisto/demisto-sdk) are welcome and appreciated. 
 
