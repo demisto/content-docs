@@ -33,7 +33,7 @@ Before contributing, you must set up a development environment. Once that is rea
 
 ### 1. Set Up Development Environment
 
-Run the following command from the repository root directory:
+Run the following commands from the repository root directory:
 
 1. Install all required dependencies:
 
