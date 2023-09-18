@@ -44,7 +44,7 @@ The type number is: 12.
 
 Access: `demisto.params().get('cert')`
 
-## Encrypted
+## Short Encrypted
 
 This type of parameter is used for encrypted inputs, such as API tokens. This should not be used for username-password 
 credentials however. It creates a small sized text box with an encrypted text, which would also be stored encrypted in
@@ -56,6 +56,17 @@ The type number is: 4.
 ![image](/doc_imgs/integrations/54882405-51581780-4e62-11e9-86a4-293c3eb59cbc.png)
 
 Access: `demisto.params().get('token')`
+
+## Long Encrypted
+
+This type of parameter is used for long encrypted inputs, such as certificates.
+It creates a text-area with an encrypted text, which would also be stored encrypted in
+the database. 
+The type number is: 14.
+
+![image](/doc_imgs/integrations/screenshot-long-encrypted.png)
+
+Access: `demisto.params().get('cert')`
 
 ## Authentication
 
