@@ -12,7 +12,7 @@ See [here](https://xsoar.pan.dev/docs/integrations/yaml-file#configuration) for 
 
 This type of parameter creates a checkbox in the integration configuration. When the checkbox is ticked, the value in
 the integration code is `True`, and `False` otherwise.
-The type number is: 0.
+The type number is: 8.
 
 ![image](/doc_imgs/integrations/54881985-48654700-4e5e-11e9-8e1c-7a95d1b84328.png)
 
