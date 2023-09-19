@@ -149,7 +149,7 @@ After you a redirected to the next page, in the **Overview** tab you will find y
 ![Overview](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/subscription_id_resourse_group.png)
 
 
-## Self Deployed Application - Example 
+## Self Deployed Application - Example for [Microsoft Graph User integration](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-user)
 
 1. In Microsoft Azure portal, create a new app registration.
    1. Select Azure Active Directory> App registrations> New registration.
@@ -267,3 +267,5 @@ For example, when using the "self-deployed Azure app" for Microsoft Graph Mail S
 2. Validate that all the credentials you entered are correct (Client ID, Client Secret, Tenant ID, Application redirect URI).
 3. Run !msgraph-mail-generate-login-url to generate a new *Authorization code*.
 4. Run !msgraph-mail-test to test the connectivity of the email.
+
+**Note**: If encountering an "Insufficient privileges to complete the operation" error, ensure the necessary permissions were added, according to the integration documentation. Subsequently, reset the authentication and initiate the authentication process again.
