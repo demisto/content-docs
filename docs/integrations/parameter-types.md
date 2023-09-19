@@ -64,7 +64,7 @@ It creates a text-area with an encrypted text, which would also be stored encryp
 the database. 
 The type number is: 14.
 
-![image](/doc_imgs/integrations/screenshot-long-encrypted.png)
+![image](/doc_imgs/integrations/Screenshot-long-encrypted.png)
 
 Access: `demisto.params().get('cert')`
 
