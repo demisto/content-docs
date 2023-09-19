@@ -60,7 +60,7 @@ Access: `demisto.params().get('token')`
 ## Long Encrypted
 
 This type of parameter is used for long encrypted inputs, such as certificates.
-It creates a text-area with an encrypted text, which would also be stored encrypted in
+It creates a text-area with encrypted text. The text would also be stored encrypted in
 the database. 
 The type number is: 14.
 
