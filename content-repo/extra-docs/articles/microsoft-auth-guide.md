@@ -268,4 +268,4 @@ For example, when using the "self-deployed Azure app" for Microsoft Graph Mail S
 3. Run !msgraph-mail-generate-login-url to generate a new *Authorization code*.
 4. Run !msgraph-mail-test to test the connectivity of the email.
 
-**Note**: If encountering an "Insufficient privileges to complete the operation" error, ensure the necessary permissions are added. Subsequently, reset the authentication and initiate the authentication process again.
+**Note**: If encountering an "Insufficient privileges to complete the operation" error, ensure the necessary permissions were added, according to the integration documentation. Subsequently, reset the authentication and initiate the authentication process again.
