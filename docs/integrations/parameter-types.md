@@ -24,7 +24,7 @@ Access: `demisto.params().get('proxy')`
 
 This type of parameter is used for short input parameters, such as server URLs, ports or queries. It creates a small
 sized text box in the integration configuration.
-The type number is: 8.
+The type number is: 0.
 
 ![image](/doc_imgs/integrations/54881995-616df800-4e5e-11e9-8f15-475422b97066.png)
 
