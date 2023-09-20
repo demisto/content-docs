@@ -14,7 +14,7 @@ This topic provides:
 ## fetch-incidents Command
 The ***fetch-incidents*** command is the function that Cortex XSOAR calls to import new incidents. It is triggered by the *Fetches incidents* parameter in the integration configuration. It is not necessary to configure the ***fetch-incidents*** command in the integration settings.
 
-When you select the the *Fetch incidents* parameter in the integration configuration, you should also configure the *Incidents Fetch Interval* parameter. This controls how often the integration will perform a ***fetch_incidents*** command. The default is 1 minute.
+When you select the *Fetch incidents* parameter in the integration configuration, you should also configure the *incidentFetchInterval* parameter (displayed as *Incidents Fetch Interval* in the integration configuration window). This controls how often the integration will perform a ***fetch_incidents*** command. The default is 1 minute.
 
 ![screen shot 2023-09-20](/doc_imgs/integrations/fetch-incidents.png)
 
