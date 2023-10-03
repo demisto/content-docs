@@ -8,7 +8,7 @@ To keep playbook consistency, usability and readability, we've created some conv
 ## Wording
 ### Playbooks
  - Names are **T**itle **C**ase.
-- The playbook name cannot contain the following special characters:
+ - The playbook name cannot contain the following special characters:
 
        Punctuation marks: ! " # $ % & ' ( ) * + , . / : ; < = > ? @ [ \ ] ^ ` { | } ~    
        Symbols: © ® ™ ° µ ± ß    
