@@ -1,6 +1,6 @@
 ---
 id: long-running
-title: Long Running Containers
+title: Long Running Integrations
 ---
 
 You can use long running containers to run specific processes in an integration forever.
