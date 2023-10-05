@@ -34,6 +34,10 @@ The file's content can include troubleshooting tips and advanced details for dif
 This should not be confused with the integration README file, documented [here](../documentation/readme_file).
 :::
 
+## Images
+Images can be added to your documentation files. For information, see  [Images in Documentation Files](https://xsoar.pan.dev/docs/images_in_documentation_files).
+
+
 ## Example
 This is the contents of the `HelloWorld_description.md` file:
 ```
