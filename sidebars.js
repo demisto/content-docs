@@ -225,7 +225,7 @@ const sidebars = {
         "documentation/release-notes",
         "documentation/readme_file",
         "documentation/integration-description"
-        ]
+        "documentation/images_in_documentation_files"        ]
     },
     {
       type: "category",
