@@ -60,7 +60,8 @@ const sidebars = {
         "contributing/docs-contrib",
         "contributing/marketplace",
         "contributing/demo-prep",
-        "contributing/sla"
+        "contributing/sla",
+        "contributing/sdk"
       ]
     },
     {
