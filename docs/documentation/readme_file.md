@@ -60,10 +60,10 @@ demisto-sdk generate-docs -i Packs/Nmap/Integrations/NmapV2/NmapV2.yml --old-ver
 Though not advised, if you do not wish to create the version differences section in the documentation you can run the command with the `--skip-breaking-changes` flag.
 
 ## Images
-Images can be added to your documentation files. For information, see  [Images in Documentation Files](https://xsoar.pan.dev/docs/images_in_documentation_files).
+Images can be added to your documentation files. For information, see  [Images in Documentation Files](https://xsoar.pan.dev/docs/documentation/images_in_documentation_files). 
 
 
-## Videhttps://xsoar.pan.dev/docs/documentation/readme_fileos
+## Videos
 A video can provide a great addition to the documentation either as a demo video or tutorial. The preferred video format is `mp4`. 
 
 ### Videos Stored in GitHub
