@@ -9,7 +9,7 @@
     "start": "docusaurus start",
     "heapstats": "node -e 'console.log(\"Node heap stats: \", v8.getHeapStatistics())'",
     "build-docusaurus": "cp -RPv docs/doc_imgs/* static/doc_imgs/ && replace '(\\.\\.)?(/\\.\\.){0,2}(/?\\.\\./docs)?/doc_imgs' '/doc_imgs' docs/* --include='*.md*' --recursive && docusaurus build",
-    "build": "npm run reference-docs && npm run heapstats && npm run build-docusaurus",
+    "build": "npm run reference-docs && npm run heapstats && npm run build-docusaurus --openssl-legacy-provider start",
     "findorphans": "for i in `cd docs && find . -name '*.md' | cut -d '.' -f2 | cut -d'/' -f2-`; do grep $i sidebars.js 1>/dev/null || echo \"Document not in sidebar: $i\"; done",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
