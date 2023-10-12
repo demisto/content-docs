@@ -1029,7 +1029,7 @@ demisto.results(
     {
         'Type': EntryType.NOTE,
         'ContentsFormat': EntryFormat.TEXT,
-        'Content': res,
+        'Contents': res,
         'HumanReadable': 'Submitted file is being analyzed.',
         'ReadableContentsFormat': EntryFormat.MARKDOWN,
         'EntryContext': entry_context,
