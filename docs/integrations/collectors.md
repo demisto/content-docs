@@ -67,7 +67,7 @@ def main():
 Notice: 
 - You should always path the `events` to the `send_events_to_xsiam()` function, also in cases when no events were fetched. This is important as the `send_events_to_xsiam()` function also updates the UI for the number of events fetched which could also be 0. Don't be troubled, in such cases the empty data will not be sent forward to the DataBase.
 - In the given example we assume the events are **not** in a `cef` or `leef` formats and therefore the `data_format` argument is not used.
-- `send_events_to_xsiam()` function will work only if the integration is a system integration. The function will fail if it will be called from custom integration.
+- `send_events_to_xsiam()` function will work only if the integration is a system integration. The function will fail if it will be called from a custom integration.
 
 Fore more info on the `send_events_to_xsiam()` function visit the [API reference](https://xsoar.pan.dev/docs/reference/api/common-server-python#send_events_to_xsiam).
    
