@@ -60,3 +60,14 @@ The content of the description file will be displayed:
 Starting from version 6.1, the content of the description file is shown on the side of the configuration data:
 
 ![](/doc_imgs/integrations/integration-config-panel-61.png)
+
+### Support Level Header YML metadata key
+The `supportlevelheader` can be set in order to determine what the is the support level of the integration in the description's file header.
+* If `supportlevelheader` = `xsoar`, then in the header of the description file, it would be declared that PANW supports this integration.
+* If `supportlevelheader` = `partner`, then in the header of the description file, it would be declared that the partner supports this integration and the partner's contact information.
+* If `supportlevelheader` = `community`, then in the header of the description file, it would be declared the integration is supported by the community or by pack's author.
+
+#### How To Set the Support Level Header YML metadata key
+All that is needed is to go to the yml of the integration in the same folder where the description file is located and add the `supportlevelheader` key with one of the xsoar/partner/community values.
+
+By default, if this key is not set in the integration's yml, the support level header is assumed to be the `support` key in the `pack_metadata.json`.
