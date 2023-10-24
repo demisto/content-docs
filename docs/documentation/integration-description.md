@@ -68,6 +68,6 @@ The `supportlevelheader` key can be set to one of the following values to set th
 * `community` - The description would specify that this integration is community supported or list the pack's author.
 
 #### How To Set the Support Level Header YML metadata key
-All that is needed is to go to the yml of the integration in the same folder where the description file is located and add the `supportlevelheader` key with one of the xsoar/partner/community values.
+Open the yml of the integration in the same folder where the description file is located and add the `supportlevelheader` key with one of the `xsoar/partner/community` values.
 
-By default, if this key is not set in the integration's yml, the support level header is assumed to be the `support` key in the `pack_metadata.json`.
+If this key is not set in the integration's yml, the support level header is set to the `support` key in the `pack_metadata.json`.
