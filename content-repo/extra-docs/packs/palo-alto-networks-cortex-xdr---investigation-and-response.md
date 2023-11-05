@@ -22,12 +22,12 @@ The Palo Alto Networks Cortex XDR - Investigation and Response pack enables the 
 - [Lite Incident Handling](#lite-incident-handling) - A Lite Playbook for handling Palo Alto Networks Cortex XDR Incidents, which encompasses incident enrichment, investigation, and response for each incident.
 - [Device Control Violations](#device-control-violations) - Fetch device control violations from XDR and communicate with the user to determine the reason the device was connected.
 - [XDR Incident Handling](#xdr-incident-handling) - Compare incidents in Palo Alto Networks Cortex XDR and Cortex XSOAR, and update the incidents appropriately. 
-- [AWS IAM User Access Investigation](#aws-iam-user-access-investigation) - Investigates and responds to Cortex XDR Cloud alerts where an AWS IAM user's access key is used suspiciously to access the cloud environment. 
+- [Cloud IAM User Access Investigation](#cloud-iam-user-access-investigation) - Investigates and responds to Cortex XDR Cloud alerts where an Cloud IAM user's access key is used suspiciously to access the cloud environment. 
 - [Cortex XDR - Cloud Cryptomining](#Cortex_XDR_-_Cloud_Cryptomining) - Investigates and responds to Cortex XDR XCloud 
   Cryptomining alerts. The playbook Supports AWS, Azure and GCP.
 
 ## Lite Incident Handling
-This playbook is a lite default playbook to handle XDR incidents.
+This playbook is a lite default playbook to handle XDR incidents, and it doesn't require additional integrations to run.
 The [Palo Alto Networks Cortex XDR - Investigation and Response](#palo-alto-networks-cortex-XDR---investigation-and-response) integration fetches Cortex XDR incidents and runs the [Cortex XDR Lite - Incident Handling](#cortex-xdr-lite---incident-handling) playbook. 
 
 The playbook runs the ***xdr-get-incident-extra-data*** command to retrieve data fields of the specific incident including a list of alerts with multiple events, alerts, and key artifacts.
@@ -89,36 +89,28 @@ After the remediation, if there are no new alerts, the playbook stops the alert 
 ### Syn Indicators between Cortex XSOAR and Cortex XDR
 The [Cortex XDR - IOCs](https://xsoar.pan.dev/docs/reference/integrations/cortex-xdr---ioc) feed integration syncs indicators between Cortex XSOAR and Cortex XDR. The integration syncs indicators according to the defined fetch interval. At each interval, the integration pushes new and modified indicators defined in the Sync Query from Cortex XSOAR to Cortex XDR. Additionally, the integration checks if there are manual modifications of indicators on Cortex XDR and syncs back to Cortex XSOAR. Once per day, the integration performs a complete sync which also removes indicators that have been deleted or expired in Cortex XSOAR, from Cortex XDR.
 
-## AWS IAM User Access Investigation
-The [AWS IAM user access investigation](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---aws-iam-user-access-investigation) playbook investigates and responds to Cortex XDR Cloud alerts where an AWS IAM user's access key is used suspiciously to access the cloud environment. 
+## Cloud IAM User Access Investigation
+The [Cloud IAM user access investigation](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---cloud-iam-user-access-investigation) playbook investigates and responds to Cortex XDR Cloud alerts where an Cloud IAM user's access key is used suspiciously to access the cloud environment. 
 
 The playbook fetches data from the incident and then retrieves additional cloud alert data that was not available in the incident. It then checks if the alerts are one of the following XCLOUD supported alerts: 
 - Penetration testing tool attempt
 - Penetration testing tool activity
-- Suspicious API call from a Tor exit node.
+- Suspicious API call from a Tor exit node
 
 If the alert is not one of the supported alerts, the playbook ends.
 Otherwise, the incident type is set to XCLOUD and the playbook starts to collect additional information pertaining to the alert.
 
 First the source IP addresses are enriched. These are the IP addresses that are used to connect to the environment. 
 
-Then the playbook enriches information about the user who connected to the environment through the AWS IAM integration using the [AWS IAM - User enrichment](https://xsoar.pan.dev/docs/reference/playbooks/aws-iam---user-enrichment) sub-playbook. The sub-playbook lists the user access keys and retrieves information about the IAM user, including the user's creation date, path, unique ID, and ARN.  From this, it can be seen if these user keys are active and the analyst can block these keys later in the investigation if they are causing malicious activities.
+Then the playbook enriches information about the user who connected to the environment through the relevant IAM integration using the [Cloud IAM Enrichment - Generic](https://xsoar.pan.dev/docs/reference/playbooks/cloud-iam-enrichment---generic) sub-playbook. The sub-playbook lists the user access keys and retrieves information about the IAM user, including the user's creation date, path, unique ID, and ARN.  From this, it can be seen if these user keys are active and the analyst can block these keys later in the investigation if they are causing malicious activities.
 
-
-Then the playbook validates that the access key type is AKIA (which marks this as a user key). If the access key is AKIA, queries are run to retrieve the last 100 API calls made with the access key and retrieve actions performed by the user in the last 7 days. This information shows who made the call, and provides information about the IP address and data about which user was used in the request, what operation was performed, the status of the operation and on what resource it was executed.
-
-Now the investigation starts.
-First the playbook checks if there were new IP addresses that were found on the XQL queries that did not appear in the original alert and enriches them.
-Then the analyst manually reviews the results of the XQL queries from the previous steps to determine if this is a true positive event. The analyst investigates the operations performed by the access key and the user. The analyst examines the executed operations, by who it was executed, on which resource, and the operation status.
+Based on the enrichment and the analysis results, the playbooks sets the verdict of the incident. If malicious indicators are found, the playbook takes action using [Cloud Response - Generic](https://xsoar.pan.dev/docs/reference/playbooks/cloud-response---generic) sub-playbook.
+If the verdict not determined, it lets the analyst decide whether to continue to the remediation stage or close the investigation. 
 
 The analyst looks at any persistence, for example, a new user or key creation or for any lateral movement operations. For example, an operation can be = AsumeRole.
 As an extra validation step, it is recommended to query the user and/or the user’s manager regarding the investigated suspicious activity.
 
 Based on this investigation, the analyst manually decides if the alert is a false or true positive.  If false, the playbook ends.
-Otherwise the remediation steps begin
-The IP address is checked to see if it is a Tor IP. If it is not a Tor IP, the IP is blocked (either manually or automatically) and the analyst can tag the indicator for EDL.
-The compromised IAM access keys are deactivated.
-The analyst manually checks if the user has an AWS login profile and deletes it.
 
 
 ## Cortex XDR - Cloud Cryptomining
@@ -415,7 +407,7 @@ The report will be sent to email addresses provided in the playbook input.
 The playbook includes an incident type with a dedicated layout to visualize the collected data.
 
 #### [Cortex XDR Lite - Incident Handling](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-lite---incident-handling)
-This playbook is a lite default playbook to handle XDR incidents.
+This playbook is a lite default playbook to handle XDR incidents, and it doesn't require additional integrations to run.
 This playbook is triggered by fetching a Palo Alto Networks Cortex XDR incident.
 The playbook performs enrichment on the incident’s indicators.
 Then, the playbook performs investigation and analysis on the command line and search for related xdr alerts by mitre tactics to identify malicious activity performed on the endpoint and by the user.
@@ -469,9 +461,8 @@ Executes specified shell commands.
 Kills the specified process.
 
 
-
-#### [Cortex XDR - AWS IAM user access investigation](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---aws-iam-user-access-investigation)
-Investigates and responds to Cortex XDR Cloud alerts where an AWS IAM user`s access key is used suspiciously to access the cloud environment. 
+#### [Cortex XDR - Cloud IAM user access investigation](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---aws-iam-user-access-investigation)
+Investigates and responds to Cortex XDR Cloud alerts where an Cloud IAM user`s access key is used suspiciously to access the cloud environment. 
 
 The following alerts are supported for AWS environments:
 - Penetration testing tool attempt
