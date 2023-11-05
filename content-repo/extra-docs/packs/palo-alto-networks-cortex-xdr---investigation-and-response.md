@@ -19,14 +19,32 @@ The playbooks included in this pack help you save time and keep your incidents i
 - Remediates the incident by blocking malicious indicators and isolating infected endpoints.
 
 The Palo Alto Networks Cortex XDR - Investigation and Response pack enables the following flows: 
+- [Lite Incident Handling](#lite-incident-handling) - A Lite Playbook for handling Palo Alto Networks Cortex XDR Incidents, which encompasses incident enrichment, investigation, and response for each incident.
 - [Device Control Violations](#device-control-violations) - Fetch device control violations from XDR and communicate with the user to determine the reason the device was connected.
 - [XDR Incident Handling](#xdr-incident-handling) - Compare incidents in Palo Alto Networks Cortex XDR and Cortex XSOAR, and update the incidents appropriately. 
 - [AWS IAM User Access Investigation](#aws-iam-user-access-investigation) - Investigates and responds to Cortex XDR Cloud alerts where an AWS IAM user's access key is used suspiciously to access the cloud environment. 
 - [Cortex XDR - Cloud Cryptomining](#Cortex_XDR_-_Cloud_Cryptomining) - Investigates and responds to Cortex XDR XCloud 
   Cryptomining alerts. The playbook Supports AWS, Azure and GCP.
 
+## Lite Incident Handling
+This playbook is a lite default playbook to handle XDR incidents.
+The [Palo Alto Networks Cortex XDR - Investigation and Response](#palo-alto-networks-cortex-XDR---investigation-and-response) integration fetches Cortex XDR incidents and runs the [Cortex XDR Lite - Incident Handling](#cortex-xdr-lite---incident-handling) playbook. 
 
- 
+The playbook runs the ***xdr-get-incident-extra-data*** command to retrieve data fields of the specific incident including a list of alerts with multiple events, alerts, and key artifacts.
+
+The playbook uses the [Entity Enrichment Generic v3](https://xsoar.pan.dev/docs/reference/playbooks/entity-enrichment---generic-v3) sub-playbook which takes all the entities in the incidents and enriches them with the available products in the environment.
+
+Then the playbook uses the [Command-Line Analysis](https://xsoar.pan.dev/docs/reference/playbooks/command-line-analysis) sub-playbook to analyze the command line if exists to determine whether the command line usage was malicious or suspicious.
+
+The playbook also uses the [Cortex XDR - Get entity alerts by MITRE tactics](https://xsoar.pan.dev/docs/reference/playbooks/get-entity-alerts-by-mitre-tactics) sub-playbook to search for alerts related to the endpoint and to the username from Cortex XDR, on a given timeframe, based on MITRE Tactics.
+
+Based on the analysis and the investigation results, the playbook set the verdict of the incident. Whether the incident verdict is not malicious, the analyst decides whether the incident verdict is malicious or benign.
+
+Whether the verdict is set to malicious by the playbook or by the analyst's decision the playbook will perform remediation actions by isolating the endpoint and blocking all the indicators that were extracted from the incident either manually or automatically using the [Block Indicators - Generic v3](https://xsoar.pan.dev/docs/reference/playbooks/block-indicators---generic-v3) sub-playbook. After the remediation stage, the playbook will close the incident.
+
+Whether the verdict is set to Benign, the playbook will close the incident.
+
+
 
 ## Device Control Violations
 If a user connects an unauthorized device to the corporate network, such as a USB dongle or a portable hard disk drive, the connection creates an event in Cortex XDR. 
@@ -44,7 +62,9 @@ All collected data is displayed in the XDR device control incident layout.
 
 ### XDR Incident Handling
 
-The [Palo Alto Networks Cortex XDR - Investigation and Response](#palo-alto-networks-cortex-XDR---investigation-and-response) integration fetches Cortex XDR incidents and runs the [Cortex XDR incident handling v3](#cortex-xdr-incident-handling-v3) playbook. The playbook runs the ***xdr-get-incident-extra-data*** command to retrieve data fields of the specific incident including a list of alerts with multiple events, alerts, and key artifacts.  
+The [Palo Alto Networks Cortex XDR - Investigation and Response](#palo-alto-networks-cortex-XDR---investigation-and-response) integration fetches Cortex XDR incidents and runs the [Cortex XDR incident handling v3](#cortex-xdr-incident-handling-v3) playbook. This playbook will be triggered by fetching a Palo Alto Networks Cortex XDR incident, but only if the classifier is set to 'Cortex XDR - Classifier' and the incident type is left empty during the integration configuration.
+
+The playbook runs the ***xdr-get-incident-extra-data*** command to retrieve data fields of the specific incident including a list of alerts with multiple events, alerts, and key artifacts.  
 
 The playbook then searches for similar incidents in Cortex XSOAR to link to the current incident. If a similar incident is found, the analyst will be asked whether to close the current incident as a duplicate since there is an older incident already being handled. The analyst will review the linked incident and decide if the incident should be resolved and closed as a duplicate incident. 
 
@@ -394,6 +414,13 @@ The collected data generates a CSV report, including a detailed list of the disc
 The report will be sent to email addresses provided in the playbook input.
 The playbook includes an incident type with a dedicated layout to visualize the collected data.
 
+#### [Cortex XDR Lite - Incident Handling](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-lite---incident-handling)
+This playbook is a lite default playbook to handle XDR incidents.
+This playbook is triggered by fetching a Palo Alto Networks Cortex XDR incident.
+The playbook performs enrichment on the incident’s indicators.
+Then, the playbook performs investigation and analysis on the command line and search for related xdr alerts by mitre tactics to identify malicious activity performed on the endpoint and by the user.
+Based on the enrichment and the investigation results, the playbooks sets the verdict of the incident. If malicious indicators are found, the playbook takes action to block these indicators and isolate the affected endpoint to prevent further damage or the spread of threats.
+If the verdict not determined, it lets the analyst decide whether to continue to the remediation stage or close the investigation as Benign. 
 
 #### [Cortex XDR Incident Handling](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-incident-handling)
 This playbook is triggered by fetching a Palo Alto Networks Cortex XDR incident. 
@@ -409,7 +436,7 @@ Based on the severity, it lets the analyst decide whether to continue to the rem
 After the remediation, if there are no new alerts, the playbook stops the alert sync and closes the XDR incident and investigation.
 
 #### [Cortex XDR incident handling v3](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-incident-handling-v3)
-This playbook is triggered by fetching a Palo Alto Networks Cortex XDR incident.
+This playbook is triggered by fetching a Palo Alto Networks Cortex XDR incident, but only if the classifier is set to 'Cortex XDR - Classifier' and the incident type is left empty during the integration configuration.
 The playbook syncs and updates new XDR alerts that construct the incident and triggers a sub-playbook to handle each alert by type.
 Then, the playbook performs enrichment on the incident’s indicators and hunts for related IOCs.
 Based on the severity, it lets the analyst decide whether to continue to the remediation stage or close the investigation as a false positive.
