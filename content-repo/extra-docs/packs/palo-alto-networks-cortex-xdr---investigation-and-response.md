@@ -30,11 +30,11 @@ The Palo Alto Networks Cortex XDR - Investigation and Response pack enables the 
 This playbook is a lite default playbook to handle XDR incidents, and it doesn't require additional integrations to run.
 The [Palo Alto Networks Cortex XDR - Investigation and Response](#palo-alto-networks-cortex-XDR---investigation-and-response) integration fetches Cortex XDR incidents and runs the [Cortex XDR Lite - Incident Handling](#cortex-xdr-lite---incident-handling) playbook. 
 
-The playbook runs the ***xdr-get-incident-extra-data*** command to retrieve data fields of the specific incident including a list of alerts with multiple events, alerts, and key artifacts.
+First, the playbook runs the ***xdr-get-incident-extra-data*** command to retrieve data fields of the specific incident including a list of alerts with multiple events, alerts, and key artifacts.
 
-The playbook uses the [Entity Enrichment Generic v3](https://xsoar.pan.dev/docs/reference/playbooks/entity-enrichment---generic-v3) sub-playbook which takes all the entities in the incidents and enriches them with the available products in the environment.
+Then, the playbook uses the [Entity Enrichment Generic v3](https://xsoar.pan.dev/docs/reference/playbooks/entity-enrichment---generic-v3) sub-playbook which takes all the entities in the incidents and enriches them with the available products in the environment.
 
-Then the playbook uses the [Command-Line Analysis](https://xsoar.pan.dev/docs/reference/playbooks/command-line-analysis) sub-playbook to analyze the command line if it exists to determine whether the command line usage was malicious or suspicious.
+During the Investigation phase, the playbook uses the [Command-Line Analysis](https://xsoar.pan.dev/docs/reference/playbooks/command-line-analysis) sub-playbook to analyze the command line if it exists to determine whether the command line usage was malicious or suspicious.
 
 The playbook also uses the [Cortex XDR - Get entity alerts by MITRE tactics](https://xsoar.pan.dev/docs/reference/playbooks/get-entity-alerts-by-mitre-tactics) sub-playbook to search for alerts related to the endpoint and to the username from Cortex XDR, on a given timeframe, based on MITRE tactics.
 
@@ -408,8 +408,8 @@ The playbook includes an incident type with a dedicated layout to visualize the 
 
 #### [Cortex XDR Lite - Incident Handling](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-lite---incident-handling)
 This playbook is a lite default playbook to handle XDR incidents, and it doesn't require additional integrations to run.
-This playbook is triggered by fetching a Palo Alto Networks Cortex XDR incident.
-The playbook performs enrichment on the incident’s indicators.
+The playbook is triggered by fetching a Palo Alto Networks Cortex XDR incident.
+First, The playbook performs enrichment on the incident’s indicators.
 Then, the playbook performs investigation and analysis on the command line and search for related Cortex XDR alerts by Mitre tactics to identify malicious activity performed on the endpoint and by the user.
 Based on the enrichment and the investigation results, the playbooks sets the verdict of the incident. If malicious indicators are found, the playbook takes action to block these indicators and isolate the affected endpoint to prevent further damage or the spread of threats.
 If the verdict not determined, it lets the analyst decide whether to continue to the remediation stage or close the investigation as benign. 
