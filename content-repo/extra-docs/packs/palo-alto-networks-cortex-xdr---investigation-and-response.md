@@ -44,7 +44,7 @@ Whether the verdict is set to malicious by the playbook or by the analyst's deci
 
 If the verdict is set to benign, the playbook will close the incident.
 
-
+As part of this playbook, you'll receive a comprehensive layout that presents incident details, analysis, investigation findings, and the final verdict. Additionally, the layout offers convenient remediation buttons for quicker manual actions.
 
 ## Device Control Violations
 If a user connects an unauthorized device to the corporate network, such as a USB dongle or a portable hard disk drive, the connection creates an event in Cortex XDR. 
@@ -413,6 +413,7 @@ The playbook performs enrichment on the incident’s indicators.
 Then, the playbook performs investigation and analysis on the command line and search for related Cortex XDR alerts by Mitre tactics to identify malicious activity performed on the endpoint and by the user.
 Based on the enrichment and the investigation results, the playbooks sets the verdict of the incident. If malicious indicators are found, the playbook takes action to block these indicators and isolate the affected endpoint to prevent further damage or the spread of threats.
 If the verdict not determined, it lets the analyst decide whether to continue to the remediation stage or close the investigation as benign. 
+As part of this playbook, you'll receive a comprehensive layout that presents incident details, analysis, investigation findings, and the final verdict. Additionally, the layout offers convenient remediation buttons for quicker manual actions.
 
 #### [Cortex XDR Incident Handling](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-incident-handling)
 This playbook is triggered by fetching a Palo Alto Networks Cortex XDR incident. 
@@ -461,10 +462,10 @@ Executes specified shell commands.
 Kills the specified process.
 
 
-#### [Cortex XDR - Cloud IAM user access investigation](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---aws-iam-user-access-investigation)
+#### [Cortex XDR - Cloud IAM user access investigation](https://xsoar.pan.dev/docs/reference/playbooks/cloud-iam-user-access-investigation)
 Investigates and responds to Cortex XDR Cloud alerts where an Cloud IAM user`s access key is used suspiciously to access the cloud environment. 
 
-The following alerts are supported for AWS environments:
+The following alerts are supported for all cloud environments:
 - Penetration testing tool attempt
 - Penetration testing tool activity
 - Suspicious API call from a Tor exit node
