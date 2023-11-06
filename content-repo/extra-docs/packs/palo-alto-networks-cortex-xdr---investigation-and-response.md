@@ -34,11 +34,11 @@ First, the playbook runs the ***xdr-get-incident-extra-data*** command to retrie
 
 Then, the playbook uses the [Entity Enrichment Generic v3](https://xsoar.pan.dev/docs/reference/playbooks/entity-enrichment---generic-v3) sub-playbook which takes all the entities in the incidents and enriches them with the available products in the environment.
 
-During the Investigation phase, the playbook uses the [Command-Line Analysis](https://xsoar.pan.dev/docs/reference/playbooks/command-line-analysis) sub-playbook to analyze the command line if it exists to determine whether the command line usage was malicious or suspicious.
+In the investigation phase, the playbook uses the [Command-Line Analysis](https://xsoar.pan.dev/docs/reference/playbooks/command-line-analysis) sub-playbook to analyze the command line if it exists to determine whether the command line usage was malicious or suspicious.
 
 The playbook also uses the [Cortex XDR - Get entity alerts by MITRE tactics](https://xsoar.pan.dev/docs/reference/playbooks/get-entity-alerts-by-mitre-tactics) sub-playbook to search for alerts related to the endpoint and to the username from Cortex XDR, on a given timeframe, based on MITRE tactics.
 
-Based on the analysis and the investigation results, the playbook sets the verdict of the incident. Whether the incident verdict is not malicious, the analyst decides whether the incident verdict is malicious or benign.
+Based on the enrichment and the investigation results, the playbook sets the verdict of the incident. Whether the incident verdict is not malicious, the analyst decides whether the incident verdict is malicious or benign.
 
 Whether the verdict is set to malicious by the playbook or by the analyst's decision the playbook will perform remediation actions by isolating the endpoint and blocking all the indicators that were extracted from the incident either manually or automatically using the [Block Indicators - Generic v3](https://xsoar.pan.dev/docs/reference/playbooks/block-indicators---generic-v3) sub-playbook. After the remediation stage, the playbook will close the incident.
 
