@@ -82,7 +82,7 @@ Some Cortex XSOAR-Microsoft integrations (e.g., Microsoft Graph Mail Single User
 To configure a Microsoft integration that uses this authorization flow with a self-deployed Azure application:
 
 1. Make sure the needed permissions are granted for the app registration, e.g., for Microsoft Graph User: API/Permission name `Directory.AccessAsUser.All` of type `Delegated`.
-2. In your app. click **Authentication** > **Platform configurations** > **Add a platform.** Choose **Web** and add Redirect URI: https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app#add-a-redirect-uri.
+2. In your app. click **Authentication** > **Platform configurations** > **Add a platform.** Choose **Web** and add [Redirect URI](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app#add-a-redirect-uri).
 The Redirect URI can direct any web application that you wish to receive responses from Azure AD. If you are not sure what to set, you can use `https://localhost`. 
 3. Enter your client ID in the *ID* parameter field. 
 4. Enter your client secret in the *Key* parameter field.
