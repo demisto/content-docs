@@ -30,7 +30,7 @@ marketplaces:
 ## Commands
 Every Collection integration will at minimum support these three commands:
 - `test-module` - this is the command that is run when the `Test` button in the configuration panel of an integration is clicked.
-- `<product-prefix>-get-events` - where `<product-prefix>` is replaced by the name of the Product or Vendor source providing the events. So for example, if you were developing a Collection integration for Microsoft Intune, this command might be called `msintune-get-indicators`. This command should fetch a limited number of events from the external source and display them in the war room.
+- `<product-prefix>-get-events` - where `<product-prefix>` is replaced by the name of the Product or Vendor source providing the events. So for example, if you were developing a Collection integration for Microsoft Intune, this command might be called `msintune-get-events`. This command should fetch a limited number of events from the external source and display them in the war room.
 - `fetch-events` - this command will initiate a request to the external product chosen endpoint(s) using the relevant chosen params, and send the fetched events to the XSIAM database. If the integration instance is configured to `Fetch evnts`, then this is the command that will be executed at the specified `Events Fetch Interval`.
 
 ## API Command: send_events_to_xsiam()
@@ -67,6 +67,7 @@ def main():
 Notice: 
 - You should always path the `events` to the `send_events_to_xsiam()` function, also in cases when no events were fetched. This is important as the `send_events_to_xsiam()` function also updates the UI for the number of events fetched which could also be 0. Don't be troubled, in such cases the empty data will not be sent forward to the DataBase.
 - In the given example we assume the events are **not** in a `cef` or `leef` formats and therefore the `data_format` argument is not used.
+- `send_events_to_xsiam()` function will work only if the integration is a system integration. The function will fail if it will be called from a custom integration.
 
 Fore more info on the `send_events_to_xsiam()` function visit the [API reference](https://xsoar.pan.dev/docs/reference/api/common-server-python#send_events_to_xsiam).
    
