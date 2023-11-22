@@ -76,13 +76,14 @@ Alternatively, instead of providing the *Client Secret*, you can authenticate us
     * Private Key -  The private key of the registered certificate
 
 
-### Authorize on Behalf of a User
+### Authorization Code flow
 Some Cortex XSOAR-Microsoft integrations (e.g., Microsoft Graph Mail Single User) require authorization on behalf of a user (not admin consent). For more information about this authorization flow, refer to the [authorization code flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow).
 
 To configure a Microsoft integration that uses this authorization flow with a self-deployed Azure application:
 
 1. Make sure the needed permissions are granted for the app registration, e.g., for Microsoft Graph User: API/Permission name `Directory.AccessAsUser.All` of type `Delegated`.
-2. The Redirect URI can direct any web application that you wish to receive responses from Azure AD. If you are not sure what to set, you can use `https://localhost`. 
+2. In your app. click **Authentication** > **Platform configurations** > **Add a platform.** Choose **Web** and add [Redirect URI](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app#add-a-redirect-uri).
+The Redirect URI can direct any web application that you wish to receive responses from Azure AD. If you are not sure what to set, you can use `https://localhost`. 
 3. Enter your client ID in the *ID* parameter field. 
 4. Enter your client secret in the *Key* parameter field.
 5. Enter your tenant ID in the *Token* parameter field.
@@ -149,7 +150,7 @@ After you a redirected to the next page, in the **Overview** tab you will find y
 ![Overview](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/subscription_id_resourse_group.png)
 
 
-## Self Deployed Application - Example 
+## Self Deployed Application - Example for [Microsoft Graph User integration](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-user)
 
 1. In Microsoft Azure portal, create a new app registration.
    1. Select Azure Active Directory> App registrations> New registration.
@@ -268,3 +269,5 @@ For example, when using the "self-deployed Azure app" for Microsoft Graph Mail S
 2. Validate that all the credentials you entered are correct (Client ID, Client Secret, Tenant ID, Application redirect URI).
 3. Run !msgraph-mail-generate-login-url to generate a new *Authorization code*.
 4. Run !msgraph-mail-test to test the connectivity of the email.
+
+**Note**: If encountering an "Insufficient privileges to complete the operation" error, ensure the necessary permissions were added, according to the integration documentation. Subsequently, reset the authentication and initiate the authentication process again.

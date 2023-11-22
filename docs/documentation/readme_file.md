@@ -60,59 +60,14 @@ demisto-sdk generate-docs -i Packs/Nmap/Integrations/NmapV2/NmapV2.yml --old-ver
 Though not advised, if you do not wish to create the version differences section in the documentation you can run the command with the `--skip-breaking-changes` flag.
 
 ## Images
-Images in the documentation should be added to the relevant pack under a `doc_files` or `doc_imgs` directory. Images may be included with **absolute** or **relative** URLs.
-
-### Relative Image URLs
-When creating Markdown `README` documents for XSOAR entities (Playbooks, Integrations, Scripts, etc.), you may use relative URLs to documentation images stored in the `doc_files` or `doc_imgs` directories. To use relative URLs simply link the image using a relative path such as:
-```
-![Setup Account](./../../doc_files/create-account.png)
-```
-
-Make sure to view the `README.md` file in GitHub's web interface and validate that the images display properly.
-
-**Note**: Relative image URLs are not supported for [Pack `README`s](https://xsoar.pan.dev/docs/documentation/pack-docs).
-
-**Documentation with Relative URL examples:**
-* Google Calendar: https://github.com/demisto/content/blob/master/Packs/GoogleCalendar/Integrations/GoogleCalendar/README.md
-* G Suite Admin: https://github.com/demisto/content/blob/master/Packs/GSuiteAdmin/Integrations/GSuiteAdmin/README.md
-
-### Absolute Image URLs
-To obtain an absolute URL to an image from GitHub:
-
-* Commit the image and push to GitHub.
-* View the file in the GitHub web interface. 
-* Copy the URL from the `Download` button.
-* Make sure the URL you are copying is not referring to a branch which will be deleted after the PR is merged. The URL should refer to a commit hash or the `master` branch.
-* Note: if you click the `Download` button, GitHub will perform a redirect and the url in the browser will point to the domain: `raw.githubusercontent.com`. You may also use this URL as the absolute URL.
-
-
-Embed the image in the README.md using a Markdown Image Link, such as:
-```
-![Playbook Image](https://github.com/demisto/content/raw/2d6e082cfb181f823e5b1446ae71e10537591ea6/Packs/AutoFocus/doc_files/AutoFocusPolling.png)
-```
-Or if you want more control on the image (for example setting width dimension) you can use the HTML `<img>` tag, such as:
-
-```
-<img width="500" src="https://github.com/demisto/content/raw/2d6e082cfb181f823e5b1446ae71e10537591ea6/Packs/AutoFocus/doc_files/AutoFocusPolling.png" />
-```
-**Screenshot of `Download` button:**
-![Github Download](/doc_imgs/integrations/github-download-button.png)
-
-**Absolute Image URL Examples:**
-* URL to commit hash: https://github.com/demisto/content/raw/2d6e082cfb181f823e5b1446ae71e10537591ea6/Packs/AutoFocus/doc_files/AutoFocusPolling.png
-* URL to `master` branch: https://github.com/demisto/content/raw/master/Packs/AutoFocus/doc_files/AutoFocusPolling.png
-* URL after redirection (also valid): https://raw.githubusercontent.com/demisto/content/master/Packs/AutoFocus/doc_files/AutoFocusPolling.png
-
-:::note
-To keep our main Content repo small we limit images to 2MB. For larger images, follow the instructions for [Videos](#videos) on how to store large media files in our [content-assets](https://github.com/demisto/content-assets) repository. 
-:::
+Images can be added to your documentation files. For information, see  [Images in Documentation Files](https://xsoar.pan.dev/docs/documentation/images_in_documentation_files). 
 
 
 ## Videos
 A video can provide a great addition to the documentation either as a demo video or tutorial. The preferred video format is `mp4`. 
 
 ### Videos Stored in GitHub
-Because of their size and in order to keep our main Content repo small, we store large media files in a separate repository: [content-assets](https://github.com/demisto/content-assets). 
+Because of their size and in order to keep our main Content repo small, we store large media files in a separate repository: "documentation/images_in_documentation_files". 
 
 To add the video file, open a pull request with the video file at [content-assets](https://github.com/demisto/content-assets/pulls) repository. The file should be placed in the directory: `Assets/<PackName>/`. 
 

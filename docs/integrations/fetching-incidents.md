@@ -12,9 +12,11 @@ This topic provides:
 - Troubleshooting tips
 
 ## fetch-incidents Command
-The ***fetch-incidents*** command is the function that Cortex XSOAR calls every minute to import new incidents. It is triggered by the *Fetches incidents* parameter in the integration configuration. It is not necessary to configure the ***fetch-incidents*** command in the integration settings.
+The ***fetch-incidents*** command is the function that Cortex XSOAR calls to import new incidents. It is triggered by the *Fetches incidents* parameter in the integration configuration. It is not necessary to configure the ***fetch-incidents*** command in the integration settings.
 
-![screen shot 2019-01-07 at 15 35 01](/doc_imgs/integrations/50771147-6aedb800-1292-11e9-833f-b5dd13e3507b.png)
+When you select the *Fetch incidents* parameter in the integration configuration, you should also configure the *incidentFetchInterval* parameter (displayed as *Incidents Fetch Interval* in the integration configuration window). This controls how often the integration will perform a ***fetch_incidents*** command. The default is 1 minute.
+
+![screen shot 2023-09-20](/doc_imgs/integrations/fetch-incidents.png)
 
 Open the ***fetch-incidents*** command. Make sure the command is also referenced in the execution block.
 
@@ -27,6 +29,9 @@ if demisto.command() == 'fetch-incidents':
       fetch_incidents()
 
 ```
+
+
+
 
 ## Last Run
 The *demisto.getLastRun()* function retrieves the last previous run time.  

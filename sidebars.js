@@ -60,7 +60,8 @@ const sidebars = {
         "contributing/docs-contrib",
         "contributing/marketplace",
         "contributing/demo-prep",
-        "contributing/sla"
+        "contributing/sla",
+        "contributing/sdk"
       ]
     },
     {
@@ -224,8 +225,9 @@ const sidebars = {
         "documentation/pack-docs",
         "documentation/release-notes",
         "documentation/readme_file",
-        "documentation/integration-description"
-        ]
+        "documentation/integration-description",
+        "documentation/images_in_documentation_files"
+      ]
     },
     {
       type: "category",

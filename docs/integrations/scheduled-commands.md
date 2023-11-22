@@ -3,8 +3,6 @@ id: scheduled-commands
 title: Scheduled Commands
 ---
 
-### Available from Cortex XSOAR version 6.2.0 and later.
-
 <img width="533" src="/doc_imgs/integrations/polling-command.png"></img>
 
 A command can schedule the future execution of another command.

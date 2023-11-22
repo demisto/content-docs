@@ -7,7 +7,7 @@ In some cases, when working with 3rd party software (detonation, scan, search, e
 
 Due to hardware limitations, you can not achieve this via integrations or automations. The `GenericPolling` playbook, however, enables you to pause a playbook and resume execution after a remote host finishes a process.
 
-* Starting in Cortex XSOAR version 6.2.0, you can implement polling in integrations and automations via [Scheduled Commands](./../integrations/scheduled-commands).  
+* You can implement polling in integrations and automations via [Scheduled Commands](./../integrations/scheduled-commands).  
 
 ## What it does
 The playbook periodically polls the status of a process being executed on a remote host. When the host returns that the process execution is done, the playbook finishes execution.
