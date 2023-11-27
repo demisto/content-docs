@@ -28,8 +28,10 @@ from CommonServerUserPython import *
 import json
 import urllib3
 
-# Disable insecure warnings
-urllib3.disable_warnings()
+# Convert warnings to full-on errors for better/more cautious insights
+warnings.filterwarnings("error")
+# The line below can be used to disable insecure warnings
+# urllib3.disable_warnings()
 ```
 
 ## Constants 
