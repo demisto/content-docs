@@ -1136,7 +1136,11 @@ The following is the format for a Rule.
 
 **In YAML**
 ```yaml
-
+outputs:
+    - contextPath: Vendor.Rule.Name
+      description: The rule name.
+    - contextPath: Vendor.Rule.Condition
+      description: The rule condition
 ```
 
 ## InfoFile
