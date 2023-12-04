@@ -174,15 +174,15 @@ If none of the above values are supplied, all of the playbooks run. This input s
 
 ## Pre-Process Rule
 
-As Email Security Gateways produce a high amount of alerts, consider blocking/dropping alerts using a [pre-process rule](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/incidents/incident-management/incident-de-duplication/creating-pre-process-rules-for-incidents.html#idc3f517f5-1495-4693-a348-afec39a6658f). 
+As Email Security Gateways produce a high amount of alerts, consider blocking/dropping alerts using a [pre-process rule](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.11/Cortex-XSOAR-Administrator-Guide/Create-Pre-Process-Rules-for-Incidents). 
 
 
 
 1. Select **Settings** > **Integrations** > **Pre-Process Rules** > **+ New Rule**.
 2. Choose rule name.
-4. In the **Conditions for Incoming incident** section, click **+ Add Filter**.
-5. In the **Choose an incident field**, select **Alert Action**, keep the **Equals** operator, and in the **Type a value** field, type the alert action to drop. e.g. block, drop.
-6. Click **+ Add Filter**.
-7. Under **Choose an incident field**, select **SourceBrand**, keep the **Equals** operator and in the  **Choose a value** field, type the integration name that you fetch incidents from.
-8. In the **Action** section, select **drop** from the drop-down list.
-9. Click **Save**.
+3. In the **Conditions for Incoming incident** section, click **+ Add Filter**.
+4. In the **Choose an incident field**, select **Alert Action**, keep the **Equals** operator, and in the **Type a value** field, type the alert action to drop. e.g. block, drop.
+5. Click **+ Add Filter**.
+6. Under **Choose an incident field**, select **SourceBrand**, keep the **Equals** operator and in the  **Choose a value** field, type the integration name that you fetch incidents from.
+7. In the **Action** section, select **drop** from the drop-down list.
+8. Click **Save**.

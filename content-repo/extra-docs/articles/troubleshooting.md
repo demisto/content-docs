@@ -231,6 +231,14 @@ For example for an integration instance name of: `Cortex_XDR_instance_1` run the
 !Cortex_XDR_instance_1-test-module debug-mode=true
 ```
 
+**Note:** 
+- If the instance name contains spaces, replace the space with an underscore (`_`).
+- The "Do not use by default" checkbox should be unchecked on the integration instance you are testing.
+
+Screenshot of running a `test-module` command with `debug-mode=true` and the resulting log file (`test-module.log`):
+
+![test-module-debug](../../../docs/doc_imgs/reference/test-module-debug.png)
+
 
 ### Fetch Incidents in `debug-mode`
 Starting with Cortex XSOAR 6.0 it is possible to run the fetch incidents command from the Cortex XSOAR CLI with `debug-mode=true`. This is done by issuing a command of the form:
@@ -250,13 +258,6 @@ For example for an integration instance name of: `Cortex_XDR_instance_1` run the
 Screenshot of running a `fetch` command with `debug-mode=true` and the resulting log file (`fetch-incidents.log`):
 ![fetch-incidents-debug](../../../docs/doc_imgs/reference/fetch-incidents-debug.png)
 
-**Note:** 
-- If the instance name contains spaces, replace the space with an underscore (`_`).
-- The "Do not use by default" checkbox should be unchecked on the integration instance you are testing.
-
-Screenshot of running a `test-module` command with `debug-mode=true` and the resulting log file (`test-module.log`):
-
-![test-module-debug](../../../docs/doc_imgs/reference/test-module-debug.png)
 
 ## Integration Debug Logs
 :::caution Important Note

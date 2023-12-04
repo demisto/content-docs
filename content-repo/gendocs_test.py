@@ -4,8 +4,8 @@ import re
 from gendocs import DEPRECATED_INFO_FILE, DeprecatedInfo, INTEGRATION_DOCS_MATCH, findfiles, process_readme_doc, \
     index_doc_infos, DocInfo, gen_html_doc, process_release_doc, process_extra_readme_doc, \
     INTEGRATIONS_PREFIX, get_deprecated_data, insert_approved_tags_and_usecases, \
-    find_deprecated_integrations, get_blame_date, get_deprecated_display_dates, \
-    get_fromversion_data, add_deprected_integrations_info, merge_deprecated_info, get_extracted_deprecated_note, \
+    find_deprecated_items, get_blame_date, get_deprecated_display_dates, \
+    get_fromversion_data, add_deprecated_info, merge_deprecated_info, get_extracted_deprecated_note, \
     get_pack_link
 from mdx_utils import verify_mdx, fix_mdx, start_mdx_server, stop_mdx_server, verify_mdx_server, fix_relative_images, \
     normalize_id
@@ -389,18 +389,18 @@ SAMPLE_CONTENT_DEP_INTEGRATIONS_COUNT = 7
 
 
 def test_find_deprecated_integrations():
-    res = find_deprecated_integrations(SAMPLE_CONTENT)
+    res = find_deprecated_items(SAMPLE_CONTENT)
     for info in res:
         assert '2021' in info['maintenance_start']
     assert len(res) == SAMPLE_CONTENT_DEP_INTEGRATIONS_COUNT
 
 
-def test_add_deprected_integrations_info(tmp_path):
+def test_add_deprecated_integrations_info(tmp_path):
     deprecated_doc = tmp_path / "deprecated_test.md"
     deprecated_info = tmp_path / "deprecated_info_test.json"
     with open(deprecated_info, "wt") as f:
         json.dump({"integrations": []}, f)
-    add_deprected_integrations_info(SAMPLE_CONTENT, str(deprecated_doc), str(deprecated_info), str(tmp_path))
+    add_deprecated_info(SAMPLE_CONTENT, str(deprecated_doc), str(deprecated_info), str(tmp_path))
     with open(deprecated_doc, "rt") as f:
         dep_content = f.read()
         assert len(re.findall('Maintenance Mode Start Date', dep_content)) == SAMPLE_CONTENT_DEP_INTEGRATIONS_COUNT

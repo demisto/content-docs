@@ -105,7 +105,7 @@ For multiline RNs with nested content, follow this format:
 Specify in the corresponding release notes file:
   - Any change(s) made
   - New command(s)
-  - New or udpated parameters
+  - New or updated parameters
   - New or updated arguments
   - Updated outputs
   - Bug fixes
@@ -188,7 +188,6 @@ Improved implementation of the default value for the *fetch_time* parameter.
 > **Note:** In most cases we will avoid having such release notes, use these only if the change has no clear or visible impact on the user.
 
 ```markdown
-- Maintenance and stability enhancements.
 - Documentation and metadata improvements.
 ```
   

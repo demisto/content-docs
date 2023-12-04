@@ -1,0 +1,12 @@
+{
+  "integrations": [
+    "PICUS",
+    "KnowBe4KMSAT"
+  ],
+  "scripts": [
+
+  ],
+  "playbooks": [
+
+  ]
+}

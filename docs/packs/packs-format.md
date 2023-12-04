@@ -138,8 +138,8 @@ A supported partner pack metadata contents for example:
 ### Content Packs Versioning
 Pack versions have the following format MAJOR.MINOR.REVISION:
    1. **Revision** when you make backwards compatible bug fixes.
-   1. **Minor** when you add functionality in a backwards compatible manner.
-   1. **Major** when you make incompatible API changes or revamping the pack by adding to it a lot of new backwards compatible functionality.
+   2. **Minor** when you add functionality in a backwards compatible manner.
+   3. **Major** when you make incompatible API changes or revamping the pack by adding to it a lot of new backwards compatible functionality.
 
 
 ### README.md
@@ -152,16 +152,26 @@ This file will be used while running the `demisto-sdk secrets`([explanation](htt
 **Note**: We use `demisto-sdk secrets` as part of our pre-commit hook to check that possible secrets in the PR aren't exposed to a public repository.
 
 ### .pack-ignore
-This file allows ignoring linter errors while lint checking and ignoring tests in the test collection.
+1) This file allows ignoring linter errors while lint checking and ignoring tests in the test collection.
 
-To add ignored tests/linter errors in a file, first, add the file name to the **.pack-ignore** in this format
+   To add ignored tests/linter errors in a file, first, add the file name to the **.pack-ignore** in this format
 ```
 [file:integration-to-ignore.yml]
 ```
 
 On the following line add `ignore=` flag, with one or more comma-separated values:
-1. `auto-test` - ignore test file in the build test collection.
-2. `linter code` e.g. IN126 - ignore linter error codes.
+* `auto-test` - ignore test file in the build test collection.
+* `linter code` e.g., IN126 - ignore linter error codes.
+
+2) By default, unit-tests of scripts/integrations are running without a docker network.
+
+   In case one of the integrations/scripts inside a pack needs a network during the unit-tests run, this can be done in this format
+
+```
+[tests_require_network]
+integration-id-1
+script-id-1
+```
 
 #### Example .pack-ignore
 ```
@@ -170,21 +180,29 @@ ignore=auto-test
 
 [file:integration-to-ignore.yml]
 ignore=IN126,PA116
+
+[tests_require_network]
+integration-id-1
+script-id-1
 ```
 
 ### Author_image.png
-You may choose to show the pack author image such that it will be displayed in the marketplace under the **PUBLISHER** section when viewing the pack details. The image should be saved in the pack root level (i.e. content/packs/MyPackName/Author_image.png), make sure to stick with this file name for the image to appear.
-The image size should be up to 4kb and in the dimensions of 120x50.
+It's possible to add an author image - a logo of the contributing company, which will be displayed on the marketplace page of the pack, under the "PUBLISHER" section.  
+The image should be saved in the root directory of the pack (e.g., `content/packs/MyPackName`), be named `Author_image.png`, and have a size of up to 4 KB, at a resolution of 120x50.
 
-For Partners, this image is **mandatory** and is validated during the build. If the file is missing, a validation will fail with the following error:
+:::info Partner Contributions
+For partner contributions, this file is mandatory, and will be validated as part of the build process.  
+If the file is missing, the build will fail with the following validation error:
 
 ```bash
 - Issues with unique files in pack: $PACK_NAME
   Packs/$PACK_NAME/Author_image.png: [IM109] - Partners must provide a non-empty author image under the path Packs/$PACK_NAME/Author_image.png
-
 ```
+:::
  
-In case file does not exist, the pack author name will be displayed in text.
+:::note
+If the `Author_image.png` file does not exist, the name of the author will be displayed under the "PUBLISHER" section instead.
+:::
 
 ### CONTRIBUTORS.json
 If you are contributing to an existing pack, you can add a **CONTRIBUTORS.json** file to the root of the pack in the event that one does not already exist. The file should contain a list of strings including your name. 

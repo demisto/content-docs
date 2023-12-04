@@ -1,110 +1,186 @@
 ---
 id: contributing
-title: Contributing 
+title: Contributing XSOAR Content
+---
+
+This article describes the contribution process for Cortex XSOAR content.  
+
+Contributing allows clients and partners who created new content, or modified exiting content (enhancements, bug-fixes, etc.), to share their work with the community by making it publicly available in [Cortex XSOAR Marketplace](https://cortex.marketplace.pan.dev/marketplace/).  
+Content can be Cortex XSOAR, partner, or community supported, and can be either [free or paid](../partners/premium-packs#pricing).
+
+All content (except for paid content packs) is open source, and is hosted on the [Cortex XSOAR Content GitHub Repository](https://github.com/demisto/content), licensed under the [MIT license](https://github.com/demisto/content/blob/master/LICENSE).  
+
+**If you have any questions or need support, reach out to us on the `#demisto-developers` channel on our [Slack DFIR Community](https://start.paloaltonetworks.com/join-our-slack-community).**  
+:::note
+This article is only for content contributions.
+For documentation contributions, refer to [Documentation Contributions](docs-contrib).  
+:::
+
+## Content Support Types
+Contributions can be either *officially supported* (by Palo Alto Networks, or a Technology Partner), or *community supported*.  
+
+### Officially Supported Packs
+Officially supported packs have a stricter quality-control process, and provide an email address or a website of their owner that customers can reach out to (and will be referred to) in case of an issue.
+
+### Community Supported Packs
+Community supported packs, do not have a support contact (customers will be able to ask questions on our [Live Community Forum](https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions)), 
+and will have a lesser strict quality-control process (in comparison to officially supported packs).
+
+:::info
+Contributed content for Palo Alto Networks products (e.g., PAN-OS, Cortex XDR, etc.) will be adopted and supported by the Cortex XSOAR Content team.  
+:::
+
+## Contribution Methods
+After creating new content, in order to contribute it, you will need to submit it for the Cortex XSOAR Content team to review. Once approved, it will become available for all customers to download.
+Before starting to work on a contribution, it is recommended to go over the [Contribution SLA](../contributing/sla) article.
+
+**There are several ways to submit contributions:**
+
+### 1. Cortex XSOAR Content GitHub Repository (Pull Request)
+Contribute by creating a fork and opening a pull request on the [Cortex XSOAR Content GitHub repository](https://github.com/demisto/content).  
+Use this method in the following scenarios:
+* You are a Technology Partner contributing with *partner* supported new content.
+* Your contribution is large and contains lots of different parts (integrations, scripts, playbooks, layouts, etc.) that are likely to lead to a complex review process.
+* You are proficient with GitHub.
+
+:::info
+For information about how to set up a development environment, see the dedicated [Set Up Your Dev Environment](../tutorials/tut-setup-dev-setup) tutorial.
+:::
+
+:::tip
+For contributing through GitHub, we recommend to use a GitHub Codespace, which will provide you with a pre-configured ready-to-use development environment.  
+This method is still experimental, but will make the contribution, development, and review processes much easier.  
+
+For more information and a step-by-step guide, see the dedicated [GitHub Codespace Setup tutorial](../tutorials/tut-setup-dev-codespace.md).
+:::
+
+### 2. Cortex XSOAR Marketplace
+Contribute from within Cortex XSOAR's UI using Marketplace.  
+This method is more simple, and doesn't require you to set up a development environment or be familiar with Git.  
+
+We recommend using this method in the following scenarios:
+* Individual contributors, contributing content that is community supported.
+* Small contributions (e.g., a bug fix, or a new integration command) to an existing content pack (whether it's XSOAR-supported or partner-supported).
+
+* For more information and a step-by-step guide, see [Contributing Through Cortex XSOAR Marketplace](../contributing/marketplace).
+
+:::caution
+Contributing from Marketplace has several limitations:
+* The built-in editor has limitations, and does not support some of the features that can be found in a full-fledged IDE.
+* Documentation files (README, integration's description, etc.) cannot be created or edited.
+* Unit tests cannot be created or edited.
+* Private content packs cannot be contributed this way.
+
+Because of these limitations, we do not recommend using this method for large contributions, especially for XSOAR-supported packs. 
+:::
+
+### 3. A Private GitHub Repository (Premium Packs)
+Contributing from a private GitHub repository is required only when the contribution is for a **Premium** (paid) content pack.  
+The requirements are the same as supported packs, and the contribution process of premium packs is described in [the following dedicated article](../packs/premium_packs).
+
 ---
 
 :::note
-This article is focused on contributing Cortex XSOAR Content. If you want to contribute fixes/suggestions to our development and reference Content docs (the site you are currently browsing) go to: [Documentation Contributions](docs-contrib).
+The following sections are necessary only for *officially supported* contributions,
+but we still recommend to read them even if you are contributing *community supported* content in order to be aware of the best practices.  
+
+The *Pull Request Process* section is not relevant for contributions that were created from Marketplace.
 :::
 
-Thanks for being interested in contributing to Cortex XSOAR. This document describes the Contribution process. If you are not sure whether you should read this, make sure you read the [Getting Started Guide](../concepts/getting-started-guide) first.
+## Guidelines
+Carefully review the following guidelines, as they will greatly enhance the likelihood of a swift, streamlined, and efficient review process for all parties involved. If you have any questions or require clarification, feel free to contact us through the Slack platform using the #demisto-developers channel.
 
-Contributing allows you to make the content that you build on Cortex XSOAR available to every client through the  [Marketplace](/marketplace). Content can be either Partner or Community supported.
+1. Begin by designing your contribution. We recommend to follow the [design guidelines](../concepts/design) to identify what you want to build and make sure it is aligned with our best practices. Also check out the [design tutorial](../tutorials/tut-design).
+2. Make sure you have all the [contributing requirements](../contributing/contrib-requirements) satisfied.
+3. Set up a development environment by following the [short development setup](../concepts/dev-setup) guide and the more detailed [tutorial](../tutorials/tut-setup-dev), 
+    or [use a pre-configured GitHub Codespace environment](../tutorials/tut-setup-dev-codespace.md).
+4. Follow the [content pack structure](../packs/packs-format) to build your contribution.  
+    The "[demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md)" command will help you create the basic structure.
+5. If you are updating an **existing** content pack, **make you have the latest available version installed before proceeding**.
+6. If you are creating integrations and / or scripts (aka *automations*), make sure that you:
+    * Use the proper [directory structure](../integrations/package-dir). [demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md) will help you create it.  
+        If working on existing code that doesn't follow this structure, we require converting to this structure (as long as the changes aren't minor), as it allows running linting and unit-tests, and provides a smoother review process.
+    * Understand the structure of the [YAML file](../integrations/yaml-file), and the [parameter types](../integrations/parameter-types) within it.
+    * Make sure your integration follows our [logo guidelines](../integrations/integration-logo).
+    * Read and follow the instructed [Python code conventions](../integrations/code-conventions), or [PowerShell code conventions](../integrations/powershell-code) (advanced users only).
+    * If your integration generates incidents, follow the [Fetch Incidents guidelines](../integrations/fetching-incidents).
+    * Make proper use of the [Context](../integrations/context-and-outputs) and [DBotScore](../integrations/dbot) with your commands, and follow the [Context Standards](../integrations/context-standards-about).
+    * Create unit-tests as documented [here](../integrations/unit-testing), and assure it passes the [linting](../integrations/linting) process.
+    * Document your contributed content by generating the [README File](../documentation/readme_file).
+7. Create [pack documentation](../documentation/pack-docs).  
+    Make sure you follow the [documentation best practices](../documentation/documentation_tips).
+8. When creating new versions of your content pack, make sure to document your changes in a release notes file as detailed [here](../documentation/release-notes).
+9. Go over the [contributions checklist](../contributing/checklist), and make sure you have all the required files in your content pack.
 
-All the content is open source and lives in the Cortex XSOAR [GitHub Repository](https://github.com/demisto/content), with a MIT license.
+Once these steps are completed, you should be ready to submit your contribution and open a Pull Request.  
 
-## Support and requirements
-
-Contributions can be either officially supported (by Palo Alto Networks, a Technology Partner, or an individual developer), or *community* supported: the former means that when a customer has a problem with the content, they will have an email address or web site to reach out to, and they will expect an answer. When the contribution is *community* supported, it's not required to provide support (customers will ask questions on our [Live Community Forum](https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions)) and the quality requirements for the contribution to be accepted will be lower.
-
-**Note:** If you plan to contribute content that integrate with one of Palo Alto Networks products, we will require the pack to be supported by Cortex XSOAR and therfore we might adopt your pack and push it into the Cortex XSOAR development pipeline to be released as Cortex XSOAR supported.
-
-For more information about the different support levels, check the [official documentation](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/marketplace/content-packs-support-types.html).
-
-## What to contribute
-If you’re looking for an easy way to start contributing Content to Cortex XSOAR Marketplace, have a look at the issues labeled as [good first issue](https://github.com/demisto/content/labels/good%20first%20issue), which are low-hanging fruits.
-
-These issues are particularly well suited for external contributions. If you decide to start on an issue, [assign yourself](https://docs.github.com/en/issues/tracking-your-work-with-issues/assigning-issues-and-pull-requests-to-other-github-users#assigning-an-individual-issue-or-pull-request) so other contributors from the community know that you're working on it.
-## How to contribute
-
-After you have created your content, you must submit your content to Palo Alto Networks: the Cortex XSOAR Content Team will review and approve it before it becomes available to customers.
-
-Before you begin, it is recommended to read the [Contribution SLA](../contributing/sla) document.
-
-There are three ways to submit your work:
- 1. Contribute from the Cortex XSOAR UI [Marketplace](../contributing/marketplace). This flow is simpler and doesn't require to set up a development environment or be familiar with git. However, it is recommended **only** in the following scenarios:
-    - You are an individual contributor, contributing **new** content that is *community* supported.
-    - You are making small changes to **existing** content, even if it's *xsoar* or *partner* supported (usually a bug fix or adding a new command to an Integration).
- 1. Contribute through a GitHub Pull Request on the public [XSOAR Content Repository](https://github.com/demisto/content). Use this flow in the following scenarios:
-     - You are a Technology Partner contributing with *partner* supported new content.
-     - Your contribution is big and contains lots of different parts (Integrations, Scripts, Playbooks, Layouts, etc) that is likely to lead to a complex review process.
-     - You are proficient with GitHub.
-
-This document describes the main flow that covers *supported* contributions(i.e. item *2.* in the above list) and summarizes everything you must do before and after opening a Pull Request on GitHub to contribute your pack.
-
-If you are contributing *community* supported content, feel free to skip the rest of this document (although it's still recommended to read it to be aware of the best practices).
-
-## Contributor Guidelines
-
-Please read the following guidelines carefully: following them will maximize the chances for a fast, easy, and effective review process for everyone involved. If something is not clear, please don't hesitate to reach out to us via [Slack](http://go.demisto.com/join-our-slack-community) on the `#demisto-developers` channel.
-
-1. Begin by designing your contribution: we recommend to follow the [Design](../concepts/design) guidelines to identify what you want to build and make sure it is aligned with our best practices. Also check out the [Design Tutorial](../tutorials/tut-design).
-1. Make sure you have all the [Contributing Requirements](../contributing/contrib-requirements) satisfied.
-1. Setup a development environment by following the brief [Dev Setup Guide](../concepts/dev-setup) or the more detailed [Tutorial](../tutorials/tut-setup-dev).
-1. Follow the [Content Pack Structure](../packs/packs-format) to build your contribution. [demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md) will help you create it.
-1. If you are updating an **existing** content pack, make sure it is updated with the latest version available in the marketplace before proceeding.
-1. Depending on the content entities you need to build, navigate to the specific section of this website for details. If you are creating Integrations and/or Scripts (aka Automations), make sure that you:
-    * Use the proper  [Integration/Script Directory Structure](../integrations/package-dir). [demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md) will help you create it. If working on existing code, beyond trivial changes, we require converting to this structure as it allows running linting and unit tests and provides a clearer review process.
-    * Understand the [YAML file](../integrations/yaml-file) structure and the [Parameter Types](../integrations/parameter-types).
-    * Make sure your integration follows our [Logo Guidelines](../integrations/integration-logo).
-    * Read and follow [Python code conventions](../integrations/code-conventions) (recommended) or [Powershell code conventions](../integrations/powershell-code) (advanced users only).
-    * If your integration generates Incidents, follow the [Fetch Incidents](../integrations/fetching-incidents) guidelines.
-    * Make sure your commands make proper use of the [Context](../integrations/context-and-outputs), including [Context Standards](../integrations/context-standards-about) and [DBotScore](../integrations/dbot).
-    * Make sure to create unit tests as documented [here](../integrations/unit-testing) and that the various linters we support pass as detailed [here](../integrations/linting).
-    * Document your integration and automation by generating the [README File](../documentation/readme_file).
-1. Create the appropriate [Content Pack Documentation](../documentation/pack-docs).
-1. Make sure you follow the [Documentation Best Practices](../documentation/documentation_tips).
-1. As you build newer versions of your Content Pack, document your changes in a relevant release notes file as detailed [here](../documentation/release-notes).
-
-At this point you should be ready to submit a Pull Request! Check out our [Contributing Checklist](../contributing/checklist) to make sure you have all the parts you need.
-
-:::note XSOAR Technology Partners
-If you are an XSOAR Technology Partner, make sure you have reviewed the use cases with your [Cortex XSOAR Alliances Team](mailto:soar.alliances@paloaltonetworks.com) and that you have a *Partner ID* to associate your Pull Request to.
+:::tip
+The [Hello World content pack](https://github.com/demisto/content/tree/master/Packs/HelloWorld) is a good example that implements all of the above guidelines and can be used as a reference (alongside the [Hello World Design Document](https://docs.google.com/document/d/1wETtBEKg37PHNU8tYeB56M1LE314ux086z3HFeF_cX0)).
 :::
 
-A good working example that summarizes all of the above is the [Hello World Content Pack](https://github.com/demisto/content/tree/master/Packs/HelloWorld) that you can use as a reference. Also check out the [Hello World Design Document](https://docs.google.com/document/d/1wETtBEKg37PHNU8tYeB56M1LE314ux086z3HFeF_cX0).
-
-This guide doesn't cover all the topics: please browse the left sidebar and use the search bar to find what you need, and reach out for help over [Slack](https://start.paloaltonetworks.com/join-our-slack-community) on the `#demisto-developers` channel when in doubt.
-
-
-## Before opening a Pull Request
-
-In order to be able to submit a Pull Request to the Cortex XSOAR [GitHub Repository](https://github.com/demisto/content), you need to:
-
-- Make sure to check the content contribution [checklist](../contributing/checklist) to make sure you have created everything you need.
-- Make sure you are working on a GitHub **fork** of the XSOAR content repository, and **create a branch** for your contribution (do **NOT** work on *master*).
-- Validate your content: the validation hook should run automatically every time you run `git commit`. You can also run the validation manually by using [demisto-sdk validate](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md): `demisto-sdk validate -i Packs/YourPackName`.  If you get an error that is unclear, ask for help on the `#demisto-developers` channel on our [Slack DFIR Community](https://www.demisto.com/community/).
-- (*Only if your contribution has Integrations or Scripts*): Pass lint checks and [unit tests](../tutorials/tut-setup-dev#step-5-run-the-linter-and-unit-tests) with `demisto-sdk lint -i Packs/YourPakName`.
-- Create a short video to demo your product and your pack, and link it: this will be used by our reviewers to understand what your product does and how the content pack work.
-
-
-## Open a Pull Request
-
-After you have completed all the requirements and are ready to open your Pull Request, commit and push your work to the branch you have created in your forked repo. 
-
-Now you can go ahead an open your Pull Request, you can use [this article](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) to do so.
-When creating the pull request make sure to fill in the different section in the pull request template.
-
-## After opening a Pull Request
-
-After opening the Pull Request, make sure that you:
-
-- Sign the [CLA](https://github.com/demisto/content/blob/master/docs/cla.pdf): every contributor must sign our Contributor License Agreement in order for their contribution to be added to our content. In case of CLA issues check out our [FAQs](../concepts/faq#cla-is-pending-even-though-i-signed-the-agreement).
-- Monitor your Pull Request on GitHub and be ready for a demo: our Content team will add comments to the Pull Request, asking questions and requesting changes. In order to establish a decent release process for your contribution, you are kindly asked to respond to the reviewer's code review and apply the required changes within 14 days. Stale Pull Requests might be closed.
-- At some point, we'll ask you to schedule a meeting to see an interactive demo. Make sure you have a working installation of Cortex XSOAR with your pack fully configured. Check out our [Contribution Demo Page](../contributing/demo-prep) for more details.
-
-:::note Important Note
-As part of the Pull Request template, you will be asked to fill in the [contribution registration form](https://forms.gle/XDfxU4E61ZwEESSMA), make sure to do so, without it we cannot review your contribution.
+:::note
+If you are an XSOAR Technology Partner, make sure the [Cortex XSOAR Alliances Team](mailto:soar.alliances@paloaltonetworks.com) has reviewed your planned contribution, and that you have a *Partner ID* to associate your Pull Request to.
 :::
 
-For more details on how to handle the Pull Request, check out our [Pull Request Conventions](../contributing/conventions).
+## Pull Request Submission Process
+### Prerequisites
+Before submitting a Pull Request to the [Cortex XSOAR GitHub Repository](https://github.com/demisto/content), the following requirements must be met:
+1. Create a GitHub **fork** of the XSOAR Content repository, and submit your changes **on a new branch** (do **not** push your changes to the *master* branch).
+2. Validate your content using [demisto-sdk validate](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md):  
+    `demisto-sdk validate -i Packs/YourPackName`
+3. If your contribution has integrations or scripts, run linting (which also runs [unit-tests](../tutorials/tut-setup-dev#step-5-run-the-linter-and-unit-tests)) by running:  
+    `demisto-sdk lint -i Packs/YourPakName`
+4. Create a short demo video presenting the product and your pack, and link it.  
+    This will help our reviewers to better understand what the product is used for, and how the newly contributed content integrates with it.
+
+![Creating a fork](../doc_imgs/contributing/content-new-fork.gif)
+*Creating a new fork*
+
+### Pull Request Creation
+After all the prerequisites are met, and you are ready to create your pull request, commit and push your work to the branch you created in your forked repository (if you haven't already done so).
+
+After pushing your changes to the remote branch on GitHub, GitHub should automatically detect the changes, and a green **Compare & pull request** button will appear at the top.
+
+Click it, and then on the opened form, update the title and the description (using the pre-existing template), and click "Create pull request".
+
+For additional information on how to create a Pull Request from a fork, refer to the [official GitHub documentation](https://help.github.com/articles/creating-a-pull-request-from-a-fork).
+
+![Creating a new pull request](../doc_imgs/contributing/content-new-pr.png)
+*Creating a new pull request*
+
+:::note
+There will be a setting at the top of the form to determine where the pull request will be opened.  
+By default, it will open the pull request from your fork on the branch you created, to the `master` branch of the base Cortex XSOAR Content repository.  
+Then within a few minutes, the target branch will be replaced from `master` to a different custom one.
+This is on purpose, and should not be changed.
+:::
+
+### Post-Submission
+Before the review process begins, it is mandatory for you to complete two steps:
+
+1. Sign our [Contributor License Agreement (CLA)](https://github.com/demisto/content/blob/master/docs/cla.pdf): Please read and sign our CLA.
+2. Fill out the [registration form](https://forms.gle/XDfxU4E61ZwEESSMA).
+
+Once you have created your pull request, an automated comment will be posted on your pull request with a link to the registration form, 
+and a tag of a member of our contribution team who will review your code.  
+
+![An example for a message by our bot on a PR](../doc_imgs/contributing/content-bot-pr-message.png)
+*An example for a message by our bot on a PR*
+
+Once these requirements are fulfilled, our assigned contributions team member will start reviewing your code.  
+
+During or near the completion of the review process, we may request scheduling a meeting for an interactive demo.  
+Prepare for it, and make sure you have a working instance of Cortex XSOAR, with your contributed pack fully configured and ready to be presented.  
+Check out our [Contribution Demo Page](../contributing/demo-prep) for additional information about the demo process.
+
+:::info
+In order to establish a proper release timeframe for your contribution, 
+you are required to respond (and apply requested changes, if any) within 14 days.  
+Stale pull requests with no response within this timeframe will be closed.
+:::
+
+:::tip
+If after signing the CLA, you still see a message saying it's unsigned on your PR, refer to the [FAQ](../concepts/faq#cla-is-pending-even-though-i-signed-the-agreement) for possible solutions.
+:::
+
+For additional information on how to properly create and manage your pull request, see the dedicated [Pull Request Conventions](../contributing/conventions) article.

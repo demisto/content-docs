@@ -84,7 +84,7 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
     | `config.yml` | The CI/CD configuration file (in the `.github\workflows` folder), which validates the content pack, creates an ID set, runs tests, etc. When you want to deploy your content, you need to update the file with your repository and whether you want to use an artifact server.  For more information, see Configure the config.yml file in [Deployment](#deployment). |
     | `pre-commit` | Within the `.hooks` folder, the pre-commit file uses the Git rebase interactive tool for manual control of your history revision process. |
     | `.vscode` | Used when using VSC as your IDE. |
-    | `build_related_scripts` | Contains the CI/CD scripts. The `build_related_scripts/bucket_upload.py` script enables you to upload to Google Cloud Storage (artifact server).  Before deploying your content, you need to update the name of the bucket list when uploading the Google Cloud Storage. For more information, see Configure the the bucket_upload.py file in [Deployment](#deployment). <br/> **NOTE**: If using another storage application such AWS, you need to replace Google Cloud Storage. Contact Customer Support to assist with this. <br/> The `get_modified_packs.py` script enables you to get the latest version of the content pack before merging. |
+    | `build_related_scripts` | Contains the CI/CD scripts. The `build_related_scripts/bucket_upload.py` script enables you to upload to Google Cloud Storage (artifact server) and the `build_related_scripts/bucket_upload_aws.py` script enables you to upload to AWS s3.  Before deploying your content, you need to update the name of the bucket list when uploading the Google Cloud Storage. For more information, see Configure the the bucket_upload.py file in [Deployment](#deployment). <br/> The `get_modified_packs.py` script enables you to get the latest version of the content pack before merging. |
     | `dev_envs/pytest`| A folder that contains the `conftest.py`, which validates python files. |
     | `.demisto-sdk-conf`| The custom configuration file for the `demisto-sdk` commands. For more information, see [Setting a preset custom command configuration](https://xsoar.pan.dev/docs/concepts/demisto-sdk#setting-a-preset-custom-command-configuration). |
     | `.gitignore` | Specifies intentionally untracked files that Git should ignore. |
@@ -828,3 +828,59 @@ Currently, the pack does not support the following features:
     Yes, that is supported.
 
 
+
+## Migration Guide from Dev-Prod to CI/CD
+
+This guide will help you migrate from the Dev-Prod environment to the CI/CD environment. In the process, you will need to download all your custom content from the Prod environment and also to delete some types of content from the Prod environment to avoid conflicts.
+
+:::note
+If you have custom mappers, classifiers or incident types attached to integrations (OOTB or custom), after the initial upload using CI/CD you may need to reconfigure the mappers, classifiers and incident types in the integrations' instances.
+:::
+
+1. Use the `demisto-sdk` to download the custom content from the Prod environment.
+
+   Run `demisto-sdk download` with the following flags:
+    - `-a` - to download all the custom content.
+    - `-o <output_path>` - to specify the output path.
+    - (Optional) `--init` - to create a directory structure for the content.
+    - (Optional) `--run-format` - to format the code.
+
+   For example: 
+
+   `demisto-sdk download -a -o /Users/user/CustomContent --init --run-format`
+
+   Follow the on-screen instructions by typing the name of the content pack, metadata, description, type of pack, category, author, email address, tags, integration, etc.
+
+   This will create a new folder named *Packs* (if it does not already exist), and inside it, a folder with the name of the pack you specified. Inside the pack folder, you will find the all content items you downloaded.
+
+   **NOTE:** Make sure that all your content items are downloaded.
+
+2. Run the **Delete Custom Content** playbook, to delete some of the content items.
+
+   You need to delete the following types of content items to be able to upload the content via the CI/CD process:<br/>Playbooks, Scripts, Layouts, Classifiers, Mappers, Incident Types and Incident Fields.
+
+   **Inputs:**  
+   - `dry_run` - Boolean.<br/>If set to `true`, the playbook will only print the content items that will be deleted.<br/>If set to `false`, the playbook will delete the content items.<br/>By default, the input is set to `true`.
+   - `instance_name` - String.<br/>The Core REST API instance name to use.
+
+   To run the playbook:
+    - In the Cortex XSOAR platform, go to **Incidents**.
+    - Click **New Incident**.
+    - Enter a name for the incident.
+    - From the Playbook drop down list, choose **Delete Custom Content**.
+    - Click **Create New Incident** to run the playbook.
+    - Go into the incident to the **Work Plan** tab.
+    - In the **Results** section of the **Delete Content** task, you will see the content items that will be deleted.
+    :::caution
+    Make sure that the content items that will be deleted are downloaded in the previous step.
+    :::
+    - Change the *dry_run* input to `false` and run the playbook again.
+
+3. (Optional) Add a **Server Configuration** only if you have custom Integrations (Available from Cortex XSOAR 6.11.0).
+   - In the Cortex XSOAR platform, go to **Settings** > **About** > **Troubleshooting**.
+   - Click **Add Server Configuration**.
+   - In the **Key** field, enter `allow.name.override.propagation`.
+   - In the **Value** field, enter `true`.
+   - Click **Save**.
+
+4. Now you can use the **CI/CD process** to upload the content to the Cortex XSOAR platform.

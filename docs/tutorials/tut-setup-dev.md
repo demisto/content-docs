@@ -3,8 +3,6 @@ id: tut-setup-dev
 title: Set Up Your Dev Environment
 ---
 
-Thank you for showing interest in contributing to the Cortex XSOAR content. We hope this experience will be easy and fun.
-
 This tutorial will guide you on how to set up your dev environment to quickly start developing on Cortex XSOAR. While in Cortex XSOAR you can write code directly in the UI, which is awesome, you'll need a proper development environment external to Cortex XSOAR to contribute a full integration. This is because, in order to build a full fledged integration, you'll need to *lint* your code, run unit tests with *pytest*, create some documentation, submit your changes via *git* and more.
 
 If you've been through this process already and just want a quick reference, you can jump to the [Development Setup](../concepts/dev-setup) page, otherwise keep reading for more details.
@@ -18,8 +16,6 @@ This tutorial will guide you through the following steps:
 5. Run the linter and unit tests
 6. Create a branch and integration directory
 7. Commit and push
-
-OK, let's begin.
 
 ### Step 1: Verify the requirements
 
@@ -63,7 +59,14 @@ For more examples and ideas, visit:
 sb@dddd:~/demisto$
 ```
 
-*Note:* If you are using Windows with WSL2, you can still use Docker Desktop from WSL. Follow this [tutorial](https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros) for details.
+:::info
+Make sure that `Allow the default Docker socket to be used (requires password)` is enabled in **Docker** advanced settings.
+:::
+
+:::tip
+If you are using WSL2 on Windows, you can still use Docker Desktop from WSL.  
+See [the following tutorial](https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros) for more details.
+:::
 
 Great, all the prerequisites are set! We can get started.
 
@@ -71,11 +74,11 @@ Great, all the prerequisites are set! We can get started.
 
 Make sure you're logged on GitHub and navigate to the [Cortex XSOAR Content Repo](https://github.com/demisto/content) and click on **Fork**:
 
-![Fork Repository](/doc_imgs/tutorials/tut-setup-dev/04-fork.png)
+![Fork Repository](../doc_imgs/tutorials/tut-setup-dev/04-fork.png)
 
 Once the fork is complete, copy the URL:
 
-![Copy GitHub URL](/doc_imgs/tutorials/tut-setup-dev/05-copygithuburl.png)
+![Copy GitHub URL](../doc_imgs/tutorials/tut-setup-dev/05-copygithuburl.png)
 
 This is the fork where you will commit your code and, once ready, create the Pull Request to submit your contribution back to the Cortex XSOAR Content repository.
 
@@ -107,6 +110,12 @@ sb@dddd:~/demisto$
 Follow the instructions in this [guide](tut-setup-dev-remote.md).
 
 #### Option 2: Setup a local environment
+
+#### Let VSCode extension set up a local environment (Linux, MacOS, WSL2)
+
+Follow this [guide](./vscode-extension.md#local-development-linux-macos-wsl2) to set up a fully configured local environment.
+
+#### Manually set up a local environment (Linux, MacOS, WSL2)
 
 ##### Operating System
 

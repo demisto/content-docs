@@ -60,7 +60,8 @@ const sidebars = {
         "contributing/docs-contrib",
         "contributing/marketplace",
         "contributing/demo-prep",
-        "contributing/sla"
+        "contributing/sla",
+        "contributing/sdk"
       ]
     },
     {
@@ -210,7 +211,8 @@ const sidebars = {
       items: [
         "indicators/indicator-fields",
         "indicators/url-extraction",
-        "indicators/domain-extraction"
+        "indicators/domain-extraction",
+        "indicators/relationships"
       ]
     },
     {
@@ -222,8 +224,9 @@ const sidebars = {
         "documentation/pack-docs",
         "documentation/release-notes",
         "documentation/readme_file",
-        "documentation/integration-description"
-        ]
+        "documentation/integration-description",
+        "documentation/images_in_documentation_files"
+      ]
     },
     {
       type: "category",
@@ -231,6 +234,8 @@ const sidebars = {
       collapsed: true,
       items: [
             "tutorials/tut-setup-dev",
+            "tutorials/tut-setup-dev-codespace",
+            "tutorials/tut-setup-dev-remote",
             "tutorials/tut-design",
             "tutorials/tut-integration-ui"
         ]

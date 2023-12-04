@@ -36,6 +36,8 @@ If you already have the SDK installed and you wish to upgrade the version, run t
 pip3 install --upgrade demisto-sdk
 ```
 
+If you would like to contribute to the Demisto SDK project, check out the [Contributing to XSOAR SDK guide](../contributing/sdk.md).
+
 ### Environment Variable Setup
 
 Some SDK commands require you to have an interaction with the Cortex XSOAR or Cortex XSIAM server. Examples of such interactions
@@ -307,7 +309,7 @@ You have a responsibility to identify and eliminate any secrets before they get 
 - Detect secrets in your files:
 
     ```buildoutcfg
-    demsito-sdk secrets
+    demisto-sdk secrets
     ```
 
    This detects secrets in all your changed files. Please note that this command can have some false positives. You can make the command less sensitive by adding the `-ie` flag.
@@ -442,7 +444,7 @@ local environment in order to continue with the contribution process.
 - Download a file to a given pack:
 
     ```buildoutcfg
-    demsito-sdk download -i "My Integration" -o Packs/myPack
+    demisto-sdk download -i "My Integration" -o Packs/myPack
     ```
 
    This downloads the entity named `My Integration` and places it in the appropriate directory within `myPack`.
@@ -451,7 +453,7 @@ local environment in order to continue with the contribution process.
 - Download several files to a given pack and overwrite any file which already exists:
 
     ```buildoutcfg
-    demsito-sdk download -i "My Integration" -i myScript -o Packs/myPack -f
+    demisto-sdk download -i "My Integration" -i myScript -o Packs/myPack -f
     ```
 
    This downloads both the `My Integration` and `myScript` entities to `myPack`. If any of the files already exist in the pack they are overwritten.

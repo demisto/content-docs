@@ -8,6 +8,11 @@ To keep playbook consistency, usability and readability, we've created some conv
 ## Wording
 ### Playbooks
  - Names are **T**itle **C**ase.
+ - The playbook name cannot contain the following special characters:
+
+       Punctuation marks: ! " # $ % & ' ( ) * + , . / : ; < = > ? @ [ \ ] ^ ` { | } ~    
+       Symbols: © ® ™ ° µ ± ß    
+       Formatting characters: ¶ §
  - Before specifying whether the playbook is generic or of a certain integration, add a dash (-).
  - Before adding "Test", add a (dash), but add it only at the very end of the name
  

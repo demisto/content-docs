@@ -49,7 +49,6 @@ Submit your application now! After your application is approved you’ll receive
 ## 2. Complete the Technical Partnership Agreement
 
 Prior to acceptance into the program, all partners must complete and sign our Technology Partner Program Agreement (TPA). You must identify in the TPA which of your product(s) you wish to have integrated with Cortex XSOAR. Due to the large number of partners, we prefer to use our DocuSign to expedite the process. We'll reach out to arrange for signatures.
-<a href="/assets/NextWaveTechnologyPartnerProgramAgreement.pdf" target="_blank" class="button button--outline button--primary button--lg">Download the partnership agreement here</a>
 
 ## 3. Take Required Training
 
@@ -88,7 +87,7 @@ We recommend your technical team review the docs on this site, and the following
 - Our [GitHub Content repository](https://github.com/demisto/content)
 - Cortex XSOAR [Documentation](https://docs.paloaltonetworks.com/cortex/cortex-xsoar.html)
 - Cortex XSOAR [Installation Guide](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/installation.html)
-- Our [Slack channel](https://www.demisto.com/community/) #demisto-developers
+- Our [Slack channel](https://start.paloaltonetworks.com/join-our-slack-community) #demisto-developers
 - Cortex XSOAR [Concepts, and Terminology](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/cortex-xsoar-overview/cortex-xsoar-concepts)
 - Cortex XSOAR [integration video tutorial](https://youtu.be/bDntS6biazI)
 

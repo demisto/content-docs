@@ -26,10 +26,10 @@ from CommonServerUserPython import *
 ''' IMPORTS '''
 
 import json
-import requests
+import urllib3
 
 # Disable insecure warnings
-requests.packages.urllib3.disable_warnings()
+urllib3.disable_warnings()
 ```
 
 ## Constants 
@@ -909,7 +909,7 @@ This class is used to return outputs. This object represents an entry in warroom
 | Arg               | Type   | Description                                                                                                                                                                                |
 |-------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | outputs_prefix    | str    | Should be identical to the prefix in the yml contextPath in yml file. for example:         CortexXDR.Incident                                                                              |
-| outputs_key_field | str    | Primary key field in the main object. If the command returns Incidents, and of the properties of Incident is incident_id, then outputs_key_field='incident_id'                             |
+| outputs_key_field | str    | Primary key field in the main object. If the command returns incidents, and one of the properties of the incident is incident_id, then outputs_key_field='incident_id'                             |
 | outputs           | list / dict | (Optional) The data to be returned and will be set to context. If not set, no data will be added to the context                                                                                                                                          |
 | readable_output    | str   | (Optional) markdown string that will be presented in the War Room, should be human readable -  (HumanReadable) - if not set, readable output will be generated via tableToMarkdown function |
 | raw_response      | object | (Optional) must be dictionary, if not provided then will be equal to outputs.  Usually must be the original raw response from the 3rd party service (originally Contents)                  |
@@ -918,6 +918,7 @@ This class is used to return outputs. This object represents an entry in warroom
 | indicators_timeline | IndicatorsTimeline | Must be an IndicatorsTimeline. used by the server to populate an indicator's timeline.                                                                                       |
 | ignore_auto_extract | bool | If set to **True** prevents the built-in [auto-extract](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-6/cortex-xsoar-admin/manage-indicators/auto-extract-indicators.html) from enriching IPs, URLs, files, and other indicators from the result. Default is **False**.  |
 | mark_as_note | bool |  If set to **True** marks the entry as note. Default is **False**. |
+| relationships | list | A list of `EntityRelationship` objects representing all the relationships of the indicator. |
 | scheduled_command | ScheduledCommand | Manages the way the command result should be polled. |
 
 **Example**
@@ -1028,7 +1029,7 @@ demisto.results(
     {
         'Type': EntryType.NOTE,
         'ContentsFormat': EntryFormat.TEXT,
-        'Content': res,
+        'Contents': res,
         'HumanReadable': 'Submitted file is being analyzed.',
         'ReadableContentsFormat': EntryFormat.MARKDOWN,
         'EntryContext': entry_context,

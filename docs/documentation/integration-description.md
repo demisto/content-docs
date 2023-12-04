@@ -34,6 +34,10 @@ The file's content can include troubleshooting tips and advanced details for dif
 This should not be confused with the integration README file, documented [here](../documentation/readme_file).
 :::
 
+## Images
+Images can be added to your documentation files. For information, see  [Images in Documentation Files](https://xsoar.pan.dev/docs/documentation/images_in_documentation_files). 
+
+
 ## Example
 This is the contents of the `HelloWorld_description.md` file:
 ```
@@ -56,3 +60,14 @@ The content of the description file will be displayed:
 Starting from version 6.1, the content of the description file is shown on the side of the configuration data:
 
 ![](/doc_imgs/integrations/integration-config-panel-61.png)
+
+### Support Level Header YML metadata key
+The `supportlevelheader` key can be set to one of the following values to set the `support level header` in the content description.
+* `xsoar` - The description would specify that PANW supports this integration.
+* `partner` - The description would specify that this integration is partner supported and list the partner's contact information.
+* `community` - The description would specify that this integration is community supported or list the pack's author.
+
+#### How To Set the Support Level Header YML metadata key
+Open the yml of the integration in the same folder where the description file is located and add the `supportlevelheader` key with one of the `xsoar/partner/community` values.
+
+If this key is not set in the integration's yml, the support level header is set to the `support` key in the `pack_metadata.json`.
