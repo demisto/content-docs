@@ -1140,7 +1140,7 @@ outputs:
     - contextPath: Rule.Name
       description: The rule name.
     - contextPath: Rule.Condition
-      description: The rule condition
+      description: The rule condition.
 ```
 
 ## InfoFile
