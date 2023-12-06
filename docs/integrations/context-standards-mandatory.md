@@ -553,10 +553,7 @@ The following is the format for an Email Object.
     "Body/HTML": "STRING, The HTML version of the email.",
     "Body/Text": "STRING, The plain-text version of the email.",
     "Subject": "STRING, The subject of the email.",
-    "Headers": "STRING, The headers of the email.",
-    "Attachments": [
-        "entryID"
-    ]
+    "Headers": "STRING, The headers of the email."
 }
 ```
 
