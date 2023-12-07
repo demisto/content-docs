@@ -16,7 +16,7 @@ function requestHandler(req, res) {
     req.on('end', async function () {
         //   console.log('Body length: ' + body.length)
         try {
-            parsed = await compile(body)
+            const parsed = await compile(body)
             res.end('Successfully parsed mdx')
         } catch (error) {
             res.statusCode = 500

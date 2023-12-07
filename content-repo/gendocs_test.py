@@ -44,7 +44,7 @@ def test_verify_mdx():
         verify_mdx(f'{BASE_DIR}/test_data/bad-mdx-readme.md')
         assert False, 'should fail verify'
     except Exception as ex:
-        assert 'Expected corresponding JSX closing tag' in str(ex)
+        assert 'Expected a closing tag' in str(ex)
 
 
 def test_verify_mdx_server(mdx_server):
@@ -58,7 +58,7 @@ def test_verify_mdx_server(mdx_server):
             verify_mdx_server(data)
             assert False, 'should fail verify'
     except Exception as ex:
-        assert 'Expected corresponding JSX closing tag' in str(ex)
+        assert 'Expected a closing tag' in str(ex)
 
 
 def test_fix_mdx():
