@@ -3,9 +3,6 @@ title: AWS Integrations - Authentication
 description: Overview of authentication methods for AWS Integrations in Cortex XSOAR. 
 ---
 
-
-
-
 The Cortex XSOAR server can be located within the AWS environment in a local network or  self hosted outside the AWS environment in a remote network.
 
 When the Cortex XSOAR server is located within the AWS environment in a local network, the AWS Integrations provide two options for authenticating to AWS:
