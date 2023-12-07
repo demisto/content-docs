@@ -47,7 +47,8 @@
     "react-select": "5.8.0",
     "react-slideshow-image": "4.3.0",
     "replace": "*",
-    "showdown": "*"
+    "showdown": "*",
+    "unist-util-visit": "5.0.0"
   },
   "devDependencies": {
     "js-string-escape": "*",
