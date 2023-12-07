@@ -9,7 +9,7 @@ import React, { useRef } from "react";
 import classnames from "classnames";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
-import ScrollUpButton from "react-scroll-up-button";
+import ScrollToTop from "react-scroll-to-top"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.css";
@@ -135,7 +135,7 @@ function Home() {
       description="All things related to automation and development with Cortex XSOAR (formerly Demisto)"
       wrapperClassName="homepage"
     >
-      <ScrollUpButton />
+      <ScrollToTop smooth />
 
       <header className={classnames("hero hero--primary heroTilted", styles.heroBanner)}>
         <div className="container">
