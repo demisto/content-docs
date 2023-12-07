@@ -8,7 +8,7 @@ cli.parse(process.argv)
 
 async function parseMDX(file) {
     const contents = await fs.readFile(file, 'utf8');
-    const parsed = await compile(contents)
+    await compile(contents)
     console.log("parsed successfully!")
 }
 
