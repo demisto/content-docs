@@ -114,7 +114,7 @@ jobs:
             pipenv install
       - run:
           name: Setup Firebase
-          command: curl -sL firebase.tools | sed "s/latest/v12.7.0/" | bash
+          command: FIREBASE_VERSION=12.7.0 curl -sL firebase.tools | sed "s/DOWNLOAD_URL=.*/DOWNLOAD_URL=https:\/\/firebase.tools\/bin\/\$MACHINE\/v$FIREBASE_VERSION/" | bash
       - run:
           name: Deploy to Firebase
           no_output_timeout: 30m
