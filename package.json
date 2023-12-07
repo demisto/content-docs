@@ -1,6 +1,6 @@
 {
   "name": "docusaurus-2",
-  "version": "*",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "reference-docs": "cd content-repo && ./create-docs.sh",
