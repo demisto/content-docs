@@ -1,5 +1,5 @@
-const mdx = require('@mdx-js/mdx');
-const http = require('http')
+import { compile } from '@mdx-js/mdx';
+import http from 'http';
 
 function requestHandler(req, res) {
     // console.log(req)
@@ -16,7 +16,7 @@ function requestHandler(req, res) {
     req.on('end', async function () {
         //   console.log('Body length: ' + body.length)
         try {
-            parsed = await mdx(body)
+            parsed = await compile(body)
             res.end('Successfully parsed mdx')
         } catch (error) {
             res.statusCode = 500
