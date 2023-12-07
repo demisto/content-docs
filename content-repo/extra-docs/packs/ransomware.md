@@ -13,7 +13,7 @@ When a ransomware attack is detected, for example by your endpoint protection se
 
 When the incident is created in XSOAR, the **Post Intrusion Ransomware Investigation** playbook extracts account and endpoint information, which is used in the investigation. 
 
-The Ransomware pack requires the ransom note and an example of an encrypted file (<1MB) to try to identify the ransomware and find a recovery tool via the [online database](https://id-ransomware.malwarehunterteam.com/).
+The Ransomware pack requires the ransom note and an example of an encrypted file `(<1MB)` to try to identify the ransomware and find a recovery tool via the [online database](https://id-ransomware.malwarehunterteam.com/).
 
 If defined, relevant stakeholders will be notified of the attack automatically.
 
