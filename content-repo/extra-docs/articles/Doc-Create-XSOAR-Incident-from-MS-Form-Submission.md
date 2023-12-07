@@ -69,7 +69,7 @@ Set up an instance of the Generic Webhook integration. Refer to the [Generic Web
 
    5. If you set a Username/Password on the Generic Webhook instance, as is recommended, add the following headers:
 
-      ⦁	Authorization: <PASSWORD_FROM_INSTANCE_CONFIG>
+      ⦁	Authorization: `<PASSWORD_FROM_INSTANCE_CONFIG>`
 
       ⦁	Accept: application/json
 
