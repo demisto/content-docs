@@ -124,7 +124,6 @@ https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 # Partner
 /office-hours https://paloaltonetworks.zoom.us/j/91689983283
 /survey https://docs.google.com/forms/d/e/1FAIpQLSehK06xku8wU1LBA-VYDiC92HLt94KZ9FNbmNEhplATtbiskg/viewform?usp=sf_link
-/docs/partners/marketplace /docs/partners/premium-packs
 
 # Updated/Superseded articles
 /docs/integrations/doc-structure /docs/integrations/integration-docs
@@ -142,5 +141,4 @@ https://demisto.pan.dev/* https://xsoar.pan.dev/:splat 301!
 /docs/integrations/integration-docs /docs/documentation/readme_file
 /docs/integrations/integration-description /docs/documentation/integration-description
 /docs/integrations/packs-format /docs/packs/packs-format
-/docs/integrations/premium_packs /docs/packs/premium_packs
 /docs/concepts/dev-requirements /docs/contributing/dev-requirements
