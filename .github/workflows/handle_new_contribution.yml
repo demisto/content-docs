@@ -33,7 +33,7 @@ jobs:
             echo "There was a problem with retrieving the GitHub user name of the contribution TL."
           fi
 
-      - name: Add a welcome comment
+      - name: Add a welcome comment.
         run: |
           echo "Add a welcome comment"
           gh pr comment "$PR_URL" --body "Thank you for your contribution. Your willingness to improve our product and contribute to our community is highly appreciated. For your convenience, here is a [link](https://xsoar.pan.dev/docs/contributing/sla) to the contributions SLAs document."
