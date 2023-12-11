@@ -28,7 +28,12 @@ jobs:
           if [ $contrib_tl ]; then
             echo "Add an assignee and a Contribution label"
             gh pr edit --add-assignee MosheEichler --add-label Contribution "$PR_URL"
-            gh pr edit --add-assignee "$contrib_tl" --add-label Contribution "$PR_URL"
+            try {
+              gh pr edit --add-assignee "$contrib_tl" --add-label Contribution "$PR_URL"
+            }
+            catch ['not found']{
+              echo "contrib_tl user name wasn't found"
+            }
           else
             echo "There was a problem with retrieving the GitHub user name of the contribution TL."
           fi
