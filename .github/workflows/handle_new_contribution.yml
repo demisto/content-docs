@@ -31,7 +31,7 @@ jobs:
             try {
               gh pr edit --add-assignee "$contrib_tl" --add-label Contribution "$PR_URL"
             }
-            catch ['not found'] {
+            catch {
               echo "contrib_tl user name wasn't found"
             }
           else
