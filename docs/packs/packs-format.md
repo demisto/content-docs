@@ -58,8 +58,6 @@ The following fields are populated in the pack metadata:
 | keywords | List | List of strings by which the pack can be found in Cortex XSOAR marketplace. |
 | marketplaces    | List | List of marketplaces in which the pack can be found (XSOAR XSIAM). |
 | hidden | Boolean | (Optional) Whether to hide the pack from Marketplace. Updates to this pack will not be published to Marketplace and the pack cannot be installed. |
-| eulaLink | String | (Optional - Premium packs only) URL referencing the pack license agreement, will appear under the 'Disclaimer' section in the pack details. Non-premium packs are hosted in our open source content repo and will be subject to an [MIT License](https://github.com/demisto/content/blob/master/LICENSE). |
-| price | String | (Optional - Premium packs only) The pack price in Palo Alto [points](https://xsoar.pan.dev/docs/partners/premium-packs/#points). |
 | dependencies | Dictionary | (Optional) An object that describes the content packs that the pack is dependant on. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | displayedImages | List | (Optional) Images to be displayed in Cortex XSOAR marketplace. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | githubUser | List | (Optional) List of Github usernames to receive notification in the PR in case pack files were modified. |

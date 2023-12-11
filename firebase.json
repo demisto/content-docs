@@ -426,11 +426,6 @@
         "type": 301
       },
       {
-        "source": "/docs/partners/marketplace",
-        "destination": "/docs/partners/paid-packs",
-        "type": 301
-      },
-      {
         "source": "/docs/integrations/doc-structure",
         "destination": "/docs/integrations/integration-docs",
         "type": 301
@@ -486,23 +481,8 @@
         "type": 301
       },
       {
-        "source": "/docs/integrations/premium_packs",
-        "destination": "/docs/packs/premium_packs",
-        "type": 301
-      },
-      {
         "source": "/docs/concepts/dev-requirements",
         "destination": "/docs/contributing/dev-requirements",
-        "type": 301
-      },
-      {
-        "source": "/request-private-offer",
-        "destination": "https://docs.google.com/forms/d/e/1FAIpQLScxTnY_RZQAFpJWurqOQzTJDaq5KcrGVKvfJUffo3i8QD89pw/viewform",
-        "type": 301
-      },
-      {
-        "source": "/private-offer-learn-more",
-        "destination": "https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-5/cortex-xsoar-admin/marketplace/cortex-xsoar-marketplace-private-offer.html",
         "type": 301
       },
       {

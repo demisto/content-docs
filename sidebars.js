@@ -72,7 +72,6 @@ const sidebars = {
         "packs/packs-format",
         "packs/pack-docs-redir",
         "packs/pack-rn-redir",
-        "packs/premium_packs"
         ]
     },
     {
@@ -255,8 +254,6 @@ const sidebars = {
       items: [
         "partners/why-xsoar",
         "partners/become-a-tech-partner",
-        "partners/premium-packs",
-        "partners/private-offer",
         "partners/adopt",
         "partners/certification",
         "partners/office-hours"
