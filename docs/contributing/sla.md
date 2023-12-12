@@ -55,6 +55,7 @@ For the contribution process to be successful, the XSOAR content team requires t
    
    5. During the review process, monitor your PR. Your reviewer will add comments to the PR, asking questions and requesting changes. To establish a decent review process for your contribution, you are kindly asked to respond to the reviewer's code review and apply the required changes within **14 days**.
       **Stale Pull Requests might be closed**.
+      * Note: Once your PR is reviewed, add or update only content items that were requested in the review process. If you have any new content items, please open a new PR. When in doubt, consult the reviewer of the PR.
       
    6. If your contribution includes changes in an XSOAR-supported content pack, you are required to conform to the XSOAR code and documentation standards, and to add unit tests and a test-playbook to test your code. For more information see [XSOAR Code Conventions](../integrations/code-conventions), [XSOAR Packs Documentation](../documentation/pack-docs), [Unit-Testing](../integrations/unit-testing), [Test-Playbooks](../integrations/test-playbooks). 
    
