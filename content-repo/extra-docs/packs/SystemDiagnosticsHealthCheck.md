@@ -120,16 +120,16 @@ There are 47 incident fields.
 
 
 ### Prerequisites for Triggering the Playbook
-The playbooks in this pack execute scripts to collect and parse information from the local system. The scripts require the **Demisto REST API** integration.
+The playbooks in this pack execute scripts to collect and parse information from the local system. The scripts require the **Core REST API** integration.
 
 1. Log in to Cortex XSOAR as the **Admin** user.
 2. In Cortex XSOAR, go to **Settings > INTEGRATIONS > API Keys**.
 3. Click **Get Your Key**, enter a name for the API key, and click **Generate Key**.
 4. **(IMPORTANT)** Copy and save the API key. You will not be able to access it again.
-5. Go to **Settings > INTEGRATIONS > Servers & Services** and search for **Demisto REST API**.
+5. Go to **Settings > INTEGRATIONS > Servers & Services** and search for **Core REST API**.
 6. Click **Add instance** and enter the required information.
     - A meaningful name for the integration instance
-    - Demisto Server URL; use localhost URL 127.0.0.1
+    - Core Server URL; use localhost URL 127.0.0.1
     - API key that you generated
 7. Click the **Test** button to make sure that that server and API key are reachable and valid.
 8. Click **Save & exit**.

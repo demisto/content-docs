@@ -483,7 +483,7 @@ This Content Pack may require the following additional Content Packs:
 
 ### Optional Content Packs
 - AutoFocus
-- Demisto REST API
+- Core REST API
 - EWS
 - EWS Mail Sender
 - Gmail
