@@ -92,3 +92,5 @@ If you need to rerun click on “Stop” and then “Run”.
 
 Once All Validation is complete the playbook will stop at the step “You are all set!” 
 ![iamge](../../../docs/doc_imgs/reference/CaptureTheFlag/image3.png)
+
+## <center>Let the Games Begin. All the best!</center>
