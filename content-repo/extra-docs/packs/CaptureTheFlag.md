@@ -12,9 +12,10 @@ The CTFs can be completed in 1 hour and so can be easily incorporated into an ev
 
 ## Install CTF content Pack
 
-The XSOAR CTF consists of two Content Packs. It is recommended to install CTF1 and CTF2 in this order. 
-Navigate to the Cortex Marketplace, search for CTF1 and click install.
-After CTF1 is installed, search for CTF2 and click install. Once the CTFs are installed you will see a green check mark against the CTF packs. 
+The XSOAR CTF consists of two Content Packs. 
+It is recommended to install "Capture The Flag - 01" and "Capture The Flag - 02" in this order. 
+Navigate to the Cortex Marketplace, search for "Capture The Flag - 01" and click install. After "Capture The Flag - 01" is installed, search for "Capture The Flag - 02" and click Install. Once the CTFs are installed you will see a green check mark against the CTF packs. 
+ 
 
 ![ xsoar ctf csi image](../../../docs/doc_imgs/reference/CaptureTheFlag/marketplace_search_for_ctf.png)
 
