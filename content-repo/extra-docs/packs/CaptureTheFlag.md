@@ -29,8 +29,6 @@ After you install the CTF 1 and CTF 2 content packs from Marketplace,
 You must run the “Prepare your CTF” playbook. The wizard will provide instructions on how to configure instances that are required for 
 running the CTF. It will also check the system for any missing items.
 
-![ xsoar ctf csi image](../../../docs/doc_imgs/reference/CaptureTheFlag/marketplace_search_for_ctf.png)
-
 
 ## Install and Configure VirusTotal and Unit42 Atoms Feed
 Unit 42 ATOMs Feed provides access to published IOCs that contain known malicious indicators. 
