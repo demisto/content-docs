@@ -16,7 +16,10 @@ The XSOAR CTF consists of two content packs:
  - Capture The Flag - 01
  - Capture The Flag - 02
 It is recommended to install "Capture The Flag - 01" and "Capture The Flag - 02" in this order. 
-Navigate to the Cortex Marketplace, search for "Capture The Flag - 01" and click install. After "Capture The Flag - 01" is installed, search for "Capture The Flag - 02" and click Install. Once the CTFs are installed you will see a green check mark against the CTF packs. 
+1. Navigate to Cortex XSOAR Marketplace.
+2. Search for "Capture The Flag - 01" and click **install**. 
+3. After "Capture The Flag - 01" is installed, search for "Capture The Flag - 02" and click **Install**. 
+Once the CTFs are installed, you will see a green checkmark by the CTF packs. 
  
 
 ![ xsoar ctf csi image](../../../docs/doc_imgs/reference/CaptureTheFlag/marketplace_search_for_ctf.png)
