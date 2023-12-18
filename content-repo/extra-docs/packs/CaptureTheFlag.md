@@ -23,15 +23,16 @@ Navigate to the Cortex Marketplace, search for "Capture The Flag - 01" and click
 
 # Prepare Your CTF playbook.
 After you install the CTF 1 and CTF 2 content packs from Marketplace,
-You must run the “Prepare your Playbook” wizard that will instruct you to configure instances that are required for 
+You must run the “Prepare your CTF” playbook. The wizard will provide instructions on how to configure instances that are required for 
 running the CTF. It will also check the system for any missing items.
 
 ![ xsoar ctf csi image](../../../docs/doc_imgs/reference/CaptureTheFlag/marketplace_search_for_ctf.png)
 
 
 ## Install and Configure VirusTotal and Unit42 Atoms Feed
-The Unit 42 v2 feed provides access to published IOCs that contain known malicious indicators. 
-VirusTotal will analyze suspicious hashes, URLs, domains, and IP addresses. You will need these two integrations for the CTF.
+Unit 42 ATOMs Feed provides access to published IOCs that contain known malicious indicators. 
+VirusTotal (API v3) will analyze suspicious hashes, URLs, domains, and IP addresses.   
+You will need these two integrations for the CTF.
 1. Go to *Playbooks* and search for “Prepare your CTF”.
 ![image](../../../docs/doc_imgs/reference/CaptureTheFlag/image6.png)
 2. Click **View** to open the playbook.
