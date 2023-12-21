@@ -46,7 +46,7 @@ This procedure uses ADFS 3.0 on Windows Server 2016 and shows demistodev.local a
     ![](../../../docs/doc_imgs/reference/SAML-ADFS/mceclip5.png)
 
 8.  Click Next (in the next step optionally configure the claims encryption).
-9.  Choose Enable support for the SAML 2.0 Web SSO protocol, and enter the Demisto server URL followed by /SAML at the end of the URL
+9.  Choose Enable support for the SAML 2.0 Web SSO protocol, and enter the Core Server URL followed by /SAML at the end of the URL
     
     ![](../../../docs/doc_imgs/reference/SAML-ADFS/mceclip6.png)
 
@@ -116,7 +116,7 @@ Once you finished setting up the ADFS relay trust you are ready to setup the SAM
 2.  These are the properties required for the SAML integration
 
     * Name
-    * Service Provider Entity ID – Demisto server URL + /saml
+    * Service Provider Entity ID – Core Server URL + /saml
     * IDP Metadata URL – ADFS URL+ /federationmetadata/2007-06/federationmetadata.xml
     * IDP SSO URL – ADFS URL+ /adfs/ls/idpinitiatedsignon.aspx
     * Attribute to get E-mail Address - `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress`

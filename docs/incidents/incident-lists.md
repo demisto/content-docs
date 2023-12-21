@@ -50,7 +50,7 @@ The following is an example of a list-checked_integrations.json file.
         {
 	        "allRead": false,
         	"allReadWrite": false,
-        	"data": "Cylance Protect v2_instance_1,Demisto REST API_instance_1,Image OCR_default_instance,McAfee ESM v2_instance_1,Microsoft Defender Advanced Threat Protection_instance_2,Rasterize_default_instance,Trend Micro Deep Security_instance_1,Where is the egg?_default_instance,d2,fcm_default_instance,vt,ad-login,ad-query,splunk",
+        	"data": "Cylance Protect v2_instance_1,Core REST API_instance_1,Image OCR_default_instance,McAfee ESM v2_instance_1,Microsoft Defender Advanced Threat Protection_instance_2,Rasterize_default_instance,Trend Micro Deep Security_instance_1,Where is the egg?_default_instance,d2,fcm_default_instance,vt,ad-login,ad-query,splunk",
         	"dbotCreatedBy": "",
         	"description": "",
         	"fromVersion": "6.5.0",

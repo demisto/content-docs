@@ -64,17 +64,17 @@ There are several prerequisite requirements that you need to handle before you c
 
 There are several items that you must install and configure before you start using this pack.
 
-### 1. Demisto REST API Integration
-The playbooks in the pack use execute scripts to check the system for failed integrations and incidents. The scripts require that you install the **Demisto REST API** integration and configure an integration instance.
+### 1. Core REST API Integration
+The playbooks in the pack use execute scripts to check the system for failed integrations and incidents. The scripts require that you install the **Core REST API** integration and configure an integration instance.
 
 1. In Cortex XSOAR, go to **Settings > INTEGRATIONS > API Keys**.
 2. Click the **Get Your Key**, enter a name for the API key, and click **Generate Key**.
 3. **(IMPORTANT)** Copy and save the API key, you will not be able to access it again.
-4. Go to **Settings > INTEGRATIONS > Servers & Services** and search for **Demisto REST API**.
-    - Note: in Multi Tenant environments the **Demisto REST API** integration should be configured at the parent level and propagated down to the child.
+4. Go to **Settings > INTEGRATIONS > Servers & Services** and search for **Core REST API**.
+    - Note: in Multi Tenant environments the **Core REST API** integration should be configured at the parent level and propagated down to the child.
 5. Click **Add instance** and enter the required information.
     - A meaningful name for the integration instance
-    - Demisto Server URL
+    - Core Server URL
     - API key that you generated
 7. Click the **Test** button to make sure that that server and API key are reachable and valid.
 8. Click **Save & exit**.
