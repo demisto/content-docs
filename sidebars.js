@@ -262,12 +262,12 @@ const sidebars = {
   ],
 };
 
-if (fs.existsSync("docs/reference/sidebar.json")) {
-  referenceSideBar = fs.readJSONSync("docs/reference/sidebar.json")
+if (fs.existsSync("/docs/reference/sidebar.json")) {
+  referenceSideBar = fs.readJSONSync("/docs/reference/sidebar.json")
   sidebars["reference"] = referenceSideBar
 }
-if (fs.existsSync("docs/reference/articles-sidebar.json")) {
-  articlesSideBar = fs.readJSONSync("docs/reference/articles-sidebar.json")
+if (fs.existsSync("/docs/reference/articles-sidebar.json")) {
+  articlesSideBar = fs.readJSONSync("/docs/reference/articles-sidebar.json")
   sidebars["articles"] = articlesSideBar
 }
 module.exports = sidebars;

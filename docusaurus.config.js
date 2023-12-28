@@ -42,7 +42,6 @@ module.exports = {
       indexName: "demisto",
       algoliaOptions: { typoTolerance: false, hitsPerPage: 1000, filters: 'type:lvl1 OR type:content' } // Optional, if provided by Algolia
     },
-    sidebarCollapsible: true,
     navbar: {
       title: "",
       logo: {
@@ -197,7 +196,6 @@ module.exports = {
           editUrl: "https://github.com/demisto/content-docs/tree/master",
           routeBasePath: "docs",
           include: ["**/*.md", "**/*.mdx"], // Extensions to include.
-          docLayoutComponent: "@theme/DocPage",
           docItemComponent: "@theme/DocItem",
           beforeDefaultRemarkPlugins: [remarkPlugin],
           remarkPlugins: [],
