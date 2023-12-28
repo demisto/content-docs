@@ -681,6 +681,7 @@ headers = ['Input', 'Output']
 tableToMarkdown(name, t, headers=headers, removeNull=True)
 ```
 The above will create the table seen below:
+
 | Input  | Output |
 |--------|--------|
 | first  | foo    |
@@ -691,11 +692,14 @@ In the War Room, this is how a table will appear:
 <img width="788" src="/doc_imgs/integrations/50571324-46846e00-0db0-11e9-9888-ddd9dc275541.png"></img>
 #
 You may also use ```headerTransform``` to convert the existing keys into formatted headers.
-|This function formats the original data headers (optional).
+This function formats the original data headers (optional).
 
 ```python
 t = {'header_1': 'a1', 'header_2': 'b1', 'header_3': 'c1'}
 tableToMarkdown('headerTransform Example', t, headerTransform=underscoreToCamelCase)
+```
+The above will create the table seen below:
+
 |Header1|Header2|Header3|
 |---|---|---|
 | a1 | b1 | c1 |
@@ -707,6 +711,9 @@ data = {
     'header_1': 'foo',
 }
 tableToMarkdown('removeNull Example', data, removeNull=True, headers=headers)
+```
+The above will create the table seen below:
+
 |header_1|
 |---|
 | foo |
