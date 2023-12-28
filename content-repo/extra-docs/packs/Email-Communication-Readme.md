@@ -73,7 +73,7 @@ The Email Communication content pack includes several content items.
 
 ## Before You Start
 
-This pack requires that you have active instances of both a mail listener and mail sender integration in order to send and receive emails, and an active instance of the Demisto REST API integration. Configure either the [Gmail integration](https://xsoar.pan.dev/docs/reference/integrations/gmail) or [MS Graph Mail Single User integration](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail-single-user) or the [MS Graph Mail integration](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail), or both the [EWS Mail Sender](https://xsoar.pan.dev/docs/reference/integrations/ews-mail-sender) and [EWS V2](https://xsoar.pan.dev/docs/reference/integrations/ews-v2) integrations. In addition, configure the Demisto REST API integration which requires a Demisto API key.
+This pack requires that you have active instances of both a mail listener and mail sender integration in order to send and receive emails, and an active instance of the Core REST API integration. Configure either the [Gmail integration](https://xsoar.pan.dev/docs/reference/integrations/gmail) or [MS Graph Mail Single User integration](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail-single-user) or the [MS Graph Mail integration](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail), or both the [EWS Mail Sender](https://xsoar.pan.dev/docs/reference/integrations/ews-mail-sender) and [EWS V2](https://xsoar.pan.dev/docs/reference/integrations/ews-v2) integrations. In addition, configure the Core REST API integration which requires a Demisto API key.
  
 The out-of-the-box classification and mapping (for EWS, Gmail, MS Graph Mail, and MS Graph Mail Single user) in the pack map the incident data to custom incident fields.
 These custom incident fields are populated with specific values for the Email Communication scripts to execute.
@@ -82,20 +82,20 @@ If an EWS, Gmail, MS Graph Mail or MS Graph Mail Single user instance is already
 
  ## Pack Configurations
 To get up and running with this pack, you must do the following: 
-- [Configure Demisto REST API Integration](#demisto-rest-api-integration)
+- [Configure Core REST API Integration](#core-rest-api-integration)
 - [Create a pre-process rule that will link the emails to an existing incident](#pre-process-rule)
 - [Configure the service_mail and mail_sender_instance parameters](#configure-the-service_mail-and-mail_sender_instance-parameters)
 
-### Demisto REST API Integration
-The scripts in the pack require that you install the **Demisto REST API** integration and configure an integration instance.
+### Core REST API Integration
+The scripts in the pack require that you install the **Core REST API** integration and configure an integration instance.
 
 1. In Cortex XSOAR, go to **Settings > INTEGRATIONS > API Keys**.
 2. Click the **Get Your Key**, enter a name for the API key, and click **Generate Key**.
 3. **(IMPORTANT)** Copy and save the API key, you will not be able to access it again.
-4. Go to **Settings > INTEGRATIONS > Servers & Services** and search for **Demisto REST API**.
+4. Go to **Settings > INTEGRATIONS > Servers & Services** and search for **Core REST API**.
 5. Click **Add instance** and enter the required information.
     - A meaningful name for the integration instance
-    - Demisto Server URL
+    - Core Server URL
     - API key that you generated
 7. Click the **Test** button to make sure that that server and API key are reachable and valid.
 8. Click **Done**.
@@ -271,13 +271,13 @@ After you configure the integrations and the pre-process rule, test that the inc
 ## Integrations
 
 Although these integrations are not included in the pack, either the Gmail, MS Graph Mail, MS Graph Mail Single User, EWS Mail Sender, or EWS V2 integrations are required for the pack to work.  
-In addition, you need to configure the Demisto REST API integration.
+In addition, you need to configure the Core REST API integration.
 - Gmail - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/gmail)
 - EWS Mail Sender - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/ews-mail-sender)
 - EWS V2 - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/ews-v2)
 - MS Graph Mail - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail)
 - MS Graph Mail Single User - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-mail-single-user)
-- Demisto REST API - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/demisto-rest-api)
+- Core REST API - [(see the documentation)](https://xsoar.pan.dev/docs/reference/integrations/core-rest-api)
 
 ## Demo Video
 <video controls>
