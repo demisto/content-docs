@@ -28,8 +28,8 @@ The Lists content item must be in JSON format and can be imported independently 
 ### Add Lists to your Project
 
 1. Save your newly created list to the Lists directory in your pack as a JSON file. 
-   - The Lists directory is *Packs/<pack_name>/Lists/*. 
-   - The name of the file should be *list-<list_name>.json*.
+   - The Lists directory is *Packs/\<pack_name>/Lists/*. 
+   - The name of the file should be *list-\<list_name>.json*.
 2. In the list json file that you created, edit the *id* field so that it is identical to the *name* field.
 
 3. Modify the value in the *version* field to -1 to prevent user changes.
@@ -47,31 +47,33 @@ The Lists content item must be in JSON format and can be imported independently 
 
 The following is an example of a list-checked_integrations.json file.
 
-        {
-	        "allRead": false,
-        	"allReadWrite": false,
-        	"data": "Cylance Protect v2_instance_1,Core REST API_instance_1,Image OCR_default_instance,McAfee ESM v2_instance_1,Microsoft Defender Advanced Threat Protection_instance_2,Rasterize_default_instance,Trend Micro Deep Security_instance_1,Where is the egg?_default_instance,d2,fcm_default_instance,vt,ad-login,ad-query,splunk",
-        	"dbotCreatedBy": "",
-        	"description": "",
-        	"fromVersion": "6.5.0",
-        	"hasRole": false,
-        	"id": "checked integrations",
-        	"itemVersion": "",
-        	"locked": false,
-        	"name": "checked integrations",
-        	"nameLocked": false,
-        	"packID": "",
-        	"previousAllRead": false,
-        	"previousAllReadWrite": false,
-        	"previousRoles": [],
-        	"roles": [],
-        	"system": false,
-        	"tags": null,
-        	"toVersion": "",
-        	"truncated": false,
-        	"type": "plain_text",
-        	"version": -1
-        }
+```
+{
+   "allRead": false,
+   "allReadWrite": false,
+   "data": "Cylance Protect v2_instance_1,Core REST API_instance_1,Image OCR_default_instance,McAfee ESM v2_instance_1,Microsoft Defender Advanced Threat Protection_instance_2,Rasterize_default_instance,Trend Micro Deep Security_instance_1,Where is the egg?_default_instance,d2,fcm_default_instance,vt,ad-login,ad-query,splunk",
+   "dbotCreatedBy": "",
+   "description": "",
+   "fromVersion": "6.5.0",
+   "hasRole": false,
+   "id": "checked integrations",
+   "itemVersion": "",
+   "locked": false,
+   "name": "checked integrations",
+   "nameLocked": false,
+   "packID": "",
+   "previousAllRead": false,
+   "previousAllReadWrite": false,
+   "previousRoles": [],
+   "roles": [],
+   "system": false,
+   "tags": null,
+   "toVersion": "",
+   "truncated": false,
+   "type": "plain_text",
+   "version": -1
+}
+```
 
 ### Import a List
 You can import a content item list.
