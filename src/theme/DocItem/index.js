@@ -10,7 +10,7 @@ import { useTitleFormatter } from "@docusaurus/theme-common/internal";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import DocPaginator from "@theme/DocPaginator";
-import { PageMetadata } from "@docusaurus/theme-common";
+import useDocVersionSuggestions from "@theme/DocVersionBanner";
 import {
   useActivePlugin,
   useActiveVersion,
@@ -118,7 +118,7 @@ Thank you for taking the time to help us improve our documentation! Please descr
             [styles.docItemCol]: !hideTableOfContents,
           })}
         >
-          <DocVersionSuggestions />
+          <useDocVersionSuggestions />
           <div className={styles.docItemContainer}>
             <article>
               {showVersionBadge && (
