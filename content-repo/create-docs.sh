@@ -158,6 +158,9 @@ echo "Generating docs..."
 pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}" -b "${CURRENT_BRANCH}"
 echo "Generating Demisto class and CommonServerPython docs..."
 pipenv run ./gen_pydocs.py -t "${TARGET_DIR}"
+cat -n /home/circleci/project/docs/reference/index.md
+cat -n /home/circleci/project/docs/reference/api/demisto-class.md
+cat -n /home/circleci/project/docs/reference/api/common-server-python.md
 if [[ "$CURRENT_BRANCH" != "master" && "$CURRENT_BRANCH" != *"gen-top-contrib"* ]]; then
     echo "Skipping top contributors page generation, should run only on master or branch containing 'gen-top-contrib'."
     exit 0
