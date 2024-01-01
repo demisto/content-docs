@@ -59,7 +59,7 @@ To add the registration, refer to the [Microsoft documentation](https://docs.mic
  authorization flow. For more information about Microsoft National Clouds, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/deployments).
  In order to use a national cloud, change the *Server URL* parameter to the corresponding address of the national cloud you are using.
 
-### Client Credentials
+### Client Credentials Flow
 Some Cortex XSOAR-Microsoft integrations use the [client credentials flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow).
 The Tenant ID, Client ID, and Client secret are required for the integration. 
 
@@ -241,11 +241,11 @@ After you a redirected to the next page, in the **Overview** tab you will find y
 | Microsoft 365 Defender Event Collector - XSIAM        | no                | yes                                              | no          | no                       | no - saas                | no                         |
 | Microsoft Defender for Cloud Apps                     | no                | yes                                              | yes         | no                       | no                       | yes                        |
 | Microsoft Defender for Endpoint (Defender ATP)        | yes               | yes - support both client secret and certificate | no          | yes                      | yes                      | yes                        |
-| Microsoft Graph API                                   | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | yes                        |
+| Microsoft Graph API                                   | yes               | yes - support both client secret and certificate | yes         | yes                      | yes                      | yes                        |
 | Azure Active Directory Applications                   | yes - device      | yes                                              | yes         | no                       | yes                      | no                         |
 | O365 Outlook Calendar                                 | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | no                         |
 | Microsoft Graph Device Management                     | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | yes                         |
-| O365 File Management                                  | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | no                         |
+| O365 File Management                                  | yes               | yes - support both client secret and certificate | no          | yes                      | yes                      | no                         |
 | Microsoft Graph Groups                                | yes               | yes - support both client secret and certificate | no          | yes                      | yes                      | no                         |
 | Azure Active Directory Identity And Access            | yes               | yes - support both client secret and certificate | yes         | no                       | yes                      | no                         |
 | Microsoft Graph Mail Single User                      | yes               | no                                               | no          | yes                      | yes                      | no                         |
