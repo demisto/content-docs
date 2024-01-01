@@ -99,7 +99,7 @@ The Redirect URI can direct any web application that you wish to receive respons
 10. Save the instance.
 11. Run the `!<integration command prefix>-auth-test` command. A 'Success' message should be printed to the War Room.
 
-### Device Code Flow
+## Device Code Flow
 Some Cortex XSOAR-Microsoft integrations use the [device code flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code).
 
 To configure a Microsoft integration that uses this authorization flow with a self-deployed Azure application:
@@ -111,7 +111,7 @@ To configure a Microsoft integration that uses this authorization flow with a se
 
    <img width="600" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/device_code.png" align="middle"></img>
 
-5. Enter your application ID in the ***Application ID*** parameter field.
+5. Enter your application ID in the ***Application ID*** parameter field or use our Cortex XSOAR Azure application default application ID (see integration Help section)
 6. Run the `!<integration command prefix>-auth-start` command - you will be prompted to open the page https://microsoft.com/devicelogin and enter the generated code.
 7. Run the `!<integration command prefix>-auth-complete` command.
 8. Run the `!<integration command prefix>-auth-test` command to ensure connectivity to Microsoft. 
