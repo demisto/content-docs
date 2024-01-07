@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "js-string-escape": "^1.0.1",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^3.3.2",
     "node-plop": "^0.26.2",
     "plop": "^2.7.4",
     "xmlhttprequest": "^1.8.0"
