@@ -5,7 +5,7 @@ title: Contributing XSOAR Content
 
 This article describes the contribution process for Cortex XSOAR content.  
 
-Contributing allows clients and partners who created new content, or modified exiting content (enhancements, bug-fixes, etc.), to share their work with the community by making it publicly available in [Cortex XSOAR Marketplace](https://cortex.marketplace.pan.dev/marketplace/).  
+Contributing allows clients and partners who created new content, or modified existing content (enhancements, bug-fixes, etc.), to share their work with the community by making it publicly available in [Cortex XSOAR Marketplace](https://cortex.marketplace.pan.dev/marketplace/).  
 Content can be Cortex XSOAR, partner, or community supported, and can be either [free or paid](../partners/premium-packs#pricing).
 
 All content (except for paid content packs) is open source, and is hosted on the [Cortex XSOAR Content GitHub Repository](https://github.com/demisto/content), licensed under the [MIT license](https://github.com/demisto/content/blob/master/LICENSE).  
