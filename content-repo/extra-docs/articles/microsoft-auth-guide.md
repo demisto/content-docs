@@ -59,7 +59,7 @@ To add the registration, refer to the [Microsoft documentation](https://docs.mic
  authorization flow. For more information about Microsoft National Clouds, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/deployments).
  In order to use a national cloud, change the *Server URL* parameter to the corresponding address of the national cloud you are using.
 
-### Client Credentials
+### Client Credentials Flow
 Some Cortex XSOAR-Microsoft integrations use the [client credentials flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow).
 The Tenant ID, Client ID, and Client secret are required for the integration. 
 
@@ -112,6 +112,9 @@ To configure a Microsoft integration that uses this authorization flow with a se
    <img width="600" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/device_code.png" align="middle"></img>
 
 5. Enter your application ID in the ***Application ID*** parameter field.
+6. Run the `!<integration command prefix>-auth-start` command - you will be prompted to open the page https://microsoft.com/devicelogin and enter the generated code.
+7. Run the `!<integration command prefix>-auth-complete` command.
+8. Run the `!<integration command prefix>-auth-test` command to ensure connectivity to Microsoft. 
 
 ## Azure Managed Identities Authentication
 #### Note: This option is relevant only if the integration is running on Azure VM.
@@ -219,7 +222,7 @@ After you a redirected to the next page, in the **Overview** tab you will find y
 | Integration Name                                      | XSOAR Application | Client Credentials                               | Device Code | Auth code (redirect URI) | Azure Managed Identities | Supports National Clouds   |
 |-------------------------------------------------------|-------------------|--------------------------------------------------|-------------|--------------------------|--------------------------|----------------------------| 
 | Azure Compute v2                                      | yes               | yes - support both client secret and certificate | no          | no                       | no                       | no                         |
-| Azure Data Explorer                                   | yes               | no - not supported by the API                    | yes         | yes                      | no                       | no                         |
+| Azure Data Explorer                                   | yes - device      | no - not supported by the API                    | yes         | yes                      | no                       | no                         |
 | AzureDevOps                                           | yes               | no - not supported by the API                    | yes         | yes                      | no                       | no                         |
 | Azure Firewall                                        | yes               | yes                                              | yes         | no                       | yes                      | no                         |
 | Azure Key Vault                                       | no                | yes - support both client secret and certificate | no          | no                       | yes                      | yes                        |
@@ -244,8 +247,8 @@ After you a redirected to the next page, in the **Overview** tab you will find y
 | Microsoft Graph API                                   | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | yes                        |
 | Azure Active Directory Applications                   | yes - device      | yes                                              | yes         | no                       | yes                      | no                         |
 | O365 Outlook Calendar                                 | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | no                         |
-| Microsoft Graph Device Management                     | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | yes                         |
-| O365 File Management                                  | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | no                         |
+| Microsoft Graph Device Management                     | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | yes                        |
+| O365 File Management                                  | yes               | yes - support both client secret and certificate | no          | yes                      | yes                      | no                         |
 | Microsoft Graph Groups                                | yes               | yes - support both client secret and certificate | no          | yes                      | yes                      | no                         |
 | Azure Active Directory Identity And Access            | yes               | yes - support both client secret and certificate | yes         | no                       | yes                      | no                         |
 | Microsoft Graph Mail Single User                      | yes               | no                                               | no          | yes                      | yes                      | no                         |
