@@ -1,5 +1,16 @@
-addAssignees: true
+name: Issue assignment
 
-assignees:
-  - ShirleyDenkberg
-  - richardbluestone
+on:
+    issues:
+        types: [opened]
+
+jobs:
+    auto-assign:
+        runs-on: ubuntu-latest
+        permissions:
+            issues: write
+        steps:
+            - name: 'Auto assign issue'
+              uses: pozil/auto-assign-issue@v1
+              with:
+                  assignees: ShirleyDenkberg,richardbluestone
