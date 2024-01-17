@@ -145,7 +145,6 @@ demisto.setLastRun({
 ***Available from version 8.4.0 and later***
 The "nextTrigger" feature enables the content to decide when the next event fetch will be executed. This feature is particularly useful for integrations that generate a large volume of events and  ensuring that the integration remains actively busy in pulling events rather than idling between fetches.
 
-
 There is an option to implement the fetch in longRunningProcess. long running processes are harder to debug, more prone to issues (server <> content), or any other memory leakage issues , etc.
 
 the next fetch trigger run in seconds and  only for events and using the setLastRun command.
@@ -155,7 +154,7 @@ the next fetch trigger run in seconds and  only for events and using the setLast
 demisto.setLastRun({ "nextTrigger":"0", "value":"some value of last run",})
 ```
 **Notes:**
-- don't forget to use `if is_demisto_version_ge('8.4.0')`, since this functionality will be available since 8.4
+- don't forget to use `if is_demisto_version_ge('8.4.0')`, since this functionality is available since 8.4
 - if nextTrigger = 0, then the next fetch will occur immediately after the last one completes
 
     
