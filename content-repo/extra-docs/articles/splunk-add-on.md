@@ -64,6 +64,8 @@ Source code for the add-on is available at: [https://github.com/demisto/splunk-a
 In order for an alert to be pushed as an incident to Cortex XSOAR, you must add ***Create XSOAR Incident*** as a trigger action for the alert on Splunk.  
 After adding the trigger action, you can configure the action to determine how the incident will be created in Cortex XSOAR.
 
+The following fields are available for configuration:
+
 | Field                         | Description                                                                                                             |
 |-------------------------------|-------------------------------------------------------------------------------------------------------------------------|
 | Name                          | Name of the alert.                                                                                                      |
@@ -77,19 +79,8 @@ After adding the trigger action, you can configure the action to determine how t
 | Details                       | The details field value to set for the incident on Cortex XSOAR.                                                        |
 
 
-## Appendix
-### Local Splunk Environment Setup
-To set up a local environment for testing purposes, run the following command to start a Docker container of Splunk (replace `*****` with any 8-character password, containing letters and digits):
-```
-docker run -d -p "8000:8000" -p "8088:8088" -p "8089:8089" -e "SPLUNK_START_ARGS=--accept-license" -e "SPLUNK_PASSWORD=*****" --name splunk splunk/splunk:latest
-```
-Once the container is up and running, the Splunk environment will be accessible on http://localhost:8000.
-
-For more information about the Splunk Docker image and containers configuration, see the official [Splunk DockerHub Page](https://hub.docker.com/r/splunk/splunk/).
-
-
-### Connectivity Test - Create a Custom Alert Action from Saved Searches
-To test whether the add-on is properly configured, and that incidents are being created in Cortex XSOAR properly, follow the steps below:
+## Configuration Test
+To assure the add-on is properly configured, and that incidents are being created in Cortex XSOAR properly, follow the steps below:
 1. Click ***Add Data*** on the front page of Splunk.  
    ![splunk-add-data.png](../../../docs/doc_imgs/reference/SplunkAddOn/splunk-add-data.png)
 2. Click on ***Upload***.  
@@ -108,7 +99,7 @@ To test whether the add-on is properly configured, and that incidents are being 
      - **Alert type** – ***Scheduled***, and then ***Run on Cron Schedule***.
      - **Cron Expression** – \* \* \* \* \* (5 asterisks, indicates a schedule of every 1 minute).
      - Under ***Trigger Actions***, click on the ***Add Actions*** button, and then select ***Create XSOAR Incident***.
-       - Select ***Send Alert to all the servers***.
+     - Configure the ***Create XSOAR Incident*** action as described in the [Alert Configuration](#alert-configuration) section.
 8. Enter your Cortex XSOAR server, wait a few minutes for incidents to be ingested, and assure that incidents are being created in Cortex XSOAR properly.
   ![splunk-add-on-incidents.png](../../../docs/doc_imgs/reference/SplunkAddOn/splunk-add-on-incidents.png)
 
@@ -116,7 +107,18 @@ To test whether the add-on is properly configured, and that incidents are being 
 A list of saved Alerts can be found by navigating to ***Apps*** → ***Search & Reporting*** → ***Alerts***.
 :::
 
-### Create an Adaptive Response Action from Splunk Enterprise Security
+## Appendix
+### Local Splunk Environment Setup
+To set up a local environment for testing purposes, run the following command to start a Docker container of Splunk (replace `*****` with any 8-character password, containing letters and digits):
+```
+docker run -d -p "8000:8000" -p "8088:8088" -p "8089:8089" -e "SPLUNK_START_ARGS=--accept-license" -e "SPLUNK_PASSWORD=*****" --name splunk splunk/splunk:latest
+```
+Once the container is up and running, the Splunk environment will be accessible on http://localhost:8000.
+
+For more information about the Splunk Docker image and containers configuration, see the official [Splunk DockerHub Page](https://hub.docker.com/r/splunk/splunk/).
+
+
+### Create an Adaptive Response Action for Splunk Enterprise Security
 1. Click ***Incident Review***. For Splunk Enterprise Security users, all incidents are reported in the *Incident Review* Dashboard.
 2. Click the ***Actions*** drop-down button for the incident that you want to be created on Cortex XSOAR.
 3. Click **ֿ*Run Adaptive Response Actions***.
