@@ -67,7 +67,7 @@ Images can be added to your documentation files. For information, see  [Images i
 A video can provide a great addition to the documentation either as a demo video or tutorial. The preferred video format is `mp4`. 
 
 ### Videos Stored in GitHub
-Because of their size and in order to keep our main Content repo small, we store large media files in a separate repository: "documentation/images_in_documentation_files". 
+Because of their size and in order to keep our main Content repo small, we store large media files in a separate repository. 
 
 To add the video file, open a pull request with the video file at [content-assets](https://github.com/demisto/content-assets/pulls) repository. The file should be placed in the directory: `Assets/<PackName>/`. 
 
