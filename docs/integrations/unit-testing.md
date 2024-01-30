@@ -28,7 +28,7 @@ For more information, see [visual studio code extension documentation](https://x
 
 * **Install the Cortex XSOAR Plugin**: Install with-in PyCharm by navigating to `Preferences.. -> Plugins`. Or download and install from [here](https://plugins.jetbrains.com/plugin/12093-demisto-add-on-for-pycharm)
 * **Open Pycharm**: Open PyCharm where the root folder is the folder you wish to develop within.
-* **Choose Interpreter**: Choose the poetry environment interpreter (with all dependencies we setup in the previous step). See: <https://www.jetbrains.com/help/pycharm/configuring-python-interpreter.html>
+* **Choose Interpreter**: Choose the poetry environment interpreter. See: <https://www.jetbrains.com/help/pycharm/configuring-python-interpreter.html>
 * **Enable PyTest**: We run our unit tests with `pytest`. See the following on how to enable PyTest: <https://www.jetbrains.com/help/pycharm/pytest.html>
 
 ## Use `main` in Integration/Automation
