@@ -170,7 +170,7 @@ In case of a connection timeout error:
 If incidents are being created in Cortex XSOAR with incorrect fields, ensure that the ***Create XSOAR Incident*** trigger action for the alert is configured properly. 
 For more information about the fields mapping, see the [Alert Configuration](#alert-configuration) section a
 
-#### Too Many Incidents Are Bring Created in Cortex XSOAR
+#### Too Many Incidents Are Created in Cortex XSOAR
 Splunk has its own trigger conditions using the number of incidents which get pushed to XSOAR controlled.
 
 See Splunk's *[Configure alert trigger conditions](https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertTriggerConditions)* documentation to understand Splunk Trigger Conditions to limit the incidents.  
