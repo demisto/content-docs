@@ -141,9 +141,9 @@ If after associating Create XSOAR Incident with saved searches, correlation sear
    ```bash
    # For Cortex XSOAR 6, 'XSOAR_SERVER' is the server URL, including a port if relevant in a <SERVER_ADDRESS>:<PORT> format.
    # For Cortex XSOAR 8 / Cortex XSIAM, 'XSOAR_SERVER' is the API URL.
-   curl -kv <XSOAR_SERVER>
-   telnet <XSOAR_SERVER>
-   wget --no-check-certificate -O - <XSOAR_SERVER>
+   curl -kv https://<XSOAR_SERVER>
+   telnet https://<XSOAR_SERVER>
+   wget --no-check-certificate -O - https://<XSOAR_SERVER>
    ```
 
 4. Test the API key generated in Cortex XSOAR.
