@@ -28,7 +28,7 @@ For more information, see [visual studio code extension documentation](https://x
 
 * **Install the Cortex XSOAR Plugin**: Install with-in PyCharm by navigating to `Preferences.. -> Plugins`. Or download and install from [here](https://plugins.jetbrains.com/plugin/12093-demisto-add-on-for-pycharm)
 * **Open Pycharm**: Open PyCharm where the root folder is the folder you wish to develop within.
-* **Choose Interpreter**: Choose the poetry environment interpreter (with all dependencies we setup in the previous step). See: \<https://www.jetbrains.com/help/pycharm/configuring-python-interpreter.html>
+* **Choose Interpreter**: Choose the poetry environment interpreter. See: \<https://www.jetbrains.com/help/pycharm/configuring-python-interpreter.html>
 * **Enable PyTest**: We run our unit tests with `pytest`. See the following on how to enable PyTest: \<https://www.jetbrains.com/help/pycharm/pytest.html>
 
 ## Use `main` in Integration/Automation
@@ -194,7 +194,7 @@ We declare the inputs and outputs in the following format: 'input, output', [(ca
 
 After declaring the variables and assigning their values, you need to assign the variables to the test function. In the example above we assign the variables 'string' and 'output' to the test function.
 
-To read more on parametrize fixtures, visit: \<https://docs.pytest.org/en/latest/how-to/parametrize.html>
+To read more on parametrize fixtures, visit: <https://docs.pytest.org/en/latest/how-to/parametrize.html>
 
 An example of a test using the paramertrize fixture is avialable [here](https://github.com/demisto/content/blob/master/Packs/CommonScripts/Scripts/ExtractDomainFromUrlFormat/ExtractDomainFromUrlFormat_test.py#L7).
 

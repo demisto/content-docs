@@ -6,9 +6,9 @@ title: Contributing XSOAR Content
 This article describes the contribution process for Cortex XSOAR content.  
 
 Contributing allows clients and partners who created new content, or modified existing content (enhancements, bug-fixes, etc.), to share their work with the community by making it publicly available in [Cortex XSOAR Marketplace](https://cortex.marketplace.pan.dev/marketplace/).  
-Content can be Cortex XSOAR, partner, or community supported, and can be either [free or paid](../partners/premium-packs#pricing).
+Content can be Cortex XSOAR, partner, or community supported.
 
-All content (except for paid content packs) is open source, and is hosted on the [Cortex XSOAR Content GitHub Repository](https://github.com/demisto/content), licensed under the [MIT license](https://github.com/demisto/content/blob/master/LICENSE).  
+All content is open source, and is hosted on the [Cortex XSOAR Content GitHub Repository](https://github.com/demisto/content), licensed under the [MIT license](https://github.com/demisto/content/blob/master/LICENSE).  
 
 **If you have any questions or need support, reach out to us on the `#demisto-developers` channel on our [Slack DFIR Community](https://start.paloaltonetworks.com/join-our-slack-community).**  
 :::note
@@ -74,10 +74,6 @@ Contributing from Marketplace has several limitations:
 Because of these limitations, we do not recommend using this method for large contributions, especially for XSOAR-supported packs. 
 :::
 
-### 3. A Private GitHub Repository (Premium Packs)
-Contributing from a private GitHub repository is required only when the contribution is for a **Premium** (paid) content pack.  
-The requirements are the same as supported packs, and the contribution process of premium packs is described in [the following dedicated article](../packs/premium_packs).
-
 ---
 
 :::note
@@ -115,7 +111,8 @@ Carefully review the following guidelines, as they will greatly enhance the like
 Once these steps are completed, you should be ready to submit your contribution and open a Pull Request.  
 
 :::tip
-The [Hello World content pack](https://github.com/demisto/content/tree/master/Packs/HelloWorld) is a good example that implements all of the above guidelines and can be used as a reference (alongside the [Hello World Design Document](https://docs.google.com/document/d/1wETtBEKg37PHNU8tYeB56M1LE314ux086z3HFeF_cX0)).
+The [Hello World content pack](https://github.com/demisto/content/tree/master/Packs/HelloWorld) is a good example that implements all of the above guidelines and can be used as a reference (alongside the [Hello World Design Document](https://github.com/demisto/content-docs/files/14121809/Cortex.XSOAR.Content.Pack.Design.Document.-.Hello.World.V1.pdf)).
+
 :::
 
 :::note
