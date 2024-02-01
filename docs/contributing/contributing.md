@@ -111,7 +111,8 @@ Carefully review the following guidelines, as they will greatly enhance the like
 Once these steps are completed, you should be ready to submit your contribution and open a Pull Request.  
 
 :::tip
-The [Hello World content pack](https://github.com/demisto/content/tree/master/Packs/HelloWorld) is a good example that implements all of the above guidelines and can be used as a reference (alongside the [Hello World Design Document](https://docs.google.com/document/d/1wETtBEKg37PHNU8tYeB56M1LE314ux086z3HFeF_cX0)).
+The [Hello World content pack](https://github.com/demisto/content/tree/master/Packs/HelloWorld) is a good example that implements all of the above guidelines and can be used as a reference (alongside the [Hello World Design Document](https://github.com/demisto/content-docs/files/14121809/Cortex.XSOAR.Content.Pack.Design.Document.-.Hello.World.V1.pdf)).
+
 :::
 
 :::note
