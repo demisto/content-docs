@@ -132,6 +132,11 @@ For more information about the Splunk Docker image and containers configuration,
 
 
 ## Troubleshooting
+### Logs
+Relevant logs for troubleshooting and debugging can be found in the following paths:
+- Add-on logs: `var/log/splunk/create_xsoar_incident_modalert.log`
+- Splunk logs: `var/log/splunk/splunkd.log`
+
 ### Common Issues
 #### Splunk Events are not Created in Cortex XSOAR
 If after associating Create XSOAR Incident with saved searches, correlation searches using automated invocation, or using ad-hoc invocation from Splunk Enterprise Security's incident review dashboard, incidents are not being created on Cortex XSOAR, the following should be checked:
@@ -194,8 +199,3 @@ If Splunk CIM is installed, make sure its version is compatible with the install
   12-28-2021 13:45:13.807 -0800 ERROR sendmodalert - action=create_xsoar_incident STDERR - if isinstance(self.sid, basestring) and 'scheduler' in self.sid:
   12-28-2021 13:45:13.807 -0800 ERROR sendmodalert - action=create_xsoar_incident STDERR - File "/opt/splunk/etc/apps/Splunk_SA_CIM/lib/cim_actions.py", line 157, in init
   ```
-
-### Logs
-Relevant logs for troubleshooting and debugging can be found in the following paths:
-- Add-on logs: `var/log/splunk/create_xsoar_incident_modalert.log`
-- Splunk logs: `var/log/splunk/splunkd.log`
