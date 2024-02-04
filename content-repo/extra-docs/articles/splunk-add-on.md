@@ -9,7 +9,7 @@ Source code for the add-on is available at: [https://github.com/demisto/splunk-a
 
 
 ## Prerequisites
-- A Splunk instance, with version 8.0 or above.
+A Splunk instance, with Splunk version 8.0 or above.
 
 
 ## Installation / Update
@@ -24,9 +24,9 @@ Source code for the add-on is available at: [https://github.com/demisto/splunk-a
 
 
 ## Add-on Configuration on Splunk
-1. Go to ***Apps*** → ***Manage Apps***.
-2. Find ***Demisto Add-On for Splunk*** on the list, and click ***Launch app*** on the right under the *Actions* column.
-3. On the configuration page, click ***Add*** to add a new XSOAR instance.  
+1. Go to **Apps** > **Manage Apps**.
+2. Find **Demisto Add-On for Splunk** on the list, and click **Launch app** on the right under the *Actions* column.
+3. On the configuration page, click **Add** to add a new Cortex XSOAR instance.  
    ![splunk-add-on-configuration-add-xsoar-instance.png](../../../docs/doc_imgs/reference/SplunkAddOn/splunk-add-on-configuration-add-xsoar-instance.png)
 4. Configure a Cortex XSOAR instance:
    - Configuration for Cortex XSOAR 6 instances:
@@ -69,7 +69,7 @@ The following fields are available for configuration:
 | Field                         | Description                                                                                                             |
 |-------------------------------|-------------------------------------------------------------------------------------------------------------------------|
 | Name                          | Name of the alert.                                                                                                      |
-| Time Occurred (epoch)         | Time when the alert was triggered.                                                                                          |
+| Time Occurred (epoch)         | Time when the alert was triggered.                                                                                      |
 | Send Alert to all the Servers | If enabled, the alert will be pushed to all configured Cortex XSOAR servers configured.                                 |
 | XSOAR Server                  | Cortex XSOAR server to which the incident will be pushed (needed only if *Send Alert to all the Servers* is unchecked). |
 | Type                          | Incident type in Cortex XSOAR.                                                                                          |
