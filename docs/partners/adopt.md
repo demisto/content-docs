@@ -166,38 +166,29 @@ Follow the steps below to adopt using the a text editor or IDE. For additional g
 
 	Make sure you change the `MONTH`, `DAY`, and `YEAR` to the appropriate date that is 90 days from your submission date.
 
-	  
+2.  Once everything is updated, save your changes and run the `demisto-sdk update-release-notes -i <path to pack> -f`. The command output will instruct you to open the newly-created release note. Find the file and open it.
 
-2. Next, open the `pack_metadata.json` file and update the following sections:
-
-	-  `support` - must say `partner`
-	-  `author` - must say your company name
-	-  `url` - must be changed to your company’s support site
-	-  `email` - must be your company's support email.
-
-3.  Once everything is updated, save your changes and run the `demisto-sdk update-release-notes -i <path to pack> -f`. The command output will instruct you to open the newly-created release note. Find the file and open it.
-
-4. Replace the `%%RN%%` placeholder with the following text:
+3. Replace the `%%RN%%` placeholder with the following text:
 	```
 	- Started adoption process.
 	```
 
-5. Go to _Source Control_ tab and commit the changes. Click on the _Publish Branch_ button. This will open a Pull Request.
+4. Go to _Source Control_ tab and commit the changes. Click on the _Publish Branch_ button. This will open a Pull Request.
 
-6. Fill out the pull request details and create the pull request.
+5. Fill out the pull request details and create the pull request.
 
 	**After 90 days**
 
 	Please follow the steps below to complete the adoption process:
 
 
-7. Open the `README.md` file and update the top of the file with the following:
+6. Open the `README.md` file and update the top of the file with the following:
 	```
 	Note: Support for this Pack moved to the partner on MONTH, DAY, YEAR.
 	Please contact the partner directly via the support link on the right.
 	```
 
-8.  Open the `pack_metadata.json` file and update the following sections:
+7.  Open the `pack_metadata.json` file and update the following sections:
 
 	-  `support` - must say “partner”
 
@@ -209,7 +200,7 @@ Follow the steps below to adopt using the a text editor or IDE. For additional g
 
 	- Also, update your Author image using the [Author image instructions](https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng).
 
-9. Repeat step 3 through 6 in the previous section. Replace the `%%RN%%` placeholder with the following text:
+9. Repeat step 3 in the previous section. Replace the `%%RN%%` placeholder with the following text:
 
 	```
 	- Completed adoption process.
