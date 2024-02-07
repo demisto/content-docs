@@ -1,12 +1,12 @@
 ---
 id: sdk
-title: Contributing to XSOAR SDK
+title: Contributing to Demisto SDK
 slug: sdk
 authors: [kgal-pan]
 tags: [sdk,python,dev_env,contributing,pr]
 ---
 
-# Contributing to Cortex XSOAR SDK
+# Contributing to Demisto SDK
 
 Contributions to [`demisto-sdk`](https://github.com/demisto/demisto-sdk) are welcome and appreciated. 
 
@@ -126,7 +126,7 @@ Open `CHANGELOG.md`. Under the **Unreleased** section, add a new bullet with the
 
 After finishing the development process, push the changes to your SDK fork on GitHub and [open a Pull Request from the forked repo](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) to the [`demisto-sdk`](https://github.com/demisto/demisto-sdk) `master` branch.
 
-Once the Pull Request is open, it will be assigned to a member of the Cortex XSOAR SDK team to review. 
+Once the Pull Request is open, it will be assigned to a member of the Demisto SDK team to review. 
 
 In addition, you will see the following [GitHub Status Checks](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-status-checks) running:
 
