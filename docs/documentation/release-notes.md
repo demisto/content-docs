@@ -229,10 +229,10 @@ To specify the new introduced version as **breaking changes**, run the demisto-s
 demisto-sdk update-release-notes -i Packs/<Pack Name> -u revision -bc
 ```
 Adding the *-bc* flag:
-- Generates a corresponding configuration JSON file to the new release notes. For example, if the newly created release notes version is 1_1_0.md, a new configuration file 1_1_0.json is created in the corresponding ReleaseNotes directory.
+- Generates a corresponding configuration JSON file to the new release notes. For example, if the newly created release notes version is `1_1_0.md`, a new configuration file `1_1_0.json` is created in the corresponding `ReleaseNotes` directory.
 - The configuration JSON file is generated with the following fields:
-  -  *breakingChanges*: Indicates whether the version is breaking changes or not, is created with **true** value upon using *-bc* flag.
-  -  *breakingChangesNotes*: Contains the text to be displayed to the customer upon installation, as shown in the above image. If *breakingChangesNotes* is not specified, the default is to present the entire release notes text to the user upon installation.
+  -  `breakingChanges`: Indicates whether the version is breaking changes or not, is created with **true** value upon using *-bc* flag.
+  -  `breakingChangesNotes`: Contains the text to be displayed to the customer upon installation, as shown in the above image. If `breakingChangesNotes` is left empty, the default is to present the entire release notes text to the user upon installation. The field can be in Markdown format.
 
 
 ## Common Troubleshooting Tips
