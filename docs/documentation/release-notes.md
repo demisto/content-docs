@@ -234,10 +234,10 @@ Adding the *-bc* flag:
   -  `breakingChanges`: Indicates whether the version is breaking changes or not, is created with **true** value upon using *-bc* flag.
   -  `breakingChangesNotes`: Contains the text to be displayed to the customer upon installation, as shown in the above image. If `breakingChangesNotes` is left empty, the default is to present the entire release notes text to the user upon installation. The field can be in Markdown format. For example, to add a list of changes:
 
-```json title="Packs/HelloWorld/ReleaseNotes/1_0_1.json"
+```json title="Packs/HelloWorld/ReleaseNotes/1_1_0.json"
 {
     "breakingChanges": true,
-    "breakingChangesNotes": "<ul><li>The `ip` command returns a list/array of IPs in the `HelloWorld.IP` context path (instead of a single IP).</li><li>The `ip` command context output paths `HelloWorld.IP.Objects`, `HelloWorld.IP.Names`, `HelloWorld.IP.Extattrs` were stripped of the leading whitespace (e.g. `HelloWorld.IP. Objects` -> `HelloWorld.IP.Objects`). </li><li>The `ip` command will now return a maximum of 50 results.</li></ul>Make sure to check and update any Playbooks/Scripts that use the above context paths."
+    "breakingChangesNotes": "<ul><li>The `ip` command returns a list/array of IPs in the `HelloWorld.IP` context path (instead of a single IP).</li><li>The `ip` command context output paths `HelloWorld.IP.Objects`, `HelloWorld.IP.Names` were stripped of the leading whitespace (e.g. `HelloWorld.IP. Objects` -> `HelloWorld.IP.Objects`).</li><li>The `ip` command will now return a maximum of 50 results.</li></ul>Make sure to check and update any Playbooks/Scripts that use the above context paths."
 }
 ```
 
