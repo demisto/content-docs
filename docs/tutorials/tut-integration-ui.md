@@ -184,10 +184,10 @@ class Client(BaseClient):
        self.api_key = api_key
        
 	if self.api_key:
-	    self._headers = {'X-Funtranslations-Api-Secret': self.api_key}
+        self._headers = {'X-Funtranslations-Api-Secret': self.api_key}
  
-     def translate(self, text: str):
-	 return self._http_request(method='POST', url_suffix='yoda', data={'text': text}, resp_type='json',  ok_codes=(200,))
+    def translate(self, text: str):
+        return self._http_request(method='POST', url_suffix='yoda', data={'text': text}, resp_type='json',  ok_codes=(200,))
 ```
 
 The Client is an object that communicates with the API. We create a class called *Client*.
@@ -292,21 +292,21 @@ We now create a Client using the given parameters. The Client is defined.
 
 ```python
 try:
-        client = Client(api_key=api_key, base_url=base_url, verify=verify, proxy=proxy)
+    client = Client(api_key=api_key, base_url=base_url, verify=verify, proxy=proxy)
 ```
 
 There are two possible commands that can be passed to the *main* function in our integration.  
 
 ```python
- if command == 'test-module':
-            # This is the call made when clicking the integration Test button.
-            return_results(test_module(client))
+if command == 'test-module':
+    # This is the call made when clicking the integration Test button.
+    return_results(test_module(client))
 
-        elif command == 'yoda-speak-translate':
-            return_results(translate_command(client, **args))
+elif command == 'yoda-speak-translate':
+    return_results(translate_command(client, **args))
 
-        else:
-            raise NotImplementedError(f"command {command} is not implemented.")
+else:
+    raise NotImplementedError(f"command {command} is not implemented.")
 ```
 
 - ***test-module***
@@ -323,11 +323,11 @@ There is also an *else* option - this returns an error if someone tries to run a
 
 ```python
 # Log exceptions and return errors
-    except Exception as e:
-        demisto.error(traceback.format_exc())  # print the traceback
-        return_error("\n".join(("Failed to execute {command} command.",
-                                "Error:",
-                                str(e))))
+except Exception as e:
+    demisto.error(traceback.format_exc())  # print the traceback
+    return_error("\n".join(("Failed to execute {command} command.",
+                            "Error:",
+                            str(e))))
 ```
 If any errors occur during the execution of our code, show those errors to the user and also return an error.
 
