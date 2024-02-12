@@ -46,6 +46,9 @@ If the verdict is set to benign, the playbook will close the incident.
 
 As part of this playbook, you'll receive a comprehensive layout that presents incident details, analysis, investigation findings, and the final verdict. Additionally, the layout offers convenient remediation buttons for quicker manual actions.
 
+To utilize this playbook as the default for handling XDR incidents, the classifier should be empty, and the selected incident type should be `Cortex XDR - Lite`.
+The selected Mapper (incoming) should be `XDR - Incoming Mapper`, And the selected Mapper (outgoing) should be Cortex `XDR - Outgoing Mapper`.
+
 ## Device Control Violations
 If a user connects an unauthorized device to the corporate network, such as a USB dongle or a portable hard disk drive, the connection creates an event in Cortex XDR. 
 The [Cortex XDR device control violations](#cortex-xdr-device-control-violations) playbook queries Cortex XDR for device control violations for specified hosts, IP addresses, or XDR endpoint IDs. It then communicates via email with the involved users to understand the nature of the incident and if the user connected the device. 
@@ -85,6 +88,9 @@ Based on the severity, the analyst decides whether to continue to the remediatio
 If this was a port scan alert, the analyst will manually block the ports used for the exploitation on the scanned hosts.
 
 After the remediation, if there are no new alerts, the playbook stops the alert sync and closes the XDR incident and investigation. 
+
+To utilize this playbook for handling XDR incidents, the classifier that should be selected is `Cortex XDR - Classifier`.
+The selected Mapper (incoming) should be `XDR - Incoming Mapper`, And the selected Mapper (outgoing) should be Cortex `XDR - Outgoing Mapper`.
 
 ### Syn Indicators between Cortex XSOAR and Cortex XDR
 The [Cortex XDR - IOCs](https://xsoar.pan.dev/docs/reference/integrations/cortex-xdr---ioc) feed integration syncs indicators between Cortex XSOAR and Cortex XDR. The integration syncs indicators according to the defined fetch interval. At each interval, the integration pushes new and modified indicators defined in the Sync Query from Cortex XSOAR to Cortex XDR. Additionally, the integration checks if there are manual modifications of indicators on Cortex XDR and syncs back to Cortex XSOAR. Once per day, the integration performs a complete sync which also removes indicators that have been deleted or expired in Cortex XSOAR, from Cortex XDR.
