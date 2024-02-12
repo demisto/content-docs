@@ -183,8 +183,8 @@ class Client(BaseClient):
        
        self.api_key = api_key
        
-	if self.api_key:
-        self._headers = {'X-Funtranslations-Api-Secret': self.api_key}
+       if self.api_key:
+            self._headers = {'X-Funtranslations-Api-Secret': self.api_key}
  
     def translate(self, text: str):
         return self._http_request(method='POST', url_suffix='yoda', data={'text': text}, resp_type='json',  ok_codes=(200,))
