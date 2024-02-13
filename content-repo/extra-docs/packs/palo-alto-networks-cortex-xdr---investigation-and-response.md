@@ -90,7 +90,7 @@ If this was a port scan alert, the analyst will manually block the ports used fo
 After the remediation, if there are no new alerts, the playbook stops the alert sync and closes the XDR incident and investigation. 
 
 To utilize this playbook for handling XDR incidents, the classifier that should be selected is `Cortex XDR - Classifier`.
-The selected Mapper (incoming) should be `XDR - Incoming Mapper`, And the selected Mapper (outgoing) should be Cortex `XDR - Outgoing Mapper`.
+The selected Mapper (incoming) should be `XDR - Incoming Mapper`, and the selected Mapper (outgoing) should be Cortex `XDR - Outgoing Mapper`.
 
 ### Syn Indicators between Cortex XSOAR and Cortex XDR
 The [Cortex XDR - IOCs](https://xsoar.pan.dev/docs/reference/integrations/cortex-xdr---ioc) feed integration syncs indicators between Cortex XSOAR and Cortex XDR. The integration syncs indicators according to the defined fetch interval. At each interval, the integration pushes new and modified indicators defined in the Sync Query from Cortex XSOAR to Cortex XDR. Additionally, the integration checks if there are manual modifications of indicators on Cortex XDR and syncs back to Cortex XSOAR. Once per day, the integration performs a complete sync which also removes indicators that have been deleted or expired in Cortex XSOAR, from Cortex XDR.
