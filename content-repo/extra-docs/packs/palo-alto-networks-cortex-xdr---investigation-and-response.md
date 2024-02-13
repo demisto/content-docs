@@ -47,7 +47,7 @@ If the verdict is set to benign, the playbook will close the incident.
 As part of this playbook, you'll receive a comprehensive layout that presents incident details, analysis, investigation findings, and the final verdict. Additionally, the layout offers convenient remediation buttons for quicker manual actions.
 
 To utilize this playbook as the default for handling XDR incidents, the classifier should be empty, and the selected incident type should be `Cortex XDR - Lite`.
-The selected Mapper (incoming) should be `XDR - Incoming Mapper`, And the selected Mapper (outgoing) should be Cortex `XDR - Outgoing Mapper`.
+The selected Mapper (incoming) should be `XDR - Incoming Mapper`, and the selected Mapper (outgoing) should be Cortex `XDR - Outgoing Mapper`.
 
 ## Device Control Violations
 If a user connects an unauthorized device to the corporate network, such as a USB dongle or a portable hard disk drive, the connection creates an event in Cortex XDR. 
