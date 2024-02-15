@@ -65,7 +65,7 @@ If you cloned the repository with VSCode, you can skip this step.
 
 ## Usage
 
-The environnement contains `demisto-sdk`, `zsh`, `git`, `pyenv`, `poetry`, preinstalled system and python dependencies, and recommended extensions, including [XSOAR VSCode extension](../concepts/vscode-extension.md)
+The environment contains `demisto-sdk`, `zsh`, `git`, `pyenv`, `poetry`, preinstalled system and python dependencies, and recommended extensions, including [XSOAR VSCode extension](../concepts/vscode-extension.md)
 
 Follow the [XSOAR VSCode extension](../concepts/vscode-extension.md) to get started with our features.
 
