@@ -46,7 +46,7 @@
     "react-select": "^4.3.1",
     "react-slideshow-image": "^3.5.0",
     "replace": "^1.2.0",
-    "showdown": "^1.9.1",
+    "showdown": "^2.1.0",
     "mini-css-extract-plugin": "2.4.4"
   },
   "devDependencies": {
