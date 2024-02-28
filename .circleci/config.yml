@@ -35,11 +35,8 @@ jobs:
       - run:
           name: Setup Python
           command: |
-            sudo add-apt-repository ppa:deadsnakes/ppa
-            sudo apt-get update
-            sudo apt-get install python3.9.1
             pyenv versions
-            pyenv global 3.9.1
+            pyenv global 3.12.1
             pip3 install pipenv==2021.5.29
             pipenv install
       - run:
