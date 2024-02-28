@@ -15,6 +15,7 @@ It utilizes the excellent [demisto-sdk](./demisto-sdk) python package.
 
 ## Prerequisites
 
+- Mac, Linux or WSL2 (on Windows)
 - Python 3.8 and up.
 - Docker (Follow the instructions [here](https://code.visualstudio.com/docs/remote/containers#_installation) to install **Docker** to your operating system.)
 - [VSCode](https://code.visualstudio.com/Download)
