@@ -6,7 +6,7 @@ version: 2.1
 jobs:
   build:
     machine:
-      image: ubuntu-2004:202101-01
+      image: default
       resource_class: xlarge
 
     parameters:
