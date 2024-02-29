@@ -161,29 +161,26 @@ This file will be used while running the `demisto-sdk secrets`([explanation](htt
 1) This file allows ignoring linter errors while lint checking and ignoring tests in the test collection.
 
    To add ignored tests/linter errors in a file, first, add the file name to the **.pack-ignore** in this format
+```
+[file:integration-to-ignore.yml]
+```
 
-    ```toml
-    [file:integration-to-ignore.yml]
-    ```
-
-    On the following line add `ignore=` flag, with one or more comma-separated values:
-
-    * `auto-test` - ignore test file in the build test collection.
-    * `linter code` e.g., IN126 - ignore linter error codes.
+On the following line add `ignore=` flag, with one or more comma-separated values:
+* `auto-test` - ignore test file in the build test collection.
+* `linter code` e.g., IN126 - ignore linter error codes.
 
 2) By default, unit-tests of scripts/integrations are running without a docker network.
 
    In case one of the integrations/scripts inside a pack needs a network during the unit-tests run, this can be done in this format
 
-    ```toml
-    [tests_require_network]
-    integration-id-1
-    script-id-1
-    ```
+```
+[tests_require_network]
+integration-id-1
+script-id-1
+```
 
 #### Example .pack-ignore
-
-```toml
+```
 [file:playbook-Special-Test-Not-To-Run-Directly.yml]
 ignore=auto-test
 
@@ -208,9 +205,8 @@ If the file is missing, the build will fail with the following validation error:
 - Issues with unique files in pack: $PACK_NAME
   Packs/$PACK_NAME/Author_image.png: [IM109] - Partners must provide a non-empty author image under the path Packs/$PACK_NAME/Author_image.png
 ```
-
 :::
-
+ 
 :::note
 If the `Author_image.png` file does not exist, the name of the author will be displayed under the "PUBLISHER" section instead.
 :::
@@ -219,8 +215,7 @@ If the `Author_image.png` file does not exist, the name of the author will be di
 
 If you are contributing to an existing pack, you can add a **CONTRIBUTORS.json** file to the root of the pack in the event that one does not already exist. The file should contain a list of strings including your name.
 
-#### Example of a CONTRIBUTORS.json file
-
+#### Example of a CONTRIBUTORS.json file:
 ```json
 [
     "Jane Doe",
