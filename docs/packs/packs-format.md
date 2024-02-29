@@ -5,7 +5,7 @@ title: Content Packs Structure
 
 For better separation between Content artifacts from different use cases and Partners we use a directory structure called `Content Packs`. Each `Content Pack` behaves like a mini content repo. It contains all relevant content items within its directory.
 
-For instance a pack for CortexXDR will look as can be seen in the Content Repository 
+For instance a pack for CortexXDR will look as can be seen in the Content Repository
 [Packs/CortexXDR](https://github.com/demisto/content/tree/master/Packs/CortexXDR).
 
 To generate a new pack make sure to use: `demisto-sdk init --pack`. Detailed command instructions are available [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md).
@@ -13,6 +13,7 @@ To generate a new pack make sure to use: `demisto-sdk init --pack`. Detailed com
 **Note**: The Content repo is going through a transition phase to move all content into packs. During this phase you will see some Content artifacts are still not maintained within Packs. All new Content should be maintained via Packs.
 
 ## Directories  
+
 All the directories within the pack are the representation of all the possible entities possible in Content. And the pack will be located in the Content repo under `Packs/<Pack Name>`
 ```
 - Integrations        
@@ -31,12 +32,14 @@ All the directories within the pack are the representation of all the possible e
 ```
 
 ## Pack files
-The pack directory contains numerous configuration files used for metadata and documentation. 
 
-Please note that all of the following files will be created using the `demisto-sdk init --pack`, and some of them 
+The pack directory contains numerous configuration files used for metadata and documentation.
+
+Please note that all of the following files will be created using the `demisto-sdk init --pack`, and some of them
 will have to be filled by you. An explanation for each of them will be provided below.
- 
+
 ### pack_metadata.json
+
 This file contains all the relevant metadata about the pack.
 
 The following fields are populated in the pack metadata:
@@ -62,9 +65,8 @@ The following fields are populated in the pack metadata:
 | displayedImages | List | (Optional) Images to be displayed in Cortex XSOAR marketplace. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | githubUser | List | (Optional) List of Github usernames to receive notification in the PR in case pack files were modified. |
 | devEmail | List | (Optional) List of emails to receive notification in case contributed pack files were modified. |
-| certification | String | (Optional) If the pack is certifed the value of this fields should be "certified" |
-| itemPrefix | String | (Optional) String to overwrite pack fields prefix. You can specify an alternative string instead of the default pack name enforced by the validation process.
-
+| certification | String | (Optional) If the pack is certified the value of this fields should be "certified". The allowed values are "certified" and "verified". |
+| itemPrefix | String | (Optional) String to overwrite pack fields prefix. You can specify an alternative string instead of the default pack name enforced by the validation process. |
 
 Pack metadata contents for example:
 
@@ -110,6 +112,7 @@ Pack metadata contents for example:
 ```
 
 A supported partner pack metadata contents for example:
+
 ```json
 {
     "name": "Product name",
@@ -134,24 +137,27 @@ A supported partner pack metadata contents for example:
 }
 ```
 
-
 ### Content Packs Versioning
+
 Pack versions have the following format MAJOR.MINOR.REVISION:
+
    1. **Revision** when you make backwards compatible bug fixes.
    2. **Minor** when you add functionality in a backwards compatible manner.
    3. **Major** when you make incompatible API changes or revamping the pack by adding to it a lot of new backwards compatible functionality.
 
-
 ### README.md
+
 The file contains a general explanation for the pack and you are free to add any information relevant for the pack. For more details refer to the [Pack Documentation](../documentation/pack-docs) page.
 
 ### .secrets-ignore
+
 This file will be used while running the `demisto-sdk secrets`([explanation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/secrets/README.md)), we will determine the file and will
  use it as an allow list of approved words for your PR.
 
 **Note**: We use `demisto-sdk secrets` as part of our pre-commit hook to check that possible secrets in the PR aren't exposed to a public repository.
 
 ### .pack-ignore
+
 1) This file allows ignoring linter errors while lint checking and ignoring tests in the test collection.
 
    To add ignored tests/linter errors in a file, first, add the file name to the **.pack-ignore** in this format
@@ -187,6 +193,7 @@ script-id-1
 ```
 
 ### Author_image.png
+
 It's possible to add an author image - a logo of the contributing company, which will be displayed on the marketplace page of the pack, under the "PUBLISHER" section.  
 The image should be saved in the root directory of the pack (e.g., `content/packs/MyPackName`), be named `Author_image.png`, and have a size of up to 4 KB, at a resolution of 120x50.
 
@@ -205,7 +212,8 @@ If the `Author_image.png` file does not exist, the name of the author will be di
 :::
 
 ### CONTRIBUTORS.json
-If you are contributing to an existing pack, you can add a **CONTRIBUTORS.json** file to the root of the pack in the event that one does not already exist. The file should contain a list of strings including your name. 
+
+If you are contributing to an existing pack, you can add a **CONTRIBUTORS.json** file to the root of the pack in the event that one does not already exist. The file should contain a list of strings including your name.
 
 #### Example of a CONTRIBUTORS.json file:
 ```json
@@ -218,4 +226,3 @@ If you are contributing to an existing pack, you can add a **CONTRIBUTORS.json**
 #### Once your contribution is merged, pack details will show the following:
 
 ![image](https://user-images.githubusercontent.com/44666568/176713193-8a0857bf-a5ed-45cd-98e4-3c575752c0ff.png)
-
