@@ -15,8 +15,7 @@ To generate a new pack make sure to use: `demisto-sdk init --pack`. Detailed com
 ## Directories  
 
 All the directories within the pack are the representation of all the possible entities possible in Content. And the pack will be located in the Content repo under `Packs/<Pack Name>`
-
-```text
+```
 - Integrations        
 - Scripts
 - Playbooks
@@ -66,7 +65,7 @@ The following fields are populated in the pack metadata:
 | displayedImages | List | (Optional) Images to be displayed in Cortex XSOAR marketplace. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | githubUser | List | (Optional) List of Github usernames to receive notification in the PR in case pack files were modified. |
 | devEmail | List | (Optional) List of emails to receive notification in case contributed pack files were modified. |
-| certification | String | (Optional) If the pack is certified the value of this fields should be "certified". The allowed values are either "certified" or "verified". |
+| certification | String | (Optional) If the pack is certified the value of this fields should be "certified". The allowed values are "certified" and "verified". |
 | itemPrefix | String | (Optional) String to overwrite pack fields prefix. You can specify an alternative string instead of the default pack name enforced by the validation process. |
 
 Pack metadata contents for example:
@@ -163,7 +162,7 @@ This file will be used while running the `demisto-sdk secrets`([explanation](htt
 
    To add ignored tests/linter errors in a file, first, add the file name to the **.pack-ignore** in this format
 
-    ```text
+    ```toml
     [file:integration-to-ignore.yml]
     ```
 
@@ -176,7 +175,7 @@ This file will be used while running the `demisto-sdk secrets`([explanation](htt
 
    In case one of the integrations/scripts inside a pack needs a network during the unit-tests run, this can be done in this format
 
-    ```text
+    ```toml
     [tests_require_network]
     integration-id-1
     script-id-1
@@ -184,7 +183,7 @@ This file will be used while running the `demisto-sdk secrets`([explanation](htt
 
 #### Example .pack-ignore
 
-```text
+```toml
 [file:playbook-Special-Test-Not-To-Run-Directly.yml]
 ignore=auto-test
 
@@ -229,6 +228,6 @@ If you are contributing to an existing pack, you can add a **CONTRIBUTORS.json**
 ]
 ```
 
-#### Once your contribution is merged, pack details will show the following
+#### Once your contribution is merged, pack details will show the following:
 
 ![image](https://user-images.githubusercontent.com/44666568/176713193-8a0857bf-a5ed-45cd-98e4-3c575752c0ff.png)
