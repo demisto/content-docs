@@ -231,14 +231,14 @@ def get_mapping_fields_command():
 
 ```
 
-## Incident fields on a XSOAR incident 
+## Incident fields on an XSOAR incident 
 The following incident fields must be configured either in the integration or the instance mapping:
 * **dbotMirrorDirection** - valid values are Both, In, or Out.
 * **dbotMirrorId** - represents the ID of the incident in the external system.
 * **dbotMirrorInstance** - the instance through which you will be mirroring.
 - **dbotDirtyFields** for fields we changed locally and therefore will not be updated from the remote.
 - **dbotCurrentDirtyFields** for fields that are going to be sent remotely as a delta in the next iteration of the job - probably should remain invisible to the end user.
-- **dbotMirrorLastSync** timestamp that includes the last time we synched this incident with the remote system.
+- **dbotMirrorLastSync** timestamp in UTC that includes the last time we synced this incident with the remote system.
 * **dbotMirrorTags** - tags for mirrored-out entries (comment/files).
 
 ## Debugging
@@ -252,3 +252,10 @@ The following incident fields must be configured either in the integration or th
 * **triggerDebugMirroringRun (Available from 6.6)** - is runnable from the War Room in order to debug a full mirroring run over existing incidents. You can add an incident ID to the command to get information about a specific incident. If no ID is given, the incident will be loaded from the War Room context. The output of this command is a unique debug log file that includes logs for the entire mirroring flow. In addition, this debug log includes the content of the integrations' debug-mode logs. An example for running the command from the cli: `!triggerDebugMirroringRun incidentId=50`
 *  
    *Note: This command triggers real mirroring actions, for example, updating incidents and fields.*
+
+## Troubleshooting
+
+* When using a custom mapper, make sure it has the required incident fields for mirroring.
+* The mapper which the incident went through upon creation is the one that will configure whether the incident will be mirrored or not and to which direction. 
+* Mirroring continues to work after reopening an incident in cortex XSOAR. Mirroring entries works only for active incidents, while mirroring fields works for pending ones too.
+* When changing the display name from "incident", mirroring will not work.
