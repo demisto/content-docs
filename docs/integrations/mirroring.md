@@ -10,10 +10,9 @@ An example of a mirroring integration can be seen [here](https://github.com/demi
 
 Mirroring integrations are developed the same as other integrations, with a few extra configuration parameters and APIs.
 
-**Note:** 
-
+:::note
 For Cortex XSOAR versions 6.1.0 and earlier, once an incident field is changed manually within Cortex XSOAR, it is marked as "dirty" and will not be updated by the mirroring process in Cortex XSOAR throughout the incident lifecycle. However, if outbound mirroring is enabled, any changes to the incident in Cortex XSOAR will still be reflected in the external system.  
-
+:::
 
 ## Supported Server Version
 Mirroring is supported from version 6.0.0 and later.
