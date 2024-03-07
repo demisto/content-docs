@@ -10,8 +10,8 @@ An example of a mirroring integration can be seen [here](https://github.com/demi
 
 Mirroring integrations are developed the same as other integrations, with a few extra configuration parameters and APIs.
 
-:::note
-For Cortex XSOAR versions 6.1.0 and earlier, once an incident field is changed manually within Cortex XSOAR, it is marked as "dirty" and will not be updated by the mirroring process in Cortex XSOAR throughout the incident lifecycle. However, if outbound mirroring is enabled, any changes to the incident in Cortex XSOAR will still be reflected in the external system.  
+:::note 
+For Cortex XSOAR versions 6.1.0 and earlier, once an incident field is changed manually within Cortex XSOAR, it is marked as "dirty" and will not be updated by the mirroring process in Cortex XSOAR throughout the incident lifecycle. However, if outbound mirroring is enabled, any changes to the incident in Cortex XSOAR will still be reflected in the external system.
 :::
 
 ## Supported Server Version
@@ -259,7 +259,7 @@ The following incident fields must be configured either in the integration or in
 
 ## Troubleshooting and Tips
 
-* When using a custom mapper, make sure it has the required mirroring incident fields.
+* When using a custom mapper, make sure it has the required mirroring incident fields (dbotMirrorDirection, dbotMirrorId and dbotMirrorInstance), more information can be found under the "Incident Fields on a Cortex XSOAR Incident" section.
 * The mapper the incident goes through upon creation configures whether the incident will be mirrored and in which direction. 
 * Mirroring continues to work after reopening an incident in Cortex XSOAR. Mirroring entries works only for active incidents, while mirroring fields also works for pending incidents.
 * If you change the display name from "incident", mirroring will not work.
