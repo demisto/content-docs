@@ -8,7 +8,7 @@ description: Overview of authentication methods for AWS Integrations in Cortex X
 
 The Cortex XSOAR server can be located within the AWS environment in a local network or  self hosted outside the AWS environment in a remote network.
 
-When the Cortex XSOAR server is located within the AWS environment in a local network, the AWS Integrations provide two options for authenticating to AWS:
+When the Cortex XSOAR server is located within the AWS environment in a local network, the AWS Integrations provide three options for authenticating to AWS:
 * **Access Key and Secret Key**: the integration will use a configured Access Key and Secret Key to authenticate to AWS, which are set as part of the integration configuration parameters as can be seen in the following screen shot of the *AWS - S3* Integration:
   
   <img width="410" src="../../../docs/doc_imgs/reference/aws-s3.png" />
