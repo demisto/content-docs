@@ -497,14 +497,13 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
 def process_extra_docs(target_dir: str, prefix: str,
                        private_packs_prefix='', private_packs=False) -> Iterator[DocInfo]:
     if private_packs:
-        return
-        # if private_packs_prefix == PRIVATE_PACKS_PLAYBOOKS_PREFIX:
-        #     md_dir = f'{os.path.dirname(os.path.abspath(__file__))}/.content-bucket/Packs/*/{private_packs_prefix}/'
-        # else:
-        #     md_dir = f'{os.path.dirname(os.path.abspath(__file__))}/.content-bucket/Packs/*/{private_packs_prefix}/*'
-        #
-        # for readme_file in glob.glob(f'{md_dir}/*.md'):
-        #     yield process_extra_readme_doc(target_dir, private_packs_prefix, readme_file, private_packs=True)
+        if private_packs_prefix == PRIVATE_PACKS_PLAYBOOKS_PREFIX:
+            md_dir = f'{os.path.dirname(os.path.abspath(__file__))}/.content-bucket/Packs/*/{private_packs_prefix}/'
+        else:
+            md_dir = f'{os.path.dirname(os.path.abspath(__file__))}/.content-bucket/Packs/*/{private_packs_prefix}/*'
+
+        for readme_file in glob.glob(f'{md_dir}/*.md'):
+            yield process_extra_readme_doc(target_dir, private_packs_prefix, readme_file, private_packs=True)
     else:
         md_dir = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs/{prefix}'
         for readme_file in glob.glob(f'{md_dir}/*.md'):
@@ -567,9 +566,6 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
             process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
     for doc_info in process_extra_docs(target_sub_dir, prefix):
         process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
-    for private_doc_info in process_extra_docs(target_sub_dir, prefix, private_packs=True,
-                                               private_packs_prefix=private_pack_prefix):
-        process_doc_info(private_doc_info, success, fail, doc_infos, seen_docs, private_doc=True)
     org_print(f'\n===========================================\nSuccess {prefix} docs ({len(success)}):')
     for r in sorted(success):
         print(r)
