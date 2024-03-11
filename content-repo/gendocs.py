@@ -566,9 +566,6 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
             process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
     for doc_info in process_extra_docs(target_sub_dir, prefix):
         process_doc_info(doc_info, success, fail, doc_infos, seen_docs)
-    for private_doc_info in process_extra_docs(target_sub_dir, prefix, private_packs=True,
-                                               private_packs_prefix=private_pack_prefix):
-        process_doc_info(private_doc_info, success, fail, doc_infos, seen_docs, private_doc=True)
     org_print(f'\n===========================================\nSuccess {prefix} docs ({len(success)}):')
     for r in sorted(success):
         print(r)
