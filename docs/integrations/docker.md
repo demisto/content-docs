@@ -25,7 +25,7 @@ This happens via an automatic reoccurring job that updates the docker image of t
 Finally, the pack is distributed in the marketplace.
 
 ### Disabling Docker Image Automatic Update
-If you want to opt out of the automatic image updates, you can do so by setting the `autoUpdateDockerImage`key to `false` in the YML file.
+If you want to opt out of the automatic image updates, you can do so by setting the `autoUpdateDockerImage` key to `false` in the YML file.
 For example, the following will halt updates for the integration `MyIntegration`'s docker image:
 ```yml
 commonfields:
