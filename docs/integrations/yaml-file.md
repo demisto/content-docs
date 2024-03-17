@@ -4,7 +4,7 @@ title: Integrations and Scripts Metadata YAML File
 sidebar_label: Metadata YAML File
 ---
 
-All the metadata of your integration is included in the YAML file: think of it as key, value set for your integration. When pushing content for public release, your YAML file must follow certain structural requirements in order to work properly. In this section we will review the various parts of the Cortex XSOAR YAML file. 
+All the metadata of your integration is included in the YAML file: think of it as key, value set for your integration. When pushing content for public release, your YAML file must follow certain structural requirements in order to work properly. In this section we will review the various parts of the Cortex XSOAR YAML file.
 
 **Note**: Automation Scripts also have a metadata YML file that follows a very similar structure.
 
@@ -68,6 +68,7 @@ configuration:
   type: 8
   required: false
 ```
+
 An explanation of these fields is as follows:
 
 | Name | Description |
@@ -82,16 +83,19 @@ An explanation of these fields is as follows:
 | | Type 9 - Authentication text - allows switching to credentials |
 | | Type 12 - Long text block |
 | | Type 13 - special use - automatically added - Incident type single select dropdown |
-| | Type 15 - Single select dropdown | 
+| | Type 15 - Single select dropdown |
 | | Type 16 - Multiple select dropdown |
 | **required** | Boolean value to indicate that the parameter is required |
-| **additionalinfo** | Additional info about the field, will appear under a question mark in the configuration pannel |
+| **additionalinfo** | Additional info about the field, will appear under a question mark in the configuration panel |
+| **fromlicense** | Specifies to take the credentials from the xsoar license. (relevant to type 9) |
 
 Integration parameters may be hidden from the XSOAR UI, using the optional `hidden` field.
-- To hide the parameter in all marketplaces (XSOAR, XSIAM), use a boolean `true`. 
+
+- To hide the parameter in all marketplaces (XSOAR, XSIAM), use a boolean `true`.
 - To hide the parameter in specific content marketplace versions, provide list of marketplace version names (e.g. `xsoar` or `marketplacev2` for XSIAM)
 
 ## Script
+
 This section is where your code will reside. Review the example below:
 
 ```yml
