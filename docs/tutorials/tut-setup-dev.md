@@ -167,7 +167,7 @@ And that's it! Again, if the installation fails, check out [this](https://github
 
 ##### Poetry
 
-Follow these instructions to install [poetry](https://python-poetry.org/docs/master/#installing-with-the-official-installer)
+Follow these instructions to install [poetry](https://python-poetry.org/docs/#installing-with-the-official-installer)
 
 ##### Node
 
