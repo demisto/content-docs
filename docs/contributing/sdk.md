@@ -117,20 +117,32 @@ To run a specific unit test or integration test, you can specify the file and te
 
 You can also run and debug unit tests in the IDE. Follow the instructions on how to set up `pytest` unit test discovery in [Visual Studio Code](https://code.visualstudio.com/docs/python/testing) and [PyCharm](https://www.jetbrains.com/help/pycharm/pytest.html#create-pytest-test).
 
-
-### 3. Add Release Notes
-
-Open `CHANGELOG.md`. Under the **Unreleased** section, add a new bullet with the description of the work done.
-
-### 4. Open Pull Request
+### 3. Open Pull Request
 
 After finishing the development process, push the changes to your SDK fork on GitHub and [open a Pull Request from the forked repo](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) to the [`demisto-sdk`](https://github.com/demisto/demisto-sdk) `master` branch.
+
+After opening the pull request, run the following command to generate a changelog entry:
+
+```bash
+poetry run sdk-changelog --init
+```
+
+This will create a YML in the `.changelog` directory with the PR number (e.g. `.changelog/123.yml`). Open the file with a text editor and fill out the `changes.description` and `changes.type` fields. 
+
+The possible values for `changes.type` are:
+
+* `breaking`
+* `feature`
+* `fix`
+* `internal`
+
+### 4. Pull Request Review
 
 Once the Pull Request is open, it will be assigned to a member of the Demisto SDK team to review. 
 
 In addition, you will see the following [GitHub Status Checks](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-status-checks) running:
 
-* `ci/circleci` : We use [CircleCI](https://circleci.com/gh/demisto/demisto-sdk) to run a full build on each commit of your pull request. The build will run our content validation hooks, linting and unit test. We require that the build pass (green build). Follow the `details` link of the status to see the full build UI of CircleCI.
+* **CI - On Push** : We use GitHub Actions to run a full build on each commit of your pull request. The build will run our validation hooks, linting and unit tests. We require that the build pass (green build). Follow the *details* link of the check to see the full log.
 * **guardrails/scan**: We use [GuardRails](https://www.guardrails.io/) to review the contributed code and find potential security vulnerabilities.
 * **license/cla**: Status check that all contributors have signed our Contributor License Agreement. Before merging any PRs, we need all contributors to sign a Contributor License Agreement. By signing this agreement, we ensure that the community is free to use your contributions.
 
