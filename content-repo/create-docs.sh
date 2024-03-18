@@ -28,7 +28,7 @@ else
 
     echo "==== current branch: ${CURRENT_BRANCH} ===="
 
-    CONTENT_GIT_URL="https://github.com/demisto/content.git" #TEST
+    CONTENT_GIT_URL="https://github.com/demisto/content.git" #TESTt
     CONTENT_BRANCH="jira-update-docs"
     REQUIRE_BRANCH=false
     if [ -n "${INCOMING_HOOK_BODY}" ]; then
