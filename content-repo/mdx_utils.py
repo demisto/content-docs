@@ -24,6 +24,7 @@ def fix_mdx(txt: str) -> str:
         ('</pre>', '`}</pre>'),
         ('<br/>*', '<br/> *'),
         (' {', ' \{'),
+        (" '{", " '\{"),
     ]
     for old, new in replace_tuples:
         txt = re.sub(old, new, txt, flags=re.IGNORECASE)
@@ -78,7 +79,8 @@ def start_mdx_server():
         node_version_res = subprocess.run(["node", "--version"], capture_output=True, text=True)
         print(f'starting mdx server with node version: {node_version_res}')
         mdx_parse_server = f'{os.path.dirname(os.path.abspath(__file__))}/../mdx-parse-server.js'
-        MDX_SERVER_PROCESS = subprocess.Popen(['node', mdx_parse_server], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        MDX_SERVER_PROCESS = subprocess.Popen(['node', mdx_parse_server], stdout=subprocess.PIPE,
+                                              stderr=subprocess.PIPE)
         time.sleep(2)  # let the node process complete startup
 
 
