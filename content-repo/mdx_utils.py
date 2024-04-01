@@ -22,6 +22,8 @@ def fix_mdx(txt: str) -> str:
         ('<hr>(?!</hr>)', '<hr/>'),
         ('<pre>', '<pre>{`'),
         ('</pre>', '`}</pre>'),
+        ('<br/>*', '<br/> *'),
+        (' {', ' \{'),
     ]
     for old, new in replace_tuples:
         txt = re.sub(old, new, txt, flags=re.IGNORECASE)
