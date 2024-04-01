@@ -126,6 +126,9 @@ Enables the analyst to take batch actions:
 |Incident Actions| The related incidents can be linked (occurs automatically by default in the playbook), unlinked, closed and reopened. The user can also self-assign incidents in batch ("Take Ownership" action).|
 
 ## Before You Start ##
+This pack is only available on Cortex XSOAR. 
+On Cortex XSIAM, the included playbook will be skipped.
+
 ### Required Content Packs
 - Phishing Campaign (this pack)
 - Phishing

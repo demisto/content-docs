@@ -113,7 +113,7 @@ Follow the instructions in this [guide](tut-setup-dev-remote.md).
 
 #### Let VSCode extension set up a local environment (Linux, MacOS, WSL2)
 
-Follow this [guide](./vscode-extension.md#local-development-linux-macos-wsl2) to set up a fully configured local environment.
+Follow this [guide](https://xsoar.pan.dev/docs/concepts/vscode-extension#local-development-linux-macos-wsl2) to set up a fully configured local environment.
 
 #### Manually set up a local environment (Linux, MacOS, WSL2)
 
@@ -167,7 +167,7 @@ And that's it! Again, if the installation fails, check out [this](https://github
 
 ##### Poetry
 
-Follow these instructions to install [poetry](https://python-poetry.org/docs/master/#installing-with-the-official-installer)
+Follow these instructions to install [poetry](https://python-poetry.org/docs/#installing-with-the-official-installer)
 
 ##### Node
 

@@ -29,15 +29,16 @@ Depending on the integration, this requires either admin consent to [get access 
 
 To start the authentication process, go to the integration's detailed instructions:
 
-1.  Navigate to __Settings > Integration > Servers & Services__.
-2.  Search for wanted Microsoft integration, e.g. `O365 Outlook Mail (Using Graph API)`.
-3.  Click __Add instance__.
-4.  Click the Link that appears in the Help section:.
+1. Navigate to __Settings > Integration > Servers & Services__.
+2. Search for wanted Microsoft integration, e.g. `O365 Outlook Mail (Using Graph API)`.
+3. Click __Add instance__.
+4. Click the **Link** that appears in the Help section:.
 
     <img width="800" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/instance_detailed_instructions_new.png" align="middle"></img>
 
-5.  In the XSOAR Web Page that appears, click the **Start Authorization Process** button to initiate the authorization flow.
- 
+5. In the XSOAR Web Page that appears, click the **Start Authorization Process** button to initiate the authorization flow. 
+   You will receive your ID, token, and key. You need to enter this information, when you configure the integration instance in Cortex XSOAR.
+
 
 
 ## Self Deployed Application

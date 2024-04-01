@@ -15,6 +15,7 @@ It utilizes the excellent [demisto-sdk](./demisto-sdk) python package.
 
 ## Prerequisites
 
+- Mac, Linux or WSL2 (on Windows)
 - Python 3.8 and up.
 - Docker (Follow the instructions [here](https://code.visualstudio.com/docs/remote/containers#_installation) to install **Docker** to your operating system.)
 - [VSCode](https://code.visualstudio.com/Download)
@@ -22,6 +23,7 @@ It utilizes the excellent [demisto-sdk](./demisto-sdk) python package.
 ## Install the Visual Studio Code extension
 
 Install the Visual Studio Code extension directly from the Visual Studio Code marketplace or use this [link](https://marketplace.visualstudio.com/items?itemName=CortexXSOARext.xsoar).
+If working on a Windows machine, click `ctrl + shift + P` and choose `Connect to WSL`.
 
 ## Configurations
 
