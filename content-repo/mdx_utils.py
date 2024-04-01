@@ -23,8 +23,10 @@ def fix_mdx(txt: str) -> str:
         ('<pre>', '<pre>{`'),
         ('</pre>', '`}</pre>'),
         ('<br/>*', '<br/> *'),
-        (' {', ' \\{'),
-        (" '{", " '\\{"),
+        (' {', ' \{'),  # noqa: W605
+        (" '{", " '\{"),  # noqa: W605
+        (';{', '; \{'),  # noqa: W605
+        ('${', '$\{'),  # noqa: W605
     ]
     for old, new in replace_tuples:
         txt = re.sub(old, new, txt, flags=re.IGNORECASE)
