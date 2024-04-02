@@ -194,7 +194,7 @@ We declare the inputs and outputs in the following format: 'input, output', [(ca
 
 After declaring the variables and assigning their values, you need to assign the variables to the test function. In the example above we assign the variables 'string' and 'output' to the test function.
 
-To read more on parametrize fixtures, visit: <https://docs.pytest.org/en/latest/how-to/parametrize.html>
+To read more on parametrize fixtures, visit: https://docs.pytest.org/en/latest/how-to/parametrize.html
 
 An example of a test using the paramertrize fixture is avialable [here](https://github.com/demisto/content/blob/master/Packs/CommonScripts/Scripts/ExtractDomainFromUrlFormat/ExtractDomainFromUrlFormat_test.py#L7).
 
