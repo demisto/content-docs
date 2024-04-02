@@ -37,7 +37,7 @@ jobs:
           command: |
             pyenv versions
             pyenv global 3.12.1
-            pip3 install pipenv==2021.5.29
+            pip3 install pipenv
             pipenv install
       - run:
           name: NPM Install
