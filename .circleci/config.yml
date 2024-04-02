@@ -37,7 +37,8 @@ jobs:
           command: |
             pyenv versions
             pyenv global 3.12
-            python3 -m pipx install poetry
+            apt install pipx
+            pipx install poetry
             poetry config virtualenvs.in-project true
             poetry env use 3.12.1
             poetry env list
