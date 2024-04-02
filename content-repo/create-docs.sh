@@ -152,18 +152,12 @@ sed -i -e '/from DemistoClassApiModule import */d' CommonServerPython.py
 # Removing the first lines from CommonServerPython.py which are a description of the script we don't need here
 echo "$(tail -n +6 CommonServerPython.py)" > CommonServerPython.py
 
-echo "Installing poetry..."
-poetry install
-echo "Activating poetry"
-source .venv/bin/activate
-poetry install --dry-run
+echo "Installing pipenv..."
+pipenv install
 echo "Generating docs..."
-python3 ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}" -b "${CURRENT_BRANCH}"
+pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}" -b "${CURRENT_BRANCH}"
 echo "Generating Demisto class and CommonServerPython docs..."
-python3 ./gen_pydocs.py -t "${TARGET_DIR}"
-cat -n /home/circleci/project/docs/reference/index.md
-cat -n /home/circleci/project/docs/reference/api/demisto-class.md
-cat -n /home/circleci/project/docs/reference/api/common-server-python.md
+pipenv run ./gen_pydocs.py -t "${TARGET_DIR}"
 if [[ "$CURRENT_BRANCH" != "master" && "$CURRENT_BRANCH" != *"gen-top-contrib"* ]]; then
     echo "Skipping top contributors page generation, should run only on master or branch containing 'gen-top-contrib'."
     exit 0
