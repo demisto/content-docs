@@ -6,7 +6,7 @@ version: 2.1
 jobs:
   build:
     machine:
-      image: ubuntu-2004:202101-01
+      image: ubuntu-2004:2024.01.2
       resource_class: xlarge
 
     parameters:
@@ -36,7 +36,7 @@ jobs:
           name: Setup Python
           command: |
             pyenv versions
-            pyenv global 3.9.1
+            pyenv global 3.12.1
             pip3 install pipenv==2021.5.29
             pipenv install
       - run:
