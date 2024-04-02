@@ -37,8 +37,10 @@ jobs:
           command: |
             pyenv versions
             pyenv global 3.12
-            pipx install poetry
-            poetry install
+            python3 -m pipx install poetry
+            poetry config virtualenvs.in-project true
+            poetry env use 3.12.1
+            poetry env list
       - run:
           name: NPM Install
           command: |

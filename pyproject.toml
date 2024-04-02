@@ -9,6 +9,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
+cython = "==0.29.37"
 pyyaml = "*"
 types-PyYAML = "*"
 inflection = "*"

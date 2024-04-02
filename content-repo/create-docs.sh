@@ -152,12 +152,15 @@ sed -i -e '/from DemistoClassApiModule import */d' CommonServerPython.py
 # Removing the first lines from CommonServerPython.py which are a description of the script we don't need here
 echo "$(tail -n +6 CommonServerPython.py)" > CommonServerPython.py
 
-echo "Installing pipenv..."
-pipenv install
+echo "Installing poetry..."
+poetry install
+echo "Activating poetry"
+source .venv/bin/activate
+poetry install --dry-run
 echo "Generating docs..."
-pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}" -b "${CURRENT_BRANCH}"
+python3 ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}" -b "${CURRENT_BRANCH}"
 echo "Generating Demisto class and CommonServerPython docs..."
-pipenv run ./gen_pydocs.py -t "${TARGET_DIR}"
+python3 ./gen_pydocs.py -t "${TARGET_DIR}"
 cat -n /home/circleci/project/docs/reference/index.md
 cat -n /home/circleci/project/docs/reference/api/demisto-class.md
 cat -n /home/circleci/project/docs/reference/api/common-server-python.md
