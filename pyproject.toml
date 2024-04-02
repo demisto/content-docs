@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "Cortex XSOAR Content Developer Docs"
+version = "0.1.0"
+description = "This repo holds Cortex XSOAR Content Developer Docs. The Content Developer Docs provide information on how to develop and contribute content to the Cortex XSOAR platform. The actual content is hosted at the following repo: https://github.com/demisto/content."
+authors = ["Cortex XSOAR"]
+license = "MIT"
+readme = "README.md"
+
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pyyaml = "*"
+types-PyYAML = "*"
+inflection = "*"
+beautifulsoup4 = "*"
+circleci = "==1.2.2"
+requests = "*"
+types-requests = "*"
+pydoc-markdown = "==3.10.0"
+python-dateutil = "*"
+types-python-dateutil = "*"
+slack_sdk = "*"
+packaging = "*"
+google-api-python-client = "*"
+google-cloud-storage = "*"
+
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "*"
+pytest = "*"
+autopep8 = "*"
+mypy = "*"
+pytest-mock = "*"
+requests-mock = "*"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
