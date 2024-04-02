@@ -5,15 +5,15 @@ title: Content Packs Structure
 
 For better separation between Content artifacts from different use cases and Partners we use a directory structure called Content Packs. Each Content Pack behaves like a mini content repo. It contains all relevant content items within its directory.
 
-For instance a pack for CortexXDR will look as can be seen in the Content Repository
+For example, the Cortex XDR pack can be seen in the content repository.
 [Packs/CortexXDR](https://github.com/demisto/content/tree/master/Packs/CortexXDR).
 
-To generate a new pack make sure to use: `demisto-sdk init --pack`. Detailed command instructions are available [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md).
+To generate a new pack, use: `demisto-sdk init --pack`. Read more information about the `demisto-sdk init` command in the [Demisto SDK Guide](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/init).
 
 
 ## Directories  
 
-All the directories within the pack are the representation of all the possible entities possible in Content. And the pack will be located in the Content repo under `Packs/<Pack Name>`
+The directories within the pack represent all the possible content entities. Each pack is located in the Content repo under `Packs/<Pack Name>`
 ```
 - Integrations        
 - Scripts
@@ -34,8 +34,8 @@ All the directories within the pack are the representation of all the possible e
 
 The pack directory contains numerous configuration files used for metadata and documentation.
 
-Please note that all of the following files will be created using the `demisto-sdk init --pack`, and some of them
-will have to be filled by you. An explanation for each of them will be provided below.
+All of the following files are created using the `demisto-sdk init --pack`, and some of them
+need to be manually populated. 
 
 ### `pack_metadata.json`
 
@@ -45,18 +45,18 @@ The following fields are populated in the pack metadata:
 
 | Field Name | Field Type | Field Description |
 | ---- | ---- |  ---- |
-| `name` | `String` | The pack name. Usually it's the name of the integration the pack contains (e.g. CortexXDR) or the use-case implemented in it. |
+| `name` | `String` | The pack name. Usually it's the name of the integration the pack contains (for example, Cortex XDR) or the use case implemented in it. |
 | `description` | `String` | A short overview of the pack. |
 | `support` | `String` | Should be one of the following:<br />1.  `xsoar` - Supported by Cortex XSOAR.<br />2.  `partner` - Supported by a Cortex XSOAR partner.<br />3.  `developer` - Supported by an independent developer/organization.<br />4.  `community` - Not officially supported, but available for the community to use.<br /> For `partner` and `developer`, either email address or URL fields must be filled out.  |
 | `currentVersion` | `String` | The pack version, in the format of `x.x.x`. On the initial release this should be set to "1.0.0". See [here](#content-packs-versioning).|
 | `author` | `String` | The name of the organization (for partners) or developer (for individual contributions) which developed the integration. |
 | `url` | `String` | The URL to which users should refer to in case of support needed regarding the pack. Usually is the organization support URL or the developer GitHub repository. If left empty the default support site presented to users will be the [Live Community](https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions) site.|
 | `videos` | `String` | The Youtube video link of the pack.|
-| `email` | `String` | The email address to which users should reach out to in case of support needed regarding the pack. |
-| `categories` | `List` | The use-case categories which are implemented in the pack. Usually set by the integration, which included in the pack category. The list of approved categories can be found [here](https://github.com/demisto/content/blob/master/Tests/Marketplace/approved_categories.json).|
+| `email` | `String` | The email address to which users should reach out to for support regarding the pack. |
+| `categories` | `List` | The use case categories which are implemented in the pack, usually set by the integration. The list of approved categories can be found [here](https://github.com/demisto/content/blob/master/Tests/Marketplace/approved_categories.json).|
 | `tags` | `List` | Tags to be attached to the pack on Cortex XSOAR marketplace. The list of approved tags can be found [here](https://github.com/demisto/content/blob/master/Tests/Marketplace/approved_tags.json). |
 | `created` | `String` | Pack creation time in ISO 8601 format - YYYY-MM-DDTHH:mm:ssZ, e.g. 2020-01-25T10:00:00Z |
-| `useCases` | `List` | Use-cases implemented by the pack. The list of approved use cases can be found [here](https://github.com/demisto/content/blob/master/Tests/Marketplace/approved_usecases.json). |
+| `useCases` | `List` | Use cases implemented by the pack. The list of approved use cases can be found [here](https://github.com/demisto/content/blob/master/Tests/Marketplace/approved_usecases.json). |
 | `keywords` | `List` | List of strings by which the pack can be found in Cortex XSOAR marketplace. |
 | `marketplaces`    | `List` | List of marketplaces in which the pack can be found (XSOAR XSIAM). |
 | `hidden` | `Boolean` | (Optional) Whether to hide the pack from Marketplace. Updates to this pack will not be published to Marketplace and the pack cannot be installed. |
