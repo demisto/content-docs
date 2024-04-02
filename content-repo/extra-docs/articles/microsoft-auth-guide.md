@@ -160,7 +160,7 @@ After you a redirected to the next page, in the **Overview** tab you will find y
    1. Select Azure Active Directory> App registrations> New registration.
 
       ![app](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/app-reg.png)
-   2. In the **Redirect URI (optional)** field select **Web** and type a name (you can enter an arbitrary name). In this example we use `https<nolink\>://xsoar`. 
+   2. In the **Redirect URI (optional)** field select **Web** and type a name (you can enter an arbitrary name). In this example we use *https&lt;nolink&gt;://xsoar.* 
 
        ![reg-app](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/reg-app.png)
    3. Click **Register**.
@@ -194,7 +194,7 @@ After you a redirected to the next page, in the **Overview** tab you will find y
     
        Replace `tenant_id` and `client-id` with the tenant ID that was generated in step 1.iv.  
 
-       The URI is the `https<nolink\>://xsoar`.
+       The URI is the https&lt;nolink&gt;://xsoar.
 
        This prompts the admin user to sign in and grant the app the appropriate permissions: 
     

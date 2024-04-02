@@ -18,7 +18,7 @@ The **Email Threads** layout adds email functionality to any incident type where
 ## Pack Workflow
 1. When an email is sent to the email address configured in your email integration, your email listener fetches the incoming email into Cortex XSOAR. 
 
-2. If the email is in response to an existing incident, an 8-digit number will appear next to the subject of the email, for example `<93075875>` Incident1. The pre-process script searches for incidents that have this 8-digit code in either the *emailgeneratedcode* or *emailgeneratedcodes* fields.
+2. If the email is in response to an existing incident, an 8-digit number will appear next to the subject of the email, for example &lt;93075875&gt; Incident1. The pre-process script searches for incidents that have this 8-digit code in either the *emailgeneratedcode* or *emailgeneratedcodes* fields.
 
 3. If there is no 8-digit number in the subject of the email or if the pre-process rule is unable to locate the 8-digit number, a new **Email Communication** incident is created and a random 8-digit number is generated for the incident. 
 

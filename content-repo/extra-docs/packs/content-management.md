@@ -601,7 +601,7 @@ Create a yml file for the CI/CD process. The [Example File](https://raw.githubus
 ​
 1. Prepare the environment and the virtual environment on which to run the demisto-sdk. 
 2. Create an ID set for the private repository using the [demisto-sdk create-id-set](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/create_id_set) command.
-3. Merge the ID set with the Content repository's ID set using the following command: ***demisto-sdk merge-id-sets -i1 `<path_to_private_repo_id__set>` -i2 `<path_to_content_repo_id_set>` -o `<path_to_output>`***.
+3. Merge the ID set with the Content repository's ID set using the following command: ***demisto-sdk merge-id-sets -i1 &lt;path_to_private_repo_id__set&gt; -i2 &lt;path_to_content_repo_id_set&gt; -o &lt;path_to_output&gt;***.
 4. Validate the packs' files using the [demisto-sdk validate](https://xsoar.pan.dev/docs/concepts/demisto-sdk#validate) command.
 5. Run unit tests and linters on the packs using the [demisto-sdk lint](https://xsoar.pan.dev/docs/concepts/demisto-sdk#lint) command.
 6. Create uploadable pack zips using the [demisto-sdk zip-packs](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/zip_packs) command.
