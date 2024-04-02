@@ -36,7 +36,7 @@ jobs:
           name: Setup Python
           command: |
             pyenv versions
-            pyenv global 3.12.2
+            pyenv global 3.12
             pipx install poetry
             poetry install
       - run:
