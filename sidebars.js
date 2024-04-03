@@ -270,4 +270,5 @@ if (fs.existsSync("/docs/reference/articles-sidebar.json")) {
   articlesSideBar = fs.readJSONSync("/docs/reference/articles-sidebar.json")
   sidebars["articles"] = articlesSideBar
 }
+
 module.exports = sidebars;

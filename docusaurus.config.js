@@ -192,7 +192,7 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
+          sidebarPath: "./sidebars.js",
           editUrl: "https://github.com/demisto/content-docs/tree/master",
           routeBasePath: "docs",
           include: ["**/*.md", "**/*.mdx"], // Extensions to include.
@@ -204,11 +204,14 @@ module.exports = {
           showLastUpdateTime: true
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css")
+          customCss: ["./src/css/custom.css"]
         },
         sitemap: {
           changefreq: "weekly",
           priority: 0.5
+        },
+        googleTagManager: {
+          containerId: 'GTM-KWZSPLM',
         },
       },
     ],
@@ -222,14 +225,6 @@ module.exports = {
       type: "text/css",
       rel: "stylesheet"
     },
-  ],
-  plugins: [
-    [
-      require.resolve("./docusaurus-plugin-gtm/index.js"),
-      {
-        gtm: "GTM-KWZSPLM", //GTM-XXXXXX
-      },
-    ]
   ],
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
