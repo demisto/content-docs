@@ -93,7 +93,8 @@ jobs:
 
   deploy:
     docker:
-      - image: cimg/python:3.12.2
+#      - image: cimg/python:3.12.2
+       - image: circleci/python:3.9.1-buster-node
     resource_class: small
     parameters:
       post_comment:
