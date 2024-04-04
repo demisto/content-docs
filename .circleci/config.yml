@@ -39,6 +39,9 @@ jobs:
       - run:
           name: Setup Python
           command: |
+#            sudo apt update
+#            sudo apt install python3
+            python3 --version
             pyenv versions
             pyenv global 3.10.1
             pip3 install pipenv==2021.5.29
