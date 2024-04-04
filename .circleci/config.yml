@@ -6,7 +6,7 @@ version: 2.1
 jobs:
   build:
     machine:
-      image: ubuntu-2004:2024.01.2
+      image: default
       resource_class: xlarge
 
     parameters:
@@ -93,7 +93,6 @@ jobs:
 
   deploy:
     docker:
-#      - image: cimg/python:3.12.2
        - image: circleci/python:3.9.1-buster-node
     resource_class: small
     parameters:
