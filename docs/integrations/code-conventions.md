@@ -534,7 +534,7 @@ def get_ip(ip):
 ```
 **Note:** These logging methods replace the deprecated ```LOG()``` function.
 
-## Do No Print Sensitive Data to The Log
+## Do Not Print Sensitive Data to the Log
 This section is critical. When an integration is ready to be used as part of a public release (meaning you are done debugging it), we **ALWAYS** remove print statements that are not absolutely necessary.
 
 
