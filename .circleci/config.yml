@@ -41,7 +41,7 @@ jobs:
           command: |
             pyenv install 3.9.1
             pyenv versions
-            pyenv global 3.10.1
+            pyenv global 3.9.1
             pip3 install pipenv==2021.5.29
             pipenv install
       - run:
