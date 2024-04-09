@@ -6,7 +6,7 @@ version: 2.1
 jobs:
   build:
     machine:
-      image: ubuntu-2004:202101-01
+      image: default
       resource_class: xlarge
 
     parameters:
@@ -31,10 +31,11 @@ jobs:
           command: |
             echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
             source $BASH_ENV
-            nvm install `cat .nvmrc`              
+            nvm install `cat .nvmrc`
       - run:
           name: Setup Python
           command: |
+            pyenv install 3.9.1
             pyenv versions
             pyenv global 3.9.1
             pip3 install pipenv==2021.5.29
