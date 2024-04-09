@@ -2,7 +2,115 @@
 id: demisto-sdk-validate
 title: Demisto-SDK Validate checks
 ---
-## `BA`: Basic
+
+This file contains information about our new validate flow. For more information about the old validate flow, refer to [old_validate_readme](demisto_sdk/commands/validate/old_validate_readme.md).
+
+## Validate
+
+Makes sure your content repository files are in order and have a valid file scheme.
+
+**Use Cases**
+This command is used to make sure that the content repo files are valid and are able to be processed by the platform.
+This is used in our validation process both locally and in gitlab.
+
+**Arguments**:
+* **-g, --use-git**
+Validate changes using git - this will check the current branch's changes against origin/master.
+If the **--post-commit** flag is supplied: validation will run only on the current branch's changed files that have been committed.
+If the **--post-commit** flag is not supplied: validation will run on all changed files in the current branch, both committed and not committed.
+* **-a, --validate-all**
+Whether to run all validation on all files or not.
+* **-i, --input**
+The path of the content pack/file to validate specifically.
+* **-pc, --post-commit**
+Whether the validation should run only on the current branch's committed changed files. This applies only when the **-g** flag is supplied.
+* **-st, --staged**
+Whether the validation should run only on the current branch's staged files. This applies only when the **-g** flag is supplied.
+* **--prev-ver**
+Previous branch or SHA1 commit to run checks against.
+* **--no-multiprocessing**
+Run validate all without multiprocessing, for debugging purposes.
+* **-j, --json-file**
+The JSON file path to which to output the command results.
+* **--category-to-run**
+Run specific validations by stating the category they're listed under in the config file.
+* **-f, --fix**
+Whether to autofix failing validations with an available auto fix or not.
+* **--config-path**
+Path for a config file to run. If not given - will run the default path at: [demisto_sdk/commands/validate/default_config.toml](default_config.toml)
+* **--ignore-support-level**
+Whether to skip validations based on their support level or not.
+* **--run-old-validate**
+Whether to run the old validate flow or not. Alternatively, you can configure the RUN_OLD_VALIDATE env variable.
+* **--skip-new-validate**
+Whether to skip the new validate flow or not. Alternatively, you can configure the SKIP_NEW_VALIDATE env variable.
+
+**Examples**:
+
+`demisto-sdk validate --prev-ver SHA1-HASH`
+This will validate only changed files from the branch given (SHA1).
+
+`demisto-sdk validate --post-commit`
+This indicates that the command runs post commit.
+
+`demisto-sdk validate -i Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.yml`
+This will validate the file Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.yml only.
+
+`demisto-sdk validate -a`
+This will validate all files under the `Packs` directory.
+
+`demisto-sdk validate -i Packs/HelloWorld`
+This will validate all files under the content pack `HelloWorld`.
+
+`demisto-sdk validate --run-old-validate --skip-new-validate -a`
+This will validate all files in the repo using the old validate method.
+
+`demisto-sdk validate --config-path {config_file_path} -a`
+This will validate all files in the repo using the settings configured in the config file in the given path.
+
+### Error Codes and Ignoring Them
+Each error found by validate has an error code attached to it. The code can be found in brackets preceding the error itself.  
+For example: `path/to/file: [IN103] - The type field of the proxy parameter should be 8`
+In addition, each pack has a `.pack-ignore` file. In order to ignore a certain validation for a given file, the error-code needs to be listed in the **ignorable_errors** section in the config-file (see the [Config file section](#config-file)), and the user needs to mention the file name (only the name and extension, without the whole path), and the error code to ignore.
+For example: This .pack-ignore will not fail ipinfo_v2.yml on the validations with the codes BA108 & BA109.
+[file:ipinfo_v2.yml]
+ignore=BA108,BA109
+
+### Config file
+You can define a config file to suit your business needs. If no file is defined, the  [default config file](default_config.toml) will be used.
+The default configuration covers basic validations, which prevents unsuccessful uploads of the validated content to Cortex XSOAR.
+#### How to define a configuration file
+You can define the following sections:
+**ignorable_errors** - a list of the error codes that can be ignored for individual content items in the .pack-ignore file.
+**path_based_validations** - the configurations to run when running with -a / -i flags.
+**use_git** - the configurations to run when running with -g flag.
+You can also define custom sections - which can be configured to run with the **category-to-run** flag.
+Two example custom categories are given with the default config file:
+**xsoar_best_practices_use_git** - our recommended set of validations to run when running with -g, may be modified from time to time.
+**xsoar_best_practices_path_based_validations** - our recommended set of validations to run when running with -a / -i, may be modified from time to time.
+Each section will have the following options:
+**select** - The validations to run.
+**warning** - Validations for which to only throw warnings (will not fail the flow).
+The config file can also configure which validations to ignore based on the content item support level using the section header support_level.&lt;support_type&gt; where support_type is one of  xsoar, partner, or community.
+If the user wishes to ignore this feature in some of the calls, he can use the **--ignore-support-level** flag.
+
+**Examples**:
+```
+[custom_category]
+select = ["BA101"]
+```
+Validate will run only BA101 validation.
+
+```
+[custom_category]
+select = ["BA100", "BA101", "BA102"]
+[support_level.community]
+ignore = ["BA102"]
+```
+Validate will run all the validations with error codes "BA100", "BA101", "BA102" except for BA102 in case of community supported files.
+
+
+b"## `BA`: Basic
 | Code   | Description                                                                                                       | Rationale                                                                                                                                                                                                                    | Autofixable   |
 |--------|-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | BA100  | Marketplace content set to -1 makes it easier to tell from modified, versioned content.                           | The version for system content items should always be -1 as per the standard.                                                                                                                                                | Yes           |
@@ -11,6 +119,7 @@ title: Demisto-SDK Validate checks
 | BA106  | Validate that the item's fromversion field is sufficient.                                                         | This field makes sure content can use the latest and greatest features of the platform. The minimal value is the third-last platform release version.                                                                        | Yes           |
 | BA110  | Check that the entity name or display name does not contain the entity type.                                      | Improves clarity and simplicity in the content repository                                                                                                                                                                    |               |
 | BA111  | Checks whether the name of a content item contains an excluded word.                                              | Increases clarity by keeping content names simple                                                                                                                                                                            |               |
+| BA113  | Checks for content item names with trailing spaces.                                                               | Ensures accurate referencing.                                                                                                                                                                                                | Yes           |
 | BA114  | Validate that we didn't move a content item from one pack to another.                                             | Pack of a content item should not be changed.                                                                                                                                                                                |               |
 | BA116  | validate that the CLI name and the id match for incident and indicators field                                     | Consistency between the CLI name (used by the platform) and the id.                                                                                                                                                          | Yes           |
 | BA118  | Validate that the item's toversion is greater/equal then its fromversion.                                         | Content with a from_version greater than to_version will not show in the platform.                                                                                                                                           | Yes           |
@@ -18,12 +127,15 @@ title: Demisto-SDK Validate checks
 | BA124  | Validate that the script / integration has a unit test file.                                                      | Unit tests make sure that the behaviors in code are consistent between versions.                                                                                                                                             |               |
 | BA126  | Checks if script/integration is deprecated correctly                                                              | Deprecated scripts/integrations need clear descriptions for user guidance. For deprecation process, see: https://xsoar.pan.dev/docs/reference/articles/deprecation-process-and-hidden-packs#how-to-deprecate-and-hide-a-pack |               |
 ## `BC`: Backward Compatability
-| Code   | Description                                                                                                             | Rationale                                                                                                                                                        | Autofixable   |
-|--------|-------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| BC100  | Validate that the pack name subtype of the new file matches the old one.                                                | Changing 'subtype' can break backward compatibility. For 'subtype' info, see: https://xsoar.pan.dev/docs/integrations/yaml-file#script                           | Yes           |
-| BC101  | Validate that no context output keys were removed from the script's output section.                                     | To ensure we don't break bc.                                                                                                                                     |               |
-| BC105  | Validate that the ID of the content item was not changed.                                                               | Changing the ID of an item will cause it to show as a new item in the platform, and not update properly for users who already have a previous version installed. | Yes           |
-| BC108  | Ensuring that the 'marketplaces' property hasn't been removed or added in a manner that effectively removes all others. | Removing `marketplaces` or adding a new one that effectively removes all others can cause issues with the content item's visibility and availability.            |               |
+| Code   | Description                                                                                                             | Rationale                                                                                                                                                                        | Autofixable   |
+|--------|-------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| BC100  | Validate that the pack name subtype of the new file matches the old one.                                                | Changing 'subtype' can break backward compatibility. For 'subtype' info, see: https://xsoar.pan.dev/docs/integrations/yaml-file#script                                           | Yes           |
+| BC101  | Validate that no context output keys were removed from the script's output section.                                     | To ensure we don't break bc.                                                                                                                                                     |               |
+| BC102  | Validate that the context path has been changed.                                                                        | Changing the paths may break dependent content items, which rely on the existing paths.                                                                                          |               |
+| BC105  | Validate that the ID of the content item was not changed.                                                               | Changing the ID of an item will cause it to show as a new item in the platform, and not update properly for users who already have a previous version installed.                 | Yes           |
+| BC106  | Check that the fromversion property was not changed on existing Content files.                                          | Changing the `fromversion` for a content item can break backward compatibility. For 'fromversion' info, see: https://xsoar.pan.dev/docs/integrations/yaml-file#version-and-tests |               |
+| BC107  | Check that the toversion property was not changed on existing Content files.                                            | Changing the `toversion` field for a content item can break backward compatibility.                                                                                              |               |
+| BC108  | Ensuring that the 'marketplaces' property hasn't been removed or added in a manner that effectively removes all others. | Removing `marketplaces` or adding a new one that effectively removes all others can cause issues with the content item's visibility and availability.                            |               |
 ## `CL`: Classifier
 | Code   | Description                                                   | Rationale                                                                                 | Autofixable   |
 |--------|---------------------------------------------------------------|-------------------------------------------------------------------------------------------|---------------|
@@ -39,10 +151,11 @@ title: Demisto-SDK Validate checks
 | DO105  | Validate that the given content item uses a docker image that is not deprecated        | It is best practice to use images that are maintained by the platform.                                                                                                                                                        |               |
 | DO106  | Validate that the given content-item's docker image isnt outdated'                     | Updated docker images ensure the code dont use outdated dependencies, including bugfixes and fixed vulnerabilities.                                                                                                           | Yes           |
 ## `GF`: Generic Field
-| Code   | Description                              | Rationale                 | Autofixable   |
-|--------|------------------------------------------|---------------------------|---------------|
-| GF100  | Checks if group field is set to 4.       | Required by the platform. | Yes           |
-| GF101  | Checks if the id starts with `generic_`. | Required by the platform. |               |
+| Code   | Description                                   | Rationale                                                                                                                                                                                                                                       | Autofixable   |
+|--------|-----------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| GF100  | Checks if group field is set to 4.            | Required by the platform.                                                                                                                                                                                                                       | Yes           |
+| GF101  | Checks if the id starts with `generic_`.      | Required by the platform.                                                                                                                                                                                                                       |               |
+| GF102  | Checks if the unsearchable key is set to true | Marking many items searchable causes index and search loads on the platform. Official demisto/content GenericField files must be set to Unsearchable. In custom content, it's recommended to keep the number of searchable fields to a minimum. |               |
 ## `IF`: Incident Field
 | Code   | Description                                                                | Rationale                                                             | Autofixable   |
 |--------|----------------------------------------------------------------------------|-----------------------------------------------------------------------|---------------|
@@ -54,11 +167,12 @@ title: Demisto-SDK Validate checks
 | IF105  | Checks if cliName field is alphanumeric and lowercase.                     | Required by the platform                                              |               |
 | IF106  | Checks if `cliName` field is not a reserved word.                          | The cliName values of the incident field are limited by the platform. |               |
 ## `IM`: Author Image
-| Code   | Description                                    | Rationale                                                                                                                                   | Autofixable   |
-|--------|------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| IM100  | Checks if the integration has an image path.   | Images make it easier to find integrations                                                                                                  |               |
-| IM108  | Checks that the author image file is not empty | If an author image is provided, it must be a valid image. For more info, see: https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng |               |
-| IM109  | Checks if the pack has an author image path.   | Author images make it easier to identify the author.                                                                                        |               |
+| Code   | Description                                                         | Rationale                                                                                                                                   | Autofixable   |
+|--------|---------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| IM100  | Checks if the integration has an image path.                        | Images make it easier to find integrations                                                                                                  |               |
+| IM106  | Checks if the integration has an image other than the default ones. | If an image is provided, it must not be the default ones.                                                                                   |               |
+| IM108  | Checks that the author image file is not empty                      | If an author image is provided, it must be a valid image. For more info, see: https://xsoar.pan.dev/docs/packs/packs-format#author_imagepng |               |
+| IM109  | Checks if the pack has an author image path.                        | Author images make it easier to identify the author.                                                                                        |               |
 ## `IN`: Integration
 | Code   | Description                                                                                                                      | Rationale                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Autofixable   |
 |--------|----------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
@@ -129,19 +243,22 @@ title: Demisto-SDK Validate checks
 | PA123  | Validate that the pack has at least one of PB, incidents Types or Layouts if the tags section contains the 'Use Case' tag. | Correct categorization helps users find packs that suit their needs.                                                                                                                                                                                  | Yes           |
 | PA125  | Validate that the pack name is valid.                                                                                      | Pack names should follow conventions for consistency and readability in the marketplace.                                                                                                                                                              |               |
 | PA127  | Validate that the pack metadata contains a valid URL field.                                                                | URLs help users access support or report issues for the pack directly. For more info, see: https://xsoar.pan.dev/docs/packs/packs-format#pack_metadatajson                                                                                            | Yes           |
-| PA128  | Checks for required pack files                                                                                             | These files are standard in the demisto/content repo.                                                                                                                                                                                                 | Yes           |
+| PA128  | Checks for required pack files                                                                                             | These files are standard in the demisto/content repo                                                                                                                                                                                                  | Yes           |
 | PA130  | Validate that the pack_metadata version field is in valid format.                                                          | Content versions use semantic versioning to make it easy to tell how significant changes are between two versions.                                                                                                                                    |               |
 ## `PB`: Playbook
-| Code   | Description                                                                          | Rationale                                                                                      | Autofixable   |
-|--------|--------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|---------------|
-| PB118  | Validate that all inputs described in the playbooks input section are used in tasks. | For more info, see: https://xsoar.pan.dev/docs/playbooks/playbooks-overview#inputs-and-outputs |               |
+| Code   | Description                                                                                   | Rationale                                                                                      | Autofixable   |
+|--------|-----------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|---------------|
+| PB100  | Validate whether the playbook has a rolename. If the Playbook has a rolename it is not valid. | We shouldn't ship playbooks with a role set as this is customisable by the customer.           |               |
+| PB104  | Validate whether a deprecated playbook has a valid description.                               | Description of deprecated content should be consistent.                                        |               |
+| PB118  | Validate that all inputs described in the playbooks input section are used in tasks.          | For more info, see: https://xsoar.pan.dev/docs/playbooks/playbooks-overview#inputs-and-outputs |               |
 ## `RM`: Readme
-| Code   | Description                                                                               | Rationale                                                                        | Autofixable   |
-|--------|-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|---------------|
-| RM104  | Validate that the pack contains a full README.md file with pack information.              | Meaningful, complete documentations make it easier for users to use the content. |               |
-| RM105  | Checks if the README.md file is not same as the pack description.                         | An informative README helps users know more about the product and its uses.      |               |
-| RM113  | Validate that non of the readme lines contains the disallowed copyright section keywords. | Content in the Cortex marketplace is licensed under the MIT license.             |               |
-| RM114  | Validate README images used in README exist.                                              | Missing images are not shown in rendered markdown                                |               |
+| Code   | Description                                                                               | Rationale                                                                                          | Autofixable   |
+|--------|-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|---------------|
+| RM104  | Validate that the pack contains a full README.md file with pack information.              | Meaningful, complete documentations make it easier for users to use the content.                   |               |
+| RM105  | Checks if the README.md file is not same as the pack description.                         | An informative README helps users know more about the product and its uses.                        |               |
+| RM109  | Validates if there is a readme file for the content item.                                 | Ensure that the content item contains additional information about use-cases, inputs, and outputs. |               |
+| RM113  | Validate that non of the readme lines contains the disallowed copyright section keywords. | Content in the Cortex marketplace is licensed under the MIT license.                               |               |
+| RM114  | Validate README images used in README exist.                                              | Missing images are not shown in rendered markdown                                                  |               |
 ## `RP`: Reputation (Incident Type)
 | Code   | Description                                                            | Rationale                                | Autofixable   |
 |--------|------------------------------------------------------------------------|------------------------------------------|---------------|
@@ -152,4 +269,4 @@ title: Demisto-SDK Validate checks
 | SC100  | Checks if script name is versioned correctly, e.g.: ends with V&lt;number&gt;.      | This standardization ensures consistency across content items.                                                                                                                                                                                                                                                                                                                                                                          | Yes           |
 | SC105  | Checks that script arguments do not container the word incident in core packs | Server has a feature where the word 'incident' in the system can be replaced by any other keyword of the user's choice. To ensure compatibility with this feature, we should make sure that command names, command arguments, and script arguments in core pack integrations and scripts do not use the word 'incident'. This helps maintain the flexibility of the system and prevents potential issues caused by keyword replacement. |               |
 | SC106  | Checks that the script runas is not equal to DBotRole                         | For security reasons, the `runas` field should not be set to DBotRole.                                                                                                                                                                                                                                                                                                                                                                  |               |
-| SC109  | Validate that there are no scripts with the same type and the same name.      | Duplicate names cause confusion and unpredictable behaviors.                                                                                                                                                                                                                                                                                                                                                                            |               |
+| SC109  | Validate that there are no scripts with the same type and the same name.      | Duplicate names cause confusion and unpredictable behaviors.                                                                                                                                                                                                                                                                                                                                                                            |               |"
