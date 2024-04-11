@@ -58,7 +58,7 @@ The following fields are populated in the pack metadata:
 | `created` | `String` | Pack creation time in ISO 8601 format - YYYY-MM-DDTHH:mm:ssZ, e.g. 2020-01-25T10:00:00Z |
 | `useCases` | `List` | Use cases implemented by the pack. The list of approved use cases can be found [here](https://github.com/demisto/content/blob/master/Tests/Marketplace/approved_usecases.json). |
 | `keywords` | `List` | List of strings by which the pack can be found in Cortex XSOAR marketplace. |
-| `marketplaces`    | `List` | List of marketplaces in which the pack can be found. Possible values are `xsoar` (XSOAR) and `marketplacev2` (XSIAM). |
+| `marketplaces`    | `List` | List of marketplaces in which the pack can be found. Possible values are `xsoar` (XSOAR 6 and XSOAR 8), `xsoar_on_prem` (XSOAR 6), `xsoar_saas` (XSOAR 8), `marketplacev2` (XSIAM) and `xpanse` (XPANSE). |
 | `hidden` | `Boolean` | (Optional) Whether to hide the pack from Marketplace. Updates to this pack will not be published to Marketplace and the pack cannot be installed. |
 | `dependencies` | `Dictionary` | (Optional) An object that describes the content packs that the pack is dependant on. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | `displayedImages` | `List` | (Optional) Images to be displayed in Cortex XSOAR Marketplace. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |

@@ -91,8 +91,8 @@ An explanation of these fields is as follows:
 
 Integration parameters may be hidden from the XSOAR UI, using the optional `hidden` field.
 
-- To hide the parameter in all marketplaces (XSOAR, XSIAM), use a boolean `true`.
-- To hide the parameter in specific content marketplace versions, provide list of marketplace version names (e.g. `xsoar` or `marketplacev2` for XSIAM)
+- To hide the parameter in all marketplaces (XSOAR, XSOAR_SAAS, XSOAR_ON_PREM, XSIAM), use a boolean `true`.
+- To hide the parameter in specific content marketplace versions, provide list of marketplace version names (e.g. `xsoar` (XSOAR 6 and XSOAR 8), `xsoar_on_prem` (XSOAR 6), `xsoar_saas` (XSOAR 8), `marketplacev2` (XSIAM) or `xpanse` (XPANSE))
 
 ## Script
 
