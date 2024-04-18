@@ -111,6 +111,6 @@ Access: `demisto.params().get('sort')`
 
 Once a parameter is set in an integration configuration, it is saved to the Cortex XSOAR database, so before changing an existing
 parameter, you have to consider the existing values (backward compatibility).
-
+For example, when adding a parameter with a default value to an existing integration, make sure you add the default value in the code as well as in the yml (As it wont be added to existing instances).
 
 
