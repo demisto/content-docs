@@ -1,3 +1,7 @@
+
+
+
+
 ---
 title: AWS Integrations - Authentication
 description: Overview of authentication methods for AWS Integrations in Cortex XSOAR. 
