@@ -118,23 +118,23 @@ def test_findfiles():
 @pytest.mark.parametrize(
     'integration_yml_path_and_expected_content_info', [
         (
-                'deprecated-integration',
-                {
-                    'deprecated': True,
-                    'description': 'Deprecated. Use the Generic Export Indicators Service integration instead. '
-                                   'Use the Export Indicators Service integration to provide an endpoint '
-                                   'with a list of indicators as a service for the system indicators.',
-                    'fromversion': '6.0.0'
-                },
-                ':::caution Deprecated\nUse the Generic Export Indicators Service integration instead.\n:::\n\n'
+            'deprecated-integration',
+            {
+                'deprecated': True,
+                'description': 'Deprecated. Use the Generic Export Indicators Service integration instead. '
+                'Use the Export Indicators Service integration to provide an endpoint '
+                'with a list of indicators as a service for the system indicators.',
+                'fromversion': '6.0.0'
+            },
+            ':::caution Deprecated\nUse the Generic Export Indicators Service integration instead.\n:::\n\n'
         ),
         (
-                '6-0-0-integration',
-                {
-                    'fromversion': '6.0.0',
-                    'description': 'Manage Alibaba Cloud Elastic Compute Instances'
-                },
-                ':::info Supported versions\nSupported Cortex XSOAR versions: 6.0.0 and later.\n:::\n\n'
+            '6-0-0-integration',
+            {
+                'fromversion': '6.0.0',
+                'description': 'Manage Alibaba Cloud Elastic Compute Instances'
+            },
+            ':::info Supported versions\nSupported Cortex XSOAR versions: 6.0.0 and later.\n:::\n\n'
         )
     ],
     indirect=True
@@ -286,6 +286,7 @@ def test_process_extra_doc(tmp_path, mdx_server):
         assert f.readline().startswith(f'title: "{res.name}"')
         assert f.readline().startswith(
             'custom_edit_url: https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/integrations')
+
 
 def test_get_deprecated_data():
 

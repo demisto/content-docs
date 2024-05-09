@@ -428,15 +428,15 @@ def test_get_contribution_users():
     """
 
     user_info = [{
-            "login": "powershelly",
-            "id": 87646651,
-            "node_id": "MDQ6VXNlcjg3NjQ2NjUx",
-            "avatar_url": "https://avatars.githubusercontent.com/u/testurl",
-            "url": "https://api.github.com/users/powershelly",
-            "html_url": "https://github.com/powershelly",
-            "received_events_url": "https://api.github.com/users/powershelly/received_events",
-            "type": "User",
-            "site_admin": False
+        "login": "powershelly",
+        "id": 87646651,
+        "node_id": "MDQ6VXNlcjg3NjQ2NjUx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/testurl",
+        "url": "https://api.github.com/users/powershelly",
+        "html_url": "https://github.com/powershelly",
+        "received_events_url": "https://api.github.com/users/powershelly/received_events",
+        "type": "User",
+        "site_admin": False
     }]
     res = get_contributors_users(user_info, last_update='')
     assert {'powershelly': {
