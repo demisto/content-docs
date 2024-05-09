@@ -69,7 +69,6 @@ Contributing from Marketplace has several limitations:
 * The built-in editor has limitations, and does not support some of the features that can be found in a full-fledged IDE.
 * Documentation files (README, integration's description, etc.) cannot be created or edited.
 * Unit tests cannot be created or edited.
-* Private content packs cannot be contributed this way.
 
 Because of these limitations, we do not recommend using this method for large contributions, especially for XSOAR-supported packs. 
 :::
