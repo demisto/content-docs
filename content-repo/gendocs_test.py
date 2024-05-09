@@ -288,6 +288,7 @@ def test_process_extra_doc(tmp_path, mdx_server):
             'custom_edit_url: https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/integrations')
 
 def test_get_deprecated_data():
+
     res = get_deprecated_data({"deprecated": True}, "Deprecated - We recommend using ServiceNow v2 instead.",
                               "README.md")
     assert "We recommend using ServiceNow v2 instead." in res
