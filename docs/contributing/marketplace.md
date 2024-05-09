@@ -12,7 +12,7 @@ This article walks you through the process of contributing content from the Cort
 1. Contribute your content pack from Cortex XSOAR. For more information, see [Contribute a Content Pack](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.11/Cortex-XSOAR-Administrator-Guide/Content-Pack-Contributions).
 
 :::info
-If you want to contribute content to an existing pack, you will need to duplicate the content item in the XSOAR UI. Make sure to leave the suffix `_copy` for the newly-duplicated item.
+If you want to contribute content to an existing pack, you need to duplicate the content item in the Cortex XSOAR UI. Make sure to leave the suffix `_copy` for the newly-duplicated item.
 :::
 
 2. After you contribute the content pack a message displays explaining that your contribution is ready for review, and includes a link to a form you need to fill in to complete your contribution. You will receive an email with a link to the form.
