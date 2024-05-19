@@ -67,9 +67,6 @@ PLAYBOOKS_DOCS_MATCH = [
 INTEGRATIONS_PREFIX = 'integrations'
 SCRIPTS_PREFIX = 'scripts'
 PLAYBOOKS_PREFIX = 'playbooks'
-PRIVATE_PACKS_INTEGRATIONS_PREFIX = 'Integrations'
-PRIVATE_PACKS_SCRIPTS_PREFIX = 'Scripts'
-PRIVATE_PACKS_PLAYBOOKS_PREFIX = 'Playbooks'
 RELEASES_PREFIX = 'releases'
 ARTICLES_PREFIX = 'articles'
 PACKS_PREFIX = 'packs'
@@ -455,7 +452,7 @@ def index_doc_infos(doc_infos: List[DocInfo], link_prefix: str, headers: Optiona
     return fix_mdx(res)
 
 
-def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, private_packs=False) -> DocInfo:
+def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str) -> DocInfo:
     try:
         with open(readme_file, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -473,13 +470,8 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
             desc = handle_desc_field(desc)
         readme_file_name = os.path.basename(readme_file)
         content = content.replace(front_matter_match[0], '')
-
-        if private_packs:
-            print(f'Process README Private file: {readme_file}')
-            header = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: null\n---\n\n'
-        else:
-            edit_url = f'https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/{prefix}/{readme_file_name}'
-            header = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\n---\n\n'
+        edit_url = f'https://github.com/demisto/content-docs/blob/master/content-repo/extra-docs/{prefix}/{readme_file_name}'
+        header = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\n---\n\n'
         content = get_deprecated_data(yml_data, desc, readme_file) + content
         content = get_beta_data(yml_data, content) + content
         content = get_fromversion_data(yml_data) + content
@@ -494,20 +486,10 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str, pri
         return DocInfo('', '', '', readme_file, str(ex).splitlines()[0])
 
 
-def process_extra_docs(target_dir: str, prefix: str,
-                       private_packs_prefix='', private_packs=False) -> Iterator[DocInfo]:
-    if private_packs:
-        if private_packs_prefix == PRIVATE_PACKS_PLAYBOOKS_PREFIX:
-            md_dir = f'{os.path.dirname(os.path.abspath(__file__))}/.content-bucket/Packs/*/{private_packs_prefix}/'
-        else:
-            md_dir = f'{os.path.dirname(os.path.abspath(__file__))}/.content-bucket/Packs/*/{private_packs_prefix}/*'
-
-        for readme_file in glob.glob(f'{md_dir}/*.md'):
-            yield process_extra_readme_doc(target_dir, private_packs_prefix, readme_file, private_packs=True)
-    else:
-        md_dir = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs/{prefix}'
-        for readme_file in glob.glob(f'{md_dir}/*.md'):
-            yield process_extra_readme_doc(target_dir, prefix, readme_file)
+def process_extra_docs(target_dir: str, prefix: str) -> Iterator[DocInfo]:
+    md_dir = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs/{prefix}'
+    for readme_file in glob.glob(f'{md_dir}/*.md'):
+        yield process_extra_readme_doc(target_dir, prefix, readme_file)
 
 
 # POOL_SIZE has to be declared after process_readme_doc so it can find it when doing map
@@ -516,15 +498,14 @@ POOL_SIZE = 4
 
 
 def process_doc_info(doc_info: DocInfo, success: List[str], fail: List[str], doc_infos: List[DocInfo],
-                     seen_docs: Dict[str, DocInfo], private_doc: bool = False):
+                     seen_docs: Dict[str, DocInfo]):
     if doc_info.error_msg == EMPTY_FILE_MSG or IGNORE_MSG in (doc_info.error_msg or ''):
         # skip empty and ignored files.
         return
     if doc_info.error_msg:
         fail.append(f'{doc_info.readme} ({doc_info.error_msg})')
     elif doc_info.id in seen_docs:
-        if private_doc or not version_conflict(doc_info, seen_docs[doc_info.id]):
-            # Ignore private repo files which are already in the content repo since they may be outdated.
+        if not version_conflict(doc_info, seen_docs[doc_info.id]):
             # Ignore the same id if there is no conflict in the version.
             return
         fail.append(f'{doc_info.readme} (duplicate with {seen_docs[doc_info.id].readme})')
@@ -534,7 +515,7 @@ def process_doc_info(doc_info: DocInfo, success: List[str], fail: List[str], doc
         seen_docs[doc_info.id] = doc_info
 
 
-def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix: str, private_pack_prefix: str):
+def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix: str):
     print(f'Using BRANCH: {BRANCH}')
     # Search for readme files
     readme_files = findfiles(regex_list, content_dir)
@@ -909,12 +890,9 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     releases_full_prefix = f'{prefix}/{RELEASES_PREFIX}'
     articles_full_prefix = f'{prefix}/{ARTICLES_PREFIX}'
     packs_articles_full_prefix = f'{prefix}/{PACKS_PREFIX}'
-    integration_doc_infos = create_docs(args.dir, args.target, INTEGRATION_DOCS_MATCH, INTEGRATIONS_PREFIX,
-                                        private_pack_prefix=PRIVATE_PACKS_INTEGRATIONS_PREFIX)
-    playbooks_doc_infos = create_docs(args.dir, args.target, PLAYBOOKS_DOCS_MATCH, PLAYBOOKS_PREFIX,
-                                      private_pack_prefix=PRIVATE_PACKS_PLAYBOOKS_PREFIX)
-    script_doc_infos = create_docs(args.dir, args.target, SCRIPTS_DOCS_MATCH, SCRIPTS_PREFIX,
-                                   private_pack_prefix=PRIVATE_PACKS_SCRIPTS_PREFIX)
+    integration_doc_infos = create_docs(args.dir, args.target, INTEGRATION_DOCS_MATCH, INTEGRATIONS_PREFIX)
+    playbooks_doc_infos = create_docs(args.dir, args.target, PLAYBOOKS_DOCS_MATCH, PLAYBOOKS_PREFIX)
+    script_doc_infos = create_docs(args.dir, args.target, SCRIPTS_DOCS_MATCH, SCRIPTS_PREFIX)
     release_doc_infos = create_releases(args.target)
     article_doc_infos = create_articles(args.target, ARTICLES_PREFIX)
     packs_articles_doc_infos = create_articles(args.target, PACKS_PREFIX)
