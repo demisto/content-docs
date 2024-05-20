@@ -3,8 +3,11 @@ id: trust-custom-certificates
 title: Configure Server and Integrations to Trust Custom Certificates
 description: Setup the Server and JS/Native Integrations to Trust Custom Certificates.
 ---
+:::note
+Please note that this article is relevant only to XSOAR 6 (server or engines) and XSOAR 8 on-prem engines.
+:::
 
-Server initiated communication (for example, downloading a pack from the marketplace), Javascript integrations, and native integrations use the built-in set of CA-Signed certificates of the host machine to validate TLS communication. If you are using an engine, the engine also uses CA-Signed certificates. You can add custom trusted certificates to the host built-in set. (In addition, you will need to [configure Python Docker integrations to trust custom certificates](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-9/cortex-xsoar-admin/docker/configure-python-docker-integrations-to-trust-custom-certificates.html).)
+Server initiated communication (for example, downloading a pack from the marketplace), Javascript integrations, and native integrations use the built-in set of CA-Signed certificates of the host machine to validate TLS communication. If you are using an engine, the engine also uses CA-Signed certificates. You can add custom trusted certificates to the host built-in set. (In addition, you will need to [configure Python Docker integrations to trust custom certificates](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6.12/cortex-xsoar-admin/docker/configure-python-docker-integrations-to-trust-custom-certificates.html).)
  
 1. Add the certificate to the machine’s trusted ROOT CA Bundle. The location of the CA Bundle depends on the version of the operating system and the operating configuration.
 
