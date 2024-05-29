@@ -94,6 +94,70 @@ Integration parameters may be hidden from the XSOAR UI, using the optional `hidd
 - To hide the parameter in all marketplaces (XSOAR, XSOAR_SAAS, XSOAR_ON_PREM, XSIAM), use a boolean `true`.
 - To hide the parameter in specific content marketplace versions, provide list of marketplace version names (e.g. `xsoar` (XSOAR 6 and XSOAR 8), `xsoar_on_prem` (XSOAR 6), `xsoar_saas` (XSOAR 8 Cloud or On-prem), `marketplacev2` (XSIAM) or `xpanse` (XPANSE))
 
+### Configurations Sections
+As of XSOAR version 8.1 and XSIAM version 1.3, integration's configuration display is divided to sections to help our users configure the instances.
+The sections re-organize the parameters the users have to fill when configuring the instance.
+
+In the Connect section should be parameters that the customer needs to configure in order to connect to the product. An example for such parameters are Server URL, API Key, etc.
+In the Collect section should be parameters that the customer needs to configure in order to collect information from the product. An example for such parameters are Fetches events radio button, First fetch timestamp, etc.
+In the advanced section should be parameters that are part of advanced usage of the integration. For example fetch queries, etc.
+The sections will look like this in the UI (advanced parameters are hidden unless opening the Advanced Settings  section):
+![Example of the connect and collect sections](/doc_imgs/integrations/sections_connect_collect.png)
+![Example of the advanced section](/doc_imgs/integrations/sections_advanced.png)
+
+In order to add sections to your integration, follow this guide:
+
+1. Add the `sectionorder` key to the yml's root. This key should contain a list of sections available. Currently we support only "Connect",  "Collect" and "Optimize".
+2. Add the `section` key to each parameter in the configuration, with one of the sections from (1).
+3. If the parameter is to be shown only as part of the advanced settings in the section, add the advanced key with value set to true.
+
+```yml
+category: Analytics & SIEM
+sectionorder:
+- Connect
+- Collect
+commonfields:
+  id: GitLab Event Collector
+  version: -1
+configuration:
+- display: Server URL
+  name: url
+  required: true
+  type: 0
+  section: Connect
+- displaypassword: API Key
+  additionalinfo: The API Key to use for connection.
+  name: api_key
+  required: true
+  hiddenusername: true
+  type: 9
+  section: Connect
+- display: Groups IDs
+  name: group_ids
+  required: false
+  type: 0
+  section: Collect
+- display: First fetch timestamp (<number> <time unit>, for example, 12 hours, 7 days, 3 months, 1 year)
+  name: after
+  required: true
+  defaultvalue: 1 day
+  type: 0
+  section: Collect
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+  section: Connect
+  advanced: true
+- display: Use system proxy settings
+  name: proxy
+  type: 8
+  required: false
+  section: Connect
+  advanced: true
+```
+
+
 ## Script
 
 This section is where your code will reside. Review the example below:
