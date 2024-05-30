@@ -109,11 +109,11 @@ In the Connect section should be parameters that the customer needs to configure
   - API Key
   - Other mandatory parameters
 - Advanced Connect Params:
-  - Any additional filters / Non mandatory parameters
   - Trust any certificate (not secure)
   - Use system proxy settings
-  - Log Level
-  - Run on Single engine
+  - Log level
+  - Run on single engine
+  - Any additional filters / Non mandatory parameters
 
 In the Collect section should be parameters that the customer needs to configure in order to collect information from the product.
 - Collect Params:
