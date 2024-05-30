@@ -94,6 +94,107 @@ Integration parameters may be hidden from the XSOAR UI, using the optional `hidd
 - To hide the parameter in all marketplaces (XSOAR, XSOAR_SAAS, XSOAR_ON_PREM, XSIAM), use a boolean `true`.
 - To hide the parameter in specific content marketplace versions, provide list of marketplace version names (e.g. `xsoar` (XSOAR 6 and XSOAR 8), `xsoar_on_prem` (XSOAR 6), `xsoar_saas` (XSOAR 8 Cloud or On-prem), `marketplacev2` (XSIAM) or `xpanse` (XPANSE))
 
+### Configurations Sections
+As of Cortex XSOAR version 8.1 and Cortex XSIAM version 1.3, an integration's configuration display is divided to sections to help our users configure the instances.
+The sections re-organize the parameters the users have to fill when configuring the instance.
+
+The Advanced section should contain parameters that are part of advanced usage of the integration.
+The Connect section should contain parameters that the customer needs to configure in order to connect to the product.
+- Connect Parameters:
+  - Name
+  - Server URL / URL Address
+  - Classifier / Incident Type / Mapper section
+  - Username
+  - Password
+  - API Key
+  - Other mandatory parameters
+- Advanced Connect Params:
+  - Trust any certificate (not secure)
+  - Use system proxy settings
+  - Log level
+  - Run on single engine
+  - Any additional filters / Non mandatory parameters
+
+The Collect section should contain parameters that the customer needs to configure in order to collect information from the product.
+- Collect Parameters:
+  - Fetch events / Do not fetch radio buttons or Fetch/Do not fetch indicators
+  - Incident Mirroring Direction
+  - First fetch timestamp
+  - Number of incidents/events to fetch per fetch
+  - Do not use by default
+  - Indicator Reputation 
+  - Source Reliability 
+  - Traffic Light Protocol Color
+- Advanced Collect Parameters:
+  - Events Fetch Interval
+  - Mirroring parameters
+  - Indicator expiration method
+  - Feed fetch interval
+  - Bypass exclusion list
+  - Create relationships
+  - Any additional filters / Non mandatory parameters
+
+The Optimize Parameters are parameters that do not belong in the Connect or Collect sections, e.g., Advanced Thresholds, Advanced Queries.
+
+
+The sections will look like this in the UI, when advanced parameters are hidden unless opening the `Advanced Settings` section:
+![Example of the connect and collect sections](/doc_imgs/integrations/sections_connect_collect.png)
+![Example of the advanced section](/doc_imgs/integrations/sections_advanced.png)
+
+To add sections to your integration:
+
+1. Add the `sectionOrder` key to the yml's root. This key should contain a list of sections available. Currently we support only "Connect",  "Collect" and "Optimize".
+2. Add the `section` key to each parameter in the configuration, with one of the sections from (1).
+3. If the parameter is to be shown only as part of the advanced settings in the section, add the `advanced: true` key and value to it.
+
+For example:
+```yml
+category: Analytics & SIEM
+sectionOrder:
+- Connect
+- Collect
+commonfields:
+  id: GitLab Event Collector
+  version: -1
+configuration:
+- display: Server URL
+  name: url
+  required: true
+  type: 0
+  section: Connect
+- displaypassword: API Key
+  additionalinfo: The API Key to use for connection.
+  name: api_key
+  required: true
+  hiddenusername: true
+  type: 9
+  section: Connect
+- display: Groups IDs
+  name: group_ids
+  required: false
+  type: 0
+  section: Collect
+- display: First fetch timestamp (<number> <time unit>, for example, 12 hours, 7 days, 3 months, 1 year)
+  name: after
+  required: true
+  defaultvalue: 1 day
+  type: 0
+  section: Collect
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+  section: Connect
+  advanced: true
+- display: Use system proxy settings
+  name: proxy
+  type: 8
+  required: false
+  section: Connect
+  advanced: true
+```
+
+
 ## Script
 
 This section is where your code will reside. Review the example below:
