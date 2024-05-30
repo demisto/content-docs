@@ -109,11 +109,11 @@ The Connect section should contain parameters that the customer needs to configu
   - API Key
   - Other mandatory parameters
 - Advanced Connect Parameters:
-  - Any additional filters / Non mandatory parameters
   - Trust any certificate (not secure)
   - Use system proxy settings
   - Log Level
   - Run on Single engine
+  - Any additional filters / Non mandatory parameters
 
 The Collect section should contain parameters that the customer needs to configure in order to collect information from the product.
 - Collect Parameters:
@@ -133,7 +133,6 @@ The Collect section should contain parameters that the customer needs to configu
   - Feed Fetch Interval
   - Bypass exclusion list
   - Create relationships
-  - Bypass exclusion list
 
 The Optimize Parameters are parameters that do not belong in the Connect or Collect sections, e.g., Advanced Thresholds, Advanced Queries.
 
