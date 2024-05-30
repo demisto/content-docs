@@ -151,7 +151,7 @@ In order to add sections to your integration, follow this guide:
 For example:
 ```yml
 category: Analytics & SIEM
-sectionorder:
+sectionOrder:
 - Connect
 - Collect
 commonfields:
