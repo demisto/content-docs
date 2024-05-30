@@ -98,19 +98,57 @@ Integration parameters may be hidden from the XSOAR UI, using the optional `hidd
 As of XSOAR version 8.1 and XSIAM version 1.3, integration's configuration display is divided to sections to help our users configure the instances.
 The sections re-organize the parameters the users have to fill when configuring the instance.
 
-In the Connect section should be parameters that the customer needs to configure in order to connect to the product. An example for such parameters are Server URL, API Key, etc.
-In the Collect section should be parameters that the customer needs to configure in order to collect information from the product. An example for such parameters are Fetches events radio button, First fetch timestamp, etc.
-In the advanced section should be parameters that are part of advanced usage of the integration. For example fetch queries, etc.
-The sections will look like this in the UI (advanced parameters are hidden unless opening the Advanced Settings  section):
+In the advanced section should be parameters that are part of advanced usage of the integration.
+In the Connect section should be parameters that the customer needs to configure in order to connect to the product. 
+- Connect Prams:
+  - Name
+  - Server URL / URL Address
+  - Classifier / Incident Type / Mapper section
+  - Username
+  - Password
+  - API Key
+  - Other mandatory parameters
+- Advanced Connect Params:
+  - Any additional filters / Non mandatory parameters
+  - Trust any certificate (not secure)
+  - Use system proxy settings
+  - Log Level
+  - Run on Single engine
+
+In the Collect section should be parameters that the customer needs to configure in order to collect information from the product.
+- Collect Params:
+  - Fetch events / Do not fetch radio buttons or Fetch/Do not fetch indicators
+  - Incident Mirroring Direction
+  - First fetch timestamp
+  - Number of incidents/events to fetch per fetch
+  - Do not use by default
+  - Indicator Reputation 
+  - Source Reliability 
+  - Traffic Light Protocol Color
+- Advanced Collect Params:
+  - Events Fetch Interval
+  - Mirroring parameters
+  - Any additional filters / Non mandatory parameters
+  - Indicator Expiration Method
+  - Feed Fetch Interval
+  - Bypass exclusion list
+  - Create relationships
+  - Bypass exclusion list
+
+The Optimize Params are params that are less fit to be in connect or collect section, e.g: Advanced Thresholds, Advanced Queries.
+
+
+The sections will look like this in the UI, when advanced parameters are hidden unless opening the `Advanced Settings` section:
 ![Example of the connect and collect sections](/doc_imgs/integrations/sections_connect_collect.png)
 ![Example of the advanced section](/doc_imgs/integrations/sections_advanced.png)
 
 In order to add sections to your integration, follow this guide:
 
-1. Add the `sectionorder` key to the yml's root. This key should contain a list of sections available. Currently we support only "Connect",  "Collect" and "Optimize".
+1. Add the `sectionOrder` key to the yml's root. This key should contain a list of sections available. Currently we support only "Connect",  "Collect" and "Optimize".
 2. Add the `section` key to each parameter in the configuration, with one of the sections from (1).
-3. If the parameter is to be shown only as part of the advanced settings in the section, add the advanced key with value set to true.
+3. If the parameter is to be shown only as part of the advanced settings in the section, add the `advanced: true` key and value to it.
 
+For example:
 ```yml
 category: Analytics & SIEM
 sectionorder:
