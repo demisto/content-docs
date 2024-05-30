@@ -128,12 +128,11 @@ In the Collect section should be parameters that the customer needs to configure
 - Advanced Collect Params:
   - Events Fetch Interval
   - Mirroring parameters
-  - Any additional filters / Non mandatory parameters
-  - Indicator Expiration Method
-  - Feed Fetch Interval
+  - Indicator expiration method
+  - Feed fetch interval
   - Bypass exclusion list
   - Create relationships
-  - Bypass exclusion list
+  - Any additional filters / Non mandatory parameters
 
 The Optimize Params are params that are less fit to be in connect or collect section, e.g: Advanced Thresholds, Advanced Queries.
 
