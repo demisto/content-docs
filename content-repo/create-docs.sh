@@ -25,7 +25,7 @@ else
     else
         CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
     fi
-
+ 
     echo "==== current branch: ${CURRENT_BRANCH} ===="
 
     CONTENT_GIT_URL="https://github.com/demisto/content.git"
