@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # exit on errors
-set -e
+set -e 
 
 # Script will check out the Demisto content repo and then generate documentation based upon the checkout
 
