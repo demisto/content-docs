@@ -51,10 +51,4 @@ It is imperative to perform due diligence on packages you choose to use. This in
 If you need to create a Docker image, proceed after having done due diligence and checking the licenses.
 ### Docker File Repository (Required for Production)
 In most cases, if your integration is for public release, you need to push Docker files into the dockerfiles repository located [here](https://github.com/demisto/dockerfiles). Pushing into this repository will add the image (after an approval process) to the Docker hub Demisto organization. See the [README](https://github.com/demisto/dockerfiles/blob/master/README.md) file for instructions.  
-## Advanced: Server - Container Communication
-The Cortex XSOAR server launches a Docker container by running a Python loop script. The server communicates with the Python loop script over stdout and stdin. The server passes the relevant integration/script code to the loop script. The script receives the code, executes it and returns a `completed` response to the server. While the integration/script code is executing, communication is performed over stdout/stdin. The server may then reuse the container to execute additional integrations/scripts that utilize the same Docker container. An simplified example loop script is available for review and testing [here](https://github.com/demisto/content/blob/master/Utils/_script_docker_python_loop_example.py).  
-For example, to use the example loop script to simulate runnning a simple script which sends a log entry to the server via calling: `demisto.log(...)` run the following:
-```sh
-echo '{"script": "demisto.log(\"this is an example entry log\")", "integration": false, "native": false}' | \
-docker run --rm -i -v `pwd`:/work -w /work demisto/python3:3.8.6.12176 python Utils/_script_docker_python_loop_example.py
 ```
