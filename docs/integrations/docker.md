@@ -48,7 +48,6 @@ Other licenses may be permitted with specific approval.
 ### Security Concerns
 It is imperative to perform due diligence on packages you choose to use. This includes verifying the package name is correct. In 2018 alone, a scan of PyPI resulted in the detection of 11 "typo-squatted" packages which were found to be malicious, as documented [here](https://medium.com/@bertusk/detecting-cyber-attacks-in-the-python-package-index-pypi-61ab2b585c67).
 ### Docker Image Creation
-If you need to create a Docker image, proceed after having done due diligence and checking the licenses.
+If you need to create a Docker image, first do due diligence and check the licenses.
 ### Docker File Repository (Required for Production)
 In most cases, if your integration is for public release, you need to push Docker files into the dockerfiles repository located [here](https://github.com/demisto/dockerfiles). Pushing into this repository will add the image (after an approval process) to the Docker hub Demisto organization. See the [README](https://github.com/demisto/dockerfiles/blob/master/README.md) file for instructions.  
-```
