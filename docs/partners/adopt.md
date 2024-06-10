@@ -50,7 +50,7 @@ Follow the steps below to adopt using the helper script:
 3. Run the following `bash` script:
 
 	```bash
-	./Utils/adopt_pack.bash start <MyPackName>
+	./contribution/utils/adopt_pack.bash start <MyPackName>
 	```
 
 	When the script finishes its execution, it will print a link to GitHub to open a Pull Request with the changes. Click on the link or copy it into your browser and fill out the Pull Request form.
@@ -58,7 +58,7 @@ Follow the steps below to adopt using the helper script:
 	For example, if we wanted to start adopting the `HelloWorld` Pack, we would run the following command:
 
 	```bash
-	./Utils/adopt_pack.bash start HelloWorld
+	./contribution/utils/adopt_pack.bash start HelloWorld
 
 	Initializing Pack Adoption...
 	✓ Detected OS 'Mac OS'.
@@ -100,12 +100,12 @@ Prepare the following information as you will be prompted to submit those as par
 Once you have all the necessary information, run the script:
 
 ```bash
-./Utils/adopt_pack.bash complete <MyPackName>
+./contribution/utils/adopt_pack.bash complete <MyPackName>
 ```
 
 For example, if we were to complete the adoption of the `HelloWorld` Pack, we would run:
 ```bash
-./Utils/adopt_pack.bash complete HelloWorld
+./contribution/utils/adopt_pack.bash complete HelloWorld
 
 Initializing Pack Adoption...
 ✓ Detected OS 'Mac OS'.
