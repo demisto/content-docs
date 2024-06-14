@@ -168,4 +168,4 @@ Create a PR at the [content-docs repo](https://github.com/demisto/content-docs) 
 
 ## Notes
 
-We use [MDX](https://mdxjs.com/) for the Markdown generation. MDX is a superset of standard Markdown, but it requires that any html used in the document must be jsx complaint. Meaning all html tags need to contain a closing tag. For example don't use: `<br>`, use: `<br/>`. Additionally, html entities `< >`, not in code blocks, need to be encoded. Use `&lt;` and `&gt;` to encode. As part of the CircleCI build, the README.md file will be validated that it is MDX complaint.
+We use [MDX](https://mdxjs.com/) for the Markdown generation. MDX is a superset of standard Markdown, but it requires that any html used in the document must be jsx compliant. Meaning all html tags need to contain a closing tag. For example don't use: `<br>`, use: `<br/>`. Additionally, html entities `< >` not in code blocks, need to be html-encoded. Use `&lt;` and `&gt;` to encode. As part of the CircleCI build, the README.md file will be validated for MDX compliance.
