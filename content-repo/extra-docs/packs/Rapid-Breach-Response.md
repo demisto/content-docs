@@ -32,7 +32,7 @@ The Rapid Breach Response pack is designed to provide organizations with a compr
 The pack includes a variety of components such as layouts, scripts, and incident fields, each designed to streamline and enhance the breach response process of our rapid response dependent packs.
 For every new pack we release as part of the Rapid Breach Response program, there will be an updated release notes shown in the main pack.
 
-![image](docs/doc_imgs/reference/RapidBreachResponseLayout/Marketplace.png)
+![image](https://raw.githubusercontent.com/demisto/content-docs/8debfd8939d8609ee789f73a3ed8420db2355721/docs/doc_imgs/reference/RapidBreachResponseLayout/Marketplace.png)
 
 To ensure a seamless experience, follow these steps for installing and using the Rapid Breach Response pack and its related packs:
 
