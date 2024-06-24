@@ -25,29 +25,44 @@ The IR Tracking dynamic section is built using the server Rest API and is vital 
 7. Click **Test** to make sure that that server and API key are reachable and valid.
 8. Click **Save & exit**.
 
-## Playbook Workflow
-### Collect indicators
-The first step in most Rapid Breach Response playbooks is collecting indicators. Indicator sources can be blogs, advisories, or any other highly reliable reference. Indicator format can be text, rules, and signatures.
-### Extract, create, and tag the indicators
-After completing data collection and indicator extraction, execute the new **Set RapidBreachResponse Incident Info** playbook, which provides:
-- Links to sites from which the data was collected
-- The playbook description
-- The total number of indicators extracted
-### Execute threat hunting
-After completing information collection and processing, execute threat hunting to find indicators of compromise (IOC) related to the attack in the customer organization. This includes the following tasks:
-- PANW Hunting
-- Cortex XDR signatures and XQL hunting
-- SIEM hunting
-- Advanced Hunting based on attack patterns
-- IOC hunt using Endpoint Detection and Response
-### Remediate and Eradicate the Threats
-With the results of indicator collection and threat hunting, remediation and eradication tasks are executed which include:
-- Containment using in most cases Block Indicators or Endpoint Isolation
-- Mitigation using the detection rules downloaded at phase 1 and any other recommended technique
-- Eradication, including removing/quarantining malicious files and validating compromised machines are patched
+## Introduction
+The Rapid Breach Response pack is designed to provide organizations with a comprehensive, automated solution for addressing security incidents swiftly and efficiently. This article outlines the goals, components, and usage instructions for the Rapid Breach Response pack and its related packs, ensuring that users can maximize the benefits of these powerful tools.
 
-## In This Pack
-The Rapid Breach Response Layout content pack includes several content items.
+### Technical Details & Usage
+The pack includes a variety of components such as layouts, scripts, and incident fields, each designed to streamline and enhance the breach response process of our rapid response dependent packs.
+For every new pack we release as part of the Rapid Breach Response program, there will be an updated release notes shown in the main pack.
+
+![image](docs/doc_imgs/reference/RapidBreachResponseLayout/Marketplace.png)
+
+To ensure a seamless experience, follow these steps for installing and using the Rapid Breach Response pack and its related packs:
+
+1. **Initial Installation via Cortex XSOAR/XSIAM Marketplaces**:
+   * Access the Rapid Breach Response pack in the Cortex XSOAR/XSIAM Marketplace.
+   * Click "Install" and follow the on-screen instructions.
+2. **Updating the Pack**:
+   * An update will appear in the marketplace if a new/modified Rapid Breach Response component is introduced.
+   * Regularly check for updates to ensure that you are leveraging the latest features and improvements.
+3. **Using a new Rapid Breach Response related pack**:
+   * Install the new pack introduced in the Rapid Breach Response pack release notes.
+   * **Prerequisites**:
+     * Verify that the playbook inputs are defined
+     * Verify that all needed integrations are configured properly
+   * **Create a new incident with the following arguments**:
+     * Pick an informative name
+     * Select the ‘Rapid Breach Response’ as the incident type
+     * Select the new pack’s playbook as the default playbook
+
+### Goals of the Rapid Breach Response Pack
+In today's rapidly evolving cybersecurity landscape, timely and effective response to breaches is crucial. The Rapid Breach Response pack is designed to meet these needs, offering several key benefits that make it an essential tool for any security team:
+
+1. Proactive and Prepared Response:
+   * Be proactive with high-profile threats and maintain readiness for high-severity incidents with our predefined response protocols. This approach ensures rapid and effective action during critical security events, minimizing potential damage.
+2. Enhanced Efficiency and Accuracy:
+   * Utilize our pack's predefined query wrappers and atomic actions to optimize tool execution, enhancing both the efficiency and accuracy of your security operations. This streamlined process reduces the risk of errors and speeds up response times.
+3. Comprehensive Threat Management:
+   * Our automated response capabilities allow for quick threat assessments and continuous monitoring, ensuring that no critical alerts are overlooked and that all threat intelligence is up-to-date. This ongoing vigilance helps in swiftly communicating potential impacts to stakeholders and adjusting defenses against evolving threats.
+
+## Components of the Rapid Breach Response Pack
 
 ### Layout
 
@@ -97,6 +112,8 @@ The Hunting Results tab has 3 sections which provide the analyst with:
 ![image](https://raw.githubusercontent.com/demisto/content-docs/4da8f27ab1863b7100396bdfa2d2bb6671886a45/docs/doc_imgs/reference/RapidBreachResponseLayout/Hunting_Results.png)
 
 ### Automations - Dynamic Sections
+The pack includes scripts to enhance the visualization of incidents within the layout, ensuring that analysts have a clear and effective view of all relevant data.
+
 The following new dynamic sections are available from Cortex XSOAR 6.0.0.
 
 - **RapidBreachResponse-RemainingTasksCount-Widget** - Shows the updated number of remaining tasks. 
@@ -124,7 +141,7 @@ This playbook presents the following information in the layout:
 
 
 ### Incident Fields
-
+Custom incident fields are provided to capture specific information relevant to the breach response process, allowing for more detailed and organized incident data.
 - **Remaining Task Count**
 - **Total Task Count**
 - **Playbook Description**
