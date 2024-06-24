@@ -40,7 +40,7 @@ To ensure a seamless experience, follow these steps for installing and using the
    * Access the Rapid Breach Response pack in the Cortex XSOAR/XSIAM Marketplace.
    * Click "Install" and follow the on-screen instructions.
 2. **Updating the Pack**:
-   * An update will appear in the marketplace if a new/modified Rapid Breach Response component is introduced.
+   * An update will appear in the marketplace if a new/modified Rapid Breach Response playbook or component is introduced.
    * Regularly check for updates to ensure that you are leveraging the latest features and improvements.
 3. **Using a new Rapid Breach Response related pack**:
    * Install the new pack introduced in the Rapid Breach Response pack release notes.
@@ -55,11 +55,11 @@ To ensure a seamless experience, follow these steps for installing and using the
 ### Goals of the Rapid Breach Response Pack
 In today's rapidly evolving cybersecurity landscape, timely and effective response to breaches is crucial. The Rapid Breach Response pack is designed to meet these needs, offering several key benefits that make it an essential tool for any security team:
 
-1. Proactive and Prepared Response:
+1. **Proactive and Prepared Response**:
    * Be proactive with high-profile threats and maintain readiness for high-severity incidents with our predefined response protocols. This approach ensures rapid and effective action during critical security events, minimizing potential damage.
-2. Enhanced Efficiency and Accuracy:
+2. **Enhanced Efficiency and Accuracy**:
    * Utilize our pack's predefined query wrappers and atomic actions to optimize tool execution, enhancing both the efficiency and accuracy of your security operations. This streamlined process reduces the risk of errors and speeds up response times.
-3. Comprehensive Threat Management:
+3. **Comprehensive Threat Management**:
    * Our automated response capabilities allow for quick threat assessments and continuous monitoring, ensuring that no critical alerts are overlooked and that all threat intelligence is up-to-date. This ongoing vigilance helps in swiftly communicating potential impacts to stakeholders and adjusting defenses against evolving threats.
 
 ## Components of the Rapid Breach Response Pack
