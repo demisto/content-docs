@@ -11,31 +11,35 @@ This article walks you through the process of contributing content from the Cort
 
 1. Contribute your content pack from Cortex XSOAR. For more information, see [Contribute a Content Pack](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.11/Cortex-XSOAR-Administrator-Guide/Content-Pack-Contributions).
 
+:::info
+If you want to contribute content to an existing pack, you need to duplicate the content item in the Cortex XSOAR UI. Make sure to leave the suffix `_copy` for the newly-duplicated item.
+:::
+
 2. After you contribute the content pack a message displays explaining that your contribution is ready for review, and includes a link to a form you need to fill in to complete your contribution. You will receive an email with a link to the form.
 
-3. Completing the form
+3. Complete the contribution form. 
 
-   1. **Create a New Pack**  
+   * **Create a New Pack**  
 
-          These instructions are only intended for creating a new pack. If you have a pack that you need to update, follow the instructions in the _Update an Existing Pack_ section.
+       These instructions are only intended for creating a new pack. If you have a pack that you need to update, follow the instructions in the _Update an Existing Pack_ section.
 
-          1. Fill in additional details, such as, pack name, author, and description.
-          2. Log in to your GitHub account so you can participate in the review process of the pull request that will be opened for your content pack.
-          3. Sign the [Palo Alto Networks Contributor License Agreement](https://github.com/demisto/content/blob/master/docs/cla.pdf).
+       1. Fill in additional details, such as, pack name, author, and description.
+       2. Log in to your GitHub account so you can participate in the review process of the pull request that will be opened for your content pack.
+       3. Sign the [Palo Alto Networks Contributor License Agreement](https://github.com/demisto/content/blob/master/docs/cla.pdf).
 
-   2. **Update an Existing Pack**
+   * **Update an Existing Pack**
 
-          If your contribution is an update to an existing pack, complete the following steps. (See _[Notes](#notes)_ for more information regarding updating an existing pack.) 
+       If your contribution is an update to an existing pack, complete the following steps. (See _[Notes](#notes)_ for more information regarding updating an existing pack.) 
 
-          1. Select _Update Existing Pack_ from the _Select Contribution Mode_ dropdown.
-          2. Select the pack that you wish to update from the _Select Existing Pack_ dropdown.
-          3. Log in to your GitHub account so you can participate in the review process of the pull request that will be opened for your content pack.
-          4. Sign the [Palo Alto Networks Contributor License Agreement](https://github.com/demisto/content/blob/master/docs/cla.pdf).
-          5. Given a version number MAJOR.MINOR.REVISION, select _Update Type_:
-                 1. **Revision** when you make backwards compatible bug fixes.
-                 2. **Minor** when you add functionality in a backwards compatible manner.
-                 3. **Major** when you make incompatible API changes or revamping the pack by adding to it a lot of new backwards compatible functionality.
-                 4. **Documentation** when only documentation files were updated.
+       1. Select _Update Existing Pack_ from the _Select Contribution Mode_ dropdown.
+       2. Select the pack that you wish to update from the _Select Existing Pack_ dropdown.
+       3. Log in to your GitHub account so you can participate in the review process of the pull request that will be opened for your content pack.
+       4. Sign the [Palo Alto Networks Contributor License Agreement](https://github.com/demisto/content/blob/master/docs/cla.pdf).
+       5. Given a version number MAJOR.MINOR.REVISION, select _Update Type_:
+              1. **Revision** when you make backwards compatible bug fixes.
+              2. **Minor** when you add functionality in a backwards compatible manner.
+              3. **Major** when you make incompatible API changes or revamping the pack by adding to it a lot of new backwards compatible functionality.
+              4. **Documentation** when only documentation files were updated.
 
 4. After you submit the form you will be redirected to a page that informs you that your pack was received and is being processed.  
 
@@ -76,8 +80,6 @@ If you have already submitted your contribution and you would like to make chang
 ## Notes
 
 * In addition to the resubmission option described above, there are other ways to update a content pack that you contributed and is already on a GitHub pull request: you may either modify the files directly on the pull request, or close the pull request and create a new contribution that includes your changes (not recommended).
-
-* The contribution mode selection dropdown will only appear if content items that were part of your contribution were detected as originating from existing sources (for example, you created a new automation in the UI by clicking "Duplicate Automation").
 
 ## Known Limitations
 

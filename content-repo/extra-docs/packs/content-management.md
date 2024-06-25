@@ -299,7 +299,7 @@ The main advantage of the artifact server is version control and rollback. You u
 
 
 ### Without an Artifact Server
-You can deploy your content without the need for an artifact server. If you do not use an artifact server, the `demisto-sdk upload` command, uploads the content pack directly to Marketplace. When content is pushed to master, the content is automatically deployed to the server.
+You can deploy your content without the need for an artifact server. If you do not use an artifact server, the `demisto-sdk upload` command, uploads the content pack directly to your Cortex XSOAR instance. When content is pushed to master, the content is automatically deployed to the server.
 
 ![without_artifacts_server.png](../../../docs/doc_imgs/reference/XSOAR-CICD/without_artifacts_server.png)
 
