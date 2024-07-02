@@ -6,17 +6,17 @@
  */
 import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
-import { useTitleFormatter } from "@docusaurus/theme-common";
+import { useTitleFormatter } from "@docusaurus/theme-common/internal";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import DocPaginator from "@theme/DocPaginator";
-import DocVersionSuggestions from "@theme/DocVersionSuggestions";
+import useDocVersionSuggestions from "@theme/DocVersionBanner";
 import {
   useActivePlugin,
   useActiveVersion,
   useVersions,
-} from "@theme/hooks/useDocs";
-import IconEdit from "@theme/IconEdit";
+} from "@docusaurus/plugin-content-docs/client";
+import IconEdit from "@theme/Icon/Edit";
 import TOC from "@theme/TOC";
 import classnames from "classnames";
 import clsx from "clsx";
@@ -118,7 +118,7 @@ Thank you for taking the time to help us improve our documentation! Please descr
             [styles.docItemCol]: !hideTableOfContents,
           })}
         >
-          <DocVersionSuggestions />
+          <useDocVersionSuggestions />
           <div className={styles.docItemContainer}>
             <article>
               {showVersionBadge && (

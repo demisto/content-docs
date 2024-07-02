@@ -35,10 +35,9 @@ jobs:
       - run:
           name: Setup Python
           command: |
-            pyenv install 3.9.1
             pyenv versions
-            pyenv global 3.9.1
-            pip3 install pipenv==2021.5.29
+            pyenv global 3.12
+            pip3 install pipenv
             pipenv install
       - run:
           name: NPM Install
@@ -115,7 +114,8 @@ jobs:
             pipenv install
       - run:
           name: Setup Firebase
-          command: curl -sL firebase.tools | sed "s/latest/v12.7.0/" | bash
+          # Replace the latest version in the firebase installation script with a custom version.
+          command: FIREBASE_VERSION=13.6.0; curl -sL firebase.tools | sed "s/DOWNLOAD_URL=.*/DOWNLOAD_URL=https:\/\/firebase.tools\/bin\/\$MACHINE\/v$FIREBASE_VERSION/" | bash
       - run:
           name: Deploy to Firebase
           no_output_timeout: 30m

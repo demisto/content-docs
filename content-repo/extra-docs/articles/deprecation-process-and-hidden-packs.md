@@ -17,7 +17,7 @@ In addition, there are two more conditions:
 2) The pack description should start one of the following sentences:
 
 - "Deprecated. Use {OTHER_PACK_NAME} instead."
-- "Deprecated. {Optional: REASON} No available replacement."
+- "Deprecated. \{Optional: REASON} No available replacement."
 
 ## Hidden Pack
 A hidden pack will no longer be shown in Marketplace. Customers will not be able to download a hidden pack from Cortex XSOAR marketplace anymore.
@@ -32,7 +32,7 @@ Pack's reference docs will still be available for use.
 - Add to the name of the pack in the `pack_metadata.json` the suffix (Deprecated) and add to the description of the pack in the `pack_metadata.json` one of the two formats:
 
 * "Deprecated. Use {OTHER_PACK_NAME} instead."
-* "Deprecated. {Optional: REASON} No available replacement."
+* "Deprecated. \{Optional: REASON} No available replacement."
 
 Optional: Hiding a pack:
 
@@ -55,7 +55,7 @@ Example: Use other pack:
 2) Add one of the following sentence to the integration yaml's description: 
   
 * "Deprecated. Use {OTHER_INTEGRATION_NAME} instead."
-* "Deprecated. {Optional: REASON} No available replacement."
+* "Deprecated. \{Optional: REASON} No available replacement."
 
 Example: No available replacement integration:
 <img src="../../../docs/doc_imgs/integrations/deprecated-integration-1.png" width="400" align="middle"></img>
@@ -80,7 +80,7 @@ Example:
 2) Add one of the following sentence to the script yaml's comment: 
 
 - "Deprecated. Use {OTHER_SCRIPT_NAME} instead."
-- "Deprecated. {Optional: REASON} No available replacement."
+- "Deprecated. \{Optional: REASON} No available replacement."
    
 Example: No available replacement script:
 <img src="../../../docs/doc_imgs/scripts/deprecated-script-1.png" width="400" align="middle"></img>  
@@ -95,7 +95,7 @@ Example: Use other script:
 2) Add one of the following sentence to the playbook yaml's description:
 
 - "Deprecated. Use {OTHER_PLAYBOOK_NAME} instead."
-- "Deprecated. {Optional: REASON} No available replacement."
+- "Deprecated. \{Optional: REASON} No available replacement."
 
 Example: No available replacement playbook:
 <img src="../../../docs/doc_imgs/playbooks/deprecated-playbook-1.png" width="400" align="middle"></img>

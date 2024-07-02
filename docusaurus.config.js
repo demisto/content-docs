@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-const visit = require("unist-util-visit");
+import { visit } from 'unist-util-visit';
 const fs = require("fs");
 const marketplace = JSON.parse(fs.readFileSync("./index.json"));
 
@@ -42,7 +42,6 @@ module.exports = {
       indexName: "demisto",
       algoliaOptions: { typoTolerance: false, hitsPerPage: 1000, filters: 'type:lvl1 OR type:content' } // Optional, if provided by Algolia
     },
-    sidebarCollapsible: true,
     navbar: {
       title: "",
       logo: {
@@ -193,11 +192,10 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
+          sidebarPath: "./sidebars.js",
           editUrl: "https://github.com/demisto/content-docs/tree/master",
           routeBasePath: "docs",
           include: ["**/*.md", "**/*.mdx"], // Extensions to include.
-          docLayoutComponent: "@theme/DocPage",
           docItemComponent: "@theme/DocItem",
           beforeDefaultRemarkPlugins: [remarkPlugin],
           remarkPlugins: [],
@@ -206,11 +204,14 @@ module.exports = {
           showLastUpdateTime: true
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css")
+          customCss: ["./src/css/custom.css"]
         },
         sitemap: {
           changefreq: "weekly",
           priority: 0.5
+        },
+        googleTagManager: {
+          containerId: 'GTM-KWZSPLM',
         },
       },
     ],
@@ -224,14 +225,6 @@ module.exports = {
       type: "text/css",
       rel: "stylesheet"
     },
-  ],
-  plugins: [
-    [
-      require.resolve("./docusaurus-plugin-gtm/index.js"),
-      {
-        gtm: "GTM-KWZSPLM", //GTM-XXXXXX
-      },
-    ]
   ],
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
