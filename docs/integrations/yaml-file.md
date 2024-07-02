@@ -256,7 +256,7 @@ An explanation of these fields is as follows:
 | **secret** | Boolean. If set to true, the argument value will not be printed in war room when the command runs. |
 | **execution** | Boolean. If set to true, the command will be marked as `Potentially harmful`. |
 | **description** | A description of the argument. | |
-| **type** | The type of the argument. Currently only `keyValue` is available. If used, the argument received by your code will be a python dictionary. | |
+| **type** | The type of the argument. For example, `keyValue` is a valid argument type. If used, the argument received by your code will be a python dictionary. | |
 
 #### Command outputs:
 | Name | Description | Standard |
