@@ -196,7 +196,7 @@ def generate_pydoc(
         insert_header_anchors=False,
         func_prefix=func_prefix,
         module_overview=module_overview,
-        escape_html_in_docstring=True,
+        escape_html_in_docstring=False,
         classdef_code_block=False,
         descriptive_class_title=False,
         signature_with_decorators=False,
