@@ -37,10 +37,10 @@ For every new pack we release as part of the Rapid Breach Response program, ther
 To ensure a seamless experience, follow these steps for installing and using the Rapid Breach Response pack and its related packs:
 
 1. **Initial Installation via Cortex XSOAR/XSIAM Marketplaces**:
-   * Access the Rapid Breach Response pack in the Cortex XSOAR/XSIAM Marketplace.
+   * Access the Rapid Breach Response pack in Cortex XSOAR/XSIAM Marketplace.
    * Click "Install" and follow the on-screen instructions.
 2. **Updating the Pack**:
-   * An update will appear in the marketplace if a new/modified Rapid Breach Response playbook or component is introduced.
+   * An update will appear in Marketplace if a new/modified Rapid Breach Response playbook or component is introduced.
    * Regularly check for updates to ensure that you are leveraging the latest features and improvements.
 3. **Using a new Rapid Breach Response related pack**:
    * Install the new pack introduced in the Rapid Breach Response pack release notes.
