@@ -319,6 +319,7 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
         if is_html_doc(content):
             print(f'{readme_file}: detect html file')
             content = gen_html_doc(content)
+            content = fix_relative_images(content, base_dir, f'{prefix}-{id}', imgs_dir, relative_images_dir)
         else:
             content = fix_mdx(content)
             content = fix_relative_images(content, base_dir, f'{prefix}-{id}', imgs_dir, relative_images_dir)
