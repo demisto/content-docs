@@ -7,8 +7,8 @@ title: Test Playbooks
 By default, Test Playbooks will not run in the CI for packs that are not supported by Cortex XSOAR. Hence, adding a test playbook as described in this article is not required, unless specifically requested by Cortex XSOAR.
 :::
 
-We use Test Playbooks to test our integrations and automation scripts. The Test Playbooks provide full *End to End* testing. For testing small units of code, use [Unit Testing](unit-testing). 
-Tests are run using our CI framework. They are run both as part of the build process and on a nightly basis. 
+We use Test Playbooks to test our integrations and automation scripts. The Test Playbooks provide full *End to End* testing. For testing small units of code, use [Unit Testing](unit-testing).
+Tests are run using our CI framework. They are run both as part of the build process and on a nightly basis.
 
 A Test Playbook consists of several steps, including testing commands, verifying the results, and closing the investigation.
 
@@ -17,14 +17,16 @@ We use a standard naming convention for our playbook tests which follows the for
 ```Integration_Name_Test```
 
 ## Auto-Generate a Test Playbook
+
 To auto generate a Test playbook based upon an integration or script use the following `demisto-sdk generate-test-playbook` command which can be found [here](https://github.com/demisto/demisto-sdk#generate-test-playbook). You can then import the playbook and modify it to your needs.
 
 ## Manually Create a Test Playbook
+
 1. Navigate to **Playbooks** and click **New Playbook**.
 2. Define a **Playbook name**.
 
-
 ### Add DeleteContext
+
 When creating a Test Playbook, it is often recommended for the first step to be **DeleteContext**. "Delete Context" does just that, it deletes all of the context data. While not always vital, it ensures that a test playbook has a clean beginning to test from without conflicting data. Especially, useful while developing and you wish to re-run the playbook. This allows for a test to be "sterile" and can help us to eliminate unrelated issues from the test.
 
 1. In the search field, type **deletecontext** and click **Utilities**.
@@ -50,28 +52,30 @@ It's important to test as many commands of the integration as possible as tasks,
 ![connect delete and ip](/doc_imgs/integrations/50736134-25fa5080-11c2-11e9-89c5-12844545b5ff.png)
 
 ### Verify the Command Results
+
 After you build the command, verify that you have received the results that you expect:
 
 1. Open the **Task Library** and select **Create Task**.
 2. Configure the new task.
 
-| Configuration | Action |
-| ---- | ----| 
-| **Conditional** | Select the **Conditional** button to display the condition options. |
-| **Task Name** | Type a task name. |
-| **From previous tasks** |  Click **{}** to display the **Select source for** tool. The **Select source for** tool displays the **#2 ip** task that you created. |
-| **2 ip** | Click to display the **ip** task configurations. |
-| **IP** | Click **Address** and click **Close**. The `IP.Address` is displayed in the **From previous tasks** field. This is the Context Path. |
-| **From previous tasks** | Wrap the Context Path using this format `${IP.Address}`. Wrapping the Context Path tells Cortex XSOAR to retrieve the value located in the curly brackets. |
-| **As value** | Type 8.8.8.8 and click ✅. |
+    | Configuration | Action |
+    | ---- | ----|
+    | **Conditional** | Select the **Conditional** button to display the condition options. |
+    | **Task Name** | Type a task name. |
+    | **From previous tasks** |  Click **{}** to display the **Select source for** tool. The **Select source for** tool displays the **#2 ip** task that you created. |
+    | **2 ip** | Click to display the **ip** task configurations. |
+    | **IP** | Click **Address** and click **Close**. The `IP.Address` is displayed in the **From previous tasks** field. This is the Context Path. |
+    | **From previous tasks** | Wrap the Context Path using this format `${IP.Address}`. Wrapping the Context Path tells Cortex XSOAR to retrieve the value located in the curly brackets. |
+    | **As value** | Type 8.8.8.8 and click ✅. |
 
-**Note:** If you need to edit the value in a field, you can click on the value and edit it. For example, click on the value in the **From previous tasks** field and edit the `${IP.Address}` value.
+    **Note:** If you need to edit the value in a field, you can click on the value and edit it. For example, click on the value in the **From previous tasks** field and edit the `${IP.Address}` value.
 
 3. Optional: If you need to filter or format the result, click **Filters and Operations** located in the **Select source for** dialog box.
 4. Click **Save**.
 5. Connect the **ip** task to the **Verify Command Results** task.
 
 ### Close the Investigation
+
 1. Navigate to **Playbooks** and click **New Playbook**.
 2. In the search field, type **closeinvestigation** and click **BuiltIn Commands**.
 3. For **closeInvestigation**, click **Add**.
@@ -82,6 +86,7 @@ After you build the command, verify that you have received the results that you 
 8. Choose the **yes** label name for the condition and click **Save**.
 
 ### Naming and Exporting the Playbook
+
 Cortex XSOAR uses a standard naming convention for playbook tests that follows this format: `Integration_Name_Test`.
 
 1. Click **Save Version**.
@@ -89,21 +94,31 @@ Cortex XSOAR uses a standard naming convention for playbook tests that follows t
 3. Export the playbook by clicking ![download button](/doc_imgs/integrations/50277516-4d74bd80-044d-11e9-94b6-5195dd0db796.png).
 
 ## Adding the Playbook to your Project
+
 1. Save your newly created test playbook to the `TestPlaybooks` directory in your pack.
 2. In the playbook YAML file that you created, edit the `id` so that it is identical to the `name` field.
 3. Modify the value in the `version` field to *-1* to prevent user changes.
 4. Using the example above, the top of your YAML should look like this:
 
-```yml
-id: IPInfo_Test
-version: -1
-name: IPInfo_Test
-```
+    ```yml
+    id: IPInfo_Test
+    version: -1
+    name: IPInfo_Test
+    ```
+
+5. Add the name of the test playbook to the yml of your content-item under the `tests` key:
+
+    ```yml
+    tests:
+    - Test Playbook Name
+    ```
 
 ## Adding Tests to conf.json
-In order to associate integrations with a test plabyook we mange a `conf.json` file (at the root of the repository). The conf.json file is located in the **Tests** directory.
+
+In order to associate integrations with a test playbook we mange a `conf.json` file (at the root of the repository). The conf.json file is located in the **Tests** directory.
 
 The following is an example of a correct conf.json entry for an integration:
+
 ```yml
         {
             "integrations": "Forcepoint",
@@ -112,6 +127,7 @@ The following is an example of a correct conf.json entry for an integration:
             "nightly": true
         },
 ```
+
 The following table describes the fields:
 
 |Name|Description|
@@ -122,5 +138,6 @@ The following table describes the fields:
 | **nightly** | Boolean that indicates if the test should be part of **only** the nightly tests (optional). |
 
 ## Resources
+
 * [Example of a Test Playbook](https://github.com/demisto/content/blob/master/Packs/Carbon_Black_Enterprise_Response/TestPlaybooks/playbook-Carbon_Black_Response_Test.yml)
 * [Example of a Playbook Image](/doc_imgs/integrations/41154872-459f93fe-6b24-11e8-848b-25ca71f59629.png)
