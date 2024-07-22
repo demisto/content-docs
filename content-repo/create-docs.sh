@@ -29,7 +29,7 @@ else
     echo "==== current branch: ${CURRENT_BRANCH} ===="
 
     CONTENT_GIT_URL="https://github.com/demisto/content.git"
-    CONTENT_BRANCH="master"
+    CONTENT_BRANCH="10611-change_path_to_relative_MD_files_playbooks_A-D"
     REQUIRE_BRANCH=false
     if [ -n "${INCOMING_HOOK_BODY}" ]; then
         echo "INCOMING_HOOK_BODY=${INCOMING_HOOK_BODY}"
