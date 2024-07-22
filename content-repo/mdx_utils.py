@@ -33,8 +33,7 @@ def fix_mdx(txt: str) -> str:
 def fix_relative_images(txt: str, base_dir: str, id: str, images_dir: str, relative_images_dir: str) -> str:
     regexes = (
         r'\!\[.*?\]\((?!http)(.*?)\)',
-        r"""<img\s+.*?src=["'](?!http)(.*?)["'].*?>""",
-        r"[\.\./]*doc_files/[a-zA-Z0-9_-]+\.png",
+        r"""<img\s+.*?src=\\*["'](?!http)(.*?)\\*["'].*?>""",
     )
     for r in regexes:
         res = list(re.finditer(r, txt, re.IGNORECASE))
