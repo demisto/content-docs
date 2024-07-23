@@ -106,7 +106,7 @@ Cortex XSOAR uses a standard naming convention for playbook tests that follows t
     name: IPInfo_Test
     ```
 
-5. Add the name of the test playbook to the yml of your content-item under the `tests` key:
+5. Add the ID of the test playbook to the yml of your content-item under the `tests` key:
 
     ```yml
     tests:
