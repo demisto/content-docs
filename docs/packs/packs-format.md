@@ -53,10 +53,10 @@ The following fields are populated in the pack metadata:
 | `url` | `String` | The URL to which users should refer to in case of support needed regarding the pack. Usually is the organization support URL or the developer GitHub repository. If left empty the default support site presented to users will be the [Live Community](https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions) site.|
 | `videos` | `String` | The Youtube video link of the pack.|
 | `email` | `String` | The email address to which users should reach out to for support regarding the pack. |
-| `categories` | `List` | The use case categories which are implemented in the pack, usually set by the integration. The list of approved categories can be found [here](https://github.com/demisto/content/blob/master/Tests/Marketplace/approved_categories.json).|
-| `tags` | `List` | Tags to be attached to the pack on Cortex XSOAR marketplace. The list of approved tags can be found [here](https://github.com/demisto/content/blob/master/Tests/Marketplace/approved_tags.json). |
+| `categories` | `List` | The use case categories which are implemented in the pack, usually set by the integration. The list of approved categories can be found [here](https://github.com/demisto/content/blob/master/Config/approved_categories.json).|
+| `tags` | `List` | Tags to be attached to the pack on Cortex XSOAR marketplace. The list of approved tags can be found [here](https://github.com/demisto/content/blob/master/Config/approved_tags.json). |
 | `created` | `String` | Pack creation time in ISO 8601 format - YYYY-MM-DDTHH:mm:ssZ, e.g. 2020-01-25T10:00:00Z |
-| `useCases` | `List` | Use cases implemented by the pack. The list of approved use cases can be found [here](https://github.com/demisto/content/blob/master/Tests/Marketplace/approved_usecases.json). |
+| `useCases` | `List` | Use cases implemented by the pack. The list of approved use cases can be found [here](https://github.com/demisto/content/blob/master/Config/approved_usecases.json). |
 | `keywords` | `List` | List of strings by which the pack can be found in Cortex XSOAR marketplace. |
 | `marketplaces`    | `List` | List of marketplaces in which the pack can be found. Possible values are `xsoar` (XSOAR 6 and XSOAR 8), `xsoar_on_prem` (XSOAR 6), `xsoar_saas` (XSOAR 8), `marketplacev2` (XSIAM) and `xpanse` (XPANSE). |
 | `hidden` | `Boolean` | (Optional) Whether to hide the pack from Marketplace. Updates to this pack will not be published to Marketplace and the pack cannot be installed. |
