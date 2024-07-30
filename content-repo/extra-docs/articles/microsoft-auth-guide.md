@@ -264,7 +264,7 @@ After you a redirected to the next page, in the **Overview** tab you will find y
 
 
 ## Troubleshooting
-# Reset authentication
+#### Reset authentication
 In case of errors in the authentication process, such as a token revoked/expired or in case you generate new credentials, 
 you can use the `!<integration command prefix>-auth-reset` command in the War Room in order to rerun the authentication process,
 instead of recreating a new integration instance.
@@ -278,7 +278,7 @@ For example, when using the "self-deployed Azure app" for Microsoft Graph Mail S
 
 **Note**: If encountering an "Insufficient privileges to complete the operation" error, ensure the necessary permissions were added, according to the integration documentation. Subsequently, reset the authentication and initiate the authentication process again.
 
-# Authorization Code flow Troubleshooting
+#### Authorization Code flow Troubleshooting
 If you encounter issues with the User consent, such as a "Missing scope permissions on the request. API requires one of..." error after generating a new authorization code using the generate-login-url command, even though you have provided all the mentioned permissions, it may indicate that you need to trigger the consent process again.
 To do this, copy the login URL, add `&prompt=consent` to the end of the URL, and then log in.
 For more details, see Microsoft's documentation on [Request an authorization code](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow#request-an-authorization-code).
