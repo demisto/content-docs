@@ -92,7 +92,7 @@ The Redirect URI can direct any web application that you wish to receive respons
 7. Select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
 8. Save the instance.
 9. Run the `!<integration command prefix>-generate-login-url` command in the War Room and follow the instructions:
-For any issues, see [Authorization Code flow Troubleshooting](#Troubleshooting)
+For any issues, see [Authorization Code flow Troubleshooting](#Authorization-Code-flow-Troubleshooting)
     >1. Click on the [login URL]() to sign in and grant Cortex XSOAR permissions for your Azure Service Management.
     You will be automatically redirected to a link with the following structure:
     ```REDIRECT_URI?code=AUTH_CODE&session_state=SESSION_STATE```
