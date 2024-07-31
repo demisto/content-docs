@@ -277,7 +277,7 @@ For example, when using the "self-deployed Azure app" for Microsoft Graph Mail S
 3. Run !msgraph-mail-generate-login-url to generate a new *Authorization code*. See [Authorization Code flow Troubleshooting](#authorization-code-flow-troubleshooting).
 4. Run !msgraph-mail-test to test the connectivity of the email.
 
-**Note**: If encountering an "Insufficient privileges to complete the operation" error, ensure the necessary permissions were added, according to the integration documentation. Subsequently, reset the authentication and initiate the authentication process again.
+**Note**: If encountering an "Insufficient privileges to complete the operation" error, ensure the necessary permissions were added according to the integration documentation. Subsequently, reset the authentication and initiate the authentication process again.
 
 #### Authorization Code flow Troubleshooting
 If you encounter issues with the User consent, such as a "Missing scope permissions on the request. API requires one of..." error after generating a new authorization code using the generate-login-url command, even though you have provided all the mentioned permissions, it may indicate that you need to trigger the consent process again.  
