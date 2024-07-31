@@ -92,12 +92,13 @@ The Redirect URI can direct any web application that you wish to receive respons
 7. Select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
 8. Save the instance.
 9. Run the `!<integration command prefix>-generate-login-url` command in the War Room and follow the instructions:
-For any issues, see [Authorization Code flow Troubleshooting](#authorization-code-flow-troubleshooting).
     >1. Click on the [login URL]() to sign in and grant Cortex XSOAR permissions for your Azure Service Management.
     You will be automatically redirected to a link with the following structure:
     ```REDIRECT_URI?code=AUTH_CODE&session_state=SESSION_STATE```
     >2. Copy the `AUTH_CODE` (without the `code=` prefix, and the `session_state` parameter)
-    and paste it in your instance configuration under the *Authorization code* parameter.
+    and paste it in your instance configuration under the *Authorization code* parameter. 
+    >3. For any issues, see [Authorization Code flow Troubleshooting](#authorization-code-flow-troubleshooting).
+
 10. Save the instance.
 11. Run the `!<integration command prefix>-auth-test` command. A 'Success' message should be printed to the War Room.
 
@@ -279,6 +280,6 @@ For example, when using the "self-deployed Azure app" for Microsoft Graph Mail S
 **Note**: If encountering an "Insufficient privileges to complete the operation" error, ensure the necessary permissions were added, according to the integration documentation. Subsequently, reset the authentication and initiate the authentication process again.
 
 #### Authorization Code flow Troubleshooting
-If you encounter issues with the User consent, such as a "Missing scope permissions on the request. API requires one of..." error after generating a new authorization code using the generate-login-url command, even though you have provided all the mentioned permissions, it may indicate that you need to trigger the consent process again.
-To do this, copy the login URL, add `&prompt=consent` to the end of the URL, and then log in.
-For details, see Microsoft's documentation on [Request an authorization code](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow#request-an-authorization-code).
+If you encounter issues with the User consent, such as a "Missing scope permissions on the request. API requires one of..." error after generating a new authorization code using the generate-login-url command, even though you have provided all the mentioned permissions, it may indicate that you need to trigger the consent process again.  
+To do this, copy the login URL, add `&prompt=consent` to the end of the URL, and then log in.  
+For details, see Microsoft's documentation on [Request an authorization code](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow#request-an-authorization-code).  
