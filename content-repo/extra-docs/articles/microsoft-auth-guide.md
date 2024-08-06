@@ -222,45 +222,45 @@ After you a redirected to the next page, in the **Overview** tab you will find y
 
 ## Supported Authentication Flows for Microsoft integrations
 
-| Integration Name                                      | XSOAR Application | Client Credentials                               | Device Code | Auth code (redirect URI) | Azure Managed Identities | Supports National Clouds   |
-|-------------------------------------------------------|-------------------|--------------------------------------------------|-------------|--------------------------|--------------------------|----------------------------| 
-| Azure Compute v2                                      | yes               | yes - support both client secret and certificate | no          | no                       | no                       | no                         |
-| Azure Data Explorer                                   | yes - device      | yes                                              | yes         | yes                      | no                       | no                         |
-| AzureDevOps                                           | yes               | yes                                              | yes         | yes                      | no                       | no                         |
-| Azure Firewall                                        | yes               | yes                                              | yes         | no                       | yes                      | no                         |
-| Azure Key Vault                                       | no                | yes - support both client secret and certificate | no          | no                       | yes                      | yes                        |
-| Azure Kubernetes Services                             | yes               | yes                                              | yes         | yes                      | yes                      | yes                        |
-| Azure Log Analytics                                   | yes               | yes - support both client secret and certificate | no          | yes                      | yes                      | no                         |
-| Azure Network Security Groups                         | yes               | yes                                              | yes         | yes                      | yes                      | no                         |
-| Azure Risky Users                                     | yes               | yes                                              | yes         | no                       | yes                      | no                         |
-| Azure Security Center v2                              | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | no                         |
-| Microsoft Defender for Cloud Event Collector          | no                | yes                                              | no          | no                       | no                       | no                         |
-| Azure Sentinel                                        | no                | yes - support both client secret and certificate | no          | no                       | yes                      | yes                        |
-| Azure SQL Management                                  | yes               | yes                                              | yes         | yes                      | yes                      | no                         |
-| Azure Storage                                         | yes               | yes                                              | yes         | yes                      | yes                      | no                         |
-| Azure Storage Container                               | no                | no                                               | no          | no                       | yes                      | no                         |
-| Azure Storage FileShare                               | no                | no                                               | no          | no                       | no                       | no                         |
-| Azure Storage Queue                                   | no                | no                                               | no          | no                       | yes                      | no                         |
-| Azure Storage Table                                   | no                | no                                               | no          | no                       | yes                      | no                         |
-| Azure Web Application Firewall                        | yes               | yes                                              | yes         | yes                      | yes                      | no                         |
-| Microsoft 365 Defender                                | yes               | yes - support both client secret and certificate | yes         | no                       | yes                      | no                         |
-| Microsoft 365 Defender Event Collector - XSIAM        | no                | yes                                              | no          | no                       | no - saas                | no                         |
-| Microsoft Defender for Cloud Apps                     | no                | yes                                              | yes         | no                       | no                       | yes                        |
-| Microsoft Defender for Endpoint (Defender ATP)        | yes               | yes - support both client secret and certificate | no          | yes                      | yes                      | yes                        |
-| Microsoft Graph API                                   | yes               | yes - support both client secret and certificate | yes         | yes                      | yes                      | yes                        |
-| Azure Active Directory Applications                   | yes - device      | yes                                              | yes         | no                       | yes                      | no                         |
-| O365 Outlook Calendar                                 | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | no                         |
-| Microsoft Graph Device Management                     | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | yes                        |
-| O365 File Management                                  | yes               | yes - support both client secret and certificate | no          | yes                      | yes                      | no                         |
-| Microsoft Graph Groups                                | yes               | yes - support both client secret and certificate | no          | yes                      | yes                      | no                         |
-| Azure Active Directory Identity And Access            | yes               | yes - support both client secret and certificate | yes         | no                       | yes                      | no                         |
-| Microsoft Graph Mail Single User                      | yes               | no                                               | no          | yes                      | yes                      | no                         |
-| O365 Outlook Mail                                     | yes               | yes - support both client secret and certificate | no          | no                       | yes                      | yes - self-deployment only |
-| Microsoft Graph Security                              | yes               | yes - support both client secret and certificate | no          | yes                      | yes                      | no                         |
-| Microsoft Graph User                                  | yes               | yes - support both client secret and certificate | no          | yes                      | yes                      | no                         |
-| Microsoft Management Activity API (O365 Azure Events) | yes               | no                                               | no          | yes                      | yes                      | no                         |
-| Microsoft Teams                                       | no                | yes                                              | no          | yes                      | no                       | no                         |
-| Microsoft Teams Management                            | yes               | yes                                              | yes         | no                       | yes                      | no                         |
+| Integration Name                                      | XSOAR Application | Client Credentials | Device Code | Auth code (redirect URI) | Azure Managed Identities | Supports National Clouds |
+|-------------------------------------------------------|-------------------|--------------------|-------------|--------------------------|--------------------------|--------------------------| 
+| Azure Compute v2                                      | yes               | yes                | no          | no                       | no                       | no                       |
+| Azure Data Explorer                                   | yes - device      | yes                | yes         | yes                      | no                       | no                       |
+| AzureDevOps                                           | yes               | yes                | yes         | yes                      | no                       | no                       |
+| Azure Firewall                                        | yes               | yes                | yes         | no                       | yes                      | no                       |
+| Azure Key Vault                                       | no                | yes                | no          | no                       | yes                      | yes                      |
+| Azure Kubernetes Services                             | yes               | yes                | yes         | yes                      | yes                      | yes                      |
+| Azure Log Analytics                                   | yes               | yes                | no          | yes                      | yes                      | yes                      |
+| Azure Network Security Groups                         | yes               | yes                | yes         | yes                      | yes                      | no                       |
+| Azure Risky Users                                     | yes               | yes                | yes         | no                       | yes                      | no                       |
+| Azure Security Center v2                              | yes               | yes                | no          | no                       | yes                      | no                       |
+| Microsoft Defender for Cloud Event Collector          | no                | yes                | no          | no                       | no                       | no                       |
+| Azure Sentinel                                        | no                | yes                | no          | no                       | yes                      | yes                      |
+| Azure SQL Management                                  | yes               | yes                | yes         | yes                      | yes                      | no                       |
+| Azure Storage                                         | yes               | yes                | yes         | yes                      | yes                      | no                       |
+| Azure Storage Container                               | no                | no                 | no          | no                       | yes                      | no                       |
+| Azure Storage FileShare                               | no                | no                 | no          | no                       | no                       | no                       |
+| Azure Storage Queue                                   | no                | no                 | no          | no                       | yes                      | no                       |
+| Azure Storage Table                                   | no                | no                 | no          | no                       | yes                      | no                       |
+| Azure Web Application Firewall                        | yes               | yes                | yes         | yes                      | yes                      | no                       |
+| Microsoft 365 Defender                                | yes               | yes                | yes         | no                       | yes                      | no                       |
+| Microsoft 365 Defender Event Collector - XSIAM        | no                | yes                | no          | no                       | no - saas                | no                       |
+| Microsoft Defender for Cloud Apps                     | no                | yes                | yes         | no                       | no                       | yes                      |
+| Microsoft Defender for Endpoint (Defender ATP)        | yes               | yes                | no          | yes                      | yes                      | yes                      |
+| Microsoft Graph API                                   | yes               | yes                | yes         | yes                      | yes                      | yes                      |
+| Azure Active Directory Applications                   | yes - device      | yes                | yes         | no                       | yes                      | no                       |
+| O365 Outlook Calendar                                 | yes               | yes                | no          | no                       | yes                      | no                       |
+| Microsoft Graph Device Management                     | yes               | yes                | no          | no                       | yes                      | yes                      |
+| O365 File Management                                  | yes               | yes                | no          | yes                      | yes                      | no                       |
+| Microsoft Graph Groups                                | yes               | yes                | no          | yes                      | yes                      | no                       |
+| Azure Active Directory Identity And Access            | yes               | yes                | yes         | no                       | yes                      | no                       |
+| Microsoft Graph Mail Single User                      | yes               | no                 | no          | yes                      | yes                      | no                       |
+| O365 Outlook Mail                                     | yes               | yes                | no          | no                       | yes                      | yes                      |
+| Microsoft Graph Security                              | yes               | yes                | no          | yes                      | yes                      | no                       |
+| Microsoft Graph User                                  | yes               | yes                | no          | yes                      | yes                      | no                       |
+| Microsoft Management Activity API (O365 Azure Events) | yes               | no                 | no          | yes                      | yes                      | no                       |
+| Microsoft Teams                                       | no                | yes                | no          | yes                      | no                       | no                       |
+| Microsoft Teams Management                            | yes               | yes                | yes         | no                       | yes                      | no                       |
 
 
 
