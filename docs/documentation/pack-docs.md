@@ -115,7 +115,10 @@ Your pack should fall into one of the approved existing categories:
       Vulnerability Management
       Authentication & Identity Management
       Email
-
+      Cloud Service Provider
+      Code Repositories
+      CI/CD
+      
   </details>
 
 You may use the above information to customize these elements in the pack metadata file.
