@@ -100,8 +100,11 @@ Your pack should fall into one of the approved existing categories:
 
       Analytics & SIEM
       Case Management
+      CI/CD
+      Cloud Service Provider
       Cloud Services
       Cloud Security
+      Code Repositories
       Data Enrichment & Threat Intelligence
       Database
       Deception & Breach Simulation
