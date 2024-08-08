@@ -100,8 +100,11 @@ Your pack should fall into one of the approved existing categories:
 
       Analytics & SIEM
       Case Management
+      CI/CD
+      Cloud Service Provider
       Cloud Services
       Cloud Security
+      Code Repositories
       Data Enrichment & Threat Intelligence
       Database
       Deception & Breach Simulation
@@ -115,10 +118,7 @@ Your pack should fall into one of the approved existing categories:
       Vulnerability Management
       Authentication & Identity Management
       Email
-      Cloud Service Provider
-      Code Repositories
-      CI/CD
-      
+
   </details>
 
 You may use the above information to customize these elements in the pack metadata file.
