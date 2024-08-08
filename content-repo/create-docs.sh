@@ -5,8 +5,8 @@ set -e
 
 # Script will check out the Demisto content repo and then generate documentation based upon the checkout
 
-SCRIPT_DIR=$(dirname ${BASH_SOURCE})
-CURRENT_DIR=`pwd`
+SCRIPT_DIR=$(dirname ${BASH_SOURCE}) 
+CURRENT_DIR=`pwd` 
 if [[ "${SCRIPT_DIR}" != /* ]]; then
     SCRIPT_DIR="${CURRENT_DIR}/${SCRIPT_DIR}"
 fi
@@ -29,7 +29,7 @@ else
     echo "==== current branch: ${CURRENT_BRANCH} ===="
 
     CONTENT_GIT_URL="https://github.com/demisto/content.git"
-    CONTENT_BRANCH="master"
+    CONTENT_BRANCH="qradar-doc-improvment"
     REQUIRE_BRANCH=false
     if [ -n "${INCOMING_HOOK_BODY}" ]; then
         echo "INCOMING_HOOK_BODY=${INCOMING_HOOK_BODY}"
