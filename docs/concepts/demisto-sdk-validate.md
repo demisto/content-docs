@@ -345,9 +345,11 @@ Validate will run all the validations with error codes "BA100", "BA101", "BA102"
 | RM113  | Validate that non of the readme lines contains the disallowed copyright section keywords.                      | Content in the Cortex marketplace is licensed under the MIT license.                                                                                                             |               |
 | RM114  | Validate README images used in README exist.                                                                   | Missing images are not shown in rendered markdown                                                                                                                                |               |
 ## `RN`: Release Note
-| Code   | Description                                               | Rationale                                                                        | Autofixable   |
-|--------|-----------------------------------------------------------|----------------------------------------------------------------------------------|---------------|
-| RN103  | Validate that the pack contains a full release note file. | Meaningful, complete documentations make it easier for users to use the content. |               |
+| Code   | Description                                                                                                                      | Rationale                                                                        | Autofixable   |
+|--------|----------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|---------------|
+| RN103  | Validate that the pack contains a full release note file.                                                                        | Meaningful, complete documentations make it easier for users to use the content. |               |
+| RN108  | Validate that a new pack doesn't have a RN,                                                                                      | New Packs doesn't require release notes since they don't have any updates.       |               |
+| RN114  | Validate the existence of content types in the first-level headers (####) and the content items in second-level headers (#####). | Providing documentation with accurate information and avoiding confusion.        |               |
 ## `RP`: Reputation (Incident Type)
 | Code   | Description                                                            | Rationale                                                   | Autofixable   |
 |--------|------------------------------------------------------------------------|-------------------------------------------------------------|---------------|
