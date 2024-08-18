@@ -29,7 +29,7 @@
     "@docusaurus/theme-live-codeblock": "2.0.0-beta.0",
     "@docusaurus/theme-search-algolia": "2.0.0-beta.0",
     "@docusaurus/types": "2.0.0-beta.0",
-    "@docusaurus/utils": "2.0.0-beta.0",
+    "@docusaurus/utils": "3.5.2",
     "@mdx-js/mdx": "^1.6.7",
     "@mdx-js/react": "^1.6.7",
     "algoliasearch": "4.8.6",
