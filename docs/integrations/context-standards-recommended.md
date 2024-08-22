@@ -65,7 +65,11 @@ The following is the format for an Account entity.
       }
     ],
     "ChangePasswordAtNextLogin": "BOOL, Whether this account should change its password at the next login",
-    "IsInternal": "BOOL, Whether this account is internal or external to the organization"
+    "IsInternal": "BOOL, Whether this account is internal or external to the organization",
+    "Manager": {
+      "Email": "STRING, The email address of the manager.",
+      "DisplayName": "STRING, The display name of the manager."
+    }
 }
 ```
 
