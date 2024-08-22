@@ -136,6 +136,12 @@ outputs:
 - contextPath: Account.IsInternal
   description: Whether the account is internal or external to the organization. 'True' means the account is internal.
   type: Bool
+- contextPath: Account.Manager.Email
+  description: The email address of the manager.
+  type: String
+- contextPath: Account.Manager.DisplayName
+  description: The display name of the manager.
+  type: String
 
 
 ```
