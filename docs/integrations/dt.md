@@ -181,6 +181,6 @@ Here are a few examples:
 | --- | --- | --- |
 |```${URLScan.Certificates(val.SubjectName.indexOf("doubleclick") > -1).ValidFrom=foo(val);function foo(aa) { return aa + "Z"; }}``` | `2018-12-19 08:17:00Z` | Returns the timestamp where the SubjectName contains the word "doubleclick". Then it appends "Z" to the value |
 | ```${MaxMind.Organization=val.toLowerCase()}``` | `google llc` | returns all the organizations but in lower case. |
-| ```${DBotScore.Vendor(val.indexOf('Recorded')>=0)=val.toLowerCase()}``` | `"Recorded Future"` | returns all the Vendors containing “Recorded” but in lower case. |
+| ```${DBotScore.Vendor(val.indexOf('Recorded')>=0)=val.toLowerCase()}``` | `"recorded future"` | returns all the Vendors containing “Recorded” but in lower case. |
 | ```${DBotScore.type=val.ip +': ' + val.Vendor} ``` | `["ip: ipinfo", "ip: Recorded Future", "ip: VirusTotal"]` | returns the concatenated ip and vendor for all DBotScores. |
 

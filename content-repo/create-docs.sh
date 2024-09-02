@@ -143,8 +143,8 @@ mkdir ${REL_IMGS_DIR}
 echo "Copying CommonServerPython.py, demistomock.py, approved_tags.json and approved_usecases.json"
 cp ${CONTENT_GIT_DIR}/Packs/Base/Scripts/CommonServerPython/CommonServerPython.py .
 cp ${CONTENT_GIT_DIR}/Tests/demistomock/demistomock.py .
-cp ${CONTENT_GIT_DIR}/Tests/Marketplace/approved_tags.json .
-cp ${CONTENT_GIT_DIR}/Tests/Marketplace/approved_usecases.json .
+cp ${CONTENT_GIT_DIR}/Config/approved_tags.json .
+cp ${CONTENT_GIT_DIR}/Config/approved_usecases.json .
 
 # Removing the DemistoClass import from CommonServerPython.py
 sed -i -e '/from DemistoClassApiModule import */d' CommonServerPython.py
