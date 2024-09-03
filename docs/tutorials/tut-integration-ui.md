@@ -465,7 +465,7 @@ For Cortex XSOAR:
 
 For Cortex XSIAM:
 
-![xsiam-incident](/doc_imgs/tutorials/tut-integration-ui/xsiam-incident.png)
+![xsiam-incident](/doc_imgs/tutorials/tut-integration-ui/xisam-incident.png)
 
 Select the incident you just created. Go to the **Work Plan** page and you can see that your playbook executed successfully. Go to the **War Room** and view the translation.
 
