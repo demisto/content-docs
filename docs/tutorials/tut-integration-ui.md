@@ -484,4 +484,4 @@ To ensure integrations perform as expected, content packs can have [unit tests](
 
 The [YodaSpeak](https://github.com/demisto/content/tree/master/docs/tutorial-integration/YodaSpeak) content pack is available on GitHub. The pack contains the standard pack file structure and can be viewed as a resource when creating new integrations. 
 
-Go to **Settings > Integrations**. Click the blue button **BYOI** in the top right corner, and the built-in Cortex XSOAR IDE will open. If you don’t see this button, it means you don’t have the correct permissions required for creating new integrations. Please reach out to your admin for assistance. 
+Go to **Settings > Integrations**. Click the blue button **BYOI** in the top right corner, and the built-in Cortex XSOAR IDE will open. If you don’t see this button, it means you don’t have the correct permissions required for creating new integrations. Ask your admin for assistance. 
