@@ -28,7 +28,7 @@ The [CommonServerPython (CSP)](../reference/api/common-server-python) and [Commo
 
 ![scripthelper](/doc_imgs/tutorials/tut-integration-ui/cortex-xsoar-ide-8.png)
 
-In many cases, there is an existing script for common server functions. With the **Script Helper**, you can easily find tools to format a table, manipulate data, post to the war room, etc. If a function can be used in many different scripts, there’s a good chance it already exists in the **Script Helper**. If you create a new function that would be useful across many scripts, we encourage you to contribute that function to [CommonServerPython](https://github.com/demisto/content/blob/master/Packs/Base/Scripts/CommonServerPython/CommonServerPython.py) scripts.
+In many cases, there is an existing script for common server functions. With the **Script Helper**, you can easily find tools to format a table, manipulate data, post to the War Room, etc. If a function can be used in many different scripts, there’s a good chance it already exists in the **Script Helper**. If you create a new function that would be useful across many scripts, we encourage you to contribute that function to [CommonServerPython](https://github.com/demisto/content/blob/master/Packs/Base/Scripts/CommonServerPython/CommonServerPython.py) scripts.
 
 ## Navigate to BYOI (Bring Your Own Integration)
 
