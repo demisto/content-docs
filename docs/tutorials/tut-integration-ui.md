@@ -192,7 +192,7 @@ The *return_error* function ensures that playbooks calling these functions will 
 
 At the beginning of the code, you can import Python libraries, so that its commands are available for our integration. Every integration runs inside a Docker image, and our standard Docker image includes most of the common packages, such as JSON and collections. In our **Yoda Speak** integration, you don’t need to import any libraries, as it only uses the *BaseClient* class, implicitly imported from *CommonServerPython*.
 
-**NOTE:** When working within a traditional IDE, such as PyCharm, or Visual Studio Code, we recommend [importing the following](../integrations/debugging#debugging-using-your-ide) at the top of your code for debugging purposes.
+**NOTE:** When working within a traditional IDE, such as PyCharm or Visual Studio Code, we recommend [importing the following](../integrations/debugging#debugging-using-your-ide) at the top of your code for debugging purposes.
 
 ```python
 import demistomock as demisto
