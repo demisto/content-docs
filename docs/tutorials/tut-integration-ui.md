@@ -63,7 +63,7 @@ In the **BASIC** section, add the following:
 | Parameter | Description |
 | ----------------- | ---------------------|
 | Integration Name | This integration will be called **Yoda Speak**. |
-| Description | The description usually includes basic information about the integration, common troubleshooting steps, and any required setup instructions. For the purposes of this tutorial, however, let's enter ***Creating an Integration***, we are.|
+| Description | The description usually includes basic information about the integration, common troubleshooting steps, and any required setup instructions. For the purposes of this tutorial, however, let's enter **Creating an Integration, we are**.|
 | Category | Select **Utilties**. For the full list of available categories, see [Design Best Practices](../concepts/design-best-practices). |
 | Drag and Drop a file | (**Logo** in Cortex XSOAR 6) Add a logo, which should be no larger than 10KB, have a transparent background, and be in the PNG format. You can drag and drop the logo here or click the box to find the file for upload. |
 
