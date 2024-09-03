@@ -477,7 +477,7 @@ Your example integration is now complete, and you can use it throughout Cortex X
 
 Real world integrations are usually more complex than our example. Like any code, integrations require maintenance and can be extended over time with new features, commands etc.
 
-To ensure integrations perform as expected, packs can have [unit tests](../integrations/unit-testing), and [test playbooks](../integrations/test-playbooks). Learn more about [contributing content](../contributing/contributing). 
+To ensure integrations perform as expected, content packs can have [unit tests](../integrations/unit-testing), and [test playbooks](../integrations/test-playbooks). Learn more about [contributing content](../contributing/contributing). 
 
 
 ## Resources
