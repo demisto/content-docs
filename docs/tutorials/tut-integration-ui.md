@@ -228,7 +228,7 @@ class Client(BaseClient):
 ```
 
 The Client is an object that communicates with the API. You create a class called *Client*.
-When a Client object is created, it instantiates a parent *BaseClient* using the params you have set up (whether to use proxy, whether to allow insecure connections, and the base URL). If the user provides values to the *api_key* parameter, the Client sets the headers it will use accordingly. 
+When a Client object is created, it instantiates a parent *BaseClient* using the parameters you have set up (whether to use proxy, whether to allow insecure connections, and the base URL). If the user provides values to the *api_key* parameter, the Client sets the headers it will use accordingly. 
 
 **NOTE:** When using the [Yoda Speak API](https://funtranslations.com/api/yoda) with an API key, the API key is passed as a header.
 
