@@ -303,7 +303,7 @@ The *translate_command* function uses the client that is provided as an argument
     - *outputs_key_field*: Since you can run the translation command multiple times, and possibly receive different results for the same string of text, the system needs to know where to update or append each result. In this example you tell the system that *Phrase.Original* is the key that represents the original text you translated, so that the next time the command is run on the same string of text, the translated values will update. Learn more about storing results as [context data](../concepts/concepts#context-data).
     - *readable_output*: This is what users see in their War Room when calling the command, so it should be formatted. You can use the *tableToMarkdown* function (from CSP) to turn the JSON into a user-friendly table. You provide *tableToMarkdown* with both the JSON values and a title for the table. 
     
-        **NOTE:** The Script Helper provides an easy way to insert common functions into your code. If you click on the **Script Helper** button and search for the *tableToMarkdown* command, you have the option to insert it directly into the code with placeholders for its *name* (title) and *t* (JSON) arguments.
+        **NOTE:** The Script Helper provides an easy way to insert common functions into your code. If you click the **Script Helper** button and search for the *tableToMarkdown* command, you have the option to insert it directly into the code with placeholders for its *name* (title) and *t* (JSON) arguments.
 
 ### Create the Main Function
 
