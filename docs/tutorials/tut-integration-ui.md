@@ -41,17 +41,13 @@ In this example, you are going to create an English-to-Yoda translator, which tr
 2. Click **BYOI** in the top right corner.
 
     ![byoi](/doc_imgs/tutorials/tut-integration-ui/byoi-8.png)
-
-
     
-    You enter the Cortex XSOAR/XSIAM IDE. 
-
-    If you don’t see this button, it means you don’t have the correct permissions required for creating new integrations. Ask your admin for assistance. 
+    If you don’t see this button, you don’t have the correct permissions required for creating new integrations. Ask your administrator for assistance. 
 
 
 ## Define Integration Settings
 
-When clicking **BYOI**, the HelloWorld integration template is loaded by default. You will replace the existing **HelloWorld** integration settings with the new **Yoda Speak** settings and delete any unused parameters or arguments. 
+When clicking **BYOI**, you enter the Cortex XSOAR/XSIAM IDE and the HelloWorld integration template is loaded by default. You will replace the existing **HelloWorld** integration settings with the new **Yoda Speak** settings and delete any unused parameters or arguments. 
     
 The new settings are saved in a YAML file, which you can export and import. To learn more about integration YAML files, see [Integrations and Scripts Metadata YAML File](../integrations/yaml-file).
 
@@ -484,4 +480,3 @@ To ensure integrations perform as expected, content packs can have [unit tests](
 
 The [YodaSpeak](https://github.com/demisto/content/tree/master/docs/tutorial-integration/YodaSpeak) content pack is available on GitHub. The pack contains the standard pack file structure and can be viewed as a resource when creating new integrations. 
 
-Go to **Settings > Integrations**. Click the blue button **BYOI** in the top right corner, and the built-in Cortex XSOAR IDE will open. If you don’t see this button, it means you don’t have the correct permissions required for creating new integrations. Ask your admin for assistance. 
