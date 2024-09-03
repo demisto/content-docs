@@ -204,7 +204,7 @@ For Cortex XSOAR, if you want to use Python libraries that are not included in t
 
 ### Disable Secure Warnings
 
-Next you want prevent Python from raising a warning when accessing resources insecurely.
+Next you want to prevent Python from raising a warning when accessing resources insecurely.
 
 ```python
 requests.packages.urllib3.disable_warnings() # pylint: disable=no-member
