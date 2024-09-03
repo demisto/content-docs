@@ -89,7 +89,7 @@ For the **Yoda Speak** integration, you want to include the API key and proxy se
 
 ***API Key***
 
-Add the following values for the apikey parameter:
+Add the following values for the API Key parameter:
 
 | API Key Parameter Settings  |  |
 | ------------- |-------------|
