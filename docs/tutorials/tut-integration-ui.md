@@ -375,7 +375,7 @@ If any errors occur during the execution of our code, show those errors to the u
 if __name__ in ('__main__', '__builtin__', 'builtins'):
     main()
 ```
-This line tells the system where to start running our code. By convention, you call the main function *main*.
+This line tells the system where to start running your code. By convention, you call the main function *main*.
 
 
 ## Test the Integration
