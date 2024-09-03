@@ -356,7 +356,7 @@ If the command name is ***test-module***, it means the user has clicked the inte
 This is the primary command for our integration and lets us translate strings of text.
 
 
-There is also an *else* option. This returns an error if someone tries to run a command that was created in the YAML  file but does not exist in the Python (PY) file. For example, if you added a command ***yoda-interpret*** in the integration settings, but did not add it to this file, and then tried to run that command, you would see **Yoda-interpret is not implemented**.
+There is also an *else* option. This returns an error if someone tries to run a command that was created in the YAML file but does not exist in the Python (PY) file. For example, if you added a command ***yoda-interpret*** in the integration settings, but did not add it to this file, and then tried to run that command, you would see **yoda-interpret is not implemented**.
 
 ### Log Errors
 
