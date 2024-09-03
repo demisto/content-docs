@@ -106,7 +106,7 @@ In this integration, the free service does not require an API key, and allows up
  
 ***URL***
 
-Add the following values for the url parameter:
+Add the following values for the URL parameter:
 
 | URL Parameter Settings  |  |
 | ------------- |-------------|
