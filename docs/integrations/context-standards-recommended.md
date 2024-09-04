@@ -69,7 +69,8 @@ The following is the format for an Account entity.
     "Manager": {
       "Email": "STRING, The email address of the manager.",
       "DisplayName": "STRING, The display name of the manager."
-    }
+    },
+    "RiskLevel": "STRING, The risk level associated with the account. This could be 'LOW', 'MEDIUM', or 'HIGH'.",
 }
 ```
 
@@ -141,6 +142,9 @@ outputs:
   type: String
 - contextPath: Account.Manager.DisplayName
   description: The display name of the manager.
+  type: String
+- contextPath: Account.RiskLevel
+  description: The risk level associated with the account. This could be 'LOW', 'MEDIUM', or 'HIGH'.
   type: String
 
 
