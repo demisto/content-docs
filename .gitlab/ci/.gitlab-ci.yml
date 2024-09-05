@@ -1,0 +1,7 @@
+variables:
+  CURRENT_BRANCH_NAME: infra-content-docs
+
+include:
+  - file: "/.gitlab/ci/content-ci/ci/.gitlab-ci.yml"
+    ref: infra-content-docs
+    project: "${CI_PROJECT_NAMESPACE}/infra"
