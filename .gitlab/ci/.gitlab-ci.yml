@@ -5,3 +5,4 @@ include:
   - file: "/.gitlab/ci/content-docs/.gitlab-ci.yml"
     ref: infra-content-docs
     project: "${CI_PROJECT_NAMESPACE}/infra"
+
