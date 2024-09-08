@@ -6,7 +6,7 @@ set -e
 # Script will check out the Demisto content repo and then generate documentation based upon the checkout
 
 SCRIPT_DIR=$(dirname ${BASH_SOURCE})
-CURRENT_DIR=`pwd`
+CURRENT_DIR=$(pwd)
 if [[ "${SCRIPT_DIR}" != /* ]]; then
     SCRIPT_DIR="${CURRENT_DIR}/${SCRIPT_DIR}"
 fi
@@ -48,17 +48,17 @@ else
     echo "==== content git url: ${CONTENT_GIT_URL} branch: ${CONTENT_BRANCH} ===="
 
     if [[ -d ${CONTENT_GIT_DIR} && $(cd ${CONTENT_GIT_DIR}; git remote get-url origin) != "${CONTENT_GIT_URL}" ]]; then
-        echo "Deleting dir: ${CONTENT_GIT_DIR} as remote url dooesn't match ${CONTENT_GIT_URL} ..."
+        echo "Deleting dir: ${CONTENT_GIT_DIR} as remote url doesn't match ${CONTENT_GIT_URL} ..."
         rm -rf "${CONTENT_GIT_DIR}"
     fi
 
     if [ ! -d ${CONTENT_GIT_DIR} ]; then
         # Do not do "git clone --depth 1" as we need full history for the deprecated integrations data generation
         echo "Cloning content to dir: ${CONTENT_GIT_DIR} ..."
-        git clone ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}        
+        git clone -q ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}
     else
         echo "Content dir: ${CONTENT_GIT_DIR} exists. Skipped clone."
-        if [ -z "${CONTENT_REPO_SKIP_PULL}"]; then        
+        if [ -z "${CONTENT_REPO_SKIP_PULL}" ]; then
             echo "Doing pull..."
             (cd ${CONTENT_GIT_DIR}; git pull)
         fi
@@ -75,7 +75,7 @@ else
         echo "Using content master to generate build"
         CONTENT_BRANCH=master
         git checkout master
-        # you can use an old hash to try to see if bulid passes when there is a failure.
+        # you can use an old hash to try to see if build passes when there is a failure.
         # git checkout b11f4cfe4a3bf567656ef021f3d8f1bf66bcb9f6
     fi
     echo "Git log:"
