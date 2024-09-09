@@ -106,7 +106,7 @@ def post_comment(deploy_info_file: str):
         "Congratulations! The automatic build has completed successfully.\n" \
         f"A preview site is available at: {deploy_url}\n\n---\n" \
         "**Important:** Make sure to inspect your changes at the preview site."
-    if os.getenv('CIRCLE_BRANCH') == 'master':
+    if os.getenv('CIRCLE_BRANCH', os.getenv("CI_COMMIT_REF_NAME")) == 'master':
 
         message = "# Production Site Updated\n\n" \
             "Congratulations! The automatic build has completed successfully.\n" \
@@ -135,7 +135,7 @@ GITHUB_TOKEN: api key of user to use for posting
 PR_NUM: if set will use this as the pull request number. Otherwise will move on to CIRCLE_PULL_REQUEST
 CIRCLE_PULL_REQUEST: pull request url to use to get the pull id. Such as: https://github.com/demisto/content-docs/pull/9
 if CIRCLE_PULL_REQUEST will try to get issue id from last commit comment (case of merge into master)
-CIRCLE_BRANCH: if set to master treats as a production deployment
+CI_COMMIT_REF_NAME: if set to master treats as a production deployment
 SKIP_SSL_VERIFY: if set will skip ssl verification (used for testing behind GP)
     """
     parser = argparse.ArgumentParser(description=desc,

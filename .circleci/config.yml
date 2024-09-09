@@ -124,8 +124,8 @@ jobs:
             export PATH="$PATH:`pwd`/node_modules/.bin"
             export GOOGLE_APPLICATION_CREDENTIALS="$HOME"/gcloud.json
 
-            if [ "$CIRCLE_BRANCH" = "master" ]; then
-              echo "Deploying to prod as CIRCLE_BRANCH is equal to master!"
+            if [[ "${CIRCLE_BRANCH}" = "master" ]] || [[ "${CI_COMMIT_REF_NAME}" == "master" ]]; then
+              echo "Deploying to prod as CI_COMMIT_REF_NAME is equal to master!"
               firebase deploy --only hosting > deploy-info-firebase.txt
             else
               # Get the PR number from the CIRCLE_PULL_REQUEST env variable which is in the form of:

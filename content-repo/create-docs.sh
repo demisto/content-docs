@@ -20,8 +20,10 @@ if [[ -n "$CONTENT_REPO_DIR" ]]; then
     echo "================================="
 else
     CONTENT_GIT_DIR=${SCRIPT_DIR}/.content
-    if [[ -n "${CIRCLE_BRANCH}" ]]; then
+    if [[ -n "${CIRCLE_BRANCH}" ]]; then  # CircleCI - deprecated remove!
         CURRENT_BRANCH=${CIRCLE_BRANCH}
+    elif [[ -n "${CI_COMMIT_REF_NAME}" ]]; then
+        CURRENT_BRANCH=${CI_COMMIT_REF_NAME}
     else
         CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
     fi
