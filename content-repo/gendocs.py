@@ -82,7 +82,7 @@ IGNORE_MSG = 'skipped since it is in the ignored entities.'
 DEPRECATED_INFO_FILE = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs/articles/deprecated_info.json'
 
 # initialize the seed according to the PR branch. Used when selecting max files.
-random.seed(os.getenv('CIRCLE_BRANCH'))
+random.seed(os.getenv('CIRCLE_BRANCH', os.getenv("CI_COMMIT_REF_NAME")))
 
 MIN_RELEASE_VERSION = StrictVersion((datetime.now() + relativedelta(months=-18)).strftime('%y.%-m.0'))
 PACKS_INTEGRATIONS_PREFIX = 'Integrations'
