@@ -70,7 +70,7 @@ The following is the format for an Account entity.
       "Email": "STRING, The email address of the manager.",
       "DisplayName": "STRING, The display name of the manager."
     },
-    "RiskLevel": "STRING, The risk level associated with the account. This could be 'LOW', 'MEDIUM', or 'HIGH'.",
+    "RiskLevel": "STRING, The risk level associated with the account. This could be 'LOW', 'MED' or 'HIGH'.",
 }
 ```
 
