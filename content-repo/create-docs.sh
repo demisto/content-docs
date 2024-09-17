@@ -6,7 +6,7 @@ set -e
 # Script will check out the Demisto content repo and then generate documentation based upon the checkout
 
 SCRIPT_DIR=$(dirname ${BASH_SOURCE})
-CURRENT_DIR=`pwd` 
+CURRENT_DIR=`pwd`  
 if [[ "${SCRIPT_DIR}" != /* ]]; then
     SCRIPT_DIR="${CURRENT_DIR}/${SCRIPT_DIR}"
 fi
