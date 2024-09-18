@@ -2,7 +2,7 @@
 
 # exit on errors
 set -e
-
+ 
 # Script will check out the Demisto content repo and then generate documentation based upon the checkout
 
 SCRIPT_DIR=$(dirname ${BASH_SOURCE})
