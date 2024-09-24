@@ -68,7 +68,7 @@ The following fields are available for configuration:
 | Name                          | Name of the alert.                                                                                                      |
 | Time Occurred (epoch)         | Time when the alert was triggered.                                                                                      |
 | Send Alert to all the Servers | If enabled, the alert will be pushed to all configured Cortex XSOAR servers configured.                                 |
-| XSOAR Server                  | Cortex XSOAR server to which the incident will be pushed (needed only if *Send Alert to all the Servers* is unchecked). |
+| XSOAR Server                  | Cortex XSOAR server to which the incident will be pushed (needed only if *Send Alert to all the Servers* is unchecked). <br> Note: For Cortex XSOAR 8, the XSOAR Server URL must be appended with ext-. |
 | Type                          | Incident type in Cortex XSOAR.                                                                                          |
 | Custom Fields                 | A comma-separated, 'key:value' formatted, custom fields pairs.                                                          |
 | Labels                        | A comma-separated list of values to set for the labels field in the incident on Cortex XSOAR.                           |
