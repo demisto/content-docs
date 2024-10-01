@@ -33,7 +33,7 @@ The CI/CD process helps you develop and maintain content for complex content dev
 
 The process is designed for more advanced users who have an understanding of CI/CD concepts and have a number of developers who work on local machines. In particular, it is recommended that you should have the following knowledge:
  - The ability to set up a build system
- - The ability to use [demisto-sdk](https://xsoar.pan.dev/docs/concepts/demisto-sdk)
+ - The ability to use [demisto-sdk](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/Introduction-to-Demisto-SDK)
  - A basic knowledge of Git
  - A basic knowledge of containers (Docker)
 
@@ -67,11 +67,11 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
 
  ## Development
  
- In the development stage, [set up the CI/CD process](#setup-the-cicd-development-process) by creating or cloning a Git repository based on the [CI/CD template repository](https://github.com/demisto/content-ci-cd-template). You can then create and maintain your custom content with the built-in functionality of [demisto-sdk](https://xsoar.pan.dev/docs/concepts/demisto-sdk). The CI/CD process uses `demisto-sdk` to develop and deploy custom content packs. It downloads, uploads, validates, creates content, migrates content from a Cortex XSOAR server, etc. It also supports content pack structure generation, auto validation of custom content including running linters on the code, and generation of content pack documentation, etc. For a full list of features, commands, and arguments, see [demisto-sdk-commands](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/Demisto-SDK-commands).
+ In the development stage, [set up the CI/CD process](#setup-the-cicd-development-process) by creating or cloning a Git repository based on the [CI/CD template repository](https://github.com/demisto/content-ci-cd-template). You can then create and maintain your custom content with the built-in functionality of [demisto-sdk](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/Introduction-to-Demisto-SDK). The CI/CD process uses `demisto-sdk` to develop and deploy custom content packs. It downloads, uploads, validates, creates content, migrates content from a Cortex XSOAR server, etc. It also supports content pack structure generation, auto validation of custom content including running linters on the code, and generation of content pack documentation, etc. For a full list of features, commands, and arguments, see [demisto-sdk-commands](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/Demisto-SDK-commands).
 
  #### Set Up the CI/CD Development Process
  
- Before you begin, download and install the `demisto-sdk` on your machine. For more information, see [Demisto Installation and Setup](https://xsoar.pan.dev/docs/concepts/demisto-sdk#installation-and-setup).
+ Before you begin, download and install the `demisto-sdk` on your machine. For more information, see [Demisto Installation and Setup](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/Install-Demisto-SDK).
  
  Ensure that the `DEMISTO_BASE_URL` and `DEMISTO_API_KEY` are set to the server environment that you want to use. For example, if you want to upload content directly to the server without using an artifact server you need to point the server to this environment. When working on a branch and you want to download/upload to a development environment, ensure that the `demisto-sdk` points to the development server.
  1. **Create the CI/CD Repository.**
@@ -86,7 +86,7 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
     | `.vscode` | Used when using VSC as your IDE. |
     | `build_related_scripts` | Contains the CI/CD scripts. The `build_related_scripts/bucket_upload.py` script enables you to upload to Google Cloud Storage (artifact server) and the `build_related_scripts/bucket_upload_aws.py` script enables you to upload to AWS s3.  Before deploying your content, you need to update the name of the bucket list when uploading the Google Cloud Storage. For more information, see Configure the the bucket_upload.py file in [Deployment](#deployment). <br/> The `get_modified_packs.py` script enables you to get the latest version of the content pack before merging. |
     | `dev_envs/pytest`| A folder that contains the `conftest.py`, which validates python files. |
-    | `.demisto-sdk-conf`| The custom configuration file for the `demisto-sdk` commands. For more information, see [Setting a preset custom command configuration](https://xsoar.pan.dev/docs/concepts/demisto-sdk#setting-a-preset-custom-command-configuration). |
+    | `.demisto-sdk-conf`| The custom configuration file for the `demisto-sdk` commands. For more information, see [Setting a preset custom command configuration](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/Create-a-preset-custom-command-configuration). |
     | `.gitignore` | Specifies intentionally untracked files that Git should ignore. |
     | `.private-repo-settings` | Set who can view your repository. For more information, see [Setting repository visibility](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility). |
     | `CommonServerPowerShell.ps1` | Required when using Powershell. For more information, see [Powershell code](https://xsoar.pan.dev/docs/integrations/powershell-code). |
@@ -202,7 +202,7 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
 
     Run the `demisto-sdk format` command, which ensures that your new or modified files comply with Cortex XSOAR's standard. 
     To check that your code is valid, run the `demisto-sdk validate` command and the `demisto-sdk lint` command on your code.<br/>
-    **Troubleshooting:** If you receive many errors from the validate/lint commands, it is not a major issue, as you can control the [validations](https://xsoar.pan.dev/docs/concepts/demisto-sdk#validate) you want to ignore.
+    **Troubleshooting:** If you receive many errors from the validate/lint commands, it is not a major issue, as you can control the [validations](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/validate) you want to ignore.
     For example, if you receive the `BA111` - Problematic fields names error, or the `IN135` or `IN145` - Integration params issues, you can add it to the `.pack-ignore` file in your pack like this:
     ```
         [file:some_playbook.yml]
@@ -585,7 +585,7 @@ The structure of the repository is as follows:
 | README.md | A markdown file that provides a description of the pack. |
 | xsoar_config.json<br/>[Example file](https://raw.githubusercontent.com/demisto/content/master/Packs/ContentManagement/doc_files/xsoar_config.json) | The configuration file that defines what packs lists, and jobs will be set up on the machine.<br/> It consists of the following sections:<br/>- *custom_packs* - Your own internal packs to be installed through the build process.<br/>- *marketplace_packs* - Marketplace packs to be installed on the machine.<br/>- *lists* - Lists to be created in the machine, when the list type set to dynamic then the list won’t be overwritten.<br/>- *jobs* - Jobs to be created in the machine. |
 | .private-repo-settings | --- |
-| .demisto-sdk-conf | Your custom configuration file for the demisto-sdk commands. For details, click [here](https://xsoar.pan.dev/docs/concepts/demisto-sdk#setting-a-preset-custom-command-configuration). |
+| .demisto-sdk-conf | Your custom configuration file for the demisto-sdk commands. For details, click [here](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/Create-a-preset-custom-command-configuration). |
 | requirements.txt | Contains a list of all the project’s dependencies. |
 | tox.ini | The command-line driven automated testing tool for Python. |
 | demistomock.py | You can copy this file from the Content repo (content/Tests/demistomock/). |
@@ -602,8 +602,8 @@ Create a yml file for the CI/CD process. The [Example File](https://raw.githubus
 1. Prepare the environment and the virtual environment on which to run the demisto-sdk. 
 2. Create an ID set for the private repository using the [demisto-sdk create-id-set](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/create_id_set) command.
 3. Merge the ID set with the Content repository's ID set using the following command: ***demisto-sdk merge-id-sets -i1 <path_to_private_repo_id__set> -i2 <path_to_content_repo_id_set> -o <path_to_output>***.
-4. Validate the packs' files using the [demisto-sdk validate](https://xsoar.pan.dev/docs/concepts/demisto-sdk#validate) command.
-5. Run unit tests and linters on the packs using the [demisto-sdk lint](https://xsoar.pan.dev/docs/concepts/demisto-sdk#lint) command.
+4. Validate the packs' files using the [demisto-sdk validate](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/validate) command.
+5. Run unit tests and linters on the packs using the [demisto-sdk pre-commit](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/pre-commit) command.
 6. Create uploadable pack zips using the [demisto-sdk zip-packs](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/zip-packs) command.
 ​
    Or 
