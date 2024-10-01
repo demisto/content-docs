@@ -22,7 +22,7 @@ The entity README.md file should not be confused with the Content Pack README.md
 
 ## Creating Documentation
 
-Use the `demisto-sdk generate-docs` command to generate documentation for your content entity. Documentation for the command is available [here](https://github.com/demisto/demisto-sdk#generate-docs).
+Use the `demisto-sdk generate-docs` command to generate documentation for your content entity. Documentation for the command is available [here](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/generate-docs).
 
 ### Command Examples - Integration Documentation
 
@@ -51,10 +51,10 @@ Output file was saved to :
 ```
 
 :::note
-If you are connecting to a Server with a self signed certificate, make sure to pass the `--insecure` option to the `generate-docs` command.
+If you are connecting to a Server with a self-signed certificate, make sure to pass the `--insecure` option to the `generate-docs` command.
 :::
 
-For additional information you can view the full documentation for the command [here](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/generate_docs#generate-docs).
+For additional information you can view the full documentation for the command [here](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/generate-docs).
 
 #### New Versions of Existing Integrations
 

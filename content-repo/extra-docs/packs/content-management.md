@@ -67,7 +67,7 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
 
  ## Development
  
- In the development stage, [set up the CI/CD process](#setup-the-cicd-development-process) by creating or cloning a Git repository based on the [CI/CD template repository](https://github.com/demisto/content-ci-cd-template). You can then create and maintain your custom content with the built-in functionality of [demisto-sdk](https://xsoar.pan.dev/docs/concepts/demisto-sdk). The CI/CD process uses `demisto-sdk` to develop and deploy custom content packs. It downloads, uploads, validates, creates content, migrates content from a Cortex XSOAR server, etc. It also supports content pack structure generation, auto validation of custom content including running linters on the code, and generation of content pack documentation, etc. For a full list of features, commands, and arguments, see [demisto-sdk-commands](https://github.com/demisto/demisto-sdk#commands).
+ In the development stage, [set up the CI/CD process](#setup-the-cicd-development-process) by creating or cloning a Git repository based on the [CI/CD template repository](https://github.com/demisto/content-ci-cd-template). You can then create and maintain your custom content with the built-in functionality of [demisto-sdk](https://xsoar.pan.dev/docs/concepts/demisto-sdk). The CI/CD process uses `demisto-sdk` to develop and deploy custom content packs. It downloads, uploads, validates, creates content, migrates content from a Cortex XSOAR server, etc. It also supports content pack structure generation, auto validation of custom content including running linters on the code, and generation of content pack documentation, etc. For a full list of features, commands, and arguments, see [demisto-sdk-commands](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/Demisto-SDK-commands).
 
  #### Set Up the CI/CD Development Process
  
@@ -604,11 +604,11 @@ Create a yml file for the CI/CD process. The [Example File](https://raw.githubus
 3. Merge the ID set with the Content repository's ID set using the following command: ***demisto-sdk merge-id-sets -i1 <path_to_private_repo_id__set> -i2 <path_to_content_repo_id_set> -o <path_to_output>***.
 4. Validate the packs' files using the [demisto-sdk validate](https://xsoar.pan.dev/docs/concepts/demisto-sdk#validate) command.
 5. Run unit tests and linters on the packs using the [demisto-sdk lint](https://xsoar.pan.dev/docs/concepts/demisto-sdk#lint) command.
-6. Create uploadable pack zips using the [demisto-sdk zip-packs](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/zip_packs) command.
+6. Create uploadable pack zips using the [demisto-sdk zip-packs](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/zip-packs) command.
 ​
    Or 
 ​
-   Upload zipped packs directly to your machine using the [demisto-sdk upload](https://xsoar.pan.dev/docs/concepts/demisto-sdk#upload) command.
+   Upload zipped packs directly to your machine using the [demisto-sdk upload](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/upload) command.
 7. Upload the artifacts to your artifact repository.
 ​
 ​

@@ -33,7 +33,7 @@ To become a Technology Partner, read the "[Become a Technology Partner](../partn
 Whether you are using the built-in Cortex XSOAR IDE, or a full development environment, we have an official SDK that will help you with your development process.  
 The SDK is a command-line tool that can be used to upload, download, lint, validate and run code on Cortex XSOAR (or XSIAM) directly from your command line.  
 
-For more information, refer to the [demisto-sdk](../concepts/demisto-sdk) article.
+For more information, refer to the [demisto-sdk](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/Introduction-to-Demisto-SDK).
 
 
 ### Basic XSOAR Environment

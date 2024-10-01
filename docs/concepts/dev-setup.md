@@ -72,16 +72,7 @@ Installation:
 
 This is our help tool that will ease the contribution process. It will help you to generate a [Pack](../packs/packs-format), maintain your files, and validate them before committing to the branch.
 
-To install **demisto-sdk** using `pipx`
-```bash
-pipx install demisto-sdk --force
-```
-
-To check the you have the latest version of the SDK, run:
-
-```bash
-demisto-sdk --version
-```
+For more information about how to install *demisto-sdk* please visit: [Demisto-SDK In installation](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/Install-Demisto-SDK)
 
 #### Bootstrap
 

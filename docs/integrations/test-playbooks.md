@@ -18,7 +18,7 @@ We use a standard naming convention for our playbook tests which follows the for
 
 ## Auto-Generate a Test Playbook
 
-To auto generate a Test playbook based upon an integration or script use the following `demisto-sdk generate-test-playbook` command which can be found [here](https://github.com/demisto/demisto-sdk#generate-test-playbook). You can then import the playbook and modify it to your needs.
+To auto generate a Test playbook based upon an integration or script use the following `demisto-sdk generate-test-playbook` command which can be found [here](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/generate-test-playbook). You can then import the playbook and modify it to your needs.
 
 ## Manually Create a Test Playbook
 
