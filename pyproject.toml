@@ -43,6 +43,7 @@ slack_sdk = "^3.31.0"
 packaging = "^24"
 google-api-python-client = "^2.64.0"
 google-cloud-storage = "^2.9.0"
+docspec = "^2.2.1"
 
 [tool.poetry.group.dev.dependencies]
 types-PyYAML = "6.0.12.20240311"
