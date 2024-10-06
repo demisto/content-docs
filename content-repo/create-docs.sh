@@ -123,7 +123,7 @@ BUCKET_DIR="${SCRIPT_DIR}/.content-bucket"
 if  [[ ! -d "$BUCKET_DIR" ]]; then
     echo "Copying bucket docs content to: $BUCKET_DIR"
     mkdir "${BUCKET_DIR}"
-    gsutil -m cp -r gs://marketplace-dist/content/docs/Packs/ "${BUCKET_DIR}"
+    gsutil -q -m cp -r gs://marketplace-dist/content/docs/Packs/ "${BUCKET_DIR}"
 else
     echo "Skipping copying bucket data as dir: $BUCKET_DIR already exists"
     echo "If you want to re-copy, delete the dir: $BUCKET_DIR"
@@ -154,16 +154,19 @@ sed -i -e '/from DemistoClassApiModule import */d' CommonServerPython.py
 # Removing the first lines from CommonServerPython.py which are a description of the script we don't need here
 echo "$(tail -n +6 CommonServerPython.py)" > CommonServerPython.py
 
-echo "Installing pipenv..."
-pipenv install
+#echo "Installing pipenv..."
+#pipenv install
 echo "Generating docs..."
-pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}" -b "${CURRENT_BRANCH}"
+#pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}" -b "${CURRENT_BRANCH}"
+poetry run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}" -b "${CURRENT_BRANCH}"
 echo "Generating Demisto class and CommonServerPython docs..."
-pipenv run ./gen_pydocs.py -t "${TARGET_DIR}"
+#pipenv run ./gen_pydocs.py -t "${TARGET_DIR}"
+poetry run ./gen_pydocs.py -t "${TARGET_DIR}"
 if [[ "$CURRENT_BRANCH" != "master" && "$CURRENT_BRANCH" != *"gen-top-contrib"* ]]; then
     echo "Skipping top contributors page generation, should run only on master or branch containing 'gen-top-contrib'."
     exit 0
 else
     echo "Generating top contributors page..."
-    pipenv run python ./gen_top_contrib.py -t "${CONTRIB_TARGET_DIR}"
+    poetry run ./gen_top_contrib.py -t "${CONTRIB_TARGET_DIR}"
+#    pipenv run python ./gen_top_contrib.py -t "${CONTRIB_TARGET_DIR}"
 fi
