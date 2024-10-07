@@ -21,7 +21,7 @@ follow_imports = "silent"
 ignore_missing_imports = true
 namespace_packages = true
 pretty = true
-python_version = "3.9"
+python_version = "3.10"
 show_error_codes = true
 
 [tool.poetry]
@@ -33,17 +33,19 @@ readme = "README.md"
 version = "0.0.5"
 
 [tool.poetry.dependencies]
-PyYAML = "^6.0"
+python = "^3.10"
+PyYAML = "^6.0.2"
 inflection = "^0.5.1"
 beautifulsoup4 = "^4.11.1"
 requests = "^2.32.3"
-pydoc-markdown = "==3.10.0"
+pydoc-markdown = "^4.8.2"
 python-dateutil = "^2.9.0"
 slack_sdk = "^3.31.0"
 packaging = "^24"
 google-api-python-client = "^2.64.0"
 google-cloud-storage = "^2.9.0"
-docspec = "^2.2.1"
+docspec = "<3.0.0"
+nr-types = "^4.0.2"
 
 [tool.poetry.group.dev.dependencies]
 types-PyYAML = "6.0.12.20240311"
@@ -52,7 +54,7 @@ types-requests = "2.32.0.20240914"
 
 [tool.ruff]
 line-length = 130
-target-version = "py39"
+target-version = "py310"
 lint.ignore = [
   "F403", # undefined-local-with-import-star
   "F405", # undefined-local-with-import-star-usage
