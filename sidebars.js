@@ -155,8 +155,6 @@ const sidebars = {
             "integrations/dt",
             "integrations/integration-cache",
             "integrations/mirroring_integration",
-            "integrations/openapi-codegen",
-            "integrations/postman-codegen",
             "integrations/code-generator",
             "integrations/scheduled-commands",
             "integrations/yml-from-python-code-gen",
