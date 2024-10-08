@@ -65,7 +65,12 @@ The following is the format for an Account entity.
       }
     ],
     "ChangePasswordAtNextLogin": "BOOL, Whether this account should change its password at the next login",
-    "IsInternal": "BOOL, Whether this account is internal or external to the organization"
+    "IsInternal": "BOOL, Whether this account is internal or external to the organization",
+    "Manager": {
+      "Email": "STRING, The email address of the manager.",
+      "DisplayName": "STRING, The display name of the manager."
+    },
+    "RiskLevel": "STRING, The risk level associated with the account. This could be 'LOW', 'MED' or 'HIGH'.",
 }
 ```
 
@@ -132,6 +137,15 @@ outputs:
 - contextPath: Account.IsInternal
   description: Whether the account is internal or external to the organization. 'True' means the account is internal.
   type: Bool
+- contextPath: Account.Manager.Email
+  description: The email address of the manager.
+  type: String
+- contextPath: Account.Manager.DisplayName
+  description: The display name of the manager.
+  type: String
+- contextPath: Account.RiskLevel
+  description: The risk level associated with the account. This could be 'LOW', 'MEDIUM', or 'HIGH'.
+  type: String
 
 
 ```
