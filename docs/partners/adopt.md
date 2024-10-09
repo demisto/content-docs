@@ -155,7 +155,7 @@ Please visit ====> https://github.com/me/content/pull/new/partner-HelloWorld-ado
 	<br/>
 	You can also perform the necessary steps to adopt using any text editor or an IDE of your choice and the command line. 
 
-**Requirements:** To follow along, you'll need to have [Demisto SDK installed on your machine](https://github.com/demisto/demisto-sdk#installation).
+**Requirements:** To follow along, you'll need to have [Demisto SDK installed on your machine](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/Install-Demisto-SDK).
 
 Follow the steps below to adopt using the a text editor or IDE. For additional guidance, you can watch how to [perform the steps using Visual Studio Code](https://www.youtube.com/watch?v=9GPkhtRw4Oc).
 

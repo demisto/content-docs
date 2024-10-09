@@ -27,13 +27,13 @@ Use PascalCase (e.g., "PackName") for the names of the pack, its directories, an
 
 As a reference, you can check the tree of the [Hello World](https://github.com/demisto/content/tree/master/Packs/HelloWorld) pack on GitHub.
 
-To create a new content pack directory tree and structure, you should use the [`demisto-sdk init`](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/init#init) , as described in the [tutorial](../tutorials/tut-setup-dev#step-6-create-a-branch-and-integration-directory).
+To create a new content pack directory tree and structure, you should use the [`demisto-sdk init`](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/init) , as described in the [tutorial](../tutorials/tut-setup-dev#step-6-create-a-branch-and-integration-directory).
 
 ### Where do I get all these files?
 
 Integrations and Scripts should be written with your favorite IDE (see [here](../concepts/dev-setup) and [here](../tutorials/tut-setup-dev) for details on how to set up your dev environment)
 
-All other entity types (Playbooks, Test Playbooks, Incidents/Indicators Fields and Types, Layouts, Classifiers and Mappers, Widgets, Dashboards) should be created in the Cortex XSOAR UI and exported using [`demisto-sdk download`](https://github.com/demisto/demisto-sdk/tree/master/demisto_sdk/commands/download#download) (using the `-fmt` argument). You can also export the files manually via the Cortex XSOAR UI (either individually using the download icons, or using the `Export Custom Content` feature under `Settings` - `About` - `Troubleshooting`) but, in that case, you'll need to format them using [`demisto-sdk format`](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/format/README.md).
+All other entity types (Playbooks, Test Playbooks, Incidents/Indicators Fields and Types, Layouts, Classifiers and Mappers, Widgets, Dashboards) should be created in the Cortex XSOAR UI and exported using [`demisto-sdk download`](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/download) (using the `-fmt` argument). You can also export the files manually via the Cortex XSOAR UI (either individually using the download icons, or using the `Export Custom Content` feature under `Settings` - `About` - `Troubleshooting`) but, in that case, you'll need to format them using [`demisto-sdk format`](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/format).
 
 ###  Integrations
 

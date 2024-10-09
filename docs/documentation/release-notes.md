@@ -30,7 +30,7 @@ demisto-sdk update-release-notes -i [Changed pack path]
 ```
 
 For more information regarding the ***update-release-notes*** command in the **demisto-sdk**, please refer to the 
-[command documentation](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/update_release_notes/README.md).
+[command documentation](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/update-release-notes).
 
 ## Naming
 The release notes file is generated for you and is found in the *ReleaseNotes* folder within each pack. If this folder does not already exist, it is created for you.
@@ -212,7 +212,7 @@ However, you may encounter a scenario where certain changes are not necessary to
 demisto-sdk doc-review -i Packs/Base/ReleaseNotes/1_11_10.md
 ```
 
-More info is available at the ***demisto-sdk doc-review*** command [README](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/doc_reviewer/README.md).
+More info is available at the ***demisto-sdk doc-review*** command [README](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/doc-review).
 
 ## Breaking Changes Version
 In some cases, a new version is introduced which breaks backward compatibility.

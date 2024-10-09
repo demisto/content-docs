@@ -13,7 +13,7 @@ We developed a free [VSCode extension](vscode-extension) that simplifies/automat
 - Creating a blank integration or automation script
 - Uploading/Downloading your integration code to/from Cortex XSOAR
 
-However, if you want to a different IDE (Sublime, vi, emacs, etc.) it's totally fine! It just means that some of those tasks must be performed manually. To automate them, you can use the  [demisto-sdk](https://github.com/demisto/demisto-sdk).
+However, if you want to a different IDE (Sublime, vi, emacs, etc.) it's totally fine! It just means that some of those tasks must be performed manually. To automate them, you can use the  [demisto-sdk](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/Introduction-to-Demisto-SDK).
 
 You can also write code directly in the [Cortex XSOAR UI](../concepts/xsoar-ide) but is not recommended if you want to contribute supported content. Check [here](getting-started-guide#creating-new-content) for details.
 

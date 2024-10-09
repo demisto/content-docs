@@ -283,7 +283,7 @@ def main():
 
 
 ## IOC Reputation Commands
-There are two implementation requirements for reputation commands (aka `!file`, `!email`, `!domain`, `!url`, and `!ip`) that are enforced by checks in the [demisto-sdk](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md).
+There are two implementation requirements for reputation commands (aka `!file`, `!email`, `!domain`, `!url`, and `!ip`) that are enforced by checks in the [demisto-sdk](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/validate).
 - The reputation command's argument of the same name must have `default` set to `True`.
 - The reputation command's argument of the same name must have `isArray` set to `True`.
 

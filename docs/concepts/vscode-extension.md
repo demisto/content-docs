@@ -11,7 +11,7 @@ The extension provides an easy virtual environment setup for Cortex XSOAR integr
 ## Extension Workflow
 
 The extension defines a slightly different workflow than Cortex XSOAR. With the plugin, you can work on your code (whether it is Python, PowerShell or JavaScript).
-It utilizes the excellent [demisto-sdk](./demisto-sdk) python package.
+It utilizes the excellent [demisto-sdk](https://github.com/demisto/demisto-sdk) python package.
 
 ## Prerequisites
 
@@ -38,7 +38,7 @@ The default is _false_, and for now, it is recommended not to enable this config
 All of the commands in the extension start with the easy-to-find pattern _XSOAR_.  
 Notable commands:
 
-- **_XSOAR: Demisto-SDK Lint/Validate/Update Release Notes..._**: Will run the [demisto-sdk](https://github.com/demisto/demisto-sdk/) commands.
+- **_XSOAR: Demisto-SDK Pre-Commit/Validate/Update Release Notes..._**: Will run the [demisto-sdk](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/Demisto-SDK-commands) commands.
 
 - **_XSOAR: Configure XSOAR unit tests_**: Will configure the integration unit tests.
 

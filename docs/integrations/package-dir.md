@@ -50,11 +50,11 @@ For example, the integration [Cortex XDR](https://github.com/demisto/content/tre
 ## Split a YML file to Directory Structure
 If you need to split a Unified YAML file (exported via the Cortex XSOAR UI) into the Directory Structure you can use the following options:
 
-- `demisto-sdk split`: This command will also format the code (using autopep8) and setup the proper Pipenv files. See full command documentation [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/split/README.md).
+- `demisto-sdk split`: This command will also format the code (using autopep8) and setup the proper Pipenv files. See full command documentation [here](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/split).
 - [Cortex XSOAR IntelliJ Plugin](https://plugins.jetbrains.com/plugin/12093-demisto-add-on-for-pycharm)
 
 ## Generate a YML file from Directory Structure
 
 If you need to manually create the Unified YAML file (for example to manually import it in Cortex XSOAR via the UI), you can either use:
--  `demisto-sdk unify`: See full command documentation [here](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/unify/README.md).
+-  `demisto-sdk prepare-content`: See full command documentation [here](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/prepare-content).
 - [Cortex XSOAR IntelliJ Plugin](https://plugins.jetbrains.com/plugin/12093-demisto-add-on-for-pycharm)

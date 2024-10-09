@@ -90,10 +90,10 @@ Carefully review the following guidelines, as they will greatly enhance the like
 3. Set up a development environment by following the [short development setup](../concepts/dev-setup) guide and the more detailed [tutorial](../tutorials/tut-setup-dev), 
     or [use a pre-configured GitHub Codespace environment](../tutorials/tut-setup-dev-codespace.md).
 4. Follow the [content pack structure](../packs/packs-format) to build your contribution.  
-    The "[demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md)" command will help you create the basic structure.
+    The "[demisto-sdk init](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/init)" command will help you create the basic structure.
 5. If you are updating an **existing** content pack, **make you have the latest available version installed before proceeding**.
 6. If you are creating integrations and / or scripts (aka *automations*), make sure that you:
-    * Use the proper [directory structure](../integrations/package-dir). [demisto-sdk init](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/init/README.md) will help you create it.  
+    * Use the proper [directory structure](../integrations/package-dir). [demisto-sdk init](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/init) will help you create it.  
         If working on existing code that doesn't follow this structure, we require converting to this structure (as long as the changes aren't minor), as it allows running linting and unit-tests, and provides a smoother review process.
     * Understand the structure of the [YAML file](../integrations/yaml-file), and the [parameter types](../integrations/parameter-types) within it.
     * Make sure your integration follows our [logo guidelines](../integrations/integration-logo).
@@ -122,7 +122,7 @@ If you are an XSOAR Technology Partner, make sure the [Cortex XSOAR Alliances Te
 ### Prerequisites
 Before submitting a Pull Request to the [Cortex XSOAR GitHub Repository](https://github.com/demisto/content), the following requirements must be met:
 1. Create a GitHub **fork** of the XSOAR Content repository, and submit your changes **on a new branch** (do **not** push your changes to the *master* branch).
-2. Validate your content using [demisto-sdk validate](https://github.com/demisto/demisto-sdk/blob/master/demisto_sdk/commands/validate/README.md):  
+2. Validate your content using [demisto-sdk validate](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/validate):  
     `demisto-sdk validate -i Packs/YourPackName`
 3. If your contribution has integrations or scripts, run linting (which also runs [unit-tests](../tutorials/tut-setup-dev#step-5-run-the-linter-and-unit-tests)) by running:  
     `demisto-sdk lint -i Packs/YourPakName`
