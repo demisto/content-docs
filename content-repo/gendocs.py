@@ -315,7 +315,7 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
         with open(readme_file, 'r', encoding='utf-8') as f:
             content = f.read()
         if not content.strip():
-            raise ValueError(EMPTY_FILE_MSG)
+            return DocInfo('', '', '', readme_file, EMPTY_FILE_MSG)
         if is_html_doc(content):
             print(f'{readme_file}: detect html file')
             content = gen_html_doc(content)
