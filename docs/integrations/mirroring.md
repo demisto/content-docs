@@ -264,4 +264,3 @@ The following incident fields must be configured either in the integration or in
 * When switching between different mappers with different incident fields, for mirroring to work with the new incident fields, delete the old incidents and re-fetch them with the new mapper.
 * Mirroring continues to work after reopening an incident in Cortex XSOAR. Mirroring entries works only for active incidents, while mirroring fields also works for pending incidents.
 * If you change the display name from "incident", mirroring will not work.
-* Closed incidents in Cortex XSOAR, will not receive mirrored updates from the remote system, unless the incident is re-opened in Cortex XSOAR.
