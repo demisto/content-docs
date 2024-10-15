@@ -83,6 +83,7 @@ types-urllib3 = "==1.26.25.13"
 uritemplate = "==4.1.1"
 urllib3 = "==1.26.16"
 watchdog = "==1.0.2"
+python-gitlab = "^3.0.0"  # import gitlab
 
 [tool.ruff]
 line-length = 130
