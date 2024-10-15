@@ -119,15 +119,16 @@ if [[ ( "$PULL_REQUEST" == "true" || -n "$CI_PULL_REQUEST" ) && "$CONTENT_BRANCH
     fi
 fi
 
-BUCKET_DIR="${SCRIPT_DIR}/.content-bucket"
-if  [[ ! -d "$BUCKET_DIR" ]]; then
-    echo "Copying bucket docs content to: $BUCKET_DIR"
-    mkdir "${BUCKET_DIR}"
-    gsutil -q -m cp -r gs://marketplace-dist/content/docs/Packs/ "${BUCKET_DIR}"
-else
-    echo "Skipping copying bucket data as dir: $BUCKET_DIR already exists"
-    echo "If you want to re-copy, delete the dir: $BUCKET_DIR"
-fi
+# FIXME! restore the bucket copy
+#BUCKET_DIR="${SCRIPT_DIR}/.content-bucket"
+#if  [[ ! -d "$BUCKET_DIR" ]]; then
+#    echo "Copying bucket docs content to: $BUCKET_DIR"
+#    mkdir "${BUCKET_DIR}"
+#    gsutil -q -m cp -r gs://marketplace-dist/content/docs/Packs/ "${BUCKET_DIR}"
+#else
+#    echo "Skipping copying bucket data as dir: $BUCKET_DIR already exists"
+#    echo "If you want to re-copy, delete the dir: $BUCKET_DIR"
+#fi
 
 TARGET_DIR=${SCRIPT_DIR}/../docs/reference
 CONTRIB_TARGET_DIR=${SCRIPT_DIR}/../src/pages/marketplace
