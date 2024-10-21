@@ -82,7 +82,7 @@ IGNORE_MSG = 'skipped since it is in the ignored entities.'
 DEPRECATED_INFO_FILE = f'{os.path.dirname(os.path.abspath(__file__))}/extra-docs/articles/deprecated_info.json'
 
 # initialize the seed according to the PR branch. Used when selecting max files.
-random.seed(os.getenv('CIRCLE_BRANCH'))
+random.seed(os.getenv('CIRCLE_BRANCH', os.getenv("CI_COMMIT_REF_NAME")))
 
 MIN_RELEASE_VERSION = StrictVersion((datetime.now() + relativedelta(months=-18)).strftime('%y.%-m.0'))
 PACKS_INTEGRATIONS_PREFIX = 'Integrations'
@@ -315,7 +315,7 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
         with open(readme_file, 'r', encoding='utf-8') as f:
             content = f.read()
         if not content.strip():
-            raise ValueError(EMPTY_FILE_MSG)
+            return DocInfo('', '', '', readme_file, EMPTY_FILE_MSG)
         if is_html_doc(content):
             print(f'{readme_file}: detect html file')
             content = gen_html_doc(content)
