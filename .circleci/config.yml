@@ -111,7 +111,7 @@ jobs:
           at: /home/circleci/project
       - run:
           name: Setup Python
-          command: |            
+          command: |
             pipenv install
       - run:
           name: Setup Firebase
@@ -134,7 +134,7 @@ jobs:
               cat deploy-info-firebase.txt
             fi
 
-      - when:          
+      - when:
           condition: <<parameters.post_comment>>
           steps:
             - run:
