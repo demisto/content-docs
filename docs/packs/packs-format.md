@@ -64,9 +64,9 @@ The following fields are populated in the pack metadata:
 | `displayedImages` | `List` | (Optional) Images to be displayed in Cortex XSOAR Marketplace. Should be kept empty on pack creation, as it is calculated by Cortex XSOAR content infrastructure. |
 | `githubUser` | `List` | (Optional) List of GitHub usernames to receive notification in the PR in case pack files were modified. |
 | `devEmail` | `List` | (Optional) List of emails to receive notification in case contributed pack files were modified. |
-| `certification` | `String` | (Optional) If the pack is certified the value of this fields should be `certified`. The allowed values are `certified` and `verified`. |
-| `itemPrefix` | `String` | (Optional) String to overwrite pack fields prefix. You can specify an alternative string instead of the default pack name enforced by the validation process. |
-| `defaultDataSource` | `String` | (Optional) The default data source integration in XSIAM, for packs that have more then one fetching integration. When a default data source needs to be selected, the event collector and the most used integration is preferred if available. |
+| `certification` | `String` | (Optional) If the pack is certified, the value of this field should be `certified`. Possible values are `certified` or `verified`. |
+| `itemPrefix` | `String` | (Optional) String to overwrite the pack field prefix. You can specify an alternate string instead of the default pack name enforced by the validation process. |
+| `defaultDataSource` | `String` | (Optional) The default data source integration in Cortex XSIAM for packs that have more than one fetching integration. We recommend setting the default data source integration to the event collector or the most used integration. |
 
 Pack metadata contents for example:
 
