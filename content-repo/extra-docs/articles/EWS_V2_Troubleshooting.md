@@ -1,6 +1,6 @@
 ---
 id: EWS_V2_Troubleshooting
-title: EWS V2 Troubleshooting
+title: EWS V2 Troubleshooting  
 description: The following provides EWS V2 troubleshooting steps to perform before contacting Cortex XSOAR customer support for help.
 ---
 
@@ -16,7 +16,7 @@ The following are possible Docker issues that may occur. If you are not running 
 - [Not Running Docker](#not-running-docker)
 - [How to Install Docker](#how-to-install-docker)
 
-### Not Running Docker
+### Not Running Docker 
 
 To run Office 365 non-compliance search commands without running Docker, install the following python packages:
 - asn1crypto==0.24.0
@@ -50,7 +50,7 @@ To run Office 365 non-compliance search commands without running Docker, install
 
 
 
-### How to Install Docker
+### How to Install Docker 
 1. If Cortex XSOAR is installed on Red Hat (RHEL), install Docker CE on RHEL.
    1. Run ***sudo yum-config-manager --enable rhel-7-server-extras-rpms***.
    2. Download the following rpms:
@@ -73,18 +73,11 @@ To run Office 365 non-compliance search commands without running Docker, install
 
 ## Instance Test Failed
 The following are common EWS V2 error messages indicating that the instance test failed. To fix the problem, perform the applicable troubleshooting steps.
-- [Docker Issues](#docker-issues)
-  - [Not Running Docker](#not-running-docker)
-  - [How to Install Docker](#how-to-install-docker)
-- [Instance Test Failed](#instance-test-failed)
-  - [Import error: No module named ExchangeLib](#import-error-no-module-named-exchangelib)
-  - [Max timeout reached](#max-timeout-reached)
-  - [Got unauthorized from the server](#got-unauthorized-from-the-server)
-  - [No such folder](#no-such-folder)
-  - [Got timeout from the server](#got-timeout-from-the-server)
-- [Instance Test is Successful but Error Occurs](#instance-test-is-successful-but-error-occurs)
-- [Problem Fetching Incidents](#problem-fetching-incidents)
-- [Fetching Incidents crash due to unparsable emails](#fetching-incidents-crash-due-to-unparsable-emails)
+- [Import error: No module named ExchangeLib](#import-error-no-module-named-exchangelib)
+- [Max timeout reached](#max-timeout-reached)
+- [Got unauthorized from the server](#got-unauthorized-from-the-server)
+- [No such folder](#no-such-folder)
+- [Got timeout from the server](#got-timeout-from-the-server)
 
 If your instance failed and none of these error messages appear, contact Cortex XSOAR customer support.
 
@@ -100,7 +93,7 @@ If this error occurs, follow the instructions in [How to Install Docker](#how-to
    5. Locate the line:
 
       *RateLimitError: Max timeout reached (gave up after X seconds. URL Y returned status code Z)*
-    2. If the status code is *401*, continue. Otherwise, contact Cortex XSOAR customer support.
+    2. If the status code is *401*, continue. Otherwise, contact Cortex XSOAR customer support.     
 2. If the status code is *401*,
    1. Check the exchange server version.
       - For Office 365, the version should be 2016.
@@ -113,9 +106,9 @@ If this error occurs, follow the instructions in [How to Install Docker](#how-to
       - For Office 365, the authentication method should be *Basic*.
       - For On-Premise Exchange Server, the authentication method should be *NTLM*.
 
-         **Note:**
+         **Note:** 
          - Configure the authentication method even if SAML is being used.
-         - Check if Digest authentication is required.
+         - Check if Digest authentication is required. 
    4. Run the instance test again.
    5. If the error still occurs, contact Cortex XSOAR customer support.
 
@@ -155,18 +148,13 @@ The following are examples of error messages that may occur even if the instance
    - ***sudo yum check-update***
    - ***sudo yum update***
 3. Update the Docker service and restart it.
-4. In the integration settings,
+4. In the integration settings, 
    1. Click *Reset the "last run" timestamp*.
    2. Click *Reset Now*.
 5. If the error still occurs, contact Cortex XSOAR customer support.
 
 
-## Fetching Incidents crash due to unparsable emails
-If you find that your fetch incidents command is unable to parse a specific invalid email due to various parsing issues, you can follow these steps:
 
-1. In the instance configuration, navigate to the *Collect* section and click on *Advanced Settings*.
-2. Check the box labeled *Skip unparsable emails during fetch incidents*.
 
-By enabling this option, the integration can catch and skip unparsable emails without causing the fetch incidents command to crash.
-When this parameter is active, a message will appear in the "Fetch History" panel of the instance whenever an unparsable email is recognized and skipped.
-This allows customers to be informed that a specific email was skipped and gives them the opportunity to open a support ticket if necessary.
+
+
