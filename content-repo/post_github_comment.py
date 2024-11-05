@@ -57,13 +57,13 @@ def get_link_for_doc_file(base_url: str, file: str):
     name = yml_data.get('title') or file
     relative_path = os.path.relpath(file, ROOT_DIR)
     path = f'{base_url}/{os.path.dirname(relative_path)}/{yml_data["id"]}'
-    return (name, path)
+    return name, path
 
 
 def get_link_for_ref_file(base_url: str, file: str):
     if 'releases' in file:
         name = os.path.splitext(os.path.basename(file))[0]
-        return (f'Content Release {name}', f'{base_url}/docs/reference/releases/{name}')
+        return f'Content Release {name}', f'{base_url}/docs/reference/releases/{name}'
     # articles/integrations
     yml_data = get_front_matter_data(file)
     name = yml_data.get('title') or file
@@ -73,7 +73,7 @@ def get_link_for_ref_file(base_url: str, file: str):
     return (name, path)
 
 
-def get_modified_links(base_url: str):
+def get_modified_links(base_url: str) -> List[Tuple[str, str]]:
     links: List[Tuple[str, str]] = []
     for f in get_modified_files():
         try:
@@ -112,7 +112,7 @@ def post_comment(deploy_info_file: str):
             "Congratulations! The automatic build has completed successfully.\n" \
             "The production site of our docs has been updated. You can view it at: https://xsoar.pan.dev"
     else:
-        # add detcted changes
+        # add detected changes
         try:
             links = get_modified_links(deploy_url)
             if links:
