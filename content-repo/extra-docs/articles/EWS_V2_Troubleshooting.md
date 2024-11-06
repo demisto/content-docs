@@ -154,7 +154,12 @@ The following are examples of error messages that may occur even if the instance
 5. If the error still occurs, contact Cortex XSOAR customer support.
 
 
+## Fetching Incidents crash due to unparsable emails
+If you find that your fetch incidents command is unable to parse a specific invalid email due to various parsing issues, you can follow these steps:
 
+1. In the instance configuration, navigate to the *Collect* section and click on *Advanced Settings*.
+2. Check the box labeled *Skip unparsable emails during fetch incidents*.
 
-
-
+By enabling this option, the integration can catch and skip unparsable emails without causing the fetch incidents command to crash.
+When this parameter is active, a message will appear in the "Fetch History" panel of the instance whenever an unparsable email is recognized and skipped.
+This allows customers to be informed that a specific email was skipped and gives them the opportunity to open a support ticket if necessary.
