@@ -234,6 +234,13 @@ def get_mapping_fields_command():
 
 ```
 
+## Classification and Mapping with Mirroring
+When incoming mirroring happens, the incident goes through both the classifier and the mapper. The classifier sets a specific value for the incident type, and the mapper updates the incident with this value, ensuring that the incident type matches what the classifier determined.
+To prevent the incident type from changing during mirroring:
+1. If your integration instance does not fetch incidents, do not set a default incident type, and remove the classifier.
+2. Set up a second integration instance without classification that uses the same mapper.
+3. Set the second integration as **Do not use by default** so playbook command executions use the first integration instance.
+
 ## Incident Fields on a Cortex XSOAR Incident 
 The following incident fields must be configured either in the integration or in the integration instance mapping:
 * **dbotMirrorDirection**: Valid values are Both, In, or Out.
