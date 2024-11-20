@@ -9,7 +9,8 @@ Images in documentation markdown files are divided into 2 different types:
 - Images that appear in integration/script/playbook readmes. These images only appear in https://xsoar.pan.dev/. They do not appear in the Cortex XSOAR/XSIAM product UI.
 - Images that appear in pack readmes and integration description files. These images appear in both https://xsoar.pan.dev/ and in the Cortex XSOAR/XSIAM product UI.
 
-## Rules for uploading images to markdown files:
+## Instructions for uploading images to markdown files:
+
 
 When creating markdown documentation files, you should use a relative path to the `doc_files` folder located in the pack's root path.
 
