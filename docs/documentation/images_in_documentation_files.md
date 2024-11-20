@@ -29,4 +29,4 @@ Make sure to view the image by clicking the path to ensure you've typed in the r
 
 Note that this case is only relevant when dealing with larger file types (such as gif and mp4 files).
 In the case, the file should be uploaded to `content-assets` repo.
-For more information, please refer to [absolute image urls](../documentation/readme_file#absolute-image-urls).
+For more information, please refer to [large files absolute image urls](../documentation/readme_file#Large-Files).
