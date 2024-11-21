@@ -5,7 +5,7 @@ title: Common Integration Parameters
 
   The following are common parameters displayed in the integration configuration page. Use these parameters and descriptions when creating your integration.
 
-  | **Parameter** | **Description** | **Required** |
+  | **Parameter** | **Description** | **Default Value** | **Required** |
   | --- | --- | --- |
   | Trust any certificate (not secure) | When selected, certificates are not checked. | True |
   | Use system proxy setting | Runs the integration instance using the proxy server (HTTP or HTTPS) that you defined in the server configuration. This is enabled only when an engine is running. | False |
