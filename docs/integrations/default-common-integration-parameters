@@ -1,0 +1,12 @@
+---
+id: integration_parameters
+title: Default/Common Integration Parameters
+---
+
+  The following parameters are default or common parameters displayed in the integration configuration page.
+
+  | **Parameter** | **Description** | **Required** |
+  | --- | --- | --- |
+  | Trust any certificate (not secure) | When selected, certificates are not checked. | True |
+  | Use system proxy setting | Runs the integration instance using the proxy server (HTTP or HTTPS) that you defined in the server configuration. This is enabled only when an engine is running. | False |
+  | Log Level| Debug/Verbose logging is recommended only during troubleshooting. Logging can affect the performance of the integration. Recommended usage is to turn logging on during setup and troubleshooting and turn it off in production. This setting only affects the integration log.  The server log is not affected. | True |
