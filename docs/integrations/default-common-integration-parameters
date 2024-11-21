@@ -3,7 +3,7 @@ id: integration_parameters
 title: Common Integration Parameters
 ---
 
-  The following parameters are default or common parameters displayed in the integration configuration page.
+  The following are common parameters displayed in the integration configuration page. Use these parameters and descriptions when creating your integration.
 
   | **Parameter** | **Description** | **Required** |
   | --- | --- | --- |
