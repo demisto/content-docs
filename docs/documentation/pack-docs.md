@@ -74,8 +74,7 @@ Note that "Cortex XSOAR Developer Docs" should link **directly to the readme of 
 ![image](https://user-images.githubusercontent.com/43602124/88673366-31d59c80-d0f1-11ea-9319-b7d9f2fb8625.png)
 
 ### Images
-Images can provide a great addition to the Pack `README.md` and can help users to get a quick understanding of the Pack. Images can be included only as **absolute** urls. See the [following for instructions](../documentation/readme_file#absolute-image-urls). 
-
+Images can provide a great addition to the Pack `README.md` and can help users to get a quick understanding of the Pack. Images can be included only as **relative** paths. See the [following for instructions](../documentation/images_in_documentation_files).
 ### Videos
 It is possible to add an image placeholder which links to an external video. For example to add an external video hosted on YouTube use the following snippet template (replace `[YOUTUBE_VIDEO_ID]` with the YouTube video ID):
 ```
