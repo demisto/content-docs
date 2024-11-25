@@ -3,6 +3,11 @@ title: Duo
 description: DUO authentication service.
 ---
 
+:::note
+This integration supports Cortex XSOAR 6x only.
+:::
+
+
 Integrating with Duo to enables using a number of Duo commands in Demisto.
 
 **duo-authenticate:**
