@@ -3,6 +3,6 @@ variables:
 
 include:
   - file: "/.gitlab/ci/content-docs/.gitlab-ci.yml"
-    ref: infra-content-docs
+    ref: $INFRA_BRANCH
     project: "${CI_PROJECT_NAMESPACE}/infra"
 
