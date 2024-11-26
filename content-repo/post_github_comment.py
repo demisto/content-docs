@@ -128,7 +128,7 @@ def post_comment(deploy_info_file: str):
 def main():
     desc = """Post a message to github about the deployed site. Relies on environment variables:
 GITHUB_TOKEN: api key of user to use for posting
-PR_NUM: if set will use this as the pull request number. Otherwise will try to get issue id from last 
+PR_NUM: if set will use this as the pull request number. Otherwise will try to get issue id from last
 commit comment (case of merge into master)
 CI_COMMIT_REF_NAME: if set to master treats as a production deployment.
 SKIP_SSL_VERIFY: if set will skip ssl verification (used for testing behind GP).
