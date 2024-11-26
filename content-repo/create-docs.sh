@@ -20,9 +20,7 @@ if [[ -n "$CONTENT_REPO_DIR" ]]; then
     echo "================================="
 else
     CONTENT_GIT_DIR=${SCRIPT_DIR}/.content
-    if [[ -n "${CIRCLE_BRANCH}" ]]; then  # CircleCI - deprecated remove!
-        CURRENT_BRANCH=${CIRCLE_BRANCH}
-    elif [[ -n "${CI_COMMIT_REF_NAME}" ]]; then
+    if [[ -n "${CI_COMMIT_REF_NAME}" ]]; then
         CURRENT_BRANCH=${CI_COMMIT_REF_NAME}
     else
         CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -119,16 +117,15 @@ if [[ ( "$PULL_REQUEST" == "true" || -n "$CI_PULL_REQUEST" ) && "$CONTENT_BRANCH
     fi
 fi
 
-# FIXME! restore the bucket copy
-#BUCKET_DIR="${SCRIPT_DIR}/.content-bucket"
-#if  [[ ! -d "$BUCKET_DIR" ]]; then
-#    echo "Copying bucket docs content to: $BUCKET_DIR"
-#    mkdir "${BUCKET_DIR}"
-#    gsutil -q -m cp -r gs://marketplace-dist/content/docs/Packs/ "${BUCKET_DIR}"
-#else
-#    echo "Skipping copying bucket data as dir: $BUCKET_DIR already exists"
-#    echo "If you want to re-copy, delete the dir: $BUCKET_DIR"
-#fi
+BUCKET_DIR="${SCRIPT_DIR}/.content-bucket"
+if  [[ ! -d "${BUCKET_DIR}" ]]; then
+    echo "Copying bucket docs content to: ${BUCKET_DIR}"
+    mkdir "${BUCKET_DIR}"
+    gsutil -q -m cp -r gs://marketplace-dist/content/docs/Packs/ "${BUCKET_DIR}"
+else
+    echo "Skipping copying bucket data as dir: ${BUCKET_DIR} already exists"
+    echo "If you want to re-copy, delete the dir: ${BUCKET_DIR}"
+fi
 
 TARGET_DIR=${SCRIPT_DIR}/../docs/reference
 CONTRIB_TARGET_DIR=${SCRIPT_DIR}/../src/pages/marketplace
@@ -155,10 +152,7 @@ sed -i -e '/from DemistoClassApiModule import */d' CommonServerPython.py
 # Removing the first lines from CommonServerPython.py which are a description of the script we don't need here
 echo "$(tail -n +6 CommonServerPython.py)" > CommonServerPython.py
 
-#echo "Installing pipenv..."
-#pipenv install
 echo "Generating docs..."
-#pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}" -b "${CURRENT_BRANCH}"
 poetry run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}" -b "${CURRENT_BRANCH}"
 echo "Generating Demisto class and CommonServerPython docs..."
 poetry run ./gen_pydocs.py -t "${TARGET_DIR}"

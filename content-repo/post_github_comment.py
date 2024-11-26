@@ -19,20 +19,16 @@ def get_post_url():
     if os.getenv('PR_NUM'):
         pr_num = os.getenv('PR_NUM')
         return f'https://api.github.com/repos/demisto/content-docs/issues/{pr_num}/comments'
-    if os.getenv('CIRCLE_PULL_REQUEST'):
-        # change: https://github.com/demisto/content-docs/pull/9
-        # to: https://api.github.com/repos/demisto/content-docs/issues/9/comments
-        post_url = os.environ['CIRCLE_PULL_REQUEST'].replace('github.com', 'api.github.com/repos').replace('pull', 'issues') + "/comments"
-    else:
-        # try to get from comment
-        last_comment = subprocess.check_output(["git", "log", "-1", "--pretty=%B"], text=True)
-        m = re.search(r"#(\d+)", last_comment, re.MULTILINE)
-        if not m:
-            print("No issue id found in last commit comment. Ignoring: \n------\n{}\n-------".format(last_comment))
-            return
-        issue_id = m.group(1)
-        print("Issue id found from last commit comment: " + issue_id)
-        post_url = "https://api.github.com/repos/demisto/content-docs/issues/{}/comments".format(issue_id)
+
+    # try to get from comment
+    last_comment = subprocess.check_output(["git", "log", "-1", "--pretty=%B"], text=True)
+    m = re.search(r"#(\d+)", last_comment, re.MULTILINE)
+    if not m:
+        print("No issue id found in last commit comment. Ignoring: \n------\n{}\n-------".format(last_comment))
+        return
+    issue_id = m.group(1)
+    print("Issue id found from last commit comment: " + issue_id)
+    post_url = "https://api.github.com/repos/demisto/content-docs/issues/{}/comments".format(issue_id)
     return post_url
 
 
@@ -132,11 +128,10 @@ def post_comment(deploy_info_file: str):
 def main():
     desc = """Post a message to github about the deployed site. Relies on environment variables:
 GITHUB_TOKEN: api key of user to use for posting
-PR_NUM: if set will use this as the pull request number. Otherwise will move on to CIRCLE_PULL_REQUEST
-CIRCLE_PULL_REQUEST: pull request url to use to get the pull id. Such as: https://github.com/demisto/content-docs/pull/9
-if CIRCLE_PULL_REQUEST will try to get issue id from last commit comment (case of merge into master)
-CI_COMMIT_REF_NAME: if set to master treats as a production deployment
-SKIP_SSL_VERIFY: if set will skip ssl verification (used for testing behind GP)
+PR_NUM: if set will use this as the pull request number. Otherwise will try to get issue id from last 
+commit comment (case of merge into master)
+CI_COMMIT_REF_NAME: if set to master treats as a production deployment.
+SKIP_SSL_VERIFY: if set will skip ssl verification (used for testing behind GP).
     """
     parser = argparse.ArgumentParser(description=desc,
                                      formatter_class=argparse.RawTextHelpFormatter)

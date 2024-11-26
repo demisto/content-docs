@@ -1,13 +1,14 @@
 #!/bin/bash
 
-CYAN="\e[0;36m"
 CLEAR="\e[0m"
-SECTION_START="\e[0Ksection_start:the_time:section_id\r\e[0K${CYAN}section_header${CLEAR}"
-SECTION_END="\e[0Ksection_end:the_time:section_id\r\e[0K"
+NC='\033[0m'
+CYAN="\e[0;36m"
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
-NC='\033[0m'
+SECTION_START="\e[0Ksection_start:the_time:section_id\r\e[0K${CYAN}section_header${CLEAR}"
+SECTION_END="\e[0Ksection_end:the_time:section_id\r\e[0K"
+DATE_FMT="[%Y-%m-%dT%H:%M:%S.%3N]"
 
 section_start() {
     local section_header section_id start
@@ -42,12 +43,12 @@ section_start() {
     start_time=$(date +%s)
     start="$(echo "$start" | sed -e "s/the_time/$start_time/" -e "s/section_id/$section_id/" -e "s/section_header/$section_header/")"
     echo -e "$start"
-    date +"[%Y-%m-%dT%H:%M:%S.%3N] section start"
+    date +"${DATE_FMT} section start"
 }
 
 section_end() {
     local section_id end
-    date +"[%Y-%m-%dT%H:%M:%S.%3N] section end"
+    date +"${DATE_FMT} section end"
     end="$SECTION_END"
     if [[ "$#" -eq 1 ]]; then
         section_id="$(echo "$1" | tr -c '[:alnum:]\n\r' '_')"
