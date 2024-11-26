@@ -20,8 +20,6 @@ repos:
     exclude: .gitlab
   - id: check-ast
   - id: check-merge-conflict
-#  - id: debug-statements
-#    language_version: python3
   - id: name-tests-test
     files: .+_test.py$
   - id: trailing-whitespace
@@ -60,7 +58,7 @@ repos:
       - types-tabulate
       - types-dateparser
     types: [python]
-    #duplicate here and in pyproject.toml because https://github.com/python/mypy/issues/13916
+    # duplicate here and in pyproject.toml because https://github.com/python/mypy/issues/13916
     exclude: artifacts*|.*_test|test_.*|test_data|tests_data|.venv
 -   repo: https://github.com/koalaman/shellcheck-precommit
     rev: v0.10.0

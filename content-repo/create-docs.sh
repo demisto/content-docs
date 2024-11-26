@@ -161,7 +161,6 @@ echo "Generating docs..."
 #pipenv run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}" -b "${CURRENT_BRANCH}"
 poetry run ./gendocs.py -t "${TARGET_DIR}" -d "${CONTENT_GIT_DIR}" -b "${CURRENT_BRANCH}"
 echo "Generating Demisto class and CommonServerPython docs..."
-#pipenv run ./gen_pydocs.py -t "${TARGET_DIR}"
 poetry run ./gen_pydocs.py -t "${TARGET_DIR}"
 if [[ "$CURRENT_BRANCH" != "master" && "$CURRENT_BRANCH" != *"gen-top-contrib"* ]]; then
     echo "Skipping top contributors page generation, should run only on master or branch containing 'gen-top-contrib'."
@@ -169,5 +168,4 @@ if [[ "$CURRENT_BRANCH" != "master" && "$CURRENT_BRANCH" != *"gen-top-contrib"* 
 else
     echo "Generating top contributors page..."
     poetry run ./gen_top_contrib.py -t "${CONTRIB_TARGET_DIR}"
-#    pipenv run python ./gen_top_contrib.py -t "${CONTRIB_TARGET_DIR}"
 fi
