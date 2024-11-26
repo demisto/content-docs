@@ -50,7 +50,7 @@ When mirroring both incoming and outgoing data, all the commands are required. F
 If the command is not implemented, raise `NotImplementedError` so ***get-remote-data*** will be called instead. If the command fails to return an error entry with one of the following sub-strings: `API rate limit` or `skip update` (exact case), it signals to the server that there is an issue and it should not continue with the ***get-remote-data*** command. 
 - ***get-remote-data***: Gets new information about the incidents in the remote system and updates *existing* incidents in Cortex XSOAR. If an API rate limit error occurs, this method should return an error with substring `"API rate limit"`, so that the sync loop will start from the failed incident.
 This command is executed every 1 minute for each individual **incident** fetched by the integration.
-- ***update-remote-system***: Updates the remote system with the information we have in the mirrored incidents within Cortex XSOAR. This command is executed whenever the individual incident is changed in Cortex XSOAR.
+- ***update-remote-system***: Updates the remote system with the information we have in the mirrored incidents within Cortex XSOAR. This command is executed whenever the individual incident is changed in Cortex XSOAR. **Note: This command will be triggered when changing a field value. When adding an entry, this command will be triggered only if a tag is inserted.**
 - ***get-mapping-fields***: Pulls the remote schema for the different incident types, and their associated incident fields, from the remote system. This enables users to map Cortex XSOAR fields to the 3rd-party integration fields in the outgoing mapper. This command is called when selecting the *Select schema* option in the *Get data* configuration in a classifier or a mapper.
 
 ## Special Server Configurations
@@ -152,7 +152,7 @@ def get_modified_remote_data_command(client, args):
   - *inc_status*: The status of the incident(numeric value, could be used with IncidentStatus from CommonServerPython).
   - *delta*: Represents the dictionary of fields that changed from the last update - a dictionary object `{key: value}` containing only the changed fields.
   - *incident_changed*: A boolean indicating if the incident changed. An incident might not change, but we want to send mirrored entries over.
-  
+
 #### Example of an Implementation of `update_remote_system_command`
 ```python
 def update_remote_system_command(client: Client, args: Dict[str, Any]) -> str:
