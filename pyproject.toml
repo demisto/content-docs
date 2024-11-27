@@ -88,6 +88,15 @@ junitparser = "^3.1.2"
 jira = "^3.8.0"
 gitpython = "^3.1.43"  # import git
 
+[tool.poetry.group.dev]
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=7.1.2"
+requests-mock = ">=1.9.3"
+pytest-mock = ">=3.7.0"
+freezegun = ">=1.1.0"
+dateparser = ">=1.2.0"
+
 [tool.ruff]
 line-length = 130
 target-version = "py310"
