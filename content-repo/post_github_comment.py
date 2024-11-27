@@ -19,20 +19,16 @@ def get_post_url():
     if os.getenv('PR_NUM'):
         pr_num = os.getenv('PR_NUM')
         return f'https://api.github.com/repos/demisto/content-docs/issues/{pr_num}/comments'
-    if os.getenv('CIRCLE_PULL_REQUEST'):
-        # change: https://github.com/demisto/content-docs/pull/9
-        # to: https://api.github.com/repos/demisto/content-docs/issues/9/comments
-        post_url = os.environ['CIRCLE_PULL_REQUEST'].replace('github.com', 'api.github.com/repos').replace('pull', 'issues') + "/comments"
-    else:
-        # try to get from comment
-        last_comment = subprocess.check_output(["git", "log", "-1", "--pretty=%B"], text=True)
-        m = re.search(r"#(\d+)", last_comment, re.MULTILINE)
-        if not m:
-            print("No issue id found in last commit comment. Ignoring: \n------\n{}\n-------".format(last_comment))
-            return
-        issue_id = m.group(1)
-        print("Issue id found from last commit comment: " + issue_id)
-        post_url = "https://api.github.com/repos/demisto/content-docs/issues/{}/comments".format(issue_id)
+
+    # try to get from comment
+    last_comment = subprocess.check_output(["git", "log", "-1", "--pretty=%B"], text=True)
+    m = re.search(r"#(\d+)", last_comment, re.MULTILINE)
+    if not m:
+        print("No issue id found in last commit comment. Ignoring: \n------\n{}\n-------".format(last_comment))
+        return
+    issue_id = m.group(1)
+    print("Issue id found from last commit comment: " + issue_id)
+    post_url = "https://api.github.com/repos/demisto/content-docs/issues/{}/comments".format(issue_id)
     return post_url
 
 
@@ -57,13 +53,13 @@ def get_link_for_doc_file(base_url: str, file: str):
     name = yml_data.get('title') or file
     relative_path = os.path.relpath(file, ROOT_DIR)
     path = f'{base_url}/{os.path.dirname(relative_path)}/{yml_data["id"]}'
-    return (name, path)
+    return name, path
 
 
 def get_link_for_ref_file(base_url: str, file: str):
     if 'releases' in file:
         name = os.path.splitext(os.path.basename(file))[0]
-        return (f'Content Release {name}', f'{base_url}/docs/reference/releases/{name}')
+        return f'Content Release {name}', f'{base_url}/docs/reference/releases/{name}'
     # articles/integrations
     yml_data = get_front_matter_data(file)
     name = yml_data.get('title') or file
@@ -73,7 +69,7 @@ def get_link_for_ref_file(base_url: str, file: str):
     return (name, path)
 
 
-def get_modified_links(base_url: str):
+def get_modified_links(base_url: str) -> List[Tuple[str, str]]:
     links: List[Tuple[str, str]] = []
     for f in get_modified_files():
         try:
@@ -106,13 +102,13 @@ def post_comment(deploy_info_file: str):
         "Congratulations! The automatic build has completed successfully.\n" \
         f"A preview site is available at: {deploy_url}\n\n---\n" \
         "**Important:** Make sure to inspect your changes at the preview site."
-    if os.getenv('CIRCLE_BRANCH') == 'master':
+    if os.getenv('CIRCLE_BRANCH', os.getenv("CI_COMMIT_REF_NAME")) == 'master':
 
         message = "# Production Site Updated\n\n" \
             "Congratulations! The automatic build has completed successfully.\n" \
             "The production site of our docs has been updated. You can view it at: https://xsoar.pan.dev"
     else:
-        # add detcted changes
+        # add detected changes
         try:
             links = get_modified_links(deploy_url)
             if links:
@@ -132,11 +128,10 @@ def post_comment(deploy_info_file: str):
 def main():
     desc = """Post a message to github about the deployed site. Relies on environment variables:
 GITHUB_TOKEN: api key of user to use for posting
-PR_NUM: if set will use this as the pull request number. Otherwise will move on to CIRCLE_PULL_REQUEST
-CIRCLE_PULL_REQUEST: pull request url to use to get the pull id. Such as: https://github.com/demisto/content-docs/pull/9
-if CIRCLE_PULL_REQUEST will try to get issue id from last commit comment (case of merge into master)
-CIRCLE_BRANCH: if set to master treats as a production deployment
-SKIP_SSL_VERIFY: if set will skip ssl verification (used for testing behind GP)
+PR_NUM: if set will use this as the pull request number. Otherwise will try to get issue id from last
+commit comment (case of merge into master)
+CI_COMMIT_REF_NAME: if set to master treats as a production deployment.
+SKIP_SSL_VERIFY: if set will skip ssl verification (used for testing behind GP).
     """
     parser = argparse.ArgumentParser(description=desc,
                                      formatter_class=argparse.RawTextHelpFormatter)
