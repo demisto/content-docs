@@ -50,3 +50,6 @@ When Oproxy receives an Access Token Request is will perform the following steps
    *  `access_token`: the Access Token obtained from the 3rd party service.
    *  `refresh_token`: the Refresh Token obtained from the 3rd party service (if relevant). The Refresh Token should be used as the **Token** data in further requests from the Integration to Oproxy.
    *  `expires_in`: expiration of the Access Token in seconds.
+
+### Notes
+The credentials created for the following integrations are valid for a single instance only: **AzureSentinel**, **AzureLogAnalytics**, **MicrosoftGraphListener**.
