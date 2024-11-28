@@ -235,7 +235,7 @@ def get_mapping_fields_command():
 ```
 
 ## Classification and Mapping with Mirroring
-When incoming mirroring occurs, the incident is classified and the mapped. The classifier sets a specific value for the incident type, and the mapper updates the incident with this value, ensuring that the incident type matches what the classifier determined.
+When incoming mirroring occurs, the incident is classified and then mapped. The classifier sets a specific value for the incident type, and the mapper updates the incident with this value, ensuring that the incident type matches what the classifier determined.
 To prevent the incident type from changing during mirroring:
 1. If your integration instance does not fetch incidents, do not set a default incident type, and remove the classifier.
 2. Set up a second integration instance without classification that uses the same mapper.
