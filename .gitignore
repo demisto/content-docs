@@ -44,3 +44,6 @@ static/assets/deprecated*.json
 /index
 index.zip
 index.json
+/.firebase/hosting.*.cache
+/firebase-debug.log
+/firebase_json_key.json
