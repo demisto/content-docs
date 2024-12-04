@@ -20,8 +20,8 @@ Because of that, we recommend following these steps, and reading the aforementio
 5. Join the [Palo Alto Networks DFIR Slack community](https://start.paloaltonetworks.com/join-our-slack-community), and join the *#demisto-developers* channel.
 6. If you consider publishing your content to [Cortex XSOAR Marketplace](https://cortex.marketplace.pan.dev/marketplace), read the [contribution article](../contributing/contributing) for additional info.
 7. Obtain and install a copy of Cortex XSOAR.  
-    If you are not a partner, you can obtain the Community Edition from [here](https://start.paloaltonetworks.com/sign-up-for-demisto-free-edition) for free.  
-    Installation instructions are available [here](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.11/Cortex-XSOAR-Installation-Guide/Overview).
+    
+    Installation instructions are available [here](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.13/Cortex-XSOAR-Installation-Guide/Overview).
 8. If you are integrating with an external API, make sure you have API or SDK access to the product or solution you want to integrate with for testing purposes.
 9. Sign up to the [Developer Newsletter](https://start.paloaltonetworks.com/cortex-xsoar-developer-newsletter.html) to receive technical updates on developing and contributing.
 
