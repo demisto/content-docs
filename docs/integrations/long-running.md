@@ -38,13 +38,13 @@ In these cases, the long-running behavior is inherent and cannot be modified.
 These integrations can operate in either "single engine" mode or "no engine" mode.
 
 **Single Engine:** 
-- Select an engine to run the integration.
-- When this mode is selected, a new field called "Listen Port" will appear.
-- You must specify the port number that the integration will use.
+- Select your engine in the integration's configuration.
+- When the engine is selected, a new field called "Listen Port" will appear.
+- You must specify the port number that the instance will use.
 
 **No Engine:**
-- The server automatically assigns a port for the integration.
-- This assignment happens only after you click "Save" to save the instance configuration.
+- Select "no engine" in the integration configuration.
+- Click on "Save" and the server automatically assigns a port for the instance.
 Please note: If you select "No Engine", the listen port is assigned only after saving the configuration.
 You must click "Save" before clicking "Test" or performing any other actions with the instance.
 
