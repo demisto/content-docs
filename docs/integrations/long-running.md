@@ -26,6 +26,27 @@ You can distinguish it from the rest of the containers by its name:
 
 ![image](/doc_imgs/integrations/66122754-2d337b00-e5e9-11e9-8775-562e228e3fe6.png)
 
+Certain integrations are long-running by default, they do not include the "Long Running Instance" checkbox. Examples of such integrations include:
+
+- Generic Export Indicators Service
+- Generic Webhook
+- AWS SNS Listener
+- TAXII2 Server
+- TAXIIServer
+
+In these cases, the long-running behavior is inherent and cannot be modified.
+These integrations can operate in either "single engine" mode or "no engine" mode.
+
+**Single Engine:** 
+- Select your engine in the integration's configuration.
+- When the engine is selected, a new field called "Listen Port" will appear.
+- You must specify the port number that the instance will use.
+
+**No Engine:**
+- Select "no engine" in the integration configuration.
+- Click on "Save" and the server automatically assigns a port for the instance.
+Please note: If you select "No Engine", the listen port is assigned only after saving the configuration.
+You must click "Save" before clicking "Test" or performing any other actions with the instance.
 
 ## Implementation
 When the container runs, it calls a dedicated command in the integration, much like fetch-incidents. The command is called `long-running-execution` 
