@@ -38,15 +38,15 @@ In these cases, the long-running behavior is inherent and cannot be modified.
 These integrations can operate in either "single engine" mode or "no engine" mode.
 
 **Single Engine:** 
-- Select your engine in the integration's configuration.
-- When the engine is selected, a new field called "Listen Port" will appear.
-- You must specify the port number that the instance will use.
+1. Select your engine in the integration's configuration.
+2. When the engine is selected, a new field called "Listen Port" will appear.
+3. Specify the port number that the instance will use.
 
 **No Engine:**
-- Select "no engine" in the integration configuration.
-- Click on "Save" and the server automatically assigns a port for the instance.
-Please note: If you select "No Engine", the listen port is assigned only after saving the configuration.
-You must click "Save" before clicking "Test" or performing any other actions with the instance.
+1. Select "no engine" in the integration configuration.
+2. Click **Save** and the server automatically assigns a port for the instance.
+Note: If you select **No Engine**, the listen port is assigned only after saving the configuration.
+You must click **Save** before clicking **Test** or performing any other actions with the instance.
 
 ## Implementation
 When the container runs, it calls a dedicated command in the integration, much like fetch-incidents. The command is called `long-running-execution` 
