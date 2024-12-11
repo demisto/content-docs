@@ -38,7 +38,7 @@ In these cases, the long-running behavior is inherent and cannot be modified.
 These integrations can operate in either "single engine" mode or "no engine" mode.
 
 **Single Engine:** 
-1. Select your engine in the integration's configuration.
+1. Select your engine in the integration configuration.
 2. When the engine is selected, a new field called "Listen Port" will appear.
 3. Specify the port number that the instance will use.
 
