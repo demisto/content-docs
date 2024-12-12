@@ -46,7 +46,9 @@ These integrations can operate in either "single engine" mode or "no engine" mod
 1. Select "no engine" in the integration configuration.
 2. Click **Save** and the server automatically assigns a port for the instance.
 Note: If you select **No Engine**, the listen port is assigned only after saving the configuration.
-You must click **Save** before clicking **Test** or performing any other actions with the instance.
+You must click **Save** before clicking **Test**, exiting the instance, or performing any other actions with the instance.
+Please make sure to click **Save**, not **Save & Exit**.
+If you configured the instance but exited before saving, you will need to create a new instance and follow the steps outlined above.
 
 ## Implementation
 When the container runs, it calls a dedicated command in the integration, much like fetch-incidents. The command is called `long-running-execution` 
