@@ -255,8 +255,8 @@ sb@dddd:~/demisto/content$ poetry shell
 
 Then, make sure that `demisto-sdk` has been installed automatically by the bootstrap script as part of the preqreuisites:
 ```bash
-(venv) sb@dddd:~/demisto/content$ demisto-sdk
-Use demisto-sdk -h to see the available commands.
+(venv) sb@dddd:~/demisto/content$ demisto-sdk --version
+demisto-sdk version: 1.33.0
 ```
 
 Now, run the `demisto-sdk pre-commit` command ([pre-commit documentation](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/pre-commit)) on the folder `Packs/HelloWorld/Integrations/HelloWorld` using the `-i` option,
