@@ -64,7 +64,7 @@ Make sure that `Allow the default Docker socket to be used (requires password)` 
 :::
 
 :::tip
-If you are using WSL2 on Windows, you can still use Docker Desktop from WSL.  
+If you are using WSL2 on Windows, you can still use Docker Desktop from WSL.
 See [the following tutorial](https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros) for more details.
 :::
 
@@ -255,86 +255,56 @@ sb@dddd:~/demisto/content$ poetry shell
 
 Then, make sure that `demisto-sdk` has been installed automatically by the bootstrap script as part of the preqreuisites:
 ```bash
-(venv) sb@dddd:~/demisto/content$ demisto-sdk
-Use demisto-sdk -h to see the available commands.
+(venv) sb@dddd:~/demisto/content$ demisto-sdk --version
+demisto-sdk version: 1.33.0
 ```
 
-Now, run the `demisto-sdk lint` command on the folder `Packs/HelloWorld/Integrations/HelloWorld` using the `-i` option,
- or if you want to run  against all the committed files in your branch you can use `demisto-sdk lint -g`.
+Now, run the `demisto-sdk pre-commit` command ([pre-commit documentation](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/pre-commit)) on the folder `Packs/HelloWorld/Integrations/HelloWorld` using the `-i` option,
+ or if you want to run  against all the committed files in your branch you can use `demisto-sdk pre-commit -g`.
 It will run both the [linters](../integrations/linting) and [pytest](../integrations/unit-testing):
 ```bash
-(venv) sb@dddd:~/demisto/content$ demisto-sdk lint -i Packs/HelloWorld/Integrations/HelloWorld
-Execute lint and test on 1/1 packages
-HelloWorld - Facts - Using yaml file /home/sb/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.yml
-HelloWorld - Facts - Pulling docker images, can take up to 1-2 minutes if not exists locally 
-HelloWorld - Facts - demisto/python3:3.8.2.6981 - Python 3.8
-HelloWorld - Facts - Tests found
-HelloWorld - Facts - Lint file /home/sb/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld_test.py
-HelloWorld - Facts - Lint file /home/sb/dev/demisto/content/Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py
-HelloWorld - Flake8 - Start
-HelloWorld - Flake8 - Successfully finished
-HelloWorld - Bandit - Start
-HelloWorld - Bandit - Successfully finished
-HelloWorld - Mypy - Start
-HelloWorld - Mypy - Successfully finished
-HelloWorld - Vulture - Start
-HelloWorld - Vulture - Successfully finished
-HelloWorld - Flake8 - Start
-HelloWorld - Flake8 - Successfully finished
-HelloWorld - Image create - Trying to pull existing image devtestdemisto/python3:3.8.2.6981-02b43abe979132c89892e089d5b8254d
-HelloWorld - Image create - Found existing image devtestdemisto/python3:3.8.2.6981-02b43abe979132c89892e089d5b8254d
-HelloWorld - Image create - Copy pack dir to image devtestdemisto/python3:3.8.2.6981-02b43abe979132c89892e089d5b8254d
-HelloWorld - Image create - Image sha256:ba9f6ede55 created successfully
-HelloWorld - Pylint - Image sha256:ba9f6ede55 - Start
-HelloWorld - Pylint - Image sha256:ba9f6ede55 - exit-code: 0
-HelloWorld - Pylint - Image sha256:ba9f6ede55 - Successfully finished
-HelloWorld - Pytest - Image sha256:ba9f6ede55 - Start
-        ============================= test session starts ==============================
-        platform linux -- Python 3.8.2, pytest-5.0.1, py-1.8.1, pluggy-0.13.1
-        rootdir: /devwork
-        plugins: json-0.4.0, forked-1.1.3, mock-2.0.0, asyncio-0.10.0, datadir-ng-1.1.1, requests-mock-1.7.0, xdist-1.31.0
-        collected 10 items
-
-        HelloWorld_test.py ..........                                            [100%]
-
-        -------------- generated json report: /devwork/report_pytest.json --------------
-        ========================== 10 passed in 0.43 seconds ===========================
-HelloWorld - Pytest - Image sha256:ba9f6ede55 - exit-code: 0
-HelloWorld - Pytest - Image sha256:ba9f6ede55 - Successfully finished
-Flake8       - [PASS]
-Bandit       - [PASS]
-Mypy         - [PASS]
-Vulture      - [PASS]
-Pytest       - [PASS]
-Pylint       - [PASS]
-Pwsh analyze - [SKIPPED]
-Pwsh test    - [SKIPPED]
-
-Passed Unit-tests:
-  - Package: HelloWorld
-      - Image: demisto/python3:3.8.2.6981
-         - HelloWorld_test.py::test_say_hello
-         - HelloWorld_test.py::test_start_scan
-         - HelloWorld_test.py::test_status_scan
-         - HelloWorld_test.py::test_scan_results
-         - HelloWorld_test.py::test_search_alerts
-         - HelloWorld_test.py::test_get_alert
-         - HelloWorld_test.py::test_update_alert_status
-         - HelloWorld_test.py::test_ip
-         - HelloWorld_test.py::test_domain
-         - HelloWorld_test.py::test_fetch_incidents
-
-#########
- Summary 
-#########
-Packages: 1
-Packages PASS: 1
-Packages FAIL: 0
+(venv) sb@dddd:~/demisto/content$ demisto-sdk pre-commit -i Packs/HelloWorld/Integrations/HelloWorld
+Running pre-commit using template /Users/sfainberg/dev/demisto/content/.pre-commit-config_template.yaml
+Running pre-commit with Python 3.11 on:
+Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.py
+Packs/HelloWorld/Integrations/HelloWorld/HelloWorld.yml
+Packs/HelloWorld/Integrations/HelloWorld/HelloWorld_description.md
+Packs/HelloWorld/Integrations/HelloWorld/HelloWorld_image.png
+Packs/HelloWorld/Integrations/HelloWorld/HelloWorld_test.py
+Packs/HelloWorld/Integrations/HelloWorld/README.md
+Packs/HelloWorld/Integrations/HelloWorld/command_examples
+Packs/HelloWorld/Integrations/HelloWorld/test_data/get_alert.json
+Packs/HelloWorld/Integrations/HelloWorld/test_data/incident_note_list_command.json
+Packs/HelloWorld/Integrations/HelloWorld/test_data/ip_reputation.json
+DockerHook - Unable to find image docker.io/devtestdemisto/python3:3.11.10.115186-12dd7198e064c21c217cc72c87ddadd5. Creating image based on docker.io/demisto/python3:3.11.10.115186 - Could take 2-3 minutes at first
+check json...............................................................Passed
+check yaml...............................................................Passed
+check python ast.........................................................Passed
+check for merge conflicts................................................Passed
+debug statements (python)................................................Passed
+python tests naming......................................................Passed
+check for added large files..............................................Passed
+check for case conflicts.................................................Passed
+poetry-check.........................................(no files to check)Skipped
+pycln....................................................................Passed
+ruff-py3.11..............................................................Passed
+autopep8.................................................................Passed
+mypy-py3.11..............................................................Passed
+xsoar-lint...............................................................Passed
+pylint-in-docker-demisto/python3:3.11.10.115186..........................Passed
+pytest-in-docker-demisto/python3:3.11.10.115186..........................Passed
+validate-deleted-files...................................................Passed
+validate-content-paths...................................................Passed
+validate-conf-json...................................(no files to check)Skipped
+validate.................................................................Passed
+secrets..................................................................Passed
+merge-pytest-reports.....................................................Passed
+coverage-pytest-analyze..................................................Passed
 ```
 
 Note that the tests run within a Docker container so, if everything worked well, it means that your development environment is up and running correctly!
 
-### Step 6: Create a branch 
+### Step 6: Create a branch
 
 The [Git Flow](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests) requires to create a *branch* with your new code, that you will later use to submit a *Pull Request*. This tutorial doesn't mean to be an exhaustive guide on how to use `git`: its purpose is just to make sure that you have all the requirements and tools in place to successfully develop a Cortex XSOAR Integration.
 
@@ -345,13 +315,13 @@ In order to create a branch, use the  `git checkout -b [branch_name]` command, w
 Switched to a new branch 'my_integration_name'
 ```
 ### Step 7: Create your integration directory
-Create a directory under `Packs/<Your pack name>` named after your product where you will put all your content files later, and add it to the staged changes in `git`. Make sure you use **PascalCase** in the directory name (i.e. `MyIntegration`). 
-For a detailed description regarding what exactly a pack is please click [here](../packs/packs-format). 
+Create a directory under `Packs/<Your pack name>` named after your product where you will put all your content files later, and add it to the staged changes in `git`. Make sure you use **PascalCase** in the directory name (i.e. `MyIntegration`).
+For a detailed description regarding what exactly a pack is please click [here](../packs/packs-format).
 
 You can create a Pack and an Integration directory using the [`demisto-sdk init` command](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/init).
-An example of creating a pack called `MyNewPack`, with an integration called `MyIntegration`, and with the metadata file created automatically: 
+An example of creating a pack called `MyNewPack`, with an integration called `MyIntegration`, and with the metadata file created automatically:
 ```bash
-➜  content-docs2 git:(add-pack-and-sdk-docs) ✗ demisto-sdk init --pack 
+➜  content-docs2 git:(add-pack-and-sdk-docs) ✗ demisto-sdk init --pack
 Please input the name of the initialized pack: MyNewPack
 Successfully created the pack test in: MyIntegration
 
@@ -361,7 +331,7 @@ Display name of the pack: MyNewPack
 
 Description of the pack: A description for my newly created pack.
 
-Support type of the pack: 
+Support type of the pack:
 [1] demisto
 [2] partner
 [3] developer
@@ -371,13 +341,13 @@ Enter option: 2
 
 Server min version: 5.0.0
 
-Author of the pack: Partner name 
+Author of the pack: Partner name
 
 The url of support, should represent your GitHub account (optional): https://github.com/<PartnerGitAccount>
 
 The email in which you can be contacted in: partner@partner.com
 
-Pack category options: 
+Pack category options:
 [1] Analytics & SIEM
 [2] Utilities
 [3] Messaging
@@ -395,7 +365,7 @@ Pack category options:
 
 Enter option: 1
 
-Tags of the pack, comma separated values: 
+Tags of the pack, comma separated values:
 Created pack metadata at path : MyNewPack/metadata.json
 
 Do you want to create an integration in the pack? Y/N y
@@ -409,13 +379,13 @@ Finished creating integration: MyNewPack/Integrations/test.
 
 The last step is to `commit` your changes and `push` them to the *origin* in order to make sure that the pre-commit checks work fine.
 
-But you can also run the hooks locally using the demisto-sdk, in order to do that you can run the commands:  
-1. `demisto-sdk format` - this will auto correct couple of things in order for our validation to pass. 
-You can see the [docs](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/format)  
-2. `demisto-sdk validate -g` - this will validate the integrity of the yml files, and will make sure they follow 
-our pre-set of roles. You can see the [docs](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/validate)  
-3. `demisto-sdk pre-commit -i <The path to your changed/newly added content entity>` - this will run variety of checks and linters on your 
-changed python files. You can see the [docs](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/pre-commit)  
+But you can also run the hooks locally using the demisto-sdk, in order to do that you can run the commands:
+1. `demisto-sdk format` - this will auto correct couple of things in order for our validation to pass.
+You can see the [docs](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/format)
+2. `demisto-sdk validate -g` - this will validate the integrity of the yml files, and will make sure they follow
+our pre-set of roles. You can see the [docs](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/validate)
+3. `demisto-sdk pre-commit -i <The path to your changed/newly added content entity>` - this will run variety of checks and linters on your
+changed python files. You can see the [docs](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/pre-commit)
 
 
 
