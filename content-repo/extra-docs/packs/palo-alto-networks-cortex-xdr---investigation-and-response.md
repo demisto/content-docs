@@ -5,11 +5,12 @@ description: Automates Cortex XDR incident response, and includes custom Cortex 
 ---
 The Palo Alto Networks Cortex XDR - Investigation and Response pack automates Cortex XDR incident response, and includes custom Cortex XDR incident views and layouts to aid analyst investigations.
 
-Cortex XDR is a detection and response app that natively integrates network, endpoint, and cloud data to stop sophisticated attacks. 
+Cortex XDR is a detection and response app that natively integrates network, endpoint, and cloud data to stop sophisticated attacks.
 
-Responding and managing these attacks requires security teams to reconcile data from multiple sources. Valuable time is lost shuttling between screens and executing repeatable tasks while an attack continues to manifest. 
+Responding and managing these attacks requires security teams to reconcile data from multiple sources. Valuable time is lost shuttling between screens and executing repeatable tasks while an attack continues to manifest.
 
 The playbooks included in this pack help you save time and keep your incidents in sync with Cortex XDR. They also help automate repetitive tasks associated with Cortex XDR incidents:
+
 - Syncs and updates Cortex XDR incidents.
 - Triggers a sub-playbook to handle each alert by type.
 - Extracts and enriches all relevant indicators from the source alert.
@@ -209,7 +210,7 @@ The Palo Alto Networks Cortex XDR - Investigation and Response content pack incl
 - **Cortex XDR Incident**
 - **Cortex XDR Port Scan**
 - **Cortex XDR - XCLOUD**
-- **ortex XDR - XCLOUD Cryptomining**
+- **Cortex XDR - XCLOUD Cryptomining**
 
 ### Incident Fields
 
@@ -260,19 +261,21 @@ XDR status: The indicator status in XDR.
 
 #### Cortex XDR - IOC
 
-Syncs indicators between Cortex XSOAR and Cortex XDR.
+Allows to manage Indicators of Compromise (IOCs) seamlessly within Cortex XDR from Cortex XSOAR. This integration enables security teams to add, update, and remove IOCs efficiently, streamlining threat intelligence workflows and bolstering incident response capabilities.
 
 #### Palo Alto Networks Cortex XDR - Investigation and Response
 
-Enables direct execution of Cortex XDR actions within Cortex XSOAR.
+Allows security teams to automate and streamline incident response workflows by interacting directly with Cortex XDR. With this integration, users can investigate, respond to, and manage incidents efficiently within the Cortex XSOAR platform.
+Key capabilities include retrieving incidents, isolating endpoints, executing remediation actions, and fetching forensic data to enhance incident investigation and resolution.
 
 #### Cortex XDR - XQL Query Engine
 
-Enables to run XQL queries on your data sources.
+Enables to execute XQL queries on your data sources within Cortex XSOAR, facilitating advanced threat hunting and data analysis.
 
 ### Layouts
 
-There are 6 layouts in this pack. The information displayed in the layouts are similar with minor changes as detailed below.
+- There are 6 layouts in this pack.
+- The information displayed in the layouts is similar with minor changes as detailed below:
 
 ![XDR Case Info Tab](../../../docs/doc_imgs/reference/XDRLayout.png)
 
@@ -299,8 +302,6 @@ There are 6 layouts in this pack. The information displayed in the layouts are s
 | XDR Disconnected endpoints | Displays a table with the following information for the disconnected endpoints: Endpoint Name, Endpoint Status, Endpoint OS, Endpoint ID, and Endpoint Last Seen. |
 | Disconnected endpoints report | Displays a report for the disconnected endpoints. |
 | Linked Incidents | Displays any incident that are linked to this incident. |
-
-
 
 
 #### Cortex XDR Incident
