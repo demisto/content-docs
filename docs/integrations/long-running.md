@@ -46,8 +46,7 @@ These integrations can operate in either "single engine" mode or "no engine" mod
 1. Select "no engine" in the integration configuration.
 2. Click **Save** and the server automatically assigns a port for the instance.
 
-  Note: If you select **No Engine**, the listen port is assigned only after saving the configuration. If the instance is not saved, the server will assign a temporary port until the   
-  instance starts running. Please make sure to click **Save**, not **Save & Exit**.
+  Note: If you select **No Engine**, the listen port is assigned only after saving the configuration. If the instance is not saved, the server will assign a temporary port until the  instance starts running. Please make sure to click **Save**, not **Save & Exit**.
   If you configured the instance but exited before saving, you will need to create a new instance and follow the steps outlined above.
 
 ## Implementation
