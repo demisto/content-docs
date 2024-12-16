@@ -48,6 +48,7 @@ These integrations can operate in either "single engine" mode or "no engine" mod
 
   Note: If you select **No Engine**, the listen port is assigned only after saving the configuration. If the instance is not saved, the server will assign a temporary port until the  instance starts running. Please make sure to click **Save**, not **Save & Exit**.
   If you configured the instance but exited before saving, you will need to create a new instance and follow the steps outlined above.
+  In XSOAR 8.9 version, the behavior for "No Engine" will be fixed, and the listen port will be assigned immediately upon configuration, eliminating the need to save the instance manually.
 
 ## Implementation
 When the container runs, it calls a dedicated command in the integration, much like fetch-incidents. The command is called `long-running-execution` 
