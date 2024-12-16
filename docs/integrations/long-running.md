@@ -28,7 +28,7 @@ You can distinguish it from the rest of the containers by its name:
 
 Certain integrations are long-running by default, they do not include the "Long Running Instance" checkbox. Examples of such integrations include:
 
-- Generic Export Indicators Service
+- Generic Export Indicators Service (EDL)
 - Generic Webhook
 - AWS SNS Listener
 - TAXII2 Server
