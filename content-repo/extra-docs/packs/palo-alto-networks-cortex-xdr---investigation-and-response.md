@@ -1,9 +1,9 @@
 ---
-id: palo-alto-networks-cortex-xdr---investigation-and-response
-title: Palo Alto Networks Cortex XDR - Investigation and Response
+id: palo-alto-networks-cortex-xdr
+title: Cortex XDR by Palo Alto Networks
 description: Automates Cortex XDR incident response, and includes custom Cortex XDR incident views and layouts to aid analyst investigations.
 ---
-The Palo Alto Networks Cortex XDR - Investigation and Response pack automates Cortex XDR incident response, and includes custom Cortex XDR incident views and layouts to aid analyst investigations.
+The Cortex XDR by Palo Alto Networks pack automates Cortex XDR incident response, and includes custom Cortex XDR incident views and layouts to aid analyst investigations.
 
 Cortex XDR is a detection and response app that natively integrates network, endpoint, and cloud data to stop sophisticated attacks.
 
@@ -88,7 +88,7 @@ Based on the severity, the analyst decides whether to continue to the remediatio
 
 If this was a port scan alert, the analyst will manually block the ports used for the exploitation on the scanned hosts.
 
-After the remediation, if there are no new alerts, the playbook stops the alert sync and closes the XDR incident and investigation. 
+After the remediation, if there are no new alerts, the playbook stops the alert sync and closes the XDR incident and investigation.
 
 To utilize this playbook for handling XDR incidents, the classifier that should be selected is `Cortex XDR - Classifier`.
 The selected Mapper (incoming) should be `XDR - Incoming Mapper`, and the selected Mapper (outgoing) should be Cortex `XDR - Outgoing Mapper`.
@@ -275,6 +275,7 @@ Enables to execute XQL queries on your data sources within Cortex XSOAR, facilit
 ### Layouts
 
 - There are 6 layouts in this pack.
+- The additional layouts, such as those for indicators, are sourced from the Common Types pack.
 - The information displayed in the layouts is similar with minor changes as detailed below:
 
 ![XDR Case Info Tab](../../../docs/doc_imgs/reference/XDRLayout.png)
@@ -289,6 +290,7 @@ Enables to execute XQL queries on your data sources within Cortex XSOAR, facilit
 | Affected Users Count | Color-coded field that displays the number of users affected by the incident. The color indication is as follows: green - 0 users, orange - 1-3 users, red - 4 or more users. |
 | Notes | Comments entered by the user regarding the incident. |
 | Linked Incidents | Displays any incident that is linked to the current incident. |
+| Child Incidents | Displays any incident that is a child of the current incident. |
 
 
 #### Cortex XDR Disconnected endpoints
@@ -302,6 +304,7 @@ Enables to execute XQL queries on your data sources within Cortex XSOAR, facilit
 | XDR Disconnected endpoints | Displays a table with the following information for the disconnected endpoints: Endpoint Name, Endpoint Status, Endpoint OS, Endpoint ID, and Endpoint Last Seen. |
 | Disconnected endpoints report | Displays a report for the disconnected endpoints. |
 | Linked Incidents | Displays any incident that are linked to this incident. |
+| Child Incidents | Displays any incident that is a child of the current incident. |
 
 
 #### Cortex XDR Incident
@@ -321,6 +324,7 @@ This layout has two tabs:
 | Notes | Comments entered by the user regarding the incident. |
 | Evidence | Displays the data that analysts marked as evidence for this incident. |
 | Linked Incidents | Displays the incidents that were linked to the current incident. |
+| Child Incidents | Displays any incident that is a child of the current incident. |
 | Closing Information | Displays the information that the analyst reported about closing the incident. |
 | Mirroring Information | Displays general mirroring information for this incident. |
 
@@ -529,7 +533,9 @@ This Content Pack may require the following additional Content Packs:
 - Active Directory Query
 - Base
 - Common Playbooks
-- Common Scripts
+- Common Types
+- Core Alert Fields
+- Malware Investigation and Response
 
 ### Optional Content Packs
 - AutoFocus
@@ -543,11 +549,18 @@ This Content Pack may require the following additional Content Packs:
 - Microsoft Graph Mail
 - PANW Comprehensive Investigation
 - Port Scan
+- ServiceNow
+- Common Scripts
+- Active Directory Query
+- AWS - IAM
+- Atlassian Jira
+- Cloud Incident Response
 
 
 
 
 ## Pack Configurations
+- [Creating an API Key and retrieve URL](#create-a-xdr-api-key-and-retrieve-url)
 - [Device Control Violations Workflow](#device-control-violations-workflow)
 - [Query Disconnected Cortex XDR Endpoints Workflow](#query-disconnected-cortex-xdr-endpoints-workflow)
 
@@ -575,7 +588,7 @@ This Content Pack may require the following additional Content Packs:
 
 ### Query Disconnected Cortex XDR Endpoints Workflow
 1. Create a job to query the disconnected endpoints.
-   1. Click **Jobs**. 
+   1. Click **Jobs**.
    2. Click **New Job**.
    3. Configure the recurring schedule.
    3. Enter a name for the job.
@@ -587,3 +600,28 @@ This Content Pack may require the following additional Content Packs:
 2. Define the inputs for the [Cortex XDR disconnected endpoints](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-disconnected-endpoints) playbook.
 
    Note: The scheduled run time and the timestamp playbook input must be identical. If the job recurs every 7 days, the timestamp should be 7 days as well.
+
+### Create A XDR API Key and retrieve url
+
+#### Generate an API Key and Key ID
+
+To enable secure communication with Cortex XDR, you need to generate an API Key and Key ID. Follow these steps:
+
+1. In your Cortex XDR platform, go to **Settings** > **Configurations** > **API Keys**.
+2. Click the **+New Key** button in the top right corner.
+3. Set the **Security Level** to **Advanced** and select a **Role** appropriate for your permissions.
+4. Copy the API Key displayed in the **Generated Key** field.
+5. From the **ID** column, copy the Key ID.
+
+#### Note 1
+
+When configuring a role for the API Key's permission you can create a custom role or use a built-in role. The highest privileged built-in role is the Instance Admin. If you wish to use a built-in role with less permission but maximum command capabilities, use the Privileged Responder role.
+
+#### Note 2
+
+Securely store the API Key, as it will not be displayed again.
+
+#### Retrieve API URL
+
+1. In the Cortex XDR platform, go to **Settings**> **Configurations** > **API Keys**.
+2. Click the **Copy API URL** button in the top-right corner.
