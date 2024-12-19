@@ -1,15 +1,16 @@
 ---
-id: palo-alto-networks-cortex-xdr---investigation-and-response
-title: Palo Alto Networks Cortex XDR - Investigation and Response
+id: palo-alto-networks-cortex-xdr
+title: Cortex XDR by Palo Alto Networks
 description: Automates Cortex XDR incident response, and includes custom Cortex XDR incident views and layouts to aid analyst investigations.
 ---
-The Palo Alto Networks Cortex XDR - Investigation and Response pack automates Cortex XDR incident response, and includes custom Cortex XDR incident views and layouts to aid analyst investigations.
+The Cortex XDR by Palo Alto Networks pack automates Cortex XDR incident response, and includes custom Cortex XDR incident views and layouts to aid analyst investigations.
 
-Cortex XDR is a detection and response app that natively integrates network, endpoint, and cloud data to stop sophisticated attacks. 
+Cortex XDR is a detection and response app that natively integrates network, endpoint, and cloud data to stop sophisticated attacks.
 
-Responding and managing these attacks requires security teams to reconcile data from multiple sources. Valuable time is lost shuttling between screens and executing repeatable tasks while an attack continues to manifest. 
+Responding and managing these attacks requires security teams to reconcile data from multiple sources. Valuable time is lost shuttling between screens and executing repeatable tasks while an attack continues to manifest.
 
 The playbooks included in this pack help you save time and keep your incidents in sync with Cortex XDR. They also help automate repetitive tasks associated with Cortex XDR incidents:
+
 - Syncs and updates Cortex XDR incidents.
 - Triggers a sub-playbook to handle each alert by type.
 - Extracts and enriches all relevant indicators from the source alert.
@@ -87,12 +88,13 @@ Based on the severity, the analyst decides whether to continue to the remediatio
 
 If this was a port scan alert, the analyst will manually block the ports used for the exploitation on the scanned hosts.
 
-After the remediation, if there are no new alerts, the playbook stops the alert sync and closes the XDR incident and investigation. 
+After the remediation, if there are no new alerts, the playbook stops the alert sync and closes the XDR incident and investigation.
 
 To utilize this playbook for handling XDR incidents, the classifier that should be selected is `Cortex XDR - Classifier`.
 The selected Mapper (incoming) should be `XDR - Incoming Mapper`, and the selected Mapper (outgoing) should be Cortex `XDR - Outgoing Mapper`.
 
-### Syn Indicators between Cortex XSOAR and Cortex XDR
+### Sync Indicators between Cortex XSOAR and Cortex XDR
+
 The [Cortex XDR - IOCs](https://xsoar.pan.dev/docs/reference/integrations/cortex-xdr---ioc) feed integration syncs indicators between Cortex XSOAR and Cortex XDR. The integration syncs indicators according to the defined fetch interval. At each interval, the integration pushes new and modified indicators defined in the Sync Query from Cortex XSOAR to Cortex XDR. Additionally, the integration checks if there are manual modifications of indicators on Cortex XDR and syncs back to Cortex XSOAR. Once per day, the integration performs a complete sync which also removes indicators that have been deleted or expired in Cortex XSOAR, from Cortex XDR.
 
 ## Cloud IAM User Access Investigation
@@ -171,29 +173,52 @@ The response actions available are:
 The playbook will move forward for the analyst's resolution when the response phase has finished.
 
 ## In This Pack
+
 The Palo Alto Networks Cortex XDR - Investigation and Response content pack includes several content items.
 
 ### Automations
-- **EntryWidgetNumberHostsXDR**: Entry widget that returns the number of hosts in a Cortex XDR incident. 
+
+- **CortexXDRAdditionalAlertInformationWidget**: This script retrieves additional alert information from the context.
+- **CortexXDRCloudProviderWidget**: This script returns an HTML result of the cloud providers in the incident.
+- **CortexXDRIdentityInformationWidget**: This widget displays Cortex XDR identity information.
+- **CortexXDRInvestigationVerdict**: This widget displays the incident verdict based on the 'Verdict' field.
+- **CortexXDRRemediationActionsWidget**: This widget displays Cortex XDR remediation action information.
+- **DBotGroupXDRIncidents**: This script uses a train clustering model on Cortex XDR incident type.
+- **EntryWidgetNumberHostsXDR**: Entry widget that returns the number of hosts in a Cortex XDR incident.
+- **EntryWidgetNumberRegionsXCLOUD**: Entry widget that returns the number of regions in a Cortex XDR incident.
+- **EntryWidgetNumberResourcesXCLOUD**: Entry widget that returns the number of resources in a Cortex XDR incident.
 - **EntryWidgetNumberUsersXDR**: Entry widget that returns the number of users that participated in a specified Cortex XDR incident.
 - **EntryWidgetPieAlertsXDR**: Entry widget that returns a pie chart of alerts for a specified Cortex XDR incident by alert severity (low, medium, and high).
+- **XCloudRegionsPieWidget**: XCLOUD dynamic section, showing the top ten regions types in a pie chart.
+- **XCloudResourcesPieWidget**: XCLOUD dynamic section, showing the top ten resource types in a pie chart.
+- **XDRConnectedEndpoints**: The widget returns the number of the connected endpoints using xdr-get-endpoints command.
+- **XDRDisconnectedEndpoints**: The widget returns the number of the disconnected endpoints using xdr-get-endpoints command.
 - **XDRSyncScript**: Deprecated. The incoming and outgoing mirroring feature added in XSOAR version 6.0.0 is used instead to sync XDR. After the Calculate Severity - Generic v2 sub-playbook’s run, Cortex XSOAR will be treated as the single source of truth for the severity field, and it will sync only from Cortex XSOAR to XDR, so manual changes for the severity field in XDR will not update in the XSOAR incident.
 
 ### Classifiers
+
 - **Cortex XDR - Classifier**: Classifies Cortex XDR incidents.
 - **Cortex XDR - Incoming Mapper**: Maps incoming Cortex XDR incidents fields.
 - **Cortex XDR - Outgoing Mapper**: Maps outgoing Cortex XDR incidents fields.
+- **Cortex XDR Incident Handler - Classifier**: Classifies Cortex XDR incidents.
 
 ### Incident Types
+
+- **Cortex XDR - Lite**
 - **Cortex XDR Device Control Violations**
 - **Cortex XDR Disconnected endpoints**
 - **Cortex XDR Incident**
 - **Cortex XDR Port Scan**
 - **Cortex XDR - XCLOUD**
+- **Cortex XDR - XCLOUD Cryptomining**
 
 ### Incident Fields
+
 - **LastMirroredInTime**
+- **XDR Alert Category**
 - **XDR Alert Count**
+- **XDR Alert Name**
+- **XDR Alert Search Results**
 - **XDR Alerts**
 - **XDR Assigned User Email**
 - **XDR Assigned User Pretty Name**
@@ -202,37 +227,60 @@ The Palo Alto Networks Cortex XDR - Investigation and Response content pack incl
 - **XDR device control violations**
 - **XDR Disconnected endpoints**
 - **XDR File Artifacts**
+- **XDR File Name**
+- **XDR File SHA256**
 - **XDR High Severity Alert Count**
 - **XDR Host Count**
 - **XDR Incident ID**
+- **XDR Investigation results**
 - **XDR Low Severity Alert Count**
 - **XDR manual severity**
 - **XDR Medium Severity Alert Count**
+- **XDR MITRE Tactics**
+- **XDR MITRE Techniques**
 - **XDR Modification Time**
 - **XDR Network Artifacts**
 - **XDR Notes**
 - **XDR Resolve Comment**
-- **XDR Status (Deprecated from version 6.0.0. Use XDR Status v2 instead)**
+- **XDR Risky Host Count**
+- **XDR Risky Hosts**
+- **XDR Risky User Count**
+- **XDR Risky Users**
+- **XDR Similar Incidents**
+- **XDR Starred**
 - **XDR Status v2**
 - **XDR URL**
 - **XDR User Count**
+- **XDR Users**
 
 ### Indicator Fields
+
 XDR status: The indicator status in XDR.
 
 ### Integrations
+
 #### Cortex XDR - IOC
-Syncs indicators between Cortex XSOAR and Cortex XDR. 
+
+Allows to manage Indicators of Compromise (IOCs) seamlessly within Cortex XDR from Cortex XSOAR. This integration enables security teams to add, update, and remove IOCs efficiently, streamlining threat intelligence workflows and bolstering incident response capabilities.
 
 #### Palo Alto Networks Cortex XDR - Investigation and Response
-Enables direct execution of Cortex XDR actions within Cortex XSOAR.
+
+Allows security teams to automate and streamline incident response workflows by interacting directly with Cortex XDR. With this integration, users can investigate, respond to, and manage incidents efficiently within the Cortex XSOAR platform.
+Key capabilities include retrieving incidents, isolating endpoints, executing remediation actions, and fetching forensic data to enhance incident investigation and resolution.
+
+#### Cortex XDR - XQL Query Engine
+
+Enables to execute XQL queries on your data sources within Cortex XSOAR, facilitating advanced threat hunting and data analysis.
 
 ### Layouts
-There are 5 layouts in this pack. The information displayed in the layouts are similar with minor changes as detailed below.
+
+- There are 6 layouts in this pack.
+- The additional layouts, such as those for indicators, are sourced from the Common Types pack.
+- The information displayed in the layouts is similar with minor changes as detailed below:
 
 ![XDR Case Info Tab](../../../docs/doc_imgs/reference/XDRLayout.png)
 
-#### Cortex XDR Device Control Violations layout
+#### Cortex XDR Device Control Violations
 
 | Layout sections | Description |
 |------------------ | ------------- |
@@ -242,7 +290,7 @@ There are 5 layouts in this pack. The information displayed in the layouts are s
 | Affected Users Count | Color-coded field that displays the number of users affected by the incident. The color indication is as follows: green - 0 users, orange - 1-3 users, red - 4 or more users. |
 | Notes | Comments entered by the user regarding the incident. |
 | Linked Incidents | Displays any incident that is linked to the current incident. |
-
+| Child Incidents | Displays any incident that is a child of the current incident. |
 
 
 #### Cortex XDR Disconnected endpoints
@@ -256,8 +304,7 @@ There are 5 layouts in this pack. The information displayed in the layouts are s
 | XDR Disconnected endpoints | Displays a table with the following information for the disconnected endpoints: Endpoint Name, Endpoint Status, Endpoint OS, Endpoint ID, and Endpoint Last Seen. |
 | Disconnected endpoints report | Displays a report for the disconnected endpoints. |
 | Linked Incidents | Displays any incident that are linked to this incident. |
-
-
+| Child Incidents | Displays any incident that is a child of the current incident. |
 
 
 #### Cortex XDR Incident
@@ -277,6 +324,7 @@ This layout has two tabs:
 | Notes | Comments entered by the user regarding the incident. |
 | Evidence | Displays the data that analysts marked as evidence for this incident. |
 | Linked Incidents | Displays the incidents that were linked to the current incident. |
+| Child Incidents | Displays any incident that is a child of the current incident. |
 | Closing Information | Displays the information that the analyst reported about closing the incident. |
 | Mirroring Information | Displays general mirroring information for this incident. |
 
@@ -485,7 +533,9 @@ This Content Pack may require the following additional Content Packs:
 - Active Directory Query
 - Base
 - Common Playbooks
-- Common Scripts
+- Common Types
+- Core Alert Fields
+- Malware Investigation and Response
 
 ### Optional Content Packs
 - AutoFocus
@@ -499,11 +549,18 @@ This Content Pack may require the following additional Content Packs:
 - Microsoft Graph Mail
 - PANW Comprehensive Investigation
 - Port Scan
+- ServiceNow
+- Common Scripts
+- Active Directory Query
+- AWS - IAM
+- Atlassian Jira
+- Cloud Incident Response
 
 
 
 
 ## Pack Configurations
+- [Creating an API Key and retrieve URL](#create-a-xdr-api-key-and-retrieve-url)
 - [Device Control Violations Workflow](#device-control-violations-workflow)
 - [Query Disconnected Cortex XDR Endpoints Workflow](#query-disconnected-cortex-xdr-endpoints-workflow)
 
@@ -531,7 +588,7 @@ This Content Pack may require the following additional Content Packs:
 
 ### Query Disconnected Cortex XDR Endpoints Workflow
 1. Create a job to query the disconnected endpoints.
-   1. Click **Jobs**. 
+   1. Click **Jobs**.
    2. Click **New Job**.
    3. Configure the recurring schedule.
    3. Enter a name for the job.
@@ -543,3 +600,28 @@ This Content Pack may require the following additional Content Packs:
 2. Define the inputs for the [Cortex XDR disconnected endpoints](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-disconnected-endpoints) playbook.
 
    Note: The scheduled run time and the timestamp playbook input must be identical. If the job recurs every 7 days, the timestamp should be 7 days as well.
+
+### Create A XDR API Key and retrieve url
+
+#### Generate an API Key and Key ID
+
+To enable secure communication with Cortex XDR, you need to generate an API Key and Key ID. Follow these steps:
+
+1. In your Cortex XDR platform, go to **Settings** > **Configurations** > **API Keys**.
+2. Click the **+New Key** button in the top right corner.
+3. Set the **Security Level** to **Advanced** and select a **Role** appropriate for your permissions.
+4. Copy the API Key displayed in the **Generated Key** field.
+5. From the **ID** column, copy the Key ID.
+
+#### Note 1
+
+When configuring a role for the API Key's permission you can create a custom role or use a built-in role. The highest privileged built-in role is the Instance Admin. If you wish to use a built-in role with less permission but maximum command capabilities, use the Privileged Responder role.
+
+#### Note 2
+
+Securely store the API Key, as it will not be displayed again.
+
+#### Retrieve API URL
+
+1. In the Cortex XDR platform, go to **Settings**> **Configurations** > **API Keys**.
+2. Click the **Copy API URL** button in the top-right corner.
