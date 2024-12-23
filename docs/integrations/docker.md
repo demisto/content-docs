@@ -8,9 +8,7 @@ Docker is a tool used by developers to package together dependencies into a sing
 ## Why Use Docker?
 We use Docker to run Python scripts and integrations in a controlled environment. The scripts and integrations run isolated from the server to prevent them from accidentally damaging the server. By packaging libraries and dependencies together, we can prevent unknown issues from occurring since the environment is all the same.
 ## Script/Integration Configuration
-Specifying which Docker image to use is done in the Cortex XSOAR IDE (under Settings -> Docker image name). If you don't specify a Docker image, a default Docker image using Python 2.7 is used. For new scripts and integrations, unless there is a specific reason to use Python 2 (for example to use a library unavailable in Python 3), we require using a Python 3 image.  
-**Note:**  
-Starting in Demisto 5.0, you can specify in the Cortex XSOAR IDE the Python version (2.7 or 3.x). Once you choose 3.x, the latest Cortex XSOAR Python 3 Docker image will be selected automatically.
+Specifying which Docker image to use is done in the Cortex XSOAR IDE (under Settings -> Docker image name). If you don't specify a Docker image, a default Docker image using Python 3.9 is used. 
 The selected Docker image is configured in the script/integration YAML file under the `dockerimage` key. See the [YAML file overview](yaml-file).
 ## Update Docker Images Automatically via Pull Request
 Every integration or script is updated automatically whenever a newer tag is available.
