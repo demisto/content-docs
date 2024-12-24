@@ -490,8 +490,7 @@ Based on the severity, it lets the analyst decide whether to continue to the rem
 After the remediation, if there are no new alerts, the playbook stops the alert sync and closes the XDR incident and investigation. For performing the bidirectional sync, the playbook uses the incoming and outgoing mirroring feature added in XSOAR version 6.0.0. After the Calculate Severity - Generic v2 sub-playbook’s run, Cortex XSOAR will be treated as the single source of truth for the severity field, and it will sync only from Cortex XSOAR to XDR, so manual changes for the severity field in XDR will not update in the XSOAR incident.
 
 #### [Cortex XDR Incident Sync](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-incident-sync)
-Compares incidents in Palo Alto Networks Cortex XDR and Cortex XSOAR, and updates the incidents appropriately. When an incident is updated in Cortex XSOAR, the XDRSyncScript will update the incident in XDR. When an incident is updated in XDR, the XDRSyncScript will update the incident fields in Cortex XSOAR and rerun the current playbook. Do not use this playbook when enabling the incident mirroring feature added in XSOAR version 6.0.0.
-
+Deprecated. Do not use this playbook when enabling the incident mirroring feature added in XSOAR version 6.0.0. Compares incidents in Palo Alto Networks Cortex XDR and Cortex XSOAR, and updates the incidents appropriately. When an incident is updated in Cortex XSOAR, the XDRSyncScript will update the incident in XDR. When an incident is updated in XDR, the XDRSyncScript will update the incident fields in Cortex XSOAR and rerun the current playbook.
 
 #### [Cortex XDR - Block File](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---block-file)
 Adds files to the Cortex XDR block list with a given file SHA256 playbook input.
@@ -524,8 +523,6 @@ The following alerts are supported for all cloud environments:
 - Penetration testing tool activity
 - Suspicious API call from a Tor exit node
 
-
-
 ## Before You Start
 
 ### Required Content Packs
@@ -556,16 +553,13 @@ This Content Pack may require the following additional Content Packs:
 - Atlassian Jira
 - Cloud Incident Response
 
-
-
-
-## Pack Configurations
+### Pack Configurations
 - [Creating an API Key and retrieve URL](#create-a-xdr-api-key-and-retrieve-url)
 - [Device Control Violations Workflow](#device-control-violations-workflow)
 - [Query Disconnected Cortex XDR Endpoints Workflow](#query-disconnected-cortex-xdr-endpoints-workflow)
 
 
-### Device Control Violations Workflow
+#### Device Control Violations Workflow
 1. Create a job to query for device control violations.  
 
    1. Click **Jobs**. 
@@ -583,10 +577,7 @@ This Content Pack may require the following additional Content Packs:
    Note: The scheduled run time and the timestamp playbook input must be identical. If the job recurs every 7 days, the timestamp should be 7 days as well.
 3. To run the response playbook for the violations found, define the inputs for the [Cortex XDR device control violations](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-device-control-violations).
 
-
-
-
-### Query Disconnected Cortex XDR Endpoints Workflow
+#### Query Disconnected Cortex XDR Endpoints Workflow
 1. Create a job to query the disconnected endpoints.
    1. Click **Jobs**.
    2. Click **New Job**.
