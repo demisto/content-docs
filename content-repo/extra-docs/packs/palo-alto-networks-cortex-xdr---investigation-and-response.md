@@ -19,12 +19,13 @@ The playbooks included in this pack help you save time and keep your incidents i
 - Interacts with the analyst to choose a remediation path or close the incident as a false positive based on the gathered information and incident severity.
 - Remediates the incident by blocking malicious indicators and isolating infected endpoints.
 
-The Palo Alto Networks Cortex XDR - Investigation and Response pack enables the following flows: 
+The Palo Alto Networks Cortex XDR - Investigation and Response pack enables the following flows:
+
 - [Lite Incident Handling](#lite-incident-handling) - A lite playbook for handling Palo Alto Networks Cortex XDR incidents, which encompasses incident enrichment, investigation, and response for each incident.
 - [Device Control Violations](#device-control-violations) - Fetch device control violations from XDR and communicate with the user to determine the reason the device was connected.
-- [XDR Incident Handling](#xdr-incident-handling) - Compare incidents in Palo Alto Networks Cortex XDR and Cortex XSOAR, and update the incidents appropriately. 
-- [Cloud IAM User Access Investigation](#cloud-iam-user-access-investigation) - Investigates and responds to Cortex XDR Cloud alerts where an Cloud IAM user's access key is used suspiciously to access the cloud environment. 
-- [Cortex XDR - Cloud Cryptomining](#Cortex_XDR_-_Cloud_Cryptomining) - Investigates and responds to Cortex XDR XCloud 
+- [XDR Incident Handling](#xdr-incident-handling) - Compare incidents in Palo Alto Networks Cortex XDR and Cortex XSOAR, and update the incidents appropriately.
+- [Cloud IAM User Access Investigation](#cloud-iam-user-access-investigation) - Investigates and responds to Cortex XDR Cloud alerts where an Cloud IAM user's access key is used suspiciously to access the cloud environment.
+- [Cortex XDR - Cloud Cryptomining](#Cortex-XDR-Cloud-Cryptomining) - Investigates and responds to Cortex XDR XCloud
   Cryptomining alerts. The playbook Supports AWS, Azure and GCP.
 
 ## Lite Incident Handling
@@ -120,8 +121,7 @@ As an extra validation step, it is recommended to query the user and/or the user
 
 Based on this investigation, the analyst manually decides if the alert is a false or true positive.  If false, the playbook ends.
 
-
-## Cortex XDR - Cloud Cryptomining
+## Cortex XDR Cloud Cryptomining
 The [Cortex XDR - Cloud Cryptomining](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---cloud-cryptomining) playbook 
 enriches, investigates, and responds to Cortex XDR XCloud Cryptomining alerts. The playbook flow is triggered based on the 
 'Unusual 
@@ -507,16 +507,14 @@ Initiates a new endpoint script execution action using a provided script unique 
 #### [Cortex XDR - check file existence](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---check-file-existence)
 Checks if the specified file exists.
 
-
 #### [Cortex XDR - execute commands](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---execute-commands)
 Executes specified shell commands.
 
 #### [Cortex XDR - kill process](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---kill-process)
 Kills the specified process.
 
-
 #### [Cortex XDR - Cloud IAM user access investigation](https://xsoar.pan.dev/docs/reference/playbooks/cloud-iam-user-access-investigation)
-Investigates and responds to Cortex XDR Cloud alerts where an Cloud IAM user`s access key is used suspiciously to access the cloud environment. 
+Investigates and responds to Cortex XDR Cloud alerts where an Cloud IAM user`s access key is used suspiciously to access the cloud environment.
 
 The following alerts are supported for all cloud environments:
 - Penetration testing tool attempt
