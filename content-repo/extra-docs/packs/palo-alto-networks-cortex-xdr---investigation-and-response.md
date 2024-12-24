@@ -7,19 +7,28 @@ The Cortex XDR by Palo Alto Networks pack automates Cortex XDR incident response
 
 Cortex XDR is a detection and response app that natively integrates network, endpoint, and cloud data to stop sophisticated attacks.
 
-Responding and managing these attacks requires security teams to reconcile data from multiple sources. Valuable time is lost shuttling between screens and executing repeatable tasks while an attack continues to manifest.
+Effectively responding to these attacks requires security teams to consolidate data from multiple sources. Critical time is wasted switching between tools and performing repetitive tasks, allowing the attack to escalate further.
 
-The playbooks included in this pack help you save time and keep your incidents in sync with Cortex XDR. They also help automate repetitive tasks associated with Cortex XDR incidents:
+This pack can provide significant assistance.
+
+## What does the pack do?
+
+- **Automated Incident Synchronization**: Keeps incidents consistently updated between Cortex XDR and Cortex XSOAR, maintaining data integrity and reducing manual effort.
+- **Comprehensive Alert Management**: Automates alert handling, including enrichment, severity assessment, and remediation, for a streamlined incident response process.
+- **Advanced Threat Hunting**: Leverages the XQL Query Engine for in-depth data analysis, enabling proactive threat hunting and investigation.
+- **Ready-to-Use Playbooks**: a range of pre-built playbooks optimized for common security workflows, allowing teams to quickly deploy effective responses with minimal configuration.
+
+The playbooks included in this pack can help you save time and keep your incidents and indicators in sync with Cortex XDR. They also help automate repetitive tasks:
 
 - Syncs and updates Cortex XDR incidents.
 - Triggers a sub-playbook to handle each alert by type.
 - Extracts and enriches all relevant indicators from the source alert.
 - Hunts for related IOCs.
-- Calculates the severity of the incident.
-- Interacts with the analyst to choose a remediation path or close the incident as a false positive based on the gathered information and incident severity.
-- Remediates the incident by blocking malicious indicators and isolating infected endpoints.
+- Assesses the severity of the incident.
+- Collaborates with the analyst to determine the appropriate remediation path or classify the incident as a false positive, based on gathered data and incident severity.
+- Remediates the incident by blocking malicious indicators and isolating compromised endpoints.
 
-The Palo Alto Networks Cortex XDR - Investigation and Response pack enables the following flows:
+## The Palo Alto Networks Cortex XDR - Investigation and Response pack enables the following flows:
 
 - [Lite Incident Handling](#lite-incident-handling) - A lite playbook for handling Palo Alto Networks Cortex XDR incidents, which encompasses incident enrichment, investigation, and response for each incident.
 - [Device Control Violations](#device-control-violations) - Fetch device control violations from XDR and communicate with the user to determine the reason the device was connected.
@@ -28,7 +37,7 @@ The Palo Alto Networks Cortex XDR - Investigation and Response pack enables the 
 - [Cortex XDR - Cloud Cryptomining](#Cortex-XDR-Cloud-Cryptomining) - Investigates and responds to Cortex XDR XCloud
   Cryptomining alerts. The playbook Supports AWS, Azure and GCP.
 
-## Lite Incident Handling
+### Lite Incident Handling
 This playbook is a lite default playbook to handle XDR incidents, and it doesn't require additional integrations to run.
 The [Palo Alto Networks Cortex XDR - Investigation and Response](#palo-alto-networks-cortex-XDR---investigation-and-response) integration fetches Cortex XDR incidents and runs the [Cortex XDR Lite - Incident Handling](#cortex-xdr-lite---incident-handling) playbook. 
 
@@ -51,7 +60,7 @@ As part of this playbook, you'll receive a comprehensive layout that presents in
 To utilize this playbook as the default for handling XDR incidents, the classifier should be empty, and the selected incident type should be `Cortex XDR - Lite`.
 The selected Mapper (incoming) should be `XDR - Incoming Mapper`, and the selected Mapper (outgoing) should be Cortex `XDR - Outgoing Mapper`.
 
-## Device Control Violations
+### Device Control Violations
 If a user connects an unauthorized device to the corporate network, such as a USB dongle or a portable hard disk drive, the connection creates an event in Cortex XDR. 
 The [Cortex XDR device control violations](#cortex-xdr-device-control-violations) playbook queries Cortex XDR for device control violations for specified hosts, IP addresses, or XDR endpoint IDs. It then communicates via email with the involved users to understand the nature of the incident and if the user connected the device. 
 
@@ -62,8 +71,6 @@ You can create a job to periodically query Cortex XDR for device control violati
 The [Cortex XDR device control violations](#cortex-xdr-device-control-violations) playbook can be used to enrich data for the involved hosts/users in XDR and other incidents.
 
 All collected data is displayed in the XDR device control incident layout.
-
-
 
 ### XDR Incident Handling
 
@@ -98,7 +105,7 @@ The selected Mapper (incoming) should be `XDR - Incoming Mapper`, and the select
 
 The [Cortex XDR - IOCs](https://xsoar.pan.dev/docs/reference/integrations/cortex-xdr---ioc) feed integration syncs indicators between Cortex XSOAR and Cortex XDR. The integration syncs indicators according to the defined fetch interval. At each interval, the integration pushes new and modified indicators defined in the Sync Query from Cortex XSOAR to Cortex XDR. Additionally, the integration checks if there are manual modifications of indicators on Cortex XDR and syncs back to Cortex XSOAR. Once per day, the integration performs a complete sync which also removes indicators that have been deleted or expired in Cortex XSOAR, from Cortex XDR.
 
-## Cloud IAM User Access Investigation
+### Cloud IAM User Access Investigation
 The [Cloud IAM user access investigation](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---cloud-iam-user-access-investigation) playbook investigates and responds to Cortex XDR Cloud alerts where an Cloud IAM user's access key is used suspiciously to access the cloud environment. 
 
 The playbook fetches data from the incident and then retrieves additional cloud alert data that was not available in the incident. It then checks if the alerts are one of the following XCLOUD supported alerts: 
@@ -121,7 +128,7 @@ As an extra validation step, it is recommended to query the user and/or the user
 
 Based on this investigation, the analyst manually decides if the alert is a false or true positive.  If false, the playbook ends.
 
-## Cortex XDR Cloud Cryptomining
+### Cortex XDR Cloud Cryptomining
 The [Cortex XDR - Cloud Cryptomining](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---cloud-cryptomining) playbook 
 enriches, investigates, and responds to Cortex XDR XCloud Cryptomining alerts. The playbook flow is triggered based on the 
 'Unusual 
@@ -172,7 +179,7 @@ The response actions available are:
 
 The playbook will move forward for the analyst's resolution when the response phase has finished.
 
-## In This Pack
+## What does this pack include?
 
 The Palo Alto Networks Cortex XDR - Investigation and Response content pack includes several content items.
 
@@ -255,7 +262,12 @@ The Palo Alto Networks Cortex XDR - Investigation and Response content pack incl
 
 ### Indicator Fields
 
-XDR status: The indicator status in XDR.
+- XDR status: The indicator status in XDR.
+- Fields from the **Common Types** pack.
+
+### Indicator Types
+
+- Types from the **Common Types** pack (such as File, Email, Domain, URL and more).
 
 ### Integrations
 
@@ -275,7 +287,7 @@ Enables to execute XQL queries on your data sources within Cortex XSOAR, facilit
 ### Layouts
 
 - There are 6 layouts in this pack.
-- The additional layouts, such as those for indicators, are sourced from the Common Types pack.
+- The additional layouts, such as those for indicators, are sourced from the **Common Types** pack.
 - The information displayed in the layouts is similar with minor changes as detailed below:
 
 ![XDR Case Info Tab](../../../docs/doc_imgs/reference/XDRLayout.png)
@@ -555,7 +567,6 @@ This Content Pack may require the following additional Content Packs:
 - [Creating an API Key and retrieve URL](#create-a-xdr-api-key-and-retrieve-url)
 - [Device Control Violations Workflow](#device-control-violations-workflow)
 - [Query Disconnected Cortex XDR Endpoints Workflow](#query-disconnected-cortex-xdr-endpoints-workflow)
-
 
 #### Device Control Violations Workflow
 1. Create a job to query for device control violations.  
