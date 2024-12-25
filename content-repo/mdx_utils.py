@@ -8,9 +8,14 @@ import requests
 import inflection
 
 MDX_SERVER_PROCESS: Optional[subprocess.Popen] = None
+EXCLUDE_NORMALIZED_IDS = {
+    "Netskope (API v2)": "netskope_api_v2"
+}
 
 
 def normalize_id(id: str):
+    if id in EXCLUDE_NORMALIZED_IDS:
+        return EXCLUDE_NORMALIZED_IDS[id]
     id = inflection.dasherize(inflection.underscore(id)).replace(' ', '-')
     # replace all non word characters (dash is ok)
     return re.sub(r'[^\w-]', '', id)
