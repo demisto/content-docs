@@ -397,6 +397,32 @@ This layout has two tabs:
 | Remediation Actions Information | Displays the Inactive Access keys, and the Deleted Login Profiles. |
 | Indicators | Displays the following information: Type, Value, Verdict, First Seen, Last Seen, Source Time Stamp Related Incidents, Source Brands, Source Instances, Expiration Status, and Expiration. |
 
+### Dashboards
+
+#### Cortex XDR
+
+The dashboard includes 19 common widgets:
+
+- Cortex XDR Top 10 MITRE Tactics
+- Cortex XDR Top 10 MITRE Techniques
+- Cortex XDR Top 10 Users
+- Cortex XDR Unique User Count In Active Incidents
+- Cortex XDR Top 10 Files
+- Cortex XDR Connected Endpoints
+- Cortex XDR Closed Incidents
+- Cortex XDR Unique Host Count In Active Incidents
+- Cortex XDR Disconnected Endpoints
+- Cortex XDR Top 10 Categories
+- Cortex XDR Active High Severity Incidents
+- Cortex XDR Active Medium Severity Incidents
+- Cortex XDR Top 10 File SHA 256
+- Cortex XDR Active Low Severity Incidents
+- Cortex XDR Top 10 Hosts
+- Cortex XDR Unassigned Incidents
+- Cortex XDR Active Device Control Violations Incidents
+- Cortex XDR Closed Device Control Violations Incidents
+- Cortex XDR Top 10 Alerts
+
 ### Playbooks
 There are several playbooks in this pack.
 
