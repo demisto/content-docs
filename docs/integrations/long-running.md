@@ -26,6 +26,29 @@ You can distinguish it from the rest of the containers by its name:
 
 ![image](/doc_imgs/integrations/66122754-2d337b00-e5e9-11e9-8775-562e228e3fe6.png)
 
+Certain integrations are long-running by default so they do not include the "Long Running Instance" checkbox. Examples of such integrations include:
+
+- Generic Export Indicators Service (EDL)
+- Generic Webhook
+- AWS SNS Listener
+- TAXII2 Server
+- TAXIIServer
+
+In these cases, the long-running behavior is inherent and cannot be modified.
+These integrations can operate in either "single engine" mode or "no engine" mode.
+
+**Single Engine:** 
+1. Select your engine in the integration configuration.
+2. When the engine is selected, a new field called "Listen Port" will appear.
+3. Specify the port number that the instance will use.
+
+**No Engine:**
+1. Select "no engine" in the integration configuration.
+2. Click **Save** and the server automatically assigns a port for the instance.
+
+  Note: If you select **No Engine**, the listen port is assigned only after saving the configuration. If you click on "Test" before clicking on "Save", the server will assign a temporary port until the  instance starts running. Please make sure to click **Save**, not **Save & Exit**.
+  If you configured the instance but exited before saving, you will need to create a new instance and follow the steps outlined above.
+  In Cortex XSOAR 8.9, the behavior for "No Engine" will change, and the listen port will be assigned immediately upon configuration, eliminating the need to save the instance manually.
 
 ## Implementation
 When the container runs, it calls a dedicated command in the integration, much like fetch-incidents. The command is called `long-running-execution` 
