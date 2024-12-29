@@ -1,7 +1,13 @@
 {
+  "__comment__": {
+    "integrations": "Integration IDs to be excluded when generating a web page",
+    "scripts": "Script IDs to be excluded when generating a web page",
+    "playbooks": "Playbook IDs to be excluded when generating a web page"
+  },
   "integrations": [
     "PICUS",
-    "KnowBe4KMSAT"
+    "KnowBe4KMSAT",
+    "Netskope (API v2)"
   ],
   "scripts": [
 
