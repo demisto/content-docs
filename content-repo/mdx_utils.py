@@ -11,8 +11,8 @@ MDX_SERVER_PROCESS: Optional[subprocess.Popen] = None
 
 
 def normalize_id(id: str):
-    id = inflection.underscore(id).replace(' ', '-')
-    # Replace all non-word characters (dash and underscore are OK)
+    id = inflection.dasherize(inflection.underscore(id)).replace(' ', '-')
+    # replace all non word characters (dash is ok)
     return re.sub(r'[^\w-]', '', id)
 
 
