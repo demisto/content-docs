@@ -627,7 +627,7 @@ This Content Pack may require the following additional Content Packs:
 
    Note: The scheduled run time and the timestamp playbook input must be identical. If the job recurs every 7 days, the timestamp should be 7 days as well.
 
-### Create A XDR API Key and retrieve url
+### Create A XDR API Key and Retrieve URL
 
 #### Generate an API Key and Key ID
 
