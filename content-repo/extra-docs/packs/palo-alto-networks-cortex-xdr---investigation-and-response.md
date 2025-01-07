@@ -9,14 +9,14 @@ Cortex XDR is a detection and response app that natively integrates network, end
 
 Effectively responding to these attacks requires security teams to consolidate data from multiple sources. Critical time is wasted switching between tools and performing repetitive tasks, allowing the attack to escalate further.
 
-This pack can provide significant assistance.
+This pack can provide significant assistance in responding to attacks.
 
 ## What does the pack do?
 
 - **Automated Incident Synchronization**: Keeps incidents consistently updated between Cortex XDR and Cortex XSOAR, maintaining data integrity and reducing manual effort.
 - **Comprehensive Alert Management**: Automates alert handling, including enrichment, severity assessment, and remediation, for a streamlined incident response process.
 - **Advanced Threat Hunting**: Leverages the XQL Query Engine for in-depth data analysis, enabling proactive threat hunting and investigation.
-- **Ready-to-Use Playbooks**: a range of pre-built playbooks optimized for common security workflows, allowing teams to quickly deploy effective responses with minimal configuration.
+- **Ready-to-Use Playbooks**: A range of pre-built playbooks optimized for common security workflows, allowing teams to quickly deploy effective responses with minimal configuration.
 
 The playbooks included in this pack can help you save time and keep your incidents and indicators in sync with Cortex XDR. They also help automate repetitive tasks:
 
@@ -33,7 +33,7 @@ The playbooks included in this pack can help you save time and keep your inciden
 - [Lite Incident Handling](#lite-incident-handling) - A lite playbook for handling Palo Alto Networks Cortex XDR incidents, which encompasses incident enrichment, investigation, and response for each incident.
 - [Device Control Violations](#device-control-violations) - Fetch device control violations from XDR and communicate with the user to determine the reason the device was connected.
 - [XDR Incident Handling](#xdr-incident-handling) - Compare incidents in Palo Alto Networks Cortex XDR and Cortex XSOAR, and update the incidents appropriately.
-- [Cloud IAM User Access Investigation](#cloud-iam-user-access-investigation) - Investigates and responds to Cortex XDR Cloud alerts where an Cloud IAM user's access key is used suspiciously to access the cloud environment.
+- [Cloud IAM User Access Investigation](#cloud-iam-user-access-investigation) - Investigates and responds to Cortex XDR Cloud alerts where a Cloud IAM user's access key is used suspiciously to access the cloud environment.
 - [Cortex XDR - Cloud Cryptomining](#Cortex-XDR-Cloud-Cryptomining) - Investigates and responds to Cortex XDR XCloud
   Cryptomining alerts. The playbook Supports AWS, Azure and GCP.
 
@@ -282,7 +282,7 @@ Key capabilities include retrieving incidents, isolating endpoints, executing re
 
 #### Cortex XDR - XQL Query Engine
 
-Enables to execute XQL queries on your data sources within Cortex XSOAR, facilitating advanced threat hunting and data analysis.
+Enables executing XQL queries on your data sources within Cortex XSOAR, facilitating advanced threat hunting and data analysis.
 
 ### Layouts
 
@@ -528,7 +528,7 @@ Based on the severity, it lets the analyst decide whether to continue to the rem
 After the remediation, if there are no new alerts, the playbook stops the alert sync and closes the XDR incident and investigation. For performing the bidirectional sync, the playbook uses the incoming and outgoing mirroring feature added in XSOAR version 6.0.0. After the Calculate Severity - Generic v2 sub-playbook’s run, Cortex XSOAR will be treated as the single source of truth for the severity field, and it will sync only from Cortex XSOAR to XDR, so manual changes for the severity field in XDR will not update in the XSOAR incident.
 
 #### [Cortex XDR Incident Sync](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr-incident-sync)
-Deprecated. Do not use this playbook when enabling the incident mirroring feature added in XSOAR version 6.0.0. Compares incidents in Palo Alto Networks Cortex XDR and Cortex XSOAR, and updates the incidents appropriately. When an incident is updated in Cortex XSOAR, the XDRSyncScript will update the incident in XDR. When an incident is updated in XDR, the XDRSyncScript will update the incident fields in Cortex XSOAR and rerun the current playbook.
+Deprecated. Do not use this playbook when enabling the incident mirroring feature added in Cortex XSOAR version 6.0.0. Compares incidents in Palo Alto Networks Cortex XDR and Cortex XSOAR, and updates the incidents appropriately. When an incident is updated in Cortex XSOAR, the XDRSyncScript will update the incident in Cortex XDR. When an incident is updated in Cortex XDR, the XDRSyncScript will update the incident fields in Cortex XSOAR and rerun the current playbook.
 
 #### [Cortex XDR - Block File](https://xsoar.pan.dev/docs/reference/playbooks/cortex-xdr---block-file)
 Adds files to the Cortex XDR block list with a given file SHA256 playbook input.
