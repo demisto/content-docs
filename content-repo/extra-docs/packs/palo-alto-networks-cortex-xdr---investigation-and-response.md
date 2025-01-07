@@ -34,7 +34,7 @@ The playbooks included in this pack can help you save time and keep your inciden
 - [Device Control Violations](#device-control-violations) - Fetch device control violations from XDR and communicate with the user to determine the reason the device was connected.
 - [XDR Incident Handling](#xdr-incident-handling) - Compare incidents in Palo Alto Networks Cortex XDR and Cortex XSOAR, and update the incidents appropriately.
 - [Cloud IAM User Access Investigation](#cloud-iam-user-access-investigation) - Investigates and responds to Cortex XDR Cloud alerts where an Cloud IAM user's access key is used suspiciously to access the cloud environment.
-- [Cortex XDR - Cloud Cryptomining](#Cortex-XDR-Cloud-Cryptomining) - Investigates and responds to Cortex XDR XCloud
+- [Cortex XDR Cloud Cryptomining](#Cortex-XDR-Cloud-Cryptomining) - Investigates and responds to Cortex XDR XCloud
   Cryptomining alerts. The playbook Supports AWS, Azure and GCP.
 
 ### Lite Incident Handling
