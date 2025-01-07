@@ -13,6 +13,7 @@ import sys
 import traceback
 import tempfile
 import yaml
+import functools
 
 from datetime import datetime
 from distutils.version import StrictVersion
@@ -27,7 +28,10 @@ from packaging import version
 from CommonServerPython import tableToMarkdown  # type: ignore
 from mdx_utils import (fix_mdx, fix_relative_images, normalize_id,
                        start_mdx_server, stop_mdx_server, verify_mdx_server)
-
+from demisto_sdk.commands.content_graph.interface.neo4j.neo4j_graph import (
+    Neo4jContentGraphInterface as ContentGraphInterface,
+)
+from neo4j import Transaction
 # override print so we have a timestamp with each print
 org_print = print
 
@@ -872,6 +876,34 @@ def generate_items(doc_infos, full_prefix):
 
     return items_list
 
+def query_content_items_marketplaces(tx: Transaction) -> list[dict]:
+    """
+    queries the content graph for content items, and their marketplaces
+    """
+    answer = tx.run(
+        """
+        MATCH (n)
+        WHERE (n:Integration OR n:Script OR n:Playbook)
+        WITH n.object_id AS object_id, n.marketplaces AS marketplaces
+        WITH object_id, collect(marketplaces) AS marketplaces
+        RETURN apoc.map.fromPairs(collect([object_id, marketplaces])) AS resultJson
+        """
+    )
+    print(f"THE ANSWER OF THE QUERY IS: {answer}")
+    return answer
+    
+
+@functools.lru_cache
+def get_all_content_items_ids_to_marketplaces() -> list[dict]:
+    """Return all used content items, their images, and their paths
+
+    Returns:
+        list[GraphEntry]: each dict has id, image, path attributes
+    """
+    with ContentGraphInterface() as graph:
+        with graph.driver.session() as session:
+            return session.execute_read(query_content_items_marketplaces)
+            
 
 def main():
     parser = argparse.ArgumentParser(description='''Generate Content Docs. You should probably not call this script directly.
@@ -881,6 +913,8 @@ See: https://github.com/demisto/content-docs/#generating-reference-docs''',
     parser.add_argument("-d", "--dir", type=os.path.normpath, help="Content repo dir.", required=True)
     parser.add_argument("-b", "--branch", help="Content repo branch.", required=True)
     args = parser.parse_args()
+    dict_item_to_marketplaces = get_all_content_items_ids_to_marketplaces()
+    print(f"{dict_item_to_marketplaces=}")
     print(f'Using multiprocess pool size: {POOL_SIZE}')
     print('Starting MDX server...')
     start_mdx_server()
