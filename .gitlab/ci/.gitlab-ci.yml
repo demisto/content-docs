@@ -1,5 +1,5 @@
 variables:
-  CURRENT_BRANCH_NAME: infra-content-docs
+  CURRENT_BRANCH_NAME: $INFRA_BRANCH
 
 include:
   - file: "/.gitlab/ci/content-docs/.gitlab-ci.yml"
