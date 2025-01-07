@@ -69,7 +69,7 @@ This Content Pack may require the following additional Content Packs:
    3. Configure the recurring schedule.
    3. Enter a name for the job.
    4. In the Type field, select *XDR Device Control Violations*.
-   5. In the Playbook field, select **JOB - Cortex XDR query endpoint device control violations**. 
+   5. In the Playbook field, select **JOB - Cortex XDR query endpoint device control violations**.
    6. Click **Create new job**.
 
    Note: For detailed information about creating jobs, see [Jobs](https://xsoar.pan.dev/docs/incidents/incident-jobs).
