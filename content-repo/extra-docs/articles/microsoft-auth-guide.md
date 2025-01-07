@@ -243,7 +243,7 @@ After you a redirected to the next page, in the **Overview** tab you will find y
 | Azure Storage Queue                                   | no                | no                 | no          | no                       | yes                      | no                       |
 | Azure Storage Table                                   | no                | no                 | no          | no                       | yes                      | no                       |
 | Azure Web Application Firewall                        | yes               | yes                | yes         | yes                      | yes                      | no                       |
-| Microsoft 365 Defender                                | yes               | yes                | yes         | no                       | yes                      | no                       |
+| Microsoft 365 Defender                                | yes               | yes                | yes         | no                       | yes                      | yes                      |
 | Microsoft 365 Defender Event Collector - XSIAM        | no                | yes                | no          | no                       | no - saas                | no                       |
 | Microsoft Defender for Cloud Apps                     | no                | yes                | yes         | no                       | no                       | yes                      |
 | Microsoft Defender for Endpoint (Defender ATP)        | yes               | yes                | no          | yes                      | yes                      | yes                      |
