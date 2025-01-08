@@ -1,7 +1,7 @@
 variables:
-  CURRENT_BRANCH_NAME: $INFRA_BRANCH
+  CURRENT_BRANCH_NAME: "append-graph-to-content-docs"
 
 include:
   - file: "/.gitlab/ci/content-docs/.gitlab-ci.yml"
-    ref: $INFRA_BRANCH
+    ref: "append-graph-to-content-docs "
     project: "${CI_PROJECT_NAMESPACE}/infra"
