@@ -3,5 +3,5 @@ variables:
 
 include:
   - file: "/.gitlab/ci/content-docs/.gitlab-ci.yml"
-    ref: "append-graph-to-content-docs "
+    ref: "append-graph-to-content-docs"
     project: "${CI_PROJECT_NAMESPACE}/infra"
