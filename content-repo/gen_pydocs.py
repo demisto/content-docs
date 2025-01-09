@@ -161,6 +161,10 @@ class CommonServerPythonProcessor(SphinxProcessor):
 
 class IgnoreDocstringProcessor(FilterProcessor):
     def process(self, modules, _resolver):
+        for module in modules:
+            print(f"Module: {module.name}")
+            for member in module.members:
+                print(f" - Member: {member.name}, Member data: {member}, Docstring: {member.docstring}")
         filtered_modules = []
         for member in getattr(modules[0], 'members', []):
             if member.docstring and 'ignore docstring' not in member.docstring:
