@@ -16,9 +16,12 @@ from pydoc_markdown.contrib.processors.sphinx import (
 
 
 class DemistoMarkdownRenderer(MarkdownRenderer):
-    func_prefix = Field(str, default=None)
-
-    module_overview = Field(str, default=None)
+    def __init__(self, func_prefix=None, module_overview=None, *args, **kwargs):
+        self.func_prefix = func_prefix
+        self.module_overview = module_overview
+        
+        # Ensure that kwargs contain the necessary fields for MarkdownRenderer
+        super().__init__(*args, **kwargs)
 
     # Overriding header levels from MarkdownRenderer to Function header to level 2
     header_level_by_type = Field({int}, default={
@@ -158,9 +161,14 @@ class CommonServerPythonProcessor(SphinxProcessor):
 
 class IgnoreDocstringProcessor(FilterProcessor):
     def process(self, modules, _resolver):
+        for module in modules:
+            print(f"Module: {module.name}")
+            for member in module.members:
+                if member.docstring:
+                    print(f" - Member: {member.name}\n Docstring content: {member.docstring.content}\n")
         filtered_modules = []
         for member in getattr(modules[0], 'members', []):
-            if member.docstring and 'ignore docstring' not in member.docstring:
+            if member.docstring and member.docstring.content and 'ignore docstring' not in member.docstring.content:
                 filtered_modules.append(member)
             else:
                 print(f'Skipping {member}')
