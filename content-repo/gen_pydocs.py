@@ -164,10 +164,10 @@ class IgnoreDocstringProcessor(FilterProcessor):
         for module in modules:
             print(f"Module: {module.name}")
             for member in module.members:
-                print(f" - Member: {member.name}, Member data: {member}, Docstring: {member.docstring}")
+                print(f" - Member: {member.name}\n Docstring content: {member.docstring.content}\n")
         filtered_modules = []
         for member in getattr(modules[0], 'members', []):
-            if member.docstring and 'ignore docstring' not in member.docstring:
+            if member.docstring and 'ignore docstring' not in member.docstring.content:
                 filtered_modules.append(member)
             else:
                 print(f'Skipping {member}')
