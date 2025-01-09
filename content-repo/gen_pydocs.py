@@ -16,13 +16,12 @@ from pydoc_markdown.contrib.processors.sphinx import (
 
 
 class DemistoMarkdownRenderer(MarkdownRenderer):
-    def __init__(self, func_prefix=None, *args, **kwargs):
-        # Initialize func_prefix as an instance attribute
+    def __init__(self, func_prefix=None, module_overview=None, *args, **kwargs):
         self.func_prefix = func_prefix
-        # Call the parent class constructor
-        super().__init__(*args, **kwargs)
+        self.module_overview = module_overview
         
-    module_overview = Field(str, default=None)
+        # Ensure that kwargs contain the necessary fields for MarkdownRenderer
+        super().__init__(*args, **kwargs)
 
     # Overriding header levels from MarkdownRenderer to Function header to level 2
     header_level_by_type = Field({int}, default={
