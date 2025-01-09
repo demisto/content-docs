@@ -878,7 +878,7 @@ def generate_items(doc_infos, full_prefix):
 
 def query_content_items_marketplaces(tx: Transaction) -> list[dict]:
     """
-    queries the content graph for content items, and their marketplaces
+    Queries the content graph for content items and their associated marketplaces.
     """
     result = tx.run(
         """
@@ -889,17 +889,15 @@ def query_content_items_marketplaces(tx: Transaction) -> list[dict]:
         RETURN apoc.map.fromPairs(collect([object_id, marketplaces])) AS resultJson
         """
     ).single()
-    # Extract the resultJson field from the query result
-    print(result["resultJson"] if result else {})
     return result["resultJson"] if result else {}
     
 
 @functools.lru_cache
-def get_all_content_items_ids_to_marketplaces() -> list[dict]:
-    """Return all used content items, their images, and their paths
+def get_all_content_items_ids_to_marketplaces() -> dict[str, list[str]]:
+    """Return a dictionary where the key is the content item ID and the value is the marketplaces.
 
     Returns:
-        list[GraphEntry]: each dict has id, image, path attributes
+        dict[str, list[str]]: Mapping of content item IDs to their marketplaces.
     """
     with ContentGraphInterface() as graph:
         with graph.driver.session() as session:
