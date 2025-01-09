@@ -880,7 +880,7 @@ def query_content_items_marketplaces(tx: Transaction) -> list[dict]:
     """
     queries the content graph for content items, and their marketplaces
     """
-    answer = tx.run(
+    result = tx.run(
         """
         MATCH (n)
         WHERE (n:Integration OR n:Script OR n:Playbook)
@@ -888,9 +888,10 @@ def query_content_items_marketplaces(tx: Transaction) -> list[dict]:
         WITH object_id, collect(marketplaces) AS marketplaces
         RETURN apoc.map.fromPairs(collect([object_id, marketplaces])) AS resultJson
         """
-    )
-    print(f"THE ANSWER OF THE QUERY IS: {answer}")
-    return answer
+    ).single()
+    # Extract the resultJson field from the query result
+    print(result["resultJson"] if result else {})
+    return result["resultJson"] if result else {}
     
 
 @functools.lru_cache
