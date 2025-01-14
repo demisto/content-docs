@@ -366,6 +366,8 @@ except Exception as e:
 ```
 If any errors occur during the execution of our code, show those errors to the user and also return an error.
 
+**NOTE:** demisto.debug must be used to print debug logs. Using a print statement can cause unexpected exceptions and errors.
+
 ### Start at Main
 ```python
 if __name__ in ('__main__', '__builtin__', 'builtins'):
