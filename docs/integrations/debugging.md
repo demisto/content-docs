@@ -36,7 +36,7 @@ Will print to the logs at the "Info" level.
 demisto.debug("I shouldn't have gone into STEM")
 ```
 
-This will print to the logs at the "Debug" level.
+This will print to the logs at the "Debug" level. Note that the debug feature is disabled by default. You will need to enable it at the tenant level. If running this command from the War Room, you  will need to set debug mode to True.
 
 And lastly:
 
