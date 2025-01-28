@@ -228,7 +228,7 @@ up to date, audited 230 packages in 1s
 
 *Note*: if you are using WSL and you see some errors about "python.exe" getting called, disable it in App Execution Alias ([details](https://superuser.com/questions/1437590/typing-python-on-windows-10-version-1903-command-prompt-opens-microsoft-stor)).
 
-Everything is configured, and you can start developing. When you work on your integration, you can activate `poetry` with the `poetry shell` command:
+Everything is configured, and you can start developing. When you work on your integration, you can activate `poetry` with the `poetry shell` command (Note: The shell command was moved to a plugin: [poetry-plugin-shell](https://github.com/python-poetry/poetry-plugin-shell)):
 ```bash
 sb@dddd:~/demisto/content$ poetry shell
 (.venv) sb@dddd:~/demisto/content$
