@@ -44,7 +44,7 @@ Use this method in the following scenarios:
 * You are proficient with GitHub.
 
 :::info
-For information about how to set up a development environment, see the dedicated [Set Up Your Dev Environment](../tutorials/tut-setup-dev-setup) tutorial.
+For information about how to set up a development environment, see the dedicated [Set Up Your Dev Environment](../tutorials/tut-setup-dev) tutorial.
 :::
 
 :::tip
