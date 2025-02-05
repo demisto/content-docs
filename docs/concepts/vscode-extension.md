@@ -60,6 +60,8 @@ Execute the command **_XSOAR: install local development environment_**, either f
 
 If you want to install the dependencies manually, follow the instructions in this [guide](./dev-setup.md#option-3-manual-setup) until the `Bootstrap` step.
 
+NOTE: The content repository from GitHub must be cloned or forked. Do not change the default folder name, which is ​**content**​​. The Visual Studio Code extension must be run from inside the content repository folder. If you run the extension from a different folder, the ​command 'xsoar.updateDSDK​​ error appears.
+
 ## Setup integrations and scripts environment
 
 Each integration or script in `Cortex XSOAR` runs on a different environment, and has different dependencies.
