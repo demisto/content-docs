@@ -1,7 +1,7 @@
 variables:
-  CURRENT_BRANCH_NAME: $INFRA_BRANCH
+  CURRENT_BRANCH_NAME: ilappe/CIAC-12263/remove_python_3.9_in_sdk
 
 include:
   - file: "/.gitlab/ci/content-docs/.gitlab-ci.yml"
-    ref: $INFRA_BRANCH
+    ref: ilappe/CIAC-12263/remove_python_3.9_in_sdk
     project: "${CI_PROJECT_NAMESPACE}/infra"
