@@ -1,6 +1,6 @@
 ---
-id: palo-alto-networks-cortex-xdr
-title: Cortex XDR by Palo Alto Networks
+id: palo-alto-networks-cortex-xdr---investigation-and-response
+title: Palo Alto Networks Cortex XDR - Investigation and Response
 description: Automates Cortex XDR incident response, and includes custom Cortex XDR incident views and layouts to aid analyst investigations.
 ---
 
