@@ -10,6 +10,7 @@ This guide provides common troubleshooting steps. When reporting an issue to Cor
 ### Debugging
 
 #### Debug Mode
+
 Cortex XSOAR (Server 5.0+) supports running Python integration commands and automation scripts in `debug-mode` from the Cortex XSOAR CLI. When a command is run in `debug-mode` a log file of the command execution will be created and attached to the war room. When encountering an issue which is related to an integration or an automation, make sure to reproduce the command with `debug-mode` and inspect the generated log file. The `debug-mode` log file will contain information not available in the Server logs and can provide additional insights regarding the root cause of the issue. Additionally, some integrations have specific code to include extra debug info when run in `debug-mode`.
 
 :::caution Important Note
@@ -17,6 +18,7 @@ The debug mode feature prints extended data from an integrations configuration a
 :::
 
 ##### Run a command in `debug-mode`
+
 In the Cortex XSOAR CLI run the command with all arguments that cause the issue and append the following argument: `debug-mode=true`. For example: 
 
 ```
@@ -27,6 +29,7 @@ Screenshot of running a command with `debug-mode=true` and the resulting log fil
 ![debug-mode-example](../../../docs/doc_imgs/reference/debug-mode-example.png)
 
 #### Test Integration Module in `debug-mode`
+
 Starting with Cortex XSOAR 6.2 when you `Test` an integration module and it fails, you can download from the integration configuration dialog a `debug-mode` full report by following the link: **Run advanced test and download a full report**. Example screenshot:
 
 ![image](https://user-images.githubusercontent.com/1395797/169849803-56908773-0bb4-41b7-ae65-133454d51865.png)
@@ -51,8 +54,8 @@ Screenshot of running a `test-module` command with `debug-mode=true` and the res
 
 ![test-module-debug](../../../docs/doc_imgs/reference/test-module-debug.png)
 
-
 #### Fetch Incidents in `debug-mode`
+
 Starting with Cortex XSOAR 6.0 it is possible to run the fetch incidents command from the Cortex XSOAR CLI with `debug-mode=true`. This is done by issuing a command of the form:
 
 ```
@@ -72,6 +75,7 @@ Screenshot of running a `fetch` command with `debug-mode=true` and the resulting
 
 
 #### Integration Debug Logs
+
 :::caution Important Note
 The Integration Debug feature prints extended data from an integrations configuration and settings which may include sensitive information. Before sharing the generated **Integration-Instance** log files, make sure sensitive information has been removed.
 :::
@@ -79,12 +83,12 @@ Starting with version 6.2, it is possible to create logs for an instance of an i
 
 This mode is especially useful for long running integrations such as EDL or TAXII-Server. It helps troubleshooting when it is not possible to run the desired command in `debug-mode` from the playground. Whether it is a long running integration, or the issue occurs from time to time such as with the ***fetch-incidents*** command.
 
-For example, if you have an integration instance running the ***fetch-incidents*** command, and the integration misses some of the incidents, you may want to get debug level information for each ***fetch-incidents*** command (or any other command executed by this instance) even if the server log level is set to *Info*. If you move the server log level to *Debug*, the server log would contain a lot of irrelevant information for integration troubleshooting. For this reason, the *Log Level* configuration parameter was added to the integration configuration. 
+For example, if you have an integration instance running the ***fetch-incidents*** command, and the integration misses some of the incidents, you may want to get debug level information for each ***fetch-incidents*** command (or any other command executed by this instance) even if the server log level is set to *Info*. If you move the server log level to *Debug*, the server log would contain a lot of irrelevant information for integration troubleshooting. For this reason, the *Log Level* configuration parameter was added to the integration configuration.
 
 There are three options for this parameter:
 - Off
 - Debug
-- Verbose 
+- Verbose
 
 ![Log Levels](../../../docs/doc_imgs/reference/log_level.png "Log Level")
 
@@ -105,38 +109,62 @@ These log level modes are only for the configured instance and do not affect the
 Note that the log level configuration for an integration instance may affect performance of the integration instance, therefore use this feature only for troubleshooting and set it to Off when you have the required information in the log.
 
 ### Reverting a Pack to a Previous Version
+
 If you encounter an issue after upgrading a Pack, you can revert to a previous version by going to *Installed Content Packs* -> *Pack Name* -> *Version History* and choosing *Revert to this version*. Sample screenshot:
 ![Revert to version](https://user-images.githubusercontent.com/1395797/106351932-0faf1800-62e8-11eb-9433-5c80c632cf33.png)
 
 ### Troubleshoot pack
-[The pack](https://cortex.marketplace.pan.dev/marketplace/details/Troubleshoot/) contains multiple automatons and playbook to run in the UI to help you troubleshoot and find various issues.
 
+[The pack](https://cortex.marketplace.pan.dev/marketplace/details/Troubleshoot/) contains multiple automatons and playbook to run in the UI to help you troubleshoot and find various issues.
 
 ## General troubleshooting
 
+This section contains steps that are suggested to do for all kind of issues regardless of what mechanism they relate to.
+
+### Check for recent pack updates
+
+When an error occurs in one of your packs, try to find out if a recent update took place in the pack related to the error. You can go check the version history under Marketplace > installed content packs >  choose the specific pack having the issue.
+Try to review the version history to find whether there was a change related to your field or error.
+Alternatively, you can revert the pack to the last version you were using and see if the problem still occur.
+If it does - then it’s likely that there’s an issue with the configuration (point to the configuration troubleshooting page) or there’s a specific edge case that didn’t occur before.
+If it doesn’t, then there might be some issues with the integration configuration (point to the configuration troubleshooting page)
+If no recent updates were done to the pack (or recent updates were done but there’s an even newer version), it is recommended to try and update the pack version to the latest version as there might be some fixes that came out lately.
+
+### Reconfigure to reauthenticate
+Since some integrations execute authentication flows as a part of the integration configuration and the test-module execution. It’s recommended to try and configure a new instance when facing issues.
+
+### Check whether the issue is wider
+First thing you should do when facing an error with some integration, is to test whether other integrations are working or not. If they do, then it’s recommended to try and go over the other general steps, or alternatively, try and classify what the issue is related to and check specific issues troubleshooting (link to the TOC).
+If similar errors seem to occur with other integration then there might be some issues with the tenant itself. If you’re  using Xsoar 6, then these issues might be Network issues and it’s recommended to go over the following troubleshooting steps (link to the network troubleshooting section)
+
+### Retry
+Some errors may be temporary errors. it is always recommended to wait a few minutes and then try to repeat what you did before to ensure it wasn't a temporary issue.
+
 ## Integration/Playbook/Script errors
 
-## Fetch issues
+### Can the issue be identified from the error? What type of error are you seeing?
 
-## Mirroring issues
+#### Docker error
 
-## CI/CD issues
+Docker timeout: A timeout error indicates a run that exceeded the default timeout configured for the docker container. This could be handled 
+Make sure Docker/Podman is installed on your machine (on-prem) 
 
-## VS code extension issues
+#### API error
 
-## TIM issues
+Check the error received and try to see if it explains the issue. It could be related to missing permission, authentication, or API-specific issue.
+Permissions: Compare the permissions required by the integration in Cortex to what the user has configured in his 3rd party product. If the integration does not mention specific permissions, check the 3rd party API.
+Authentication: Re-check authentication parameters (credentials, IDs, etc), and try to re-configure them. Some integrations require different authentication flow, make sure to check the integration docs and verify you have covered the correct flow.
 
-## XQL issues
+#### Common HTTP codes
 
-## Demisto-sdk issues
+401/403: Usually means that authentication failed. See the authentication section and Permissions sections above.
+429: RAte limit means that too many requests were issued by the user to the server.
+500: Internal server error usually implies the server was unable to process the request, make sure integration-specific parameters are entered correctly and are well formatted.
+Python error
+Sometimes you will be able to see a traceback that indicates a syntax error. In such cases it’s best to open a ticket that points to the exact error and this kind of tickets are usually handled within 3-5 days.
 
-
-
-
-
-
-## Network Troubleshooting
-
+#### Network error
+Note that this part is only relevant for XSOAR on-rem.
 Examples of common errors indicating that there probably is a networking issue:
 * `[Errno -2] Name does not resolve`
 * `[Errno 110] Operation timed out`
@@ -149,7 +177,7 @@ Examples of common errors indicating that there probably is a networking issue:
 
 When troubleshooting networking issues, it is important to first understand what type of networking the integration or automation is using. Cortex XSOAR integrations and automations can be classified into two main types regarding their networking use:
 
-### Host Based Networking 
+##### Host Based Networking 
 Integrations/automations running within the server/engine will use the networking stack provided by the host machine of the server/engine. Such integrations/automations include native integrations (part of the server binary) such as the `RemoteAccess` integration and JavaScript integrations such as `VirusTotal` and `http`. Native integrations can be identified by the fact that they are shipped as part of the server and not associated with a Content Pack. JavaScript integrations/automations can be identified by checking the integration/automation settings to see that the *Language Type* is **JavaScript**. JavaScript integrations/automations run within the Cortex XSOAR server/engine process using a JavaScript virtual environment and therefore use the same network stack as the server/engine. The source IP addresses for these integrations/automations are the same as used by the server/engine.
 
 
@@ -178,7 +206,7 @@ More info about `curl` is available at [Everything curl](https://ec.haxx.se/).
 
 If you are not able to perform a basic `curl` request from the machine to the target HTTP endpoint, the issue is probably not a problem with the integration/automation but rather with the networking setup of the server/engine machine. Make sure to first resolve the networking issue so a basic `curl` command succeeds before continuing to test the integration/automation. Many times this resolves to a firewall, NAT or proxy issue. 
 
-### Docker Based Networking
+##### Docker Based Networking
 Docker Based integrations/automations are written in Python or Powershell. They can be identified by inspecting the integration/automation settings and under *Language type* will appear **Python** or **Powershell**. Docker creates its own networking, therefore the integrations/automations use a different networking stack from the Cortex XSOAR server/engine. The source IP addresses for these integrations/automations are different and provided according to the Docker networking configuration.
 
 As with [Host Based Networking](#host-based-networking), for integrations/automations that use HTTP endpoints we recommend testing with `curl` from within a Docker container as a first step. This can be done by logging in to the server/engine machine via SSH and running the following command:
@@ -224,7 +252,7 @@ After you add the server configuration, run the `/reset_containers` command from
 
 
 
-### Read Timeout
+##### Read Timeout
 In case you encounter a *ReadTimeout* error, such as `ReadTimeout: HTTPSConnectionPool(host='www.google.com', port=443): Read timed out. (read timeout=10)`, it means that the server (or network) failed to deliver any data within 10 seconds. This might be due to a large response size.
 
 Starting from Base Content Pack version 1.17.6, we support controlling the read timeout value via server advanced configuration, as follows:
@@ -248,7 +276,7 @@ Examples:
 **Note:** The `REQUESTS_TIMEOUT` settings only affects integrations which use the [BaseClient](https://xsoar.pan.dev/docs/integrations/code-conventions#client-class) class from CommonServerPython.
 
 
-## TLS/SSL Troubleshooting
+##### TLS/SSL Troubleshooting
 
 Examples of common errors indicating that there is an issue with trusting a TLS/SSL networking connection:
 
@@ -264,7 +292,7 @@ These errors are usually as a result of a server using an untrusted certificate 
 * Most integrations provide a configuration option of *Trust any certificate*, which will cause the integration to ignore TLS/SSL certificate validation errors. You can use this option to test the connection and verify that in fact the issue is certificate related.
 * To trust custom certificates in Cortex XSOAR server or engines, follow the following [instructions](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/docker/configure-python-docker-integrations-to-trust-custom-certificates).
 
-### CertificatesTroubleshoot Automation
+##### CertificatesTroubleshoot Automation
 Use the [CertificatesTroubleshoot Automation](https://xsoar.pan.dev/docs/reference/scripts/certificates-troubleshoot) to retrieve and decode an endpoint certificate. Additionally, use it to retrieve, decode and validiate the custom certificates deployed in Docker containers. The automation is part of the [Troubleshoot Pack](https://xsoar.pan.dev/marketplace/details/Troubleshoot).
 
 **Common reasons for TLS/SSL issues and resolutions**
@@ -289,9 +317,11 @@ Use the [CertificatesTroubleshoot Automation](https://xsoar.pan.dev/docs/referen
     * Resolution: If the URI isn't matching the URI endpoint (Regex), try to access the endpoint with one of the alt names/common names. If the endpoint isn't accessible via trusted names, sign the certificate with the correct common name or apply an additional alt name.
 
 
-## Fetch Incidents Troubleshooting
+## Fetch issues
+
 ### Fetch History
-In XSOAR Versions 6.8 and above, it is possible to observe the results of the last **fetch-incidents**/**fetch-indicators** runs using the Fetch History modal. To view the modal, click the button with the history icon next to the Integration Instance settings.
+
+It is possible to observe the results of the last **fetch-incidents**/**fetch-indicators**/**fetch-events** runs using the Fetch History modal. To view the modal, click the button with the history icon next to the Integration Instance settings.
 <img src="../../docs/doc_imgs/incidents/fetchhistory.gif"></img>
 
 The following fields are stored for each record:
@@ -306,16 +336,129 @@ The following fields are stored for each record:
 1. **Source IDs** - If available, displays the incident IDs as they appear in the 3rd-party product. The IDs are collected from incidents that contain the `dbotMirrorId` field.
    Note: the `dbotMirrorId` field should be determined at the integration level rather than the mapping level.
 
-#### Server Configurations
+#### Server Configurations (for XSOAR on-prem)
+
 | Key | Description | Default Value |
 | --- | --- | --- |
 | **fetch.history.size** | The amount of records stored for every instance. | 20 |
 | **fetch.history.enabled** | Whether or not the feature is enabled. | true |
 
-### Debugging
+#### Check the fetch history for the following
+
+##### Temporary error from the API
+
+Sometimes fetch mechanism can encounter temporary issues when calling the API, such issues will usually appear once or twice before getting back to fetch normally and will contain the 500 (internal server) error.
+
+##### Params collision
+
+In some integrations, there are params that can’t be configured together and will throw an error if they do. The error should appear in the fetch history and should be informative about which two params can’t be configured together.
+
+##### Error from the API related to malformed params
+
+Sometimes an error can come up from the API informing us that there was an issue with the params passed as part of the request, this eror usually occurs in integrations where there’s a free-text filter param that might be malformed, double check all params are correct and ensure the error message doesn’t point to such issue.
+
+### Debugging Fetch incidents
+
 1. In case of a recurring issue with a fetching instance, follow [these steps](https://xsoar.pan.dev/docs/reference/articles/troubleshooting-guide#fetch-incidents-in-debug-mode) to produce a debug log of a single fetch run.
 
 2. If the issue does not reproduce consistently:
 
    - [Set the log level](https://xsoar.pan.dev/docs/reference/articles/troubleshooting-guide#integration-debug-logs) of the specific instance for more convenient tracking of the fetch logs over time.
    - Keep track on the [Fetch History](https://xsoar.pan.dev/docs/reference/articles/troubleshooting-guide#fetch-history) of this instance. Consider temporarily setting the **fetch.history.size** server configuration to store more records.
+
+### Events mismatch
+
+In some cases there might be some discrepancy between the events being shown in the UI compare to the events being shown in the 3rd party app.
+In such cases it’s recommended to do the following:
+Re-check the timezones of the events in the query - sometimes the time appears in the event in the UI is different than the one in the 3rd party due to time zone differences, ensure the times point to the same TZ.
+Double check for any filter paramss in the configurations - sometimes the integration configuration will contain filter params - open text filter, drop down to a specific field optional values, etc.. if you see events missing in hte UI, double check those events doesn’t match the existing filters in the integration configuration page.
+Make sure suspicious missing events cannot be found using ID.
+
+### Delay in the fetch/ingestion
+
+in case you’re having aggregated delays between the fetched events and the real time events. Try to increase the limit parameter up to the its maximum (usually documented), ensure the fetch interval is set to the lowest, and in some integrations, the fetch attempts to fetch from multiple endpoints/entities. In that case, try to separate the integration instance into several instances each fetching from one endpoint/entity to maximize the productivity.
+If you’re still having delays, try to get an estimation of the average amount per day and see if that amount co-op with the amount you manage to retrieve in a given minute. Sometimes the fetch mechanism can’t fully co-op with the peak times of the day but can make up for that during the quiet hours.
+
+## Mirroring issues
+
+### In what mirroring direction does the error occur?
+
+When configuring mirroring instance you can choose between incoming, outgoing, or both mirroring direction.
+
+If the issue occur with outgoing mirroring, then the issue is either the change is not detected in XSOAR/XSIAM side, or it is not received on the other side. To ensure the issue is not related to the connection with the othe side, most integrations has a manual command that does the same (update incident fields in the remote) if the integration you’re using has some command, try to run it and see if it trigger chanes in the remote.
+Also, in some integrations, like Microsoft for example, writing to the remote require more permissions, try to make sure your instance has all the required permissions to write to the remote.
+To ensure the issue is not with the modification mechanism, try to run update-remote-system command from the specific incident’s war room. You can also add the debug-mode=true to try and get extra information about the issue (error, response code).
+
+If the issue occur with incoming mirroring, then there’s either an issue with connecting to the remote and retrieving the information from or there are issues with the mapper and updating the incident. 
+To ensure the issue is not related to the remote, try to run `get-remote-data` command from the specific incident’s war room. You can also add the debug-mode=true to try and get extra information about the issue (error, response code).
+To ensure the issue is not related to the mapper, double check that the mapper is indeed configured and contains the expected field.
+
+### The case occur only using a custom mapper/field
+
+Double check the mapper and field, ensure they are mapped correctly, you can use this guide for further assistance: https://xsoar.pan.dev/docs/integrations/mirroring_integration
+
+### Does it only occur for a specific field
+
+Try to double check the field is mapped correctly in the mapper tab (show how to get there), ensure the right field in the response is mapped to the right field in the mapper.
+
+### Ensure all the parameters are correct
+
+Ensure all the parameters are configured as expected, the instance is indeed a fetching instance, the incident expected to be mirrored indeed came from that specific instnace, the mirroring direction is configured, in case other fields such as tags or closing parameters also exist, ensure they’re marked if expected to be working.
+
+## CI/CD issues
+
+There are currently no known recurring CI/CD issues. Most CI/CD issues are related to the sdk section (add link).
+For more information about setting up and developing CI/CD enviorenment: https://xsoar.pan.dev/docs/reference/packs/content-management
+
+## VS code extension issues
+
+### Try to classify whether the issue is related to VS code or demisto-sdk
+
+When there’s an error related to vs code, the error will usually pop up at the bottom-right of the screen and will be informative. Try to follow the error and solution.
+When there’s an error related to the demisto-sdk, the issue will usually appear in the terminal with traceback to demisto-sdk code. To ensure the issue is with demisto-sdk, you can try and manually execute the command from the terminal and see if the issue still occur.
+For more information about how to troubleshoot the SDK refer to (link to the sdk)
+For more information about the VS Code extension, refer to the official docs: https://xsoar.pan.dev/docs/concepts/vscode-extension
+
+### Setup integration/script enviorenment fails
+
+Is docker set up correctly? Make sure docker is up and running, make sure that Allow the default docker socker to be used (required password) is enabled in Dcoker advanced settings.
+If docker is up and running and the issue still occur, try to clean up the docker (https://docs.docker.com/engine/manage-resources/pruning/) or sign in to docker (https://www.docker.com/blog/seamless-sign-in-with-docker-desktop-4-4-2/)  to avoid rate limit (https://docs.docker.com/docker-hub/usage/#:~:text=Pull%20rates%20limits%20are%20based,to%205000%20pulls%20per%20day.)
+Ensure the command was triggered on the integration / script itself by right click the code file > choosing setup integration/script environment (can add photo)
+In this case a message saying "Please run this from an
+integration or script directory". will pop up.
+
+## TIM issues
+
+### Missing indicators in the threat intel page
+
+Sometimes indicators that were fetched cannot be seen in the threat intel page, if you encounter such an issue, double-check the exclusion list and ensure the indicator is not a part of the list (* add photos)
+
+### A mismatch between the number of fetched indicators and the number of new indicators in the threat intel page
+
+Sometimes some of the fetched indicators are already known to the system. In that case, the existing indicator will be modified rather than recreated. You can double-check the number of new / omitted/modified indicators in the logs (add the exact line to search).
+
+### Failing to obtain indicators from 3rd party application using Taxii server
+
+Ensure the issue is not related to the 3rd party, attempt to obtain the indicators using postman to make sure the searched URL is indeed correct.
+
+### Failing to connect to the ‘Generic export indicators’ service
+
+Make sure the Xsoar IP (add a link to the list) is whitelisted in the customer’s firewall.
+
+### Getting 500 (internal server error) when attempting to connect to ‘Generic export indicators’
+
+Double-check that the user & password configured are correct, incorrect credentials may throw 500 error. Also, note that the password is case-sensitive.
+
+### Connecting to ‘Generic export indicators’ takes a lot of time
+
+Double check the parameters, if the ‘Use Legacy Queries’ parameter is checked and not needed, make sure to uncheck it. If the issue still persists, try to raise the ‘XSOAR Indicator Page Size’ parameter.
+
+## XQL issues
+
+### Dataset discrepancy
+
+Failing to save modeling / parsing rules - when attempting to edit modeling / parsing rules from the UI, may sometimes lead to dataset mismatches leading to an error msg informing that there were error to an unrelated data set (i.e. editing pack 'X' modeling rules can cause an error message claiming there're errors with data set of pack 'Y') In such cases, the marketplace can also be affected and you may encounter errors when attempting to download packs.
+As a short-term solution, remove the pack related to the dataset mentioned in the error message so your tenant would un-stuck.
+As a long-term solution, contact our Siem developers team via our support to inform them about the datasets mismatch.
+
+## Demisto-sdk issues
