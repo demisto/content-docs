@@ -1,13 +1,137 @@
 ---
 title: Troubleshooting Guide
-description: Common troubleshooting steps for automations and integrations.
+description: Common troubleshooting steps for XSOAR on-prem, XSOAR SaaS, and XSIAM.
 ---
 
 This guide provides common troubleshooting steps. When reporting an issue to Cortex XSOAR Support, always include all information obtained from running the following troubleshooting steps.
 
-## Reverting a Pack to a Previous Version
+## Troubleshooting tools
+
+### Debugging
+
+#### Debug Mode
+Cortex XSOAR (Server 5.0+) supports running Python integration commands and automation scripts in `debug-mode` from the Cortex XSOAR CLI. When a command is run in `debug-mode` a log file of the command execution will be created and attached to the war room. When encountering an issue which is related to an integration or an automation, make sure to reproduce the command with `debug-mode` and inspect the generated log file. The `debug-mode` log file will contain information not available in the Server logs and can provide additional insights regarding the root cause of the issue. Additionally, some integrations have specific code to include extra debug info when run in `debug-mode`.
+
+:::caution Important Note
+The debug mode feature prints extended data from an integrations configuration and settings which may include sensitive information. Before sharing the generated log files, make sure sensitive information has been removed.
+:::
+
+##### Run a command in `debug-mode`
+In the Cortex XSOAR CLI run the command with all arguments that cause the issue and append the following argument: `debug-mode=true`. For example: 
+
+```
+!ad-search filter="(cn=Guest)" debug-mode=true
+```
+
+Screenshot of running a command with `debug-mode=true` and the resulting log file (`ad-search.log`):
+![debug-mode-example](../../../docs/doc_imgs/reference/debug-mode-example.png)
+
+#### Test Integration Module in `debug-mode`
+Starting with Cortex XSOAR 6.2 when you `Test` an integration module and it fails, you can download from the integration configuration dialog a `debug-mode` full report by following the link: **Run advanced test and download a full report**. Example screenshot:
+
+![image](https://user-images.githubusercontent.com/1395797/169849803-56908773-0bb4-41b7-ae65-133454d51865.png)
+
+If you require a `debug-mode` log when the `Test` from the integration configuration dialog succeeds, it is possible to run the test integration module command from the Cortex XSOAR CLI with `debug-mode=true`. This is done by issuing a command of the form:
+
+```
+!<instance_name>-test-module debug-mode=true
+```
+
+For example for an integration instance name of: `Cortex_XDR_instance_1` run the following from the CLI:
+
+```
+!Cortex_XDR_instance_1-test-module debug-mode=true
+```
+
+**Note:** 
+- If the instance name contains spaces, replace the space with an underscore (`_`).
+- The "Do not use by default" checkbox should be unchecked on the integration instance you are testing.
+
+Screenshot of running a `test-module` command with `debug-mode=true` and the resulting log file (`test-module.log`):
+
+![test-module-debug](../../../docs/doc_imgs/reference/test-module-debug.png)
+
+
+#### Fetch Incidents in `debug-mode`
+Starting with Cortex XSOAR 6.0 it is possible to run the fetch incidents command from the Cortex XSOAR CLI with `debug-mode=true`. This is done by issuing a command of the form:
+
+```
+!<instance_name>-fetch debug-mode=true
+```
+
+For example for an integration instance name of: `Cortex_XDR_instance_1` run the following from the CLI:
+
+```
+!Cortex_XDR_instance_1-fetch debug-mode=true
+```
+
+**Note:** if the instance name contains spaces, replace the space with an underscore (`_`).
+
+Screenshot of running a `fetch` command with `debug-mode=true` and the resulting log file (`fetch-incidents.log`):
+![fetch-incidents-debug](../../../docs/doc_imgs/reference/fetch-incidents-debug.png)
+
+
+#### Integration Debug Logs
+:::caution Important Note
+The Integration Debug feature prints extended data from an integrations configuration and settings which may include sensitive information. Before sharing the generated **Integration-Instance** log files, make sure sensitive information has been removed.
+:::
+Starting with version 6.2, it is possible to create logs for an instance of an integration in order to get debug information for a specific instance over a period of time. 
+
+This mode is especially useful for long running integrations such as EDL or TAXII-Server. It helps troubleshooting when it is not possible to run the desired command in `debug-mode` from the playground. Whether it is a long running integration, or the issue occurs from time to time such as with the ***fetch-incidents*** command.
+
+For example, if you have an integration instance running the ***fetch-incidents*** command, and the integration misses some of the incidents, you may want to get debug level information for each ***fetch-incidents*** command (or any other command executed by this instance) even if the server log level is set to *Info*. If you move the server log level to *Debug*, the server log would contain a lot of irrelevant information for integration troubleshooting. For this reason, the *Log Level* configuration parameter was added to the integration configuration. 
+
+There are three options for this parameter:
+- Off
+- Debug
+- Verbose 
+
+![Log Levels](../../../docs/doc_imgs/reference/log_level.png "Log Level")
+
+
+In Debug mode, the server will run all the commands of this instance with a *Debug* log level and log the information in the **Integration-Instance** log.
+
+In Verbose mode, additional information such as connections coming off device handling, the raw response, and all parameters and headers are logged in addition to the debug level information. 
+
+
+For example, if an integration fails and the instance log level is *Debug*, the **Integration-Instance** log will contain the error stack trace. If the log level is *Verbose*, the **Integration-Instance** log will contain the error stack trace, but also a copy of the HTTP request, the parameters used in the integration, what the response was, etc.
+
+By default, the *Log Level* configuration parameter is set to *Off*.
+
+The **Integration-Instance.log** is located in  `/var/log/demisto/`.
+
+These log level modes are only for the configured instance and do not affect the log for the entire server.
+
+Note that the log level configuration for an integration instance may affect performance of the integration instance, therefore use this feature only for troubleshooting and set it to Off when you have the required information in the log.
+
+### Reverting a Pack to a Previous Version
 If you encounter an issue after upgrading a Pack, you can revert to a previous version by going to *Installed Content Packs* -> *Pack Name* -> *Version History* and choosing *Revert to this version*. Sample screenshot:
 ![Revert to version](https://user-images.githubusercontent.com/1395797/106351932-0faf1800-62e8-11eb-9433-5c80c632cf33.png)
+
+### Troubleshoot pack
+[The pack](https://cortex.marketplace.pan.dev/marketplace/details/Troubleshoot/) contains multiple automatons and playbook to run in the UI to help you troubleshoot and find various issues.
+
+
+## General troubleshooting
+
+## Integration/Playbook/Script errors
+
+## Fetch issues
+
+## Mirroring issues
+
+## CI/CD issues
+
+## VS code extension issues
+
+## TIM issues
+
+## XQL issues
+
+## Demisto-sdk issues
+
+
+
 
 
 
@@ -195,99 +319,3 @@ The following fields are stored for each record:
 
    - [Set the log level](https://xsoar.pan.dev/docs/reference/articles/troubleshooting-guide#integration-debug-logs) of the specific instance for more convenient tracking of the fetch logs over time.
    - Keep track on the [Fetch History](https://xsoar.pan.dev/docs/reference/articles/troubleshooting-guide#fetch-history) of this instance. Consider temporarily setting the **fetch.history.size** server configuration to store more records.
-
-
-## Debug Mode
-Cortex XSOAR (Server 5.0+) supports running Python integration commands and automation scripts in `debug-mode` from the Cortex XSOAR CLI. When a command is run in `debug-mode` a log file of the command execution will be created and attached to the war room. When encountering an issue which is related to an integration or an automation, make sure to reproduce the command with `debug-mode` and inspect the generated log file. The `debug-mode` log file will contain information not available in the Server logs and can provide additional insights regarding the root cause of the issue. Additionally, some integrations have specific code to include extra debug info when run in `debug-mode`.
-
-:::caution Important Note
-The debug mode feature prints extended data from an integrations configuration and settings which may include sensitive information. Before sharing the generated log files, make sure sensitive information has been removed.
-:::
-
-### Run a command in `debug-mode`
-In the Cortex XSOAR CLI run the command with all arguments that cause the issue and append the following argument: `debug-mode=true`. For example: 
-
-```
-!ad-search filter="(cn=Guest)" debug-mode=true
-```
-
-Screenshot of running a command with `debug-mode=true` and the resulting log file (`ad-search.log`):
-![debug-mode-example](../../../docs/doc_imgs/reference/debug-mode-example.png)
-
-### Test Integration Module in `debug-mode`
-Starting with Cortex XSOAR 6.2 when you `Test` an integration module and it fails, you can download from the integration configuration dialog a `debug-mode` full report by following the link: **Run advanced test and download a full report**. Example screenshot:
-
-![image](https://user-images.githubusercontent.com/1395797/169849803-56908773-0bb4-41b7-ae65-133454d51865.png)
-
-If you require a `debug-mode` log when the `Test` from the integration configuration dialog succeeds, it is possible to run the test integration module command from the Cortex XSOAR CLI with `debug-mode=true`. This is done by issuing a command of the form:
-
-```
-!<instance_name>-test-module debug-mode=true
-```
-
-For example for an integration instance name of: `Cortex_XDR_instance_1` run the following from the CLI:
-
-```
-!Cortex_XDR_instance_1-test-module debug-mode=true
-```
-
-**Note:** 
-- If the instance name contains spaces, replace the space with an underscore (`_`).
-- The "Do not use by default" checkbox should be unchecked on the integration instance you are testing.
-
-Screenshot of running a `test-module` command with `debug-mode=true` and the resulting log file (`test-module.log`):
-
-![test-module-debug](../../../docs/doc_imgs/reference/test-module-debug.png)
-
-
-### Fetch Incidents in `debug-mode`
-Starting with Cortex XSOAR 6.0 it is possible to run the fetch incidents command from the Cortex XSOAR CLI with `debug-mode=true`. This is done by issuing a command of the form:
-
-```
-!<instance_name>-fetch debug-mode=true
-```
-
-For example for an integration instance name of: `Cortex_XDR_instance_1` run the following from the CLI:
-
-```
-!Cortex_XDR_instance_1-fetch debug-mode=true
-```
-
-**Note:** if the instance name contains spaces, replace the space with an underscore (`_`).
-
-Screenshot of running a `fetch` command with `debug-mode=true` and the resulting log file (`fetch-incidents.log`):
-![fetch-incidents-debug](../../../docs/doc_imgs/reference/fetch-incidents-debug.png)
-
-
-## Integration Debug Logs
-:::caution Important Note
-The Integration Debug feature prints extended data from an integrations configuration and settings which may include sensitive information. Before sharing the generated **Integration-Instance** log files, make sure sensitive information has been removed.
-:::
-Starting with version 6.2, it is possible to create logs for an instance of an integration in order to get debug information for a specific instance over a period of time. 
-
-This mode is especially useful for long running integrations such as EDL or TAXII-Server. It helps troubleshooting when it is not possible to run the desired command in `debug-mode` from the playground. Whether it is a long running integration, or the issue occurs from time to time such as with the ***fetch-incidents*** command.
-
-For example, if you have an integration instance running the ***fetch-incidents*** command, and the integration misses some of the incidents, you may want to get debug level information for each ***fetch-incidents*** command (or any other command executed by this instance) even if the server log level is set to *Info*. If you move the server log level to *Debug*, the server log would contain a lot of irrelevant information for integration troubleshooting. For this reason, the *Log Level* configuration parameter was added to the integration configuration. 
-
-There are three options for this parameter:
-- Off
-- Debug
-- Verbose 
-
-![Log Levels](../../../docs/doc_imgs/reference/log_level.png "Log Level")
-
-
-In Debug mode, the server will run all the commands of this instance with a *Debug* log level and log the information in the **Integration-Instance** log.
-
-In Verbose mode, additional information such as connections coming off device handling, the raw response, and all parameters and headers are logged in addition to the debug level information. 
-
-
-For example, if an integration fails and the instance log level is *Debug*, the **Integration-Instance** log will contain the error stack trace. If the log level is *Verbose*, the **Integration-Instance** log will contain the error stack trace, but also a copy of the HTTP request, the parameters used in the integration, what the response was, etc.
-
-By default, the *Log Level* configuration parameter is set to *Off*.
-
-The **Integration-Instance.log** is located in  `/var/log/demisto/`.
-
-These log level modes are only for the configured instance and do not affect the log for the entire server.
-
-Note that the log level configuration for an integration instance may affect performance of the integration instance, therefore use this feature only for troubleshooting and set it to Off when you have the required information in the log.
