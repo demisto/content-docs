@@ -19,7 +19,7 @@ The debug mode feature prints extended data from an integrations configuration a
 
 ##### Run a command in `debug-mode`
 
-In the Cortex XSOAR CLI run the command with all arguments that cause the issue and append the following argument: `debug-mode=true`. For example: 
+In the Cortex XSOAR CLI run the command with all arguments that cause the issue and append the following argument: `debug-mode=true`. For example:
 
 ```
 !ad-search filter="(cn=Guest)" debug-mode=true
@@ -73,7 +73,6 @@ For example for an integration instance name of: `Cortex_XDR_instance_1` run the
 Screenshot of running a `fetch` command with `debug-mode=true` and the resulting log file (`fetch-incidents.log`):
 ![fetch-incidents-debug](../../../docs/doc_imgs/reference/fetch-incidents-debug.png)
 
-
 #### Integration Debug Logs
 
 :::caution Important Note
@@ -92,11 +91,9 @@ There are three options for this parameter:
 
 ![Log Levels](../../../docs/doc_imgs/reference/log_level.png "Log Level")
 
-
 In Debug mode, the server will run all the commands of this instance with a *Debug* log level and log the information in the **Integration-Instance** log.
 
 In Verbose mode, additional information such as connections coming off device handling, the raw response, and all parameters and headers are logged in addition to the debug level information. 
-
 
 For example, if an integration fails and the instance log level is *Debug*, the **Integration-Instance** log will contain the error stack trace. If the log level is *Verbose*, the **Integration-Instance** log will contain the error stack trace, but also a copy of the HTTP request, the parameters used in the integration, what the response was, etc.
 
@@ -131,13 +128,16 @@ If it doesn’t, then there might be some issues with the integration configurat
 If no recent updates were done to the pack (or recent updates were done but there’s an even newer version), it is recommended to try and update the pack version to the latest version as there might be some fixes that came out lately.
 
 ### Reconfigure to reauthenticate
+
 Since some integrations execute authentication flows as a part of the integration configuration and the test-module execution. It’s recommended to try and configure a new instance when facing issues.
 
 ### Check whether the issue is wider
+
 First thing you should do when facing an error with some integration, is to test whether other integrations are working or not. If they do, then it’s recommended to try and go over the other general steps, or alternatively, try and classify what the issue is related to and check specific issues troubleshooting (link to the TOC).
 If similar errors seem to occur with other integration then there might be some issues with the tenant itself. If you’re  using Xsoar 6, then these issues might be Network issues and it’s recommended to go over the following troubleshooting steps (link to the network troubleshooting section)
 
 ### Retry
+
 Some errors may be temporary errors. it is always recommended to wait a few minutes and then try to repeat what you did before to ensure it wasn't a temporary issue.
 
 ## Integration/Playbook/Script errors
@@ -164,6 +164,7 @@ Python error
 Sometimes you will be able to see a traceback that indicates a syntax error. In such cases it’s best to open a ticket that points to the exact error and this kind of tickets are usually handled within 3-5 days.
 
 #### Network error
+
 Note that this part is only relevant for XSOAR on-rem.
 Examples of common errors indicating that there probably is a networking issue:
 * `[Errno -2] Name does not resolve`
@@ -178,6 +179,7 @@ Examples of common errors indicating that there probably is a networking issue:
 When troubleshooting networking issues, it is important to first understand what type of networking the integration or automation is using. Cortex XSOAR integrations and automations can be classified into two main types regarding their networking use:
 
 ##### Host Based Networking 
+
 Integrations/automations running within the server/engine will use the networking stack provided by the host machine of the server/engine. Such integrations/automations include native integrations (part of the server binary) such as the `RemoteAccess` integration and JavaScript integrations such as `VirusTotal` and `http`. Native integrations can be identified by the fact that they are shipped as part of the server and not associated with a Content Pack. JavaScript integrations/automations can be identified by checking the integration/automation settings to see that the *Language Type* is **JavaScript**. JavaScript integrations/automations run within the Cortex XSOAR server/engine process using a JavaScript virtual environment and therefore use the same network stack as the server/engine. The source IP addresses for these integrations/automations are the same as used by the server/engine.
 
 
@@ -207,6 +209,7 @@ More info about `curl` is available at [Everything curl](https://ec.haxx.se/).
 If you are not able to perform a basic `curl` request from the machine to the target HTTP endpoint, the issue is probably not a problem with the integration/automation but rather with the networking setup of the server/engine machine. Make sure to first resolve the networking issue so a basic `curl` command succeeds before continuing to test the integration/automation. Many times this resolves to a firewall, NAT or proxy issue. 
 
 ##### Docker Based Networking
+
 Docker Based integrations/automations are written in Python or Powershell. They can be identified by inspecting the integration/automation settings and under *Language type* will appear **Python** or **Powershell**. Docker creates its own networking, therefore the integrations/automations use a different networking stack from the Cortex XSOAR server/engine. The source IP addresses for these integrations/automations are different and provided according to the Docker networking configuration.
 
 As with [Host Based Networking](#host-based-networking), for integrations/automations that use HTTP endpoints we recommend testing with `curl` from within a Docker container as a first step. This can be done by logging in to the server/engine machine via SSH and running the following command:
