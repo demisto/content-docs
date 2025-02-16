@@ -178,7 +178,7 @@ Examples of common errors indicating that there probably is a networking issue:
 
 When troubleshooting networking issues, it is important to first understand what type of networking the integration or automation is using. Cortex XSOAR integrations and automations can be classified into two main types regarding their networking use:
 
-##### Host Based Networking 
+##### Host Based Networking
 
 Integrations/automations running within the server/engine will use the networking stack provided by the host machine of the server/engine. Such integrations/automations include native integrations (part of the server binary) such as the `RemoteAccess` integration and JavaScript integrations such as `VirusTotal` and `http`. Native integrations can be identified by the fact that they are shipped as part of the server and not associated with a Content Pack. JavaScript integrations/automations can be identified by checking the integration/automation settings to see that the *Language Type* is **JavaScript**. JavaScript integrations/automations run within the Cortex XSOAR server/engine process using a JavaScript virtual environment and therefore use the same network stack as the server/engine. The source IP addresses for these integrations/automations are the same as used by the server/engine.
 
@@ -319,6 +319,15 @@ Use the [CertificatesTroubleshoot Automation](https://xsoar.pan.dev/docs/referen
 
     * Resolution: If the URI isn't matching the URI endpoint (Regex), try to access the endpoint with one of the alt names/common names. If the endpoint isn't accessible via trusted names, sign the certificate with the correct common name or apply an additional alt name.
 
+### Playbooks issues
+
+#### Failing to obtain value from previous task
+
+Make sure the data type is configured as "From Previous Tasks" rather than "As value".
+
+#### Not seeing any task outputs
+
+New playbooks are set to quiet-mode by default. Make sure to unquiet them.
 
 ## Fetch issues
 
@@ -358,7 +367,11 @@ In some integrations, there are params that can’t be configured together and w
 
 ##### Error from the API related to malformed params
 
-Sometimes an error can come up from the API informing us that there was an issue with the params passed as part of the request, this eror usually occurs in integrations where there’s a free-text filter param that might be malformed, double check all params are correct and ensure the error message doesn’t point to such issue.
+Sometimes an error can come up from the API informing us that there was an issue with the params passed as part of the request, this error usually occurs in integrations where there’s a free-text filter param that might be malformed, double check all params are correct and ensure the error message doesn’t point to such issue.
+
+##### getting 429 (rate limit) error
+
+Some APIs have a rate limiter in their system configured to a certain value that might be reached. when getting 429 try to increase the fetch interval as it will result less calls in a certain amount of time, and raise the limit as it usually affect the number of calls due to the data being fetched in less time.
 
 ### Debugging Fetch incidents
 
@@ -374,7 +387,7 @@ Sometimes an error can come up from the API informing us that there was an issue
 In some cases there might be some discrepancy between the events being shown in the UI compare to the events being shown in the 3rd party app.
 In such cases it’s recommended to do the following:
 Re-check the timezones of the events in the query - sometimes the time appears in the event in the UI is different than the one in the 3rd party due to time zone differences, ensure the times point to the same TZ.
-Double check for any filter paramss in the configurations - sometimes the integration configuration will contain filter params - open text filter, drop down to a specific field optional values, etc.. if you see events missing in hte UI, double check those events doesn’t match the existing filters in the integration configuration page.
+Double check for any filter params in the configurations - sometimes the integration configuration will contain filter params - an open text filter, drop down to a specific field optional values, etc.. if you see events missing in the UI, double check those events doesn’t match the existing filters in the integration configuration page. In particular, make sure the filter does not point to past time.
 Make sure suspicious missing events cannot be found using ID.
 
 ### Delay in the fetch/ingestion
@@ -422,9 +435,9 @@ When there’s an error related to the demisto-sdk, the issue will usually appea
 For more information about how to troubleshoot the SDK refer to (link to the sdk)
 For more information about the VS Code extension, refer to the official docs: https://xsoar.pan.dev/docs/concepts/vscode-extension
 
-### Setup integration/script enviorenment fails
+### Setup integration/script environment fails
 
-Is docker set up correctly? Make sure docker is up and running, make sure that Allow the default docker socker to be used (required password) is enabled in Dcoker advanced settings.
+Is docker set up correctly? Make sure docker is up and running, make sure that Allow the default docker socker to be used (required password) is enabled in Docker advanced settings.
 If docker is up and running and the issue still occur, try to clean up the docker (https://docs.docker.com/engine/manage-resources/pruning/) or sign in to docker (https://www.docker.com/blog/seamless-sign-in-with-docker-desktop-4-4-2/)  to avoid rate limit (https://docs.docker.com/docker-hub/usage/#:~:text=Pull%20rates%20limits%20are%20based,to%205000%20pulls%20per%20day.)
 Ensure the command was triggered on the integration / script itself by right click the code file > choosing setup integration/script environment (can add photo)
 In this case a message saying "Please run this from an
@@ -465,3 +478,29 @@ As a short-term solution, remove the pack related to the dataset mentioned in th
 As a long-term solution, contact our Siem developers team via our support to inform them about the datasets mismatch.
 
 ## Demisto-sdk issues
+
+### Try to make sure it's a bug
+
+SDK commands does not include all kind of functionalities. Sometimes what seems to be a bug is actually a feature request. Double check the documentation using `demisto-sdk <command-name> --help` to ensure there's indeed something that doesn't work.
+
+### Make sure you're up to date
+
+As demisto-sdk is a developers tool variously used, it's being updated very often (at least twice a month) and a lot of bugs are being fixed as part of these releases.
+When encountering an error, check that you're running on the latest update and there's no newer version.
+To update to a specific version run
+
+```bash
+pip install demisto-sdk==x.y.z
+```
+
+To update to the latest version run
+
+```bash
+pip install demisto-sdk --upgrade
+```
+
+### Make sure the environment is configured correctly
+
+Make sure all condition are met in "Prerequisite" section in [Install Demisto SDK|https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/Install-Demisto-SDK].
+Make sure all condition are met in [Environment variables setup|https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/Environment-variables-setup].
+For more information, refer to the [official demisto-sdk docs.|https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide]
