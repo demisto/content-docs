@@ -319,7 +319,7 @@ Although you do not have the flexibility of version control and rollback, it is 
     ```
     steps:
       - name: XSOAR CI/CD master checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: your/repository
           path: repository
