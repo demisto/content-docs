@@ -199,13 +199,13 @@ In such cases it’s recommended to do the following:
 
 3. Make sure suspicious missing events cannot be found using their unique ID to search the incidents tab.
 
-## Fetch mechanism stopped fetching new events
+### Fetch mechanism stopped fetching new events
 
-### Check the fetch history
+#### Check the fetch history
 
 Check the [fetch history](#fetch-history) for the following:
 
-#### Temporary error from the API
+##### Temporary error from the API
 
 Sometimes fetch mechanism can encounter temporary issues when calling the API, such issues will usually appear once or twice before getting back to fetch normally and will contain the 500 (internal server) error.
 
@@ -225,7 +225,7 @@ Some APIs have a rate limiter in their system configured to a certain value that
 
 Sometimes the fetch mechanism is getting stuck on a certain request due to last_run issues. when failing to get new events, head to the instance configuration, and press the **reset last run** button at the bottom of the page.
 
-## Getting aggregated delays / failing to get events without an error error
+### Getting aggregated delays / failing to get events without an error error
 
 In case you’re having aggregated delays between the fetched events and the real time events or you suspect you're not getting new events although there's no error in the [fetch-history](#fetch-history). Try to increase the limit parameter up to the its maximum (usually documented), ensure the fetch interval is set to the lowest, and in some integrations, the fetch attempts to fetch from multiple endpoints/entities. In that case, try to separate the integration instance into several instances each fetching from one endpoint/entity to maximize the productivity.
 If you’re still having delays, try to get an estimation of the average amount per day and see if that amount co-op with the amount you manage to retrieve in a given minute. Sometimes the fetch mechanism can’t fully co-op with the peak times of the day but can make up for that during the quiet hours.
@@ -267,7 +267,7 @@ When switching mappers after fetching incidents with a certain mappers, the inci
 
 Try to double check the field is mapped correctly in the mapper tab (show how to get there), ensure the right field in the response is mapped to the right field in the mapper.
 
-## automations (command/ playbook)
+## automations (command / playbook)
 
 ### Not seeing any task outputs
 
@@ -340,7 +340,7 @@ Make sure all condition are met in "Prerequisite" section in [Install Demisto SD
 Make sure all condition are met in [Environment variables setup|https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/Environment-variables-setup].
 For more information, refer to the [official demisto-sdk docs.|https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide]
 
-## Executing VS code command doesn’t work
+### Executing VS code command doesn’t work
 
 When there’s an error related to vs code, the error will usually pop up at the bottom-right of the screen and will be informative. Try to follow the error and solution.
 When there’s an error related to the demisto-sdk, the issue will usually appear in the terminal with traceback to demisto-sdk code. To ensure the issue is with demisto-sdk, you can try and manually execute the command from the terminal and see if the issue still occur.
@@ -445,8 +445,7 @@ There are three options for this parameter:
 
 In Debug mode, the server will run all the commands of this instance with a *Debug* log level and log the information in the **Integration-Instance** log.
 
-In Verbose mode, additional information such as connections coming off device handling, the raw response, and all parameters and headers are logged in addition to the debug level information. 
-
+In Verbose mode, additional information such as connections coming off device handling, the raw response, and all parameters and headers are logged in addition to the debug level information.
 For example, if an integration fails and the instance log level is *Debug*, the **Integration-Instance** log will contain the error stack trace. If the log level is *Verbose*, the **Integration-Instance** log will contain the error stack trace, but also a copy of the HTTP request, the parameters used in the integration, what the response was, etc.
 
 By default, the *Log Level* configuration parameter is set to *Off*.
