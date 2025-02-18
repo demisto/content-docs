@@ -203,7 +203,7 @@ In such cases it’s recommended to do the following:
 
 ### Check the fetch history
 
-Check the [fetch history](add link) for the following:
+Check the [fetch history](#fetch-history) for the following:
 
 #### Temporary error from the API
 
@@ -227,13 +227,13 @@ Sometimes the fetch mechanism is getting stuck on a certain request due to last_
 
 ## Getting aggregated delays / failing to get events without an error error
 
-In case you’re having aggregated delays between the fetched events and the real time events or you suspect you're not getting new events although there's no error in the fetch-history (add link). Try to increase the limit parameter up to the its maximum (usually documented), ensure the fetch interval is set to the lowest, and in some integrations, the fetch attempts to fetch from multiple endpoints/entities. In that case, try to separate the integration instance into several instances each fetching from one endpoint/entity to maximize the productivity.
+In case you’re having aggregated delays between the fetched events and the real time events or you suspect you're not getting new events although there's no error in the [fetch-history](#fetch-history). Try to increase the limit parameter up to the its maximum (usually documented), ensure the fetch interval is set to the lowest, and in some integrations, the fetch attempts to fetch from multiple endpoints/entities. In that case, try to separate the integration instance into several instances each fetching from one endpoint/entity to maximize the productivity.
 If you’re still having delays, try to get an estimation of the average amount per day and see if that amount co-op with the amount you manage to retrieve in a given minute. Sometimes the fetch mechanism can’t fully co-op with the peak times of the day but can make up for that during the quiet hours.
 To identify a delay, turn off the instance for 5 minutes and check if events are still coming in or not.
 
 ### Missing fields when fetching
 
-Double check there’s no pre-process rule for XSOAR by heading to (add path).
+Double check there’s no pre-process rule for XSOAR by heading to settings > Object Setup > Incidents > Pre-Process Rules.
 Or parsing rule for XSIAM that does that by heading to settings > Dataset management > Parsing rule
 
 ## Integration Mirroring
@@ -285,11 +285,16 @@ Double check the command execution from the CLI with the basic arguments, this s
 
 ### Missing indicators in the threat intel page
 
-Sometimes indicators that were fetched cannot be seen in the threat intel page, if you encounter such an issue, double-check the exclusion list and ensure the indicator is not a part of the list (* add photos)
+Sometimes indicators that were fetched cannot be seen in the threat intel page, if you encounter such an issue, double-check the exclusion list by heading to settings > object setup > indicators > exclusion list, and ensure the indicator is not a part of the list.
 
 ### A mismatch between the number of fetched indicators and the number of new indicators in the threat intel page
 
-Sometimes some of the fetched indicators are already known to the system. In that case, the existing indicator will be modified rather than recreated. You can double-check the number of new / omitted/modified indicators in the logs (add the exact line to search).
+Sometimes some of the fetched indicators are already known to the system. In that case, the existing indicator will be modified rather than recreated. You can double-check the number of new/omitted/modified indicators in the logs.
+Example:
+
+```bash
+[TIM][Recorded Future Feed][Recorded Future Feed_hash] Feed fetch - createIndicators command - batch number 2 - processed 2000 indicators, 0 skipped, 100 modified, 144 new
+```
 
 ### Failing to obtain indicators from 3rd party application using Taxii server
 
@@ -297,7 +302,7 @@ Ensure the issue is not related to the 3rd party, attempt to obtain the indicato
 
 ### Failing to connect to the ‘Generic export indicators’ service
 
-Make sure the Xsoar IP (add a link to the list) is whitelisted in the customer’s firewall.
+Relevant for XSOAR Saas, make sure the Xsoar IP is whitelisted in the firewall, for more information, refer to [Enable-access-to-Palo-Alto-Networks-resources](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/8/Cortex-XSOAR-Cloud-Documentation/Enable-access-to-Palo-Alto-Networks-resources).
 
 ### Getting 500 (internal server error) when attempting to connect to ‘Generic export indicators’
 
@@ -345,12 +350,11 @@ For more information about the VS Code extension, refer to the official [docs](h
 
 Is docker set up correctly? Make sure docker is up and running, make sure that Allow the default docker socket to be used (required password) is enabled in Docker advanced settings.
 If docker is up and running and the issue still occur, try to [clean up the docker](https://docs.docker.com/engine/manage-resources/pruning/) or [sign in to docker](https://www.docker.com/blog/seamless-sign-in-with-docker-desktop-4-4-2/)  to [avoid rate limit](https://docs.docker.com/docker-hub/usage/#:~:text=Pull%20rates%20limits%20are%20based,to%205000%20pulls%20per%20day.)
-Ensure the command was triggered on the integration / script itself by right click the code file > choosing setup integration/script environment (can add photo). In this case a message saying "Please run this from an
-integration or script directory". will pop up.
+Ensure the command was triggered on the integration / script itself by right click the code file > choosing setup integration/script environment. In this case a message saying "Please run this from an integration or script directory". will pop up.
 
 ## CI/CD
 
-There are currently no known recurring CI/CD issues. Most CI/CD issues are related to the sdk section (add link).
+There are currently no known recurring CI/CD issues. Most CI/CD issues are related to the [sdk section](#Demisto-sdk).
 For more information about setting up and developing CI/CD environment, refer to the [docs](https://xsoar.pan.dev/docs/reference/packs/content-management)
 
 ## Troubleshooting tools
