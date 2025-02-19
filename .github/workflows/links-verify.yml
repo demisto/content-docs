@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - name: content checkout
-      uses: actions/checkout@v2.4.0  # https://github.com/marketplace/actions/checkout
+      uses: actions/checkout@v4  # https://github.com/marketplace/actions/checkout
       with:
         repository: demisto/content
         path: content
@@ -18,7 +18,7 @@ jobs:
         fetch-depth: 0
         ref: 'master'
     - name: content-docs checkout
-      uses: actions/checkout@v2.4.0  # https://github.com/marketplace/actions/checkout
+      uses: actions/checkout@v4  # https://github.com/marketplace/actions/checkout
       with:
         repository: demisto/content-docs
         path: content-docs
