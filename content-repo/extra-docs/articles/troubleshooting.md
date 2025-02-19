@@ -11,36 +11,38 @@ This guide provides common troubleshooting steps. When reporting an issue to Cor
 
 #### Docker Error
 
-Docker timeout: A timeout error indicates a run that exceeded the default timeout configured for the docker container. This could be handled by raising the docker timeout configuration which can be done manually if you're using the on-prem version by setting the integrationScript.timeout server configuration (in minutes), or a support ticket if you're using Saas/XSIAM.
-Also, make sure Docker/Podman is installed on your machine (on-prem).
+Docker timeout: A timeout error indicates a run that exceeded the default timeout configured for the docker container.
+
+1. Try raising the docker timeout configuration which can be done manually if you're using the on-prem version by setting the integrationScript.timeout server configuration (in minutes), or a support ticket if you're using Saas/XSIAM.
+2. Make sure Docker/Podman is installed on your machine (on-prem).
 
 #### Api Error
 
-Check the error received and try to see if it explains the issue. It could be related to missing permission, authentication, or API-specific issue.
-Permissions: Compare the permissions required by the integration in Cortex to what the user has configured in his 3rd party product. If the integration does not mention specific permissions, check the 3rd party API.
-Authentication: Re-check authentication parameters (credentials, IDs, etc), and try to re-configure them. Some integrations require different authentication flow, make sure to check the integration docs and verify you have covered the correct flow.
-Authorization: Some integrations require several manual steps to authenticate the instance, double check if any special action is required.
+Check the error received and try to see if it explains the issue:
 
 ##### Common HTTP codes
 
-400: Bad request, double-check filters & arguments.
-401/403: Usually means that authentication failed. See the authentication section and Permissions sections above.
-404: Not found, double-check the resource you were looking for exit in the 3rd party UI.
-429: Rate limit means that too many requests were issued by the user to the server.
-500: Internal server error usually implies the server was unable to process the request. Try to wait a few minutes before attempting to execute again, sometimes issues with the 3rd party server will pass after several minutes.  If the issue persists, try to make sure integration-specific parameters are entered correctly and are well formatted.
+- 400: Bad request, double-check filters & arguments.
+- 401/403: Usually means that authentication failed.
+Permissions: Compare the permissions required by the integration in Cortex to what the user has configured in his 3rd party product. If the integration does not mention specific permissions, check the 3rd party API.
+Authentication: Re-check authentication parameters (credentials, IDs, etc), and try to re-configure them. Some integrations require different authentication flow, make sure to check the integration docs and verify you have covered the correct flow.
+Authorization: Some integrations require several manual steps to authenticate the instance, double check if any special action is required.
+- 404: Item not found, double-check the resource you were looking for exit in the 3rd party UI.
+- 429: Rate limit - too many requests were issued by the user to the server. Try to wait the expected amount of time.
+- 500: Internal server error usually implies the server was unable to process the request - Try to wait a few minutes before attempting to execute again, sometimes issues with the 3rd party server will pass after several minutes. If the issue persists, download the debug log and try to run the Curl mentioned in the debug log from post man. If the issues reproduced when running the Curl, contact the 3rd part provider. If not, try to make sure integration-specific parameters are entered correctly and are well formatted.
 
 #### Python error
 
-Sometimes you will be able to see a traceback that indicates a syntax error. In such cases it’s best to open a ticket that points to the exact error and this kind of tickets are usually handled within 3-5 days.
-As a temporary solution, you can detach and fix the issue until an official release is out (XSOAR only).
+If you're seeing a traceback that indicates a syntax error.
+
+1. Open a ticket that points to the exact error and this kind of tickets are usually handled within 3-5 days.
+2. As a temporary solution, you can detach and fix the issue until an official release is out (XSOAR only).
 
 #### Networking error
 
 ##### How to find network issues
 
 To find network issues, you can use the HttpV2 script using a simple request to see if it passed through.
-
-
 Note that this part is only relevant for XSOAR on-prem.
 Examples of common errors indicating that there probably is a networking issue:
 
@@ -56,14 +58,12 @@ When troubleshooting networking issues, it is important to first understand what
 
 ##### Host Based Networking
 
-If the integration/automation is using HTTP-based communication, we recommend first testing locally using the `curl` utility to verify that it is possible to perform network communication with the HTTP endpoint. Run the `curl` command on the server or engine machine by logging in via SSH. Common `curl` command variants (`httpbin.org` is used as an example url):
+If the integration/automation is using HTTP-based communication, we recommend first testing locally using the `curl` utility to verify that it is possible to perform network communication with the HTTP endpoint. Run the `curl` command on the server or engine machine by logging in via SSH:
 
 ```bash
 # Run simple curl command with -v for verbose output:
 curl -v https://httpbin.org/status/200
 ```
-
-More info about `curl` is available at [Everything curl](https://ec.haxx.se/).
 
 If you are not able to perform a basic `curl` request from the machine to the target HTTP endpoint, the issue is probably not a problem with the integration/automation but rather with the networking setup of the server/engine machine. Make sure to first resolve the networking issue so a basic `curl` command succeeds before continuing to test the integration/automation. Many times this resolves to a firewall, NAT or proxy issue.
 
@@ -71,7 +71,7 @@ If you are not able to perform a basic `curl` request from the machine to the ta
 
 Docker Based integrations/automations are written in Python or Powershell. They can be identified by inspecting the integration/automation settings and under *Language type* will appear **Python** or **Powershell**. Docker creates its own networking, therefore the integrations/automations use a different networking stack from the Cortex XSOAR server/engine. The source IP addresses for these integrations/automations are different and provided according to the Docker networking configuration.
 
-As with [Host Based Networking](#host-based-networking), for integrations/automations that use HTTP endpoints we recommend testing with `curl` from within a Docker container as a first step. This can be done by logging in to the server/engine machine via SSH and running the following command:
+For integrations/automations that use HTTP endpoints we recommend testing with `curl` from within a Docker container as a first step. This can be done by logging in to the server/engine machine via SSH and running the following command:
 ```bash
 docker run -it --rm demisto/netutils:1.0.0.6138 curl <curl parameters>
 ```
@@ -108,7 +108,7 @@ Examples:
 * Set the read timeout value to *120* seconds system wide, `--env=REQUESTS_TIMEOUT=120`
 * Set the read timeout value to *75* seconds for the Palo Alto Networks WildFire v2 integration, `--env=REQUESTS_TIMEOUT.WildFire-v2=75`
 
-**Note:** The `REQUESTS_TIMEOUT` settings only affects integrations which use the [BaseClient](https://xsoar.pan.dev/docs/integrations/code-conventions#client-class) class from CommonServerPython.
+**Note:** The `REQUESTS_TIMEOUT` settings only affects integrations which use the [BaseClient](https://XSOAR.pan.dev/docs/integrations/code-conventions#client-class) class from CommonServerPython.
 
 ##### TLS/SSL Troubleshooting
 
@@ -124,21 +124,18 @@ These errors are usually as a result of a server using an untrusted certificate 
 **Notes**
 
 * Most integrations provide a configuration option of *Trust any certificate*, which will cause the integration to ignore TLS/SSL certificate validation errors. You can use this option to test the connection and verify that in fact the issue is certificate related.
-* To trust custom certificates in Cortex XSOAR server or engines, follow the following [instructions](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/docker/configure-python-docker-integrations-to-trust-custom-certificates).
+* To trust custom certificates in Cortex XSOAR server or engines, follow the following [instructions](https://docs.paloaltonetworks.com/cortex/cortex-XSOAR/6-0/cortex-XSOAR-admin/docker/configure-python-docker-integrations-to-trust-custom-certificates).
 
-for more information, refer to the [advanced networking troubleshooting guide](https://xsoar.pan.dev/docs/reference/articles/advanced-networking-troubleshooting-guide#debug-mode)
+for more information, refer to the [advanced networking troubleshooting guide](https://XSOAR.pan.dev/docs/reference/articles/advanced-networking-troubleshooting-guide#debug-mode)
 
 ## Fetch Data (Incidents/Events/Assets/Issues)
 
 ### Mismatch in numbers - duplications / missing data
 
-In some cases there might be some discrepancy between the events being shown in the UI compare to the events being shown in the 3rd party app.
-In such cases it’s recommended to do the following:
+In some cases there might be some discrepancy between the events being shown in the UI compare to the events being shown in the 3rd party app. In such cases it’s recommended to do the following:
 
 1. Re-check the timezones of the events in the query - sometimes the time appears in the event in the UI is different than the one in the 3rd party due to time zone differences, ensure the times point to the same TZ.
-
-2. Double check for any filter params in the configurations - sometimes the integration configuration will contain filter params - an open text / dropdown filter to a specific field optional values, etc.. if you see events missing in the UI, double check those events doesn’t match the existing filters in the integration configuration page. In particular, make sure the filter does not point to past time.
-
+2. Double check for any filter params in the configurations - sometimes the integration configuration will contain filter params - an open text/dropdown filter to a specific field optional values, etc.. if you see events missing in the UI, double check those events doesn’t match the existing filters in the integration configuration page. In particular, make sure the filter does not point to past time.
 3. Make sure suspicious missing events cannot be found using their unique ID to search the incidents tab.
 
 ### Fetch mechanism stopped fetching new events
@@ -147,36 +144,27 @@ In such cases it’s recommended to do the following:
 
 Check the [fetch history](#fetch-history) for the following:
 
-##### Temporary error from the API
+1. Temporary error from the API - Sometimes fetch mechanism can encounter temporary issues when calling the API, such issues will usually appear once or twice before getting back to fetch normally and will contain the 500 (internal server) error.
+2. Params collision - In some integrations, there are params that can’t be configured together and will throw an error if they do. The error should appear in the fetch history and should be informative about which two params can’t be configured together.
+3. Error from the API related to malformed params - Sometimes an error can come up from the API informing us that there was an issue with the params passed as part of the request, this error usually occurs in integrations where there’s a free-text filter param that might be malformed, double check all params are correct and ensure the error message doesn’t point to such issue.
+4. Error from the API, getting 429 (rate limit) error - Some APIs have a rate limiter in their system configured to a certain value that might be reached. when getting 429 try to increase the fetch interval as it will result less calls in a certain amount of time, and raise the limit as it usually affect the number of calls due to the data being fetched in less time.
 
-Sometimes fetch mechanism can encounter temporary issues when calling the API, such issues will usually appear once or twice before getting back to fetch normally and will contain the 500 (internal server) error.
-
-#### Params collision
-
-In some integrations, there are params that can’t be configured together and will throw an error if they do. The error should appear in the fetch history and should be informative about which two params can’t be configured together.
-
-#### Error from the API related to malformed params
-
-Sometimes an error can come up from the API informing us that there was an issue with the params passed as part of the request, this error usually occurs in integrations where there’s a free-text filter param that might be malformed, double check all params are correct and ensure the error message doesn’t point to such issue.
-
-#### Error from the API, getting 429 (rate limit) error
-
-Some APIs have a rate limiter in their system configured to a certain value that might be reached. when getting 429 try to increase the fetch interval as it will result less calls in a certain amount of time, and raise the limit as it usually affect the number of calls due to the data being fetched in less time.
-
-### Reset last run
+#### Reset last run
 
 Sometimes the fetch mechanism is getting stuck on a certain request due to last_run issues. when failing to get new events, head to the instance configuration, and press the **reset last run** button at the bottom of the page.
 
 ### Getting aggregated delays / failing to get events without an error error
 
-In case you’re having aggregated delays between the fetched events and the real time events or you suspect you're not getting new events although there's no error in the [fetch-history](#fetch-history). Try to increase the limit parameter up to the its maximum (usually documented), ensure the fetch interval is set to the lowest, and in some integrations, the fetch attempts to fetch from multiple endpoints/entities. In that case, try to separate the integration instance into several instances each fetching from one endpoint/entity to maximize the productivity.
-If you’re still having delays, try to get an estimation of the average amount per day and see if that amount co-op with the amount you manage to retrieve in a given minute. Sometimes the fetch mechanism can’t fully co-op with the peak times of the day but can make up for that during the quiet hours.
-To identify a delay, turn off the instance for 5 minutes and check if events are still coming in or not.
+In case you’re having aggregated delays between the fetched events and the real time events or you suspect you're not getting new events although there's no error in the [fetch-history](#fetch-history).
+
+1. Try to increase the limit parameter up to the its maximum (usually documented), ensure the fetch interval is set to the lowest, and in some integrations, the fetch attempts to fetch from multiple endpoints/entities. In that case, try to separate the integration instance into several instances each fetching from one endpoint/entity to maximize the productivity.
+2. If you’re still having delays, try to get an estimation of the average amount per day and see if that amount co-op with the amount you manage to retrieve in a given minute. Sometimes the fetch mechanism can’t fully co-op with the peak times of the day but can make up for that during the quiet hours.
+3. To identify a delay, turn off the instance for 5 minutes and check if events are still coming in or not.
 
 ### Missing fields when fetching
 
 Double check there’s no pre-process rule for XSOAR by heading to settings > Object Setup > Incidents > Pre-Process Rules.
-Or parsing rule for XSIAM that does that by heading to settings > Dataset management > Parsing rule
+Or parsing rule for XSIAM that does that by heading to settings > Dataset management > Parsing rule.
 
 ## Integration Mirroring
 
@@ -187,19 +175,21 @@ Ensure all the parameters are configured as expected, the instance is indeed a f
 
 ### No incoming mirroring
 
-If the issue occur with incoming mirroring, then there’s either an issue with connecting to the remote and retrieving the information from or there are issues with the mapper and updating the incident.
-To ensure the issue is not related to the remote, try to run `get-remote-data` command from the specific incident’s war room. You can also add the debug-mode=true to try and get extra information about the issue (error, response code).
-To ensure the issue is not related to the mapper, double check that the mapper is indeed configured and contains the expected field.
+There’s either an issue with connecting to the remote and retrieving the information from or there are issues with the mapper and updating the incident.
+
+1. Try to run `get-remote-data` command from the specific incident’s war room. You can also add the debug-mode=true to try and get extra information about the issue (error, response code).
+2. Try to ensure the issue is not related to the mapper, double check that the mapper is indeed configured and contains the expected field.
 
 ### No outgoing mirroring
 
-If the issue occur with outgoing mirroring, then the issue is either the change is not detected in XSOAR/XSIAM side, or it is not received on the other side. To ensure the issue is not related to the connection with the other side, most integrations has a manual command that does the same (update incident fields in the remote) if the integration you’re using has some command, try to run it and see if it trigger changes in the remote.
-Also, in some integrations, like Microsoft for example, writing to the remote require more permissions, try to make sure your instance has all the required permissions to write to the remote.
-To ensure the issue is not with the modification mechanism, try to run update-remote-system command from the specific incident’s war room. You can also add the debug-mode=true to try and get extra information about the issue (error, response code).
+There’s either an issue where the change is not detected in XSOAR/XSIAM side, or it is not received on the other side.
+
+1. Ensure the issue is not with the modification mechanism, try to run update-remote-system command from the specific incident’s war room. You can also add the debug-mode=true to try and get extra information about the issue (error, response code).
+2. Ensure the instance has  permissions to the remote
 
 ### Failing when working with custom mapper
 
-Make sure the custom mapper has all the required mirroring incident fields - dbotMirrorDirection, dbotMirrorId, and dbotMirrorInstance. Ensure they are mapped correctly, you can use the [mirroring integration guide](https://xsoar.pan.dev/docs/integrations/mirroring_integration) for further assistance.
+Make sure the custom mapper has all the required mirroring incident fields - dbotMirrorDirection, dbotMirrorId, and dbotMirrorInstance. Ensure they are mapped correctly, you can use the [mirroring integration guide](https://XSOAR.pan.dev/docs/integrations/mirroring_integration) for further assistance.
 
 ### Mirroring doesn’t work after switching to a new mapper in the integration configuration
 
@@ -207,8 +197,8 @@ When switching mappers after fetching incidents with a certain mappers, the inci
 
 ### Mirroring doesn’t work for a specific field
 
-Try to double check the field is mapped correctly in the mapper tab (show how to get there), ensure the right field in the response is mapped to the right field in the mapper.
-Also, test the field for other kind of actions - sometimes mirroring is only supported for appending / editing a field and not removing, double check it doesn't work in any case, if it does work in some cases, then it's more likely a feature request.
+1. Try to double check the field is mapped correctly in the mapper tab (show how to get there), ensure the right field in the response is mapped to the right field in the mapper.
+2. Test the field for other kind of actions - sometimes mirroring is only supported for appending / editing a field and not removing, double check it doesn't work in any case, if it does work in some cases, then it's more likely a feature request.
 
 ## long-running server
 
@@ -263,8 +253,7 @@ SDK commands does not include all kind of functionalities. Sometimes what seems 
 
 ### General issues with running a command
 
-As demisto-sdk is a developers tool variously used, it's being updated very often (at least twice a month) and a lot of bugs are being fixed as part of these releases.
-When encountering an error, check that you're running on the latest update and there's no newer version.
+Check for newer versions.
 To update to a specific version run
 
 ```bash
@@ -279,26 +268,29 @@ pip install demisto-sdk --upgrade
 
 ### SDK environment and installation have issues
 
-Make sure all condition are met in "Prerequisite" section in [Install Demisto SDK|https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/Install-Demisto-SDK].
-Make sure all condition are met in [Environment variables setup|https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/Environment-variables-setup].
+1. Make sure all condition are met in "Prerequisite" section in [Install Demisto SDK|https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/Install-Demisto-SDK].
+2. Make sure all condition are met in [Environment variables setup|https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/Environment-variables-setup].
 For more information, refer to the [official demisto-sdk docs.|https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide]
 
 ### Executing VS code command doesn’t work
 
-When there’s an error related to vs code, the error will usually pop up at the bottom-right of the screen and will be informative. Try to follow the error and solution.
-When there’s an error related to the demisto-sdk, the issue will usually appear in the terminal with traceback to demisto-sdk code. To ensure the issue is with demisto-sdk, you can try and manually execute the command from the terminal and see if the issue still occur.
-For more information about the VS Code extension, refer to the official [docs](https://xsoar.pan.dev/docs/concepts/vscode-extension)
+1. errors related to vs code, the error will usually pop up at the bottom-right of the screen and will be informative. Try to follow the error and solution.
+2. errors related to the demisto-sdk, the issue will usually appear in the terminal with traceback to demisto-sdk code. To ensure the issue is with demisto-sdk, you can try and manually execute the command from the terminal and see if the issue still occur.
+For more information about the VS Code extension, refer to the official [docs](https://XSOAR.pan.dev/docs/concepts/vscode-extension)
 
 ### Setup integration/script environment fails in vs code extension
 
-Is docker set up correctly? Make sure docker is up and running, make sure that Allow the default docker socket to be used (required password) is enabled in Docker advanced settings.
-If docker is up and running and the issue still occur, try to [clean up the docker](https://docs.docker.com/engine/manage-resources/pruning/) or [sign in to docker](https://www.docker.com/blog/seamless-sign-in-with-docker-desktop-4-4-2/)  to [avoid rate limit](https://docs.docker.com/docker-hub/usage/#:~:text=Pull%20rates%20limits%20are%20based,to%205000%20pulls%20per%20day.)
-Ensure the command was triggered on the integration / script itself by right click the code file > choosing setup integration/script environment. In this case a message saying "Please run this from an integration or script directory". will pop up.
+Make sure docker is up and running, make sure that Allow the default docker socket to be used (required password) is enabled in Docker advanced settings.
+If docker is up and running and the issue still occur.
+1. [clean up the docker](https://docs.docker.com/engine/manage-resources/pruning/)
+2. [sign in to docker](https://www.docker.com/blog/seamless-sign-in-with-docker-desktop-4-4-2/)
+3. [avoid rate limit](https://docs.docker.com/docker-hub/usage/#:~:text=Pull%20rates%20limits%20are%20based,to%205000%20pulls%20per%20day.)
+4. Ensure the command was triggered on the integration / script itself by right click the code file > choosing setup integration/script environment. In this case a message saying "Please run this from an integration or script directory". will pop up.
 
 ## CI/CD
 
 There are currently no known recurring CI/CD issues. Most CI/CD issues are related to the [sdk section](#Demisto-sdk).
-For more information about setting up and developing CI/CD environment, refer to the [docs](https://xsoar.pan.dev/docs/reference/packs/content-management)
+For more information about setting up and developing CI/CD environment, refer to the [docs](https://XSOAR.pan.dev/docs/reference/packs/content-management)
 
 ## Troubleshooting tools
 
@@ -341,7 +333,8 @@ For example for an integration instance name of: `Cortex_XDR_instance_1` run the
 !Cortex_XDR_instance_1-test-module debug-mode=true
 ```
 
-**Note:** 
+**Note:**
+
 - If the instance name contains spaces, replace the space with an underscore (`_`).
 - The "Do not use by default" checkbox should be unchecked on the integration instance you are testing.
 
@@ -351,7 +344,7 @@ Screenshot of running a `test-module` command with `debug-mode=true` and the res
 
 ### Failing to connect to the ‘Generic export indicators’ service
 
-Relevant for XSOAR Saas, make sure the Xsoar IP is whitelisted in the firewall, for more information, refer to [Enable-access-to-Palo-Alto-Networks-resources](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/8/Cortex-XSOAR-Cloud-Documentation/Enable-access-to-Palo-Alto-Networks-resources).
+Relevant for XSOAR Saas, make sure the XSOAR IP is whitelisted in the firewall, for more information, refer to [Enable-access-to-Palo-Alto-Networks-resources](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/8/Cortex-XSOAR-Cloud-Documentation/Enable-access-to-Palo-Alto-Networks-resources).
 
 ### Getting 500 (internal server error) when attempting to connect to ‘Generic export indicators’
 
