@@ -23,8 +23,10 @@ Authorization: Some integrations require several manual steps to authenticate th
 
 ##### Common HTTP codes
 
+400: Bad request, double-check filters & arguments.
 401/403: Usually means that authentication failed. See the authentication section and Permissions sections above.
-429: RAte limit means that too many requests were issued by the user to the server.
+404: Not found, double-check the resource you were looking for exit in the 3rd party UI.
+429: Rate limit means that too many requests were issued by the user to the server.
 500: Internal server error usually implies the server was unable to process the request. Try to wait a few minutes before attempting to execute again, sometimes issues with the 3rd party server will pass after several minutes.  If the issue persists, try to make sure integration-specific parameters are entered correctly and are well formatted.
 
 #### Python error
@@ -34,7 +36,12 @@ As a temporary solution, you can detach and fix the issue until an official rele
 
 #### Networking error
 
-Note that this part is only relevant for XSOAR on-rem.
+##### How to find network issues
+
+To find network issues, you can use the HttpV2 script using a simple request to see if it passed through.
+
+
+Note that this part is only relevant for XSOAR on-prem.
 Examples of common errors indicating that there probably is a networking issue:
 
 * `[Errno -2] Name does not resolve`
@@ -263,15 +270,24 @@ Make sure the custom mapper has all the required mirroring incident fields - dbo
 
 When switching mappers after fetching incidents with a certain mappers, the incident may become unable to mirror due to missing fields. In that case, remove the incidents, refetch them, and try again.
 
-### Does it only occur for a specific field
+### Mirroring doesn’t work for a specific field
 
 Try to double check the field is mapped correctly in the mapper tab (show how to get there), ensure the right field in the response is mapped to the right field in the mapper.
+Also, test the field for other kind of actions - sometimes mirroring is only supported for appending / editing a field and not removing, double check it doesn't work in any case, if it does work in some cases, then it's more likely a feature request.
 
-## automations (command / playbook)
+## long-running server
+
+### Getting 400 error code when trying to pull from the long-running server
+
+This may occur due to docker being shut down without the server noticing. In order to reset the docker, go to integrations configuration page, disable the integration for a few seconds, and re-enable it. This action should attempt to kill the docker and re-deploy it.
+
+## Automations (command / playbook)
 
 ### Not seeing any task outputs
 
 New playbooks are set to quiet-mode by default. Make sure to unquiet them.
+Alteratively, you can set the extend output/context option.
+![extend-context-example](../../../docs/doc_imgs/reference/extend-context-example.png)
 
 ### Failing to obtain value from previous task
 
@@ -299,14 +315,6 @@ Example:
 ### Failing to obtain indicators from 3rd party application using Taxii server
 
 Ensure the issue is not related to the 3rd party, attempt to obtain the indicators using postman to make sure the searched URL is indeed correct.
-
-### Failing to connect to the ‘Generic export indicators’ service
-
-Relevant for XSOAR Saas, make sure the Xsoar IP is whitelisted in the firewall, for more information, refer to [Enable-access-to-Palo-Alto-Networks-resources](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/8/Cortex-XSOAR-Cloud-Documentation/Enable-access-to-Palo-Alto-Networks-resources).
-
-### Getting 500 (internal server error) when attempting to connect to ‘Generic export indicators’
-
-Double-check that the user & password configured are correct, incorrect credentials may throw 500 error. Also, note that the password is case-sensitive.
 
 ### Connecting to ‘Generic export indicators’ takes a lot of time
 
@@ -405,6 +413,14 @@ For example for an integration instance name of: `Cortex_XDR_instance_1` run the
 Screenshot of running a `test-module` command with `debug-mode=true` and the resulting log file (`test-module.log`):
 
 ![test-module-debug](../../../docs/doc_imgs/reference/test-module-debug.png)
+
+### Failing to connect to the ‘Generic export indicators’ service
+
+Relevant for XSOAR Saas, make sure the Xsoar IP is whitelisted in the firewall, for more information, refer to [Enable-access-to-Palo-Alto-Networks-resources](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/8/Cortex-XSOAR-Cloud-Documentation/Enable-access-to-Palo-Alto-Networks-resources).
+
+### Getting 500 (internal server error) when attempting to connect to ‘Generic export indicators’
+
+Double-check that the user & password configured are correct, incorrect credentials may throw 500 error. Also, note that the password is case-sensitive.
 
 #### Fetch Incidents in `debug-mode`
 
