@@ -1,4 +1,9 @@
-ote that this part is only relevant for XSOAR on-rem.
+---
+title: Advanced Networking Troubleshooting Guide
+description: Advanced troubleshooting steps Newtowk issues.
+---
+
+Note that this part is only relevant for XSOAR on-rem.
 Examples of common errors indicating that there probably is a networking issue:
 
 * `[Errno -2] Name does not resolve`
