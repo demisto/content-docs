@@ -7,6 +7,7 @@
 const visit = require("unist-util-visit");
 const fs = require("fs");
 const marketplace = JSON.parse(fs.readFileSync("./index.json"));
+const memoryLogger = require('./memoryLogger');
 
 const remarkPlugin = () => {
   const transformer = (root) => {
@@ -231,6 +232,7 @@ module.exports = {
       {
         gtm: "GTM-KWZSPLM", //GTM-XXXXXX
       },
+      memoryLogger(),
     ]
   ],
   onBrokenLinks: "warn",
