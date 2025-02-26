@@ -232,8 +232,8 @@ module.exports = {
       {
         gtm: "GTM-KWZSPLM", //GTM-XXXXXX
       },
-      memoryLogger(),
-    ]
+    ],
+    memoryLogger(),
   ],
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
