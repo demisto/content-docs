@@ -1,7 +1,7 @@
 variables:
-  CURRENT_BRANCH_NAME: test-high-memory-tag-for-docs
+  CURRENT_BRANCH_NAME: test-cortex-content-high-memory-tag
 
 include:
   - file: "/.gitlab/ci/content-docs/.gitlab-ci.yml"
-    ref: test-high-memory-tag-for-docs
+    ref: test-cortex-content-high-memory-tag
     project: "${CI_PROJECT_NAMESPACE}/infra"
