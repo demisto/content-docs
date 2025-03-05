@@ -123,7 +123,7 @@ def get_external_prs(prs: list) -> List[Dict]:
     return external_prs
 
 
-def github_pagination_prs(url: str, params: dict, res) -> list:
+def github_pagination_prs(url: str, params: dict, res) -> list | None:
     """
     Paginate through all the pages in Github according to search query
     Args:
@@ -139,6 +139,7 @@ def github_pagination_prs(url: str, params: dict, res) -> list:
         last_page = links[-1]
         last_page_link = last_page[last_page.find("<") + 1:last_page.find(">")]
         try:
+            print(f"Fetching last_page_link {last_page_link}")
             last_pr_number = PAGE_NUMBER_REGEX.search(last_page_link)[0]
         except IndexError:
             print(f"Error: Couldn't find the last page number. \n Last page link - {last_page_link}")
