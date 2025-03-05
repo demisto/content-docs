@@ -123,7 +123,7 @@ def get_external_prs(prs: list) -> List[Dict]:
     return external_prs
 
 
-def github_pagination_prs(url: str, params: dict, res) -> list | None:
+def github_pagination_prs(url: str, params: dict, res) -> list:
     """
     Paginate through all the pages in Github according to search query
     Args:
@@ -131,26 +131,26 @@ def github_pagination_prs(url: str, params: dict, res) -> list | None:
         params (dict): params for the request
         res: the response from the http_request
 
-    Returns: prs (dict)
+    Returns: prs (list)
     """
     prs = []
     if link := res.headers.get('Link'):
         links = link.split(',')
         last_page = links[-1]
         last_page_link = last_page[last_page.find("<") + 1:last_page.find(">")]
-        try:
-            print(f"Fetching last_page_link {last_page_link}")
-            last_pr_number = PAGE_NUMBER_REGEX.search(last_page_link)[0]
-        except IndexError:
-            print(f"Error: Couldn't find the last page number. \n Last page link - {last_page_link}")
-            return
+        print(f"{last_page_link}: {last_page}")
 
-        while params['page'] < int(last_pr_number):
-            params['page'] = params['page'] + 1
-            response = search_session.request('GET', url, params=params, headers=HEADERS, verify=VERIFY)
-            response.raise_for_status()
-            next_page_prs = response.json().get('items', [])
-            prs.extend(next_page_prs)
+        match = PAGE_NUMBER_REGEX.search(last_page_link)
+        if match:
+            last_pr_number = int(match.group(1))
+            while params['page'] < last_pr_number:
+                params['page'] = params['page'] + 1
+                response = search_session.request('GET', url, params=params, headers=HEADERS, verify=VERIFY)
+                response.raise_for_status()
+                next_page_prs = response.json().get('items', [])
+                prs.extend(next_page_prs)
+        else:
+            print(f"Warning: Couldn't find the last page number. Last page link - {last_page_link}")
 
     return prs
 
