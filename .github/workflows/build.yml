@@ -21,14 +21,14 @@ jobs:
       with:
         node-version: "${{ steps.nvm.outputs.NVMRC }}"
     - name: Cache npm
-      uses: actions/cache@v1
+      uses: actions/cache@v4
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
     - name: Cache pip
-      uses: actions/cache@v1
+      uses: actions/cache@v4
       with:
         path: ~/.cache/pip
         key: ${{ runner.os }}-pip-${{ hashFiles('**/Pipfile.lock') }}
