@@ -4,6 +4,7 @@ import re
 import os
 import sys
 import time
+import traceback
 from typing import Optional
 import requests
 import inflection
@@ -73,7 +74,7 @@ def verify_mdx_server(readme_content: str):
         if response.status_code != 200:
             raise ValueError(f'Failed verifying via MDX server. Status: {response.status_code}. Error: {response.text}')
     except ReadTimeout:
-        print('Read timeout')
+        print('Read timeout\nTraceback: ', traceback.format_exc())
         sys.exit(1)
 
 
