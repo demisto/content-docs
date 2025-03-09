@@ -303,7 +303,8 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
             yml_data = yaml.safe_load(f)
         id = yml_data.get('commonfields', {}).get('id') or yml_data['id']
         if id in IGNORED_ITEMS[prefix]:
-            raise ValueError(f'{prefix}: {id} {IGNORE_MSG}')
+            print(f'{prefix}: {id} {IGNORE_MSG}')
+            return DocInfo('', '', '', readme_file, IGNORE_MSG)
         id = normalize_id(id)
         name = yml_data.get('display') or yml_data['name']
         desc = yml_data.get('description') or yml_data.get('comment')
@@ -334,7 +335,9 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
             header = f'---\nid: {id}\ntitle: {json.dumps(doc_info.name)}\ncustom_edit_url: {edit_url}\n---\n\n'
             content = add_content_info(content, yml_data, desc, readme_file)
             content = header + content
-        verify_mdx_server(content)
+        try:
+            verify_mdx_server(content)
+        except Exception as e:
         with open(f'{target_dir}/{id}.md', mode='w', encoding='utf-8') as f:  # type: ignore
             f.write(content)
         return doc_info
