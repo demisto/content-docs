@@ -303,7 +303,8 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
             yml_data = yaml.safe_load(f)
         id = yml_data.get('commonfields', {}).get('id') or yml_data['id']
         if id in IGNORED_ITEMS[prefix]:
-            raise ValueError(f'{prefix}: {id} {IGNORE_MSG}')
+            print(f'{prefix}: {id} {IGNORE_MSG}')
+            return DocInfo('', '', '', readme_file, IGNORE_MSG)
         id = normalize_id(id)
         name = yml_data.get('display') or yml_data['name']
         desc = yml_data.get('description') or yml_data.get('comment')
