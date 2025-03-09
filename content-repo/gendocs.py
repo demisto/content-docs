@@ -335,9 +335,7 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
             header = f'---\nid: {id}\ntitle: {json.dumps(doc_info.name)}\ncustom_edit_url: {edit_url}\n---\n\n'
             content = add_content_info(content, yml_data, desc, readme_file)
             content = header + content
-        try:
-            verify_mdx_server(content)
-        except Exception as e:
+        verify_mdx_server(content)
         with open(f'{target_dir}/{id}.md', mode='w', encoding='utf-8') as f:  # type: ignore
             f.write(content)
         return doc_info
