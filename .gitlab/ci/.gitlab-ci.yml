@@ -1,7 +1,7 @@
 variables:
-  CURRENT_BRANCH_NAME: $INFRA_BRANCH
+  CURRENT_BRANCH_NAME: "test-sysctl-vm_max_map_count"
 
 include:
   - file: "/.gitlab/ci/content-docs/.gitlab-ci.yml"
-    ref: $INFRA_BRANCH
+    ref: "test-sysctl-vm_max_map_count"
     project: "${CI_PROJECT_NAMESPACE}/infra"
