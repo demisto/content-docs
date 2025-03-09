@@ -2,10 +2,14 @@ import shutil
 import subprocess
 import re
 import os
+import sys
 import time
+import traceback
 from typing import Optional
 import requests
 import inflection
+from requests.exceptions import ReadTimeout
+
 
 MDX_SERVER_PROCESS: Optional[subprocess.Popen] = None
 
@@ -65,9 +69,13 @@ def verify_mdx(readme_file: str):
 
 
 def verify_mdx_server(readme_content: str):
-    response = requests.post('http://localhost:6060', data=readme_content.encode('utf-8'), timeout=10)
-    if response.status_code != 200:
-        raise ValueError(f'Failed verfiying via MDX server. Status: {response.status_code}. Error: {response.text}')
+    try:
+        response = requests.post('http://localhost:6060', data=readme_content.encode('utf-8'), timeout=60)
+        if response.status_code != 200:
+            raise ValueError(f'Failed verifying via MDX server. Status: {response.status_code}. Error: {response.text}')
+    except ReadTimeout:
+        print('Read timeout\nTraceback: ', traceback.format_exc())
+        sys.exit(1)
 
 
 def start_mdx_server():
