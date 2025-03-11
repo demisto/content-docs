@@ -1,7 +1,7 @@
 variables:
-  CURRENT_BRANCH_NAME: $INFRA_BRANCH
+  CURRENT_BRANCH_NAME: increase-docs-build-memory-to-48-GB
 
 include:
   - file: "/.gitlab/ci/content-docs/.gitlab-ci.yml"
-    ref: $INFRA_BRANCH
+    ref: increase-docs-build-memory-to-48-GB
     project: "${CI_PROJECT_NAMESPACE}/infra"
