@@ -56,7 +56,7 @@ We require our Partners to take training classes at the Palo Alto Networks Beaco
 
 1. [Cortex XSOAR: Analyst Training](https://beacon.paloaltonetworks.com/student/path/642715-cortex-xsoar-analyst-training?sid=31172842&sid_i=2) (3hrs)
 
-1. [Cortex XSOAR: SOAR Engineer Training](https://beacon.paloaltonetworks.com/student/collection/666206/path/741516) (3hrs)
+1. [Cortex XSOAR: SOAR Engineer Training](https://beacon.paloaltonetworks.com/student/collection/666206/path/2000858) (3hrs)
 
 Create a free account with your business email address and search by title to enroll instantly. (Note: you must use your business email to ensure accurate reporting and tracking.)
 
