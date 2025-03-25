@@ -722,6 +722,11 @@ html[data-theme="dark"] .header-github-link:before {
 /* unordered listing consistency */ 
 ul { list-style-type: lower-roman; }
 
+/* Specific list with bullet points */
+ul.bullet-list {
+  list-style-type: disc;
+}
+
 /* react player style */
 .react-player-wrapper {
   margin-bottom: 25px;
