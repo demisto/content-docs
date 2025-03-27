@@ -10,32 +10,32 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       with:
         fetch-depth: 0
     - name: Read .nvmrc
       run: echo ::set-output name=NVMRC::$(cat .nvmrc)  # see: https://help.github.com/en/actions/automating-your-workflow-with-github-actions/development-tools-for-github-actions#set-an-output-parameter-set-output
       id: nvm
     - name: Set up node
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1
       with:
         node-version: "${{ steps.nvm.outputs.NVMRC }}"
     - name: Cache npm
-      uses: actions/cache@v4
+      uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
     - name: Cache pip
-      uses: actions/cache@v4
+      uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
       with:
         path: ~/.cache/pip
         key: ${{ runner.os }}-pip-${{ hashFiles('**/Pipfile.lock') }}
         restore-keys: |
           ${{ runner.os }}-pip-
     - run: npm ci
-    - uses: actions/setup-python@v1
+    - uses: actions/setup-python@0f07f7f756721ebd886c2462646a35f78a8bc4de # v1
       with:
         python-version: '3.9'
     - name: Setup pipenv

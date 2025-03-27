@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - name: content checkout
-      uses: actions/checkout@v4  # https://github.com/marketplace/actions/checkout
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4  # https://github.com/marketplace/actions/checkout
       with:
         repository: demisto/content
         path: content
@@ -18,7 +18,7 @@ jobs:
         fetch-depth: 0
         ref: 'master'
     - name: content-docs checkout
-      uses: actions/checkout@v4  # https://github.com/marketplace/actions/checkout
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4  # https://github.com/marketplace/actions/checkout
       with:
         repository: demisto/content-docs
         path: content-docs
@@ -35,7 +35,7 @@ jobs:
         cat content-docs/urls_ignore.txt >> all_urls_ignore.txt
         cat all_urls_ignore.txt
     - name: Set up Go 1.13
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@bfdd3570ce990073878bf10f6b2d79082de49492 # v2
       with:
         go-version: 1.13.11
       id: go
@@ -56,7 +56,7 @@ jobs:
         echo "All good! muffet passed!!!"
     - name: Save artifcats
       if: ${{ always() }}
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
       with:
         name: log-artifacts
         path: muffet.txt

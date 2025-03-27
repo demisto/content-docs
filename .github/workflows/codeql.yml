@@ -24,19 +24,19 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4 # https://github.com/marketplace/actions/checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4 # https://github.com/marketplace/actions/checkout
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2
+        uses: github/codeql-action/init@b8d3b6e8af63cde30bdc382c0bc28114f4346c88 # v2
         with:
           languages: ${{ matrix.language }}
           queries: +security-and-quality
 
       - name: Autobuild
-        uses: github/codeql-action/autobuild@v2
+        uses: github/codeql-action/autobuild@b8d3b6e8af63cde30bdc382c0bc28114f4346c88 # v2
         if: ${{ matrix.language == 'javascript' || matrix.language == 'python' }}
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v2
+        uses: github/codeql-action/analyze@b8d3b6e8af63cde30bdc382c0bc28114f4346c88 # v2
         with:
           category: "/language:${{ matrix.language }}"
