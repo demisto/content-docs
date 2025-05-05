@@ -1,12 +1,5 @@
 # Trust Any Certificate
 This document explains how and what happens when SSL verification is disabled in integrations.
-This includes the following:
-
-1. Skipping the certificate validation.
-2. Reducing the security level of OpenSSL
-3. Allowing more cipher for TLS handshake.
-4. Disable hostname checks.
-5. Allow old TLS renegotiation.
 
 ## Usage
 
@@ -21,6 +14,13 @@ client = BaseClient(
 )
 response = client._http_request(...)
 ```
+
+When setting `verify=False` the following happens:
+1. Skipping the certificate validation.
+2. Reducing the security level of OpenSSL
+3. Allowing more cipher for TLS handshake.
+4. Disable hostname checks.
+5. Allow old TLS renegotiation.
 
 ## Skip Certificate Verification
 
