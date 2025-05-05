@@ -1,5 +1,5 @@
 # Trust Any Certificate
-This document explains how and what happens when SSL verification is disabled in integrations.
+This document explains what happens when SSL verification is disabled in integrations and how to disable it.
 
 ## Usage
 
