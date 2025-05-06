@@ -20,8 +20,9 @@ response = client._http_request(...)
 
 ## Skip Certificate Verification
 
-The following function enabled when `verify=False`, deletes the certificate environment variables which ensures that no extra certificate files are loaded.
-If requests version < 2.28  it is required to make sure requests skip certificate validation.
+When `verify=False` is set, the following function is triggered to delete certificate environment variables.
+This ensures that no extra CA bundles are loaded.
+For requests versions earlier than 2.28, this step is necessary to fully disable certificate validation.
 
 ```python
 def skip_cert_verification()
@@ -33,7 +34,8 @@ def skip_cert_verification()
 
 ## Python 3.10+ & Custom SSLAdapter
 
-Python 3.10 increased OpenSSL’s default security level to **2**, rejecting many older cipher suites and causing handshake failures against legacy servers. We detect and mount a custom adapter inside the BaseClient Constructor:
+Python 3.10 increased OpenSSL’s default security level to 2, which rejects many older cipher suites and breaks connections to legacy servers.
+To mitigate this, `BaseClient` mounts a custom SSL adapter when `verify=False`:
 
 ```python
 if IS_PY3 and PY_VER_MINOR >= 10 and not verify:
@@ -83,4 +85,4 @@ When `verify=False` on Python 3.10+, `SSLAdapter` creates a custom `ssl.SSLConte
    context = create_urllib3_context(ciphers=CIPHERS_STRING)
    ```
 
-This configuration restores legacy ciphers (excluding null, MD5, DSS, etc.).
+This configuration restores legacy ciphers (excluding null, MD5, DSS).
