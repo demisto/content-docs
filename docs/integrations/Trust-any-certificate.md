@@ -18,11 +18,25 @@ client = BaseClient(
 response = client._http_request(...)
 ```
 
+## _http_request()
+
+In the implementation of `_http_request`, the verify parameter is passed to the underlying HTTP request from the `BaseClient`:
+
+```python
+class BaseClient:
+    ...
+    def _http_request():
+        ...
+        res = self._session.request(..., verify=self._verify)
+```
+
+When `self._verify` is set to False, SSL certificate verification is disabled. This means the client will accept insecure certificates.
+
 ## Skip Certificate Verification
 
 When `verify=False` is set, the following function is triggered to delete certificate environment variables.
 This ensures that no extra CA bundles are loaded.
-For requests versions earlier than 2.28, this step is necessary to fully disable certificate validation.
+For requests versions earlier than 2.28, this step is necessary to fully disable certificate validation in addition to passing the `self._verify` to the session.request.
 
 ```python
 def skip_cert_verification()
