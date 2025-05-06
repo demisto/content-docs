@@ -13,7 +13,7 @@ from CommonServerPython import BaseClient
 
 client = BaseClient(
     base_url="https://api.example.com",
-    verify=False  # disable SSL checks and allow legacy ciphers
+    verify=False
 )
 response = client._http_request(...)
 ```
@@ -26,7 +26,6 @@ For requests versions earlier than 2.28, this step is necessary to fully disable
 
 ```python
 def skip_cert_verification()
-    # removes any custom CA bundle overrides
     for k in ('REQUESTS_CA_BUNDLE', 'CURL_CA_BUNDLE'):
         if k in os.environ:
             del os.environ[k]
