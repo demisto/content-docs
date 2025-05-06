@@ -1,5 +1,8 @@
 # Trust Any Certificate
-This document explains what happens when SSL verification is disabled in integrations and how to disable it.
+
+## Overview
+
+Disabling SSL verification by setting `verify=False` in `BaseClient` (or by enabling “Trust Any Certificate” in an integration) allows connecting to servers using less-secure SSL configurations. This bypasses standard HTTPS checks—skipping certificate validation, lowering OpenSSL’s security level, and permitting older ciphers and renegotiation modes.
 
 ## Usage
 
@@ -15,19 +18,12 @@ client = BaseClient(
 response = client._http_request(...)
 ```
 
-When setting `verify=False` the following happens:
-1. Skipping the certificate validation.
-2. Reducing the security level of OpenSSL.
-3. Allowing more cipher for TLS handshake.
-4. Disable hostname checks.
-5. Allow old TLS renegotiation.
-
 ## Skip Certificate Verification
 
-The following function enabled when `verify=False`, which deletes the certificate environment variables so requests skip certificate validation.
-It ensures that no extra certificate files are loaded.
-```python
+The following function enabled when `verify=False`, deletes the certificate environment variables which ensures that no extra certificate files are loaded.
+If requests version < 2.28  it is required to make sure requests skip certificate validation.
 
+```python
 def skip_cert_verification()
     # removes any custom CA bundle overrides
     for k in ('REQUESTS_CA_BUNDLE', 'CURL_CA_BUNDLE'):
@@ -44,11 +40,12 @@ if IS_PY3 and PY_VER_MINOR >= 10 and not verify:
     self._session.mount('https://', SSLAdapter(verify=verify))
 ```
 
-## What `SSLAdapter` Does
+## SSLAdapter
 
-When verify=False on Python 3.10+, `SSLAdapter` creates a custom `ssl.SSLContext` that:
+When `verify=False` on Python 3.10+, `SSLAdapter` creates a custom `ssl.SSLContext` that:
 
 1. **Disables hostname checks:**  
+
    ```python
     if not verify and IS_PY3:
         self.context.check_hostname = False
@@ -60,10 +57,11 @@ When verify=False on Python 3.10+, `SSLAdapter` creates a custom `ssl.SSLContext
     if not verify and ssl.OPENSSL_VERSION_INFO >= (3, 0, 0):
         self.context.options |= ssl.OP_LEGACY_SERVER_CONNECT
     ```
+
    The OP_LEGACY_SERVER_CONNECT flag (0x4) tells OpenSSL to allow old‐style TLS renegotiation. Relevant when a server doesn’t support the secure‐renegotiation extension (RFC 5746).
 
-
 3. **Lowers OpenSSL security level to 1 & Enables a cipher list**  
+
    ```python
    CIPHERS_STRING = (
        '@SECLEVEL=1:'
