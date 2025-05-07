@@ -2,11 +2,11 @@
 
 ## Overview
 
-Disabling SSL verification by setting `verify=False` in `BaseClient` (or by enabling “Trust Any Certificate” in an integration) allows connecting to servers using less-secure SSL configurations. This bypasses standard HTTPS checks—skipping certificate validation, lowering OpenSSL’s security level, and permitting older ciphers and renegotiation modes.
+Enabling “Trust Any Certificate” in an integration disables certificate validation and uses less-hardened SSL standards.
 
 ## Usage
 
-In your integration’s when constructing `BaseClient`, set `verify=False` to disable SSL checks and allow legacy ciphers:
+When constructing the `BaseClient` in your integrations, set `verify=False` to disable SSL checks and allow legacy ciphers:
 
 ```python
 from CommonServerPython import BaseClient
@@ -18,7 +18,9 @@ client = BaseClient(
 response = client._http_request(...)
 ```
 
-## _http_request()
+## How it works
+
+### _http_request()
 
 In the implementation of `_http_request`, the verify parameter is passed to the underlying HTTP request from the `BaseClient`:
 
@@ -32,7 +34,7 @@ class BaseClient:
 
 When `self._verify` is set to False, SSL certificate verification is disabled. This means the client will accept insecure certificates.
 
-## Skip Certificate Verification
+### Skip Certificate Verification
 
 When `verify=False` is set, the following function is triggered to delete certificate environment variables.
 This ensures that no extra CA bundles are loaded.
@@ -45,7 +47,7 @@ def skip_cert_verification()
             del os.environ[k]
 ```
 
-## Python 3.10+ & Custom SSLAdapter
+### Python 3.10+ & Custom SSLAdapter
 
 Python 3.10 increased OpenSSL’s default security level to 2, which rejects many older cipher suites and breaks connections to legacy servers.
 To mitigate this, `BaseClient` mounts a custom SSL adapter when `verify=False`:
@@ -55,7 +57,7 @@ if IS_PY3 and PY_VER_MINOR >= 10 and not verify:
     self._session.mount('https://', SSLAdapter(verify=verify))
 ```
 
-## SSLAdapter
+### SSLAdapter
 
 When `verify=False` on Python 3.10+, `SSLAdapter` creates a custom `ssl.SSLContext` that:
 
@@ -73,7 +75,7 @@ When `verify=False` on Python 3.10+, `SSLAdapter` creates a custom `ssl.SSLConte
         self.context.options |= ssl.OP_LEGACY_SERVER_CONNECT
     ```
 
-   The OP_LEGACY_SERVER_CONNECT flag (0x4) tells OpenSSL to allow old‐style TLS renegotiation. Relevant when a server doesn’t support the secure‐renegotiation extension (RFC 5746).
+   The OP_LEGACY_SERVER_CONNECT flag tells OpenSSL to allow legacy TLS renegotiation. Relevant when a server doesn’t support the secure‐renegotiation extension (RFC 5746).
 
 3. **Lowers OpenSSL security level to 1 & Enables a cipher list**  
 
