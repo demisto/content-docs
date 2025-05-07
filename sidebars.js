@@ -159,6 +159,7 @@ const sidebars = {
             "integrations/scheduled-commands",
             "integrations/yml-from-python-code-gen",
             "integrations/fetch-incidents-lookback",
+            "integrations/Trust-any-certificate",
           ]
         }
       ]
