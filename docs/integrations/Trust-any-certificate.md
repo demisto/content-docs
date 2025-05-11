@@ -4,7 +4,7 @@
 
 Enabling “Trust Any Certificate” in an integration disables certificate validation and uses less-hardened SSL standards.
 
-## Usage
+## Code usage
 
 When constructing the `BaseClient` in your integrations, set `verify=False` to disable SSL checks and allow legacy ciphers:
 
@@ -49,7 +49,7 @@ def skip_cert_verification()
 
 ### Python 3.10+ & Custom SSLAdapter
 
-Python 3.10 increased OpenSSL’s default security level to 2, which rejects many older cipher suites and breaks connections to legacy servers.
+Python 3.10 increased OpenSSL’s default security level to 2, which rejects many older cipher suites and breaks connections to legacy servers ([see CPython PR #25778](https://github.com/python/cpython/pull/25778)).
 To mitigate this, `BaseClient` mounts a custom SSL adapter when `verify=False`:
 
 ```python
@@ -77,7 +77,7 @@ When `verify=False` on Python 3.10+, `SSLAdapter` creates a custom `ssl.SSLConte
 
    The OP_LEGACY_SERVER_CONNECT flag tells OpenSSL to allow legacy TLS renegotiation. Relevant when a server doesn’t support the secure‐renegotiation extension (RFC 5746).
 
-3. **Lowers OpenSSL security level to 1 & Enables a cipher list**  
+3. **Lowers OpenSSL security level to 1 & Enables a [cipher list](https://github.com/demisto/content/blob/e3807159cae86ac30ecbb3c51ec82dbac7512d3d/Packs/Base/Scripts/CommonServerPython/CommonServerPython.py#L9127)**  
 
    ```python
    CIPHERS_STRING = (
