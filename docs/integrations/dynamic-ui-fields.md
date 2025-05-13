@@ -1,4 +1,4 @@
-# Advanced Integration Configuration: Parameter Order and Dynamic Features
+# Dynamic UI and Parameter Management for Integrations
 
 This guide outlines new features for integrations: controlling parameter order, the `engine_placeholder` field (type 23), and the `triggers` section. These enhancements improve user experience and enable more dynamic configuration.
 
