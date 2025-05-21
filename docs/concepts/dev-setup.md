@@ -82,6 +82,12 @@ Run the [`bootstrap`](https://github.com/demisto/content/blob/master/.hooks/boot
 .hooks/bootstrap
 ```
 
+After the bootstrap script completes, install an extra [`plugin`](https://github.com/python-poetry/poetry-plugin-shell) to get poetry shell to work by running:
+
+```bash
+poetry self add poetry-plugin-shell
+```
+
 After the script completes, you can activate the newly created virtual environment by running:
 
 ```bash
