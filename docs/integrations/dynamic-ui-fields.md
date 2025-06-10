@@ -18,7 +18,7 @@ The `engine` dropdown's location in the user interface is now explicitly defined
   section: Connect
 ```
 
-**Important Note:** This functionality requires a compatible UI version.  Using `engine_placeholder` in an outdated UI will create a non-functional parameter with the name `engine_placeholder`.
+**Important Note:** This functionality is not currently available for Cortex XSOAR 6.x.  Using `engine_placeholder` in Cortex XSOAR 6.x UI will create a non-functional parameter with the name `engine_placeholder`.
 
 
 ## 3. Implementing Dynamic Behavior with Triggers
