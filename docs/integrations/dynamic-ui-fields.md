@@ -30,8 +30,8 @@ The `triggers` section enables dynamic UI behavior based on user input and enabl
 triggers:
   - conditions:
       - name: <field_to_check> # Field whose value determines the effect
-        operator: <operator>   # (exists, not_exists, equals, not_equals)
-        value: <value>         # Value to compare against (required only for equals/not_equals)
+        operator: <operator>   # (exists, not_exists, equal, not_equal)
+        value: <value>         # Value to compare against (required only for equal/not_equal)
     effects:
       - name: <field_to_affect> # Field whose properties are modified
         action:
