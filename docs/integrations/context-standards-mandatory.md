@@ -450,7 +450,7 @@ The following is the format for an Endpoint.
     "EntityAType": "STRING, The type of the source of the relationship.",
     "EntityBType": "STRING, The type of the destination of the relationship.",
     "ID": "STRING, The endpoint's ID.",
-    "IPAddress": "STRING, The endpoint's IP address.",
+    "IPAddress": "STRING, The endpoint's IP address OR LIST, one or more IP addresses.",
     "Domain": "STRING, The endpoint's domain.",
     "MACAddress": "STRING, The endpoint's MAC address.",
     "DHCPServer": "STRING, The DHCP server of the endpoint.",
@@ -493,7 +493,7 @@ The following is the format for an Endpoint.
       description: The endpoint's operation system.
       type: String
     - contextPath: Endpoint.IPAddress
-      description: The endpoint's IP address.
+      description: The endpoint's IP address or list of IP addresses.
       type: String
     - contextPath: Endpoint.ID
       description: The endpoint's ID.
