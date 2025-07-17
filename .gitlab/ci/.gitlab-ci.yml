@@ -1,7 +1,7 @@
 variables:
-  CURRENT_BRANCH_NAME: $INFRA_BRANCH
+  CURRENT_BRANCH_NAME: remove-firebase-authenticate
 
 include:
   - file: "/.gitlab/ci/content-docs/.gitlab-ci.yml"
-    ref: $INFRA_BRANCH
+    ref: remove-firebase-authenticate
     project: "${CI_PROJECT_NAMESPACE}/infra"
