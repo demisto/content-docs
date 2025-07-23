@@ -6,3 +6,4 @@ include:
     ref: remove-firebase-authenticate
     project: "${CI_PROJECT_NAMESPACE}/infra"
 
+
