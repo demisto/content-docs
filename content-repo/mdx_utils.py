@@ -1,17 +1,18 @@
+import hashlib
+import inflection
+import os
+import re
+import requests
 import shutil
 import subprocess
-import re
-import os
 import sys
 import time
 import traceback
 from typing import Optional
-import requests
-import inflection
 from requests.exceptions import ReadTimeout
 
 
-MDX_SERVER_PROCESS: Optional[subprocess.Popen] = None
+MDX_SERVER_PROCESS: subprocess.Popen | None = None
 
 
 def normalize_id(id: str):
@@ -35,6 +36,14 @@ def fix_mdx(txt: str) -> str:
 
 
 def fix_relative_images(txt: str, base_dir: str, id: str, images_dir: str, relative_images_dir: str) -> str:
+    # Truncate long IDs to prevent file path length issues
+    # Use a maximum length for the ID part to prevent path too long errors
+    MAX_ID_LENGTH = 80
+    if len(id) > MAX_ID_LENGTH:
+        # Keep the first 40 and last 40 characters with a hash in between to maintain uniqueness
+        hash_part = hashlib.md5(id.encode()).hexdigest()[:8]
+        id = f"{id[:40]}-{hash_part}-{id[-40:]}" if len(id) > 80 else id
+        
     regexes = (
         r'\!\[.*?\]\((?!http)(.*?)\)',
         r"""<img\s+.*?src=\\*["'](?!http)(.*?)\\*["'].*?>""",
@@ -52,6 +61,12 @@ def fix_relative_images(txt: str, base_dir: str, id: str, images_dir: str, relat
                 # replace all dots except last with _ and / with -
                 # see: https://stackoverflow.com/questions/47813099/replace-all-but-last-occurrences-of-a-character-in-a-string-with-pandas
                 name = re.sub(r'\.(?=.*?\.)', '_', img).replace('/', '-')
+                
+                # Truncate image name if it's too long
+                if len(name) > 50:
+                    ext = os.path.splitext(name)[1]
+                    name = name[:45] + ext
+                    
                 name = f'{id}-{name}'
                 shutil.copy(full_img, f'{images_dir}/{name}')
                 # now replace the reference
