@@ -101,11 +101,10 @@ def submit_url_command(args: Dict[str, Any], client: Client):
     return find_url_command(args, client)
 ```
 
-
+For scenarios the polling_function decorator does not cover, you can use the `ScheduledCommand` class for more advanced control over polling.
 <details>
-    <summary>If this decorator doesnt cover a specific usecase, read the advanced section: </summary>
+    <summary>ScheduledCommand Class</summary>
 
-### ScheduledCommand Class
 `ScheduledCommand` is an optional class that enables scheduling commands via the command results.
 
 | Arg               | Type   | Description                                                                                                                                                                                |
@@ -126,6 +125,11 @@ The schedule sequence completes when any one of three terminating actions occur:
 1. ***Done*** - The integration finishes a schedule sequence by **not returning** a schedule result. Otherwise, the sequence continues as long as a schedule result is returned. 
 2. ***Error*** - The schedule sequence finishes with an error when a command in the sequence returns an error result.
 3. ***Timeout (automatically handled)*** - The schedule sequence finishes execution with a timeout error when the timeout is reached. Cortex XSOAR will return the timeout error entry automatically.
+
+#### Polling Scripts and ScheduledCommand 
+When a script with `polling: true` is re-run because it still has work to do (for example, `items_remaining > 0`), it ignores any new arguments you try to pass it. Instead, it re-runs with the original arguments from the very first time the script was executed in that sequence.
+This behavior is by design for polling scripts, which are meant to repeatedly check on a single, long-running task. The system assumes you want to keep checking on the same task with the same initial parameters.
+If you need to pass new information or manage different stages of a task, the best and most reliable way to do this is to store the data in the incident context. This ensures your script can access and update the necessary information throughout its different runs, regardless of the polling logic.
 
 #### How to Ignore Scheduled War Room Entries
 You can prevent printing the `Scheduled Entries` to the War Room when there is no output. However, this is possible only for entries that are subsequent to the first entry, since the first entry is expected to provide context about the expected final result. In other words, the first entry is always expected to have a result, but the entries that come after it may be empty until a non-scheduled result is returned.
