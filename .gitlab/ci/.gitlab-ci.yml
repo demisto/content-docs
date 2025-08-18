@@ -1,7 +1,7 @@
 variables:
-  CURRENT_BRANCH_NAME: sk_content_docs_ci
+  CURRENT_BRANCH_NAME: sk_fix_content_docs
 
 include:
   - file: "/.gitlab/ci/content-docs/.gitlab-ci.yml"
-    ref: sk_content_docs_ci
+    ref: sk_fix_content_docs
     project: "${CI_PROJECT_NAMESPACE}/infra"
