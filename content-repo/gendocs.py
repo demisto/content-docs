@@ -40,6 +40,13 @@ print = timestamped_print
 
 BASE_URL = "https://xsoar.pan.dev/docs/"
 MARKETPLACE_URL = "https://cortex.marketplace.pan.dev/marketplace/"
+
+# Path to private pack playbooks
+PRIVATE_PACK_PLAYBOOKS = os.path.abspath(os.path.join(
+    os.path.dirname(__file__),
+    ".private-packs/content/PrivatePacks/CortexResponseAndRemediation/Playbooks"
+))
+
 DOCS_LINKS_JSON = {}
 
 INTEGRATION_YML_MATCH = [
@@ -521,6 +528,10 @@ def create_docs(content_dir: str, target_dir: str, regex_list: List[str], prefix
     print(f'Using BRANCH: {BRANCH}')
     # Search for readme files
     readme_files = findfiles(regex_list, content_dir)
+    # Include private pack playbooks if they exist
+    if os.path.exists(PRIVATE_PACK_PLAYBOOKS):
+        print(f"Including private pack playbooks from {PRIVATE_PACK_PLAYBOOKS}")
+        readme_files += findfiles(regex_list, PRIVATE_PACK_PLAYBOOKS)
     print(f'Processing: {len(readme_files)} {prefix} files ...')
     if MAX_FILES > 0:
         print(f'PREVIEW MODE. Truncating file list to: {MAX_FILES}')

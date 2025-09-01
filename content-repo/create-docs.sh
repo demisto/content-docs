@@ -11,6 +11,12 @@ if [[ "${SCRIPT_DIR}" != /* ]]; then
     SCRIPT_DIR="${CURRENT_DIR}/${SCRIPT_DIR}"
 fi
 
+# --- Private pack config ---
+PRIVATE_REPO_URL="git@gitlab.xdr.pan.local:xdr/cortex-content/content-test-conf.git"
+PRIVATE_PACK_NAME="CortexResponseAndRemediation"
+PRIVATE_REPO_BRANCH="master"
+
+
 export GIT_LFS_SKIP_SMUDGE=1
 
 if [[ -n "$CONTENT_REPO_DIR" ]]; then
@@ -139,6 +145,42 @@ mkdir ${TARGET_DIR}/integrations
 mkdir ${TARGET_DIR}/playbooks
 mkdir ${TARGET_DIR}/scripts
 mkdir ${REL_IMGS_DIR}
+
+# === Handle private repo pack for playbook READMEs (sparse checkout) ===
+if [[ -n "$PRIVATE_REPO_URL" && -n "$PRIVATE_PACK_NAME" ]]; then
+    PRIVATE_REPO_DIR="${SCRIPT_DIR}/.private-packs"
+    PRIVATE_BRANCH="${PRIVATE_REPO_BRANCH:-main}"
+    SPARSE_PATH="content/PrivatePacks/${PRIVATE_PACK_NAME}/Playbooks"
+
+    if [ ! -d "${PRIVATE_REPO_DIR}" ]; then
+        echo "Cloning only private pack: $PRIVATE_PACK_NAME from $PRIVATE_REPO_URL ..."
+        git clone --filter=blob:none --no-checkout --depth 1 -b "${PRIVATE_BRANCH}" "${PRIVATE_REPO_URL}" "${PRIVATE_REPO_DIR}"
+        cd "${PRIVATE_REPO_DIR}"
+        git sparse-checkout init --cone
+        git sparse-checkout set "${SPARSE_PATH}"
+        git checkout "${PRIVATE_BRANCH}"
+        cd "${SCRIPT_DIR}"
+    else
+        echo "Updating private pack repo..."
+        cd "${PRIVATE_REPO_DIR}"
+        git fetch origin "${PRIVATE_BRANCH}"
+        git sparse-checkout set "${SPARSE_PATH}"
+        git checkout "${PRIVATE_BRANCH}"
+        git pull
+        cd "${SCRIPT_DIR}"
+    fi
+
+    PRIVATE_PACK_PATH="${PRIVATE_REPO_DIR}/${SPARSE_PATH}"
+    echo "Looking for private pack playbooks at: ${PRIVATE_PACK_PATH}"
+
+    if [ -d "${PRIVATE_PACK_PATH}" ]; then
+        echo "Copying playbook READMEs from private pack: ${PRIVATE_PACK_NAME}"
+        cp -r "${PRIVATE_PACK_PATH}"/* "${TARGET_DIR}/playbooks/"
+    else
+        echo "Directory does not exist: ${PRIVATE_PACK_PATH}"
+        echo "No playbooks found for private pack ${PRIVATE_PACK_NAME}"
+    fi
+fi
 
 echo "Copying CommonServerPython.py, demistomock.py, approved_tags.json and approved_usecases.json"
 cp ${CONTENT_GIT_DIR}/Packs/Base/Scripts/CommonServerPython/CommonServerPython.py .
