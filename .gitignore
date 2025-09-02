@@ -13,6 +13,9 @@
 .cache-loader
 content-repo/contentItemsDocsLinks.json
 
+# production
+/build
+
 # misc
 .DS_Store
 .env.local
