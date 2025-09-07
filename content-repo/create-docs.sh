@@ -98,6 +98,9 @@ if [ -d "${CONTENT_TEST_CONF_DIR}" ]; then
     PRIVATE_PACKS_DIR="${CONTENT_TEST_CONF_DIR}/content/private-packs"
     CONTENT_PACKS_DIR="${CONTENT_GIT_DIR}/Packs"
 
+
+    ls -l "$PRIVATE_PACKS_DIR"
+
     for pack in "${PRIVATE_PACKS_DIR}"/*; do
         pack_name=$(basename "$pack")
         echo "Processing pack: ${pack_name}"
