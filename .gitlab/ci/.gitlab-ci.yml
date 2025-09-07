@@ -1,7 +1,7 @@
 variables:
-  CURRENT_BRANCH_NAME: $INFRA_BRANCH
+  CURRENT_BRANCH_NAME: docs-privatePacks
 
 include:
   - file: "/.gitlab/ci/content-docs/.gitlab-ci.yml"
-    ref: $INFRA_BRANCH
+    ref: docs-privatePacks
     project: "${CI_PROJECT_NAMESPACE}/infra"
