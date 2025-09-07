@@ -99,7 +99,7 @@ if [ -d "${CONTENT_TEST_CONF_DIR}" ]; then
     CONTENT_PACKS_DIR="${CONTENT_GIT_DIR}/Packs"
 
 
-    ls -l "$PRIVATE_PACKS_DIR"
+    # ls -l "$PRIVATE_PACKS_DIR"
 
     for pack in "${PRIVATE_PACKS_DIR}"/*; do
         pack_name=$(basename "$pack")
