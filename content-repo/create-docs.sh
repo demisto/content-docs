@@ -86,6 +86,36 @@ echo "Content git dir [${CONTENT_GIT_DIR}] size: $(du -sh ${CONTENT_GIT_DIR})"
 
 cd ${SCRIPT_DIR}
 
+# Get the script directory (absolute path)
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+# Path where GitLab stored content-test-conf artifacts
+CONTENT_TEST_CONF_DIR="/builds/xdr/cortex-content/content-docs/artifacts/repositories/content-test-conf"
+
+if [ -d "${CONTENT_TEST_CONF_DIR}" ]; then
+    echo "Syncing private packs into existing content packs..."
+
+    PRIVATE_PACKS_DIR="${CONTENT_TEST_CONF_DIR}/private-packs"
+    CONTENT_PACKS_DIR="${CONTENT_GIT_DIR}/Packs"
+
+    for pack in "${PRIVATE_PACKS_DIR}"/*; do
+        pack_name=$(basename "$pack")
+        target_pack="${CONTENT_PACKS_DIR}/${pack_name}"
+
+        if [ -d "$target_pack" ]; then
+            echo "Pack ${pack_name} exists in content. Copying files..."
+            # Copy files into existing pack without overwriting existing ones
+            rsync -av --ignore-existing "${pack}/" "${target_pack}/"
+        else
+            echo "Pack ${pack_name} does not exist in content. Skipping."
+        fi
+    done
+
+    echo "Finished syncing packs."
+else
+    echo "content-test-conf directory not found at ${CONTENT_TEST_CONF_DIR}, skipping pack sync."
+fi
+
 if [[ ( "$PULL_REQUEST" == "true" || -n "$CI_PULL_REQUEST" ) && "$CONTENT_BRANCH" == "master" ]]; then
     echo "Checking if only doc files where modified and we can do a limited preview build..."
     if [ -n "$CIRCLE_COMPARE_URL" ]; then
