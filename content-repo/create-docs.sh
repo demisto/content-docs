@@ -104,14 +104,12 @@ if [ -d "${CONTENT_TEST_CONF_DIR}" ]; then
     for pack in "${PRIVATE_PACKS_DIR}"/*; do
         pack_name=$(basename "$pack")
         echo "Processing pack: ${pack_name}"
-        ls -l "$pack"
         target_pack="${CONTENT_PACKS_DIR}/${pack_name}"
 
         if [ -d "$target_pack" ]; then
             echo "Pack ${pack_name} exists in content. Copying files..."
-            ls -l "$target_pack"
             # Copy files into existing pack without overwriting existing ones
-            cp -rn "$pack/" "$target_pack/"
+            cp -rn "$pack/"* "$target_pack/"
             ls -l "$target_pack"
         else
             echo "Pack ${pack_name} does not exist in content. Skipping."
