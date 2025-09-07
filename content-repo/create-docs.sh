@@ -95,7 +95,7 @@ CONTENT_TEST_CONF_DIR="/builds/xdr/cortex-content/content-docs/artifacts/reposit
 if [ -d "${CONTENT_TEST_CONF_DIR}" ]; then
     echo "Syncing private packs into existing content packs..."
 
-    PRIVATE_PACKS_DIR="${CONTENT_TEST_CONF_DIR}/private-packs"
+    PRIVATE_PACKS_DIR="${CONTENT_TEST_CONF_DIR}/content/private-packs"
     CONTENT_PACKS_DIR="${CONTENT_GIT_DIR}/Packs"
 
     for pack in "${PRIVATE_PACKS_DIR}"/*; do
