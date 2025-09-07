@@ -110,6 +110,7 @@ if [ -d "${CONTENT_TEST_CONF_DIR}" ]; then
             echo "Pack ${pack_name} exists in content. Copying files..."
             # Copy files into existing pack without overwriting existing ones
             cp -rn "$pack/" "$target_pack/"
+            ls -l "$target_pack"
         else
             echo "Pack ${pack_name} does not exist in content. Skipping."
         fi
