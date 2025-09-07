@@ -94,7 +94,7 @@ CONTENT_TEST_CONF_DIR="/builds/xdr/cortex-content/content-docs/artifacts/reposit
 
 if [ -d "${CONTENT_TEST_CONF_DIR}" ]; then
     echo "Syncing private packs into existing content packs..."
-    
+
     PRIVATE_PACKS_DIR="${CONTENT_TEST_CONF_DIR}/content/PrivatePacks"
     CONTENT_PACKS_DIR="${CONTENT_GIT_DIR}/Packs"
 
@@ -109,7 +109,7 @@ if [ -d "${CONTENT_TEST_CONF_DIR}" ]; then
         if [ -d "$target_pack" ]; then
             echo "Pack ${pack_name} exists in content. Copying files..."
             # Copy files into existing pack without overwriting existing ones
-            rsync -av --ignore-existing "${pack}/" "${target_pack}/"
+            cp -rn "$pack/" "$target_pack/"
         else
             echo "Pack ${pack_name} does not exist in content. Skipping."
         fi
