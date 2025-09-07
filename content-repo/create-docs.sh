@@ -100,6 +100,7 @@ if [ -d "${CONTENT_TEST_CONF_DIR}" ]; then
 
     for pack in "${PRIVATE_PACKS_DIR}"/*; do
         pack_name=$(basename "$pack")
+        echo "Processing pack: ${pack_name}"
         target_pack="${CONTENT_PACKS_DIR}/${pack_name}"
 
         if [ -d "$target_pack" ]; then
