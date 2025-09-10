@@ -86,9 +86,6 @@ echo "Content git dir [${CONTENT_GIT_DIR}] size: $(du -sh ${CONTENT_GIT_DIR})"
 
 cd ${SCRIPT_DIR}
 
-# Get the script directory (absolute path)
-SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-echo "dir - ${SCRIPT_DIR}"
 # Path where GitLab stored content-test-conf artifacts
 CONTENT_TEST_CONF_DIR="/builds/xdr/cortex-content/content-docs/artifacts/repositories/content-test-conf"
 
