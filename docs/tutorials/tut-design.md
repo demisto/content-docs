@@ -123,7 +123,7 @@ For more details, check the [Contribution Guidelines](../contributing/contributi
 
 If you are a [Technology Partner](../partners/become-a-tech-partner) you should have already received an invite to edit a personalized template on Google Docs. Otherwise, you can download our [Design Document Template](/assets/Cortex%20XSOAR%20Partner%20Design%20Document%20-%20Template.pdf) and get started.
 
-As a reference on how to properly fill a Design Document, check out the [Hello World Design Document](Cortex%20XSOAR%20Content%20Pack%20Design%20Document%20-%20Hello%20World%20V1.pdf). Make sure you also look at the comments that provide useful guidelines.
+As a reference on how to properly fill a Design Document, check out the [Hello World Design Document](/assets/Cortex%20XSOAR%20Content%20Pack%20Design%20Document%20-%20Hello%20World%20V1.pdf). Make sure you also look at the comments that provide useful guidelines.
 
 ## Integration Design
 
