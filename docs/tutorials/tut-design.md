@@ -121,9 +121,9 @@ For contributors that aim to be [Certified](../partners/certification), we requi
 
 For more details, check the [Contribution Guidelines](../contributing/contributing) and verify the [Contribution Checklist](../contributing/checklist).
 
-If you are a [Technology Partner](../partners/become-a-tech-partner) you should have already received an invite to edit a personalized template on Google Docs. Otherwise, you can clone our [Design Document Template](https://docs.google.com/document/d/1BAM3u7nOZi8gD-10XiBeQzrOyjU5_ZOXc_O60QIaXeU) and get started.
+If you are a [Technology Partner](../partners/become-a-tech-partner) you should have already received an invite to edit a personalized template on Google Docs. Otherwise, you can download our [Design Document Template](/assets/Cortex_XSOAR_Partner_Design_Document_-_Template.pdf) and get started.
 
-As a reference on how to properly fill a Design Document, check out the [Hello World Design Document](https://docs.google.com/document/d/1s73bmvRQfAAOBzSL3-RPjw3dvOpKuyGZ4brRuJ4SumM). Make sure you also look at the comments that provide useful guidelines.
+As a reference on how to properly fill a Design Document, check out the [Hello World Design Document](/assets/Cortex_XSOAR_Content_Pack_Design_Document_-_Hello_World_V1.pdf). Make sure you also look at the comments that provide useful guidelines.
 
 ## Integration Design
 
