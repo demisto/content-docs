@@ -12,10 +12,10 @@ More info at: [Device Code flow - Evolved phishing](https://www.microsoft.com/se
 
 :::
 
-Microsoft's integrations (Graph and Azure) in Cortex XSOAR use Azure Active Directory applications to authenticate with Microsoft APIs. These integrations use OAuth 2.0 and OpenID Connect standard-compliant authentication services, which use an **Application** to sign-in or delegate authentication. 
-For more information, see the [Microsoft identity platform overview](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-overview).
+Microsoft's integrations (Graph and Azure) in Cortex XSOAR/XSIAM use Azure Active Directory applications to authenticate with Microsoft APIs. Those applications define the permissions and the roles for actions and XSOAR/XSIAM commands.
+Usually, you need to create your own application via Azure Portal and to set the API permissions, this is a self-deployed application. Alternatively, XSOAR/XSIAM suggests another solution where you can use the application XSOAR/XSIAM builds for you, this is the Cortex XSOAR application. In addition, for environments running within Azure, you can authenticate using Azure Managed Identities, which allow XSOAR/XSIAM to access Azure resources securely without managing credentials manually.
 
-There are three application authentication methods available: 
+Therefore, there are three application authentication methods available:
 
 1.  [Cortex XSOAR Application](#cortex-xsoar-application)
 2.  [Self Deployed Application](#self-deployed-application)
