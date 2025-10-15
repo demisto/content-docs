@@ -58,25 +58,60 @@ To add the registration, refer to the [Microsoft documentation](https://docs.mic
   - For Microsoft Defender, select the appropriate cloud using the *Endpoint Type* parameter.
   - For using the self-deployment option, select the *Custom* option and follow the instructions below.
 
-- Some Cortex XSOAR-Microsoft integrations support the deployment of national clouds through the self-deployed
+- Some Cortex XSOAR/XSIAM Microsoft integrations support the deployment of national clouds through the self-deployed
  authorization flow. For more information about Microsoft National Clouds, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/deployments).
  In order to use a national cloud, change the *Server URL* parameter to the corresponding address of the national cloud you are using.
 
 ### Client Credentials Flow
-Some Cortex XSOAR-Microsoft integrations use the [client credentials flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow).
-The Tenant ID, Client ID, and Client secret are required for the integration. 
+Some Cortex XSOAR/XSIAM Microsoft integrations use the [client credentials flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow).
+The Tenant ID, Client ID, and Client secret are required for the integration. You can get those values from the Azure Portal under the application information.
 
-To configure a Microsoft integration that uses this authorization flow with a self-deployed Azure application:
+1. Enter the Azure Portal.
+2. Search for you application using your application name or ID. You can search for it under the "App registrations" or to use the search bar.
+3. Where you find the application, click on it and go to the Overview section.
+4. Copy the "Application (client) ID" and paste it under the App/Client ID parameter field in the instance configuration in XSOAR/XSIAM.
+5. Copy the "Directory (tenant) ID" and paste it under the Token/Tenant ID parameter field in the instance configuration in XSOAR/XSIAM.
+6. In the application cofiguration go to "Certificates & secrets" and click on "New client secret", click on "Add" and copy the secret **value**. Paste it under the Client Secret parameter field in the instance configuration in XSOAR/XSIAM.
+7. In the instance configuration, select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
+8. Test and Save the instance.
 
-1. Enter your client ID in the *ID* parameter field. 
-2. Enter your client secret in the *Key* parameter field.
-3. Enter your tenant ID in the *Token* parameter field.
-4. Select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
-5. Test and Save the instance.
-
-Alternatively, instead of providing the *Client Secret*, you can authenticate using [certificate credentials](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-certificate-credentials) by providing:
+Alternatively, instead of providing the *Client Secret*, you can authenticate using certificate credentials by providing:
     * Certificate Thumbprint - The certificate thumbprint as appears when registering the certificate to the App
     * Private Key -  The private key of the registered certificate
+    
+ You can find more information about it in [Microsoft Documentations]((https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-certificate-credentials) or to follow the next steps in case of Linux system operation:
+ 1.  Run
+    openssl genrsa -out MyXSOARApp.key 2048
+    openssl req -new -x509 -key MyXSOARApp.key -out MyXSOARApp.crt -days 365 -subj "/CN=MyXSOARApp"
+    openssl x509 -in MyXSOARApp.crt -noout -fingerprint -sha1
+ 
+2. You will get results such as:
+    sha1 Fingerprint=E4:64:9A:AD:13:A4:F4:E0:74:11
+
+3. Remove the colons, this is your certificate thumbprint. For example:
+    E4649AAD13A4F4E07411{}
+
+
+5. Then run:
+    cat MyXSOARApp.key
+   
+You will get results such as:
+
+    -----BEGIN PRIVATE KEY-----
+    ff12gg4kilo2gftvy54.....
+    -----END PRIVATE KEY-----
+   
+This is your private key, including the headrs:
+
+
+5. Next, go to Azure Portal → App registrations → Select your app → Certificates & secrets → Certificates
+
+Click “Upload certificate”.
+Select your public certificate, the file with the name MyXSOARApp.crt (not the .key file).
+
+Click Add.
+ 
+6. Paste the private key and the certificate thumbprint to the instance configuration in XSOAR and click on "Test".
 
 
 ### Authorization Code flow
