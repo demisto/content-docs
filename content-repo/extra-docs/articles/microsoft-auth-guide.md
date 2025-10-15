@@ -79,25 +79,26 @@ Alternatively, instead of providing the *Client Secret*, you can authenticate us
     * Certificate Thumbprint - The certificate thumbprint as appears when registering the certificate to the App
     * Private Key -  The private key of the registered certificate
     
- You can find more information about it in [Microsoft Documentations]((https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-certificate-credentials) or to follow the next steps in case of Linux system operation:
- 1.  Run
+ You can find more information about it in [Microsoft Documentations](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-certificate-credentials) or to follow the next steps in case of Linux system operation:
+ 1. Run
     
     openssl genrsa -out MyXSOARApp.key 2048
+    
     openssl req -new -x509 -key MyXSOARApp.key -out MyXSOARApp.crt -days 365 -subj "/CN=MyXSOARApp"
+    
     openssl x509 -in MyXSOARApp.crt -noout -fingerprint -sha1
  
 3. You will get results such as:
-   
-    sha1 Fingerprint=E4:64:9A:AD:13:A4:F4:E0:74:11
 
-4. Remove the colons, this is your certificate thumbprint. For example:
+   sha1 Fingerprint=E4:64:9A:AD:13:A4:F4:E0:74:11
+
+5. Remove the colons, this is your certificate thumbprint. For example:
    
     E4649AAD13A4F4E07411{}
 
+6. Then run:
 
-5. Then run:
-   
-    cat MyXSOARApp.key
+   cat MyXSOARApp.key
    
 You will get results such as:
 
