@@ -21,6 +21,8 @@ Therefore, there are three application authentication methods available:
 2.  [Self Deployed Application](#self-deployed-application)
 3.  [Azure Managed Identities](#azure-managed-identities-authentication)
 
+You must use one of those authentication methods.
+
 ## Cortex XSOAR Application
 In this method, you grant consent for the Cortex XSOAR multi-tenant application to access your data. The application is maintained by Cortex XSOAR.
 Depending on the integration, this requires either admin consent to [get access without a user](https://docs.microsoft.com/en-us/graph/auth-v2-service) or user consent to [get access on behalf of a user](https://docs.microsoft.com/en-us/graph/auth-v2-user).
@@ -37,15 +39,15 @@ To start the authentication process, go to the integration's detailed instructio
     <img width="800" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/instance_detailed_instructions_new.png" align="middle"></img>
 
 5. In the XSOAR Web Page that appears, click the **Start Authorization Process** button to initiate the authorization flow. 
-   You will receive your ID, token, and key. You need to enter this information, when you configure the integration instance in Cortex XSOAR.
-
+   You will receive your ID, token, and key. Go back to the instance configuration and copy: ID -> App/client ID, token -> Tenant ID, key -> Client Secret.
+   Click on "Test". The instance should be configured successfully. 
 
 
 ## Self Deployed Application
 
 To use a self-configured Azure application, you need to add a new Azure App Registration in the Azure Portal. 
 
-The application must have the required permissions for the relevant APIs, which are documented in the integration documentation, for example see [Microsoft Defender Advanced Threat Protection required permissions](https://xsoar.pan.dev/docs/reference/integrations/microsoft-defender-advanced-threat-protection#required-permissions).
+The application must have the required permissions and roles for the relevant APIs, which are documented in the integration documentation, for example see [Microsoft Defender Advanced Threat Protection required permissions](https://xsoar.pan.dev/docs/reference/integrations/microsoft-defender-advanced-threat-protection#required-permissions).
 
 To add the registration, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
 
