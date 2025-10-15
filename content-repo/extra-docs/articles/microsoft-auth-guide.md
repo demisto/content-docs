@@ -78,8 +78,8 @@ The Tenant ID, Client ID, and Client secret are required for the integration. Yo
 #### Certificate Thumbprint and Private Key
 Alternatively, instead of providing the *Client Secret*, you can authenticate using certificate credentials by providing:
     
-- Certificate Thumbprint - The certificate thumbprint as appears when registering the certificate to the App
-- Private Key -  The private key of the registered certificate
+- **Certificate Thumbprint** - The certificate thumbprint as appears when registering the certificate to the App
+- **Private Key** -  The private key of the registered certificate
     
  You can find more information about it in [Microsoft Documentations](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-certificate-credentials) or to follow the next steps in case of Mac/Linux operating systems:
  1. Run
@@ -90,19 +90,19 @@ Alternatively, instead of providing the *Client Secret*, you can authenticate us
     openssl x509 -in MyXSOARApp.crt -noout -fingerprint -sha1
     ```
  
-3. You will get results such as:
+2. You will get results such as:
 
     ```
    sha1 Fingerprint=E4:64:9A:AD:13:A4:F4:E0:74:11
     ```
 
-5. Remove the colons, this is your certificate thumbprint. For example:
+3. Remove the colons, this is your certificate thumbprint. For example:
    
     ```
    E4649AAD13A4F4E07411
     ```
 
-7. Then run:
+4. Next, run:
 
    ```
    cat MyXSOARApp.key
@@ -118,14 +118,11 @@ Alternatively, instead of providing the *Client Secret*, you can authenticate us
    
     This is your private key, include the headers.
 
-5. Next, go to Azure Portal → App registrations → Select your app → Certificates & secrets → Certificates
+5. Next, go to Azure Portal → App registrations → Select your app → Certificates & secrets → Certificates. Click “Upload certificate”.
 
-    Click “Upload certificate”.
-    Select your public certificate, the file with the name MyXSOARApp.crt (not the .key file).
-    
-    Click Add.
+6. Select your public certificate, the file with the name **MyXSOARApp.crt** (not the .key file). Click on "Add".
  
-6. Paste the private key and the certificate thumbprint to the instance configuration in XSOAR and click on "Test".
+7. Paste the private key and the certificate thumbprint to the instance configuration in XSOAR/XSIAM and click on "Test".
 
 
 ### Authorization Code flow
