@@ -83,22 +83,20 @@ Alternatively, instead of providing the *Client Secret*, you can authenticate us
  1. Run
     
     openssl genrsa -out MyXSOARApp.key 2048
-    
     openssl req -new -x509 -key MyXSOARApp.key -out MyXSOARApp.crt -days 365 -subj "/CN=MyXSOARApp"
-    
     openssl x509 -in MyXSOARApp.crt -noout -fingerprint -sha1
  
 3. You will get results such as:
 
-   sha1 Fingerprint=E4:64:9A:AD:13:A4:F4:E0:74:11
+    ```sha1 Fingerprint=E4:64:9A:AD:13:A4:F4:E0:74:11```
 
 5. Remove the colons, this is your certificate thumbprint. For example:
    
-    E4649AAD13A4F4E07411{}
+    ```E4649AAD13A4F4E07411```
 
 6. Then run:
 
-   cat MyXSOARApp.key
+   ```cat MyXSOARApp.key```
    
 You will get results such as:
 
