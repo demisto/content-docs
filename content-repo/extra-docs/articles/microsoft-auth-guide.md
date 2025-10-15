@@ -90,21 +90,29 @@ Alternatively, instead of providing the *Client Secret*, you can authenticate us
  
 3. You will get results such as:
 
-    ```sha1 Fingerprint=E4:64:9A:AD:13:A4:F4:E0:74:11```
+    ```
+   sha1 Fingerprint=E4:64:9A:AD:13:A4:F4:E0:74:11
+    ```
 
 5. Remove the colons, this is your certificate thumbprint. For example:
    
-    ```E4649AAD13A4F4E07411```
+    ```
+   E4649AAD13A4F4E07411
+    ```
 
-6. Then run:
+7. Then run:
 
-   ```cat MyXSOARApp.key```
+   ```
+   cat MyXSOARApp.key
+   ```
    
     You will get results such as:
-
+   
+    ```
     -----BEGIN PRIVATE KEY-----
     ff12gg4kilo2gftvy54.....
     -----END PRIVATE KEY-----
+    ```
    
     This is your private key, include the headers.
 
