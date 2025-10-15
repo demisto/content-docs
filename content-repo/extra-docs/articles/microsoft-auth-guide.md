@@ -78,8 +78,8 @@ The Tenant ID, Client ID, and Client secret are required for the integration. Yo
 #### Certificate Thumbprint and Private Key
 Alternatively, instead of providing the *Client Secret*, you can authenticate using certificate credentials by providing:
     
-    - Certificate Thumbprint - The certificate thumbprint as appears when registering the certificate to the App
-    - Private Key -  The private key of the registered certificate
+- Certificate Thumbprint - The certificate thumbprint as appears when registering the certificate to the App
+- Private Key -  The private key of the registered certificate
     
  You can find more information about it in [Microsoft Documentations](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-certificate-credentials) or to follow the next steps in case of Mac/Linux operating systems:
  1. Run
