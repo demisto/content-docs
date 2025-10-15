@@ -75,6 +75,7 @@ The Tenant ID, Client ID, and Client secret are required for the integration. Yo
 7. In the instance configuration, select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
 8. Test and Save the instance.
 
+#### Certificate Thumbprint and Private Key
 Alternatively, instead of providing the *Client Secret*, you can authenticate using certificate credentials by providing:
     * Certificate Thumbprint - The certificate thumbprint as appears when registering the certificate to the App
     * Private Key -  The private key of the registered certificate
