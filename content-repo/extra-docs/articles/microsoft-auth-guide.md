@@ -64,7 +64,10 @@ To add the registration, refer to the [Microsoft documentation](https://docs.mic
 
 ### Client Credentials Flow
 Some Cortex XSOAR/XSIAM Microsoft integrations use the [client credentials flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow).
-The Tenant ID, Client ID, and Client secret are required for the integration. You can get those values from the Azure Portal under the application information.
+When configured using this flow, the integration operates at the organization (tenant) level, allowing actions to be performed across the entire tenant. This flow typically uses application permissions, which must be defined in the Azure application configuration within the Azure Portal. These permissions determine that all XSOAR/XSIAM commands executed through this authentication method act within the organization or tenant scope.
+
+For this flow, the Tenant ID, Client ID, and Client secret are required for the integration. You can get those values from the Azure Portal under the application information.
+Follow these steps:
 
 1. Enter the Azure Portal.
 2. Search for you application using your application name or ID. You can search for it under the "App registrations" or to use the search bar.
@@ -126,20 +129,22 @@ Alternatively, instead of providing the *Client Secret*, you can authenticate us
 
 
 ### Authorization Code flow
-Some Cortex XSOAR-Microsoft integrations (e.g., Microsoft Graph Mail Single User) require authorization on behalf of a user (not admin consent). For more information about this authorization flow, refer to the [authorization code flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow).
+Some Cortex XSOAR/XSIAM Microsoft integrations (e.g., Microsoft Graph Mail Single User) require authorization on behalf of a user (not admin consent). For more information about this authorization flow, refer to the [authorization code flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow).
+When configured using this flow, the integration operates under the user’s context, allowing actions based on the signed-in user’s permissions. This flow uses delegated permissions, which are defined in the Azure application configuration in the Azure Portal.
+The user who authenticates must have the same roles and permissions as those granted to the application. These permissions determine which actions the user can perform through XSOAR/XSIAM commands, according to their privileges within the organization or tenant.
 
-To configure a Microsoft integration that uses this authorization flow with a self-deployed Azure application:
+For this flow, the Tenant ID, Client ID, Client secret and Redirect URI are required for the integration. You can get those values from the Azure Portal under the application information.
+Follow these steps:
 
-1. Make sure the needed permissions are granted for the app registration, e.g., for Microsoft Graph User: API/Permission name `Directory.AccessAsUser.All` of type `Delegated`.
-2. In your app. click **Authentication** > **Platform configurations** > **Add a platform.** Choose **Web** and add [Redirect URI](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app#add-a-redirect-uri).
-The Redirect URI can direct any web application that you wish to receive responses from Azure AD. If you are not sure what to set, you can use `https://localhost`. 
-3. Enter your client ID in the *ID* parameter field. 
-4. Enter your client secret in the *Key* parameter field.
-5. Enter your tenant ID in the *Token* parameter field.
-6. Enter your redirect URI in the *Redirect URI* parameter field.
-7. Select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
-8. Save the instance.
-9. Run the `!<integration command prefix>-generate-login-url` command in the War Room and follow the instructions:
+1. In your app, click **Authentication** > **Platform configurations** > **Add a platform.** Choose **Web** and add [Redirect URI](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app#add-a-redirect-uri).
+The Redirect URI can direct any web application that you wish to receive responses from Azure AD. If you are not sure what to set, you can use `https://localhost`.
+2. Enter your redirect URI in the *Redirect URI* parameter field in the instance configuration in XSOAR/XSIAM.
+3. Go to "Overview" section. Copy the "Application (client) ID" and paste it under the App/Client ID parameter field in the instance configuration in XSOAR/XSIAM.
+4. Copy the "Directory (tenant) ID" and paste it under the Token/Tenant ID parameter field in the instance configuration in XSOAR/XSIAM.
+5. In the application cofiguration go to "Certificates & secrets" and click on "New client secret", click on "Add" and copy the secret **value**. Paste it under the Client Secret parameter field in the instance configuration in XSOAR/XSIAM.
+6. Select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
+7. Save the instance.
+8. Run the `!<integration command prefix>-generate-login-url` command in the War Room and follow the instructions:
     >1. Click on the [login URL]() to sign in and grant Cortex XSOAR permissions for your Azure Service Management.
     You will be automatically redirected to a link with the following structure:
     ```REDIRECT_URI?code=AUTH_CODE&session_state=SESSION_STATE```
@@ -147,8 +152,8 @@ The Redirect URI can direct any web application that you wish to receive respons
     and paste it in your instance configuration under the *Authorization code* parameter. 
     >3. For any issues, see [Authorization Code flow Troubleshooting](#authorization-code-flow-troubleshooting).
 
-10. Save the instance.
-11. Run the `!<integration command prefix>-auth-test` command. A 'Success' message should be printed to the War Room.
+9. Save the instance.
+10. Run the `!<integration command prefix>-auth-test` command. A 'Success' message should be printed to the War Room.
 
 ### Device Code Flow
 Some Cortex XSOAR-Microsoft integrations use the [device code flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code).
