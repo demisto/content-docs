@@ -82,9 +82,11 @@ Alternatively, instead of providing the *Client Secret*, you can authenticate us
  You can find more information about it in [Microsoft Documentations](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-certificate-credentials) or to follow the next steps in case of Linux system operation:
  1. Run
     
+    ```
     openssl genrsa -out MyXSOARApp.key 2048
     openssl req -new -x509 -key MyXSOARApp.key -out MyXSOARApp.crt -days 365 -subj "/CN=MyXSOARApp"
     openssl x509 -in MyXSOARApp.crt -noout -fingerprint -sha1
+    ```
  
 3. You will get results such as:
 
@@ -98,21 +100,20 @@ Alternatively, instead of providing the *Client Secret*, you can authenticate us
 
    ```cat MyXSOARApp.key```
    
-You will get results such as:
+    You will get results such as:
 
     -----BEGIN PRIVATE KEY-----
     ff12gg4kilo2gftvy54.....
     -----END PRIVATE KEY-----
    
-This is your private key, include the headers.
-
+    This is your private key, include the headers.
 
 5. Next, go to Azure Portal → App registrations → Select your app → Certificates & secrets → Certificates
 
-Click “Upload certificate”.
-Select your public certificate, the file with the name MyXSOARApp.crt (not the .key file).
-
-Click Add.
+    Click “Upload certificate”.
+    Select your public certificate, the file with the name MyXSOARApp.crt (not the .key file).
+    
+    Click Add.
  
 6. Paste the private key and the certificate thumbprint to the instance configuration in XSOAR and click on "Test".
 
