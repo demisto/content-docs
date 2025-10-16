@@ -11,6 +11,7 @@ This document includes the following sections to help you understand, set up, an
 - [Authentication Flows](#authentication-flows)
 - [Azure Managed Identities Authentication](#azure-managed-identities-authentication)
 - [How to find Azure Integrations Parameters](#how-to-find-azure-integrations-parameters)
+- [Troubleshooting](#troubleshooting)
 
 Microsoft integrations (Graph and Azure) in Cortex XSOAR/XSIAM use Azure Active Directory (Azure AD) applications to securely authenticate with Microsoft APIs. These applications act as the bridge between XSOAR/XSIAM and Microsoft services, defining which API requests can be performed and what level of access is granted. The permissions and roles configured in the Azure application determine what data and actions the integration is authorized to access within your tenant.
 
@@ -24,7 +25,7 @@ Therefore, there are three application authentication methods available:
 
 You must use one of those authentication methods.
 
-## Cortex XSOAR Application
+# Cortex XSOAR Application
 In this method, you grant consent for the Cortex XSOAR multi-tenant application to access your data. The application is maintained by Cortex XSOAR.
 Depending on the integration, this requires either admin consent to [get access without a user](https://docs.microsoft.com/en-us/graph/auth-v2-service) or user consent to [get access on behalf of a user](https://docs.microsoft.com/en-us/graph/auth-v2-user).
 
@@ -44,7 +45,7 @@ To start the authentication process, go to the integration's detailed instructio
    Click on "Test". The instance should be configured successfully. 
 
 
-## Self Deployed Application
+# Self Deployed Application
 
 To use a self-configured Azure application, you need to add a new Azure App Registration in the Azure Portal. 
 
@@ -52,7 +53,7 @@ The application must have the required permissions and roles for the relevant AP
 
 To add the registration, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
 
-#### Using National Cloud
+### Using National Cloud
 
 - To see which integrations support natively National Clouds,See the [table below.](https://xsoar.pan.dev/docs/reference/articles/microsoft-integrations---authentication#supported-authentication-flows-for-microsoft-integrations) 
   - For Microsoft Azure integrations, select the appropriate cloud using the *Azure Cloud* parameter.
@@ -63,7 +64,7 @@ To add the registration, refer to the [Microsoft documentation](https://docs.mic
  authorization flow. For more information about Microsoft National Clouds, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/deployments).
  In order to use a national cloud, change the *Server URL* parameter to the corresponding address of the national cloud you are using.
 
-## Authentication Flows
+# Authentication Flows
 
 :::info Security Awareness: Device Code Authorization
 It is recommended to use the client credentials and user authorization flows for integrations when possible. The device code authorization flow has limited protections against sophisticated phishing campaigns.
@@ -74,7 +75,7 @@ More info at: [Device Code flow - Evolved phishing](https://www.microsoft.com/se
 
 :::
 
-### Client Credentials Flow
+## Client Credentials Flow
 Some Cortex XSOAR/XSIAM Microsoft integrations use the [client credentials flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow).
 When configured using this flow, the integration operates at the organization (tenant) level, allowing actions to be performed across the entire tenant. This flow typically uses application permissions, which must be defined in the Azure application configuration within the Azure Portal. These permissions determine that all XSOAR/XSIAM commands executed through this authentication method act within the organization or tenant scope.
 
@@ -92,7 +93,7 @@ Follow these steps:
 
 **Note:** Make sure the neccessary permissions and roles are applied to the application.
 
-#### Certificate Thumbprint and Private Key
+### Certificate Thumbprint and Private Key
 Alternatively, instead of providing the *Client Secret*, you can authenticate using certificate credentials by providing:
     
 - **Certificate Thumbprint** - The certificate thumbprint as appears when registering the certificate to the App
@@ -142,7 +143,7 @@ Alternatively, instead of providing the *Client Secret*, you can authenticate us
 7. Paste the private key and the certificate thumbprint to the instance configuration in XSOAR/XSIAM and click on "Test".
 
 
-### Authorization Code flow
+## Authorization Code flow
 Some Cortex XSOAR/XSIAM Microsoft integrations (e.g., Microsoft Graph Mail Single User) require authorization on behalf of a user (not admin consent). For more information about this authorization flow, refer to the [authorization code flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow).
 When configured using this flow, the integration operates under the user’s context, allowing actions based on the signed-in user’s permissions. This flow uses delegated permissions, which are defined in the Azure application configuration in the Azure Portal.
 The user who authenticates must have the same roles and permissions as those granted to the application. These permissions determine which actions the user can perform through XSOAR/XSIAM commands, according to their privileges within the organization or tenant.
@@ -171,12 +172,13 @@ The Redirect URI can direct any web application that you wish to receive respons
 
 **Note:** Make sure the neccessary permissions and roles are applied to the application and to the user.
 
-#### Example for [Microsoft Graph User integration](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-user) configuration using a self-deployed and authorization code flow
+### Example for [Microsoft Graph User integration](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-user) configuration using a self-deployed and authorization code flow
 
 1. In Microsoft Azure portal, create a new app registration.
    1. Select Azure Active Directory> App registrations> New registration.
 
-      ![app](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/app-reg.png)
+        <img width="800" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/app-reg.png" align="middle"></img>
+
    2. In the **Redirect URI (optional)** field select **Web** and type a name (you can enter an arbitrary name). In this example we use *https<nolink\>://xsoar.* 
 
        ![reg-app](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/reg-app.png)
@@ -235,7 +237,7 @@ The Redirect URI can direct any web application that you wish to receive respons
    7. Save the integration settings and test the setup by running the *!msgraph-user-test* command from the Cortex XSOAR CLI.
 
 
-### Device Code Flow
+## Device Code Flow
 Some Cortex XSOAR-Microsoft integrations use the [device code flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code).
 When configured using this flow, the integration operates under the user’s context, similar to the Authorization Code Flow, but it is designed for devices or environments where a browser-based login is not available. This flow also uses delegated permissions, which must be defined in the Azure application configuration in the Azure Portal.
 The user authenticating via the device code must have the same roles and permissions as those granted to the application. These permissions determine which actions the user can perform through XSOAR/XSIAM commands within the organization or tenant scope.
@@ -259,7 +261,7 @@ The Redirect URI can direct any web application that you wish to receive respons
 
 **Note:** Make sure the neccessary permissions and roles are applied to the application and to the user.
 
-## Azure Managed Identities Authentication
+# Azure Managed Identities Authentication
 #### Note: This option is relevant only if the integration is running on Azure VM.
 
 Some of the Cortex XSOAR-Microsoft integrations use the [Azure Managed Identities Authentication](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview).
@@ -274,11 +276,11 @@ Follow one of these steps for authentication based on Azure Managed Identities:
    2. Select your User Assigned Managed Identity -> copy the Client ID -> paste it in the **Azure Managed Identities Client ID** field in the instance settings.
    3. Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox.
 
-## Revoke Consent
+# Revoke Consent
 
 In order to revoke consent to a Cortex XSOAR Microsoft application, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant#revoking-consent). 
 
-## How to find Azure Integrations Parameters
+# How to find Azure Integrations Parameters
 In order to use the Cortex XSOAR/XSIAM Azure application, you need to fill in your subscription ID and resource group name, which you can find in the Azure Portal.
 
 1. Log in to the [Azure Portal Home Page](https://portal.azure.com/#home) using your Azure credentials.
@@ -296,7 +298,7 @@ After you a redirected to the next page, in the **Overview** tab you will find y
 ![Overview](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/subscription_id_resourse_group.png)
 
 
-## Supported Authentication Flows for Microsoft integrations
+# Supported Authentication Flows for Microsoft integrations
 
 | Integration Name                                      | XSOAR Application | Client Credentials | Device Code | Auth code (redirect URI) | Azure Managed Identities | Supports National Clouds |
 |-------------------------------------------------------|-------------------|--------------------|-------------|--------------------------|--------------------------|--------------------------| 
@@ -340,7 +342,7 @@ After you a redirected to the next page, in the **Overview** tab you will find y
 
 
 
-## Troubleshooting
+# Troubleshooting
 #### Reset authentication
 In case of errors in the authentication process, such as a token revoked/expired or in case you generate new credentials, 
 you can use the `!<integration command prefix>-auth-reset` command in the War Room in order to rerun the authentication process,
