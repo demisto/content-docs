@@ -5,14 +5,12 @@ description: Authentication method for Microsoft Graph and Azure integrations in
 
 This document includes the following sections to help you understand, set up, and use the integration effectively:
 
-- [Integration Architecture](#integration-architecture)
-- [Setup and Configuration](#setup-and-configuration)
-- [Setup Examples](#setup-examples)
-- [Important Information](#important-information)
-- [Known Limitations](#known-limitations)
-- [Troubleshooting](#troubleshooting)
-- [Download Demisto Bot](#download-demisto-bot)
-- [Commands](#commands)
+- [Cortex XSOAR Application](#cortex-xsoar-application)
+- [Self Deployed Application](#self-deployed-application)
+- [Using National Cloud](#using-national-cloud)
+- [Authentication Flows](#authentication-flows)
+- [Azure Managed Identities Authentication](#azure-managed-identities-authentication)
+- [How to find Azure Integrations Parameters](#how-to-find-azure-integrations-parameters)
 
 Microsoft integrations (Graph and Azure) in Cortex XSOAR/XSIAM use Azure Active Directory (Azure AD) applications to securely authenticate with Microsoft APIs. These applications act as the bridge between XSOAR/XSIAM and Microsoft services, defining which API requests can be performed and what level of access is granted. The permissions and roles configured in the Azure application determine what data and actions the integration is authorized to access within your tenant.
 
@@ -173,68 +171,7 @@ The Redirect URI can direct any web application that you wish to receive respons
 
 **Note:** Make sure the neccessary permissions and roles are applied to the application and to the user.
 
-### Device Code Flow
-Some Cortex XSOAR-Microsoft integrations use the [device code flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code).
-When configured using this flow, the integration operates under the user’s context, similar to the Authorization Code Flow, but it is designed for devices or environments where a browser-based login is not available. This flow also uses delegated permissions, which must be defined in the Azure application configuration in the Azure Portal.
-The user authenticating via the device code must have the same roles and permissions as those granted to the application. These permissions determine which actions the user can perform through XSOAR/XSIAM commands within the organization or tenant scope.
-
-During authentication, the user will be provided with a code and a URL. They must enter the code at the URL using a browser on any device to complete the sign-in process.
-
-For this flow, the Redirect URI is required for the integration. You can get those values from the Azure Portal under the application information.
-Follow these steps:
-
-1. In your app, click **Authentication** > **Platform configurations** > **Add a platform.** Choose **Web** and add [Redirect URI](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app#add-a-redirect-uri).
-The Redirect URI can direct any web application that you wish to receive responses from Azure AD. If you are not sure what to set, you can use `https://localhost`.
-2. In the app registration, navigate to **Authentication**, under In **Supported account types**, *Accounts in any organizational directory (Any Azure AD directory - Multi-tenant)* should be selected. In the same page, under the **Advanced Settings** section, enable the mobile and desktop flows.
-
-   <img width="600" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/device_code.png" align="middle"></img>
-
-3. Next, click on **Overview** and copy the "Application (client) ID" and paste it under the App/Client ID parameter field in the instance configuration in XSOAR/XSIAM.
-4. Click "Save and Exit".
-5. Run the `!<integration command prefix>-auth-start` command - you will be prompted to open the page https://microsoft.com/devicelogin and enter the generated code.
-6. Run the `!<integration command prefix>-auth-complete` command.
-7. Run the `!<integration command prefix>-auth-test` command to ensure connectivity to Microsoft. 
-
-**Note:** Make sure the neccessary permissions and roles are applied to the application and to the user.
-
-## Azure Managed Identities Authentication
-#### Note: This option is relevant only if the integration is running on Azure VM.
-
-Some of the Cortex XSOAR-Microsoft integrations use the [Azure Managed Identities Authentication](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview).
-
-Follow one of these steps for authentication based on Azure Managed Identities:
-
-- ##### To use System Assigned Managed Identity
-   - Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox and leave the **Azure Managed Identities Client ID** field empty.
-
-- ##### To use User Assigned Managed Identity
-   1. Go to [Azure Portal](https://portal.azure.com/) -> **Managed Identities**.
-   2. Select your User Assigned Managed Identity -> copy the Client ID -> paste it in the **Azure Managed Identities Client ID** field in the instance settings.
-   3. Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox.
-
-## Revoke Consent
-
-In order to revoke consent to a Cortex XSOAR Microsoft application, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant#revoking-consent). 
-
-## Azure Integrations Parameters
-In order to use the Cortex XSOAR Azure application, you need to fill in your subscription ID and resource group name, which you can find in the Azure Portal.
-
-1. Log in to the [Azure Portal Home Page](https://portal.azure.com/#home) using your Azure credentials.
-
-2. Search for your Azure product, for example SQL Servers: 
-
-   ![Azure Portal Home Page](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/home_microsoft_azure_portal.png)
-
-3. Click on your resource:
-
-   ![Choose your resource](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/choose_your_resource.png)
-
-After you a redirected to the next page, in the **Overview** tab you will find your Resource group and Subscription ID:
-
-![Overview](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/subscription_id_resourse_group.png)
-
-
-## Self Deployed Application - Example for [Microsoft Graph User integration](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-user)
+#### Example for [Microsoft Graph User integration](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-user) configuration using a self-deployed and authorization code flow
 
 1. In Microsoft Azure portal, create a new app registration.
    1. Select Azure Active Directory> App registrations> New registration.
@@ -296,6 +233,67 @@ After you a redirected to the next page, in the **Overview** tab you will find y
    5. In the **Redirect URI** field, type the redirect URI we are entering at the Azure portal.
    6. In the **Authorization code for self-deployed mode - received from the authorization step**, type the code that was generated in 4.2. 
    7. Save the integration settings and test the setup by running the *!msgraph-user-test* command from the Cortex XSOAR CLI.
+
+
+### Device Code Flow
+Some Cortex XSOAR-Microsoft integrations use the [device code flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code).
+When configured using this flow, the integration operates under the user’s context, similar to the Authorization Code Flow, but it is designed for devices or environments where a browser-based login is not available. This flow also uses delegated permissions, which must be defined in the Azure application configuration in the Azure Portal.
+The user authenticating via the device code must have the same roles and permissions as those granted to the application. These permissions determine which actions the user can perform through XSOAR/XSIAM commands within the organization or tenant scope.
+
+During authentication, the user will be provided with a code and a URL. They must enter the code at the URL using a browser on any device to complete the sign-in process.
+
+For this flow, the Redirect URI is required for the integration. You can get those values from the Azure Portal under the application information.
+Follow these steps:
+
+1. In your app, click **Authentication** > **Platform configurations** > **Add a platform.** Choose **Web** and add [Redirect URI](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app#add-a-redirect-uri).
+The Redirect URI can direct any web application that you wish to receive responses from Azure AD. If you are not sure what to set, you can use `https://localhost`.
+2. In the app registration, navigate to **Authentication**, under In **Supported account types**, *Accounts in any organizational directory (Any Azure AD directory - Multi-tenant)* should be selected. In the same page, under the **Advanced Settings** section, enable the mobile and desktop flows.
+
+   <img width="600" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/device_code.png" align="middle"></img>
+
+3. Next, click on **Overview** and copy the "Application (client) ID" and paste it under the App/Client ID parameter field in the instance configuration in XSOAR/XSIAM.
+4. Click "Save and Exit".
+5. Run the `!<integration command prefix>-auth-start` command - you will be prompted to open the page https://microsoft.com/devicelogin and enter the generated code.
+6. Run the `!<integration command prefix>-auth-complete` command.
+7. Run the `!<integration command prefix>-auth-test` command to ensure connectivity to Microsoft. 
+
+**Note:** Make sure the neccessary permissions and roles are applied to the application and to the user.
+
+## Azure Managed Identities Authentication
+#### Note: This option is relevant only if the integration is running on Azure VM.
+
+Some of the Cortex XSOAR-Microsoft integrations use the [Azure Managed Identities Authentication](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview).
+
+Follow one of these steps for authentication based on Azure Managed Identities:
+
+- ##### To use System Assigned Managed Identity
+   - Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox and leave the **Azure Managed Identities Client ID** field empty.
+
+- ##### To use User Assigned Managed Identity
+   1. Go to [Azure Portal](https://portal.azure.com/) -> **Managed Identities**.
+   2. Select your User Assigned Managed Identity -> copy the Client ID -> paste it in the **Azure Managed Identities Client ID** field in the instance settings.
+   3. Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox.
+
+## Revoke Consent
+
+In order to revoke consent to a Cortex XSOAR Microsoft application, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant#revoking-consent). 
+
+## How to find Azure Integrations Parameters
+In order to use the Cortex XSOAR/XSIAM Azure application, you need to fill in your subscription ID and resource group name, which you can find in the Azure Portal.
+
+1. Log in to the [Azure Portal Home Page](https://portal.azure.com/#home) using your Azure credentials.
+
+2. Search for your Azure product, for example SQL Servers: 
+
+   ![Azure Portal Home Page](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/home_microsoft_azure_portal.png)
+
+3. Click on your resource:
+
+   ![Choose your resource](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/choose_your_resource.png)
+
+After you a redirected to the next page, in the **Overview** tab you will find your Resource group and Subscription ID:
+
+![Overview](../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/subscription_id_resourse_group.png)
 
 
 ## Supported Authentication Flows for Microsoft integrations
