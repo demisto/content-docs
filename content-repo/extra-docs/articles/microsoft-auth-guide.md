@@ -79,6 +79,8 @@ Follow these steps:
 7. In the instance configuration, select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
 8. Test and Save the instance.
 
+**Note:** Make sure the neccessary permissions and roles are applied to the application.
+
 #### Certificate Thumbprint and Private Key
 Alternatively, instead of providing the *Client Secret*, you can authenticate using certificate credentials by providing:
     
@@ -156,22 +158,32 @@ The Redirect URI can direct any web application that you wish to receive respons
 9. Save the instance.
 10. Run the `!<integration command prefix>-auth-test` command. A 'Success' message should be printed to the War Room.
 
+**Note:** Make sure the neccessary permissions and roles are applied to the application and to the user.
+
 ### Device Code Flow
 Some Cortex XSOAR-Microsoft integrations use the [device code flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code).
+When configured using this flow, the integration operates under the user’s context, similar to the Authorization Code Flow, but it is designed for devices or environments where a browser-based login is not available. This flow also uses delegated permissions, which must be defined in the Azure application configuration in the Azure Portal.
+The user authenticating via the device code must have the same roles and permissions as those granted to the application. These permissions determine which actions the user can perform through XSOAR/XSIAM commands within the organization or tenant scope.
 
-To configure a Microsoft integration that uses this authorization flow with a self-deployed Azure application:
+During authentication, the user will be provided with a code and a URL. They must enter the code at the URL using a browser on any device to complete the sign-in process.
 
-1. Make sure the needed permissions are granted for the app registration.
-2. The Redirect URI can direct any web application that you wish to receive responses from Azure AD. If you are not sure what to set, you can use `https://localhost`.
-3. In **Supported account types**, *Accounts in any organizational directory (Any Azure AD directory - Multi-tenant)* should be selected.
-4. In the app registration, navigate to **Authentication** > **Advanced Settings**, and enable the mobile and desktop flows.
+For this flow, the Tenant ID, Client ID, Client secret and Redirect URI are required for the integration. You can get those values from the Azure Portal under the application information.
+Follow these steps:
+
+1. In your app, click **Authentication** > **Platform configurations** > **Add a platform.** Choose **Web** and add [Redirect URI](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app#add-a-redirect-uri).
+The Redirect URI can direct any web application that you wish to receive responses from Azure AD. If you are not sure what to set, you can use `https://localhost`.
+2. Enter your redirect URI in the *Redirect URI* parameter field in the instance configuration in XSOAR/XSIAM.
+3. In the app registration, navigate to **Authentication**, under In **Supported account types**, *Accounts in any organizational directory (Any Azure AD directory - Multi-tenant)* should be selected. In the same page, under the **Advanced Settings** section, enable the mobile and desktop flows.
 
    <img width="600" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/device_code.png" align="middle"></img>
 
-5. Enter your application ID in the ***Application ID*** parameter field.
-6. Run the `!<integration command prefix>-auth-start` command - you will be prompted to open the page https://microsoft.com/devicelogin and enter the generated code.
-7. Run the `!<integration command prefix>-auth-complete` command.
-8. Run the `!<integration command prefix>-auth-test` command to ensure connectivity to Microsoft. 
+4. Next, click on **Overview** and copy the "Application (client) ID" and paste it under the App/Client ID parameter field in the instance configuration in XSOAR/XSIAM.
+5. Click "Save and Exit".
+7. Run the `!<integration command prefix>-auth-start` command - you will be prompted to open the page https://microsoft.com/devicelogin and enter the generated code.
+8. Run the `!<integration command prefix>-auth-complete` command.
+9. Run the `!<integration command prefix>-auth-test` command to ensure connectivity to Microsoft. 
+
+**Note:** Make sure the neccessary permissions and roles are applied to the application and to the user.
 
 ## Azure Managed Identities Authentication
 #### Note: This option is relevant only if the integration is running on Azure VM.
