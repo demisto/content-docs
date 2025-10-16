@@ -167,21 +167,20 @@ The user authenticating via the device code must have the same roles and permiss
 
 During authentication, the user will be provided with a code and a URL. They must enter the code at the URL using a browser on any device to complete the sign-in process.
 
-For this flow, the Tenant ID, Client ID, Client secret and Redirect URI are required for the integration. You can get those values from the Azure Portal under the application information.
+For this flow, the Redirect URI is required for the integration. You can get those values from the Azure Portal under the application information.
 Follow these steps:
 
 1. In your app, click **Authentication** > **Platform configurations** > **Add a platform.** Choose **Web** and add [Redirect URI](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app#add-a-redirect-uri).
 The Redirect URI can direct any web application that you wish to receive responses from Azure AD. If you are not sure what to set, you can use `https://localhost`.
-2. Enter your redirect URI in the *Redirect URI* parameter field in the instance configuration in XSOAR/XSIAM.
-3. In the app registration, navigate to **Authentication**, under In **Supported account types**, *Accounts in any organizational directory (Any Azure AD directory - Multi-tenant)* should be selected. In the same page, under the **Advanced Settings** section, enable the mobile and desktop flows.
+2. In the app registration, navigate to **Authentication**, under In **Supported account types**, *Accounts in any organizational directory (Any Azure AD directory - Multi-tenant)* should be selected. In the same page, under the **Advanced Settings** section, enable the mobile and desktop flows.
 
    <img width="600" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/device_code.png" align="middle"></img>
 
-4. Next, click on **Overview** and copy the "Application (client) ID" and paste it under the App/Client ID parameter field in the instance configuration in XSOAR/XSIAM.
-5. Click "Save and Exit".
-7. Run the `!<integration command prefix>-auth-start` command - you will be prompted to open the page https://microsoft.com/devicelogin and enter the generated code.
-8. Run the `!<integration command prefix>-auth-complete` command.
-9. Run the `!<integration command prefix>-auth-test` command to ensure connectivity to Microsoft. 
+3. Next, click on **Overview** and copy the "Application (client) ID" and paste it under the App/Client ID parameter field in the instance configuration in XSOAR/XSIAM.
+4. Click "Save and Exit".
+5. Run the `!<integration command prefix>-auth-start` command - you will be prompted to open the page https://microsoft.com/devicelogin and enter the generated code.
+6. Run the `!<integration command prefix>-auth-complete` command.
+7. Run the `!<integration command prefix>-auth-test` command to ensure connectivity to Microsoft. 
 
 **Note:** Make sure the neccessary permissions and roles are applied to the application and to the user.
 
