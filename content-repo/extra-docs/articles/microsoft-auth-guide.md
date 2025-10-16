@@ -3,14 +3,16 @@ title: Microsoft Integrations - Authentication
 description: Authentication method for Microsoft Graph and Azure integrations in Cortex XSOAR.
 ---
 
-:::info Security Awareness: Device Code Authorization
-It is recommended to use the client credentials and user authorization flows for integrations when possible. The device code authorization flow has limited protections against sophisticated phishing campaigns.
+This document includes the following sections to help you understand, set up, and use the integration effectively:
 
-In no scenario emails or other forms of communication will be sent to the customer asking to enter a security code or follow a link. All generated links and codes will be shown in the War Room, by running the official integration commands.
-
-More info at: [Device Code flow - Evolved phishing](https://www.microsoft.com/security/blog/2022/01/26/evolved-phishing-device-registration-trick-adds-to-phishers-toolbox-for-victims-without-mfa/)
-
-:::
+- [Integration Architecture](#integration-architecture)
+- [Setup and Configuration](#setup-and-configuration)
+- [Setup Examples](#setup-examples)
+- [Important Information](#important-information)
+- [Known Limitations](#known-limitations)
+- [Troubleshooting](#troubleshooting)
+- [Download Demisto Bot](#download-demisto-bot)
+- [Commands](#commands)
 
 Microsoft integrations (Graph and Azure) in Cortex XSOAR/XSIAM use Azure Active Directory (Azure AD) applications to securely authenticate with Microsoft APIs. These applications act as the bridge between XSOAR/XSIAM and Microsoft services, defining which API requests can be performed and what level of access is granted. The permissions and roles configured in the Azure application determine what data and actions the integration is authorized to access within your tenant.
 
@@ -52,7 +54,7 @@ The application must have the required permissions and roles for the relevant AP
 
 To add the registration, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
 
-### Using National Cloud
+#### Using National Cloud
 
 - To see which integrations support natively National Clouds,See the [table below.](https://xsoar.pan.dev/docs/reference/articles/microsoft-integrations---authentication#supported-authentication-flows-for-microsoft-integrations) 
   - For Microsoft Azure integrations, select the appropriate cloud using the *Azure Cloud* parameter.
@@ -62,6 +64,17 @@ To add the registration, refer to the [Microsoft documentation](https://docs.mic
 - Some Cortex XSOAR/XSIAM Microsoft integrations support the deployment of national clouds through the self-deployed
  authorization flow. For more information about Microsoft National Clouds, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/deployments).
  In order to use a national cloud, change the *Server URL* parameter to the corresponding address of the national cloud you are using.
+
+## Authentication Flows
+
+:::info Security Awareness: Device Code Authorization
+It is recommended to use the client credentials and user authorization flows for integrations when possible. The device code authorization flow has limited protections against sophisticated phishing campaigns.
+
+In no scenario emails or other forms of communication will be sent to the customer asking to enter a security code or follow a link. All generated links and codes will be shown in the War Room, by running the official integration commands.
+
+More info at: [Device Code flow - Evolved phishing](https://www.microsoft.com/security/blog/2022/01/26/evolved-phishing-device-registration-trick-adds-to-phishers-toolbox-for-victims-without-mfa/)
+
+:::
 
 ### Client Credentials Flow
 Some Cortex XSOAR/XSIAM Microsoft integrations use the [client credentials flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow).
