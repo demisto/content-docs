@@ -53,6 +53,8 @@ The application must have the required permissions and roles for the relevant AP
 
 To add the registration, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
 
+**Note:** When adding a new permission to the application, you must run the !<integration command prefix>-auth-reset command. In case you are using device code flow or authorization code flow, you must also reconnect and create a new authorization code. After that, the new token used in the integration, will now contain the new permission. 
+
 ### Using National Cloud
 
 - To see which integrations support natively National Clouds,See the [table below.](https://xsoar.pan.dev/docs/reference/articles/microsoft-integrations---authentication#supported-authentication-flows-for-microsoft-integrations) 
@@ -172,7 +174,7 @@ The Redirect URI can direct any web application that you wish to receive respons
 
 **Note:** Make sure the neccessary permissions and roles are applied to the application and to the user.
 
-### Example for [Microsoft Graph User integration](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-user) configuration using a self-deployed and authorization code flow
+### Example for configuring [Microsoft Graph User integration](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-user) using a self-deployed and authorization code flow
 
 1. In Microsoft Azure portal, create a new app registration.
    1. Select **App registrations** -> **New registration**.
@@ -321,8 +323,11 @@ After you a redirected to the next page, in the **Overview** tab you will find y
 | Microsoft Teams Management                            | yes               | yes                | yes         | no                       | yes                      | no                       |
 
 
-
 # Troubleshooting
+1. If you encounter any issues while configuring your self-deployed application, please ensure that the 'self-deploy' checkbox is selected.
+2. If you have added permissions to your self-deployed application but still encounter a permission error, make sure to run the !<integration command prefix>-auth-reset command. If you are using device code flow or authorization code flow, you must also reconnect and generate a new authorization code. After this, the new token used by the integration will include the updated permissions.
+3. If you expect command results at the organization or tenant level but are receiving results at the user level, ensure that your permissions are set as application permissions and that you are using the client credentials flow.
+
 #### Reset authentication
 In case of errors in the authentication process, such as a token revoked/expired or in case you generate new credentials, 
 you can use the `!<integration command prefix>-auth-reset` command in the War Room in order to rerun the authentication process,
@@ -341,3 +346,5 @@ For example, when using the "self-deployed Azure app" for Microsoft Graph Mail S
 If you encounter issues with the User consent, such as a "Missing scope permissions on the request. API requires one of..." error after generating a new authorization code using the generate-login-url command, even though you have provided all the mentioned permissions, it may indicate that you need to trigger the consent process again.  
 To do this, copy the login URL, add `&prompt=consent` to the end of the URL, and then log in.  
 For details, see Microsoft's documentation on [Request an authorization code](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow#request-an-authorization-code).  
+
+
