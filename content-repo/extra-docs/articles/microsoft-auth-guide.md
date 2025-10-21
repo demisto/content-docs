@@ -48,12 +48,25 @@ To start the authentication process, go to the integration's detailed instructio
 # Self Deployed Application
 
 To use a self-configured Azure application, you need to add a new Azure App Registration in the Azure Portal. 
+To add the registration, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
 
 The application must have the required permissions and roles for the relevant APIs, which are documented in the integration documentation, for example see [Microsoft Defender Advanced Threat Protection required permissions](https://xsoar.pan.dev/docs/reference/integrations/microsoft-defender-advanced-threat-protection#required-permissions).
 
-To add the registration, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
+The type of the permissions, Delegated or Application, depends on the flow and your target. For each intergation you can find the permissions you need for each flow. But, in general, you can use one of these flows: 
 
-**Note:** When adding a new permission to the application, you must run the !<integration command prefix>-auth-reset command. In case you are using device code flow or authorization code flow, you must also reconnect and create a new authorization code. After that, the new token used in the integration, will now contain the new permission. 
+- Client Credentials Flow: Used on behalf of the application. This means the integration authenticates as the application itself, not a user.
+It allows performing API requests at the tenant or organization level.
+- Authoriztion Code Flow: Used on behalf of a signed-in user through an interactive login.
+This flow grants access based on the user’s permissions and is ideal for integrations that require user consent or need to act under a specific user’s identity.
+- Device Code Flow: When configured using this flow, the integration operates under the user’s context, similar to the Authorization Code Flow, but it is designed for devices or environments where a browser-based login is not available.
+
+#### Permission Types and Flows
+- **Delegated permissions** are used when the integration acts on behalf of a signed-in user and require either the Authorization Code Flow or Device Code Flow.
+- **Application permissions** are used when the integration acts as the application itself, without a user, and require the Client Credentials Flow.
+
+<img width="800" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/delegated_vs_application_permissions.png" align="middle"></img>
+
+**Note:** When adding a new permission to the application, you must run the !<integration command prefix>-auth-reset command for the new permissions to take effect. In case you are using device code flow or authorization code flow, you must also reconnect and create a new authorization code. After that, the new token used in the integration, will now contain the new permission. 
 
 ### Using National Cloud
 
@@ -86,7 +99,7 @@ Follow these steps:
 
 1. Enter the Azure Portal.
 2. Search for you application using your application name or ID. You can search for it under the "App registrations" or to use the search bar.
-3. Where you find the application, click on it and go to the Overview section.
+3. When you find the application, click on it and go to the Overview section.
 4. Copy the "Application (client) ID" and paste it under the App/Client ID parameter field in the instance configuration in XSOAR/XSIAM.
 5. Copy the "Directory (tenant) ID" and paste it under the Token/Tenant ID parameter field in the instance configuration in XSOAR/XSIAM.
 6. In the application cofiguration go to "Certificates & secrets" and click on "New client secret", click on "Add" and copy the secret **value**. Paste it under the Client Secret parameter field in the instance configuration in XSOAR/XSIAM.
