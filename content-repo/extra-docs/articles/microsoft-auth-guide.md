@@ -57,7 +57,7 @@ The authentication flow you choose depends on the integration’s purpose and th
 - **Client Credentials Flow:** Used on behalf of the application. The integration authenticates as the application itself, not a user, allowing it to perform API requests at the tenant or organization level.
 - **Authoriztion Code Flow:** Used on behalf of a signed-in user through an interactive login.
 This flow grants access based on the user’s permissions and is ideal for integrations that require user consent or need to act under a specific user’s identity.
-- **Device Code Flow:** When configured using this flow, the integration operates under the user’s context, similar to the Authorization Code Flow, but it is designed for devices or environments where a browser-based login is not available.
+- **Device Code Flow:** When configured using this flow, the integration operates under the user’s context, similar to the authorization code flow, but it is designed for devices or environments where a browser-based login is not available.
 
 #### Permission Types and Flows
 - **Delegated permissions** are used when the integration acts on behalf of a signed-in user. These permissions require either the **Authorization Code Flow** or **Device Code Flow**.
@@ -67,7 +67,7 @@ This flow grants access based on the user’s permissions and is ideal for integ
 
 You can read more about each flow in the relevant sections below.
 
-**Note:** When adding a new permission to the application, you must run the `!<integration command prefix>-auth-reset` command for the permission to take effect. If you are using the Device Code Flow or Authorization Code Flow, you must also reconnect and create a new authorization code. The new token used in the integration, will the include the new permission. 
+**Note:** When adding a new permission to the application, you must run the `!<integration command prefix>-auth-reset` command for the permission to take effect. If you are using the device code flow or authorization code flow, you must also reconnect and create a new authorization code. The new token used in the integration, will the include the new permission. 
 
 ### Using National Cloud
 
@@ -107,7 +107,7 @@ Follow these steps:
 7. In the instance configuration, select the ***Use a self-deployed Azure Application*** checkbox.
 8. Test and Save the instance.
 
-**Note:** Make sure the neccessary permissions and roles are applied to the application.
+**Note:** Make sure the necessary permissions and roles are applied to the application.
 
 ### Certificate Thumbprint and Private Key
 Alternatively, instead of providing the *Client Secret*, you can authenticate using certificate credentials by providing:
@@ -115,8 +115,8 @@ Alternatively, instead of providing the *Client Secret*, you can authenticate us
 - **Certificate Thumbprint** - The thumbprint of the certificate as it appears when registering the certificate to the application.
 - **Private Key** -  The private key of the registered certificate
     
- You can find more information about it in [Microsoft Documentations](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-certificate-credentials) or to follow the next steps in case of Mac/Linux operating systems:
- 1. Run
+For more information, see [Microsoft Documentations](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-certificate-credentials). Follow the steps below for Mac/Linux operating systems:
+ 1. Run the following commands:
     
     ```
     openssl genrsa -out MyXSOARApp.key 2048
@@ -124,7 +124,7 @@ Alternatively, instead of providing the *Client Secret*, you can authenticate us
     openssl x509 -in MyXSOARApp.crt -noout -fingerprint -sha1
     ```
  
-2. You will get results such as:
+2. You receive results similar to the following:
 
     ```
    sha1 Fingerprint=E4:64:9A:AD:13:A4:F4:E0:74:11
@@ -136,13 +136,13 @@ Alternatively, instead of providing the *Client Secret*, you can authenticate us
    E4649AAD13A4F4E07411
     ```
 
-4. Next, run:
+4. Next, run the following command:
 
    ```
    cat MyXSOARApp.key
    ```
    
-    You will get results such as:
+    You receive results similar to the following:
    
     ```
     -----BEGIN PRIVATE KEY-----
@@ -152,31 +152,31 @@ Alternatively, instead of providing the *Client Secret*, you can authenticate us
    
     This is your private key, include the headers.
 
-5. Next, go to Azure Portal → App registrations → Select your app → Certificates & secrets → Certificates. Click “Upload certificate”.
+5. Go to Azure Portal → App registrations → select your app → Certificates & secrets → Certificates. Click “Upload certificate”.
 
-6. Select your public certificate, the file with the name **MyXSOARApp.crt** (not the .key file). Click on "Add".
+6. Select your public certificate file named **MyXSOARApp.crt** (do not select the .key file) and click "Add".
  
-7. Paste the private key and the certificate thumbprint to the instance configuration in XSOAR/XSIAM and click on "Test".
+7. Paste the private key and the certificate thumbprint into the instance configuration in XSOAR/XSIAM, then click "Test".
 
 
 ## Authorization Code flow
-Some Cortex XSOAR/XSIAM Microsoft integrations (e.g., Microsoft Graph Mail Single User) require authorization on behalf of a user (not admin consent). For more information about this authorization flow, refer to the [authorization code flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow).
+Some Cortex XSOAR/XSIAM Microsoft integrations (e.g., Microsoft Graph Mail Single User) require authorization on behalf of a user (not admin consent). For more information about this flow, see the [authorization code flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow).
 When configured using this flow, the integration operates under the user’s context, allowing actions based on the signed-in user’s permissions. This flow uses delegated permissions, which are defined in the Azure application configuration in the Azure Portal.
-The user who authenticates must have the same roles and permissions as those granted to the application. These permissions determine which actions the user can perform through XSOAR/XSIAM commands, according to their privileges within the organization or tenant.
+The user who authenticates must have the same roles and permissions as those granted to the application. These permissions determine which actions the user can perform through XSOAR/XSIAM commands according to their privileges within the organization or tenant.
 
 For this flow, the Tenant ID, Client ID, Client secret and Redirect URI are required for the integration. You can get those values from the Azure Portal under the application information.
 Follow these steps:
 
-1. In your app, click **Authentication** > **Platform configurations** > **Add a platform.** Choose **Web** and add [Redirect URI](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app#add-a-redirect-uri).
-The Redirect URI can direct any web application that you wish to receive responses from Azure AD. If you are not sure what to set, you can use `https://localhost`.
+1. In your app, click **Authentication** > **Platform configurations** > **Add a platform.** Choose **Web** and add a [Redirect URI](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app#add-a-redirect-uri).
+The Redirect URI is the address where Azure AD sends the login response. If you are not sure what to set, you can use `https://localhost`.
 2. Enter your redirect URI in the *Redirect URI* parameter field in the instance configuration in XSOAR/XSIAM.
-3. Go to "Overview" section. Copy the "Application (client) ID" and paste it under the App/Client ID parameter field in the instance configuration in XSOAR/XSIAM.
-4. Copy the "Directory (tenant) ID" and paste it under the Token/Tenant ID parameter field in the instance configuration in XSOAR/XSIAM.
-5. In the application cofiguration go to "Certificates & secrets" and click on "New client secret", click on "Add" and copy the secret **value**. Paste it under the Client Secret parameter field in the instance configuration in XSOAR/XSIAM.
+3. Go to "Overview" section. Copy the "Application (client) ID" and paste it in the App/Client ID parameter field in the instance configuration in XSOAR/XSIAM.
+4. Copy the "Directory (tenant) ID" and paste it in the Token/Tenant ID parameter field in the instance configuration in XSOAR/XSIAM.
+5. In the application configuration go to "Certificates & secrets", click "New client secret", then "Add". Copy the secret **value** and paste it under the Client Secret parameter field in the XSOAR/XSIAM instance configuration.
 6. Select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
 7. Save the instance.
-8. Run the `!<integration command prefix>-generate-login-url` command in the War Room and follow the instructions:
-    >1. Click on the [login URL]() to sign in and grant Cortex XSOAR permissions for your Azure Service Management.
+8. Run the `!<integration command prefix>-generate-login-url` command in the War Room and follow these instructions:
+    >1. Click the [login URL]() to sign in and grant Cortex XSOAR permissions to access your Azure Service Management.
     You will be automatically redirected to a link with the following structure:
     ```REDIRECT_URI?code=AUTH_CODE&session_state=SESSION_STATE```
     >2. Copy the `AUTH_CODE` (between the `code=` prefix and the `session_state` prefix)
@@ -184,11 +184,11 @@ The Redirect URI can direct any web application that you wish to receive respons
     >3. For any issues, see [Authorization Code flow Troubleshooting](#authorization-code-flow-troubleshooting).
 
 9. Save the instance.
-10. Run the `!<integration command prefix>-auth-test` command. A 'Success' message should be printed to the War Room.
+10. Run the `!<integration command prefix>-auth-test` command. The War Room prints a 'Success' message if the integration is configured correctly.
 
-**Note:** Make sure the neccessary permissions and roles are applied to the application and to the user.
+**Note:** Make sure the neccessary permissions and roles are applied to the application and the user.
 
-### Example for configuring [Microsoft Graph User integration](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-user) using a self-deployed and authorization code flow
+### Example: configuring the [Microsoft Graph User integration](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-user) using a self-deployed and authorization code flow
 
 1. In Microsoft Azure portal, create a new app registration.
    1. Select **App registrations** -> **New registration**.
@@ -219,11 +219,11 @@ The Redirect URI can direct any web application that you wish to receive respons
      - User.Read - Delegated
 6. Next, create a new instance for the integration.
 7. Enter your redirect URI in the *Redirect URI* parameter field in the instance configuration in XSOAR/XSIAM.
-3. Paste the "Application (client) ID" under the App/Client ID parameter field in the instance configuration in XSOAR/XSIAM.
-4. Paste "Directory (tenant) ID" under the Token/Tenant ID parameter field in the instance configuration in XSOAR/XSIAM.
-5. In the application cofiguration go to "Certificates & secrets" and click on "New client secret", click on "Add" and copy the secret **value**. Paste it under the Client Secret parameter field in the instance configuration in XSOAR/XSIAM.
+3. Paste the "Application (client) ID" in the App/Client ID parameter field in the instance configuration in XSOAR/XSIAM.
+4. Paste "Directory (tenant) ID" in the Token/Tenant ID parameter field in the instance configuration in XSOAR/XSIAM.
+5. In the application cofiguration go to "Certificates & secrets", click "New client secret", then "Add". Copy the secret **value**, and paste it under the Client Secret parameter field in the instance configuration in XSOAR/XSIAM.
 6. Click the **Use a self-deployed Azure application** checkbox.
-7. Click on Save and Exit.
+7. Click Save and Exit.
 8. Get the authorization code by following the next steps:
 
     1. Run the msgraph-user-generate-login-url command in order to generate the url and follow the instructions.
@@ -238,29 +238,29 @@ Some Cortex XSOAR-Microsoft integrations use the [device code flow](https://docs
 When configured using this flow, the integration operates under the user’s context, similar to the Authorization Code Flow, but it is designed for devices or environments where a browser-based login is not available. This flow also uses delegated permissions, which must be defined in the Azure application configuration in the Azure Portal.
 The user authenticating via the device code must have the same roles and permissions as those granted to the application. These permissions determine which actions the user can perform through XSOAR/XSIAM commands within the organization or tenant scope.
 
-During authentication, the user will be provided with a code and a URL. They must enter the code at the URL using a browser on any device to complete the sign-in process.
+During authentication, the user is provided with a code and a URL. They must enter the code at the URL using a browser on any device to complete the sign-in process.
 
 For this flow, the Redirect URI is required for the integration. You can get those values from the Azure Portal under the application information.
 Follow these steps:
 
 1. In your app, click **Authentication** > **Platform configurations** > **Add a platform.** Choose **Web** and add [Redirect URI](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app#add-a-redirect-uri).
-The Redirect URI can direct any web application that you wish to receive responses from Azure AD. If you are not sure what to set, you can use `https://localhost`.
-2. In the app registration, navigate to **Authentication**, under In **Supported account types**, *Accounts in any organizational directory (Any Azure AD directory - Multi-tenant)* should be selected. In the same page, under the **Advanced Settings** section, enable the mobile and desktop flows.
+The Redirect URI is the address where Azure AD sends the login response. If you are not sure what to set, you can use `https://localhost`.
+2. In the app registration, navigate to **Authentication**. Under **Supported account types**, select *Accounts in any organizational directory (Any Azure AD directory - Multi-tenant)*. On the same page, under the **Advanced Settings** section, enable the mobile and desktop flows.
 
    <img width="600" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/device_code.png" align="middle"></img>
 
-3. Next, click on **Overview** and copy the "Application (client) ID" and paste it under the App/Client ID parameter field in the instance configuration in XSOAR/XSIAM.
+3. Next, click **Overview**, copy the "Application (client) ID" and paste it under the App/Client ID parameter field in the instance configuration in XSOAR/XSIAM.
 4. Click "Save and Exit".
 5. Run the `!<integration command prefix>-auth-start` command - you will be prompted to open the page https://microsoft.com/devicelogin and enter the generated code.
 6. Run the `!<integration command prefix>-auth-complete` command.
 7. Run the `!<integration command prefix>-auth-test` command to ensure connectivity to Microsoft. 
 
-**Note:** Make sure the neccessary permissions and roles are applied to the application and to the user.
+**Note:** Make sure the neccessary permissions and roles are applied to the application and the user.
 
 # Azure Managed Identities Authentication
-#### Note: This option is relevant only if the integration is running on Azure VM.
+#### Note: This option applies only when the integration runs on an Azure VM.
 
-Some of the Cortex XSOAR-Microsoft integrations use the [Azure Managed Identities Authentication](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview).
+Some Cortex XSOAR-Microsoft integrations use [Azure Managed Identities Authentication](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview).
 
 Follow one of these steps for authentication based on Azure Managed Identities:
 
