@@ -67,7 +67,7 @@ This flow grants access based on the user’s permissions and is ideal for integ
 
 You can read more about each flow in the relevant sections below.
 
-**Note:** When adding a new permission to the application, you must run the **!<integration command prefix>-auth-reset** command for the permission to take effect. If you are using the Device Code Flow or Authorization Code Flow, you must also reconnect and create a new authorization code. The new token used in the integration, will the include the new permission. 
+**Note:** When adding a new permission to the application, you must run the `!<integration command prefix>-auth-reset` command for the permission to take effect. If you are using the Device Code Flow or Authorization Code Flow, you must also reconnect and create a new authorization code. The new token used in the integration, will the include the new permission. 
 
 ### Using National Cloud
 
