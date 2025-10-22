@@ -190,47 +190,48 @@ The Redirect URI can direct any web application that you wish to receive respons
 
 ### Example for configuring [Microsoft Graph User integration](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-user) using a self-deployed and authorization code flow
 
-1. In Microsoft Azure portal, create a new app registration.
-   1. Select **App registrations** -> **New registration**.
+1. In Microsoft Azure portal, create a new app registration:
+   
+    a. Select **App registrations** -> **New registration**.
 
         <img width="800" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/app-reg.png" align="middle"></img>
 
-   2. In the **Redirect URI (optional)** field select **Web** and type a name (you can enter an arbitrary name). In this example we use *https<nolink\>://xsoar.* 
+    b. In the **Redirect URI (optional)** field select **Web** and type a name (you can enter an arbitrary name). In this example we use *https<nolink\>://xsoar.* 
 
         <img width="800" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/reg-app.png" align="middle"></img>
 
-   3. Click **Register**.
+    c. Click **Register**.
    
         You can see the Essential information here:
        
         <img width="800" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/essentials.png" align="middle"></img>
 
-   5. Copy the following information that apear under the "Overview" section:
+    d. Copy the following information that apear under the "Overview" section, and save it for later:
       - Application (client) ID
       - Directory (tenant) ID
   
-3. Go to **API permissions** -> Add a permission -> Microsoft Graph -> Delegated permission. Search for `Directory.AccessAsUser.All`.
-4. Click Add permissions.
+2. Go to **API permissions** -> Add a permission -> Microsoft Graph -> Delegated permission. Search for `Directory.AccessAsUser.All`.
+3. Click Add permissions.
       
         <img width="800" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/app-api.png" align="middle"></img>
-5. Repeat step 3 for the following permissions:
+4. Repeat step 3 for the following permissions:
      - Directory.Read.All - Delegated
      - User.ReadWrite.All - Application
      - User.Read - Delegated
-6. Next, create a new instance for the integration.
-7. Enter your redirect URI in the *Redirect URI* parameter field in the instance configuration in XSOAR/XSIAM.
-3. Paste the "Application (client) ID" under the App/Client ID parameter field in the instance configuration in XSOAR/XSIAM.
-4. Paste "Directory (tenant) ID" under the Token/Tenant ID parameter field in the instance configuration in XSOAR/XSIAM.
-5. In the application cofiguration go to "Certificates & secrets" and click on "New client secret", click on "Add" and copy the secret **value**. Paste it under the Client Secret parameter field in the instance configuration in XSOAR/XSIAM.
-6. Click the **Use a self-deployed Azure application** checkbox.
-7. Click on Save and Exit.
-8. Get the authorization code by following the next steps:
+5. Next, create a new instance for the integration.
+6. Enter your redirect URI in the *Redirect URI* parameter field in the instance configuration in XSOAR/XSIAM.
+7. Paste the "Application (client) ID" under the App/Client ID parameter field in the instance configuration in XSOAR/XSIAM.
+8. Paste "Directory (tenant) ID" under the Token/Tenant ID parameter field in the instance configuration in XSOAR/XSIAM.
+9. In the application cofiguration go to "Certificates & secrets" and click on "New client secret", click on "Add" and copy the secret **value**. Paste it under the Client Secret parameter field in the instance configuration in XSOAR/XSIAM.
+10. Click the **Use a self-deployed Azure application** checkbox.
+11. Click on Save and Exit.
+12. Get the authorization code by following the next steps:
 
-    1. Run the msgraph-user-generate-login-url command in order to generate the url and follow the instructions.
-    2. Copy the `AUTH_CODE` (between the `code=` prefix and the `session_state` prefix). This value need to be used in instance configuration under the **Authorization Code** field.
+    a. Run the msgraph-user-generate-login-url command in order to generate the url and follow the instructions.
+    b. Copy the `AUTH_CODE` (between the `code=` prefix and the `session_state` prefix). This value need to be used in instance configuration under the **Authorization Code** field.
 
-9. Under the **Authorization code (for Self Deployed - Authorization Code Flow)**, field in the instance configuration, paste the code from the previous step. 
-10. Save the instance and test the setup by running the *!msgraph-user-test* command from the Cortex XSOAR/XSIAM CLI.
+13. Under the **Authorization code (for Self Deployed - Authorization Code Flow)**, field in the instance configuration, paste the code from the previous step. 
+14. Save the instance and test the setup by running the *!msgraph-user-test* command from the Cortex XSOAR/XSIAM CLI.
 
 
 ## Device Code Flow
