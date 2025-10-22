@@ -17,17 +17,17 @@ Microsoft integrations (Graph and Azure) in Cortex XSOAR/XSIAM use Azure Active 
 
 Usually, you need to create your own application via Azure Portal and to set the API permissions, this is a self-deployed application. Alternatively, XSOAR/XSIAM suggests another solution where you can use the application XSOAR/XSIAM builds for you, this is the Cortex XSOAR application. In addition, for environments running within Azure, you can authenticate using Azure Managed Identities, which allow XSOAR/XSIAM to access Azure resources securely without managing credentials manually.
 
-Therefore, there are three application authentication methods available:
+Therefore, three application authentication methods are available:
 
 1.  [Cortex XSOAR Application](#cortex-xsoar-application)
 2.  [Self Deployed Application](#self-deployed-application)
 3.  [Azure Managed Identities](#azure-managed-identities-authentication)
 
-You must use one of those authentication methods.
+You must use one of these authentication methods.
 
 # Cortex XSOAR Application
 In this method, you grant consent for the Cortex XSOAR multi-tenant application to access your data. The application is maintained by Cortex XSOAR.
-Depending on the integration, this requires either admin consent to [get access without a user](https://docs.microsoft.com/en-us/graph/auth-v2-service) or user consent to [get access on behalf of a user](https://docs.microsoft.com/en-us/graph/auth-v2-user).
+Depending on the integration, this requires either admin consent to [access data without a user](https://docs.microsoft.com/en-us/graph/auth-v2-service) or user consent to [access data on behalf of a user](https://docs.microsoft.com/en-us/graph/auth-v2-user).
 
 **Note**: This method requires that you give consent to all permissions requested by the application.
 
@@ -40,46 +40,45 @@ To start the authentication process, go to the integration's detailed instructio
 
     <img width="800" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/instance_detailed_instructions_new.png" align="middle"></img>
 
-5. In the XSOAR Web Page that appears, click the **Start Authorization Process** button to initiate the authorization flow. 
+5. In the XSOAR Web Page that appears, click **Start Authorization Process** to initiate the authorization flow. 
    You will receive your ID, token, and key. Go back to the instance configuration and copy: ID -> App/client ID, token -> Tenant ID, key -> Client Secret.
-   Click on "Test". The instance should be configured successfully. 
+   Click "Test". The instance should be configured successfully. 
 
 
 # Self Deployed Application
 
-To use a self-configured Azure application, you need to add a new Azure App Registration in the Azure Portal. 
-To add the registration, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
+To use a self-configured Azure application, add a new Azure App Registration in the Azure Portal. 
+For instructions on adding the registration, see the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
 
-The application must have the required permissions and roles for the relevant APIs, which are documented in the integration documentation, for example see [Microsoft Defender Advanced Threat Protection required permissions](https://xsoar.pan.dev/docs/reference/integrations/microsoft-defender-advanced-threat-protection#required-permissions).
+The application must have the required permissions and roles for the relevant APIs, as documented in the integration documentation. For more information, see [Microsoft Defender Advanced Threat Protection required permissions](https://xsoar.pan.dev/docs/reference/integrations/microsoft-defender-advanced-threat-protection#required-permissions).
 
-The authentication flow you choose depends on the integration’s purpose and the target it will act on:
+The authentication flow you choose depends on the integration’s purpose and the target it acts on:
 
-- **Client Credentials Flow:** Used on behalf of the application. This means the integration authenticates as the application itself, not a user.
-It allows performing API requests at the tenant or organization level.
+- **Client Credentials Flow:** Used on behalf of the application. The integration authenticates as the application itself, not a user, allowing it to perform API requests at the tenant or organization level.
 - **Authoriztion Code Flow:** Used on behalf of a signed-in user through an interactive login.
 This flow grants access based on the user’s permissions and is ideal for integrations that require user consent or need to act under a specific user’s identity.
 - **Device Code Flow:** When configured using this flow, the integration operates under the user’s context, similar to the Authorization Code Flow, but it is designed for devices or environments where a browser-based login is not available.
 
 #### Permission Types and Flows
-- **Delegated permissions** are used when the integration acts on behalf of a signed-in user and require either the **Authorization Code Flow or Device Code Flow**.
-- **Application permissions** are used when the integration acts as the application itself, without a user, and require the **Client Credentials Flow**.
+- **Delegated permissions** are used when the integration acts on behalf of a signed-in user. These permissions require either the **Authorization Code Flow** or **Device Code Flow**.
+- **Application permissions** are used when the integration acts as the application itself, without a user. These permissions require the **Client Credentials Flow**.
 
 <img width="800" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/delegated_vs_application_permissions.png" align="middle"></img>
 
-You can read more about each flow in the relevant section below.
+You can read more about each flow in the relevant sections below.
 
-**Note:** When adding a new permission to the application, you must run the **!<integration command prefix>-auth-reset** command for the new permissions to take effect. In case you are using device code flow or authorization code flow, you must also reconnect and create a new authorization code. After that, the new token used in the integration, will now contain the new permission. 
+**Note:** When adding a new permission to the application, you must run the **!<integration command prefix>-auth-reset** command for the permission to take effect. If you are using the Device Code Flow or Authorization Code Flow, you must also reconnect and create a new authorization code. The new token used in the integration, will the include the new permission. 
 
 ### Using National Cloud
 
 - To see which integrations support natively National Clouds,See the [table below.](https://xsoar.pan.dev/docs/reference/articles/microsoft-integrations---authentication#supported-authentication-flows-for-microsoft-integrations) 
   - For Microsoft Azure integrations, select the appropriate cloud using the *Azure Cloud* parameter.
   - For Microsoft Defender, select the appropriate cloud using the *Endpoint Type* parameter.
-  - For using the self-deployment option, select the *Custom* option and follow the instructions below.
+  - To use the self-deployment option, select *Custom* and follow the instructions below.
 
 - Some Cortex XSOAR/XSIAM Microsoft integrations support the deployment of national clouds through the self-deployed
- authorization flow. For more information about Microsoft National Clouds, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/deployments).
- In order to use a national cloud, change the *Server URL* parameter to the corresponding address of the national cloud you are using.
+ authorization flow. For more information about Microsoft National Clouds, see the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/deployments).
+ To use a national cloud, change the *Server URL* parameter to the corresponding address of the national cloud you are using.
 
 # Authentication Flows
 
