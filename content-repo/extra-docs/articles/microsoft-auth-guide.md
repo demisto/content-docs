@@ -83,28 +83,28 @@ You can read more about each flow in the relevant sections below.
 # Authentication Flows
 
 :::info Security Awareness: Device Code Authorization
-It is recommended to use the client credentials and user authorization flows for integrations when possible. The device code authorization flow has limited protections against sophisticated phishing campaigns.
+It is recommended to use the Client Credentials or User Authorization flows for integrations whenever possible. The Device Code Authorization flow provides limited protection against sophisticated phishing campaigns.
 
-In no scenario emails or other forms of communication will be sent to the customer asking to enter a security code or follow a link. All generated links and codes will be shown in the War Room, by running the official integration commands.
+Under no circumstances will emails or other forms of communication be sent to the customer asking them to enter a security code or follow a link. All generated links and codes are displayed in the War Room by running the official integration commands.
 
-More info at: [Device Code flow - Evolved phishing](https://www.microsoft.com/security/blog/2022/01/26/evolved-phishing-device-registration-trick-adds-to-phishers-toolbox-for-victims-without-mfa/)
+For more information, see [Device Code flow - Evolved phishing](https://www.microsoft.com/security/blog/2022/01/26/evolved-phishing-device-registration-trick-adds-to-phishers-toolbox-for-victims-without-mfa/)
 
 :::
 
 ## Client Credentials Flow
-Some Cortex XSOAR/XSIAM Microsoft integrations use the [client credentials flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow).
+Some Cortex XSOAR/XSIAM Microsoft integrations use the [Client Credentials Flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow).
 When configured using this flow, the integration operates at the organization (tenant) level, allowing actions to be performed across the entire tenant. This flow typically uses application permissions, which must be defined in the Azure application configuration within the Azure Portal. These permissions determine that all XSOAR/XSIAM commands executed through this authentication method act within the organization or tenant scope.
 
-For this flow, the Tenant ID, Client ID, and Client secret are required for the integration. You can get those values from the Azure Portal under the application information.
+For this flow, the Tenant ID, Client ID, and Client Secret are required for the integration. You can get those values from the Azure Portal under the application information.
 Follow these steps:
 
-1. Enter the Azure Portal.
-2. Search for you application using your application name or ID. You can search for it under the "App registrations" or to use the search bar.
-3. When you find the application, click on it and go to the Overview section.
-4. Copy the "Application (client) ID" and paste it under the App/Client ID parameter field in the instance configuration in XSOAR/XSIAM.
-5. Copy the "Directory (tenant) ID" and paste it under the Token/Tenant ID parameter field in the instance configuration in XSOAR/XSIAM.
-6. In the application cofiguration go to "Certificates & secrets" and click on "New client secret", click on "Add" and copy the secret **value**. Paste it under the Client Secret parameter field in the instance configuration in XSOAR/XSIAM.
-7. In the instance configuration, select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
+1. Sign in to the Azure Portal.
+2. Search for you application using your application name or ID. You can find it under the "App registrations" or use the search bar.
+3. When you locate the application, click it and go to the Overview section.
+4. Copy the "Application (client) ID" and paste it in the App/Client ID parameter field in the XSOAR/XSIAM instance configuration.
+5. Copy the "Directory (tenant) ID" and paste it in the Token/Tenant ID parameter field in the XSOAR/XSIAM instance configuration.
+6. In the application configuration, go to "Certificates & secrets", click "New client secret", then click "Add". Copy the secret **value** and paste it into the Client Secret parameter field in the XSOAR/XSIAM instance configuration.
+7. In the instance configuration, select the ***Use a self-deployed Azure Application*** checkbox.
 8. Test and Save the instance.
 
 **Note:** Make sure the neccessary permissions and roles are applied to the application.
@@ -112,7 +112,7 @@ Follow these steps:
 ### Certificate Thumbprint and Private Key
 Alternatively, instead of providing the *Client Secret*, you can authenticate using certificate credentials by providing:
     
-- **Certificate Thumbprint** - The certificate thumbprint as appears when registering the certificate to the App
+- **Certificate Thumbprint** - The thumbprint of the certificate as it appears when registering the certificate to the application.
 - **Private Key** -  The private key of the registered certificate
     
  You can find more information about it in [Microsoft Documentations](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-certificate-credentials) or to follow the next steps in case of Mac/Linux operating systems:
