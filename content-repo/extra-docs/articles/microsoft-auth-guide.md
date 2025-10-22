@@ -278,7 +278,7 @@ Follow one of these steps for authentication based on Azure Managed Identities:
 In order to revoke consent to a Cortex XSOAR Microsoft application, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant#revoking-consent). 
 
 # How to find Azure Integrations Parameters
-In order to use the Cortex XSOAR/XSIAM Azure application, you need to fill in your subscription ID and resource group name, which you can find in the Azure Portal.
+To use the Cortex XSOAR/XSIAM Azure application, provide your Subscription ID and Resource Group Name, which can be found in the Azure Portal.
 
 1. Log in to the [Azure Portal Home Page](https://portal.azure.com/#home) using your Azure credentials.
 
