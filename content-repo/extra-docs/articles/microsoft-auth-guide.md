@@ -339,7 +339,7 @@ After you a redirected to the next page, in the **Overview** tab you will find y
 
 # Troubleshooting
 1. If you encounter any issues while configuring your self-deployed application, please ensure that the 'self-deploy' checkbox is selected.
-2. If you have added permissions to your self-deployed application but still encounter a permission error, make sure to run the !<integration command prefix>-auth-reset command. If you are using device code flow or authorization code flow, you must also reconnect and generate a new authorization code. After this, the new token used by the integration will include the updated permissions.
+2. If you have added permissions to your self-deployed application but still encounter a permission error, make sure to run the `!<integration command prefix>-auth-reset` command. If you are using device code flow or authorization code flow, you must also reconnect and generate a new authorization code. After this, the new token used by the integration will include the updated permissions.
 3. If you expect command results at the organization or tenant level but are receiving results at the user level, ensure that your permissions are set as application permissions and that you are using the client credentials flow.
 
 #### Reset authentication
