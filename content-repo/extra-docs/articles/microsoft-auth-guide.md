@@ -50,7 +50,7 @@ To start the authentication process, go to the integration's detailed instructio
 To use a self-configured Azure application, add a new Azure App Registration in the Azure Portal. 
 For instructions on adding the registration, see the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
 
-The application must have the required permissions and roles for the relevant APIs, as documented in the integration documentation. For more information, see [Microsoft Defender Advanced Threat Protection required permissions](https://xsoar.pan.dev/docs/reference/integrations/microsoft-defender-advanced-threat-protection#required-permissions).
+The application must have the required permissions and roles for the relevant APIs, as documented in the integration documentation. For example, see [Microsoft Defender Advanced Threat Protection required permissions](https://xsoar.pan.dev/docs/reference/integrations/microsoft-defender-advanced-threat-protection#required-permissions).
 
 The authentication flow you choose depends on the integration’s purpose and the target it acts on:
 
