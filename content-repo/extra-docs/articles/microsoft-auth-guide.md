@@ -361,5 +361,3 @@ For example, when using the "self-deployed Azure app" for Microsoft Graph Mail S
 If you encounter issues with the User consent, such as a "Missing scope permissions on the request. API requires one of..." error after generating a new authorization code using the generate-login-url command, even though you have provided all the mentioned permissions, it may indicate that you need to trigger the consent process again.  
 To do this, copy the login URL, add `&prompt=consent` to the end of the URL, and then log in.  
 For details, see Microsoft's documentation on [Request an authorization code](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow#request-an-authorization-code).  
-
-
