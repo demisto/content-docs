@@ -22,7 +22,7 @@ The CI/CD process works as follows:
 ​
 * run a playbook that reads from a configuration file that determines which content to install in your environment. The configuration file contains a list of content to install from your bucket.
 
-In Cortex XSOAR, you can develop and test your content on other machines, before using it in a production environment. You can do this by using [the remote repository feature in the UI](https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-5/cortex-xsoar-admin/remote-repository/remote-repositories-overview.html) or using the CI/CD process.
+In Cortex XSOAR, you can develop and test your content on other machines, before using it in a production environment. You can do this by using [the remote repository feature in the UI](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.14/Cortex-XSOAR-Administrator-Guide/Remote-Repositories-Overview) or using the CI/CD process.
 The CI/CD process was developed and verified on Cortex XSOAR version 6.x and 8.x.
 
 
@@ -94,7 +94,6 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
     | `README.md` | A markdown file that provides a description of the pack. |
     | `demistomock.ps1` | Enables you to debug Powershell script. |
     | `demistomock.py` | Enables you to debug Python Script. For more information about the demistomock files see [Debugging using demistomock the demisto-object](https://xsoar.pan.dev/docs/integrations/debugging#using-demistomock-the-demisto-object). |
-    | `requirements.txt` | Contains a list of all the project’s dependencies. |
     | `tox.ini` | The command-line driven automated testing tool for Python. |
     | `xsoar_config.json` | The configuration file that defines what packs lists, and jobs will be set up on the machine. Update this when you are ready to deploy. See step 3 under [Deployment](#deployment). |
 
