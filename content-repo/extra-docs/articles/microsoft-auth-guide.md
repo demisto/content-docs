@@ -331,7 +331,7 @@ After you a redirected to the next page, in the **Overview** tab you will find y
 | Azure Active Directory Identity And Access            | yes               | yes                | yes         | no                       | yes                      | no                       |
 | Microsoft Graph Mail Single User                      | yes               | no                 | no          | yes                      | yes                      | no                       |
 | O365 Outlook Mail                                     | yes               | yes                | no          | no                       | yes                      | yes                      |
-| Microsoft Graph Security                              | yes               | yes                | no          | yes                      | yes                      | no                       |
+| Microsoft Graph Security                              | yes               | yes                | no          | yes                      | yes                      | yes                       |
 | Microsoft Graph User                                  | yes               | yes                | no          | yes                      | yes                      | no                       |
 | Microsoft Management Activity API (O365 Azure Events) | yes               | no                 | no          | yes                      | yes                      | no                       |
 | Microsoft Teams                                       | no                | yes                | no          | yes                      | no                       | no                       |
