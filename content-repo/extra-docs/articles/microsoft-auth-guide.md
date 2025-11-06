@@ -266,23 +266,23 @@ Some Cortex XSOAR/XSIAM Microsoft integrations support Azure Managed Identities 
 
 Azure provides two types of Managed Identities:
 
-1. System-assigned – Automatically created and tied to a specific Azure resource; deleted when the resource is deleted.
-2. User-assigned – A standalone identity that can be assigned to one or more Azure resources and exists independently of them.
+1. **System-assigned**: Automatically created and tied to a specific Azure resource; deleted when the resource is deleted.
+2. **User-assigned**: A standalone identity that can be assigned to one or more Azure resources and exists independently of them.
 
-For more details, you can also watch the video in Microsoft [documenetations](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview).
+For more details, you can also watch the video in Microsoft [documentations](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview).
 
 Important: Either the integration or XSOAR must be running on an Azure VM; otherwise, the connection will not work.
 For XSOAR 8 and above (SaaS on GCP), the integration must run on an engine to connect with Azure.
 
 Once the integration is running on an Azure VM, follow the steps below to configure authentication using Azure Managed Identities:
 
-- ##### To use System Assigned Managed Identity
-   - Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox and leave the **Azure Managed Identities Client ID** field empty.
+#### Using System Assigned Managed Identity
+Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox and leave the **Azure Managed Identities Client ID** field empty.
 
-- ##### To use User Assigned Managed Identity
-   1. Go to [Azure Portal](https://portal.azure.com/) -> **Managed Identities**.
-   2. Select your User Assigned Managed Identity -> copy the Client ID -> paste it in the **Azure Managed Identities Client ID** field in the instance settings.
-   3. Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox.
+### Using User Assigned Managed Identity
+1. Go to [Azure Portal](https://portal.azure.com/) -> **Managed Identities**.
+2. Select your User Assigned Managed Identity -> copy the Client ID -> paste it in the **Azure Managed Identities Client ID** field in the instance settings.
+3. Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox.
 
 
 # Revoke Consent
