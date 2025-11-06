@@ -272,7 +272,7 @@ Azure provides two types of Managed Identities:
 For more details, you can also watch the video in Microsoft [documentations](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview).
 
 Important: Either the integration or XSOAR must be running on an Azure VM; otherwise, the connection will not work.
-For XSOAR 8 and above (SaaS on GCP), the integration must run on an engine to connect with Azure.
+For XSOAR 8 and above, the integration must run on an engine to connect with Azure.
 
 Once the integration is running on an Azure VM, follow the steps below to configure authentication using Azure Managed Identities:
 
