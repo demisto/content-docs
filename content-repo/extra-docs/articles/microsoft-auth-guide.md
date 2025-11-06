@@ -277,12 +277,12 @@ For XSOAR 8 and above, the integration must run on an engine to connect with Azu
 **Once the integration is running on an Azure VM, follow the steps below to configure authentication using Azure Managed Identities:**
 
 - #### Using System Assigned Managed Identity
-Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox and leave the **Azure Managed Identities Client ID** field empty.
+  Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox and leave the **Azure Managed Identities Client ID** field empty.
 
 - #### Using User Assigned Managed Identity
-1. Go to [Azure Portal](https://portal.azure.com/) -> **Managed Identities**.
-2. Select your User Assigned Managed Identity -> copy the Client ID -> paste it in the **Azure Managed Identities Client ID** field in the instance settings.
-3. Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox.
+    1. Go to [Azure Portal](https://portal.azure.com/) -> **Managed Identities**.
+    2. Select your User Assigned Managed Identity -> copy the Client ID -> paste it in the **Azure Managed Identities Client ID** field in the instance settings.
+    3. Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox.
 
 
 # Revoke Consent
