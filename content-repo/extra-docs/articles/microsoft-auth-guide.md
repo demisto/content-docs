@@ -1,6 +1,6 @@
 ---
 title: Microsoft Integrations - Authentication
-description: Authentication method for Microsoft Graph and Azure integrations in Cortex XSOAR.
+description: Authentication method for Microsoft Graph and Azure integrations in Cortex XSOAR/XSIAM.
 ---
 
 This document includes the following sections to help you understand, set up, and use the integration effectively:
@@ -176,7 +176,7 @@ The Redirect URI is the address where Azure AD sends the login response. If you 
 6. Select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
 7. Save the instance.
 8. Run the `!<integration command prefix>-generate-login-url` command in the War Room and follow these instructions:
-    >1. Click the [login URL]() to sign in and grant Cortex XSOAR permissions to access your Azure Service Management.
+    >1. Click the [login URL]() to sign in and grant Cortex XSOAR/XSIAM permissions to access your Azure Service Management.
     You will be automatically redirected to a link with the following structure:
     ```REDIRECT_URI?code=AUTH_CODE&session_state=SESSION_STATE```
     >2. Copy the `AUTH_CODE` (between the `code=` prefix and the `session_state` prefix)
@@ -235,7 +235,7 @@ The Redirect URI is the address where Azure AD sends the login response. If you 
 
 
 ## Device Code Flow
-Some Cortex XSOAR-Microsoft integrations use the [device code flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code).
+Some Cortex XSOAR/XSIAM-Microsoft integrations use the [device code flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code).
 When configured using this flow, the integration operates under the user’s context, similar to the Authorization Code Flow, but it is designed for devices or environments where a browser-based login is not available. This flow also uses delegated permissions, which must be defined in the Azure application configuration in the Azure Portal.
 The user authenticating via the device code must have the same roles and permissions as those granted to the application. These permissions determine which actions the user can perform through XSOAR/XSIAM commands within the organization or tenant scope.
 
@@ -259,19 +259,31 @@ The Redirect URI is the address where Azure AD sends the login response. If you 
 **Note:** Make sure the neccessary permissions and roles are applied to the application and the user.
 
 # Azure Managed Identities Authentication
-#### Note: This option applies only when the integration runs on an Azure VM.
 
-Some Cortex XSOAR-Microsoft integrations use [Azure Managed Identities Authentication](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview).
+### Applicable only when the integration runs on an Azure VM
 
-Follow one of these steps for authentication based on Azure Managed Identities:
+Some Cortex XSOAR/XSIAM Microsoft integrations support Azure Managed Identities Authentication.
 
-- ##### To use System Assigned Managed Identity
-   - Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox and leave the **Azure Managed Identities Client ID** field empty.
+Azure provides two types of Managed Identities:
 
-- ##### To use User Assigned Managed Identity
-   1. Go to [Azure Portal](https://portal.azure.com/) -> **Managed Identities**.
-   2. Select your User Assigned Managed Identity -> copy the Client ID -> paste it in the **Azure Managed Identities Client ID** field in the instance settings.
-   3. Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox.
+1. **System-assigned**: Automatically created and tied to a specific Azure resource; deleted when the resource is deleted.
+2. **User-assigned**: A standalone identity that can be assigned to one or more Azure resources and exists independently of them.
+
+For more details, you can also watch the video in Microsoft [documentations](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview).
+
+Important: Either the integration or XSOAR/XSIAM must be running on an Azure VM; otherwise, the connection will not work.
+For XSOAR 8 and above, the integration must run on an engine to connect with Azure.
+
+**Once the integration is running on an Azure VM, follow the steps below to configure authentication using Azure Managed Identities:**
+
+- #### Using System Assigned Managed Identity
+  Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox and leave the **Azure Managed Identities Client ID** field empty.
+
+- #### Using User Assigned Managed Identity
+    1. Go to [Azure Portal](https://portal.azure.com/) -> **Managed Identities**.
+    2. Select your User Assigned Managed Identity -> copy the Client ID -> paste it in the **Azure Managed Identities Client ID** field in the instance settings.
+    3. Select **Azure Managed Identities** from the **Authentication Type** drop down or select the **Use Azure Managed Identities** checkbox.
+
 
 # Revoke Consent
 
