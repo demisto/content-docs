@@ -1,6 +1,6 @@
 ---
 title: Microsoft Integrations - Authentication
-description: Authentication method for Microsoft Graph and Azure integrations in Cortex XSOAR.
+description: Authentication method for Microsoft Graph and Azure integrations in Cortex XSOAR/XSIAM.
 ---
 
 This document includes the following sections to help you understand, set up, and use the integration effectively:
@@ -176,7 +176,7 @@ The Redirect URI is the address where Azure AD sends the login response. If you 
 6. Select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
 7. Save the instance.
 8. Run the `!<integration command prefix>-generate-login-url` command in the War Room and follow these instructions:
-    >1. Click the [login URL]() to sign in and grant Cortex XSOAR permissions to access your Azure Service Management.
+    >1. Click the [login URL]() to sign in and grant Cortex XSOAR/XSIAM permissions to access your Azure Service Management.
     You will be automatically redirected to a link with the following structure:
     ```REDIRECT_URI?code=AUTH_CODE&session_state=SESSION_STATE```
     >2. Copy the `AUTH_CODE` (between the `code=` prefix and the `session_state` prefix)
@@ -235,7 +235,7 @@ The Redirect URI is the address where Azure AD sends the login response. If you 
 
 
 ## Device Code Flow
-Some Cortex XSOAR-Microsoft integrations use the [device code flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code).
+Some Cortex XSOAR/XSIAM-Microsoft integrations use the [device code flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code).
 When configured using this flow, the integration operates under the user’s context, similar to the Authorization Code Flow, but it is designed for devices or environments where a browser-based login is not available. This flow also uses delegated permissions, which must be defined in the Azure application configuration in the Azure Portal.
 The user authenticating via the device code must have the same roles and permissions as those granted to the application. These permissions determine which actions the user can perform through XSOAR/XSIAM commands within the organization or tenant scope.
 
@@ -271,7 +271,7 @@ Azure provides two types of Managed Identities:
 
 For more details, you can also watch the video in Microsoft [documentations](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview).
 
-Important: Either the integration or XSOAR must be running on an Azure VM; otherwise, the connection will not work.
+Important: Either the integration or XSOAR/XSIAM must be running on an Azure VM; otherwise, the connection will not work.
 For XSOAR 8 and above, the integration must run on an engine to connect with Azure.
 
 **Once the integration is running on an Azure VM, follow the steps below to configure authentication using Azure Managed Identities:**
