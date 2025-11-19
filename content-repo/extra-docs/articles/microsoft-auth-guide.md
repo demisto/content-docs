@@ -55,7 +55,7 @@ The application must have the required permissions and roles for the relevant AP
 The authentication flow you choose depends on the integration’s purpose and the target it acts on:
 
 - **Client Credentials Flow:** Used on behalf of the application. The integration authenticates as the application itself, not a user, allowing it to perform API requests at the tenant or organization level.
-- **Authoriztion Code Flow:** Used on behalf of a signed-in user through an interactive login.
+- **Authorization Code Flow:** Used on behalf of a signed-in user through an interactive login.
 This flow grants access based on the user’s permissions and is ideal for integrations that require user consent or need to act under a specific user’s identity.
 - **Device Code Flow:** When configured using this flow, the integration operates under the user’s context, similar to the authorization code flow, but it is designed for devices or environments where a browser-based login is not available.
 
