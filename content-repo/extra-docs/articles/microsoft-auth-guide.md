@@ -104,7 +104,7 @@ Follow these steps:
 4. Copy the "Application (client) ID" and paste it in the App/Client ID parameter field in the XSOAR/XSIAM instance configuration.
 5. Copy the "Directory (tenant) ID" and paste it in the Token/Tenant ID parameter field in the XSOAR/XSIAM instance configuration.
 6. In the application configuration, go to "Certificates & secrets", click "New client secret", then click "Add". Copy the secret **value** and paste it into the Client Secret parameter field in the XSOAR/XSIAM instance configuration.
-7. In the instance configuration, select the ***Use a self-deployed Azure Application*** checkbox.
+7. In the instance configuration, if exists, select the ***Use a self-deployed Azure Application*** checkbox.
 8. Test and Save the instance.
 
 **Note:** Make sure the necessary permissions and roles are applied to the application.
@@ -173,7 +173,7 @@ The Redirect URI is the address where Azure AD sends the login response. If you 
 3. Go to "Overview" section. Copy the "Application (client) ID" and paste it in the App/Client ID parameter field in the instance configuration in XSOAR/XSIAM.
 4. Copy the "Directory (tenant) ID" and paste it in the Token/Tenant ID parameter field in the instance configuration in XSOAR/XSIAM.
 5. In the application configuration go to "Certificates & secrets", click "New client secret", then "Add". Copy the secret **value** and paste it under the Client Secret parameter field in the XSOAR/XSIAM instance configuration.
-6. Select the ***Use a self-deployed Azure Application*** checkbox in the integration instance configuration.
+6. In the instance configuration, if exists, select the ***Use a self-deployed Azure Application*** checkbox.
 7. Save the instance.
 8. Run the `!<integration command prefix>-generate-login-url` command in the War Room and follow these instructions:
     >1. Click the [login URL]() to sign in and grant Cortex XSOAR/XSIAM permissions to access your Azure Service Management.
@@ -223,7 +223,7 @@ The Redirect URI is the address where Azure AD sends the login response. If you 
 7. Paste the "Application (client) ID" under the App/Client ID parameter field in the instance configuration in XSOAR/XSIAM.
 8. Paste "Directory (tenant) ID" under the Token/Tenant ID parameter field in the instance configuration in XSOAR/XSIAM.
 9. In the application cofiguration go to "Certificates & secrets" and click on "New client secret", click on "Add" and copy the secret **value**. Paste it under the Client Secret parameter field in the instance configuration in XSOAR/XSIAM.
-10. Click the **Use a self-deployed Azure application** checkbox.
+10. In the instance configuration, if exists, select the ***Use a self-deployed Azure Application*** checkbox.
 11. Click on Save and Exit.
 12. Get the authorization code by following the next steps:
 
@@ -251,10 +251,11 @@ The Redirect URI is the address where Azure AD sends the login response. If you 
    <img width="600" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/device_code.png" align="middle"></img>
 
 3. Next, click **Overview**, copy the "Application (client) ID" and paste it under the App/Client ID parameter field in the instance configuration in XSOAR/XSIAM.
-4. Click "Save and Exit".
-5. Run the `!<integration command prefix>-auth-start` command - you will be prompted to open the page https://microsoft.com/devicelogin and enter the generated code.
-6. Run the `!<integration command prefix>-auth-complete` command.
-7. Run the `!<integration command prefix>-auth-test` command to ensure connectivity to Microsoft. 
+4. In the instance configuration, if exists, select the ***Use a self-deployed Azure Application*** checkbox.
+5. Click "Save and Exit".
+6. Run the `!<integration command prefix>-auth-start` command - you will be prompted to open the page https://microsoft.com/devicelogin and enter the generated code.
+7. Run the `!<integration command prefix>-auth-complete` command.
+8. Run the `!<integration command prefix>-auth-test` command to ensure connectivity to Microsoft. 
 
 **Note:** Make sure the neccessary permissions and roles are applied to the application and the user.
 
