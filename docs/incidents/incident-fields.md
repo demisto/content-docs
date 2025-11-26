@@ -3,7 +3,7 @@ id: incident-fields
 title: Working with Incident Fields
 ---
 Incident Fields are used for accepting or populating incident data coming from incidents. You create fields for information you know will be coming from 3rd party integrations and in which you want to insert the information. The fields are added to Incident Type layouts and are mapped using the Classification and Mapping feature. In addition, Incident Fields can be populated by the incident team members during an investigation, at the beginning of the investigation or prior to closing the investigation.
-
+TEST
 You can set and update all system incident fields using the `setIncident` command, of which each field is a command argument.
 
 **Note**: Creating Incident Fields should be an iterative process in which you continue to create fields as you gain a better understanding of your needs and the information available in the 3rd-party integrations that you use. There are many fields already available as part of common Content packs. Before creating a new Incident Field try checking if there is an existing field, which matches your needs. Starting with Server version 6.1, you can search for packs according to `Incident fields` name by modifying the `Search in` selection. Screenshot:
