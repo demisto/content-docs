@@ -334,7 +334,7 @@ Although you do not have the flexibility of version control and rollback, it is 
    1.2 If not using an artifact server, replace the following section:
     
             # ========= UPLOAD TO ARTIFACTS SERVER OPTION =========
-            # TODO: Upload to the artifacts server of your choice.
+            # Upload to the artifacts server of your choice.
             # Create a file with the service account data
             # use the bucket_upload script to upload your packs to google cloud storage
             python $GITHUB_WORKSPACE/repository/build_related_scripts/bucket_upload.py --service_account $GITHUB_WORKSPACE/service_account.json --packs_directory $NEW_PACKS_FOLDER --branch_name $BRANCH_NAME
@@ -345,12 +345,8 @@ Although you do not have the flexibility of version control and rollback, it is 
 
             # ========= UPLOAD DIRECTLY TO YOUR XSOAR MACHINE (WHEN MERGING TO MAIN REPO) =========
             if [ $BRANCH_NAME != master ]; then
-              CONFIG_FILE=$(cat xsoar_config.json)
-              MARKETPLACE_PACKS_LIST=$(cat $CONFIG_FILE | jq -r '.marketplace_packs')
               # Upload Custom Packs
               demisto-sdk upload --input-config-file /xsoar_config.json
-              # Upload MarketPlace Packs
-              python3 build_related_scripts/MarketPlaceInstallerFromCICD.py --marketplace-packs-list $MARKETPLACE_PACKS_LIST
 
 2. **(Artifact Server only) Configure the `bucket_upload.py` file.**
    
