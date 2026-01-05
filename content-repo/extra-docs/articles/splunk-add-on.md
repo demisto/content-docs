@@ -7,6 +7,25 @@ Supporting add-on for Cortex XSOAR. This application enables you to push inciden
 
 Source code for the add-on is available at: [https://github.com/demisto/splunk-app](https://github.com/demisto/splunk-app).
 
+---
+
+### Recommended Alternative: SplunkPy Pack
+
+For pushing Splunk events into Cortex XSOAR, we recommend using the native integrations available in the **[SplunkPy pack](https://cortex.marketplace.pan.dev/marketplace/details/SplunkPy)** instead of this add-on.
+
+#### Event Fetching Capabilities
+
+The SplunkPy pack integrations provide automated event fetching functionality that serves as a direct replacement for the add-on's push mechanism:
+
+- **Continuous Event Ingestion**: Automatically fetch Splunk events as incidents on a configurable schedule, eliminating the need for manual alert configuration in Splunk.
+- **Flexible Query Configuration**: Define custom SPL queries to fetch exactly the events you need, with full control over search parameters and time ranges.
+- **Deduplication**: Built-in mechanisms to prevent duplicate incident creation, ensuring each event is processed only once.
+- **Field Mapping**: Map Splunk event fields directly to Cortex XSOAR incident fields during the fetch process.
+- **Integration Health Monitoring**: Monitor fetch operations through Cortex XSOAR's integration health dashboard, with clear visibility into errors, fetch statistics, and connection status.
+
+Additionally, the SplunkPy pack provides comprehensive bi-directional capabilities for executing searches, updating events, and enriching incidents with Splunk data.
+
+---
 
 ## Prerequisites
 A Splunk instance, with Splunk version 8.0 or above.
