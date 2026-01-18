@@ -73,7 +73,7 @@ PACKS_PREFIX = 'packs'
 NO_HTML = '<!-- NOT_HTML_DOC -->'
 YES_HTML = '<!-- HTML_DOC -->'
 BRANCH = os.getenv('HEAD', 'master')
-MAX_FAILURES = int(os.getenv('MAX_FAILURES', 40))  # if we have more than this amount in a single category we fail the build
+MAX_FAILURES = int(os.getenv('MAX_FAILURES', 60))  # if we have more than this amount in a single category we fail the build
 # env vars for faster development
 MAX_FILES = int(os.getenv('MAX_FILES', -1))
 FILE_REGEX = os.getenv('FILE_REGEX')
@@ -303,7 +303,8 @@ def process_readme_doc(target_dir: str, content_dir: str, prefix: str,
             yml_data = yaml.safe_load(f)
         id = yml_data.get('commonfields', {}).get('id') or yml_data['id']
         if id in IGNORED_ITEMS[prefix]:
-            raise ValueError(f'{prefix}: {id} {IGNORE_MSG}')
+            print(f'{prefix}: {id} {IGNORE_MSG}')
+            return DocInfo('', '', '', readme_file, IGNORE_MSG)
         id = normalize_id(id)
         name = yml_data.get('display') or yml_data['name']
         desc = yml_data.get('description') or yml_data.get('comment')

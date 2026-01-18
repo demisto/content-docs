@@ -17,6 +17,8 @@ For quick starts templates see [Templates directory](https://github.com/demisto/
 ## Python 2 vs 3
 All new integrations and scripts should be written in Python 3. Python 2 is supported only for existing integrations and scripts.
 
+**Note:** From October 1, 2025, Python 2 will no longer be supported.
+
 ## Imports 
 You define imports and disable insecure warning at the top of the file.
 ```python

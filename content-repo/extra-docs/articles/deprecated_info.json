@@ -264,6 +264,38 @@
     {
       "id": "palo_alto_networks_pan_os_edl_management",
       "note": "Use the Palo Alto Networks PAN-OS EDL Service integration instead. For customers with over 1000 Firewalls, this integration remains fully supported."
+    },
+    {
+      "id": "AutoFocus V2",
+      "name": "Palo Alto Networks AutoFocus v2",
+      "description": "Deprecated. Use the Unit 42 Intelligence integration instead.",
+      "maintenance_start": "Nov 01, 2025",
+      "eol_start": "Dec 01, 2025",
+      "note": "Use the Unit 42 Intelligence integration instead."
+    },
+    {
+      "id": "AutoFocus Feed",
+      "name": "AutoFocus Feed",
+      "description": "Deprecated. Use the Unit 42 Feed integration instead.",
+      "maintenance_start": "Nov 01, 2025",
+      "eol_start": "Dec 01, 2025",
+      "note": "Use the Unit 42 Feed integration instead."
+    },
+    {
+      "id": "Unit42v2 Feed",
+      "name": "Unit 42 ATOMs Feed",
+      "description": "Deprecated. Use the Unit 42 Feed integration instead.",
+      "maintenance_start": "Nov 01, 2025",
+      "eol_start": "Dec 01, 2025",
+      "note": "Use the Unit 42 Feed integration instead."
+    },
+    {
+      "id": "Unit42IntelObjectsFeed",
+      "name": "Unit 42 Intel Objects Feed",
+      "description": "Deprecated. Use the Unit 42 Feed integration instead.",
+      "maintenance_start": "Nov 01, 2025",
+      "eol_start": "Dec 01, 2025",
+      "note": "Use the Unit 42 Feed integration instead."
     }
   ]
 }
