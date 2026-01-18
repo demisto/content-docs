@@ -115,7 +115,7 @@ Specify in the corresponding release notes file:
     - Bad example: `Added the timeout parameter.`  
     - Good example: `Added the timeout parameter, which enables you to define the amount of time (in minutes) that the integration will try to execute commands before it throws an error.`
 
-- Single line release notes do not need a bullet point.
+- Single line release notes do not need a bullet point (but can have one).
 - Release notes must start with one of the following prefixes:
 
 ```
