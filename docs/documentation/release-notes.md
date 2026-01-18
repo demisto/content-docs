@@ -133,6 +133,7 @@ Specify in the corresponding release notes file:
 'Created a new layout'
 'Playbook now supports'
 'Created a new playbook'
+'New:'
 ```
 
 Release notes not using one of these prefixes will generate an error when running `demisto-sdk doc-review`:
