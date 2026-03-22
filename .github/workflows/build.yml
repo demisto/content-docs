@@ -42,6 +42,7 @@ jobs:
       run: |
         pip install pipenv
         pipenv install --dev
+        pipenv run pip install setuptools
     - name: Fetch Dependent Files (content repo)
       run: |
         cd content-repo

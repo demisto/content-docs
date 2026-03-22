@@ -26,7 +26,6 @@ slack_sdk = "*"
 packaging = "*"
 google-api-python-client = "*"
 google-cloud-storage = "*"
-setuptools = "*"
 
 [requires]
 python_version = "3.9"
