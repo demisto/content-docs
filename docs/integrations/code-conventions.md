@@ -51,7 +51,7 @@ url = demisto.params().get("url")
 ## Main function 
 These are the best practices for defining the Main function.
 - Create the `main` function and in the main extract all the integration parameters.
-- Implement the **_command** function for each integration command (e.g., `say_hello_command(client, demisto.args())`) Note that it's not recommended to use dictionary deconstruction (e.g., `**args`) as it may affect the command execution in certain flows.
+- Implement the **_command** function for each integration command (e.g., `say_hello_command(client, demisto.args())`) Note that it's strongly not recommended to use dictionary deconstruction (e.g., `**args`) as it may introduce bugs to the command execution in certain flows.
 - To properly handle exceptions, wrap the commands with try/except in the main. The `return_error()` function receives error message and returns error entry back into Cortex XSOAR. It will also print the full error to the Cortex XSOAR logs. 
 - For logging, use the `demisto.debug("write some log here")` function.
 - In the main function, initialize the Client instance, and pass that client to `_command` functions.
