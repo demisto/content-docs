@@ -1,52 +1,58 @@
 #!/usr/bin/env python3
 
 import argparse
+import dataclasses
 import html
 import json
 import os
 import re
-from typing import Dict, List, Optional
 
 import docspec
-from nr.databind.core import Field
-from pydoc_markdown import (FilterProcessor, MarkdownRenderer, PydocMarkdown,
-                            PythonLoader, SmartProcessor)
-from pydoc_markdown.contrib.processors.sphinx import (
-    SphinxProcessor, generate_sections_markdown)
+from pydoc_markdown import FilterProcessor, MarkdownRenderer, PydocMarkdown, PythonLoader, SmartProcessor
+from pydoc_markdown.contrib.processors.sphinx import SphinxProcessor, generate_sections_markdown
 
 
+@dataclasses.dataclass
 class DemistoMarkdownRenderer(MarkdownRenderer):
-    func_prefix = Field(str, default=None)
-
-    module_overview = Field(str, default=None)
+    func_prefix: str | None = None
+    module_overview: str | None = None
 
     # Overriding header levels from MarkdownRenderer to Function header to level 2
-    header_level_by_type = Field({int}, default={
-        'Module': 1,
-        'Class': 2,
-        'Method': 4,
-        'Function': 2,
-        'Data': 4,
-    })
+    header_level_by_type: dict[str, int] = dataclasses.field(
+        default_factory=lambda: {
+            "Module": 1,
+            "Class": 2,
+            "Method": 4,
+            "Function": 2,
+            "Variable": 4,  # v4 uses 'Variable' instead of 'Data'
+            "Data": 4,  # keep for backwards compat
+        }
+    )
 
-    def _format_function_signature(self, func: docspec.Function, override_name: str = None,
-                                   add_method_bar: bool = True) -> str:
+    def _format_function_signature(
+        self, func: docspec.Function, override_name: str | None = None, add_method_bar: bool = True
+    ) -> str:
         function_signature = super()._format_function_signature(func, override_name, add_method_bar)
         if self.func_prefix:
-            function_signature = f'{self.func_prefix}{function_signature}'
+            function_signature = f"{self.func_prefix}{function_signature}"
         return function_signature
 
     def _render_signature_block(self, fp, obj):
-        if '__init__' in obj.name:
+        if "__init__" in obj.name:
             return
         super()._render_signature_block(fp, obj)
 
     def _render_header(self, fp, level, obj):
-        if '__init__' in obj.name:
+        if "__init__" in obj.name:
             return
-        if type(obj).__name__ == 'Data' and 'Enum' in self._get_parent(obj).docstring:
-            fp.write(f'- {obj.name}')
-            fp.write('\n\n')
+        try:
+            parent = obj.parent
+        except (RuntimeError, AttributeError):
+            parent = None
+        parent_docstring = parent.docstring.content if (parent and parent.docstring) else ""
+        if type(obj).__name__ in ("Data", "Variable") and "Enum" in parent_docstring:
+            fp.write(f"- {obj.name}")
+            fp.write("\n\n")
             return
         super()._render_header(fp, level, obj)
 
@@ -54,20 +60,23 @@ class DemistoMarkdownRenderer(MarkdownRenderer):
         if not isinstance(obj, docspec.Module) or self.render_module_header:
             self._render_header(fp, level, obj)
         url = self.source_linker.get_source_url(obj) if self.source_linker else None
-        source_string = self.source_format.replace('{url}', str(url)) if url else None
-        if source_string and self.source_position == 'before signature':
-            fp.write(source_string + '\n\n')
+        source_string = self.source_format.replace("{url}", str(url)) if url else None
+        if source_string and self.source_position == "before signature":
+            fp.write(source_string + "\n\n")
         self._render_signature_block(fp, obj)
-        if source_string and self.source_position == 'after signature':
-            fp.write(source_string + '\n\n')
-        if obj.docstring:
-            should_escape = self.escape_html_in_docstring and '>>>' not in obj.docstring
-            docstring = html.escape(obj.docstring) if should_escape else obj.docstring
-            lines = docstring.split('\n')
+        if source_string and self.source_position == "after signature":
+            fp.write(source_string + "\n\n")
+        # Skip module-level docstring — it is provided via module_overview in the article header
+        if obj.docstring and not isinstance(obj, docspec.Module):
+            # In v4, obj.docstring is a Docstring object with a .content attribute
+            docstring_content = obj.docstring.content
+            should_escape = self.escape_html_in_docstring and ">>>" not in docstring_content
+            docstring = html.escape(docstring_content) if should_escape else docstring_content
+            lines = docstring.split("\n")
             if self.docstrings_as_blockquote:
-                lines = ['> ' + x for x in lines]
-            fp.write('\n'.join(lines))
-            fp.write('\n\n')
+                lines = ["> " + x for x in lines]
+            fp.write("\n".join(lines))
+            fp.write("\n\n")
 
 
 class CommonServerPythonProcessor(SphinxProcessor):
@@ -75,73 +84,76 @@ class CommonServerPythonProcessor(SphinxProcessor):
         if not node.docstring:
             return
 
+        # In v4, node.docstring is a Docstring object; access content via .content
+        docstring_content = node.docstring.content
+
         lines = []
         in_codeblock = False
         keyword = None
-        components: Dict[str, List[str]] = {}
-        param_type = ''
-        return_desc = ''
+        components: dict[str, list[str]] = {}
+        param_type = ""
+        return_desc = ""
 
-        for line in node.docstring.split('\n'):
+        for line in docstring_content.split("\n"):
             line = line.strip()
 
             if line.startswith("```"):
                 in_codeblock = not in_codeblock
 
-            line_codeblock = line.startswith('    ')
+            line_codeblock = line.startswith("    ")
 
             if not in_codeblock and not line_codeblock:
-                match = re.match(r'\s*:(?:type)\s+(\w+)\s*:(.*)?$', line)
+                match = re.match(r"\s*:(?:type)\s+(\w+)\s*:(.*)?$", line)
                 if match:
-                    param_type = match.group(2).strip().replace('`', '')
+                    param_type = match.group(2).strip().replace("`", "")
                     continue
 
-                match = re.match(r'\s*:(?:arg|argument|param|parameter)\s+(\w+)\s*:(.*)?$', line)
+                match = re.match(r"\s*:(?:arg|argument|param|parameter)\s+(\w+)\s*:(.*)?$", line)
                 if match:
-                    keyword = 'Arguments'
+                    keyword = "Arguments"
                     param = match.group(1)
                     text = match.group(2)
                     text = text.strip()
 
                     component = components.setdefault(keyword, [])
-                    component.append('- `{}` _{}_: {}'.format(param, param_type, text))
+                    component.append(f"- `{param}` _{param_type}_: {text}")
                     continue
 
-                match = re.match(r'\s*:(?:return|returns)\s*:(.*)?$', line)
+                match = re.match(r"\s*:(?:return|returns)\s*:(.*)?$", line)
                 if match:
                     return_desc = match.group(1).strip()
                     continue
 
-                match = re.match(r'\s*:(?:rtype)\s*:(.*)?$', line)
+                match = re.match(r"\s*:(?:rtype)\s*:(.*)?$", line)
                 if match:
-                    keyword = 'Returns'
-                    return_type = match.group(1).strip().replace('`', '')
-                    if 'None' in return_type:
+                    keyword = "Returns"
+                    return_type = match.group(1).strip().replace("`", "")
+                    if "None" in return_type:
                         continue
 
                     component = components.setdefault(keyword, [])
-                    component.append('- `{}` - {}'.format(return_type, return_desc))
+                    component.append(f"- `{return_type}` - {return_desc}")
                     continue
 
-                match = re.match('\\s*:(?:raises|raise)\\s+(\\w+)\\s*:(.*)?$', line)
+                match = re.match("\\s*:(?:raises|raise)\\s+(\\w+)\\s*:(.*)?$", line)
                 if match:
-                    keyword = 'Raises'
+                    keyword = "Raises"
                     exception = match.group(1)
                     text = match.group(2)
                     text = text.strip()
 
                     component = components.setdefault(keyword, [])
-                    component.append('- `{}`: {}'.format(exception, text))
+                    component.append(f"- `{exception}`: {text}")
                     continue
 
             stripped_line = line.strip()
-            if stripped_line.endswith('Examples:'):
+            if stripped_line.endswith("Examples:"):
                 continue
 
-            if stripped_line.startswith('>>>'):
-                keyword = 'Examples'
+            if stripped_line.startswith(">>>"):
+                keyword = "Examples"
 
-                component = components.setdefault(keyword, ['```python'])
+                component = components.setdefault(keyword, ["```python"])
                 component.append(stripped_line)
                 continue
 
@@ -150,32 +162,38 @@ class CommonServerPythonProcessor(SphinxProcessor):
             else:
                 lines.append(line)
 
-        if 'Examples' in components:
-            components['Examples'].append('```')
+        if "Examples" in components:
+            components["Examples"].append("```")
         generate_sections_markdown(lines, components)
-        node.docstring = '\n'.join(lines)
+        node.docstring.content = "\n".join(lines)
 
 
 class IgnoreDocstringProcessor(FilterProcessor):
     def process(self, modules, _resolver):
+        if not modules:
+            return
+        module = modules[0]
         filtered_modules = []
-        for member in getattr(modules[0], 'members', []):
-            if member.docstring and 'ignore docstring' not in member.docstring:
+        for member in list(getattr(module, "members", [])):
+            # In v4, member.docstring is a Docstring object; access content via .content
+            docstring_content = member.docstring.content if member.docstring else None
+            if docstring_content and "ignore docstring" not in docstring_content:
                 filtered_modules.append(member)
             else:
-                print(f'Skipping {member}')
-        modules.clear()
-        modules.extend(filtered_modules)
-        modules.sort(key=lambda obj: obj.name)
+                print(f"Skipping {member}")
+        filtered_modules.sort(key=lambda obj: obj.name)
+        # Mutate members in-place and re-sync parent weak-refs (v4 docspec requirement)
+        module.members = filtered_modules
+        module.sync_hierarchy()
 
 
 def generate_pydoc(
-        module: str,
-        article_id: str,
-        article_title: str,
-        target_dir: str,
-        module_overview: str,
-        func_prefix: Optional[str] = None,
+    module: str,
+    article_id: str,
+    article_title: str,
+    target_dir: str,
+    module_overview: str,
+    func_prefix: str | None = None,
 ) -> None:
     """
     Args:
@@ -201,6 +219,8 @@ def generate_pydoc(
         descriptive_class_title=False,
         signature_with_decorators=False,
         signature_class_prefix=True,
+        render_module_header=False,
+        format_code=False,
     )
     loader: PythonLoader = next((ldr for ldr in pydocmd.loaders if isinstance(ldr, PythonLoader)), None)
     loader.modules = [module]
@@ -209,9 +229,11 @@ def generate_pydoc(
 
     pydoc = pydocmd.renderer.render_to_string(modules)
 
-    article_description = f'API reference documentation for {article_title}.'
-    content = f'---\nid: {article_id}\ntitle: {article_title}\ndescription: {article_description}\n---\n\n{module_overview}\n\n{pydoc}'
-    with open(f'{target_dir}/{article_id}.md', mode='w', encoding='utf-8') as f:
+    article_description = f"API reference documentation for {article_title}."
+    content = (
+        f"---\nid: {article_id}\ntitle: {article_title}\ndescription: {article_description}\n---\n\n{module_overview}\n\n{pydoc}"
+    )
+    with open(f"{target_dir}/{article_id}.md", mode="w", encoding="utf-8") as f:
         f.write(content)
 
 
@@ -224,56 +246,57 @@ The `demisto` class is a low level API. For many operations we provide a simpler
 part of the [Common Server Functions](https://xsoar.pan.dev/docs/integrations/code-conventions#common-server-functions).
 :::"""
     generate_pydoc(
-        module='demisto',
-        article_id='demisto-class',
-        article_title='Demisto Class',
+        module="demisto",
+        article_id="demisto-class",
+        article_title="Demisto Class",
         target_dir=target_dir,
-        func_prefix='demisto.',
+        func_prefix="demisto.",
         module_overview=overview,
     )
 
 
 def generate_common_server_python_docs(target_dir: str):
-    overview = 'Common functions that will be appended to the code of each integration/script before being executed.'
+    overview = "Common functions that will be appended to the code of each integration/script before being executed."
     generate_pydoc(
-        module='CommonServerPython',
-        article_id='common-server-python',
-        article_title='Common Server Python',
+        module="CommonServerPython",
+        article_id="common-server-python",
+        article_title="Common Server Python",
         target_dir=target_dir,
         module_overview=overview,
     )
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Generate Content Python Docs',
-                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('-t', '--target_dir', help='Target directory to generate docs at.', required=True)
+    parser = argparse.ArgumentParser(
+        description="Generate Content Python Docs", formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    parser.add_argument("-t", "--target_dir", help="Target directory to generate docs at.", required=True)
     args = parser.parse_args()
-    target_sub_dir = f'{args.target_dir}/api'
+    target_sub_dir = f"{args.target_dir}/api"
     if not os.path.exists(target_sub_dir):
         os.makedirs(target_sub_dir)
-    os.rename('demistomock.py', 'demisto.py')
+    os.rename("demistomock.py", "demisto.py")
     generate_demisto_class_docs(target_sub_dir)
-    os.rename('demisto.py', 'demistomock.py')
+    os.rename("demisto.py", "demistomock.py")
     generate_common_server_python_docs(target_sub_dir)
-    api_ref_path = f'{os.path.basename(args.target_dir)}/api'
+    api_ref_path = f"{os.path.basename(args.target_dir)}/api"
     sidebar = {
-        'type': 'category',
-        'label': 'API Reference',
-        'items': [
-            f'{api_ref_path}/demisto-class',
-            f'{api_ref_path}/common-server-python',
-        ]
+        "type": "category",
+        "label": "API Reference",
+        "items": [
+            f"{api_ref_path}/demisto-class",
+            f"{api_ref_path}/common-server-python",
+        ],
     }
     # IMPORTANT: if you add additional API items edit the reference index page at gendocs.py
     # See: https://github.com/demisto/content-docs/blob/5e58290cad5a70d7217264ad31dafe388dd5f5a9/content-repo/gendocs.py#L682
-    with open(f'{args.target_dir}/sidebar.json', 'r+') as f:
+    with open(f"{args.target_dir}/sidebar.json", "r+") as f:
         data = json.load(f)
-        rn_item_index = next(data.index(item) for item in data if item.get('label') == 'Content Release Notes')
+        rn_item_index = next(data.index(item) for item in data if item.get("label") == "Content Release Notes")
         data.insert(rn_item_index, sidebar)
         f.seek(0)
         json.dump(data, f, indent=4)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
