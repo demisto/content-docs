@@ -173,17 +173,17 @@ class IgnoreDocstringProcessor(FilterProcessor):
         if not modules:
             return
         module = modules[0]
-        kept = []
+        filtered_modules = []
         for member in list(getattr(module, "members", [])):
             # In v4, member.docstring is a Docstring object; access content via .content
             docstring_content = member.docstring.content if member.docstring else None
             if docstring_content and "ignore docstring" not in docstring_content:
-                kept.append(member)
+                filtered_modules.append(member)
             else:
                 print(f"Skipping {member}")
-        kept.sort(key=lambda obj: obj.name)
+        filtered_modules.sort(key=lambda obj: obj.name)
         # Mutate members in-place and re-sync parent weak-refs (v4 docspec requirement)
-        module.members = kept
+        module.members = filtered_modules
         module.sync_hierarchy()
 
 
