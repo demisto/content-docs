@@ -63,7 +63,9 @@ def test_generate_pydoc_demisto_class(tmp_path):
             assert f.readline().startswith('## ')
             f.readline()
             assert f.readline().startswith('```python')
-            assert f.readline().startswith(func_prefix)
+            sig_line = f.readline()
+            assert sig_line.startswith(func_prefix), f"Signature should start with '{func_prefix}', got: {sig_line}"
+            assert not sig_line.startswith(f"{func_prefix}def "), f"Signature should not contain 'def' after prefix, got: {sig_line}"
 
 
 def test_generate_pydoc_common_server_python(tmp_path):
