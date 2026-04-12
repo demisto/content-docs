@@ -218,6 +218,7 @@ def generate_pydoc(
         classdef_code_block=False,
         descriptive_class_title=False,
         signature_with_decorators=False,
+        signature_with_def=False,
         signature_class_prefix=True,
         render_module_header=False,
         format_code=False,
