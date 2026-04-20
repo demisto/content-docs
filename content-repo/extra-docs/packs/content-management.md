@@ -318,7 +318,7 @@ Although you do not have the flexibility of version control and rollback, it is 
     ```
     steps:
       - name: XSOAR CI/CD master checkout
-        uses: actions/checkout@v4 # https://github.com/marketplace/actions/checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: your/repository
           path: repository
