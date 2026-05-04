@@ -267,8 +267,9 @@ def get_pack_marketplaces(readme_file: str) -> list:
 def get_fromversion_data(yml_data: dict, marketplaces: Optional[list] = None):
     """Generate the version/marketplace availability banner for a content item.
 
-    xsoar, xsoar_on_prem, and xsoar_saas are all consolidated into a single "Cortex XSOAR" line.
+    xsoar, xsoar_on_prem, and xsoar_saas are all consolidated into a single "Cortex XSOAR" entry.
     Version info (fromversion) is only shown for XSOAR-related marketplaces.
+    All products are listed in a single sentence.
 
     Args:
         yml_data (dict): yml data of the content entity.
@@ -287,26 +288,36 @@ def get_fromversion_data(yml_data: dict, marketplaces: Optional[list] = None):
 
     show_version = from_version and not from_version.startswith(('4', '5.0'))
 
-    info_lines = []
+    # Build list of product parts (e.g., "Cortex XSOAR (versions 6.5.0 and later)", "Cortex XSIAM")
+    product_parts = []
     xsoar_added = False
     for mp in marketplaces:
         display_name = MARKETPLACE_DISPLAY_NAMES.get(mp, mp)
         if mp in XSOAR_MARKETPLACES:
-            # Consolidate all XSOAR variants into a single line
+            # Consolidate all XSOAR variants into a single entry
             if xsoar_added:
                 continue
             xsoar_added = True
             if show_version:
-                info_lines.append(f'Available on {display_name} (versions {from_version} and later).')
+                product_parts.append(f'{display_name} (versions {from_version} and later)')
             else:
-                info_lines.append(f'Available on {display_name}.')
+                product_parts.append(display_name)
         else:
-            info_lines.append(f'Available on {display_name}.')
+            product_parts.append(display_name)
 
-    if not info_lines:
+    if not product_parts:
         return ''
 
-    return ':::info Supported versions\n' + '\n'.join(info_lines) + '\n:::\n\n'
+    # Build a single sentence: "Available on X.", "Available on X and Y.", "Available on X, Y, and Z."
+    if len(product_parts) == 1:
+        sentence = f'Available on {product_parts[0]}.'
+    elif len(product_parts) == 2:
+        sentence = f'Available on {product_parts[0]} and {product_parts[1]}.'
+    else:
+        parts_str = ', '.join(product_parts[:-1])
+        sentence = f'Available on {parts_str}, and {product_parts[-1]}.'
+
+    return f':::info Supported versions\n{sentence}\n:::\n\n'
 
 
 def get_beta_data(yml_data: dict, content: str):
