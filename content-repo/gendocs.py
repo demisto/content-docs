@@ -233,14 +233,16 @@ MARKETPLACE_DISPLAY_NAMES = {
     'xsoar_saas': 'Cortex XSOAR',
     'marketplacev2': 'Cortex XSIAM',
     'xpanse': 'Cortex XPANSE',
-    'platform': 'Cortex Platform',
 }
 
 # All distinct marketplace display entries — used when no marketplace info is available (available on all)
-ALL_DISPLAY_MARKETPLACES = ['xsoar', 'marketplacev2', 'xpanse', 'platform']
+ALL_DISPLAY_MARKETPLACES = ['xsoar', 'marketplacev2', 'xpanse']
 
 # Marketplaces where fromversion is relevant
 XSOAR_MARKETPLACES = {'xsoar', 'xsoar_on_prem', 'xsoar_saas'}
+
+# Marketplaces to exclude from the banner display
+EXCLUDED_MARKETPLACES = {'platform'}
 
 
 def get_pack_marketplaces(readme_file: str) -> list:
@@ -285,6 +287,13 @@ def get_fromversion_data(yml_data: dict, marketplaces: Optional[list] = None):
     # No marketplace info at all — available on all marketplaces
     if not marketplaces:
         marketplaces = ALL_DISPLAY_MARKETPLACES
+
+    # Filter out excluded marketplaces (e.g., 'platform') from the banner
+    marketplaces = [mp for mp in marketplaces if mp not in EXCLUDED_MARKETPLACES]
+
+    # If filtering removed all marketplaces, no banner should be displayed
+    if not marketplaces:
+        return ''
 
     show_version = from_version and not from_version.startswith(('4', '5.0'))
 
