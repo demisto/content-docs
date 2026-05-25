@@ -40,7 +40,7 @@ print = timestamped_print
 
 BASE_URL = "https://xsoar.pan.dev/docs/"
 MARKETPLACE_URL = "https://cortex.marketplace.pan.dev/marketplace/"
-DOCS_LINKS_JSON = {}
+DOCS_LINKS_JSON: dict[str, str] = {}
 
 INTEGRATION_YML_MATCH = [
     "Packs/[^/]+?/Integrations/[^/]+?/.+.yml",
