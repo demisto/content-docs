@@ -71,8 +71,37 @@ Notice:
 
 Fore more info on the `send_events_to_xsiam()` function visit the [API reference](https://xsoar.pan.dev/docs/reference/api/common-server-python#send_events_to_xsiam).
    
+## Vendor and Product Constants
+Define `VENDOR` and `PRODUCT` once as constants at the top of the integration file and reuse them whenever you call `send_events_to_xsiam()` (or any helper that needs them). It keeps the values consistent across the code and makes it trivial to rename the dataset later.
 
-## Seeing the data 
+```python
+VENDOR = "myvendor"
+PRODUCT = "myproduct"
+```
+
+## Shaping the Event Dict
+Before passing events to `send_events_to_xsiam()`, make sure each event dict carries the fields XSIAM expects:
+
+| Field | Purpose |
+|-------|---------|
+| `_time` | Event timestamp as an ISO 8601 UTC string. XSIAM uses this as the canonical event time. |
+| `source_log_type` | A log-type identifier so XSIAM can categorize events correctly. Add it whenever the collector fetches more than one type of event. |
+| The original fields | Keep the raw vendor fields as-is so XSIAM parsing rules and queries have everything to work with. |
+
+## First Fetch for Event Collectors
+When there's no `lastRun` yet (the very first fetch), the safest default for an event collector is "now minus one minute":
+
+```python
+from datetime import datetime, timedelta, timezone
+
+first_fetch = datetime.now(tz=timezone.utc) - timedelta(minutes=1)
+```
+
+
+## Additional Fetch Best Practices
+Event collectors share most of their fetch patterns with `fetch-incidents` — bounded pagination, cross-cycle pagination strategies, what to store in `lastRun`, deduplication, partial-failure recovery, and logging conventions. See [Fetch Best Practices](fetching-incidents#fetch-best-practices) for the full write-up.
+
+## Seeing the data
 In order to ses the events sent by the `send_events_to_xsiam()` function, in your XSIAM instance:
 1. Go to the left toolbar and navigate to: **Incident response** > **Investigation** > **Query BuilderUnder**. 
 2. Click the `XQL Search` button.

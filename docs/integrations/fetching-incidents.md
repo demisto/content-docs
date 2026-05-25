@@ -185,6 +185,135 @@ When implementing a **fetch-incidents** command, in some cases we can populate e
 ## Fetch Missing Incidents with Generic Lookback Methods
 This advanced feature uses generic lookback methods for fetching missing incidents because of indexing issues in the 3rd party product. For more information [click here](https://xsoar.pan.dev/docs/integrations/fetch-incidents-lookback).
 
+## Fetch Best Practices
+The following best practices expand on the basic structure shown above. They aim to keep your fetch flow safe to re-run, easy to unit test, and predictable when something goes wrong.
+
+### Structuring the Fetch Function
+- Keep all fetch logic inside a dedicated function (for example, `fetch_incidents_command()`), and let `main()` simply dispatch to it. This keeps `main()` clean and makes the fetch function easy to test.
+- The fetch function is the natural owner of the full cycle: reading `demisto.params()` and `demisto.getLastRun()`, calling the API, deduplicating results, sending them to Cortex XSOAR with `demisto.incidents()` (or `send_events_to_xsiam()` for event collectors), and writing the new state back with `demisto.setLastRun()`.
+- Internal helpers (pagination, deduplication, parsing, etc.) work better when they take their inputs as explicit arguments rather than reaching for `demisto.*` globals — it makes them straightforward to unit test in isolation.
+
+### Designing the Client Methods Used by Fetch
+- Client methods used by fetch should accept at least `start_time`, an optional `end_time`, and `limit`. This keeps the calling code simple and reusable.
+- Return the raw API response (a list of dicts) and leave the XSOAR-specific transformation (building the incident dict, mapping severities, etc.) to the fetch function. Mixing the two concerns makes the client harder to reuse from other commands.
+- If the API uses pagination, prefer to handle it inside the client method and return the aggregated results, so the fetch function doesn't have to know about page tokens or offsets.
+
+### Inheriting from the Base API Modules
+- When starting a new integration, consider inheriting from `BaseContentApiModule` and `ContentClientApiModule`. They already implement authentication, HTTP handling, parameter parsing, and retries, so you don't have to write that boilerplate again.
+
+### Pagination
+
+#### Loop Safety
+A pagination loop is essentially "fetch a page → ask for the next page → repeat". Without a stop condition you can easily get an infinite loop, especially if the API misbehaves. A safe loop should:
+
+- Have a hard upper bound — either the user-configured `max_fetch` or a constant such as `MAX_PAGES = 100` — so it can never run forever.
+- Stop as soon as the API returns no more results, or the pagination token comes back empty/`None`.
+- Stop once you've accumulated enough items to satisfy `max_fetch`, even mid-page. Save the pagination state in `lastRun` and resume from there on the next cycle.
+
+#### When the API Has More Events Than `max_fetch` Per Cycle
+Some APIs produce more events per fetch interval than you can reasonably pull in one cycle. In that case, pick one of the two strategies below and stick with it for the whole flow — mixing them tends to cause subtle gaps or duplicates.
+
+**Cursor-based (preferred when the API exposes a stable cursor):**
+1. Fetch up to `max_fetch` items and save the `next_token` in `lastRun`.
+2. On the next cycle, resume from `next_token` instead of re-querying from the beginning.
+3. Only advance the base timestamp (`last_fetch_time`) once `next_token` is empty for the current time window.
+
+**Timestamp + dedup (when no cursor is available):**
+1. Fetch up to `max_fetch` items ordered by timestamp ascending.
+2. Save `last_fetch_time` (the timestamp of the last item you returned) and `seen_ids` (the IDs of all items sharing that timestamp) in `lastRun`.
+3. On the next cycle, query from `last_fetch_time` *inclusive* and filter out anything already in `seen_ids` (see [Avoiding Duplicates](#avoiding-duplicates)).
+
+### What to Store in `lastRun`
+
+#### Useful State Fields
+Your `lastRun` should carry just enough state to resume fetching cleanly. The most common fields are:
+
+| Field | Purpose | Example |
+|-------|---------|---------|
+| `last_fetch_time` | Timestamp of the last successfully fetched item (ISO 8601 UTC) | `"2024-03-15T10:30:00Z"` |
+| `seen_ids` | IDs of items fetched in the last timestamp window, used for dedup | `["alert-123", "alert-124"]` |
+| `next_token` | Pagination cursor for cross-cycle pagination | `"eyJwYWdlIjogMn0="` |
+| `last_id` | Last processed item ID, for APIs that paginate by ID | `"alert-124"` |
+
+#### Avoiding Duplicates
+APIs that sort by timestamp will sometimes return items with the exact same timestamp across two fetch cycles. A simple way to handle it:
+
+1. Remember the IDs of all items that share the most recent timestamp by storing them in `seen_ids`.
+2. On the next fetch, query from that same timestamp (inclusive) and skip anything you already have in `seen_ids`.
+3. Once the timestamp moves forward, clear `seen_ids` and start fresh.
+4. If items don't have a native unique ID, you can derive one — for example by hashing the item's key fields with `hashlib.sha256(json.dumps(item, sort_keys=True).encode()).hexdigest()`.
+5. Save the updated state back to `lastRun`.
+
+#### Keeping `lastRun` Small and JSON-Friendly
+- Treat `lastRun` as a place for *metadata* (timestamps, IDs, tokens) — not for the events or incidents themselves. Putting the fetched events list into `lastRun` is a common source of state-size issues. If you find yourself doing that, the fix is usually to send the events out via `demisto.incidents()` / `send_events_to_xsiam()` and only keep small pointers (timestamps, IDs, tokens) in the state.
+- Keep `seen_ids` from growing without bound. A practical rule is to trim it once it goes past something like 1000 entries, or switch to a timestamp-only strategy with a small look-back window.
+- Stick to JSON-safe types (strings, numbers, lists). Avoid `datetime` objects, sets, or anything that doesn't survive a round-trip through `json.dumps`.
+
+#### First-Run Defaults
+- For **fetch-incidents**, when `lastRun` is empty fall back to the user-configured `first_fetch` parameter (commonly `"3 days"`).
+- Parse `first_fetch` with `dateparser` or `arg_to_datetime` so users can write it as `"3 days"`, an ISO date, etc.
+
+### Shaping the Incident Dict
+
+#### Required Fields
+Each fetched item should be turned into an incident dict that XSOAR knows how to display and map:
+
+| XSOAR Field | Source | Notes |
+|-------------|--------|-------|
+| `name` | Alert title / event summary | Use something a human can read at a glance, not an opaque ID |
+| `occurred` | Event timestamp | ISO 8601 UTC string |
+| `severity` | Vendor severity | Map to the XSOAR scale (see [Mapping Severity](#mapping-severity)) |
+| `type` | Incident classification | Use the configured `incidentType` or derive it from the event |
+| `rawJSON` | Full raw API response | `json.dumps(raw_item)` — keep all original fields so mappers and classifiers have everything to work with |
+
+#### Mapping Severity
+- Use the `IncidentSeverity` enum from `CommonServerPython` instead of hardcoding numeric severity values — it makes the mapping self-documenting and resilient to enum changes.
+- Provide a sensible default (typically `LOW`) for severity values the vendor sends that you don't recognize.
+- Compare severity strings case-insensitively — vendors are inconsistent about casing.
+
+#### Normalizing Timestamps
+- Store timestamps in `occurred`, `lastRun`, or context outputs as ISO 8601 UTC strings. This avoids timezone confusion later.
+- Parse vendor timestamps with `dateparser.parse()` or `arg_to_datetime()`, then format with `.isoformat()` or `datetime.strftime()`.
+- If the vendor returns epoch seconds or milliseconds, convert to a `datetime` with `tz=timezone.utc` before formatting.
+
+### Respecting `max_fetch`
+- Make sure `max_fetch` is defined in the integration YAML with a reasonable `defaultvalue`.
+- Read it once at the start of the fetch function and treat it as the upper bound for the whole cycle.
+- Stop accumulating results as soon as you hit it, even if the current page still has items left — those will come back on the next cycle.
+
+### Recovering from Partial Failures
+A fetch cycle may partially succeed: you fetch a couple of pages, then the API times out. The friendliest behavior in that case is:
+
+- Return the items you did manage to fetch instead of throwing them away.
+- Update `lastRun` to point at the last item you successfully processed, so the next cycle resumes from there rather than re-fetching from the original start time.
+- Log the failure with `demisto.error()` so it's easy to see what happened.
+
+### Logging Inside the Fetch Flow
+
+#### What to Avoid Logging
+Logs from fetch flows tend to end up in shared troubleshooting bundles, so it's worth being careful about what ends up there:
+
+- Don't log raw API response bodies — they can be huge and often contain sensitive data.
+- Don't log credentials, tokens, API keys, or authorization headers, at any level.
+- Don't log full incident or event payloads. Counts and IDs are usually enough to diagnose problems.
+- Don't log PII such as end-user emails, usernames, or IP addresses.
+
+#### Prefixing Log Messages
+Prefixing each log message with a short tag for the subsystem makes logs much easier to filter later. A common convention:
+
+| Prefix | When to use |
+|--------|-------------|
+| `[Fetch]` | Start/end of a fetch cycle, overall status |
+| `[HTTP Call]` | Outgoing HTTP requests and responses |
+| `[HTTP Error]` | HTTP-level failures (status codes, timeouts) |
+| `[Pagination Loop]` | Page iteration progress, thresholds, cursor state |
+| `[Dedup]` | Deduplication filtering, skipped/retained counts |
+| `[Token Request]` | OAuth or token acquisition and refresh |
+| `[Token Cache]` | Token cache hits, misses, expiry checks |
+| `[Config]` | Parameter validation and configuration loading |
+| `[Test Module]` | `test-module` connectivity checks |
+| `[Date Helper]` | Date parsing and normalization |
+
 ## Troubleshooting
 To troubleshoot ***fetch-incident***, execute `!integration_instance_name-fetch debug-mode=true` in the Playground to return the incidents.  
 
