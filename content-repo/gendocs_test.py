@@ -134,7 +134,27 @@ def test_findfiles():
                 'fromversion': '6.0.0',
                 'description': 'Manage Alibaba Cloud Elastic Compute Instances'
             },
-            ':::info Supported versions\nSupported Cortex XSOAR versions: 6.0.0 and later.\n:::\n\n'
+            ':::info Supported versions\n'
+            'Available on Cortex XSOAR (versions 6.0.0 and later), Cortex XSIAM, and Cortex XPANSE.\n:::\n\n'
+        ),
+        (
+            'xsiam-only-integration',
+            {
+                'fromversion': '8.4.0',
+                'description': '1Password integration for XSIAM',
+                'marketplaces': ['marketplacev2']
+            },
+            ':::info Supported versions\nAvailable on Cortex XSIAM.\n:::\n\n'
+        ),
+        (
+            'multi-marketplace-integration',
+            {
+                'fromversion': '6.5.0',
+                'description': 'Multi-marketplace integration',
+                'marketplaces': ['xsoar', 'marketplacev2']
+            },
+            ':::info Supported versions\n'
+            'Available on Cortex XSOAR (versions 6.5.0 and later) and Cortex XSIAM.\n:::\n\n'
         )
     ],
     indirect=True
@@ -145,12 +165,16 @@ def test_add_content_info(integration_yml_path_and_expected_content_info):
         a minimal integration yml file.
 
         Case1: deprecated integration with a fromversion = 6.0.0.
-        Case2: integration that is supported fromversion = 6.0.0
+        Case2: integration that is supported fromversion = 6.0.0 (no marketplaces field).
+        Case3: XSIAM-only integration with fromversion = 8.4.0 and marketplaces = ['marketplacev2'].
+        Case4: multi-marketplace integration with fromversion = 6.5.0 and marketplaces = ['xsoar', 'marketplacev2'].
     When -
         trying to fetch the integration information.
     Then -
         Case1: the content info will contain only information that the integration is deprecated.
-        Case2: the content info will contain only information that the integration is supported from 6.0.0 versions.
+        Case2: the content info will contain only information that the integration is supported from 6.0.0 versions (generic XSOAR).
+        Case3: the content info will show "Available on Cortex XSIAM." (no version).
+        Case4: the content info will show XSOAR version and "Available on Cortex XSIAM.".
     """
     from gendocs import add_content_info
 
@@ -305,12 +329,71 @@ def test_get_deprecated_data():
     assert "Add information" not in res
 
 
-@pytest.mark.parametrize("test_input, expected", [({'fromversion': '5.5.0'},
-                                                   ':::info Supported versions\nSupported '
-                                                   'Cortex XSOAR versions: 5.5.0 and later.\n:::\n\n'),
-                                                  ({'fromversion': '5.0.0'}, ''),
-                                                  ({}, ''),
-                                                  ({'fromversion': '4.0.0'}, '')])
+@pytest.mark.parametrize("test_input, expected", [
+    # No marketplaces field — available on all marketplaces (single sentence, platform excluded)
+    ({'fromversion': '5.5.0'},
+     ':::info Supported versions\n'
+     'Available on Cortex XSOAR (versions 5.5.0 and later), Cortex XSIAM, and Cortex XPANSE.\n:::\n\n'),
+    # No marketplaces, version 5.0.0 — available on all, no version shown (5.0 filtered)
+    ({'fromversion': '5.0.0'},
+     ':::info Supported versions\n'
+     'Available on Cortex XSOAR, Cortex XSIAM, and Cortex XPANSE.\n:::\n\n'),
+    # No marketplaces, no fromversion — available on all, no version shown
+    ({},
+     ':::info Supported versions\n'
+     'Available on Cortex XSOAR, Cortex XSIAM, and Cortex XPANSE.\n:::\n\n'),
+    # No marketplaces, version 4.0.0 — available on all, no version shown (4.x filtered)
+    ({'fromversion': '4.0.0'},
+     ':::info Supported versions\n'
+     'Available on Cortex XSOAR, Cortex XSIAM, and Cortex XPANSE.\n:::\n\n'),
+    # XSIAM-only marketplace
+    ({'fromversion': '8.4.0', 'marketplaces': ['marketplacev2']},
+     ':::info Supported versions\nAvailable on Cortex XSIAM.\n:::\n\n'),
+    # XSOAR marketplace — with version
+    ({'fromversion': '6.5.0', 'marketplaces': ['xsoar']},
+     ':::info Supported versions\nAvailable on Cortex XSOAR (versions 6.5.0 and later).\n:::\n\n'),
+    # XSOAR + XSIAM — two products in one sentence
+    ({'fromversion': '6.5.0', 'marketplaces': ['xsoar', 'marketplacev2']},
+     ':::info Supported versions\n'
+     'Available on Cortex XSOAR (versions 6.5.0 and later) and Cortex XSIAM.\n:::\n\n'),
+    # XPANSE-only marketplace
+    ({'fromversion': '8.0.0', 'marketplaces': ['xpanse']},
+     ':::info Supported versions\nAvailable on Cortex XPANSE.\n:::\n\n'),
+    # xsoar_saas specific marketplace — consolidated to "Cortex XSOAR" with version
+    ({'fromversion': '8.0.0', 'marketplaces': ['xsoar_saas']},
+     ':::info Supported versions\nAvailable on Cortex XSOAR (versions 8.0.0 and later).\n:::\n\n'),
+    # Empty marketplaces list — available on all marketplaces (platform excluded)
+    ({'fromversion': '6.0.0', 'marketplaces': []},
+     ':::info Supported versions\n'
+     'Available on Cortex XSOAR (versions 6.0.0 and later), Cortex XSIAM, and Cortex XPANSE.\n:::\n\n'),
+    # Platform-only marketplace — platform is filtered out, no banner shown
+    ({'fromversion': '8.0.0', 'marketplaces': ['platform']},
+     ''),
+    # Platform combined with other marketplaces — platform is filtered out, others remain
+    ({'fromversion': '8.0.0', 'marketplaces': ['platform', 'marketplacev2']},
+     ':::info Supported versions\nAvailable on Cortex XSIAM.\n:::\n\n'),
+    # Platform combined with XSOAR and XSIAM — platform is filtered out
+    ({'fromversion': '6.5.0', 'marketplaces': ['xsoar', 'marketplacev2', 'platform']},
+     ':::info Supported versions\n'
+     'Available on Cortex XSOAR (versions 6.5.0 and later) and Cortex XSIAM.\n:::\n\n'),
+    # Two non-XSOAR marketplaces
+    ({'fromversion': '8.0.0', 'marketplaces': ['marketplacev2', 'xpanse']},
+     ':::info Supported versions\nAvailable on Cortex XSIAM and Cortex XPANSE.\n:::\n\n'),
+    # XSOAR + two non-XSOAR marketplaces (three products)
+    ({'fromversion': '6.5.0', 'marketplaces': ['xsoar', 'marketplacev2', 'xpanse']},
+     ':::info Supported versions\n'
+     'Available on Cortex XSOAR (versions 6.5.0 and later), Cortex XSIAM, and Cortex XPANSE.\n:::\n\n'),
+    # No fromversion but has non-XSOAR marketplace
+    ({'marketplaces': ['marketplacev2']},
+     ':::info Supported versions\nAvailable on Cortex XSIAM.\n:::\n\n'),
+    # xsoar_on_prem and xsoar_saas together — consolidated to single "Cortex XSOAR"
+    ({'fromversion': '6.0.0', 'marketplaces': ['xsoar_on_prem', 'xsoar_saas']},
+     ':::info Supported versions\nAvailable on Cortex XSOAR (versions 6.0.0 and later).\n:::\n\n'),
+    # xsoar + xsoar_saas + marketplacev2 — consolidated XSOAR + XSIAM
+    ({'fromversion': '6.5.0', 'marketplaces': ['xsoar', 'xsoar_saas', 'marketplacev2']},
+     ':::info Supported versions\n'
+     'Available on Cortex XSOAR (versions 6.5.0 and later) and Cortex XSIAM.\n:::\n\n'),
+])
 def test_get_fromversion_data(test_input, expected):
     res = get_fromversion_data(test_input)
     assert res == expected

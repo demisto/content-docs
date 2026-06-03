@@ -225,11 +225,108 @@ def get_deprecated_data(yml_data: dict, desc: str, readme_file: str):
     return ""
 
 
-def get_fromversion_data(yml_data: dict):
+# Mapping from marketplace identifiers to display names
+# xsoar, xsoar_on_prem, and xsoar_saas all display as "Cortex XSOAR"
+MARKETPLACE_DISPLAY_NAMES = {
+    'xsoar': 'Cortex XSOAR',
+    'xsoar_on_prem': 'Cortex XSOAR',
+    'xsoar_saas': 'Cortex XSOAR',
+    'marketplacev2': 'Cortex XSIAM',
+    'xpanse': 'Cortex XPANSE',
+}
+
+# All distinct marketplace display entries — used when no marketplace info is available (available on all)
+ALL_DISPLAY_MARKETPLACES = ['xsoar', 'marketplacev2', 'xpanse']
+
+# Marketplaces where fromversion is relevant
+XSOAR_MARKETPLACES = {'xsoar', 'xsoar_on_prem', 'xsoar_saas'}
+
+# Marketplaces to exclude from the banner display
+EXCLUDED_MARKETPLACES = {'platform'}
+
+
+def get_pack_marketplaces(readme_file: str) -> list:
+    """Extract the marketplaces list from the pack_metadata.json file associated with the readme_file.
+
+    Args:
+        readme_file (str): path to the README file of the content entity.
+
+    Returns:
+        list: marketplaces list from pack_metadata.json, or empty list if not found.
+    """
+    match = re.match(r'.+/Packs/.+?(?=/)', readme_file)
+    if not match:
+        return []
+    pack_dir = match.group(0)
+    try:
+        with open(f'{pack_dir}/pack_metadata.json', 'r') as f:
+            metadata = json.load(f)
+        return metadata.get('marketplaces', [])
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
+
+
+def get_fromversion_data(yml_data: dict, marketplaces: Optional[list] = None):
+    """Generate the version/marketplace availability banner for a content item.
+
+    xsoar, xsoar_on_prem, and xsoar_saas are all consolidated into a single "Cortex XSOAR" entry.
+    Version info (fromversion) is only shown for XSOAR-related marketplaces.
+    All products are listed in a single sentence.
+
+    Args:
+        yml_data (dict): yml data of the content entity.
+        marketplaces (list, optional): resolved marketplaces list. If None, uses yml_data['marketplaces'].
+
+    Returns:
+        str: the info banner string, or empty string if no info to show.
+    """
     from_version = yml_data.get('fromversion', '')
-    if from_version and not from_version.startswith(('4', '5.0')):
-        return f':::info Supported versions\nSupported Cortex XSOAR versions: {from_version} and later.\n:::\n\n'
-    return ''
+    if marketplaces is None:
+        marketplaces = yml_data.get('marketplaces', [])
+
+    # No marketplace info at all — available on all marketplaces
+    if not marketplaces:
+        marketplaces = ALL_DISPLAY_MARKETPLACES
+
+    # Filter out excluded marketplaces (e.g., 'platform') from the banner
+    marketplaces = [mp for mp in marketplaces if mp not in EXCLUDED_MARKETPLACES]
+
+    # If filtering removed all marketplaces, no banner should be displayed
+    if not marketplaces:
+        return ''
+
+    show_version = from_version and not from_version.startswith(('4', '5.0'))
+
+    # Build list of product parts (e.g., "Cortex XSOAR (versions 6.5.0 and later)", "Cortex XSIAM")
+    product_parts = []
+    xsoar_added = False
+    for mp in marketplaces:
+        display_name = MARKETPLACE_DISPLAY_NAMES.get(mp, mp)
+        if mp in XSOAR_MARKETPLACES:
+            # Consolidate all XSOAR variants into a single entry
+            if xsoar_added:
+                continue
+            xsoar_added = True
+            if show_version:
+                product_parts.append(f'{display_name} (versions {from_version} and later)')
+            else:
+                product_parts.append(display_name)
+        else:
+            product_parts.append(display_name)
+
+    if not product_parts:
+        return ''
+
+    # Build a single sentence: "Available on X.", "Available on X and Y.", "Available on X, Y, and Z."
+    if len(product_parts) == 1:
+        sentence = f'Available on {product_parts[0]}.'
+    elif len(product_parts) == 2:
+        sentence = f'Available on {product_parts[0]} and {product_parts[1]}.'
+    else:
+        parts_str = ', '.join(product_parts[:-1])
+        sentence = f'Available on {parts_str}, and {product_parts[-1]}.'
+
+    return f':::info Supported versions\n{sentence}\n:::\n\n'
 
 
 def get_beta_data(yml_data: dict, content: str):
@@ -367,10 +464,14 @@ def add_content_info(content: str, yml_data: dict, desc: str, readme_file: str) 
     else:
         is_deprecated = False
     content = get_beta_data(yml_data, content) + content
+    # Resolve marketplaces: first from YML, then from pack_metadata.json, then all
+    marketplaces = yml_data.get('marketplaces', [])
+    if not marketplaces:
+        marketplaces = get_pack_marketplaces(readme_file)
     if not is_deprecated:
-        content = get_fromversion_data(yml_data) + content
+        content = get_fromversion_data(yml_data, marketplaces=marketplaces) + content
     # Check if there is marketplace key that does not contain the XSOAR value.
-    if marketplaces := yml_data.get('marketplaces', []):
+    if marketplaces:
         xsoar_marketplace = 'xsoar' in marketplaces
     else:
         xsoar_marketplace = True
@@ -476,7 +577,11 @@ def process_extra_readme_doc(target_dir: str, prefix: str, readme_file: str) -> 
         header = f'---\nid: {file_id}\ntitle: "{name}"\ncustom_edit_url: {edit_url}\n---\n\n'
         content = get_deprecated_data(yml_data, desc, readme_file) + content
         content = get_beta_data(yml_data, content) + content
-        content = get_fromversion_data(yml_data) + content
+        # Resolve marketplaces: first from YML front matter, then from pack_metadata.json
+        marketplaces = yml_data.get('marketplaces', [])
+        if not marketplaces:
+            marketplaces = get_pack_marketplaces(readme_file)
+        content = get_fromversion_data(yml_data, marketplaces=marketplaces) + content
         content = get_pack_link(readme_file) + content
         content = header + content
         verify_mdx_server(content)
