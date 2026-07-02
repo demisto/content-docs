@@ -128,23 +128,23 @@ For general information about the CI/CD process, see [CI/CD FAQs](#cicd-faqs).
      
 
 
-**NOTE:**  You can download directly from the development server. If downloading Automations and integrations, you need to use the `demisto-sdk split` command to split the content into the correct format.
+**NOTE:**  You can download directly from the development server. If downloading Automation and integrations, you need to use the `demisto-sdk split` command to split the content into the correct format.
 
   - **Migrate detached out-of-the-box content**
   
       If you have out-of-the-box  content from a content pack that is detached (such a Phishing incident type) and want to use the CI/CD process, run the following command:
     
-      `demisto-sdk download --system --type <object to download such as layouts, playbooks, scripts> -i <the name of the object to download> -o <the output directory>` 
+      `demisto-sdk download --system -item-type <object to download such as layouts, playbooks, scripts> -i <the name of the object to download> -o <the output directory>`
       
-      It is recommended to download to a new `SystemPacks` folder to avoid validation errors. The object needs to be stored in the `SystemPacks` folder to preserve the pack structure. 
+      It is recommended to download to a new `SystemPacks` folder to avoid validation errors. The object needs to be stored in the `SystemPacks` folder to preserve the pack structure.
       
       **NOTE**: Only the detached items are stored and not other files such as pack metadata, release notes, readme, etc.
     
-      For example, to download the detached phishing incident type layout, run `demisto-sdk download --system --type layouts -i Phishing -o SystemPacks/Phishing/Layouts` 
+      For example, to download the detached phishing incident type layout, run `demisto-sdk download --system -item-type layouts -i Phishing -o SystemPacks/Phishing/Layouts` 
       
       If you want to download the **Phishing Investigation - Generic v2** playbook run the following:
     
-       `demisto-sdk download --system --type playbooks -i Phishing_investigation_-_Generic_v2.yml -o SystemPacks/Phishing/Playbooks`
+       `demisto-sdk download --system -item-type Playbook -i Phishing_investigation_-_Generic_v2 -o SystemPacks/Phishing/Playbooks`
     
 
  
@@ -333,7 +333,7 @@ Although you do not have the flexibility of version control and rollback, it is 
    1.2 If not using an artifact server, replace the following section:
     
             # ========= UPLOAD TO ARTIFACTS SERVER OPTION =========
-            # TODO: Upload to the artifacts server of your choice.
+            # Upload to the artifacts server of your choice.
             # Create a file with the service account data
             # use the bucket_upload script to upload your packs to google cloud storage
             python $GITHUB_WORKSPACE/repository/build_related_scripts/bucket_upload.py --service_account $GITHUB_WORKSPACE/service_account.json --packs_directory $NEW_PACKS_FOLDER --branch_name $BRANCH_NAME
@@ -344,12 +344,8 @@ Although you do not have the flexibility of version control and rollback, it is 
 
             # ========= UPLOAD DIRECTLY TO YOUR XSOAR MACHINE (WHEN MERGING TO MAIN REPO) =========
             if [ $BRANCH_NAME != master ]; then
-              CONFIG_FILE=$(cat xsoar_config.json)
-              MARKETPLACE_PACKS_LIST=$(cat $CONFIG_FILE | jq -r '.marketplace_packs')
               # Upload Custom Packs
               demisto-sdk upload --input-config-file /xsoar_config.json
-              # Upload MarketPlace Packs
-              python3 build_related_scripts/MarketPlaceInstallerFromCICD.py --marketplace-packs-list $MARKETPLACE_PACKS_LIST
 
 2. **(Artifact Server only) Configure the `bucket_upload.py` file.**
    
