@@ -129,7 +129,7 @@ class CommonServerPythonProcessor(SphinxProcessor):
                     return_type = match.group(1).strip().replace("`", "")
                     if "None" in return_type:
                         continue
-                    
+
                     keyword = "Returns"
                     component = components.setdefault(keyword, [])
                     component.append(f"- `{return_type}` - {return_desc}")
