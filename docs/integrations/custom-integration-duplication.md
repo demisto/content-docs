@@ -1,12 +1,12 @@
 ---
 id: custom-integration-duplication
-title: Custom Integration Duplication & Manual Upload
-description: Step-by-step guide for duplicating and uploading a custom integration using demisto-sdk upload-custom-integration.
+title: Custom Integration Duplication & Manual Upload - ConnectUs
+description: Step-by-step guide for uploading a custom integration using demisto-sdk upload-custom-integration.
 ---
 
 When replacing traditional integrations with Connectors, the in-product **Duplicate** button in the platform user interface redirects users to perform a custom duplicate and upload flow.
 
-This guide provides a step-by-step walkthrough for manually duplicating an existing integration from the official Content repository, updating its identifiers safely, and uploading it to your Cortex XSOAR or Cortex XSIAM platform tenant using the `demisto-sdk`.
+This guide provides a step-by-step walkthrough for manually duplicating an existing integration from the official Content repository, updating its identifiers safely, and uploading it to your Cortex Platform tenant using the `demisto-sdk`.
 
 ---
 
@@ -79,7 +79,7 @@ To allow `demisto-sdk` to authenticate with your platform instance, create a `.e
 
 ### How to Obtain Credentials from the Platform UI
 
-1. Log in to your Cortex XSOAR / XSIAM platform instance.
+1. Log in to your Cortex Platform instance.
 2. Navigate to **Settings → Configurations** → search for **API Keys**.
 3. **API URL** (`DEMISTO_BASE_URL`): Click **Copy API URL** in the top right corner.
 4. **API Key** (`DEMISTO_API_KEY`):
@@ -107,7 +107,7 @@ XSIAM_AUTH_ID=your_key_id_number_here
 ## Step 4: Duplicate & Update Integration YAML
 
 1. **Locate the Integration**: Find the integration folder you wish to duplicate inside `Packs/<PackName>/Integrations/<IntegrationName>/`.
-2. **Create a Working Copy**: Copy the integration directory or YAML file to a new location or branch.
+2. **Create a Working Copy**: Copy the integration directory or YAML file to a new branch.
 3. **Add the `_copy` Marker**: Open the integration's `.yml` file in an editor (e.g., VS Code) and update both the `commonfields.id` and `name` fields:
 
 ```yaml
@@ -135,38 +135,38 @@ Run the `upload-custom-integration` command, passing the path to your modified Y
 **Recommended: Upload via Directory Path**
 
 ```bash
-demisto-sdk upload-custom-integration -i Packs/PolarSecurity/Integrations/PolarSecurity_copy/
+demisto-sdk upload-custom-integration -i 'Packs/PolarSecurity/Integrations/PolarSecurity'
 ```
 
 **Alternative: Upload via Direct YAML File**
 
 ```bash
-demisto-sdk upload-custom-integration -i Packs/PolarSecurity/Integrations/PolarSecurity_copy/PolarSecurity_copy.yml
+demisto-sdk upload-custom-integration -i 'Packs/PolarSecurity/Integrations/PolarSecurity/PolarSecurity.yml'
 ```
 
 ### Expected Command Output
 
 ```text
 Running Demisto-SDK CLI
-Uploading Packs/PolarSecurity/Integrations/PolarSecurity_copy/PolarSecurity_copy.yml to https://api-your-tenant...
+Uploading Packs/PolarSecurity/Integrations/PolarSecurity/PolarSecurity.yml to https://api-your-tenant...
 UPLOAD SUMMARY:
 
 SUCCESSFUL UPLOADS:
-┌────────────────────────┼─────────────┼────────────────┼──────────────┐
-│ NAME                   │ TYPE        │ PACK NAME      │ PACK VERSION │
-├────────────────────────┼─────────────┼────────────────┼──────────────┤
-│ PolarSecurity_copy.yml │ Integration │ Polar Security │ 1.0.0        │
-└────────────────────────┴─────────────┴────────────────┴──────────────┘
+┌───────────────────┬─────────────┬────────────────┬──────────────┐
+│ NAME              │ TYPE        │ PACK NAME      │ PACK VERSION │
+├───────────────────┼─────────────┼────────────────┼──────────────┤
+│ PolarSecurity.yml │ Integration │ Polar Security │ 1.0.0        │
+└───────────────────┴─────────────┴────────────────┴──────────────┘
 ```
 
 ---
 
 ## Step 6: Verify in Platform UI
 
-1. Log in to your Cortex platform instance.
-2. Navigate to **Settings → Integrations → Custom Integrations**.
-3. Locate your integration (e.g., `Polar Security_copy`). It will display a **Custom** badge next to its title.
-4. Click **Add Instance** to configure and use your custom duplicate.
+1. Log in to your Cortex Platform instance.
+2. Navigate to **Settings → Configuration → Data Sources & Integrations → Add New**.
+3. Locate your integration (e.g., `Polar Security`). It will display a **Custom** badge next to its title.
+4. Click **Add** to configure and use your custom duplicate.
 
 ---
 
