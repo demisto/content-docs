@@ -1,19 +1,23 @@
 ---
 id: custom-integration-duplication
 title: Custom Integration Duplication & Manual Upload - ConnectUs
-description: Step-by-step guide for uploading a custom integration using demisto-sdk upload-custom-integration.
+description: Step-by-step guide for uploading a custom integration to the Cortex Platform using the ***demisto-sdk upload-custom-integration*** command.
 ---
 
-When replacing traditional integrations with Connectors, the in-product **Duplicate** button in the platform user interface redirects users to perform a custom duplicate and upload flow.
+When replacing traditional integrations with Connectors, the in-product **Duplicate** button in the Cortex Platform user interface redirects users to perform a manual flow of uploading a custom duplication of the integration to the Cortex Platform.
 
 This guide provides a step-by-step walkthrough for manually duplicating an existing integration from the official Content repository, updating its identifiers safely, and uploading it to your Cortex Platform tenant using the `demisto-sdk`.
+
+:::tip Already set up? Skip ahead
+If you already have `demisto-sdk` version **1.40.0 or higher** installed and the `demisto/content` repository cloned locally, skip to [Step 3: Configure Environment Variables](#step-3-configure-environment-variables).
+:::
 
 ---
 
 :::warning Critical System ID Conflict Risk
-If you upload a custom integration whose `id` matches an official system integration's `id`, any subsequent attempt to update or download the system pack containing that integration will **fail with a platform system error**.
+If you upload a custom integration whose `id` matches an official system integration's `id`, any subsequent attempt to update or install the system pack containing that integration will **fail with a platform system error**.
 
-To protect your instance, custom integrations **must** append the `_copy` marker suffix to both their **ID** and **Display Name** (e.g., `MyIntegration_copy`). The `demisto-sdk` CLI auto-enforces this convention before any upload.
+To protect your instance, custom integrations **must** append the `_copy` marker suffix to both their **ID** and **Name** (e.g., `MyIntegration_copy`). The `demisto-sdk` CLI auto-enforces this convention before any upload.
 :::
 
 ---
@@ -22,17 +26,17 @@ To protect your instance, custom integrations **must** append the `_copy` marker
 
 Before starting, ensure you have:
 
-1. **Python 3.10 or higher** installed on your workstation.
-2. **Git** installed and configured with access to GitHub.
-3. **Cortex Platform Tenant Credentials** (Instance Administrator privileges required).
+1. **[Python 3.10 or higher](https://www.python.org/downloads/)** installed on your workstation.
+2. **[Git](https://git-scm.com/downloads)** installed and configured with access to GitHub.
+3. **Cortex Platform Tenant Credentials** (Instance Administrator privileges required) — see [Step 3](#step-3-configure-environment-variables) below for how to obtain them.
 
 ---
 
 ## Step 1: Install or Update `demisto-sdk`
 
-The duplication upload flow requires `demisto-sdk` version **1.40.0 or higher**, which includes the dedicated `upload-custom-integration` safety command.
+The custom integration upload flow requires `demisto-sdk` version **1.40.0 or higher**, which includes the dedicated `upload-custom-integration` command.
 
-Open your terminal and run:
+Run the following command to install `demisto-sdk` for the first time, or upgrade it to the latest version (the `--upgrade` flag handles both cases):
 
 ```bash
 pip install --upgrade demisto-sdk
@@ -41,8 +45,10 @@ pip install --upgrade demisto-sdk
 Verify your installed version and confirm the command is available:
 
 ```bash
-demisto-sdk upload-custom-integration --help
+demisto-sdk upload-custom-integration --version
 ```
+
+For full installation instructions and system requirements, see the [Demisto-SDK Installation Guide](https://cortex-docs.paloaltonetworks.com/demisto-sdk-development-guide/demisto-sdk-guide/install-demisto-sdk).
 
 ---
 
@@ -106,9 +112,10 @@ XSIAM_AUTH_ID=your_key_id_number_here
 
 ## Step 4: Duplicate & Update Integration YAML
 
-1. **Locate the Integration**: Find the integration folder you wish to duplicate inside `Packs/<PackName>/Integrations/<IntegrationName>/`.
-2. **Create a Working Copy**: Copy the integration directory or YAML file to a new branch.
-3. **Add the `_copy` Marker**: Open the integration's `.yml` file in an editor (e.g., VS Code) and update both the `commonfields.id` and `name` fields:
+1. **Locate the Integration**: Find the integration directory you wish to duplicate under the Packs directory (`Packs/<PackName>/Integrations/<IntegrationName>/`).
+2. **Add the `_copy` Marker**: Open the integration's `.yml` file in you favorite IDE (e.g., VS Code) and update both the `commonfields.id` and `name` fields:
+
+**For example:**
 
 ```yaml
 # BEFORE
@@ -130,7 +137,7 @@ Both `commonfields.id` and `name` must end with the `_copy` suffix. If either fi
 
 ## Step 5: Upload the Custom Integration
 
-Run the `upload-custom-integration` command, passing the path to your modified YAML file or its parent directory:
+Run the `upload-custom-integration` command, passing the path to your modified YAML file or the integration's directory:
 
 **Recommended: Upload via Directory Path**
 
