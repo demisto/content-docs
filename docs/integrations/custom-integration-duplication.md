@@ -54,9 +54,13 @@ For full installation instructions and system requirements, see the [Demisto-SDK
 
 ## Step 2: Clone or Sync the Content Repository
 
-Clone the official `demisto/content` repository locally (or update your existing copy):
+Clone the official `demisto/content` repository locally. Choose the option that matches your goal:
 
-**Option A: Clone via SSH**
+:::note Planning to contribute back to the official repository?
+If you intend to submit your changes as a pull request to `demisto/content`, you should **fork** the repository first instead of cloning it directly. See the [Contributing Guide](../contributing/contributing) for the full fork-based contribution workflow.
+:::
+
+**Option A: Clone via SSH** *(recommended for local uploads only)*
 
 ```bash
 git clone git@github.com:demisto/content.git
@@ -70,7 +74,7 @@ git clone https://github.com/demisto/content.git
 cd content
 ```
 
-If you already have a local copy, ensure it is up to date:
+If you already have a local copy, ensure it is up to date before proceeding:
 
 ```bash
 git checkout master
