@@ -194,17 +194,17 @@ The Redirect URI is the address where Azure AD sends the login response. If you 
    
     a. Select **App registrations** -> **New registration**.
 
-        <img width="800" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/app-reg.png" align="middle"></img>
+    <img width="800" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/app-reg.png" align="middle"></img>
 
-    b. In the **Redirect URI (optional)** field select **Web** and type a name (you can enter an arbitrary name). In this example we use *https<nolink\>://xsoar.* 
+    b. In the **Redirect URI (optional)** field select **Web** and type a name (you can enter an arbitrary name). In this example we use *https<nolink\>://xsoar.*
 
-        <img width="800" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/reg-app.png" align="middle"></img>
+    <img width="800" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/reg-app.png" align="middle"></img>
 
     c. Click **Register**.
-   
-        You can see the Essential information here:
-       
-        <img width="800" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/essentials.png" align="middle"></img>
+
+    You can see the Essential information here:
+
+    <img width="800" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/essentials.png" align="middle"></img>
 
     d. Copy the following information that apear under the "Overview" section, and save it for later:
       - Application (client) ID
@@ -212,8 +212,9 @@ The Redirect URI is the address where Azure AD sends the login response. If you 
   
 2. Go to **API permissions** -> Add a permission -> Microsoft Graph -> Delegated permission. Search for `Directory.AccessAsUser.All`.
 3. Click Add permissions.
-      
-        <img width="800" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/app-api.png" align="middle"></img>
+
+   <img width="800" src="../../../docs/doc_imgs/tutorials/tut-microsoft-auth-guide/app-api.png" align="middle"></img>
+
 4. Repeat step 3 for the following permissions:
      - Directory.Read.All - Delegated
      - User.ReadWrite.All - Application
