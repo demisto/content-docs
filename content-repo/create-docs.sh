@@ -28,7 +28,7 @@ else
 
     echo "==== current branch: ${CURRENT_BRANCH} ===="
 
-    CONTENT_GIT_URL="https://github.com/demisto/content.git"
+    CONTENT_GIT_URL="git@github.com:demisto/content.git"
     CONTENT_BRANCH="master"
     REQUIRE_BRANCH=false
     if [ -n "${INCOMING_HOOK_BODY}" ]; then
