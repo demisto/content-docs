@@ -1,12 +1,16 @@
 ---
 id: custom-integration-duplication
-title: Custom Integration Duplication & Manual Upload - ConnectUs
+title: Custom Integration Duplication & Manual Upload
 description: Step-by-step guide for uploading a custom integration to the Cortex Platform using the ***demisto-sdk upload-custom-integration*** command.
 ---
 
 When replacing traditional integrations with Connectors, the in-product **Duplicate** button in the Cortex Platform user interface redirects users to perform a manual flow of uploading a custom duplication of the integration to the Cortex Platform.
 
 This guide provides a step-by-step walkthrough for manually duplicating an existing integration from the official Content repository, updating its identifiers safely, and uploading it to your Cortex Platform tenant using the `demisto-sdk`.
+
+:::info Prefer automation?
+If you use an Agentic Coding assistant (such as Claude Code), you can use our [Custom Integration Duplication Skill](#TODO-ADD-SKILL-LINK) to automate this entire workflow instead of following the manual steps below.
+:::
 
 :::tip Already set up? Skip ahead
 If you already have `demisto-sdk` version **1.40.0 or higher** installed and the `demisto/content` repository cloned locally, skip to [Step 3: Configure Environment Variables](#step-3-configure-environment-variables).
@@ -107,7 +111,7 @@ To allow `demisto-sdk` to authenticate with your platform instance, create a `.e
 Add your credentials to `content/.env`:
 
 ```bash
-DEMISTO_BASE_URL=https://api-your-tenant-url.xdr.us.paloaltonetworks.com/xsoar
+DEMISTO_BASE_URL=https://api-your-tenant-url.xdr.us.paloaltonetworks.com
 DEMISTO_API_KEY=your_copied_api_key_here
 XSIAM_AUTH_ID=your_key_id_number_here
 ```
@@ -118,6 +122,7 @@ XSIAM_AUTH_ID=your_key_id_number_here
 
 1. **Locate the Integration**: Find the integration directory you wish to duplicate under the Packs directory (`Packs/<PackName>/Integrations/<IntegrationName>/`).
 2. **Add the `_copy` Marker**: Open the integration's `.yml` file in you favorite IDE (e.g., VS Code) and update both the `commonfields.id` and `name` fields:
+3. **(Recommended) Customize the Display Name**: In addition to the required `_copy` suffix, consider changing the `name` field to something more descriptive (e.g., `Polar Security (Custom)` or `Polar Security - Internal`). This makes your custom copy easier to identify among other integrations in the Cortex Platform UI.
 
 **For example:**
 
@@ -177,6 +182,9 @@ SUCCESSFUL UPLOADS:
 1. Log in to your Cortex Platform instance.
 2. Navigate to **Settings → Configuration → Data Sources & Integrations → Add New**.
 3. Locate your integration (e.g., `Polar Security`). It will display a **Custom** badge next to its title.
+
+![Custom badge shown next to a duplicated integration in the Add Data Sources or Integrations screen](/doc_imgs/integrations/polar-security-custom-badge.png)
+
 4. Click **Add** to configure and use your custom duplicate.
 
 ---
