@@ -56,7 +56,7 @@ else
     # GITHUB_MARKETPLACE_CONTENT_SYNC is a shared CI variable at the cortex-content
     # group level.
     if [[ -n "${GITHUB_MARKETPLACE_CONTENT_SYNC}" && "${CONTENT_GIT_URL}" == https://github.com/* ]]; then
-        CONTENT_GIT_URL_AUTH="https://x-access-token:${GITHUB_MARKETPLACE_CONTENT_SYNC}@${CONTENT_GIT_URL#https://}"
+        CONTENT_GIT_URL_AUTH="https://${GITHUB_MARKETPLACE_CONTENT_SYNC}@${CONTENT_GIT_URL#https://}"
     else
         CONTENT_GIT_URL_AUTH="${CONTENT_GIT_URL}"
     fi
