@@ -259,7 +259,7 @@ Then, make sure that `demisto-sdk` has been installed automatically by the boots
 demisto-sdk version: 1.33.0
 ```
 
-Now, run the `demisto-sdk pre-commit` command ([pre-commit documentation](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/pre-commit)) on the folder `Packs/HelloWorld/Integrations/HelloWorld` using the `-i` option,
+Now, run the [`demisto-sdk pre-commit`](https://cortex-docs.paloaltonetworks.com/demisto-sdk-development-guide/demisto-sdk-guide/demisto-sdk-commands/pre-commit#examples) command on the folder `Packs/HelloWorld/Integrations/HelloWorld` using the `-i` option,
  or if you want to run  against all the committed files in your branch you can use `demisto-sdk pre-commit -g`.
 It will run both the [linters](../integrations/linting) and [pytest](../integrations/unit-testing):
 ```bash
@@ -318,7 +318,7 @@ Switched to a new branch 'my_integration_name'
 Create a directory under `Packs/<Your pack name>` named after your product where you will put all your content files later, and add it to the staged changes in `git`. Make sure you use **PascalCase** in the directory name (i.e. `MyIntegration`).
 For a detailed description regarding what exactly a pack is please click [here](../packs/packs-format).
 
-You can create a Pack and an Integration directory using the [`demisto-sdk init` command](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/init).
+You can create a Pack and an Integration directory using the [`demisto-sdk init`](https://cortex-docs.paloaltonetworks.com/demisto-sdk-development-guide/demisto-sdk-guide/demisto-sdk-commands/init#examples) command.
 An example of creating a pack called `MyNewPack`, with an integration called `MyIntegration`, and with the metadata file created automatically:
 ```bash
 ➜  content-docs2 git:(add-pack-and-sdk-docs) ✗ demisto-sdk init --pack
@@ -379,17 +379,15 @@ Finished creating integration: MyNewPack/Integrations/test.
 
 The last step is to `commit` your changes and `push` them to the *origin* in order to make sure that the pre-commit checks work fine.
 
-But you can also run the hooks locally using the demisto-sdk, in order to do that you can run the commands:
-1. `demisto-sdk format` - this will auto correct couple of things in order for our validation to pass.
-You can see the [docs](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/format)
-2. `demisto-sdk validate -g` - this will validate the integrity of the yml files, and will make sure they follow
-our pre-set of roles. You can see the [docs](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/validate)
-3. `demisto-sdk pre-commit -i <The path to your changed/newly added content entity>` - this will run variety of checks and linters on your
-changed python files. You can see the [docs](https://docs-cortex.paloaltonetworks.com/r/1/Demisto-SDK-Guide/pre-commit)
+You can also run the hooks locally using the demisto-sdk. To do that, run the following commands:
+1. [`demisto-sdk format`](https://cortex-docs.paloaltonetworks.com/demisto-sdk-development-guide/demisto-sdk-guide/demisto-sdk-commands/format#examples) - this command performs auto corrects to enable validation to pass.
+2. [`demisto-sdk validate -g`](https://cortex-docs.paloaltonetworks.com/demisto-sdk-development-guide/demisto-sdk-guide/demisto-sdk-commands/validate#arguments) - this command validates the integrity of the yml files, and makes sure they follow
+our pre-set of roles.
+3. [`demisto-sdk pre-commit -i <The path to your changed/newly added content entity>`](https://cortex-docs.paloaltonetworks.com/demisto-sdk-development-guide/demisto-sdk-guide/demisto-sdk-commands/pre-commit#examples) - this command runs a variety of checks and linters on your
+changed python files.
 
 
-
-First, run a `git commit -m '[some commit message]'`, which will automatically run the pre validation checks:
+First, run `git commit -m '[some commit message]'`, which will automatically run the pre validation checks:
 
 
 ```bash
