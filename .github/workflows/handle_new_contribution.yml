@@ -15,7 +15,7 @@ env:
 
 jobs:
   assign_and_label:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04  # using python 3.12
     if: github.event.pull_request.head.repo.fork == true
     steps:
       - name: Assign contribution TL and add the Contribution label
