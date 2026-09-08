@@ -21,8 +21,8 @@ The method for managing custom content depends on your onboarding date and the i
 
 The method for managing source code depends on whether the service is currently part of a unified connector.
 
-- **Legacy integrations:** For services not yet transitioned to the unified experience, you can continue to use the Duplicate and View Source options directly within the product UI. Upon duplication, the item transitions to a custom content status, and you can modify the source code using the built-in editor.
-- **Connector sub-capabilities (integrations):** For vendors using the unified connector experience, the built-in UI editor is not supported. To view the source code of a sub-capability (integration), you can do so directly in GitHub. To duplicate a sub-capability (integration) and upload it as custom content, you must perform a manual flow using the `demisto-sdk`.
+- **Legacy integrations:** For services not yet transitioned to the unified experience, you can continue to use the **Duplicate** and **View Source** options directly within the product UI. Upon duplication, the item transitions to a custom content status, and you can modify the source code using the built-in editor.
+- **Connector sub-capabilities (integrations):** For vendors using the unified connector experience, the built-in UI editor is not supported. To view the source code of a sub-capability (integration), you can do so directly in **GitHub**. To duplicate a sub-capability (integration) and upload it as custom content, you must perform a manual flow using the `demisto-sdk`.
 
 ---
 
@@ -34,7 +34,7 @@ When you select **Duplicate** or **View Source** for a sub-capability (integrati
 
 If you only need to review the code without making changes:
 
-1. Copy the Integration Name provided for the sub-capability (integration) on the **Data Sources & Integrations** page in Cortex XSIAM.
+1. Copy the **Integration Name** provided for the sub-capability (integration) on the **Data Sources & Integrations** page in Cortex XSIAM.
 2. Navigate to the official [Cortex Content GitHub Repository](https://github.com/demisto/content).
 3. Search for the integration folder under the `Packs/` directory using the name you copied (such as, `Packs/<PackName>/Integrations/<IntegrationName>/`).
 4. Review the YAML and Python/PowerShell files directly in the repository.
@@ -77,7 +77,7 @@ For full installation instructions and system requirements, see the [Demisto-SDK
 
 #### Step 2: Clone or sync the content repository
 
-Clone the official `demisto/content` repository locally.
+Clone the official [`demisto/content`](https://github.com/demisto/content) repository locally.
 
 **Option A: SSH** *(recommended for local uploads only)*
 
