@@ -47,6 +47,20 @@ else
 
     echo "==== content git url: ${CONTENT_GIT_URL} branch: ${CONTENT_BRANCH} ===="
 
+    # Disable git's interactive credential prompt so auth failures fail fast
+    # with a clear error instead of hanging or emitting a misleading TTY error.
+    export GIT_TERMINAL_PROMPT=0
+
+    # If a GitHub token is available, authenticate the clone against github.com
+    # to avoid anonymous rate-limiting from the shared runner egress IP.
+    # GITHUB_MARKETPLACE_CONTENT_SYNC is a shared CI variable at the cortex-content
+    # group level.
+    if [[ -n "${GITHUB_MARKETPLACE_CONTENT_SYNC}" && "${CONTENT_GIT_URL}" == https://github.com/* ]]; then
+        CONTENT_GIT_URL_AUTH="https://${GITHUB_MARKETPLACE_CONTENT_SYNC}@${CONTENT_GIT_URL#https://}"
+    else
+        CONTENT_GIT_URL_AUTH="${CONTENT_GIT_URL}"
+    fi
+
     if [[ -d ${CONTENT_GIT_DIR} && $(cd ${CONTENT_GIT_DIR}; git remote get-url origin) != "${CONTENT_GIT_URL}" ]]; then
         echo "Deleting dir: ${CONTENT_GIT_DIR} as remote url doesn't match ${CONTENT_GIT_URL} ..."
         rm -rf "${CONTENT_GIT_DIR}"
@@ -55,7 +69,11 @@ else
     if [ ! -d ${CONTENT_GIT_DIR} ]; then
         # Do not do "git clone --depth 1" as we need full history for the deprecated integrations data generation
         echo "Cloning content to dir: ${CONTENT_GIT_DIR} ..."
-        git clone -q ${CONTENT_GIT_URL} ${CONTENT_GIT_DIR}
+        git clone -q "${CONTENT_GIT_URL_AUTH}" "${CONTENT_GIT_DIR}"
+        # Reset origin to the token-less URL so the token is not persisted in
+        # .git/config and so the remote-url comparison above keeps working on
+        # subsequent runs.
+        (cd "${CONTENT_GIT_DIR}" && git remote set-url origin "${CONTENT_GIT_URL}")
     else
         echo "Content dir: ${CONTENT_GIT_DIR} exists. Skipped clone."
         if [ -z "${CONTENT_REPO_SKIP_PULL}" ]; then
