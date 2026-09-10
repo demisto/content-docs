@@ -161,7 +161,7 @@ const sidebars = {
             "integrations/fetch-incidents-lookback",
             "integrations/Trust-any-certificate",
             "integrations/dynamic-ui-fields",
-            "integrations/custom-integration-duplication"
+            "integrations/manage-custom-content-for-connectors"
           ]
         }
       ]

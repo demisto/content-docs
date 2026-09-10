@@ -1,8 +1,12 @@
 ---
-id: custom-integration-duplication
+id: manage-custom-content-for-connectors
 title: Manage custom content for connectors
 description: Learn how Cortex XSIAM manages custom content for connectors, including viewing source code and duplicating sub-capabilities (integrations) using the demisto-sdk.
 ---
+
+:::note
+This topic applies to the following Cortex products: **Cortex XSIAM**, **Cortex XDR**, **Cortex Cloud**, **Cortex AgentiX**, and **Cortex Data Security**. It does not apply to standalone Cortex XSOAR deployments.
+:::
 
 Cortex XSIAM is transitioning to a unified connector experience that consolidates all vendor security capabilities, including log ingestion, automation, and threat intelligence, into a single entry in the catalog. Within a connector, these individual services are referred to as sub-capabilities (integrations).
 
@@ -28,7 +32,7 @@ The method for managing source code depends on whether the service is currently 
 
 ## External management workflow
 
-When you select **Duplicate** or **View Source** for a sub-capability (integration) on the **Data Sources & Integrations** page, Cortex XSIAM provides the name of the sub-capability (integration) needed to locate the relevant files in the official repository.
+When you select **Duplicate** or **View Source** for a sub-capability (integration) on the **Data Sources & Integrations** page, Cortex XSIAM provides the names of all the collector's sub-capabilities (integrations) so you can select the one relevant to you. You will need this name to locate the relevant files in the official repository.
 
 ### Option 1: View Source in GitHub
 
@@ -76,6 +80,10 @@ For full installation instructions and system requirements, see the [Demisto-SDK
 ---
 
 #### Step 2: Clone or sync the content repository
+
+:::note Planning to contribute back to the official repository?
+If you intend to submit your changes as a pull request to `demisto/content`, you should **fork** the repository first instead of cloning it directly. See the [Contributing Guide](../contributing/contributing) for the full fork-based contribution workflow.
+:::
 
 Clone the official [`demisto/content`](https://github.com/demisto/content) repository locally.
 
@@ -140,6 +148,8 @@ XSIAM_AUTH_ID=your_key_id_number_here
 
 :::note
 If either field is missing this marker, the upload command will block execution to prevent tenant corruption.
+
+Updating the `display` field with the `_copy` marker is not mandatory, but it is recommended. Doing so makes it easier to distinguish your custom duplicate from the original sub-capability (integration) in the Cortex XSIAM UI.
 :::
 
 :::warning Critical System ID Conflict Risk
@@ -153,11 +163,13 @@ For example:
 commonfields:
   id: PolarSecurity
 name: Polar Security
+display: Polar Security
 
 # AFTER (Required Duplication Convention)
 commonfields:
   id: PolarSecurity_copy
 name: Polar Security_copy
+display: Polar Security_copy
 ```
 
 ---
@@ -224,6 +236,10 @@ Invalid value:
 
 :::warning
 Using `--force-id` is strongly discouraged. Only use this flag if you are an advanced administrator explicitly maintaining custom IDs outside standard system pack boundaries.
+
+Before using this flag, verify ALL of the following:
+1. Your chosen ID is completely unique and does NOT match the original integration ID.
+2. Your chosen ID does NOT match any integration ID published on the Marketplace.
 :::
 
 If you must upload without the `_copy` marker, pass the `--force-id` flag:
