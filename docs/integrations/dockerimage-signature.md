@@ -91,6 +91,31 @@ During the dual-sign window you can also confirm the legacy DCT signature:
 DOCKER_CONTENT_TRUST=1 docker pull demisto/python3:<version>
 ```
 
+## Example Verification Script
+
+For convenience we publish a ready-to-run wrapper that derives the sibling
+`<org>/sig-<image>` signature repo for you, so you only pass the image reference:
+[`utils/verify_signature.sh`](https://github.com/demisto/dockerfiles/blob/master/utils/verify_signature.sh)
+in the [demisto/dockerfiles](https://github.com/demisto/dockerfiles) repository.
+
+Download it, make it executable, and keep `cosign.pub` in the same directory
+(see [Getting the Public Key](#getting-the-public-key)):
+
+```bash
+curl -sSfL https://raw.githubusercontent.com/demisto/dockerfiles/master/utils/verify_signature.sh \
+  -o verify_signature.sh
+chmod +x verify_signature.sh
+
+# Verify by tag:
+./verify_signature.sh demisto/python3:<version>
+
+# Verify by digest (strongest, matches how it was signed):
+./verify_signature.sh demisto/python3@sha256:<digest>
+```
+
+The script requires `cosign` on your PATH and reads `cosign.pub` from the current
+directory (override with `PUBLIC_KEY=/path/to/cosign.pub`).
+
 ## Troubleshooting
 
 | Symptom | Cause | Fix |
