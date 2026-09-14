@@ -119,7 +119,7 @@ const sidebars = {
             },
             "integrations/dbot",
             "integrations/docker",
-            "integrations/cosign-signature",
+            "integrations/dockerimage-signature",
             {
               type: "category",
               label: "Builtins",

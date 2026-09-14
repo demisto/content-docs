@@ -1,11 +1,11 @@
 ---
-id: cosign-signature
-title: Cosign Signature Guide
-slug: cosign-signature
+id: dockerimage-signature
+title: Docker Image Signature Guide
+slug: dockerimage-signature
 tags: [cosign, signature, security, supply-chain, integrations, docker]
 ---
 
-# Cosign Signature Guide
+# Docker Image Signature Guide
 
 ## Overview
 
