@@ -5,23 +5,25 @@ slug: dockerimage-signature
 tags: [cosign, signature, security, supply-chain, integrations, docker]
 ---
 
-# Docker Image Signature Guide
+# Docker Image Signature
 
 ## Overview
 
-[Cosign](https://github.com/sigstore/cosign) is a tool from the [Sigstore](https://www.sigstore.dev/) project used to verify signatures for container images. Verifying image signatures lets you confirm that a Cortex XSOAR/XSIAM Docker image is authentic and has not been tampered with.
+[Cosign](https://github.com/sigstore/cosign) is a tool from the [Sigstore](https://www.sigstore.dev/) project used to verify signatures for container images. Verifying image signatures confirms that a Docker image that Cortex XSOAR/XSIAM content items (such as integrations and scripts) run in is authentic and has not been tampered with.
 
+:::info
 Cosign **replaces Docker Content Trust (DCT)** for signing our images. DCT (based on Notary v1) is deprecated, and Cosign provides a modern, OCI-native signing workflow going forward.
+:::
 
-This guide covers how to verify Cortex XSOAR/XSIAM Docker images with Cosign.
+This guide covers how to verify the Docker images that Cortex XSOAR/XSIAM content items (such as integrations and scripts) run in with Cosign.
 
 ## What Is Changing
 
-- Our images are now signed with **Cosign** instead of Docker Content Trust (DCT).
-- During a grace period, every image is **dual-signed** with both DCT and Cosign, so you can verify with either mechanism.
+- Our images used to be signed with **Docker Content Trust (DCT)**.
+- We have started signing our images with **Cosign** in addition to DCT, so during a grace period every image is **dual-signed** and either mechanism can be used to verify while transitioning to Cosign.
 - **DCT is retired on Dec 8, 2026.** After that date, verify with Cosign only.
 
-If you rely on `docker trust inspect` / `DOCKER_CONTENT_TRUST=1` today, switch to `cosign verify` before the retirement date.
+If your system relies on `docker trust inspect` / `DOCKER_CONTENT_TRUST=1` today, switch to `cosign verify` before the retirement date.
 
 `docker trust` -> `cosign` mapping:
 
@@ -32,7 +34,16 @@ If you rely on `docker trust inspect` / `DOCKER_CONTENT_TRUST=1` today, switch t
 
 ## Prerequisites
 
-- **cosign binary** installed in your environment:
+- **cosign binary** installed in the environment.
+
+  On macOS (or any environment with [Homebrew](https://brew.sh/)):
+
+  ```bash
+  brew install cosign
+  cosign version
+  ```
+
+  On Linux, download the release binary directly:
 
   ```bash
   COSIGN_VERSION=v2.4.1
@@ -42,15 +53,24 @@ If you rely on `docker trust inspect` / `DOCKER_CONTENT_TRUST=1` today, switch t
   cosign version
   ```
 
-  > Both cosign **v2** and **v3** work for verification.
+  > Both cosign **v2** and **v3** work for verification. For other platforms and installation methods, see the [cosign installation docs](https://docs.sigstore.dev/cosign/system_config/installation/).
 
-- **The Cosign public key** (`cosign.pub`). This is all you need to verify; it is not secret.
+- **The Cosign public key** (`cosign.pub`), which is stored on this page (see [Getting the Public Key](#getting-the-public-key)). This is all that is needed to verify; it is not secret.
 
 ## Getting the Public Key
 
-`--key cosign.pub` is a **file path**: cosign reads a file named `cosign.pub` in the directory you run the command from. If that file is missing you get `open cosign.pub: no such file or directory`, so save the key first.
+`--key cosign.pub` is a **file path**: cosign reads a file named `cosign.pub` in the directory where the command is run from. If that file is missing, the error `open cosign.pub: no such file or directory` is returned, so save the key first.
 
 Create `cosign.pub` with the published key (run all later commands from the same directory, or pass the full path to the file):
+
+{/*
+Maintainer note (not rendered on the site):
+The public key below is the public half of the Cosign signing key stored in GCP KMS:
+  gcpkms://projects/xdr-cloud-hsm-prod-eu-01/locations/global/keyRings/cortex-xdr-software/cryptoKeys/cosign-signing-key/cryptoKeyVersions/1
+If the signing key is rotated (a new cryptoKeyVersion), re-export the public key and
+update the PEM block below, e.g.:
+  cosign public-key --key gcpkms://projects/xdr-cloud-hsm-prod-eu-01/locations/global/keyRings/cortex-xdr-software/cryptoKeys/cosign-signing-key/cryptoKeyVersions/<N>
+*/}
 
 ```bash
 cat > cosign.pub <<'EOF'
@@ -61,40 +81,31 @@ DlUs3beCk/90l2LQyOLWSLEAHsCTv43LxKhhOn+Cqvot8rpjBFrb7UEj7g==
 EOF
 ```
 
-Confirm it loaded:
+Confirm the file was saved correctly:
 
 ```bash
-cosign public-key --key cosign.pub   # re-prints the same PEM if the file is valid
+cat cosign.pub   # prints the PEM block saved above
 ```
 
 ## Verifying Signatures
 
-The signature lives in a sibling `<org>/sig-<image>` repo, so point cosign at it
+The signature lives in a sibling `<org>/sig-<image>` repository, so point cosign at it
 with `COSIGN_REPOSITORY`, and pass `--insecure-ignore-tlog=true` because our
-images are signed without a public transparency log entry:
+images are signed without a public transparency log entry.
+
+Images are signed by digest, so verify by digest (verifying by tag fails):
 
 ```bash
-# Verify a Docker Hub image (signature in demisto/sig-python3):
-COSIGN_REPOSITORY=demisto/sig-python3 \
-  cosign verify --key cosign.pub --insecure-ignore-tlog=true \
-  demisto/python3:<version>
-
-# Verify by digest (unambiguous, matches how it was signed):
+# Verify a Docker Hub image by digest (signature in demisto/sig-python3):
 COSIGN_REPOSITORY=demisto/sig-python3 \
   cosign verify --key cosign.pub --insecure-ignore-tlog=true \
   demisto/python3@sha256:<digest>
 ```
 
-During the dual-sign window you can also confirm the legacy DCT signature:
-
-```bash
-DOCKER_CONTENT_TRUST=1 docker pull demisto/python3:<version>
-```
-
 ## Example Verification Script
 
 For convenience we publish a ready-to-run wrapper that derives the sibling
-`<org>/sig-<image>` signature repo for you, so you only pass the image reference:
+`<org>/sig-<image>` signature repository automatically, so only the image reference is passed:
 [`utils/verify_signature.sh`](https://github.com/demisto/dockerfiles/blob/master/utils/verify_signature.sh)
 in the [demisto/dockerfiles](https://github.com/demisto/dockerfiles) repository.
 
@@ -106,14 +117,11 @@ curl -sSfL https://raw.githubusercontent.com/demisto/dockerfiles/master/utils/ve
   -o verify_signature.sh
 chmod +x verify_signature.sh
 
-# Verify by tag:
-./verify_signature.sh demisto/python3:<version>
-
-# Verify by digest (strongest, matches how it was signed):
+# Verify by digest:
 ./verify_signature.sh demisto/python3@sha256:<digest>
 ```
 
-The script requires `cosign` on your PATH and reads `cosign.pub` from the current
+The script requires `cosign` on the PATH and reads `cosign.pub` from the current
 directory (override with `PUBLIC_KEY=/path/to/cosign.pub`).
 
 ## Troubleshooting
@@ -121,6 +129,5 @@ directory (override with `PUBLIC_KEY=/path/to/cosign.pub`).
 | Symptom | Cause | Fix |
 | --- | --- | --- |
 | `open cosign.pub: no such file or directory` | `--key cosign.pub` points at a file that is not in the current directory. | Save the key as shown in [Getting the Public Key](#getting-the-public-key), or pass the full path (e.g. `--key /path/to/cosign.pub`). |
-| `no matching signatures` on verify | Verifying against the image repo instead of the signature repo. | Set `COSIGN_REPOSITORY=<org>/sig-<image>` to match where the signature is stored. |
+| `no matching signatures` on verify | Verifying against the image repository instead of the signature repository. | Set `COSIGN_REPOSITORY=<org>/sig-<image>` to match where the signature is stored. |
 | Verify fails looking for a transparency-log entry | Images are signed without a public transparency log entry. | Add `--insecure-ignore-tlog=true` to `cosign verify`. |
-| `--tlog-upload=false is not supported with --signing-config` | cosign **v3** changed defaults. | This only affects signing, not verification. Verification works on both v2 and v3. |

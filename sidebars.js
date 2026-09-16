@@ -119,7 +119,6 @@ const sidebars = {
             },
             "integrations/dbot",
             "integrations/docker",
-            "integrations/dockerimage-signature",
             {
               type: "category",
               label: "Builtins",
@@ -161,7 +160,8 @@ const sidebars = {
             "integrations/yml-from-python-code-gen",
             "integrations/fetch-incidents-lookback",
             "integrations/Trust-any-certificate",
-            "integrations/dynamic-ui-fields"
+            "integrations/dynamic-ui-fields",
+            "integrations/dockerimage-signature"
 
           ]
         }
