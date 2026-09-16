@@ -89,14 +89,16 @@ cat cosign.pub   # prints the PEM block saved above
 
 ## Verifying Signatures
 
-The signature lives in a sibling `<org>/sig-<image>` repository, so point cosign at it
-with `COSIGN_REPOSITORY`, and pass `--insecure-ignore-tlog=true` because our
-images are signed without a public transparency log entry.
+To verify an image signature with cosign:
 
-Images are signed by digest, so verify by digest (verifying by tag fails):
+1. Make sure `cosign.pub` is saved in the current directory (see [Getting the Public Key](#getting-the-public-key)).
+2. Get the image digest to verify. Images are signed by digest, so verification must use a digest (`@sha256:<digest>`).
+3. Set `COSIGN_REPOSITORY` to the sibling `<org>/sig-<image>` repository where the signature is stored (for example, the signature for `demisto/python3` is stored in `demisto/sig-python3`).
+4. Run `cosign verify` with `--insecure-ignore-tlog=true`.
+
+For example, to verify `demisto/python3` by digest:
 
 ```bash
-# Verify a Docker Hub image by digest (signature in demisto/sig-python3):
 COSIGN_REPOSITORY=demisto/sig-python3 \
   cosign verify --key cosign.pub --insecure-ignore-tlog=true \
   demisto/python3@sha256:<digest>
@@ -104,25 +106,25 @@ COSIGN_REPOSITORY=demisto/sig-python3 \
 
 ## Example Verification Script
 
-For convenience we publish a ready-to-run wrapper that derives the sibling
-`<org>/sig-<image>` signature repository automatically, so only the image reference is passed:
-[`utils/verify_signature.sh`](https://github.com/demisto/dockerfiles/blob/master/utils/verify_signature.sh)
-in the [demisto/dockerfiles](https://github.com/demisto/dockerfiles) repository.
+For convenience we publish a ready-to-run wrapper, [`utils/verify_signature.sh`](https://github.com/demisto/dockerfiles/blob/master/utils/verify_signature.sh) in the [demisto/dockerfiles](https://github.com/demisto/dockerfiles) repository, that derives the sibling `<org>/sig-<image>` signature repository automatically, so only the image reference is passed.
 
-Download it, make it executable, and keep `cosign.pub` in the same directory
-(see [Getting the Public Key](#getting-the-public-key)):
+To use the script:
 
-```bash
-curl -sSfL https://raw.githubusercontent.com/demisto/dockerfiles/master/utils/verify_signature.sh \
-  -o verify_signature.sh
-chmod +x verify_signature.sh
+1. Make sure `cosign` is installed and on the PATH (see [Prerequisites](#prerequisites)).
+2. Download the script and make it executable:
 
-# Verify by digest:
-./verify_signature.sh demisto/python3@sha256:<digest>
-```
+   ```bash
+   curl -sSfL https://raw.githubusercontent.com/demisto/dockerfiles/master/utils/verify_signature.sh \
+     -o verify_signature.sh
+   chmod +x verify_signature.sh
+   ```
 
-The script requires `cosign` on the PATH and reads `cosign.pub` from the current
-directory (override with `PUBLIC_KEY=/path/to/cosign.pub`).
+3. Save `cosign.pub` in the same directory as the script (see [Getting the Public Key](#getting-the-public-key)), or set `PUBLIC_KEY=/path/to/cosign.pub` to point to it elsewhere.
+4. Run the script with the image digest to verify:
+
+   ```bash
+   ./verify_signature.sh demisto/python3@sha256:<digest>
+   ```
 
 ## Troubleshooting
 
