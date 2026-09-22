@@ -63,7 +63,7 @@ Before starting, ensure you have:
 
 #### Step 1: Install or update demisto-sdk
 
-The custom upload flow requires `demisto-sdk` version **1.40.0 or higher**.
+The custom upload flow requires `demisto-sdk` version **1.39.10 or higher**.
 
 Run the following command to install or upgrade:
 
