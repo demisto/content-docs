@@ -9,12 +9,12 @@ tags: [cosign, signature, security, supply-chain, integrations, docker]
 
 ## Overview
 
-[Cosign](https://github.com/sigstore/cosign) is a tool from the [Sigstore](https://www.sigstore.dev/) project used to verify signatures for container images. Verifying image signatures confirms that a Docker image that Cortex XSOAR/XSIAM content items (such as integrations and scripts) run in is authentic and has not been tampered with.
+[Cosign](https://github.com/sigstore/cosign) is a tool from the [Sigstore](https://www.sigstore.dev/) project used to verify signatures for container images. Verifying image signatures confirms that a Docker image that Cortex XSOAR/XSIAM and platform content items (such as integrations and scripts) run in is authentic and has not been tampered with.
 
 :::info
 :::
 
-This guide covers how to verify the Docker images that Cortex XSOAR/XSIAM content items (such as integrations and scripts) run in with Cosign.
+This guide covers how to verify the Docker images that Cortex XSOAR/XSIAM and platform content items (such as integrations and scripts) run in with Cosign.
 
 ## What Is Changing
 
@@ -91,16 +91,16 @@ cat cosign.pub   # prints the PEM block saved above
 To verify an image signature with cosign:
 
 1. Make sure `cosign.pub` is saved in the current directory (see [Getting the Public Key](#getting-the-public-key)).
-2. Get the image digest to verify. Images are signed by digest, so verification must use a digest (`@sha256:<digest>`).
+2. Get the image tag to verify. Images are signed by tag, so verify using the image tag (`:<tag>`).
 3. Set `COSIGN_REPOSITORY` to the sibling `<org>/sig-<image>` repository where the signature is stored (for example, the signature for `demisto/python3` is stored in `demisto/sig-python3`).
 4. Run `cosign verify` with `--insecure-ignore-tlog=true`.
 
-For example, to verify `demisto/python3` by digest:
+For example, to verify `demisto/python3` by tag:
 
 ```bash
 COSIGN_REPOSITORY=demisto/sig-python3 \
   cosign verify --key cosign.pub --insecure-ignore-tlog=true \
-  demisto/python3@sha256:<digest>
+  demisto/python3:<tag>
 ```
 
 ## Example Verification Script
@@ -119,10 +119,10 @@ To use the script:
    ```
 
 3. Save `cosign.pub` in the same directory as the script (see [Getting the Public Key](#getting-the-public-key)), or set `PUBLIC_KEY=/path/to/cosign.pub` to point to it elsewhere.
-4. Run the script with the image digest to verify:
+4. Run the script with the image tag to verify:
 
    ```bash
-   ./verify_signature.sh demisto/python3@sha256:<digest>
+   ./verify_signature.sh demisto/<image>:<tag>
    ```
 
 ## Troubleshooting
