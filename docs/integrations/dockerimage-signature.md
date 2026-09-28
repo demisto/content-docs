@@ -94,7 +94,7 @@ cat cosign.pub   # prints the PEM block saved above
 
 To verify an image signature with Cosign:
 
-1. Make sure `cosign.pub` is saved in the current directory (see [Getting the Public Key](#getting-the-public-key)).
+1. Make sure `cosign.pub` is saved in the current directory (see [Get the Public Key](#get-the-public-key)).
 2. Get the image tag to verify. Images are signed by tag, so verify using the image tag (`:<tag>`).
 3. Set `COSIGN_REPOSITORY` to the sibling `<org>/sig-<image>` repository where the signature is stored (for example, the signature for `demisto/python3` is stored in `demisto/sig-python3`).
 4. Run `cosign verify` with `--insecure-ignore-tlog=true`.
