@@ -58,7 +58,7 @@ Ensure **cosign binary** is installed in your environment.
   > Both cosign **v2** and **v3** work for verification. For other platforms and installation methods, see the [cosign installation docs](https://docs.sigstore.dev/cosign/system_config/installation/).
 
 
-## Getting the Public Key
+## Get the Public Key
 
 `--key cosign.pub` is a **file path**: cosign reads a file named `cosign.pub` in the directory where the command is run from. If that file is missing, the error `open cosign.pub: no such file or directory` is returned, so save the key first.
 
