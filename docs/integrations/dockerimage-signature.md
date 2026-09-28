@@ -16,7 +16,9 @@ tags: [cosign, signature, security, supply-chain, integrations, docker]
 
 This guide covers how to verify the Docker images that Cortex XSOAR/XSIAM and platform content items (such as integrations and scripts) run in with Cosign.
 
-## What Is Changing
+## Transition to Cosign  
+
+Cosign replaces the deprecated Docker Content Trust (based on Notary v1) with a modern, OCI-native image signing workflow.
 
 - Our images used to be signed with **Docker Content Trust (DCT)**.
 - We have started signing our images with **Cosign** in addition to DCT, so during a grace period every image is **dual-signed** and either mechanism can be used to verify while transitioning to Cosign.
