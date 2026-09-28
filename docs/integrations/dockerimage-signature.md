@@ -73,7 +73,7 @@ The public key below is the public half of the Cosign signing key stored in GCP 
   gcpkms://projects/xdr-cloud-hsm-prod-eu-01/locations/global/keyRings/cortex-xdr-software/cryptoKeys/cosign-signing-key/cryptoKeyVersions/1
 If the signing key is rotated (a new cryptoKeyVersion), re-export the public key and
 update the PEM block below, e.g.:
-  cosign public-key --key gcpkms://projects/xdr-cloud-hsm-prod-eu-01/locations/global/keyRings/cortex-xdr-software/cryptoKeys/cosign-signing-key/cryptoKeyVersions/<N>
+  cosign public-key --key gcpkms://projects/xdr-cloud-hsm-prod-eu-01/locations/global/keyRings/cortex-xdr-software/cryptoKeys/cosign-signing-key/cryptoKeyVersions/<new-version>
 */}
 
 ```bash
