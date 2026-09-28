@@ -32,7 +32,7 @@ If your system relies on `docker trust inspect` / `DOCKER_CONTENT_TRUST=1` today
 | Verify at pull | `DOCKER_CONTENT_TRUST=1 docker pull` | `cosign verify --key cosign.pub ...` |
 | Inspect signatures | `docker trust inspect <image>` | `cosign tree <image>` / `cosign verify ...` |
 
-## Prerequisites
+## Prerequisite
 
 Ensure **cosign binary** is installed in your environment.
 
