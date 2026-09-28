@@ -20,7 +20,9 @@ This guide covers how to verify the Docker images that Cortex XSOAR/XSIAM and pl
 
 Cosign replaces the deprecated Docker Content Trust (based on Notary v1) with a modern, OCI-native image signing workflow.
 
-- Our images used to be signed with **Docker Content Trust (DCT)**.
+> **Important**:  
+>  
+> Support for Docker Content Trust (DCT) ends on December 8, 2026.
 - We have started signing our images with **Cosign** in addition to DCT, so during a grace period every image is **dual-signed** and either mechanism can be used to verify while transitioning to Cosign.
 - **DCT is retired on Dec 8, 2026.** After that date, verify with Cosign only.
 
