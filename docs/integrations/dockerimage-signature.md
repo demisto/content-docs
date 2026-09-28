@@ -12,7 +12,6 @@ tags: [cosign, signature, security, supply-chain, integrations, docker]
 [Cosign](https://github.com/sigstore/cosign) is a tool from the [Sigstore](https://www.sigstore.dev/) project used to verify signatures for container images. Verifying image signatures confirms that a Docker image that Cortex XSOAR/XSIAM content items (such as integrations and scripts) run in is authentic and has not been tampered with.
 
 :::info
-Cosign **replaces Docker Content Trust (DCT)** for signing our images. DCT (based on Notary v1) is deprecated, and Cosign provides a modern, OCI-native signing workflow going forward.
 :::
 
 This guide covers how to verify the Docker images that Cortex XSOAR/XSIAM content items (such as integrations and scripts) run in with Cosign.
