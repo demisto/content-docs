@@ -57,7 +57,6 @@ Ensure **cosign binary** is installed in your environment.
   >  
   > Both cosign **v2** and **v3** work for verification. For other platforms and installation methods, see the [cosign installation docs](https://docs.sigstore.dev/cosign/system_config/installation/).
 
-- **The Cosign public key** (`cosign.pub`), which is stored on this page (see [Getting the Public Key](#getting-the-public-key)). This is all that is needed to verify; it is not secret.
 
 ## Getting the Public Key
 
