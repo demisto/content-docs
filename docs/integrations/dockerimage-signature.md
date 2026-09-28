@@ -109,7 +109,7 @@ COSIGN_REPOSITORY=demisto/sig-python3 \
 
 ## Example Verification Script
 
-For convenience we publish a ready-to-run wrapper, [`utils/verify_signature.sh`](https://github.com/demisto/dockerfiles/blob/master/utils/verify_signature.sh) in the [demisto/dockerfiles](https://github.com/demisto/dockerfiles) repository, that derives the sibling `<org>/sig-<image>` signature repository automatically, so only the image reference is passed.
+For convenience, the ready-to-run wrapper [`utils/verify_signature.sh`](https://github.com/demisto/dockerfiles/blob/master/utils/verify_signature.sh) is available in the [demisto/dockerfiles](https://github.com/demisto/dockerfiles) repository. It derives the sibling `<org>/sig-<image>` signature repository automatically, so only the image reference is passed.
 
 To use the script:
 
