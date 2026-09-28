@@ -37,7 +37,7 @@ If your system relies on `docker trust inspect` / `DOCKER_CONTENT_TRUST=1` today
 
 ## Prerequisites
 
-- **cosign binary** installed in the environment.
+Ensure **cosign binary** is installed in your environment.
 
   On macOS (or any environment with [Homebrew](https://brew.sh/)):
 
