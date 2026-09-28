@@ -92,7 +92,7 @@ cat cosign.pub   # prints the PEM block saved above
 
 ## Verify the Image Signature
 
-To verify an image signature with cosign:
+To verify an image signature with Cosign:
 
 1. Make sure `cosign.pub` is saved in the current directory (see [Getting the Public Key](#getting-the-public-key)).
 2. Get the image tag to verify. Images are signed by tag, so verify using the image tag (`:<tag>`).
