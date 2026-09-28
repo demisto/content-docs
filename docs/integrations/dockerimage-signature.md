@@ -14,7 +14,7 @@ tags: [cosign, signature, security, supply-chain, integrations, docker]
 :::info
 :::
 
-This guide covers how to verify the Docker images that Cortex XSOAR/XSIAM and platform content items (such as integrations and scripts) run in with Cosign.
+This guide explains how to use Cosign to verify Docker images running Cortex XSOAR/XSIAM and platform content items.
 
 ## Transition to Cosign  
 
