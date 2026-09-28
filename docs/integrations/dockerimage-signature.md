@@ -131,7 +131,7 @@ To use the script:
 
 ## Troubleshooting
 
-| Symptom | Cause | Fix |
+| Issue | Cause | Fix |
 | --- | --- | --- |
 | `open cosign.pub: no such file or directory` | `--key cosign.pub` points at a file that is not in the current directory. | Save the key as shown in [Getting the Public Key](#getting-the-public-key), or pass the full path (e.g. `--key /path/to/cosign.pub`). |
 | `no matching signatures` on verify | Verifying against the image repository instead of the signature repository. | Set `COSIGN_REPOSITORY=<org>/sig-<image>` to match where the signature is stored. |
