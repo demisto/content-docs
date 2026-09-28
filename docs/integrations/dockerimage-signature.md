@@ -61,7 +61,9 @@ Ensure **cosign binary** is installed in your environment.
 ## Get the Public Key
   
 The Cosign public key (`cosign.pub`) is all you need to verify, it is not secret.
-`--key cosign.pub` is a **file path**: cosign reads a file named `cosign.pub` in the directory where the command is run from. If that file is missing, the error `open cosign.pub: no such file or directory` is returned, so save the key first.
+> **Note**:  
+>  
+> `--key cosign.pub` is a file path. Cosign reads a file named `cosign.pub` in the directory where the command is run from. If that file is missing, the error `open cosign.pub: no such file or directory` is returned, so save the key first.
 
 Create `cosign.pub` with the published key (run all later commands from the same directory, or pass the full path to the file):
 
