@@ -90,7 +90,7 @@ Confirm the file was saved correctly:
 cat cosign.pub   # prints the PEM block saved above
 ```
 
-## Verifying Signatures
+## Verify the Image Signature
 
 To verify an image signature with cosign:
 
