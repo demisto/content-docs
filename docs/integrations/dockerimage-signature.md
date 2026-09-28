@@ -28,7 +28,6 @@ Cosign replaces the deprecated Docker Content Trust (based on Notary v1) with a 
 
 If your system relies on `docker trust inspect` / `DOCKER_CONTENT_TRUST=1` today, switch to `cosign verify` before the retirement date.
 
-
 | Task | DCT (legacy) | Cosign (new) |
 | --- | --- | --- |
 | Verify at pull | `DOCKER_CONTENT_TRUST=1 docker pull` | `cosign verify --key cosign.pub ...` |
