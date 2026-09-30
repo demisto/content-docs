@@ -29,6 +29,7 @@ Cosign replaces the deprecated Docker Content Trust (based on Notary v1) with a 
 > **Important**:  
 >  
 > Support for Docker Content Trust (DCT) ends on December 8, 2026.
+
 - Current state: All images are currently dual-signed with both DCT and Cosign to allow for a seamless transition.
 - The change: After the December 8 deadline, we will stop signing images with DCT and move exclusively to Cosign.
 
