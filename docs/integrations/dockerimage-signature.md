@@ -67,14 +67,14 @@ The Cosign public key (`cosign.pub`) is all you need to verify, it is not secret
 
 Create `cosign.pub` with the published key (run all later commands from the same directory, or pass the full path to the file):
 
-{/*
+<!--
 Maintainer note (not rendered on the site):
 The public key below is the public half of the Cosign signing key stored in GCP KMS:
   gcpkms://projects/xdr-cloud-hsm-prod-eu-01/locations/global/keyRings/cortex-xdr-software/cryptoKeys/cosign-signing-key/cryptoKeyVersions/1
 If the signing key is rotated (a new cryptoKeyVersion), re-export the public key and
 update the PEM block below, e.g.:
-  cosign public-key --key gcpkms://projects/xdr-cloud-hsm-prod-eu-01/locations/global/keyRings/cortex-xdr-software/cryptoKeys/cosign-signing-key/cryptoKeyVersions/<new-version>
-*/}
+  cosign public-key --key gcpkms://projects/xdr-cloud-hsm-prod-eu-01/locations/global/keyRings/cortex-xdr-software/cryptoKeys/cosign-signing-key/cryptoKeyVersions/NEW_VERSION
+-->
 
 ```bash
 cat > cosign.pub <<'EOF'
