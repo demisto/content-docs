@@ -104,7 +104,7 @@ cat cosign.pub   # prints the PEM block saved above
 To verify an image signature with Cosign:
 
 1. Make sure `cosign.pub` is saved in the current directory (see [Get the Public Key](#get-the-public-key)).
-2. Get the image tag to verify. Images are signed by tag, so verify using the image tag (`:<tag>`).
+2. Get the image tag to verify. Images are signed by digest, and you can verify using the image tag (`:<tag>`).
 3. Set `COSIGN_REPOSITORY` to the sibling `<org>/sig-<image>` repository where the signature is stored (for example, the signature for `demisto/python3` is stored in `demisto/sig-python3`).
 4. Run `cosign verify` with `--insecure-ignore-tlog=true`.
 
@@ -122,7 +122,7 @@ For convenience, the ready-to-run wrapper [`utils/verify_signature.sh`](https://
 
 To use the script:
 
-1. Make sure `cosign` is installed and on the PATH (see [Prerequisites](#prerequisites)).
+1. Make sure `cosign` is installed and on the PATH (see [Prerequisite](#prerequisite)).
 2. Download the script and make it executable:
 
    ```bash
@@ -131,7 +131,7 @@ To use the script:
    chmod +x verify_signature.sh
    ```
 
-3. Save `cosign.pub` in the same directory as the script (see [Getting the Public Key](#getting-the-public-key)), or set `PUBLIC_KEY=/path/to/cosign.pub` to point to it elsewhere.
+3. Save `cosign.pub` in the same directory as the script (see [Get the Public Key](#get-the-public-key)), or set `PUBLIC_KEY=/path/to/cosign.pub` to point to it elsewhere.
 4. Run the script with the image tag to verify:
 
    ```bash
@@ -142,6 +142,6 @@ To use the script:
 
 | Issue | Cause | Fix |
 | --- | --- | --- |
-| `open cosign.pub: no such file or directory` | `--key cosign.pub` points at a file that is not in the current directory. | Save the key as shown in [Getting the Public Key](#getting-the-public-key), or pass the full path (e.g. `--key /path/to/cosign.pub`). |
+| `open cosign.pub: no such file or directory` | `--key cosign.pub` points at a file that is not in the current directory. | Save the key as shown in [Get the Public Key](#get-the-public-key), or pass the full path (e.g. `--key /path/to/cosign.pub`). |
 | `no matching signatures` on verify | Verifying against the image repository instead of the signature repository. | Set `COSIGN_REPOSITORY=<org>/sig-<image>` to match where the signature is stored. |
 | Verify fails looking for a transparency-log entry | Images are signed without a public transparency log entry. | Add `--insecure-ignore-tlog=true` to `cosign verify`. |
