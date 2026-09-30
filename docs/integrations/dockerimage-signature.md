@@ -7,11 +7,18 @@ tags: [cosign, signature, security, supply-chain, integrations, docker]
 
 # Docker Image Signature
 
+<!--
+Maintainer note (not rendered on the site):
+Remove the transition note below on or after January 8, 2027 (one month after DCT support ends on December 8, 2026).
+-->
+
+:::note
+Docker images are currently signed with both Docker Content Trust (DCT) and Cosign. Support for DCT ends on December 8, 2026. After that date, images are signed only with Cosign. For details, refer to [Transition to Cosign](#transition-to-cosign).
+:::
+
 ## Overview
 
 [Cosign](https://github.com/sigstore/cosign) is a [Sigstore](https://www.sigstore.dev/) tool that verifies container image signatures. Verifying these signatures ensures that the Docker images running Cortex XSOAR/XSIAM and platform content such as content packs (connectors), integrations (capabilities), and scripts are authentic and untampered with.
-
-:::info
 
 This guide explains how to use Cosign to verify Docker images running Cortex XSOAR/XSIAM and platform content items.
 
