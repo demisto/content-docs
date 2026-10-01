@@ -37,8 +37,8 @@ If your system relies on `docker trust inspect` / `DOCKER_CONTENT_TRUST=1` today
 
 | Task | DCT (legacy) | Cosign (new) |
 | --- | --- | --- |
-| Verify at pull | `DOCKER_CONTENT_TRUST=1 docker pull` | `cosign verify --key cosign.pub ...` |
-| Inspect signatures | `docker trust inspect <image>` | `cosign tree <image>` / `cosign verify ...` |
+| Verify before pull | `DOCKER_CONTENT_TRUST=1 docker pull <image>:<tag>` (verification runs as part of the pull) | `COSIGN_REPOSITORY=<org>/sig-<image> cosign verify --key cosign.pub --insecure-ignore-tlog=true <image>@sha256:<digest>`, then `docker pull <image>@sha256:<digest>` |
+| Inspect signatures | `docker trust inspect <image>` | `COSIGN_REPOSITORY=<org>/sig-<image> cosign tree <image>:<tag>` |
 
 ## Prerequisite
 
@@ -54,7 +54,7 @@ Ensure **cosign binary** is installed in your environment.
   On Linux, download the release binary directly:
 
   ```bash
-  COSIGN_VERSION=v2.4.1
+  COSIGN_VERSION=v3.0.2
   curl -sSfL "https://github.com/sigstore/cosign/releases/download/${COSIGN_VERSION}/cosign-linux-amd64" \
     -o /usr/local/bin/cosign
   chmod +x /usr/local/bin/cosign
@@ -75,15 +75,6 @@ The Cosign public key (`cosign.pub`) is all you need to verify, it is not secret
 
 Create `cosign.pub` with the published key (run all later commands from the same directory, or pass the full path to the file):
 
-<!--
-Maintainer note (not rendered on the site):
-The public key below is the public half of the Cosign signing key stored in GCP KMS:
-  gcpkms://projects/xdr-cloud-hsm-prod-eu-01/locations/global/keyRings/cortex-xdr-software/cryptoKeys/cosign-signing-key/cryptoKeyVersions/1
-If the signing key is rotated (a new cryptoKeyVersion), re-export the public key and
-update the PEM block below, e.g.:
-  cosign public-key --key gcpkms://projects/xdr-cloud-hsm-prod-eu-01/locations/global/keyRings/cortex-xdr-software/cryptoKeys/cosign-signing-key/cryptoKeyVersions/NEW_VERSION
--->
-
 ```bash
 cat > cosign.pub <<'EOF'
 -----BEGIN PUBLIC KEY-----
@@ -101,10 +92,12 @@ cat cosign.pub   # prints the PEM block saved above
 
 ## Verify the Image Signature
 
-To verify an image signature with Cosign:
+Images are signed by digest and can be verified using the image tag (`:<tag>`) or the image digest (`@sha256:<digest>`). When a tag is passed, Cosign resolves it to the digest it currently points to and verifies the signature for that digest.
+
+We encourage using the [Example Verification Script](#example-verification-script), which only needs the image tag or digest and handles the signature repository automatically. To verify manually with Cosign instead:
 
 1. Make sure `cosign.pub` is saved in the current directory (see [Get the Public Key](#get-the-public-key)).
-2. Get the image tag to verify. Images are signed by digest, and you can verify using the image tag (`:<tag>`).
+2. Get the image reference to verify, either the image tag or the image digest (see [Get the Image Digest](#get-the-image-digest)).
 3. Set `COSIGN_REPOSITORY` to the sibling `<org>/sig-<image>` repository where the signature is stored (for example, the signature for `demisto/python3` is stored in `demisto/sig-python3`).
 4. Run `cosign verify` with `--insecure-ignore-tlog=true`.
 
@@ -115,6 +108,26 @@ COSIGN_REPOSITORY=demisto/sig-python3 \
   cosign verify --key cosign.pub --insecure-ignore-tlog=true \
   demisto/python3:<tag>
 ```
+
+To verify `demisto/python3` by digest:
+
+```bash
+COSIGN_REPOSITORY=demisto/sig-python3 \
+  cosign verify --key cosign.pub --insecure-ignore-tlog=true \
+  demisto/python3@sha256:<digest>
+```
+
+### Get the Image Digest
+
+A tag can be moved to point to a different image, while a digest always identifies the same image. To get the digest of an image tag, pull the image and read its repository digest:
+
+```bash
+docker pull demisto/python3:<tag>
+docker inspect --format='{{index .RepoDigests 0}}' demisto/python3:<tag>
+# prints demisto/python3@sha256:<digest>
+```
+
+Pass the printed `demisto/python3@sha256:<digest>` reference to `cosign verify`. Pulling and running the image by the same digest guarantees that the image in use is the one that was verified.
 
 ## Example Verification Script
 
@@ -132,11 +145,14 @@ To use the script:
    ```
 
 3. Save `cosign.pub` in the same directory as the script (see [Get the Public Key](#get-the-public-key)), or set `PUBLIC_KEY=/path/to/cosign.pub` to point to it elsewhere.
-4. Run the script with the image tag to verify:
+4. Run the script with the image tag or digest to verify:
 
    ```bash
    ./verify_signature.sh demisto/<image>:<tag>
+   ./verify_signature.sh demisto/<image>@sha256:<digest>
    ```
+
+   A bare image name (for example, `python3:<tag>`) defaults to the `demisto` org. References without a tag or digest are rejected.
 
 ## Troubleshooting
 
