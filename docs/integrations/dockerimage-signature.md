@@ -9,31 +9,24 @@ tags: [cosign, signature, security, supply-chain, integrations, docker]
 
 <!--
 Maintainer note (not rendered on the site):
-Remove the transition note below on or after January 8, 2027 (one month after DCT support ends on December 8, 2026).
+Remove the transition details below on or after January 8, 2027 (one month after DCT support ends on December 8, 2026).
 -->
 
 :::note
-Docker images are currently signed with both Docker Content Trust (DCT) and Cosign. Support for DCT ends on December 8, 2026. After that date, images are signed only with Cosign. For details, refer to [Transition to Cosign](#transition-to-cosign).
+Docker images are currently signed with both Docker Content Trust (DCT) and Cosign. Support for DCT ends on December 8, 2026. After that date, images will be signed only with Cosign. For more details, see [Transition to Cosign](#transition-to-cosign).
 :::
 
 ## Overview
 
-[Cosign](https://github.com/sigstore/cosign) is a [Sigstore](https://www.sigstore.dev/) tool that verifies container image signatures. Verifying these signatures ensures that the Docker images running Cortex XSOAR/XSIAM and platform content such as content packs (connectors), integrations (capabilities), and scripts are authentic and untampered with.
+[Cosign](https://github.com/sigstore/cosign) is a [Sigstore](https://www.sigstore.dev/) tool that verifies container image signatures. Verifying these signatures ensures that the Docker images running Cortex XSOAR/XSIAM and platform content such as content packs (connectors), integrations (capabilities), and scripts are authentic and untampered with. Cosign will replace the deprecated Docker Content Trust (based on Notary v1) with a modern, OCI-native image signing workflow.
 
-This guide explains how to use Cosign to verify Docker images running Cortex XSOAR/XSIAM and platform content items.
+This article explains how to use Cosign to verify Docker images running Cortex XSOAR/XSIAM and platform content items.
 
 ## Transition to Cosign  
 
-Cosign replaces the deprecated Docker Content Trust (based on Notary v1) with a modern, OCI-native image signing workflow.
+Currently, all images are currently dual-signed with both DCT and Cosign to enable a seamless transition to Cosign. After December 8, we will stop signing images with DCT and move exclusively to Cosign. 
 
-> **Important**:  
->  
-> Support for Docker Content Trust (DCT) ends on December 8, 2026.
-
-- Current state: All images are currently dual-signed with both DCT and Cosign to allow for a seamless transition.
-- The change: After the December 8 deadline, we will stop signing images with DCT and move exclusively to Cosign.
-
-If your system relies on `docker trust inspect` / `DOCKER_CONTENT_TRUST=1` today, switch to `cosign verify` before the retirement date.
+If your system currently relies on `docker trust inspect` / `DOCKER_CONTENT_TRUST=1`, switch to `cosign verify` before December 8.
 
 | Task | DCT (legacy) | Cosign (new) |
 | --- | --- | --- |
@@ -117,7 +110,7 @@ COSIGN_REPOSITORY=demisto/sig-python3 \
   demisto/python3@sha256:<digest>
 ```
 
-### Get the Image Digest
+## Get the Image Digest
 
 A tag can be moved to point to a different image, while a digest always identifies the same image. To get the digest of an image tag, pull the image and read its repository digest:
 
