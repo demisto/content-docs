@@ -51,8 +51,8 @@ If you only need to review the code without making changes:
 
 To modify an existing sub-capability (integration) and upload it as custom content, you must use the SDK.
 
-:::tip Using an AI coding assistant?
-The content repository includes an AI agent skill that guides you through this workflow. See the [upload-custom-integration skill](https://github.com/demisto/content/blob/master/.ai/skills/upload-custom-integration/SKILL.md).
+:::tip Recommended: AI-assisted workflow
+It is recommended to use the [upload-custom-integration skill](https://github.com/demisto/content/blob/master/.ai/skills/upload-custom-integration/SKILL.md) to complete this procedure. The skill is tool-agnostic, is compatible with any agentic AI coding assistant, and provides step-by-step guidance through the entire workflow.
 :::
 
 #### Prerequisites
