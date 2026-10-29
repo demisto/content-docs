@@ -17,20 +17,29 @@ Cortex is transitioning to a unified connector experience that consolidates all 
 The method for managing custom content depends on your onboarding date and the implementation status of the specific vendor:
 
 <ul className="bullet-list">
-<li><strong>New customers (onboarded after July 26, 2026):</strong> All services in the catalog follow the unified connector experience and require external management for custom content.</li>
-<li><strong>Existing customers (onboarded before July 26, 2026):</strong> You may see a mix of legacy integrations and unified connectors. The product UI will automatically direct you to the external workflow for sub-capabilities (integrations) that have been transitioned to the unified experience.</li>
+<li><strong>New customers (onboarded after July 26, 2026):</strong> Your entire catalog follows the unified connector experience. To create custom content based on any existing service in the catalog, you must use the external management workflow (GitHub and the SDK).</li>
+<li><strong>Existing customers (onboarded before July 26, 2026):</strong>
+<ul className="bullet-list">
+<li><strong>Unified connectors:</strong> These represent a simplified onboarding experience for your tenant and do not support custom content.</li>
+<li><strong>Legacy integrations:</strong> To create custom content, you must continue to use the <strong>Duplicate</strong> and <strong>View Source</strong> options for original Marketplace integrations, which remain fully supported using the built-in editor in Cortex XSIAM.</li>
+</ul>
+</li>
 </ul>
 
 ---
 
 ## Duplicate and view source code
 
-The method for managing source code depends on whether the service is currently part of a unified connector.
+The method for managing source code depends on whether you are duplicating a legacy integration or a sub-capability within a connector:
 
 <ul className="bullet-list">
-<li><strong>Legacy integrations:</strong> For services not yet transitioned to the unified experience, you can continue to use the <strong>Duplicate</strong> and <strong>View Source</strong> options directly within the product UI. Upon duplication, the item transitions to a custom content status, and you can modify the source code using the built-in editor.</li>
-<li><strong>Connector sub-capabilities (integrations):</strong> For vendors using the unified connector experience, the built-in UI editor is not supported. To view the source code of a sub-capability (integration), you can do so directly in <strong>GitHub</strong>. To duplicate a sub-capability (integration) and upload it as custom content, you must perform a manual flow using the <code>demisto-sdk</code>.</li>
+<li><strong>Legacy integrations:</strong> You can continue to use the <strong>Duplicate</strong> and <strong>View Source</strong> options directly within Cortex XSIAM. Upon duplication, the item transitions to a custom content status, and you can modify the source code using the built-in editor.</li>
+<li><strong>Connector sub-capabilities (integrations):</strong> The built-in editor is not supported for duplicating or expanding existing sub-capabilities. To view the source code of a sub-capability or to duplicate it as custom content, you must perform the manual flow using <strong>GitHub</strong> and the <code>demisto-sdk</code>.</li>
 </ul>
+
+:::note
+The built-in editor remains fully supported for creating new custom integrations from scratch.
+:::
 
 ---
 
