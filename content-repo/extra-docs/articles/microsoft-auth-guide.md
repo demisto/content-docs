@@ -186,6 +186,9 @@ The Redirect URI is the address where Azure AD sends the login response. If you 
 9. Save the instance.
 10. Run the `!<integration command prefix>-auth-test` command. The War Room prints a 'Success' message if the integration is configured correctly.
 
+**Note:** Authorization codes are short-lived and typically expire **after about 1 minute** (see [Microsoft's documentation](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow#:~:text=Description-,code,codes%20are%20short%20lived.%20Typically%2C%20they%20expire%20after%20about%201%20minute.,-state)).
+Save the instance and run the `!<integration command prefix>-auth-test` command (or any other integration command) **right after** you get the code. Once a command has used the code, the integration stores a refresh token and no longer needs the code.
+
 **Note:** Make sure the neccessary permissions and roles are applied to the application and the user.
 
 ### Example: configuring the [Microsoft Graph User integration](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-user) using a self-deployed and authorization code flow
@@ -374,5 +377,8 @@ For example, when using the "self-deployed Azure app" for Microsoft Graph Mail S
 If you encounter issues with the User consent, such as a "Missing scope permissions on the request. API requires one of..." error after generating a new authorization code using the generate-login-url command, even though you have provided all the mentioned permissions, it may indicate that you need to trigger the consent process again.  
 To do this, copy the login URL, add `&prompt=consent` to the end of the URL, and then log in.  
 For details, see Microsoft's documentation on [Request an authorization code](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow#request-an-authorization-code).  
+
+If you receive an `invalid_grant` error with error code `AADSTS70008`, "The provided authorization code or refresh token has expired due to inactivity", the authorization code expired before the integration used it. Authorization codes typically expire after about 1 minute. See [Microsoft's documentation](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow#:~:text=Description-,code,codes%20are%20short%20lived.%20Typically%2C%20they%20expire%20after%20about%201%20minute.,-state).
+Run the `!<integration command prefix>-auth-reset` command, generate a new authorization code, save the instance, and **immediately** run the `!<integration command prefix>-auth-test` command (or any other integration command). Once a command has used the code, the integration stores a refresh token and no longer needs the code.
 
 
