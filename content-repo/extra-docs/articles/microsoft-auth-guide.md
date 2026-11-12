@@ -186,6 +186,8 @@ The Redirect URI is the address where Azure AD sends the login response. If you 
 9. Save the instance.
 10. Run the `!<integration command prefix>-auth-test` command. The War Room prints a 'Success' message if the integration is configured correctly.
 
+**Note:** Authorization codes are short-lived and typically expire after about 1 minute (see [Microsoft's documentation](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow#:~:text=Description-,code,codes%20are%20short%20lived.%20Typically%2C%20they%20expire%20after%20about%201%20minute.,-state)). Save the instance and run the `!<integration command prefix>-auth-test` command (or any other integration command) right after you get the code. Once a command has used the code, the integration stores a refresh token and no longer needs the code.
+
 **Note:** Make sure the neccessary permissions and roles are applied to the application and the user.
 
 ### Example: configuring the [Microsoft Graph User integration](https://xsoar.pan.dev/docs/reference/integrations/microsoft-graph-user) using a self-deployed and authorization code flow
