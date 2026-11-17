@@ -338,10 +338,8 @@ def test_get_deprecated_data():
     ({'fromversion': '5.0.0'},
      ':::info Supported versions\n'
      'Available on Cortex XSOAR, Cortex XSIAM, and Cortex XPANSE.\n:::\n\n'),
-    # No marketplaces, no fromversion — available on all, no version shown
-    ({},
-     ':::info Supported versions\n'
-     'Available on Cortex XSOAR, Cortex XSIAM, and Cortex XPANSE.\n:::\n\n'),
+    # No marketplaces, no fromversion - no banner
+    ({}, ''),
     # No marketplaces, version 4.0.0 — available on all, no version shown (4.x filtered)
     ({'fromversion': '4.0.0'},
      ':::info Supported versions\n'

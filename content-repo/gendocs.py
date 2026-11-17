@@ -284,6 +284,10 @@ def get_fromversion_data(yml_data: dict, marketplaces: Optional[list] = None):
     if marketplaces is None:
         marketplaces = yml_data.get('marketplaces', [])
 
+    # No marketplace info and no fromversion - nothing reliable to show
+    if not marketplaces and not from_version:
+        return ''
+
     # No marketplace info at all — available on all marketplaces
     if not marketplaces:
         marketplaces = ALL_DISPLAY_MARKETPLACES
