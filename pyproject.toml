@@ -56,7 +56,7 @@ pyasn1 = "==0.5.0"
 pyasn1-modules = "==0.3.0"
 pydoc-markdown = ">=4.8.2,<5.0.0"
 pyparsing = "==3.0.9"
-python = "^3.10"
+python = ">=3.11,<3.15"
 python-dateutil = "*" # "==2.8.2"
 pyyaml = "==5.3" # "==5.4.1"
 requests = "*" # "==2.31.0"
@@ -72,7 +72,7 @@ types-urllib3 = "==1.26.25.13"
 uritemplate = "==4.1.1"
 urllib3 = "==1.26.16"
 watchdog = "==1.0.2"
-python-gitlab = "^3.0.0" # import gitlab
+python-gitlab = "^8.0.0" # import gitlab
 junitparser = "^3.1.2"
 jira = "^3.8.0"
 gitpython = "^3.1.43" # import git

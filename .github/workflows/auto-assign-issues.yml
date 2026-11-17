@@ -6,11 +6,11 @@ on:
 
 jobs:
     auto-assign:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-24.04  # using python 3.12
         permissions:
             issues: write
         steps:
             - name: 'Auto assign issue'
-              uses: pozil/auto-assign-issue@d11e715efc663fe323c3d8d4d3cbbfdddd539baf # v1
+              uses: pozil/auto-assign-issue@39c06395cbac76e79afc4ad4e5c5c6db6ecfdd2e # v2.2.0
               with:
                   assignees: richardbluestone
